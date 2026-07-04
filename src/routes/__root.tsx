@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Smart Business" },
+      { name: "description", content: "Smart Business is a governed implementation project for managing business operations." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Smart Business" },
+      { property: "og:description", content: "Smart Business is a governed implementation project for managing business operations." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Smart Business" },
+      { name: "twitter:description", content: "Smart Business is a governed implementation project for managing business operations." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/00e63963-6327-40e0-9a00-b71a2a1c8a04/id-preview-fa177b90--64c2b9b1-2461-4045-9acc-19e2658b8ca2.lovable.app-1783068637121.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/00e63963-6327-40e0-9a00-b71a2a1c8a04/id-preview-fa177b90--64c2b9b1-2461-4045-9acc-19e2658b8ca2.lovable.app-1783068637121.png" },
     ],
     links: [
       {
