@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -16,6 +17,11 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StartRoute = StartRouteImport.update({
   id: '/start',
   path: '/start',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/start': typeof StartRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/start': typeof StartRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/start': typeof StartRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/privacy-policy'
     | '/start'
+    | '/terms-of-service'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/privacy-policy'
     | '/start'
+    | '/terms-of-service'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/privacy-policy'
     | '/start'
+    | '/terms-of-service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,10 +118,18 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   StartRoute: typeof StartRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/start': {
       id: '/start'
       path: '/start'
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   StartRoute: StartRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
