@@ -1,6 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
-import { Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -34,6 +37,109 @@ function SmartBusinessMark() {
   );
 }
 
+function AuthAffordance({
+  compact,
+  onNavigate,
+}: {
+  compact?: boolean;
+  onNavigate?: () => void;
+}) {
+  const { session, loading } = useAuth();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [signingOut, setSigningOut] = useState(false);
+
+  async function handleSignOut() {
+    if (signingOut) return;
+    setSigningOut(true);
+    try {
+      await queryClient.cancelQueries();
+      queryClient.clear();
+      await supabase.auth.signOut();
+      onNavigate?.();
+      navigate({ to: "/auth", replace: true });
+    } finally {
+      setSigningOut(false);
+    }
+  }
+
+  if (loading) {
+    return (
+      <span
+        aria-hidden="true"
+        className={
+          compact
+            ? "inline-block h-10 w-full rounded-md bg-muted/60"
+            : "inline-block h-9 w-20 rounded-md bg-muted/60"
+        }
+      />
+    );
+  }
+
+  if (session) {
+    if (compact) {
+      return (
+        <>
+          <Link
+            to="/dashboard"
+            onClick={onNavigate}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Go to workspace
+          </Link>
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-transparent px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            <LogOut className="h-4 w-4" aria-hidden="true" />
+            Sign out
+          </button>
+        </>
+      );
+    }
+    return (
+      <div className="ml-2 flex items-center gap-2">
+        <Link
+          to="/dashboard"
+          className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Go to workspace
+        </Link>
+        <button
+          type="button"
+          onClick={handleSignOut}
+          aria-label="Sign out"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:bg-muted"
+        >
+          <LogOut className="h-4 w-4" aria-hidden="true" />
+        </button>
+      </div>
+    );
+  }
+
+  if (compact) {
+    return (
+      <Link
+        to="/auth"
+        onClick={onNavigate}
+        className="mt-2 inline-flex items-center justify-center rounded-md bg-primary px-4 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+      >
+        Sign in
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      to="/auth"
+      className="ml-2 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+    >
+      Sign in
+    </Link>
+  );
+}
+
 function Header() {
   const [open, setOpen] = useState(false);
 
@@ -54,12 +160,7 @@ function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/dashboard"
-            className="ml-2 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Login
-          </Link>
+          <AuthAffordance />
         </nav>
 
         <button
@@ -91,13 +192,7 @@ function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/dashboard"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-md bg-primary px-4 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Login
-            </Link>
+            <AuthAffordance compact onNavigate={() => setOpen(false)} />
           </nav>
         </div>
       ) : null}
