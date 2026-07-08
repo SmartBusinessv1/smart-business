@@ -57,7 +57,8 @@ The following status values are used:
 |----|-----------------|----------|-------------|--------|  
 | OBS-001 | SB-P1.5 | Infrastructure | Verify committed \`.env\` contents during a future Infrastructure Maintenance mission and confirm that environment variable management follows approved governance. | Open |  
 | OBS-002 | SB-P1.5 | Framework Dependency | Monitor the upstream \`@tanstack/react-start\` dependency advisory and evaluate framework updates through a future governed maintenance mission. | Monitoring |
-
+| OBS-003 | SB-ARC-1.0 | Engineering Architecture | Maintain permanent constitutional knowledge through Claude Project Knowledge while consuming implementation, governance, and mission artifacts directly from the connected GitHub repository whenever practical. | Open |
+| OBS-004 | SB-INF-1.4 | Repository Integration | Repository synchronization was successfully verified after the Smart Business GitHub repository was temporarily changed to public visibility. The behavior of private repositories within the current Claude Pro workflow remains unverified and should be re-evaluated if repository visibility requirements or platform capabilities change. | Monitoring |
 \---
 
 \# Governance Classification
