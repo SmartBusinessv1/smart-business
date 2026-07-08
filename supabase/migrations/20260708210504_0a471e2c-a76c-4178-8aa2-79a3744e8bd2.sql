@@ -1,0 +1,51 @@
+CREATE TABLE public.businesses (
+  id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+  owner_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+  name TEXT NOT NULL CHECK (length(btrim(name)) > 0),
+  category TEXT NOT NULL CHECK (length(btrim(category)) > 0),
+  locality TEXT NOT NULL CHECK (length(btrim(locality)) > 0),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.businesses TO authenticated;
+GRANT ALL ON public.businesses TO service_role;
+
+ALTER TABLE public.businesses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Owners can view their business"
+  ON public.businesses FOR SELECT
+  TO authenticated
+  USING (auth.uid() = owner_id);
+
+CREATE POLICY "Owners can create their business"
+  ON public.businesses FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = owner_id);
+
+CREATE POLICY "Owners can update their business"
+  ON public.businesses FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = owner_id)
+  WITH CHECK (auth.uid() = owner_id);
+
+CREATE POLICY "Owners can delete their business"
+  ON public.businesses FOR DELETE
+  TO authenticated
+  USING (auth.uid() = owner_id);
+
+CREATE OR REPLACE FUNCTION public.update_updated_at_column()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SET search_path = public
+AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER update_businesses_updated_at
+  BEFORE UPDATE ON public.businesses
+  FOR EACH ROW
+  EXECUTE FUNCTION public.update_updated_at_column();
