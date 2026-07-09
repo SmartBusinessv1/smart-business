@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { LogOut, Menu, X, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
@@ -172,7 +172,7 @@ function DashboardBoundary() {
           <LoadingState />
         ) : businessQuery.isError ? (
           <ErrorState
-            message={businessQuery.error instanceof Error ? businessQuery.error.message : "Unable to load your business."}
+            message="We couldn't load your workspace. Please try again or contact support."
             onRetry={() => void businessQuery.refetch()}
           />
         ) : businessQuery.data ? (
