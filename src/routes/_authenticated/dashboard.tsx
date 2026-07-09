@@ -252,7 +252,8 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
       { name, category, locality },
       {
         onError: (err) => {
-          setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+          console.error("Business setup failed:", err);
+          setErrorMsg("We couldn't set up your business. Please try again or contact support.");
         },
       },
     );
