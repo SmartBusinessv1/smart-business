@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
-import { useState, type FormEvent } from "react";
+import { useEffect } from "react";
 import { LogOut, Menu, X, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
@@ -154,8 +154,11 @@ function DashboardBoundary() {
     }
   }
 
-  return (
-    <div className="flex min-h-dvh flex-col bg-background text-foreground">
+  // Log raw query errors for debugging; never render them in the UI.
+  if (businessQuery.isError) {
+    console.error("Dashboard business load failed:", businessQuery.error);
+  }
+
       <AuthedHeader
         email={user?.email ?? null}
         onSignOut={() => {
