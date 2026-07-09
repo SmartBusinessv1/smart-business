@@ -154,6 +154,11 @@ function DashboardBoundary() {
     }
   }
 
+  // Log raw query errors for debugging; never render them in the UI.
+  if (businessQuery.isError) {
+    console.error("Dashboard business load failed:", businessQuery.error);
+  }
+
   return (
     <div className="flex min-h-dvh flex-col bg-background text-foreground">
       <AuthedHeader
@@ -167,7 +172,7 @@ function DashboardBoundary() {
           <LoadingState />
         ) : businessQuery.isError ? (
           <ErrorState
-            message={businessQuery.error instanceof Error ? businessQuery.error.message : "Unable to load your business."}
+            message="We couldn't load your workspace. Please try again or contact support."
             onRetry={() => void businessQuery.refetch()}
           />
         ) : businessQuery.data ? (
@@ -247,7 +252,8 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
       { name, category, locality },
       {
         onError: (err) => {
-          setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+          console.error("Business setup failed:", err);
+          setErrorMsg("We couldn't set up your business. Please try again or contact support.");
         },
       },
     );
