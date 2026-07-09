@@ -159,6 +159,8 @@ function DashboardBoundary() {
     console.error("Dashboard business load failed:", businessQuery.error);
   }
 
+  return (
+    <div className="flex min-h-dvh flex-col bg-background text-foreground">
       <AuthedHeader
         email={user?.email ?? null}
         onSignOut={() => {
