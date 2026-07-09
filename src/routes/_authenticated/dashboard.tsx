@@ -342,54 +342,100 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
 
 function BusinessWorkspaceFoundation({ business, email }: { business: Business; email: string | null }) {
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
-        Business workspace
-      </p>
-      <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-        Welcome, {business.name}.
-      </h1>
-      <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-        Your business has been successfully established in Smart Business. This is your calm,
-        protected workspace — a quiet foundation ready for the business tools that will arrive
-        through future governed implementation phases.
-      </p>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        <IdentityCard label="Business name" value={business.name} />
-        <IdentityCard label="Category" value={business.category} />
-        <IdentityCard label="Location" value={business.locality} />
-      </div>
-
-      <div className="mt-8 rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-card-foreground">Your workspace is ready</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Operational features — sales, inventory, records, insights, Ask CFO, and the AI Business
-          Manager experience — will be introduced through future governed implementation phases.
-          Nothing here is broken or missing: this foundation is intentionally quiet by design.
+    <section className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
+      {/* Orientation / welcome */}
+      <header>
+        <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
+          Business workspace
         </p>
-        <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-            Your business identity has been established.
-          </li>
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-            Your session is protected and will persist across visits.
-          </li>
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-            Business capabilities will arrive through approved future phases.
-          </li>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          Welcome, {business.name}.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+          Your account and your business identity have been successfully established.
+          This is your calm, protected workspace — a quiet foundation that will grow, step by step,
+          through approved future implementation phases.
+        </p>
+      </header>
+
+      {/* Identity summary (read-only) */}
+      <section aria-labelledby="identity-heading" className="mt-10">
+        <SectionHeading id="identity-heading" eyebrow="Your business" title="Business identity" />
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          The details you shared during setup, presented as saved. Editing will arrive through a
+          future governed phase.
+        </p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          <IdentityCard label="Business name" value={business.name} />
+          <IdentityCard label="Category" value={business.category} />
+          <IdentityCard label="Location" value={business.locality} />
+        </div>
+      </section>
+
+      {/* Forward-visibility of future governed capabilities (non-functional) */}
+      <section aria-labelledby="whats-next-heading" className="mt-12">
+        <SectionHeading id="whats-next-heading" eyebrow="What's coming next" title="Future capabilities" />
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          Smart Business will grow into a trusted assistant for your day-to-day work. These
+          capabilities are on the way through approved future phases — nothing here is active yet.
+        </p>
+        <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+          <ComingSoonCard
+            title="Daily records"
+            description="Capture sales, purchases, and everyday business activity in a way that fits how you already work."
+          />
+          <ComingSoonCard
+            title="Business reports"
+            description="See clear, calm summaries of how your business is doing — without spreadsheets or clutter."
+          />
+          <ComingSoonCard
+            title="Ask CFO"
+            description="Ask questions about your business in plain language and receive helpful, non-authoritative guidance."
+          />
+          <ComingSoonCard
+            title="WhatsApp assistant"
+            description="Interact with Smart Business through WhatsApp, the way your business already communicates."
+          />
         </ul>
-      </div>
+      </section>
+
+      {/* Guidance */}
+      <section aria-labelledby="guidance-heading" className="mt-12">
+        <SectionHeading id="guidance-heading" eyebrow="Guidance" title="What to expect" />
+        <div className="mt-4 rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            <GuidanceItem>Your business identity is established and safely stored.</GuidanceItem>
+            <GuidanceItem>Your session is protected and will persist across visits.</GuidanceItem>
+            <GuidanceItem>
+              Business capabilities will be introduced only through approved future phases —
+              you will always remain in control.
+            </GuidanceItem>
+            <GuidanceItem>
+              Smart Business is an assistant. You make the business decisions.
+            </GuidanceItem>
+          </ul>
+        </div>
+      </section>
 
       {email ? (
-        <p className="mt-6 text-xs text-muted-foreground">
+        <p className="mt-8 text-xs text-muted-foreground">
           Signed in as <span className="text-foreground">{email}</span>.
         </p>
       ) : null}
     </section>
+  );
+}
+
+function SectionHeading({ id, eyebrow, title }: { id: string; eyebrow: string; title: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+        {eyebrow}
+      </p>
+      <h2 id={id} className="mt-1 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+        {title}
+      </h2>
+    </div>
   );
 }
 
@@ -403,5 +449,31 @@ function IdentityCard({ label, value }: { label: string; value: string }) {
         {value}
       </p>
     </div>
+  );
+}
+
+function ComingSoonCard({ title, description }: { title: string; description: string }) {
+  return (
+    <li
+      aria-disabled="true"
+      className="rounded-xl border border-dashed border-border/70 bg-muted/30 p-5 shadow-none"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-base font-semibold text-foreground">{title}</h3>
+        <span className="inline-flex shrink-0 items-center rounded-full border border-border/60 bg-background px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+          Coming soon
+        </span>
+      </div>
+      <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+    </li>
+  );
+}
+
+function GuidanceItem({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-2">
+      <span aria-hidden="true" className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+      <span>{children}</span>
+    </li>
   );
 }
