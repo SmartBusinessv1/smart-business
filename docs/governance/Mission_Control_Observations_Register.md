@@ -59,6 +59,8 @@ The following status values are used:
 | OBS-002 | SB-P1.5 | Framework Dependency | Monitor the upstream \`@tanstack/react-start\` dependency advisory and evaluate framework updates through a future governed maintenance mission. | Monitoring |
 | OBS-003 | SB-ARC-1.0 | Engineering Architecture | Maintain permanent constitutional knowledge through Claude Project Knowledge while consuming implementation, governance, and mission artifacts directly from the connected GitHub repository whenever practical. | Open |
 | OBS-004 | SB-INF-1.4 | Repository Integration | Repository synchronization was successfully verified after the Smart Business GitHub repository was temporarily changed to public visibility. The behavior of private repositories within the current Claude Pro workflow remains unverified and should be re-evaluated if repository visibility requirements or platform capabilities change. | Monitoring |
+| OBS-005 | SB-P1.7 | Security Refinement | Post-implementation security scan identified raw Supabase error messages exposed in the dashboard UI. A governed maintenance refinement replaced user-facing database errors with friendly messages while preserving developer diagnostics. No business logic, routing, or schema changes were introduced. | Closed |
+
 \---
 
 \# Governance Classification
