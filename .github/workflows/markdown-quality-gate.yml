@@ -6,11 +6,23 @@ on:
       - main
       - develop
       - "docs/**"
+    paths:
+      - "**/*.md"
+      - "**/*.markdown"
+      - ".markdown-gate.yml"
+      - "tools/markdown/**"
+      - ".github/workflows/markdown-quality-gate.yml"
 
   pull_request:
     branches:
       - main
       - develop
+    paths:
+      - "**/*.md"
+      - "**/*.markdown"
+      - ".markdown-gate.yml"
+      - "tools/markdown/**"
+      - ".github/workflows/markdown-quality-gate.yml"
 
 permissions:
   contents: read
@@ -23,6 +35,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -35,5 +49,81 @@ jobs:
       - name: Install Python Dependencies
         run: python -m pip install PyYAML
 
+      - name: Identify Changed Markdown Files
+        id: changed-markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+            git diff \
+              --name-only \
+              --diff-filter=ACMR \
+              "$BASE_SHA...$HEAD_SHA" \
+              > changed_files.txt
+          else
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
+
+            if [[ "$BASE_SHA" =~ ^0+$ ]]; then
+              git diff-tree \
+                --no-commit-id \
+                --name-only \
+                -r \
+                "$HEAD_SHA" \
+                > changed_files.txt
+            else
+              git diff \
+                --name-only \
+                --diff-filter=ACMR \
+                "$BASE_SHA" \
+                "$HEAD_SHA" \
+                > changed_files.txt
+            fi
+          fi
+
+          grep -Ei '\.(md|markdown)$' changed_files.txt \
+            | grep -Ev \
+              '(_BACKUP_|_REPAIR_REPORT|_TEST|_TOOL_TEST|_WHITESPACE_TEST)' \
+            > changed_markdown_files.txt || true
+
+          echo "Changed Markdown files:"
+          cat changed_markdown_files.txt || true
+
+          if [[ -s changed_markdown_files.txt ]]; then
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run Team LIPS Markdown Quality Gate
-        run: python tools/markdown/quality_gate.py docs/
+        if: steps.changed-markdown.outputs.has_files == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          failed=0
+
+          while IFS= read -r file; do
+            [[ -z "$file" ]] && continue
+
+            if [[ -f "$file" ]]; then
+              echo
+              echo "Validating: $file"
+
+              if ! python tools/markdown/quality_gate.py "$file"; then
+                failed=1
+              fi
+            fi
+          done < changed_markdown_files.txt
+
+          exit "$failed"
+
+      - name: No Markdown Validation Required
+        if: steps.changed-markdown.outputs.has_files == 'false'
+        run: |
+          echo "No eligible Markdown files changed."
+          echo "TEAM LIPS MARKDOWN QUALITY GATE: PASS"
