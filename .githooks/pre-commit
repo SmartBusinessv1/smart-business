@@ -1,0 +1,4 @@
+#!/bin/sh
+
+python tools/markdown/pre_commit_markdown_gate.py
+exit $?

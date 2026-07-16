@@ -1,0 +1,47 @@
+version: "1.0"
+
+quality_gate:
+  fail_on_repair_needed: true
+  fail_on_lint_issues: true
+  fail_on_validation_warnings: true
+  fail_on_validation_failures: true
+
+repair:
+  enabled: true
+  trim_trailing_whitespace: false
+
+lint:
+  enabled: true
+  summary_only: true
+
+validation:
+  enabled: true
+
+files:
+  extensions:
+    - ".md"
+    - ".markdown"
+
+  ignore_patterns:
+    - "*_BACKUP_*.md"
+    - "*_REPAIR_REPORT.txt"
+    - "*_TEST.md"
+    - "*_TEST_BACKUP.md"
+    - "*_TEST_REPAIR_REPORT.txt"
+    - "*_TOOL_TEST.md"
+    - "*_WHITESPACE_TEST.md"
+    - "MARKDOWN_REPAIR_SUMMARY.txt"
+
+  ignore_directories:
+    - ".git"
+    - "__pycache__"
+    - "node_modules"
+
+safety:
+  modify_files: false
+  create_backups: false
+  allow_git_operations: false
+
+reporting:
+  show_passing_output: false
+  show_failure_output: true
