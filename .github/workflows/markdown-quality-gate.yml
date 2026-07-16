@@ -1,0 +1,42 @@
+name: Team LIPS Markdown Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "docs/**"
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+
+  markdown-quality-gate:
+
+    name: Markdown Quality Gate
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Display Python Version
+        run: python --version
+
+      - name: Run Team LIPS Markdown Quality Gate
+
+        shell: bash
+
+        run: |
+
+          python tools/markdown/quality_gate.py docs/
