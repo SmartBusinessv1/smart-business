@@ -223,15 +223,38 @@ def main() -> int:
             time.sleep(args.interval)
 
             current = build_snapshot(root, config)
+            detected_changes = changed_paths(previous, current)
 
-            for path in changed_paths(previous, current):
-                if wait_until_stable(path):
-                    run_quality_gate(path, root)
+            for path in detected_changes:
+                relative_path = path.relative_to(root)
 
-                    refreshed = file_state(path)
+                print(
+                    f"[WATCHER] Change detected: {relative_path}",
+                    flush=True,
+                )
 
-                    if refreshed is not None:
-                        current[path] = refreshed
+                if not wait_until_stable(path):
+                    print(
+                        f"[WATCHER] File not stable yet; retrying: "
+                        f"{relative_path}",
+                        flush=True,
+                    )
+
+                    if path in previous:
+                        current[path] = previous[path]
+                    else:
+                        current.pop(path, None)
+
+                    continue
+
+                run_quality_gate(path, root)
+
+                refreshed = file_state(path)
+
+                if refreshed is not None:
+                    current[path] = refreshed
+                else:
+                    current.pop(path, None)
 
             previous = current
 

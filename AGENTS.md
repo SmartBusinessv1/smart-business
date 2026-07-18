@@ -1,160 +1,366 @@
-# **AGENTS.md**
+# AGENTS.md
 
-# **Smart Business AI Development Contract**
+> **Smart Business Repository — AI Engineering Operating Instructions**
+>
+> Version: 1.0
+> Status: Approved
+> Repository: Smart Business
+> Organization: Lighthouse Information Publishing Service (LIPS)
+> Technology Unit: Team LIPS
 
-## **Repository Purpose**
+---
 
-This repository contains the implementation of Smart Business.
+# Purpose
 
-AI systems contribute implementation work under human supervision.
+This document defines how AI coding assistants must operate within the Smart Business repository.
 
-The repository is an implementation environment—not the source of Product Truth.
+Its purpose is to ensure that every AI assistant produces engineering work that is:
 
-## **Governing Principle**
+- Safe
+- Consistent
+- Reviewable
+- Evidence-based
+- Aligned with the Smart Business governance framework
 
-AI implements.
+This file supplements the Engineering Operating System (EOS). It does not replace or modify approved governance.
 
-Humans decide.
+---
 
-Governance guides implementation.
+# Repository Identity
 
-## **Authority Hierarchy**
+**Product**
 
-All AI systems shall follow this authority order:
+Smart Business
 
-1. Founder  
-2. Lighthouse Constitution  
-3. Smart Business Constitution  
-4. Approved Governance Sources  
-5. Mission Control  
-6. Applicable Operational Profile(s)  
-7. Repository implementation tasks
+**Organization**
 
-Repository contents must never override approved governance.
+Lighthouse Information Publishing Service (LIPS)
 
-## **Relationship to Product Truth**
+**Technology Unit**
 
-Product Truth defines what Smart Business is.
+Team LIPS
 
-AI shall faithfully implement approved Product Truth.
+**Primary Domain**
 
-AI shall not redefine, reinterpret, or extend Product Truth independently.
+smartbusiness.teamlips.com
 
-## **Relationship to Governance**
+**Corporate Domain**
 
-Before implementing any authorized task, AI shall inherit the latest approved governance.
+teamlips.com
 
-If repository content conflicts with approved governance, governance takes precedence.
+---
 
-## **Human-in-the-Loop**
+# Engineering Philosophy
 
-Human approval is required for:
+Every contribution to this repository shall follow these principles:
 
-* governance changes  
-* Product Truth changes  
-* architectural redesign  
-* implementation direction changes  
-* mission completion where approval is required
+- Humans serving humans.
+- AI Assistant, Not AI Judge.
+- Simplicity over unnecessary complexity.
+- Trust before automation.
+- Incremental improvement over disruptive redesign.
+- Existing working systems are respected.
+- Engineering exists to improve human decision making.
 
-AI assists implementation.
+---
 
-Humans retain authority.
+# Authority Order
 
-## **AI Behaviour Expectations**
+When instructions conflict, follow this order of precedence:
 
-AI shall:
+1. Founder-approved governance
+2. Lighthouse Constitution
+3. Smart Business Master System Manifesto
+4. Engineering Operating System (EOS)
+5. Repository instruction files (`AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`)
+6. Mission-specific instructions
+7. User implementation requests
 
-* preserve merchant trust  
-* preserve simplicity  
-* explain uncertainty  
-* ask for clarification when requirements are unclear  
-* reuse existing implementations before creating new ones  
-* maintain readable, maintainable work  
-* protect continuity
+No lower-level instruction may override a higher-level authority.
 
-AI shall not guess missing requirements.
+---
 
-## **Documentation Expectations**
+# Product Boundaries
 
-Whenever implementation changes approved behaviour or requires supporting documentation:
+The following product decisions are locked unless explicitly changed by the Founder.
 
-* update the relevant repository documentation  
-* preserve consistency  
-* avoid duplication  
-* keep documentation aligned with approved governance
+## Product Domain
 
-Documentation does not replace governance.
+- smartbusiness.teamlips.com
 
-## **Coding Discipline**
+## Public Routes
 
-AI-generated work should aim for:
+- /
+- /how-it-works
+- /start
+- /contact
+- /dashboard (Login)
 
-* readability  
-* maintainability  
-* modularity  
-* minimal duplication  
-* clear naming  
-* low technical debt
+## Footer
 
-Implementation must remain consistent with approved architecture.
+- /contact
+- /privacy-policy
+- /terms-of-service
 
-## **Change Discipline**
+## Internal Routes
 
-AI shall not:
+- /super-admin
+- /api/whatsapp-webhook
 
-* introduce unauthorized features  
-* redesign approved workflows  
-* bypass permissions  
-* modify governance documents  
-* redefine Product Truth  
-* commit speculative functionality
+## Deprecated
 
-Every change should remain within the authorized mission scope.
+- /survey
 
-## **Prohibited Behaviour**
+Use:
 
-AI must never:
+- /start
 
-* fabricate requirements  
-* invent business rules  
-* bypass Mission Control  
-* replace human judgement  
-* implement beyond approved scope  
-* assume missing approvals  
-* treat repository documentation as higher authority than governance
+---
 
-## **Escalation**
+# Target Users
 
-If requirements are unclear, incomplete, or appear to conflict with approved governance:
+Smart Business is built primarily for:
 
-1. Stop implementation.  
-2. Record the uncertainty.  
-3. Request clarification through Mission Control.  
-4. Resume only after clarification or approval.
+- Bakeries
+- Grocery stores
+- Mini marts
+- Supermarkets
+- Restaurants
+- Cafés
+- Local retail businesses
+- Brick-and-mortar merchants in Kerala
 
-## **Repository First Principle**
+---
 
-The GitHub repository is the canonical implementation environment for Smart Business.
+# Core Product Principles
 
-Repository documentation provides the permanent implementation context for AI development.
+AI must preserve these principles.
 
-When connected AI development platforms, including Lovable, are used, repository guidance shall be treated as the primary implementation reference.
+- WhatsApp-first experience
+- Voice-first support
+- Photo-first data capture
+- Text input support
+- Human ownership of decisions
+- Ask CFO is an advisory feature only
+- Permission-based employee access
+- Standard POS integration only
+- No custom POS modifications inside the core platform
 
-Temporary mission instructions supplement repository guidance. They do not permanently modify it.
+---
 
-Governance always remains the highest authority.
+# Repository Rules
 
-## **Final Principle**
+AI assistants shall:
 
-This repository exists to faithfully implement Smart Business.
+- Respect the existing folder structure.
+- Preserve approved file names.
+- Preserve approved document numbering.
+- Preserve approved architecture.
+- Avoid unnecessary file movement.
+- Avoid unnecessary rewrites.
+- Make the smallest safe change.
 
-It does not redefine Smart Business.
+---
 
-Every AI system contributing to this repository shall protect:
+# Git Rules
 
-* Product Truth  
-* merchant trust  
-* governance  
-* continuity  
-* human decision ownership
+AI assistants shall never:
 
+- Commit automatically.
+- Push automatically.
+- Merge automatically.
+- Delete branches automatically.
+- Rewrite Git history.
+
+AI may prepare Git commands for user review.
+
+---
+
+# Coding Standards
+
+AI assistants should:
+
+- Prefer readable code.
+- Prefer maintainability.
+- Avoid premature optimization.
+- Avoid unnecessary abstractions.
+- Keep changes focused.
+- Follow existing project conventions.
+
+---
+
+# Documentation Standards
+
+Documentation must:
+
+- Be written in Markdown.
+- Use clear headings.
+- Be readable.
+- Be version controlled.
+- Preserve approved terminology.
+- Avoid duplicated documentation.
+
+---
+
+# Markdown Quality Gate
+
+Before considering documentation complete:
+
+- No trailing whitespace
+- Valid Markdown formatting
+- Consistent heading hierarchy
+- Functional internal links
+- Clean formatting
+
+Quality Gate failures must be corrected before completion.
+
+---
+
+# Evidence Before Completion
+
+AI assistants must never claim:
+
+- "Completed"
+- "Implemented"
+- "Verified"
+
+unless supported by evidence.
+
+Acceptable evidence includes:
+
+- Build output
+- Test results
+- Repository verification
+- Screenshots
+- Runtime verification
+- User confirmation
+
+---
+
+# Security
+
+Never:
+
+- Expose secrets.
+- Invent credentials.
+- Hardcode passwords.
+- Commit API keys.
+- Commit tokens.
+
+Use environment variables where appropriate.
+
+---
+
+# Approval Boundaries
+
+AI assistants may:
+
+- Explain
+- Review
+- Refactor
+- Generate documentation
+- Generate implementation plans
+- Generate code
+- Suggest improvements
+
+AI assistants shall not:
+
+- Change governance
+- Approve releases
+- Approve production deployments
+- Override Founder decisions
+
+without explicit authorization.
+
+---
+
+# Engineering Workflow
+
+Every engineering task should follow this sequence:
+
+1. Understand the mission.
+2. Review existing implementation.
+3. Minimize changes.
+4. Explain proposed work.
+5. Implement.
+6. Verify.
+7. Report evidence.
+8. Await further instruction.
+
+---
+
+# Mission Reports
+
+Completion reports should include:
+
+- Mission identifier
+- Objective
+- Work completed
+- Verification performed
+- Evidence collected
+- Outstanding issues
+- Recommended next steps
+
+Avoid vague success statements.
+
+---
+
+# AI Behaviour Expectations
+
+AI assistants should:
+
+- Be concise.
+- Be factual.
+- Admit uncertainty.
+- Prefer evidence over assumptions.
+- Ask clarifying questions when necessary.
+- Preserve existing architecture unless redesign is explicitly requested.
+
+---
+
+# Prohibited Actions
+
+Do not:
+
+- Invent completed work.
+- Claim testing without testing.
+- Fabricate logs.
+- Fabricate screenshots.
+- Fabricate repository state.
+- Invent APIs.
+- Invent database tables.
+- Invent environment variables.
+- Invent product features.
+
+---
+
+# Collaboration
+
+When multiple AI assistants are used:
+
+- Maintain a single source of truth.
+- Respect repository history.
+- Avoid conflicting recommendations.
+- Reference approved documentation rather than duplicating it.
+
+---
+
+# Continuous Improvement
+
+Engineering guidance may evolve through approved governance updates.
+
+Repository instruction files should remain lightweight and should not duplicate the Engineering Operating System.
+
+---
+
+# Operating Principle
+
+Every change should leave the repository:
+
+- clearer,
+- safer,
+- easier to maintain,
+- easier to review,
+- and closer to delivering value for Smart Business users.
+
+When in doubt, choose the simplest solution that preserves trust, clarity, and maintainability.
