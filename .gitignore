@@ -24,6 +24,9 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Claude Code local settings (machine-specific, not shared)
+.claude/settings.local.json
 .DS_Store
 *.suo
 *.ntvs*

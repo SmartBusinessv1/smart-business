@@ -1,9 +1,16 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useState, type FormEvent } from "react";
+import { format } from "date-fns";
 import { LogOut, Menu, X, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
+import {
+  getDailyTotals,
+  listRecentTransactions,
+  PAYMENT_METHODS,
+} from "@/integrations/supabase/transactions";
+import { formatCurrencyINR } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -60,6 +67,13 @@ function AuthedHeader({
           >
             Workspace
           </Link>
+          <Link
+            to="/transactions"
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            activeProps={{ className: "text-foreground font-medium" }}
+          >
+            Transactions
+          </Link>
           {email ? (
             <span className="hidden text-xs text-muted-foreground lg:inline" title={email}>
               {email}
@@ -99,6 +113,14 @@ function AuthedHeader({
               activeProps={{ className: "text-foreground font-medium" }}
             >
               Workspace
+            </Link>
+            <Link
+              to="/transactions"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-3 text-base text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              activeProps={{ className: "text-foreground font-medium" }}
+            >
+              Transactions
             </Link>
             {email ? (
               <span className="px-3 pt-2 text-xs text-muted-foreground">{email}</span>
@@ -378,6 +400,16 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
         </div>
       </section>
 
+      {/* Live business operations summary */}
+      <section aria-labelledby="activity-heading" className="mt-10">
+        <SectionHeading id="activity-heading" eyebrow="Today" title="Today's activity" />
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          A quick look at what's been recorded today. Record a sale or purchase to keep this
+          current.
+        </p>
+        <TodayActivity businessId={business.id} />
+      </section>
+
       {/* Forward-visibility of future governed capabilities (non-functional) */}
       <section aria-labelledby="whats-next-heading" className="mt-12">
         <SectionHeading id="whats-next-heading" eyebrow="What's coming next" title="Future capabilities" />
@@ -386,10 +418,6 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
           capabilities are on the way through approved future phases — nothing here is active yet.
         </p>
         <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-          <ComingSoonCard
-            title="Daily records"
-            description="Capture sales, purchases, and everyday business activity in a way that fits how you already work."
-          />
           <ComingSoonCard
             title="Business reports"
             description="See clear, calm summaries of how your business is doing — without spreadsheets or clutter."
@@ -429,6 +457,118 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
         </p>
       ) : null}
     </section>
+  );
+}
+
+function TodayActivity({ businessId }: { businessId: string }) {
+  const today = format(new Date(), "yyyy-MM-dd");
+
+  const summaryQuery = useQuery({
+    queryKey: ["transactions", businessId, "dashboard-summary", today],
+    queryFn: async () => {
+      const [totals, recent] = await Promise.all([
+        getDailyTotals(businessId, today),
+        listRecentTransactions(businessId, 5),
+      ]);
+      return { totals, recent };
+    },
+  });
+
+  if (summaryQuery.isPending) {
+    return (
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="h-24 animate-pulse rounded-xl bg-muted/60" />
+        <div className="h-24 animate-pulse rounded-xl bg-muted/60" />
+      </div>
+    );
+  }
+
+  if (summaryQuery.isError) {
+    console.error("Dashboard activity load failed:", summaryQuery.error);
+    return (
+      <p className="mt-5 rounded-xl border border-border/60 bg-card p-4 text-sm text-muted-foreground">
+        We couldn't load today's activity right now.
+      </p>
+    );
+  }
+
+  const { totals, recent } = summaryQuery.data;
+  const hasAnyActivity = recent.length > 0;
+
+  return (
+    <div className="mt-5 space-y-5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border border-border/60 bg-card p-4 shadow-sm">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            Today's sales
+          </p>
+          <p className="mt-1 text-2xl font-semibold text-card-foreground">
+            {formatCurrencyINR(totals.salesTotal)}
+          </p>
+        </div>
+        <div className="rounded-xl border border-border/60 bg-card p-4 shadow-sm">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            Today's purchases
+          </p>
+          <p className="mt-1 text-2xl font-semibold text-card-foreground">
+            {formatCurrencyINR(totals.purchasesTotal)}
+          </p>
+        </div>
+      </div>
+
+      {hasAnyActivity ? (
+        <div className="rounded-xl border border-border/60 bg-card p-4 shadow-sm">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            Recent activity
+          </p>
+          <ul className="mt-3 divide-y divide-border/60">
+            {recent.map((transaction) => (
+              <li key={transaction.id} className="flex items-center justify-between gap-3 py-2">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium text-card-foreground">
+                    {transaction.party_name}
+                  </p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {transaction.transaction_type === "sale" ? "Sale" : "Purchase"} ·{" "}
+                    {PAYMENT_METHODS.find((method) => method.value === transaction.payment_method)
+                      ?.label ?? transaction.payment_method}
+                  </p>
+                </div>
+                <span
+                  className={
+                    transaction.transaction_type === "sale"
+                      ? "shrink-0 text-sm font-semibold text-emerald-700 dark:text-emerald-400"
+                      : "shrink-0 text-sm font-semibold text-amber-700 dark:text-amber-400"
+                  }
+                >
+                  {transaction.transaction_type === "sale" ? "+" : "−"}
+                  {formatCurrencyINR(Number(transaction.amount))}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/transactions"
+            className="mt-3 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
+          >
+            View all transactions
+          </Link>
+        </div>
+      ) : (
+        <div className="rounded-xl border border-dashed border-border/70 bg-muted/30 p-5 text-center">
+          <p className="text-sm font-medium text-foreground">No transactions yet</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Record your first sale or purchase to see it here.
+          </p>
+          <Link
+            to="/transactions"
+            className="mt-3 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Record a transaction
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }
 
