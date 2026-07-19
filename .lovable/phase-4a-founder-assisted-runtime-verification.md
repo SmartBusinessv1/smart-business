@@ -68,13 +68,13 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 - Status: **PASS**
 
 ### Test 6 — Authentication & navigation regression
-- 6a: Dashboard ↔ Transactions navigation — _pending_
-- 6b: Hard refresh on `/transactions`, session persists — _pending_
-- 6c: Sign out via UI — _pending_
-- 6d: Signed-out `/dashboard` → expected redirect to `/auth` — _pending_
-- 6e: Signed-out `/transactions` → actual behaviour (redirect vs 404) recorded verbatim — _pending_
-- Evidence: `E-A07a` … `E-A07e`
-- Status: _pending_
+- 6a: Dashboard ↔ Transactions navigation — **PASS.** Founder confirmed authenticated navigation between the Dashboard and Transactions workspaces worked correctly.
+- 6b: Hard refresh on `/transactions`, session persists — **PASS.** Founder confirmed refreshing `/transactions` preserved the authenticated session and restored the Salamath Store workspace.
+- 6c: Sign out via UI — **PASS.** Founder confirmed sign-out completed successfully. E-A07c shows the resulting `/auth` sign-in surface after sign-out.
+- 6d: Signed-out `/dashboard` → redirect to `/auth` — **PASS.** Founder confirmed manual navigation to `/dashboard` after sign-out redirected to `/auth`.
+- 6e: Signed-out `/transactions` → redirect to `/auth` — **PASS.** Founder confirmed manual navigation to `/transactions` after sign-out redirected to `/auth`. Observation: "Protected routes correctly redirect unauthenticated users to the authentication page."
+- Evidence: `E-A07c` — `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` (post-sign-out `/auth` surface); `E-A07a/b/d/e` confirmed by Founder observation (no separate screenshots attached).
+- Status: **PASS**
 
 ### Test 7 — Cross-business isolation availability
 - Owner B fixture available? _pending Founder confirmation_
