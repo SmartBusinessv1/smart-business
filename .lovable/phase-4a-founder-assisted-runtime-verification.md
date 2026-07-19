@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.8E — Lovable Deployment Verification
 **Phase:** 4A — Founder-Assisted Authenticated Runtime Verification
-**Status:** IN PROGRESS — awaiting Founder-driven evidence
+**Status:** IN PROGRESS — Tests 1–6 PASS; Test 7 (cross-business isolation) pending Founder fixture
 **Report path:** `.lovable/phase-4a-founder-assisted-runtime-verification.md`
 **Prior artifacts (preserved, unchanged):**
 - `.lovable/plan.md` (approved plan for this phase)
@@ -68,13 +68,13 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 - Status: **PASS**
 
 ### Test 6 — Authentication & navigation regression
-- 6a: Dashboard ↔ Transactions navigation — _pending_
-- 6b: Hard refresh on `/transactions`, session persists — _pending_
-- 6c: Sign out via UI — _pending_
-- 6d: Signed-out `/dashboard` → expected redirect to `/auth` — _pending_
-- 6e: Signed-out `/transactions` → actual behaviour (redirect vs 404) recorded verbatim — _pending_
-- Evidence: `E-A07a` … `E-A07e`
-- Status: _pending_
+- 6a: Dashboard ↔ Transactions navigation — **PASS.** Founder confirmed authenticated navigation between the Dashboard and Transactions workspaces worked correctly.
+- 6b: Hard refresh on `/transactions`, session persists — **PASS.** Founder confirmed refreshing `/transactions` preserved the authenticated session and restored the Salamath Store workspace.
+- 6c: Sign out via UI — **PASS.** Founder confirmed sign-out completed successfully. E-A07c shows the resulting `/auth` sign-in surface after sign-out.
+- 6d: Signed-out `/dashboard` → redirect to `/auth` — **PASS.** Founder confirmed manual navigation to `/dashboard` after sign-out redirected to `/auth`.
+- 6e: Signed-out `/transactions` → redirect to `/auth` — **PASS.** Founder confirmed manual navigation to `/transactions` after sign-out redirected to `/auth`. Observation: "Protected routes correctly redirect unauthenticated users to the authentication page."
+- Evidence: `E-A07c` — `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` (post-sign-out `/auth` surface); `E-A07a/b/d/e` confirmed by Founder observation (no separate screenshots attached).
+- Status: **PASS**
 
 ### Test 7 — Cross-business isolation availability
 - Owner B fixture available? _pending Founder confirmation_
@@ -96,35 +96,45 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A05b | Transaction timeline — verification Purchase −₹51.00 at top; prior rows unchanged | T4 | `/mnt/documents/phase4a/E-A05b_purchase_timeline.png` |
 | E-A05c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,261.00; verification Purchase in Recent activity | T4 | `/mnt/documents/phase4a/E-A05c_purchase_dashboard.png` |
 | E-A06 | Transaction timeline — no edit/delete/menu affordances on rows; no editable detail view exposed on click | T5 | `/mnt/documents/phase4a/E-A06_append_only.png` |
-| E-A07a | Dashboard ↔ Transactions navigation | T6 | _pending_ |
-| E-A07b | Refresh on `/transactions`, session persists | T6 | _pending_ |
-| E-A07c | Sign-out UI action | T6 | _pending_ |
-| E-A07d | Signed-out `/dashboard` behaviour | T6 | _pending_ |
-| E-A07e | Signed-out `/transactions` behaviour | T6 | _pending_ |
+| E-A07a | Dashboard ↔ Transactions navigation (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07b | Refresh on `/transactions`, session persists (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07c | Sign-out UI action — post-sign-out `/auth` surface | T6 | `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` |
+| E-A07d | Signed-out `/dashboard` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07e | Signed-out `/transactions` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
 | E-A08 | Owner B session (if fixture available) | T7 | _pending / N/A_ |
 
 Founder-supplied screenshots will be stored under `/mnt/documents/phase4a/` when attached.
 
 ## 5. Runtime Security Assessment
 
-_To be populated strictly from observed evidence. No cross-owner isolation claim will be made unless Test 7 executes with an approved Owner B fixture._
+Assessment derived strictly from Founder-provided evidence:
+
+- **Authenticated route gating:** PASS. Owner A can access `/dashboard` and `/transactions` while authenticated. After sign-out, both protected routes redirect to `/auth`.
+- **Session persistence:** PASS. Hard refresh on `/transactions` preserves the authenticated session and restores the Salamath Store workspace.
+- **Business isolation (Owner A view):** PASS. Owner A's workspace consistently shows **Salamath Store** only; no other business identity is visible in the authenticated UI.
+- **Cross-business isolation:** NOT ASSESSED at runtime. Test 7 is pending Founder confirmation of an Owner B fixture.
+- **Authorized transaction creation:** PASS. Owner A created the authorized Sale (₹101) and Purchase (₹51); both appeared immediately in the timeline and dashboard.
+- **Append-only enforcement (UI):** PASS. No Edit, Delete, menu, or modification affordance is exposed on transaction rows; clicking a row does not open an editable detail view.
 
 ## 6. Regressions
 
-_To be populated._
+No regressions observed. The Phase 4 automated run documented an anonymous `/transactions` 404 surface for a never-authenticated visitor; the Founder-assisted run confirms that after a proper sign-out, `/transactions` redirects to `/auth` as expected. Both behaviours are non-blocking and do not expose protected data.
 
 ## 7. Limitations
 
-_To be populated. Owner B fixture availability recorded here if absent._
+1. **Test 7 (cross-business isolation) is pending.** A second Owner B fixture and second business are not yet confirmed available. No cross-owner isolation claim can be made until Test 7 executes.
+2. **E-A07a/b/d/e are text-only confirmations.** Only E-A07c was provided as a screenshot; the remaining sub-test observations were confirmed verbally by the Founder.
+3. **Phase 4 automated run limitations remain on record.** Tests 1, 2, 4, 5, and the authenticated portion of Test 6 were not executed in the automated run; the Founder-assisted run now covers those gaps, leaving only Test 7 unresolved.
 
 ## 8. Overall Assessment
 
-_Pending. One of:_
-- PHASE 4 PASSED
-- PHASE 4 PASSED WITH DOCUMENTED LIMITATIONS
-- PHASE 4 STOPPED — SECURITY/RUNTIME ISSUE DETECTED
-- PHASE 4 STOPPED — DEPLOYMENT ROUTING BLOCKER
+**PHASE 4A PASSED WITH TEST 7 PENDING**
+
+All executed tests (1–6) pass. Owner-scoped authenticated access, session persistence, sign-out hygiene, append-only UI, and authorized transaction creation are verified. Cross-business runtime isolation remains unverified pending an Owner B fixture.
 
 ## 9. Recommendation
 
-_Pending completion of tests._
+1. **Mission Control:** Confirm whether Test 7 (cross-business isolation) is required for this phase or can be deferred to a later fixture-provisioning step.
+2. If Test 7 is required, authorize creation or provisioning of an Owner B account and second business, then re-run only Test 7.
+3. If Test 7 is deferred, close SB-P-1.8E Phase 4A with the documented limitation that cross-business runtime isolation was not exercised.
+4. No further code or schema changes are required for the verified surface.
