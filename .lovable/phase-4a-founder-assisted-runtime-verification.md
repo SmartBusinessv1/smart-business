@@ -38,10 +38,11 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 ### Test 2 — Owner A workspace observation
 - Steps: within Transactions workspace, verify business identity and timeline scope.
 - Expected: Only Owner A's business and its transactions are visible.
-- Observed: _pending_
-- Evidence: `E-A03`
-- Status: _pending_
+- Observed: Founder reports the workspace identity is **Salamath Store**; no other business identity is visible anywhere on the page; all visible transactions appear within the Salamath Store workspace only. E-A03 captures the authenticated Transactions surface with the header chrome scoped to Salamath Store (`Workspace`, `Transactions`, `creationsflyhigh@gmail.com`, `Sign out`) and the Purchase details form; a "Purchase saved." confirmation banner is visible in the frame, indicating a prior purchase save had occurred in this session (recorded verbatim; not attributed to the Test 4 authorized purchase, which has not yet been issued).
+- Evidence: `E-A03` — `/mnt/documents/phase4a/E-A03_owner_a_isolation.png`
+- Status: **PASS**
 - Note: recorded as Owner-A-view only; no cross-owner isolation claim is made from this test.
+
 
 ### Test 3 — Authorized Sale creation (₹101)
 - Values: Party `SB-P-1.8E Verification Customer`, Description `SB-P-1.8E Verification Sale`, Amount `101`, Payment `Cash`.
@@ -85,7 +86,7 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | --- | --- | --- | --- |
 | E-A01 | Authenticated dashboard, Owner A (Salamath Store); "Today's sales" and "Recent activity" render inside authenticated shell (Workspace / Transactions / Sign out) | Preflight | `/mnt/documents/phase4a/E-A01_dashboard.png` |
 | E-A02 | Authenticated `/transactions` page — Record a sale / Record a purchase tabs, Sale details form visible; Salamath Store workspace | T1 | `/mnt/documents/phase4a/E-A02_transactions.png` |
-| E-A03 | Owner A workspace / timeline view | T2 | _pending_ |
+| E-A03 | Owner A workspace — Salamath Store identity only; Purchase details form; "Purchase saved." confirmation from a prior session save visible | T2 | `/mnt/documents/phase4a/E-A03_owner_a_isolation.png` |
 | E-A04a | Sale creation form submitted | T3 | _pending_ |
 | E-A04b | Sale row in timeline | T3 | _pending_ |
 | E-A04c | Dashboard activity after Sale | T3 | _pending_ |
