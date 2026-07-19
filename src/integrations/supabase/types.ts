@@ -44,6 +44,59 @@ export type Database = {
         }
         Relationships: []
       }
+      transactions: {
+        Row: {
+          amount: number
+          business_id: string
+          created_at: string
+          creator_id: string
+          description: string
+          id: string
+          notes: string | null
+          party_name: string
+          payment_method: string
+          transaction_date: string
+          transaction_type: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          business_id: string
+          created_at?: string
+          creator_id: string
+          description: string
+          id?: string
+          notes?: string | null
+          party_name: string
+          payment_method: string
+          transaction_date?: string
+          transaction_type: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          business_id?: string
+          created_at?: string
+          creator_id?: string
+          description?: string
+          id?: string
+          notes?: string | null
+          party_name?: string
+          payment_method?: string
+          transaction_date?: string
+          transaction_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
