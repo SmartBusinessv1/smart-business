@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.8E — Lovable Deployment Verification
 **Phase:** 4A — Founder-Assisted Authenticated Runtime Verification
-**Status:** IN PROGRESS — awaiting Founder-driven evidence
+**Status:** IN PROGRESS — Tests 1–6 PASS; Test 7 (cross-business isolation) pending Founder fixture
 **Report path:** `.lovable/phase-4a-founder-assisted-runtime-verification.md`
 **Prior artifacts (preserved, unchanged):**
 - `.lovable/plan.md` (approved plan for this phase)
