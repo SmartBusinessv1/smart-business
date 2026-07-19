@@ -92,9 +92,9 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A04a | Sale form with "Sale saved." confirmation banner, Salamath Store workspace | T3 | `/mnt/documents/phase4a/E-A04a_sale_form.png` |
 | E-A04b | Transaction timeline — verification Sale +₹101.00 at top; pre-existing rows unchanged | T3 | `/mnt/documents/phase4a/E-A04b_sale_timeline.png` |
 | E-A04c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,210.00; verification Sale in Recent activity | T3 | `/mnt/documents/phase4a/E-A04c_sale_dashboard.png` |
-| E-A05a | Purchase creation form submitted | T4 | _pending_ |
-| E-A05b | Purchase row in timeline | T4 | _pending_ |
-| E-A05c | Dashboard activity after Purchase | T4 | _pending_ |
+| E-A05a | Purchase form with "Purchase saved." confirmation banner, Salamath Store workspace | T4 | `/mnt/documents/phase4a/E-A05a_purchase_form.png` |
+| E-A05b | Transaction timeline — verification Purchase −₹51.00 at top; prior rows unchanged | T4 | `/mnt/documents/phase4a/E-A05b_purchase_timeline.png` |
+| E-A05c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,261.00; verification Purchase in Recent activity | T4 | `/mnt/documents/phase4a/E-A05c_purchase_dashboard.png` |
 | E-A06 | Timeline row / detail — no edit/delete affordances | T5 | _pending_ |
 | E-A07a | Dashboard ↔ Transactions navigation | T6 | _pending_ |
 | E-A07b | Refresh on `/transactions`, session persists | T6 | _pending_ |
