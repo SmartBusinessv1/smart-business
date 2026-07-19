@@ -55,9 +55,10 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 ### Test 4 — Authorized Purchase creation (₹51)
 - Values: Party `SB-P-1.8E Verification Supplier`, Description `SB-P-1.8E Verification Purchase`, Amount `51`, Payment `Cash`.
 - Expected: success feedback → timeline row (type Purchase, amount 51.00) → dashboard activity updates.
-- Observed: _pending_
-- Evidence: `E-A05a`, `E-A05b`, `E-A05c`
-- Status: _pending_
+- Observed: **PASS.** E-A05a shows the Purchase details form under Salamath Store with Date `19-07-2026`, Payment `Cash`, and "Purchase saved." confirmation banner. E-A05b shows the new row at the top of the Transaction timeline: `Purchase · SB-P-1.8E Verification Supplier · SB-P-1.8E Verification Purchase · −₹51.00 · 19 Jul 2026 · Cash`, positioned above the ₹101 verification Sale and the pre-existing ₹5,210 Purchase / ₹58 Sale rows (all unchanged). E-A05c shows Dashboard Today's sales `₹159.00` (unchanged) and Today's purchases `₹5,261.00` (= ₹5,210 + ₹51); Recent activity lists `SB-P-1.8E Verification Supplier · Purchase · Cash · −₹51.00` at the top. Amount displays with exact two-decimal precision.
+- Evidence: `E-A05a` — `/mnt/documents/phase4a/E-A05a_purchase_form.png`; `E-A05b` — `/mnt/documents/phase4a/E-A05b_purchase_timeline.png`; `E-A05c` — `/mnt/documents/phase4a/E-A05c_purchase_dashboard.png`
+- Status: **PASS**
+
 
 ### Test 5 — Append-only interface verification
 - Steps: visually inspect timeline rows and any detail view for Edit / Delete / modification affordances.
