@@ -141,7 +141,3 @@ All tests (1–7) pass. Owner-scoped authenticated access, session persistence, 
 1. Close SB-P-1.8E Phase 4A as PASSED.
 2. No further code, schema, or RLS changes are required for the verified surface.
 3. Proceed to the next Mission Control–authorized phase.
-
-2. If Test 7 is required, authorize creation or provisioning of an Owner B account and second business, then re-run only Test 7.
-3. If Test 7 is deferred, close SB-P-1.8E Phase 4A with the documented limitation that cross-business runtime isolation was not exercised.
-4. No further code or schema changes are required for the verified surface.
