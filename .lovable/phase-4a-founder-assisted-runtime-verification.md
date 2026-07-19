@@ -84,7 +84,7 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | ID | Description | Test | Artifact |
 | --- | --- | --- | --- |
 | E-A01 | Authenticated dashboard, Owner A (Salamath Store); "Today's sales" and "Recent activity" render inside authenticated shell (Workspace / Transactions / Sign out) | Preflight | `/mnt/documents/phase4a/E-A01_dashboard.png` |
-| E-A02 | Authenticated `/transactions` page | T1 | _pending_ |
+| E-A02 | Authenticated `/transactions` page — Record a sale / Record a purchase tabs, Sale details form visible; Salamath Store workspace | T1 | `/mnt/documents/phase4a/E-A02_transactions.png` |
 | E-A03 | Owner A workspace / timeline view | T2 | _pending_ |
 | E-A04a | Sale creation form submitted | T3 | _pending_ |
 | E-A04b | Sale row in timeline | T3 | _pending_ |
