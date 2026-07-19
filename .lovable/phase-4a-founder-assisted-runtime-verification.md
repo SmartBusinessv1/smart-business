@@ -63,9 +63,9 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 ### Test 5 — Append-only interface verification
 - Steps: visually inspect timeline rows and any detail view for Edit / Delete / modification affordances.
 - Expected: no edit, no delete, no modification form.
-- Observed: _pending_
-- Evidence: `E-A06`
-- Status: _pending_
+- Observed: **PASS.** E-A06 shows the Transaction timeline for Salamath Store with four rows: (1) Purchase — SB-P-1.8E Verification Supplier — −₹51.00; (2) Sale — SB-P-1.8E Verification Customer — +₹101.00; (3) Purchase — Subash Rice Merchant — −₹5,210.00; (4) Sale — Dinesh — +₹58.00. No pencil, trash, three-dot menu, or other edit/delete affordance is visible on any row. Clicking a row does not open an editable detail view or expose any modification form.
+- Evidence: `E-A06` — `/mnt/documents/phase4a/E-A06_append_only.png`
+- Status: **PASS**
 
 ### Test 6 — Authentication & navigation regression
 - 6a: Dashboard ↔ Transactions navigation — _pending_
