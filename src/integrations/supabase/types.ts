@@ -44,69 +44,6 @@ export type Database = {
         }
         Relationships: []
       }
-      // PROVISIONAL — NOT GENERATED. The `businesses` table above was produced by
-      // the real Supabase type generator. This `transactions` entry was hand-authored
-      // to mirror supabase/migrations/20260719140000_f24b4d69-127e-4547-9fff-8ed9f31cc8fe.sql
-      // because that migration has not been applied to any Supabase project, so there is
-      // no live schema to generate from yet.
-      //
-      // Once the migration is applied, regenerate this file and replace this entire
-      // `transactions` block with the generator's output — do not hand-edit further:
-      //   supabase gen types typescript --project-id <project-id> --schema public
-      // (or the equivalent Supabase MCP `generate_typescript_types` tool).
-      transactions: {
-        Row: {
-          amount: number
-          business_id: string
-          created_at: string
-          creator_id: string
-          description: string
-          id: string
-          notes: string | null
-          party_name: string
-          payment_method: string
-          transaction_date: string
-          transaction_type: string
-          updated_at: string
-        }
-        Insert: {
-          amount: number
-          business_id: string
-          created_at?: string
-          creator_id: string
-          description: string
-          id?: string
-          notes?: string | null
-          party_name: string
-          payment_method: string
-          transaction_date?: string
-          transaction_type: string
-          updated_at?: string
-        }
-        Update: {
-          amount?: number
-          business_id?: string
-          created_at?: string
-          creator_id?: string
-          description?: string
-          id?: string
-          notes?: string | null
-          party_name?: string
-          payment_method?: string
-          transaction_date?: string
-          transaction_type?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "transactions_business_id_fkey"
-            columns: ["business_id"]
-            isOneToOne: false
-            referencedRelation: "businesses"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
     }
     Views: {
       [_ in never]: never
