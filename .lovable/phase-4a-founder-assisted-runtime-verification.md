@@ -76,11 +76,14 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 - Evidence: `E-A07c` — `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` (post-sign-out `/auth` surface); `E-A07a/b/d/e` confirmed by Founder observation (no separate screenshots attached).
 - Status: **PASS**
 
-### Test 7 — Cross-business isolation availability
-- Owner B fixture available? _pending Founder confirmation_
-- If yes: Owner B sign-in observations and evidence `E-A08`.
-- If no: record verbatim `CROSS-BUSINESS RUNTIME TEST BLOCKED — SECOND OWNER FIXTURE NOT AVAILABLE`.
-- Status: _pending_
+### Test 7 — Cross-business isolation
+- Steps: Founder signed out of Owner A, signed in as Owner B (distinct account and business), observed Dashboard and Transactions, then signed out.
+- 7a — Owner B dashboard: **PASS.** E-A08a shows the authenticated Dashboard for **Bhai Store** (Category: Grocery; Location: "We are a one stop shop for all"; user `iam.mrriyas@gmail.com`). Today's sales `₹37.00`, Today's purchases `₹0.00`. No Salamath Store identity, no verification transactions (₹101 / ₹51), and no exploratory rows (₹5,210 / ₹58) are visible.
+- 7b — Owner B transactions: **PASS.** E-A08b shows the Transactions page for Bhai Store — Record a sale form, empty Transaction timeline aside from Owner B's own row (`Sale · Rafi · Soap · +₹37.00 · 19 Jul 2026 · Credit`). None of Owner A's transactions (verification or exploratory) are visible.
+- 7c — Owner B sign out: **PASS.** E-A08c shows the `/auth` sign-in surface after Owner B signed out.
+- Founder observation: "Cross-business isolation verified successfully. Owner A and Owner B data remained fully isolated throughout runtime testing."
+- Evidence: `E-A08a` — `/mnt/documents/phase4a/E-A08a_owner_b_dashboard.png`; `E-A08b` — `/mnt/documents/phase4a/E-A08b_owner_b_transactions.png`; `E-A08c` — `/mnt/documents/phase4a/E-A08c_owner_b_signout.png`
+- Status: **PASS**
 
 ## 4. Evidence Register
 
