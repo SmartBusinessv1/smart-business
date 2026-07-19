@@ -104,9 +104,11 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A07c | Sign-out UI action — post-sign-out `/auth` surface | T6 | `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` |
 | E-A07d | Signed-out `/dashboard` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
 | E-A07e | Signed-out `/transactions` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
-| E-A08 | Owner B session (if fixture available) | T7 | _pending / N/A_ |
+| E-A08a | Owner B — authenticated Dashboard for Bhai Store; totals scoped to Owner B; no Owner A data visible | T7 | `/mnt/documents/phase4a/E-A08a_owner_b_dashboard.png` |
+| E-A08b | Owner B — Transactions page for Bhai Store; only Owner B's own row visible; no Owner A rows | T7 | `/mnt/documents/phase4a/E-A08b_owner_b_transactions.png` |
+| E-A08c | Owner B — post-sign-out `/auth` surface | T7 | `/mnt/documents/phase4a/E-A08c_owner_b_signout.png` |
 
-Founder-supplied screenshots will be stored under `/mnt/documents/phase4a/` when attached.
+Founder-supplied screenshots are stored under `/mnt/documents/phase4a/`.
 
 ## 5. Runtime Security Assessment
 
@@ -115,7 +117,7 @@ Assessment derived strictly from Founder-provided evidence:
 - **Authenticated route gating:** PASS. Owner A can access `/dashboard` and `/transactions` while authenticated. After sign-out, both protected routes redirect to `/auth`.
 - **Session persistence:** PASS. Hard refresh on `/transactions` preserves the authenticated session and restores the Salamath Store workspace.
 - **Business isolation (Owner A view):** PASS. Owner A's workspace consistently shows **Salamath Store** only; no other business identity is visible in the authenticated UI.
-- **Cross-business isolation:** NOT ASSESSED at runtime. Test 7 is pending Founder confirmation of an Owner B fixture.
+- **Cross-business isolation:** PASS. Owner B's authenticated session shows only Bhai Store identity and only Owner B's own transaction row; none of Owner A's business identity, verification transactions (₹101 / ₹51), or exploratory rows (₹5,210 / ₹58) are visible. Owner-scoped RLS is verified at runtime across two independent owner sessions.
 - **Authorized transaction creation:** PASS. Owner A created the authorized Sale (₹101) and Purchase (₹51); both appeared immediately in the timeline and dashboard.
 - **Append-only enforcement (UI):** PASS. No Edit, Delete, menu, or modification affordance is exposed on transaction rows; clicking a row does not open an editable detail view.
 
@@ -125,19 +127,21 @@ No regressions observed. The Phase 4 automated run documented an anonymous `/tra
 
 ## 7. Limitations
 
-1. **Test 7 (cross-business isolation) is pending.** A second Owner B fixture and second business are not yet confirmed available. No cross-owner isolation claim can be made until Test 7 executes.
-2. **E-A07a/b/d/e are text-only confirmations.** Only E-A07c was provided as a screenshot; the remaining sub-test observations were confirmed verbally by the Founder.
-3. **Phase 4 automated run limitations remain on record.** Tests 1, 2, 4, 5, and the authenticated portion of Test 6 were not executed in the automated run; the Founder-assisted run now covers those gaps, leaving only Test 7 unresolved.
+1. **E-A07a/b/d/e are text-only confirmations.** Only E-A07c was provided as a screenshot for Test 6; the remaining sub-test observations were confirmed verbally by the Founder.
+2. **Phase 4 automated run limitations remain on record.** Tests 1, 2, 4, 5, and the authenticated portion of Test 6 were not executable in the automated run without a sandbox session; the Founder-assisted run covers those gaps.
 
 ## 8. Overall Assessment
 
-**PHASE 4A PASSED WITH TEST 7 PENDING**
+**PHASE 4A PASSED**
 
-All executed tests (1–6) pass. Owner-scoped authenticated access, session persistence, sign-out hygiene, append-only UI, and authorized transaction creation are verified. Cross-business runtime isolation remains unverified pending an Owner B fixture.
+All tests (1–7) pass. Owner-scoped authenticated access, session persistence, sign-out hygiene, append-only UI, authorized transaction creation, and cross-business runtime isolation are verified.
 
 ## 9. Recommendation
 
-1. **Mission Control:** Confirm whether Test 7 (cross-business isolation) is required for this phase or can be deferred to a later fixture-provisioning step.
+1. Close SB-P-1.8E Phase 4A as PASSED.
+2. No further code, schema, or RLS changes are required for the verified surface.
+3. Proceed to the next Mission Control–authorized phase.
+
 2. If Test 7 is required, authorize creation or provisioning of an Owner B account and second business, then re-run only Test 7.
 3. If Test 7 is deferred, close SB-P-1.8E Phase 4A with the documented limitation that cross-business runtime isolation was not exercised.
 4. No further code or schema changes are required for the verified surface.
