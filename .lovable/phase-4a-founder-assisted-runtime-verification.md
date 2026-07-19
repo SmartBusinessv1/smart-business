@@ -48,9 +48,9 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 ### Test 3 — Authorized Sale creation (₹101)
 - Values: Party `SB-P-1.8E Verification Customer`, Description `SB-P-1.8E Verification Sale`, Amount `101`, Payment `Cash`.
 - Expected: success feedback → timeline row (type Sale, amount 101.00) → dashboard activity updates.
-- Observed: _pending_
-- Evidence: `E-A04a` (form), `E-A04b` (timeline), `E-A04c` (dashboard)
-- Status: _pending_
+- Observed: **PASS.** E-A04a shows the Sale form under Salamath Store with Date `19-07-2026`, Payment `Cash`, and "Sale saved." confirmation banner. E-A04b shows the new row at the top of the Transaction timeline: `Sale · SB-P-1.8E Verification Customer · SB-P-1.8E Verification Sale · +₹101.00 · 19 Jul 2026 · Cash`, positioned above the pre-existing ₹5,210 Purchase and ₹58 Sale rows (both unchanged). E-A04c shows Dashboard Today's sales `₹159.00` (= ₹101 + ₹58) and Today's purchases `₹5,210.00`; Recent activity lists `SB-P-1.8E Verification Customer · Sale · Cash · +₹101.00` at the top. Amount displays with exact two-decimal precision.
+- Evidence: `E-A04a` — `/mnt/documents/phase4a/E-A04a_sale_form.png`; `E-A04b` — `/mnt/documents/phase4a/E-A04b_sale_timeline.png`; `E-A04c` — `/mnt/documents/phase4a/E-A04c_sale_dashboard.png`
+- Status: **PASS**
 
 ### Test 4 — Authorized Purchase creation (₹51)
 - Values: Party `SB-P-1.8E Verification Supplier`, Description `SB-P-1.8E Verification Purchase`, Amount `51`, Payment `Cash`.
@@ -88,9 +88,9 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A01 | Authenticated dashboard, Owner A (Salamath Store); "Today's sales" and "Recent activity" render inside authenticated shell (Workspace / Transactions / Sign out) | Preflight | `/mnt/documents/phase4a/E-A01_dashboard.png` |
 | E-A02 | Authenticated `/transactions` page — Record a sale / Record a purchase tabs, Sale details form visible; Salamath Store workspace | T1 | `/mnt/documents/phase4a/E-A02_transactions.png` |
 | E-A03 | Owner A workspace — Salamath Store identity only; Purchase details form; "Purchase saved." confirmation from a prior session save visible | T2 | `/mnt/documents/phase4a/E-A03_owner_a_isolation.png` |
-| E-A04a | Sale creation form submitted | T3 | _pending_ |
-| E-A04b | Sale row in timeline | T3 | _pending_ |
-| E-A04c | Dashboard activity after Sale | T3 | _pending_ |
+| E-A04a | Sale form with "Sale saved." confirmation banner, Salamath Store workspace | T3 | `/mnt/documents/phase4a/E-A04a_sale_form.png` |
+| E-A04b | Transaction timeline — verification Sale +₹101.00 at top; pre-existing rows unchanged | T3 | `/mnt/documents/phase4a/E-A04b_sale_timeline.png` |
+| E-A04c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,210.00; verification Sale in Recent activity | T3 | `/mnt/documents/phase4a/E-A04c_sale_dashboard.png` |
 | E-A05a | Purchase creation form submitted | T4 | _pending_ |
 | E-A05b | Purchase row in timeline | T4 | _pending_ |
 | E-A05c | Dashboard activity after Purchase | T4 | _pending_ |
