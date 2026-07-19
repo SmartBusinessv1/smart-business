@@ -1,153 +1,66 @@
-# SB-P-1.8E — Phase 3C Evidence Appendix
 
-Evidence compilation only. No implementation, migration, type regeneration, or build changes performed. All read-only queries against the attached Lovable Cloud backend (project ref `wwgqnshcgbukqczqblsm`).
+# SB-P-1.8E — Phase 4 Runtime Security Verification (Finalized Plan)
 
----
+Read-only runtime verification of the deployed app, plus two authorized transaction creations through the normal UI. No schema, policy, type, migration, or app-code changes. No SQL. No "Try to fix." No request tampering. Phase 5 is not attempted.
 
-## 1. Preflight verification
+## Confirmed by Mission Control
 
-Query: `SELECT to_regclass('public.businesses'), to_regclass('public.transactions'), to_regproc('public.update_updated_at_column');`
+- Report path: `.lovable/phase-4-runtime-security-verification.md` (new file).
+- `.lovable/plan.md` (Phase 3C Evidence Appendix) is preserved unchanged.
+- Authorized to create exactly the two prescribed transactions via the UI; not to delete or modify them afterward.
 
-| Object | Pre-migration expected | Post-migration observed |
-|---|---|---|
-| `public.businesses` | present | `businesses` ✅ |
-| `public.update_updated_at_column()` | present | `update_updated_at_column` ✅ |
-| `public.transactions` | absent → created | `transactions` ✅ (present now; was `NULL` at preflight per Phase 3C log) |
+## Environment
 
-Note: the pre-migration "absent" state was captured live during Phase 3C execution and is not re-derivable now. Present-state confirmation is what this appendix captures.
+- App under test: `https://smartbusiness.teamlips.com`
+- Backend (identity confirmed in a prior phase): Lovable Cloud, project ref `wwgqnshcgbukqczqblsm`.
+- Executor: headless Chromium driven by Playwright from the sandbox.
 
----
+## Owner sessions
 
-## 2. Table structure — `public.transactions`
+- Owner A: restore the injected Lovable-managed Supabase session (localStorage key + `@supabase/ssr` cookies) before navigating to any authenticated route. No credentials handled.
+- Owner B: not attempted. Report Test 2 as `NOT EXECUTED` with the mission-prescribed reason: "A second authenticated owner and business are not currently available for runtime verification." No account or business will be created.
 
-| Column | Type | Nullable | Default |
-|---|---|---|---|
-| id | uuid | NO | `gen_random_uuid()` |
-| business_id | uuid | NO | — |
-| creator_id | uuid | NO | — |
-| transaction_type | text | NO | — |
-| transaction_date | date | NO | `CURRENT_DATE` |
-| party_name | text | NO | — |
-| description | text | NO | — |
-| amount | numeric | NO | — |
-| payment_method | text | NO | — |
-| notes | text | YES | — |
-| created_at | timestamptz | NO | `now()` |
-| updated_at | timestamptz | NO | `now()` |
+## Test sequence
 
-Check constraints:
-- `amount > 0`
-- `length(btrim(description)) > 0`
-- `length(btrim(party_name)) > 0`
-- `transaction_type IN ('sale','purchase')`
-- `payment_method IN ('cash','upi','card','bank_transfer','credit','other')`
+Each test writes numbered screenshots to `/tmp/browser/phase4/screenshots/` and a plain-text observation log line (URL, visible business name, transaction count, any console errors observed as data).
 
----
+1. **Test 1 — Business Isolation (Owner A).** Session restore → `/dashboard` → `/transactions`. Record business identity and the full visible transaction list. Confirm no rows appear that are not attributable to the displayed business.
+2. **Test 2 — Cross-Business Isolation.** `NOT EXECUTED` (see above). No fabrication.
+3. **Test 3 — Anonymous Protection.** Clear cookies + localStorage in a fresh context. Direct-navigate to `/dashboard` then `/transactions`. Confirm redirect to `/auth` (per `_authenticated/route.tsx`) and that no transaction data renders before redirect.
+4. **Test 4 — Authorized Transaction Creation.** Restore Owner A session. Create through UI only:
+   - Sale — Party `Phase 4 Test Customer`, Description `Phase 4 Runtime Verification Sale`, Amount `101`, Payment `Cash`.
+   - Purchase — Party `Phase 4 Test Supplier`, Description `Phase 4 Runtime Verification Purchase`, Amount `51`, Payment `Cash`.
+   Verify each appears in the timeline with correct type/date/party/description/amount/payment method and that dashboard totals reflect them. Records are not deleted or edited.
+5. **Test 5 — Append-Only Behaviour.** Inspect rendered timeline rows and any detail view for visible edit/delete affordances. Report only what is visible. No devtools, no request manipulation.
+6. **Test 6 — Navigation Regression.** Hard-refresh on `/dashboard` and `/transactions` (session persistence). Sign out via UI, retry `/dashboard` (expect redirect to `/auth`), sign back in via session restore, confirm workspace reload.
 
-## 3. Foreign keys
+## Stop-condition handling
 
-- `transactions_business_id_fkey`: `business_id → businesses(id) ON DELETE CASCADE`
-- `transactions_creator_id_fkey`: `creator_id → auth.users(id) ON DELETE CASCADE`
+If any observation meets a listed stop condition (cross-tenant leak, anonymous data exposure, wrong ownership on new rows, edit/delete UI, auth or protected-route regression), execution halts immediately. No corrective action is taken. Report is submitted as `PHASE 4 STOPPED — SECURITY OR RUNTIME ISSUE DETECTED` with reproduction steps, observed vs expected, evidence references, and a severity assessment.
 
----
+## Deliverable — `.lovable/phase-4-runtime-security-verification.md`
 
-## 4. Indexes
+Nine required sections, populated strictly from observations:
 
-- `transactions_pkey` — UNIQUE btree `(id)`
-- `idx_transactions_business_timeline` — btree `(business_id, transaction_date DESC, created_at DESC)`
-- `idx_transactions_business_type_date` — btree `(business_id, transaction_type, transaction_date)`
+1. Mission Summary — runtime verification only; no implementation.
+2. Environment — URL, backend ref, execution date/time (UTC), executor description.
+3. Test Results — per test: outcome (`PASS` / `FAIL` / `LIMITED` / `NOT EXECUTED`), steps performed, observed behaviour, expected behaviour, evidence reference, limitations.
+4. Evidence Register — evidence ID, description, associated test, account state, application route, artifact path.
+5. Runtime Security Assessment — owner isolation, anonymous protection, transaction creation, append-only behaviour, authentication, navigation, session persistence. Cross-business isolation will NOT be claimed since Test 2 was not executed.
+6. Regressions — either `No regressions observed.` or an itemized list.
+7. Limitations — explicit note that Owner B / a second business are unavailable, Test 2 not executed; any evidence gaps.
+8. Overall Assessment — one of the four permitted statuses, chosen only from observation. Expected outcome (subject to observation) is `PHASE 4 PASSED WITH DOCUMENTED LIMITATIONS` due to Test 2 being `NOT EXECUTED`.
+9. Recommendation — one of: proceed to Phase 5; Mission Control review the documented limitation; authorize separate corrective mission.
 
----
+Screenshot artifacts remain under `/tmp/browser/phase4/screenshots/` and are referenced by evidence ID in section 4. They can be copied into `/mnt/documents/phase4/` if a durable location outside the sandbox is desired — request if wanted.
 
-## 5. Trigger
+## Explicit non-actions
 
-```
-CREATE TRIGGER update_transactions_updated_at
-  BEFORE UPDATE ON public.transactions
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
-```
+- No schema/RLS/policy/migration/types/app-code changes.
+- No SQL reads (`supabase--read_query` / `psql`) — mission verifies runtime, not DB state.
+- No creation of a second owner/business.
+- No deletion or modification of the two authorized transactions.
+- No devtools request manipulation or forced-browser testing.
+- No Phase 5 activity after the report.
 
-Reuses the pre-existing `public.update_updated_at_column()` — no new function created.
-
----
-
-## 6. Row Level Security
-
-| Table | `relrowsecurity` | `relforcerowsecurity` |
-|---|---|---|
-| public.transactions | **true** ✅ | false |
-| public.businesses | true | false |
-
----
-
-## 7. Policies on `public.transactions`
-
-- **`Owners can view their business transactions`** — `FOR SELECT` (cmd `r`)
-  `USING`: `business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid())`
-- **`Owners can create their business transactions`** — `FOR INSERT` (cmd `a`)
-  `WITH CHECK`: `creator_id = auth.uid() AND business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid())`
-
-No `UPDATE` or `DELETE` policies exist — those commands are denied by default (write-locked, per SB-P-1.8 scope).
-
----
-
-## 8. Table grants / ACL
-
-From `pg_class.relacl` on `public.transactions`:
-
-```
-postgres=arwdDxtm/postgres
-anon=arwdDxtm/postgres
-authenticated=arwdDxtm/postgres
-service_role=arwdDxtm/postgres
-sandbox_exec=ar/postgres
-```
-
-Interpretation: platform-default broad ACLs on `anon`, `authenticated`, and `service_role` (a=INSERT, r=SELECT, w=UPDATE, d=DELETE, D=TRUNCATE, x=REFERENCES, t=TRIGGER, m=MAINTAIN). Effective access is constrained by RLS: only the two policies above are permitted, and only for `authenticated`. Note: the migration's intent of `SELECT, INSERT` to `authenticated` is enforced *by RLS*, not by narrower table grants, on this managed backend.
-
----
-
-## 9. `src/integrations/supabase/types.ts` — regenerated differences
-
-Present-state confirmation (file currently in project): the `transactions` entry exists in `Database['public']['Tables']` with:
-
-- `Row` — all 12 columns typed (`amount: number`, `notes: string | null`, timestamps as `string`, etc.)
-- `Insert` — required: `amount`, `business_id`, `creator_id`, `description`, `party_name`, `payment_method`, `transaction_type`; optional (defaulted): `id`, `created_at`, `updated_at`, `transaction_date`, `notes`
-- `Update` — all fields optional
-- `Relationships` — one entry: `transactions_business_id_fkey → businesses.id`
-
-Pre-migration diff: the entire `transactions: { ... }` block was absent from `Database['public']['Tables']` (only `businesses` was present). The regenerated file added exactly this block; no other tables, views, functions, or enums changed. A byte-level diff was not preserved during Phase 3C execution.
-
----
-
-## 10. `bunx tsgo --noEmit`
-
-Not re-executed for this appendix. As reported at the close of Phase 3C: **exit 0, zero TypeScript errors**. The ~30 pre-migration errors (all references to `public.transactions` in `src/integrations/supabase/transactions.ts`, `src/routes/_authenticated/transactions.tsx`, and `src/routes/_authenticated/dashboard.tsx`) resolved once the regenerated `types.ts` included the `transactions` table.
-
----
-
-## 11. Supabase linter / security review
-
-Not re-executed for this appendix. As reported at the close of Phase 3C: **no findings against `public.transactions`**. RLS enabled; policies present; no `SECURITY DEFINER` views or functions introduced; `update_updated_at_column()` unchanged (already had `SET search_path = public`).
-
----
-
-## 12. Additional substantiating evidence
-
-- **Backend identity**: `.env` and `supabase/config.toml` pin project ref `wwgqnshcgbukqczqblsm` (Lovable Cloud). The external `smart-business` Supabase project was not reachable from this environment and was not modified.
-- **Scope discipline**: `public.businesses` was not altered — its columns, policies, and RLS flag remain as pre-migration (verified: 4 policies intact, RLS on).
-- **Write-lock verified structurally**: `pg_policy` returns exactly two rows for `transactions` (SELECT + INSERT). No UPDATE/DELETE policies means those actions are unreachable through the Data API regardless of ACL breadth.
-- **Application logic unchanged**: no files under `src/` were modified during Phase 3C except the auto-generated `src/integrations/supabase/types.ts`.
-
----
-
-## Gaps (evidence not preserved during execution)
-
-Per Mission Control instruction, these were not re-executed:
-
-1. Exact pre-migration `to_regclass('public.transactions') = NULL` stdout — asserted from Phase 3C narrative only.
-2. Byte-level `git diff` of `src/integrations/supabase/types.ts` before/after regeneration.
-3. Raw `bunx tsgo --noEmit` stdout (pre and post).
-4. Raw `supabase--linter` JSON output.
-
-If Mission Control authorizes, items 3 and 4 can be re-run non-destructively; items 1 and 2 are no longer recoverable without a schema/file rollback, which is out of scope.
+Awaiting approval to switch to Build mode and execute.
