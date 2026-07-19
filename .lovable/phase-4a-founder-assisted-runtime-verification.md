@@ -95,7 +95,7 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A05a | Purchase form with "Purchase saved." confirmation banner, Salamath Store workspace | T4 | `/mnt/documents/phase4a/E-A05a_purchase_form.png` |
 | E-A05b | Transaction timeline — verification Purchase −₹51.00 at top; prior rows unchanged | T4 | `/mnt/documents/phase4a/E-A05b_purchase_timeline.png` |
 | E-A05c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,261.00; verification Purchase in Recent activity | T4 | `/mnt/documents/phase4a/E-A05c_purchase_dashboard.png` |
-| E-A06 | Timeline row / detail — no edit/delete affordances | T5 | _pending_ |
+| E-A06 | Transaction timeline — no edit/delete/menu affordances on rows; no editable detail view exposed on click | T5 | `/mnt/documents/phase4a/E-A06_append_only.png` |
 | E-A07a | Dashboard ↔ Transactions navigation | T6 | _pending_ |
 | E-A07b | Refresh on `/transactions`, session persists | T6 | _pending_ |
 | E-A07c | Sign-out UI action | T6 | _pending_ |
