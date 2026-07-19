@@ -21,8 +21,8 @@ Founder-assisted manual runtime verification of the deployed Smart Business appl
 | App under test | https://smartbusiness.teamlips.com |
 | Backend | Lovable Cloud (ref confirmed in prior phase) |
 | Executor | Founder (manual, authenticated) + Lovable (transcription only) |
-| Session confirmation | _pending Founder confirmation_ |
-| Owner A business identity visible | _pending_ |
+| Session confirmation | **PASS** — Founder signed in; authenticated dashboard rendered (E-A01) |
+| Owner A business identity visible | **Salamath Store** |
 
 ## 3. Test Results
 
@@ -31,9 +31,9 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 ### Test 1 — Authenticated `/transactions` route
 - Steps: signed in as Owner A → open `/transactions`.
 - Expected: Transactions workspace renders with Record a Sale, Record a Purchase, Transaction Timeline.
-- Observed: _pending_
-- Evidence: `E-A02`
-- Status: _pending_
+- Observed: Founder reports the Transactions page loaded successfully; Record a Sale, Record a Purchase, and Transaction Timeline surfaces are visible. E-A02 shows the authenticated Transactions view with the "Record a sale" / "Record a purchase" tabs and the Sale details form under the Salamath Store workspace header (`Workspace`, `Transactions`, `creationsflyhigh@gmail.com`, `Sign out`).
+- Evidence: `E-A02` — `/mnt/documents/phase4a/E-A02_transactions.png`
+- Status: **PASS**
 
 ### Test 2 — Owner A workspace observation
 - Steps: within Transactions workspace, verify business identity and timeline scope.
