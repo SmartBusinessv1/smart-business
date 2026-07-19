@@ -96,11 +96,11 @@ Each test is filled in turn-by-turn as the Founder reports back. Statuses: PASS 
 | E-A05b | Transaction timeline — verification Purchase −₹51.00 at top; prior rows unchanged | T4 | `/mnt/documents/phase4a/E-A05b_purchase_timeline.png` |
 | E-A05c | Dashboard Today's sales ₹159.00 / Today's purchases ₹5,261.00; verification Purchase in Recent activity | T4 | `/mnt/documents/phase4a/E-A05c_purchase_dashboard.png` |
 | E-A06 | Transaction timeline — no edit/delete/menu affordances on rows; no editable detail view exposed on click | T5 | `/mnt/documents/phase4a/E-A06_append_only.png` |
-| E-A07a | Dashboard ↔ Transactions navigation | T6 | _pending_ |
-| E-A07b | Refresh on `/transactions`, session persists | T6 | _pending_ |
-| E-A07c | Sign-out UI action | T6 | _pending_ |
-| E-A07d | Signed-out `/dashboard` behaviour | T6 | _pending_ |
-| E-A07e | Signed-out `/transactions` behaviour | T6 | _pending_ |
+| E-A07a | Dashboard ↔ Transactions navigation (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07b | Refresh on `/transactions`, session persists (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07c | Sign-out UI action — post-sign-out `/auth` surface | T6 | `/mnt/documents/phase4a/E-A07c_sign_out_complete.png` |
+| E-A07d | Signed-out `/dashboard` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
+| E-A07e | Signed-out `/transactions` redirect to `/auth` (Founder confirmed) | T6 | Text-only confirmation |
 | E-A08 | Owner B session (if fixture available) | T7 | _pending / N/A_ |
 
 Founder-supplied screenshots will be stored under `/mnt/documents/phase4a/` when attached.
