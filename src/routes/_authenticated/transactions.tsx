@@ -5,11 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { format } from "date-fns";
-import { LogOut, Menu, X, Loader2, CheckCircle2 } from "lucide-react";
+import { LogOut, Menu, X, Loader2, CheckCircle2, Pencil } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import {
   createTransaction,
+  correctTransaction,
   listRecentTransactions,
   PAYMENT_METHODS,
   type PaymentMethod,
