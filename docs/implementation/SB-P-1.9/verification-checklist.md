@@ -1,14 +1,14 @@
 Document: Verification Checklist
 
-Version: 1.0
+Version: 1.1
 
 Status: PENDING REVIEW
 
 Created By: Codex
 
-Reviewed By: Mission Control
+Reviewed By: —
 
-Approval Date: 2026-07-20
+Approval Date: —
 
 Mission: SB-P-1.9
 
@@ -150,6 +150,7 @@ Confirm that none of the following were introduced:
 | --- | --- |
 | Transaction Timeline | ☐ PASS ☐ FAIL |
 | Transaction Correction | ☐ PASS ☐ FAIL |
+| Phase 4A Confirmation Dialog | ☐ PASS ☐ FAIL |
 | Forgot Password | ☐ PASS ☐ FAIL |
 | Regression Verification | ☐ PASS ☐ FAIL |
 | Exclusion Verification | ☐ PASS ☐ FAIL |
