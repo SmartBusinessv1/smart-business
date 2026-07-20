@@ -296,8 +296,8 @@ These checks are documented for review by Mission Control and the Founder. No fi
 | --- | --- | --- |
 | WhatsApp notification delivery is not yet wired | Low | The correction event table is already in place with the required status fields. The delivery integration can be added in a subsequent mission without schema changes. |
 | Password reset flow depends on Supabase email deliverability | Low | Uses the standard Supabase Auth flow; no custom email infrastructure was introduced. |
-| Founder runtime verification not yet performed | Medium | Deployment is explicitly blocked pending Founder verification. |
 | Future RLS policy changes must preserve owner-only correction | Low | Policies are scoped to `businesses.owner_id = auth.uid()`; any future change should be reviewed against this pattern. |
+| WhatsApp notification delivery is not yet wired | Low | The correction event table is already in place with the required status fields. The delivery integration can be added in a subsequent mission without schema changes. |
 
 If none:
 
