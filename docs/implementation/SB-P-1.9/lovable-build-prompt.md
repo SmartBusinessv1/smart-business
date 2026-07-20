@@ -2,13 +2,13 @@ Document: Lovable Build Prompt
 
 Version: 1.0
 
-Status: APPROVED
+Status: PENDING REVIEW
 
 Created By: Claude
 
-Reviewed By: Mission Control
+Reviewed By: —
 
-Approval Date: 2026-07-20
+Approval Date: —
 
 Mission: SB-P-1.9
 
@@ -42,6 +42,10 @@ This includes, without limitation:
 - Existing routing
 - Existing permissions
 - Existing APIs wherever practical
+- Existing transaction ordering
+- Existing transaction timeline history
+- Existing dashboard widgets
+- Existing transaction creation workflow
 
 Where any ambiguity exists, preserve existing behaviour rather than introducing new behaviour.
 
@@ -74,7 +78,9 @@ Implement:
 - Update dependent dashboard and reporting calculations to reflect the corrected transaction.
 - Record audit metadata for every successful correction: `edited_at`, `edited_by`, `original_values`, `updated_values`, `edit_reason` (when provided), `notification_status`, and `notification_sent_at` (when the notification is successfully sent).
 - Generate a transaction correction event after the correction is recorded.
-- Trigger the owner WhatsApp notification from that transaction correction event.
+- If the approved backend event pipeline and WhatsApp infrastructure are already available, integrate with that existing implementation.
+- If the backend infrastructure is not yet available, implement only the approved event trigger according to the Engineering Contract.
+- Do not invent, redesign, simulate, or implement a WhatsApp delivery mechanism in the frontend.
 
 Do not implement:
 
