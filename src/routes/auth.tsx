@@ -58,7 +58,7 @@ function AuthPage() {
         }
         router.invalidate();
         navigate({ to: "/dashboard", replace: true });
-      } else {
+      } else if (mode === "sign-up") {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
@@ -77,6 +77,19 @@ function AuthPage() {
             text: "Account created. Please check your email to confirm your address before signing in.",
           });
         }
+      } else {
+        // SB-P-1.9: Password recovery via Supabase secure recovery-link flow.
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (error) {
+          setMessage({ kind: "error", text: error.message });
+          return;
+        }
+        setMessage({
+          kind: "info",
+          text: "If an account exists for that email, we've sent a password recovery link. Please check your inbox.",
+        });
       }
     } catch (err) {
       setMessage({ kind: "error", text: err instanceof Error ? err.message : "Unexpected error." });
