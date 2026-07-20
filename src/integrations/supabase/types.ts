@@ -44,6 +44,66 @@ export type Database = {
         }
         Relationships: []
       }
+      transaction_correction_events: {
+        Row: {
+          business_id: string
+          created_at: string
+          edit_reason: string | null
+          edited_at: string
+          edited_by: string
+          id: string
+          notification_sent_at: string | null
+          notification_status: string
+          original_values: Json
+          transaction_id: string
+          updated_at: string
+          updated_values: Json
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          edit_reason?: string | null
+          edited_at?: string
+          edited_by: string
+          id?: string
+          notification_sent_at?: string | null
+          notification_status?: string
+          original_values: Json
+          transaction_id: string
+          updated_at?: string
+          updated_values: Json
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          edit_reason?: string | null
+          edited_at?: string
+          edited_by?: string
+          id?: string
+          notification_sent_at?: string | null
+          notification_status?: string
+          original_values?: Json
+          transaction_id?: string
+          updated_at?: string
+          updated_values?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transaction_correction_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transaction_correction_events_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       transactions: {
         Row: {
           amount: number
@@ -102,7 +162,39 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      correct_transaction: {
+        Args: {
+          p_amount: number
+          p_description: string
+          p_edit_reason: string
+          p_notes: string
+          p_party_name: string
+          p_payment_method: string
+          p_transaction_date: string
+          p_transaction_id: string
+          p_transaction_type: string
+        }
+        Returns: {
+          amount: number
+          business_id: string
+          created_at: string
+          creator_id: string
+          description: string
+          id: string
+          notes: string | null
+          party_name: string
+          payment_method: string
+          transaction_date: string
+          transaction_type: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "transactions"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
       [_ in never]: never
