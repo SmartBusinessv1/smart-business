@@ -164,7 +164,15 @@ main
 Synchronized
 ```
 
-Repository state is clean and includes the implementation commit `2ebd8d8e05ebfaf431bc1946f88843178d4e5a0b` with the message `Implemented SB-P-1.9 features`. No unexpected repository changes were observed.
+**Implementation Commit:**
+
+```text
+2ebd8d8e05ebfaf431bc1946f88843178d4e5a0b
+```
+
+This is the stable commit that contains the SB-P-1.9 implementation. It is not necessarily the current repository HEAD.
+
+Repository state is clean and includes the implementation commit with the message `Implemented SB-P-1.9 features`. No unexpected repository changes were observed.
 
 ---
 
