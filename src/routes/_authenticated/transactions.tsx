@@ -373,7 +373,11 @@ function TransactionsWorkspace({ business }: { business: Business }) {
           ) : (
             <ul className="space-y-3">
               {timelineQuery.data.map((transaction) => (
-                <TransactionRow key={transaction.id} transaction={transaction} />
+                <TransactionRow
+                  key={transaction.id}
+                  transaction={transaction}
+                  onCorrected={handleCreated}
+                />
               ))}
             </ul>
           )}
