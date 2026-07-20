@@ -48,6 +48,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 export const Route = createFileRoute("/_authenticated/transactions")({
   head: () => ({
@@ -766,6 +776,7 @@ function TransactionCorrectionDialog({
   onCorrected: () => void;
 }) {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [pendingValues, setPendingValues] = useState<CorrectionFormValues | null>(null);
 
   const form = useForm<CorrectionFormValues>({
     resolver: zodResolver(correctionFormSchema),
@@ -796,10 +807,12 @@ function TransactionCorrectionDialog({
     },
     onSuccess: () => {
       setSuccessMessage("Correction saved.");
+      setPendingValues(null);
       onCorrected();
     },
     onError: (err) => {
       console.error("Failed to correct transaction:", err);
+      setPendingValues(null);
       form.setError("root", {
         message: "We couldn't save this correction. Please check the details and try again.",
       });
@@ -808,7 +821,18 @@ function TransactionCorrectionDialog({
 
   function handleSubmit(values: CorrectionFormValues) {
     setSuccessMessage(null);
-    correctMutation.mutate(values);
+    // SB-P-1.9 Phase 4A: require explicit owner confirmation before committing.
+    setPendingValues(values);
+  }
+
+  function handleConfirmSave() {
+    if (!pendingValues) return;
+    correctMutation.mutate(pendingValues);
+  }
+
+  function handleCancelConfirm() {
+    // Close only the confirmation dialog; preserve every entered value.
+    setPendingValues(null);
   }
 
   const submitting = correctMutation.isPending;
@@ -819,6 +843,7 @@ function TransactionCorrectionDialog({
       open={open}
       onOpenChange={(next) => {
         if (submitting) return;
+        if (pendingValues !== null) return;
         if (!next) {
           form.reset();
           setSuccessMessage(null);
@@ -1003,6 +1028,37 @@ function TransactionCorrectionDialog({
           </form>
         </Form>
       </DialogContent>
+      <AlertDialog
+        open={pendingValues !== null}
+        onOpenChange={(next) => {
+          if (submitting) return;
+          if (!next) handleCancelConfirm();
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Transaction Correction</AlertDialogTitle>
+            <AlertDialogDescription className="whitespace-pre-line">
+              {"This correction will be recorded in the audit history.\n\nThe correction will also be reported to the business owner through the approved notification workflow.\n\nDo you want to continue?"}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={submitting} onClick={handleCancelConfirm}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              disabled={submitting}
+              onClick={(event) => {
+                event.preventDefault();
+                handleConfirmSave();
+              }}
+            >
+              {submitting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+              {submitting ? "Saving…" : "Yes, Save Correction"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Dialog>
   );
 }

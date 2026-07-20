@@ -438,6 +438,39 @@ Together they provide the authorization, execution, and historical record for AI
 
 ---
 
+## Phase 4A Addendum — Correction Confirmation Dialog
+
+**Build Prompt Executed:** `docs/implementation/SB-P-1.9/lovable-build-prompt-phase-4a.md`
+
+### Implementation Summary
+
+Added a confirmation step before every transaction correction is committed, per the approved Phase 4A build prompt. When the owner clicks **Save correction** in the correction dialog, an `AlertDialog` titled **Confirm Transaction Correction** now appears with the approved message and the buttons **Cancel** and **Yes, Save Correction**. Only on **Yes, Save Correction** does the existing approved `correct_transaction` RPC run; **Cancel** simply closes the confirmation and returns to the correction form with every entered value preserved.
+
+No changes were made to the transaction model, audit model, correction event schema, RLS policies, RPC, notification pipeline, dashboard calculations, authentication, business isolation, or any other approved SB-P-1.9 behaviour.
+
+### Repository Files Modified
+
+- `src/routes/_authenticated/transactions.tsx` — inserted the confirmation `AlertDialog` and gated the `correct_transaction` mutation behind explicit owner confirmation; `Cancel` performs no save and preserves entered values.
+
+### Self Verification
+
+- Verification Checklist reference: `docs/implementation/SB-P-1.9/verification-checklist.md` (Version 1.1).
+- TypeScript typecheck: `bunx tsgo --noEmit` — exit code 0.
+- Confirmation dialog appears before every correction: verified in code path (`handleSubmit` sets `pendingValues`; mutation runs only from `handleConfirmSave`).
+- **Cancel** performs no save, generates no audit metadata, generates no correction event, invokes no notification workflow, and preserves entered values (the react-hook-form state is not reset and the outer correction dialog is prevented from closing while the confirmation is open).
+- **Yes, Save Correction** invokes the unchanged approved correction workflow (`correct_transaction` RPC) with no additional steps.
+- No regression introduced: no other approved behaviour, schema, RLS policy, RPC, or route was modified.
+
+### Observations
+
+- Runtime verification of the confirm/cancel flow against the published site is pending Founder-assisted testing.
+
+### Founder Action
+
+Implementation is ready for Founder verification using the approved Version 1.1 Verification Checklist.
+
+---
+
 ## IMPLEMENTATION COMPLETE
 
 Awaiting Founder Verification.
