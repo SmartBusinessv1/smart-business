@@ -2,7 +2,7 @@ Document: Lovable Build Prompt
 
 Version: 1.0
 
-Status: PENDING REVIEW
+Status: REFINEMENT REQUIRED
 
 Created By: Claude
 
@@ -29,7 +29,9 @@ No additional interpretation is permitted. Do not add, infer, or expand requirem
 
 ## 3. Existing Behaviour to Preserve
 
-Preserve exactly as-is:
+Preserve existing behaviour, architecture, security, routing, permissions, APIs, and product structure except for the changes explicitly authorized by this mission.
+
+This includes, without limitation:
 
 - Existing authentication
 - Existing dashboard
@@ -76,21 +78,40 @@ Implement:
 
 Do not implement:
 
-- Delete
+- Transaction deletion
 - Undo
 - Approval workflow
 - Employee editing
+- Employee-permission changes
 - Audit viewer
+- Bulk editing
+- Notification settings
+- Email notifications
+- Push notifications
+- MFA
+- OTP login
+- Authentication redesign
 
 ### C. Forgot Password
 
-Implement:
+Implement the complete Supabase password recovery flow:
 
-- A `Forgot Password?` link on the authentication page.
-- Supabase password recovery for the reset flow.
-- Existing authentication preserved in full.
+- Display the `Forgot Password?` link on the authentication page.
+- Request password recovery through Supabase.
+- Use the secure Supabase recovery-link flow.
+- Allow the user to set a new password through that flow.
+- Return the user to the existing authentication experience.
+- Allow sign-in with the new password.
 
-Do not redesign authentication.
+The existing authentication architecture and sign-in flow must remain unchanged except for this approved recovery capability.
+
+Do not add:
+
+- MFA
+- OTP login
+- Phone authentication
+- Custom authentication
+- Authentication redesign
 
 ## 5. Implementation Constraints
 
