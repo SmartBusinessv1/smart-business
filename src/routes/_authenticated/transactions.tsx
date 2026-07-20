@@ -1027,6 +1027,37 @@ function TransactionCorrectionDialog({
           </form>
         </Form>
       </DialogContent>
+      <AlertDialog
+        open={pendingValues !== null}
+        onOpenChange={(next) => {
+          if (submitting) return;
+          if (!next) handleCancelConfirm();
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Transaction Correction</AlertDialogTitle>
+            <AlertDialogDescription className="whitespace-pre-line">
+              {"This correction will be recorded in the audit history.\n\nThe correction will also be reported to the business owner through the approved notification workflow.\n\nDo you want to continue?"}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={submitting} onClick={handleCancelConfirm}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              disabled={submitting}
+              onClick={(event) => {
+                event.preventDefault();
+                handleConfirmSave();
+              }}
+            >
+              {submitting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+              {submitting ? "Saving…" : "Yes, Save Correction"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Dialog>
   );
 }
