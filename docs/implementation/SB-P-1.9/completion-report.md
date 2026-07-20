@@ -387,13 +387,13 @@ If corrections become necessary after acceptance, they shall be documented throu
 **Document Version**
 
 ```text
-1.0
+1.1
 ```
 
 **Status**
 
 ```text
-PENDING REVIEW
+VERIFIED
 ```
 
 **Created**
@@ -402,16 +402,22 @@ PENDING REVIEW
 2026-07-20
 ```
 
+**Updated**
+
+```text
+2026-07-21
+```
+
 **Reviewed By**
 
 ```text
-—
+Founder
 ```
 
 **Approval Date**
 
 ```text
-—
+2026-07-21
 ```
 
 **Repository Location**
