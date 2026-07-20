@@ -1,0 +1,7 @@
+                    indexname                     |                                                              indexdef                                                              
+--------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------
+ transaction_correction_events_pkey               | CREATE UNIQUE INDEX transaction_correction_events_pkey ON public.transaction_correction_events USING btree (id)
+ transaction_correction_events_transaction_id_idx | CREATE INDEX transaction_correction_events_transaction_id_idx ON public.transaction_correction_events USING btree (transaction_id)
+ transaction_correction_events_business_id_idx    | CREATE INDEX transaction_correction_events_business_id_idx ON public.transaction_correction_events USING btree (business_id)
+(3 rows)
+

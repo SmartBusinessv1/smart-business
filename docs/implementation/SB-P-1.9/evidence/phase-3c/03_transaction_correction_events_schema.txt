@@ -1,0 +1,36 @@
+                        Table "public.transaction_correction_events"
+        Column        |           Type           | Collation | Nullable |      Default      
+----------------------+--------------------------+-----------+----------+-------------------
+ id                   | uuid                     |           | not null | gen_random_uuid()
+ transaction_id       | uuid                     |           | not null | 
+ business_id          | uuid                     |           | not null | 
+ edited_at            | timestamp with time zone |           | not null | now()
+ edited_by            | uuid                     |           | not null | 
+ original_values      | jsonb                    |           | not null | 
+ updated_values       | jsonb                    |           | not null | 
+ edit_reason          | text                     |           |          | 
+ notification_status  | text                     |           | not null | 'pending'::text
+ notification_sent_at | timestamp with time zone |           |          | 
+ created_at           | timestamp with time zone |           | not null | now()
+ updated_at           | timestamp with time zone |           | not null | now()
+Indexes:
+    "transaction_correction_events_pkey" PRIMARY KEY, btree (id)
+    "transaction_correction_events_business_id_idx" btree (business_id)
+    "transaction_correction_events_transaction_id_idx" btree (transaction_id)
+Foreign-key constraints:
+    "transaction_correction_events_business_id_fkey" FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE
+    "transaction_correction_events_transaction_id_fkey" FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
+Policies:
+    POLICY "Owners can record correction events" FOR INSERT
+      TO authenticated
+      WITH CHECK (((edited_by = auth.uid()) AND (business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid())))))
+    POLICY "Owners can view their correction events" FOR SELECT
+      TO authenticated
+      USING ((business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid()))))
+Triggers:
+    update_transaction_correction_events_updated_at BEFORE UPDATE ON transaction_correction_events FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
+

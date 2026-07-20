@@ -1,0 +1,5 @@
+ schemaname | tablename | policyname | roles 
+------------+-----------+------------+-------
+(0 rows)
+
+(An empty result set above confirms no anonymous-role policies exist on public tables.)

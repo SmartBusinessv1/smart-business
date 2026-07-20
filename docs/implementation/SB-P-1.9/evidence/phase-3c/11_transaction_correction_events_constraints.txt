@@ -1,0 +1,7 @@
+                      conname                      | contype |                            pg_get_constraintdef                            
+---------------------------------------------------+---------+----------------------------------------------------------------------------
+ transaction_correction_events_business_id_fkey    | f       | FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE
+ transaction_correction_events_pkey                | p       | PRIMARY KEY (id)
+ transaction_correction_events_transaction_id_fkey | f       | FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
+(3 rows)
+

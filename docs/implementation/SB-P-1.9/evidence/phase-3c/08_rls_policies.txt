@@ -1,0 +1,23 @@
+ schemaname |           tablename           |                  policyname                   |  cmd   |      roles      |               using_expression               |                              with_check                               
+------------+-------------------------------+-----------------------------------------------+--------+-----------------+----------------------------------------------+-----------------------------------------------------------------------
+ public     | businesses                    | Owners can create their business              | INSERT | {authenticated} |                                              | (auth.uid() = owner_id)
+ public     | businesses                    | Owners can delete their business              | DELETE | {authenticated} | (auth.uid() = owner_id)                      | 
+ public     | businesses                    | Owners can update their business              | UPDATE | {authenticated} | (auth.uid() = owner_id)                      | (auth.uid() = owner_id)
+ public     | businesses                    | Owners can view their business                | SELECT | {authenticated} | (auth.uid() = owner_id)                      | 
+ public     | transaction_correction_events | Owners can record correction events           | INSERT | {authenticated} |                                              | ((edited_by = auth.uid()) AND (business_id IN ( SELECT businesses.id +
+            |                               |                                               |        |                 |                                              |    FROM businesses                                                   +
+            |                               |                                               |        |                 |                                              |   WHERE (businesses.owner_id = auth.uid()))))
+ public     | transaction_correction_events | Owners can view their correction events       | SELECT | {authenticated} | (business_id IN ( SELECT businesses.id      +| 
+            |                               |                                               |        |                 |    FROM businesses                          +| 
+            |                               |                                               |        |                 |   WHERE (businesses.owner_id = auth.uid()))) | 
+ public     | transactions                  | Owners can create their business transactions | INSERT | {authenticated} |                                              | ((creator_id = auth.uid()) AND (business_id IN ( SELECT businesses.id+
+            |                               |                                               |        |                 |                                              |    FROM businesses                                                   +
+            |                               |                                               |        |                 |                                              |   WHERE (businesses.owner_id = auth.uid()))))
+ public     | transactions                  | Owners can update their business transactions | UPDATE | {authenticated} | (business_id IN ( SELECT businesses.id      +| (business_id IN ( SELECT businesses.id                               +
+            |                               |                                               |        |                 |    FROM businesses                          +|    FROM businesses                                                   +
+            |                               |                                               |        |                 |   WHERE (businesses.owner_id = auth.uid()))) |   WHERE (businesses.owner_id = auth.uid())))
+ public     | transactions                  | Owners can view their business transactions   | SELECT | {authenticated} | (business_id IN ( SELECT businesses.id      +| 
+            |                               |                                               |        |                 |    FROM businesses                          +| 
+            |                               |                                               |        |                 |   WHERE (businesses.owner_id = auth.uid()))) | 
+(9 rows)
+

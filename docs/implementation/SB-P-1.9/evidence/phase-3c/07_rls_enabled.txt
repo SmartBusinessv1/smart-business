@@ -1,0 +1,7 @@
+ schema |             table             | rls_enabled 
+--------+-------------------------------+-------------
+ public | businesses                    | t
+ public | transaction_correction_events | t
+ public | transactions                  | t
+(3 rows)
+
