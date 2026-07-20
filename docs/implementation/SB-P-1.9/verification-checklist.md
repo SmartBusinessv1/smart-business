@@ -2,7 +2,7 @@ Document: Verification Checklist
 
 Version: 1.0
 
-Status: PENDING REVIEW
+Status: REFINEMENT REQUIRED
 
 Created By: Codex
 
@@ -71,7 +71,7 @@ This checklist verifies the completed SB-P-1.9 implementation only against the a
 ## 4. Regression Verification
 
 - [ ] Authentication is unchanged except for the approved password recovery capability.
-- [ ] The dashboard is unchanged except for the approved transaction correction results.
+- [ ] The dashboard is unchanged except for the changes explicitly approved under SB-P-1.9.
 - [ ] Existing permissions remain unchanged.
 - [ ] Row Level Security remains enforced.
 - [ ] A user cannot access data belonging to another business.
