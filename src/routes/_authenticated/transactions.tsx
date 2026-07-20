@@ -408,11 +408,22 @@ function TimelineEmptyState() {
   );
 }
 
-function TransactionRow({ transaction }: { transaction: Transaction }) {
+function TransactionRow({
+  transaction,
+  onCorrected,
+}: {
+  transaction: Transaction;
+  onCorrected: () => void;
+}) {
+  const [editOpen, setEditOpen] = useState(false);
   const isSale = transaction.transaction_type === "sale";
   const paymentLabel =
     PAYMENT_METHODS.find((method) => method.value === transaction.payment_method)?.label ??
     transaction.payment_method;
+
+  // SB-P-1.9: Show local date and time using the record's timestamp
+  // (business owners are in the local business timezone).
+  const timestampLabel = format(new Date(transaction.created_at), "d MMM yyyy • h:mm a");
 
   return (
     <li className="rounded-xl border border-border/60 bg-card p-4 shadow-sm">
@@ -444,11 +455,32 @@ function TransactionRow({ transaction }: { transaction: Transaction }) {
         </span>
       </div>
       <p className="mt-2 text-sm text-muted-foreground">{transaction.description}</p>
-      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-        <span>{format(new Date(`${transaction.transaction_date}T00:00:00`), "d MMM yyyy")}</span>
-        <span aria-hidden="true">·</span>
-        <span>{paymentLabel}</span>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-xs text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>{timestampLabel}</span>
+          <span aria-hidden="true">·</span>
+          <span>{paymentLabel}</span>
+        </div>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="h-7 px-2 text-xs"
+          onClick={() => setEditOpen(true)}
+        >
+          <Pencil className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
+          Correct
+        </Button>
       </div>
+      <TransactionCorrectionDialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        transaction={transaction}
+        onCorrected={() => {
+          setEditOpen(false);
+          onCorrected();
+        }}
+      />
     </li>
   );
 }
