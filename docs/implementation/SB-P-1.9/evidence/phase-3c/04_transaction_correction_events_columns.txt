@@ -1,0 +1,16 @@
+     column_name      |        data_type         | is_nullable |  column_default   
+----------------------+--------------------------+-------------+-------------------
+ id                   | uuid                     | NO          | gen_random_uuid()
+ transaction_id       | uuid                     | NO          | 
+ business_id          | uuid                     | NO          | 
+ edited_at            | timestamp with time zone | NO          | now()
+ edited_by            | uuid                     | NO          | 
+ original_values      | jsonb                    | NO          | 
+ updated_values       | jsonb                    | NO          | 
+ edit_reason          | text                     | YES         | 
+ notification_status  | text                     | NO          | 'pending'::text
+ notification_sent_at | timestamp with time zone | YES         | 
+ created_at           | timestamp with time zone | NO          | now()
+ updated_at           | timestamp with time zone | NO          | now()
+(12 rows)
+

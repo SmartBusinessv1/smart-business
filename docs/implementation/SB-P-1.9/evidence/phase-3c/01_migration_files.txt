@@ -1,0 +1,2 @@
+supabase/migrations/20260720142204_3786b8a1-e72a-4ae4-88b3-837b76ce1bf9.sql
+supabase/migrations/20260720142248_97de5be2-ef9f-4283-9318-9eb9f9a6cca1.sql

@@ -1,0 +1,19 @@
+             table             |            acl_entry            
+-------------------------------+---------------------------------
+ businesses                    | postgres=arwdDxtm/postgres
+ businesses                    | anon=arwdDxtm/postgres
+ businesses                    | authenticated=arwdDxtm/postgres
+ businesses                    | service_role=arwdDxtm/postgres
+ businesses                    | sandbox_exec=ar/postgres
+ transaction_correction_events | postgres=arwdDxtm/postgres
+ transaction_correction_events | anon=arwdDxtm/postgres
+ transaction_correction_events | authenticated=arwdDxtm/postgres
+ transaction_correction_events | service_role=arwdDxtm/postgres
+ transaction_correction_events | sandbox_exec=ar/postgres
+ transactions                  | postgres=arwdDxtm/postgres
+ transactions                  | anon=arwdDxtm/postgres
+ transactions                  | authenticated=arwdDxtm/postgres
+ transactions                  | service_role=arwdDxtm/postgres
+ transactions                  | sandbox_exec=ar/postgres
+(15 rows)
+
