@@ -466,9 +466,21 @@ No changes were made to the transaction model, audit model, correction event sch
 - **Yes, Save Correction** invokes the unchanged approved correction workflow (`correct_transaction` RPC) with no additional steps.
 - No regression introduced: no other approved behaviour, schema, RLS policy, RPC, or route was modified.
 
+### Founder Verification
+
+- **Verification Authority:** Founder
+- **Verification Date:** 2026-07-21
+- **Verification Screenshot:** Received as Founder verification evidence (`user-uploads://Screenshot_2026-07-21_013042.png`).
+- **Phase 4A Runtime Verification:** Passed
+  - Test 1 — Confirmation Dialog: PASS
+  - Test 2 — Cancel Behaviour: PASS
+  - Test 3 — Confirmation Behaviour: PASS
+- **Overall Founder Assessment:** The implemented Phase 4A confirmation dialog behaves as expected during runtime verification. The implementation matches the approved repository behaviour. No runtime regression was observed during Founder testing.
+
 ### Observations
 
-- Runtime verification of the confirm/cancel flow against the published site is pending Founder-assisted testing.
+- Phase 4A runtime verification has been completed by the Founder and recorded in this report.
+- The attached Founder screenshot shows the confirmation dialog with the approved title, message, and buttons (`Cancel` and `Yes, Save Correction`).
 
 ### Founder Action
 
