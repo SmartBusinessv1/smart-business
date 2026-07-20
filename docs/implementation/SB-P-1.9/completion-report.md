@@ -152,11 +152,6 @@ Smart Business (Lovable-managed GitHub repository)
 main
 ```
 
-**HEAD Commit:**
-
-```text
-2ebd8d8e05ebfaf431bc1946f88843178d4e5a0b
-```
 
 **Git Synchronization:**
 
