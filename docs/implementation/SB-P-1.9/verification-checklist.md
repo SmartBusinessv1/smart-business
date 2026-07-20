@@ -2,7 +2,7 @@ Document: Verification Checklist
 
 Version: 1.0
 
-Status: APPROVED
+Status: PENDING REVIEW
 
 Created By: Codex
 
@@ -56,6 +56,53 @@ This checklist verifies the completed SB-P-1.9 implementation only against the a
 - [ ] A transaction correction event is created after the correction is recorded.
 - [ ] The transaction correction event triggers the owner WhatsApp notification.
 - [ ] Existing data relationships associated with the corrected transaction remain intact.
+
+### Phase 4A — Transaction Correction Confirmation Dialog
+
+#### Confirmation Dialog
+
+- [ ] A confirmation dialog appears after the owner clicks **Save Correction** and before the correction is committed.
+- [ ] The dialog title is `Confirm Transaction Correction`.
+- [ ] The dialog message matches the approved wording:
+
+  ```text
+  This correction will be recorded in the audit history.
+
+  If owner notifications are enabled, the correction will also be reported to the business owner.
+
+  Do you want to continue?
+  ```
+
+- [ ] The dialog displays the **Yes, Save Correction** button.
+- [ ] The dialog displays the **Cancel** button.
+
+#### Cancel Verification
+
+- [ ] **Cancel** closes the confirmation dialog.
+- [ ] **Cancel** returns the owner to the correction form.
+- [ ] Every entered field retains exactly the value present before the dialog opened.
+- [ ] **Cancel** does not save the transaction correction.
+- [ ] **Cancel** creates no audit record.
+- [ ] **Cancel** generates no transaction correction event.
+- [ ] **Cancel** invokes no notification pipeline.
+
+#### Confirmation Verification
+
+- [ ] **Yes, Save Correction** completes the existing approved transaction correction workflow.
+- [ ] The transaction ID is identical before and after the confirmed correction.
+- [ ] The confirmed correction records the approved audit metadata.
+- [ ] The confirmed correction generates the approved transaction correction event.
+- [ ] The confirmed correction invokes the existing backend notification pipeline exactly as previously implemented where that pipeline is available.
+
+#### Regression Verification
+
+- [ ] Dashboard calculations remain correct after the Phase 4A enhancement.
+- [ ] Existing transaction timeline behaviour remains unchanged.
+- [ ] Existing authentication behaviour remains unchanged.
+- [ ] Row Level Security remains enforced.
+- [ ] Business isolation remains enforced.
+- [ ] Existing correction permissions remain unchanged.
+- [ ] Existing APIs remain operational.
 
 ### C. Forgot Password
 
