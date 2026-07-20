@@ -776,6 +776,7 @@ function TransactionCorrectionDialog({
   onCorrected: () => void;
 }) {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [pendingValues, setPendingValues] = useState<CorrectionFormValues | null>(null);
 
   const form = useForm<CorrectionFormValues>({
     resolver: zodResolver(correctionFormSchema),
@@ -806,10 +807,12 @@ function TransactionCorrectionDialog({
     },
     onSuccess: () => {
       setSuccessMessage("Correction saved.");
+      setPendingValues(null);
       onCorrected();
     },
     onError: (err) => {
       console.error("Failed to correct transaction:", err);
+      setPendingValues(null);
       form.setError("root", {
         message: "We couldn't save this correction. Please check the details and try again.",
       });
@@ -818,7 +821,18 @@ function TransactionCorrectionDialog({
 
   function handleSubmit(values: CorrectionFormValues) {
     setSuccessMessage(null);
-    correctMutation.mutate(values);
+    // SB-P-1.9 Phase 4A: require explicit owner confirmation before committing.
+    setPendingValues(values);
+  }
+
+  function handleConfirmSave() {
+    if (!pendingValues) return;
+    correctMutation.mutate(pendingValues);
+  }
+
+  function handleCancelConfirm() {
+    // Close only the confirmation dialog; preserve every entered value.
+    setPendingValues(null);
   }
 
   const submitting = correctMutation.isPending;
