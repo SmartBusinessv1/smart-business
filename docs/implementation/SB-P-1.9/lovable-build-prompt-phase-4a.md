@@ -58,7 +58,7 @@ Confirm Transaction Correction
 ```text
 This correction will be recorded in the audit history.
 
-If owner notifications are enabled, the correction will also be reported to the business owner.
+The correction will also be reported to the business owner through the approved notification workflow.
 
 Do you want to continue?
 ```
