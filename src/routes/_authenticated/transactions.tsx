@@ -740,3 +740,269 @@ function TransactionEntryForm({
     </Card>
   );
 }
+
+// ---------------------------------------------------------------------------
+// SB-P-1.9: Owner Transaction Correction Dialog
+// Updates an existing transaction in place (preserves its ID and references).
+// Records a correction event with full audit metadata via the
+// `correct_transaction` RPC. Employee editing is not offered.
+// ---------------------------------------------------------------------------
+
+const correctionFormSchema = transactionFormSchema.extend({
+  editReason: z.string().optional(),
+});
+
+type CorrectionFormValues = z.infer<typeof correctionFormSchema>;
+
+function TransactionCorrectionDialog({
+  open,
+  onOpenChange,
+  transaction,
+  onCorrected,
+}: {
+  open: boolean;
+  onOpenChange: (next: boolean) => void;
+  transaction: Transaction;
+  onCorrected: () => void;
+}) {
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const form = useForm<CorrectionFormValues>({
+    resolver: zodResolver(correctionFormSchema),
+    defaultValues: {
+      transactionDate: transaction.transaction_date,
+      partyName: transaction.party_name,
+      description: transaction.description,
+      amount: String(transaction.amount),
+      paymentMethod: transaction.payment_method,
+      notes: transaction.notes ?? "",
+      editReason: "",
+    },
+  });
+
+  const correctMutation = useMutation({
+    mutationFn: async (values: CorrectionFormValues) => {
+      return correctTransaction({
+        transactionId: transaction.id,
+        transactionType: transaction.transaction_type as TransactionType,
+        transactionDate: values.transactionDate,
+        partyName: values.partyName,
+        description: values.description,
+        amount: Number(values.amount),
+        paymentMethod: values.paymentMethod as PaymentMethod,
+        notes: values.notes,
+        editReason: values.editReason,
+      });
+    },
+    onSuccess: () => {
+      setSuccessMessage("Correction saved.");
+      onCorrected();
+    },
+    onError: (err) => {
+      console.error("Failed to correct transaction:", err);
+      form.setError("root", {
+        message: "We couldn't save this correction. Please check the details and try again.",
+      });
+    },
+  });
+
+  function handleSubmit(values: CorrectionFormValues) {
+    setSuccessMessage(null);
+    correctMutation.mutate(values);
+  }
+
+  const submitting = correctMutation.isPending;
+  const isSale = transaction.transaction_type === "sale";
+
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        if (submitting) return;
+        if (!next) {
+          form.reset();
+          setSuccessMessage(null);
+        }
+        onOpenChange(next);
+      }}
+    >
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Correct {isSale ? "sale" : "purchase"}</DialogTitle>
+          <DialogDescription>
+            Update the details of this transaction. The transaction record and its ID are preserved,
+            and every correction is recorded for audit.
+          </DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            onChange={() => setSuccessMessage(null)}
+            className="space-y-4"
+          >
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="transactionDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Date</FormLabel>
+                    <FormControl>
+                      <Input type="date" disabled={submitting} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="partyName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{isSale ? "Customer name" : "Supplier name"}</FormLabel>
+                    <FormControl>
+                      <Input disabled={submitting} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input disabled={submitting} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount (₹)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        inputMode="decimal"
+                        min="0.01"
+                        step="0.01"
+                        disabled={submitting}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="paymentMethod"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Payment method</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value ? field.value : undefined}
+                      disabled={submitting}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a method" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {PAYMENT_METHODS.map((method) => (
+                          <SelectItem key={method.value} value={method.value}>
+                            {method.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="notes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Notes (optional)</FormLabel>
+                  <FormControl>
+                    <Textarea rows={2} disabled={submitting} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="editReason"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Reason for correction (optional)</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      rows={2}
+                      placeholder="e.g. Amount was mistyped"
+                      disabled={submitting}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {form.formState.errors.root ? (
+              <p
+                role="alert"
+                className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+              >
+                {form.formState.errors.root.message}
+              </p>
+            ) : null}
+
+            {successMessage ? (
+              <p
+                role="status"
+                className="flex items-center gap-2 rounded-md border border-border/60 bg-muted px-3 py-2 text-sm text-foreground"
+              >
+                <CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" />
+                {successMessage}
+              </p>
+            ) : null}
+
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onOpenChange(false)}
+                disabled={submitting}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={submitting}>
+                {submitting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+                {submitting ? "Saving…" : "Save correction"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
+}
