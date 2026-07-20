@@ -1,10 +1,8 @@
-Mission: SB-P-1.9
-
 Document: Engineering Contract
 
 Version: 1.0
 
-Status: PENDING REVIEW
+Status: REFINEMENT REQUIRED
 
 Created By: Codex
 
@@ -42,7 +40,14 @@ This contract implements only the approved scope defined in `docs/implementation
 - Preserve the transaction identity and existing transaction ID.
 - Preserve referential integrity for data associated with the transaction.
 - Ensure derived dashboard calculations reflect the corrected transaction.
-- Record audit metadata for the correction.
+- Record the following minimum audit metadata for every successful correction:
+  - `edited_at`
+  - `edited_by`
+  - `original_values`
+  - `updated_values`
+  - `edit_reason`, when provided
+  - `notification_status`
+  - `notification_sent_at`, when the notification is successfully sent
 - Generate a transaction correction event after the correction is recorded.
 - Trigger the owner WhatsApp notification from the transaction correction event.
 - Preserve existing APIs wherever practical.
@@ -88,10 +93,16 @@ This contract implements only the approved scope defined in `docs/implementation
 - A correction updates the existing transaction without a delete-and-recreate operation.
 - References associated with a corrected transaction remain intact.
 - Dashboard and reporting calculations reflect the corrected transaction accurately.
-- Audit metadata is recorded for each transaction correction.
+- Every successful transaction correction records `edited_at`, `edited_by`, `original_values`, `updated_values`, and `notification_status`.
+- When an edit reason is provided, the successful transaction correction records it as `edit_reason`; its absence does not prevent a correction because it is optional.
+- When the owner WhatsApp notification is successfully sent, the correction audit metadata records `notification_sent_at`.
 - A transaction correction event is generated for each completed correction.
 - The transaction correction event triggers an owner WhatsApp notification.
-- `Forgot Password?` is available on the authentication page and initiates Supabase password recovery.
+- `Forgot Password?` is available on the authentication page, and the user can request password recovery.
+- Supabase initiates the secure recovery-link flow for the password recovery request.
+- The user can set a new password through the recovery flow.
+- The user can sign in using the new password after completing recovery.
+- The previous password no longer authenticates after the new password is set.
 - Existing authentication behaviour remains operational outside the added password recovery entry point.
 - Verification demonstrates no regression in business isolation, Row Level Security, security controls, existing owner permissions, or existing transaction IDs.
 - No capability listed in the explicitly not included section is introduced.
