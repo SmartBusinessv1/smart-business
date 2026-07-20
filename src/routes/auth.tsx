@@ -25,7 +25,7 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-type Mode = "sign-in" | "sign-up";
+type Mode = "sign-in" | "sign-up" | "forgot-password";
 
 function AuthPage() {
   const navigate = useNavigate();
