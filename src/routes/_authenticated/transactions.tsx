@@ -843,6 +843,7 @@ function TransactionCorrectionDialog({
       open={open}
       onOpenChange={(next) => {
         if (submitting) return;
+        if (pendingValues !== null) return;
         if (!next) {
           form.reset();
           setSuccessMessage(null);
