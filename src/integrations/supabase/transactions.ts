@@ -31,6 +31,47 @@ export type CreateTransactionInput = {
   notes?: string | null;
 };
 
+export type CorrectTransactionInput = {
+  transactionId: string;
+  transactionType: TransactionType;
+  transactionDate: string;
+  partyName: string;
+  description: string;
+  amount: number;
+  paymentMethod: PaymentMethod;
+  notes?: string | null;
+  editReason?: string | null;
+};
+
+export async function correctTransaction(input: CorrectTransactionInput): Promise<Transaction> {
+  const partyName = input.partyName.trim();
+  const description = input.description.trim();
+  const notes = input.notes?.trim() ? input.notes.trim() : "";
+  const editReason = input.editReason?.trim() ? input.editReason.trim() : "";
+
+  if (!partyName) throw new Error("Party name is required.");
+  if (!description) throw new Error("Description is required.");
+  if (!Number.isFinite(input.amount) || input.amount <= 0) {
+    throw new Error("Amount must be a positive number.");
+  }
+
+  const { data, error } = await supabase.rpc("correct_transaction", {
+    p_transaction_id: input.transactionId,
+    p_transaction_type: input.transactionType,
+    p_transaction_date: input.transactionDate,
+    p_party_name: partyName,
+    p_description: description,
+    p_amount: input.amount,
+    p_payment_method: input.paymentMethod,
+    p_notes: notes,
+    p_edit_reason: editReason,
+  });
+
+  if (error) throw error;
+  if (!data) throw new Error("Correction did not return a transaction.");
+  return data as Transaction;
+}
+
 export async function createTransaction(input: CreateTransactionInput): Promise<Transaction> {
   const partyName = input.partyName.trim();
   const description = input.description.trim();

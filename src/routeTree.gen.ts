@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as SuperAdminRouteImport } from './routes/super-admin'
 import { Route as StartRouteImport } from './routes/start'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -34,6 +35,11 @@ const SuperAdminRoute = SuperAdminRouteImport.update({
 const StartRoute = StartRouteImport.update({
   id: '/start',
   path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/start': typeof StartRoute
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/start': typeof StartRoute
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/start': typeof StartRoute
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/privacy-policy'
+    | '/reset-password'
     | '/start'
     | '/super-admin'
     | '/terms-of-service'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/privacy-policy'
+    | '/reset-password'
     | '/start'
     | '/super-admin'
     | '/terms-of-service'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/privacy-policy'
+    | '/reset-password'
     | '/start'
     | '/super-admin'
     | '/terms-of-service'
@@ -162,6 +174,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HowItWorksRoute: typeof HowItWorksRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   StartRoute: typeof StartRoute
   SuperAdminRoute: typeof SuperAdminRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/start'
       fullPath: '/start'
       preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -269,6 +289,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HowItWorksRoute: HowItWorksRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   StartRoute: StartRoute,
   SuperAdminRoute: SuperAdminRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,
