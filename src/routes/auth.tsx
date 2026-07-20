@@ -127,12 +127,18 @@ function AuthPage() {
             Application access
           </p>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight text-card-foreground">
-            {mode === "sign-in" ? "Sign in to Smart Business" : "Create your Smart Business account"}
+            {mode === "sign-in"
+              ? "Sign in to Smart Business"
+              : mode === "sign-up"
+                ? "Create your Smart Business account"
+                : "Reset your password"}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             {mode === "sign-in"
               ? "Access is restricted to authorized business owners."
-              : "Set up your access to Smart Business. Business setup is introduced in a later phase."}
+              : mode === "sign-up"
+                ? "Set up your access to Smart Business. Business setup is introduced in a later phase."
+                : "Enter your account email and we'll send you a secure link to set a new password."}
           </p>
 
           <button
