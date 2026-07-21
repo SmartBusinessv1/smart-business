@@ -1,8 +1,8 @@
 Document: Engineering Contract
 
-Version: 1.1
+Version: 1.2
 
-Status: Draft — ready for Mission Control approval
+Status: Draft — ready for final Mission Control approval
 
 Created By: Claude
 
@@ -63,7 +63,7 @@ Neither locked document is modified by this contract, by this mission, or by the
 
 Approval of this Engineering Contract, approval of the subsequent Lovable build prompt, and approval of the verification checklist are each separate governance steps; none of them, individually or together, constitutes implementation authorization. Implementation begins only under a separate, explicit Mission Control authorization.
 
-Implementation that is subsequently authorized under this contract is limited to what the Product Blueprint (Sections 7–10) and the EIS (Sections 4–17) already define:
+Implementation that is subsequently authorized under this contract is limited to what the Product Blueprint (Sections 7–10) and the EIS (Sections 4–19) already define:
 
 - The inventory entity and its lifecycle (active/archived), per Blueprint Section 8 and EIS Section 4–5.
 - The append-only stock movement ledger and all movement types defined in Blueprint Section 8 "Stock Movement Types" and EIS Section 6.
@@ -74,7 +74,7 @@ Implementation that is subsequently authorized under this contract is limited to
 - Negative stock authorization and warning behaviour, per Blueprint Section 8 "Negative Stock Policy" and EIS Sections 7, 11.
 - Business isolation across every read and write path, per Blueprint Section 8 "Business Isolation" and EIS Sections 5, 7, 8.
 
-No capability outside the Blueprint's Section 11 "Out of Scope" list, and no engineering mechanism outside the EIS, is authorized by this contract.
+No capability listed in the Blueprint's Section 11 "Out of Scope", and no engineering mechanism outside the locked Engineering Implementation Specification, is authorized by this contract.
 
 ## 6. Backend Deliverables
 
@@ -198,7 +198,7 @@ Implementation must produce automated test coverage for every item in EIS Sectio
 
 ## 18. Prohibited Work
 
-Neither this mission nor this contract authorizes:
+During SB-P-1.10-IP-1.0, and before a separate explicit Mission Control implementation authorization is issued, neither this mission nor this contract authorizes:
 
 - Modifying the locked Product Blueprint.
 - Modifying the locked Engineering Implementation Specification.
@@ -209,7 +209,7 @@ Neither this mission nor this contract authorizes:
 - Introducing a maintained current-stock projection ahead of measured Phase 1 performance evidence.
 - Introducing any stock-mutation path outside the shared movement-creation operation.
 - Permitting Ask CFO, AI, WhatsApp interpretation, or automation to independently commit a stock movement, or allowing any AI-generated recommendation to bypass permission, validation, confirmation, or audit requirements. Human approval and business ownership remain decisive.
-- Beginning implementation under this mission. Implementation requires a separate, subsequently authorized mission.
+- Beginning implementation without a separate explicit Mission Control implementation authorization.
 
 ## 19. Acceptance Criteria
 
