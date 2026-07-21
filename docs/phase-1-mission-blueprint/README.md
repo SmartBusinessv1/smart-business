@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This directory contains the approved Product Blueprint documents for Smart Business Phase 1 missions. It provides a consistent location for missions awaiting completion and for completed mission records.
+This directory contains governed Product Blueprint documents for Smart Business Phase 1 missions, including active drafts under review and completed mission records.
 
 ## Mission Workflow
 
