@@ -1,6 +1,6 @@
 Document: Lovable Build Prompt
 
-Version: 1.0
+Version: 1.1
 
 Status: Draft — pending Mission Control approval
 
@@ -19,7 +19,7 @@ Mission: SB-P-1.10
 | Mission ID | SB-P-1.10 |
 | Mission Name | Inventory Foundation |
 | Builder | Lovable |
-| Repository | Smart Business |
+| Repository | SmartBusinessv1/smart-business |
 | Reporting Room | 02_Claude_Engineering |
 
 ## 2. Locked Authority
@@ -36,7 +36,7 @@ The Engineering Contract is the primary builder-facing document for this impleme
 
 **Authorized to modify** (once implementation is separately authorized by Mission Control):
 
-- Application backend, frontend, and database code required to satisfy the Engineering Contract's deliverables (Engineering Contract Sections 6–9).
+- Repository implementation changes required to satisfy all applicable obligations in Engineering Contract Sections 6–16.
 - Supabase migrations required to introduce the schema in Engineering Contract Section 8 and Section 9.
 - Automated tests required by Engineering Contract Section 16.
 - `docs/implementation/SB-P-1.10/evidence/` — implementation evidence only, per Engineering Contract Section 20.
@@ -115,7 +115,7 @@ Lovable shall not:
 
 Implementation must produce:
 
-- Repository changes (backend, frontend, database) satisfying Engineering Contract Sections 6–9.
+- Repository implementation changes satisfying all applicable obligations in Engineering Contract Sections 6–16.
 - Supabase migration(s) satisfying Engineering Contract Section 9.
 - Frontend implementation satisfying Engineering Contract Section 7.
 - Backend implementation satisfying Engineering Contract Section 6.
