@@ -1,6 +1,6 @@
 Document: Verification Checklist
 
-Version: 1.0
+Version: 1.1
 
 Status: Draft — pending Mission Control approval
 
@@ -60,7 +60,8 @@ Mission: SB-P-1.10
 ## 6. Database Verification
 
 - [ ] Schema matches the tables and fields specified in Engineering Contract Section 8.
-- [ ] Constraints (movement type/direction matrix, single-opening-stock, correction-link, cross-business consistency, audit completeness) match Engineering Contract Section 8.
+- [ ] Database constraints, including movement type/direction, single-opening-stock, correction-link, and cross-business consistency, match Engineering Contract Section 8.
+- [ ] Audit-completeness enforcement matches Engineering Contract Sections 9 and 12.
 - [ ] Indexes are selected per the Index Strategy Decision Gate and validated against query-plan analysis, per Engineering Contract Section 8.
 - [ ] Migrations match Engineering Contract Section 9, including constraint-before-write-access sequencing and forward-fix-preferred rollback.
 - [ ] No current-stock projection migration is present, consistent with the Phase 1 aggregation strategy (Engineering Contract Section 9).
@@ -74,7 +75,8 @@ Mission: SB-P-1.10
 - [ ] Defence in depth beyond RLS (privilege/function/trigger-level immutability) is implemented, per Engineering Contract Section 10.
 - [ ] Archived-item write protection is implemented, per Engineering Contract Section 10.
 - [ ] Every stock-affecting write passes through the shared movement-creation operation with no alternate write path, per Engineering Contract Section 11.
-- [ ] No AI, WhatsApp interpretation, or automation path independently commits a stock movement, per Engineering Contract Section 11.
+- [ ] No Ask CFO, AI, WhatsApp interpretation, or automation path independently commits a stock movement, per Engineering Contract Section 11.
+- [ ] Every committed stock movement is attributable to either an authorized human decision or an approved immutable business event, per Engineering Contract Section 11.
 
 ## 8. Validation Verification
 
@@ -102,6 +104,7 @@ Mission: SB-P-1.10
 - [ ] Evidence confirming the shared movement-creation operation is the sole write path is recorded.
 - [ ] Migration logs and Supabase migration status are recorded as evidence.
 - [ ] Repository evidence (relevant commit references) is recorded.
+- [ ] Screenshots or equivalent runtime visual evidence confirm the authorized inventory UI, permission-aware actions, negative-stock warning flow, and preservation of the existing application shell, recorded under `docs/implementation/SB-P-1.10/evidence/`.
 
 ## 11. Completion Verification
 
