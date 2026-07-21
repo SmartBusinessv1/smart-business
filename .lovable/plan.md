@@ -1,47 +1,56 @@
-# SB-P-1.8E — Phase 4A Founder-Assisted Runtime Verification (Plan)
+## Objective
 
-Guide the Founder through authenticated runtime verification one test at a time. No code, schema, RLS, migration, route, or deployment changes. No credential handling. No "Try to fix." Report path: `.lovable/phase-4a-founder-assisted-runtime-verification.md` (new file; the Phase 4 progress report and Phase 3C appendix are preserved unchanged).
+Append Sections 20 (Builder Review) and 21 (Builder Questions, Risks & Recommendations) to `docs/phase-1-mission-blueprint/active/SB-P-1.10.md`, without modifying Sections 1–19.
 
-## Operating rules
+## Scope
 
-- Founder drives the browser at `https://smartbusiness.teamlips.com`. I never see or request passwords, OTPs, tokens, cookies, or session storage.
-- Proceed one test at a time. After each test the Founder pastes back: (a) PASS / FAIL / BLOCKED, (b) short observation, (c) screenshot(s) attached to chat.
-- I transcribe each result verbatim into the report and only advance to the next test after the Founder confirms.
-- Any FAIL, authenticated 404, creation failure, or isolation anomaly → STOP, no remediation, return a Deployment Routing Blocker Report (for the /transactions 404 case) or a Phase 4A Stop Report (other cases).
+- Read-only for Sections 1–19 (Product Governance approved and locked).
+- Append two new sections at the end of the file (after line 654).
+- Preserve existing Markdown formatting, single H1 (`# SB-P-1.10 — Inventory Foundation`), heading hierarchy, and numbering.
+- Run `tools/markdown/validate_markdown.py` before completion.
 
-## Pre-flight (Founder actions I will request)
+## Section 20 — Builder Review (planned content outline)
 
-1. Open `https://smartbusiness.teamlips.com/auth` in a fresh window; sign in as Owner A via the normal UI.
-2. Confirm `/dashboard` loads, the Owner A business workspace is restored, expected business identity is visible.
-3. Send screenshot `E-A01` (dashboard, authenticated).
+Written from the perspective of the Lovable UI builder only (no engineering, DB, or API commentary).
 
-## Test sequence
+- **Overall Buildability** — Blueprint is sufficiently complete for UI implementation; product intent, functional scope, UX expectations, business rules, and acceptance criteria all provide unambiguous UI direction. Confirm alignment with existing `_authenticated` layout and dashboard shell already established through SB-P-1.7/1.8/1.9.
+- **UX Readiness** — Assess merchant usability, screen flow (List → Detail → History → Adjustment/Opening Stock), navigation clarity from the authenticated dashboard, human-first language, and low learning curve. Note continuity with the existing Transactions and Correction dialog patterns from SB-P-1.9.
+- **Component Readiness** — Identify (not design) expected reusable UI components:
+  - Inventory List
+  - Inventory Detail
+  - Stock History Timeline
+  - Opening Stock Form
+  - Stock Adjustment Dialog (with confirmation step, aligned to SB-P-1.9 correction pattern)
+  - Inventory Creation Form
+  - Search Input
+  - Filter Controls
+  - Empty States (no inventory / no movements / no matches)
+  - Negative Stock Warning
+  - Permission-aware action controls
+- **Responsive Design Readiness** — Confirm blueprint supports mobile, tablet, and desktop; call out builder considerations for list density, history readability on small screens, and adjustment/confirmation flow on mobile.
+- **Accessibility Review** — Confirm accessibility expectations in Section 9 give sufficient guidance (clear labels, focus, contrast, no color-only cues); flag builder considerations such as accessible dialog patterns for adjustment confirmation and status announcements after movement recording.
+- **Builder Risks** — UI-scoped only: history-view scalability for long ledgers, adjustment/correction UI clarity vs. edit-in-place expectations, distinguishing movement types visually, negative stock warning prominence, filter/search state visibility on mobile.
+- **Builder Recommendation** — State whether the blueprint is Ready for Engineering Review or Requires Product clarification, with a brief justification.
 
-Each test lists: Founder actions → what to observe → evidence ID → pass/fail criteria I will apply to the report.
+## Section 21 — Builder Questions, Risks & Recommendations (planned content outline)
 
-- **Test 1 — Authenticated Transactions route.** Navigate to `/transactions`. Confirm Record Sale, Record Purchase, Transaction Timeline are present. Evidence `E-A02`. If 404 → STOP → Deployment Routing Blocker Report (deployment manifest likely stale vs. source; no code change authorized).
-- **Test 2 — Owner A workspace observation.** Confirm displayed business = Owner A's; timeline rows visibly belong to that workspace; no foreign business identity visible. Evidence `E-A03`. Recorded as Owner-A-view only; no cross-owner isolation claim.
-- **Test 3 — Authorized Sale.** Create: Party `SB-P-1.8E Verification Customer`, Description `SB-P-1.8E Verification Sale`, Amount `101`, Payment `Cash`. Verify success feedback, timeline row, two-decimal amount, type=Sale, dashboard activity updates. Evidence `E-A04a` (form), `E-A04b` (timeline), `E-A04c` (dashboard).
-- **Test 4 — Authorized Purchase.** Create: Party `SB-P-1.8E Verification Supplier`, Description `SB-P-1.8E Verification Purchase`, Amount `51`, Payment `Cash`. Same verifications as Test 3, type=Purchase. Evidence `E-A05a/b/c`.
-- **Test 5 — Append-only UI.** Inspect timeline row and any detail view for Edit / Delete / modification affordances (visual only — no devtools, no SQL). Evidence `E-A06`.
-- **Test 6 — Auth & navigation regression.** (a) Navigate Dashboard ↔ Transactions. (b) Hard-refresh on `/transactions`, confirm session persists. (c) Sign out via UI. (d) Visit `/dashboard` signed out → expect redirect to `/auth`. (e) Visit `/transactions` signed out → record actual behaviour (redirect vs 404) without judgement. Evidence `E-A07a..e`.
-- **Test 7 — Owner B availability.** Ask the Founder whether an approved Owner B fixture exists.
-  - Yes → Founder signs out, signs in as Owner B, confirms Owner A's verification transactions are NOT visible and only Owner B data is present. Evidence `E-A08`.
-  - No → record verbatim: `CROSS-BUSINESS RUNTIME TEST BLOCKED — SECOND OWNER FIXTURE NOT AVAILABLE`. No account creation.
+- **Builder Questions** — Only genuine Product-clarification items surfaced by builder review. If none, explicitly state: `> No Product clarification required.`
+- **Builder Risks** — Concise summary of UI/builder concerns from Section 20 (no engineering risks).
+- **Builder Recommendations** — UI-only improvements that preserve the Product Blueprint and governance (e.g., reuse of existing dialog/confirmation pattern from SB-P-1.9, consistent movement-type iconography, reuse of Transactions timeline layout for Stock History). No new features.
 
-## Deliverable — `.lovable/phase-4a-founder-assisted-runtime-verification.md`
+## Metadata
 
-Sections: (1) Mission summary, (2) Environment & session confirmation, (3) Per-test results (T1–T7) with steps / observed / expected / evidence ref / status, (4) Evidence register (ID, description, test, artifact — Founder-supplied screenshots stored under `/mnt/documents/phase4a/` when the Founder attaches them), (5) Runtime security assessment scoped to what was observed (no cross-owner claim unless Test 7 executed), (6) Regressions, (7) Limitations (explicit note if Owner B unavailable), (8) Overall assessment (one of: PHASE 4 PASSED, PHASE 4 PASSED WITH DOCUMENTED LIMITATIONS, PHASE 4 STOPPED — SECURITY/RUNTIME ISSUE, PHASE 4 STOPPED — DEPLOYMENT ROUTING BLOCKER), (9) Recommendation.
+- Do NOT modify the Metadata table, Change Log, or Governance History in this pass (those belong to Product Governance / a later version-bump step).
+- Sections 20–21 are additive only, appended after Section 19.
 
-## Explicit non-actions
+## Validation
 
-- No code, route, `routeTree.gen.ts`, migration, RLS, types, or config edits.
-- No republish, redeploy, or "Try to fix."
-- No SQL, admin client, or devtools request tampering.
-- No creation of Owner B, second business, or test fixtures.
-- No deletion/edit of the two verification transactions.
-- No handling of Founder credentials or session material.
+- Run `python tools/markdown/validate_markdown.py docs/phase-1-mission-blueprint/active/SB-P-1.10.md`.
+- Confirm single H1, balanced code fences, valid heading hierarchy, no escaped Markdown.
 
-## Next step
+## Deliverables
 
-On approval, I switch to Build mode only to (a) create the empty report file and append results turn-by-turn as the Founder reports back, and (b) save Founder-supplied screenshots into `/mnt/documents/phase4a/`. No other build actions.
+- `docs/phase-1-mission-blueprint/active/SB-P-1.10.md` updated in place with Sections 20 and 21.
+- Sections 1–19 preserved byte-identically.
+- Markdown validation PASS.
+- Short completion brief only (no document paste).

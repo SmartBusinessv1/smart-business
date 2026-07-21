@@ -652,3 +652,122 @@ The experience respects familiar merchant workflows, uses simple business langua
 - Builder Review pending.
 - Engineering Review pending.
 - Founder Approval pending.
+
+## 20. Builder Review
+
+This section records the Lovable Builder Review of Product Blueprint SB-P-1.10 Version 1.0. It reflects a builder feasibility assessment only. Sections 1–19 remain Product Governance approved and unchanged. No engineering, database, API, or implementation-code review is performed here.
+
+### Overall Buildability
+
+The Product Blueprint is sufficiently complete to support UI implementation.
+
+- Purpose, functional scope, UX expectations, business rules, and acceptance criteria provide unambiguous direction for the merchant-facing inventory experience.
+- The Inventory Foundation aligns naturally with the existing authenticated application shell, protected routing, navigation model, and merchant workflow patterns already established through SB-P-1.7, SB-P-1.8, and SB-P-1.9.
+- Terminology used across Sections 7–10 is consistent and can be reflected directly in UI labels, empty-state guidance, and confirmation copy.
+- Nothing in the blueprint requires a new visual identity, layout paradigm, or navigation convention beyond what is already approved for Smart Business.
+
+### UX Readiness
+
+The blueprint provides clear guidance for a human-first inventory experience aligned with existing merchant expectations.
+
+- **Merchant usability.** Section 9 describes creation, list, detail, history, adjustment, and opening stock experiences using familiar business language and a low learning curve.
+- **Screen flow.** The primary flow — Inventory List → Inventory Detail → Stock History — is explicit, with Opening Stock and Stock Adjustment as clearly bounded actions off the detail view.
+- **Navigation clarity.** Inventory extends the existing authenticated dashboard; entry points can be added to established navigation without introducing new patterns.
+- **Human-first experience.** UX expectations emphasise clarity, familiar terminology, understandable reasons, permission-aware actions, and non-technical explanations of stock movements.
+- **Learning curve.** The blueprint intentionally keeps out-of-scope items (catalog, pricing, barcode, multi-warehouse, etc.) out of the first inventory experience, which keeps the initial UI simple for merchants encountering inventory for the first time.
+
+### Component Readiness
+
+The following reusable UI components are expected to be needed for this mission. This inventory identifies components only; no design is authored here.
+
+- Inventory List
+- Inventory Detail View
+- Stock History Timeline
+- Inventory Creation Form
+- Opening Stock Form
+- Stock Adjustment Dialog (with confirmation step, aligned to the SB-P-1.9 correction confirmation pattern)
+- Movement Correction Interaction (linked reversal / compensating movement UI)
+- Search Input
+- Filter Controls (with visible active-filter state and clear-all)
+- Empty States (no inventory, no movements, no search / filter matches, no permission)
+- Negative Stock Warning and confirmation
+- Permission-aware action controls (hide or disable unauthorized actions without exposing other-business data)
+- Inventory Summary (list-level current-stock summary)
+- Movement-type indicators (opening stock, increase, decrease, adjustment increase, adjustment decrease)
+
+### Responsive Design Readiness
+
+The blueprint explicitly supports mobile, tablet, and desktop experiences.
+
+- Section 9 requires the mobile experience to preserve quick scanning, readable quantities, simple search and filters, and focused actions.
+- The desktop experience is expected to improve scanning, comparison, and workflow efficiency without changing inventory truth.
+- **Builder considerations.**
+  - Stock History must remain readable on small screens; a compact timeline pattern with progressive disclosure is preferable to a wide table.
+  - Adjustment and opening-stock flows must keep quantity, direction, reason, and confirmation visible on a single mobile viewport where practical.
+  - List density should adapt across breakpoints without hiding current quantity or unit of measure.
+  - Filter and search UI should collapse gracefully on mobile while keeping active state visible.
+
+### Accessibility Review
+
+Section 9 provides adequate builder-level guidance for accessible implementation.
+
+- Clear language, meaningful labels, readable content, visible focus, sufficient contrast, and interaction patterns that do not rely on color alone are all required.
+- Inventory actions and movement outcomes must be perceivable across supported input methods.
+- **Builder considerations.**
+  - Adjustment and correction confirmation dialogs must follow accessible dialog patterns (focus trap, labelled title and description, keyboard dismissal, restored focus).
+  - Movement-type distinctions must be conveyed by icon and text, not color alone.
+  - Success and error outcomes after recording a movement must be announced through accessible status messaging.
+  - Empty states must communicate cause (no inventory vs. no matches vs. no permission) in text, not only through iconography.
+
+### Builder Risks
+
+Builder-scoped risks only. Engineering and data-model risks are excluded.
+
+- **History-view scalability.** Long ledgers may grow substantially over time; the Stock History UI must remain scannable without loading everything at once.
+- **Correction-versus-edit clarity.** Merchants may expect an "edit" affordance on posted movements; the UI must clearly express that corrections happen through a new linked movement rather than an in-place edit.
+- **Movement-type differentiation.** Opening stock, increases, decreases, and adjustment increases / decreases must be visually distinguishable without over-reliance on color.
+- **Negative stock warning prominence.** The warning must be unmissable and require explicit confirmation, without becoming so intrusive that authorized users cannot proceed.
+- **Filter and search state on mobile.** Active filters and search terms must remain visible on small screens so that merchants understand why the list is narrowed.
+- **Permission-aware surfaces.** Unavailable actions must be represented consistently across list, detail, history, and dialog contexts to avoid the impression that an action succeeded when it was actually blocked.
+- **Empty-state ambiguity.** Empty states for "no inventory yet", "no movements yet", "no search matches", and "no permission" must be visibly different so merchants are not misled.
+
+### Builder Recommendation
+
+**Ready for Engineering Review.**
+
+The blueprint provides sufficient product, UX, functional, and rule-level clarity to proceed to Engineering Review. Remaining builder-scoped considerations are UI refinements that can be resolved during implementation planning under existing governance without changes to Sections 1–19.
+
+## 21. Builder Questions, Risks & Recommendations
+
+This section captures builder observations without altering Product Governance decisions in Sections 1–19.
+
+### Builder Questions
+
+> No Product clarification required.
+
+The Product Blueprint provides sufficient clarity for the Lovable Builder to proceed. Any residual UI-level detail can be resolved through normal governed implementation planning without amending the blueprint.
+
+### Builder Risks
+
+The following UI and builder concerns are surfaced for visibility. They are not engineering risks.
+
+- Stock History scalability as ledgers grow over time.
+- Merchant expectation of an "edit" action on posted movements versus the required linked-correction pattern.
+- Visual differentiation of movement types without color-only cues.
+- Prominence and accessibility of the negative-stock warning and confirmation.
+- Visibility of active search and filter state on small screens.
+- Consistent representation of unavailable actions under permission constraints.
+- Distinguishing between the different empty-state conditions in the inventory experience.
+
+### Builder Recommendations
+
+The following recommendations improve usability, consistency, maintainability, reusable UI, and responsive behaviour. They preserve the Product Blueprint and governance and introduce no new features.
+
+- Reuse the SB-P-1.9 confirmation dialog pattern for stock adjustments, movement corrections, and negative-stock confirmation, to maintain a consistent decision-confirmation experience across the merchant workflow.
+- Reuse the existing Transactions timeline layout conventions as the structural basis for the Stock History view to keep the merchant's mental model consistent across business events.
+- Establish a small, shared set of movement-type indicators (icon plus text label) that can be reused across list, detail, history, and adjustment surfaces.
+- Standardise empty-state components with distinct copy for "no inventory", "no movements", "no matches", and "no permission" conditions.
+- Ensure filter and search controls share a common active-state and clear-all pattern with other filtered views in the application, in preparation for later governed missions that will introduce additional filtered surfaces.
+- Keep inventory navigation entries within the existing authenticated shell rather than introducing a parallel navigation region, preserving the current merchant navigation model.
+- Maintain permission-aware rendering as a shared UI concern so that the same rules apply consistently across inventory creation, adjustment, correction, history, and negative-stock actions.
+
