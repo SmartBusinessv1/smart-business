@@ -653,121 +653,193 @@ The experience respects familiar merchant workflows, uses simple business langua
 - Engineering Review pending.
 - Founder Approval pending.
 
-## 20. Builder Review
+## 20. Engineering Review
 
-This section records the Lovable Builder Review of Product Blueprint SB-P-1.10 Version 1.0. It reflects a builder feasibility assessment only. Sections 1–19 remain Product Governance approved and unchanged. No engineering, database, API, or implementation-code review is performed here.
+This section records the Engineering Review of Product Blueprint SB-P-1.10, building on the Lovable Builder Review. It reflects an engineering feasibility assessment only. Sections 1–19 remain Product Governance approved and unchanged. No database schema, API contract, RLS policy, or implementation code is defined here.
 
-### Overall Buildability
+### Overall Engineering Feasibility
 
-The Product Blueprint is sufficiently complete to support UI implementation.
+The blueprint is engineering-feasible within the approved Smart Business architecture.
 
-- Purpose, functional scope, UX expectations, business rules, and acceptance criteria provide unambiguous direction for the merchant-facing inventory experience.
-- The Inventory Foundation aligns naturally with the existing authenticated application shell, protected routing, navigation model, and merchant workflow patterns already established through SB-P-1.7, SB-P-1.8, and SB-P-1.9.
-- Terminology used across Sections 7–10 is consistent and can be reflected directly in UI labels, empty-state guidance, and confirmation copy.
-- Nothing in the blueprint requires a new visual identity, layout paradigm, or navigation convention beyond what is already approved for Smart Business.
+- The mission can be implemented without violating ledger authority (Section 8, Data Integrity Rules), business isolation (Sections 8, 10), permission scope (Sections 8, 9, 10), audit integrity (Sections 8, 10), or human decision ownership (Section 5).
+- The domain shape — an entity with a derived quantity plus an append-only movement ledger — is a well-understood pattern and is consistent with the existing application architecture referenced by the Builder Review (authenticated shell, protected routing, established workflow and confirmation patterns from SB-P-1.7–1.9).
+- No blueprint requirement implies a need for a new architectural pattern, external system, or deviation from the current Supabase-based stack.
 
-### UX Readiness
+**The blueprint is engineering-feasible.**
 
-The blueprint provides clear guidance for a human-first inventory experience aligned with existing merchant expectations.
+### Domain Model Readiness
 
-- **Merchant usability.** Section 9 describes creation, list, detail, history, adjustment, and opening stock experiences using familiar business language and a low learning curve.
-- **Screen flow.** The primary flow — Inventory List → Inventory Detail → Stock History — is explicit, with Opening Stock and Stock Adjustment as clearly bounded actions off the detail view.
-- **Navigation clarity.** Inventory extends the existing authenticated dashboard; entry points can be added to established navigation without introducing new patterns.
-- **Human-first experience.** UX expectations emphasise clarity, familiar terminology, understandable reasons, permission-aware actions, and non-technical explanations of stock movements.
-- **Learning curve.** The blueprint intentionally keeps out-of-scope items (catalog, pricing, barcode, multi-warehouse, etc.) out of the first inventory experience, which keeps the initial UI simple for merchants encountering inventory for the first time.
+Sections 7 and 8 provide sufficient clarity to model the domain at a boundary level, without prescribing schema:
 
-### Component Readiness
+- **Inventory entity** — identity, business ownership, base unit: clearly bounded (Sections 8 "Inventory Entity", "Inventory Identification", "Units of Measure").
+- **Base stock-counting unit** — a single required unit per entity, no conversions in scope: clearly bounded (Section 8 "Units of Measure").
+- **Inventory movement** — direction, quantity, reason, timing, responsible user, optional event link: clearly bounded (Section 8 "Stock Ledger", "Stock Movement Types", "Stock Movement Reasons").
+- **Opening stock** — a distinct, identifiable movement type: clearly bounded (Section 8 "Opening Stock").
+- **Adjustment** — a distinct movement type with direction and mandatory reason: clearly bounded (Section 8 "Inventory Adjustment").
+- **Correction / reversal or compensating movement** — required to be linked to the original, both remaining visible: clearly bounded at the behavioural level (Section 8 "Inventory Movement Corrections"); the specific link representation is an implementation decision, not a domain-boundary gap.
+- **Current stock** — explicitly derived, never stored as directly mutable truth: clearly bounded (Section 8 "Current Quantity", "Current Stock Calculation").
+- **Archived inventory** — preserves history and current-stock calculation, remains available for authorized historical access: clearly bounded (Section 8 "Inventory Lifecycle").
+- **Transaction-linked movements** — movements may carry an optional link to an originating business event: clearly bounded (Section 8 "Transaction Linking").
+- **Responsible user / originating event** — every movement must record one or the other: clearly bounded (Section 8 "Stock Ledger", Section 10 Rule 16).
 
-The following reusable UI components are expected to be needed for this mission. This inventory identifies components only; no design is authored here.
+Domain boundaries are sufficiently clear to proceed to schema design. No product clarification is required for domain modelling.
 
-- Inventory List
-- Inventory Detail View
-- Stock History Timeline
-- Inventory Creation Form
-- Opening Stock Form
-- Stock Adjustment Dialog (with confirmation step, aligned to the SB-P-1.9 correction confirmation pattern)
-- Movement Correction Interaction (linked reversal / compensating movement UI)
-- Search Input
-- Filter Controls (with visible active-filter state and clear-all)
-- Empty States (no inventory, no movements, no search / filter matches, no permission)
-- Negative Stock Warning and confirmation
-- Permission-aware action controls (hide or disable unauthorized actions without exposing other-business data)
-- Inventory Summary (list-level current-stock summary)
-- Movement-type indicators (opening stock, increase, decrease, adjustment increase, adjustment decrease)
+### Ledger Integrity Review
 
-### Responsive Design Readiness
+The following ledger-integrity constraints are feasible to enforce and must be protected during implementation:
 
-The blueprint explicitly supports mobile, tablet, and desktop experiences.
+- **No direct quantity mutation** — feasible to enforce by never exposing a writable current-quantity field; current stock is always computed from movements (Section 8 "Current Stock Calculation", Section 10 Rule 10).
+- **Every stock change through a movement** — feasible to enforce structurally, provided no code path is permitted to alter stock outside the movement-creation path.
+- **Ledger-derived current stock** — feasible; the specific derivation strategy (real-time aggregation vs. maintained running balance) is an implementation decision that must preserve ledger authority regardless of approach chosen.
+- **Permanent movement history** — feasible to enforce by disallowing update/delete on posted movement records at the data-access layer, not only in application logic.
+- **Linked correction movements** — feasible; requires that reversal/compensating movements always reference the movement they correct, and that both remain independently retrievable.
+- **Original movement preservation** — feasible, provided corrections are additive-only.
+- **Complete auditability** — feasible; depends on consistently capturing responsible user, timing, reason, and event link on every movement (Section 10 Rule 16).
 
-- Section 9 requires the mobile experience to preserve quick scanning, readable quantities, simple search and filters, and focused actions.
-- The desktop experience is expected to improve scanning, comparison, and workflow efficiency without changing inventory truth.
-- **Builder considerations.**
-  - Stock History must remain readable on small screens; a compact timeline pattern with progressive disclosure is preferable to a wide table.
-  - Adjustment and opening-stock flows must keep quantity, direction, reason, and confirmation visible on a single mobile viewport where practical.
-  - List density should adapt across breakpoints without hiding current quantity or unit of measure.
-  - Filter and search UI should collapse gracefully on mobile while keeping active state visible.
+**Constraint to protect:** any future governed mission (Section 16) that writes stock movements must go through the same movement-creation path as this mission establishes — no downstream mission may introduce a parallel stock-mutation route.
 
-### Accessibility Review
+### Business Isolation and Permissions
 
-Section 9 provides adequate builder-level guidance for accessible implementation.
+- **Business-scoped records** — every inventory entity and movement belongs to exactly one business (Section 8 "Business Ownership", Section 10 Rules 1, 12); this maps cleanly to a business-scoping model consistent with prior missions.
+- **Permission-aware reads and writes** — viewing, opening-stock recording, and adjustments are each independently gated by owner-granted permission (Section 8 "Permissions", Section 10 Rule 13); this requires permission checks at each of those three action boundaries, not a single coarse check.
+- **Owner-controlled adjustment and correction authority** — correction permissions remain business-owner controlled (Section 8 "Inventory Movement Corrections"); distinct from general adjustment permission and must be independently enforceable.
+- **Employee restrictions** — implied by "authorized user" language throughout Section 8 and Rule 4; the blueprint does not enumerate specific employee permission tiers, which is expected at this stage and is not a gap requiring clarification.
+- **Cross-business isolation** — a lack of permission must prevent an action without revealing another business's inventory exists (Section 8 "Permissions"); this is a testable non-disclosure requirement, not just an access-denial requirement.
+- **Historical access to archived inventory** — remains permission-gated the same as active inventory (Section 8 "Inventory Lifecycle").
 
-- Clear language, meaningful labels, readable content, visible focus, sufficient contrast, and interaction patterns that do not rely on color alone are all required.
-- Inventory actions and movement outcomes must be perceivable across supported input methods.
-- **Builder considerations.**
-  - Adjustment and correction confirmation dialogs must follow accessible dialog patterns (focus trap, labelled title and description, keyboard dismissal, restored focus).
-  - Movement-type distinctions must be conveyed by icon and text, not color alone.
-  - Success and error outcomes after recording a movement must be announced through accessible status messaging.
-  - Empty states must communicate cause (no inventory vs. no matches vs. no permission) in text, not only through iconography.
+Supabase Row-Level Security is a natural fit for business-scoped and permission-scoped access at the data layer, consistent with the existing Supabase Architecture Framework. No RLS policies are defined here; the review confirms the model does not require any access pattern RLS cannot express (business-scoped rows plus permission-scoped actions).
 
-### Builder Risks
+### Transaction and Event Linking
 
-Builder-scoped risks only. Engineering and data-model risks are excluded.
+- The blueprint supports an optional link from a movement to an approved originating business event (Section 8 "Transaction Linking", Section 12 Downstream Dependencies) without requiring the originating event's structure to be defined now.
+- This is compatible with future Purchases, Sales, Returns, POS events, manual adjustments, and opening stock, provided each future mission creates movements through the same movement-creation path rather than writing stock changes directly.
+- Section 10 Rule 17 explicitly requires future governed capabilities to use the same inventory entities and ledger movements without establishing a competing source of truth — this is the correct constraint to carry forward and should be treated as a hard boundary in the technical design of this mission (e.g., the movement-creation interface should not be mission-specific).
+- **Confirmed:** linked events cannot bypass the inventory ledger under the blueprint as written, provided the movement-creation path is the single entry point for stock changes referenced above under Ledger Integrity Review.
 
-- **History-view scalability.** Long ledgers may grow substantially over time; the Stock History UI must remain scannable without loading everything at once.
-- **Correction-versus-edit clarity.** Merchants may expect an "edit" affordance on posted movements; the UI must clearly express that corrections happen through a new linked movement rather than an in-place edit.
-- **Movement-type differentiation.** Opening stock, increases, decreases, and adjustment increases / decreases must be visually distinguishable without over-reliance on color.
-- **Negative stock warning prominence.** The warning must be unmissable and require explicit confirmation, without becoming so intrusive that authorized users cannot proceed.
-- **Filter and search state on mobile.** Active filters and search terms must remain visible on small screens so that merchants understand why the list is narrowed.
-- **Permission-aware surfaces.** Unavailable actions must be represented consistently across list, detail, history, and dialog contexts to avoid the impression that an action succeeded when it was actually blocked.
-- **Empty-state ambiguity.** Empty states for "no inventory yet", "no movements yet", "no search matches", and "no permission" must be visibly different so merchants are not misled.
+### Correction and Reversal Model
 
-### Builder Recommendation
+- **Preventing silent edits/deletion** — feasible; requires posted movements to be immutable at the data-access layer (Section 8 "Inventory Movement Corrections", Section 10 Rule 7).
+- **Reversal/compensating movements** — feasible; the blueprint specifies the behaviour (linked, both visible) without prescribing the mechanism, which is appropriately left to engineering design.
+- **Linking original and correcting movements** — feasible; requires a movement to be able to reference another movement it corrects.
+- **Full visibility of both** — feasible; both must appear in history views without either being hidden or superseded.
+- **Owner-controlled permissions** — feasible; correction authority is a distinct permission from adjustment authority (see Business Isolation and Permissions above).
 
-**Ready for Engineering Review.**
+No ambiguity requiring Product clarification was identified in the correction and reversal model. The blueprint is intentionally silent on the exact reversal mechanism (e.g., a signed compensating movement vs. a dedicated correction-type movement); that is an engineering design decision within the stated behavioural constraints, not a blueprint gap.
 
-The blueprint provides sufficient product, UX, functional, and rule-level clarity to proceed to Engineering Review. Remaining builder-scoped considerations are UI refinements that can be resolved during implementation planning under existing governance without changes to Sections 1–19.
+### Negative Stock Engineering Considerations
 
-## 21. Builder Questions, Risks & Recommendations
+- **Detecting a movement that would create negative stock** — feasible; requires evaluating the projected resulting quantity before a movement is committed.
+- **Warning before confirmation** — a UI/UX concern already addressed by the Builder Review; engineering must ensure the projected-quantity check is available to support that warning before commit.
+- **Restricting authorization** — feasible; negative stock is permitted only for an authorized user (Section 8 "Negative Stock Policy", Section 10 Rule 15), which is an additional, distinct permission from general adjustment authority.
+- **Preserving the resulting movement** — feasible; a movement that results in negative stock is not treated differently from any other movement once posted (append-only, fully auditable).
+- **Clearly identifying negative-stock inventory** — feasible at the data layer; current stock being negative is itself the identifying condition, requiring no separate flag.
+- **Preventing silent negative stock** — feasible provided the pre-commit check and authorization gate above are both enforced server-side, not only in client UI (a client-only check would not satisfy Rule 15's "never occur silently" requirement against a direct API call).
 
-This section captures builder observations without altering Product Governance decisions in Sections 1–19.
+### Archival and Historical Integrity
 
-### Builder Questions
+- **Preventing deletion of inventory with ledger history** — feasible; inventory entities with movements must not support hard delete (Section 8 "Inventory Lifecycle", Section 10 Rule 14).
+- **Archiving or deactivating inventory** — feasible as a status flag on the entity rather than a data-removing operation.
+- **Preserving history and current-stock calculation** — feasible provided archival never alters or removes movement rows.
+- **Authorized historical access** — feasible; archived inventory remains permission-gated, not publicly exposed once archived.
+- **Excluding archived inventory from active workflows where appropriate** — the blueprint leaves "where appropriate" to future workflow-specific missions (e.g., Purchase Workflow, Sales Workflow); this mission only needs to ensure archived status is queryable and does not affect ledger correctness.
+
+### Performance and Scalability Considerations
+
+The following must be considered during engineering design, without prescribing a solution now:
+
+- **Ledger growth** — movement history is permanent and unbounded (Section 8 "Stock Ledger"); the Builder Review already flags Stock History UI scalability, and the same growth applies to the current-stock derivation query.
+- **Current-stock calculation** — if computed by aggregating all movements per request, query cost grows with ledger size; a maintained running balance is a reasonable future optimization but is not required for this mission and must not be introduced prematurely at the expense of ledger authority.
+- **Inventory lists and business summaries** — must remain performant as the number of inventory entities and movements per business grows; standard indexing and pagination concerns apply and should be addressed in engineering design, not in this blueprint.
+- **Search and filters** — must not require scanning full ledger history per request; filtering should operate against entity-level and current-stock-level attributes where possible.
+- **Long-running merchants and future POS event volume** — the blueprint anticipates high-frequency future movement creation (Section 16 "POS"); the movement-creation path should be designed with that volume in mind even though POS itself is out of scope here.
+- **Future reporting and AI consumption** — Section 16 anticipates Financial Reports and Ask CFO consuming ledger-derived data; read-path design should not assume a single UI consumer.
+
+### Frontend–Backend Contract Readiness
+
+Section 9, combined with the Builder Review's Component Readiness, gives sufficient clarity to later define (not now) the data contracts for:
+
+- Inventory list data (identity, current quantity, unit — Section 9 "Inventory List").
+- Inventory detail data (identity, current quantity, unit, history entry point — Section 9 "Inventory Detail View").
+- Stock history data (type, direction, quantity, reason, timing, responsible user, linked event — Section 8 "Inventory History").
+- Adjustment inputs (direction, quantity, reason — Section 8 "Inventory Adjustment").
+- Opening stock inputs (identity, quantity, unit — Section 8 "Opening Stock").
+- Correction inputs (reference to original movement, direction/quantity, reason — Section 8 "Inventory Movement Corrections").
+- Negative-stock warnings (projected resulting quantity, confirmation — Section 8 "Negative Stock Policy").
+- Permission-aware actions (per-action authorization state — Section 8 "Permissions").
+- Error and success states (Section 9 "Permission Behaviour": unavailable actions must not appear to succeed).
+
+No API specification is created here. The blueprint provides enough behavioural clarity for these contracts to be defined during implementation design.
+
+### Testability
+
+The blueprint can be translated into engineering and QA test cases. Test-readiness is confirmed for:
+
+- **Ledger correctness** — current stock equals the sum of all movements for an entity at any point in time.
+- **Opening stock** — recorded as a movement, appears in history, contributes to current stock.
+- **Adjustments** — direction, quantity, and reason are preserved; prior movements remain unchanged.
+- **Corrections** — original and correcting movement both remain visible and linked; no update/delete path exists on posted movements.
+- **Negative stock** — blocked for unauthorized users; requires confirmation and warning for authorized users; never occurs without an explicit movement.
+- **Permissions** — view, opening-stock, adjustment, and correction actions are independently testable against permission state; unauthorized access does not disclose other-business data.
+- **Business isolation** — no cross-business data leakage in any list, detail, history, or summary view.
+- **Archiving** — archived inventory preserves history and current stock; remains accessible to authorized users; excluded from active-creation workflows.
+- **Search and filters** — narrow results without mutating underlying data.
+- **Audit history** — every movement records responsible user or originating event, timing, reason, and effect on stock.
+- **Responsive UI behaviour and accessibility** — covered by the Builder Review; testable as UI-level acceptance criteria once implementation begins.
+
+### Engineering Risks
+
+| Risk | Impact | Engineering Mitigation Direction |
+| --- | --- | --- |
+| Derived-stock consistency | Current stock could drift from ledger truth if any code path bypasses the movement-creation route. | Enforce a single movement-creation path at the data-access layer; disallow direct quantity writes at the database level, not only in application code. |
+| Concurrency | Two simultaneous movements against the same inventory entity (e.g., concurrent adjustment and correction) could race, producing an incorrect projected-quantity check for negative-stock detection. | Use database-level transactional guarantees when evaluating projected quantity and committing a movement, rather than relying on a client-side or read-then-write check. |
+| Duplicate movement creation | A retried or double-submitted request (e.g., adjustment form resubmission) could create two movements for one intended action. | Design the movement-creation path to support idempotent submission from the outset, even though no external integration exists yet in this mission. |
+| Idempotency for future integrations | Future POS or purchase/sales integrations (Section 16) may retry event delivery, risking duplicate movements if idempotency is not designed in now. | Establish an idempotency-key or equivalent pattern on the movement-creation path so downstream missions inherit safe-retry behaviour rather than each reinventing it. |
+| RLS misconfiguration | Incorrect or incomplete RLS policies could expose one business's inventory to another, or allow an unauthorized action to succeed. | Cover business-isolation and permission-boundary test cases (see Testability) before RLS policies are considered implementation-complete; treat RLS as security-critical, not incidental. |
+| Correction-link integrity | A correcting movement could be created without a valid, retrievable reference to the movement it corrects, weakening auditability. | Require the link to be enforced at the data layer (e.g., a required foreign-key-style reference), not only validated in application logic. |
+| Ledger query performance | Current-stock and history queries may degrade as ledger size grows per business over time. | Plan for appropriate indexing on entity and business scope from the outset; revisit aggregation strategy if growth data shows it is warranted, without weakening ledger authority. |
+| Archived-record handling | Archived inventory could be inadvertently excluded from history/audit queries, or inadvertently included in active-creation workflows. | Treat archived status as a filter condition on read paths, not as a change to the underlying data, and test both inclusion (historical access) and exclusion (active workflows) paths explicitly. |
+| Timezone consistency | Movement timing recorded or displayed inconsistently across timezones could misrepresent the chronological order merchants rely on for explainability. | Store movement timestamps in a single canonical timezone (UTC) and handle display conversion at the presentation layer only. |
+| Event-link integrity | A movement claiming a link to an originating business event could reference an event that does not exist or does not belong to the same business. | Validate event links at creation time against the same business scope as the movement itself. |
+| Migration safety | Introducing the inventory schema is a net-new addition with no prior inventory data to migrate, but future schema evolution (e.g., new movement types) must not break existing ledger interpretation. | Design movement-type and reason representations to be extensible (e.g., without requiring destructive schema changes) for future governed missions anticipated in Section 16. |
+| Audit metadata completeness | A movement recorded without a responsible user or originating event reference would break Rule 16's audit completeness requirement. | Make responsible-user-or-event a required field at the data layer, not an optional one left to application-level discipline. |
+
+### Engineering Recommendation
+
+**Ready for Founder Approval.**
+
+The blueprint is engineering-feasible as written. Domain boundaries are sufficiently clear for schema design, ledger-integrity and business-isolation constraints are enforceable within the existing Supabase-based architecture, and the correction, negative-stock, and archival behaviours specified in Sections 1–19 can be implemented without weakening ledger authority, auditability, or business-owner permission control. No engineering concern identified in this review requires a change to Sections 1–19; all identified risks have a stated mitigation direction to be carried into implementation design.
+
+## 21. Engineering Questions, Risks & Recommendations
+
+This section captures engineering observations without altering Product Governance decisions in Sections 1–19.
+
+### Engineering Questions
 
 > No Product clarification required.
 
-The Product Blueprint provides sufficient clarity for the Lovable Builder to proceed. Any residual UI-level detail can be resolved through normal governed implementation planning without amending the blueprint.
+The Product Blueprint, together with the Builder Review, provides sufficient clarity for engineering to proceed to implementation design. Remaining decisions (e.g., the specific reversal-movement mechanism, current-stock derivation strategy, or idempotency-key format) are engineering design choices within the blueprint's stated behavioural constraints, not open product questions.
 
-### Builder Risks
+### Engineering Risks
 
-The following UI and builder concerns are surfaced for visibility. They are not engineering risks.
+The most significant engineering risks identified in Section 20, carried forward for implementation planning:
 
-- Stock History scalability as ledgers grow over time.
-- Merchant expectation of an "edit" action on posted movements versus the required linked-correction pattern.
-- Visual differentiation of movement types without color-only cues.
-- Prominence and accessibility of the negative-stock warning and confirmation.
-- Visibility of active search and filter state on small screens.
-- Consistent representation of unavailable actions under permission constraints.
-- Distinguishing between the different empty-state conditions in the inventory experience.
+- Derived-stock consistency depends on a single, enforced movement-creation path with no bypass route.
+- Concurrent movement creation against the same inventory entity requires transactional handling to keep negative-stock detection and current-stock calculation correct.
+- Duplicate movement creation and future integration retries require idempotency to be designed in from the start, not added later.
+- RLS correctness for business isolation and per-action permissions is security-critical and must be explicitly tested, not assumed from row ownership alone.
+- Correction links and audit metadata (responsible user or originating event) must be enforced at the data layer to guarantee the auditability Sections 8 and 10 require.
 
-### Builder Recommendations
+### Engineering Recommendations
 
-The following recommendations improve usability, consistency, maintainability, reusable UI, and responsive behaviour. They preserve the Product Blueprint and governance and introduce no new features.
-
-- Reuse the SB-P-1.9 confirmation dialog pattern for stock adjustments, movement corrections, and negative-stock confirmation, to maintain a consistent decision-confirmation experience across the merchant workflow.
-- Reuse the existing Transactions timeline layout conventions as the structural basis for the Stock History view to keep the merchant's mental model consistent across business events.
-- Establish a small, shared set of movement-type indicators (icon plus text label) that can be reused across list, detail, history, and adjustment surfaces.
-- Standardise empty-state components with distinct copy for "no inventory", "no movements", "no matches", and "no permission" conditions.
-- Ensure filter and search controls share a common active-state and clear-all pattern with other filtered views in the application, in preparation for later governed missions that will introduce additional filtered surfaces.
-- Keep inventory navigation entries within the existing authenticated shell rather than introducing a parallel navigation region, preserving the current merchant navigation model.
-- Maintain permission-aware rendering as a shared UI concern so that the same rules apply consistently across inventory creation, adjustment, correction, history, and negative-stock actions.
+- **Repository sequencing.** Implement the movement-creation path and current-stock derivation before any UI surface that depends on them, so downstream missions (Section 12 Downstream Dependencies) inherit a stable inventory truth model from the start.
+- **Domain boundary protection.** Expose a single internal interface for creating stock movements; do not allow any future mission (including this one's own opening-stock and adjustment flows) to write movements through separate code paths.
+- **RLS review.** Treat RLS policy design and testing for business isolation and per-action permissions (view, opening-stock, adjustment, correction) as a dedicated review step before this mission is considered implementation-complete.
+- **Ledger invariants.** Enforce immutability of posted movements and the required responsible-user-or-event field at the data layer, not only in application code, so the invariants in Section 10 cannot be silently violated by a future code change.
+- **Audit requirements.** Confirm that timestamp storage is canonicalized (e.g., UTC) before the first movement is written, since retrofitting timezone consistency into existing ledger history would conflict with the "earlier movements are not replaced or concealed" rule.
+- **Idempotency preparation.** Design the movement-creation path with retry-safety in mind now, even though no external integration exists yet, since Section 16 anticipates POS and purchase/sales integrations that will depend on it.
+- **Query strategy review.** Defer current-stock aggregation-versus-running-balance decisions to implementation design, but capture expected data volume assumptions so the choice is revisited deliberately rather than accidentally as usage grows.
+- **Testing strategy.** Prioritize automated test coverage for ledger correctness, correction-link integrity, negative-stock authorization, and business isolation, since these are the invariants most likely to be silently broken by a future unrelated change.
+- **Migration safety.** Design movement-type and reason representations to be extensible for future governed missions (Section 16) without requiring destructive schema changes later.
+- **Observability.** Consider logging or metrics on movement-creation failures and rejected negative-stock attempts, so operational issues in the ledger are visible before merchants report incorrect stock.
+- **Rollout controls.** No rollout-specific product behaviour is defined in the blueprint; standard repository release practices are sufficient for this mission's initial implementation.
 
