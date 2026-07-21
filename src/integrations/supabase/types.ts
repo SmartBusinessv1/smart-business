@@ -44,6 +44,155 @@ export type Database = {
         }
         Relationships: []
       }
+      inventory_items: {
+        Row: {
+          base_unit: string
+          business_id: string
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+          status: Database["public"]["Enums"]["inventory_item_status"]
+          updated_at: string
+        }
+        Insert: {
+          base_unit: string
+          business_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          name: string
+          status?: Database["public"]["Enums"]["inventory_item_status"]
+          updated_at?: string
+        }
+        Update: {
+          base_unit?: string
+          business_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+          status?: Database["public"]["Enums"]["inventory_item_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_items_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inventory_movement_idempotency_keys: {
+        Row: {
+          business_id: string
+          created_at: string
+          id: string
+          idempotency_key: string
+          movement_id: string
+          operation: string
+          payload_fingerprint: string
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          id?: string
+          idempotency_key: string
+          movement_id: string
+          operation: string
+          payload_fingerprint: string
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          id?: string
+          idempotency_key?: string
+          movement_id?: string
+          operation?: string
+          payload_fingerprint?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_movement_idempotency_keys_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inventory_movement_idempotency_keys_movement_id_fkey"
+            columns: ["movement_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_movements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inventory_movements: {
+        Row: {
+          business_event_id: string | null
+          business_event_type: string | null
+          business_id: string
+          correcting_of: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["inventory_direction"]
+          id: string
+          item_id: string
+          movement_type: Database["public"]["Enums"]["inventory_movement_type"]
+          occurred_at: string
+          quantity: number
+          reason: string
+          responsible_user_id: string | null
+        }
+        Insert: {
+          business_event_id?: string | null
+          business_event_type?: string | null
+          business_id: string
+          correcting_of?: string | null
+          created_at?: string
+          direction: Database["public"]["Enums"]["inventory_direction"]
+          id?: string
+          item_id: string
+          movement_type: Database["public"]["Enums"]["inventory_movement_type"]
+          occurred_at?: string
+          quantity: number
+          reason: string
+          responsible_user_id?: string | null
+        }
+        Update: {
+          business_event_id?: string | null
+          business_event_type?: string | null
+          business_id?: string
+          correcting_of?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["inventory_direction"]
+          id?: string
+          item_id?: string
+          movement_type?: Database["public"]["Enums"]["inventory_movement_type"]
+          occurred_at?: string
+          quantity?: number
+          reason?: string
+          responsible_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_movements_correcting_of_fk"
+            columns: ["correcting_of", "business_id", "item_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_movements"
+            referencedColumns: ["id", "business_id", "item_id"]
+          },
+          {
+            foreignKeyName: "inventory_movements_item_business_fk"
+            columns: ["item_id", "business_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id", "business_id"]
+          },
+        ]
+      }
       transaction_correction_events: {
         Row: {
           business_id: string
@@ -195,9 +344,76 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      create_inventory_movement: {
+        Args: {
+          p_allow_negative_stock: boolean
+          p_business_event_id: string
+          p_business_event_type: string
+          p_correcting_of: string
+          p_direction: Database["public"]["Enums"]["inventory_direction"]
+          p_idempotency_key: string
+          p_item_id: string
+          p_movement_type: Database["public"]["Enums"]["inventory_movement_type"]
+          p_occurred_at: string
+          p_operation: string
+          p_quantity: number
+          p_reason: string
+        }
+        Returns: {
+          business_event_id: string | null
+          business_event_type: string | null
+          business_id: string
+          correcting_of: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["inventory_direction"]
+          id: string
+          item_id: string
+          movement_type: Database["public"]["Enums"]["inventory_movement_type"]
+          occurred_at: string
+          quantity: number
+          reason: string
+          responsible_user_id: string | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "inventory_movements"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      inventory_current_stock_batch: {
+        Args: { p_item_ids: string[] }
+        Returns: {
+          current_stock: number
+          item_id: string
+        }[]
+      }
+      inventory_movement_remaining_compensable: {
+        Args: { p_movement_id: string }
+        Returns: number
+      }
+      preview_inventory_movement: {
+        Args: {
+          p_direction: Database["public"]["Enums"]["inventory_direction"]
+          p_item_id: string
+          p_quantity: number
+        }
+        Returns: {
+          current_stock: number
+          projected_stock: number
+        }[]
+      }
     }
     Enums: {
-      [_ in never]: never
+      inventory_direction: "increase" | "decrease"
+      inventory_item_status: "active" | "archived"
+      inventory_movement_type:
+        | "opening_stock"
+        | "stock_increase"
+        | "stock_decrease"
+        | "adjustment_increase"
+        | "adjustment_decrease"
+        | "correction"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -324,6 +540,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      inventory_direction: ["increase", "decrease"],
+      inventory_item_status: ["active", "archived"],
+      inventory_movement_type: [
+        "opening_stock",
+        "stock_increase",
+        "stock_decrease",
+        "adjustment_increase",
+        "adjustment_decrease",
+        "correction",
+      ],
+    },
   },
 } as const
