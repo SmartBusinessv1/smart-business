@@ -463,3 +463,191 @@ The additional space should improve visibility and workflow efficiency without i
 Inventory information and actions should be understandable and operable for users with differing abilities and levels of digital familiarity.
 
 The experience should use clear language, meaningful labels, readable content, visible focus, sufficient contrast, and interaction patterns that do not rely on color alone. Inventory actions and movement outcomes should be perceivable and understandable across supported input methods.
+
+## 10. Business Rules
+
+1. Every inventory entity, inventory movement, and stock quantity belongs to one business. Business ownership must remain preserved throughout the complete inventory history.
+2. Each inventory entity must have a clear and stable identity within its business and one required base stock-counting unit.
+3. Stock represented by an inventory entity is owned by the business to which that inventory entity belongs.
+4. Only an authorized user may create an inventory entity or record an inventory movement. Authorization must reflect the permissions controlled by the business owner.
+5. Opening stock must be recorded as an opening stock movement. It must not be applied as a direct change to an inventory quantity.
+6. An adjustment must be recorded as a new adjustment movement with its direction, quantity, reason, timing, and responsible user preserved.
+7. A posted movement must not be silently edited or deleted. A correction must use a linked reversal or compensating movement that remains visible with the original movement.
+8. Inventory history must remain permanent and chronological. Later activity must not replace, conceal, or rewrite earlier movements.
+9. The stock ledger is the authoritative source of inventory quantity truth.
+10. Current stock must be calculated from all applicable ledger movements for the inventory entity. Inventory quantities never change directly.
+11. Every quantity change must originate from a ledger movement that explains what changed and why.
+12. Inventory information for one business must remain isolated from every other business in all actions, views, histories, and summaries.
+13. Permission requirements must be enforced for inventory creation, viewing, opening stock, adjustments, corrections, and historical access.
+14. Inventory entities with ledger history must not be permanently deleted. Archived or deactivated inventory must preserve its history, remain available for authorized historical reference, and continue to support an unchanged current stock calculation.
+15. Negative stock may occur only through an action by an authorized user after a clear warning and confirmation. It must never occur silently, must remain fully auditable, and must be clearly identifiable.
+16. Every inventory action must preserve a complete audit record of the responsible user or originating business event, timing, reason, and effect on stock.
+17. Future governed capabilities must use the same inventory entities and ledger movements without creating a separate source of inventory truth or weakening existing history, ownership, permissions, or audit integrity.
+
+## 11. Out of Scope
+
+SB-P-1.10 intentionally does not implement:
+
+- Product catalog management
+- Pricing
+- Barcode management
+- Purchase workflow
+- Sales workflow
+- Supplier management
+- Customer management
+- POS synchronization
+- Financial reporting
+- AI recommendations
+- Forecasting
+- Inventory reservations
+- Batch tracking
+- Expiry management
+- Manufacturing
+- Multi-warehouse inventory
+- Stock transfer
+- Commerce inventory allocation
+
+These capabilities belong to future governed missions. Their exclusion preserves SB-P-1.10 as the Inventory Foundation and does not authorize or define their future scope.
+
+## 12. Dependencies
+
+### Upstream Dependencies
+
+SB-P-1.10 depends on the following approved prerequisite missions:
+
+- SB-P-1.4 — Bootstrap Governance Preparation
+- SB-P-1.9 — Merchant Workflow Refinement
+
+These missions establish the governed product foundation and merchant workflow context upon which the Inventory Foundation proceeds.
+
+### Downstream Dependencies
+
+The following roadmap missions consume or build upon the Inventory Foundation:
+
+- SB-P-1.11 — Product Catalog & Pricing
+- SB-P-1.13 — Purchase Workflow
+- SB-P-1.14 — Sales Workflow Enhancement
+- SB-P-1.16 — POS Integration Foundation
+- SB-P-1.17 — Financial Reports Foundation
+- SB-P-1.18 — Ask CFO Foundation
+- SB-P-1.21 — Smart Business Conversation Workspace
+- SB-P-1.22 — AI Conversation Foundation
+
+SB-P-1.10 provides these future capabilities with a consistent inventory identity, authoritative stock ledger, ledger-derived current stock, complete history, business ownership, permission boundaries, and auditability. Downstream missions must preserve this inventory truth rather than establish competing stock records.
+
+## 13. Risks & Mitigations
+
+| Risk                        | Description                                                                          | Business Impact                                                                                        | Product Mitigation                                                                                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Incorrect stock             | Inventory movements may not reflect the business event or physical stock accurately. | Merchants may make decisions using an unreliable stock position and lose confidence in Smart Business. | Derive current stock only from traceable ledger movements and provide authorized adjustments with documented reasons.                                   |
+| Unauthorized adjustments    | A user may attempt to change stock without the required authority.                   | Stock truth and business-owner control may be compromised.                                             | Enforce business-owner-controlled permissions for adjustments and preserve the responsible user in the audit history.                                   |
+| Poor merchant understanding | Inventory language or behaviour may be unclear to merchants.                         | Users may avoid the inventory experience, record incorrect activity, or misunderstand current stock.   | Use familiar terminology, clear movement reasons, guided opening stock and adjustment experiences, and explainable history.                             |
+| Audit failure               | Inventory changes may lack a complete or understandable history.                     | Merchants may be unable to explain discrepancies or trust past records.                                | Preserve every posted movement, require corrections through linked movements, and retain reasons, timing, responsibility, and business-event links.     |
+| Business isolation failure  | Inventory belonging to one business may be exposed to another business.              | Confidential business information and stock ownership may be compromised.                              | Apply business ownership and isolation to every inventory entity, movement, action, view, history, and summary.                                         |
+| Data inconsistency          | Different views or future capabilities may present conflicting stock quantities.     | Merchants may encounter multiple versions of inventory truth.                                          | Keep the stock ledger authoritative and require every view and downstream capability to use the same ledger-derived current stock.                      |
+| Negative stock misuse       | Negative stock may be created without sufficient awareness or authority.             | Inventory may become misleading and operational problems may be concealed.                             | Restrict negative stock to authorized users, warn before confirmation, identify negative records clearly, and retain the movement in the audit history. |
+
+## 14. Success Criteria
+
+SB-P-1.10 is successful when:
+
+- Every inventory entity has a clear identity, business owner, and base stock-counting unit.
+- Every inventory quantity change is represented by an explainable ledger movement.
+- Current stock is always derived from the complete stock ledger and never changed directly.
+- Opening stock, adjustments, corrections, and negative stock remain visible and auditable.
+- Inventory history is preserved without silent editing, deletion, or replacement of posted movements.
+- Business isolation and business-owner-controlled permissions govern every inventory action and view.
+- Authorized merchants can find inventory, understand current stock, and explain how it changed using familiar business language.
+- Archived inventory preserves its stock history and remains available for authorized historical reference.
+- Inventory provides one consistent source of stock truth for approved downstream missions.
+- The Inventory Foundation remains understandable without requiring merchants to learn complex inventory-management processes.
+
+## 15. Acceptance Criteria
+
+Product Governance may accept SB-P-1.10 when all of the following are demonstrated at the product level:
+
+- [ ] An authorized user can create an inventory entity with a clear identity and required base stock-counting unit.
+- [ ] Each inventory entity belongs to the correct business and remains isolated from other businesses.
+- [ ] Opening stock is recorded as an identifiable ledger movement and appears in inventory history.
+- [ ] Current stock matches the result of the complete ledger history and cannot be changed directly.
+- [ ] An authorized user can record an increase or decrease with a clear quantity and reason.
+- [ ] An authorized user can record an adjustment without replacing or concealing earlier movements.
+- [ ] A posted movement can be corrected only through a linked reversal or compensating movement, with both movements remaining visible.
+- [ ] Inventory history presents movement direction, quantity, reason, timing, responsible user, and related business event when one exists.
+- [ ] Inventory search helps an authorized user find records using familiar identifying information.
+- [ ] Inventory filters narrow the visible inventory without changing inventory data.
+- [ ] Permission boundaries prevent unauthorized inventory viewing, creation, adjustment, correction, and historical access.
+- [ ] Archived or deactivated inventory preserves its full history and remains available for authorized historical reference.
+- [ ] Negative stock requires authorization, a clear warning, and confirmation, and the resulting inventory remains clearly identifiable.
+- [ ] Inventory list, detail, history, creation, opening stock, and adjustment experiences use clear and familiar merchant language.
+- [ ] Mobile and desktop experiences preserve the context needed to understand inventory quantities and movements.
+- [ ] Inventory actions and outcomes meet the stated accessibility expectations.
+- [ ] Every quantity change remains explainable through a complete audit trail.
+- [ ] All inventory views and summaries present a consistent ledger-derived stock truth.
+
+## 16. Future Evolution
+
+The Inventory Foundation establishes continuity for future governed missions while preserving one authoritative stock truth.
+
+### Product Catalog
+
+Product Catalog & Pricing can connect product identity, pricing, selling information, and future unit capabilities to the stable inventory entity without replacing its ledger or current stock calculation.
+
+### Purchasing
+
+Purchase Workflow can create traceable stock increases linked to approved purchase events while preserving the inventory ledger as the authority for quantity changes.
+
+### Sales
+
+Sales Workflow Enhancement can create traceable stock decreases linked to approved sales events without directly changing inventory quantities.
+
+### POS
+
+POS Integration Foundation can synchronize approved external business events through the same inventory movement model while preserving ownership, isolation, permissions, and audit history.
+
+### Reports
+
+Financial Reports Foundation can consume ledger-derived inventory information and movement history as a consistent input to governed reporting capabilities.
+
+### Ask CFO
+
+Ask CFO Foundation can explain inventory information, identify patterns, and advise merchants using the inventory truth model without directly modifying inventory.
+
+### AI Conversation
+
+Smart Business Conversation Workspace and AI Conversation Foundation can help authorized users understand inventory, locate history, and prepare actions while preserving human confirmation and decision ownership.
+
+### Commerce
+
+Future commerce capabilities can consume governed inventory information for stock-aware experiences and allocation decisions without establishing a separate inventory truth.
+
+All future evolution must preserve the Inventory Foundation's ledger authority, historical continuity, business ownership, permission boundaries, and explainability.
+
+## 17. Product Philosophy Summary
+
+The Inventory Foundation exists to help merchants understand and trust the stock they own. It follows Humans Serving Humans by making inventory clearer and more dependable without imposing unnecessary complexity.
+
+Smart Business remains an AI Assistant, Not AI Judge. AI may help explain inventory, identify patterns, and support decisions, but it must not take inventory ownership away from the merchant or modify inventory without explicit approval.
+
+Human Decision Ownership remains central. Inventory actions arise from deliberate business activity or authorized correction, and the merchant retains final authority over permissions and decisions.
+
+Inventory must remain explainable. Every quantity is supported by a permanent movement history that answers what changed, why it changed, when it changed, and who or what business event caused it.
+
+The experience respects familiar merchant workflows, uses simple business language, and maintains a low learning curve. Simplicity supports trust, and trust allows the Inventory Foundation to remain sustainable as future governed capabilities grow around it.
+
+## 18. Blueprint Change Log
+
+| Version  | Description                              |
+| -------- | ---------------------------------------- |
+| Draft 1A | Metadata, Mission Overview, Sections 1–6 |
+| Draft 1B | Sections 7–9                             |
+| Draft 1C | Sections 10–19                           |
+
+## 19. Governance History
+
+- Draft 1A approved by Product Governance.
+- Draft 1B approved by Product Governance.
+- Draft 1C completes Version 1.0 Product Blueprint.
+- Builder Review pending.
+- Engineering Review pending.
+- Founder Approval pending.
