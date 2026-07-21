@@ -1,8 +1,8 @@
 Document: Engineering Contract
 
-Version: 1.0
+Version: 1.1
 
-Status: Draft — pending Mission Control review
+Status: Draft — ready for Mission Control approval
 
 Created By: Claude
 
@@ -34,7 +34,7 @@ This Engineering Contract translates the locked SB-P-1.10 Product Blueprint (Ver
 
 This contract does not redefine product behaviour, does not introduce new product scope, and does not alter any engineering decision already recorded in the EIS. Every requirement in this contract exists to make an already-approved Blueprint or EIS requirement actionable for implementation. Where any statement in this contract could be read as introducing new product or engineering behaviour, the Blueprint and EIS prevail and this contract is in error.
 
-This contract becomes the implementation authority for builders executing SB-P-1.10. Builders shall implement against this contract, not against the Blueprint or EIS directly, so that implementation stays traceable to a single authorized instruction set.
+This contract is the primary builder-facing execution document for SB-P-1.10, so that implementation stays traceable to a single authorized instruction set. Builders shall execute primarily through this Engineering Contract while retaining the locked Product Blueprint and EIS as controlling reference authorities, and may consult the locked documents directly whenever clarification is required. Where ambiguity or conflict exists between this contract and either locked document, implementation must pause: the locked Product Blueprint and EIS prevail, and Mission Control clarification is required before proceeding whenever the conflict cannot be resolved by reference to the locked documents alone.
 
 ## 3. Authority
 
@@ -61,7 +61,9 @@ Neither locked document is modified by this contract, by this mission, or by the
 
 ## 5. Authorized Implementation Scope
 
-Implementation authorized under this contract is limited to what the Product Blueprint (Sections 7–10) and the EIS (Sections 4–17) already define:
+Approval of this Engineering Contract, approval of the subsequent Lovable build prompt, and approval of the verification checklist are each separate governance steps; none of them, individually or together, constitutes implementation authorization. Implementation begins only under a separate, explicit Mission Control authorization.
+
+Implementation that is subsequently authorized under this contract is limited to what the Product Blueprint (Sections 7–10) and the EIS (Sections 4–17) already define:
 
 - The inventory entity and its lifecycle (active/archived), per Blueprint Section 8 and EIS Section 4–5.
 - The append-only stock movement ledger and all movement types defined in Blueprint Section 8 "Stock Movement Types" and EIS Section 6.
@@ -123,6 +125,7 @@ No capability outside the Blueprint's Section 11 "Out of Scope" list, and no eng
 - No feature, table, or code path outside the shared movement-creation operation writes to `inventory_movements` or to any current-stock value, per EIS Section 3 "Single mutation path" and Section 6 "Ledger Invariants".
 - No future domain integrated during this mission's scope may create movements through an alternate path, a domain-owned table, or a direct write, per EIS Section 4 "Trusted event-link contract".
 - The shared movement-creation operation is implemented before any UI surface is built against it, per EIS Section 14 and Section 17.
+- Ask CFO, AI, WhatsApp interpretation, and automation may prepare or suggest inventory actions, but cannot commit stock movements without an attributable authorized human decision or an approved immutable business event; every committed movement must remain attributable to one of these two sources, per Blueprint Section 5 "AI Assistant, Not AI Judge" and EIS Section 3 "Human-first architecture".
 
 ## 12. Validation Requirements
 
@@ -205,6 +208,7 @@ Neither this mission nor this contract authorizes:
 - Changing product scope, UX, merchant-facing behaviour, permissions, or business rules.
 - Introducing a maintained current-stock projection ahead of measured Phase 1 performance evidence.
 - Introducing any stock-mutation path outside the shared movement-creation operation.
+- Permitting Ask CFO, AI, WhatsApp interpretation, or automation to independently commit a stock movement, or allowing any AI-generated recommendation to bypass permission, validation, confirmation, or audit requirements. Human approval and business ownership remain decisive.
 - Beginning implementation under this mission. Implementation requires a separate, subsequently authorized mission.
 
 ## 19. Acceptance Criteria
@@ -231,12 +235,24 @@ A subsequent implementation mission executing against this contract must produce
 
 A subsequent implementation mission must produce `docs/implementation/SB-P-1.10/completion-report.md`, reporting at minimum:
 
-- Objective and scope executed against this contract.
+- Implementation objective and scope executed against this contract.
 - Files and components created or modified.
-- Verification performed, referencing the evidence in Section 20.
-- Confirmation that Sections 6–16 of this contract were satisfied in full, or an explicit accounting of any deviation and its resolution.
-- Outstanding issues and recommended next steps.
+- Lovable implementation status.
+- Lovable publish status.
+- Supabase migration status.
+- Supabase RLS verification result.
+- Runtime verification result.
+- Production-domain verification at `https://smartbusiness.teamlips.com`.
+- Verification checklist outcome.
+- Evidence references from `docs/implementation/SB-P-1.10/evidence/`.
+- GitHub commit SHA.
+- Push status.
+- Local and remote repository synchronization status.
 - Confirmation that the locked Product Blueprint and locked EIS remain unmodified.
+- Deviations and their resolution.
+- Unresolved defects, if any.
+- Final implementation status.
+- Recommended next action.
 
 ## 22. Mission Completion Requirements
 
