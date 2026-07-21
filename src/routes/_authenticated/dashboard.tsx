@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useState, type FormEvent } from "react";
 import { format } from "date-fns";
-import { LogOut, Menu, X, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import {
@@ -11,6 +11,8 @@ import {
   PAYMENT_METHODS,
 } from "@/integrations/supabase/transactions";
 import { formatCurrencyINR } from "@/lib/utils";
+import { AuthedHeader } from "@/components/authed-header";
+
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
