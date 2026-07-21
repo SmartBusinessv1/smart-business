@@ -1,6 +1,6 @@
 Document: Engineering Contract
 
-Version: 1.2
+Version: 1.3
 
 Status: Draft — ready for final Mission Control approval
 
@@ -198,18 +198,33 @@ Implementation must produce automated test coverage for every item in EIS Sectio
 
 ## 18. Prohibited Work
 
-During SB-P-1.10-IP-1.0, and before a separate explicit Mission Control implementation authorization is issued, neither this mission nor this contract authorizes:
+### Permanent Governance Prohibitions
+
+The following work is prohibited throughout SB-P-1.10 implementation and is not authorized by this Engineering Contract:
 
 - Modifying the locked Product Blueprint.
 - Modifying the locked Engineering Implementation Specification.
-- Generating application code of any kind.
-- Writing SQL or migrations.
-- Implementing APIs, Supabase functions, or frontend components.
-- Changing product scope, UX, merchant-facing behaviour, permissions, or business rules.
+- Changing product scope.
+- Changing UX.
+- Changing merchant-facing behaviour.
+- Changing permissions.
+- Changing business rules.
 - Introducing a maintained current-stock projection ahead of measured Phase 1 performance evidence.
 - Introducing any stock-mutation path outside the shared movement-creation operation.
-- Permitting Ask CFO, AI, WhatsApp interpretation, or automation to independently commit a stock movement, or allowing any AI-generated recommendation to bypass permission, validation, confirmation, or audit requirements. Human approval and business ownership remain decisive.
-- Beginning implementation without a separate explicit Mission Control implementation authorization.
+- Permitting Ask CFO, AI, WhatsApp interpretation, or automation to independently commit a stock movement.
+- Allowing any AI-generated recommendation to bypass permission, validation, confirmation, attribution, or audit requirements. Human approval and business ownership remain decisive.
+
+### Pre-Implementation Authorization Restrictions
+
+Before a separate explicit Mission Control implementation authorization is issued, the following work must not begin:
+
+- Generating application code of any kind.
+- Writing SQL.
+- Creating migrations.
+- Implementing APIs.
+- Implementing Supabase functions.
+- Implementing frontend components.
+- Beginning implementation.
 
 ## 19. Acceptance Criteria
 
