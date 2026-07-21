@@ -8,7 +8,7 @@
 | Mission Name            | Inventory Foundation       |
 | Domain                  | Business Operations Domain |
 | Mission Status          | Draft                      |
-| Blueprint Version       | 1.0 (Draft 1B)             |
+| Blueprint Version       | 1.0 (Draft 1C)             |
 | Product Blueprint Owner | Product Governance         |
 | Builder Review          | Pending                    |
 | Engineering Review      | Pending                    |
@@ -647,7 +647,8 @@ The experience respects familiar merchant workflows, uses simple business langua
 
 - Draft 1A approved by Product Governance.
 - Draft 1B approved by Product Governance.
-- Draft 1C completes Version 1.0 Product Blueprint.
+- Draft 1C submitted for Product Governance review.
+- Version 1.0 Product Blueprint completion pending Product Governance approval.
 - Builder Review pending.
 - Engineering Review pending.
 - Founder Approval pending.
