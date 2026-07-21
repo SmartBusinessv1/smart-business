@@ -5,7 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { format } from "date-fns";
-import { LogOut, Menu, X, Loader2, CheckCircle2, Pencil } from "lucide-react";
+import { Loader2, CheckCircle2, Pencil } from "lucide-react";
+import { AuthedHeader } from "@/components/authed-header";
+
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import {
