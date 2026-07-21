@@ -10,11 +10,13 @@
 | Blueprint Version          | 1.3                                                                            |
 | Document Type              | Engineering Implementation Specification (EIS)                                |
 | Document Version           | 1.2                                                                            |
-| Status                     | Draft — ready for architecture re-review                                      |
+| Status                     | LOCKED — implementation authority                                             |
 | Owner                      | Team LIPS Engineering                                                         |
 | Dependencies                | SB-P-1.4 — Bootstrap Governance Preparation, SB-P-1.9 — Merchant Workflow Refinement |
 | Governance Basis            | SB-P-1.10 Product Blueprint Version 1.3 (Builder Review Approved, Engineering Review Approved, Founder Approval Approved) |
 | Prior Review                | Supabase Architecture and Security Review SB-P-1.10-EIS-AR-1.0 — Minor Engineering Refinement Required |
+| Architecture Re-Review      | Supabase Architecture Re-Review — Approved                                    |
+| Final Recommendation        | Ready to Lock EIS                                                             |
 
 ## 2. Purpose
 
