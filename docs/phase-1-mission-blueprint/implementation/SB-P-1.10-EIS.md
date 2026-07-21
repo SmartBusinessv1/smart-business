@@ -9,7 +9,7 @@
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.10.md` (LOCKED)                 |
 | Blueprint Version          | 1.3                                                                            |
 | Document Type              | Engineering Implementation Specification (EIS)                                |
-| Document Version           | 1.0                                                                            |
+| Document Version           | 1.1                                                                            |
 | Status                     | Draft — ready for engineering review                                          |
 | Owner                      | Team LIPS Engineering                                                         |
 | Dependencies                | SB-P-1.4 — Bootstrap Governance Preparation, SB-P-1.9 — Merchant Workflow Refinement |
@@ -70,6 +70,8 @@ An inventory entity status, not a separate table or a data-removing operation. A
 
 An optional reference on a movement record to an originating business event from another domain (e.g., a future purchase or sale). The reference is a loosely coupled pointer (business-scoped identifier and event-type tag), not a hard schema dependency on any future mission's tables, since those tables do not exist yet.
 
+Loose coupling describes the schema relationship, not the integrity guarantee. A movement carrying a business-event link is only ever created if, at the moment of movement creation, the referenced event is confirmed to exist and is confirmed to belong to the same business as the movement — this confirmation is performed by calling the owning domain's own validation (since this mission does not have a foreign key into a table it does not own), and its result determines whether the movement-creation request proceeds. If the referenced event cannot be confirmed to exist and to belong to the same business, the movement request is invalidated and no movement is created. Loose coupling therefore never weakens business isolation or audit integrity — it only avoids a hard schema dependency on tables owned by future missions; it does not relax the correctness requirement that a recorded link must be real and business-scoped.
+
 ### Responsible User
 
 A reference to the authenticated user who performed or authorized the action that produced a movement. Required on every movement unless the movement instead carries an originating business-event reference (Product Blueprint Section 8 "Stock Ledger"; Business Rule 16). At least one of the two must be present.
@@ -117,6 +119,13 @@ This section specifies the required tables, relationships, keys, constraints, an
 ### Movement Creation Flow
 
 Every stock-affecting action (opening stock, adjustment, future linked events) calls one shared movement-creation operation. That operation: validates business ownership and permission for the specific action, validates required fields (including the responsible-user-or-event constraint), evaluates the projected resulting current stock, applies the negative-stock authorization gate if the projection would go negative, and inserts the movement as a single atomic operation.
+
+The movement-creation operation is a strict two-phase flow, and no optimistic assumption is made between the two phases:
+
+1. **Preview (informational only).** Where a caller requests a projected-stock warning ahead of confirmation (e.g., the negative-stock warning in Section 10), the resulting projection is informational only. It reflects stock state at the moment of the preview request. It does not reserve, hold, or lock stock, and it does not influence what happens when the caller later confirms.
+2. **Commit (authoritative).** When the caller confirms and the movement-creation operation actually runs, the server recalculates projected resulting stock immediately before insertion, inside the same database transaction as the insert. Final negative-stock authorization and all other validation rules (Section 11) are evaluated against this recalculated state, not against the earlier preview. The movement is committed only if the recalculated state still satisfies every validation rule. If stock changed between the preview and the confirmation — because another movement was posted in the meantime — the request is re-evaluated from scratch against current state; the earlier preview result is never reused as the basis for committing the movement.
+
+This flow applies identically to every caller of the movement-creation operation, including opening stock, adjustments, and corrections — no caller is permitted to skip the commit-time recalculation on the assumption that its own preview is still valid.
 
 ### Current Stock Derivation
 
@@ -186,7 +195,7 @@ Describes the shape of data exchanged, not concrete interface definitions.
 - **Opening stock request/response:** request carries item reference, quantity, unit confirmation; response carries the created movement and updated derived current stock.
 - **Adjustment request/response:** request carries item reference, direction, quantity, reason; response carries the created movement, updated derived current stock, and — when applicable — a negative-stock warning flag requiring explicit confirmation before commit.
 - **Correction request/response:** request carries the original movement reference, direction, quantity, reason; response carries both the original and the new correcting movement.
-- **Negative-stock warning:** a pre-commit response shape carrying the projected resulting quantity, so the frontend can present the warning described in Product Blueprint Section 9 before the user confirms.
+- **Negative-stock warning:** a preview response shape carrying the projected resulting quantity, so the frontend can present the warning described in Product Blueprint Section 9 before the user confirms. This preview is informational only and does not reserve stock (Section 6); the authoritative check is repeated when the user's confirmation is actually submitted, and the outcome of that later check — not the preview — determines whether the movement is committed.
 - **Permission-aware action state:** every response that lists available actions reflects the requesting user's actual permission, so the frontend never renders an action it cannot execute (Product Blueprint Section 9 "Permission Behaviour").
 - **Error/success states:** every write response distinguishes between validation failure, permission failure, and success, so the frontend can never present a blocked action as if it succeeded.
 
@@ -198,12 +207,13 @@ Describes the shape of data exchanged, not concrete interface definitions.
 - **Negative-stock validation.** Before committing a movement that would result in negative stock, the operation validates that the requesting user holds negative-stock authorization; absent that authorization, the operation is rejected, not silently clamped to zero.
 - **Audit validation.** Every movement insert validates that at least one of responsible-user reference or originating-event reference is present before the write is allowed to proceed.
 - **Correction validation.** A correction insert validates that the referenced original movement exists, belongs to the same inventory item and business, and that the requesting user holds correction permission.
+- **Business-event link validation.** Before a movement carrying an originating business-event reference is created, the operation validates that the referenced event exists and belongs to the same business as the movement (Section 4, "Transaction Links"). This validation occurs before movement creation, not after; if it fails, the movement request is invalidated and no movement is created. Loose coupling of the schema relationship does not exempt the link from this validation.
 
 ## 12. Concurrency Strategy
 
-- **Transactions.** Movement creation (including the projected-quantity evaluation for negative-stock detection) executes within a single database transaction, so the projection used for the negative-stock decision reflects the same state that the insert commits against.
+- **Transactions.** Movement creation (including the projected-quantity evaluation for negative-stock detection) executes within a single database transaction, so the projection used for the negative-stock decision reflects the same state that the insert commits against. Any earlier, out-of-transaction preview shown to the user (Section 6, "Preview") carries no weight at commit time — it is never substituted for the in-transaction recalculation.
 - **Atomic operations.** The insert of a movement row and any maintained current-stock projection (if that design is chosen per Section 6) occur atomically, so no reader can observe a movement without its corresponding stock effect or vice versa.
-- **Race-condition prevention.** Two concurrent movement-creation requests against the same inventory item are serialized at the transaction/row-lock level so that both projected-quantity evaluations are correct relative to each other, preventing two concurrent adjustments from both passing a negative-stock check that only one of them should have passed.
+- **Race-condition prevention.** Two concurrent movement-creation requests against the same inventory item are serialized at the transaction/row-lock level so that both projected-quantity evaluations are correct relative to each other, preventing two concurrent adjustments from both passing a negative-stock check that only one of them should have passed. If stock changes between a user's preview and their confirmation, the confirming request is re-evaluated against current state rather than committed on the assumption that the preview still holds.
 - **Idempotency.** The movement-creation operation accepts an idempotency key from the caller so that a retried request (client resubmission or a future integration's retried event delivery) does not create a duplicate movement.
 - **Retry behaviour.** Callers are expected to retry failed requests using the same idempotency key; the movement-creation operation returns the original result for a repeated key rather than creating a second movement.
 
@@ -211,8 +221,9 @@ Describes the shape of data exchanged, not concrete interface definitions.
 
 - **Indexing.** As specified in Section 5: business-scoped indexes on both tables, plus item-plus-time indexing on movements to support history and current-stock derivation queries.
 - **Pagination.** History retrieval and inventory list operations are paginated by design; no operation is expected to return an unbounded result set.
-- **Aggregation.** Current-stock derivation, if computed by aggregation rather than a maintained projection, is scoped to a single inventory item per request — never aggregated across a business's full movement history in a single query.
-- **Query optimization.** List and summary views query against item-level and derived-stock-level attributes; they do not scan movement history directly except when history itself is the requested view.
+- **Aggregation.** Current-stock derivation for a single-item request (e.g., inventory detail), if computed by aggregation rather than a maintained projection, is scoped to that one inventory item.
+- **Batch retrieval for lists.** Inventory list retrieval must not derive current stock by issuing one query per item (an N+1 pattern). The derived stock values for every item on a requested page are retrieved in a single batch operation — either one aggregation query grouped by item for the page's item set, or a single lookup against a maintained per-item projection (Section 6, "Current Stock Derivation") — so that list response time does not scale with the number of items on the page.
+- **Query optimization.** List and summary views query against item-level and derived-stock-level attributes; they do not scan movement history directly except when history itself is the requested view. Whichever batch strategy is chosen (grouped aggregation or maintained projection) must preserve ledger authority: the batch result must always be consistent with what a single-item derivation would return for the same item, and no optimization may introduce a value for current stock that is not itself derived from the movement ledger. A cached or materialized value used for list performance is a read-path optimization only, never an independent source of inventory truth.
 - **Future scalability.** The design anticipates higher movement volume from future governed missions (POS, purchasing, sales) without requiring a redesign of the movement-creation path; if aggregation-based current-stock derivation proves insufficient at scale, migrating to a maintained projection is a query-strategy change, not a ledger-authority change.
 
 ## 14. Migration Strategy
