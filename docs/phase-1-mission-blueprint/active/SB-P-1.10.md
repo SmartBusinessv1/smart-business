@@ -8,13 +8,13 @@
 | Mission Name            | Inventory Foundation       |
 | Domain                  | Business Operations Domain |
 | Mission Status          | Draft                      |
-| Blueprint Version       | 1.0 (Draft 1A)             |
+| Blueprint Version       | 1.0 (Draft 1B)             |
 | Product Blueprint Owner | Product Governance         |
 | Builder Review          | Pending                    |
 | Engineering Review      | Pending                    |
 | Founder Approval        | Pending                    |
 | Mission Control Status  | Draft                      |
-| Last Updated            | 2026-06-19                 |
+| Last Updated            | 2026-07-21                 |
 
 ## Mission Snapshot
 
@@ -213,7 +213,7 @@ Most importantly, merchants will no longer need to wonder "Why does the system s
 | Stock Movement Recording          | Record stock increases and decreases as business events with meaningful context.                      | Connects inventory changes to the activity that caused them.                                             | No inventory quantity changes without a recorded movement and an auditable reason.                                                |
 | Opening Stock                     | Allow a business to establish the stock available when inventory is first recorded in Smart Business. | Supports practical onboarding without losing the origin of the initial quantity.                         | Opening stock appears as a clearly identified inventory movement and forms part of the permanent history.                         |
 | Stock Adjustments                 | Allow authorized users to correct inventory through documented adjustments.                           | Helps merchants reconcile discrepancies while preserving accountability.                                 | Every adjustment records its direction, quantity, reason, and responsible user without replacing prior history.                   |
-| Current Stock Visibility          | Present the current available quantity derived from inventory movements.                              | Gives merchants confidence in the stock information used for daily decisions.                            | The displayed current quantity is consistent with the complete stock ledger.                                                      |
+| Current Stock Visibility          | Present the current stock quantity derived from inventory movements.                                  | Gives merchants confidence in the stock information used for daily decisions.                            | The displayed current quantity is consistent with the complete stock ledger.                                                      |
 | Inventory History                 | Provide a chronological view of inventory activity.                                                   | Enables merchants to understand how and why stock changed over time.                                     | Users can trace each change to its movement details, reason, and related business event when one exists.                          |
 | Inventory Search & Filtering      | Help users locate relevant inventory records and narrow the inventory view.                           | Reduces effort when working with many inventory records.                                                 | Users can find inventory using familiar identifying information and apply relevant filters without changing inventory data.       |
 | Permission-Aware Inventory Access | Respect business ownership and the permissions granted to each user.                                  | Protects business information while supporting appropriate employee participation.                       | Users can view or adjust inventory only when authorized for that business and action.                                             |
@@ -226,6 +226,14 @@ An inventory entity represents stock owned and tracked by a business. It provide
 
 Each inventory entity must remain understandable as a business asset and must not depend on a manually maintained current quantity.
 
+### Inventory Lifecycle
+
+Authorized users may create inventory entities.
+
+Inventory entities with ledger history shall never be permanently deleted. When an inventory entity is no longer active, it may be archived or deactivated.
+
+Archiving preserves the complete inventory history and must not alter stock history or current stock calculations. Archived inventory remains available to authorized users for historical reference.
+
 ### Inventory Identification
 
 Each inventory entity must have a clear identity within its business so that merchants can distinguish it from other inventory records.
@@ -234,9 +242,11 @@ Identification must support familiar business information and must remain consis
 
 ### Units of Measure
 
-Each inventory entity must use a defined unit of measure that communicates how its quantity is counted.
+Every inventory entity must have one required base stock-counting unit that communicates how its quantity is counted.
 
-The unit of measure must be visible wherever quantity is presented. Stock movements and current stock for an inventory entity must use its defined unit consistently so that quantities remain understandable and comparable.
+The base stock-counting unit must be visible wherever quantity is presented. Stock movements and current stock for an inventory entity must use its base stock-counting unit consistently so that quantities remain understandable and comparable.
+
+This mission does not introduce alternate units, unit conversions, packaging relationships, or selling-unit configuration. Those capabilities belong to future governed missions, beginning with SB-P-1.11 — Product Catalog & Pricing.
 
 ### Current Quantity
 
@@ -288,6 +298,14 @@ An inventory adjustment allows an authorized user to record a correction when ph
 
 An adjustment must record whether stock increases or decreases and must include a documented reason. It creates a new inventory movement and must never rewrite, delete, or conceal previous movements.
 
+### Inventory Movement Corrections
+
+Posted inventory movements shall not be silently edited or silently deleted.
+
+Corrections shall occur through a linked reversal or compensating inventory movement. Both the original movement and the correcting movement remain permanently visible.
+
+Correction permissions remain under business-owner control, and inventory audit history always remains complete.
+
 ### Inventory Audit Trail
 
 The inventory audit trail must make every quantity change explainable from its origin through its effect on current stock.
@@ -299,6 +317,12 @@ The audit trail must preserve who performed or authorized an action, when it occ
 Current stock is derived from the stock ledger by applying all recorded increases and decreases for an inventory entity.
 
 The ledger is authoritative. Current stock must not be maintained through direct manual quantity updates or through any separate source of inventory truth.
+
+### Negative Stock Policy
+
+Smart Business may allow negative stock only for an authorized user. A clear warning must be presented before the user confirms the movement.
+
+Negative stock shall never occur silently. The resulting movement remains fully auditable, and inventory records with negative stock must be clearly identifiable.
 
 ### Inventory Search
 
@@ -365,6 +389,12 @@ The Inventory Truth Model must preserve the following rules:
 ## 9. UI / UX Expectations
 
 The inventory experience must remain human-first, simple, familiar, and aligned with the way merchants already understand stock. It should require a low learning curve and respect existing merchant workflows without introducing unnecessary operational steps.
+
+### Inventory Creation Experience
+
+Inventory creation should be simple, use familiar terminology, and require only the information needed to establish the inventory identity and select its base stock-counting unit.
+
+The experience should provide clear opening stock guidance while keeping data entry minimal. Before saving, the user should be able to confirm the inventory identity, base unit, and opening stock information clearly.
 
 ### Inventory List
 
