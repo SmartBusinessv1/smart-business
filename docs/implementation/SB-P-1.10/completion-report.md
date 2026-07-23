@@ -1,12 +1,12 @@
 Document: Completion Report
 
-Version: 1.2
+Version: 1.3
 
-Status: DRAFT — updated under mission SB-P-1.10-LOVE-CR-1.0
+Status: DRAFT — updated under mission SB-P-1.10-TV-1.0
 
 Created By: Claude
 
-Updated By: Lovable Builder (Reporting Room 03_Lovable_Builder)
+Updated By: Lovable Builder (Reporting Room 03_Lovable_Builder) — SB-P-1.10-LOVE-CR-1.0 (v1.2) and SB-P-1.10-TV-1.0 (v1.3)
 
 Reviewed By: Mission Control (pending)
 
@@ -60,49 +60,49 @@ Mission: SB-P-1.10
 ## 4. Verification Checklist Summary
 
 - **Checklist version.** 1.1 (LOCKED template preserved).
-- **Checklist execution.** Executed under mission SB-P-1.10-LOVE-CR-1.0 on 23 July 2026 by the Lovable Builder. Results captured in `docs/implementation/SB-P-1.10/verification-checklist.md` Appendix A.
-- **Totals.** Pass: **43** · Fail: **0** · Follow-up: **9**.
-- **Overall result.** No release-blocking failures identified. Nine Follow-up items — primarily the absence of an automated test suite and runtime UI screenshots for a subset of interactive scenarios — are recorded for Mission Control decision.
+- **Checklist execution.** Appendix A executed 23 July 2026 under SB-P-1.10-LOVE-CR-1.0 (Pass 43 · Fail 0 · Follow-up 9). Appendix B executed 23 July 2026 under SB-P-1.10-TV-1.0 (Technical Verification Closure).
+- **Cumulative totals.** Pass: **45** · Fail: **0** · Follow-up: **7**.
+- **Overall result.** No release-blocking failures identified in the SB-P-1.10 scope reads and structure. One implementation defect discovered during closure (D-19 — see §7) blocks the runtime stock-write path and requires a Mission-Control-authorised corrective mission. Five of the remaining Follow-up items are formally justified as out of scope for a closure mission (metrics pipeline; automated test suite and its dependents); two are blocked by the discovered defect.
 
 ## 5. Testing Summary
 
-- **Automated tests executed.** None. No automated test suite exists in the repository (no `*.test.*` / `*.spec.*` files; no `test` script in `package.json`). This gap is recorded as a release-blocking Follow-up (see §7).
-- **Behaviour verification without a test suite.** The Engineering Contract §16 obligations are implemented and observable in the deployed runtime:
-  - **RLS + business isolation.** Owner-scoped policies on all three inventory tables, all keyed on `business_id ∈ (SELECT businesses.id WHERE owner_id=auth.uid())`, with no `anon` policy. Evidence: `evidence/database/D-04_rls_enabled.txt`, `D-05_rls_policies.txt`.
-  - **Append-only ledger.** No UPDATE or DELETE policy exists on `inventory_movements` for any role; defence-in-depth `BEFORE UPDATE`/`BEFORE DELETE` triggers raise `inventory_movements are append-only`. Evidence: `D-05`, `D-06_triggers.txt`, `D-13_append_only_trigger_defs.txt`.
-  - **Shared write path.** `create_inventory_movement()` is the only mutation entry point; server-side validation covers movement type/direction, single opening stock, correction rules, archived-item protection, idempotency conflict, and negative-stock projection. Evidence: `D-08_functions.txt` + `supabase/migrations/20260721205714_…sql`.
-  - **Concurrency.** Per-item `pg_advisory_xact_lock` inside the shared write path; idempotency uniqueness at `(business_id, operation, idempotency_key)`. Evidence: `D-09_indexes.txt` (`inventory_movement_idem_scope_uniq`) + function body.
-  - **Ledger-derived current stock.** `inventory_current_stock_batch(uuid[])` performs one grouped aggregation per list load — no N+1. Evidence: `D-08`.
-- **Founder runtime observation.** Founder-supplied authenticated runtime screenshots (F-01, F-02) confirm UI presence and shape. See §6.
-- **Follow-up.** An automated test suite covering the RLS, business-isolation, concurrency, idempotency, correction, and negative-stock scenarios remains outstanding (§7).
+- **Automated tests executed.** None. No automated test suite exists in the repository (no `*.test.*` / `*.spec.*` files; no `test` script in `package.json`). Authoring a test suite is outside the authorised scope of both SB-P-1.10-LOVE-CR-1.0 and SB-P-1.10-TV-1.0; recommended follow-up mission: `SB-P-1.10-TESTS-1.0`.
+- **Runtime verification executed under SB-P-1.10-TV-1.0.**
+  - **RLS + business isolation.** Executed as the `authenticated` role with `request.jwt.claims.sub` set to (A) the Owner of the Milk business — sees Milk; (B) the Owner of another business — sees zero inventory items and zero movements; (C) an unknown user — sees zero; (E) cross-business INSERT — rejected with `new row violates row-level security policy for table "inventory_items"`. Confirmed no `anon` GRANT or policy exists on any inventory table. Evidence: `evidence/database/D-16_rls_owner_isolation.txt` + `D-05`.
+  - **Query plans.** `EXPLAIN (ANALYZE, BUFFERS)` captured for the item list (Bitmap Index Scan on `inventory_items_business_status_idx`), the batch stock aggregation (function scan), and the movement history (Bitmap Index Scan on `inventory_movements_item_time_idx`). Evidence: `evidence/database/D-18_query_plans.txt`.
+- **Structural verification (retained from SB-P-1.10-LOVE-CR-1.0).** Append-only enforcement (D-05, D-06, D-13), shared write path signature (D-08), owner-scoped policies (D-05), index strategy (D-09), constraint matrix (D-10), enums (D-11).
+- **Concurrency verification.** Structural evidence archived in `evidence/database/D-17_concurrency_structural.txt` (idempotency `SELECT … FOR UPDATE` + payload fingerprint + `inventory_movement_idem_scope_uniq` uniqueness, per-item `pg_advisory_xact_lock`, in-transaction stock projection). Runtime replay was attempted and blocked by the D-19 defect below.
+- **Founder runtime observation.** Founder-supplied authenticated screenshots (F-01, F-02) confirm UI presence and shape.
+- **Follow-up (post-defect).** Runtime UI capture for negative-stock confirmation, correction dialog, archive / reactivate, and successful opening-stock / adjustment mutations cannot be produced against the current runtime because the shared write path currently fails — see §7.
 
 ## 6. Evidence Summary
 
 Evidence is archived under `docs/implementation/SB-P-1.10/evidence/`, indexed by `evidence/README.md`, and separated into four sources:
 
 - **Repository implementation evidence.** `evidence/repository/commit-range.txt` — implementation commit range `412d91b..f9fabe4` with diff-stat.
-- **Lovable-managed database evidence.** `evidence/database/D-01…D-15` — `psql` outputs against the Lovable Cloud backend `wwgqnshcgbukqczqblsm` covering table schemas (D-01, D-02, D-03), RLS enabled state (D-04), RLS policies (D-05), triggers and append-only trigger definitions (D-06, D-13), Data-API grants (D-07), function signatures (D-08), indexes (D-09), constraints (D-10), enums (D-11), attempted migration record read (D-12 — permission-denied for the exec role; deployment corroborated by all other artefacts), live row counts (D-14), and the current items snapshot (D-15).
-- **Founder runtime evidence.** `evidence/founder/F-01_inventory_list_empty.png` (authenticated Inventory list with the workspace nav, filters, and empty state) and `F-02_item_detail_milk.png` (authenticated item detail for "Milk", counted in `packet`, current stock 0, showing Record opening stock / Adjustment increase / Adjustment decrease / Archive actions and the append-only history header).
-- **Runtime verification notes.** `evidence/runtime/runtime-notes.md` — narrative tying the Founder screenshots and database evidence to the Engineering Contract obligations, including the exact match between the sole live item in `D-15_current_items.txt` and the "Milk" item shown in F-02.
-- **Deployment status.** The SB-P-1.10 migration is applied in the Lovable-managed backend: the three inventory tables, all seven RLS policies, all four functions, the two append-only triggers, the immutability guard trigger, the opening-stock uniqueness index, and all enums are present at runtime (D-01…D-13). Direct read of `supabase_migrations.schema_migrations` was refused for the exec role (D-12); this does not affect the deployment finding, which is corroborated by the runtime artefacts themselves.
+- **Lovable-managed database evidence.** `evidence/database/D-01…D-15` (SB-P-1.10-LOVE-CR-1.0) — table schemas, RLS enabled state, policies, triggers and append-only trigger definitions, Data-API grants, function signatures, indexes, constraints, enums, migration-record read attempt, live row counts, and current items snapshot. **New under SB-P-1.10-TV-1.0:** `D-16_rls_owner_isolation.txt` (runtime RLS behavioural probes as the `authenticated` role), `D-17_concurrency_structural.txt` (concurrency and idempotency mechanisms), `D-18_query_plans.txt` (EXPLAIN plans and index usage), and `D-19_movement_creation_defect.txt` (discovered runtime defect in `create_inventory_movement` — see §7).
+- **Founder runtime evidence.** `F-01_inventory_list_empty.png` (authenticated Inventory list) and `F-02_item_detail_milk.png` (authenticated item detail for "Milk").
+- **Runtime verification notes.** `evidence/runtime/runtime-notes.md`.
+- **Deployment status.** The SB-P-1.10 migration is applied in the Lovable-managed backend: the three inventory tables, all seven RLS policies, all four functions, the two append-only triggers, the immutability guard trigger, the opening-stock uniqueness index, and all enums are present at runtime. Direct read of `supabase_migrations.schema_migrations` was refused for the exec role (D-12); this does not affect the deployment finding.
 
-**Retraction.** The v1.1 report referenced a Supabase project ref `gysgzasfcjvtrgaigfyn` and stated (in §2 and §6) that the deployment could not be confirmed because that project's `public` schema was empty. That project is **not** the Lovable-managed backend for Smart Business — Smart Business runs on Lovable Cloud project ref `wwgqnshcgbukqczqblsm`, where the migration is fully applied per the evidence above. All references to `gysgzasfcjvtrgaigfyn` and the accompanying "zero tables / no migrations" conclusion are withdrawn.
+**Retraction.** The v1.1 report referenced a Supabase project ref `gysgzasfcjvtrgaigfyn` and stated that the deployment could not be confirmed because that project's `public` schema was empty. That project is **not** the Lovable-managed backend for Smart Business — Smart Business runs on Lovable Cloud project ref `wwgqnshcgbukqczqblsm`, where the migration is fully applied per the evidence above. All references to `gysgzasfcjvtrgaigfyn` and the accompanying "zero tables / no migrations" conclusion are withdrawn.
 
 ## 7. Outstanding Issues
 
-- **Follow-up items (nine).**
-  1. No automated test suite exists for SB-P-1.10 (Engineering Contract §16). Recommended: a subsequent test-authoring mission covering RLS, business isolation, append-only enforcement, idempotency, negative-stock, correction, and opening-stock invariants.
-  2. Negative-stock UI confirmation dialog: server-side check present (`NEGATIVE_STOCK` exception) and client wiring present in `inventory.$itemId.tsx`; a runtime screenshot of the confirmation flow is not captured under this mission.
-  3. Correction dialog runtime capture: implementation present; screenshot not captured.
-  4. Archive / reactivate runtime capture: implementation present; screenshot not captured.
-  5. Opening-stock and adjustment mutation runtime capture (post-mutation current-stock recomputation): implementation present; screenshot not captured.
-  6. Cross-business isolation runtime capture with a second signed-in Owner: RLS verified structurally (D-04, D-05); runtime observation not captured.
-  7. Idempotency-key duplicate-replay runtime capture: implementation and index present (`inventory_movement_idem_scope_uniq`); UI-level replay observation not captured.
-  8. Runtime observability metrics/pipeline evidence beyond error taxonomy is not captured.
-  9. Query-plan / performance evidence for final index selection is not captured; index strategy is present in schema (D-09) but explicit plan analysis is deferred.
+- **Discovered defect (SB-P-1.10-TV-1.0).** `public.create_inventory_movement` raises `function digest(text, unknown) does not exist` on every call. Root cause: the function is declared `SET search_path TO 'public'`, but `pgcrypto`'s `digest(text, text)` lives in the `extensions` schema. Corroboration: `inventory_movements` row count in production is zero (D-14). Consequence: every stock-affecting write (opening stock, adjustments, corrections, negative-stock confirmation) currently fails; only item creation is operational. Fix (scoped, not applied under this mission): broaden the function's `search_path` to include `extensions`, or qualify the call as `extensions.digest(...)`. Evidence: `evidence/database/D-19_movement_creation_defect.txt`. **Requires a Mission-Control-authorised corrective mission** (proposed identifier `SB-P-1.10-FIX-DIGEST-1.0`).
+- **Cumulative Follow-up items (seven).**
+  1. §4 Observability metrics pipeline — justified: not authorised in Phase 1; error taxonomy is the only observability surface authorised and is present.
+  2. §5 Negative-stock UI confirmation runtime capture — blocked by D-19 defect above.
+  3. §9 Automated test suite (Engineering Contract §16) — justified: out of scope for this closure mission; recommended follow-up `SB-P-1.10-TESTS-1.0`.
+  4. §9 Tests execute successfully — dependent on item 3.
+  5. §9 Traceability to §16 obligations — dependent on item 3.
+  6. §9/§10 Concurrency automated tests / test results — structurally verified via D-17; runtime replay blocked by D-19; dependent on item 3 for the automated-suite dimension.
+  7. §10 Automated test results — dependent on item 3.
+- **Resolved this mission (two).**
+  - RLS + business-isolation runtime verification — **Pass** via D-16.
+  - Query-plan / performance evidence — **Pass** via D-18.
 - **Known observations carried over.** OBS-P3C-01 (React hydration warning on `/reset-password`) from SB-P-1.9 — unrelated to the SB-P-1.10 module; not exercised by this mission.
-- **Deployment finding.** SB-P-1.10 migration is deployed in the Lovable-managed backend (see §6 evidence). The prior report's "deployment unconfirmed" statement — based on querying an unrelated Supabase project — is retracted.
-- **Justification.** All findings above are grounded in the evidence archived under `docs/implementation/SB-P-1.10/evidence/`. No evidence has been invented; every Follow-up is a documentation or automated-test gap, not an implementation defect observed at runtime.
+- **Justification.** All findings above are grounded in the evidence archived under `docs/implementation/SB-P-1.10/evidence/`. No evidence has been invented. The one implementation defect discovered (D-19) is surfaced honestly and its fix is proposed but not applied, in line with SB-P-1.10-TV-1.0's authorisation boundary ("No implementation changes are authorized unless a genuine implementation defect is discovered during verification" — read together with the mission's instruction not to modify implementation code without separate Mission Control authorisation).
 - **Mission Control notes.** _Reserved for Mission Control._
 
 ## 8. Final Repository Verification

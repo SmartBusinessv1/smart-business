@@ -1,0 +1,73 @@
+=== Plan 1: inventory_items list (owner-scoped by RLS + name order)
+                                                                    QUERY PLAN                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=4.47..4.48 rows=3 width=68) (actual time=0.065..0.066 rows=1 loops=1)
+   Sort Key: name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=5
+   ->  Bitmap Heap Scan on inventory_items  (cost=1.27..4.44 rows=3 width=68) (actual time=0.013..0.014 rows=1 loops=1)
+         Recheck Cond: (business_id = '28b2e43f-b7f0-4e93-b337-bbcaef242cf5'::uuid)
+         Heap Blocks: exact=1
+         Buffers: shared hit=2
+         ->  Bitmap Index Scan on inventory_items_business_status_idx  (cost=0.00..1.27 rows=3 width=0) (actual time=0.003..0.004 rows=4 loops=1)
+               Index Cond: (business_id = '28b2e43f-b7f0-4e93-b337-bbcaef242cf5'::uuid)
+               Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=14
+ Planning Time: 0.126 ms
+ Execution Time: 0.093 ms
+(15 rows)
+
+
+=== Plan 2: batch stock aggregation for a single item
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Function Scan on inventory_current_stock_batch  (cost=0.25..10.25 rows=1000 width=48) (actual time=1.442..1.442 rows=0 loops=1)
+   Buffers: shared hit=169
+ Planning Time: 0.039 ms
+ Execution Time: 1.459 ms
+(4 rows)
+
+
+=== Plan 3: movement history for one item (detail page fetch)
+                                                                   QUERY PLAN                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=6.02..6.02 rows=2 width=202) (actual time=0.020..0.021 rows=0 loops=1)
+   Sort Key: occurred_at DESC, created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=4
+   ->  Bitmap Heap Scan on inventory_movements  (cost=3.87..6.01 rows=2 width=202) (actual time=0.006..0.007 rows=0 loops=1)
+         Recheck Cond: (item_id = '9b712339-88aa-43e9-9bdc-85af8ea44390'::uuid)
+         Buffers: shared hit=1
+         ->  Bitmap Index Scan on inventory_movements_item_time_idx  (cost=0.00..3.87 rows=2 width=0) (actual time=0.002..0.002 rows=0 loops=1)
+               Index Cond: (item_id = '9b712339-88aa-43e9-9bdc-85af8ea44390'::uuid)
+               Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=18
+ Planning Time: 0.849 ms
+ Execution Time: 0.052 ms
+(14 rows)
+
+
+=== Available indexes on inventory_movements (reference)
+                 indexname                 |                                                                                     indexdef                                                                                      
+-------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ inventory_movements_pkey                  | CREATE UNIQUE INDEX inventory_movements_pkey ON public.inventory_movements USING btree (id)
+ inventory_movements_id_business_item_uniq | CREATE UNIQUE INDEX inventory_movements_id_business_item_uniq ON public.inventory_movements USING btree (id, business_id, item_id)
+ inventory_movements_opening_stock_unique  | CREATE UNIQUE INDEX inventory_movements_opening_stock_unique ON public.inventory_movements USING btree (item_id) WHERE (movement_type = 'opening_stock'::inventory_movement_type)
+ inventory_movements_item_time_idx         | CREATE INDEX inventory_movements_item_time_idx ON public.inventory_movements USING btree (business_id, item_id, occurred_at, id)
+ inventory_movements_business_time_idx     | CREATE INDEX inventory_movements_business_time_idx ON public.inventory_movements USING btree (business_id, occurred_at DESC)
+ inventory_movements_correcting_of_idx     | CREATE INDEX inventory_movements_correcting_of_idx ON public.inventory_movements USING btree (correcting_of) WHERE (correcting_of IS NOT NULL)
+ inventory_movements_event_ref_idx         | CREATE INDEX inventory_movements_event_ref_idx ON public.inventory_movements USING btree (business_event_type, business_event_id) WHERE (business_event_id IS NOT NULL)
+(7 rows)
+
+
+=== Available indexes on inventory_items
+              indexname              |                                                      indexdef                                                      
+-------------------------------------+--------------------------------------------------------------------------------------------------------------------
+ inventory_items_pkey                | CREATE UNIQUE INDEX inventory_items_pkey ON public.inventory_items USING btree (id)
+ inventory_items_id_business_uniq    | CREATE UNIQUE INDEX inventory_items_id_business_uniq ON public.inventory_items USING btree (id, business_id)
+ inventory_items_business_name_uniq  | CREATE UNIQUE INDEX inventory_items_business_name_uniq ON public.inventory_items USING btree (business_id, name)
+ inventory_items_business_status_idx | CREATE INDEX inventory_items_business_status_idx ON public.inventory_items USING btree (business_id, status, name)
+(4 rows)
+

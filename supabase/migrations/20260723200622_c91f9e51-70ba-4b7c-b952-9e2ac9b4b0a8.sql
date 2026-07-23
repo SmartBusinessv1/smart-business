@@ -1,0 +1,1 @@
+DELETE FROM public.inventory_items WHERE name = 'Rogue Item' AND id = 'b933d38e-2e7c-4100-9aad-dbe53d0ff5f0';

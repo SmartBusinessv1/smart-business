@@ -1,0 +1,211 @@
+\echo === Probe A: authenticated as OWNER of Milk business (3612fc99...) — must SEE Milk (1 row)
+=== Probe A: authenticated as OWNER of Milk business (3612fc99...) — must SEE Milk (1 row)
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+(1 row)
+
+SELECT id, name, business_id FROM public.inventory_items;
+                  id                  | name |             business_id              
+--------------------------------------+------+--------------------------------------
+ 9b712339-88aa-43e9-9bdc-85af8ea44390 | Milk | 28b2e43f-b7f0-4e93-b337-bbcaef242cf5
+(1 row)
+
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
+ movements_visible 
+-------------------
+                 0
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe B: authenticated as OTHER business owner (74d920ee...) — must see ZERO inventory rows
+=== Probe B: authenticated as OTHER business owner (74d920ee...) — must see ZERO inventory rows
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
+(1 row)
+
+SELECT count(*) AS items_visible FROM public.inventory_items;
+ items_visible 
+---------------
+             0
+(1 row)
+
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
+ movements_visible 
+-------------------
+                 0
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe C: authenticated as random unknown user — must see ZERO
+=== Probe C: authenticated as random unknown user — must see ZERO
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}
+(1 row)
+
+SELECT count(*) AS items_visible FROM public.inventory_items;
+ items_visible 
+---------------
+             0
+(1 row)
+
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
+ movements_visible 
+-------------------
+                 0
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe D: anon role — must be BLOCKED (no anon policies, no anon GRANT on inventory_*)
+=== Probe D: anon role — must be BLOCKED (no anon policies, no anon GRANT on inventory_*)
+BEGIN;
+BEGIN
+SET LOCAL ROLE anon;
+ERROR:  permission denied to set role "anon"
+SELECT count(*) AS items_visible_to_anon FROM public.inventory_items;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe E: cross-business INSERT — OTHER owner tries to write into Milk business — must FAIL (WITH CHECK)
+=== Probe E: cross-business INSERT — OTHER owner tries to write into Milk business — must FAIL (WITH CHECK)
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
+(1 row)
+
+INSERT INTO public.inventory_items (business_id, created_by, name, base_unit)
+  VALUES ('28b2e43f-b7f0-4e93-b337-bbcaef242cf5','74d920ee-b736-4c25-aef2-13bf2e5cff62','Rogue Item','unit');
+ERROR:  new row violates row-level security policy for table "inventory_items"
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe F: UPDATE on inventory_movements as owner — RLS has no UPDATE policy (rows invisible for UPDATE); if any row matched, append-only trigger would additionally reject
+=== Probe F: UPDATE on inventory_movements as owner — RLS has no UPDATE policy (rows invisible for UPDATE); if any row matched, append-only trigger would additionally reject
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+(1 row)
+
+UPDATE public.inventory_movements SET quantity = quantity + 1;
+UPDATE 0
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe G: DELETE on inventory_movements as owner — no DELETE policy + append-only trigger
+=== Probe G: DELETE on inventory_movements as owner — no DELETE policy + append-only trigger
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+(1 row)
+
+DELETE FROM public.inventory_movements;
+DELETE 0
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe H: Append-only trigger with a real (transient) movement — insert, then UPDATE/DELETE inside same tx (ROLLBACK)
+=== Probe H: Append-only trigger with a real (transient) movement — insert, then UPDATE/DELETE inside same tx (ROLLBACK)
+BEGIN;
+BEGIN
+SET LOCAL ROLE authenticated;
+SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+(1 row)
+
+-- Seed a movement using the shared write function
+SELECT public.create_inventory_movement(
+  gen_random_uuid(), 'verify-append-only', '9b712339-88aa-43e9-9bdc-85af8ea44390',
+  'opening_stock', 'increase', 10, 'verification probe', now(), NULL, false, NULL, NULL
+) IS NOT NULL AS movement_created;
+ERROR:  function digest(text, unknown) does not exist
+LINE 1: v_fingerprint := encode(digest(
+                                ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+QUERY:  v_fingerprint := encode(digest(
+    coalesce(p_item_id::text, '') || '|' ||
+    p_movement_type::text || '|' ||
+    p_direction::text || '|' ||
+    p_quantity::text || '|' ||
+    v_reason || '|' ||
+    coalesce(p_correcting_of::text, '') || '|' ||
+    coalesce(p_business_event_type, '') || '|' ||
+    coalesce(p_business_event_id::text, ''),
+    'sha256'), 'hex')
+CONTEXT:  PL/pgSQL function create_inventory_movement(uuid,text,uuid,inventory_movement_type,inventory_direction,numeric,text,timestamp with time zone,uuid,boolean,text,uuid) line 54 at assignment
+\echo -- Now attempt UPDATE — trigger must reject
+-- Now attempt UPDATE — trigger must reject
+UPDATE public.inventory_movements SET quantity = quantity + 1 WHERE item_id = '9b712339-88aa-43e9-9bdc-85af8ea44390';
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+\echo -- Attempt DELETE — trigger must reject
+-- Attempt DELETE — trigger must reject
+DELETE FROM public.inventory_movements WHERE item_id = '9b712339-88aa-43e9-9bdc-85af8ea44390';
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
+ROLLBACK
+\echo
+
+\echo === Probe I: Anon-access proof via GRANT / POLICY audit (sandbox_exec is not a member of anon; sanity-check catalog)
+=== Probe I: Anon-access proof via GRANT / POLICY audit (sandbox_exec is not a member of anon; sanity-check catalog)
+SELECT grantee, privilege_type FROM information_schema.role_table_grants
+  WHERE table_schema='public' AND table_name IN ('inventory_items','inventory_movements','inventory_movement_idempotency_keys')
+    AND grantee='anon';
+ grantee | privilege_type 
+---------+----------------
+(0 rows)
+
+SELECT tablename, policyname, roles FROM pg_policies
+  WHERE schemaname='public' AND tablename IN ('inventory_items','inventory_movements','inventory_movement_idempotency_keys')
+    AND 'anon' = ANY(roles);
+ tablename | policyname | roles 
+-----------+------------+-------
+(0 rows)
+

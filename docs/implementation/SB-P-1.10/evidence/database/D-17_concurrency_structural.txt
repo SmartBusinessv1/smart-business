@@ -1,0 +1,84 @@
+SB-P-1.10-TV-1.0 — Concurrency structural evidence
+====================================================
+
+The shared write function `public.create_inventory_movement` implements
+concurrency and idempotency controls in three coordinated mechanisms.
+The catalog and index evidence for these mechanisms is captured in
+D-08_functions.txt and D-09_indexes.txt; the source lines that implement
+each mechanism (from the deployed function body captured under
+<db-functions> in project context and from the migration source
+`supabase/migrations/20260721205714_c3b38f2f-5f12-431d-80c2-9b14394cbc20.sql`)
+are cited below.
+
+--- Mechanism 1: idempotency-key conflict detection ------------------------
+
+Table: public.inventory_movement_idempotency_keys (D-03)
+Uniqueness index: inventory_movement_idem_scope_uniq
+                  ON (business_id, operation, idempotency_key) (D-09)
+
+Function body:
+
+    SELECT * INTO v_existing_key
+      FROM public.inventory_movement_idempotency_keys
+     WHERE business_id = v_business
+       AND operation = p_operation
+       AND idempotency_key = p_idempotency_key
+     FOR UPDATE;
+    IF FOUND THEN
+      IF v_existing_key.payload_fingerprint <> v_fingerprint THEN
+        RAISE EXCEPTION 'Idempotency key conflict: request payload differs from original';
+      END IF;
+      SELECT * INTO v_existing_movement
+        FROM public.inventory_movements
+       WHERE id = v_existing_key.movement_id;
+      RETURN v_existing_movement;
+    END IF;
+
+Behaviour:
+- Same key + same payload           → returns the original movement (idempotent)
+- Same key + different payload      → raises 'Idempotency key conflict'
+- Different key                     → proceeds; the unique index rejects any
+                                       race that would create a duplicate
+
+--- Mechanism 2: per-item advisory serialisation ---------------------------
+
+    PERFORM pg_advisory_xact_lock(hashtextextended(p_item_id::text, 0));
+
+Behaviour:
+- Serialises concurrent writes for the SAME item within a transaction so
+  the in-transaction negative-stock projection (Mechanism 3) is
+  authoritative even under interleaved requests.
+- Lock is released automatically at transaction end.
+
+--- Mechanism 3: authoritative in-transaction stock projection -------------
+
+    SELECT coalesce(
+      sum(CASE WHEN direction = 'increase' THEN quantity ELSE -quantity END),
+      0
+    ) INTO v_current
+      FROM public.inventory_movements
+     WHERE item_id = p_item_id;
+
+    v_signed := CASE WHEN p_direction = 'increase' THEN p_quantity ELSE -p_quantity END;
+    v_projected := v_current + v_signed;
+
+    IF v_projected < 0 AND NOT coalesce(p_allow_negative_stock, false) THEN
+      RAISE EXCEPTION 'NEGATIVE_STOCK: this movement would take stock to %; explicit authorization required', v_projected
+        USING HINT = 'Confirm the negative-stock warning to authorize this movement.';
+    END IF;
+
+Behaviour:
+- The projection reads all committed and (under the advisory lock) any
+  concurrent same-transaction rows. Any second writer for the same item
+  blocks on Mechanism 2 until this transaction commits or rolls back,
+  eliminating negative-stock races.
+
+--- Runtime replay verification: NOT CAPTURED under this mission ----------
+
+A runtime replay test (two calls with the same idempotency key, then two
+calls with matching key + differing payload) was attempted and could not
+be executed because `create_inventory_movement` currently raises
+`function digest(text, unknown) does not exist` on every call — see
+D-19_movement_creation_defect.txt. Runtime replay verification is
+deferred to the follow-up corrective mission that restores the function's
+search_path.

@@ -256,7 +256,7 @@ database artefact (`evidence/database/D-…`); `repo` =
 | Locked governance unmodified | Pass | repo |
 | Ready for Mission Control review | Pass | Mission Control performs final acceptance |
 
-## Totals
+## Totals (SB-P-1.10-LOVE-CR-1.0 execution)
 
 | Result | Count |
 | --- | --- |
@@ -269,5 +269,75 @@ Follow-up items — chiefly the absence of an automated test suite and the
 absence of runtime UI screenshots for a subset of interactive scenarios
 (negative-stock confirmation, correction dialog, archive/reactivate,
 opening-stock and adjustment mutation results) — are recorded for
-Mission Control decision. Implementation is submitted for Mission Control
-review; final acceptance is Mission Control's decision.
+Mission Control decision.
+
+---
+
+# Appendix B — Technical Verification Closure (SB-P-1.10-TV-1.0)
+
+Executed 23 July 2026 by the Lovable Builder (Reporting Room
+03_Lovable_Builder) under mission **SB-P-1.10-TV-1.0** to close the nine
+Follow-up items recorded in Appendix A. Locked template (§§1–12) and
+Appendix A execution results above are preserved unchanged.
+
+Legend as Appendix A.
+
+## Per-Follow-up disposition
+
+| # | Original Follow-up | Verification action | New result | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | §4 Observability metrics pipeline | Confirmed the EIS did not authorise a metrics pipeline in Phase 1. Error taxonomy (`NEGATIVE_STOCK`, `Idempotency key conflict`, correction-cap messages) is the only observability surface authorised for this mission and is present in the deployed function. Adding metrics is outside this mission's authorised scope. | Follow-up — justified (out of scope) | `evidence/database/D-08_functions.txt` + deployed function body |
+| 2 | §5 Negative-stock UI confirmation screenshot | Server-side path exercised via D-19 probe raised a schema-search-path error before reaching the negative-stock branch. No runtime capture is possible until the corrective mission restores `create_inventory_movement`. | Follow-up — blocked by D-19 defect | `evidence/database/D-19_movement_creation_defect.txt`; client wiring in `src/routes/_authenticated/inventory.$itemId.tsx` |
+| 3 | §9 Automated test coverage for §16 obligations | No test framework exists in the repository. Adding one is a code change outside this closure mission's authorised scope. Recommended follow-up: `SB-P-1.10-TESTS-1.0`. | Follow-up — justified (out of scope) | Repository has no `*.test.*` / `*.spec.*` files; no `test` script in `package.json` |
+| 4 | §9 Tests execute successfully | N/A — no tests exist (item 3). | Follow-up — justified (dependent on item 3) | As item 3 |
+| 5 | §9 RLS + business-isolation automated tests | Runtime RLS verification executed under the `authenticated` role via D-16: owner sees their business, other Owner sees zero, unknown user sees zero, cross-business INSERT rejected by `WITH CHECK`, no `anon` GRANT or policy exists on any inventory table. Structural coverage retained via D-05. Automated test suite gap remains (item 3). | **Pass** — runtime-verified for RLS behaviour | `evidence/database/D-16_rls_owner_isolation.txt` (Probes A, B, C, E, I); D-05 |
+| 6 | §9 Concurrency automated tests | Structural evidence archived in D-17: idempotency-key `SELECT … FOR UPDATE` + payload-fingerprint check, unique index `inventory_movement_idem_scope_uniq` (D-09), per-item `pg_advisory_xact_lock`, in-transaction stock projection. Runtime replay was attempted and blocked by the D-19 defect. Automated test suite gap remains (item 3). | Follow-up — structurally verified; runtime replay blocked by D-19 | `evidence/database/D-17_concurrency_structural.txt`; D-09; D-19 |
+| 7 | §9 Traceability to §16 obligations | Traceability matrix is produced alongside the automated test suite (item 3). | Follow-up — justified (dependent on item 3) | As item 3 |
+| 8 | §10 Automated test results | Dependent on item 3. | Follow-up — justified (dependent on item 3) | As item 3 |
+| 9 | §10 Query-plan / performance evidence | `EXPLAIN (ANALYZE, BUFFERS)` captured for the three principal read paths — item list (Bitmap Index Scan on `inventory_items_business_status_idx`), stock aggregation function scan, and movement history (Bitmap Index Scan on `inventory_movements_item_time_idx`). All expected indexes are used. | **Pass** | `evidence/database/D-18_query_plans.txt` |
+
+## Discovered defect
+
+While attempting to seed a transient movement for the append-only /
+concurrency runtime probes, `public.create_inventory_movement` raised
+`function digest(text, unknown) does not exist` for every call. Root
+cause: the function is declared `SET search_path TO 'public'`, but
+`pgcrypto`'s `digest(text, text)` lives in the `extensions` schema.
+Corroborating live-database state: `inventory_movements` row count is
+zero (D-14). Evidence: `evidence/database/D-19_movement_creation_defect.txt`.
+
+Consequence: **every stock-affecting write currently fails at runtime**,
+including opening stock, adjustments, corrections, and negative-stock
+confirmation. Only item creation (which does not call the function) is
+operational, matching the "Milk" row observed in F-02 with zero
+movements.
+
+Under this mission's authority ("No implementation changes are
+authorized unless a genuine implementation defect is discovered during
+verification"), the defect is documented, its fix is scoped
+(broaden the function's `search_path` to include `extensions`, or
+qualify the call as `extensions.digest(...)`), and the corrective
+migration is deferred to a Mission-Control-authorised corrective
+mission (proposed identifier `SB-P-1.10-FIX-DIGEST-1.0`). No corrective
+migration was executed under this closure mission.
+
+## Totals (SB-P-1.10-TV-1.0 execution)
+
+| Result | Count |
+| --- | --- |
+| Pass (new)     | 2 (items 5, 9) |
+| Follow-up (justified out of scope) | 5 (items 1, 3, 4, 7, 8) |
+| Follow-up (blocked by discovered defect) | 2 (items 2, 6) |
+| **Cumulative** | Pass **45** · Fail **0** · Follow-up **7** |
+
+## Overall result
+
+Two Follow-up items resolved to **Pass** with new runtime evidence (RLS
+isolation, query plans). Five Follow-up items are formally **justified**
+as out of scope for this closure mission and require a separate
+authorised mission (test-authoring; metrics pipeline authorisation).
+Two Follow-up items are **blocked** by a genuine implementation defect
+(`D-19_movement_creation_defect.txt`) discovered during verification and
+require a Mission-Control-authorised corrective mission before they can
+be closed. Implementation is submitted for Mission Control review; final
+acceptance is Mission Control's decision.
