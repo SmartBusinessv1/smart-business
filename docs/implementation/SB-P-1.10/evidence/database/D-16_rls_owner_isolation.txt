@@ -1,82 +1,149 @@
+\echo === Probe A: authenticated as OWNER of Milk business (3612fc99...) — must SEE Milk (1 row)
+=== Probe A: authenticated as OWNER of Milk business (3612fc99...) — must SEE Milk (1 row)
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
 
+SELECT id, name, business_id FROM public.inventory_items;
                   id                  | name |             business_id              
 --------------------------------------+------+--------------------------------------
  9b712339-88aa-43e9-9bdc-85af8ea44390 | Milk | 28b2e43f-b7f0-4e93-b337-bbcaef242cf5
 (1 row)
 
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
  movements_visible 
 -------------------
                  0
 (1 row)
 
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe B: authenticated as OTHER business owner (74d920ee...) — must see ZERO inventory rows
+=== Probe B: authenticated as OTHER business owner (74d920ee...) — must see ZERO inventory rows
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
 (1 row)
 
+SELECT count(*) AS items_visible FROM public.inventory_items;
  items_visible 
 ---------------
              0
 (1 row)
 
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
  movements_visible 
 -------------------
                  0
 (1 row)
 
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe C: authenticated as random unknown user — must see ZERO
+=== Probe C: authenticated as random unknown user — must see ZERO
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}
 (1 row)
 
+SELECT count(*) AS items_visible FROM public.inventory_items;
  items_visible 
 ---------------
              0
 (1 row)
 
+SELECT count(*) AS movements_visible FROM public.inventory_movements;
  movements_visible 
 -------------------
                  0
 (1 row)
 
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe D: anon role — must be BLOCKED (no anon policies, no anon GRANT on inventory_*)
+=== Probe D: anon role — must be BLOCKED (no anon policies, no anon GRANT on inventory_*)
+BEGIN;
 BEGIN
+SET LOCAL ROLE anon;
+ERROR:  permission denied to set role "anon"
+SELECT count(*) AS items_visible_to_anon FROM public.inventory_items;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe E: cross-business INSERT — OTHER owner tries to write into Milk business — must FAIL (WITH CHECK)
+=== Probe E: cross-business INSERT — OTHER owner tries to write into Milk business — must FAIL (WITH CHECK)
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
 (1 row)
 
+INSERT INTO public.inventory_items (business_id, created_by, name, base_unit)
+  VALUES ('28b2e43f-b7f0-4e93-b337-bbcaef242cf5','74d920ee-b736-4c25-aef2-13bf2e5cff62','Rogue Item','unit');
+ERROR:  new row violates row-level security policy for table "inventory_items"
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe F: UPDATE on inventory_movements as owner — RLS has no UPDATE policy (rows invisible for UPDATE); if any row matched, append-only trigger would additionally reject
+=== Probe F: UPDATE on inventory_movements as owner — RLS has no UPDATE policy (rows invisible for UPDATE); if any row matched, append-only trigger would additionally reject
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
 
+UPDATE public.inventory_movements SET quantity = quantity + 1;
 UPDATE 0
+ROLLBACK;
 ROLLBACK
+\echo
+
+\echo === Probe G: DELETE on inventory_movements as owner — no DELETE policy + append-only trigger
+=== Probe G: DELETE on inventory_movements as owner — no DELETE policy + append-only trigger
+BEGIN;
 BEGIN
+SET LOCAL ROLE authenticated;
 SET
+SELECT set_config('request.jwt.claims', '{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}', true);
                               set_config                               
 -----------------------------------------------------------------------
  {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
 
+DELETE FROM public.inventory_movements;
 DELETE 0
+ROLLBACK;
 ROLLBACK
