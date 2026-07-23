@@ -1,14 +1,12 @@
 Document: Completion Report
 
-Version: 1.0
+Version: 1.1
 
-Status: LOCKED — approved completion report template
+Status: Draft — pending Mission Control approval
 
 Created By: Claude
 
-Reviewed By: Mission Control
-
-Approval Date: 22 July 2026
+Reviewed By: Pending
 
 Mission: SB-P-1.10
 
@@ -107,7 +105,28 @@ The undersigned builder confirms that:
 | Date | _To be completed after implementation._ |
 | Signature (or equivalent) | _To be completed after implementation._ |
 
-## 10. Mission Control Review
+## 10. Future Upgrade Opportunities (Build Later)
+
+This section records useful product opportunities identified during implementation or runtime verification that may be considered in future missions.
+
+Items recorded here:
+
+- are **not** part of the current mission scope
+- are **not** implementation defects
+- are **not** current acceptance criteria
+- do **not** delay Mission Control approval
+- do **not** authorize additional implementation
+- become inputs for future roadmap planning
+
+| Opportunity | Reason | Recommended Future Mission |
+| --- | --- | --- |
+| Bulk Inventory Import (Excel/CSV) | Reduce manual inventory setup for merchants who already maintain stock lists in spreadsheets. | Future Inventory Import Foundation |
+| PDF Inventory Import | Allow merchants to reuse supplier catalogues and inventory documents. | Future Inventory Import Foundation |
+| Photo-based Inventory Import | Allow merchants to submit photographed inventory sheets for assisted extraction and confirmation. | Future AI Document Processing |
+| WhatsApp Inventory Import | Allow merchants to import inventory directly from approved WhatsApp attachments. | Future WhatsApp File Integration |
+| AI-assisted Inventory Extraction | Extract item names, units, and quantities while keeping merchant confirmation mandatory. | Future AI Inventory Assistant |
+
+## 11. Mission Control Review
 
 Reserved for Mission Control. Not completed by the builder.
 
