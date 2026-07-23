@@ -1,47 +1,82 @@
-set_config
-{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
-id|name|business_id
-9b712339-88aa-43e9-9bdc-85af8ea44390|Milk|28b2e43f-b7f0-4e93-b337-bbcaef242cf5
+
+                  id                  | name |             business_id              
+--------------------------------------+------+--------------------------------------
+ 9b712339-88aa-43e9-9bdc-85af8ea44390 | Milk | 28b2e43f-b7f0-4e93-b337-bbcaef242cf5
 (1 row)
-movement_count_visible
-0
+
+ movements_visible 
+-------------------
+                 0
 (1 row)
-RESET
-set_config
-{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
+
+ROLLBACK
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
 (1 row)
-id|name|business_id
-9b712339-88aa-43e9-9bdc-85af8ea44390|Milk|28b2e43f-b7f0-4e93-b337-bbcaef242cf5
+
+ items_visible 
+---------------
+             0
 (1 row)
-movement_count_visible
-0
+
+ movements_visible 
+-------------------
+                 0
 (1 row)
-RESET
-set_config
-{"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}
+
+ROLLBACK
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"00000000-0000-0000-0000-000000000000","role":"authenticated"}
 (1 row)
-items_visible
-1
+
+ items_visible 
+---------------
+             0
 (1 row)
-movements_visible
-0
+
+ movements_visible 
+-------------------
+                 0
 (1 row)
-RESET
-items_visible_to_anon
-1
+
+ROLLBACK
+BEGIN
+ROLLBACK
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
 (1 row)
-RESET
-set_config
-{"sub":"74d920ee-b736-4c25-aef2-13bf2e5cff62","role":"authenticated"}
+
+ROLLBACK
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
-INSERT 0 1
-RESET
-set_config
-{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+
+UPDATE 0
+ROLLBACK
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
 (1 row)
-RESET
-set_config
-{"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
-(1 row)
-RESET
+
+DELETE 0
+ROLLBACK
