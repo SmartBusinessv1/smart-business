@@ -1,0 +1,51 @@
+=== Defect probe: attempt create_inventory_movement as authenticated owner
+BEGIN
+SET
+                              set_config                               
+-----------------------------------------------------------------------
+ {"sub":"3612fc99-ca3e-4daa-ae51-356f9f1c18bb","role":"authenticated"}
+(1 row)
+
+ERROR:  function digest(text, unknown) does not exist
+LINE 1: v_fingerprint := encode(digest(
+                                ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+QUERY:  v_fingerprint := encode(digest(
+    coalesce(p_item_id::text, '') || '|' ||
+    p_movement_type::text || '|' ||
+    p_direction::text || '|' ||
+    p_quantity::text || '|' ||
+    v_reason || '|' ||
+    coalesce(p_correcting_of::text, '') || '|' ||
+    coalesce(p_business_event_type, '') || '|' ||
+    coalesce(p_business_event_id::text, ''),
+    'sha256'), 'hex')
+CONTEXT:  PL/pgSQL function create_inventory_movement(uuid,text,uuid,inventory_movement_type,inventory_direction,numeric,text,timestamp with time zone,uuid,boolean,text,uuid) line 54 at assignment
+ROLLBACK
+
+=== Root cause: search_path scope of create_inventory_movement
+          proname          | has_body | search_path_setting 
+---------------------------+----------+---------------------
+ create_inventory_movement | t        | search_path=public
+(1 row)
+
+
+=== pgcrypto is installed in the extensions schema, not public
+ extname  | extnamespace 
+----------+--------------
+ pgcrypto | extensions
+(1 row)
+
+   schema   | proname 
+------------+---------
+ extensions | digest
+ extensions | digest
+(2 rows)
+
+
+=== Corroboration: production ledger movement count
+ movements_in_production 
+-------------------------
+                       0
+(1 row)
+
