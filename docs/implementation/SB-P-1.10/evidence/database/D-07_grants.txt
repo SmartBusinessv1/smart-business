@@ -1,4 +1,1 @@
- grantee | table_name | privileges 
----------+------------+------------
-(0 rows)
-
+ERROR:  unrecognized privilege type: "ALL"
