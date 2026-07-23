@@ -1,0 +1,8 @@
+        table        |           trigger_name            | event_manipulation | action_timing 
+---------------------+-----------------------------------+--------------------+---------------
+ inventory_items     | inventory_items_guard_trg         | UPDATE             | BEFORE
+ inventory_items     | update_inventory_items_updated_at | UPDATE             | BEFORE
+ inventory_movements | inventory_movements_no_delete     | DELETE             | BEFORE
+ inventory_movements | inventory_movements_no_update     | UPDATE             | BEFORE
+(4 rows)
+

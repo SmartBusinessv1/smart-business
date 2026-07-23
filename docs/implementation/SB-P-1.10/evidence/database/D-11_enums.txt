@@ -1,0 +1,7 @@
+         typname         |                                               labels                                                
+-------------------------+-----------------------------------------------------------------------------------------------------
+ inventory_direction     | increase, decrease
+ inventory_item_status   | active, archived
+ inventory_movement_type | opening_stock, stock_increase, stock_decrease, adjustment_increase, adjustment_decrease, correction
+(3 rows)
+

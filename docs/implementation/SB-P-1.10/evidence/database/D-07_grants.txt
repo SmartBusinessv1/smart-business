@@ -1,0 +1,4 @@
+ grantee | table_name | privileges 
+---------+------------+------------
+(0 rows)
+

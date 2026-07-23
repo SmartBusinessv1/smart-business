@@ -1,0 +1,26 @@
+                       conname                        | contype |                                                                                                                                                                                                                                                                                                                                    def                                                                                                                                                                                                                                                                                                                                    
+------------------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ inventory_items_base_unit_check                      | c       | CHECK ((length(btrim(base_unit)) > 0))
+ inventory_items_business_id_fkey                     | f       | FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE
+ inventory_items_business_name_uniq                   | u       | UNIQUE (business_id, name)
+ inventory_items_id_business_uniq                     | u       | UNIQUE (id, business_id)
+ inventory_items_name_check                           | c       | CHECK ((length(btrim(name)) > 0))
+ inventory_items_pkey                                 | p       | PRIMARY KEY (id)
+ inventory_movement_idem_scope_uniq                   | u       | UNIQUE (business_id, operation, idempotency_key)
+ inventory_movement_idempotency_keys_business_id_fkey | f       | FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE
+ inventory_movement_idempotency_keys_movement_id_fkey | f       | FOREIGN KEY (movement_id) REFERENCES inventory_movements(id) ON DELETE RESTRICT
+ inventory_movement_idempotency_keys_operation_check  | c       | CHECK ((length(btrim(operation)) > 0))
+ inventory_movement_idempotency_keys_pkey             | p       | PRIMARY KEY (id)
+ inventory_movements_audit_completeness               | c       | CHECK (((responsible_user_id IS NOT NULL) OR (business_event_id IS NOT NULL)))
+ inventory_movements_business_event_pair              | c       | CHECK ((((business_event_type IS NULL) AND (business_event_id IS NULL)) OR ((business_event_type IS NOT NULL) AND (business_event_id IS NOT NULL))))
+ inventory_movements_correcting_of_fk                 | f       | FOREIGN KEY (correcting_of, business_id, item_id) REFERENCES inventory_movements(id, business_id, item_id) ON DELETE RESTRICT
+ inventory_movements_correction_link                  | c       | CHECK ((((movement_type = 'correction'::inventory_movement_type) AND (correcting_of IS NOT NULL)) OR ((movement_type <> 'correction'::inventory_movement_type) AND (correcting_of IS NULL))))
+ inventory_movements_id_business_item_uniq            | u       | UNIQUE (id, business_id, item_id)
+ inventory_movements_item_business_fk                 | f       | FOREIGN KEY (item_id, business_id) REFERENCES inventory_items(id, business_id) ON DELETE RESTRICT
+ inventory_movements_no_self_correction               | c       | CHECK (((correcting_of IS NULL) OR (correcting_of <> id)))
+ inventory_movements_pkey                             | p       | PRIMARY KEY (id)
+ inventory_movements_quantity_check                   | c       | CHECK ((quantity > (0)::numeric))
+ inventory_movements_reason_check                     | c       | CHECK ((length(btrim(reason)) > 0))
+ inventory_movements_type_direction                   | c       | CHECK ((((movement_type = 'opening_stock'::inventory_movement_type) AND (direction = 'increase'::inventory_direction)) OR ((movement_type = 'stock_increase'::inventory_movement_type) AND (direction = 'increase'::inventory_direction)) OR ((movement_type = 'stock_decrease'::inventory_movement_type) AND (direction = 'decrease'::inventory_direction)) OR ((movement_type = 'adjustment_increase'::inventory_movement_type) AND (direction = 'increase'::inventory_direction)) OR ((movement_type = 'adjustment_decrease'::inventory_movement_type) AND (direction = 'decrease'::inventory_direction)) OR (movement_type = 'correction'::inventory_movement_type)))
+(22 rows)
+

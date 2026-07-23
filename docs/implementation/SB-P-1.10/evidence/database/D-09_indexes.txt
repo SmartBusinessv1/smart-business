@@ -1,0 +1,18 @@
+                 indexname                 |                                                                                     indexdef                                                                                      
+-------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ inventory_items_business_name_uniq        | CREATE UNIQUE INDEX inventory_items_business_name_uniq ON public.inventory_items USING btree (business_id, name)
+ inventory_items_business_status_idx       | CREATE INDEX inventory_items_business_status_idx ON public.inventory_items USING btree (business_id, status, name)
+ inventory_items_id_business_uniq          | CREATE UNIQUE INDEX inventory_items_id_business_uniq ON public.inventory_items USING btree (id, business_id)
+ inventory_items_pkey                      | CREATE UNIQUE INDEX inventory_items_pkey ON public.inventory_items USING btree (id)
+ inventory_movement_idem_movement_idx      | CREATE INDEX inventory_movement_idem_movement_idx ON public.inventory_movement_idempotency_keys USING btree (movement_id)
+ inventory_movement_idem_scope_uniq        | CREATE UNIQUE INDEX inventory_movement_idem_scope_uniq ON public.inventory_movement_idempotency_keys USING btree (business_id, operation, idempotency_key)
+ inventory_movement_idempotency_keys_pkey  | CREATE UNIQUE INDEX inventory_movement_idempotency_keys_pkey ON public.inventory_movement_idempotency_keys USING btree (id)
+ inventory_movements_business_time_idx     | CREATE INDEX inventory_movements_business_time_idx ON public.inventory_movements USING btree (business_id, occurred_at DESC)
+ inventory_movements_correcting_of_idx     | CREATE INDEX inventory_movements_correcting_of_idx ON public.inventory_movements USING btree (correcting_of) WHERE (correcting_of IS NOT NULL)
+ inventory_movements_event_ref_idx         | CREATE INDEX inventory_movements_event_ref_idx ON public.inventory_movements USING btree (business_event_type, business_event_id) WHERE (business_event_id IS NOT NULL)
+ inventory_movements_id_business_item_uniq | CREATE UNIQUE INDEX inventory_movements_id_business_item_uniq ON public.inventory_movements USING btree (id, business_id, item_id)
+ inventory_movements_item_time_idx         | CREATE INDEX inventory_movements_item_time_idx ON public.inventory_movements USING btree (business_id, item_id, occurred_at, id)
+ inventory_movements_opening_stock_unique  | CREATE UNIQUE INDEX inventory_movements_opening_stock_unique ON public.inventory_movements USING btree (item_id) WHERE (movement_type = 'opening_stock'::inventory_movement_type)
+ inventory_movements_pkey                  | CREATE UNIQUE INDEX inventory_movements_pkey ON public.inventory_movements USING btree (id)
+(14 rows)
+
