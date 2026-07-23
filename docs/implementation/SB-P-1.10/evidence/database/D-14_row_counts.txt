@@ -1,0 +1,7 @@
+          t          | count 
+---------------------+-------
+ inventory_items     |     1
+ inventory_movements |     0
+ idempotency_keys    |     0
+(3 rows)
+
