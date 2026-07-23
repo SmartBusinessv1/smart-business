@@ -1,56 +1,86 @@
-## Objective
 
-Append Sections 20 (Builder Review) and 21 (Builder Questions, Risks & Recommendations) to `docs/phase-1-mission-blueprint/active/SB-P-1.10.md`, without modifying Sections 1–19.
+# SB-P-1.10-LOVE-CR-1.0 — Evidence Collection & Completion Report
 
-## Scope
+Scope: documentation & evidence only under `docs/implementation/SB-P-1.10/`. No implementation code changes. Locked governance documents (blueprint, EIS, engineering contract, build prompt) remain untouched. Verification Checklist v1.1 will be edited to record actual per-item results (this is authorized by the mission — implementation files stay locked; the checklist is the mission's execution artifact).
 
-- Read-only for Sections 1–19 (Product Governance approved and locked).
-- Append two new sections at the end of the file (after line 654).
-- Preserve existing Markdown formatting, single H1 (`# SB-P-1.10 — Inventory Foundation`), heading hierarchy, and numbering.
-- Run `tools/markdown/validate_markdown.py` before completion.
+## Verified starting facts
 
-## Section 20 — Builder Review (planned content outline)
+- Lovable-managed DB (`wwgqnshcgbukqczqblsm`) contains `inventory_items`, `inventory_movements`, `inventory_movement_idempotency_keys` — SB-P-1.10 migration IS applied. The prior report's references to project `gysgzasfcjvtrgaigfyn` are wrong and will be removed.
+- Two Founder screenshots dated 2026-07-22 relevant to SB-P-1.10 are present in uploads: inventory list (empty state) and Milk item detail page.
 
-Written from the perspective of the Lovable UI builder only (no engineering, DB, or API commentary).
+## Phase 1 — Founder evidence intake
 
-- **Overall Buildability** — Blueprint is sufficiently complete for UI implementation; product intent, functional scope, UX expectations, business rules, and acceptance criteria all provide unambiguous UI direction. Confirm alignment with existing `_authenticated` layout and dashboard shell already established through SB-P-1.7/1.8/1.9.
-- **UX Readiness** — Assess merchant usability, screen flow (List → Detail → History → Adjustment/Opening Stock), navigation clarity from the authenticated dashboard, human-first language, and low learning curve. Note continuity with the existing Transactions and Correction dialog patterns from SB-P-1.9.
-- **Component Readiness** — Identify (not design) expected reusable UI components:
-  - Inventory List
-  - Inventory Detail
-  - Stock History Timeline
-  - Opening Stock Form
-  - Stock Adjustment Dialog (with confirmation step, aligned to SB-P-1.9 correction pattern)
-  - Inventory Creation Form
-  - Search Input
-  - Filter Controls
-  - Empty States (no inventory / no movements / no matches)
-  - Negative Stock Warning
-  - Permission-aware action controls
-- **Responsive Design Readiness** — Confirm blueprint supports mobile, tablet, and desktop; call out builder considerations for list density, history readability on small screens, and adjustment/confirmation flow on mobile.
-- **Accessibility Review** — Confirm accessibility expectations in Section 9 give sufficient guidance (clear labels, focus, contrast, no color-only cues); flag builder considerations such as accessible dialog patterns for adjustment confirmation and status announcements after movement recording.
-- **Builder Risks** — UI-scoped only: history-view scalability for long ledgers, adjustment/correction UI clarity vs. edit-in-place expectations, distinguishing movement types visually, negative stock warning prominence, filter/search state visibility on mobile.
-- **Builder Recommendation** — State whether the blueprint is Ready for Engineering Review or Requires Product clarification, with a brief justification.
+Copy the two Founder screenshots into:
 
-## Section 21 — Builder Questions, Risks & Recommendations (planned content outline)
+```text
+docs/implementation/SB-P-1.10/evidence/founder/
+  F-01_inventory_list_empty.png        (Screenshot_2026-07-22_025048.png)
+  F-02_item_detail_milk.png            (Screenshot_2026-07-22_025218.png)
+```
 
-- **Builder Questions** — Only genuine Product-clarification items surfaced by builder review. If none, explicitly state: `> No Product clarification required.`
-- **Builder Risks** — Concise summary of UI/builder concerns from Section 20 (no engineering risks).
-- **Builder Recommendations** — UI-only improvements that preserve the Product Blueprint and governance (e.g., reuse of existing dialog/confirmation pattern from SB-P-1.9, consistent movement-type iconography, reuse of Transactions timeline layout for Stock History). No new features.
+Record what each demonstrates (nav visible, empty state, item detail with immutable base unit, Record opening stock / Adjustment increase / Adjustment decrease / Archive actions, append-only history header).
 
-## Metadata
+## Phase 2 — Lovable runtime & database verification
 
-- Do NOT modify the Metadata table, Change Log, or Governance History in this pass (those belong to Product Governance / a later version-bump step).
-- Sections 20–21 are additive only, appended after Section 19.
+Runtime (Playwright against the Lovable preview, authenticated using injected Supabase session):
 
-## Validation
+- Sign in → inventory nav visible on dashboard, transactions, inventory.
+- `/inventory` loads; create item ("Verification Item", unit "kg"); base unit field disabled after create.
+- Record opening stock; adjustment increase; adjustment decrease; verify current-stock recalculation.
+- Attempt over-decrease → negative-stock warning + explicit "allow negative" confirmation path.
+- Correction dialog on a prior movement → creates linked compensating entry; history remains append-only.
+- Archive → ordinary movements rejected; reactivate → allowed again.
+- Refresh / logout / protected-route redirect regression.
+- Existing transactions + dashboard workflows unaffected.
 
-- Run `python tools/markdown/validate_markdown.py docs/phase-1-mission-blueprint/active/SB-P-1.10.md`.
-- Confirm single H1, balanced code fences, valid heading hierarchy, no escaped Markdown.
+Capture screenshots into `evidence/runtime/R-01…R-NN_*.png`, plus a `runtime-notes.md` narrative.
+
+Database (via psql against Lovable Cloud DB):
+
+- Table list, columns, constraints for the three inventory tables.
+- `pg_policies` for RLS policies on each.
+- Trigger list showing append-only reject-on-UPDATE/DELETE.
+- `pg_proc` definitions of `create_inventory_movement`, `preview_inventory_movement`, `inventory_current_stock_batch`, `inventory_movement_remaining_compensable`.
+- Idempotency-key duplicate rejection: two RPC calls with the same key, second returns original result / rejects conflicting payload.
+- Cross-business RLS negative test using two authenticated sessions.
+
+Save outputs into `evidence/database/D-01…D-NN_*.txt`.
+
+## Phase 3 — Evidence archive
+
+Layout:
+
+```text
+docs/implementation/SB-P-1.10/evidence/
+  README.md              (index mapping every artifact → checklist item)
+  founder/               F-01, F-02
+  runtime/               R-01…R-NN + runtime-notes.md
+  database/              D-01…D-NN
+  repository/            commit-range.txt (412d91b..f9fabe4)
+```
+
+## Phase 4 — Verification Checklist execution
+
+Update `verification-checklist.md`:
+
+- Mark each item Pass / Fail / Follow-up with an evidence reference (e.g. `→ runtime/R-05, database/D-07`).
+- Do NOT mark items passed without evidence.
+- Add execution block: date, executor (Lovable Builder), totals, overall result.
+- If any release-blocking item fails (RLS, isolation, concurrency), stop and escalate to Mission Control before writing the completion report.
+
+Note: Section 9 requires automated tests. Since none exist, those items will be marked **Follow-up** with a clear note — not Pass — and surfaced as an outstanding issue.
+
+## Phase 5 — Completion Report rewrite
+
+Rewrite Sections 1–9 using verified evidence. Specifically:
+
+- Remove all references to project `gysgzasfcjvtrgaigfyn` and the "zero tables / no migrations" conclusion.
+- Replace with verified Lovable-managed runtime findings (tables present, RLS present, functions present, screenshots archived, checklist executed).
+- Distinguish repository / runtime / Founder / database evidence in Section 6.
+- Section 7 outstanding issues: automated test suite absence (Follow-up), any items found during runtime verification.
+- Preserve Section 10 verbatim; leave Section 11 untouched.
+- Do NOT declare SB-P-1.10 complete — final acceptance is Mission Control's.
 
 ## Deliverables
 
-- `docs/phase-1-mission-blueprint/active/SB-P-1.10.md` updated in place with Sections 20 and 21.
-- Sections 1–19 preserved byte-identically.
-- Markdown validation PASS.
-- Short completion brief only (no document paste).
+Evidence files, populated index, executed checklist with totals, rewritten completion report, markdown quality-gate pass, and a summary of files modified + outstanding issues reported back to Mission Control.
