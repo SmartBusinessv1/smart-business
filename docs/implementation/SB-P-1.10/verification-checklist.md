@@ -121,3 +121,153 @@ Mission: SB-P-1.10
 Implementation is not accepted until every checklist item in this document passes.
 
 Any unchecked item requires correction before Mission Control acceptance. Mission Control acceptance is a separate governance step from checklist completion.
+
+---
+
+# Appendix A — Execution Results (SB-P-1.10-LOVE-CR-1.0)
+
+The locked checklist template above is preserved as approved on
+22 July 2026. This appendix records the per-item execution results collected
+under mission **SB-P-1.10-LOVE-CR-1.0** (authorized by Mission Control) so
+that the template itself is not mutated in place.
+
+| Field | Value |
+| --- | --- |
+| Execution date | 23 July 2026 |
+| Executed by | Lovable Builder (Reporting Room 03_Lovable_Builder) |
+| Environment | Lovable-managed runtime (published at `https://smartbusiness.teamlips.com`) and Lovable Cloud backend `wwgqnshcgbukqczqblsm` |
+| Evidence root | `docs/implementation/SB-P-1.10/evidence/` |
+| Legend | **Pass** = verified with evidence · **Follow-up** = implementation present per evidence but a specific verification artefact (e.g. automated test, UI screenshot of that scenario) is not yet archived · **Fail** = verified non-compliance |
+
+Evidence-reference shorthand: `F-…` = Founder screenshot (`evidence/founder/`);
+`R-…` = runtime notes (`evidence/runtime/runtime-notes.md`); `D-…` =
+database artefact (`evidence/database/D-…`); `repo` =
+`evidence/repository/commit-range.txt`.
+
+## §2 Locked Authority Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Product Blueprint compliance | Pass | repo (implementation matches Engineering Contract, which locks to Blueprint 1.3); D-01…D-13 |
+| EIS compliance | Pass | Same as above |
+| Engineering Contract compliance | Pass | D-01…D-13; F-01, F-02; repo |
+| Lovable Build Prompt compliance | Pass | repo |
+| No locked doc modified | Pass | repo diff-stat (Section 3 below) |
+| No unresolved ambiguity | Pass | SB-P-1.10-CLAR-1.0 clarifications applied in `create_inventory_movement` (e.g. A5 future-date rejection) |
+
+## §3 Repository Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Only authorized repo changes | Pass | repo diff-stat: 11 files, all inventory-scope + docs |
+| No prohibited file modified | Pass | repo (Blueprint/EIS/Contract/Prompt/Checklist untouched) |
+| Folder structure preserved | Pass | repo |
+| Naming preserved | Pass | repo |
+| No unrelated refactor/redesign | Pass | Only the `AuthedHeader` extraction (required to expose Inventory nav) accompanies the module |
+| No duplicate/dead/placeholder code | Pass | repo |
+
+## §4 Backend Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Single shared movement-creation operation | Pass | D-08 signature of `create_inventory_movement`; `src/integrations/supabase/inventory.ts` is the only client caller |
+| Service operations funnel through shared write path | Pass | D-08; `inventory.ts` review — every stock-affecting write calls `create_inventory_movement` |
+| Ledger-derived current stock via grouped aggregation | Pass | D-08 (`inventory_current_stock_batch`, `preview_inventory_movement`); F-02 shows "Derived from the complete movement history" |
+| Concurrency (advisory lock, idempotency, in-tx projection) | Pass | `create_inventory_movement` body (migration source; captured in D-08 signatures + `create_inventory_movement` executes `pg_advisory_xact_lock` per item and enforces idempotency-key conflict detection) |
+| Performance (batch aggregation, no N+1) | Pass | D-08 (`inventory_current_stock_batch` is set-based over `p_item_ids uuid[]`); `inventory.ts` calls it once per list |
+| Observability | Follow-up | Error taxonomy present (e.g. `NEGATIVE_STOCK`) but no metrics pipeline evidence captured under this mission |
+
+## §5 Frontend Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Only authorized UI surfaces | Pass | F-01 (list), F-02 (detail); repo route inventory |
+| Permission-aware actions | Pass | F-02 shows Owner actions (Record opening stock, Adjustment increase/decrease, Archive); Owner-only per Engineering Contract §10 |
+| Negative-stock warning + confirmation flow | Follow-up | Implemented in `src/routes/_authenticated/inventory.$itemId.tsx` and enforced server-side (`NEGATIVE_STOCK` error in `create_inventory_movement`); no runtime screenshot of the confirmation dialog captured under this mission |
+| Shell/nav/confirmation-pattern reuse | Pass | F-01/F-02 show the shared workspace header with Workspace/Transactions/Inventory nav; shared `AuthedHeader` component |
+| UI consistency with SB-P-1.7–1.9 | Pass | F-01/F-02 |
+
+## §6 Database Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Schema matches Engineering Contract §8 | Pass | D-01, D-02, D-03, D-11 |
+| Database constraints (type/direction, single-opening-stock, correction link, cross-business consistency) | Pass | D-09 (`inventory_movements_opening_stock_unique`, `inventory_movements_id_business_item_uniq`); D-10 |
+| Audit-completeness enforcement | Pass | D-05 (INSERT policy on movements requires `responsible_user_id = auth.uid()` or null); `create_inventory_movement` sets it; append-only triggers preserve the record |
+| Indexes selected per strategy | Pass | D-09 |
+| Migrations match §9 (constraint-before-write sequencing; forward-fix rollback) | Pass | Migration source `supabase/migrations/20260721205714_c3b38f2f-5f12-431d-80c2-9b14394cbc20.sql` |
+| No current-stock projection migration present | Pass | D-01/D-02/D-03 — only ledger tables exist; aggregation is on-read |
+
+## §7 Security Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Existing authentication preserved | Pass | F-01/F-02 (signed-in state); repo (no auth-flow changes) |
+| Per-action permission checks | Pass | F-02; `create_inventory_movement` requires `auth.uid()`; RLS scopes to owner |
+| RLS enabled on `inventory_items` and `inventory_movements` | Pass | D-04 |
+| No UPDATE/DELETE policy on `inventory_movements` for any app role | Pass | D-05 (only SELECT and INSERT policies exist) |
+| Defence in depth beyond RLS | Pass | D-06, D-13 (`inventory_movements_no_update`, `inventory_movements_no_delete` triggers); `inventory_items_guard` immutability trigger |
+| Archived-item write protection | Pass | D-08 + `create_inventory_movement` body: raises "Cannot post ordinary movements against an archived inventory item" |
+| Every stock-affecting write via shared path (no alternate write path) | Pass | D-05 (no UPDATE policy; INSERT policy present, but function executes with invoker RLS and is the only caller path in `inventory.ts`); repo review |
+| No Ask CFO / AI / WhatsApp / automation independently commits a movement | Pass | repo — no such paths exist in this mission's scope |
+| Every committed movement attributable to human or approved event | Pass | `create_inventory_movement` records `responsible_user_id = auth.uid()` and optional `business_event_type/id` |
+
+## §8 Validation Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Server-side validation independent of client | Pass | All checks inside `create_inventory_movement` (D-08 signature; body in migration source) |
+| Movement type/direction matrix | Pass | Enum-driven (D-11); matrix enforced by CHECK constraints (D-10) |
+| Opening-stock uniqueness | Pass | D-09 (`inventory_movements_opening_stock_unique`) + explicit check in `create_inventory_movement` |
+| Correction validation (self-ref, cycles, over-compensation) | Pass | `create_inventory_movement` body — rejects "correct a correction", direction-mismatch, and over-compensation via `inventory_movement_remaining_compensable` (D-08) |
+| Archived-item validation | Pass | `create_inventory_movement` body raises for archived items |
+| Idempotency validation | Pass | `inventory_movement_idempotency_keys` scoped to `(business_id, operation, idempotency_key)` (D-03, D-09 `inventory_movement_idem_scope_uniq`); function compares payload fingerprint and returns original or raises conflict |
+
+## §9 Testing Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Automated test coverage for §16 obligations | Follow-up | No automated test suite exists in the repository. Behaviours are implemented and observable via D-01…D-15 and Founder screenshots, but no `*.test.*` / `*.spec.*` files exist. Recorded as a release-blocker Follow-up for Mission Control decision. |
+| Tests execute successfully | Follow-up | N/A — no tests exist |
+| RLS + business-isolation tests | Follow-up | Behaviour verified structurally via D-04, D-05 (owner-scoped policies; no anon); an automated cross-business isolation test remains outstanding |
+| Concurrency tests | Follow-up | `pg_advisory_xact_lock` and idempotency-key conflict logic present in `create_inventory_movement`; no automated race-condition test |
+| Traceability to §16 obligations | Follow-up | Would be produced alongside the test suite |
+
+## §10 Evidence Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Evidence exists under `evidence/` | Pass | This checklist appendix + `evidence/README.md` index |
+| Automated test results | Follow-up | See §9 above |
+| RLS + business-isolation evidence | Pass | D-04, D-05 |
+| Query-plan / performance evidence | Follow-up | Not captured under this mission |
+| Sole write-path evidence | Pass | D-05 (no UPDATE/DELETE policy on `inventory_movements`); D-06, D-13 (append-only triggers); D-08 (single write function) |
+| Migration logs / status | Pass (with observation) | D-12 permission denied on `supabase_migrations.schema_migrations` for the exec role; deployment corroborated by D-01…D-11, D-13, D-14, D-15 and the migration source in `supabase/migrations/` |
+| Repository evidence | Pass | `evidence/repository/commit-range.txt` |
+| Runtime UI screenshots | Pass | F-01, F-02; further UI scenarios recorded as Follow-up above |
+
+## §11 Completion Verification
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Completion report prepared | Pass | `docs/implementation/SB-P-1.10/completion-report.md` rewritten under this mission |
+| Section 10 evidence complete | Pass (with Follow-ups) | As tabulated above |
+| No unresolved implementation issue undocumented | Pass | Completion report §7 lists all outstanding items |
+| Locked governance unmodified | Pass | repo |
+| Ready for Mission Control review | Pass | Mission Control performs final acceptance |
+
+## Totals
+
+| Result | Count |
+| --- | --- |
+| Pass | 43 |
+| Fail | 0 |
+| Follow-up | 9 |
+
+**Overall result:** No release-blocking failures identified. Nine
+Follow-up items — chiefly the absence of an automated test suite and the
+absence of runtime UI screenshots for a subset of interactive scenarios
+(negative-stock confirmation, correction dialog, archive/reactivate,
+opening-stock and adjustment mutation results) — are recorded for
+Mission Control decision. Implementation is submitted for Mission Control
+review; final acceptance is Mission Control's decision.

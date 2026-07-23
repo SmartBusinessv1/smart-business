@@ -1,0 +1,7 @@
+ schemaname |              tablename              | rowsecurity 
+------------+-------------------------------------+-------------
+ public     | inventory_items                     | t
+ public     | inventory_movement_idempotency_keys | t
+ public     | inventory_movements                 | t
+(3 rows)
+

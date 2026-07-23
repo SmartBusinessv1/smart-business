@@ -1,0 +1,31 @@
+                    Table "public.inventory_movement_idempotency_keys"
+       Column        |           Type           | Collation | Nullable |      Default      
+---------------------+--------------------------+-----------+----------+-------------------
+ id                  | uuid                     |           | not null | gen_random_uuid()
+ business_id         | uuid                     |           | not null | 
+ operation           | text                     |           | not null | 
+ idempotency_key     | uuid                     |           | not null | 
+ movement_id         | uuid                     |           | not null | 
+ payload_fingerprint | text                     |           | not null | 
+ created_at          | timestamp with time zone |           | not null | now()
+Indexes:
+    "inventory_movement_idempotency_keys_pkey" PRIMARY KEY, btree (id)
+    "inventory_movement_idem_movement_idx" btree (movement_id)
+    "inventory_movement_idem_scope_uniq" UNIQUE CONSTRAINT, btree (business_id, operation, idempotency_key)
+Check constraints:
+    "inventory_movement_idempotency_keys_operation_check" CHECK (length(btrim(operation)) > 0)
+Foreign-key constraints:
+    "inventory_movement_idempotency_keys_business_id_fkey" FOREIGN KEY (business_id) REFERENCES businesses(id) ON DELETE CASCADE
+    "inventory_movement_idempotency_keys_movement_id_fkey" FOREIGN KEY (movement_id) REFERENCES inventory_movements(id) ON DELETE RESTRICT
+Policies:
+    POLICY "Owners can insert their idempotency keys" FOR INSERT
+      TO authenticated
+      WITH CHECK ((business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid()))))
+    POLICY "Owners can view their idempotency keys" FOR SELECT
+      TO authenticated
+      USING ((business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid()))))
+

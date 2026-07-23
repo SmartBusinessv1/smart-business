@@ -1,0 +1,21 @@
+                  relname                  | sel_a | ins_a | upd_a | del_a | sel_anon | sel_svc 
+-------------------------------------------+-------+-------+-------+-------+----------+---------
+ inventory_items                           | t     | t     | t     | t     | t        | t
+ inventory_items_business_name_uniq        | f     | f     | f     | f     | f        | f
+ inventory_items_business_status_idx       | f     | f     | f     | f     | f        | f
+ inventory_items_id_business_uniq          | f     | f     | f     | f     | f        | f
+ inventory_items_pkey                      | f     | f     | f     | f     | f        | f
+ inventory_movement_idem_movement_idx      | f     | f     | f     | f     | f        | f
+ inventory_movement_idem_scope_uniq        | f     | f     | f     | f     | f        | f
+ inventory_movement_idempotency_keys       | t     | t     | t     | t     | t        | t
+ inventory_movement_idempotency_keys_pkey  | f     | f     | f     | f     | f        | f
+ inventory_movements                       | t     | t     | t     | t     | t        | t
+ inventory_movements_business_time_idx     | f     | f     | f     | f     | f        | f
+ inventory_movements_correcting_of_idx     | f     | f     | f     | f     | f        | f
+ inventory_movements_event_ref_idx         | f     | f     | f     | f     | f        | f
+ inventory_movements_id_business_item_uniq | f     | f     | f     | f     | f        | f
+ inventory_movements_item_time_idx         | f     | f     | f     | f     | f        | f
+ inventory_movements_opening_stock_unique  | f     | f     | f     | f     | f        | f
+ inventory_movements_pkey                  | f     | f     | f     | f     | f        | f
+(17 rows)
+

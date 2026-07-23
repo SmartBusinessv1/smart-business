@@ -1,0 +1,53 @@
+                            Table "public.inventory_movements"
+       Column        |           Type           | Collation | Nullable |      Default      
+---------------------+--------------------------+-----------+----------+-------------------
+ id                  | uuid                     |           | not null | gen_random_uuid()
+ item_id             | uuid                     |           | not null | 
+ business_id         | uuid                     |           | not null | 
+ movement_type       | inventory_movement_type  |           | not null | 
+ direction           | inventory_direction      |           | not null | 
+ quantity            | numeric(14,4)            |           | not null | 
+ reason              | text                     |           | not null | 
+ occurred_at         | timestamp with time zone |           | not null | now()
+ created_at          | timestamp with time zone |           | not null | now()
+ responsible_user_id | uuid                     |           |          | 
+ business_event_type | text                     |           |          | 
+ business_event_id   | uuid                     |           |          | 
+ correcting_of       | uuid                     |           |          | 
+Indexes:
+    "inventory_movements_pkey" PRIMARY KEY, btree (id)
+    "inventory_movements_business_time_idx" btree (business_id, occurred_at DESC)
+    "inventory_movements_correcting_of_idx" btree (correcting_of) WHERE correcting_of IS NOT NULL
+    "inventory_movements_event_ref_idx" btree (business_event_type, business_event_id) WHERE business_event_id IS NOT NULL
+    "inventory_movements_id_business_item_uniq" UNIQUE CONSTRAINT, btree (id, business_id, item_id)
+    "inventory_movements_item_time_idx" btree (business_id, item_id, occurred_at, id)
+    "inventory_movements_opening_stock_unique" UNIQUE, btree (item_id) WHERE movement_type = 'opening_stock'::inventory_movement_type
+Check constraints:
+    "inventory_movements_audit_completeness" CHECK (responsible_user_id IS NOT NULL OR business_event_id IS NOT NULL)
+    "inventory_movements_business_event_pair" CHECK (business_event_type IS NULL AND business_event_id IS NULL OR business_event_type IS NOT NULL AND business_event_id IS NOT NULL)
+    "inventory_movements_correction_link" CHECK (movement_type = 'correction'::inventory_movement_type AND correcting_of IS NOT NULL OR movement_type <> 'correction'::inventory_movement_type AND correcting_of IS NULL)
+    "inventory_movements_no_self_correction" CHECK (correcting_of IS NULL OR correcting_of <> id)
+    "inventory_movements_quantity_check" CHECK (quantity > 0::numeric)
+    "inventory_movements_reason_check" CHECK (length(btrim(reason)) > 0)
+    "inventory_movements_type_direction" CHECK (movement_type = 'opening_stock'::inventory_movement_type AND direction = 'increase'::inventory_direction OR movement_type = 'stock_increase'::inventory_movement_type AND direction = 'increase'::inventory_direction OR movement_type = 'stock_decrease'::inventory_movement_type AND direction = 'decrease'::inventory_direction OR movement_type = 'adjustment_increase'::inventory_movement_type AND direction = 'increase'::inventory_direction OR movement_type = 'adjustment_decrease'::inventory_movement_type AND direction = 'decrease'::inventory_direction OR movement_type = 'correction'::inventory_movement_type)
+Foreign-key constraints:
+    "inventory_movements_correcting_of_fk" FOREIGN KEY (correcting_of, business_id, item_id) REFERENCES inventory_movements(id, business_id, item_id) ON DELETE RESTRICT
+    "inventory_movements_item_business_fk" FOREIGN KEY (item_id, business_id) REFERENCES inventory_items(id, business_id) ON DELETE RESTRICT
+Referenced by:
+    TABLE "inventory_movement_idempotency_keys" CONSTRAINT "inventory_movement_idempotency_keys_movement_id_fkey" FOREIGN KEY (movement_id) REFERENCES inventory_movements(id) ON DELETE RESTRICT
+    TABLE "inventory_movements" CONSTRAINT "inventory_movements_correcting_of_fk" FOREIGN KEY (correcting_of, business_id, item_id) REFERENCES inventory_movements(id, business_id, item_id) ON DELETE RESTRICT
+Policies:
+    POLICY "Owners can insert their inventory movements" FOR INSERT
+      TO authenticated
+      WITH CHECK (((business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid()))) AND ((responsible_user_id IS NULL) OR (responsible_user_id = auth.uid()))))
+    POLICY "Owners can view their inventory movements" FOR SELECT
+      TO authenticated
+      USING ((business_id IN ( SELECT businesses.id
+   FROM businesses
+  WHERE (businesses.owner_id = auth.uid()))))
+Triggers:
+    inventory_movements_no_delete BEFORE DELETE ON inventory_movements FOR EACH ROW EXECUTE FUNCTION inventory_movements_reject_mutation()
+    inventory_movements_no_update BEFORE UPDATE ON inventory_movements FOR EACH ROW EXECUTE FUNCTION inventory_movements_reject_mutation()
+

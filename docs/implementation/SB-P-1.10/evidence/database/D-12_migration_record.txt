@@ -1,0 +1,3 @@
+ERROR:  permission denied for schema supabase_migrations
+LINE 1: SELECT version, name, statements FROM supabase_migrations.sc...
+                                              ^
