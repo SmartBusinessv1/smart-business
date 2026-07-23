@@ -60,9 +60,9 @@ Mission: SB-P-1.10
 ## 4. Verification Checklist Summary
 
 - **Checklist version.** 1.1 (LOCKED template preserved).
-- **Checklist execution.** Executed under mission SB-P-1.10-LOVE-CR-1.0 on 23 July 2026 by the Lovable Builder. Results captured in `docs/implementation/SB-P-1.10/verification-checklist.md` Appendix A.
-- **Totals.** Pass: **43** · Fail: **0** · Follow-up: **9**.
-- **Overall result.** No release-blocking failures identified. Nine Follow-up items — primarily the absence of an automated test suite and runtime UI screenshots for a subset of interactive scenarios — are recorded for Mission Control decision.
+- **Checklist execution.** Appendix A executed 23 July 2026 under SB-P-1.10-LOVE-CR-1.0 (Pass 43 · Fail 0 · Follow-up 9). Appendix B executed 23 July 2026 under SB-P-1.10-TV-1.0 (Technical Verification Closure).
+- **Cumulative totals.** Pass: **45** · Fail: **0** · Follow-up: **7**.
+- **Overall result.** No release-blocking failures identified in the SB-P-1.10 scope reads and structure. One implementation defect discovered during closure (D-19 — see §7) blocks the runtime stock-write path and requires a Mission-Control-authorised corrective mission. Five of the remaining Follow-up items are formally justified as out of scope for a closure mission (metrics pipeline; automated test suite and its dependents); two are blocked by the discovered defect.
 
 ## 5. Testing Summary
 
