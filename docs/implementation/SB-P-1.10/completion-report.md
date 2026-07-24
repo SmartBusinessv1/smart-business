@@ -107,7 +107,7 @@ Evidence is archived under `docs/implementation/SB-P-1.10/evidence/`, indexed by
 
 - [x] Engineering Contract unchanged. Verified: no commits touch `docs/implementation/SB-P-1.10/engineering-contract.md` after its lock commit.
 - [x] Lovable Build Prompt unchanged.
-- [x] Verification Checklist template unchanged. Execution results are recorded in an appended Appendix A under this mission per Mission Control authorization; the locked §§1–12 template is preserved verbatim.
+- [x] Verification Checklist template unchanged. Execution results are recorded in appended Appendix A (SB-P-1.10-LOVE-CR-1.0), Appendix B (SB-P-1.10-TV-1.0), and Appendix C (SB-P-1.10-FIX-DIGEST-1.0); the locked §§1–12 template is preserved verbatim.
 - [x] Product Blueprint unchanged.
 - [x] Engineering Implementation Specification unchanged.
 - [x] Evidence populated under `docs/implementation/SB-P-1.10/evidence/` with a complete index.
