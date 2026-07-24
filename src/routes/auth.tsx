@@ -2,7 +2,6 @@ import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-r
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/auth")({
@@ -102,16 +101,18 @@ function AuthPage() {
     setMessage(null);
     setBusy(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+      // Native Supabase OAuth always redirects the browser to Google on
+      // success (there is no in-page result to handle here); the busy
+      // state naturally becomes moot once the page navigates away.
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+        },
       });
-      if (result.error) {
-        setMessage({ kind: "error", text: result.error.message ?? "Google sign-in failed." });
-        return;
+      if (error) {
+        setMessage({ kind: "error", text: error.message || "Google sign-in failed." });
       }
-      if (result.redirected) return;
-      router.invalidate();
-      navigate({ to: "/dashboard", replace: true });
     } catch (err) {
       setMessage({ kind: "error", text: err instanceof Error ? err.message : "Google sign-in failed." });
     } finally {

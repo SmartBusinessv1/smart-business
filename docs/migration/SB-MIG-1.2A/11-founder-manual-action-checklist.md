@@ -1,0 +1,35 @@
+Document: Founder Manual Action Checklist
+
+Version: 1.0
+
+Status: DRAFT — submitted for Mission Control review
+
+Created By: Claude Code
+
+Reviewed By: Mission Control (pending)
+
+Mission: SB-MIG-1.2A
+
+# SB-MIG-1.2A — Founder Manual Action Checklist (Task 11)
+
+Every action below cannot be completed by Claude Code directly — each requires either dashboard/console access this environment doesn't have, or a decision only a human (specifically, whoever holds product/business authority) can make. **Nothing in this checklist has been assumed complete.**
+
+| # | Platform | Navigation path (where known) | Action required | Safe value description (no secrets) | Verification step | Evidence required |
+| - | --- | --- | --- | --- | --- | --- |
+| 1 | Google Cloud Console | APIs & Services → Credentials → OAuth 2.0 Client IDs | Confirm whether an existing Google OAuth client can be reused, or create a new one, with an authorized redirect URI matching Team LIPS Supabase's standard callback pattern (`https://gysgzasfcjvtrgaigfyn.supabase.co/auth/v1/callback`) | A client ID (not secret) is fine to reference in later documentation; the client secret is not | Test a real Google sign-in against Team LIPS Supabase after step 3 below is also complete | Screenshot of the redirect URI configuration (client ID visible is fine; secret must not appear in the screenshot) |
+| 2 | Team LIPS Supabase dashboard | Project (`gysgzasfcjvtrgaigfyn`) → Authentication → Providers → Google | Enable the Google provider; enter the client ID and client secret from step 1 | Neither value should be typed anywhere this repository or Claude Code can read | Provider shows "Enabled" in the dashboard | Screenshot of the provider toggle state (values themselves should be masked/not visible in the screenshot) |
+| 3 | Team LIPS Supabase dashboard | Project → Authentication → URL Configuration | Set Site URL to the target application's actual production URL (depends on action #7 below being resolved first); add the app's post-login destination(s) to the redirect allow-list | The URL itself is not secret — safe to record in a future mission's documentation once known | A test OAuth flow completes and lands on the correct in-app page, not an error page | Screenshot of the URL Configuration screen |
+| 4 | Team LIPS Supabase dashboard | Project → Settings → API | Obtain Team LIPS Supabase's own `service_role` secret key, for use only by the migration-tooling script (`02-authentication-recreation-plan.md`) and, longer-term, per the Edge Function secret-storage design (`05-service-role-hosting-design.md`) | Never paste this value into any chat, commit, or document — store it directly in whatever secret-storage mechanism action #5 establishes | Confirm the key works by a single, low-risk test call (e.g., listing users) before relying on it for the actual recreation script | None needed beyond the operator's own confirmation — this value should never be screenshotted |
+| 5 | Team LIPS Supabase dashboard / CLI | Project → Edge Functions → Secrets (or `supabase secrets set` via CLI) | Store the service-role key obtained in #4 as a Supabase-managed secret, per `05-service-role-hosting-design.md`'s recommended architecture | N/A | `supabase secrets list` (or dashboard equivalent) shows the secret name is set, without revealing its value | Confirmation the secret name appears in the list — not its value |
+| 6 | Team LIPS Supabase dashboard | Project → Settings → Database → Backups (or Add-ons, depending on current Supabase dashboard layout) | Confirm whether Point-in-Time Recovery or scheduled backups are enabled for this project; enable if not, or explicitly accept the risk of proceeding without them | N/A | Dashboard shows backup/PITR status clearly | Screenshot of the backup configuration screen — **this is a stop condition for the cutover runbook (step 4) if left unresolved** |
+| 7 | (Founder/Mission Control decision, no specific platform) | — | **Choose the hosting platform** for the migrated application itself (this was never decided in SB-MIG-1.1 or SB-MIG-1.2 either, and blocks several other items) | N/A | N/A | A written decision record — this single decision unblocks actions #1–3's final configuration values, `06-environment-cutover-map.md`'s "who updates / when" columns, and `05-service-role-hosting-design.md`'s deployment-procedure specifics |
+| 8 | Team LIPS Supabase dashboard | Project → Authentication → Emails (or Settings → Auth → SMTP) | Confirm Supabase's default email delivery is sufficient for sending the one invite email to User 1 (very low volume — 1 email — so default limits are almost certainly fine, but worth a 1-minute confirmation rather than an assumption) | N/A | Send a real test invite during rehearsal (`12-pre-migration-rehearsal-report.md`) and confirm delivery | Confirmation the test invite email was received |
+| 9 | Team LIPS Supabase dashboard | Project → Authentication → Policies (or the security advisor panel used throughout this mission's prior work) | Manually confirm the "leaked password protection" setting's actual state (SB-MIG-1.2 observed 0 advisor findings but recommended independent confirmation, since this mission's tooling can only read the advisor's output, not the underlying setting directly) | N/A | Dashboard shows the setting's actual on/off state | Screenshot |
+| 10 | (Founder/Mission Control decision) | — | Approve the migration-freeze window's timing (cutover runbook step 2) — when is an acceptable time to briefly pause writes, given only 2 real users? | N/A | N/A | A written approval, including the agreed time window |
+| 11 | (Founder/Mission Control decision) | — | Review and approve (or edit) the draft communications in `10-user-communication-pack.md` before any of them are sent to either real user | N/A | N/A | Explicit written approval per message, or edits accepted |
+| 12 | (Mission Control authorization) | — | Authorize a future, scoped mission to implement the application-code change identified in `04-lovable-oauth-integration-review.md` §4 (replacing the Lovable OAuth wrapper with native Supabase OAuth) | N/A | The future mission's own test suite / manual QA | That mission's own completion report |
+| 13 | (Founder/Mission Control decision) | — | Decide the Scenario-C fallback (per `09-cutover-runbook.md` step 14–15 and SB-MIG-1.2's rollback procedure): if Google OAuth isn't fully ready at cutover time, is a temporary email/password-only launch acceptable, or should cutover wait? | N/A | N/A | A written decision, made *before* the cutover mission begins, not improvised mid-runbook |
+
+## Summary
+
+13 manual actions identified: 8 require dashboard/console access to Google Cloud Console or Team LIPS Supabase specifically (#1, #2, #3, #4, #5, #6, #8, #9), and 5 are pure decisions requiring no platform access at all (#7, #10, #11, #12, #13). None of the 13 can be completed by an automated mission running without human interaction — each is listed here precisely so that SB-MIG-1.3 does not have to rediscover them mid-execution.
