@@ -1,0 +1,30 @@
+Pager usage is off.
+BEGIN
+                                 set_config                                 
+----------------------------------------------------------------------------
+ {"sub" : "3612fc99-ca3e-4daa-ae51-356f9f1c18bb", "role" : "authenticated"}
+(1 row)
+
+ERROR:  permission denied for schema auth
+LINE 1: auth.uid()
+        ^
+QUERY:  auth.uid()
+CONTEXT:  PL/pgSQL function create_inventory_movement(uuid,text,uuid,inventory_movement_type,inventory_direction,numeric,text,timestamp with time zone,uuid,boolean,text,uuid) line 3 during statement block local variable initialization
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  savepoint "s5" does not exist
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  savepoint "s5" does not exist
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ERROR:  savepoint "s5" does not exist
+ROLLBACK
