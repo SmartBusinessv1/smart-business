@@ -118,15 +118,15 @@ The undersigned builder confirms that:
 
 - [x] Implementation followed the locked governance (Product Blueprint, EIS, Engineering Contract, Lovable Build Prompt), based on code-level review of the migration and application code against the Engineering Contract's stated design.
 - [x] Implementation followed the Engineering Contract at the database, function, RLS, and UI levels — see §6 evidence.
-- [x] Verification Checklist executed on 23 July 2026 under SB-P-1.10-LOVE-CR-1.0. Totals: 43 Pass · 0 Fail · 9 Follow-up. No release-blocking failure identified.
+- [x] Verification Checklist executed on 23 July 2026 (LOVE-CR-1.0) and 23 July 2026 (TV-1.0); corrective mission SB-P-1.10-FIX-DIGEST-1.0 executed 24 July 2026. Cumulative totals: **47 Pass · 0 Fail · 5 Follow-up**. No release-blocking failure identified.
 - [x] Evidence archived under `docs/implementation/SB-P-1.10/evidence/` with an index mapping every artefact to the checklist requirement it supports.
 - [x] Repository is submitted for Mission Control review. Final acceptance is Mission Control's decision.
 
 | Field | Value |
 | --- | --- |
-| Builder | Lovable Builder (Reporting Room 03_Lovable_Builder) — evidence and report update under SB-P-1.10-LOVE-CR-1.0. Original implementation by Claude (Reporting Room 02_Claude_Engineering). |
-| Date | 23 July 2026 |
-| Signature (or equivalent) | Lovable Builder — SB-P-1.10-LOVE-CR-1.0 |
+| Builder | Lovable Builder (Reporting Room 03_Lovable_Builder) — evidence and report updates under SB-P-1.10-LOVE-CR-1.0, SB-P-1.10-TV-1.0, SB-P-1.10-FIX-DIGEST-1.0. Original implementation by Claude (Reporting Room 02_Claude_Engineering). |
+| Date | 24 July 2026 |
+| Signature (or equivalent) | Lovable Builder — SB-P-1.10-FIX-DIGEST-1.0 |
 
 ## 10. Future Upgrade Opportunities (Build Later)
 
