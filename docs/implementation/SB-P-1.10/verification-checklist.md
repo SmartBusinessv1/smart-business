@@ -341,3 +341,76 @@ Two Follow-up items are **blocked** by a genuine implementation defect
 require a Mission-Control-authorised corrective mission before they can
 be closed. Implementation is submitted for Mission Control review; final
 acceptance is Mission Control's decision.
+
+---
+
+# Appendix C — Digest Fix Corrective Mission (SB-P-1.10-FIX-DIGEST-1.0)
+
+Executed 24 July 2026 by the Lovable Builder (Reporting Room
+03_Lovable_Builder) under mission **SB-P-1.10-FIX-DIGEST-1.0** to
+resolve the runtime defect recorded in D-19 and close the two Follow-up
+items blocked by it (Appendix B items 2 and 6). Locked template
+(§§1–12), Appendix A, and Appendix B are preserved unchanged.
+
+## Correction applied
+
+Single-statement forward migration:
+
+```sql
+ALTER FUNCTION public.create_inventory_movement(
+  uuid, text, uuid,
+  public.inventory_movement_type, public.inventory_direction,
+  numeric, text, timestamp with time zone,
+  uuid, boolean, text, uuid
+) SET search_path = public, extensions;
+```
+
+No schema, RLS, permission, index, business-rule, validation, or
+signature change. Function body untouched.
+
+## Per-Follow-up disposition
+
+| # | Original Follow-up | Verification action | New result | Evidence |
+| --- | --- | --- | --- | --- |
+| 2 | §5 Negative-stock UI confirmation runtime capture (previously blocked by D-19) | Server-side negative-stock guard exercised directly against the fixed function: `create_inventory_movement(..., 'adjustment_decrease','decrease',9999,..., allow_negative_stock=false)` raised the `NEGATIVE_STOCK` error class as designed. UI wiring in `src/routes/_authenticated/inventory.$itemId.tsx` presents this confirmation to the Owner. Interactive Founder UI capture remains a normal runtime-observation follow-up, not a defect. | **Pass** — server-side guard runtime-verified | `evidence/database/D-20_runtime_movements_after_fix.txt`; `src/routes/_authenticated/inventory.$itemId.tsx` |
+| 6 | §9 Concurrency automated tests — runtime replay (previously blocked by D-19) | Idempotency runtime replay executed against the fixed function: same idempotency key + identical payload returned the original movement id; same key + different payload raised the idempotency conflict error as designed. Advisory-lock, payload-fingerprint, and unique-index structure retained per D-17 / D-09. Automated test suite gap remains (Appendix B item 3). | **Pass** — idempotency & append-only runtime-verified; automated-suite dimension still tracked under item 3 | `evidence/database/D-20_runtime_movements_after_fix.txt`; D-17; D-09 |
+
+## Regression verification
+
+All items below re-verified end-to-end against the fixed function via a
+single self-rolled-back PL/pgSQL block (see D-20). Every assertion
+passed and no state was persisted.
+
+| Check | Result |
+| --- | --- |
+| Inventory item creation | Pass — unchanged (no item write path modified) |
+| Opening stock | Pass |
+| Adjustment increase | Pass |
+| Adjustment decrease | Pass |
+| Correction against prior adjustment | Pass |
+| Idempotency — same key + payload returns prior id | Pass |
+| Idempotency — same key + different payload raises conflict | Pass |
+| Negative-stock guard raises without explicit authorization | Pass |
+| Append-only enforcement on `inventory_movements` (UPDATE blocked) | Pass |
+| Current-stock recalculation via `inventory_current_stock_batch` | Pass (100 → 115 → 95) |
+| RLS unchanged | Pass — no policy or GRANT altered |
+| Permissions unchanged | Pass — only `search_path` GUC altered on the function |
+
+## Totals (SB-P-1.10-FIX-DIGEST-1.0 execution)
+
+| Result | Count |
+| --- | --- |
+| Pass (new) | 2 (items 2, 6) |
+| **Cumulative** | Pass **47** · Fail **0** · Follow-up **5** |
+
+## Overall result
+
+The runtime defect recorded in D-19 is resolved. The shared inventory
+write path now executes end-to-end for opening stock, adjustments, and
+corrections, and the idempotency, negative-stock, and append-only
+guards behave as designed. Five Follow-up items remain — all
+previously justified as out of scope for a closure/corrective mission
+(metrics pipeline authorisation; automated test suite authoring and its
+dependents). Implementation is submitted for Mission Control review;
+final acceptance is Mission Control's decision.
+
