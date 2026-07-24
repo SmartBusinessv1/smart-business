@@ -70,7 +70,8 @@ All outputs are `psql` queries against the Lovable-managed backend
 | `D-16_rls_owner_isolation.txt` | **SB-P-1.10-TV-1.0.** RLS behavioural probes executed as the `authenticated` role with `request.jwt.claims.sub` set to (A) the Milk business owner — sees Milk; (B) another Owner — sees zero; (C) an unknown user — sees zero; (E) cross-business INSERT — rejected `new row violates row-level security policy for table "inventory_items"`; (F/G) UPDATE/DELETE on `inventory_movements` — no matching rows / append-only trigger authoritative; (H) append-only trigger runtime check — blocked because the shared write path itself currently fails (see D-19); (I) confirmed no `anon` GRANT and no `anon` policy exists on any inventory table. | §7 RLS owner-only visibility & cross-business isolation |
 | `D-17_concurrency_structural.txt` | **SB-P-1.10-TV-1.0.** Structural concurrency evidence: idempotency-key conflict detection (`SELECT … FOR UPDATE` + payload fingerprint + `inventory_movement_idem_scope_uniq`), per-item `pg_advisory_xact_lock`, and authoritative in-transaction stock projection. Runtime replay was attempted and blocked by D-19. | §7 concurrency / §8 idempotency |
 | `D-18_query_plans.txt` | **SB-P-1.10-TV-1.0.** `EXPLAIN (ANALYZE, BUFFERS)` on the item list (Bitmap Index Scan on `inventory_items_business_status_idx`), the batch stock aggregation function scan, and the movement history query (Bitmap Index Scan on `inventory_movements_item_time_idx`). Includes the full index listing for both tables for cross-reference. | §6 index strategy — plan-level validation |
-| `D-19_movement_creation_defect.txt` | **SB-P-1.10-TV-1.0. Discovered defect.** Every call to `public.create_inventory_movement` currently raises `function digest(text, unknown) does not exist`. Root cause: the function is declared `SET search_path TO 'public'`, but `pgcrypto`'s `digest(text, text)` lives in the `extensions` schema. Corroboration: production `inventory_movements` count is 0. Fix requires broadening the function's search_path to include `extensions` (or qualifying the call as `extensions.digest(...)`) via a corrective migration. **Not fixed under this mission — Mission Control authorisation required.** | §7 shared write path — runtime observability defect |
+| `D-19_movement_creation_defect.txt` | **SB-P-1.10-TV-1.0. Discovered defect (RESOLVED under SB-P-1.10-FIX-DIGEST-1.0 — see D-20).** Every call to `public.create_inventory_movement` raised `function digest(text, unknown) does not exist`. Root cause: the function was declared `SET search_path TO 'public'`, but `pgcrypto`'s `digest(text, text)` lives in the `extensions` schema. | §7 shared write path — historical defect record |
+| `D-20_runtime_movements_after_fix.txt` | **SB-P-1.10-FIX-DIGEST-1.0.** Runtime verification after applying `ALTER FUNCTION … SET search_path = public, extensions`. Executed via `supabase--insert` in a self-rolled-back PL/pgSQL block: opening stock, adjustment increase, adjustment decrease, idempotent replay (same key + payload → same movement id), correction against a prior adjustment, current-stock recalculation (100 → 115 → 95), idempotency conflict (same key + different payload → raised), negative-stock guard (raised without explicit authorization), and append-only guard on `inventory_movements` (raised). All checks passed; no persisted state changes. | §7 shared write path (regression); §4 ledger-derived read (recalculation) |
 
 ## Repository evidence (`repository/`)
 
@@ -86,8 +87,6 @@ All outputs are `psql` queries against the Lovable-managed backend
 - No automated test suite exists in the repository; the "automated tests"
   obligations of Engineering Contract §16 remain a **Follow-up**.
 - Interactive UI capture for the negative-stock confirmation dialog, the
-  correction dialog, archive/reactivate, and successful opening-stock /
-  adjustment mutation cannot be produced against the current runtime
-  because the underlying shared write path currently fails (D-19). These
-  captures are deferred until after the corrective mission that restores
-  `create_inventory_movement`.
+  correction dialog, and archive/reactivate remains deferred to Founder
+  runtime observation. The underlying database write path has been verified
+  end-to-end under SB-P-1.10-FIX-DIGEST-1.0 (D-20).

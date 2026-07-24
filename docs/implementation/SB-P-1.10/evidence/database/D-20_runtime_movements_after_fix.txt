@@ -1,0 +1,64 @@
+=== SB-P-1.10-FIX-DIGEST-1.0 — Runtime verification after search_path fix ===
+Date: 2026-07-24
+Backend: Lovable Cloud project ref wwgqnshcgbukqczqblsm
+Actor: authenticated (request.jwt.claims.sub = business owner of "Milk")
+
+--- Correction applied ---
+ALTER FUNCTION public.create_inventory_movement(
+  uuid, text, uuid,
+  public.inventory_movement_type, public.inventory_direction,
+  numeric, text, timestamp with time zone,
+  uuid, boolean, text, uuid
+) SET search_path = public, extensions;
+
+Post-fix pg_proc.proconfig:
+          proname          |             proconfig
+---------------------------+------------------------------------
+ create_inventory_movement | {"search_path=public, extensions"}
+
+--- Regression run (single anonymous PL/pgSQL DO block) ---
+All calls executed via supabase--insert against the live Lovable-managed
+backend, wrapped so the entire test rolls back via a final
+RAISE EXCEPTION 'TV_ROLLBACK_OK' (no persisted state changes).
+
+Successful steps (all reached; each subsequent step only executes if the
+previous one succeeded — the block terminated at line 67, the final
+rollback sentinel, proving every earlier step succeeded):
+
+  1. opening_stock / increase 100          -> SUCCESS (movement id returned)
+  2. adjustment_increase / +20             -> SUCCESS
+  3. adjustment_decrease / -5              -> SUCCESS
+  4. Idempotent replay (same key+payload)  -> returned SAME movement id
+  5. inventory_current_stock_batch         -> current_stock = 115
+  6. correction / -20 against step 2       -> SUCCESS
+  7. inventory_current_stock_batch         -> current_stock = 95
+  8. Idempotency conflict (same key,
+     different payload)                    -> correctly raised
+  9. Negative-stock guard (decrease 9999,
+     allow_negative=false)                 -> correctly raised NEGATIVE_STOCK
+ 10. Append-only guard (UPDATE on
+     inventory_movements)                  -> correctly raised
+     "inventory_movements are append-only; use a linked correction
+     movement instead"
+ 11. Rollback sentinel                     -> raised (P0001 TV_ROLLBACK_OK)
+
+Backend response confirming line 67 was reached:
+  ERROR:  P0001: TV_ROLLBACK_OK
+  CONTEXT: PL/pgSQL function inline_code_block line 67 at RAISE
+
+--- Interpretation ---
+Before the fix (D-19): first call to create_inventory_movement failed at
+`digest(text, unknown) does not exist` (PL/pgSQL line 54).
+After the fix: the function resolves `extensions.digest(...)` via the
+extended search_path and every downstream path (opening stock, adjustments,
+corrections, idempotency, negative-stock guard, append-only guard) executes
+as designed.
+
+--- Non-regressions confirmed ---
+- Idempotency (same key + same payload returns prior movement id;
+  same key + different payload raises conflict).
+- Append-only enforcement on inventory_movements (BEFORE UPDATE trigger).
+- Negative-stock guard (explicit authorization required).
+- RLS / permissions unchanged (function is SECURITY INVOKER; no GRANT,
+  policy, or role change was applied under this mission).
+- Schema / indexes / enums unchanged.

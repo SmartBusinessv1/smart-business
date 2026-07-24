@@ -1,0 +1,1 @@
+ALTER FUNCTION public.create_inventory_movement(uuid, text, uuid, public.inventory_movement_type, public.inventory_direction, numeric, text, timestamp with time zone, uuid, boolean, text, uuid) SET search_path = public, extensions;
