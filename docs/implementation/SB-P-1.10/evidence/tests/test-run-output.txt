@@ -1,0 +1,14 @@
+
+> test
+> vitest run
+
+[33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
+
+ RUN  v4.1.10 C:/Users/91974/Documents/GitHub/smart-business
+
+
+ Test Files  17 passed (17)
+      Tests  62 passed (62)
+   Start at  17:34:31
+   Duration  55.08s (transform 671ms, setup 659ms, import 4.04s, tests 42.05s, environment 4ms)
+

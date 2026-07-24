@@ -1,0 +1,93 @@
+SB-P-1.10-TESTS-1.0 — Query-Plan Evidence (Performance Obligation)
+====================================================================
+
+Captured: 24 July 2026, via Supabase MCP execute_sql against the dedicated
+test project gysgzasfcjvtrgaigfyn (NOT the Lovable-managed production
+backend). Target row: inventory_items.id = 487b622a-9f4e-4cc2-9000-
+12a992cfd259 ("Performance Item ..."), created by
+tests/inventory/performance.test.ts's beforeAll (61 movements: one opening
+stock + 60 adjustment_increase movements). Table-wide row count at capture
+time: 336 total movement rows across all test fixtures created by this
+mission's test run.
+
+Supports: Engineering Contract §16 item 8 ("Performance tests confirming
+... grouped aggregation rather than N+1 list queries").
+
+--------------------------------------------------------------------
+1. Movement history query (as issued by listMovements / the app's history
+   view) for the 61-movement item:
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM public.inventory_movements
+WHERE item_id = '487b622a-9f4e-4cc2-9000-12a992cfd259'
+ORDER BY occurred_at DESC, created_at DESC;
+
+Sort  (cost=14.01..14.16 rows=61 width=166) (actual time=0.148..0.154 rows=61 loops=1)
+  Sort Key: occurred_at DESC, created_at DESC
+  Sort Method: quicksort  Memory: 33kB
+  Buffers: shared hit=11
+  ->  Seq Scan on inventory_movements  (cost=0.00..12.20 rows=61 width=166) (actual time=0.070..0.091 rows=61 loops=1)
+        Filter: (item_id = '487b622a-9f4e-4cc2-9000-12a992cfd259'::uuid)
+        Rows Removed by Filter: 275
+        Buffers: shared hit=8
+Planning Time: 1.624 ms
+Execution Time: 0.302 ms
+
+NOTE ON SEQ SCAN: this test project has only 336 total movement rows (all
+test fixtures combined). Postgres's planner correctly prefers a sequential
+scan over the inventory_movements_item_time_idx index at this small a
+table size -- an index scan would cost more, not less, here. This does not
+contradict the existing production-scale evidence
+(evidence/database/D-18_query_plans.txt), which was captured against
+whatever larger volume existed on the production-adjacent connection at
+that time and showed a Bitmap Index Scan. What this file demonstrates
+instead is functional correctness plus the query *shape* (single query,
+correct ORDER BY, no per-row round-trips) as data volume genuinely grows
+under automated test control -- see tests/inventory/performance.test.ts
+for the timing assertions (<5000ms for both history and aggregation at
+this volume, well within bound).
+
+--------------------------------------------------------------------
+2. Batch current-stock aggregation, via the actual RPC (inventory_current_
+   stock_batch), for the same item:
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM public.inventory_current_stock_batch(ARRAY['487b622a-9f4e-4cc2-9000-12a992cfd259']::uuid[]);
+
+Function Scan on inventory_current_stock_batch  (cost=0.25..10.25 rows=1000 width=48) (actual time=3.448..3.449 rows=1 loops=1)
+  Buffers: shared hit=642
+Planning Time: 0.181 ms
+Execution Time: 3.552 ms
+
+A "Function Scan" is an opaque node from the caller's side (Postgres does
+not inline this SQL-language function's internal plan into the outer
+EXPLAIN). Statement 3 below shows the function body's actual query shape
+directly.
+
+--------------------------------------------------------------------
+3. Inline equivalent of inventory_current_stock_batch()'s body (its exact
+   SQL, run directly, to expose the real query plan the function executes):
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT m.item_id,
+       sum(CASE WHEN m.direction = 'increase' THEN m.quantity ELSE -m.quantity END) AS current_stock
+FROM public.inventory_movements m
+WHERE m.item_id = ANY (ARRAY['487b622a-9f4e-4cc2-9000-12a992cfd259']::uuid[])
+GROUP BY m.item_id;
+
+HashAggregate  (cost=12.39..12.98 rows=47 width=48) (actual time=0.131..0.133 rows=1 loops=1)
+  Group Key: item_id
+  Batches: 1  Memory Usage: 24kB
+  Buffers: shared hit=8
+  ->  Seq Scan on inventory_movements m  (cost=0.00..11.78 rows=61 width=25) (actual time=0.076..0.098 rows=61 loops=1)
+        Filter: (item_id = ANY ('{487b622a-9f4e-4cc2-9000-12a992cfd259}'::uuid[]))
+        Rows Removed by Filter: 275
+        Buffers: shared hit=8
+Planning Time: 0.901 ms
+Execution Time: 0.282 ms
+
+INTERPRETATION: exactly one query, one HashAggregate GROUP BY item_id,
+regardless of how many item ids are passed in the array. This is the
+structural evidence for "grouped aggregation rather than N+1" -- the same
+single-query shape serves 1 item id or 100 in the array argument; there is
+no per-item round trip inside the function body.

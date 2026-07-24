@@ -414,3 +414,88 @@ previously justified as out of scope for a closure/corrective mission
 dependents). Implementation is submitted for Mission Control review;
 final acceptance is Mission Control's decision.
 
+---
+
+# Appendix D — Automated Test Suite and Idempotency Replay Fix (SB-P-1.10-TESTS-1.0 and SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0)
+
+Two missions, both 24 July 2026, by Claude Engineering (Reporting Room
+02_Claude_Engineering), resolving four of the five Follow-up items
+remaining after Appendix C (original Appendix B numbering: items 3, 4,
+7, 8). Locked template (§§1–12) and Appendices A, B, and C are preserved
+unchanged.
+
+- **SB-P-1.10-TESTS-1.0** authored the automated test suite itself (17
+  files, 62 tests, one per Engineering Contract §16 obligation), a
+  traceability matrix, and test-execution evidence — closing items 3, 7,
+  and 8 outright, and discovering a genuine implementation defect
+  (idempotency replay failing under RLS + `SELECT ... FOR UPDATE`) in
+  the process. Reviewed by Mission Control: test framework and evidence
+  accepted; SB-P-1.10-TESTS-1.0 itself **not** marked complete and
+  SB-P-1.10 **not** accepted, pending correction of the discovered
+  defect.
+- **SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0**, authorized by Mission Control
+  as a corrective mission, corrected that defect — scoped entirely to
+  `public.create_inventory_movement()` (no RLS, grant, table, or
+  signature change) — and re-verified the full suite, closing item 4
+  ("tests execute successfully," previously blocked at 57/62).
+
+## Per-Follow-up disposition
+
+| # (Appendix B numbering) | Original Follow-up | Verification action | New result | Evidence |
+| --- | --- | --- | --- | --- |
+| 3 | §9 Automated test coverage for §16 obligations | A Vitest suite (17 files, 62 tests, one per §16 line item) now exists and runs via `npm run test`, against a dedicated test-only Supabase project with the SB-P-1.10 migrations applied. | **Pass** | `evidence/tests/traceability-matrix.md`; `tests/inventory/` |
+| 4 | §9 Tests execute successfully | Under SB-P-1.10-TESTS-1.0: 57/62 passed, 5 failed against a real, root-caused defect (idempotency replay under RLS + `FOR UPDATE`) — not fully successful. Under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0: defect corrected (migration `20260724170000_..._6a0f8a74...sql`, scoped to the function only); suite re-run 6 times (3 full-suite + 3 isolated race-condition stress runs), **62/62 passing every time**, zero flakiness. | **Pass** | `evidence/tests/test-run-output.txt`; `evidence/tests/test-summary.md`; `evidence/tests/DEFECT-idempotency-select-for-update-rls.md` (Resolution section) |
+| 7 | §9 Traceability to §16 obligations | Every Contract §16 obligation is mapped to specific test file(s), test name(s), and result. | **Pass** | `evidence/tests/traceability-matrix.md` — 17/17 obligations Pass as of the corrective mission |
+| 8 | §10 Automated test results | Raw execution output and a structured summary (environment, migrations applied, coverage, root cause and fix) are archived. | **Pass** | `evidence/tests/test-run-output.txt`; `evidence/tests/test-summary.md` |
+
+Item 1 (§4 Observability metrics pipeline) is **not** addressed by
+either mission and remains Follow-up, unchanged from Appendix C —
+still legitimately out of scope (not authorised in Phase 1).
+
+## Findings recorded, not corrected (out of this corrective mission's scope)
+
+SB-P-1.10-TESTS-1.0 also recorded two findings that are not defects and
+were not in SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0's authorized scope
+(which was limited to the idempotency replay defect specifically):
+
+- Append-only enforcement for an ordinary owner is provided by RLS's
+  default-deny (no UPDATE/DELETE policy exists on
+  `inventory_movements`), not by the `BEFORE UPDATE`/`BEFORE DELETE`
+  triggers firing for that caller. The triggers are real and
+  independently confirmed to fire correctly via `service_role` (which
+  bypasses RLS) — genuine defence-in-depth, just a different mechanism
+  than the migration's comment implies for the ordinary-owner path.
+- A direct insert into `inventory_movements`, bypassing
+  `create_inventory_movement()`, can evade that function's
+  negative-stock guard at the database level (the guard lives in the
+  function body, not a trigger or CHECK constraint). No application
+  code path does this today (confirmed by a static repository check in
+  `tests/inventory/shared-write-path.test.ts`), so there is no live
+  exploit surface, but the guarantee is enforced by convention rather
+  than by the database.
+
+Both remain recorded in `evidence/tests/traceability-matrix.md` and the
+completion report for Mission Control's own judgment on whether either
+warrants a future mission.
+
+## Totals (SB-P-1.10-TESTS-1.0 + SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 execution)
+
+| Result | Count |
+| --- | --- |
+| Pass (new) | 4 (items 3, 4, 7, 8) |
+| **Cumulative** | Pass **51** · Fail **0** · Follow-up **1** |
+
+## Overall result
+
+Four of the five Follow-up items remaining after Appendix C are
+resolved to **Pass**: an automated test suite now exists, covers every
+Engineering Contract §16 obligation with full traceability, and — after
+SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0's correction of a genuine defect
+discovered during authoring — executes successfully in full (62/62,
+stable across 6 runs). One Follow-up item remains (§4 observability
+metrics pipeline), unchanged and still legitimately out of scope. Two
+findings (not defects, not release-blocking) are recorded for Mission
+Control's awareness but were outside this corrective mission's
+authorized scope. Implementation is submitted for Mission Control
+review; final acceptance is Mission Control's decision.
+

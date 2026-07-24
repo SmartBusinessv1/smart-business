@@ -1,6 +1,6 @@
 # SB-P-1.10 — Inventory Foundation — Evidence Index
 
-This directory holds the evidence collected under two authorised missions:
+This directory holds the evidence collected under four authorised missions:
 
 - **SB-P-1.10-LOVE-CR-1.0** — Evidence Collection and Completion Report
   (23 July 2026): archived Founder screenshots, initial database schema /
@@ -10,12 +10,27 @@ This directory holds the evidence collected under two authorised missions:
   the list / aggregation / history queries, structural concurrency
   evidence, and a documented movement-creation defect discovered during
   verification.
+- **SB-P-1.10-TESTS-1.0** — Inventory Foundation Test Coverage
+  (24 July 2026): a new automated test suite (Vitest) covering every
+  Engineering Contract §16 testing obligation, run against a dedicated
+  test-only Supabase project; a traceability matrix; and one newly
+  discovered implementation defect (idempotency replay under RLS +
+  `FOR UPDATE`), reported but not corrected under this test-only mission.
+- **SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0** — Idempotency Replay Correction
+  (24 July 2026): a Mission-Control-authorized corrective mission fixing
+  the defect discovered above, scoped entirely to
+  `create_inventory_movement()`. Full suite now 62/62 passing, re-verified
+  across 6 stable runs.
 
 Evidence sources: the Lovable-managed runtime, the Lovable-managed
 database (project ref `wwgqnshcgbukqczqblsm`), Founder-supplied runtime
 screenshots, and the repository implementation history. The prior
 report's references to the unrelated Supabase project ref
-`gysgzasfcjvtrgaigfyn` have been retracted.
+`gysgzasfcjvtrgaigfyn` (as a claimed *deployment target*) have been
+retracted. That same project ref is, separately and intentionally, the
+dedicated test-only database used by SB-P-1.10-TESTS-1.0 and
+SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 (see `tests/` below) — a different,
+deliberate use, not a reassertion of the retracted claim.
 
 ## Directory layout
 
@@ -26,6 +41,7 @@ evidence/
   runtime/               Runtime verification notes
   database/              Live database verification (psql outputs)
   repository/            Repository/commit evidence
+  tests/                 Automated test suite evidence (SB-P-1.10-TESTS-1.0)
 ```
 
 ## Founder runtime evidence (`founder/`)
@@ -79,14 +95,44 @@ All outputs are `psql` queries against the Lovable-managed backend
 | --- | --- |
 | `commit-range.txt` | Implementation commit range `412d91b..f9fabe4` (13 commits, 2026-07-21). Diff-stat: 11 files changed, 2,813 insertions, 228 deletions. |
 
+## Automated test evidence (`tests/`)
+
+**SB-P-1.10-TESTS-1.0** (24 July 2026) **+ SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0** (24 July 2026, corrective mission). A Vitest test suite (17 files, 62
+tests) exercising every Engineering Contract §16 testing obligation
+against the dedicated test-only Supabase project `gysgzasfcjvtrgaigfyn`
+(explicitly not the production Lovable-managed backend), with the
+`businesses` + SB-P-1.10 inventory migrations applied, plus one corrective
+migration authored under this mission. **Current result: 62 passed, 0
+failed**, stable across 6 consecutive runs. SB-P-1.10-TESTS-1.0 originally
+found 5 failures tracing to one real, root-caused implementation defect;
+SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 corrected it (scoped entirely to
+`create_inventory_movement()`) and re-verified.
+
+| Artifact | Description | Supports checklist item(s) |
+| --- | --- | --- |
+| `traceability-matrix.md` | Maps every Engineering Contract §16 obligation to its test file(s), test name(s), pass/fail result, and notes. Updated post-fix: 17/17 Pass. | §9 testing obligations; §16 all items |
+| `test-run-output.txt` | Raw `npm run test` output from the final, stable post-fix run (62/62). | §10 automated test results |
+| `test-summary.md` | Execution command, runtime environment, migrations applied and why, coverage summary, the corrective-mission root cause and fix, and a transparent list of test-authoring bugs found and fixed while first building the suite. | §9/§10 |
+| `query-plan-evidence.txt` | `EXPLAIN (ANALYZE, BUFFERS)` captured against the test project for the performance obligation (history query, batch aggregation, and the aggregation function's inlined query shape) — same style as `D-18_query_plans.txt`, on a smaller (336-row) test dataset. Unaffected by the corrective mission. | §6 index strategy — grouped-aggregation structural evidence |
+| `DEFECT-idempotency-select-for-update-rls.md` | Root-caused, independently-reproduced (JS integration test + raw SQL) defect: `create_inventory_movement`'s idempotency-replay `SELECT ... FOR UPDATE` never found an existing, matching, RLS-visible row, so retries were never gracefully deduplicated — traced to a PostgreSQL planner limitation (`FOR UPDATE` + a subquery-based RLS policy folding to a constant "no rows"). **RESOLVED** under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0; original discovery record preserved in full, resolution appended. | §7 idempotency (Pass, was Fail); §13 concurrency (Pass, was partial Fail) |
+
+Source: `tests/setup/` (test-only Supabase client helpers — deliberately
+independent of `src/integrations/supabase/client.ts`, since that module
+holds one process-wide client singleton and cannot represent two
+simultaneously signed-in businesses or fire genuinely concurrent requests
+as the same user) and `tests/inventory/` (the 17 test files themselves).
+
 ## What this evidence does NOT cover
 
 - Authenticated Playwright runtime capture was not performed. The
   Founder-supplied screenshots (F-01, F-02) provide the authenticated UI
   evidence.
-- No automated test suite exists in the repository; the "automated tests"
-  obligations of Engineering Contract §16 remain a **Follow-up**.
 - Interactive UI capture for the negative-stock confirmation dialog, the
   correction dialog, and archive/reactivate remains deferred to Founder
   runtime observation. The underlying database write path has been verified
-  end-to-end under SB-P-1.10-FIX-DIGEST-1.0 (D-20).
+  end-to-end under SB-P-1.10-FIX-DIGEST-1.0 (D-20) and, for the specific
+  paths covered, under SB-P-1.10-TESTS-1.0's automated suite.
+- The automated test suite runs against a dedicated test-only Supabase
+  project, not the production Lovable-managed backend. It does not by
+  itself confirm the production backend's current schema matches what was
+  tested — that remains covered by the database evidence above (D-01–D-20).
