@@ -87,8 +87,6 @@ All outputs are `psql` queries against the Lovable-managed backend
 - No automated test suite exists in the repository; the "automated tests"
   obligations of Engineering Contract §16 remain a **Follow-up**.
 - Interactive UI capture for the negative-stock confirmation dialog, the
-  correction dialog, archive/reactivate, and successful opening-stock /
-  adjustment mutation cannot be produced against the current runtime
-  because the underlying shared write path currently fails (D-19). These
-  captures are deferred until after the corrective mission that restores
-  `create_inventory_movement`.
+  correction dialog, and archive/reactivate remains deferred to Founder
+  runtime observation. The underlying database write path has been verified
+  end-to-end under SB-P-1.10-FIX-DIGEST-1.0 (D-20).
