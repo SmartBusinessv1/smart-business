@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "supabase:test": "node scripts/supabase-cli.mjs test",
+    "supabase:production": "node scripts/supabase-cli.mjs production"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
