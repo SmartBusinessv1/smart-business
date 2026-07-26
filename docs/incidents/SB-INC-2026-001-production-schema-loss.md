@@ -61,7 +61,7 @@ Recovery used **migration replay, not backup/PITR restore** — deliberately, pe
 3. **Migration replay**: `CONFIRM_PRODUCTION=yes npm run supabase:production -- db push --yes`, executed directly via Claude Code's Bash tool (not relayed through the Founder's terminal), applying all 12 tracked migrations including the `20260727000000_reconcile_default_grants.sql` migration introduced earlier in SB-MIG-1.2E-C.
 4. **Known-issue repairs during replay** (all pre-existing repository issues, previously documented in SB-MIG-1.2E-C's audit of the test project, and now confirmed to affect production identically — not new problems introduced by this incident):
    - `20260719140000` (byte-for-byte duplicate of `20260719102137`) — repaired via `migration repair --status applied`.
-   - `20260723200718` / `20260723200952` (`GRANT`/`REVOKE ... TO sandbox_exec`, a Lovable-platform role not present as a standing database role on either project) — repaired via `migration repair --status applied`.
+   - `20260723200718` / `20260723200952` (`GRANT`/`REVOKE ... TO sandbox_exec`, a role not present as a standing database role on either project — its exact origin is not established from available evidence) — repaired via `migration repair --status applied`.
 5. No ad hoc schema SQL was run. No synthetic data, test users, or Vitest suite executions occurred against production during recovery. No Auth, SMTP, OAuth, or dashboard configuration was touched.
 
 ## 6. Verification Results
