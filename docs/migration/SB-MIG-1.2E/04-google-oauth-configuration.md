@@ -2,11 +2,13 @@ Document: Google OAuth Configuration
 
 Version: 1.0
 
-Status: DRAFT — submitted for Mission Control review
+Status: ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (pending)
+Reviewed By: Mission Control
+
+Review Date: 2026-07-26
 
 Mission: SB-MIG-1.2E
 
@@ -34,7 +36,9 @@ Mission: SB-MIG-1.2E
 
 **External** was chosen deliberately over Internal, since Smart Business's clients are outside the `teamlips.com` Workspace organization — Internal would restrict sign-in to only Team LIPS staff.
 
-**Verification note:** External apps in Testing mode are limited to manually-added test users (up to 100). This comfortably covers Stage 1 (10 pilot clients) and Stage 2 (100 clients) of the Founder's growth plan without requiring Google's app verification process. Verification will become necessary before Stage 3/4 (250-500 clients), when arbitrary Google accounts must be able to sign in without being pre-added as test users. Recommend starting Google's verification process ahead of Stage 3, as it can take meaningful lead time (similar in nature to the India DLT registration deferred for Phone auth).
+**Verification note:** External apps in Testing mode are limited to manually-added test users (up to 100). This comfortably covers Stage 1 (10 pilot clients) and, on paper, Stage 2 (100 clients) of the Founder's growth plan without requiring Google's app verification process.
+
+**Revised recommendation (Mission Control, SB-MIG-1.2E-A Refinement 5):** don't wait until the 100-user ceiling is actually reached. Google's verification process itself takes real time to complete, so starting only once Stage 2 hits its limit would leave onboarding blocked mid-review with no fallback. Begin the verification process **well before** the 100-test-user limit is approached — i.e., early in Stage 2, not at its boundary — so review has comfortably completed with margin before it could ever block a new signup. This is the same category of long-lead item as the India DLT registration deferred for Phone auth: worth starting proactively, not reactively.
 
 ## 3. OAuth Client Credentials
 
@@ -67,5 +71,5 @@ Post-save verification: Providers list now shows **Google: Enabled** (green badg
 
 Google OAuth is fully configured and enabled. Two follow-up items are not yet due but should be tracked:
 
-1. **Google app verification** — start before Stage 3 (~250 clients) to avoid the "unverified app" warning screen and the 100-test-user ceiling blocking growth.
+1. **Google app verification** — start early in Stage 2 (well before the 100-test-user ceiling is reached, not at Stage 3) to avoid the "unverified app" warning screen and ensure review completes with margin before it could block onboarding.
 2. **OAuth consent screen branding polish** (logo, privacy policy/terms links) — cosmetic, can be refined anytime via Branding settings without affecting functionality.

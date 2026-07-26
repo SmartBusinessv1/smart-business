@@ -2,11 +2,13 @@ Document: Logs & Monitoring Review
 
 Version: 1.0
 
-Status: DRAFT — submitted for Mission Control review
+Status: ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (pending)
+Reviewed By: Mission Control
+
+Review Date: 2026-07-26
 
 Mission: SB-MIG-1.2E
 
@@ -29,7 +31,7 @@ Phase 4's project overview showed 3 warnings on API Gateway over 24 hours. Inves
 
 **Assessment:** this pattern (tight clustering, admin-endpoint access attempts, validation-rejection style 400s on inventory/transaction RPCs) is consistent with an **automated test suite run**, not real client traffic or an attack. The 403s demonstrate access control correctly rejecting improper credentials — a good sign, not a vulnerability.
 
-**Connects directly to a Phase 10 finding**: this log evidence reinforces the discrepancy flagged in `06-api-review.md` §2.3 — `.env.test`'s header comment claims tests run against an "isolated, disposable" project, but both the environment variable (same project ref) and this log activity suggest the automated test suite runs directly against this production project. Flagged again here for Mission Control's attention; resolution is outside this infrastructure mission's scope.
+**Connects directly to a Phase 10 finding**: this log evidence corroborates what SB-MIG-1.2E-A's Refinement 3 investigation later confirmed outright in `06-api-review.md` §2.3 — the automated test suite genuinely runs directly against this production project (not an "isolated, disposable" one as `.env.test`'s header comment claims), using the project's real service-role key. This is a known, previously-managed condition (see the cleanup precedent cited in §2.3), requiring a pre-cutover data check rather than an open unknown.
 
 ## 3. Realtime Warning (follow-up from Phase 4)
 
@@ -37,4 +39,4 @@ Phase 4 showed 1 warning on Realtime. Investigated via Logs → Realtime: a sing
 
 ## 4. Outcome
 
-Phase 13 complete. No unresolved errors or ongoing issues found. Both Phase 4 warnings fully explained. One cross-cutting item (possible production test-suite targeting) reinforced with log evidence and referred to Mission Control, consistent with the Phase 10 finding.
+Phase 13 complete. No unresolved errors or ongoing issues found. Both Phase 4 warnings fully explained. One cross-cutting item (production test-suite targeting) corroborated here with log evidence and since fully confirmed under SB-MIG-1.2E-A, consistent with the Phase 10 finding.
