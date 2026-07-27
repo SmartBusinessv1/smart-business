@@ -2,138 +2,62 @@
 
 # Instruction
 
-**Mission ID:** SB-COMM-TEST-1.0
+**Mission ID:**
 
-**Mission Name:** Repository Communication Workflow Test
+**Mission Name:**
 
 **From:** Mission Control
 
-**To:** 02_Claude_Engineering
+**To:**
 
-**Status:** ACTIVE
+**Status:**
 
-**Date:** 2026-07-28
+**Date:**
 
 ---
 
 # Mission Objective
 
-Test the new repository-based communication workflow between Mission Control and Claude Engineering.
-
-This is an administrative workflow test only. No product, infrastructure, authentication, database, or deployment work is authorized.
+State the objective of this mission in one or two sentences. Be explicit about what is and is not authorized.
 
 ---
 
 # Context
 
-The repository now contains:
-
-- `mission-control/mission_memory.md`
-- `communication/README.md`
-- `communication/live/instruction.md`
-- `communication/live/report.md`
-- `communication/archive/`
-
-Founder–Mission Control communication remains in the Mission Control chat.
-
-AI-to-AI operational communication must occur through the repository communication folder.
+Provide the background needed to act on this instruction without requiring the specialist AI to reconstruct history from chat.
 
 ---
 
 # Execute According To
 
-- `communication/README.md`
-- `mission-control/mission_memory.md`
-- Repository-first engineering principles
-- Founder-approved communication workflow
+List the governing documents, prior mission findings, or standing frameworks this instruction must be executed under.
 
 ---
 
 # Scope
 
-Claude Engineering is authorized to:
-
-1. Pull or read the latest repository state.
-2. Read this instruction.
-3. Inspect the communication templates and folder structure.
-4. Verify that the workflow is understandable and usable.
-5. Replace the contents of `communication/live/report.md` with a test report.
-6. Commit and push the report to the repository.
+List exactly what the specialist AI is authorized to do.
 
 ---
 
 # Required Work
 
-## Step 1 — Read
-
-Read:
-
-- `communication/README.md`
-- `communication/live/instruction.md`
-- `communication/live/report.md`
-- `mission-control/mission_memory.md`
-
-## Step 2 — Verify
-
-Confirm that:
-
-- the instruction is readable;
-- the reporting destination is clear;
-- live and archive responsibilities are understandable;
-- no product implementation is required;
-- Claude can write a report back through GitHub.
-
-## Step 3 — Report
-
-Write the test result to:
-
-```text
-communication/live/report.md
-```
-
-The report must include:
-
-1. Mission identity.
-2. Files read.
-3. Workflow understanding.
-4. Verification result.
-5. Any ambiguity or improvement recommendation.
-6. Confirmation that no product or configuration changes were made.
-7. Status: `READY FOR MISSION CONTROL REVIEW`.
-
-Commit and push the report.
+Break the work into steps. For each step, state what must be read, verified, produced, or reported.
 
 ---
 
 # Constraints
 
-Do not:
-
-- modify application code;
-- modify Supabase;
-- modify Lovable;
-- modify production configuration;
-- deploy or publish;
-- edit `mission-control/mission_memory.md`;
-- move files into `communication/archive/` before Mission Control accepts the report;
-- mark the mission complete before Mission Control acceptance.
+List explicit prohibitions — what must not be modified, created, deployed, or assumed.
 
 ---
 
 # Deliverables
 
-- Updated `communication/live/report.md`
-- Git commit containing the report
-- Confirmation in Claude chat that the report has been pushed
+List the concrete outputs expected (files, commits, reports, confirmations).
 
 ---
 
 # Completion Status
 
-Conclude the report with exactly:
-
-```text
-SB-COMM-TEST-1.0 READY FOR MISSION CONTROL REVIEW
-```
-
-After Mission Control accepts the report, wait for a second repository instruction authorizing completion and archival.
+State the exact status string the report must conclude with, and any condition that must hold before the mission is considered complete.
