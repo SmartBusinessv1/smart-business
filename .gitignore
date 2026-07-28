@@ -47,3 +47,4 @@ __pycache__/
 *_TOOL_TEST.md
 *_WHITESPACE_TEST.md
 MARKDOWN_REPAIR_SUMMARY.txt
+.mcp.json
