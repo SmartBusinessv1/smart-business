@@ -20,11 +20,7 @@ Execution must respect:
 ↓
 11 Product Truth Map
 ↓
-12 Feature Implementation Blueprint
-↓
-13 Feature Acceptance Matrix
-↓
-14 Pilot Readiness Audit
+12 Product Execution and Release Framework
 ↓
 09 Roadmap Control
 ↓
@@ -390,7 +386,7 @@ PASS
 
 # Phase 6 - First 10 Pilot Merchants
 
-Only after Source 14 approval.
+Only after Source 12 — Product Execution and Release Framework, Part 3 — Pilot Readiness approval.
 
 Purpose:
 

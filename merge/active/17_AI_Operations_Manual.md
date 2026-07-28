@@ -9,7 +9,7 @@
 - **Status:** MERGED DRAFT — Founder Review Required
 - **Version:** 1.0-draft
 - **Merge ID:** M001_AI_Operations
-- **Merged Sources:** Part A — AI Capability Governance; Source 17 — Smart Business AI Development Operating Manual; Source 18 — Smart Business Project Continuity and Handover Framework
+- **Historical Merge Provenance:** Part A — AI Capability Governance; Source 17 — Smart Business AI Development Operating Manual; Source 18 — Smart Business Project Continuity and Handover Framework
 
 ---
 
@@ -51,15 +51,7 @@ Smart Business Constitution
 
 ↓
 
-12 — Feature Implementation Blueprint
-
-↓
-
-13 — Feature Acceptance Matrix
-
-↓
-
-14 — Pilot Readiness Audit
+12 — Product Execution and Release Framework
 
 ↓
 
@@ -542,9 +534,7 @@ At minimum, where applicable, this includes:
 - Source 09 — Roadmap
 - Source 10 — Environment Activation
 - Source 11 — Product Truth
-- Source 12 — Implementation Blueprint
-- Source 13 — Feature Acceptance Matrix
-- Source 14 — Pilot Readiness Audit
+- Source 12 — Product Execution and Release Framework
 - Source 15 — Mission Control Activation
 - Source 16A — Constitution Design Principles
 - Source 17 — AI Operations Manual
@@ -1321,7 +1311,7 @@ No AI system may silently reinterpret, weaken, or replace this manual.
 
 ---
 
-# Merge Declaration
+# Historical Merge Provenance
 
 This file is the merged draft produced under `M001_AI_Operations`.
 

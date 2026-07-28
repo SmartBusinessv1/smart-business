@@ -14,7 +14,7 @@ Define:
 - User authority boundaries
 - Product promise limits
 
-Source 12 Feature Implementation Blueprint must build from this truth and must not guess feature behaviour.
+Source 12 — Product Execution and Release Framework must build from this truth and must not guess feature behaviour.
 
 ---
 
@@ -611,7 +611,7 @@ It should never punish business growth.
 
 # Source 12 Handoff Rules
 
-Feature Implementation Blueprint must:
+Product Execution and Release Framework must:
 
 - build from this truth
 - avoid assumptions

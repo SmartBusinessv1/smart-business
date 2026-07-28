@@ -26,7 +26,7 @@ Authorized Specialist Room
 
 # Purpose
 
-Standardize every specialist room activation while remaining subordinate to the approved Roadmap, Product Truth, Feature Implementation Blueprint, Feature Acceptance Matrix, and Pilot Readiness Audit.
+Standardize every specialist room activation while remaining subordinate to the approved Roadmap, Product Truth, and Product Execution and Release Framework.
 
 Mission Control protects:
 
@@ -67,9 +67,7 @@ Before authorizing any mission verify the latest approved:
 - Roadmap
 - Environment Activation
 - Product Truth
-- Implementation Blueprint
-- Feature Acceptance Matrix
-- Pilot Readiness Audit
+- Product Execution and Release Framework
 
 If a governing source changed, complete inheritance review first.
 

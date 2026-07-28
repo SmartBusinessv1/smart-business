@@ -5,7 +5,7 @@
 - **Merge ID:** M003_Operational_Profiles
 - **Status:** MERGED DRAFT — SELF-CONTAINED REVISION
 - **Authority:** Founder and Mission Control
-- **Primary Operational Authority:** Source 17 — Smart Business AI Development Operating Manual
+- **Primary Operational Authority:** Source 17 — AI Operations Manual
 - **Merged From:**
   - P01_Lovable_Operational_Profile
   - P02_Supabase_Operational_Profile
@@ -49,7 +49,7 @@ Approved Governance Sources
 
 ↓
 
-Source 17 — Smart Business AI Development Operating Manual
+Source 17 — AI Operations Manual
 
 ↓
 
@@ -73,7 +73,7 @@ Before implementation, every platform-specific mission shall inherit the current
 - Smart Business Product Truth
 - Product Execution and Release Framework
 - Mission Control activation and governance instructions
-- Smart Business AI Development Operating Manual
+- AI Operations Manual
 - relevant architecture, security, brand, support, and operational sources
 
 Legacy references to separate Sources 12, 13, and 14 shall be understood as the approved merged **12_Product_Execution_and_Release_Framework**.
