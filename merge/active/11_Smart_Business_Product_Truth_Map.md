@@ -528,7 +528,7 @@ Current approved conversation channels include:
 
 Future approved channels may be added without changing the product identity.
 
-### Smart Business Conversation Workspace
+## Smart Business Conversation Workspace
 
 Purpose:
 
