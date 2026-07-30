@@ -2,7 +2,7 @@
 
 # SB-P — PRODUCT FEATURE ELABORATION WORKFLOW TEMPLATE
 
-**Template ID:** SB-P-PFEW-1.1
+**Template ID:** SB-P-PFEW-1.2
 
 **Template Name:** Product Feature Elaboration Workflow
 
@@ -595,13 +595,137 @@ After the EIS is locked, Claude Code may prepare the approved implementation pac
 - Engineering Contract
 - Lovable Build Prompt
 - Verification Checklist
-- Completion Report Template
+
+The initial implementation package exists solely to authorize and guide implementation.
+
+It shall not include the formal Completion Report or Evidence Package.
+
+Those documents are verification deliverables created only after implementation has been independently verified.
 
 Each document requires separate Mission Control review and lock.
 
 Approval of these documents is not implementation authorization.
 
 Implementation requires a separate explicit Mission Control mission.
+
+## Lovable Builder Completion Report
+
+After implementation is completed, Lovable shall create:
+
+`docs/implementation/[MISSION-ID]/lovable-build-completion-report.md`
+
+The Builder Completion Report records implementation activity including, where applicable:
+
+- files modified;
+- frontend changes;
+- backend changes;
+- database migrations;
+- authentication changes;
+- storage changes;
+- deployment status;
+- known limitations;
+- implementation notes;
+- repository commit references.
+
+This report records what was implemented.
+
+It does not verify correctness.
+
+It does not authorize acceptance.
+
+It does not replace the formal Completion Report.
+
+## Formal Completion Report
+
+Claude Code shall create:
+
+`docs/implementation/[MISSION-ID]/completion-report.md`
+
+only after ALL of the following have been completed:
+
+1. Lovable implementation;
+2. Lovable Builder Completion Report;
+3. Founder runtime verification;
+4. Mission Control review of runtime findings;
+5. Claude Code independent verification.
+
+The Completion Report summarizes:
+
+- implementation;
+- verification;
+- runtime findings;
+- checklist results;
+- evidence;
+- follow-up items;
+- implementation status.
+
+The Completion Report is not an implementation document.
+
+It is a post-verification governance record.
+
+## Evidence Package
+
+Claude Code shall create the Evidence Package only after independent verification.
+
+The Evidence Package shall organize:
+
+- Founder verification evidence;
+- Builder evidence;
+- repository evidence;
+- runtime evidence;
+- testing evidence;
+- deployment evidence;
+- other approved supporting material.
+
+Evidence shall preserve provenance.
+
+Evidence shall not replace verification.
+
+## Approved Implementation Lifecycle
+
+```text
+Locked Product Blueprint
+↓
+Locked EIS
+↓
+Claude creates:
+• Engineering Contract
+• Lovable Build Prompt
+• Verification Checklist
+↓
+Mission Control review
+↓
+Mission Control approval
+↓
+Founder submits Lovable Build Prompt
+↓
+Lovable implementation
+↓
+Lovable Builder Completion Report
+↓
+Founder runtime verification
+↓
+Mission Control runtime review
+↓
+Claude Code independent verification
+↓
+Claude creates:
+• Evidence Package
+• Completion Report
+↓
+Mission Control final acceptance
+↓
+Documentation closure
+```
+
+Neither the Builder Completion Report nor implementation itself constitutes mission completion.
+
+A Product Mission reaches completion only after:
+
+- independent verification;
+- Mission Control acceptance;
+- formal Completion Report creation;
+- documentation closure.
 
 ---
 
@@ -656,4 +780,5 @@ For each new Product Mission:
 | Version | Change | Status |
 |---|---|---|
 | 1.0 | Initial reusable Product Feature Elaboration Workflow for all Smart Business Product Missions | SUPERSEDED |
-| 1.1 | Added complete Product Blueprint structural parity with SB-P-1.10, explicit post–Section 19 section list, authorship boundaries, complete Blueprint lock gate, and EIS entry gate | ACTIVE |
+| 1.1 | Added complete Product Blueprint structural parity with SB-P-1.10, explicit post–Section 19 section list, authorship boundaries, complete Blueprint lock gate, and EIS entry gate | SUPERSEDED |
+| 1.2 | Refined implementation package lifecycle by introducing Builder Completion Report, post-verification Completion Report, Evidence Package gate, and independent verification sequence | ACTIVE |
