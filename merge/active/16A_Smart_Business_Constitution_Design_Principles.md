@@ -18,11 +18,20 @@
 
 # **Purpose**
 
-This source records the constitutional principles used to create, evaluate, and evolve the Smart Business Constitution.
+This source records the constitutional principles to be used to create, evaluate, and evolve the future consolidated Smart Business Constitution.
+
+During Phase 1, Smart Business constitutional authority is formed jointly by:
+
+1. `01_Smart_Business_Master_System_Manifesto.md`
+2. `11_Smart_Business_Product_Truth_Map.md`
+
+This document does not replace those sources and is not the active or final Smart Business Constitution.
+
+It preserves approved design principles for the future Smart Business Constitution to be created after completion and real-world validation of Phase 1.
 
 It does not define Smart Business.
 
-It defines how the Constitution itself shall be written, protected, and improved.
+It defines how the future Constitution itself shall be written, protected, and improved.
 
 Its purpose is to preserve the reasoning behind the Constitution so that future custodians understand not only *what* was written, but *why* it was written that way.
 
@@ -36,13 +45,17 @@ This source is subordinate to:
 
 This source guides:
 
-* Smart Business Constitution
+* Future Smart Business Constitution
 * Future constitutional reviews
 * Constitutional evolution
 
 This source does not override Product Truth.
 
 It protects how Product Truth is created.
+
+This source does not authorize Codex, Mission Control, or any AI system to generate or activate the future Constitution automatically.
+
+Creation and activation of the future Constitution require a separately authorized, Founder-approved governance mission.
 
 ---
 
@@ -239,4 +252,3 @@ Technology exists to express the identity of Smart Business.
 It must never redefine it.
 
 This principle shall guide every future constitutional review.
-

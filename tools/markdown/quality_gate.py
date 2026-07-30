@@ -74,11 +74,19 @@ def main() -> int:
         if lint_enabled:
             print(f"\n=== Lint : {target} ===")
 
-            success &= run([
+            lint_command = [
                 sys.executable,
                 str(ROOT / "tools/markdown/lint_markdown.py"),
                 target
-            ])
+            ]
+
+            if config["lint"].get(
+                "allow_markdown_hard_breaks",
+                False,
+            ):
+                lint_command.append("--allow-markdown-hard-breaks")
+
+            success &= run(lint_command)
 
         if validate_enabled:
             print(f"\n=== Validate : {target} ===")

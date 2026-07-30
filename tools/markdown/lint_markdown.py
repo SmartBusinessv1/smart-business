@@ -97,7 +97,10 @@ def collect_markdown_files(target: Path) -> list[Path]:
     raise FileNotFoundError(f"Target not found: {target}")
 
 
-def lint_file(path: Path) -> list[LintIssue]:
+def lint_file(
+    path: Path,
+    allow_markdown_hard_breaks: bool = False,
+) -> list[LintIssue]:
     issues: list[LintIssue] = []
     inside_fence = False
 
@@ -111,6 +114,13 @@ def lint_file(path: Path) -> list[LintIssue]:
 
         for rule_id, pattern, message in RULES:
             if inside_fence and rule_id not in {"MD009"}:
+                continue
+
+            if (
+                rule_id == "MD011"
+                and allow_markdown_hard_breaks
+                and re.search(r"(?<![ \t]) {2}$", line)
+            ):
                 continue
 
             if pattern.search(line):
@@ -157,6 +167,14 @@ def main() -> int:
         action="store_true",
         help="Show rule totals without printing every issue.",
     )
+    parser.add_argument(
+        "--allow-markdown-hard-breaks",
+        action="store_true",
+        help=(
+            "Allow exactly two trailing spaces used as an intentional "
+            "Markdown hard line break."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -169,7 +187,12 @@ def main() -> int:
     all_issues: list[LintIssue] = []
 
     for file in files:
-        all_issues.extend(lint_file(file))
+        all_issues.extend(
+            lint_file(
+                file,
+                allow_markdown_hard_breaks=args.allow_markdown_hard_breaks,
+            )
+        )
 
     rule_counts = Counter(issue.rule for issue in all_issues)
     trailing_whitespace_count = rule_counts.get("MD011", 0)

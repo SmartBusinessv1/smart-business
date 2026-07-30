@@ -24,6 +24,17 @@ The approved governance defines Product Truth, implementation discipline, qualit
 
 This repository implements the approved governance. It does not redefine it.
 
+During Phase 1, the Smart Business constitutional authority is formed jointly by:
+
+* `merge/active/01_Smart_Business_Master_System_Manifesto.md`
+* `merge/active/11_Smart_Business_Product_Truth_Map.md`
+
+This temporary interpretation is formally recorded in `merge/active/SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md`.
+
+The canonical governance authority and precedence table is maintained in `merge/active/17_AI_Operations_Manual.md`.
+
+A consolidated Smart Business Constitution will be created after Phase 1 through a separately authorized, Founder-approved governance mission informed by implementation and real-world merchant experience.
+
 ## **Repository Role**
 
 This repository is responsible for:

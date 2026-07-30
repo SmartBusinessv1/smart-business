@@ -478,6 +478,12 @@ def run_lint_check(
     if lint_config.get("summary_only", True):
         command.append("--summary-only")
 
+    if lint_config.get(
+        "allow_markdown_hard_breaks",
+        False,
+    ):
+        command.append("--allow-markdown-hard-breaks")
+
     return_code, output = run_command(command, root)
 
     issues = extract_integer(

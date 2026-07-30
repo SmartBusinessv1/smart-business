@@ -13,6 +13,7 @@ repair:
 lint:
   enabled: true
   summary_only: true
+  allow_markdown_hard_breaks: true
 
 validation:
   enabled: true

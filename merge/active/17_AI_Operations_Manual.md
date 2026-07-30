@@ -30,47 +30,30 @@ AI capability shall not replace human ownership of decisions.
 
 ---
 
-# Authority Chain
+# Canonical Governance Authority and Precedence Table
 
-Lighthouse Constitution
+This table is the canonical governance authority and precedence model for Smart Business.
 
-↓
+| Precedence | Authority | Governance role |
+|---|---|---|
+| 1 | Founder | Retains final human decision authority. |
+| 2 | Lighthouse Constitution | Serves as the highest governing document. |
+| 3 | Smart Business Constitutional Authority for Phase 1 | Is formed jointly by Source 01 and Source 11. Source 01 governs foundational identity, philosophy, locked decisions, and governing principles. Source 11 governs definitive Product Truth, permissions, product behaviour, approved capabilities, and boundaries. |
+| 4 | Approved Governance Sources | Translate constitutional authority into domain and operational rules. |
+| 5 | Mission Control | Authorizes and coordinates execution. |
+| 6 | Authorized Specialist and Engineering Execution | Implements approved work within the governing mission and inherited authority. |
+| 7 | Repository, Platform, and Mission-Specific Instructions | Direct lower-level execution and cannot override higher authority. |
 
-Smart Business Constitution
+During Phase 1, references to the **Smart Business Constitution** shall be interpreted as referring collectively to:
 
-↓
+1. `01_Smart_Business_Master_System_Manifesto.md`
+2. `11_Smart_Business_Product_Truth_Map.md`
 
-09 — Master Roadmap
+This interpretation is authorized by [`SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md`](./SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md).
 
-↓
+A consolidated Smart Business Constitution will be created only after Phase 1 through a separately authorized, Founder-approved governance mission informed by implementation and real-world merchant experience.
 
-10 — Environment Activation
-
-↓
-
-11 — Product Truth
-
-↓
-
-12 — Product Execution and Release Framework
-
-↓
-
-15 — Mission Control Activation
-
-↓
-
-16A — Constitution Design Principles
-
-↓
-
-17 — AI Operations Manual
-
-↓
-
-AI Development Systems, Agents, MCP Servers, Connectors, Tools, APIs, and Specialist Rooms
-
-Governance authority always overrides tool availability, connector access, persistent permissions, and model capability.
+Governance authority always overrides tool availability, connector access, persistent permissions, model capability, and lower-level execution instructions.
 
 ---
 
@@ -505,7 +488,7 @@ Before implementation begins, the AI development system shall load and understan
 The minimum governance set normally includes:
 
 - Lighthouse Constitution
-- Smart Business Constitution
+- Smart Business Constitutional Authority for Phase 1, formed jointly by Source 01 — Smart Business Master System Manifesto and Source 11 — Smart Business Product Truth Map
 - Master Roadmap
 - Environment Activation Manual
 - Product Truth Map
