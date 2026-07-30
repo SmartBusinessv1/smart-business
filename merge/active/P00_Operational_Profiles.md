@@ -3,9 +3,11 @@
 ## Metadata
 
 - **Merge ID:** M003_Operational_Profiles
-- **Status:** MERGED DRAFT — SELF-CONTAINED REVISION
+- **Status:** FOUNDER APPROVED — ACTIVE GOVERNANCE
 - **Authority:** Founder and Mission Control
 - **Primary Operational Authority:** Source 17 — AI Operations Manual
+- **Approved By:** Founder — Riyas PK
+- **Approval Date:** 2026-07-30
 - **Merged From:**
   - P01_Lovable_Operational_Profile
   - P02_Supabase_Operational_Profile
@@ -549,9 +551,9 @@ Before completion verify:
 
 OpenAI provides reasoning, language understanding, extraction, and AI assistance.
 
-Its mission is to improve merchant clarity, capability, and peace of mind while preserving human ownership of decisions.
+Its mission is to support Smart Business with safe, contextual, permission-aware intelligence that follows approved Product Truth and AI behaviour governance.
 
-OpenAI provides intelligence. Smart Business owns the product. Humans own the decisions.
+OpenAI assists. It does not judge, own merchant decisions, or define Product Truth.
 
 ---
 
@@ -559,17 +561,16 @@ OpenAI provides intelligence. Smart Business owns the product. Humans own the de
 
 OpenAI may support:
 
-- natural language understanding
-- structured information extraction
-- conversation management
-- business insights
-- Ask CFO
-- document understanding
-- voice interaction orchestration
-- multilingual support
-- function calling
-
-Ask CFO is a clarity feature, not an authority.
+- natural-language understanding
+- classification
+- structured extraction
+- summarisation
+- explanation
+- recommendation
+- controlled function calling
+- document interpretation
+- conversation assistance
+- Ask CFO reasoning within approved boundaries
 
 ---
 
@@ -577,77 +578,73 @@ Ask CFO is a clarity feature, not an authority.
 
 OpenAI shall not:
 
-- redefine Product Truth
-- make financial decisions for merchants
+- directly access unrestricted business data
 - bypass permissions
-- permanently store business records as the system of record
-- invent facts
-- replace human judgement
-- embed hidden business logic in prompts
-- claim actions succeeded without verified tool results
-
-AI assists. Humans decide.
+- execute destructive actions
+- invent transactions or balances
+- make final financial, legal, people, or governance decisions
+- accuse employees or customers
+- redefine Product Truth
+- store permanent project truth only inside a model conversation
 
 ---
 
-## 30. Prompt, Function Calling, and Memory Standards
+## 30. Prompt, Function, and Memory Rules
 
 Prompts shall:
 
-- define the objective
-- include relevant context
-- specify constraints
-- request structured outputs where useful
-- minimize ambiguity
-- avoid unnecessary complexity
+- use approved governance context
+- preserve role boundaries
+- identify required output structure
+- distinguish fact from inference
+- define uncertainty handling
+- avoid hidden authority claims
 
-Use function or tool calling for:
+Function and tool use shall:
 
-- database operations
-- business actions
-- integrations
-- calculations
-- workflow execution
+- use explicit schemas
+- validate inputs
+- respect merchant and permission boundaries
+- use least privilege
+- require confirmation for consequential or uncertain actions
+- preserve auditability
 
-Business Memory belongs to Smart Business.
-
-OpenAI may use provided context but does not become the permanent system of record.
+Business Memory shall remain in approved Smart Business storage, not depend solely on model conversation history.
 
 ---
 
-## 31. Model Selection and Security
+## 31. Model and Performance Rules
 
-Choose the smallest capable model that satisfies:
+Model selection shall consider:
 
-- quality
+- task complexity
 - latency
+- cost
 - reliability
-- cost efficiency
+- language quality
+- security
+- context requirements
 
-Protect:
+Use the least complex model that can perform the task reliably.
 
-- API keys
-- merchant information
-- customer privacy
-- confidential business data
-
-No secret may be exposed in prompts, logs, client code, or user-visible output.
+Do not use model size as a substitute for good architecture, clear prompts, validated tools, or controlled memory.
 
 ---
 
-## 32. OpenAI Completion Checklist
+## 32. AI Safety and Completion Checklist
 
 Before completion verify:
 
-- Product Truth respected
-- human decision ownership preserved
-- uncertainty handled explicitly
-- structured outputs validated
-- function calls verified
-- no hallucinated facts
-- no simulated actions
-- permissions respected
-- documentation updated where required
+- AI Assistant, Not AI Judge preserved
+- hallucination controls tested
+- confidence handling tested
+- permission checks enforced outside the prompt where required
+- function calls validated
+- sensitive data protected
+- destructive actions blocked
+- Ask CFO remains advisory and read-only
+- evidence and logs available where required
+- failure states are honest and recoverable
 
 ---
 
@@ -655,91 +652,76 @@ Before completion verify:
 
 ## 33. Purpose and Mission
 
-Voice AI enables natural voice interaction.
+Voice AI allows merchants to interact naturally through speech.
 
-Its mission is to provide fast, natural, trustworthy voice experiences that improve accessibility and ease of use while preserving clarity, dignity, and peace of mind.
+Its mission is to reduce typing friction while preserving confirmation, clarity, privacy, language dignity, and human control.
 
-Voice AI makes Smart Business easier to use. Humans remain in control of every important decision.
+Voice is an interaction method. It does not create a separate business system.
 
 ---
 
 ## 34. Primary Responsibilities
 
-Voice AI may support:
+Voice capability may support:
 
-- speech synthesis
-- speech recognition integration
-- voice conversations
-- voice guidance
-- voice confirmations
-- voice accessibility
-- multilingual voice interaction
-- hands-free business workflows
-
----
-
-## 35. Boundaries and Channel Role
-
-Voice AI shall not:
-
-- redefine Product Truth
-- replace text workflows
-- bypass permissions
-- make business decisions
-- permanently store business records
-- invent information
-- expose sensitive information by voice
-
-Voice is another interaction channel.
-
-It complements existing workflows and shall not create a separate business logic path.
+- speech-to-text
+- voice-note interpretation
+- spoken confirmations
+- multilingual input
+- accessibility
+- conversational assistance
+- approved text-to-speech responses
 
 ---
 
-## 36. Language and Experience Standards
+## 35. Language and User Experience Rules
 
-Support:
+Voice experience shall support approved language behaviour for:
 
 - English
 - Malayalam
 - Manglish
-- future approved languages
 
-Speech shall be natural, respectful, and easy to understand.
+Voice interaction shall:
 
-Voice experiences shall support:
-
-- fast response
-- natural pacing
-- clear pronunciation
-- interruptible conversations
-- confirmation before critical actions
-- error recovery
-- repetition of critical information before execution
-
-Voice shall improve accessibility without reducing text-based functionality.
+- remain natural and respectful
+- avoid forcing formal language
+- repeat or clarify uncertain financial information
+- allow text fallback
+- preserve the merchant's selected language where appropriate
+- avoid unnecessary verbosity
+- confirm consequential actions before execution
 
 ---
 
-## 37. Voice Security and Completion Checklist
+## 36. Security and Privacy Rules
 
-Protect:
+Voice data shall:
 
-- voice recordings
-- merchant privacy
-- customer privacy
-- access credentials
+- be processed only for the approved purpose
+- remain within the correct merchant boundary
+- avoid exposing sensitive financial or personal information through uncontrolled audio playback
+- follow approved retention policies
+- be deleted or minimized where long-term storage is unnecessary
+
+The system shall not assume that a person speaking near the device is authorised.
+
+Sensitive actions may require additional identity or permission confirmation.
+
+---
+
+## 37. Voice Completion Checklist
 
 Before completion verify:
 
-- Product Truth respected
-- voice quality verified
-- multilingual behaviour tested
-- critical confirmations implemented
-- accessibility considered
-- sensitive information is not exposed unnecessarily
-- error recovery tested
-- documentation updated
+- transcription quality tested
+- Malayalam and Manglish behaviour tested
+- uncertainty clarification works
+- sensitive actions require confirmation
+- privacy risks considered
+- text fallback available
+- channel-independent business logic preserved
+- no unsupported accessibility claims made
 
 ---
 
@@ -747,187 +729,192 @@ Before completion verify:
 
 ## 38. Purpose and Mission
 
-Cloudflare R2 provides secure, scalable object storage for business assets.
+Cloudflare R2 provides scalable object storage where approved.
 
-Its mission is to provide reliable, secure, and cost-effective storage for merchant documents and media while integrating with Smart Business.
+Its mission is to store business files securely and cost-effectively while keeping metadata, permissions, ownership, and business meaning inside Smart Business.
 
-Cloudflare R2 safeguards Smart Business files. Smart Business remains the system of record.
+R2 stores files. Smart Business owns the file records and business context.
 
 ---
 
 ## 39. Primary Responsibilities
 
-Cloudflare R2 may store:
+R2 may store:
 
-- receipt images
-- invoice PDFs
-- business documents
-- product images
-- audio files
-- export files
-- future approved media
-
----
-
-## 40. Boundaries
-
-Cloudflare R2 shall not:
-
-- store business metadata as the system of record
-- implement business rules
-- manage application permissions
-- redefine Product Truth
-- replace the database
-
-Metadata belongs in Smart Business.
-
-Files belong in object storage.
+- receipts
+- invoices
+- uploaded business documents
+- notebook images
+- exports
+- generated reports
+- voice files where approved
+- other approved merchant-owned objects
 
 ---
 
-## 41. Storage, Security, and Integration Rules
+## 40. Storage Architecture Rules
 
-Maintain:
+Store:
 
-- organized bucket structure
-- predictable object naming
-- version-aware uploads where required
-- secure access
-- lifecycle management
-- traceability
+- file metadata in Supabase
+- object content in R2
 
-Protect:
+Metadata should include where relevant:
 
-- merchant documents
-- customer files
-- signed URLs
-- access credentials
-- bucket permissions
+- internal object identifier
+- merchant or business identifier
+- owner identifier
+- content type
+- original filename
+- object key
+- created timestamp
+- file status
+- processing status
+- retention status
 
-Private objects shall not be exposed publicly unless explicitly approved.
+Public URLs shall not be used for private merchant files.
 
-Integrate with:
-
-- Supabase metadata
-- WhatsApp media flows
-- AI document processing
-- export services
-
-Avoid duplicate uploads, orphaned files, broken references, and untraceable deletion.
+Use signed or controlled access where appropriate.
 
 ---
 
-## 42. File Management and Completion Checklist
+## 41. Security and Permission Rules
 
-Support approved operations for:
+File access shall:
+
+- respect merchant isolation
+- respect role permissions
+- use least privilege
+- prevent cross-business access
+- avoid embedding unrestricted credentials in clients
+- log sensitive access where required
+
+Storage credentials shall remain in secure server-side configuration.
+
+---
+
+## 42. File Lifecycle Rules
+
+The system shall manage:
 
 - upload
-- download
-- replace
-- archive
-- delete when permitted
+- validation
+- processing
+- status tracking
+- access
+- retention
+- replacement where approved
+- deletion where authorised
+- recovery where practical
+
+Failed uploads shall not create false completed records.
+
+Database and storage state shall be reconciled to prevent:
+
+- duplicate objects
+- orphaned objects
+- missing metadata
+- stale links
+- records that claim successful storage when upload failed
+
+---
+
+## 43. R2 Completion Checklist
 
 Before completion verify:
 
-- Product Truth respected
-- metadata linked correctly
-- storage secured
-- signed URLs verified
-- duplicate uploads avoided
-- orphan handling addressed
-- file references preserved
-- lifecycle behaviour tested
-- documentation updated
+- merchant isolation enforced
+- metadata stored correctly
+- object access controlled
+- signed access tested where used
+- failed upload handling verified
+- duplicate prevention tested
+- orphan cleanup strategy defined
+- lifecycle and retention documented
+- credentials protected
+- migration and recovery implications considered
 
 ---
 
-# Part 7 — Cross-Platform Coordination
+# Part 7 — Shared Platform Governance
 
-## 43. Ownership Matrix
+## 44. Platform Ownership Matrix
 
-The following ownership boundaries apply:
+| Capability | Primary Owner | Supporting Platforms |
+|---|---|---|
+| Product Truth | Founder / Mission Control | All platforms read only |
+| Frontend Experience | Lovable | Supabase, OpenAI, WhatsApp |
+| Database and Permissions | Supabase | Lovable, OpenAI, WhatsApp |
+| WhatsApp Channel | WhatsApp Business Platform | Supabase, OpenAI, R2 |
+| AI Reasoning and Language | OpenAI | Supabase, WhatsApp, Lovable |
+| Voice Interaction | Voice AI | OpenAI, WhatsApp, Lovable |
+| Object Storage | Cloudflare R2 | Supabase, WhatsApp, Lovable |
+| Mission Coordination | Mission Control | All specialist rooms |
+| Founder Decisions | Founder | Mission Control supports |
 
-- **Lovable:** frontend experience
-- **Supabase:** backend data, identity, permissions, and secure services
-- **WhatsApp:** conversation transport and delivery
-- **OpenAI:** reasoning and language intelligence
-- **Voice AI:** voice interaction layer
-- **Cloudflare R2:** object storage
-- **Smart Business:** Product Truth, business logic, Business Memory, permissions, workflow ownership, and merchant experience
-- **Mission Control:** coordination, authority routing, acceptance control, and escalation
-- **Founder:** final governance and release authority
-
-No provider may absorb the ownership of another layer without explicit governance approval.
-
----
-
-## 44. End-to-End Interaction Rules
-
-A typical approved flow may be:
-
-User Channel
-
-↓
-
-Identity and Permission Check
-
-↓
-
-Business Logic
-
-↓
-
-AI Assistance where required
-
-↓
-
-Database or Tool Action
-
-↓
-
-Storage Action where required
-
-↓
-
-Confirmed Result
-
-↓
-
-User Response
-
-Each action shall remain traceable to the responsible platform.
-
-Critical actions require confirmation and verified execution results.
+No supporting platform may silently assume primary ownership.
 
 ---
 
-## 45. Failure and Recovery Rules
+## 45. Cross-Platform Interaction Rules
 
-Each platform integration shall define:
+Cross-platform workflows shall:
 
-- expected failure modes
-- safe retry behaviour
-- idempotency where applicable
-- user-visible error handling
-- logging and traceability
-- rollback or recovery path
-- service degradation behaviour
-- escalation conditions
+- use explicit contracts
+- identify ownership at every step
+- preserve merchant and permission boundaries
+- avoid duplicate processing
+- support idempotency where required
+- preserve traceability
+- avoid hidden provider-specific business rules
+- define failure handling
+- define recovery responsibility
 
-A provider outage shall not silently corrupt merchant data or create duplicate business actions.
+Example:
 
-Channel failure shall not redefine business state.
+WhatsApp receives message
+
+↓
+
+Smart Business identifies user and business
+
+↓
+
+OpenAI interprets intent
+
+↓
+
+Supabase validates permissions and stores approved result
+
+↓
+
+R2 stores files where required
+
+↓
+
+WhatsApp returns confirmation
+
+No platform may bypass Smart Business identity, permissions, or Business Memory.
 
 ---
 
-## 46. Vendor Continuity
+## 46. Failure Recovery and Vendor Continuity
 
-Smart Business shall avoid unnecessary provider lock-in.
+Each platform integration shall document:
 
-Provider-specific adapters should remain separable from core business logic.
+- failure modes
+- retry behaviour
+- timeout behaviour
+- duplicate prevention
+- rollback or compensation where relevant
+- fallback path where appropriate
+- monitoring and alerting
+- ownership of recovery
 
-Where practical:
+Vendor continuity principles:
 
+- business logic shall remain inside Smart Business
+- merchant data shall remain exportable
 - data formats should remain portable
 - identifiers should remain internal to Smart Business
 - provider credentials should be replaceable
@@ -952,11 +939,11 @@ Operational learning may improve this framework but may not silently redefine Pr
 
 ## 48. Supersession Rule
 
-After Founder approval, this file becomes the single operational profile authority for the platforms covered here and supersedes P01 through P06 as separate operational governance files.
+This file is the single operational profile authority for the platforms covered here and supersedes P01 through P06 as separate operational governance files.
 
-The original P01 through P06 source files may then be retired from active governance use while remaining available through repository history.
+The original P01 through P06 source files are retired from active governance use while remaining available through repository history for traceability and historical provenance.
 
-Until Founder approval is recorded, this file remains a merged draft.
+Founder approval is recorded in this document's metadata.
 
 ---
 
@@ -974,4 +961,4 @@ Human decision ownership remains final.
 
 ---
 
-END OF MERGED DRAFT
+END OF FOUNDER APPROVED — ACTIVE GOVERNANCE
