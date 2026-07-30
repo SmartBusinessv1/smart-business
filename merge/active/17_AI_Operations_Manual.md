@@ -1210,4 +1210,6 @@ Founder approval is recorded as of 2026-07-30.
 
 This manual is now the active operational governance authority for AI capability, AI-assisted development, repository communication, project continuity, handover, and recovery.
 
-The original source files remain preserved for review, traceability, and historical provenance, but no longer operate as separate active authorities.
+This manual supersedes original Source 17 — Smart Business AI Development Operating Manual and Source 18 — Smart Business Project Continuity and Handover Framework as separate active authorities.
+
+The original Source 17 and Source 18 files remain preserved for review, traceability, and historical provenance.

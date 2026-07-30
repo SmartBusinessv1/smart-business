@@ -1,8 +1,12 @@
-# 09_Master_Roadmap_Command_v2.md
+# 09_Master_Roadmap_Command
 
 # SMART BUSINESS MISSION CONTROL ROADMAP
 
-Version: v2
+## Metadata
+
+- **Version:** 3.0
+- **Historical Base:** Version 2 with approved Version 3 patches
+- **Status:** FOUNDER APPROVED — ACTIVE GOVERNANCE
 
 This roadmap controls execution order.
 
@@ -66,7 +70,7 @@ STEP 2:
 
 Check:
 
-12_Smart_Business_Feature_Implementation_Blueprint
+12_Product_Execution_and_Release_Framework.md — implementation section
 
 Define:
 
@@ -102,7 +106,7 @@ STEP 5:
 
 Verify:
 
-13_Smart_Business_Feature_Acceptance_Matrix
+12_Product_Execution_and_Release_Framework.md — acceptance section
 
 Feature is complete only after PASS.
 
@@ -282,7 +286,7 @@ Allowed:
 
 Continue:
 
-11 → 12 → Build → 13
+11 → Source 12 implementation section → Build → Source 12 acceptance section
 
 for internal product features.
 
@@ -300,11 +304,11 @@ Every feature follows:
 
 Product Truth
 ↓
-Implementation Blueprint
+Source 12 implementation section
 ↓
 Build
 ↓
-Acceptance Matrix
+Source 12 acceptance section
 
 ---
 
@@ -361,7 +365,7 @@ Before ANY pilot merchants:
 
 Mandatory:
 
-14_Smart_Business_Pilot_Readiness_Audit
+12_Product_Execution_and_Release_Framework.md — pilot and release sections
 
 ---
 

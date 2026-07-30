@@ -20,6 +20,17 @@ The merchant remains the decision-maker. Smart Business assists with clarity, me
 
 Use the source set in this order unless a mission specifies a narrower inheritance chain:
 
+During Phase 1, the Smart Business constitutional authority is formed jointly by:
+
+- **Source 01 — Smart Business Master System Manifesto**
+- **Source 11 — Smart Business Product Truth Map**
+
+This temporary interpretation is formally recorded in [`SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md`](./SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md).
+
+The canonical governance authority and precedence table is maintained in [`17_AI_Operations_Manual.md`](./17_AI_Operations_Manual.md).
+
+A consolidated Smart Business Constitution will be created after Phase 1 through a separately authorized, Founder-approved governance mission informed by implementation and real-world merchant experience.
+
 1. **Source 00 — Lighthouse Constitution**  
    Defines the enduring philosophy, human purpose, trust, value creation, leadership, and responsibility principles of Lighthouse.
 
@@ -114,6 +125,8 @@ The active set includes approved merged frameworks:
 - **P00** consolidates approved platform operational profiles.
 
 Historical references may remain where they clearly record merge provenance. Current operational work must use the active merged sources.
+
+The original 25-file project-source set is retained as historical predecessor evidence. It is not required for current execution and must not be treated as competing active authority.
 
 ## Governance boundaries
 
