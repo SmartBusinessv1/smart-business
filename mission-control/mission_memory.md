@@ -91,6 +91,26 @@
   - Resume after production-ready legal pages are published.
   - Reuse the findings preserved from SB-INF-1.1.
 
+### Legacy Project Source Archive Decision
+
+The original 25 project-source files have been formally superseded as active governance by the 17 active governance files plus the active governance README, following SB-GOV-COMPARE-1.1.
+
+They must not be deleted.
+
+Their permanent role is:
+
+**Non-governing historical and provenance archive.**
+
+A later Founder-authorized archive mission will:
+
+1. rename `Project Source file/` to `Project Source File Archive/`;
+2. create an archive `README.md`;
+3. record the original commit, inventory, successor mapping, Founder approvals, and final comparison report;
+4. clearly state that the directory is not an active governance source;
+5. prohibit silent deletion or reactivation without Founder-approved governance action.
+
+Until that mission is authorized, no repository changes shall be made for this archive decision.
+
 ---
 
 # Next Recommended Mission
