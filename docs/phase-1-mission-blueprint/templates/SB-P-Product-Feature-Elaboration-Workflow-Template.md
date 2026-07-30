@@ -2,7 +2,7 @@
 
 # SB-P — PRODUCT FEATURE ELABORATION WORKFLOW TEMPLATE
 
-**Template ID:** SB-P-PFEW-1.0
+**Template ID:** SB-P-PFEW-1.1
 
 **Template Name:** Product Feature Elaboration Workflow
 
@@ -62,6 +62,8 @@ The Founder shall:
 - answer unresolved product questions;
 - confirm or reject derived interpretations;
 - approve major product boundaries;
+- review material unresolved recommendations where Mission Control requires Founder input;
+- provide final approval before Blueprint lock;
 - retain final product decision ownership.
 
 ## Codex
@@ -76,7 +78,8 @@ Codex shall:
 - separate confirmed truth, derived constraints, and unresolved questions;
 - conduct a structured dialogue with the Founder;
 - create and maintain the Founder Product Decision Record;
-- draft only Sections 1–19 of the Product Blueprint;
+- author Metadata, Mission Snapshot, Sections 1–19, and the Founder Product Decision Record;
+- not author post–Section 19 Builder or Engineering Review content;
 - never invent missing product decisions.
 
 ## Mission Control
@@ -88,10 +91,13 @@ Mission Control shall:
 - verify source alignment;
 - review the Founder Product Decision Record;
 - review Product Blueprint Sections 1–19 line by line;
+- approve Sections 1–19 before authorizing Claude Code to proceed;
+- review each post–Section 19 review stage;
+- return required refinements;
 - detect assumptions, contradictions, scope leakage, feature bloat, and technical overreach;
 - require revisions or further founder clarification where necessary;
 - approve or reject each stage before the next stage begins;
-- control lock and implementation authorization status.
+- control final approval, lock, and implementation authorization status.
 
 ## Claude Code
 
@@ -101,8 +107,11 @@ Claude Code shall:
 
 - read the approved Product Blueprint and relevant source files;
 - review the current repository where required;
-- create the approved review sections without redefining product truth;
-- create the EIS only after the Product Blueprint is locked;
+- create all canonical post–Section 19 review sections in their exact order and purpose;
+- preserve Sections 1–19 unchanged unless Mission Control authorizes a correction;
+- record risks and unresolved issues honestly;
+- not create implementation code during Product Blueprint review;
+- create the EIS only after the complete Product Blueprint is approved and locked;
 - preserve all Mission Control boundaries.
 
 ## Lovable
@@ -377,6 +386,134 @@ No later stage may begin without Mission Control approval.
 
 ---
 
+# Canonical Product Blueprint Structure
+
+Every Product Blueprint shall follow the complete numbered structural pattern of:
+
+`docs/phase-1-mission-blueprint/completed/SB-P-1.10.md`
+
+or a later Mission Control-approved canonical structural successor.
+
+The structural reference governs:
+
+- top-level section numbering;
+- section order;
+- section purpose;
+- authorship responsibility;
+- review sequence;
+- approval gates;
+- lock and governance records.
+
+The workflow template shall not rely only on general phrases such as “according to the approved Product Blueprint review pattern.”
+
+Codex shall create only Metadata, Mission Snapshot, and Sections 1–19.
+
+After Mission Control approves Sections 1–19, Claude Code shall create every remaining canonical Product Blueprint section required by the structural reference.
+
+Claude Code shall not omit, merge, rename, reorder, or replace a canonical section without explicit Mission Control authorization.
+
+Mission-specific content may vary. The approved structural responsibilities and gates shall not vary.
+
+## Canonical Post–Section 19 Structure
+
+| Section | Canonical Heading | Primary Author | Review / Approval |
+|---|---|---|---|
+| 20 | `Engineering Review` | Claude Code | Mission Control |
+| 21 | `Engineering Questions, Risks & Recommendations` | Claude Code | Mission Control |
+
+SB-P-1.10 contains no standalone numbered Builder Review section. Builder Review is a required review stage completed before Claude Code authors the canonical Engineering Review sections. Its approval is recorded in Blueprint metadata and governance history without renaming Sections 20 or 21.
+
+## Structural Ownership
+
+### Codex
+
+Codex authors:
+
+- Metadata;
+- Mission Snapshot;
+- Sections 1–19;
+- Founder Product Decision Record.
+
+Codex does not author post–Section 19 Builder or Engineering Review content.
+
+### Mission Control
+
+Mission Control:
+
+- reviews and approves Sections 1–19;
+- authorizes Claude Code to proceed;
+- reviews each post–Section 19 review stage;
+- returns required refinements;
+- controls final approval and lock.
+
+### Claude Code
+
+Claude Code:
+
+- creates all canonical post–Section 19 review sections;
+- preserves Sections 1–19 unchanged unless Mission Control authorizes a correction;
+- follows the exact canonical section order and purpose;
+- records risks and unresolved issues honestly;
+- does not create implementation code during Product Blueprint review;
+- does not create the EIS until the complete Product Blueprint is locked.
+
+### Founder
+
+The Founder:
+
+- confirms final product decisions and mission scope;
+- reviews material unresolved recommendations where Mission Control requires Founder input;
+- provides final approval before Blueprint lock.
+
+## Required Stage Sequence
+
+1. Source ingestion.
+2. Product truth extraction.
+3. Founder discovery.
+4. Founder Product Decision Record.
+5. Codex drafts Metadata, Mission Snapshot, and Sections 1–19.
+6. Mission Control reviews Sections 1–19.
+7. Codex applies required refinements.
+8. Mission Control approves Sections 1–19.
+9. Claude Code writes all canonical remaining Product Blueprint sections.
+10. Mission Control reviews the complete Product Blueprint.
+11. Claude Code applies required refinements.
+12. Founder gives final approval.
+13. Mission Control locks the complete Product Blueprint.
+14. The file moves from `active/` to `completed/`.
+15. Claude Code creates the EIS from the locked Product Blueprint.
+16. EIS review, refinement, approval, and lock.
+17. Only then may Part Two begin.
+
+Approval of Sections 1–19 is not Product Blueprint completion.
+
+The Product Blueprint is complete only after all canonical post–Section 19 sections are written, reviewed, approved, and the entire document is locked.
+
+## No Structural Overfitting
+
+The following elements are permanent:
+
+- section numbers;
+- section purposes;
+- authorship;
+- review gates;
+- approval and lock records.
+
+The following elements are mission-specific:
+
+- inventory terminology;
+- inventory risks;
+- ledger-specific analysis;
+- mission-specific domain details.
+
+Where a canonical section is not materially applicable to a future mission, it shall remain present and record:
+
+`Not applicable — justified`
+
+It shall not be silently omitted.
+
+---
+
 # 13. Phase F — Claude Code Builder Review
 
 After Sections 1–19 are approved, Claude Code shall read:
@@ -387,16 +524,13 @@ After Sections 1–19 are approved, Claude Code shall read:
 - relevant completed missions;
 - the current repository frontend and product shell where applicable.
 
-Claude Code shall create:
-
-- Section 20 — Builder Review
-- Section 21 — Builder Questions, Risks & Recommendations
+Claude Code shall complete the Builder Review without assigning it a canonical numbered heading that conflicts with the post–Section 19 structure.
 
 This stage is a builder feasibility and product-experience review only.
 
 It shall not authorize implementation or redefine Sections 1–19.
 
-Mission Control shall review and approve the Builder Review before engineering review begins.
+Mission Control shall review and approve the Builder Review before Engineering Review begins. Builder Review approval shall be recorded in Blueprint metadata and governance history.
 
 ---
 
@@ -410,11 +544,11 @@ After Builder Review approval, Claude Code shall conduct the Engineering Review 
 - the current repository architecture;
 - the Founder Product Decision Record.
 
-Claude Code shall replace or update the designated review sections according to the approved Product Blueprint review pattern.
+Claude Code shall create every canonical post–Section 19 section in the exact order listed under **Canonical Post–Section 19 Structure**.
 
 The Engineering Review shall identify feasibility, domain, data, permission, audit, concurrency, performance, migration, observability, and implementation risks without creating implementation code.
 
-Mission Control shall review and approve the Engineering Review.
+Mission Control shall review and approve Sections 20 and 21 as the complete Engineering Review stage.
 
 ---
 
@@ -435,7 +569,13 @@ No later engineering document may redefine it.
 
 # 16. Phase I — Engineering Implementation Specification
 
-Only after the Product Blueprint is locked may Claude Code create the mission EIS.
+Claude Code may create:
+
+`docs/phase-1-mission-blueprint/implementation/[MISSION-ID]-EIS.md`
+
+only after the complete Product Blueprint, including all canonical post–Section 19 review sections, is approved and locked.
+
+Approval of Sections 1–19 alone is insufficient.
 
 The EIS shall:
 
@@ -444,7 +584,7 @@ The EIS shall:
 - identify technical domain design, data, security, RLS, service, validation, concurrency, performance, migration, testing, observability, risks, build order, and completion criteria;
 - introduce no new product behaviour.
 
-The EIS shall undergo architecture review, required refinements, Mission Control approval, and lock before implementation-package work begins.
+The EIS shall undergo architecture review, required refinements, Mission Control approval, and lock before implementation-package work or Part Two begins.
 
 ---
 
@@ -515,4 +655,5 @@ For each new Product Mission:
 
 | Version | Change | Status |
 |---|---|---|
-| 1.0 | Initial reusable Product Feature Elaboration Workflow for all Smart Business Product Missions | ACTIVE |
+| 1.0 | Initial reusable Product Feature Elaboration Workflow for all Smart Business Product Missions | SUPERSEDED |
+| 1.1 | Added complete Product Blueprint structural parity with SB-P-1.10, explicit post–Section 19 section list, authorship boundaries, complete Blueprint lock gate, and EIS entry gate | ACTIVE |
