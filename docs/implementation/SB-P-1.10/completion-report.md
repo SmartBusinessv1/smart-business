@@ -1,20 +1,30 @@
 Document: Completion Report
 
-Version: 1.6
+Version: 1.7
 
-Status: DRAFT — updated under mission SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0
+Status: COMPLETED — FORMALLY ACCEPTED
 
 Created By: Claude
 
-Updated By: Lovable Builder (Reporting Room 03_Lovable_Builder) — SB-P-1.10-LOVE-CR-1.0 (v1.2), SB-P-1.10-TV-1.0 (v1.3), SB-P-1.10-FIX-DIGEST-1.0 (v1.4); Claude Engineering (Reporting Room 02_Claude_Engineering) — SB-P-1.10-TESTS-1.0 (v1.5), SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 (v1.6)
+Updated By: Lovable Builder (Reporting Room 03_Lovable_Builder) — SB-P-1.10-LOVE-CR-1.0 (v1.2), SB-P-1.10-TV-1.0 (v1.3), SB-P-1.10-FIX-DIGEST-1.0 (v1.4); Claude Engineering (Reporting Room 02_Claude_Engineering) — SB-P-1.10-TESTS-1.0 (v1.5), SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 (v1.6); Mission Control documentation closure under SB-P-1.10-DOC-CLOSE-1.0 (v1.7)
 
-Reviewed By: Mission Control — reviewed v1.5, defect correction authorized (pending review of this v1.6 correction)
+Reviewed By: Mission Control
 
-Approval Date: pending Mission Control acceptance
+Approval Date: 2026-07-31
 
 Mission: SB-P-1.10
 
 # SB-P-1.10 — Inventory Foundation — Completion Report
+
+## Formal Acceptance Record
+
+Mission Control formally accepts SB-P-1.10 — Inventory Foundation as completed.
+
+Acceptance is based on the completed implementation, successful runtime verification, correction of the idempotency replay defect under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0, and final automated verification of 62 passed tests with 0 failures.
+
+The remaining observability metrics pipeline item is an explicitly out-of-scope future capability and is not a completion blocker for SB-P-1.10.
+
+No implementation defect remains open under this mission.
 
 ## 1. Mission Metadata
 
@@ -28,7 +38,7 @@ Mission: SB-P-1.10
 | Implementation Commit Range | `412d91b..f9fabe4` (13 commits, 2026-07-21). Head implementation commit `f9fabe4` ("Removed auth header duplication"). |
 | Pull Request | None. Implementation was delivered as direct commits to `main` via the Lovable build integration. |
 | Runtime Environment | Lovable-managed runtime; published at `https://smartbusiness.teamlips.com`; Lovable Cloud backend (project ref `wwgqnshcgbukqczqblsm`). |
-| Report Date | 23 July 2026 (v1.2 update); 24 July 2026 (v1.5 update, SB-P-1.10-TESTS-1.0; v1.6 update, SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0) |
+| Report Date | 23 July 2026 (v1.2 update); 24 July 2026 (v1.5 update, SB-P-1.10-TESTS-1.0; v1.6 update, SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0); 31 July 2026 (v1.7 formal acceptance) |
 
 ## 2. Implementation Summary
 
@@ -38,8 +48,8 @@ Mission: SB-P-1.10
   - Shared write path: `create_inventory_movement()` with idempotency-key conflict detection (payload-fingerprint), per-item `pg_advisory_xact_lock`, opening-stock uniqueness, correction validation (target existence, direction opposition, no correcting a correction, over-compensation cap), archived-item protection, future-dating rejection, in-transaction negative-stock projection, and explicit "allow negative stock" authorization.
   - Read helpers: `preview_inventory_movement()`, `inventory_current_stock_batch(uuid[])`, `inventory_movement_remaining_compensable(uuid)` — all set-based, invoker-side RLS.
   - Application: `src/integrations/supabase/inventory.ts` data-access layer; routes `inventory.tsx` (layout + shared header), `inventory.index.tsx` (list, search, filters, create), and `inventory.$itemId.tsx` (detail, current stock, history, opening stock, adjustments, corrections, archive/reactivate); shared `src/components/authed-header.tsx` extracted from prior duplicated headers in `dashboard.tsx` and `transactions.tsx` and now exposing the Inventory nav link across all authenticated routes.
-- **Implementation scope explicitly excluded.** No automated test suite was authored for this mission — see §5. Runtime observability metrics beyond error taxonomy are not captured under this mission — see §7 Follow-ups.
-- **Overall summary.** The Inventory Foundation is deployed in the Lovable-managed runtime. The schema, RLS, append-only defence-in-depth, shared write path, ledger-derived reads, and permission-aware UI are all present and verified against the Engineering Contract at the database and code level, and against the Founder-supplied runtime screenshots at the UI level. Remaining Follow-up items are documentation/testing gaps, not implementation defects — see §7.
+- **Original implementation scope exclusions and subsequent closure.** The original implementation mission did not authorize an automated test suite or runtime observability metrics beyond error taxonomy. The automated test-suite gap was subsequently closed under SB-P-1.10-TESTS-1.0 and SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 — see §5. Runtime observability metrics remain an explicitly out-of-scope future capability — see §7 Follow-ups.
+- **Overall summary.** The Inventory Foundation is deployed in the Lovable-managed runtime. The schema, RLS, append-only defence-in-depth, shared write path, ledger-derived reads, and permission-aware UI are all present and verified against the Engineering Contract at the database and code level, and against the Founder-supplied runtime screenshots at the UI level. The remaining observability Follow-up is not an implementation defect or completion blocker — see §7.
 
 ## 3. Repository Summary
 
@@ -68,7 +78,7 @@ Mission: SB-P-1.10
 
 - **Automated tests executed (SB-P-1.10-TESTS-1.0, 24 July 2026; corrected under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0, 24 July 2026).** A Vitest test suite exists (`npm run test`, 17 files under `tests/inventory/`, 62 tests, one file per Engineering Contract §16 testing obligation), run against a dedicated test-only Supabase project (`gysgzasfcjvtrgaigfyn` — explicitly not the production Lovable-managed backend) with the `businesses` + SB-P-1.10 inventory migrations applied. **Result: 62 passed, 0 failed**, confirmed stable across 6 consecutive runs (3 full-suite + 3 isolated runs targeting the race-condition-sensitive files).
   - SB-P-1.10-TESTS-1.0 originally found **57 passed, 5 failed** — five independent reproductions of one real, root-caused implementation defect in `create_inventory_movement`'s idempotency-replay logic (an RLS + `SELECT ... FOR UPDATE` interaction that caused the dedup check to never find an existing, matching row). That mission's authorization was test-only; it reported the defect (`evidence/tests/DEFECT-idempotency-select-for-update-rls.md`) rather than patching it, per its own instructions.
-  - Mission Control reviewed those results, accepted the test framework and evidence, declined to mark SB-P-1.10-TESTS-1.0 complete or SB-P-1.10 accepted, and authorized a corrective mission.
+  - Mission Control initially reviewed those results, accepted the test framework and evidence, declined acceptance while the defect remained open, and authorized a corrective mission. The defect was subsequently corrected and re-verified before final acceptance.
   - **SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0** root-caused the defect further (PostgreSQL's planner folds the `FOR UPDATE` query to a constant "no rows" result when combined with this table's subquery-based RLS policy — an `EXPLAIN (VERBOSE, COSTS OFF)` capture shows `LockRows -> Result -> One-Time Filter: false`) and corrected it, scoped entirely to `create_inventory_movement()`: the idempotency lookup is now a plain `SELECT`; the existing per-item advisory lock is acquired earlier (before the lookup, not just before the stock projection), fully serializing same-item retries; and the final insert is wrapped with a targeted `unique_violation` handler as a safety net for the one residual cross-item race. No RLS policy, grant, table, or function signature was touched. Migration: `supabase/migrations/20260724170000_6a0f8a74-e7aa-4200-b54b-3fd57a7c9c62.sql`.
   - Full detail, including the refined root cause and re-verification (a direct raw-SQL replay of the exact original reproduction case, now returning the original movement id): `evidence/tests/DEFECT-idempotency-select-for-update-rls.md` ("Resolution" section) and `evidence/tests/test-summary.md`.
   - Full traceability from each Contract §16 obligation to its test(s) and result is in `evidence/tests/traceability-matrix.md` (now 17/17 Pass); raw output in `evidence/tests/test-run-output.txt`.
@@ -90,7 +100,7 @@ Evidence is archived under `docs/implementation/SB-P-1.10/evidence/`, indexed by
 - **Founder runtime evidence.** `F-01_inventory_list_empty.png` (authenticated Inventory list) and `F-02_item_detail_milk.png` (authenticated item detail for "Milk").
 - **Runtime verification notes.** `evidence/runtime/runtime-notes.md`.
 - **Automated test evidence (SB-P-1.10-TESTS-1.0; corrected under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0).** `evidence/tests/traceability-matrix.md`, `evidence/tests/test-run-output.txt`, `evidence/tests/test-summary.md`, `evidence/tests/query-plan-evidence.txt`, `evidence/tests/DEFECT-idempotency-select-for-update-rls.md` — a Vitest suite (17 files, 62 tests) run against a dedicated test-only Supabase project (`gysgzasfcjvtrgaigfyn`), covering every Engineering Contract §16 obligation. Originally 57 passed, 5 failed against one root-caused, independently-reproduced defect (idempotency replay under RLS + `FOR UPDATE`); now **62 passed, 0 failed**, stable across 6 runs, following the corrective mission's fix scoped to `create_inventory_movement()` (migration `supabase/migrations/20260724170000_6a0f8a74-e7aa-4200-b54b-3fd57a7c9c62.sql`).
-- **Deployment status.** The SB-P-1.10 migration and the SB-P-1.10-FIX-DIGEST-1.0 corrective migration are both applied in the Lovable-managed backend: the three inventory tables, all seven RLS policies, all four inventory functions (with the corrected `search_path` on `create_inventory_movement`), the two append-only triggers, the immutability guard trigger, the opening-stock uniqueness index, and all enums are present at runtime. Direct read of `supabase_migrations.schema_migrations` was refused for the exec role (D-12); this does not affect the deployment finding. **The SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 corrective migration (`20260724170000_..._6a0f8a74...sql`) has been applied and verified only against the dedicated test project (`gysgzasfcjvtrgaigfyn`) — it has NOT been applied to the Lovable-managed production backend.** Deploying it there is a separate governance step outside this mission's scope (this mission has no access to the production backend); Mission Control's own instructions for this corrective mission were explicitly "do not push" and "do not request Mission Control acceptance."
+- **Deployment status.** The SB-P-1.10 migration and the SB-P-1.10-FIX-DIGEST-1.0 corrective migration are both applied in the Lovable-managed backend: the three inventory tables, all seven RLS policies, all four inventory functions (with the corrected `search_path` on `create_inventory_movement`), the two append-only triggers, the immutability guard trigger, the opening-stock uniqueness index, and all enums are present at runtime. Direct read of `supabase_migrations.schema_migrations` was refused for the exec role (D-12); this does not affect the deployment finding. **The SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 corrective migration (`20260724170000_..._6a0f8a74...sql`) has been applied and verified only against the dedicated test project (`gysgzasfcjvtrgaigfyn`) — it has NOT been applied to the Lovable-managed production backend.** Deploying it there is a separate governance step outside this mission's scope. At the earlier corrective-mission stage, Mission Control instructed the builder not to push or request acceptance; that temporary review state was superseded by the formal acceptance recorded in v1.7.
 
 **Retraction (retained from v1.2).** The v1.1 report referenced a Supabase project ref `gysgzasfcjvtrgaigfyn` and stated that the deployment could not be confirmed because that project's `public` schema was empty. That project is **not** the Lovable-managed backend for Smart Business — Smart Business runs on Lovable Cloud project ref `wwgqnshcgbukqczqblsm`. All references to `gysgzasfcjvtrgaigfyn` and the accompanying "zero tables / no migrations" conclusion are withdrawn.
 
@@ -113,7 +123,7 @@ Evidence is archived under `docs/implementation/SB-P-1.10/evidence/`, indexed by
 - **Remaining Follow-up (unaffected by either mission).** §4 Observability metrics pipeline — still legitimately out of scope, not authorised in Phase 1.
 - **Known observations carried over.** OBS-P3C-01 (React hydration warning on `/reset-password`) from SB-P-1.9 — unrelated to the SB-P-1.10 module; not exercised by this mission.
 - **Justification.** All findings above are grounded in the evidence archived under `docs/implementation/SB-P-1.10/evidence/`, including the `evidence/tests/` directory. No evidence has been invented.
-- **Mission Control notes.** _Reserved for Mission Control._
+- **Mission Control notes.** SB-P-1.10 formally accepted under SB-P-1.10-DOC-CLOSE-1.0 on 2026-07-31.
 
 ## 8. Final Repository Verification
 
@@ -132,7 +142,7 @@ The undersigned builder confirms that:
 - [x] Implementation followed the Engineering Contract at the database, function, RLS, and UI levels — see §6 evidence.
 - [x] Verification Checklist executed on 23 July 2026 (LOVE-CR-1.0) and 23 July 2026 (TV-1.0); corrective mission SB-P-1.10-FIX-DIGEST-1.0 executed 24 July 2026; SB-P-1.10-TESTS-1.0 and its corrective mission SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 executed 24 July 2026 (Appendix D). Cumulative totals: **51 Pass · 0 Fail · 1 Follow-up**. No release-blocking failure identified; the one remaining Follow-up (observability metrics pipeline) is legitimately out of scope.
 - [x] Evidence archived under `docs/implementation/SB-P-1.10/evidence/` with an index mapping every artefact to the checklist requirement it supports.
-- [x] Repository is presented for Mission Control review per Mission Control's own instructions for SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0 ("present repository diff, updated evidence, final test summary, git status; Mission Control will review before authorizing the commit"). This is not a request for Mission Control acceptance of SB-P-1.10 as a whole, and no commit or push has been made.
+- [x] Repository evidence was presented for Mission Control review under SB-P-1.10-FIX-IDEMPOTENCY-RLS-1.0. Mission Control subsequently reviewed the correction and supporting evidence before formally accepting SB-P-1.10.
 
 | Field | Value |
 | --- | --- |
@@ -163,12 +173,12 @@ Items recorded here:
 
 ## 11. Mission Control Review
 
-Reserved for Mission Control. Not completed by the builder.
+Completed by Mission Control under SB-P-1.10-DOC-CLOSE-1.0.
 
 | Field | Value |
 | --- | --- |
-| Review Status | |
-| Review Notes | |
-| Approval Decision | |
-| Approved By | |
-| Approval Date | |
+| Review Status | Completed |
+| Review Notes | Implementation, defect correction, runtime verification, and final automated test evidence reviewed. The observability metrics pipeline remains an out-of-scope future capability and is not a completion blocker. |
+| Approval Decision | COMPLETED — FORMALLY ACCEPTED |
+| Approved By | Mission Control |
+| Approval Date | 2026-07-31 |
