@@ -3,14 +3,15 @@
 ## Metadata
 
 - **Merge ID:** M002_Product_Execution
-- **Status:** MERGED DRAFT — SELF-CONTAINED REVISION
+- **Status:** FOUNDER APPROVED — ACTIVE GOVERNANCE
 - **Authority:** Founder and Mission Control
 - **Primary Product Authority:** 11_Smart_Business_Product_Truth_Map
 - **Merged From:**
   - 12_Smart_Business_Feature_Implementation_Blueprint_v2.1
   - 13_Smart_Business_Feature_Acceptance_Matrix_v2.1
   - 14_Smart_Business_Pilot_Readiness_Audit_v2.1
-- **Replacement Intent:** This document is designed to replace the three source documents as one complete operational framework after Founder approval.
+- **Approval:** Founder approval recorded on 2026-07-30
+- **Replacement Status:** This document is the approved binding replacement for the three merged source documents.
 
 ---
 
@@ -521,100 +522,473 @@ Implementation shall include:
 - edge-case testing
 - real workflow testing
 - regression testing for affected capabilities
-- stable frontend IDs for approved automation tools
-- evidence suitable for Mission Control review
 
-Compatibility may include Katalon, mabl, or equivalent automated testing systems.
-
-Testing shall validate behaviour, not merely code execution.
+Testing shall use realistic merchant workflows and protect sensitive data.
 
 ---
 
-## 25. Environment Activation
+## 25. Environment Separation
 
-No feature shall be activated in a live or pilot environment until:
+Implementation shall distinguish:
 
-- required configuration is complete
-- secrets and environment variables are correctly scoped
-- migrations are applied safely
-- permissions are verified
-- rollback or recovery is understood
-- the intended environment is confirmed
-- activation authority is recorded
+- Local
+- Development
+- Preview
+- Staging
+- Production
 
-Development, preview, pilot, and production environments shall not be treated as interchangeable.
+Production shall not be assumed.
 
----
+Changes verified in one environment shall not be reported as verified in another.
 
-## 26. Controlled Evolution Rule
-
-Allowed improvements include:
-
-- bug fixes
-- Founder vision corrections
-- UX improvements
-- pilot feedback improvements
-- security improvements
-- performance improvements
-- continuity improvements
-
-All material changes shall return through Mission Control.
-
-Changes shall not silently redefine Product Truth.
+Environment-specific configuration shall remain controlled and documented.
 
 ---
 
-# Part 2 — Acceptance Criteria
+## 26. Implementation Evidence
 
-## 27. Feature Completion Rule
+Implementation evidence should include, where relevant:
 
-A feature is not complete merely because:
+- changed files
+- migration files
+- schema changes
+- test results
+- screenshots
+- workflow recordings
+- logs
+- commit identifiers
+- known limitations
+- unresolved risks
 
-- code exists
-- UI exists
-- database objects exist
-- AI replied once
-
-A feature is complete only when all of the following are proven:
-
-1. Product Truth Verification
-2. Component Completion Verification
-3. Permission Verification
-4. Security Verification
-5. User Experience Verification
-6. Brand Verification
-7. Integration Verification
-8. Edge Case Verification
-9. Performance Verification
-10. Real Workflow Verification
-
-Only then:
-
-**Feature = COMPLETE**
-
-Mission Control shall never approve a feature because it appears finished.
-
-Approval requires a complete PASS against this Part.
+Evidence shall distinguish completed implementation from proposed or simulated work.
 
 ---
 
-## 28. Performance Acceptance
+## 27. Implementation Completion Standard
+
+Implementation is complete only when:
+
+- the approved requirement is fully implemented
+- Product Truth remains unchanged
+- permissions and merchant isolation are enforced
+- expected error and edge cases are handled
+- applicable tests pass
+- documentation is updated where required
+- implementation evidence is available
+- known limitations and risks are disclosed
+
+Implementation completion does not equal acceptance or release approval.
+
+---
+
+# Part 2 — Feature Acceptance
+
+## 28. Purpose of Acceptance
+
+Acceptance proves that an implemented capability behaves as approved.
+
+Acceptance is not:
+
+- visual resemblance alone
+- successful rendering alone
+- the absence of obvious errors
+- developer confidence
+- simulated success
+
+Acceptance requires evidence.
+
+---
+
+## 29. Acceptance Principles
+
+Every feature shall be assessed for:
+
+- functional correctness
+- Product Truth alignment
+- permission correctness
+- merchant isolation
+- data integrity
+- usability
+- accessibility where applicable
+- performance
+- language quality
+- failure handling
+- security
+- operational continuity
+- evidence completeness
+
+---
+
+## 30. Feature Traceability
+
+Each accepted feature shall trace to:
+
+- approved Product Truth
+- mission authorization
+- implementation evidence
+- acceptance criteria
+- test evidence
+- unresolved limitations
+
+No feature shall be accepted without a clear source requirement.
+
+---
+
+## 31. General Functional Acceptance
+
+Verify that:
+
+- the intended user can complete the approved workflow
+- unauthorized users cannot access the workflow
+- data is created, read, updated, or corrected as approved
+- confirmation messages reflect actual stored state
+- duplicate submission is handled safely
+- failure states are clear and recoverable
+- navigation remains within approved routes
+- the workflow remains consistent across approved channels where applicable
+
+---
+
+## 32. Performance Acceptance
+
+Normal user interactions should target sub-3-second response where technically reasonable.
+
+Acceptance shall verify:
+
+- no unnecessary blocking work
+- no material duplicate processing
+- no avoidable repeated network calls
+- queries use appropriate access paths
+- slow operations provide clear feedback
+- speed has not weakened correctness, security, or integrity
+
+---
+
+## 33. Language Acceptance
+
+Verify approved behaviour in:
+
+- English
+- Malayalam
+- Manglish
+
+Language acceptance shall assess:
+
+- natural phrasing
+- business meaning
+- clarity
+- respectful tone
+- confirmation accuracy
+- consistency across channels
+- preservation of merchant-selected language where applicable
+
+Literal translation that produces awkward or confusing business communication shall fail acceptance.
+
+---
+
+## 34. Document Intelligence Acceptance
+
+For supported document and media inputs, verify:
+
+- accepted file types
+- upload and media transfer
+- interpretation quality
+- uncertainty detection
+- preview generation
+- user confirmation
+- validated database updates
+- rejection of unsafe or conflicting input
+- permission enforcement
+- business isolation
+- file and metadata storage boundaries
+
+No uncertain interpretation may silently create business records.
+
+---
+
+## 35. Export Acceptance
+
+Verify that exports:
+
+- match source-system totals
+- respect permissions
+- preserve business isolation
+- include correct business identity and period where required
+- contain only approved fields
+- render or open correctly in approved formats
+- fail safely when unavailable
+
+---
+
+## 36. Daily Intelligence Acceptance
+
+Verify each scheduled intelligence flow for:
+
+- correct schedule
+- correct business timezone
+- authorised data
+- accurate summaries
+- distinction between facts, alerts, and suggestions
+- appropriate language and tone
+- duplicate prevention
+- failure logging
+- Owner decision ownership
+
+---
+
+## 37. HR and Attendance Acceptance
 
 Verify:
 
-- sub-3-second user experience target where technically reasonable
-- database performance
-- optimised queries
-- RLS security
-- UUID merchant isolation
-- no unnecessary delays
-- no security or integrity compromise made in pursuit of speed
+- QR and geofence behaviour where enabled
+- location boundary enforcement
+- correction requests
+- Owner or Manager approval
+- correction history
+- employee self-view limits
+- privacy of location data
+- prevention of cross-business access
 
 ---
 
-## 29. Human Language Acceptance
+## 38. Order and Delivery Acceptance
 
-Verify support for the approved identities:
+Verify:
+
+- approved-customer restrictions
+- unknown-number handling where configured
+- order creation and modification
+- confirmation
+- delivery assignment
+- location requests
+- tracking
+- delivery proof
+- COD handling
+- unsubscribe
+- permission and privacy rules
+- duplicate-message and duplicate-order protection
+
+---
+
+## 39. Credit Awareness Acceptance
+
+Verify that:
+
+- warning reasons are explainable
+- facts and risk signals are distinguished
+- the Owner retains the decision
+- unsupported accusations are avoided
+- data is current and authorised
+- employee or customer dignity is preserved
+
+---
+
+## 40. Support Acceptance
+
+Verify:
+
+- FAQ-first flow
+- AI support only where appropriate
+- ticket creation when unresolved
+- language support
+- context continuity where permitted
+- privacy
+- escalation
+- uncertainty disclosure
+- Founder review capability
+
+---
+
+## 41. Security Acceptance
+
+Verify:
+
+- authentication
+- authorization
+- RLS or equivalent isolation
+- merchant separation
+- employee permission limits
+- service-role restrictions
+- secret protection
+- webhook validation where applicable
+- safe storage access
+- auditability
+- rejection of unsafe input
+- no destructive behaviour without authorization
+
+Security findings block acceptance where merchant, customer, financial, or system safety may be affected.
+
+---
+
+## 42. Subscription and Access Acceptance
+
+Verify:
+
+- subscription state
+- approved plan access
+- trial behaviour where applicable
+- restricted-feature handling
+- upgrade and downgrade boundaries
+- billing-state consistency
+- no unauthorized financial commitment
+- no hidden access escalation
+
+---
+
+## 43. Conversation Acceptance
+
+Verify conversation behaviour across approved channels for:
+
+- shared identity
+- shared Business Memory
+- shared permissions
+- context continuity
+- accurate confirmations
+- clarification when uncertain
+- no fabricated facts
+- respectful language
+- correct escalation
+- channel independence
+
+---
+
+## 44. Acceptance Failure Rules
+
+A feature fails acceptance when:
+
+- expected behaviour is missing
+- Product Truth is altered
+- permissions are wrong
+- merchant isolation is uncertain
+- data integrity is compromised
+- security controls fail
+- evidence is missing
+- the workflow works only in a simulated state
+- a known blocker is hidden
+- acceptance depends on an unresolved assumption
+
+Failed acceptance returns the capability to implementation.
+
+---
+
+## 45. Acceptance Evidence Package
+
+Acceptance evidence should include:
+
+- requirement reference
+- test steps
+- expected result
+- actual result
+- screenshots or logs where useful
+- user role and business context
+- environment
+- test data notes
+- defects
+- limitations
+- acceptance decision
+
+---
+
+## 46. Feature Acceptance Decision
+
+A feature may be marked accepted only when:
+
+- all required criteria pass
+- no release-blocking defect remains
+- evidence is complete
+- security and permission checks pass
+- known limitations are documented
+- Mission Control accepts the completion report
+
+Feature acceptance does not independently authorize production release.
+
+---
+
+# Part 3 — Pilot Readiness
+
+## 47. Purpose of Pilot Readiness
+
+Pilot readiness proves that the complete Smart Business experience is safe and useful for controlled real-merchant use.
+
+A set of accepted features is not automatically a pilot-ready product.
+
+Pilot readiness evaluates:
+
+- end-to-end experience
+- operational support
+- data safety
+- business continuity
+- performance
+- real merchant usability
+- recovery readiness
+
+---
+
+## 48. Pilot Scope Definition
+
+Before pilot launch, define:
+
+- approved pilot merchant profile
+- merchant count
+- business categories
+- locations
+- pilot period
+- supported languages
+- supported channels
+- included features
+- excluded features
+- support ownership
+- escalation ownership
+- success measures
+- stop conditions
+
+The pilot shall remain controlled.
+
+---
+
+## 49. End-to-End Merchant Workflow Audit
+
+Verify complete workflows for:
+
+- onboarding
+- authentication
+- business identity
+- first transaction
+- text input
+- voice input
+- photo or document input
+- transaction confirmation
+- dashboard visibility
+- Ask CFO
+- reminders
+- credit awareness
+- employee access where enabled
+- attendance where enabled
+- support
+- logout and session restoration
+
+---
+
+## 50. Business Data Audit
+
+Verify:
+
+- correct business ownership
+- tenant isolation
+- transaction integrity
+- timestamps and timezone
+- correction history
+- no duplicate business entities
+- no orphaned records
+- backup readiness
+- export consistency
+- recovery procedure
+
+---
+
+## 51. Permission Audit
+
+Verify all relevant roles, including:
 
 - Owner
 - Manager
@@ -623,706 +997,523 @@ Verify support for the approved identities:
 - Supplier
 - Customer
 
-Verify support for:
+Confirm that:
 
-- English
-- Malayalam
-- Manglish
-
-Must pass:
-
-- onboarding language selection
-- WhatsApp language switching
-- dashboard language switching
-- natural Kerala Malayalam responses
-
-Robotic translation experience is rejected.
+- access is denied by default
+- staff cannot see owner financial intelligence by default
+- employee transaction and attendance access is permission-scoped
+- users cannot access another business
+- UI hiding is not the only security control
+- authentication methods produce the same permission outcome
 
 ---
 
-## 30. Universal Document Intelligence Acceptance
+## 52. AI Behaviour Audit
 
-Verify all approved input types.
+Verify that AI:
 
-Verify the complete flow from receipt to confirmed database update.
-
-No uncertain automatic updates are permitted.
-
-Preview content, extracted values, and final stored values shall be traceable.
+- assists rather than judges
+- distinguishes facts, estimates, assumptions, and suggestions
+- asks for clarification where required
+- does not fabricate business data
+- avoids accusing employees or customers
+- explains uncertainty
+- preserves human decisions
+- uses authorised data only
+- respects business and role boundaries
 
 ---
 
-## 31. Export Acceptance
-
-Verify PDF, Excel, and CSV exports where applicable.
+## 53. WhatsApp and Channel Audit
 
 Verify:
 
-- correct data
-- correct totals
-- correct reporting period
-- correct permission scope
-- no cross-business exposure
-- consistent formatting and readability
+- webhook verification
+- retry handling
+- idempotency
+- duplicate prevention
+- message delivery status
+- template compliance
+- media handling
+- credential protection
+- channel independence
+- dashboard conversation continuity where applicable
 
 ---
 
-## 32. Daily Intelligence Acceptance
+## 54. Security Audit
 
 Verify:
 
-- 7:00 AM Morning Business Briefing
-- 10:30 AM Business Pulse Check
-- 10:00 PM Night Closing Intelligence
-- Manager closing cash audit where applicable
-- correct business data and timezone
-- no duplicate or misleading notifications
+- authentication controls
+- authorization controls
+- RLS or equivalent isolation
+- secrets management
+- protected routes
+- storage policies
+- signed access where required
+- malicious or unsafe input handling
+- security logging
+- business-alert separation
+- audit history
+- backup and recovery readiness
+
+Critical security findings block pilot launch.
 
 ---
 
-## 33. Smart Order and Delivery Acceptance
-
-Verify all capabilities defined in Section 20.
-
-Also verify:
-
-- consent-aware communication
-- correct staff permissions
-- correct order status transitions
-- location requested only when needed
-- delivery proof linked to the correct order
-- COD status and amount integrity
-
----
-
-## 34. Staff and HR Acceptance
+## 55. Performance and Reliability Audit
 
 Verify:
 
-- QR attendance
-- geofence validation
-- employee cannot mark attendance outside the allowed location when enforcement is active
-- employee can request correction
-- Owner or Manager approval is required
-- correction history is preserved
-- staff cannot view unauthorised attendance or financial intelligence
+- normal response time
+- error rate
+- queue or webhook reliability
+- database query performance
+- timeout handling
+- retry behaviour
+- scheduled job reliability
+- duplicate prevention
+- service degradation behaviour
+- user-facing failure clarity
 
 ---
 
-## 35. Smart Credit Awareness Acceptance
+## 56. Support Readiness Audit
 
 Verify:
 
-- the system warns
-- the reason for warning is understandable
-- the system does not forcefully block Owner decisions without approved authority
-- confirmed facts are distinguished from risk signals
-- AI assists and the human decides
-
----
-
-## 36. Support Automation Acceptance
-
-Verify:
-
-- 100+ FAQ Knowledge Base target
-- FAQ-first support flow
-- AI support when needed
-- ticket creation when unresolved
-- English, Malayalam, and Manglish
-- WhatsApp support
-- dashboard support
-- Founder review
-- uncertain answers are not presented as confirmed policy
-
----
-
-## 37. Automated Testing Acceptance
-
-Verify:
-
-- stable frontend IDs exist
-- compatibility with Katalon, mabl, or equivalent tools where adopted
-- permission, integration, regression, and real-workflow tests pass
-- test evidence is traceable to the feature and release
-
----
-
-## 38. Security Acceptance
-
-Mandatory rule:
-
-**No cross-merchant access.**
-
-Verify:
-
-- RLS
-- permissions
-- storage protection
-- user boundaries
-- staff visibility boundaries
-- authentication method does not alter permission outcomes
-- exports and reports do not expose unauthorised data
-
----
-
-## 39. Subscription Acceptance
-
-Verify correct access for:
-
-- Smart Business Ledger
-- Smart Business Manager
-- Add-ons
-
-No accidental feature unlocking is permitted.
-
-Downgrade, expiry, renewal, and reactivation behaviour shall preserve data while enforcing approved access.
-
----
-
-## 40. Conversation Acceptance
-
-Verify:
-
-- conversation works consistently through WhatsApp and Conversation Workspace
-- the same Business Memory is used
-- the same AI understanding is used
-- the same permissions apply
-- the same conversation history is available where appropriate
-- consequential actions require the same confirmation standard across channels
-
-Duplicate conversation behaviour between channels is rejected.
-
----
-
-## 41. Channel Independence Acceptance
-
-Verify:
-
-- business workflows continue if one approved communication channel is unavailable
-- business logic is identical across approved channels
-- no channel-specific business rules exist
-- channel failure does not corrupt business state
-
----
-
-## 42. Dual Authentication Acceptance
-
-Verify:
-
-- WhatsApp login
-- Email and Password login
-- future authentication methods map to the same Smart Business identity
-- permissions remain identical regardless of authentication method
-- duplicate user identities are not created
-- account recovery preserves the correct business relationship
-
----
-
-## 43. Platform Stewardship Acceptance
-
-Verify:
-
-- operational intelligence respects permissions
-- privacy is protected
-- merchant ownership is preserved
-- platform insights support continuous improvement
-- no merchant information is exposed across businesses
-
----
-
-## 44. Continuity and Scalability Acceptance
-
-Verify:
-
-- approved migrations preserve merchant data
-- product behaviour remains consistent across infrastructure changes
-- cross-device experience remains consistent
-- core services are reused instead of duplicated
-- recovery paths are documented and tested where material
-
----
-
-## 45. Acceptance Failure and Controlled Evolution
-
-Failed acceptance does not mean project failure.
-
-Allowed responses include:
-
-- bug fixes
-- Founder vision corrections
-- UX improvements
-- pilot feedback improvements
-- security corrections
-- performance corrections
-
-Any correction shall return through Mission Control.
-
----
-
-# Part 3 — Pilot Readiness
-
-## 46. Pilot Readiness Purpose
-
-Pilot readiness is the final approval gate before Smart Business reaches real pilot customers.
-
-Source 11 defines WHAT.
-
-Part 1 defines HOW.
-
-Part 2 proves individual features.
-
-Part 3 proves that the complete product is ready for real merchants.
-
----
-
-## 47. Pilot Unlock Rule
-
-The pilot shall remain locked until:
-
-- required features have passed Part 2
-- critical end-to-end workflows pass
-- permission boundaries pass
-- security controls pass
-- performance expectations pass
-- recovery paths are understood
-- Founder manual testing is complete
-- final Founder approval is recorded
-
----
-
-## 48. Feature Completion Audit
-
-Verify:
-
-- every required pilot feature has an explicit PASS or approved deferral
-- no deferred feature is silently presented as operational
-- dependencies between features are tested
-- evidence exists for all mandatory acceptance criteria
-
----
-
-## 49. Conversation Experience Audit
-
-Verify:
-
-- WhatsApp conversations
-- Smart Business Conversation Workspace
-- shared Business Memory
-- shared AI understanding
-- shared permissions
-- shared conversation history
-
-Conversation shall continue naturally regardless of the approved communication channel used.
-
-Business logic shall remain conversation-first, never channel-first.
-
----
-
-## 50. Channel Independence Audit
-
-Verify:
-
-- business operations continue if one approved channel becomes unavailable
-- conversation context remains available
-- business data remains consistent
-- no workflow depends exclusively on one communication channel
-
----
-
-## 51. Dual Authentication Audit
-
-Verify:
-
-- WhatsApp authentication
-- Email and Password authentication
-- the same Smart Business identity
-- the same permissions
-- the same Business Memory
-- no duplicate user identities
-
----
-
-## 52. Platform Stewardship Audit
-
-Verify:
-
-- operational intelligence respects merchant ownership
-- permissions are enforced
-- privacy is protected
-- platform improvement is responsible
-
-No operational intelligence may expose merchant information across businesses.
-
----
-
-## 53. Business Continuity Audit
-
-Verify:
-
-- infrastructure evolution does not interrupt merchant operations
-- merchant data remains protected
-- approved migrations preserve behaviour
-- business continuity remains the priority
-- backup, rollback, and recovery responsibilities are clear
-
----
-
-## 54. Progressive Application Experience Audit
-
-Verify a consistent experience across:
-
-- Mobile
-- Tablet
-- Laptop
-- Desktop
-
-Implementation technology may evolve while maintaining a consistent user experience.
-
----
-
-## 55. Responsible Scalability Audit
-
-Verify:
-
-- reusable services
-- no duplicated core capabilities
-- scalable implementation foundations
-- maintainable architecture
-- no known architecture decision blocks the next approved growth stage
-
----
-
-## 56. Conversation Continuity Audit
-
-Verify:
-
-- conversation survives channel changes
-- AI retains authorised context
-- Business Memory remains consistent
-- Conversation Workspace and WhatsApp remain synchronised
-- customer experience remains uninterrupted
-
----
-
-## 57. Daily Intelligence Audit
-
-Verify:
-
-- correct schedule and business timezone
-- correct source data
-- no duplicate notifications
-- no misleading urgency
-- user can understand what happened and what requires attention
-
----
-
-## 58. Universal Document Intelligence Audit
-
-Verify:
-
-- every approved input type
-- extraction accuracy
-- preview accuracy
-- user confirmation
-- final database update
-- traceability from source document to stored record
-- uncertain input does not create silent updates
-
----
-
-## 59. Report Export Audit
-
-Verify:
-
-- correct values and totals
-- correct permissions
-- correct business identity
-- readable output
-- no hidden or cross-business data exposure
-- consistency with dashboard and database records
-
----
-
-## 60. Human Language Experience Audit
-
-Verify:
-
-- English, Malayalam, and Manglish behaviour
-- natural Kerala Malayalam
-- consistent meaning across channels
-- respectful tone
-- clear financial and operational language
-- no robotic translation experience
-
----
-
-## 61. Smart Order and Delivery Audit
-
-Verify the complete order lifecycle:
-
-- customer onboarding or recognition
-- order creation
-- confirmation or modification
-- assignment
-- tracking
-- delivery proof
-- COD handling
-- final status
-
-Also verify consent, permissions, and location use.
-
----
-
-## 62. Staff and HR Geofence Audit
-
-Verify:
-
-- QR attendance
-- geofence enforcement where active
-- correction request
-- Owner or Manager approval
-- correction history
-- employee self-view only unless broader permission exists
-- appropriate location data use
-
----
-
-## 63. FAQ Support Automation Audit
-
-Verify:
-
-- FAQ-first response
-- AI escalation
+- FAQ coverage
+- language coverage
+- AI support behaviour
 - ticket creation
-- language support
-- channel consistency
-- Founder review access
-- unresolved or uncertain issues are not falsely closed
+- human escalation
+- support ownership
+- response expectations
+- privacy safeguards
+- known-issue documentation
+- Founder visibility
 
 ---
 
-## 64. Automated Testing Layer
+## 57. Legal, Privacy, and Communication Audit
 
 Verify:
 
-- required automated tests pass
-- stable frontend IDs remain intact
-- permission and RLS tests pass
-- critical workflows have regression coverage
-- failures are visible and traceable
+- approved privacy policy
+- approved terms of service
+- consent handling
+- customer communication boundaries
+- unsubscribe where applicable
+- location-data purpose limitation
+- no misleading AI or profit claims
+- no unauthorized legal or financial commitments
 
 ---
 
-## 65. Founder Manual Testing
+## 58. Founder Testing
 
-Founder manual testing shall cover:
+Founder testing shall cover realistic merchant scenarios.
 
-- onboarding
+The Founder shall review:
+
+- product clarity
+- ease of use
+- merchant dignity
+- transaction confidence
+- AI behaviour
+- support quality
+- operational visibility
+- major known limitations
+- pilot risk
+
+Founder testing does not replace technical evidence but remains required for pilot approval.
+
+---
+
+## 59. Pilot Blocking Conditions
+
+Pilot launch is blocked by:
+
+- unresolved critical security risk
+- uncertain merchant isolation
+- financial data integrity failure
+- broken authentication
+- incorrect employee permissions
+- unreliable transaction recording
+- fabricated or unsafe AI behaviour
+- missing support escalation
+- missing privacy or terms requirements
+- inability to recover material data
+- unresolved release-blocking defect
+- missing Founder approval
+
+---
+
+## 60. Pilot Readiness Evidence Package
+
+The evidence package shall include:
+
+- pilot scope
+- feature acceptance summary
+- end-to-end test results
+- role and permission matrix results
+- security findings
+- performance findings
+- support readiness
+- known limitations
+- open risks
+- recovery plan
+- stop conditions
+- Founder test result
+- Mission Control recommendation
+
+---
+
+## 61. Pilot Readiness Decision
+
+Pilot readiness may be confirmed only when:
+
+- all required workflows pass
+- security and isolation are proven
+- financial integrity is acceptable
+- support is ready
+- recovery is prepared
+- known risks are documented
+- blocking conditions are absent
+- Mission Control recommends readiness
+- Founder approval is recorded
+
+---
+
+# Part 4 — Release Governance
+
+## 62. Release Purpose
+
+Release governance controls movement from proven pilot readiness to approved production use.
+
+Release is a governance decision supported by evidence.
+
+Deployment capability alone does not authorize release.
+
+---
+
+## 63. Release Types
+
+Approved release types may include:
+
+- internal development release
+- preview release
+- controlled staging release
+- pilot release
+- phased production release
+- general production release
+- emergency corrective release
+
+Every release shall identify its type and target environment.
+
+---
+
+## 64. Release Authorization Chain
+
+Implementation completion
+
+↓
+
+Feature acceptance
+
+↓
+
+Pilot readiness where applicable
+
+↓
+
+Release checklist
+
+↓
+
+Mission Control recommendation
+
+↓
+
+Founder approval
+
+↓
+
+Authorized deployment
+
+No stage may be inferred from another.
+
+---
+
+## 65. Release Checklist
+
+Before release verify:
+
+- approved scope
+- correct branch and commit
+- correct target environment
+- acceptance evidence
+- pilot evidence where required
+- database migration status
+- backup readiness
+- rollback path
+- secrets and configuration
+- authentication and permissions
+- RLS and merchant isolation
+- monitoring and logging
+- support readiness
+- legal and policy readiness
+- known limitations
+- release owner
+- recovery owner
+- Founder approval
+
+---
+
+## 66. Release Blocking Conditions
+
+Release is blocked by:
+
+- unresolved critical or high security findings
+- uncertain data integrity
+- unverified merchant isolation
+- incorrect permissions
+- failed acceptance criteria
+- missing evidence
+- missing backup or recovery path for material changes
+- unknown target environment
+- unreviewed destructive migration
+- missing support readiness
+- missing legal or policy requirement
+- unresolved contradiction with Product Truth
+- missing Founder approval
+
+---
+
+## 67. Migration Release Rules
+
+Database or storage migrations shall:
+
+- identify affected entities
+- identify data-loss risk
+- be tested before production
+- include backup or recovery preparation
+- include rollback where practical
+- document irreversible steps
+- preserve tenant isolation
+- preserve audit history where required
+- identify execution owner
+
+Production migration requires explicit authorization.
+
+---
+
+## 68. Deployment Evidence
+
+Deployment evidence shall include:
+
+- release type
+- branch
+- commit SHA
+- workflow or deployment identifier
+- environment
+- deployment time
+- migration result
+- health checks
+- smoke-test results
+- known warnings
+- rollback readiness
+- responsible operator
+
+Connector success alone is not sufficient evidence if branch or environment state remains ambiguous.
+
+---
+
+## 69. Post-Release Validation
+
+After release verify:
+
+- application availability
 - authentication
-- dashboard access
-- critical merchant workflows
-- staff permission boundaries
-- WhatsApp-first interaction
-- language experience
-- reports and exports
-- failure and recovery behaviour
+- protected routes
+- primary merchant workflow
+- transaction recording
+- database health
+- permissions and RLS
+- WhatsApp or channel health where applicable
+- scheduled jobs
+- logging and monitoring
+- error rate
+- support channel
 
-Founder manual testing shall not be replaced by automated testing.
-
----
-
-## 66. Permission Audit
-
-Verify:
-
-- every role sees only approved data and actions
-- employees cannot see Owner financial intelligence by default
-- staff transaction access is permission-scoped
-- staff attendance access is limited to their own records unless approved
-- UI restrictions and server-side restrictions agree
-- no unauthorised route or API access exists
+Production validation shall use safe, controlled test data.
 
 ---
 
-## 67. Security Audit
+## 70. Rollback Rules
 
-Verify:
+Rollback shall be considered when:
 
-- no cross-merchant access
-- RLS and server-side enforcement
-- secure storage access
-- secure secret handling
-- authentication and session protection
-- export and attachment protection
-- auditability of material changes
+- data integrity is threatened
+- merchant isolation fails
+- authentication or permissions fail
+- core workflows are unavailable
+- financial records are incorrect
+- security risk is introduced
+- deployment impact exceeds approved tolerance
 
-Any unresolved critical security issue blocks pilot release.
+Rollback authority and method shall be identified before high-impact release.
 
----
-
-## 68. Performance Audit
-
-Verify:
-
-- normal interactions meet the approved speed target where reasonable
-- queries remain efficient
-- no unnecessary repeated requests
-- critical workflows remain stable under expected pilot usage
-- slow paths provide clear user feedback
+Rollback shall preserve evidence and avoid hiding the cause of failure.
 
 ---
 
-## 69. Subscription Lifecycle Audit
+## 71. Incident Handling
 
-Verify:
+When a release incident occurs:
 
-- correct plan access
-- correct add-on access
-- no accidental unlocking
-- renewal behaviour
-- expiry behaviour
-- downgrade behaviour
-- reactivation behaviour
-- data preserved when access changes
+1. protect merchants and data
+2. stop further harmful execution
+3. identify actual environment and state
+4. preserve logs and evidence
+5. assess rollback or corrective action
+6. notify Mission Control
+7. obtain required authorization
+8. recover from verified state
+9. validate recovery
+10. document cause, impact, and prevention
 
----
-
-## 70. Failure Recovery Audit
-
-Verify:
-
-- failed operations do not create silent partial states
-- user-facing errors are understandable
-- retries do not duplicate transactions or records
-- rollback or correction paths exist
-- critical recovery responsibilities are assigned
-- merchant data remains protected throughout recovery
+Do not claim recovery until evidence confirms it.
 
 ---
 
-## 71. Controlled Evolution Audit
+## 72. Emergency Corrective Release
 
-Verify:
+An emergency corrective release may use an accelerated process only when delay creates greater risk.
 
-- pilot feedback is captured
-- approved corrections return through Mission Control
-- changes do not silently redefine Product Truth
-- temporary workarounds are identified and not normalised into permanent architecture
+It still requires:
+
+- defined incident
+- limited scope
+- verified target
+- risk assessment
+- explicit authorization
+- rollback or recovery awareness
+- post-release validation
+- completion evidence
+
+Emergency does not mean ungoverned.
 
 ---
 
-## 72. Final Founder Approval
+## 73. Release Completion Report
 
-Pilot readiness requires explicit Founder approval after review of:
+Every material release report should include:
 
-- feature acceptance evidence
-- security and permission evidence
+- mission or release ID
+- approved scope
+- release type
+- files and services changed
+- migrations
+- commit and deployment identifiers
+- environment
+- validation results
+- warnings
+- failures
+- rollback status
+- known limitations
+- unresolved risks
+- next action
+
+---
+
+## 74. Release Acceptance
+
+A release may be accepted only when:
+
+- deployment completed successfully
+- post-release validation passed
+- no blocking incident remains
+- evidence is complete
+- known risks are disclosed
+- rollback or recovery state is known
+- Mission Control accepts the report
+- Founder approval requirements are satisfied
+
+---
+
+## 75. Controlled Product Evolution
+
+After release, Smart Business may evolve through:
+
+- merchant feedback
+- support observations
+- security findings
+- operational evidence
 - performance evidence
-- real workflow evidence
-- Founder manual testing
-- unresolved risks and approved deferrals
+- implementation learning
+- Founder direction
 
-No specialist room, builder, engineer, or AI may substitute for this approval.
+Evolution shall continue to use:
 
----
+- Product Truth
+- Build Now / Build Later / Add-on / Separate Product / Reject classification
+- implementation controls
+- acceptance evidence
+- release governance
 
-# Part 4 — Release Checklist
-
-## 73. Release Principle
-
-Release is a controlled decision, not an automatic consequence of implementation or testing.
-
-A release may proceed only when implementation evidence, feature acceptance evidence, pilot readiness evidence, and approval authority are complete.
+Customer requests shall inform the product but shall not independently redefine it.
 
 ---
 
-## 74. Pre-Release Evidence Checklist
+## 76. Build Classification
 
-- [ ] Product Truth requirements are identified.
-- [ ] Implementation follows Part 1.
-- [ ] No core capability is unnecessarily duplicated.
-- [ ] Business logic remains channel-independent.
-- [ ] Identity and permissions remain consistent across approved authentication methods.
-- [ ] Each required feature has passed Part 2.
-- [ ] No cross-merchant access is possible.
-- [ ] RLS, storage, and user boundaries are verified.
-- [ ] Real merchant workflows have been tested.
-- [ ] Performance expectations have been verified.
-- [ ] Human language experience has been verified.
-- [ ] Conversation continuity has been verified.
-- [ ] Export, document intelligence, daily intelligence, staff, order, delivery, support, and subscription requirements have been tested where applicable.
-- [ ] Pilot readiness audits have passed.
-- [ ] Failure recovery has been reviewed.
-- [ ] Business continuity has been reviewed.
-- [ ] Founder manual testing has been completed.
-- [ ] Release evidence is recorded and traceable.
+Every proposed capability shall be classified as:
 
----
+- Build Now
+- Build Later
+- Add-on
+- Separate Product
+- Reject
 
-## 75. Release Blocking Conditions
+Classification shall consider:
 
-Release shall be blocked when any of the following remains unresolved:
+- merchant value
+- simplicity
+- human decision ownership
+- operational sustainability
+- security
+- maintainability
+- impact on core architecture
 
-- Product Truth is not fulfilled
-- acceptance criteria have not passed
-- cross-merchant access risk exists
-- permissions are inconsistent
-- security evidence is incomplete
-- core business logic is duplicated by channel
-- conversation continuity fails
-- identity duplication exists
-- real workflows fail
-- performance is unacceptable
-- merchant data may be lost or exposed
-- rollback or recovery is unclear
-- required Founder approval is missing
+Custom POS modifications inside the Smart Business core platform remain rejected. Standard POS bridges may be implemented through approved extension or integration layers.
 
 ---
 
-## 76. Release Authorization
+## 77. Governance Conflict Rule
 
-Release authorization requires:
+When implementation, acceptance evidence, pilot findings, or release pressure conflicts with approved Product Truth or Lighthouse principles:
 
-1. Mission Control confirmation that implementation and acceptance evidence are complete.
-2. Confirmation that the pilot readiness audit has passed.
-3. Confirmation that blocking conditions are resolved.
-4. Final Founder approval.
+- stop
+- identify the conflict
+- preserve current state
+- return through Mission Control
+- obtain Founder resolution where required
 
-No AI, builder, engineer, or specialist room may independently declare the product released.
-
-Human decision ownership remains final.
-
----
-
-## 77. Post-Release Validation
-
-After release, verify:
-
-- the intended environment contains the approved release
-- authentication works
-- permissions remain correct
-- critical workflows remain operational
-- conversation context remains consistent
-- merchant data remains protected
-- no accidental feature unlocking occurred
-- no new cross-merchant access is possible
-- performance remains acceptable
-- support and recovery paths are available
-
-Any material issue shall return through Mission Control.
+No delivery deadline overrides governance.
 
 ---
 
-## 78. Controlled Evolution After Release
+## 78. Framework Evolution
 
-After release, the following remain allowed through Mission Control:
+This framework may evolve through:
 
-- bug fixes
-- Founder vision corrections
-- UX improvements
-- pilot feedback improvements
-- security improvements
+- Founder direction
+- Mission Control review
+- approved governance updates
+- proven implementation experience
+- documented security improvements
 - performance improvements
 - continuity improvements
 
@@ -1332,7 +1523,7 @@ Changes shall not silently redefine Product Truth.
 
 ## 79. Supersession Rule
 
-After Founder approval and movement to the approved governance set, this framework supersedes:
+Founder approval is recorded. This framework supersedes:
 
 - 12_Smart_Business_Feature_Implementation_Blueprint_v2.1
 - 13_Smart_Business_Feature_Acceptance_Matrix_v2.1
@@ -1370,4 +1561,4 @@ Only then:
 
 ---
 
-END OF MERGED DRAFT — SELF-CONTAINED REVISION
+END OF APPROVED ACTIVE GOVERNANCE
