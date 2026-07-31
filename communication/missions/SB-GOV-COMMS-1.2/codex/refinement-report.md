@@ -12,6 +12,7 @@
 - Previous version: Draft 1.1
 - New version: Draft 1.2
 - Change log added: YES
+- Required final refinements: 13 of 13 applied
 
 ## Authority Precision
 
@@ -22,6 +23,11 @@
 - Merge authority: YES
 - Branch-protection gate: YES — non-bypassable
 - PR handover: YES — thirteen required fields
+- Remote identity verification: YES
+- Mission branch base verification: YES — four handover fields
+- Exact staged-file verification: YES
+- Secret-check requirement: YES
+- PR capability fallback: YES
 
 ## Communication Archive
 
@@ -34,13 +40,17 @@
 - Archive stop conditions: YES
 - Silent deletion prohibited: YES
 - Reactivation control: Mission Control only
+- Associated PR closure rule: YES
+- Link preservation: YES
+- Complete-move traceability: YES
 
 ## Staged Activation
 
-- Stage A files: `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`
+- Stage A files: Protocol, `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`
 - Stage B files: ChatGPT and Claude EOS GitHub workflows
 - Live files modified: NONE
 - Activation authorized: NO
+- Stage B contradiction audit: YES
 
 ## Validation
 

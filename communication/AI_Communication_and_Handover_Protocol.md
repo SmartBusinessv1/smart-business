@@ -10,6 +10,8 @@
 
 This protocol proposes GitHub as the durable communication layer between Smart Business AI participants while preserving Mission Control sequencing, Founder decision ownership, repository safety, and review before merge.
 
+At activation, the proposal sentence above shall be replaced with: **This protocol establishes GitHub as the durable communication and handover layer between authorized Smart Business AI participants.**
+
 This draft does not grant Git authority. Current approved repository instructions remain controlling until this protocol and the related `AGENTS.md` amendment are separately reviewed and activated.
 
 ## 2. Communication Rule
@@ -135,6 +137,7 @@ Initial inspection:
 
 ```powershell
 git fetch origin
+git remote get-url origin
 git branch --show-current
 git status
 ```
@@ -151,6 +154,10 @@ For a new mission branch:
 ```powershell
 git switch -c mission/[MISSION-ID]-[SHORT-SLUG] origin/main
 ```
+
+A new mission branch shall be created only from the Mission Control-authorized base branch after that base has been fetched and verified current. Before branch creation, `git remote get-url origin` must match the authorized repository. A mismatch requires a stop report.
+
+The handover shall record the base branch, base commit SHA, mission branch, and mission branch starting SHA.
 
 For an existing mission branch:
 
@@ -186,8 +193,13 @@ Before committing, the AI shall verify:
 - exact staged file list;
 - no unexpected deletion;
 - `git diff --cached --check` passes;
+- `git diff --cached --name-status` matches the authorized scope exactly;
 - applicable quality gates and tests pass;
 - no secret, generated artifact, editor file, or temporary file is staged.
+
+Unexpected staged files, deletions, or renames require a stop report.
+
+Before commit, the AI shall run the repository's approved secret-detection or security check where available. If no approved automated check exists, the AI shall inspect staged changes for credentials, tokens, keys, passwords, and environment values and record that limitation in the handover.
 
 The commit message shall be mission-approved. A commit does not approve the work.
 
@@ -206,6 +218,8 @@ The pull request shall:
 - remain subject to Mission Control and repository review.
 
 The AI may open or update the pull request but may not approve or merge its own work.
+
+Where the AI can commit and push but cannot create a pull request, it shall record the pushed branch and commit SHA, then provide the Founder or Mission Control with the exact PR creation action required. Lack of PR-creation capability does not authorize direct push to `main`.
 
 ## 13. Mission Control Review and Merge
 
@@ -366,12 +380,15 @@ Activation shall occur in two controlled stages.
 
 Apply and verify:
 
+- `communication/AI_Communication_and_Handover_Protocol.md`;
 - `AGENTS.md`;
 - `CLAUDE.md`;
 - `CHATGPT.md`;
 - `communication/README.md`.
 
 After Stage A, Mission Control reviews repository behaviour, branch and status checks are verified, and no workflow contradiction may remain active.
+
+The branch-protection verification record must already exist or be created under the same activation mission before these five files become active.
 
 ### Stage B — Workflow Alignment
 
@@ -381,6 +398,8 @@ Only after Stage A is confirmed, update:
 - `docs/engineering/eos/Claude_GitHub_Engineering_Artifact_Workflow_v1.0.md`.
 
 Stage B shall align the EOS workflows with the activated core instruction model. Activation must not modify all six live files in one uncontrolled step.
+
+Stage B shall verify that no remaining statement says Codex or Claude Code can never commit or never push without the controlled exception; neither workflow permits direct push to `main` or self-merge; both workflows reference the same Founder- and Mission Control-approved AI Communication and Handover Protocol and `AGENTS.md`; and both preserve Founder, authorized human maintainer, or separately approved merge authority.
 
 ## 26. Communication Closure and Archive Governance
 
@@ -405,6 +424,11 @@ Before archiving, the assigned AI shall verify:
 - authoritative artifacts remain outside the communication archive where required;
 - no active actor still requires the folder;
 - Founder or Mission Control has explicitly confirmed closure.
+- every associated pull request is merged, closed, or explicitly accepted by Mission Control as an open follow-up reference.
+
+Any open follow-up pull request shall be recorded in the archived README.
+
+Before archiving, the assigned AI shall identify repository links pointing to the active communication path. Where required, it shall update those links or leave an approved redirect or index record at the former active location. The active and archive locations must not both present themselves as authoritative mission communication.
 
 ### Archive Action
 
@@ -420,6 +444,8 @@ The assigned AI shall:
 8. update `communication/live/report.md`;
 9. commit and push when mission-scoped Git authority is active;
 10. otherwise provide exact Founder PowerShell commands directly in chat.
+
+The archive operation shall preserve all file content and Git traceability. No communication record may be omitted from the archive commit. The assigned AI shall verify the complete moved-file list before commit.
 
 The archived README shall record mission ID, final disposition, archive date and authority, final commit and pull request, active authoritative artifacts, unresolved follow-up missions, and non-governing communication-history status.
 
@@ -494,6 +520,15 @@ Activation requires:
 4. Reconciliation of conflicting actor-specific and communication documentation through separately authorized updates.
 5. Confirmation of GitHub branch protection and pull-request controls.
 
+The Stage A activation mission shall set:
+
+- **Version:** 1.0
+- **Status:** ACTIVE
+- **Approved By:** Founder
+- **Activated By:** Mission Control
+- **Activation Commit:** `[SHA]`
+- **Activation Date:** `[DATE]`
+
 ## Protocol Change Log
 
 | Version | Mission | Change | Status |
@@ -501,6 +536,7 @@ Activation requires:
 | Draft 1.0 | SB-GOV-COMMS-1.0 | Initial AI communication and Git automation governance draft | DRAFT |
 | Draft 1.1 | SB-GOV-COMMS-1.1 | Added controlled mission-scoped Git authority, ten safety conditions, explicit chat authorization, and Founder-chat command visibility | DRAFT |
 | Draft 1.2 | SB-GOV-COMMS-1.2 | Added capability boundaries, local-versus-remote Git distinction, merge authority, branch-protection gate, authorization expiry, PR handover requirements, staged activation, and communication archival governance | DRAFT |
+| 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, and archival governance | ACTIVE |
 
 Future updates must append rather than overwrite this history.
 

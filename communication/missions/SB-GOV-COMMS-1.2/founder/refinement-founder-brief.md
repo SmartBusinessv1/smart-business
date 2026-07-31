@@ -24,7 +24,7 @@ Founder decisions, Mission Control authorization and review, exceptions, branch-
 
 ## Two-Stage Activation
 
-Stage A applies the four core instruction amendments. After Mission Control verifies behaviour, Stage B aligns the two EOS workflow documents. All six files must not be changed in one uncontrolled step.
+Stage A activates the protocol and applies the four core instruction amendments after branch protection is verified. After Mission Control verifies behaviour, Stage B aligns the two EOS workflow documents. The two stages must not be combined into one uncontrolled change.
 
 ## Exact Publication Commands
 

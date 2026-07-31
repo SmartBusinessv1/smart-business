@@ -2,10 +2,10 @@
 
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
 - **Mission:** Controlled AI Git Authority and Communication Archive Refinement
-- **Current owner:** Mission Control for review
-- **Current stage:** Draft refinement prepared locally
-- **Last completed action:** Codex refined Draft 1.2 and prepared revised exact amendments
-- **Next authorized action:** Founder publishes exact files; Mission Control reviews
+- **Current owner:** Founder for exact-file publication, then Mission Control
+- **Current stage:** Thirteen required refinements applied; final Mission Control verification pending
+- **Last completed action:** Codex applied all thirteen governance-precision refinements
+- **Next authorized action:** Founder publishes exact files; Mission Control performs final verification
 - **Branch:** `main`
 - **Starting commit:** `0f1c41e`
 - **AI commit/push authority:** NOT AUTHORIZED FOR THIS MISSION
@@ -19,4 +19,4 @@
 
 ## Activation Boundary
 
-The six live instruction and workflow targets remain unchanged. Branch-protection verification and staged activation are still required.
+The five Stage A live files and two Stage B EOS workflows remain unchanged. Branch-protection verification and separately authorized staged activation are still required.

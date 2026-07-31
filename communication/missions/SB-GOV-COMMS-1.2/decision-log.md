@@ -25,3 +25,10 @@
 - **Date:** 2026-08-01
 - **Authority:** Existing repository convention
 - **Decision:** Active mission folders use `communication/missions/[MISSION-ID]/`; the current canonical archive maps to `communication/archive/[MISSION-ID]/` rather than introducing a competing archive root silently.
+
+## Decision 5 — Final Precision Refinements
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control
+- **Decision:** Apply thirteen required refinements covering activation language, approved-protocol naming, branch base and remote verification, staged scope, secrets, PR fallback, archive safety, activation metadata, Stage A scope, and Stage B contradiction audit.
+- **Activation effect:** NONE — final Mission Control verification remains required.
