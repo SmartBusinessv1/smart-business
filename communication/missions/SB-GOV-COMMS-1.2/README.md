@@ -3,8 +3,8 @@
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
 - **Mission:** Controlled AI Git Authority and Communication Archive Refinement
 - **Current owner:** Founder for exact-file publication, then Mission Control
-- **Current stage:** Thirteen required refinements applied; final Mission Control verification pending
-- **Last completed action:** Codex applied all thirteen governance-precision refinements
+- **Current stage:** Administrative correction and recurring housekeeping refinement applied; final verification pending
+- **Last completed action:** Codex created `report1.1.md` and refined the protocol to Draft 1.3
 - **Next authorized action:** Founder publishes exact files; Mission Control performs final verification
 - **Branch:** `main`
 - **Starting commit:** `0f1c41e`
@@ -16,6 +16,8 @@
 - `communication/missions/SB-GOV-COMMS-1.2/codex/revised-exact-amendments.md`
 - `communication/missions/SB-GOV-COMMS-1.2/codex/refinement-report.md`
 - `communication/missions/SB-GOV-COMMS-1.2/founder/refinement-founder-brief.md`
+- `communication/live/instruction1.1.md`
+- `communication/live/report1.1.md`
 
 ## Activation Boundary
 

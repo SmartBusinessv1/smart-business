@@ -1,7 +1,7 @@
 # AI Communication and Handover Protocol
 
 - **Mission:** SB-GOV-COMMS-1.2
-- **Version:** Draft 1.2
+- **Version:** Draft 1.3
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
 - **Authority:** Founder through Mission Control
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
@@ -500,7 +500,60 @@ The AI shall stop and report if the destination contains conflicting content, ac
 - Reactivation prohibited without Mission Control authorization: YES
 ```
 
-## 27. Current Instruction Conflicts
+## 27. Recurring Live Communication Housekeeping
+
+### Initial Exchange
+
+The first exchange in a live communication cycle uses:
+
+- instruction: `communication/live/instruction.md`;
+- response: `communication/live/report.md`.
+
+### Recurring Exchange
+
+When Mission Control or the Founder issues another instruction based on the current report, the next pair uses `instruction1.1.md` and `report1.1.md`. Further exchanges continue monotonically as `instruction1.2.md` with `report1.2.md`, `instruction1.3.md` with `report1.3.md`, and so on. Numbers shall not be reused.
+
+### Pairing and Ordering
+
+Each numbered instruction shall have exactly one report with the identical suffix. A report shall not respond to a differently numbered instruction.
+
+The live folder shall preserve chronological order. No file may be silently overwritten to conceal an earlier instruction or report. Corrections shall use the next numbered pair unless Mission Control explicitly authorizes an administrative correction to the base template files.
+
+### Founder Commands and Evidence
+
+Whenever Founder action is required for pull, push, synchronization, branch work, commit, publication, archival, or another Git operation, exact commands shall be shown directly in Founder chat. The same commands may also appear in a Founder Brief, but the Founder shall not be required to open a repository file to obtain them. Chat shall state the completion evidence expected from the Founder.
+
+### Live Communication Closure and Consolidation
+
+Only after explicit Founder or Mission Control closure confirmation, the assigned AI shall:
+
+1. verify that every instruction/report pair is complete;
+2. verify that no active instruction is unresolved;
+3. verify final repository, commit, pull-request, decision, and follow-up references;
+4. consolidate the full chronological sequence into one coherent communication record and one coherent final report;
+5. preserve every base and numbered instruction/report entry;
+6. move the consolidated records to the canonical archive path;
+7. remove temporary numbered live files only after archive verification succeeds;
+8. restore `communication/live/instruction.md` to the approved instruction template;
+9. restore `communication/live/report.md` to the approved report template;
+10. verify that no numbered live files remain;
+11. verify that `communication/live/` is ready for a new cycle;
+12. commit and push when authorized, or provide exact Founder commands directly in chat.
+
+The archive shall contain at minimum:
+
+- `communication/archive/[MISSION-ID]/communication-record.md`, containing the complete chronological exchange;
+- `communication/archive/[MISSION-ID]/final-report.md`, containing outcomes, decisions, repository references, unresolved follow-ups, closure authority, archive verification, mission ID, closure date, final commit and pull request, and confirmation that live templates were restored.
+
+If the canonical archive path changes through approved governance, that approved path shall be used and recorded.
+
+After successful closure, the live folder shall contain only the approved default live files and any separately approved index. At minimum, it shall contain `communication/live/instruction.md` and `communication/live/report.md`, both restored to approved templates.
+
+The assigned AI shall tell the Founder directly: **Communication is completed and archived. The live folder has been returned to the default template state and is ready for new communication.** It shall also provide any required pull command and expected verification output.
+
+Consolidation shall not lose content, delete unresolved decisions, rewrite historical meaning, archive an unanswered instruction, create duplicate active authority, or remove numbered files before archive content and Git traceability are verified.
+
+## 28. Current Instruction Conflicts
 
 At draft creation:
 
@@ -510,7 +563,7 @@ At draft creation:
 
 Until Mission Control and Founder approve a canonical amendment, the stricter approved repository instructions prevail. This protocol does not activate the proposed automation model.
 
-## 28. Review and Activation
+## 29. Review and Activation
 
 Activation requires:
 
@@ -536,6 +589,7 @@ The Stage A activation mission shall set:
 | Draft 1.0 | SB-GOV-COMMS-1.0 | Initial AI communication and Git automation governance draft | DRAFT |
 | Draft 1.1 | SB-GOV-COMMS-1.1 | Added controlled mission-scoped Git authority, ten safety conditions, explicit chat authorization, and Founder-chat command visibility | DRAFT |
 | Draft 1.2 | SB-GOV-COMMS-1.2 | Added capability boundaries, local-versus-remote Git distinction, merge authority, branch-protection gate, authorization expiry, PR handover requirements, staged activation, and communication archival governance | DRAFT |
+| Draft 1.3 | SB-GOV-COMMS-1.2 | Added recurring live instruction/report numbering, exact pair matching, closure consolidation, archive outputs, live-template restoration, and Founder-chat Git command visibility | DRAFT |
 | 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, and archival governance | ACTIVE |
 
 Future updates must append rather than overwrite this history.

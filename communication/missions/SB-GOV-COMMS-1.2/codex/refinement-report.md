@@ -10,9 +10,12 @@
 
 - Protocol path: `communication/AI_Communication_and_Handover_Protocol.md`
 - Previous version: Draft 1.1
-- New version: Draft 1.2
+- New version: Draft 1.3
 - Change log added: YES
 - Required final refinements: 13 of 13 applied
+- Administrative synchronization correction: YES — commit `7b43f75`
+- Recurring live numbering and pairing: YES
+- Closure consolidation and template restoration: YES
 
 ## Authority Precision
 
@@ -43,6 +46,8 @@
 - Associated PR closure rule: YES
 - Link preservation: YES
 - Complete-move traceability: YES
+- Consolidated communication and final report outputs: YES
+- Numbered live-file removal only after archive verification: YES
 
 ## Staged Activation
 

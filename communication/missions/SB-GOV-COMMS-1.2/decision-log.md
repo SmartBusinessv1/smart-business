@@ -32,3 +32,10 @@
 - **Authority:** Mission Control
 - **Decision:** Apply thirteen required refinements covering activation language, approved-protocol naming, branch base and remote verification, staged scope, secrets, PR fallback, archive safety, activation metadata, Stage A scope, and Stage B contradiction audit.
 - **Activation effect:** NONE — final Mission Control verification remains required.
+
+## Decision 6 — Recurring Live Communication
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control
+- **Decision:** Base instruction/report files begin a live cycle; subsequent exchanges use monotonically numbered, exactly paired `instruction1.N.md` and `report1.N.md` files.
+- **Closure:** Consolidation, archival, numbered-file removal, and template restoration require explicit Founder or Mission Control closure confirmation and completed archive verification.
