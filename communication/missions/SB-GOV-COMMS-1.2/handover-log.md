@@ -49,3 +49,19 @@
 - Next authorized action: Founder exact-file publication, then Mission Control verification
 - Action not yet authorized: Live-cycle archival, numbered-file removal, Stage A, Stage B, or AI Git activation
 - Mission Control approval reference: `communication/live/instruction1.1.md`
+
+## Handover 4
+
+- Date: 2026-08-01
+- Mission: SB-GOV-COMMS-1.2
+- From: Codex
+- To: Founder, then Mission Control
+- Stage completed: Instruction 1.2 closure-state reconciliation refinement
+- Work completed: Added provisional status, evidence-based closure reconciliation, canonical archive outputs, and Draft 1.4 history
+- Files created or modified: Seven authorized files
+- Commit SHA: PENDING FOUNDER ACTION
+- Verification performed: Markdown quality gate and Git scope review
+- Open issues: Communication closure and activation remain unauthorized
+- Next authorized action: Founder publishes exact files; Mission Control performs final verification
+- Action not yet authorized: Reconciliation execution, archive, numbered-file removal, template restoration, Stage A, or Stage B
+- Mission Control approval reference: `communication/live/instruction1.2.md`

@@ -10,12 +10,17 @@
 
 - Protocol path: `communication/AI_Communication_and_Handover_Protocol.md`
 - Previous version: Draft 1.1
-- New version: Draft 1.3
+- New version: Draft 1.4
 - Change log added: YES
 - Required final refinements: 13 of 13 applied
 - Administrative synchronization correction: YES — commit `7b43f75`
 - Recurring live numbering and pairing: YES
 - Closure consolidation and template restoration: YES
+- Provisional active-cycle status rule: YES
+- Closure-state reconciliation for every report: YES
+- Historical provisional transcript preservation: YES
+- Routine publication does not create a new pair: YES
+- Canonical closure outputs: `communication.md` and `report.md`
 
 ## Authority Precision
 

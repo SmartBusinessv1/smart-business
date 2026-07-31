@@ -39,3 +39,10 @@
 - **Authority:** Mission Control
 - **Decision:** Base instruction/report files begin a live cycle; subsequent exchanges use monotonically numbered, exactly paired `instruction1.N.md` and `report1.N.md` files.
 - **Closure:** Consolidation, archival, numbered-file removal, and template restoration require explicit Founder or Mission Control closure confirmation and completed archive verification.
+
+## Decision 7 — Provisional Status and Closure Reconciliation
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control
+- **Decision:** Provisional Git and publication fields remain valid during active communication and do not require correction after routine publication.
+- **Closure rule:** Every report is reconciled against final repository evidence only after explicit closure; original provisional events remain in the chronological transcript.

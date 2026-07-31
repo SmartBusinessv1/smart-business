@@ -1,7 +1,7 @@
 # AI Communication and Handover Protocol
 
 - **Mission:** SB-GOV-COMMS-1.2
-- **Version:** Draft 1.3
+- **Version:** Draft 1.4
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
 - **Authority:** Founder through Mission Control
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
@@ -519,9 +519,55 @@ Each numbered instruction shall have exactly one report with the identical suffi
 
 The live folder shall preserve chronological order. No file may be silently overwritten to conceal an earlier instruction or report. Corrections shall use the next numbered pair unless Mission Control explicitly authorizes an administrative correction to the base template files.
 
+The complete live sequence is:
+
+```text
+instruction.md
+report.md
+instruction1.1.md
+report1.1.md
+instruction1.2.md
+report1.2.md
+instruction1.3.md
+report1.3.md
+...
+```
+
+A new numbered pair shall be created only for a real new communication turn. Routine publication of already-authorized files does not itself require another correction pair unless Mission Control identifies a substantive issue.
+
+### Provisional Publication Status
+
+During an active communication cycle, reports may correctly contain provisional publication values, including pending commit SHA, push not yet performed, modified working tree, Founder action required, and remote synchronization pending.
+
+These values are valid while communication remains active. They shall not trigger an unnecessary correction instruction after every Founder publication.
+
+### Closure-State Reconciliation
+
+When the Founder or Mission Control explicitly declares the communication or mission complete, the assigned closure AI shall reconcile every live report before archival. All provisional Git, commit, push, synchronization, branch, pull-request, working-tree, and completion fields shall be replaced with the final verified repository state or an explicit final `NOT APPLICABLE — [REASON]` value.
+
+Reconciliation applies to `report.md`, `report1.1.md`, `report1.2.md`, and every later numbered report in the same cycle.
+
+Applicable final values include:
+
+```text
+Commit SHA: [FINAL SHA]
+Push status: SUCCESS
+Branch: [FINAL BRANCH]
+Remote synchronization: SUCCESS
+Working tree: CLEAN
+Communication status: COMPLETED
+Archive status: ARCHIVED
+```
+
+No successful state may be recorded without repository evidence.
+
+When a provisional field is replaced at closure, the consolidated archive record shall retain the original provisional event in the chronological communication transcript while the final closure summary records the reconciled repository state. Historical truth shall not be silently rewritten.
+
 ### Founder Commands and Evidence
 
 Whenever Founder action is required for pull, push, synchronization, branch work, commit, publication, archival, or another Git operation, exact commands shall be shown directly in Founder chat. The same commands may also appear in a Founder Brief, but the Founder shall not be required to open a repository file to obtain them. Chat shall state the completion evidence expected from the Founder.
+
+Whenever an instruction or report is created or updated on GitHub and the Founder must synchronize the local repository, Founder chat shall identify the exact document, required action, and safe pull command. When Founder-side commit or push is required, exact commit and push commands shall also appear directly in chat.
 
 ### Live Communication Closure and Consolidation
 
@@ -530,22 +576,24 @@ Only after explicit Founder or Mission Control closure confirmation, the assigne
 1. verify that every instruction/report pair is complete;
 2. verify that no active instruction is unresolved;
 3. verify final repository, commit, pull-request, decision, and follow-up references;
-4. consolidate the full chronological sequence into one coherent communication record and one coherent final report;
-5. preserve every base and numbered instruction/report entry;
-6. move the consolidated records to the canonical archive path;
-7. remove temporary numbered live files only after archive verification succeeds;
-8. restore `communication/live/instruction.md` to the approved instruction template;
-9. restore `communication/live/report.md` to the approved report template;
-10. verify that no numbered live files remain;
-11. verify that `communication/live/` is ready for a new cycle;
-12. commit and push when authorized, or provide exact Founder commands directly in chat.
+4. reconcile every provisional field using final verified repository evidence;
+5. consolidate the full chronological sequence into one coherent communication record and one coherent final report;
+6. preserve every base and numbered instruction/report entry;
+7. move the consolidated records to the canonical archive path;
+8. verify that every source live file is represented in the archive;
+9. remove temporary numbered live files only after archive verification succeeds;
+10. restore `communication/live/instruction.md` to the approved instruction template;
+11. restore `communication/live/report.md` to the approved report template;
+12. verify that no numbered live files or mission-specific template content remain;
+13. verify that `communication/live/` is ready for a new cycle;
+14. commit and push when authorized, or provide exact Founder commands directly in chat.
 
 The archive shall contain at minimum:
 
-- `communication/archive/[MISSION-ID]/communication-record.md`, containing the complete chronological exchange;
-- `communication/archive/[MISSION-ID]/final-report.md`, containing outcomes, decisions, repository references, unresolved follow-ups, closure authority, archive verification, mission ID, closure date, final commit and pull request, and confirmation that live templates were restored.
+- `communication/archive/[MISSION-ID]/communication.md`, containing the complete chronological instruction/report transcript, including original provisional events;
+- `communication/archive/[MISSION-ID]/report.md`, containing the final reconciled closure report with outcomes, decisions, verification, final Git state, unresolved follow-ups, archive references, closure authority, mission ID, closure date, final commit and pull request, and confirmation that live templates were restored.
 
-If the canonical archive path changes through approved governance, that approved path shall be used and recorded.
+Where the canonical repository archive already contains mission records, a non-conflicting approved subpath shall be used and the mapping recorded.
 
 After successful closure, the live folder shall contain only the approved default live files and any separately approved index. At minimum, it shall contain `communication/live/instruction.md` and `communication/live/report.md`, both restored to approved templates.
 
@@ -590,6 +638,7 @@ The Stage A activation mission shall set:
 | Draft 1.1 | SB-GOV-COMMS-1.1 | Added controlled mission-scoped Git authority, ten safety conditions, explicit chat authorization, and Founder-chat command visibility | DRAFT |
 | Draft 1.2 | SB-GOV-COMMS-1.2 | Added capability boundaries, local-versus-remote Git distinction, merge authority, branch-protection gate, authorization expiry, PR handover requirements, staged activation, and communication archival governance | DRAFT |
 | Draft 1.3 | SB-GOV-COMMS-1.2 | Added recurring live instruction/report numbering, exact pair matching, closure consolidation, archive outputs, live-template restoration, and Founder-chat Git command visibility | DRAFT |
+| Draft 1.4 | SB-GOV-COMMS-1.2 | Added provisional live-report status, closure-state reconciliation, chronological transcript preservation, numbered exchange lifecycle, archive consolidation, live-template restoration, and Founder-chat pull/push command visibility | DRAFT |
 | 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, and archival governance | ACTIVE |
 
 Future updates must append rather than overwrite this history.

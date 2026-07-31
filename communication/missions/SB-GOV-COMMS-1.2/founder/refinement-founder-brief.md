@@ -35,8 +35,7 @@ git diff --check
 
 git add `
   "communication/AI_Communication_and_Handover_Protocol.md" `
-  "communication/live/report.md" `
-  "communication/live/report1.1.md" `
+  "communication/live/report1.2.md" `
   "communication/missions/SB-GOV-COMMS-1.2/README.md" `
   "communication/missions/SB-GOV-COMMS-1.2/decision-log.md" `
   "communication/missions/SB-GOV-COMMS-1.2/handover-log.md" `
