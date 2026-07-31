@@ -61,6 +61,8 @@ Mission Control shall not invent Founder decisions, implement merely to bypass t
 
 The Founder owns unresolved and final product decisions, approves the locked product intent, performs or delegates required human runtime verification, supplies observations and evidence, and gives the final human authority required by Mission Control. The Founder does not need to perform technical verification personally and shall not be asked to resolve repository conflicts without guided review.
 
+Where runtime verification is delegated, Mission Control shall name the authorized human verifier. The Founder remains responsible for confirming the submitted human runtime findings before Mission Control closes the runtime-review stage.
+
 ### 4.3 Codex
 
 Codex owns Founder-led discovery, Product Truth extraction, the Founder Product Decision Record, Product Blueprint Metadata, Mission Snapshot, Sections 1–19, authorized governance maintenance, repository documentation, stage reports, and Founder Briefs.
@@ -211,6 +213,24 @@ Research, Brand, Customer Success, Legal, Finance, Security, and other specialis
 - **Approval:** Mission Control.
 - **Handover:** Locked package and explicit implementation-authorization decision go forward.
 
+Mission Control shall record implementation authorization in:
+
+`communication/missions/[MISSION-ID]/mission-control/implementation-authorization.md`
+
+The record shall identify:
+
+- authorized package version;
+- locked Blueprint reference;
+- locked EIS reference;
+- authorized branch;
+- authorized builder;
+- authorized implementation scope;
+- prohibited changes;
+- authorization date;
+- Mission Control authority reference.
+
+Implementation shall not begin until this record exists.
+
 ### Stage 14 — Founder Lovable Brief
 
 - **Owner:** Claude Code
@@ -257,7 +277,7 @@ Research, Brand, Customer Success, Legal, Finance, Security, and other specialis
 - **Inputs:** Locked Blueprint, locked EIS, package, Builder report, Founder findings, repository, tests, and accessible deployment state.
 - **Output:** Independent verification report classifying every item `PASS`, `FAIL`, `FOLLOW-UP`, or `NOT APPLICABLE`.
 - **Approval:** Mission Control reviews; Claude Code cannot approve itself.
-- **Handover:** Material failures go to correction; passing results authorize evidence creation.
+- **Handover:** Material failures go to correction. Results with no material blocking failure go to Mission Control for authorization of the Evidence Package and formal Completion Report.
 
 ### Stage 20 — Corrective Mission
 
@@ -267,10 +287,12 @@ Research, Brand, Customer Success, Legal, Finance, Security, and other specialis
 - **Approval:** Mission Control controls every repeat cycle.
 - **Handover:** The cycle returns to the applicable build and verification stages until no material failure remains.
 
+Corrective cycles shall preserve prior reports and evidence. Updated artifacts shall use either versioned filenames or an internal version history. No prior Builder Completion Report, verification result, or evidence record may be silently overwritten.
+
 ### Stage 21 — Evidence Package
 
 - **Owner:** Claude Code
-- **Inputs:** Accepted independent-verification results.
+- **Inputs:** Mission Control-reviewed independent-verification results with no unresolved material blocking failure.
 - **Output:** `docs/implementation/[MISSION-ID]/evidence/` with traceable evidence.
 - **Approval:** Mission Control reviews provenance and completeness.
 - **Handover:** Evidence package goes to formal reporting.
@@ -278,17 +300,19 @@ Research, Brand, Customer Success, Legal, Finance, Security, and other specialis
 ### Stage 22 — Formal Completion Report
 
 - **Owner:** Claude Code
-- **Inputs:** Builder report, Founder runtime evidence, Mission Control runtime review, independent verification, and Evidence Package.
+- **Inputs:** Builder Completion Report, Founder runtime evidence, Mission Control runtime review, Claude Code independent-verification results, and all available verified evidence.
 - **Output:** `completion-report.md`, status `VERIFICATION COMPLETE — MISSION CONTROL ACCEPTANCE PENDING`.
 - **Approval:** Mission Control; report creation is not acceptance.
 - **Handover:** Formal report and evidence go to acceptance.
+
+The Evidence Package and formal Completion Report may be prepared in parallel after independent verification. Neither may be created before independent verification.
 
 ### Stage 23 — Mission Control Acceptance
 
 - **Owner:** Mission Control with Founder authority where required.
 - **Inputs:** Formal Completion Report and complete evidence chain.
 - **Output:** `ACCEPTED`, `ACCEPTED WITH FOLLOW-UP`, `CORRECTION REQUIRED`, or `REJECTED`.
-- **Approval:** Mission Control records the disposition; Founder retains final human authority.
+- **Approval:** Mission Control records the mission disposition. Founder approval is additionally required where acceptance includes a new product decision, a scope deviation, a material unresolved follow-up, or a change to previously approved Product Truth.
 - **Handover:** Accepted missions proceed to documentation closure; others receive explicit next actions.
 
 ### Stage 24 — Documentation Closure
@@ -336,6 +360,28 @@ Empty folders need not be committed. A `.gitkeep` may be used only when reposito
 
 The mission `README.md` shall state identity, current stage and owner, last completed action, next authorized action, blockers, authoritative files, branch, latest relevant commit, and Mission Control status.
 
+Before beginning an authorized stage, every AI participant shall read:
+
+- the mission `README.md`;
+- the `handover-log.md`;
+- the `decision-log.md`;
+- the latest stage report from the preceding actor;
+- all authoritative artifacts named in the handover.
+
+An AI shall not rely on chat history as a substitute for this repository intake.
+
+Material AI communication files shall use:
+
+`[STAGE-NUMBER]-[STAGE-SLUG]-[DOCUMENT-TYPE].md`
+
+Examples:
+
+- `04-blueprint-drafting-stage-report.md`
+- `06-builder-review-handover.md`
+- `19-independent-verification-report.md`
+
+The mission README and handover log shall link to every material communication file.
+
 The `decision-log.md` shall preserve all material scope, behaviour, architecture, permission, security, sequence, acceptance, and follow-up decisions. AI stage reports belong under the actor's folder. A Lovable handover may link to its Builder Completion Report instead of duplicating it.
 
 Communication records preserve continuity but do not replace the Blueprint, EIS, Engineering Contract, Build Prompt, Verification Checklist, Builder Completion Report, Evidence Package, Completion Report, or Mission Control acceptance. Higher-authority approved artifacts prevail over communication records.
@@ -380,7 +426,7 @@ Each handover shall record date, mission, sender, recipient, completed stage, wo
 | `RUNTIME REVIEW PENDING` | Mission Control |
 | `INDEPENDENT VERIFICATION IN PROGRESS` | Mission Control authorizes; verifier records start |
 | `CORRECTION REQUIRED` | Mission Control |
-| `VERIFICATION COMPLETE — ACCEPTANCE PENDING` | Independent verifier after evidence-backed verification |
+| `VERIFICATION COMPLETE — ACCEPTANCE PENDING` | Independent verifier records completion; Mission Control confirms acceptance-stage entry |
 | `ACCEPTED` | Mission Control with required Founder authority |
 | `ACCEPTED WITH FOLLOW-UP` | Mission Control with required Founder authority |
 | `COMPLETED — FORMALLY ACCEPTED` | Mission Control after documentation closure |
@@ -423,11 +469,12 @@ Formal completion requires an approved Product Blueprint, locked EIS, approved i
 | Engineering Contract | Claude Code | After EIS lock | Mission Control |
 | Lovable Build Prompt | Claude Code | After EIS lock | Mission Control |
 | Verification Checklist | Claude Code | After EIS lock | Mission Control |
+| Implementation Authorization | Mission Control | After implementation-package approval and before implementation | Mission Control |
 | Builder Completion Report | Lovable | After implementation | Mission Control reviews |
 | Founder runtime findings | Founder | After Builder report | Mission Control reviews |
 | Independent verification report | Claude Code | After runtime review | Mission Control reviews |
 | Evidence Package | Claude Code | After verification | Mission Control |
-| Formal Completion Report | Claude Code | After evidence | Mission Control |
+| Formal Completion Report | Claude Code | After independent verification | Mission Control |
 | Acceptance and closure | Mission Control/assigned recorder | Final stages | Mission Control |
 
 ## Appendix C — Communication Folder Standard
@@ -509,6 +556,14 @@ If the branch is unexpected, a pull cannot fast-forward, validation fails, or un
 ## Appendix G — Lifecycle Status Matrix
 
 The status table in Section 13 is canonical for `SB-P-*` lifecycle records. An artifact creator may record draft or factual work-in-progress states, but only Mission Control may authorize transition across governance gates. Founder approval is mandatory wherever final product truth or Founder authority is implicated.
+
+## Source Change Log
+
+| Version | Date | Change | Authority | Status |
+|---|---|---|---|---|
+| Draft 1.0 | 2026-07-31 | Initial SB-P Mission Lifecycle and Delivery Framework draft | Founder through Mission Control | DRAFT |
+
+Future refinements must append rather than replace earlier history.
 
 ---
 

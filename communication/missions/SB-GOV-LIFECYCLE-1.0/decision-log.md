@@ -24,3 +24,10 @@
 - **Date:** 2026-07-31
 - **Authority:** Mission Control
 - **Decision:** Source 18 remains `DRAFT — MISSION CONTROL REVIEW REQUIRED`. Founder and Mission Control review are required before activation.
+
+## Decision 5 — Required Review Refinements
+
+- **Date:** 2026-07-31
+- **Authority:** Mission Control
+- **Decision:** Source 18 is approved with eleven required governance-precision refinements. Activation remains unauthorized and Founder approval remains pending.
+- **Implementation:** Codex applied all required refinements and returned the source for final Mission Control review.

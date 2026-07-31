@@ -6,11 +6,11 @@ SB-GOV-LIFECYCLE-1.0 — SB-P Mission Lifecycle and Delivery Framework Creation
 
 ## Current Status
 
-Source 18 and its communication package are drafted. They require exact-file validation, commit, push, and Mission Control review. The source remains a draft.
+Mission Control reviewed Source 18 and required eleven governance-precision refinements. Codex applied all eleven. The refined draft requires exact-file validation, commit, push, and final Mission Control review.
 
 ## What Has Been Completed
 
-Codex drafted the lifecycle framework, source mapping, mission README, decision log, handover log, source-creation report, and live report.
+Codex applied the required refinements and updated the mission README, decision log, handover log, source-creation report, and live report.
 
 ## What You Need to Do Now
 
