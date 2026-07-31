@@ -1,20 +1,16 @@
-# SB-GOV-COMMS-1.1 — Controlled AI Git Authority Refinement Report
+# SB-GOV-COMMS-1.2 — Draft Refinement Report
 
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
-- **Starting commit:** `e43622a`
+- **Starting commit:** `0f1c41e`
 
 ## Work Prepared
 
-- Refined the draft AI Communication and Handover Protocol.
-- Added the ten mandatory authorization and safety conditions.
-- Added explicit Founder or Mission Control chat authorization language.
-- Added the requirement to show exact PowerShell commands directly in Founder chat when Founder action is needed.
-- Prepared exact amendments for `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`, and both affected EOS GitHub workflows.
+- Updated the draft protocol identity to Draft 1.2.
+- Added capability and local/remote boundaries, exact authorization, expiry, merge authority, branch-protection activation gate, and PR handover requirements.
+- Added staged activation for four core instructions followed by two EOS workflows.
+- Added mandatory communication closure and archival governance using the repository's canonical `communication/archive/[MISSION-ID]/` mapping.
+- Prepared revised exact amendments without modifying the six target files.
 
-## Protection State
+## Activation State
 
-No approved instruction file was modified. Direct AI push to `main`, self-merge, force-push, history rewriting, unrelated staging, silent conflict resolution, protection bypass, and credential exposure remain prohibited.
-
-## Next Action
-
-Founder publication and Mission Control review are required. The amendments remain inactive.
+The protocol remains inactive. Branch-protection verification, Founder review, Mission Control review, and separately authorized staged activation remain required.

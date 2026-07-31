@@ -1,7 +1,7 @@
 # AI Communication and Handover Protocol
 
-- **Mission:** SB-GOV-COMMS-1.0
-- **Version:** Draft 1.0
+- **Mission:** SB-GOV-COMMS-1.2
+- **Version:** Draft 1.2
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
 - **Authority:** Founder through Mission Control
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
@@ -235,9 +235,11 @@ When Founder action is required, exact PowerShell commands shall be shown direct
 
 ## 16. Explicit Chat Authorization
 
-The following wording, or equivalent language containing the same controls, is sufficient mission-scoped authorization:
+The following wording, with every bracketed value resolved, is required for mission-scoped authorization:
 
-> Founder/Mission Control authorizes this AI to fetch, pull fast-forward only, create or use the named mission branch, stage only authorized files, commit using the approved message, push the mission branch, and open or update the pull request.
+> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY], using branch [AUTHORIZED BRANCH], limited to [AUTHORIZED PATHS OR SCOPE], with commit message [APPROVED COMMIT MESSAGE], and to fetch, pull fast-forward only, stage exact authorized files, commit, push the authorized mission branch, and open or update the pull request.
+
+AI name, Mission ID, repository, branch, authorized paths or scope, and approved commit message are mandatory. If any value is missing or ambiguous, the AI shall stop and request clarification.
 
 Without explicit authority, the AI shall prepare commands but shall not execute commit or push.
 
@@ -267,7 +269,212 @@ Subject to explicit mission authorization and future activation:
 - exposing credentials or secrets;
 - treating tool access as authority.
 
-## 19. Current Instruction Conflicts
+## 19. Governance Authority and Tool Capability
+
+Mission authorization grants governance permission only.
+
+It does not create:
+
+- shell access;
+- local filesystem access;
+- Git credentials;
+- GitHub write permission;
+- branch permission;
+- connector capability;
+- repository access;
+- local clone access;
+- PowerShell access.
+
+An AI may execute only the operations that its actual environment supports. Where the required capability is unavailable, the AI shall prepare exact Founder commands or return a stop report.
+
+## 20. Local and Remote Repository Distinction
+
+GitHub connector operations update the remote repository only. They do not update the Founder's local Windows clone.
+
+Local operations such as `git fetch`, `git pull`, branch switching, staging, local commit, and local push require an AI or agent running inside the local repository with shell access and valid Git authentication.
+
+When remote changes are completed without updating the local clone, the Founder Brief shall provide the exact safe synchronization commands directly in chat.
+
+## 21. Mission-Scoped Git Authority Expiry
+
+Mission-scoped Git authority expires when:
+
+- the authorized stage is completed;
+- Mission Control revokes authority;
+- the mission is paused, closed, superseded, or rejected;
+- the authorized branch or scope changes;
+- the approved commit message changes materially;
+- unrelated working-tree changes appear;
+- validation fails;
+- a merge or rebase conflict occurs;
+- a pull cannot fast-forward;
+- repository or authentication state changes.
+
+Any resumed Git operation requires renewed confirmation of authority and repository state.
+
+## 22. Merge Authority
+
+Merge to `main` may be performed only by:
+
+- the Founder;
+- a Mission Control-authorized human maintainer; or
+- a separately approved automated merge mechanism operating after all required reviews and status checks pass.
+
+Codex and Claude Code may not approve or merge their own work. No green check, successful push, or open pull request constitutes Mission Control acceptance.
+
+## 23. Branch Protection Activation Gate
+
+Controlled AI Git authority shall not be activated until Mission Control verifies and records:
+
+- protection of the `main` branch;
+- required pull-request review rules;
+- required status checks;
+- direct-push restrictions;
+- force-push restrictions;
+- branch-deletion restrictions;
+- merge permissions.
+
+The verification record shall be stored in `communication/governance/branch-protection-verification.md`.
+
+If branch protection is unavailable, the Founder must approve a documented compensating control before activation. This gate is non-bypassable.
+
+## 24. Pull-Request Handover Record
+
+When an AI creates or updates a pull request, the handover shall record:
+
+- mission ID;
+- repository;
+- branch name;
+- base branch;
+- commit SHA;
+- pull-request number;
+- pull-request reference or URL;
+- exact changed files;
+- validation results;
+- unresolved findings;
+- required reviewers;
+- next authorized reviewer;
+- action not yet authorized.
+
+The mission README and handover log shall both reference the pull request.
+
+## 25. Staged Activation of Repository Instructions
+
+Activation shall occur in two controlled stages.
+
+### Stage A — Core Operating Instructions
+
+Apply and verify:
+
+- `AGENTS.md`;
+- `CLAUDE.md`;
+- `CHATGPT.md`;
+- `communication/README.md`.
+
+After Stage A, Mission Control reviews repository behaviour, branch and status checks are verified, and no workflow contradiction may remain active.
+
+### Stage B — Workflow Alignment
+
+Only after Stage A is confirmed, update:
+
+- `docs/engineering/eos/ChatGPT_GitHub_Engineering_Artifact_Workflow_v1.0.md`;
+- `docs/engineering/eos/Claude_GitHub_Engineering_Artifact_Workflow_v1.0.md`.
+
+Stage B shall align the EOS workflows with the activated core instruction model. Activation must not modify all six live files in one uncontrolled step.
+
+## 26. Communication Closure and Archive Governance
+
+Active mission communication shall not remain indefinitely in the active communication area after the communication cycle or mission is complete.
+
+### Active and Archive Locations
+
+- Active: `communication/missions/[MISSION-ID]/`
+- Canonical repository archive: `communication/archive/[MISSION-ID]/`
+
+The repository's existing approved archive convention maps the proposed `communication/archive/missions/[MISSION-ID]/` structure to `communication/archive/[MISSION-ID]/`. This mapping shall be recorded in the archive handover. A future change to the canonical archive path requires separate approval.
+
+### Archive Preconditions
+
+Before archiving, the assigned AI shall verify:
+
+- the final mission stage is recorded;
+- the mission README is current;
+- the decision and handover logs are complete;
+- final commit and pull-request references are recorded;
+- unresolved follow-ups are named;
+- authoritative artifacts remain outside the communication archive where required;
+- no active actor still requires the folder;
+- Founder or Mission Control has explicitly confirmed closure.
+
+### Archive Action
+
+The assigned AI shall:
+
+1. update the mission README status to `ARCHIVED`;
+2. record archive authority and date;
+3. record final repository and mission references;
+4. preserve all actor reports, decisions, handovers, Founder Briefs, and supporting records;
+5. move the complete mission communication folder from the active path to the canonical archive path;
+6. preserve Git history;
+7. update any active communication index;
+8. update `communication/live/report.md`;
+9. commit and push when mission-scoped Git authority is active;
+10. otherwise provide exact Founder PowerShell commands directly in chat.
+
+The archived README shall record mission ID, final disposition, archive date and authority, final commit and pull request, active authoritative artifacts, unresolved follow-up missions, and non-governing communication-history status.
+
+### Archive Protection
+
+Archived records must not be silently deleted or rewritten, treated as active instructions, or reactivated without Mission Control authorization. They remain historical continuity and evidence records.
+
+### No Premature Archive
+
+Communication shall not be archived while a stage, Founder action, Mission Control review, corrective mission, required handover, required pull-request review, or blocking issue remains open.
+
+### Closure and Archive Responsibility
+
+Archive action requires explicit Founder or Mission Control confirmation recorded in the decision log and archived README.
+
+The AI assigned by Mission Control for communication closure owns the archive action. Normally, Codex archives documentation-governance and product-discovery communication, while Claude Code archives engineering, verification, and implementation communication. Mission Control may assign another AI. No AI may archive a mission merely because its own stage is complete.
+
+### Archive Status Model
+
+| Status | Authority |
+|---|---|
+| `ACTIVE COMMUNICATION` | Mission Control |
+| `COMMUNICATION CLOSURE PENDING` | Mission Control |
+| `READY FOR ARCHIVE` | Founder or Mission Control |
+| `ARCHIVING IN PROGRESS` | Assigned AI records after authorization |
+| `ARCHIVED` | Assigned AI records after successful move and synchronization |
+| `REACTIVATION AUTHORIZED` | Mission Control only |
+
+### Archive Failure and Stop Conditions
+
+The AI shall stop and report if the destination contains conflicting content, active and archive folders would create duplicate authority, the mission README is incomplete, final commit or PR references are missing where required, unrelated files appear in the move, validation fails, active work remains, repository state is not synchronized, or known references would break without an approved update plan.
+
+### Communication Archive Record
+
+```markdown
+## Communication Archive Record
+
+- Mission ID:
+- Final disposition:
+- Closure confirmed by:
+- Closure confirmation date:
+- Active communication path:
+- Archive path:
+- Final commit SHA:
+- Final pull-request reference:
+- Final authoritative artifacts:
+- Open follow-up missions:
+- Files moved:
+- Validation performed:
+- Archive commit SHA:
+- Repository synchronization:
+- Reactivation prohibited without Mission Control authorization: YES
+```
+
+## 27. Current Instruction Conflicts
 
 At draft creation:
 
@@ -277,7 +484,7 @@ At draft creation:
 
 Until Mission Control and Founder approve a canonical amendment, the stricter approved repository instructions prevail. This protocol does not activate the proposed automation model.
 
-## 20. Review and Activation
+## 28. Review and Activation
 
 Activation requires:
 
@@ -286,6 +493,16 @@ Activation requires:
 3. Approval of the exact `AGENTS.md` amendment.
 4. Reconciliation of conflicting actor-specific and communication documentation through separately authorized updates.
 5. Confirmation of GitHub branch protection and pull-request controls.
+
+## Protocol Change Log
+
+| Version | Mission | Change | Status |
+|---|---|---|---|
+| Draft 1.0 | SB-GOV-COMMS-1.0 | Initial AI communication and Git automation governance draft | DRAFT |
+| Draft 1.1 | SB-GOV-COMMS-1.1 | Added controlled mission-scoped Git authority, ten safety conditions, explicit chat authorization, and Founder-chat command visibility | DRAFT |
+| Draft 1.2 | SB-GOV-COMMS-1.2 | Added capability boundaries, local-versus-remote Git distinction, merge authority, branch-protection gate, authorization expiry, PR handover requirements, staged activation, and communication archival governance | DRAFT |
+
+Future updates must append rather than overwrite this history.
 
 ---
 
