@@ -1,23 +1,20 @@
-# SB-GOV-COMMS-1.0 — Draft Report
+# SB-GOV-COMMS-1.1 — Controlled AI Git Authority Refinement Report
 
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
-- **Branch:** `main`
-- **Starting commit:** `bd9b362`
+- **Starting commit:** `e43622a`
 
 ## Work Prepared
 
-- Drafted `communication/AI_Communication_and_Handover_Protocol.md`.
-- Proposed an exact replacement for the `AGENTS.md` Git Rules section without modifying `AGENTS.md`.
-- Defined mission intake, repository reading, stage ownership, actor reports, logs, mission README updates, safe branch operations, exact staging, commit, mission-branch push, pull requests, conflict handling, Founder Briefs, and chat boundaries.
+- Refined the draft AI Communication and Handover Protocol.
+- Added the ten mandatory authorization and safety conditions.
+- Added explicit Founder or Mission Control chat authorization language.
+- Added the requirement to show exact PowerShell commands directly in Founder chat when Founder action is needed.
+- Prepared exact amendments for `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`, and both affected EOS GitHub workflows.
 
-## Conflict Record
+## Protection State
 
-Approved repository instructions currently prohibit automatic AI commits and pushes, while `communication/README.md` contains a conflicting mission-authorization rule. Current approved restrictions remain controlling. No automation authority was activated.
-
-## Limitations
-
-GitHub can preserve AI communication but cannot activate another AI. Local repository documentation also does not prove current GitHub branch-protection configuration.
+No approved instruction file was modified. Direct AI push to `main`, self-merge, force-push, history rewriting, unrelated staging, silent conflict resolution, protection bypass, and credential exposure remain prohibited.
 
 ## Next Action
 
-Founder exact-file publication is required. Mission Control and Founder must review the security and authority model before any protocol or repository-instruction amendment is activated.
+Founder publication and Mission Control review are required. The amendments remain inactive.

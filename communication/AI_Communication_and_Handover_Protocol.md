@@ -97,7 +97,20 @@ Prior records shall not be silently overwritten. Corrections shall preserve hist
 
 ## 8. Proposed Mission-Branch Model
 
-After separate approval and activation of the related repository-instruction amendment, an AI may perform the following only under an explicit Mission Control mission:
+After separate approval and activation of the related repository-instruction amendment, Codex or Claude Code may perform the following only when an active Founder- or Mission Control-authorized mission explicitly grants Git authority and all of these conditions are satisfied:
+
+1. An active mission exists.
+2. The mission explicitly authorizes Git operations.
+3. The mission identifies the repository.
+4. The mission identifies the authorized branch or branch pattern.
+5. The mission defines authorized files or scope.
+6. The AI has shell and Git access.
+7. Authentication is available.
+8. The working tree contains no unrelated changes.
+9. Required validation succeeds.
+10. No conflict or non-fast-forward condition exists.
+
+Under those conditions, the AI may:
 
 1. Fetch the approved remote.
 2. Fast-forward the authorized local branch.
@@ -218,7 +231,17 @@ Founder Briefs shall remain concise and contain only actions genuinely requiring
 
 Routine AI-to-AI detail belongs in the repository. The Founder shall not be used as a manual message bus when an authorized repository handover is available.
 
-## 16. Actions Proposed for Controlled Automation
+When Founder action is required, exact PowerShell commands shall be shown directly in Founder chat. The same commands may also be stored in the Founder Brief, but the Founder shall not be required to open a repository file merely to obtain them.
+
+## 16. Explicit Chat Authorization
+
+The following wording, or equivalent language containing the same controls, is sufficient mission-scoped authorization:
+
+> Founder/Mission Control authorizes this AI to fetch, pull fast-forward only, create or use the named mission branch, stage only authorized files, commit using the approved message, push the mission branch, and open or update the pull request.
+
+Without explicit authority, the AI shall prepare commands but shall not execute commit or push.
+
+## 17. Actions Proposed for Controlled Automation
 
 Subject to explicit mission authorization and future activation:
 
@@ -231,7 +254,7 @@ Subject to explicit mission authorization and future activation:
 - pull-request creation or update;
 - commit and PR reference recording.
 
-## 17. Actions That Remain Prohibited
+## 18. Actions That Remain Prohibited
 
 - direct AI push to `main`;
 - AI self-merge or self-approval;
@@ -244,7 +267,7 @@ Subject to explicit mission authorization and future activation:
 - exposing credentials or secrets;
 - treating tool access as authority.
 
-## 18. Current Instruction Conflicts
+## 19. Current Instruction Conflicts
 
 At draft creation:
 
@@ -254,7 +277,7 @@ At draft creation:
 
 Until Mission Control and Founder approve a canonical amendment, the stricter approved repository instructions prevail. This protocol does not activate the proposed automation model.
 
-## 19. Review and Activation
+## 20. Review and Activation
 
 Activation requires:
 
