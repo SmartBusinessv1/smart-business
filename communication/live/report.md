@@ -1,39 +1,23 @@
-# SB-GOV-LIFECYCLE-1.0 — Draft Source Creation Report
+# SB-GOV-COMMS-1.0 — Draft Report
 
-## Mission Status
+- **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
+- **Branch:** `main`
+- **Starting commit:** `bd9b362`
 
-- Mission: SB-P Mission Lifecycle and Delivery Framework Creation
-- Status: REQUIRED REFINEMENTS APPLIED — FINAL MISSION CONTROL REVIEW PENDING
-- Branch: `main`
-- Starting commit: `520d9e7`
-- Initial draft commit: `5e7f234`
+## Work Prepared
 
-## Work Completed
+- Drafted `communication/AI_Communication_and_Handover_Protocol.md`.
+- Proposed an exact replacement for the `AGENTS.md` Git Rules section without modifying `AGENTS.md`.
+- Defined mission intake, repository reading, stage ownership, actor reports, logs, mission README updates, safe branch operations, exact staging, commit, mission-branch push, pull requests, conflict handling, Founder Briefs, and chat boundaries.
 
-- Drafted `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`.
-- Defined all 24 lifecycle stages with owners, inputs, outputs, approval gates, and handovers.
-- Defined responsibilities and prohibitions for Mission Control, Founder, Codex, Claude Code, Lovable, and specialist AIs.
-- Defined communication folders, Founder Briefs, safe PowerShell guidance, status authority, mandatory gates, evidence, acceptance, and closure.
-- Created the mission communication package and exact-file Founder Brief.
+## Conflict Record
 
-## Protection Confirmation
+Approved repository instructions currently prohibit automatic AI commits and pushes, while `communication/README.md` contains a conflicting mission-authorization rule. Current approved restrictions remain controlling. No automation authority was activated.
 
-- Legacy Project Source files modified: NO
-- Existing active governance sources modified: NO
-- Workflow templates modified: NO
-- Application code modified: NO
-- Source 18 status: `DRAFT — MISSION CONTROL REVIEW REQUIRED`
+## Limitations
+
+GitHub can preserve AI communication but cannot activate another AI. Local repository documentation also does not prove current GitHub branch-protection configuration.
 
 ## Next Action
 
-The Founder must execute the exact-file commands in `communication/missions/SB-GOV-LIFECYCLE-1.0/founder/source-18-founder-brief.md`. After synchronization, Mission Control and Founder review remain required. Governance activation is not authorized.
-
-## Administrative Correction
-
-Mission `SB-GOV-LIFECYCLE-1.0A` corrected the Founder Brief from an incorrect Source 19-based filename to `source-18-founder-brief.md`. No governance content was changed.
-
-## Mission Control Review Refinements
-
-All eleven required governance-precision refinements were applied to Source 18. These clarify completion-report timing, transition authority, Evidence Package inputs, repository intake, communication naming, delegated runtime verification, Founder acceptance authority, implementation authorization, corrective-cycle versioning, verification status authority, and source change history.
-
-Source 18 remains `DRAFT — MISSION CONTROL REVIEW REQUIRED`. Final Mission Control review and Founder approval remain pending. Activation is not authorized.
+Founder exact-file publication is required. Mission Control and Founder must review the security and authority model before any protocol or repository-instruction amendment is activated.
