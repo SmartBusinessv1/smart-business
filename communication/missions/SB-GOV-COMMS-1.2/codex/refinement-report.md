@@ -10,7 +10,8 @@
 
 - Protocol path: `communication/AI_Communication_and_Handover_Protocol.md`
 - Previous version: Draft 1.1
-- New version: Draft 1.4
+- Approved draft: Draft 1.4
+- Activated version: 1.0 — ACTIVE
 - Change log added: YES
 - Required final refinements: 13 of 13 applied
 - Administrative synchronization correction: YES — commit `7b43f75`
@@ -58,8 +59,13 @@
 
 - Stage A files: Protocol, `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`
 - Stage B files: ChatGPT and Claude EOS GitHub workflows
-- Live files modified: NONE
-- Activation authorized: NO
+- Founder approval: CONFIRMED
+- Final Mission Control verification: PASSED
+- Branch protection: NOT CONFIGURED
+- Temporary compensating control: ACTIVE
+- Stage A: ACTIVE
+- Stage B: NOT AUTHORIZED
+- Communication closure: NOT DECLARED
 - Stage B contradiction audit: YES
 
 ## Validation
@@ -78,5 +84,6 @@
 ## Final Verdict
 
 - Draft refinement complete: YES
-- Ready for Mission Control review: YES
-- Safe to activate immediately: NO
+- Stage A activation complete locally: YES
+- Stage A publication: PENDING FOUNDER ACTION
+- Stage B authorized: NO

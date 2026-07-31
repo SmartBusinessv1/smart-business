@@ -164,15 +164,45 @@ AI assistants shall:
 
 # Git Rules
 
-AI assistants shall never:
+Codex and Claude Code may perform automatic Git operations only when an active Founder or Mission Control mission explicitly authorizes them and identifies:
 
-- Commit automatically.
-- Push automatically.
-- Merge automatically.
-- Delete branches automatically.
-- Rewrite Git history.
+- AI name;
+- Mission ID;
+- repository;
+- authorized branch;
+- authorized file paths or scope;
+- approved commit message.
 
-AI may prepare Git commands for user review.
+Mission authority grants governance permission only. It does not create shell, filesystem, Git, GitHub, connector, credential, authentication, or repository capability.
+
+Before an authorized commit or push, the AI shall verify the configured remote, current branch, authorized base branch and SHA, clean tree or authorized changes, exact staged paths using `git diff --cached --name-status`, applicable quality gates, `git diff --cached --check`, and staged content for secrets or credentials.
+
+The AI may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact files, commit with the approved message, push the authorized branch, open or update a pull request, and record repository references.
+
+AI-authored implementation work normally uses `mission/[MISSION-ID]-[SHORT-SLUG]`.
+
+AI assistants shall not:
+
+- push directly to `main`, except for a narrowly scoped governance or communication update explicitly authorized by Founder or Mission Control under the active temporary compensating control;
+- approve or merge their own work;
+- force push or rewrite history;
+- delete branches without separate authorization;
+- stage unrelated files;
+- use `git add .` unless every working-tree change is explicitly authorized;
+- resolve conflicts silently;
+- bypass Mission Control review;
+- alter branch protection;
+- expose credentials or secrets.
+
+Authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
+
+When Founder action is required, exact Git commands and expected evidence shall be shown directly in chat.
+
+Recurring live communication, closure reconciliation, and archival shall follow `communication/AI_Communication_and_Handover_Protocol.md`.
+
+GitHub branch protection is not configured. The Founder-approved Phase 1 compensating control recorded in `communication/governance/branch-protection-verification.md` is active temporarily and must be retired after branch protection is configured and verified.
+
+Without explicit mission-scoped authority, AI may prepare commands but shall not commit or push.
 
 ---
 

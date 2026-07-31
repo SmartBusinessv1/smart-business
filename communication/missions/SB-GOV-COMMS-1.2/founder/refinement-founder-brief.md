@@ -1,6 +1,6 @@
-# Founder Brief
+# Founder Brief — Stage A Publication
 
-- **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
+- **Status:** FOUNDER APPROVED — STAGE A ACTIVATED LOCALLY — PUBLICATION REQUIRED
 
 ## What Becomes Automated After Activation
 
@@ -34,8 +34,13 @@ git status --short
 git diff --check
 
 git add `
+  "communication/governance/branch-protection-verification.md" `
   "communication/AI_Communication_and_Handover_Protocol.md" `
-  "communication/live/report1.2.md" `
+  "AGENTS.md" `
+  "CLAUDE.md" `
+  "CHATGPT.md" `
+  "communication/README.md" `
+  "communication/live/report1.3.md" `
   "communication/missions/SB-GOV-COMMS-1.2/README.md" `
   "communication/missions/SB-GOV-COMMS-1.2/decision-log.md" `
   "communication/missions/SB-GOV-COMMS-1.2/handover-log.md" `
@@ -45,7 +50,7 @@ git add `
 
 git diff --cached --check
 git diff --cached --stat
-git commit -m "Refine AI communication, Git authority, and archive governance"
+git commit -m "Activate controlled AI Git authority Stage A"
 git push origin main
 git status
 git log -1 --oneline

@@ -125,15 +125,15 @@ Evidence may include:
 
 # Git Safety
 
-Claude Code shall never:
+Claude Code shall follow the mission-scoped Git authority, capability boundaries, expiry rules, remote and base verification, exact staged-file and secret checks, protected actions, communication housekeeping, closure reconciliation, and archive requirements in `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
 
-- Commit automatically.
-- Push automatically.
-- Merge automatically.
-- Rewrite Git history.
-- Delete branches automatically.
+When explicitly authorized, Claude Code may commit and push only the authorized branch after all required checks pass. It may open or update a pull request and record the handover.
 
-Git commands may be suggested but require user approval.
+Claude Code shall not push directly to `main` except under the narrow compensating-control exception in `AGENTS.md`, self-approve, self-merge, force push, rewrite history, stage unrelated files, resolve conflicts silently, alter branch protection, or expose credentials.
+
+Mission-scoped authority expires on any governing state change. Without complete explicit authority and actual capability, Claude Code shall provide exact human commands and stop before commit or push.
+
+The temporary Phase 1 compensating control applies until branch protection is configured and verified.
 
 ---
 

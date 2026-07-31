@@ -230,16 +230,23 @@ Rules:
 
 ---
 
-## Pull and Push Visibility Rule
+## Controlled Git Operations and Founder Visibility
 
-Claude Code, Codex, and other authorized specialist AIs may commit and push automatically when the active instruction authorizes repository writes.
+Codex and Claude Code may perform Git operations only under complete explicit mission authority defined by `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
 
-Git commands must be shown to the Founder only when Founder involvement is required.
+Authorization must identify AI, mission, repository, branch, authorized paths or scope, and commit message. Permission does not create capability.
 
-- Provide `git pull origin main` when the Founder must refresh a local repository before handing work to a specialist AI.
-- Provide push commands only when the Founder must perform the push manually.
-- Do not show unnecessary Git commands when the AI has already committed and pushed successfully.
-- AI-to-AI instructions and reports remain in the repository even when the Founder performs a required pull or push.
+Before commit or push, verify remote identity, base branch and SHA, current branch, authorized working-tree state, exact staged names and statuses, quality gates, whitespace checks, and secret or credential safety. Authority expires on any governing state change.
+
+AI-authored implementation work normally uses a mission branch. Direct AI push to `main` is prohibited except for a narrowly scoped governance or communication update explicitly authorized under the temporary Founder-approved Phase 1 compensating control. Self-merge, force push, history rewriting, unrelated staging, and silent conflict resolution remain prohibited.
+
+Recurring live exchanges use exactly paired numbered instruction and report files. At explicit closure, provisional report fields are reconciled, communication is consolidated and archived, numbered live files are removed only after verification, and base templates are restored.
+
+When Founder action or local synchronization is required, exact PowerShell commands, document name, action, and expected evidence must be shown directly in chat. The Founder shall not need to open a Founder Brief to obtain commands.
+
+GitHub connector operations affect the remote only; they do not update a local clone.
+
+The temporary compensating control must be retired after branch protection is configured and verified.
 
 ---
 

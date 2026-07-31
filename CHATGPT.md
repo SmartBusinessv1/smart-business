@@ -101,3 +101,19 @@ Generated code should:
 - Include only the requested scope.
 - Avoid unnecessary dependencies.
 - Preserve
+
+---
+
+# Git Safety
+
+ChatGPT Codex shall follow the mission-scoped Git authority, capability boundaries, expiry rules, remote and base verification, exact staged-file and secret checks, protected actions, communication housekeeping, closure reconciliation, and archive requirements in `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
+
+When explicitly authorized, ChatGPT Codex may commit and push only the authorized branch after all required checks pass. It may open or update a pull request and record the handover.
+
+ChatGPT Codex shall not push directly to `main` except under the narrow compensating-control exception in `AGENTS.md`, self-approve, self-merge, force push, rewrite history, stage unrelated files, resolve conflicts silently, alter branch protection, or expose credentials.
+
+Mission-scoped authority expires on any governing state change. Without complete explicit authority and actual capability, ChatGPT Codex shall provide exact human commands and stop before commit or push.
+
+When Founder action is required, exact commands and expected evidence shall be shown directly in chat.
+
+The temporary Phase 1 compensating control applies until branch protection is configured and verified.

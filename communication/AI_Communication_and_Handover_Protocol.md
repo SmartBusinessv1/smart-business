@@ -1,18 +1,38 @@
 # AI Communication and Handover Protocol
 
 - **Mission:** SB-GOV-COMMS-1.2
-- **Version:** Draft 1.4
-- **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
+- **Version:** 1.0
+- **Status:** ACTIVE
 - **Authority:** Founder through Mission Control
+- **Approved By:** Founder
+- **Activated By:** Mission Control
+- **Activation Date:** 2026-08-01
+- **Activation Commit:** PENDING PUBLICATION
+- **Stage A Status:** ACTIVE
+- **Stage B Status:** NOT AUTHORIZED
+- **Branch Protection Status:** NOT CONFIGURED — TEMPORARY COMPENSATING CONTROL ACTIVE
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
 
 ## 1. Purpose
 
-This protocol proposes GitHub as the durable communication layer between Smart Business AI participants while preserving Mission Control sequencing, Founder decision ownership, repository safety, and review before merge.
+This protocol establishes GitHub as the durable communication and handover layer between authorized Smart Business AI participants.
 
-At activation, the proposal sentence above shall be replaced with: **This protocol establishes GitHub as the durable communication and handover layer between authorized Smart Business AI participants.**
+Stage A is active under Founder approval and Mission Control activation. Stage B remains unauthorized.
 
-This draft does not grant Git authority. Current approved repository instructions remain controlling until this protocol and the related `AGENTS.md` amendment are separately reviewed and activated.
+## 1.1 Temporary Phase 1 Compensating Control
+
+GitHub branch protection is not configured. Until it is configured and verified, the Founder-approved Phase 1 compensating control applies:
+
+1. Every AI Git operation requires explicit Founder or Mission Control mission authorization.
+2. Authorization must identify AI name, Mission ID, repository, branch, authorized paths or scope, and approved commit message.
+3. AI-authored implementation work normally uses `mission/[MISSION-ID]-[SHORT-SLUG]`.
+4. Direct AI push to `main` is prohibited unless Founder or Mission Control explicitly authorizes a narrowly scoped governance or communication update using exact-file staging.
+5. Every automated commit requires remote and branch verification, clean-tree or authorized-change verification, exact staged-file verification, applicable quality gates, `git diff --cached --check`, and secret or credential inspection.
+6. Force push, history rewriting, self-approval, self-merge, silent conflict resolution, unauthorized branch deletion, and unrelated staging remain prohibited.
+7. Mission Control review remains required before merge or acceptance.
+8. Founder approval remains required wherever governance or the mission requires it.
+
+This compensating control is temporary and must be retired when GitHub branch protection is configured and verified.
 
 ## 2. Communication Rule
 
@@ -639,10 +659,10 @@ The Stage A activation mission shall set:
 | Draft 1.2 | SB-GOV-COMMS-1.2 | Added capability boundaries, local-versus-remote Git distinction, merge authority, branch-protection gate, authorization expiry, PR handover requirements, staged activation, and communication archival governance | DRAFT |
 | Draft 1.3 | SB-GOV-COMMS-1.2 | Added recurring live instruction/report numbering, exact pair matching, closure consolidation, archive outputs, live-template restoration, and Founder-chat Git command visibility | DRAFT |
 | Draft 1.4 | SB-GOV-COMMS-1.2 | Added provisional live-report status, closure-state reconciliation, chronological transcript preservation, numbered exchange lifecycle, archive consolidation, live-template restoration, and Founder-chat pull/push command visibility | DRAFT |
-| 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, and archival governance | ACTIVE |
+| 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, communication housekeeping, closure reconciliation, and archival governance using a temporary Phase 1 compensating control | ACTIVE |
 
 Future updates must append rather than overwrite this history.
 
 ---
 
-**Draft control:** This protocol is not active and grants no new Git authority.
+**Activation control:** Stage A is active under the temporary Phase 1 compensating control. Stage B is not authorized.

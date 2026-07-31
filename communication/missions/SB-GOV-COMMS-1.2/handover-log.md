@@ -65,3 +65,19 @@
 - Next authorized action: Founder publishes exact files; Mission Control performs final verification
 - Action not yet authorized: Reconciliation execution, archive, numbered-file removal, template restoration, Stage A, or Stage B
 - Mission Control approval reference: `communication/live/instruction1.2.md`
+
+## Handover 5
+
+- Date: 2026-08-01
+- Mission: SB-GOV-COMMS-1.2
+- From: Codex
+- To: Founder, then Mission Control
+- Stage completed: Founder approval and Stage A activation
+- Work completed: Recorded absent branch protection, activated the temporary control, Protocol 1.0, and four core instruction files
+- Files created or modified: Twelve authorized files
+- Commit SHA: PENDING FOUNDER PUBLICATION
+- Verification performed: Markdown quality gate, exact-scope review, Stage B preservation, secret inspection
+- Open issues: Branch protection must be configured; Stage B requires a separate mission
+- Next authorized action: Founder publishes Stage A; Mission Control validates behaviour
+- Action not yet authorized: Stage B, communication closure, archive, self-merge, or unrestricted direct push
+- Mission Control approval reference: `communication/live/instruction1.3.md`

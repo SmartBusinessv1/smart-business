@@ -46,3 +46,13 @@
 - **Authority:** Mission Control
 - **Decision:** Provisional Git and publication fields remain valid during active communication and do not require correction after routine publication.
 - **Closure rule:** Every report is reconciled against final repository evidence only after explicit closure; original provisional events remain in the chronological transcript.
+
+## Decision 8 — Founder Approval and Stage A Activation
+
+- **Date:** 2026-08-01
+- **Authority:** Founder through Mission Control
+- **Decision:** Draft 1.4 is approved; Protocol 1.0 and the five-file Stage A package are authorized and activated.
+- **Branch protection:** NOT CONFIGURED
+- **Compensating control:** FOUNDER APPROVED FOR PHASE 1 — ACTIVE
+- **Stage B:** NOT AUTHORIZED
+- **Communication closure:** NOT DECLARED
