@@ -64,7 +64,7 @@
 - Branch protection: NOT CONFIGURED
 - Temporary compensating control: ACTIVE
 - Stage A: ACTIVE
-- Stage B: NOT AUTHORIZED
+- Stage B: APPLIED — MISSION CONTROL VERIFICATION REQUIRED
 - Communication closure: NOT DECLARED
 - Stage B contradiction audit: YES
 
@@ -85,5 +85,7 @@
 
 - Draft refinement complete: YES
 - Stage A activation complete locally: YES
-- Stage A publication: PENDING FOUNDER ACTION
-- Stage B authorized: NO
+- Stage A publication: COMPLETE — commit `6971a661c5b43858f424804af3f1c8e23c1eae7e`
+- Stage B authorized: YES — `communication/live/instruction1.4.md`
+- Stage B alignment: APPLIED — FINAL MISSION CONTROL VERIFICATION REQUIRED
+- Communication closure: NOT DECLARED

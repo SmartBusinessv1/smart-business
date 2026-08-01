@@ -1,65 +1,34 @@
-# Founder Brief — Stage A Publication
+# Founder Brief — Stage B EOS Workflow Alignment
 
-- **Status:** FOUNDER APPROVED — STAGE A ACTIVATED LOCALLY — PUBLICATION REQUIRED
+- **Status:** APPLIED — FINAL MISSION CONTROL VERIFICATION REQUIRED
 
-## What Becomes Automated After Activation
+## Document and Required Action
 
-Codex and Claude Code may fetch, fast-forward, work on a specifically authorized mission branch, stage exact files, commit, push that branch, and open or update a pull request when every authorization and safety field is present.
+The ChatGPT Codex and Claude Code EOS GitHub engineering artifact workflows now use the active controlled, mission-scoped Git authority model. Mission Control must review Stage B and, if approved, declare the communication-governance activation complete before closure and archive.
 
-## What Remains Prohibited
+## Controls Preserved
 
-Direct AI push to `main`, self-merge, self-approval, force-push, history rewriting, unrelated staging, silent conflict resolution, branch-protection changes, and review bypass remain prohibited.
+- Permission does not create Git, shell, repository, credential, or authentication capability.
+- Direct AI push to `main` remains prohibited except for the narrow temporary compensating-control exception.
+- Self-approval, self-merge, force push, history rewriting, unrelated staging, silent conflict resolution, protection bypass, and credential exposure remain prohibited.
+- Merge authority remains with the Founder, a Mission Control-authorized human maintainer, or a separately approved automated merge mechanism after required checks and reviews.
+- Founder Git commands must be provided directly in chat whenever Founder action is required.
+- Pull-request handover, closure reconciliation, and archival follow the active AI Communication and Handover Protocol.
 
-## Why Branch Protection Must Be Verified
+## Publication
 
-The governance model depends on `main` rejecting direct or unsafe changes and enforcing required review and status checks. Activation is blocked until Mission Control records that verification or the Founder approves a compensating control.
+Instruction 1.4 authorizes Codex to validate, commit, and push this exact Stage B package using:
 
-## AI Communication and Archive
-
-AI-to-AI handovers remain in mission communication folders and must include PR references. After explicit Founder or Mission Control closure, the assigned AI archives the complete communication record. Archived records are historical, non-governing, and protected from silent deletion or reactivation.
-
-## Human Control
-
-Founder decisions, Mission Control authorization and review, exceptions, branch-protection approval, merge authority, archive closure authority, and protocol activation remain human-controlled.
-
-## Two-Stage Activation
-
-Stage A activates the protocol and applies the four core instruction amendments after branch protection is verified. After Mission Control verifies behaviour, Stage B aligns the two EOS workflow documents. The two stages must not be combined into one uncontrolled change.
-
-## Exact Publication Commands
-
-```powershell
-git branch --show-current
-git status --short
-git diff --check
-
-git add `
-  "communication/governance/branch-protection-verification.md" `
-  "communication/AI_Communication_and_Handover_Protocol.md" `
-  "AGENTS.md" `
-  "CLAUDE.md" `
-  "CHATGPT.md" `
-  "communication/README.md" `
-  "communication/live/report1.3.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/README.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/decision-log.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/handover-log.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/codex/revised-exact-amendments.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/codex/refinement-report.md" `
-  "communication/missions/SB-GOV-COMMS-1.2/founder/refinement-founder-brief.md"
-
-git diff --cached --check
-git diff --cached --stat
-git commit -m "Activate controlled AI Git authority Stage A"
-git push origin main
-git status
-git log -1 --oneline
+```text
+Align EOS GitHub workflows with controlled AI Git authority
 ```
 
-## Do Not Do
+Expected evidence is the final commit SHA, successful `main` push, clean working tree, and synchronized `HEAD` and `origin/main`.
 
-- Do not modify the six live target files.
-- Do not activate AI Git authority.
-- Do not create the branch-protection verification record under this mission.
-- Do not archive any active mission communication.
-- Do not use force push or stage unrelated files.
+## Remaining State
+
+- Stage A: ACTIVE
+- Temporary Phase 1 compensating control: ACTIVE
+- Stage B: APPLIED — MISSION CONTROL VERIFICATION REQUIRED
+- Branch protection: NOT CONFIGURED
+- Communication closure: NOT DECLARED

@@ -178,7 +178,7 @@ ChatGPT may:
 - Produce Markdown artifacts.
 - Assist engineering review.
 
-ChatGPT shall not:
+Without an active mission-scoped Git authorization, ChatGPT shall not:
 
 - Publish engineering artifacts.
 - Change repository history.
@@ -319,6 +319,22 @@ Mission Control determines publication readiness.
 
 # Human Authority
 
+## Controlled Mission-Scoped Git Authority
+
+ChatGPT Codex may commit and push only when an active Founder or Mission Control mission explicitly identifies the AI name, Mission ID, repository, authorized branch, authorized paths or scope, and approved commit message.
+
+Permission does not create capability. Shell and Git access, repository access, credentials, and authentication must be available independently. Before committing or pushing, Codex shall verify the configured remote, current branch, authorized base branch and SHA, working-tree scope, exact staged paths with `git diff --cached --name-status`, applicable validation, `git diff --cached --check`, and staged content for secrets or credentials. Authority must remain unexpired through publication.
+
+Codex may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact authorized files, commit with the approved message, push the authorized branch, and open or update a pull request. AI-authored work normally uses a mission branch.
+
+Direct AI push to `main` is prohibited except for a narrowly scoped governance or communication update explicitly authorized by the Founder or Mission Control under the active temporary compensating control. Codex shall not self-approve or self-merge, force push, rewrite history, stage unrelated files, use `git add .` unless every working-tree change is authorized, resolve conflicts silently, bypass protection or review, alter branch protection, or expose credentials.
+
+Merge authority is restricted to the Founder, a Mission Control-authorized human maintainer, or a separately approved automated merge mechanism after required checks and reviews. When Founder action is required, exact Git commands and expected evidence must appear directly in chat.
+
+Pull-request handover, recurring communication, closure reconciliation, and archival shall follow `communication/AI_Communication_and_Handover_Protocol.md`. This workflow is subordinate to `AGENTS.md` and that active protocol.
+
+---
+
 Humans retain authority over:
 
 - Engineering intent
@@ -338,16 +354,15 @@ Automation never replaces engineering accountability.
 
 # Safety Boundaries
 
-ChatGPT shall never:
+ChatGPT may commit or push only through the controlled mission-scoped authority above. Regardless of mission authorization, ChatGPT shall never:
 
-- Commit directly to Git.
-- Push to GitHub.
-- Merge pull requests.
+- Self-approve or self-merge pull requests.
+- Force push or rewrite repository history.
 - Approve engineering artifacts.
-- Modify repository history.
-- Publish engineering records.
+- Bypass required review or protection controls.
+- Expose credentials or secrets.
 
-Every repository modification requires explicit human authorization.
+Every repository modification requires explicit Founder or Mission Control authorization.
 
 ---
 

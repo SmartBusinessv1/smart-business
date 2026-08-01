@@ -56,3 +56,14 @@
 - **Compensating control:** FOUNDER APPROVED FOR PHASE 1 — ACTIVE
 - **Stage B:** NOT AUTHORIZED
 - **Communication closure:** NOT DECLARED
+
+## Decision 9 — Stage B EOS Workflow Alignment
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control through `communication/live/instruction1.4.md`
+- **Decision:** Align the ChatGPT Codex and Claude Code EOS GitHub workflows with the active Stage A controlled, mission-scoped Git authority model.
+- **Stage A:** ACTIVE and unchanged
+- **Compensating control:** ACTIVE
+- **Stage B:** APPLIED — MISSION CONTROL VERIFICATION REQUIRED
+- **Branch protection:** NOT CONFIGURED
+- **Communication closure:** NOT DECLARED

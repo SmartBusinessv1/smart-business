@@ -81,3 +81,19 @@
 - Next authorized action: Founder publishes Stage A; Mission Control validates behaviour
 - Action not yet authorized: Stage B, communication closure, archive, self-merge, or unrestricted direct push
 - Mission Control approval reference: `communication/live/instruction1.3.md`
+
+## Handover 6
+
+- Date: 2026-08-01
+- Mission: SB-GOV-COMMS-1.2
+- From: Codex
+- To: Mission Control
+- Stage completed: Stage B EOS workflow alignment
+- Work completed: Aligned both EOS workflows with the controlled authority and retained capability, expiry, protected-action, merge-authority, Founder-command, PR-handover, closure, and archive rules
+- Files created or modified: Eight authorized Stage B and mission-record files
+- Commit SHA: PENDING AUTHORIZED PUBLICATION
+- Verification performed: Contradiction audit, Markdown quality gate, `git diff --check`, exact-scope review, and secret inspection
+- Open issues: Branch protection remains unconfigured; communication closure has not been declared
+- Next authorized action: Mission Control reviews Stage B and, if approved, declares communication-governance activation complete before closure and archive
+- Action not yet authorized: Communication closure, archive, branch-protection changes, self-merge, or unrestricted direct push
+- Mission Control approval reference: `communication/live/instruction1.4.md`
