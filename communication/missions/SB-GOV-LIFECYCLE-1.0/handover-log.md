@@ -31,3 +31,19 @@
 - Next authorized action: Founder commits and pushes exact files; Mission Control performs final review
 - Action not yet authorized: Source approval, activation, lock, publication, or template changes
 - Mission Control approval reference: Mission Control Review — Source 18, APPROVED WITH REQUIRED REFINEMENTS
+
+## Handover 3
+
+- Date: 2026-08-01
+- Mission: SB-GOV-HOUSEKEEPING-1.1
+- From: Codex
+- To: Founder, then Mission Control
+- Stage completed: Source 18 evidence reconciliation
+- Work completed: Verified publication, preserved Draft status, clarified non-authoritative placement, and separated publication from activation
+- Files created or modified: Source 18 metadata, active README clarification, and directly related lifecycle mission records
+- Relevant publication commit: `bd9b362`
+- Verification performed: Repository history, decision log, Founder Brief, source metadata, and active-index review
+- Open issue: Explicit Founder approval is not evidenced
+- Next authorized action: Founder records Source 18 disposition; Mission Control then applies the authorized final status and index treatment
+- Action not yet authorized: Source 18 approval, lock, activation, or relocation
+- Mission Control approval reference: `communication/live/instruction1.1.md`

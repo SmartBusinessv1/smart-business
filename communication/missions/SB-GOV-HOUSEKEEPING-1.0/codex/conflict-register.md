@@ -58,3 +58,9 @@
 - Severity: High
 - Sequence: execute the separately Founder-authorized rename/README/link-verification archive mission
 - Pause: no repository-wide pause; prohibit use of legacy files as authority
+
+## Reconciliation Update
+
+- CF-01: Contained by explicit Draft/non-authoritative metadata and active-index clarification; Founder decision remains open.
+- CF-02: Corrected to active Stage B metadata; Mission Control verification remains required.
+- CF-03: Corrected to active Stage B metadata; Mission Control verification remains required.

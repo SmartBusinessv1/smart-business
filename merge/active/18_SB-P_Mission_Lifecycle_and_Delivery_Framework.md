@@ -3,9 +3,12 @@
 - **Source:** 18
 - **Version:** Draft 1.0
 - **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
-- **Authority:** Founder through Mission Control
+- **Authority:** PROPOSED — FOUNDER DECISION REQUIRED BEFORE ACTIVATION
+- **Repository publication:** COMPLETE — commit `bd9b362`; publication does not confer active authority
 - **Scope:** Every Smart Business Product Mission (`SB-P-*`)
 - **Created under:** `SB-GOV-LIFECYCLE-1.0`
+
+> **Authority notice:** This draft is stored under `merge/active/` at the path selected by Mission Control, but explicit Founder approval is not recorded. It must not be treated as active governance unless the Founder approves activation and Mission Control records the resulting disposition.
 
 ---
 
@@ -567,4 +570,4 @@ Future refinements must append rather than replace earlier history.
 
 ---
 
-**Draft control:** This source is not approved, locked, or published. Mission Control review and Founder approval remain required before activation.
+**Draft control:** This source is not approved, locked, or active. Repository publication is complete at commit `bd9b362`, but explicit Founder approval remains required before activation. Governing language in this draft is proposed and has no active authority until that decision is recorded.

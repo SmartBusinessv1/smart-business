@@ -26,3 +26,7 @@
 ## Scope Boundary
 
 This package is advisory. It does not approve, activate, supersede, archive, delete, or rewrite any audited source.
+
+## Reconciliation Reference
+
+High-priority items AC-01, AC-03, and conflicts CF-01 through CF-03 were processed by `SB-GOV-HOUSEKEEPING-1.1`. EOS metadata was corrected. Source 18 remains a non-authoritative draft pending an explicit Founder decision.

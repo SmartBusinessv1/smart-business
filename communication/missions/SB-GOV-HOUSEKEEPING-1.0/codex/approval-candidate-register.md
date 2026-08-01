@@ -12,3 +12,8 @@
 | AC-08 | `reports/SB-GOV-COMPARE-1.0_Project_Source_vs_Active_Governance_Audit.md` | Audit complete; review required | Record review disposition and successor relevance | Founder and Mission Control | Compare with SB-GOV-COMPARE-1.1 and active README | Archive or Supersede after review | Low/Medium stale audit authority |
 
 Recommendations are advisory and do not constitute approval.
+
+## Reconciliation Update
+
+- AC-01: Evidence review completed in `SB-GOV-HOUSEKEEPING-1.1`; keep pending until explicit Founder disposition.
+- AC-03: Metadata correction applied using the proven Stage B activation commit; Mission Control verification remains required.

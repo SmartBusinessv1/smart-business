@@ -1,15 +1,15 @@
 # SB-GOV-LIFECYCLE-1.0
 
 - **Mission:** SB-P Mission Lifecycle and Delivery Framework Creation
-- **Current stage:** Required refinements applied; final Mission Control review pending
-- **Current owner:** Founder for exact-file commit and push, then Mission Control for final review
-- **Last completed action:** Codex applied all eleven required Mission Control refinements
-- **Next authorized action:** Validate, commit, and push the exact authorized files; Mission Control then performs final review
-- **Active blocker:** AI commit/push prohibited by repository `AGENTS.md`; Founder action required
+- **Current stage:** Repository publication complete; explicit Founder activation decision pending
+- **Current owner:** Founder for Source 18 disposition, then Mission Control for status/index reconciliation
+- **Last completed action:** Refined Source 18 was published in commit `bd9b362`
+- **Next authorized action:** Founder decides Approve, Approve with Corrections, Keep Pending, or Relocate through a separate mission
+- **Active blocker:** Explicit Founder approval is not recorded; file placement and publication do not confer authority
 - **Branch:** `main`
 - **Starting commit:** `520d9e7`
-- **Latest relevant commit:** `5e7f234` — initial Source 18 draft
-- **Mission Control status:** APPROVED WITH REQUIRED REFINEMENTS — REFINEMENTS APPLIED, FINAL REVIEW PENDING
+- **Latest relevant commit:** `bd9b362` — required refinements published
+- **Mission Control status:** REQUIRED REFINEMENTS APPLIED; FOUNDER ACTIVATION DECISION REQUIRED
 
 ## Authoritative Files
 
@@ -21,6 +21,6 @@
 
 ## Not Yet Authorized
 
-- Activation, approval, lock, or publication of Source 18
+- Activation, approval, or lock of Source 18
 - Changes to workflow templates or application code
 - Changes to the legacy Project Source directory

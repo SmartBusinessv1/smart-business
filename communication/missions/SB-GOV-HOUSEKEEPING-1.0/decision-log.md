@@ -12,3 +12,9 @@
 ## Decisions Reserved
 
 Founder or Mission Control must decide approval, activation, supersession, containment, or correction for every registered candidate and conflict.
+
+## Reconciliation 1
+
+- **Mission:** `SB-GOV-HOUSEKEEPING-1.1`
+- **Disposition:** EOS workflow metadata reconciled to proven Stage B activation; Source 18 publication proven but Founder approval not proven.
+- **Authority boundary:** Source 18 remains Draft and non-authoritative pending Founder decision.

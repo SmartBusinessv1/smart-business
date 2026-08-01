@@ -31,3 +31,10 @@
 - **Authority:** Mission Control
 - **Decision:** Source 18 is approved with eleven required governance-precision refinements. Activation remains unauthorized and Founder approval remains pending.
 - **Implementation:** Codex applied all required refinements and returned the source for final Mission Control review.
+
+## Decision 6 — Publication Is Not Activation
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control through `SB-GOV-HOUSEKEEPING-1.1`
+- **Evidence:** Required refinements were published in commit `bd9b362`; Decisions 4 and 5 do not record Founder approval.
+- **Decision:** Preserve Source 18 as a non-authoritative draft, clarify its active-directory placement, and request an explicit Founder disposition. Repository publication does not confer approval, lock, activation, or active-index authority.

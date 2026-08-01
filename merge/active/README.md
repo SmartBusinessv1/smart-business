@@ -64,6 +64,10 @@ A consolidated Smart Business Constitution will be created after Phase 1 through
 11. **P00 — Operational Profiles**  
     Defines platform-specific responsibilities and boundaries for Lovable, Supabase, WhatsApp, OpenAI, Voice AI, Cloudflare R2, and related execution systems.
 
+## Draft Candidate Held in This Directory
+
+Source 18, [`18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`](./18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md), is repository-published but remains `DRAFT — MISSION CONTROL REVIEW REQUIRED`. Explicit Founder approval is not recorded. Its location under `merge/active/` does not activate it, and it is excluded from the active authority order and active source index until the Founder decides whether to approve, correct, keep pending, or relocate it through a separately authorized mission.
+
 ## Source index
 
 | Source | File | Purpose |
