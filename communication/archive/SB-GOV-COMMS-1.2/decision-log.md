@@ -67,3 +67,16 @@
 - **Stage B:** APPLIED — MISSION CONTROL VERIFICATION REQUIRED
 - **Branch protection:** NOT CONFIGURED
 - **Communication closure:** NOT DECLARED
+
+## Decision 10 — Stage B Approval and Communication Closure
+
+- **Date:** 2026-08-01
+- **Authority:** Mission Control through `communication/live/instruction1.5.md`
+- **Decision:** Stage B is approved and active; communication-governance activation is complete; closure, final reconciliation, consolidation, archival, numbered-file removal, and live-template restoration are authorized.
+- **Stage A commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e`
+- **Stage B commit:** `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
+- **Compensating control:** ACTIVE
+- **Branch protection:** NOT CONFIGURED
+- **Communication closure:** AUTHORIZED AND COMPLETED
+- **Archive:** `communication/archive/SB-GOV-COMMS-1.2/`
+- **Reactivation:** PROHIBITED without Mission Control authorization

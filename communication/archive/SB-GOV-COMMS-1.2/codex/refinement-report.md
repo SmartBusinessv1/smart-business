@@ -64,8 +64,10 @@
 - Branch protection: NOT CONFIGURED
 - Temporary compensating control: ACTIVE
 - Stage A: ACTIVE
-- Stage B: APPLIED — MISSION CONTROL VERIFICATION REQUIRED
-- Communication closure: NOT DECLARED
+- Stage B: ACTIVE — commit `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
+- Communication-governance activation: COMPLETE
+- Communication closure: AUTHORIZED AND COMPLETED
+- Archive path: `communication/archive/SB-GOV-COMMS-1.2/`
 - Stage B contradiction audit: YES
 
 ## Validation
@@ -87,5 +89,7 @@
 - Stage A activation complete locally: YES
 - Stage A publication: COMPLETE — commit `6971a661c5b43858f424804af3f1c8e23c1eae7e`
 - Stage B authorized: YES — `communication/live/instruction1.4.md`
-- Stage B alignment: APPLIED — FINAL MISSION CONTROL VERIFICATION REQUIRED
-- Communication closure: NOT DECLARED
+- Stage B alignment: APPROVED AND ACTIVE
+- Communication closure: AUTHORIZED AND COMPLETED
+- Archive reactivation: PROHIBITED without Mission Control authorization
+- Follow-up: Configure and verify technical branch protection, then retire the compensating control

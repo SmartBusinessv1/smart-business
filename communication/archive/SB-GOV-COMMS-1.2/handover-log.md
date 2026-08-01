@@ -97,3 +97,20 @@
 - Next authorized action: Mission Control reviews Stage B and, if approved, declares communication-governance activation complete before closure and archive
 - Action not yet authorized: Communication closure, archive, branch-protection changes, self-merge, or unrestricted direct push
 - Mission Control approval reference: `communication/live/instruction1.4.md`
+
+## Handover 7
+
+- Date: 2026-08-01
+- Mission: SB-GOV-COMMS-1.2
+- From: Codex
+- To: Founder and Mission Control
+- Stage completed: Communication-governance closure, reconciliation, and archive
+- Work completed: Reconciled Stage A and Stage B publication evidence, consolidated every live exchange, restored live templates, removed numbered live files after archive verification, and archived the mission records
+- Files moved or consolidated: Complete live cycle and complete mission folder under `communication/archive/SB-GOV-COMMS-1.2/`
+- Stage A commit: `6971a661c5b43858f424804af3f1c8e23c1eae7e`
+- Stage B commit: `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
+- Closure commit: PENDING AUTHORIZED PUBLICATION
+- Verification performed: Chronology, archive-source mapping, live-template state, Markdown quality gate, exact staged scope, `git diff --cached --check`, and secret inspection
+- Open issue: Configure and verify technical branch protection, then retire the compensating control
+- Next authorized action: Founder pulls the published closure commit; future archive reactivation requires Mission Control authorization
+- Mission Control approval reference: `communication/live/instruction1.5.md`

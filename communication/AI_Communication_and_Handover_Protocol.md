@@ -7,9 +7,9 @@
 - **Approved By:** Founder
 - **Activated By:** Mission Control
 - **Activation Date:** 2026-08-01
-- **Activation Commit:** PENDING PUBLICATION
+- **Activation Commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e`
 - **Stage A Status:** ACTIVE
-- **Stage B Status:** NOT AUTHORIZED
+- **Stage B Status:** ACTIVE — commit `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
 - **Branch Protection Status:** NOT CONFIGURED — TEMPORARY COMPENSATING CONTROL ACTIVE
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
 
@@ -17,7 +17,7 @@
 
 This protocol establishes GitHub as the durable communication and handover layer between authorized Smart Business AI participants.
 
-Stage A is active under Founder approval and Mission Control activation. Stage B remains unauthorized.
+Stage A and Stage B are active under Founder approval and Mission Control activation. Communication-governance activation is complete. The temporary Phase 1 compensating control remains active until technical branch protection is configured and verified.
 
 ## 1.1 Temporary Phase 1 Compensating Control
 
@@ -665,4 +665,4 @@ Future updates must append rather than overwrite this history.
 
 ---
 
-**Activation control:** Stage A is active under the temporary Phase 1 compensating control. Stage B is not authorized.
+**Activation control:** Stage A and Stage B are active under the temporary Phase 1 compensating control. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.

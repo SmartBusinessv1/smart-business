@@ -1,90 +1,90 @@
-# SMART BUSINESS MISSION CONTROL
+# SMART BUSINESS SPECIALIST REPORT
 
 # Report
 
-**Mission ID:** SB-GOV-COMMS-1.2
+**Mission ID:**
 
-**Mission Name:** Final AI Communication, Git Authority, and Archive Governance Refinement
+**Mission Name:**
 
-**From:** Codex
+**From:**
 
 **To:** Mission Control
 
-**Status:** REFINEMENTS APPLIED — FINAL MISSION CONTROL VERIFICATION REQUIRED
+**Status:**
 
-**Date:** 2026-08-01
-
----
-
-# Mission Summary
-
-All thirteen required governance-precision refinements were applied to the Draft 1.2 protocol and revised staged amendments without activating or modifying any Stage A or Stage B live target.
+**Date:**
 
 ---
 
-# Work Completed
+# Executive Summary
 
-- Added activation wording and exact approved-protocol references.
-- Added base-branch, base-SHA, mission-branch, starting-SHA, and remote-identity verification.
-- Added exact staged-name-status and secret-check requirements.
-- Added pull-request capability fallback and expanded archive pull-request, link, and move-traceability controls.
-- Added activation metadata, corrected five-file Stage A scope, and Stage B contradiction audit.
-- Updated the SB-GOV-COMMS-1.2 mission records and Founder Brief.
+Summarize the outcome, current state, and whether the mission is complete, blocked, or awaiting review.
 
 ---
 
-# Files Created or Modified
+# Work Performed
 
-- `communication/AI_Communication_and_Handover_Protocol.md`
-- `communication/missions/SB-GOV-COMMS-1.2/README.md`
-- `communication/missions/SB-GOV-COMMS-1.2/decision-log.md`
-- `communication/missions/SB-GOV-COMMS-1.2/handover-log.md`
-- `communication/missions/SB-GOV-COMMS-1.2/codex/revised-exact-amendments.md`
-- `communication/missions/SB-GOV-COMMS-1.2/codex/refinement-report.md`
-- `communication/missions/SB-GOV-COMMS-1.2/founder/refinement-founder-brief.md`
-- `communication/live/report.md`
+Describe only the work completed within the approved scope.
+
+---
+
+# Findings
+
+Record verified findings, evidence, and important observations.
+
+Clearly distinguish:
+
+- Confirmed facts
+- Inferences
+- Recommendations
+- Unknowns
+
+---
+
+# Changes Made
+
+List every repository, configuration, deployment, data, or documentation change made.
+
+If none were made, state:
+
+```text
+No changes made.
+```
 
 ---
 
 # Verification
 
-- Required refinements: 13 of 13 present
-- Markdown quality gate: PASS — 0 warnings, 0 failures
-- `git diff --check`: PASS
-- Stage A live files modified: NONE
-- Stage B EOS workflows modified: NONE
-- Application files modified: NONE
+Document tests, checks, screenshots, commands, or runtime validation completed.
+
+Do not include secrets, access tokens, personal account information, or sensitive identifiers.
 
 ---
 
-# Issues and Risks
+# Risks and Limitations
 
-- Branch-protection verification remains a non-bypassable activation prerequisite.
-- The protocol and all amendments remain drafts and grant no current AI Git authority.
-
----
-
-# Git and Repository Status
-
-- Branch: `main`
-- Starting commit: `0f1c41e`
-- Commit SHA: `7b43f75`
-- Commit message: `Refine AI communication, Git authority, and archive governance`
-- Push status: SUCCESS
-- Remote synchronization: SUCCESS
-- Working tree: CLEAN
-- Stage A activation: NOT AUTHORIZED
-- Stage B activation: NOT AUTHORIZED
-- Pull-request reference: NOT APPLICABLE TO THIS DRAFT PUBLICATION
+Record unresolved risks, external dependencies, platform limitations, or assumptions requiring Founder awareness.
 
 ---
 
-# Next Authorized Action
+# Founder or Mission Control Action Required
 
-Final Mission Control verification. Stage A and Stage B remain inactive.
+State any required decision or action.
+
+If none is required, state:
+
+```text
+None.
+```
+
+---
+
+# Recommended Next Step
+
+Provide one clear next operational step without expanding the authorized mission scope.
 
 ---
 
 # Completion Status
 
-REFINEMENTS APPLIED — FINAL MISSION CONTROL VERIFICATION REQUIRED
+Conclude with the exact status required by the instruction.
