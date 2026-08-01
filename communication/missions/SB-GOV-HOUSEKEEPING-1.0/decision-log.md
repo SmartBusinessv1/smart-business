@@ -26,3 +26,11 @@ Founder or Mission Control must decide approval, activation, supersession, conta
 - **Authority:** Founder — Riyas PK through Mission Control
 - **Disposition:** Founder approval confirmed; Source 18 Version 1.0 activated as authoritative for every `SB-P-*` mission lifecycle and delivery process.
 - **Chronology:** Reconciliation 1 accurately described the evidence then available. The explicit approval was subsequently recorded in Instruction 1.2.
+
+## Reconciliation 3 — Legacy Archive Containment
+
+- **Mission:** `SB-GOV-HOUSEKEEPING-1.3`
+- **Date:** 2026-08-02
+- **Authority:** Founder through Mission Control
+- **Disposition:** CF-06 resolved. All 25 original source files are preserved byte-for-byte under `Project Source File Archive/` as a non-governing historical and provenance archive.
+- **Authority boundary:** Current governance remains under `merge/active/`; archive reactivation requires Founder-approved governance action.

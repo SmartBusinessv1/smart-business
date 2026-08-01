@@ -7,9 +7,8 @@ No Critical-severity item was proven from repository evidence.
 ## 2. High-Risk Operational Issues
 
 1. Reconcile ChatGPT and Claude workflow metadata with the approved Stage B activation.
-2. Authorize the deferred legacy Project Source archive rename/README mission.
-3. Define the current migration package and prohibit execution of the remaining draft families by default.
-4. Maintain the branch-protection compensating control; open a technical branch-protection mission when feasible.
+2. Define the current migration package and prohibit execution of the remaining draft families by default.
+3. Maintain the branch-protection compensating control; open a technical branch-protection mission when feasible.
 
 ## 3. Medium-Risk Governance Cleanup
 
@@ -36,4 +35,5 @@ No Critical-severity item was proven from repository evidence.
 
 - Source 18 evidence review and activation: COMPLETE — Founder approval recorded and Source 18 activated through `SB-GOV-HOUSEKEEPING-1.2`; Mission Control verification required.
 - ChatGPT and Claude EOS activation metadata correction: APPLIED — Mission Control verification required.
+- Legacy Project Source archive containment: COMPLETE — CF-06 resolved through `SB-GOV-HOUSEKEEPING-1.3`; Mission Control verification required.
 - Remaining queue items retain their original order and status.

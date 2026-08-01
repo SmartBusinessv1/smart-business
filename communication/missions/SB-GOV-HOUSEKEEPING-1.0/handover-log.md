@@ -35,3 +35,15 @@
 - Result: Source 18 Version 1.0 Founder approval confirmed; ACTIVE and AUTHORITATIVE for every `SB-P-*` mission
 - Earlier evidence finding: Preserved as accurate at the time recorded
 - Communication closure: Not authorized
+
+## Handover 4
+
+- Date: 2026-08-02
+- From: Codex
+- To: Mission Control
+- Mission: `SB-GOV-HOUSEKEEPING-1.3`
+- Result: CF-06 RESOLVED — ORIGINAL 25 FILES PRESERVED IN NON-GOVERNING ARCHIVE
+- Integrity: 25 of 25 SHA-256 hashes and byte sizes preserved
+- Archive path: `Project Source File Archive/`
+- Next action: Mission Control verifies containment
+- Communication closure: Not authorized

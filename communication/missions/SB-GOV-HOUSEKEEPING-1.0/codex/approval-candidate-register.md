@@ -13,6 +13,8 @@
 
 Recommendations are advisory and do not constitute approval.
 
+Legacy archive containment is not an approval candidate: `SB-GOV-HOUSEKEEPING-1.3` preserved the superseded 25-file set as non-governing provenance and did not reactivate or approve its contents.
+
 ## Reconciliation Update
 
 - AC-01: At the time of `SB-GOV-HOUSEKEEPING-1.1`, Founder approval was not recorded. It was subsequently granted through `SB-GOV-HOUSEKEEPING-1.2`; candidate RESOLVED as ACTIVE and AUTHORITATIVE.

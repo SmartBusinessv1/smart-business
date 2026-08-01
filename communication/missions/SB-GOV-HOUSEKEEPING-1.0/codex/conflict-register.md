@@ -64,3 +64,4 @@
 - CF-01: RESOLVED by explicit Founder approval and active-index activation through `SB-GOV-HOUSEKEEPING-1.2` on 2026-08-01. The earlier containment finding remains historically accurate.
 - CF-02: Corrected to active Stage B metadata; Mission Control verification remains required.
 - CF-03: Corrected to active Stage B metadata; Mission Control verification remains required.
+- CF-06: RESOLVED — ORIGINAL 25 FILES PRESERVED IN NON-GOVERNING ARCHIVE. `SB-GOV-HOUSEKEEPING-1.3` moved the byte-identical source set to `Project Source File Archive/`, added its authority README, and preserved the historical findings above.

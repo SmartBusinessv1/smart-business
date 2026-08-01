@@ -130,7 +130,7 @@ The active set includes approved merged frameworks:
 
 Historical references may remain where they clearly record merge provenance. Current operational work must use the active merged sources.
 
-The original 25-file project-source set is retained as historical predecessor evidence. It is not required for current execution and must not be treated as competing active authority.
+The original 25-file project-source set is retained in [`Project Source File Archive/`](../../Project%20Source%20File%20Archive/) as non-governing historical and provenance evidence. It is not required for current execution and must not be treated as competing active authority. The archive README contains its preservation boundary, complete inventory, and successor mapping.
 
 ## Governance boundaries
 

@@ -101,15 +101,15 @@ Their permanent role is:
 
 **Non-governing historical and provenance archive.**
 
-A later Founder-authorized archive mission will:
+A Founder-authorized archive mission has now:
 
-1. rename `Project Source file/` to `Project Source File Archive/`;
-2. create an archive `README.md`;
-3. record the original commit, inventory, successor mapping, Founder approvals, and final comparison report;
-4. clearly state that the directory is not an active governance source;
-5. prohibit silent deletion or reactivation without Founder-approved governance action.
+1. renamed `Project Source file/` to `Project Source File Archive/`;
+2. created an archive `README.md`;
+3. recorded the original commit, complete inventory, successor mapping, Founder decisions, and final comparison report;
+4. clearly classified the directory as non-governing and non-authoritative;
+5. prohibited silent deletion or reactivation without Founder-approved governance action.
 
-Until that mission is authorized, no repository changes shall be made for this archive decision.
+Archive execution was completed through `SB-GOV-HOUSEKEEPING-1.3` on 2026-08-02. All 25 source files were preserved byte-for-byte. Current governance remains under `merge/active/`.
 
 ---
 

@@ -34,3 +34,7 @@ High-priority items AC-01, AC-03, and conflicts CF-01 through CF-03 were process
 ## Source 18 Activation Update
 
 At the time of `SB-GOV-HOUSEKEEPING-1.1`, Founder approval was not recorded. Founder Riyas PK subsequently granted explicit approval through `SB-GOV-HOUSEKEEPING-1.2` on 2026-08-01. Source 18 Version 1.0 is now ACTIVE and AUTHORITATIVE for every `SB-P-*` mission, subordinate to higher-order governance.
+
+## Legacy Archive Containment Update — 2026-08-02
+
+`SB-GOV-HOUSEKEEPING-1.3` preserved and moved all 25 original source files from `Project Source file/` to `Project Source File Archive/`, created the archive authority README, and resolved CF-06. The archive is non-governing and non-authoritative; current governance remains under `merge/active/`.
