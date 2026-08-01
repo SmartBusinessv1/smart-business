@@ -1,5 +1,17 @@
 # Smart Business Active Governance Sources
 
+## Canonical Package Identity
+
+- **Official package name:** Smart Business Canonical Project Source Set v1.0
+- **Canonical location:** `merge/active/`
+- **Package composition:** 19 authoritative project-source and binding governance documents plus this canonical index and authority map
+- **Total package files:** 20
+- **Operational version-control authority:** GitHub repository `SmartBusinessv1/smart-business`
+- **Founder authority:** Final and unchanged
+- **Mission Control role:** Administer, interpret, route, and enforce the Founder-approved source set
+
+This README is the package index and authority map; it is not a new numbered Source. Operational protocols, repository and actor instructions, mission communication, current-state records, and EOS workflows support execution but are not counted among the 20 canonical project-source files. The durable package register and Project HQ synchronization specification are maintained in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](../../docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
+
 This directory contains the current active governance and operational source set for **Smart Business**, a Team LIPS product under Lighthouse Information Publishing Service (LIPS).
 
 These files define why Smart Business exists, what it is, how it must be built, how work is governed, how releases are verified, and how approved platforms and AI systems may participate.

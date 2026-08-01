@@ -20,6 +20,8 @@ The project follows the Lighthouse philosophy:
 
 This repository follows the approved Smart Business Governance Foundation and its associated implementation sources.
 
+The official **Smart Business Canonical Project Source Set v1.0** is indexed at [`merge/active/README.md`](merge/active/README.md). Its durable 20-file register and synchronization specification are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
+
 The approved governance defines Product Truth, implementation discipline, quality expectations, continuity, and execution authority.
 
 This repository implements the approved governance. It does not redefine it.

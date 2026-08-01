@@ -38,3 +38,7 @@ At the time of `SB-GOV-HOUSEKEEPING-1.1`, Founder approval was not recorded. Fou
 ## Legacy Archive Containment Update — 2026-08-02
 
 `SB-GOV-HOUSEKEEPING-1.3` preserved and moved all 25 original source files from `Project Source file/` to `Project Source File Archive/`, created the archive authority README, and resolved CF-06. The archive is non-governing and non-authoritative; current governance remains under `merge/active/`.
+
+## Canonical Package Formalization Update — 2026-08-02
+
+`SB-GOV-HOUSEKEEPING-1.4` formally classified `merge/active/` as the Smart Business Canonical Project Source Set v1.0: 19 authoritative documents plus one canonical index and authority map. `communication/README.md` was administratively aligned to the active exact-pair filename protocol. The future GitHub Actions validator and all unrelated queue items remain separate.

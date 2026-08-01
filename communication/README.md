@@ -24,13 +24,13 @@ communication/
 As missions progress, `communication/live/` may also contain numbered follow-up files such as:
 
 ```text
-instruction-1.md
-report-1.md
-instruction-2.md
-report-2.md
+instruction1.1.md
+report1.1.md
+instruction1.2.md
+report1.2.md
 ```
 
-The numbering may continue for as many exchanges as the mission requires.
+The initial exchange uses `instruction.md` and `report.md`. Each continuation uses exactly one matching numbered pair, beginning with suffix `1.1` and incrementing monotonically (`1.2`, `1.3`, `1.4`, and so on). An instruction and its report must share the exact suffix.
 
 ---
 
@@ -86,10 +86,10 @@ Use:
 Examples:
 
 ```text
-instruction-1.md
-report-1.md
-instruction-2.md
-report-2.md
+instruction1.1.md
+report1.1.md
+instruction1.2.md
+report1.2.md
 ```
 
 Each instruction and report must clearly identify:
@@ -104,6 +104,8 @@ Each instruction and report must clearly identify:
 Do not place unrelated missions in the same instruction or report file.
 
 Numbered communication files must preserve chronological order. Their numeric suffix reflects sequence, not mission phase or priority.
+
+No active instruction or report may be silently overwritten. Base templates are restored only after explicit closure, reconciliation of provisional fields, archive creation, and archive verification.
 
 ---
 
@@ -124,10 +126,10 @@ communication/archive/<MISSION-ID>/communication.md
 ```text
 Instruction
 Report
-Instruction-1
-Report-1
-Instruction-2
-Report-2
+Instruction1.1
+Report1.1
+Instruction1.2
+Report1.2
 ...
 ```
 
@@ -154,7 +156,7 @@ Whenever Mission Control or another authorized AI writes an instruction for a sp
 ```text
 Created:
 
-communication/live/instruction-1.md
+communication/live/instruction1.1.md
 
 Commit:
 
@@ -170,7 +172,7 @@ Pull the latest main branch.
 
 Read and execute:
 
-communication/live/instruction-1.md
+communication/live/instruction1.1.md
 
 Use the repository communication workflow only.
 

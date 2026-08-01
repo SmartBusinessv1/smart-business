@@ -24,6 +24,8 @@ Its purpose is to ensure that every AI assistant produces engineering work that 
 
 This file supplements the Engineering Operating System (EOS). It does not replace or modify approved governance.
 
+Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
+
 ---
 
 # Repository Identity

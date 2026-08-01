@@ -25,9 +25,12 @@ When instructions conflict, **AGENTS.md takes precedence** unless a Claude-speci
 Before performing any engineering task, read and follow:
 
 1. `AGENTS.md`
-2. Mission instructions
-3. Relevant Engineering Operating System (EOS) documentation
-4. Repository code and documentation
+2. `merge/active/README.md` and the foundational and mission-relevant canonical sources identified by Mission Control
+3. Mission instructions and the active communication records
+4. Relevant Engineering Operating System (EOS) documentation
+5. Repository code and documentation
+
+The canonical package register and role-specific operational intake map are maintained in `docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`.
 
 Do not duplicate repository rules contained in `AGENTS.md`.
 

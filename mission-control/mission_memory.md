@@ -111,6 +111,10 @@ A Founder-authorized archive mission has now:
 
 Archive execution was completed through `SB-GOV-HOUSEKEEPING-1.3` on 2026-08-02. All 25 source files were preserved byte-for-byte. Current governance remains under `merge/active/`.
 
+### Canonical Project Source Set Formalization
+
+The current `merge/active/` package is formally classified through `SB-GOV-HOUSEKEEPING-1.4` as the **Smart Business Canonical Project Source Set v1.0**: 19 authoritative project-source and binding governance documents plus one canonical index and authority map, totaling 20 files. GitHub repository `SmartBusinessv1/smart-business` remains the version-controlled operational source of truth. The Project HQ copy is synchronization-ready but was not externally uploaded by this mission.
+
 ---
 
 # Next Recommended Mission

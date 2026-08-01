@@ -34,3 +34,10 @@ Founder or Mission Control must decide approval, activation, supersession, conta
 - **Authority:** Founder through Mission Control
 - **Disposition:** CF-06 resolved. All 25 original source files are preserved byte-for-byte under `Project Source File Archive/` as a non-governing historical and provenance archive.
 - **Authority boundary:** Current governance remains under `merge/active/`; archive reactivation requires Founder-approved governance action.
+
+## Reconciliation 4 — Canonical Package and Communication Naming
+
+- **Mission:** `SB-GOV-HOUSEKEEPING-1.4`
+- **Date:** 2026-08-02
+- **Disposition:** Formalize the exact 20-file Smart Business Canonical Project Source Set v1.0 and align current communication README examples to exact continuation pairs.
+- **Boundary:** No canonical source body, authority precedence, communication protocol, migration authority, validator, or branch protection changed.

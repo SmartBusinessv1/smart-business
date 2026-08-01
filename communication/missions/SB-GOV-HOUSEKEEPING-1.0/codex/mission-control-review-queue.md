@@ -36,4 +36,7 @@ No Critical-severity item was proven from repository evidence.
 - Source 18 evidence review and activation: COMPLETE — Founder approval recorded and Source 18 activated through `SB-GOV-HOUSEKEEPING-1.2`; Mission Control verification required.
 - ChatGPT and Claude EOS activation metadata correction: APPLIED — Mission Control verification required.
 - Legacy Project Source archive containment: COMPLETE — CF-06 resolved through `SB-GOV-HOUSEKEEPING-1.3`; Mission Control verification required.
+- Legacy Project Source archive containment verification: PASSED through `SB-GOV-HOUSEKEEPING-1.4`.
+- Canonical 20-file package formalization and communication README alignment: EXECUTED through `SB-GOV-HOUSEKEEPING-1.4`; Mission Control verification required.
+- GitHub Actions communication validator: NOT PROCESSED — separate future mission required.
 - Remaining queue items retain their original order and status.
