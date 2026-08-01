@@ -2,7 +2,7 @@
 
 | ID | File or family | Version/status | Requested decision | Authority | Prerequisites/dependencies | Recommendation | Risk if unresolved |
 |---|---|---|---|---|---|---|---|
-| AC-01 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Draft 1.0; MC review required | Approve, correct, or keep draft; decide active-index treatment | Founder and Mission Control | Resolve Source 18 authority/index conflict | Approve with Corrections | High lifecycle ambiguity |
+| AC-01 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Version 1.0; ACTIVE — AUTHORITATIVE | Founder approval and active-index treatment completed by `SB-GOV-HOUSEKEEPING-1.2` on 2026-08-01 | Founder — Riyas PK and Mission Control | Complete | RESOLVED — APPROVED AND ACTIVATED | None; Mission Control verification pending |
 | AC-02 | Ten EOS architecture/governance documents under `docs/engineering/eos/` | Draft; Founder approval pending | Decide per-document approval/publication | Founder with Mission Control review | Confirm EOS authority and remove backup files from decision set | Keep Pending pending focused review | Medium engineering-policy ambiguity |
 | AC-03 | ChatGPT and Claude GitHub artifact workflows | Draft metadata; operational Stage B active | Reconcile metadata to Stage B decision | Mission Control; Founder if approval metadata requires | Commit `9c5baf1`; active Protocol 1.0 | Approve with Corrections | High Git-governance ambiguity |
 | AC-04 | Three foundation build contracts under `docs/implementation/` | Draft for MC review | Approve, revise, or supersede | Mission Control | Validate against current Product Truth and implementation | Keep Pending | Medium implementation drift |
@@ -15,5 +15,5 @@ Recommendations are advisory and do not constitute approval.
 
 ## Reconciliation Update
 
-- AC-01: Evidence review completed in `SB-GOV-HOUSEKEEPING-1.1`; keep pending until explicit Founder disposition.
+- AC-01: At the time of `SB-GOV-HOUSEKEEPING-1.1`, Founder approval was not recorded. It was subsequently granted through `SB-GOV-HOUSEKEEPING-1.2`; candidate RESOLVED as ACTIVE and AUTHORITATIVE.
 - AC-03: Metadata correction applied using the proven Stage B activation commit; Mission Control verification remains required.

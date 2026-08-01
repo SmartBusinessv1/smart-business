@@ -38,3 +38,10 @@
 - **Authority:** Mission Control through `SB-GOV-HOUSEKEEPING-1.1`
 - **Evidence:** Required refinements were published in commit `bd9b362`; Decisions 4 and 5 do not record Founder approval.
 - **Decision:** Preserve Source 18 as a non-authoritative draft, clarify its active-directory placement, and request an explicit Founder disposition. Repository publication does not confer approval, lock, activation, or active-index authority.
+
+## Decision 7 — Founder Approval and Activation
+
+- **Date:** 2026-08-01
+- **Authority:** Founder — Riyas PK, recorded and activated by Mission Control through `SB-GOV-HOUSEKEEPING-1.2`
+- **Decision:** Source 18 Version 1.0 is ACTIVE and AUTHORITATIVE for every `SB-P-*` mission lifecycle and delivery process, subordinate to higher-order governance.
+- **History:** At the time of Decision 6, Founder approval was not recorded. It was subsequently and explicitly granted through `SB-GOV-HOUSEKEEPING-1.2`. Commit `bd9b362` remains historical publication evidence, not the approval event.

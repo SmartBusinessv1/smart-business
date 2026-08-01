@@ -13,3 +13,7 @@
 ## Required Decision
 
 The Founder must explicitly choose one Source 18 disposition: Approve, Approve with Corrections, Keep Pending, or authorize a separate relocation mission.
+
+## Subsequent Founder Decision — 2026-08-01
+
+At the time of this evidence review, Founder approval was not recorded. Founder Riyas PK subsequently and explicitly approved Source 18 through `SB-GOV-HOUSEKEEPING-1.2`. Source 18 Version 1.0 is now ACTIVE and AUTHORITATIVE for every `SB-P-*` mission, subordinate to higher-order governance. The required decision above is resolved; Mission Control verification remains required.

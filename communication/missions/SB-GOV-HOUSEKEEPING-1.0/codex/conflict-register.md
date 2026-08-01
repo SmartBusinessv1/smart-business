@@ -61,6 +61,6 @@
 
 ## Reconciliation Update
 
-- CF-01: Contained by explicit Draft/non-authoritative metadata and active-index clarification; Founder decision remains open.
+- CF-01: RESOLVED by explicit Founder approval and active-index activation through `SB-GOV-HOUSEKEEPING-1.2` on 2026-08-01. The earlier containment finding remains historically accurate.
 - CF-02: Corrected to active Stage B metadata; Mission Control verification remains required.
 - CF-03: Corrected to active Stage B metadata; Mission Control verification remains required.

@@ -37,3 +37,7 @@ EOS metadata was reconciled to the proven Stage B activation. Source 18 was safe
 ## Status
 
 EOS METADATA RECONCILED — SOURCE 18 FOUNDER DECISION REQUIRED
+
+## Subsequent Disposition — 2026-08-01
+
+Founder Riyas PK explicitly granted the decision required above through `SB-GOV-HOUSEKEEPING-1.2`. Source 18 Version 1.0 is ACTIVE and AUTHORITATIVE for every `SB-P-*` mission lifecycle and delivery process, subordinate to higher-order governance. This update preserves the original report as an accurate account of the evidence available when it was issued.

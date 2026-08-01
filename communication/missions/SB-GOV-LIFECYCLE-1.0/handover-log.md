@@ -47,3 +47,16 @@
 - Next authorized action: Founder records Source 18 disposition; Mission Control then applies the authorized final status and index treatment
 - Action not yet authorized: Source 18 approval, lock, activation, or relocation
 - Mission Control approval reference: `communication/live/instruction1.1.md`
+
+## Handover — 2026-08-01 — Founder Approval and Activation
+
+- Mission: SB-GOV-HOUSEKEEPING-1.2
+- From: Founder — Riyas PK through Mission Control
+- To: Mission Control verification
+- Stage completed: Source 18 approval and authority activation
+- Work completed: Recorded Founder approval; activated Source 18 Version 1.0 as authoritative for every `SB-P-*` mission; reconciled the active index and current records
+- Approval and activation date: 2026-08-01
+- Historical publication evidence: `bd9b362`
+- Prior Draft/refinement history: Preserved
+- Next authorized action: Mission Control verifies the activation record
+- Communication closure: Not authorized

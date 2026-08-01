@@ -39,3 +39,7 @@ Choose one disposition for Source 18:
 - Source 18 was not approved, activated, locked, versioned upward, indexed as active, or relocated.
 - No substantive EOS Git authority was changed.
 - No archived or unrelated source was modified.
+
+## Subsequent Evidence — 2026-08-01
+
+At the time of this review, Founder approval was not recorded. Founder Riyas PK subsequently and explicitly granted approval through `SB-GOV-HOUSEKEEPING-1.2`. Source 18 Version 1.0 is now ACTIVE and AUTHORITATIVE for every `SB-P-*` mission lifecycle and delivery process, subordinate to higher-order governance. The earlier evidence finding remains chronologically accurate.

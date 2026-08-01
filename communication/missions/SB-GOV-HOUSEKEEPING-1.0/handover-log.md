@@ -25,3 +25,13 @@
 - Items processed: AC-01, AC-03, CF-01, CF-02, CF-03
 - Result: EOS metadata reconciled; Source 18 Founder decision remains required
 - Evidence package: `communication/missions/SB-GOV-HOUSEKEEPING-1.1/`
+
+## Handover 3
+
+- Date: 2026-08-01
+- From: Founder — Riyas PK through Mission Control
+- To: Mission Control verification
+- Mission: `SB-GOV-HOUSEKEEPING-1.2`
+- Result: Source 18 Version 1.0 Founder approval confirmed; ACTIVE and AUTHORITATIVE for every `SB-P-*` mission
+- Earlier evidence finding: Preserved as accurate at the time recorded
+- Communication closure: Not authorized

@@ -61,12 +61,11 @@ A consolidated Smart Business Constitution will be created after Phase 1 through
 10. **Source 17 — AI Operations Manual**  
     Governs AI capabilities, tools, connectors, repository actions, communication, execution, continuity, handover, recovery, and human approval.
 
-11. **P00 — Operational Profiles**  
+11. **Source 18 — SB-P Mission Lifecycle and Delivery Framework**
+    Governs the lifecycle and delivery framework for every Smart Business Product Mission (`SB-P-*`), subject to the higher-authority governance order.
+
+12. **P00 — Operational Profiles**
     Defines platform-specific responsibilities and boundaries for Lovable, Supabase, WhatsApp, OpenAI, Voice AI, Cloudflare R2, and related execution systems.
-
-## Draft Candidate Held in This Directory
-
-Source 18, [`18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`](./18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md), is repository-published but remains `DRAFT — MISSION CONTROL REVIEW REQUIRED`. Explicit Founder approval is not recorded. Its location under `merge/active/` does not activate it, and it is excluded from the active authority order and active source index until the Founder decides whether to approve, correct, keep pending, or relocate it through a separately authorized mission.
 
 ## Source index
 
@@ -88,6 +87,7 @@ Source 18, [`18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`](./18_SB-P_Mis
 | 15 | [`15_Governance_Mission_Control_Activation_Template.md`](./15_Governance_Mission_Control_Activation_Template.md) | Standard mission structure, source synchronization, room authority, deliverables, evidence, risks, handover, and completion controls. |
 | 16A | [`16A_Smart_Business_Constitution_Design_Principles.md`](./16A_Smart_Business_Constitution_Design_Principles.md) | Constitutional writing principles, enduring-truth tests, continuity, controlled evolution, and future-builder responsibility. |
 | 17 | [`17_AI_Operations_Manual.md`](./17_AI_Operations_Manual.md) | AI governance, capability classes, permissions, approvals, repository operations, environment safety, auditability, continuity, and recovery. |
+| 18 | [`18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`](./18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md) | Founder-approved lifecycle and delivery governance for every Smart Business Product Mission (`SB-P-*`). |
 | P00 | [`P00_Operational_Profiles.md`](./P00_Operational_Profiles.md) | Platform-specific operational responsibilities, boundaries, completion checks, and shared execution principles. |
 
 ## Locked Smart Business decisions

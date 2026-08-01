@@ -16,3 +16,7 @@ Please explicitly choose one Source 18 disposition:
 4. Authorize a separate relocation mission.
 
 Mission Control should record the decision before any activation or index change.
+
+## Decision Recorded — 2026-08-01
+
+Founder Riyas PK selected approval and activation through `SB-GOV-HOUSEKEEPING-1.2`. Source 18 Version 1.0 is now ACTIVE and AUTHORITATIVE for every `SB-P-*` mission lifecycle and delivery process, subordinate to higher-order governance. The request above is retained as historical evidence of the decision presented before approval.

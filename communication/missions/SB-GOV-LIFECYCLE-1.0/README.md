@@ -24,3 +24,7 @@
 - Activation, approval, or lock of Source 18
 - Changes to workflow templates or application code
 - Changes to the legacy Project Source directory
+
+## Founder Approval and Activation — 2026-08-01
+
+Founder Riyas PK explicitly approved Source 18 through `SB-GOV-HOUSEKEEPING-1.2`. Source 18 Version 1.0 is now ACTIVE and AUTHORITATIVE for every `SB-P-*` mission lifecycle and delivery process, subordinate to higher-order governance. Commit `bd9b362` remains historical publication evidence; it is not the approval event. Prior Draft and refinement history remains valid as chronological evidence.

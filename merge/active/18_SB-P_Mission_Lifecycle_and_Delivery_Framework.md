@@ -1,14 +1,18 @@
 # Smart Business SB-P Mission Lifecycle and Delivery Framework
 
 - **Source:** 18
-- **Version:** Draft 1.0
-- **Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
-- **Authority:** PROPOSED — FOUNDER DECISION REQUIRED BEFORE ACTIVATION
-- **Repository publication:** COMPLETE — commit `bd9b362`; publication does not confer active authority
+- **Version:** 1.0
+- **Status:** ACTIVE
+- **Authority:** FOUNDER APPROVED — AUTHORITATIVE
+- **Approved By:** Founder — Riyas PK
+- **Approval Date:** 2026-08-01
+- **Activated By:** Mission Control
+- **Activation Date:** 2026-08-01
+- **Repository publication:** COMPLETE — commit `bd9b362`; historical publication evidence
 - **Scope:** Every Smart Business Product Mission (`SB-P-*`)
 - **Created under:** `SB-GOV-LIFECYCLE-1.0`
 
-> **Authority notice:** This draft is stored under `merge/active/` at the path selected by Mission Control, but explicit Founder approval is not recorded. It must not be treated as active governance unless the Founder approves activation and Mission Control records the resulting disposition.
+> **Authority notice:** Source 18 is active and authoritative for all `SB-P-*` mission lifecycle and delivery work. It remains subordinate to the Lighthouse Constitution, Smart Business constitutional authority, and the approved governance order.
 
 ---
 
@@ -565,9 +569,10 @@ The status table in Section 13 is canonical for `SB-P-*` lifecycle records. An a
 | Version | Date | Change | Authority | Status |
 |---|---|---|---|---|
 | Draft 1.0 | 2026-07-31 | Initial SB-P Mission Lifecycle and Delivery Framework draft | Founder through Mission Control | DRAFT |
+| 1.0 | 2026-08-01 | Founder approval and Mission Control activation recorded through `SB-GOV-HOUSEKEEPING-1.2` | Founder — Riyas PK | ACTIVE — AUTHORITATIVE |
 
 Future refinements must append rather than replace earlier history.
 
 ---
 
-**Draft control:** This source is not approved, locked, or active. Repository publication is complete at commit `bd9b362`, but explicit Founder approval remains required before activation. Governing language in this draft is proposed and has no active authority until that decision is recorded.
+**Active control:** Source 18 Version 1.0 is Founder approved, active, and authoritative for every `SB-P-*` mission. It remains subordinate to higher-authority constitutional and governance sources.

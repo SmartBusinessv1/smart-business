@@ -6,20 +6,18 @@ No Critical-severity item was proven from repository evidence.
 
 ## 2. High-Risk Operational Issues
 
-1. Decide Source 18 approval and active-index treatment; issue a metadata/index correction mission.
-2. Reconcile ChatGPT and Claude workflow metadata with the approved Stage B activation.
-3. Authorize the deferred legacy Project Source archive rename/README mission.
-4. Define the current migration package and prohibit execution of the remaining draft families by default.
-5. Maintain the branch-protection compensating control; open a technical branch-protection mission when feasible.
+1. Reconcile ChatGPT and Claude workflow metadata with the approved Stage B activation.
+2. Authorize the deferred legacy Project Source archive rename/README mission.
+3. Define the current migration package and prohibit execution of the remaining draft families by default.
+4. Maintain the branch-protection compensating control; open a technical branch-protection mission when feasible.
 
 ## 3. Medium-Risk Governance Cleanup
 
-1. Reconcile SB-GOV-LIFECYCLE-1.0 publication and ownership metadata after the Source 18 decision.
-2. Complete SB-P-1.8 re-review and Mission Control acceptance.
-3. Review SB-P-1.9 phase-3C deployment evidence.
-4. Review the three implementation foundation contracts.
-5. Archive or contain SB-GOV-COMMS-1.0 and 1.1 as superseded proposals.
-6. Separate EOS backup files from current-document discovery.
+1. Complete SB-P-1.8 re-review and Mission Control acceptance.
+2. Review SB-P-1.9 phase-3C deployment evidence.
+3. Review the three implementation foundation contracts.
+4. Archive or contain SB-GOV-COMMS-1.0 and 1.1 as superseded proposals.
+5. Separate EOS backup files from current-document discovery.
 
 ## 4. Low-Risk Archival and Metadata Corrections
 
@@ -36,6 +34,6 @@ No Critical-severity item was proven from repository evidence.
 
 ## Processing Update
 
-- Source 18 evidence review: COMPLETE — Founder decision required.
+- Source 18 evidence review and activation: COMPLETE — Founder approval recorded and Source 18 activated through `SB-GOV-HOUSEKEEPING-1.2`; Mission Control verification required.
 - ChatGPT and Claude EOS activation metadata correction: APPLIED — Mission Control verification required.
 - Remaining queue items retain their original order and status.

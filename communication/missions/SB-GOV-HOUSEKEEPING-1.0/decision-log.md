@@ -18,3 +18,11 @@ Founder or Mission Control must decide approval, activation, supersession, conta
 - **Mission:** `SB-GOV-HOUSEKEEPING-1.1`
 - **Disposition:** EOS workflow metadata reconciled to proven Stage B activation; Source 18 publication proven but Founder approval not proven.
 - **Authority boundary:** Source 18 remains Draft and non-authoritative pending Founder decision.
+
+## Reconciliation 2
+
+- **Mission:** `SB-GOV-HOUSEKEEPING-1.2`
+- **Date:** 2026-08-01
+- **Authority:** Founder — Riyas PK through Mission Control
+- **Disposition:** Founder approval confirmed; Source 18 Version 1.0 activated as authoritative for every `SB-P-*` mission lifecycle and delivery process.
+- **Chronology:** Reconciliation 1 accurately described the evidence then available. The explicit approval was subsequently recorded in Instruction 1.2.

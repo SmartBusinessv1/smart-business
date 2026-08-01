@@ -10,3 +10,11 @@
 - EOS result: Metadata reconciled; Mission Control verification required
 - Commit: PENDING AUTHORIZED PUBLICATION
 - Next action: Founder records Source 18 disposition; Mission Control verifies this reconciliation
+
+## Subsequent Handover Update — 2026-08-01
+
+- Authority: Founder — Riyas PK through Mission Control instruction `SB-GOV-HOUSEKEEPING-1.2`
+- Source 18 result: Version 1.0 ACTIVE and AUTHORITATIVE for every `SB-P-*` mission
+- Earlier finding: Preserved as accurate when recorded
+- Next action: Mission Control verifies the approval and activation record
+- Communication closure: Not authorized
