@@ -26,3 +26,10 @@
 - Project HQ synchronization is complete and accepted.
 - Migration-package authority and draft-family containment remains queued.
 - Communication closure remains unauthorized.
+
+## Decision 5 — Mission Control Acceptance Recorded
+
+- **Date:** 2026-08-02
+- **Authority:** Mission Control through `SB-GOV-HOUSEKEEPING-1.6`
+- **Decision:** Accept the Project HQ canonical-source synchronization as PASSED: 20 of 20 files and byte-for-byte identity verified; GitHub remains the operational source of truth.
+- **Communication closure:** NOT AUTHORIZED

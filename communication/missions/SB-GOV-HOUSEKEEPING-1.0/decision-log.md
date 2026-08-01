@@ -41,3 +41,10 @@ Founder or Mission Control must decide approval, activation, supersession, conta
 - **Date:** 2026-08-02
 - **Disposition:** Formalize the exact 20-file Smart Business Canonical Project Source Set v1.0 and align current communication README examples to exact continuation pairs.
 - **Boundary:** No canonical source body, authority precedence, communication protocol, migration authority, validator, or branch protection changed.
+
+## Reconciliation 5 — Migration Authority Containment
+
+- **Mission:** `SB-GOV-HOUSEKEEPING-1.6`
+- **Date:** 2026-08-02
+- **Disposition:** Current active migration mission NONE; current executable package NONE; production cutover remains complete and accepted; all earlier families and SQL history are non-executable evidence or proposals.
+- **Future authority:** A new explicit mission must identify exact files, environment, actor, safeguards, window, verification, rollback, and reporting workflow.

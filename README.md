@@ -49,6 +49,8 @@ This repository is responsible for:
 
 Product direction, governance, and constitutional decisions remain outside normal repository changes and follow the approved governance process.
 
+Migration authority is indexed at [`docs/migration/README.md`](docs/migration/README.md). Migration documentation and `supabase/migrations/**` SQL history are non-executable by default and require a new explicit mission before any environment action.
+
 ## **High-Level Structure**
 
 /  

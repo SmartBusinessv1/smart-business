@@ -82,6 +82,10 @@
 - SB-MIG-1.2F-A — Production OAuth Domain Alignment: COMPLETE
 - Founder production runtime verification: PASSED
 - Production deployment: ACCEPTED
+- Current active migration mission: NONE
+- Current executable migration package: NONE
+- Migration authority index: `docs/migration/README.md`
+- Future migration execution requires a new explicit Founder- or Mission Control-authorized mission with exact package, environment, actor, safeguards, execution window, and evidence controls
 
 ---
 
@@ -114,6 +118,14 @@ Archive execution was completed through `SB-GOV-HOUSEKEEPING-1.3` on 2026-08-02.
 ### Canonical Project Source Set Formalization
 
 The current `merge/active/` package is formally classified through `SB-GOV-HOUSEKEEPING-1.4` as the **Smart Business Canonical Project Source Set v1.0**: 19 authoritative project-source and binding governance documents plus one canonical index and authority map, totaling 20 files. GitHub repository `SmartBusinessv1/smart-business` remains the version-controlled operational source of truth. The Project HQ copy is synchronization-ready but was not externally uploaded by this mission.
+
+### Project HQ Synchronization Acceptance
+
+Mission Control accepted `SB-GOV-HOUSEKEEPING-1.5` on 2026-08-02: the Project HQ canonical package contains 20 of 20 files with byte-for-byte identity, while GitHub remains the operational source of truth.
+
+### Migration Authority Containment
+
+`SB-GOV-HOUSEKEEPING-1.6` established a default-deny migration authority model on 2026-08-02. Production remains live, completed migration evidence remains preserved, no migration mission or executable package is active, `SB-MIG-1.3` materials remain non-executable proposals, and any future migration execution requires a new explicit mission.
 
 ---
 

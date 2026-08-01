@@ -32,6 +32,8 @@ Before performing any engineering task, read and follow:
 
 The canonical package register and role-specific operational intake map are maintained in `docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`.
 
+Before any migration-related task, read `docs/migration/README.md`. No migration document or `supabase/migrations/**` SQL file is self-authorizing; execution requires a new explicit mission, and ambiguity requires a stop report.
+
 Do not duplicate repository rules contained in `AGENTS.md`.
 
 ---

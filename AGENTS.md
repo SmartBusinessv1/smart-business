@@ -26,6 +26,8 @@ This file supplements the Engineering Operating System (EOS). It does not replac
 
 Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
 
+For any migration-related work, read [`docs/migration/README.md`](docs/migration/README.md) first. Migration artifacts and SQL under `supabase/migrations/**` are non-executable by default; execution requires a new explicit mission naming the exact package, environment, actor, scope, safeguards, and reporting workflow. Ambiguity requires a stop report.
+
 ---
 
 # Repository Identity

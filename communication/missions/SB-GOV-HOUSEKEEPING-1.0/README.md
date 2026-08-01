@@ -42,3 +42,7 @@ At the time of `SB-GOV-HOUSEKEEPING-1.1`, Founder approval was not recorded. Fou
 ## Canonical Package Formalization Update — 2026-08-02
 
 `SB-GOV-HOUSEKEEPING-1.4` formally classified `merge/active/` as the Smart Business Canonical Project Source Set v1.0: 19 authoritative documents plus one canonical index and authority map. `communication/README.md` was administratively aligned to the active exact-pair filename protocol. The future GitHub Actions validator and all unrelated queue items remain separate.
+
+## Migration Authority Update — 2026-08-02
+
+`SB-GOV-HOUSEKEEPING-1.6` verified that production remains live and no migration mission or package is currently executable. `docs/migration/README.md` now applies default-deny authority across every preserved migration family and SQL history. Future execution requires a new explicit mission.
