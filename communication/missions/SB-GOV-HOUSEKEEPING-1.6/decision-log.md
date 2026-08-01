@@ -18,3 +18,7 @@ All `SB-MIG-1.3` recommendations, readiness materials, and the draft authorizati
 ## Decision 4 — SQL History
 
 The 12 files under `supabase/migrations/**` are preserved implementation/schema history and possible future mission inputs. They are not an executable package and were not modified.
+
+## Decision 5 — Mission 1.7 Evidence Correction
+
+Mission Control found the migration authority model substantively correct but deferred final acceptance pending a complete 68-document register and mission-memory reconciliation. `SB-GOV-HOUSEKEEPING-1.7` completed those corrections without changing the authority model. Final Mission Control verification remains required; communication closure remains unauthorized.
