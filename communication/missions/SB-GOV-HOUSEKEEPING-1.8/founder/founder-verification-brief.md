@@ -22,3 +22,7 @@ gh auth status
 Expected evidence: `gh auth status` identifies an authenticated GitHub account with repository administration access. Do not paste tokens or credentials into chat or repository files.
 
 After capability is restored, Mission Control must renew execution authority because the current mission stopped at a defined gate. Configuration and safe enforcement testing must then be completed before an independent Founder, Mission Control, or authorized reviewer verifies the rule. Codex cannot self-certify that gate.
+
+## Resolution — 2026-08-02
+
+GitHub CLI authentication was restored. Codex configured the authorized `main` protection, and the Founder independently verified the visible settings. The compensating control is retired. PR #5 remains open for Founder or authorized-human review and merge; Codex may not merge it.
