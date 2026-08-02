@@ -2,7 +2,7 @@
 
 # Engineering Change Management v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Governance Standard
 
@@ -16,7 +16,7 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -27,6 +27,8 @@ This document establishes the Engineering Change Management framework for the Te
 Its purpose is to ensure that every engineering change is planned, reviewed, validated, approved, implemented, and recorded in a consistent, traceable, and governed manner.
 
 The framework applies to engineering documentation, engineering tooling, automation, repository configuration, and engineering operating standards.
+
+For `SB-P-*` product missions, Source 18 remains authoritative. This framework may add engineering controls but may not reorder Source 18 stages, change stage ownership, or create a competing approval or acceptance path.
 
 ---
 
@@ -181,7 +183,9 @@ Mission Control review is required for:
 
 # Stage 5 — Founder Approval
 
-Founder approval is required when a change:
+Founder approval is required when a change affects Founder-owned Product Truth, constitutional or Lighthouse principles, final product decisions, material strategic risk, or another matter reserved to the Founder by active governance. Mission Control may authorize bounded engineering and governance maintenance within already-approved authority.
+
+Founder approval is specifically required when a change:
 
 - Alters governance.
 - Changes engineering philosophy.
@@ -310,15 +314,16 @@ Automation assists the process but does not approve changes.
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Change Management framework |
+| v1.1 | AC-02 correction: Source 18 precedence and Founder/Mission Control authority boundaries |
 
 ---
 
 # Approval
 
-This document establishes the Engineering Change Management framework for the Team LIPS Engineering Operating System.
+This document is the corrected candidate for Engineering Change Management. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending

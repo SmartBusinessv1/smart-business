@@ -2,9 +2,9 @@
 
 # Engineering Platform Capability Matrix
 
-## Version: v1.0
+## Version: v1.1 Replacement Candidate
 
-**Status:** Draft
+**Status:** Replacement Candidate — Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -22,11 +22,11 @@
 
 # Purpose
 
-This document defines the capabilities of every approved engineering platform within the Team LIPS Engineering Operating System (EOS).
+This replacement candidate records evidence-based capabilities and authority boundaries for engineering platforms used by Team LIPS. It is non-governing until Founder approval.
 
 While the **Engineering Platform Inventory** identifies *what each platform is*, the **Engineering Platform Capability Matrix** defines *what each platform is authorized and capable of doing* within the engineering ecosystem.
 
-This document serves as the authoritative reference for:
+After explicit approval, this document may serve as the reference for:
 
 - Engineering workflow planning
 - Platform integration
@@ -181,7 +181,7 @@ The Engineering Operating System evaluates every platform using the following ca
 
 ### Current Integration Status
 
-- GitHub: Verified
+- GitHub connector and protected pull-request workflow: Verified
 - Google Drive: Pending
 - Lovable: Pending
 - Supabase: Pending
@@ -200,7 +200,7 @@ The Engineering Operating System evaluates every platform using the following ca
 ### Current Integration Status
 
 - Google Drive: Pending
-- GitHub workflow: Pending
+- GitHub workflow: Active only where recorded by the current Claude GitHub workflow and mission authorization
 
 ---
 
@@ -214,7 +214,7 @@ The Engineering Operating System evaluates every platform using the following ca
 
 ### Current Integration Status
 
-Pending Engineering Platform Calibration.
+Product implementation capability is evidenced by mission records, but every Lovable action remains separately mission-authorized and subject to Source 18 verification and acceptance.
 
 ---
 
@@ -230,7 +230,7 @@ Pending Engineering Platform Calibration.
 
 ### Current Integration Status
 
-Pending Engineering Platform Calibration.
+Backend capability is evidenced by repository and deployment records, but every Supabase action remains separately mission-authorized and subject to specialist security review where required.
 
 ---
 
@@ -320,6 +320,7 @@ New capability domains may be introduced through Engineering Operating System re
 | Version | Date | Description |
 |----------|------|-------------|
 | v1.0 | July 2026 | Initial Engineering Platform Capability Matrix established for SB-INF-1.8. |
+| v1.1 | 2026-08-03 | Replacement candidate aligned to verified integrations and Source 18 authority. |
 
 ---
 
@@ -327,8 +328,8 @@ New capability domains may be introduced through Engineering Operating System re
 
 | Role | Status |
 |------|--------|
-| Engineering | Approved |
-| Mission Control | Pending |
+| Engineering | Replacement Prepared |
+| Mission Control | Correction Review Complete — 2026-08-03 |
 | Founder | Pending |
 
 ---

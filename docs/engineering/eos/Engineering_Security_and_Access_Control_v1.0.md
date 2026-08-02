@@ -2,7 +2,7 @@
 
 # Engineering Security and Access Control v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Governance Standard
 
@@ -16,7 +16,7 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -203,7 +203,9 @@ AI assistants shall not:
 - Publish engineering artifacts.
 - Access protected credentials.
 
-Human authorization is required for every repository modification.
+Repository modification requires current mission-scoped Founder or Mission Control authorization. A separately approved action is not required for every file operation when an AI or human contributor is already working within an explicit mission, branch, path scope, and commit boundary. Humans retain approval authority; AI tools may execute authorized Git work but may not approve their own output or self-merge.
+
+Because the repository is currently public on the GitHub Free plan, secrets, credentials, private customer data, personal data, and sensitive operational material must never be committed. Repository privacy may be reconsidered after the Smart Business build when a paid plan is evaluated; privacy does not replace secret-management controls.
 
 ---
 
@@ -305,15 +307,16 @@ Automation supports engineering operations but does not replace human responsibi
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Security and Access Control framework |
+| v1.1 | AC-02 correction: mission-scoped AI authority and public-repository security boundary |
 
 ---
 
 # Approval
 
-This document establishes the Engineering Security and Access Control framework for the Team LIPS Engineering Operating System.
+This document is the corrected candidate for Engineering Security and Access Control. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending

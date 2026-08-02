@@ -2,7 +2,7 @@
 
 # Engineering Repository Governance v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Governance Standard
 
@@ -16,7 +16,7 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -85,7 +85,7 @@ The GitHub Engineering Repository is the canonical source for:
 - Engineering tools
 - Engineering automation
 
-Google Drive serves as the controlled archive for approved engineering documentation.
+The Git repository preserves canonical history. Any Google Drive copy is optional external continuity material, must be separately authorized and verified, and never overrides repository authority. `docs/engineering/eos/archive/` contains explicitly non-current historical evidence.
 
 Mission Control remains the authority for governance approval.
 
@@ -216,6 +216,10 @@ Historical versions shall remain traceable.
 ---
 
 # Branch Strategy
+
+The verified current control is protected `main`: changes enter through pull requests, the required Markdown Quality Gate must be current, conversations must be resolved, force pushes and branch deletion are blocked, and administrator enforcement is active. No AI or human contributor may self-merge when independent review is required.
+
+AI Git work requires mission-scoped Founder or Mission Control authorization, exact-file staging, branch verification, no force push, and a recorded report or handover. Protected-main enforcement does not itself create mission authority.
 
 Repository branches shall follow a consistent naming strategy.
 
@@ -400,15 +404,16 @@ Future additions shall preserve:
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Repository Governance |
+| v1.1 | AC-02 correction: canonical archive, protected main, pull requests, and controlled AI Git work |
 
 ---
 
 # Approval
 
-This document establishes the governance framework for the Team LIPS Engineering Repository.
+This document is the corrected candidate for Team LIPS Engineering Repository Governance. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending
