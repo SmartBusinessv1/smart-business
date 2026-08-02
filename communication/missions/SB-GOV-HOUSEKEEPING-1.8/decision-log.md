@@ -11,3 +11,7 @@ The connected GitHub app confirmed repository identity, default branch, permissi
 ## Decision 3 — No Unsafe Enforcement Test
 
 No direct-push, force-push, deletion, unresolved-conversation, or required-check test was attempted because the target rule could not first be safely inspected and configured.
+
+## Decision 4 — Configure and Retire
+
+After renewed authority, Codex configured classic protection for `main` with the proven `Markdown Quality Gate`. Required approvals remain zero to avoid a single-maintainer deadlock. The Founder independently verified the settings, satisfying the retirement gate. No AI merge authority is created.
