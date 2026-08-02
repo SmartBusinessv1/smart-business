@@ -182,6 +182,12 @@ On 2026-08-03, Founder Riyas PK deferred AC-02 approval. Team LIPS expects to in
 
 Once both conditions are satisfied, Mission Control shall remind the Founder that AC-02 is ready for a renewed approval review. Completion of either condition alone, tool installation without operational evidence, or a successful workflow run without documented scope and safety boundaries does not satisfy the approval gate.
 
+### Housekeeping Communication Closure
+
+The `SB-GOV-HOUSEKEEPING-1.0` through `1.8` instruction/report cycle was closed and archived on 2026-08-03 after branch protection, queue disposition, and the explicit AC-02 deferral were recorded. The 18 original files are preserved under `communication/archive/SB-GOV-HOUSEKEEPING-1.0/exchange/`, with chronological navigation in `communication.md`.
+
+`communication/live/` now contains only reusable blank `instruction.md` and `report.md` templates. Archived housekeeping instructions are historical, non-executable evidence and must not be treated as current mission authority.
+
 ---
 
 # Next Recommended Mission
