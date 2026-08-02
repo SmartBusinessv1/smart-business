@@ -21,3 +21,7 @@
 No classic branch protection or repository ruleset was created or modified. Pull-request enforcement, conversation resolution, force-push blocking, deletion blocking, review requirements, status checks, administrator behavior, and bypass actors could not be safely inspected or configured.
 
 The instruction's capability stop condition applies. The compensating control remains active.
+
+## Configuration Resolution — 2026-08-02
+
+The blocker was cleared after GitHub CLI authentication became available. Classic protection was configured for `main` with pull requests, strict `Markdown Quality Gate`, conversation resolution, administrator enforcement, stale-review dismissal, and zero required approvals. Force pushes and branch deletion are blocked; no bypass actor is configured. Zero approvals avoids a single-maintainer deadlock and does not authorize AI self-approval or self-merge.

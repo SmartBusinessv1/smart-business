@@ -1,95 +1,79 @@
-# SB-GOV-HOUSEKEEPING-1.8 — Blocker Report
+# SB-GOV-HOUSEKEEPING-1.8 — Completion Report
 
 ## Mission Status
 
-**BRANCH PROTECTION RETIREMENT GATE NOT SATISFIED — COMPENSATING CONTROL REMAINS ACTIVE**
+**TECHNICAL BRANCH PROTECTION CONFIGURED AND INDEPENDENTLY VERIFIED — COMPENSATING CONTROL RETIRED**
 
 ## Repository Evidence
 
 - Instruction baseline: `f9fbaba4cf85d81f4396b27b4182bd75efd5007e`
-- Starting/final repository head after authorized intake pull: `22edf3837d8734b529795e405a9cb3d5af43558d`
+- Main head at configuration: `22edf3837d8734b529795e405a9cb3d5af43558d`
+- Mission branch head before final evidence: `9c5c404b9d5f12ea6692fd0ee1949314b1a1cf8f`
 - Repository: `SmartBusinessv1/smart-business`
-- Default and target branch: `main`
+- Default and protected branch: `main`
 - Mission branch: `mission/SB-GOV-HOUSEKEEPING-1.8-branch-protection`
-- Repository visibility: PUBLIC
-- Connected GitHub app permissions: admin, maintain, pull, push, triage
-- Open pull requests discovered: NONE
+- Pull request: `#5`
 
-## Protection and Ruleset State
+## Protection Configuration
 
-- Pre-change documented state: classic branch protection NOT CONFIGURED; compensating control ACTIVE
-- Live classic-protection inspection: BLOCKED — no available API/UI capability
-- Live ruleset inspection: BLOCKED — no available API/UI capability
-- Rule or ruleset configured: NONE
-- GitHub settings changed: NONE
+- Protection type: classic branch protection targeting `main`
+- Pull requests required: YES
+- Required status check: `Markdown Quality Gate`
+- Require branch to be current before merge: YES
+- Required conversation resolution: YES
+- Enforce for administrators: YES
+- Force pushes: BLOCKED
+- Branch deletion: BLOCKED
+- Dismiss stale reviews: YES
+- Required approving reviews: `0`
+- Bypass actors: NONE CONFIGURED
 
-Pull-request enforcement, conversation resolution, force-push blocking, deletion blocking, review requirements, reliable required checks, administrator behavior, and bypass actors remain **NOT LIVE-VERIFIED** in this mission.
+The approval count is zero because the repository has no independent eligible reviewer and requiring one would create a single-maintainer deadlock. Founder or authorized-human merge authority and the prohibition on AI self-approval or self-merge remain unchanged.
 
-Reliable status checks discovered: NONE PROVEN. No check was required or invented.
+## Status-Check Decision
 
-## Capability Blocker
+`Markdown Quality Gate` was proven reliable by successful pull-request runs on PR #5, including head `9c5c404b9d5f12ea6692fd0ee1949314b1a1cf8f`. No future or unproven check was required.
 
-- GitHub CLI: unavailable (`gh` is not installed)
-- Connected GitHub app: repository and pull-request access available, but branch-protection/ruleset operations unavailable
-- Authenticated browser settings surface: unavailable
+## Verification Evidence
 
-The mission's explicit stop condition therefore applies.
+- Live protection API read after configuration: PASS
+- Required-check enforcement on PR #5: PASS
+- PR #5 check result: `Markdown Quality Gate` SUCCESS
+- PR #5 state: OPEN, MERGEABLE, NOT MERGED
+- Force-push prohibition: VERIFIED BY SETTINGS/API
+- Branch-deletion prohibition: VERIFIED BY SETTINGS/API
+- Conversation-resolution requirement: VERIFIED BY SETTINGS/API
+- Administrator enforcement: VERIFIED BY SETTINGS/API
+- Independent verifier: Founder
+- Independent verification statement received: `I independently verified the main branch protection settings.`
 
-## Post-Blocker Capability Update
+No destructive force-push or deletion attempt was made against `main`. Settings/API evidence was used for those controls as authorized by the mission.
 
-- Founder reported GitHub CLI installation and authentication completed after the blocker report.
-- Codex verified GitHub CLI installation: `gh version 2.97.0 (2026-07-31)`.
-- Codex authentication verification in the current execution environment: **NOT CONFIRMED**.
-- Verification output: `You are not logged into any GitHub hosts.`
+## Repository Scope
 
-This update confirms that the installation blocker is resolved. Authentication may exist in the Founder's interactive terminal but is not available to the current Codex execution environment. No GitHub setting was inspected or changed after this update, and renewed Mission Control authority remains required before configuration resumes.
-
-## Tests and Independent Verification
-
-- Enforcement tests performed: NONE
-- Temporary test branch/PR: NONE
-- Direct-push, unresolved-conversation, force-push, and deletion tests: NOT PERFORMED
-- Independent verifier identity/role: NOT YET ASSIGNED
-- Independent verification evidence: NOT AVAILABLE
-
-## Repository Files
-
-Created:
-
-- `communication/live/report1.8.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/README.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/decision-log.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/handover-log.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/codex/branch-protection-configuration-report.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/codex/enforcement-test-evidence.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.8/founder/founder-verification-brief.md`
-
-Modified:
-
-- `communication/governance/branch-protection-verification.md`
-- `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/mission-control-review-queue.md`
-
-Canonical-source changes: **NONE**.
-
-Product, application, database, Supabase, deployment, workflow, test, migration, SQL, or environment changes: **NONE**.
+- Exact files created or modified: limited to the Mission 1.8 authorized scope
+- GitHub settings changed: classic protection for `main` only
+- Canonical-source changes: **NONE**
+- Product/application/database/Supabase/deployment changes: **NONE**
+- SQL, migration, test, workflow, environment, or deployment operations: **NONE**
 
 ## Validation and Publication
 
-- Markdown quality gate: **PASS — 9 files, 0 warnings, 0 failures**
-- Internal links: **PASS — no new Markdown links introduced**
-- `git diff --check`: **PASS**
-- Secret/credential inspection: **PASS — no assigned credential or secret values detected**
-- Exact staged scope: **AUTHORIZED FOR EXACT-PATH STAGING**
-- Commit: **AUTHORIZED FOR COMPLETION** — `Configure and verify main branch protection`
-- Push: **AUTHORIZED FOR COMPLETION** — mission branch only
-- Pull request: **AUTHORIZED FOR CREATION** — target `main`, no self-merge
+- Markdown quality gate: PASS before final publication
+- Internal-link validation: PASS before final publication
+- `git diff --check`: PASS before final publication
+- Secret/credential inspection: PASS before final publication
+- Exact staged scope: PASS before final publication
+- Approved commit message: `Configure and verify main branch protection`
+- Push target: mission branch only
+- Pull request: #5 targeting `main`
 - Merge: NOT AUTHORIZED / NOT PERFORMED
-- Final remote file and commit verification: PENDING
+- Final remote file and commit verification: REQUIRED AFTER PUSH
 
-## Required Next Action
-
-Make authenticated GitHub settings/API capability available to the Codex execution environment, obtain renewed Mission Control authority, configure the minimum `main` rule, perform safe enforcement tests, and have a Founder, Mission Control, or authorized reviewer independently verify the result.
-
-Compensating-control status: **ACTIVE**.
+Compensating-control status: **RETIRED**.
 
 Communication closure status: **NOT AUTHORIZED**.
+
+## Next Action
+
+Mission Control or the Founder may review PR #5 and merge it through the protected pull-request path after all required checks pass. Codex shall not approve or merge its own work.
