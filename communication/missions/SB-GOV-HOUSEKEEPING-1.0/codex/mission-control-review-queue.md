@@ -41,3 +41,7 @@ No Critical-severity item was proven from repository evidence.
 - Migration-package authority and draft-family containment: CORRECTIONS COMPLETED through `SB-GOV-HOUSEKEEPING-1.7` — 68-document evidence register and mission-memory reconciliation submitted; current executable package NONE; final Mission Control verification required.
 - Branch-protection configuration: BLOCKED in `SB-GOV-HOUSEKEEPING-1.8` — GitHub settings/ruleset capability unavailable; no setting changed; compensating control remains active.
 - Remaining queue items retain their original order and status.
+
+## Mission 1.8 Resolution — 2026-08-02
+
+Branch protection for `main` is configured and independently verified. The temporary compensating control is retired. PR #5 remains open for Founder or authorized-human review and protected-path merge.
