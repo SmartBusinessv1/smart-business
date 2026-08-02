@@ -146,11 +146,17 @@ Mission Control accepted the `SB-P-1.9` Phase 3C deployment-verification record 
 
 The canonical decision record is `docs/implementation/SB-P-1.9/phase-3c-mission-control-acceptance.md`. The `/reset-password` hydration warning and future WhatsApp delivery dependency remain non-blocking, separately governed follow-ups.
 
+### AC-04 Foundation Build Contract Disposition
+
+Mission Control resolved AC-04 on 2026-08-02. The Application Access (SB-P1.5), Business Identity (SB-P1.6), and Business Workspace (SB-P1.7) Build Contracts are approved as closed, non-executable historical authorization records. Their implementations were previously completed and accepted; later governed missions supersede their historical stop conditions without retroactively expanding their authority.
+
+The canonical decision record is `docs/implementation/AC-04_Foundation_Build_Contracts_Mission_Control_Disposition.md`. New work may not execute these contracts and requires a new explicit mission under the current lifecycle framework.
+
 ---
 
 # Next Recommended Mission
 
-- Review and disposition the three implementation-foundation contracts identified in approval candidate AC-04.
+- Archive or contain `SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` as superseded communication-governance proposals.
 
 ---
 

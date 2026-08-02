@@ -4,7 +4,7 @@
 
 **Artifact Type:** Human Governance Artifact
 **Version:** 1.0
-**Status:** Draft for Mission Control Review
+**Status:** APPROVED AS HISTORICAL AUTHORIZATION — CLOSED — NON-EXECUTABLE
 **Execution:** Not Executable
 **Mission:** SB-P1.7B
 
@@ -299,7 +299,7 @@ Only after approval of those artifacts may Mission Control authorize the first g
 **Status**
 
 ```text
-Draft for Mission Control Review
+APPROVED AS HISTORICAL AUTHORIZATION — CLOSED — NON-EXECUTABLE
 ```
 
 **Mission**
