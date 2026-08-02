@@ -187,7 +187,7 @@ AI-authored implementation work normally uses `mission/[MISSION-ID]-[SHORT-SLUG]
 
 AI assistants shall not:
 
-- push directly to `main`, except for a narrowly scoped governance or communication update explicitly authorized by Founder or Mission Control under the active temporary compensating control;
+- push directly to protected `main`; all changes must use the authorized pull-request path;
 - approve or merge their own work;
 - force push or rewrite history;
 - delete branches without separate authorization;
@@ -204,7 +204,7 @@ When Founder action is required, exact Git commands and expected evidence shall 
 
 Recurring live communication, closure reconciliation, and archival shall follow `communication/AI_Communication_and_Handover_Protocol.md`.
 
-GitHub branch protection is not configured. The Founder-approved Phase 1 compensating control recorded in `communication/governance/branch-protection-verification.md` is active temporarily and must be retired after branch protection is configured and verified.
+GitHub branch protection for `main` is configured and independently verified. The temporary Phase 1 compensating control is retired. The active technical controls are recorded in `communication/governance/branch-protection-verification.md`.
 
 Without explicit mission-scoped authority, AI may prepare commands but shall not commit or push.
 
