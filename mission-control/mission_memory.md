@@ -158,11 +158,17 @@ Mission Control contained `SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` on 2026-08-0
 
 Current authority remains `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0, current actor instructions, and the approved activation and closure evidence under `communication/archive/SB-GOV-COMMS-1.2/`. The canonical containment record is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`.
 
+### EOS Backup Discovery Separation
+
+Mission Control completed EOS backup separation on 2026-08-03. The current Git tree and EOS path history contain zero tracked backup, `.bak`, or copy-named EOS files. Markdown-toolkit backups and repair reports remain excluded by `.gitignore`, and `docs/engineering/eos/archive/` is now the explicit non-current historical-evidence boundary.
+
+This satisfies the backup-separation prerequisite for AC-02 but does not approve the ten non-backup EOS architecture and governance documents. Their focused Founder and Mission Control review remains pending. The verification record is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/eos-backup-discovery-verification.md`.
+
 ---
 
 # Next Recommended Mission
 
-- Separate EOS backup files from current-document discovery while preserving historical evidence and current EOS authority.
+- Review and disposition approval candidate AC-02: the ten non-backup EOS architecture and governance documents.
 
 ---
 

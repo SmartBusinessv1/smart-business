@@ -17,6 +17,19 @@ Operating System (EOS).
 It provides a governed navigation structure for all approved engineering
 governance documents and explains how they relate to one another.
 
+### Current-Document Discovery Boundary
+
+Current EOS discovery includes the governing documents registered by this index and the published release package under `docs/engineering/eos/v1.0/`.
+
+It excludes:
+
+- `docs/engineering/eos/archive/`;
+- generated files matching `*_BACKUP_*.md`;
+- generated files matching `*_REPAIR_REPORT.txt`;
+- local repair or test artifacts ignored by `.gitignore`.
+
+The repository was verified on 2026-08-03 to contain zero tracked EOS backup, `.bak`, or copy-named files. The archive boundary exists to keep any future explicitly preserved historical evidence separate from current authority. Presence in the EOS directory alone never creates approval or execution authority.
+
 The Engineering Operating System exists to ensure engineering work is:
 
 -   governed;
