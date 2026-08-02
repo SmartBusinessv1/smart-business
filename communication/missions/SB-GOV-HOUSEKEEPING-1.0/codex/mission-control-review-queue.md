@@ -11,7 +11,7 @@ No Critical-severity item was proven from repository evidence.
 
 ## 3. Medium-Risk Governance Cleanup
 
-1. Review approval candidate AC-02: ten non-backup EOS architecture and governance documents, now that the backup-discovery boundary is verified.
+1. Execute the bounded AC-02 correction package: four targeted corrections, four material corrections, and two replacement drafts; then return the ten-document EOS set for Mission Control review and explicit Founder approval.
 
 ## 4. Low-Risk Archival and Metadata Corrections
 
@@ -41,6 +41,7 @@ No Critical-severity item was proven from repository evidence.
 - AC-04 implementation-foundation contract review: COMPLETE on 2026-08-02 — the SB-P1.5, SB-P1.6, and SB-P1.7 Build Contracts are approved as closed, non-executable historical authorization records; stale Draft metadata resolved.
 - Superseded communication-governance proposal containment: COMPLETE on 2026-08-03 — SB-GOV-COMMS-1.0 and 1.1 preserved at original paths, marked historical/non-governing/non-executable, and linked to active Protocol 1.0 and the SB-GOV-COMMS-1.2 archive.
 - EOS backup discovery separation: COMPLETE on 2026-08-03 — zero tracked EOS backup files verified; generated backups remain ignored; explicit `docs/engineering/eos/archive/` boundary established; AC-02 non-backup review remains pending.
+- AC-02 focused EOS review and disposition: COMPLETE on 2026-08-03 — package not approved; four targeted corrections, four material corrections, and two replacement drafts required; Founder approval remains pending.
 - Remaining queue items retain their original order and status.
 
 ## Mission 1.8 Resolution — 2026-08-02
