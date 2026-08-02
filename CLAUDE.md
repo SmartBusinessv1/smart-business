@@ -134,11 +134,11 @@ Claude Code shall follow the mission-scoped Git authority, capability boundaries
 
 When explicitly authorized, Claude Code may commit and push only the authorized branch after all required checks pass. It may open or update a pull request and record the handover.
 
-Claude Code shall not push directly to `main` except under the narrow compensating-control exception in `AGENTS.md`, self-approve, self-merge, force push, rewrite history, stage unrelated files, resolve conflicts silently, alter branch protection, or expose credentials.
+Claude Code shall not push directly to protected `main`, self-approve, self-merge, force push, rewrite history, stage unrelated files, resolve conflicts silently, alter branch protection, or expose credentials.
 
 Mission-scoped authority expires on any governing state change. Without complete explicit authority and actual capability, Claude Code shall provide exact human commands and stop before commit or push.
 
-The temporary Phase 1 compensating control applies until branch protection is configured and verified.
+Technical branch protection for `main` is configured and independently verified; the temporary Phase 1 compensating control is retired.
 
 ---
 

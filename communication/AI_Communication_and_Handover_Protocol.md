@@ -10,18 +10,18 @@
 - **Activation Commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e`
 - **Stage A Status:** ACTIVE
 - **Stage B Status:** ACTIVE — commit `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
-- **Branch Protection Status:** NOT CONFIGURED — TEMPORARY COMPENSATING CONTROL ACTIVE
+- **Branch Protection Status:** CONFIGURED AND INDEPENDENTLY VERIFIED — COMPENSATING CONTROL RETIRED
 - **Scope:** Repository communication and mission-scoped Git operations by authorized AI participants
 
 ## 1. Purpose
 
 This protocol establishes GitHub as the durable communication and handover layer between authorized Smart Business AI participants.
 
-Stage A and Stage B are active under Founder approval and Mission Control activation. Communication-governance activation is complete. The temporary Phase 1 compensating control remains active until technical branch protection is configured and verified.
+Stage A and Stage B are active under Founder approval and Mission Control activation. Communication-governance activation is complete. Technical branch protection for `main` is configured and independently verified.
 
-## 1.1 Temporary Phase 1 Compensating Control
+## 1.1 Retired Phase 1 Compensating Control
 
-GitHub branch protection is not configured. Until it is configured and verified, the Founder-approved Phase 1 compensating control applies:
+The following Founder-approved Phase 1 compensating control applied before technical branch protection was independently verified:
 
 1. Every AI Git operation requires explicit Founder or Mission Control mission authorization.
 2. Authorization must identify AI name, Mission ID, repository, branch, authorized paths or scope, and approved commit message.
@@ -32,7 +32,7 @@ GitHub branch protection is not configured. Until it is configured and verified,
 7. Mission Control review remains required before merge or acceptance.
 8. Founder approval remains required wherever governance or the mission requires it.
 
-This compensating control is temporary and must be retired when GitHub branch protection is configured and verified.
+This compensating control was retired on 2026-08-02 after GitHub branch protection was configured and independently verified. The mission-scoped authorization, exact-file staging, no-self-merge, no-force-push, and Mission Control review requirements remain active.
 
 ## 2. Communication Rule
 
@@ -665,4 +665,4 @@ Future updates must append rather than overwrite this history.
 
 ---
 
-**Activation control:** Stage A and Stage B are active under the temporary Phase 1 compensating control. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.
+**Activation control:** Stage A and Stage B are active under independently verified technical branch protection. The temporary Phase 1 compensating control was retired on 2026-08-02. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.
