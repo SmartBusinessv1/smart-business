@@ -26,3 +26,13 @@ Until branch protection is configured and verified:
 - force push, history rewriting, self-merge, unrelated staging, silent conflict resolution, and protection bypass remain prohibited.
 
 Mission Control shall retire this compensating control after branch protection is configured and verified.
+
+## Mission 1.8 Capability Check — 2026-08-02
+
+`SB-GOV-HOUSEKEEPING-1.8` attempted live configuration and verification. The local GitHub CLI was unavailable, the connected GitHub app exposed repository administration metadata but no branch-protection or ruleset settings operation, and no authenticated browser surface was available. Therefore no live settings mutation or enforcement test was performed.
+
+- **Technical configuration:** NOT PERFORMED
+- **Independent verification:** NOT PERFORMED
+- **Compensating control:** ACTIVE
+- **Retirement gate:** NOT SATISFIED
+- **Required next action:** Restore an authenticated GitHub settings/API capability, then renew Mission 1.8 authority and complete configuration, safe enforcement testing, and independent human verification.
