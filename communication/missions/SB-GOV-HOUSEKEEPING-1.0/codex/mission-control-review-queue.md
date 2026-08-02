@@ -11,9 +11,8 @@ No Critical-severity item was proven from repository evidence.
 
 ## 3. Medium-Risk Governance Cleanup
 
-1. Review the three implementation foundation contracts.
-2. Archive or contain SB-GOV-COMMS-1.0 and 1.1 as superseded proposals.
-3. Separate EOS backup files from current-document discovery.
+1. Archive or contain SB-GOV-COMMS-1.0 and 1.1 as superseded proposals.
+2. Separate EOS backup files from current-document discovery.
 
 ## 4. Low-Risk Archival and Metadata Corrections
 
@@ -40,6 +39,7 @@ No Critical-severity item was proven from repository evidence.
 - Branch-protection configuration: COMPLETE through `SB-GOV-HOUSEKEEPING-1.8` — independently verified; compensating control retired; protected-path closure merged.
 - SB-P-1.8 re-review and Mission Control acceptance: COMPLETE on 2026-08-02 — accepted and closed after blocking-correction, deployed runtime, cross-business isolation, authentication, append-only, and live-schema-type evidence review.
 - SB-P-1.9 Phase 3C deployment-evidence review: COMPLETE on 2026-08-02 — accepted with observations after repository, deployed-schema, function-security, RLS, anonymous-access, browser, and subsequent runtime-record review.
+- AC-04 implementation-foundation contract review: COMPLETE on 2026-08-02 — the SB-P1.5, SB-P1.6, and SB-P1.7 Build Contracts are approved as closed, non-executable historical authorization records; stale Draft metadata resolved.
 - Remaining queue items retain their original order and status.
 
 ## Mission 1.8 Resolution — 2026-08-02
