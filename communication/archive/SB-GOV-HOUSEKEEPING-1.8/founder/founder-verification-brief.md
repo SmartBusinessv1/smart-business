@@ -26,3 +26,7 @@ After capability is restored, Mission Control must renew execution authority bec
 ## Resolution — 2026-08-02
 
 GitHub CLI authentication was restored. Codex configured the authorized `main` protection, and the Founder independently verified the visible settings. The compensating control is retired. PR #5 remains open for Founder or authorized-human review and merge; Codex may not merge it.
+
+## Archive Closure
+
+PR #6 merged the closure reconciliation as `b0765680d38014dc236da568d9f49f0f3bccd36f`. Mission communication is approved for archival. Merged Mission 1.8 branches may be deleted only after the archive PR is merged and verified.

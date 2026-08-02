@@ -72,8 +72,8 @@ No destructive force-push or deletion attempt was made against `main`. Settings/
 
 Compensating-control status: **RETIRED**.
 
-Communication closure status: **FOUNDER AUTHORIZED — CLOSURE RECONCILIATION SUBMITTED**.
+Communication closure status: **COMPLETE — ARCHIVE SUBMITTED**.
 
 ## Next Action
 
-PR #5 was merged by the Founder through the protected pull-request path after the required check passed. Mission 1.8 is ready for closure acceptance and archival; branch deletion remains pending until the closure PR is merged.
+PR #5 was merged by the Founder through the protected pull-request path after the required check passed. Mission 1.8 closure was merged through PR #6. The communication archive is submitted; merged-branch deletion remains pending until the archive PR is merged and verified.
