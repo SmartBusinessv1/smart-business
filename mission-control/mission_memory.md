@@ -178,7 +178,7 @@ The package remains non-governing and non-executable until explicit Founder appr
 
 ### AC-02 Founder Approval Deferral
 
-On 2026-08-03, Founder Riyas PK deferred AC-02 approval. Team LIPS expects to introduce additional tools for daily engineering audit and additional GitHub Actions automation. AC-02 shall remain non-governing and non-executable until both additions are implemented, documented, and verified through repository evidence.
+On 2026-08-03, Founder Riyas PK deferred AC-02 approval. Team LIPS expects to introduce tools for a daily Smart Business application audit covering security, bugs, scalability, and performance, together with additional GitHub Actions automation. AC-02 shall remain non-governing and non-executable until both additions are implemented, documented, and verified through repository evidence.
 
 Once both conditions are satisfied, Mission Control shall remind the Founder that AC-02 is ready for a renewed approval review. Completion of either condition alone, tool installation without operational evidence, or a successful workflow run without documented scope and safety boundaries does not satisfy the approval gate.
 
@@ -186,7 +186,7 @@ Once both conditions are satisfied, Mission Control shall remind the Founder tha
 
 # Next Recommended Mission
 
-- Implement and verify the planned daily-audit tools and additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
+- Implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
 
 ---
 

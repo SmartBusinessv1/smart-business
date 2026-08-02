@@ -11,7 +11,7 @@ No Critical-severity item was proven from repository evidence.
 
 ## 3. Medium-Risk Governance Cleanup
 
-1. Implement and verify the planned daily-audit tools and additional GitHub Actions automations; after both are evidenced, remind the Founder and reopen AC-02 approval review.
+1. Implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus additional GitHub Actions automations; after both are evidenced, remind the Founder and reopen AC-02 approval review.
 
 ## 4. Low-Risk Archival and Metadata Corrections
 
@@ -43,7 +43,7 @@ No Critical-severity item was proven from repository evidence.
 - EOS backup discovery separation: COMPLETE on 2026-08-03 — zero tracked EOS backup files verified; generated backups remain ignored; explicit `docs/engineering/eos/archive/` boundary established; AC-02 non-backup review remains pending.
 - AC-02 focused EOS review and disposition: COMPLETE on 2026-08-03 — package not approved; four targeted corrections, four material corrections, and two replacement drafts required; Founder approval remains pending.
 - AC-02 bounded EOS correction package: COMPLETE on 2026-08-03 — ten version 1.1 correction candidates prepared; repository validation and explicit Founder decision remain required.
-- AC-02 Founder approval decision: DEFERRED on 2026-08-03 — approval review resumes only after planned daily-audit tools and additional GitHub Actions automations are implemented, documented, and verified; Founder reminder required when both gates are met.
+- AC-02 Founder approval decision: DEFERRED on 2026-08-03 — approval review resumes only after planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus additional GitHub Actions automations, are implemented, documented, and verified; Founder reminder required when both gates are met.
 - Remaining queue items retain their original order and status.
 
 ## Mission 1.8 Resolution — 2026-08-02
