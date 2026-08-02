@@ -39,7 +39,7 @@ The approval count is zero because the repository has no independent eligible re
 - Live protection API read after configuration: PASS
 - Required-check enforcement on PR #5: PASS
 - PR #5 check result: `Markdown Quality Gate` SUCCESS
-- PR #5 state: OPEN, MERGEABLE, NOT MERGED
+- PR #5 state: MERGED AND CLOSED
 - Force-push prohibition: VERIFIED BY SETTINGS/API
 - Branch-deletion prohibition: VERIFIED BY SETTINGS/API
 - Conversation-resolution requirement: VERIFIED BY SETTINGS/API
@@ -67,13 +67,13 @@ No destructive force-push or deletion attempt was made against `main`. Settings/
 - Approved commit message: `Configure and verify main branch protection`
 - Push target: mission branch only
 - Pull request: #5 targeting `main`
-- Merge: NOT AUTHORIZED / NOT PERFORMED
+- Merge: COMPLETED BY FOUNDER through protected squash merge `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`
 - Final remote file and commit verification: PASS — remote branch and PR #5 updated
 
 Compensating-control status: **RETIRED**.
 
-Communication closure status: **NOT AUTHORIZED**.
+Communication closure status: **FOUNDER AUTHORIZED — CLOSURE RECONCILIATION SUBMITTED**.
 
 ## Next Action
 
-Mission Control or the Founder may review PR #5 and merge it through the protected pull-request path after all required checks pass. Codex shall not approve or merge its own work.
+PR #5 was merged by the Founder through the protected pull-request path after the required check passed. Mission 1.8 is ready for closure acceptance and archival; branch deletion remains pending until the closure PR is merged.

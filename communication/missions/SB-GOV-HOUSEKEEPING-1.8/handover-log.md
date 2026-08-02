@@ -21,3 +21,14 @@
 - **Pull request:** #5, open and unmerged
 - **Next action:** Founder or authorized human review and merge through the protected path
 - **Communication closure:** NOT AUTHORIZED
+
+## Handover 3 — Protected Merge and Closure
+
+- **Merge authority:** Founder
+- **Pull request:** #5, merged and closed
+- **Merge commit:** `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`
+- **Required check:** PASSED
+- **Branch protection after merge:** ACTIVE
+- **Communication closure:** FOUNDER AUTHORIZED — PENDING CLOSURE PR
+- **Branch deletion:** PENDING AFTER CLOSURE MERGE
+- **Next action:** Mission Control reviews the closure PR, then archives communication and authorizes branch deletion

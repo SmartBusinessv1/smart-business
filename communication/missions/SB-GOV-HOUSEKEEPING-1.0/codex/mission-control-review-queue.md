@@ -45,3 +45,7 @@ No Critical-severity item was proven from repository evidence.
 ## Mission 1.8 Resolution — 2026-08-02
 
 Branch protection for `main` is configured and independently verified. The temporary compensating control is retired. PR #5 remains open for Founder or authorized-human review and protected-path merge.
+
+## Mission 1.8 Protected Merge — 2026-08-02
+
+PR #5 was squash-merged by the Founder through protected `main` as `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`. The required Markdown check passed. Mission 1.8 closure reconciliation is submitted; archival and branch deletion remain pending until the closure PR is merged.
