@@ -176,11 +176,17 @@ Mission Control prepared the bounded ten-document version 1.1 correction package
 
 The package remains non-governing and non-executable until explicit Founder approval. Merging its pull request records the corrected candidates but does not approve or activate them. The correction report is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/AC-02_EOS_Correction_Package_Report.md`.
 
+### AC-02 Founder Approval Deferral
+
+On 2026-08-03, Founder Riyas PK deferred AC-02 approval. Team LIPS expects to introduce tools for a daily Smart Business application audit covering security, bugs, scalability, and performance, together with additional GitHub Actions automation. AC-02 shall remain non-governing and non-executable until both additions are implemented, documented, and verified through repository evidence.
+
+Once both conditions are satisfied, Mission Control shall remind the Founder that AC-02 is ready for a renewed approval review. Completion of either condition alone, tool installation without operational evidence, or a successful workflow run without documented scope and safety boundaries does not satisfy the approval gate.
+
 ---
 
 # Next Recommended Mission
 
-- Complete repository review of the AC-02 version 1.1 correction package and obtain the Founder's explicit approval or return-for-correction decision.
+- Implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
 
 ---
 
