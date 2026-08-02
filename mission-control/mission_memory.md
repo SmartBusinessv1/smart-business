@@ -152,11 +152,17 @@ Mission Control resolved AC-04 on 2026-08-02. The Application Access (SB-P1.5), 
 
 The canonical decision record is `docs/implementation/AC-04_Foundation_Build_Contracts_Mission_Control_Disposition.md`. New work may not execute these contracts and requires a new explicit mission under the current lifecycle framework.
 
+### Superseded Communication-Proposal Containment
+
+Mission Control contained `SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` on 2026-08-03 as historical, non-governing, non-executable proposals. All 12 proposal artifacts remain at their original paths to preserve repository history and link integrity. Package READMEs and the central containment index prevent their obsolete draft amendments from being mistaken for current work.
+
+Current authority remains `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0, current actor instructions, and the approved activation and closure evidence under `communication/archive/SB-GOV-COMMS-1.2/`. The canonical containment record is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`.
+
 ---
 
 # Next Recommended Mission
 
-- Archive or contain `SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` as superseded communication-governance proposals.
+- Separate EOS backup files from current-document discovery while preserving historical evidence and current EOS authority.
 
 ---
 

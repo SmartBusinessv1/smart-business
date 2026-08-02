@@ -39,15 +39,18 @@
 - Sequence: reconcile mission record only after Source 18 disposition
 - Pause: no
 
-## CF-05 — Superseded Communication Drafts Remain Active-Located
+## CF-05 — RESOLVED — Superseded Communication Drafts Contained
 
 - Affected: SB-GOV-COMMS-1.0, SB-GOV-COMMS-1.1, archived SB-GOV-COMMS-1.2
-- Competing statements: 1.0/1.1 remain Draft/review-required under active missions while 1.2 records approved activation and closure
+- Prior conflict: 1.0/1.1 remained Draft/review-required while 1.2 recorded approved activation and closure
 - Governing authority: Protocol 1.0 and SB-GOV-COMMS-1.2 closure record
 - Impact: obsolete amendments may be mistaken for pending current work
 - Severity: Medium
 - Sequence: containment/archive mission preserving history and links
 - Pause: no
+- Resolution: package-level status changed to superseded, historical, non-governing, and non-executable; original paths retained for link integrity
+- Evidence: `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`, both contained package READMEs, active Protocol 1.0, and `communication/archive/SB-GOV-COMMS-1.2/`
+- Resolved date: 2026-08-03
 
 ## CF-06 — Legacy Project Source Containment Gap
 

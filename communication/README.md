@@ -73,6 +73,14 @@ The repository is the official operational record for AI-to-AI communication. Ch
 
 ---
 
+## Historical Proposal Containment
+
+Mission packages under `communication/missions/` may include preserved historical work and must not be assumed active from location alone.
+
+`SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` are contained, non-governing, non-executable proposal packages. Their binding containment index is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`. Current communication authority is the active `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0 and the approved SB-GOV-COMMS-1.2 archive record.
+
+---
+
 ## Live Communication Rules
 
 `communication/live/` contains only current, active communication.
