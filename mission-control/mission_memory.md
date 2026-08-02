@@ -134,11 +134,17 @@ Mission Control accepted `SB-GOV-HOUSEKEEPING-1.5` on 2026-08-02: the Project HQ
 
 `SB-GOV-HOUSEKEEPING-1.6` established a default-deny migration authority model on 2026-08-02. Production remains live, completed migration evidence remains preserved, no migration mission or executable package is active, `SB-MIG-1.3` materials remain non-executable proposals, and any future migration execution requires a new explicit mission.
 
+### SB-P-1.8 Mission Control Acceptance
+
+Mission Control accepted and closed `SB-P-1.8` on 2026-08-02 after independent re-review. The four earlier blocking findings were corrected, current generated Supabase types include the live `transactions` schema, and Founder-assisted deployed-runtime Tests 1–7 passed, including two-owner isolation, authenticated route protection, session persistence, sign-out, authorized sale and purchase creation, dashboard totals, decimal precision, and append-only behavior.
+
+The canonical decision record is `docs/implementation/SB-P-1.8_Mission_Control_Acceptance.md`. Non-blocking observations remain future-scope candidates and do not reopen the accepted mission.
+
 ---
 
 # Next Recommended Mission
 
-- To be determined by Mission Control after reviewing Phase 1 priorities and current Lovable credit availability.
+- Review and disposition `SB-P-1.9` phase-3C deployment evidence.
 
 ---
 
