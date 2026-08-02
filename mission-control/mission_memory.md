@@ -47,6 +47,7 @@
 - Complete the production Privacy Policy.
 - Complete the production Terms of Service.
 - Resume SB-INF-1.2 after both legal pages are published.
+- Schedule a future canonical-source metadata-normalization mission for Sources 02 through 08 to remove legacy `Smart Business V2.2` headers and reconcile the Source 07 title with the approved `/survey` deprecation and `/start` route.
 
 ---
 
@@ -95,6 +96,14 @@
 - SB-INF-1.2 — Google OAuth Branding Configuration
   - Resume after production-ready legal pages are published.
   - Reuse the findings preserved from SB-INF-1.1.
+
+### Canonical Source Metadata Normalization
+
+Sources 02 through 08 still display the historical header `Smart Business V2.2`. Source 07 also retains “Survey” in its document title even though `/survey` is deprecated and `/start` is the approved route.
+
+This is a non-blocking editorial and metadata issue only. It does not create a current authority, Product Truth, route, implementation, or operational-development conflict. The canonical source bodies and Project HQ package remain approved and synchronized.
+
+Any correction must be performed through a controlled metadata-normalization mission. That mission must preserve substantive governance meaning, update the canonical manifest and hashes, verify all affected source references, and resynchronize the approved 20-file Project HQ package.
 
 ### Repository Visibility Decision
 
