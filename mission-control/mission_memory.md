@@ -140,11 +140,17 @@ Mission Control accepted and closed `SB-P-1.8` on 2026-08-02 after independent r
 
 The canonical decision record is `docs/implementation/SB-P-1.8_Mission_Control_Acceptance.md`. Non-blocking observations remain future-scope candidates and do not reopen the accepted mission.
 
+### SB-P-1.9 Phase 3C Deployment Evidence Acceptance
+
+Mission Control accepted the `SB-P-1.9` Phase 3C deployment-verification record with observations on 2026-08-02. Repository and Postgres-catalog evidence confirmed the deployed correction-event schema, `SECURITY INVOKER` correction function, enabled RLS, authenticated owner-scoped policies, absence of anonymous policies, and published application surfaces.
+
+The canonical decision record is `docs/implementation/SB-P-1.9/phase-3c-mission-control-acceptance.md`. The `/reset-password` hydration warning and future WhatsApp delivery dependency remain non-blocking, separately governed follow-ups.
+
 ---
 
 # Next Recommended Mission
 
-- Review and disposition `SB-P-1.9` phase-3C deployment evidence.
+- Review and disposition the three implementation-foundation contracts identified in approval candidate AC-04.
 
 ---
 
