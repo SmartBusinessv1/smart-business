@@ -35,6 +35,15 @@ Reliable status checks discovered: NONE PROVEN. No check was required or invente
 
 The mission's explicit stop condition therefore applies.
 
+## Post-Blocker Capability Update
+
+- Founder reported GitHub CLI installation and authentication completed after the blocker report.
+- Codex verified GitHub CLI installation: `gh version 2.97.0 (2026-07-31)`.
+- Codex authentication verification in the current execution environment: **NOT CONFIRMED**.
+- Verification output: `You are not logged into any GitHub hosts.`
+
+This update confirms that the installation blocker is resolved. Authentication may exist in the Founder's interactive terminal but is not available to the current Codex execution environment. No GitHub setting was inspected or changed after this update, and renewed Mission Control authority remains required before configuration resumes.
+
 ## Tests and Independent Verification
 
 - Enforcement tests performed: NONE
@@ -79,7 +88,7 @@ Product, application, database, Supabase, deployment, workflow, test, migration,
 
 ## Required Next Action
 
-Restore authenticated GitHub settings/API capability, obtain renewed Mission Control authority, configure the minimum `main` rule, perform safe enforcement tests, and have a Founder, Mission Control, or authorized reviewer independently verify the result.
+Make authenticated GitHub settings/API capability available to the Codex execution environment, obtain renewed Mission Control authority, configure the minimum `main` rule, perform safe enforcement tests, and have a Founder, Mission Control, or authorized reviewer independently verify the result.
 
 Compensating-control status: **ACTIVE**.
 
