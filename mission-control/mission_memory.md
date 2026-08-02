@@ -164,11 +164,17 @@ Mission Control completed EOS backup separation on 2026-08-03. The current Git t
 
 This satisfies the backup-separation prerequisite for AC-02 but does not approve the ten non-backup EOS architecture and governance documents. Their focused Founder and Mission Control review remains pending. The verification record is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/eos-backup-discovery-verification.md`.
 
+### AC-02 EOS Focused Review
+
+Mission Control completed the per-document AC-02 review on 2026-08-03. The ten-document package was not approved. Four documents may advance after targeted correction, four require material reconciliation with current governance and repository controls, and the local workflow plus platform capability matrix require replacement drafts because their tool assumptions are stale.
+
+No reviewed EOS draft became authoritative or executable. AC-02 remains `CORRECTION REQUIRED — FOUNDER APPROVAL PENDING`. The controlling disposition is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/AC-02_EOS_Focused_Review_and_Disposition.md`.
+
 ---
 
 # Next Recommended Mission
 
-- Review and disposition approval candidate AC-02: the ten non-backup EOS architecture and governance documents.
+- Execute the bounded AC-02 EOS correction package, validate the corrected ten-document set, and return it for Mission Control review and explicit Founder approval.
 
 ---
 
