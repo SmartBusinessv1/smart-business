@@ -2,7 +2,7 @@
 
 # Engineering Integration Architecture v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Architecture Standard
 
@@ -16,7 +16,7 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -27,6 +27,8 @@ This document defines how the engineering platforms used by Team LIPS operate to
 The objective is to establish clear system responsibilities, approved integration boundaries, information flow, and engineering governance while preserving human ownership of all engineering decisions.
 
 This document is architecture guidance.
+
+Tool availability is evidence-based and may vary by mission. Conversation, local workspace, or platform state is never a canonical governance source unless its material decisions and evidence are recorded in the repository.
 
 It does not authorize autonomous engineering operations.
 
@@ -62,9 +64,9 @@ The engineering ecosystem follows these principles:
 | Platform | Primary Responsibility | Canonical Source |
 |----------|------------------------|------------------|
 | Founder | Engineering intent and approval | Human authority |
-| ChatGPT | Engineering drafting and structured documentation | Conversation |
-| Claude | Engineering review and refinement | Conversation |
-| Visual Studio Code | Repository authoring | Local repository |
+| ChatGPT/Codex | Founder-led discovery, authorized governance maintenance, repository documentation, and assigned stage work | Repository record |
+| Claude/Claude Code | Assigned engineering review, verification, and implementation-package work | Repository record |
+| Approved editor or agent workspace | Repository authoring within mission scope | Local checkout pending repository publication |
 | Team LIPS Quality Gate | Engineering validation | Validation reports |
 | Git | Engineering version history | Git repository |
 | GitHub | Canonical engineering repository | Repository |
@@ -366,15 +368,16 @@ The architecture supports future integration with additional engineering systems
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Integration Architecture |
+| v1.1 | AC-02 correction: current AI roles, repository records, and evidence-based integrations |
 
 ---
 
 # Approval
 
-This document defines the approved integration architecture for the Team LIPS Engineering Operating System.
+This document is the corrected candidate for the Team LIPS Engineering integration architecture. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending

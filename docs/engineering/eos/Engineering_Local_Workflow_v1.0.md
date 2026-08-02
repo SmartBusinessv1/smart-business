@@ -2,7 +2,7 @@
 
 # Engineering Local Workflow v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1 Replacement Candidate
 
 **Document Type:** Engineering Workflow Standard
 
@@ -16,13 +16,13 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Replacement Candidate — Mission Control Corrected — Founder Approval Pending
 
 ---
 
 # Purpose
 
-This document defines the approved local engineering workflow for creating, validating, repairing, committing, and publishing Team LIPS engineering Markdown artifacts.
+This document defines a tool-neutral replacement workflow for creating, validating, repairing, committing, and publishing Team LIPS engineering artifacts. It is non-governing until Founder approval.
 
 The workflow applies whether an artifact is authored by:
 
@@ -31,6 +31,8 @@ The workflow applies whether an artifact is authored by:
 - ChatGPT
 - Claude
 - Other approved AI engineering assistants
+
+The workflow may use Codex, Claude Code, Visual Studio Code, another approved editor, or a combination. Tool choice does not change authority, scope, evidence, or review requirements.
 
 The workflow protects document quality while preserving human decision ownership.
 
@@ -70,7 +72,7 @@ This workflow does not authorize product implementation or governance changes.
 
 # Local Engineering Environment
 
-The approved local engineering environment consists of:
+The local engineering environment may consist of the following verified or mission-approved components:
 
 | Component | Responsibility |
 |-----------|----------------|
@@ -131,7 +133,7 @@ PASS or FAIL
 
 # Step 1 — Author the Artifact
 
-Markdown artifacts shall be created or modified in Visual Studio Code.
+Artifacts shall be created or modified in an approved editor or agent workspace within the authorized checkout and exact path scope. Visual Studio Code is optional, not mandatory.
 
 The author remains responsible for:
 
@@ -450,9 +452,9 @@ Mass replacement commands that may alter intentional Markdown formatting are rej
 
 ---
 
-# VS Code Automatic Watcher
+# Optional Save Watcher
 
-The approved watcher is:
+When present and verified, an optional save watcher may be used. Its absence must not block the manual quality-gate and pull-request workflow.
 
 ```text
 tools/markdown/vscode_save_watcher.py
@@ -630,15 +632,16 @@ The configuration governs:
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Team LIPS Engineering Local Workflow |
+| v1.1 | Replacement candidate: tool-neutral authoring, optional watcher, and current Git controls |
 
 ---
 
 # Approval
 
-This document defines the Team LIPS local engineering workflow baseline.
+This document is the replacement candidate for the Team LIPS local engineering workflow baseline. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending

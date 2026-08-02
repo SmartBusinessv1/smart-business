@@ -2,7 +2,7 @@
 
 # Engineering Automation Architecture v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Architecture Standard
 
@@ -16,7 +16,7 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
+**Status:** Mission Control Corrected — Founder Approval Pending
 
 ---
 
@@ -24,7 +24,9 @@
 
 This document defines the architecture of the Team LIPS Engineering Automation System.
 
-It describes how the approved engineering automation components interact to provide deterministic, repeatable, and human-controlled engineering quality assurance throughout the engineering artifact lifecycle.
+It distinguishes verified automation from proposed components and defines how automation may provide deterministic, repeatable, and human-controlled engineering quality assurance.
+
+Only automation evidenced in the current repository may be described as implemented. Watchers, repair helpers, integrations, and platform connections that lack current evidence remain optional or future and create no operational dependency.
 
 This document describes the automation architecture only.
 
@@ -184,7 +186,7 @@ Commits containing validation failures are blocked.
 
 ## Layer 6 — Repository Validation
 
-GitHub Actions validates changed engineering Markdown after pushes and pull requests.
+The verified GitHub Markdown Quality Gate validates eligible Markdown through the protected-main pull-request workflow. Any additional GitHub Actions behavior must be evidenced before it is treated as active.
 
 Repository validation uses the same engineering standards as local validation.
 
@@ -404,15 +406,16 @@ Human authority shall remain unchanged.
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Automation Architecture |
+| v1.1 | AC-02 correction: evidence boundaries, protected pull-request validation, and approval status |
 
 ---
 
 # Approval
 
-This document defines the approved Team LIPS Engineering Automation Architecture.
+This document is the corrected candidate for the Team LIPS Engineering Automation Architecture. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending

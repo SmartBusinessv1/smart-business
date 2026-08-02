@@ -1,11 +1,11 @@
 # Team LIPS Engineering Operating System
 
-**Document ID:** SB-EOS-INDEX-001 **Version:** 1.0 **Status:** Draft
+**Document ID:** SB-EOS-INDEX-001 **Version:** 1.1 **Status:** Mission Control Corrected — Founder Approval Pending
 **Owner:** Team LIPS Engineering **Governance Authority:** Smart
 Business Mission Control **Founder:** Riyas PK **Organization:**
 Lighthouse Information Publishing Service **Technology Unit:** Team LIPS
-**Product:** Smart Business **Last Reviewed:** Pending **Next Review:**
-Pending
+**Product:** Smart Business **Last Reviewed:** 2026-08-03 **Next Review:**
+After Founder decision or material EOS change
 
 ------------------------------------------------------------------------
 
@@ -44,40 +44,26 @@ The Engineering Operating System exists to ensure engineering work is:
 
 ## 2. EOS Document Register
 
-  ------------------------------------------------------------------------
-                         Order Document              Purpose
-  ---------------------------- --------------------- ---------------------
-                             1 ChatGPT GitHub        Preparation of
-                               Engineering Artifact  engineering artifacts
-                               Workflow
-
-                             2 Claude GitHub         Engineering review
-                               Engineering Artifact  workflow
-                               Workflow
-
-                             3 Engineering           System boundaries and
-                               Integration           integrations
-                               Architecture
-
-                             4 Engineering           Repository structure
-                               Repository Governance and controls
-
-                             5 Engineering Change    Controlled
-                               Management            engineering changes
-
-                             6 Engineering Release   Release planning and
-                               Management            verification
-
-                             7 Engineering Security  Security
-                               and Access Control    responsibilities
-
-                             8 Engineering Backup    Business continuity
-                               and Disaster Recovery
-
-                             9 Engineering Audit and Audit and continual
-                               Continuous            improvement
-                               Improvement
-  ------------------------------------------------------------------------
+| Document or family | Current authority state | Purpose |
+|---|---|---|
+| ChatGPT GitHub Engineering Artifact Workflow | Active | Controlled ChatGPT/Codex preparation and Git workflow |
+| Claude GitHub Engineering Artifact Workflow | Active | Controlled Claude engineering review and Git workflow |
+| Engineering Artifact Workflow | Approved | Artifact lifecycle baseline |
+| Engineering Platform Inventory | Approved Baseline | Verified platform inventory |
+| Engineering Pipeline Architecture | Approved Baseline | Validation pipeline baseline |
+| Engineering Quality Gate | Approved Baseline | Markdown validation standard |
+| Engineering Tooling Register | Current register | Tool inventory and status |
+| Engineering Audit and Continuous Improvement | Founder approval pending | Evidence, audit, and improvement governance |
+| Engineering Automation Architecture | Founder approval pending | Implemented and planned automation boundaries |
+| Engineering Change Management | Founder approval pending | Controlled engineering change governance |
+| Engineering Integration Architecture | Founder approval pending | Platform responsibilities and integration boundaries |
+| Engineering Local Workflow | Replacement candidate; Founder approval pending | Tool-neutral local and repository workflow |
+| Engineering Release Management | Founder approval pending | Engineering-artifact release governance |
+| Engineering Repository Governance | Founder approval pending | Repository and protected-branch controls |
+| Engineering Security and Access Control | Founder approval pending | Access, secrets, and controlled-AI boundaries |
+| Engineering Platform Capability Matrix | Replacement candidate; Founder approval pending | Evidence-based platform capabilities |
+| `v1.0/` release package | Published historical release package | Package presence does not override current status |
+| `archive/` | Non-current historical evidence | Excluded from current-document discovery |
 
 ------------------------------------------------------------------------
 
@@ -183,16 +169,13 @@ The automatic watcher:
 
 Current sequence:
 
-1.  EOS Documents ✅
-2.  Markdown Quality Gate ✅
-3.  Automatic Save Watcher ✅
-4.  EOS Index
-5.  Cross-document verification
-6.  GitHub publication
-7.  ChatGPT ↔ GitHub workflow
-8.  Claude ↔ GitHub workflow
-9.  Lovable ↔ GitHub ↔ Supabase verification
-10. Engineering evidence chain
+1.  EOS document inventory — complete.
+2.  Markdown Quality Gate — active.
+3.  Protected-main pull-request workflow — active and independently verified.
+4.  ChatGPT/Codex and Claude GitHub workflows — active.
+5.  AC-02 correction package — Mission Control corrected; Founder approval pending.
+6.  Cross-document verification — required before approval.
+7.  Optional or future integrations — separately authorized and evidence-gated.
 
 ------------------------------------------------------------------------
 
@@ -201,7 +184,7 @@ Current sequence:
   Role                    Status
   ----------------------- ------------------
   Team LIPS Engineering   Prepared
-  Mission Control         Pending Review
+  Mission Control         Correction Review Complete
   Founder                 Pending Approval
 
-**Publication Status:** Draft
+**Publication Status:** Correction Candidate — Non-Governing Until Founder Approval

@@ -170,11 +170,17 @@ Mission Control completed the per-document AC-02 review on 2026-08-03. The ten-d
 
 No reviewed EOS draft became authoritative or executable. AC-02 remains `CORRECTION REQUIRED — FOUNDER APPROVAL PENDING`. The controlling disposition is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/AC-02_EOS_Focused_Review_and_Disposition.md`.
 
+### AC-02 EOS Correction Package
+
+Mission Control prepared the bounded ten-document version 1.1 correction package on 2026-08-03. It aligns the candidates with Source 18, verified protected-main controls, mission-scoped controlled AI Git authority, current ChatGPT/Codex and Claude roles, evidence-based automation, tool-neutral local work, and the public-repository security boundary.
+
+The package remains non-governing and non-executable until explicit Founder approval. Merging its pull request records the corrected candidates but does not approve or activate them. The correction report is `communication/missions/SB-GOV-HOUSEKEEPING-1.0/codex/AC-02_EOS_Correction_Package_Report.md`.
+
 ---
 
 # Next Recommended Mission
 
-- Execute the bounded AC-02 EOS correction package, validate the corrected ten-document set, and return it for Mission Control review and explicit Founder approval.
+- Complete repository review of the AC-02 version 1.1 correction package and obtain the Founder's explicit approval or return-for-correction decision.
 
 ---
 

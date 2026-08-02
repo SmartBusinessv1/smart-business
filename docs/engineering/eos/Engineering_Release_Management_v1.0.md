@@ -2,7 +2,7 @@
 
 # Engineering Release Management v1.0
 
-**Document Version:** v1.0
+**Document Version:** v1.1
 
 **Document Type:** Engineering Governance Standard
 
@@ -16,8 +16,8 @@
 
 **Approval Authority:** Mission Control
 
-**Status:** Draft
-**Approval Status:** Pending
+**Status:** Mission Control Corrected — Founder Approval Pending
+**Approval Status:** Founder Approval Pending
 
 **Approved By:** Pending
 
@@ -76,6 +76,8 @@ This framework applies to:
 - Engineering architecture.
 
 This framework does not govern application software deployment.
+
+Application deployment, runtime verification, acceptance, and closure remain governed by Source 18 and the mission's locked implementation package. An engineering-artifact release does not authorize product implementation or deployment.
 
 ---
 
@@ -308,15 +310,16 @@ Automation supports release execution but does not authorize releases.
 | Version | Description |
 |---------|-------------|
 | v1.0 | Initial Engineering Release Management framework |
+| v1.1 | AC-02 correction: Source 18 deployment boundary and approval status |
 
 ---
 
 # Approval
 
-This document establishes the Engineering Release Management framework for the Team LIPS Engineering Operating System.
+This document is the corrected candidate for Engineering Release Management. It is non-governing until Founder approval.
 
 **Engineering Review:** Pending
 
-**Mission Control Review:** Pending
+**Mission Control Review:** Correction Review Complete — 2026-08-03
 
 **Founder Approval:** Pending
