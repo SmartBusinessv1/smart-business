@@ -7,7 +7,7 @@ No Critical-severity item was proven from repository evidence.
 ## 2. High-Risk Operational Issues
 
 1. Reconcile ChatGPT and Claude workflow metadata with the approved Stage B activation.
-2. Maintain the branch-protection compensating control; `SB-GOV-HOUSEKEEPING-1.8` is blocked pending an authenticated GitHub settings/API capability and subsequent independent human verification.
+2. Branch protection is configured and independently verified; Mission 1.8 archival is in final protected-path review.
 
 ## 3. Medium-Risk Governance Cleanup
 
@@ -27,7 +27,7 @@ No Critical-severity item was proven from repository evidence.
 
 1. Keep SB-INF-1.2 postponed until production legal pages exist.
 2. Keep migration runtime/OAuth/security/backup gates pending until their authorized stage.
-3. Keep the compensating control active until technical branch protection is verified.
+3. Preserve the verified technical branch-protection settings; the temporary compensating control is retired.
 4. Ignore template/example/runtime-state matches unless promoted by an active mission.
 
 ## Processing Update
@@ -39,13 +39,13 @@ No Critical-severity item was proven from repository evidence.
 - Canonical 20-file package formalization and communication README alignment: EXECUTED through `SB-GOV-HOUSEKEEPING-1.4`; Mission Control verification required.
 - GitHub Actions communication validator: NOT PROCESSED — separate future mission required.
 - Migration-package authority and draft-family containment: CORRECTIONS COMPLETED through `SB-GOV-HOUSEKEEPING-1.7` — 68-document evidence register and mission-memory reconciliation submitted; current executable package NONE; final Mission Control verification required.
-- Branch-protection configuration: BLOCKED in `SB-GOV-HOUSEKEEPING-1.8` — GitHub settings/ruleset capability unavailable; no setting changed; compensating control remains active.
+- Branch-protection configuration: COMPLETE through `SB-GOV-HOUSEKEEPING-1.8` — independently verified; compensating control retired; protected-path closure merged.
 - Remaining queue items retain their original order and status.
 
 ## Mission 1.8 Resolution — 2026-08-02
 
-Branch protection for `main` is configured and independently verified. The temporary compensating control is retired. PR #5 remains open for Founder or authorized-human review and protected-path merge.
+Branch protection for `main` is configured and independently verified. The temporary compensating control is retired. PR #5 was merged by the Founder through the protected path as `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`.
 
 ## Mission 1.8 Protected Merge — 2026-08-02
 
-PR #5 was squash-merged by the Founder through protected `main` as `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`. The required Markdown check passed. Mission 1.8 closure reconciliation is submitted; archival and branch deletion remain pending until the closure PR is merged.
+PR #5 was squash-merged by the Founder through protected `main` as `6d0b10605ae4f9c19d10d9bb435c7e9f99e1697b`. PR #6 merged closure reconciliation as `b0765680d38014dc236da568d9f49f0f3bccd36f`. The required checks passed. Archival is submitted; merged-branch deletion is authorized after archive-merge verification.
