@@ -55,6 +55,7 @@
 - Lovable credits are currently exhausted.
 - Frontend content work requiring Lovable is postponed until credits are available.
 - Placeholder legal pages must not be used for Google OAuth branding verification.
+- Repository visibility remains PUBLIC while `SmartBusinessv1` uses GitHub Free so protected-branch controls remain available.
 
 ---
 
@@ -94,6 +95,12 @@
 - SB-INF-1.2 — Google OAuth Branding Configuration
   - Resume after production-ready legal pages are published.
   - Reuse the findings preserved from SB-INF-1.1.
+
+### Repository Visibility Decision
+
+The Founder decided on 2026-08-02 that `SmartBusinessv1/smart-business` shall remain public while the account uses GitHub Free. This preserves the independently verified `main` branch-protection workflow.
+
+After the core Smart Business build is complete, reconsider upgrading the `SmartBusinessv1` account to GitHub Pro and changing the repository to private. The visibility change may proceed only after confirming that private-repository branch protection, GitHub Actions allowance, and all required GitHub integrations will continue operating without disruption.
 
 ### Legacy Project Source Archive Decision
 
