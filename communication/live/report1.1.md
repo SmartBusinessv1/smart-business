@@ -228,11 +228,11 @@ No changes made to application code, tests, canonical sources, migrations, Supab
 | Supabase read-only inspection | `list_projects`, `get_advisors` (security + performance), `list_tables`, `list_migrations` — all against `gysgzasfcjvtrgaigfyn` (confirmed production); no write/execute/destructive Supabase tool used |
 | Lovable read-only inspection | `list_workspaces`, `list_projects`, `get_database_status`, `get_project_knowledge` — no write-capable Lovable tool used |
 | Markdown Quality Gate | Run locally via `python tools/markdown/quality_gate.py communication/live/report1.1.md` before commit (result recorded at commit time below) |
-| Git diff check | `git diff --cached --check` run before commit |
+| Git diff check | `git diff --cached --check` run before commit — PASS |
 | Secret review | Staged content inspected for credentials, tokens, and keys before commit — none present |
-| Commit | See push evidence below |
-| Push | See below |
-| Pull request | See below |
+| Commit | `7be69f1` — "Report Claude Code readiness for SB-P-1.11" |
+| Push | SUCCESS — `mission/SB-P-1.11-readiness-claude` pushed to `origin` |
+| Pull request | [#21](https://github.com/SmartBusinessv1/smart-business/pull/21) — targets `main`; not merged by Claude Code, per this mission's authorization |
 
 ---
 
