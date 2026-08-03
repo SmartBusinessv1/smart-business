@@ -197,6 +197,42 @@ The `SB-GOV-HOUSEKEEPING-1.0` through `1.8` instruction/report cycle was closed 
 
 `communication/live/` now contains only reusable blank `instruction.md` and `report.md` templates. Archived housekeeping instructions are historical, non-executable evidence and must not be treated as current mission authority.
 
+### Default SB-P.x Mission Execution Model
+
+Unless the Founder explicitly instructs otherwise, Mission Control shall organize every `SB-P.x` Product Mission into four execution stages under Source 18.
+
+**Stage 1 — Product definition and Blueprint foundation**
+
+1. Mission Control initiates the mission and defines the Mission ID, scope, source pack, owner, paths, branch, and communication record.
+2. Codex extracts confirmed Product Truth, constraints, and unresolved questions.
+3. Codex conducts Founder discovery; the Founder owns product decisions; the Founder Product Decision Record captures those decisions.
+4. Codex prepares Product Blueprint Sections 1–19, including the Mission Snapshot.
+5. Mission Control reviews Sections 1–19 and either approves them or returns them for refinement.
+
+**Stage 2 — Builder and engineering review**
+
+6. Claude Code performs Builder Review for feasibility and product experience without changing approved Product Truth.
+7. Claude Code performs Engineering Review and prepares Product Blueprint Sections 20–21 covering architecture, security, RLS, migrations, testing, risks, and engineering questions.
+8. The Founder approves product intent and Mission Control locks the completed Product Blueprint.
+
+**Stage 3 — Engineering specification and implementation package**
+
+9–11. Claude Code prepares the Engineering Implementation Specification; relevant specialists review assigned domains when required; Mission Control reviews and locks `[MISSION-ID]-EIS.md`.
+12–13. Claude Code prepares `engineering-contract.md`, `lovable-build-prompt.md`, and `verification-checklist.md`; Mission Control reviews and locks the implementation package.
+14. Claude Code prepares the Founder implementation brief with the exact approved Lovable instruction, files, branch steps, and expected results.
+
+**Stage 4 — Build, verification, acceptance, and closure**
+
+15–16. Lovable implements only the locked prompt and produces `lovable-build-completion-report.md`; Lovable cannot verify or accept its own work.
+17–18. The Founder performs runtime verification and supplies observations or screenshots; Mission Control assesses whether the evidence is sufficient.
+19. Claude Code performs independent verification and classifies each item as `PASS`, `FAIL`, `FOLLOW-UP`, or `NOT APPLICABLE` in the Independent Verification Report.
+20. Mission Control assigns a corrective cycle when material failures exist; build, Founder testing, and independent verification repeat as required.
+21–22. Claude Code prepares the Evidence Package and Formal Completion Report.
+23. Mission Control records `ACCEPTED`, `ACCEPTED WITH FOLLOW-UP`, `CORRECTION REQUIRED`, or `REJECTED`.
+24. Mission Control assigns Codex or Claude Code to complete documentation closure, recording the final commit, deployment reference, follow-ups, repository state, and formal closure.
+
+This four-stage model is the default Mission Control execution principle for every `SB-P.x` mission. It does not bypass Source 18 approval gates, does not permit an actor to approve its own work, and does not authorize any mission or implementation by itself.
+
 ---
 
 # Next Recommended Mission
