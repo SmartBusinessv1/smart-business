@@ -8,8 +8,8 @@
 | Mission Name | Product Catalog & Pricing |
 | Mission Type | Product Feature Elaboration |
 | Lifecycle Stage | Stage 1 — Product Definition |
-| Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–19 only |
-| Status | Refined draft — awaiting Mission Control review of Builder Review Findings F3–F5 |
+| Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–21 |
+| Status | Complete draft through Section 21 — awaiting Mission Control review and Founder approval |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Codex |
 | Constitutional Authority | Source 01 and Source 11 jointly, subordinate to the Lighthouse Constitution |
@@ -17,8 +17,8 @@
 | Upstream Product Dependency | SB-P-1.10 — Inventory Foundation (accepted) |
 | Founder Decision Record | [`SB-P-1.11-Founder-Product-Decision-Record.md`](./SB-P-1.11-Founder-Product-Decision-Record.md) |
 | Date | 2026-08-04 |
-| Builder Review | Completed by Claude Code and accepted by Mission Control; F3–F5 returned to Codex for authorized refinement |
-| Engineering Review | Not started; Sections 20–21 intentionally absent |
+| Builder Review | Completed by Claude Code; Findings F3, F4, and F5 (including the replacement-link scope) independently verified as resolved (`report1.2.md`, `report1.4.md`, `report1.6.md`) |
+| Engineering Review | Completed by Claude Code; Sections 20–21 added — see Section 21 Engineering Decision and Readiness |
 | Blueprint Lock | Not requested or claimed |
 
 ## Mission Snapshot
@@ -609,3 +609,209 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 | 2026-08-04 | Founder and Codex | Founder-approved F5 unit-change price behavior recorded as D-068 and reflected in Sections 5, 8, 9, 10, 13, 14, and 15. | Existing decisions D-001 through D-067 preserved; Sections 20–21 remain absent; refinement returned for Mission Control review. |
 | 2026-08-04 | Claude Code and Mission Control | Follow-up Builder Review accepted F3 and F4 as resolved and identified only the F5 replacement-link consistency gap. | Instruction 1.5 authorized a narrow consistency refinement without a new Founder decision. |
 | 2026-08-04 | Codex | Refined D-068 and Sections 8, 9, 10, 13, 14, and 15 to apply the existing safeguard consistently to first-time assignment and permitted replacement linking. | No F3 or F4 wording reopened; D-001 through D-067 unchanged; Sections 20–21 remain absent. |
+| 2026-08-04 | Claude Code | Final F5 replacement-link verification confirmed the safeguard applies consistently to first-time assignment and permitted replacement (`report1.6.md`). | Findings F3, F4, and F5 are all `RESOLVED`; D-001 through D-068 unchanged; no protected artifact modified. |
+| 2026-08-04 | Claude Code | Completed the Source 18 Engineering Review authorized by Instruction 1.7 and added Sections 20–21. | Engineering Decision and Readiness: `READY FOR FOUNDER APPROVAL`; D-001 through D-068 unchanged; no new Founder decision created; Blueprint not locked. |
+
+## 20. Engineering Review
+
+This section records the Engineering Review of Product Blueprint SB-P-1.11, building on the accepted Builder Review (`report1.2.md`, `report1.4.md`, `report1.6.md`) and the resolved Findings F3, F4, and F5. It reflects an engineering feasibility assessment only. Sections 1–19 remain Mission Control-accepted and unchanged. No database schema, API contract, RLS policy, executable SQL, or implementation code is defined here.
+
+### Overall Engineering Feasibility
+
+The Blueprint is engineering-feasible within the approved Smart Business architecture.
+
+- The mission can be implemented without violating the SB-P-1.10 ledger authority, business isolation, permission scope, audit integrity, or human decision ownership carried forward as Accepted Product Authority by `instruction1.7.md`.
+- The core catalog-and-pricing domain shape — a business-owned entity with an optional link to an existing ledger-backed entity, plus append-only value-history tables for price, tax, and cost — is a well-understood pattern and is directly consistent with the domain shape SB-P-1.10 already established and that its own Engineering Review (§20) found feasible.
+- Two Build Now sub-scopes — Manager/Employee permission enforcement and guided WhatsApp/voice/photo catalog workflows — depend on shared platform foundations that do not yet exist in the repository. This is a sequencing fact, not a feasibility defect in Sections 1–19: Source 11 already establishes both the Owner/Manager/Employee permission model and WhatsApp-first conversation as Product Truth: the gap is that those shared capabilities have not yet been built anywhere in the repository, for any mission. Section 21 treats this as a dependency and sequencing matter rather than a blocking defect.
+
+**The Blueprint is engineering-feasible, with two named cross-mission dependencies affecting only the sequencing of certain Build Now sub-scopes, not the core catalog-and-pricing capability.**
+
+### Current Repository State and Reusable Patterns
+
+Direct repository inspection (not assumption) establishes the following current state, carried forward from `report1.2.md` Findings F7, F16, F17, F19 and confirmed unchanged for this review:
+
+- **Inventory precedent (SB-P-1.10, implemented):** `supabase/migrations/20260721205714_*.sql` creates `inventory_items` and an append-only `inventory_movements` ledger (`UPDATE`/`DELETE` rejected by trigger), `inventory_movement_idempotency_keys`, and RPCs `create_inventory_movement`, `preview_inventory_movement`, `inventory_current_stock_batch`, and `inventory_movement_remaining_compensable`. This is the single strongest reusable precedent for SB-P-1.11's own write-integrity design (see "Write-Path, Concurrency, Idempotency, and Atomicity" below).
+- **Business isolation pattern:** every business-owned table carries a `business_id uuid references public.businesses(id)`, gated by an RLS policy subquery `business_id IN (SELECT id FROM public.businesses WHERE owner_id = auth.uid())`, applied identically across `inventory_items`, `inventory_movements`, `transactions`, and `transaction_correction_events`. Several tables add a composite `UNIQUE (id, business_id)` to support cross-table foreign-key consistency checks (e.g., `inventory_items_id_business_uniq`). This pattern is directly reusable for every new catalog table without modification.
+- **Permission state (F7):** `businesses.owner_id` is the sole authority column in the current schema. Every existing RLS policy checks `owner_id = auth.uid()` only. SB-P-1.10's own accepted implementation is documented in its migration as Owner-only "per Mission Control clarification SB-P-1.10-CLAR-1.0 (A1)." No `employees`, `business_members`, or role/permission-flag table exists anywhere in the current migrations.
+- **Audit analog:** `transaction_correction_events` (jsonb `original_values`/`updated_values`, `edited_by`, `edit_reason`, `notification_status`, written inside the `correct_transaction()` `SECURITY DEFINER` function) is the closest existing generic-audit precedent, though it is transaction-specific. Inventory's own audit trail is implicit in its append-only ledger, not a separate table.
+- **Routing and navigation:** TanStack Router file-based routing under `src/routes/_authenticated/` (dashboard, transactions, inventory), guarded by `beforeLoad` session checks. No `products` or `catalog` route exists yet. `src/components/authed-header.tsx` already centralizes workspace navigation across the existing authenticated routes "so nav-link additions do not drift" (its own header comment) — a Products/Catalog entry point follows this established pattern directly.
+- **Import, conversational, and role infrastructure:** no CSV/XLSX parsing dependency, import route, or correction-queue component exists in `src/` or `package.json` (F13). No WhatsApp webhook, voice, or AI-conversation code exists in `src/`; the dashboard shows only a disabled "Coming soon" WhatsApp assistant card (F14).
+- **Approved but not-yet-implemented conceptual precedent (`02_Supabase_Architecture_Framework.md`):** the legacy Source 02 schema describes `public.employees` with per-action boolean permission flags (`can_add_transactions`, `can_view_cash_summary`, `can_view_reports`, `can_view_inventory`, `can_view_hr`, `can_edit_attendance`), `public.file_import_jobs` (import job tracking with `status`: `pending`/`processing`/`completed`/`partial_success`/`failed`, `rows_processed`, `rows_failed`, `error_report_url`), `public.system_errors`, and a `pg_cron`-based scheduled-automation architecture (Morning Pulse, Attendance Review, Closing Review). None of these tables exist in the current migrations, and their literal `user_id`-scoped shape predates and is superseded by the `business_id`-plus-RLS ownership model SB-P-1.10 established and the current schema already uses throughout — consistent with SB-P-1.11 §12's own caution against "treating stale Source 02 schema examples as current inventory truth." They remain useful, Founder-approved *conceptual* precedent for the shapes described below (permission flags, import-job tracking, scheduled activation), not a schema to copy verbatim.
+
+### Proposed Architecture and Bounded Components
+
+At a boundary level, without prescribing schema, SB-P-1.11 requires the following bounded components, each independently buildable on an existing or clearly analogous pattern:
+
+- A **catalog product** entity: business-scoped identity, optional inventory link, one selling unit, current price, lifecycle state, and pointers to its own history.
+- An **optional business-scoped category** entity: flat, business-owned, normalized-unique name.
+- **Append-only value-history** tables for selling price, tax, and reference cost — each mirroring the `inventory_movements` append-only, trigger-enforced-immutability shape, but scoped to their own value type rather than a stock quantity.
+- A **pending scheduled price** record (at most one per product), consumed by a scheduled-activation process (see "Timezone and Scheduled-Price Handling").
+- A **shared audit-event capability** for the remaining mutable fields not covered by a value-history table (name, description, image, category, SKU, barcode, unit, inventory link, lifecycle status) — see "Audit-History Architecture."
+- A **catalog import job and correction-queue** capability, extending the approved `file_import_jobs` conceptual pattern with a catalog `import_type` and a row-level correction-queue table — see "Import Architecture and Safety Controls."
+- A **catalog intent handler** inside the not-yet-built shared conversational engine — see "WhatsApp, Voice, Text, and Photo Integration Dependencies."
+- A **permission-check boundary** for every catalog action (view, create, edit lifecycle, edit price, edit tax, edit cost, link inventory) — see "Permission-Engine Dependency."
+
+No component here implies a new architectural pattern, external system, or deviation from the current Supabase-based stack.
+
+### Data Model and Relationship Assessment
+
+Sections 7 and 8 provide sufficient clarity to model the domain at a boundary level:
+
+- **Product identity, business-unique name, optional SKU/barcode/description/image/category** — clearly bounded (§8 "Catalog Product," "Product Name and Description," "SKU," "Barcode," "Product Image," "Categories").
+- **Product–inventory link** — one-to-one in both directions, business-scoped, lockable after sale/stock-event history — clearly bounded (§8 "Product–Inventory Link"; D-001–D-005, D-047) and directly analogous to the existing `inventory_items_id_business_uniq`-style composite-uniqueness pattern already used for FK integrity elsewhere.
+- **Selling unit inheritance** — a stock-tracked product's unit equals its linked inventory item's immutable base unit; a non-stock product's unit is independently settable before sales history — clearly bounded (§8 "Selling Unit"; D-005, D-051, D-052).
+- **Selling price, reference cost, tax treatment**, each with its own current value plus a preserved change history — clearly bounded (§8 "Selling Price," "Reference Cost Price," "Tax Treatment"; D-009–D-019, D-036–D-043).
+- **Scheduled selling price** — at most one pending future price per product, with a defined activation moment — clearly bounded (§8 "Scheduled Selling Price"; D-012, D-013, D-043).
+- **D-068 assignment/replacement price-confirmation safeguard** — clearly bounded at the behavioural level: the safeguard's four preserved-state failure modes (cancellation, incomplete confirmation, validation failure, save failure) and its required preview content for both first-time assignment and replacement are fully specified in §8 "Product–Inventory Link," §8 "Selling Unit," §9 "Inventory-Link Experience," and Rule 28; the specific transactional mechanism is an implementation decision within those stated constraints (see "Write-Path, Concurrency, Idempotency, and Atomicity").
+- **Lifecycle and conditional deletion** — Active/Archived states, deletion permitted only before dependent history exists — clearly bounded (§8 "Product Lifecycle," "Conditional Permanent Deletion"; D-029–D-032, D-065) and directly analogous to SB-P-1.10's own archival-not-deletion pattern.
+
+Domain boundaries are sufficiently clear to proceed to schema design at the EIS stage. No product clarification is required for domain modelling.
+
+### Row-Level Security and Business Isolation
+
+The existing `business_id` column plus `owner_id`-subquery RLS pattern, and the composite `UNIQUE (id, business_id)` FK-integrity pattern, apply directly and without modification to every new catalog, category, and history table (§8 "Business Ownership and Isolation"; D-047, Rule 4). Supabase RLS is a natural fit for the business-scoped and (once available) permission-scoped access this Blueprint requires; no access pattern in Sections 1–19 requires anything RLS cannot express. Column-level restriction (hiding reference cost and margin from employees; D-014, D-016, D-035) is not natively an RLS row-level concept and is addressed under "Permission-Engine Dependency" and "Security, Privacy, Observability, and Failure Recovery" below.
+
+### Permission-Engine Dependency
+
+This is the most consequential Engineering Review finding carried forward from `report1.2.md` Finding F7.
+
+- The Blueprint (§8 "Permissions"; D-016, D-033, D-034, D-035, D-048) requires a granular, action-specific Manager/Employee permission model — independently controlled for catalog viewing, product creation, lifecycle, price, tax, reference cost, and inventory linking, with inventory linking additionally requiring inventory-view permission.
+- No such model exists in the current repository. `businesses.owner_id` is the only implemented authority, and SB-P-1.10's own accepted implementation is Owner-only.
+- Source 02's legacy `public.employees` concept (per-action boolean permission flags such as `can_view_inventory`, `can_view_cash_summary`) is Founder-approved conceptual precedent showing that Product Truth already anticipates exactly this shape — a flat, per-action permission-flag model scoped per business member, not a generic role hierarchy. SB-P-1.11's catalog permissions (view/create/lifecycle/price/tax/cost/link) extend this same shape with catalog-specific flags rather than requiring an unrelated new authorization paradigm.
+- Per Source 12 §13 ("Single Implementation Rule" — one Permission Engine) and Source 17 §B8 ("Reuse and Duplication Control"), this permission model should not be built as a catalog-specific feature. It is a shared platform capability that SB-P-1.10 (whose own Blueprint also assumes Manager/Employee tiers, though its accepted implementation deferred them), SB-P-1.11, and every future People/Permissions-domain mission require identically.
+- **Engineering conclusion:** SB-P-1.11's Owner-scoped catalog data model, RLS, and dashboard CRUD are buildable today using the existing Owner-only pattern, exactly as SB-P-1.10 was. Full enforcement of §8 "Permissions" (Manager and sale-authorized-Employee catalog access) requires a shared permission-engine foundation that does not yet exist for any mission in this repository. This is a build-sequencing dependency, not a defect in Sections 1–19, and it does not weaken the locked rule that employees cannot see owner financial intelligence by default (D-014, D-016, D-035) — that rule constrains what the eventual permission engine and read paths must enforce, and remains fully intact in the Blueprint regardless of when the engine is built.
+
+### API, RPC, Edge Function, and Scheduled-Processing Boundaries
+
+Without specifying signatures:
+
+- Each history-producing write (selling-price change, tax change, reference-cost change, D-068 assignment/replacement) should have exactly one authoritative write path, mirroring the single `create_inventory_movement` RPC pattern SB-P-1.10 established — not per-channel (dashboard vs. WhatsApp vs. import) duplicate write logic, consistent with Source 12 §4/§10's channel-independence and single-implementation principles.
+- Scheduled price activation (D-043) is a deferred write, not an immediate one, and fits the existing `pg_cron`-plus-secure-backend-endpoint automation architecture already approved in Source 02 §7 and already used for the Daily Intelligence Engine (Morning Briefing, Business Pulse Check, Night Closing Intelligence per Source 11's "Daily Intelligence Rhythm"). No new scheduling mechanism is implied.
+- Import processing (parse, validate, quarantine) is naturally an asynchronous job, consistent with the `file_import_jobs`-style status model (`pending`/`processing`/`completed`/`partial_success`/`failed`) already approved in Source 02 §3.15A.
+- A future guided-conversation catalog intent handler is a consumer of the shared conversational pipeline described in Source 04 (webhook → identity router → multi-modal processing → intent classification → action execution → role-based response), not a separate catalog-specific webhook or endpoint.
+
+### Write-Path, Concurrency, Idempotency, and Atomicity
+
+Following SB-P-1.10's own Engineering Review precedent (§20 "Ledger Integrity Review," "Concurrency," "Duplicate movement creation," "Idempotency for future integrations"), the following requirements should carry into the EIS for SB-P-1.11's price, tax, cost, and link writes:
+
+- **Single write path per value type**, enforced at the data-access layer, not only in application code.
+- **Database-level immutability** of posted price/tax/cost history rows, mirroring the `UPDATE`/`DELETE`-rejecting trigger already implemented on `inventory_movements`.
+- **Idempotency**, reusing the same idempotency-key pattern already implemented via `inventory_movement_idempotency_keys`, extended to price/tax/cost/link-change writes — particularly important once WhatsApp or import-driven writes can retry.
+- **Atomicity for the D-068 safeguard.** The Blueprint requires that cancellation, incomplete confirmation, validation failure, or save failure each leave the existing product record, current inventory link state, selling unit, and selling price completely unchanged (§8 "Product–Inventory Link"; Rule 28). This guarantee is only reliably enforceable if the price-confirmation-and-link-save operation is implemented as a single database transaction (a single RPC call), not a client-orchestrated multi-step sequence — otherwise a failure between steps could leave a partially applied state (e.g., unit changed but price unconfirmed), which the Blueprint explicitly forbids. This mirrors the same "projected-state check before commit" discipline SB-P-1.10 used for its negative-stock warning (`preview_inventory_movement`), applied here to unit/price consistency instead of stock quantity.
+- **Concurrency.** Two near-simultaneous write attempts against the same product's price, tax, cost, or link state (e.g., a dashboard edit and a WhatsApp-confirmed edit arriving together) require the same transactional-guarantee treatment SB-P-1.10 required for concurrent inventory movements, to avoid one silently overwriting the other's history entry.
+
+### Audit-History Architecture
+
+Carrying forward `report1.2.md` Finding F18: the Blueprint's audit requirement (§8 "Audit History"; D-064) spans roughly ten field categories and is broader than any existing single pattern. Two distinct needs should be architecturally separated rather than forced into one table:
+
+1. **Value-history tables** for price, tax, and cost — each its own append-only, immutable table preserving old value, new value, effective time, record time, and responsible user, matching the transaction-time-evidence requirement in §8 "Selling-Price History" and "Tax History." These are naturally domain-specific because their value shapes and downstream consumers (future Sales Workflow transaction-time evidence) differ.
+2. **A shared, generic audit-event capability** for the remaining mutable fields (name, description, image, category, SKU, barcode, unit, inventory link, lifecycle status) — a reusable (entity type, entity id, business id, changed field, old value, new value, actor, time) shape, similar in spirit to the existing `transaction_correction_events` jsonb old/new snapshot pattern but generalized beyond transactions. Per Source 12 §10 ("Single Implementation Rule") and §B8, this shared capability should be designed so Catalog is its first real consumer and Inventory, Purchase, and Sales missions can reuse it rather than each building a bespoke audit table.
+
+### Multilingual Search and Normalization Feasibility
+
+Building on the resolved Findings F3 and F4 (`report1.4.md`, `report1.6.md`):
+
+- **Exact normalization** (leading/trailing whitespace, repeated internal whitespace, Latin-letter case) for product name, SKU, barcode, and category (§8; Rules 8, 9, 27) is reliably enforceable as a database-level constraint — e.g., a normalized/generated value used for the business-scoped uniqueness check — rather than relying on application-layer discipline alone, consistent with the "enforce invariants at the data layer, not only in application code" principle SB-P-1.10's own review committed to.
+- **Uncertain-match suggestion** (different Malayalam spellings, Manglish transliterations, or translations) is a materially harder problem than exact normalization. The Blueprint's own language — "where matching is reliable," "may suggest" (§5, §8 "Search and Filtering") — already anticipates and permits a bounded, best-effort approach (for example, a similarity heuristic over normalized text) rather than a claim of true cross-script semantic equivalence detection. This is a non-blocking scope note for the EIS, not a blocker: the Blueprint requires that uncertain matches be surfaced for merchant review, not that the system achieve perfect multilingual understanding.
+
+### Import Architecture and Safety Controls
+
+Carrying forward Finding F13, now informed by the Source 02 §3.15A `file_import_jobs` precedent:
+
+- Reusing and extending the approved `file_import_jobs` conceptual pattern (job-level `status` progression, `rows_processed`/`rows_failed`/`error_report_url`) with a catalog `import_type` avoids building a catalog-specific import-job table from scratch, directly satisfying the reuse-before-duplication principle.
+- D-057's row-level correction-queue requirement (update/skip/correct per conflicting row) is more granular than the job-level status model alone provides and needs its own row-level table referencing the import job, the conflicting row's proposed values, and the matched existing product.
+- Required safety controls: reject invalid rows without creating live products (D-056); never auto-overwrite a name/SKU/barcode match (D-057); restrict import to owner or product-creation-permitted manager (D-058 — itself dependent on the permission engine above); validate uploaded file type and size before processing; and report errors through both dashboard and the planned conversational channel (§8 "CSV and Excel Bulk Import") without leaking another business's data through error messages (§8 "Business Ownership and Isolation").
+- Import is a substantial, independently sizeable capability bundle (parsing, validation, quarantine, correction queue, dual-channel reporting), not incidental CRUD, and should be scoped as such in the EIS and implementation planning (consistent with `report1.2.md` Finding F13).
+
+### WhatsApp, Voice, Text, and Photo Integration Dependencies
+
+Carrying forward Finding F14, now informed by the full approved conversational architecture in Source 04 and Source 05:
+
+- Source 04 already defines a complete approved pipeline — webhook (`/api/whatsapp-webhook`) → identity router (Owner → Employee → Supplier → Unknown) → multi-modal processing (text/voice/photo → structured JSON) → the Webhook Intelligence Order in Source 05 §14 (verify → identify role → check permission → check subscription → safety check → business relevance → FAQ check → detect intent → execute action → respond by role) — and an approved intent taxonomy in Source 05 §3 that already includes `inventory_update` as an intent type.
+- None of this pipeline is implemented in the current repository; the dashboard shows only a disabled "Coming soon" WhatsApp assistant card.
+- **Engineering conclusion:** SB-P-1.11's guided WhatsApp/voice/photo catalog workflows (§8 "WhatsApp, Voice, Text, and Photo Assistance"; D-053, D-054) are not a catalog-specific system to build from scratch. They are a catalog-scoped intent handler (e.g., a `catalog_update`-style intent, or an extension of the existing `inventory_update` intent family) that plugs into the shared conversational engine described in Source 04/05. That shared engine does not yet exist for any mission in this repository. This mirrors the permission-engine dependency above: a cross-mission foundation gap, not a defect in Sections 1–19, and Source 12 §4's channel-independence principle ("Business logic shall never be duplicated for individual channels") argues against SB-P-1.11 building a parallel, catalog-only conversational path even if resourced separately.
+- The dashboard-based guided experience (structured preview, explicit confirmation before saving; §8, D-053, D-054) does not depend on this gap and is buildable now using the same confirmation-before-save UI pattern already required elsewhere in the Blueprint.
+
+### Timezone and Scheduled-Price Handling
+
+Carrying forward Finding F12:
+
+- SB-P-1.10's own Engineering Review (§20 "Timezone consistency") committed to canonical UTC storage with presentation-layer conversion for ledger timestamps. The same approach should carry to SB-P-1.11's price/tax/cost history timestamps and scheduled-price activation time, so Inventory and Catalog do not diverge in timezone handling.
+- D-043 requires scheduled-price activation "in the business timezone" without specifying whether that timezone is a fixed value (Kerala/India, consistent with Source 01's initial target market) or a per-business configurable field. Sections 1–19 do not need to resolve this to remain product-coherent — either a fixed Asia/Kolkata default or a stored per-business timezone field satisfies the Blueprint's plain language — but the EIS must make and record one explicit choice before scheduled-price activation is implemented, since silently assuming one would risk the same kind of retrofit difficulty SB-P-1.10's review flagged for ledger timestamps.
+- Scheduled activation itself is a natural fit for the existing `pg_cron`-plus-secure-endpoint automation pattern (see "API, RPC, Edge Function, and Scheduled-Processing Boundaries" above); activating a pending price must write a new immutable price-history entry at the actual activation instant, not a backdated one, consistent with D-012/D-043.
+
+### Security, Privacy, Observability, and Failure Recovery
+
+- **Security:** RLS on every new table follows the established `business_id`-plus-owner-subquery pattern, extendable to a permission-flag subquery once the permission engine exists; service-role access remains backend-only; no secret or credential is introduced by this review.
+- **Privacy:** hiding reference cost and margin from employees (D-014, D-016, D-035) is a column-level, not row-level, restriction. Postgres RLS operates at row granularity, so the reliable mechanism is a permission-aware read path (a `SECURITY DEFINER` RPC or view that omits protected columns for unauthorized callers) rather than direct table `SELECT`, consistent with how `inventory_current_stock_batch` already abstracts inventory reads rather than exposing raw table access.
+- **Observability:** import and write failures should be recorded through the existing `system_errors` table (Source 02 §3.13) rather than a catalog-specific error log, consistent with reuse-before-duplication.
+- **Failure recovery:** import failure states are already modelled generically (`file_import_jobs`-style `failed`/`partial_success`) and should be reused rather than reinvented; D-068's atomic no-change guarantee is itself the failure-recovery model for unit-changing link operations (see "Write-Path, Concurrency, Idempotency, and Atomicity").
+
+### Reuse and Duplication Controls
+
+Summary of reuse decisions carried through this review, consolidating Findings F16, F17, F19 and the analysis above: the `business_id`-plus-RLS isolation pattern (reuse unmodified); the `file_import_jobs` conceptual pattern (reuse and extend with a catalog `import_type`); `system_errors` (reuse for failure logging); `pg_cron`-plus-secure-endpoint scheduling (reuse for scheduled-price activation); the append-only-plus-idempotency-key pattern from `inventory_movements` (reuse as the template for price/tax/cost history and the D-068 write path); `authed-header.tsx` navigation (reuse for a Products/Catalog entry point). Two capabilities are new but explicitly shared rather than catalog-specific: the generic audit-event mechanism and the permission-flag engine. One capability is new and explicitly deferred to a separate conversational-engine foundation: the WhatsApp/voice/photo intent pipeline. No finding in this review identifies an unnecessary new pattern where an existing one already fits.
+
+### Engineering Risks
+
+| Risk | Impact | Engineering Mitigation Direction |
+|---|---|---|
+| Permission-engine absence | Manager/Employee catalog actions cannot be enforced until a shared permission engine exists; building it catalog-specifically would duplicate a capability every People/Permissions-domain mission needs | Treat as a named cross-mission dependency (see Section 21); build Owner-scoped catalog capability now; sequence Manager/Employee enforcement behind the shared engine |
+| Conversational-engine absence | Guided WhatsApp/voice/photo catalog workflows cannot be implemented until the shared conversational pipeline (Source 04/05) exists | Treat as a named cross-mission dependency; build dashboard-based guided creation/confirmation now; sequence conversational intent handling behind the shared engine |
+| D-068 atomicity implemented as multi-step client flow | A failure between steps could leave unit changed but price unconfirmed, violating the Blueprint's explicit unchanged-state guarantee | Require a single transactional RPC for confirm-and-save; forbid client-orchestrated partial commits |
+| Column-level cost/margin exposure via naive RLS | Employees could see protected financial fields if catalog reads use direct table `SELECT` instead of a permission-aware read path | Require a `SECURITY DEFINER` read path (RPC or view) that omits protected columns by caller authorization, mirroring `inventory_current_stock_batch` |
+| Multilingual "possible match" over-promised as authoritative | A best-effort similarity suggestion could be mistaken for guaranteed cross-script equivalence detection, risking silent-merge-like trust failure even though the Blueprint requires merchant review | Scope the EIS matching algorithm modestly (normalized-exact plus a disclosed best-effort suggestion); never auto-apply a suggested match |
+| Import treated as incidental CRUD | Underestimating import's scope (parsing, quarantine, correction queue, dual-channel reporting) risks a rushed, unsafe implementation | Size import as an independent capability bundle in the EIS and implementation plan, per Finding F13 |
+| Timezone choice deferred silently | Retrofitting a timezone convention after price history exists would risk the same difficulty SB-P-1.10 flagged for ledger timestamps | Require the EIS to make and record one explicit timezone choice (fixed or per-business) before the first price-history row is written |
+| Value-history and generic audit-event mechanisms built as one undifferentiated table | Forcing ten dissimilar field types into one schema risks a poor fit for both the transaction-time-evidence need (price/tax/cost) and the simple change-log need (identity/lifecycle fields) | Keep the two mechanisms architecturally separate, as described under "Audit-History Architecture" |
+
+### Build Sequencing
+
+Recommended phased sequencing within the accepted Build Now scope, without changing Product Truth:
+
+- **Phase 1 — no cross-mission dependency:** core catalog and category data model, Owner-scoped dashboard CRUD and RLS, selling-unit inheritance and D-068 assignment/replacement safeguard (single-RPC atomic implementation), price/tax/cost value-history tables, multilingual normalization (exact-match enforcement), and scheduled-price activation via the existing `pg_cron` pattern.
+- **Phase 2a — depends on a shared permission-engine foundation:** Manager and sale-authorized-Employee catalog permission enforcement (§8 "Permissions"; D-016, D-033–D-035, D-048).
+- **Phase 2b — sizeable but not cross-mission-blocked:** CSV/Excel bulk import and correction queue, extending `file_import_jobs`.
+- **Phase 3 — depends on a shared conversational-engine foundation:** guided WhatsApp/voice/photo catalog intent handling (§8 "WhatsApp, Voice, Text, and Photo Assistance"; D-053, D-054), beyond the dashboard-based guided creation already buildable in Phase 1.
+
+Phases 2a and 3 each depend on a foundation this review did not find anywhere in the current repository for any mission, not only for SB-P-1.11. Mission Control should decide whether a prior or parallel foundation mission is warranted, or whether those specific Build Now sub-scopes are implemented later within SB-P-1.11's own implementation lifecycle once the dependency is satisfied. Phase 2b has no such cross-mission blocker and may proceed in parallel with Phase 1 if resourced separately.
+
+### Verification Expectations for EIS and Implementation
+
+The EIS and later verification stages must specifically test: RLS isolation for every new catalog, category, and history table; permission-flag enforcement per action once the permission engine exists; immutability of posted price/tax/cost history rows; the D-068 atomic transaction across all four failure modes (cancellation, incomplete confirmation, validation failure, save failure); database-level enforcement of normalized name/SKU/barcode uniqueness; import quarantine and correction-queue behaviour under invalid and conflicting rows; scheduled-price activation timing accuracy against the chosen timezone convention; and that multilingual "possible match" suggestions never silently rename, merge, translate, or overwrite a catalog record.
+
+## 21. Engineering Questions, Risks & Recommendations
+
+This section captures engineering observations without altering accepted Product Truth in Sections 1–19.
+
+### Engineering Questions
+
+> No Product clarification required.
+
+Findings F3, F4, and F5 (including the replacement-link scope) were independently verified as resolved before this Engineering Review began (`report1.4.md`, `report1.6.md`). No new product ambiguity was identified during this review. The two named dependencies below (permission engine, conversational engine) are sequencing and architecture facts about what has and has not been built elsewhere in the repository — they do not require a new Founder product decision, because Source 11 already establishes both the Owner/Manager/Employee permission model and WhatsApp-first conversation as Product Truth. The one open item genuinely requiring a decision (the timezone-convention choice under "Timezone and Scheduled-Price Handling") is an EIS-stage engineering choice within already-approved Product Truth, not a Founder product decision, because the Blueprint's "business timezone" language is satisfied by either a fixed or a configurable implementation.
+
+### Blocking Issues
+
+None. No finding in this review contradicts, reopens, or requires reinterpreting Founder decisions D-001 through D-068, and no finding requires a new Founder decision before Sections 1–21 can be considered technically coherent.
+
+### Non-Blocking Engineering Risks
+
+Carried forward from the Engineering Risks table in Section 20: D-068 atomicity implementation discipline; column-level cost/margin exposure requiring a permission-aware read path rather than naive `SELECT`; multilingual "possible match" scope discipline; import sizing; deferred timezone-convention choice; and keeping the value-history and generic audit-event mechanisms architecturally separate. None of these block Founder approval; each is a concrete instruction to the EIS and implementation stages.
+
+### Dependencies Requiring Prior or Parallel Missions
+
+- **Permission-engine foundation** (Owner/Manager/Employee action-specific permissions): required for full enforcement of §8 "Permissions." Not required for Phase 1 Owner-scoped catalog capability.
+- **Conversational-engine foundation** (WhatsApp webhook, identity router, multi-modal processing, intent classification per Source 04/05): required for guided WhatsApp/voice/photo catalog workflows beyond dashboard-based guided creation. Not required for Phase 1.
+
+Neither dependency is specific to SB-P-1.11; both are shared platform capabilities that any current or future People/Permissions-domain or Conversation-domain mission would also require. Mission Control should decide whether either is sequenced as a separate governed mission, a parallel workstream, or a later phase within SB-P-1.11's own implementation lifecycle.
+
+### Recommended Implementation Sequencing
+
+See Section 20 "Build Sequencing." In summary: Phase 1 (no dependency) → Phase 2a (permission engine) and Phase 2b (import, no cross-mission blocker) in parallel → Phase 3 (conversational engine).
+
+### Engineering Decision and Readiness
+
+```text
+READY FOR FOUNDER APPROVAL
+```
+
+Sections 1–21 are technically coherent: the core catalog-and-pricing domain is engineering-feasible today on existing, directly analogous architecture (SB-P-1.10's ledger, business-isolation, and idempotency patterns); no blocking issue was found; the two named cross-mission dependencies affect only the sequencing of specific Build Now sub-scopes (Manager/Employee enforcement, guided conversational workflows) and do not require reopening Sections 1–19 or creating a new Founder decision. This disposition recommends that Mission Control may consider the Blueprint ready for Founder review and, subject to Founder approval, Mission Control lock — Claude Code does not approve or lock its own Engineering Review.
