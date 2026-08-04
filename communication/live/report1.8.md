@@ -112,10 +112,12 @@ No unauthorized path changed.
 - Repository: `SmartBusinessv1/smart-business`.
 - Synchronized base: `origin/main` at `838300c8cc72d11300b75f1320f69e95b73ecac6`.
 - Mission branch: `mission/SB-P-1.11-blueprint-lock`.
-- Approved commit message: `Apply SB-P-1.11 Blueprint Lock`.
+- Blueprint Lock commit: `129e38e08501e594af9acd8363c3eab0d76364f5`.
+- Blueprint Lock commit message: `Apply SB-P-1.11 Blueprint Lock`.
+- Draft pull request: https://github.com/SmartBusinessv1/smart-business/pull/43
 - Pull-request target: `main`.
 
-The immutable commit SHA and draft pull-request URL are established during publication and are directly available from the protected branch and pull request. This report cannot contain the SHA of the same commit that first creates it.
+This report evidence is published in a separate report-only commit because a commit cannot contain its own SHA.
 
 # Risks and Limitations
 
