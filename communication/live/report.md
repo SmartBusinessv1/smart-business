@@ -6,7 +6,7 @@
 
 **Mission Name:** Product Catalog & Pricing — Stage 1 Product Definition
 
-**From:** Codex — Product Co-Founder, CPO, Strategy Partner, and Mission Control support
+**From:** Codex — Product Discovery and Blueprint Authoring
 
 **To:** Mission Control
 
