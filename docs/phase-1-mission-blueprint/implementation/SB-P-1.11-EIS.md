@@ -226,7 +226,7 @@ assign_or_replace_catalog_inventory_link(
 ) RETURNS catalog_command_result
 ```
 
-Where `catalog_command_result` is a structured type distinguishing `status IN ('completed', 'rejected')` plus a `rejection_category` (populated only when `status = 'rejected'`) and a `result_ref` (populated only when `status = 'completed') — never a bare row or a thrown error for any *expected* condition.
+Where `catalog_command_result` is a structured type distinguishing `status IN ('completed', 'rejected')` plus a `rejection_category` (populated only when `status = 'rejected'`) and a `result_ref` (populated only when `status = 'completed'`) — never a bare row or a thrown error for any *expected* condition.
 
 1. **Auth and permission.** Resolve caller, re-check `catalog_inventory_link_manage` + `inventory_view`. A genuine permission failure at this step is itself a `rejected` result (category `PERMISSION_DENIED`), returned via the normal `RETURN` path below — not an exception — so it too commits its own idempotency bookkeeping (step 8).
 2. **Idempotency-first (Section 11).** Existing matching key + matching fingerprint → return the original stored result (whatever it was, `completed` or `rejected`) immediately. Existing key + different fingerprint → `rejected`/`IDEMPOTENCY_CONFLICT`. New key → claim it (Section 11) and continue.
