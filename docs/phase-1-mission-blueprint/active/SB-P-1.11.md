@@ -9,7 +9,7 @@
 | Mission Type | Product Feature Elaboration |
 | Lifecycle Stage | Stage 1 — Product Definition |
 | Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–19 only |
-| Status | Draft — awaiting Mission Control Product Review |
+| Status | Refined draft — awaiting Mission Control review of Builder Review Findings F3–F5 |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Codex |
 | Constitutional Authority | Source 01 and Source 11 jointly, subordinate to the Lighthouse Constitution |
@@ -17,7 +17,7 @@
 | Upstream Product Dependency | SB-P-1.10 — Inventory Foundation (accepted) |
 | Founder Decision Record | [`SB-P-1.11-Founder-Product-Decision-Record.md`](./SB-P-1.11-Founder-Product-Decision-Record.md) |
 | Date | 2026-08-04 |
-| Builder Review | Not started; not authorized in Stage 1 |
+| Builder Review | Completed by Claude Code and accepted by Mission Control; F3–F5 returned to Codex for authorized refinement |
 | Engineering Review | Not started; Sections 20–21 intentionally absent |
 | Blueprint Lock | Not requested or claimed |
 
@@ -107,6 +107,8 @@ The feature reduces repetitive setup and ambiguity so owners and staff can serve
 
 AI may extract candidate fields from voice, text, photos, or import files, identify ambiguity, and prepare a preview. It must not invent missing prices, decide legal tax treatment, infer sensitive permissions, or save uncertain consequential changes without confirmation.
 
+For multilingual catalog use, AI may suggest interpreted search matches across English, Malayalam, and Manglish where reliable. It must clarify uncertainty and must never silently rename, translate, merge, or overwrite merchant catalog wording.
+
 ### Respect Existing Merchant Workflows
 
 The experience supports familiar names, business-defined categories, common and custom units, SKU, barcode, images, spreadsheets, and conversational input. Optional structure must not become unnecessary setup burden.
@@ -169,9 +171,15 @@ The link is optional, business-scoped, and one-to-one in both directions in Buil
 
 Archiving either record never silently archives the other. An active product linked to archived inventory cannot be used in a new sale and must present a clear resolution warning.
 
+When linking a non-stock product would change its selling unit to the inventory item's immutable base unit, the existing numeric selling price must not be silently reinterpreted under the new unit. Before the link is saved, the merchant must explicitly confirm the selling price for the proposed new unit or enter a replacement price. Until that confirmation succeeds, the product record, selling unit, selling price, and inventory link remain unchanged. The confirmed price and completed link enter their appropriate audit histories. This rule applies only while the link remains changeable under the no-sale-history and no-linked-stock-event-history boundary above.
+
 ### Product Name and Description
 
 Name is required and unique within the business. Different businesses may use the same name. Separately priced, identified, or stocked sizes, flavours, or forms must be distinguishable in their product names. Description is optional.
+
+Product names and descriptions may be entered and displayed in English, Malayalam, or Manglish. The merchant is not required to translate catalog wording into another language, and Smart Business preserves the merchant's chosen display form.
+
+Within one business, product-name uniqueness ignores leading and trailing whitespace, treats repeated internal whitespace consistently, and treats Latin-letter case differences as equivalent. These comparison rules do not alter the stored display wording. Different Malayalam spellings, Manglish transliterations, and translated names are not automatically treated as the same product. When they appear possibly related, Smart Business returns a possible match for merchant review rather than silently merging, renaming, translating, or overwriting either record.
 
 ### Product Image
 
@@ -181,9 +189,13 @@ One optional product image supports visual recognition and photo-assisted setup.
 
 A product may have one optional merchant-defined SKU. It is unique within the business and may be reused by another business. SKU is an internal identifier, not a stock quantity or legal product identifier.
 
+SKU uniqueness ignores leading and trailing whitespace and treats Latin-letter case differences consistently for exact identifier matching within the business. The merchant-entered display value is preserved. Different transliterations or translations are not inferred to be the same SKU; an uncertain possible match requires merchant review and is never merged automatically.
+
 ### Barcode
 
 A product may have one optional manually entered barcode. It is unique within the business and may be reused by another business. Multiple barcodes, camera or hardware scanning, label generation, and POS synchronization are not Build Now.
+
+Barcode uniqueness uses a consistent exact-identifier comparison within the business after ignoring leading and trailing whitespace and normalizing Latin-letter case where letters are present. The merchant-entered display value is preserved. A possible but non-exact match is presented for merchant review and never merged automatically.
 
 ### Product Variants
 
@@ -193,11 +205,15 @@ Build Now has no parent/variant hierarchy. A separately priced, identified, or s
 
 Categories are optional, flat, business-owned, and merchant-defined. A product has zero or one category. Category names are unique within the business. Uncategorized products remain visible and usable.
 
+Category names may be entered and displayed in English, Malayalam, or Manglish without requiring translation. Business-scoped category-name matching ignores leading and trailing whitespace, treats repeated internal whitespace consistently, and treats Latin-letter case differences as equivalent while preserving the merchant's display wording. Different Malayalam spellings, Manglish transliterations, or translated category names are not automatically merged; possible matches require merchant review.
+
 Archiving a category requires explicit confirmation, does not archive products, makes affected products uncategorized, prevents new use of the category, and preserves prior category history.
 
 ### Selling Unit
 
 Every product has exactly one selling unit. A stock-tracked product inherits the linked inventory item's immutable base unit and cannot configure an alternate selling unit. A non-stock product defaults to piece and may use a familiar standard or merchant-defined custom unit. A non-stock selling unit may change only before sales history exists. Custom units create no conversion behavior.
+
+If a proposed inventory link changes the product's selling unit, the old price cannot silently acquire the meaning of a price per new unit. The link workflow must obtain explicit confirmation of the selling price for the new unit or a replacement price before changing any product or link state.
 
 ### Business Currency
 
@@ -273,6 +289,8 @@ Meaningful changes to name, description, image, category, SKU, barcode, unit, in
 
 Authorized users can search products by familiar identity, including name, SKU, and barcode where present. The catalog supports useful filtering by active/archive state, category, sale readiness, and stock-tracking status without exposing fields the user lacks permission to view.
 
+Search supports ordinary mixed-language merchant usage across English, Malayalam, and Manglish where matching is reliable. It searches merchant-entered wording without requiring translated duplicate records. Exact normalized identifier matching remains distinct from interpreted language matching. When translation, transliteration, spelling, or mixed-language intent is uncertain, Smart Business may suggest possible results but must communicate uncertainty and must not present an interpretation as authoritative catalog data or use it to rename, merge, or overwrite records.
+
 ### Dashboard Experience
 
 The dashboard provides complete permission-aware catalog creation, list, detail, editing, lifecycle, price/tax/cost history, import, correction-queue, and search experiences. Available actions reflect the user's authority.
@@ -297,6 +315,10 @@ Every product, category, price event, tax event, cost event, identifier, image r
 
 Creation should start with the required name and keep optional fields clearly optional. The user should understand whether the product is stock-tracked or non-stock, what unit and price mean, and what remains incomplete before sale.
 
+### Multilingual Catalog Experience
+
+Product names, descriptions, and category names display in the wording entered by the merchant, whether English, Malayalam, Manglish, or ordinary mixed-language usage. The experience does not force translation. Search suggestions distinguish reliable matches from uncertain interpreted matches and leave confirmation with the merchant.
+
 ### Catalog List
 
 The list should make active products easy to scan by name, image where present, category, selling unit, current price, sale-readiness state, and stock-tracking label. Restricted cost or stock information must never appear without permission.
@@ -316,6 +338,8 @@ The interface shows whether tax is inherited, product-specific, or explicitly no
 ### Inventory-Link Experience
 
 Users see a clear warning that linking does not transfer stock authority to the catalog. Link actions show the selected inventory identity and base unit and require confirmation. Locked links explain why they cannot change.
+
+If linking changes the selling unit, the preview must show the current unit and selling price, the proposed inventory base unit, and the selling price that requires confirmation for that new unit. The merchant must confirm that price or enter a replacement before saving. Cancelled, incomplete, or failed confirmation leaves the product, unit, price, and inventory link unchanged.
 
 ### Lifecycle Experience
 
@@ -354,8 +378,8 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 5. Stock status is derived only from the inventory link.
 6. A non-stock product never creates an inventory movement.
 7. A stock-tracked product uses its linked inventory base unit and never directly changes stock quantity.
-8. Product name is required and business-unique.
-9. SKU and barcode are optional, single-valued, and independently business-unique.
+8. Product name is required and business-unique after ignoring leading/trailing whitespace, normalizing repeated internal whitespace, and treating Latin-letter case differences as equivalent; the merchant's display wording is preserved.
+9. SKU and barcode are optional, single-valued, and independently business-unique under consistent exact-identifier normalization that ignores leading/trailing whitespace and treats Latin-letter case consistently while preserving display values.
 10. A product has zero or one flat merchant-defined category.
 11. Every product has exactly one selling unit; Build Now has no conversion or packaging relation.
 12. A product has at most one current and one pending scheduled selling price.
@@ -373,6 +397,8 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 24. Every dashboard or conversational mutation enforces the same action-specific permission and confirmation rules.
 25. Ordinary employees cannot manage products or access cost, margin, protected histories, or other-business data.
 26. Future Sales, Purchase, POS, Reporting, Ask CFO, and Commerce work must reference this catalog without rewriting its historical meaning.
+27. Product and category wording may use English, Malayalam, or Manglish without forced translation; uncertain translated, transliterated, or spelling-based matches require merchant review and never cause silent rename, merge, or overwrite.
+28. When a proposed inventory link changes a non-stock product's selling unit, the link cannot be saved until the merchant confirms or replaces the selling price for the new unit; until confirmation succeeds, product, unit, price, and link state remain unchanged.
 
 ## 11. Out of Scope
 
@@ -456,6 +482,8 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 | Partial import hides failures | Merchant assumes missing products were created | Clear success/quarantine counts and WhatsApp/in-app error reporting. |
 | Employee sees protected financial information | Confidential cost information is exposed | Separate permissions, field-level visibility boundaries, and non-disclosure through errors and histories. |
 | Conversational interpretation saves wrong data | Incorrect product or price becomes authoritative | Structured preview, uncertainty disclosure, permission check, and explicit confirmation. |
+| Multilingual matching is treated as authoritative translation | Distinct products or categories may be silently merged or renamed | Preserve merchant wording; separate normalized exact matching from interpreted suggestions; require merchant review for uncertain Malayalam, Manglish, translation, or transliteration matches. |
+| Inventory linking silently changes price meaning | A price entered per old unit may be charged per a different inventory base unit | Show old unit and price with the proposed new unit; require explicit price confirmation or replacement before atomically saving the price and link. |
 | One-to-one relationship later proves too narrow | Packaging or recipes need redesign | Deliberately defer variants, conversions, bundles, and shared-stock forms to governed evolution. |
 | Pricing-mode change alters monetary meaning | Current and historical amounts become inconsistent | Lock mode after first completed sale; use a future governed migration if change is required. |
 | Stale architecture source influences design | Engineering revives superseded mutable inventory | Treat accepted SB-P-1.10 as controlling inventory dependency and flag Source 02 reconciliation for later review. |
@@ -472,13 +500,15 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 - Dashboard and guided conversational experiences enforce identical permissions and confirmation behavior.
 - CSV/Excel import provides fast progress while quarantining invalid or duplicate rows safely.
 - Every meaningful change is attributable and historically explainable.
+- Merchants can enter and find catalog wording in English, Malayalam, and Manglish without forced translation or silent AI rewriting.
+- Linking inventory cannot silently reinterpret an existing price under a changed selling unit.
 - Build Now, Build Later, Add-on, Separate Product, and Reject boundaries are clear enough for later review without creating engineering design prematurely.
 
 ## 15. Acceptance Criteria
 
 - [ ] Every product and category is business-owned and isolated.
-- [ ] Product name is required and business-unique.
-- [ ] Optional SKU and barcode are individually business-unique and single-valued.
+- [ ] Product name is required and business-unique under the approved whitespace and Latin-case normalization while preserving merchant-entered display wording.
+- [ ] Optional SKU and barcode are individually business-unique and single-valued under the approved exact-identifier normalization while preserving merchant-entered display values.
 - [ ] A product has zero or one category and zero or one inventory link.
 - [ ] An inventory item cannot link to more than one product in Build Now.
 - [ ] Linked products use the immutable inventory base unit and display only ledger-derived stock to inventory-authorized users.
@@ -496,6 +526,9 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 - [ ] Permitted deletion retains the approved minimal audit record.
 - [ ] Owner and manager permissions are action-specific; employee access follows the approved sale-use boundary.
 - [ ] Conversational mutations require structured preview, explicit confirmation, and the same permission checks as dashboard actions.
+- [ ] Product names, descriptions, and category names accept and preserve English, Malayalam, and Manglish wording without forced translation.
+- [ ] Mixed-language search supports reliable matches, identifies uncertain interpreted matches, and never silently renames, translates, merges, or overwrites catalog records.
+- [ ] If inventory linking changes the selling unit, the preview shows old unit and price, proposed new unit, and the price requiring confirmation; no product, price, unit, or link change occurs until the merchant confirms or replaces the price.
 - [ ] Import creates valid rows, quarantines invalid rows, reports errors, and never overwrites matches automatically.
 - [ ] Search, duplicate checks, validation, imports, messages, and histories do not disclose another business's data.
 - [ ] No workflow introduces unit conversion, variants, bundles, price tiers, margin calculation, custom POS modification, or a second stock truth.
@@ -555,6 +588,7 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 | Version | Date | Author | Change | Status |
 |---|---|---|---|---|
 | 0.1 | 2026-08-04 | Codex | Initial Stage 1 draft based on canonical Product Truth, accepted SB-P-1.10 dependency, repository inspection, and Founder decisions D-001 through D-066; Founder draft confirmation recorded as D-067. Metadata, Mission Snapshot, and Sections 1–19 only. | Founder-confirmed draft — awaiting Mission Control Product Review |
+| 0.2 | 2026-08-04 | Codex | Refined only Builder Review Findings F3, F4, and F5: multilingual entry/search, business-scoped name/SKU/barcode normalization, and Founder-approved unit-change price confirmation recorded as D-068. | Refined draft — awaiting Mission Control review |
 
 ## 19. Governance History
 
@@ -564,3 +598,5 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 | 2026-08-04 | Founder and Codex | Conducted repository-first Founder discovery one question at a time. | Decisions D-001 through D-066 recorded in the linked Founder Product Decision Record. |
 | 2026-08-04 | Codex | Prepared Product Blueprint Metadata, Mission Snapshot, and Sections 1–19. | Draft prepared for Mission Control Product Review; no Builder Review, Engineering Review, lock, EIS, implementation package, or implementation work performed. |
 | 2026-08-04 | Founder | Confirmed the Stage 1 draft accurately represents the confirmed product decisions and may be prepared for Mission Control Product Review. | Founder draft confirmation recorded as D-067; no Blueprint lock or implementation authorization granted. |
+| 2026-08-04 | Claude Code and Mission Control | Builder Review completed and Mission Control accepted Findings F3, F4, and F5 for Codex refinement through Instruction 1.3. | F3 and F4 authorized as narrow clarifications; Founder-approved F5 decision supplied as authoritative input. No new Builder Review or Engineering Review authorized. |
+| 2026-08-04 | Founder and Codex | Founder-approved F5 unit-change price behavior recorded as D-068 and reflected in Sections 5, 8, 9, 10, 13, 14, and 15. | Existing decisions D-001 through D-067 preserved; Sections 20–21 remain absent; refinement returned for Mission Control review. |
