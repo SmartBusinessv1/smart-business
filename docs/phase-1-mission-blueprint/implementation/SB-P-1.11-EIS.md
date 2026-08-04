@@ -17,14 +17,14 @@ IMPLEMENTATION: NOT AUTHORIZED
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (LOCKED — Sections 1–21) |
 | Founder Decisions Covered | D-001 through D-068 |
 | Document Type | Engineering Implementation Specification (EIS) |
-| Document Version | 2.1 |
+| Document Version | 2.2 |
 | Status | DRAFT — REFINED, NOT LOCKED |
 | Author | Claude Code — Engineering Review and Implementation Specification |
 | Governance Basis | SB-P-1.11 Product Blueprint (Builder Review resolved F3–F5, Engineering Review `READY FOR FOUNDER APPROVAL`, Founder Approval granted, Mission Control Blueprint Lock applied — `communication/live/report1.8.md`) |
 | Structural and Engineering Precedent | `docs/phase-1-mission-blueprint/implementation/SB-P-1.10-EIS.md` (LOCKED) |
-| Prior Reviews | Stage 10 review (`report1.10.md`, `REFINEMENT REQUIRED`) → v2.0 refinement (`report1.11.md`) → Stage 10 refinement verification (`report1.12.md`, `REFINEMENT REQUIRED` — ten residual engineering-precision findings MC-VRF-001–010) |
-| This Revision | Narrow second refinement authorized by `communication/live/instruction1.13.md`, resolving MC-VRF-001 through MC-VRF-010 only |
-| Authorizing Instruction | `communication/live/instruction1.13.md` |
+| Prior Reviews | Stage 10 review (`report1.10.md`, `REFINEMENT REQUIRED`) → v2.0 refinement (`report1.11.md`) → Stage 10 refinement verification (`report1.12.md`, `REFINEMENT REQUIRED` — ten residual findings MC-VRF-001–010) → v2.1 refinement (`report1.13.md`) → focused verification (`report1.14.md`, `REFINEMENT REQUIRED` — MC-VRF-003 only; MC-VRF-001, MC-VRF-002, and MC-VRF-004 through MC-VRF-010 all `VERIFIED — RESOLVED`) |
+| This Revision | Single-finding correction authorized by `communication/live/instruction1.15.md`, resolving only `MC-VRF-003 — Scheduler transaction model` |
+| Authorizing Instruction | `communication/live/instruction1.15.md` |
 
 ## 2. Purpose
 
@@ -32,11 +32,11 @@ This document translates the locked SB-P-1.11 Product Blueprint (Sections 1–21
 
 The Product Blueprint remains the single source of product truth. Every engineering decision recorded here exists to implement a requirement already established in the locked Blueprint. Where any statement in this document could be read as introducing new product behaviour, the Product Blueprint prevails and this document is in error.
 
-**This revision (Version 2.1)** is a narrow, scope-limited corrective pass resolving only the ten residual engineering-precision findings (MC-VRF-001 through MC-VRF-010) identified by the Stage 10 refinement-verification consolidation (`communication/live/report1.12.md`) and its four specialist reports. It does not reopen any finding the verification already accepted as resolved (Version 2.0's scheduled-price model, command-only write denial, action-specific permissions, D-068 preview/compare-and-commit architecture, idempotency-before-precondition ordering, the tenure-bounded D-047 predicate, cost/margin read protection, import hardening in principle, frontend determinism, or the D-047 engineering interpretation itself, which `report1.12.md` §5 explicitly confirmed as `RESOLVED — ENGINEERING INTERPRETATION CONFIRMED` and which this revision preserves unchanged).
+**This revision (Version 2.2)** is a single-finding corrective pass resolving only `MC-VRF-003 — Scheduler transaction model`, the one residual finding identified by the focused verification of Version 2.1 (`communication/live/report1.14.md`). All nine other findings from that verification round (MC-VRF-001, MC-VRF-002, and MC-VRF-004 through MC-VRF-010) were confirmed `VERIFIED — RESOLVED` by that same report and are explicitly not reopened here. Version 2.1's data model, command-only write denial, least-privilege identity architecture, action-specific permissions, D-068 preview/compare-and-commit architecture, corrected idempotency ordering, channel-authority contract, failure classification, audit provenance, outcome-lookup scope, file-scanning matrix, and the tenure-bounded D-047 predicate — confirmed `RESOLVED — ENGINEERING INTERPRETATION CONFIRMED` in `report1.12.md` §5 and reaffirmed in `report1.14.md` §9 — are all preserved unchanged.
 
 No database schema, SQL migration, RPC implementation, Edge Function, webhook handler, AI prompt, Lovable build prompt, or frontend component is created by this document.
 
-This EIS is a **draft, twice-refined but not locked**. It has not been independently verified against this revision, accepted, or locked. It does not authorize an implementation package, application code, database changes, or deployment.
+This EIS is a **draft, three-times-refined but not locked**. It has not been independently verified against this revision, accepted, or locked. It does not authorize an implementation package, application code, database changes, or deployment.
 
 ## 3. Implementation Principles
 
@@ -61,13 +61,13 @@ Unchanged from Version 2.0, with three additions responding to this revision's c
 
 ## 4. Architecture and Scope Map (EIS §8.1)
 
-Unchanged from Version 2.0 in substance. The Repository Components Affected table gains the following v2.1 additions, replacing the single `catalog_command_executor` line:
+Unchanged from Version 2.0 in substance. The Repository Components Affected table gains the following v2.1 additions, replacing the single `catalog_command_executor` line; the Commands and Database rows are further corrected in this v2.2 revision (Section 12):
 
-| Layer | New/revised in v2.1 |
+| Layer | New/revised |
 |---|---|
-| Execution identities | Eight narrow command-group `NOLOGIN` function-owner roles replacing the single `catalog_command_executor` (Section 7); two new `LOGIN`-capable service-account roles (`catalog_channel_service`, `catalog_scheduler_service`) distinct from the `NOLOGIN` owners they invoke |
-| Database | New `catalog_channel_confirmation_receipts` table (Section 5.10); `command_idempotency_key` added to `catalog_channel_pending_actions`; `claimed_at`/`run_id` fields added to `catalog_pending_price_schedules`; `authority_basis` field added to the Section 5.0 provenance block; `catalog_write_idempotency_keys.status` simplified to two terminal values |
-| Commands | `activate_due_catalog_price_schedules` changed from a `FUNCTION` batch sweep to a `PROCEDURE` with per-iteration commit (Section 12); `get_catalog_command_outcome` signature changed to remove caller-supplied business scope (Section 11) |
+| Execution identities | Eight narrow command-group `NOLOGIN` function-owner roles replacing the single `catalog_command_executor` (Section 7); two new `LOGIN`-capable service-account roles (`catalog_channel_service`, `catalog_scheduler_service`) distinct from the `NOLOGIN` owners they invoke (v2.1) |
+| Database | New `catalog_channel_confirmation_receipts` table (Section 5.10); `command_idempotency_key` added to `catalog_channel_pending_actions`; `authority_basis` field added to the Section 5.0 provenance block; `catalog_write_idempotency_keys.status` simplified to two terminal values (all v2.1). **v2.2:** the `claimed_at` field v2.1 added to `catalog_pending_price_schedules` is removed — no longer needed under the corrected scheduler model (Section 12) |
+| Commands | **v2.2 (corrected):** scheduler activation is now `list_due_catalog_price_schedule_candidates` plus `activate_catalog_price_schedule`, both ordinary `FUNCTION`s each executing as one independent transaction — replacing v2.1's invalid `PROCEDURE`-with-per-iteration-commit design (Section 12); `get_catalog_command_outcome` signature unchanged from v2.1, removing caller-supplied business scope (Section 11) |
 
 Everything else in Section 4 (implementation boundaries, explicit exclusions, dependency map, phased delivery sequence) is unchanged from Version 2.0.
 
@@ -97,17 +97,11 @@ Cost values never appear in any of these provenance fields, in any log, or in an
 
 Unchanged from Version 2.0.
 
-### 5.3 Scheduled Price — Data Model Unchanged; Claiming Fields Added for the Corrected Scheduler (MC-VRF-003)
+### 5.3 Scheduled Price — Data Model Unchanged; No Durable Claim Field (MC-VRF-003, corrected in this revision)
 
-The `catalog_pending_price_schedules` / `catalog_price_schedule_events` / `catalog_selling_price_events` three-table model, its stable `UNIQUE (product_id)` constraint, and its write-command behavior (`schedule_...`, `cancel_...`, replacement-as-single-event) are **unchanged from Version 2.0** — this is one of the findings `report1.12.md` §7 explicitly accepted as resolved and this instruction (§17) prohibits reopening.
+The `catalog_pending_price_schedules` / `catalog_price_schedule_events` / `catalog_selling_price_events` three-table model, its stable `UNIQUE (product_id)` constraint, and its write-command behavior (`schedule_...`, `cancel_...`, replacement-as-single-event) are **unchanged from Version 2.0** — this is one of the findings `report1.12.md` §7 explicitly accepted as resolved and instruction1.15.md §11 prohibits reopening it.
 
-**Addition only:** `catalog_pending_price_schedules` gains two fields supporting the corrected per-schedule-commit scheduler model (Section 12):
-
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `claimed_at` | timestamptz | Yes | Set (and immediately committed) when `claim_due_catalog_price_schedules` selects this row within the scheduler procedure's current loop iteration |
-
-No `claimed_by`/lock-recovery field is needed: because the corrected model (Section 12) processes and either activates-and-deletes or releases each row within one committed iteration before moving to the next, there is no window in which a row can be left in a stale "claimed but abandoned" state — a crash mid-iteration simply rolls back that one iteration's implicit transaction, leaving the row exactly as it was (not claimed), so it is naturally due again on the next run. `claimed_at` exists only as a transient marker within a single committed iteration, not as a durable claim-tracking mechanism.
+**Version 2.1's `claimed_at` field is removed.** Version 2.1 added a `claimed_at` timestamptz column to `catalog_pending_price_schedules`, described inconsistently as both "immediately committed" and "rolled back on crash" (`report1.14.md` §6, Defect B). Under the corrected Pattern A scheduler model (Section 12), each candidate schedule is claimed only through a transaction-scoped `SELECT ... FOR UPDATE SKIP LOCKED` row lock inside `activate_catalog_price_schedule`'s own single transaction — a non-durable, lock-only claim (instruction1.15.md §8). A crash or failure releases the lock automatically when that one transaction ends; there is no separate durable claim state that could go stale, require expiry, or need recovery. Because `claimed_at` has no necessary authoritative purpose under this model, it is removed from the EIS data model entirely rather than retained as contradictory or redundant state, per instruction1.15.md §8's explicit direction. `catalog_pending_price_schedules` therefore carries no scheduler-claim field of any kind; its Version 2.0 shape is otherwise unchanged.
 
 ### 5.4–5.9
 
@@ -155,7 +149,7 @@ Version 2.0 described `catalog_channel_executor` and `catalog_scheduler_executor
 |---|---|---|
 | `authenticated` (existing Supabase role) | Every dashboard/import merchant session | Its ordinary Supabase-Auth-issued JWT identity; `EXECUTE` grants on the merchant-facing command functions listed in Section 16 — **no table DML grant, unchanged from Version 2.0's already-correct posture for this path** |
 | `catalog_channel_service` | The trusted backend service implementing the future shared conversational engine — never a client, model, or public endpoint | A real, rotated connection credential (API key or database connection string held only by that backend service's own secure configuration); `EXECUTE` only on `create_catalog_pending_action`, `confirm_catalog_pending_action`, and the channel-permitted read commands (Section 16) — **no table DML grant** |
-| `catalog_scheduler_service` | Whatever mechanism actually opens the database connection to invoke the scheduler — a Supabase-managed `pg_cron` job configured to run as this role, or, if the deployed environment's `pg_cron` model instead executes its background worker without requiring the job's configured role to itself hold `LOGIN` (a documented `pg_cron` behavior for its internal, non-client worker connection — confirm against the actual deployed Supabase/PostgreSQL version during implementation rather than assuming either way here) | `EXECUTE` only on `CALL activate_due_catalog_price_schedules()` (Section 12) — **no table DML grant** |
+| `catalog_scheduler_service` | A trusted scheduled worker external to the database — a Supabase Scheduled Edge Function, invoked directly on a fixed interval or triggered by a `pg_cron` job calling `net.http_post` against that Edge Function — that opens an ordinary authenticated database connection to run the scheduler (Section 12, Pattern A). Because this identity is a genuine external client connection rather than an in-database job role, it unconditionally requires real `LOGIN` credentials regardless of trigger mechanism, removing the `pg_cron`-role `LOGIN`/`NOLOGIN` ambiguity Version 2.1 left open (this revision, MC-VRF-003) | `EXECUTE` only on `list_due_catalog_price_schedule_candidates` and `activate_catalog_price_schedule` (Section 12) — **no table DML grant** |
 
 No identity in this layer holds any protected-table DML privilege. This is the layer where genuine authentication happens, and it is the only layer where credentials exist at all.
 
@@ -165,7 +159,7 @@ Eight command-group owner roles (Section 7's revised command-authority model, be
 
 ### Layer 3 — The Invocation Boundary Itself
 
-`GRANT EXECUTE` from a Layer 2 owner's function to the specific Layer 1 identity that is allowed to call it (`authenticated` for dashboard/import functions; `catalog_channel_service` for channel functions; `catalog_scheduler_service` for the scheduler procedure) is the entire controlled-invocation mechanism. No identity in Layer 1 is ever granted `EXECUTE` on a function outside its own narrow list, and no identity in Layer 2 is ever granted a connection credential.
+`GRANT EXECUTE` from a Layer 2 owner's function to the specific Layer 1 identity that is allowed to call it (`authenticated` for dashboard/import functions; `catalog_channel_service` for channel functions; `catalog_scheduler_service` for the scheduler's two activation functions, Section 12) is the entire controlled-invocation mechanism. No identity in Layer 1 is ever granted `EXECUTE` on a function outside its own narrow list, and no identity in Layer 2 is ever granted a connection credential.
 
 ### Why This Resolves MC-VRF-001's Four Required Outcomes
 
@@ -296,52 +290,70 @@ Unchanged from Version 2.0.
 
 Unchanged from Version 2.0 — none of these were findings in `report1.12.md`, and instruction §17 prohibits reopening them.
 
-### Corrected Transaction Model (MC-VRF-003)
+### Corrected Transaction Model — Pattern A: External Worker, One Atomic Command Per Schedule (MC-VRF-003, this revision)
 
-Version 2.0 claimed an ordinary function invocation processing up to 500 rows could have "each claimed schedule activated in its own sub-transaction," which is not valid for a normal PL/pgSQL `FUNCTION` — a function executes entirely inside its caller's single transaction and cannot independently commit mid-execution. **Corrected: `activate_due_catalog_price_schedules` is defined as a PL/pgSQL `PROCEDURE`, not a `FUNCTION`.**
+Version 2.1 defined `activate_due_catalog_price_schedules` as a PL/pgSQL `PROCEDURE` invoked via `CALL`, looping up to 500 times with an explicit `COMMIT`/`ROLLBACK` pair per iteration placed inside a `BEGIN ... EXCEPTION WHEN OTHERS ... END` block. Focused verification (`report1.14.md` §6) identified three blocking defects in that design:
 
-PostgreSQL (11+, available in Supabase's managed Postgres) permits a `PROCEDURE` invoked via a top-level `CALL` statement — which is exactly how `pg_cron` invokes it — to contain explicit `COMMIT` statements inside a loop, genuinely committing each iteration's work independently before proceeding to the next. This is the specific, correct mechanism that makes "bounded batching with per-row independent commit" actually implementable, and is why the scheduler is the one command in this EIS defined as a `PROCEDURE` rather than a `FUNCTION` — every other command remains a `FUNCTION` because it performs exactly one logical unit of work per call and needs no internal commit boundary.
+- **Defect A — invalid transaction control.** A PL/pgSQL `EXCEPTION` block establishes an implicit subtransaction; `COMMIT`/`ROLLBACK` statements are not valid inside that subtransaction scope. The v2.1 pseudocode was therefore not implementable as written.
+- **Defect B — contradictory claim durability.** Version 2.1's `claimed_at` field was described as both "immediately committed" and "rolled back on crash" — mutually exclusive claims about the same field.
+- **Defect C — starvation risk.** Re-running `ORDER BY effective_at ... LIMIT 1` on every loop iteration meant a repeatedly failing earliest-due row could be reselected every iteration, consuming the entire 500-iteration bound and starving every later-due schedule in that run.
 
-**Procedure body, at the level of behavior (not literal code):**
+**Corrected design: Pattern A, the preferred safe model of instruction1.15.md §7.** The in-database multi-commit loop is removed entirely. A trusted external scheduled worker fetches a bounded, run-scoped candidate list once, then invokes one ordinary, single-transaction database `FUNCTION` call per candidate. Because each call is an independent top-level transaction issued by the external worker — not a nested commit inside a longer-lived PL/pgSQL procedure — there is no exception-block/transaction-control question to get right or wrong: Defect A is resolved structurally, not by more careful pseudocode. `claimed_at` is removed from the data model (Section 5.3); each call's row lock is transaction-scoped and needs no separate durable claim field, resolving Defect B. The candidate list is fetched exactly once per run rather than re-queried per attempt, resolving Defect C.
+
+### Runtime Identity and Invocation Boundary
+
+The scheduler runtime is `catalog_scheduler_service` (Section 7, Layer 1) — a genuinely `LOGIN`-capable external worker identity (a Supabase Scheduled Edge Function, invoked directly on a fixed interval, or triggered by a `pg_cron` job calling `net.http_post` against that Edge Function) holding `EXECUTE` only on two ordinary `SECURITY DEFINER` functions, both owned by `catalog_scheduler_executor` (Section 7, Layer 2) and carrying no table DML grant to the calling identity:
 
 ```text
-PROCEDURE activate_due_catalog_price_schedules()
-  owned by catalog_scheduler_executor, invoked via CALL by catalog_scheduler_service
+list_due_catalog_price_schedule_candidates(
+  p_limit int
+) RETURNS SETOF uuid
 
-  LOOP up to 500 times:
-    claim ← SELECT id FROM catalog_pending_price_schedules
-             WHERE effective_at <= now()
-             ORDER BY effective_at
-             FOR UPDATE SKIP LOCKED
-             LIMIT 1
-    IF no claim found: EXIT LOOP  -- nothing more due this run
-    mark claim.claimed_at = now()  -- transient marker, Section 5.3
-    BEGIN  -- per-iteration exception scope
-      lock the corresponding catalog_products row
-      delete the claimed catalog_pending_price_schedules row
-      insert one catalog_price_schedule_events ('activated') row
-      insert one catalog_selling_price_events ('activated') row, linked via resulting_price_event_id
-    EXCEPTION WHEN OTHERS THEN
-      ROLLBACK  -- discards only this iteration's partial work; the row remains due
-      log the failure with system_run_id and schedule id (Section 18)
-      -- loop continues to the next due schedule; this one is naturally retried next run
-    END
-    COMMIT  -- durably finalizes this iteration; releases all locks it held
-  END LOOP
+activate_catalog_price_schedule(
+  p_schedule_id uuid
+) RETURNS catalog_scheduler_command_result
 ```
 
-### Why This Resolves MC-VRF-003's Every Required Element
+Both are plain `FUNCTION`s, not `PROCEDURE`s — each executes entirely inside exactly one transaction owned by its caller, with no internal `COMMIT`/`ROLLBACK` of any kind. This removes the only reason Version 2.1 needed a `PROCEDURE` in the first place.
 
-- **Claiming:** `FOR UPDATE SKIP LOCKED` on a single row per iteration — unchanged mechanism from Version 2.0, now correctly scoped to one row at a time rather than an unbounded batch selection.
-- **Lock ownership and expiry/recovery:** each iteration's lock is held only for that iteration's brief duration and is released at that iteration's `COMMIT` (success) or `ROLLBACK` (failure) — there is no "expiry" concept needed because there is no durable claim state that could go stale; a crashed run simply leaves not-yet-processed rows unclaimed and due again.
-- **Batching:** the 500-iteration bound remains, now genuinely per-iteration-committing rather than an unproven "sub-transaction" claim.
-- **Transaction boundary:** explicitly one `COMMIT`/`ROLLBACK` pair per due schedule, inside one top-level `CALL`.
-- **Retry behavior:** a failed iteration is simply left due; the same schedule row is picked up by the *next* run automatically — no artificial retry counter or dedicated idempotency key is needed for this specific system sweep, because "the row still exists in `catalog_pending_price_schedules`" *is* the complete, sufficient signal that it has not yet been processed (unlike a merchant-facing command, which needs an idempotency key precisely because a merchant's retry could otherwise create a duplicate *new* logical action — the scheduler has no such ambiguity, since there is exactly one row per pending schedule and its deletion is the one-time, irreversible signal of processing).
-- **Partial failure:** the `EXCEPTION WHEN OTHERS` block isolates one row's failure from every other row in the same run.
-- **Stale schedules:** none can exist under this model — every row is either still pending (due or not-yet-due) or has been definitively activated; there is no intermediate state.
-- **Bounded lag:** unchanged 1-minute polling / 5-minute budget from Version 2.0, now grounded in a transaction model that actually delivers per-row timeliness rather than one long-held batch transaction.
-- **Audit provenance:** unchanged — `system_run_id` (one per `CALL` invocation, attached to every event the run produces), `authorized_by_user_id` carried forward from the original schedule, `executed_by_actor_type = 'system'`, now additionally `authority_basis = 'system_scheduler'` (Section 5.0).
-- **Unknown outcome reconciliation:** not applicable to the scheduler's own internal loop — the loop's per-iteration commit *is* the reconciliation mechanism (a row is either committed-activated or still-pending; there is no ambiguous middle state to reconcile from the scheduler's own perspective). A merchant-facing read of a product's price state during an in-progress activation sees either the pre-activation or post-activation state cleanly, per ordinary transaction isolation, never a partial one.
+### Run Sequence
+
+1. The worker starts a run and generates one `system_run_id` (Section 5.0), used for every event this run produces.
+2. The worker calls `list_due_catalog_price_schedule_candidates(p_limit)` once, receiving a bounded, ordered (`effective_at ASC`), run-scoped list of candidate schedule IDs — capped at the same 500-row batch bound as Version 2.0/2.1. This list is fixed for the remainder of the run; it is never re-queried mid-run.
+3. The worker iterates the fixed candidate list exactly once, calling `activate_catalog_price_schedule(p_schedule_id)` exactly once per candidate, in order, regardless of any earlier candidate's outcome.
+4. Each call's result (`activated`, `already_processed`, `not_due`, `rejected` with category, or transport-level `UNKNOWN_OUTCOME`) is recorded by the worker for observability (Section 18); a rejected or unknown-outcome result does not halt the run or cause the same candidate to be retried within this run.
+5. When the fixed list is exhausted, the run ends. A later-due or failed-this-run schedule remains a pending row and becomes a fresh candidate on the next scheduled run.
+
+Because the candidate list is fetched once and each candidate is attempted at most once per run, a repeatedly failing earliest-due schedule can never consume the run's entire batch bound or prevent a later-due schedule in the same fixed list from being attempted — resolving Defect C without any retry counter, backoff field, or additional durable state.
+
+### `activate_catalog_price_schedule` — Atomic Contract
+
+One ordinary transaction, matching instruction1.15.md §10's required 8-step contract:
+
+1. Derive scheduler authority server-side (`executed_by_actor_type = 'system'`, `authority_basis = 'system_scheduler'`) — never caller-supplied.
+2. Lock the candidate row: `SELECT ... FROM catalog_pending_price_schedules WHERE id = p_schedule_id FOR UPDATE SKIP LOCKED`. Zero rows returned means the row no longer exists (already activated or cancelled by a concurrent path) — return `already_processed`, a stable idempotent no-op, with no error.
+3. Verify the locked row is still due (`effective_at <= now()`). If not — e.g., cancelled and rescheduled between list-fetch and this call — return `not_due` without writing anything.
+4. Lock the corresponding `catalog_products` row, in the same deterministic lock order already established elsewhere in this EIS (Section 9).
+5. Write the immutable `catalog_price_schedule_events` (`activated`) and `catalog_selling_price_events` (`activated`, linked via `resulting_price_event_id`) rows, then delete the now-superseded `catalog_pending_price_schedules` row — the same current-state/immutable-history shape Version 2.0 already defined (Section 5.3), unchanged.
+6. Every written row carries `system_run_id` (passed in from the worker's run) and the standard Section 5.0 provenance block, with `authorized_by_user_id` carried forward from the original schedule.
+7. Return a stable `catalog_scheduler_command_result` distinguishing at minimum `activated`, `already_processed`, `not_due`, and `rejected` (with a stable category) — matching instruction1.15.md §10's required outcome set.
+8. Any genuinely unexpected error (constraint violation, deadlock victim, connection failure) raises an exception, rolling back this one call's transaction only; the worker records this as `UNKNOWN_OUTCOME` for this candidate (Section 15's model, applied identically here) and reconciles it on the next run by re-listing the still-pending row as a fresh candidate — no separate idempotency key is needed for this system-internal sweep, because the continued existence of the `catalog_pending_price_schedules` row is itself the complete, sufficient "not yet processed" signal, exactly as Version 2.0/2.1 already established for the scheduler's non-merchant-facing retry model.
+
+### Why This Resolves Every Element of MC-VRF-003 and Instruction1.15.md §6
+
+- **Scheduler runtime identity:** `catalog_scheduler_service`, Section 7 Layer 1 — genuinely `LOGIN`-capable by construction, no `pg_cron`-role ambiguity remains (Section 7).
+- **Bounded candidate set:** `list_due_catalog_price_schedule_candidates(p_limit)`, called once per run.
+- **One independent transaction per candidate:** `activate_catalog_price_schedule`, an ordinary `FUNCTION`, no internal commit.
+- **Duplicate-activation prevention:** `FOR UPDATE SKIP LOCKED` row lock, step 2.
+- **Idempotent no-op for already-completed/no-longer-due rows:** `already_processed` (zero rows locked) and `not_due` (locked but no longer due), steps 2–3.
+- **Current-run exclusion for failed rows:** the fixed, fetched-once candidate list itself — a failed candidate is not re-added to the list within the same run.
+- **Later rows continue after an earlier failure:** the worker's fixed iteration (Run Sequence step 3) calls every candidate regardless of prior outcomes.
+- **Retry on later runs:** an unprocessed or failed row remains in `catalog_pending_price_schedules` and is naturally re-listed by the next run's `list_due_catalog_price_schedule_candidates` call.
+- **Crash recovery:** a crash mid-run simply ends the worker's iteration early; every already-`activated` candidate is durably committed, every not-yet-attempted or failed candidate remains a pending row, due again next run — no stale claim state of any kind (Section 5.3).
+- **Partial success:** fully representable — each candidate's outcome is independent and durable the moment its own call returns.
+- **Audit and run-identity:** every written row carries `system_run_id`, `authorized_by_user_id`, `executed_by_actor_type = 'system'`, and `authority_basis = 'system_scheduler'` (Section 5.0), correlating every result back to one worker run.
+- **Batch size and lag budget:** unchanged 500-row cap / 1-minute polling / 5-minute lag budget from Version 2.0/2.1 (Section 24, Question 4), now applied as the worker's fixed `p_limit` and run interval rather than an in-database loop bound.
+- **Invocation boundary:** an ordinary Supabase Edge Function (or `pg_cron`-triggered `net.http_post` call to one) authenticating as `catalog_scheduler_service`, calling two ordinary `SECURITY DEFINER` functions with `EXECUTE`-only grants — no `PROCEDURE`, no `CALL`, no in-database transaction-control statement anywhere in this design.
 
 ## 13. Multilingual Normalization and Search, Tax-Mode Lock
 
@@ -420,14 +432,14 @@ Unchanged from Version 2.0.
 
 ## 16. API, RPC, and Command Contracts (EIS §8.12) — Executor Column Revised
 
-The command surface itself (operation names, purposes, authorization flags, idempotency behavior) is **unchanged from Version 2.0**. Only the "Executor identity" column changes, reflecting Section 7's eight-role least-privilege model in place of the single `catalog_command_executor`:
+The command surface itself (operation names, purposes, authorization flags, idempotency behavior) is **unchanged from Version 2.0**, with one exception: this revision (v2.2) replaces the single `activate_due_catalog_price_schedules` operation with two operations, `list_due_catalog_price_schedule_candidates` and `activate_catalog_price_schedule` (Section 12, MC-VRF-003). Otherwise only the "Executor identity" column changes, reflecting Section 7's eight-role least-privilege model in place of the single `catalog_command_executor`:
 
 | Operation | Executor identity (v2.1) |
 |---|---|
 | `create_catalog_product`, `update_catalog_product_identity`, `update_catalog_product_unit`, `create_catalog_category`, `archive_catalog_category` | `catalog_identity_executor` |
 | `archive_catalog_product`, `reactivate_catalog_product`, `delete_catalog_product` | `catalog_lifecycle_executor` |
 | `record_catalog_selling_price_change`, `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price` | `catalog_pricing_executor` |
-| `activate_due_catalog_price_schedules` (now a `PROCEDURE`, Section 12) | `catalog_scheduler_executor`, invoked only via `catalog_scheduler_service` (Section 7) |
+| `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule` (two `FUNCTION`s, Pattern A, Section 12 — this revision) | `catalog_scheduler_executor`, invoked only via `catalog_scheduler_service` (Section 7) |
 | `record_catalog_tax_change`, `update_business_tax_settings` | `catalog_tax_executor` |
 | `record_catalog_reference_cost_change` | `catalog_cost_executor` |
 | `preview_catalog_inventory_link_change`, `assign_or_replace_catalog_inventory_link`, `remove_catalog_inventory_link` | `catalog_link_executor` |
@@ -445,7 +457,7 @@ Unchanged from Version 2.0 in every respect — `report1.12.md` §3 recorded the
 
 Section 18's claim is corrected to precisely match the Section 5.0 schema: every dedicated event table (5.3–5.6) and `catalog_audit_events` carry business, actor user (where applicable), actor type, authorizing user versus system executor, channel, **authority basis** (new field, Section 5.0), request/correlation ID, job/run ID for automated execution, recorded time, and effective time where applicable. **"Outcome" is not a field on these tables** (Section 5.0 explains why: their existence already implies success) — the authoritative per-attempt outcome record, including rejected attempts, is `catalog_write_idempotency_keys.status` (Section 11), which Section 18 now correctly identifies as the outcome-of-record.
 
-Operational metrics (unchanged from Version 2.0): `IDEMPOTENCY_CONFLICT` and `STALE_STATE` rates; scheduler per-run processed/failed counts and lag (now correctly attributable to the `PROCEDURE` model's per-iteration exception log, Section 12); import structural-rejection counts; channel pending-action expiry/duplicate-webhook counts, now additionally including duplicate-confirmation-receipt counts (Section 5.10).
+Operational metrics (unchanged from Version 2.0): `IDEMPOTENCY_CONFLICT` and `STALE_STATE` rates; scheduler per-run processed/failed counts and lag (attributable to the external worker's per-call result log, correlated by `system_run_id`, Section 12); import structural-rejection counts; channel pending-action expiry/duplicate-webhook counts, now additionally including duplicate-confirmation-receipt counts (Section 5.10).
 
 ## 19. Security and Privacy (EIS §8.15)
 
@@ -465,7 +477,7 @@ Unchanged in shape, updated for the corrected identities and scheduler:
 5. RLS enabled at creation, no `INSERT`/`UPDATE`/`DELETE` grant to `authenticated` — unchanged.
 6. **Ten execution identities created and privilege-scoped** (Section 7: eight command-group owners, `catalog_channel_executor`, `catalog_scheduler_executor`) plus **two genuinely `LOGIN`-capable service accounts** (`catalog_channel_service`, `catalog_scheduler_service`) provisioned with real, rotated credentials held only by their respective trusted external services — before any command referencing them is deployed.
 7–11. Unchanged.
-12. **Scheduler deployment additionally confirms** the deployed Supabase/PostgreSQL environment's `pg_cron` invocation model against Section 7's stated assumption (that the job's configured role need not itself hold `LOGIN` for `pg_cron`'s internal worker connection) before relying on it — an explicit environment-verification step this revision adds, since Version 2.0 did not surface this as something to confirm.
+12. **Scheduler deployment additionally confirms** Supabase Scheduled Edge Function (or `pg_cron` + `pg_net`) availability in the deployed environment, and provisions `catalog_scheduler_service` with a real, rotated connection credential held only by that Edge Function's own secure configuration, before relying on Pattern A (Section 12) — an explicit environment-verification step this revision (v2.2) adds, replacing Version 2.1's now-removed `pg_cron`-role `LOGIN`/`NOLOGIN` confirmation step.
 13. Production verification gates — Section 21's expanded test matrix.
 
 ## 21. Testing and Verification Matrix (EIS §8.17)
@@ -475,7 +487,7 @@ Unchanged from Version 2.0, with the following v2.1 additions:
 | Area | v2.1 addition |
 |---|---|
 | **Execution-identity scoping** | Each of the eight command-group owners can write only its own assigned tables; a defect in one function cannot reach another group's tables even under a crafted input, verified by privilege inspection per role, not only by functional testing |
-| **Scheduler procedure semantics** | A fault injected on one due schedule does not prevent any other due schedule in the same run from committing independently; a crash mid-procedure leaves already-committed activations intact and unprocessed schedules cleanly due again next run |
+| **Scheduler run semantics** | A fault injected on one candidate does not prevent any later candidate in the same fixed run list from being attempted and committing independently; a crash mid-run leaves already-`activated` candidates durably committed and every not-yet-attempted or failed candidate cleanly due again next run; a candidate that fails once is not reselected within the same run, verified by confirming the fixed candidate list is never re-queried mid-run (Section 12) |
 | **Rejection-commit coherence** | Every named rejection category (`STALE_STATE`, `PRICE_CONFIRMATION_REQUIRED`, `IDEMPOTENCY_CONFLICT`, `PERMISSION_DENIED`, `ACTOR_MISMATCH`, etc.) durably persists its idempotency-key row and (for D-068) its token consumption, verified by querying the database directly after a rejected call, not only by inspecting the client-visible response |
 | **Channel dedup layering** | A redelivered initiating webhook returns the existing pending action without creating a second one; a redelivered confirming webhook returns the prior outcome without invoking the underlying command a second time; both are independently tested |
 | **Same-actor enforcement** | A confirmation attempt from any actor other than the pending action's original `actor_user_id` is rejected unconditionally, including from an actor who independently holds the same permission flag |
@@ -491,7 +503,7 @@ Version 2.0's matrix is preserved unchanged (every row remains accurate — no V
 |---|---|---|---|---|
 | §7 (Layer 1/2/3 identity model) | — (engineering integrity) | MC-VRF-001 | NEW-SUPA-V2-01, VER-SEC-001 | Role-privilege and connection-model inspection |
 | §7 (eight command-group owners) | — | MC-VRF-002 | NEW-SEC-V2-02 (VER-SEC-002) | Per-role privilege-boundary test |
-| §12 (`PROCEDURE` scheduler model) | D-043 | MC-VRF-003 | NEW-SUPA-V2-02 | Per-iteration commit/fault-isolation test |
+| §12 (Pattern A external-worker scheduler model, v2.2 correction) | D-043 | MC-VRF-003 | NEW-SUPA-V2-02; `report1.14.md` §6 Defects A–C | Per-call fault-isolation, crash-recovery, and starvation-prevention test |
 | §10 (commit-not-exception rejection model) | D-047, D-068 | MC-VRF-004 | NEW-SUPA-V2-03 | Rejection-durability test |
 | §5.10, §15 (confirmation-receipt table, stable command key) | D-053, D-054 | MC-VRF-005 | AIWV-001 | Duplicate-webhook/duplicate-confirmation test |
 | §15 (same-actor enforcement) | D-054 | MC-VRF-006 | AIWV-002 | Alternate-actor rejection test |
@@ -515,10 +527,10 @@ Unchanged from Version 2.0, except the executor identity performing the eligibil
 | 1 | Exact `pg_trgm` similarity threshold and algorithm sufficiency | `SPECIALIST REVIEW REQUIRED` | Unchanged from v2.0 |
 | 2 | Final CSV/Excel structural limits | `SPECIALIST REVIEW REQUIRED` | Unchanged from v2.0 |
 | 3 | Final index set for every new table | `SPECIALIST REVIEW REQUIRED` | Unchanged from v2.0, now additionally covering `catalog_channel_confirmation_receipts` |
-| 4 | `activate_due_catalog_price_schedules` polling interval and lag budget | `SPECIALIST REVIEW REQUIRED` | Unchanged values (1-minute polling / 5-minute budget), now grounded in the corrected `PROCEDURE` model (Section 12) |
+| 4 | Scheduler worker run interval and lag budget | `SPECIALIST REVIEW REQUIRED` | Unchanged values (1-minute run interval / 5-minute budget), now grounded in the corrected Pattern A external-worker model (Section 12) |
 | 5 | Shared permission-engine and shared conversational-engine sequencing and ownership | `REFINEMENT REQUIRED` (Mission Control sequencing decision) | Unchanged from v2.0 |
 | 6 | Selling-unit/price treatment upon inventory-link removal | Resolved, `ACCEPTED AS WRITTEN` | Unchanged from v2.0 |
-| 7 | **`pg_cron`'s exact invocation model for the scheduler's connecting role** (whether `catalog_scheduler_service` must itself hold `LOGIN`, or whether `pg_cron`'s internal worker mechanism permits a `NOLOGIN`-equivalent job role in the deployed Supabase environment) | **`SPECIALIST REVIEW REQUIRED`, new in this revision** | Section 7, Section 20 step 12; explicitly flagged as an environment-specific detail to confirm during implementation rather than asserted definitively here, consistent with not overclaiming a PostgreSQL/Supabase operational detail this EIS cannot verify without deployment access |
+| 7 | **Availability of Supabase Scheduled Edge Functions (or `pg_cron` + `pg_net`) in the deployed environment** for the Pattern A scheduler worker | **`SPECIALIST REVIEW REQUIRED`, revised in this revision (v2.2)** | Section 7, Section 12, Section 20 step 12; narrower than Version 2.1's now-resolved `pg_cron`-role `LOGIN`/`NOLOGIN` ambiguity — `catalog_scheduler_service` unconditionally requires `LOGIN` under Pattern A regardless of trigger mechanism, so only Edge Function/`pg_net` availability itself remains to confirm during implementation |
 
 **Removed from this revision's list (resolved and preserved per instruction §18):** the D-047 "linked stock-event history" scope question from Version 2.0 §24 item 7 is now **closed** — `report1.12.md` §5 and all four specialist verification reports independently confirmed the tenure-bounded reading as the correct engineering interpretation, and instruction §18 requires this interpretation to be preserved without further escalation. It no longer appears as an open question.
 
@@ -526,7 +538,7 @@ Unchanged from Version 2.0, except the executor identity performing the eligibil
 
 ### Blocking Issues
 
-None. Question 7 above is a new, narrow, environment-verification item (not a design gap) — Section 7's identity model is fully specified and correct under either possible answer to that question, since it only affects which of the two documented sub-models (LOGIN-required vs. NOLOGIN-sufficient for `pg_cron`'s worker) applies to `catalog_scheduler_service` specifically; it does not change the layered architecture itself.
+None. Question 7 above is a narrow, environment-verification item (not a design gap) — Section 7's identity model is fully specified and correct regardless of its answer, since `catalog_scheduler_service` unconditionally requires `LOGIN` under Pattern A; the open question is only which specific trigger mechanism (direct Edge Function schedule versus `pg_cron` + `pg_net`) the deployed environment supports, which does not change the layered architecture itself.
 
 ### Non-Blocking Dependencies, Security Risks, Migration Risks, Operational Risks, Sequencing Risks, Technical-Debt Risks
 
@@ -538,7 +550,7 @@ Unchanged from Version 2.0 — none of the seven Stage 10 open-parameter disposi
 
 ## 26. Definition of Done
 
-Unchanged in substance from Version 2.0, with the following v2.1 additions as Phase 1 release gates: privilege inspection confirms each of the eight command-group owner roles holds exactly its specified table privileges and no others (Section 7); the scheduler's `PROCEDURE`/per-iteration-`COMMIT` model is confirmed valid against the actual deployed Postgres version before reliance; every rejection category is confirmed to durably persist its idempotency-key and token-consumption bookkeeping under injected-fault testing (Section 10); `get_catalog_command_outcome` is confirmed to accept no caller-supplied business parameter in its deployed signature.
+Unchanged in substance from Version 2.0, with the following release gates: privilege inspection confirms each of the eight command-group owner roles holds exactly its specified table privileges and no others (Section 7); **the Pattern A scheduler worker (Supabase Scheduled Edge Function, or `pg_cron` + `pg_net` triggering one) is confirmed available and correctly credentialed in the deployed environment, and `activate_catalog_price_schedule` is confirmed to require no internal transaction-control statement, before reliance (Section 12, v2.2)**; every rejection category is confirmed to durably persist its idempotency-key and token-consumption bookkeeping under injected-fault testing (Section 10); `get_catalog_command_outcome` is confirmed to accept no caller-supplied business parameter in its deployed signature.
 
 ## 27. Document Change Log
 
@@ -547,3 +559,4 @@ Unchanged in substance from Version 2.0, with the following v2.1 additions as Ph
 | 1.0 | Initial draft Engineering Implementation Specification, translating locked Product Blueprint SB-P-1.11 into an implementation-ready design, per `instruction1.9.md`. |
 | 2.0 | Stage 10 refinement pass authorized by `instruction1.11.md`, resolving every accepted finding in `report1.10.md` and its four specialist reports. |
 | 2.1 | Narrow second refinement authorized by `instruction1.13.md`, resolving MC-VRF-001 through MC-VRF-010 from `report1.12.md` (the Stage 10 refinement-verification consolidation) without reopening any previously verified finding. Key corrections: separated genuinely `LOGIN`-capable external/service-account identities from `NOLOGIN` function-owner roles across three explicit layers, resolving the executor-authentication contradiction (MC-VRF-001, Section 7); replaced the single broad `catalog_command_executor` with eight command-group-scoped least-privilege owner roles (MC-VRF-002, Section 7); redefined the scheduler as a PL/pgSQL `PROCEDURE` with genuine per-iteration `COMMIT`, replacing the invalid "sub-transaction" claim (MC-VRF-003, Section 12); corrected the D-068/command rejection model so expected rejections commit their own bookkeeping via a structured `RETURN` rather than an exception that would roll everything back, resolving the durable-evidence-versus-full-rollback contradiction and simplifying the idempotency-key status model to two terminal states (MC-VRF-004, Sections 10–11); added a dedicated confirmation-receipt table and a pending-action-scoped stable command idempotency key, closing the gap between initial-webhook deduplication and final-command idempotency (MC-VRF-005, Section 5.10, 15); replaced the undefined alternate-confirmer allowance with the mandatory same-actor-only default (MC-VRF-006, Section 15); split failure classification into four precise categories, separating pre-command processing failures from genuine post-dispatch `UNKNOWN_OUTCOME` (MC-VRF-007, Section 15); added the missing `authority_basis` provenance field and corrected Section 18's "outcome" claim to point at the idempotency-key record rather than the dedicated event tables (MC-VRF-008, Sections 5.0, 18); removed caller-supplied business scope from `get_catalog_command_outcome` (MC-VRF-009, Section 11); and closed the file-scanning purpose/status matrix so `not_required` cannot be used for any currently-defined purpose (MC-VRF-010, Section 14). The D-047 tenure-bounded interpretation, the Version 2.0 data model, action-specific permissions, D-068 preview architecture, and all frontend contracts are explicitly preserved unchanged. No Founder decision was created, modified, or reopened; no Product Truth changed. EIS remains DRAFT — REFINED, NOT LOCKED. |
+| 2.2 | Single-finding correction authorized by `instruction1.15.md`, resolving MC-VRF-003 — Scheduler transaction model — from `report1.14.md` (focused verification of Version 2.1), without reopening MC-VRF-001, MC-VRF-002, or MC-VRF-004 through MC-VRF-010, all confirmed `VERIFIED — RESOLVED` by that same report. Replaced Version 2.1's invalid PL/pgSQL `PROCEDURE`-with-per-iteration-`COMMIT`-inside-an-`EXCEPTION`-block scheduler design (not implementable — transaction control is invalid inside a PL/pgSQL exception subtransaction, `report1.14.md` §6 Defect A) with **Pattern A**: a trusted external scheduled worker (`catalog_scheduler_service`, a genuinely `LOGIN`-capable Supabase Scheduled Edge Function or `pg_cron`+`pg_net`-triggered equivalent) that fetches a bounded, run-scoped candidate list exactly once via `list_due_catalog_price_schedule_candidates`, then invokes one ordinary, single-transaction `FUNCTION` call, `activate_catalog_price_schedule`, per candidate — eliminating any need for in-database multi-commit transaction control (Section 12). Removed the contradictory `claimed_at` field (both "immediately committed" and "rolled back on crash" per `report1.14.md` §6 Defect B) from `catalog_pending_price_schedules`, replacing it with a non-durable, transaction-scoped `FOR UPDATE SKIP LOCKED` claim inside each `activate_catalog_price_schedule` call (Section 5.3). Resolved the starvation risk (`report1.14.md` §6 Defect C — a repeatedly failing earliest-due row could be reselected every loop iteration) by fetching the candidate list once per run and attempting each candidate at most once per run, regardless of outcome (Section 12). Updated Section 7's `catalog_scheduler_service` description to reflect an unconditionally `LOGIN`-capable external worker identity, resolving the prior `pg_cron`-role `LOGIN`/`NOLOGIN` ambiguity (Engineering Question 7, Section 24). Updated Sections 4, 16, 18, 20, 21, 22, and 26 for consistency with the corrected model. The D-047 tenure-bounded interpretation, Founder Decisions D-001–D-068, Product Truth, approved sequencing, and every other MC-VRF-001–010 resolution are explicitly preserved unchanged. No Founder decision was created, modified, or reopened. EIS remains DRAFT — REFINED, NOT LOCKED. |
