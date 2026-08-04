@@ -171,7 +171,7 @@ The link is optional, business-scoped, and one-to-one in both directions in Buil
 
 Archiving either record never silently archives the other. An active product linked to archived inventory cannot be used in a new sale and must present a clear resolution warning.
 
-When linking a non-stock product would change its selling unit to the inventory item's immutable base unit, the existing numeric selling price must not be silently reinterpreted under the new unit. Before the link is saved, the merchant must explicitly confirm the selling price for the proposed new unit or enter a replacement price. Until that confirmation succeeds, the product record, selling unit, selling price, and inventory link remain unchanged. The confirmed price and completed link enter their appropriate audit histories. This rule applies only while the link remains changeable under the no-sale-history and no-linked-stock-event-history boundary above.
+When either first-time assignment of an inventory link or permitted replacement of an existing inventory link would change the product's selling unit to the proposed inventory item's immutable base unit, the existing numeric selling price must not be silently reinterpreted under the new unit. Before the assignment or replacement is saved, the merchant must explicitly confirm the selling price for the proposed new unit or enter a replacement price. Until confirmation and saving succeed, the existing product record, current inventory link state, selling unit, and selling price remain unchanged. Cancellation, incomplete confirmation, validation failure, or save failure preserves that existing state. The confirmed price and completed assignment or replacement enter their appropriate audit histories. This safeguard applies only while assignment or replacement remains permitted under the no-sale-history and no-linked-stock-event-history boundary above.
 
 ### Product Name and Description
 
@@ -213,7 +213,7 @@ Archiving a category requires explicit confirmation, does not archive products, 
 
 Every product has exactly one selling unit. A stock-tracked product inherits the linked inventory item's immutable base unit and cannot configure an alternate selling unit. A non-stock product defaults to piece and may use a familiar standard or merchant-defined custom unit. A non-stock selling unit may change only before sales history exists. Custom units create no conversion behavior.
 
-If a proposed inventory link changes the product's selling unit, the old price cannot silently acquire the meaning of a price per new unit. The link workflow must obtain explicit confirmation of the selling price for the new unit or a replacement price before changing any product or link state.
+If first-time inventory linking or permitted replacement linking changes the product's selling unit, the old price cannot silently acquire the meaning of a price per new unit. Either workflow must obtain explicit confirmation of the selling price for the new unit or a replacement price before changing any product or link state.
 
 ### Business Currency
 
@@ -339,7 +339,11 @@ The interface shows whether tax is inherited, product-specific, or explicitly no
 
 Users see a clear warning that linking does not transfer stock authority to the catalog. Link actions show the selected inventory identity and base unit and require confirmation. Locked links explain why they cannot change.
 
-If linking changes the selling unit, the preview must show the current unit and selling price, the proposed inventory base unit, and the selling price that requires confirmation for that new unit. The merchant must confirm that price or enter a replacement before saving. Cancelled, incomplete, or failed confirmation leaves the product, unit, price, and inventory link unchanged.
+If first-time linking changes the selling unit, the preview must show the current unit and selling price, the proposed inventory link and base unit, and the selling price requiring confirmation for that new unit.
+
+If replacement linking changes the selling unit, the preview must show the current inventory link, current unit and selling price, proposed replacement inventory link and base unit, and the selling price requiring confirmation for that proposed new unit.
+
+For either action, the merchant must confirm the price or enter a replacement before saving. Cancellation, incomplete confirmation, validation failure, or save failure leaves the existing product record, current inventory link state, selling unit, and selling price unchanged.
 
 ### Lifecycle Experience
 
@@ -398,7 +402,7 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 25. Ordinary employees cannot manage products or access cost, margin, protected histories, or other-business data.
 26. Future Sales, Purchase, POS, Reporting, Ask CFO, and Commerce work must reference this catalog without rewriting its historical meaning.
 27. Product and category wording may use English, Malayalam, or Manglish without forced translation; uncertain translated, transliterated, or spelling-based matches require merchant review and never cause silent rename, merge, or overwrite.
-28. When a proposed inventory link changes a non-stock product's selling unit, the link cannot be saved until the merchant confirms or replaces the selling price for the new unit; until confirmation succeeds, product, unit, price, and link state remain unchanged.
+28. When first-time inventory-link assignment or permitted replacement of an existing inventory link changes the selling unit, the assignment or replacement cannot be saved until the merchant confirms or replaces the selling price for the proposed new unit; until confirmation and saving succeed, cancellation, incomplete confirmation, validation failure, or save failure leaves the existing product, current link state, unit, and price unchanged.
 
 ## 11. Out of Scope
 
@@ -483,7 +487,7 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 | Employee sees protected financial information | Confidential cost information is exposed | Separate permissions, field-level visibility boundaries, and non-disclosure through errors and histories. |
 | Conversational interpretation saves wrong data | Incorrect product or price becomes authoritative | Structured preview, uncertainty disclosure, permission check, and explicit confirmation. |
 | Multilingual matching is treated as authoritative translation | Distinct products or categories may be silently merged or renamed | Preserve merchant wording; separate normalized exact matching from interpreted suggestions; require merchant review for uncertain Malayalam, Manglish, translation, or transliteration matches. |
-| Inventory linking silently changes price meaning | A price entered per old unit may be charged per a different inventory base unit | Show old unit and price with the proposed new unit; require explicit price confirmation or replacement before atomically saving the price and link. |
+| First-time or replacement inventory linking silently changes price meaning | A price entered per the current unit may be charged per a different inventory base unit | For assignment, show current unit/price and proposed link/unit; for replacement, also show current and proposed inventory links. Require explicit price confirmation or replacement before atomically saving the price and assignment or replacement; any cancellation or failure preserves existing state. |
 | One-to-one relationship later proves too narrow | Packaging or recipes need redesign | Deliberately defer variants, conversions, bundles, and shared-stock forms to governed evolution. |
 | Pricing-mode change alters monetary meaning | Current and historical amounts become inconsistent | Lock mode after first completed sale; use a future governed migration if change is required. |
 | Stale architecture source influences design | Engineering revives superseded mutable inventory | Treat accepted SB-P-1.10 as controlling inventory dependency and flag Source 02 reconciliation for later review. |
@@ -501,7 +505,7 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 - CSV/Excel import provides fast progress while quarantining invalid or duplicate rows safely.
 - Every meaningful change is attributable and historically explainable.
 - Merchants can enter and find catalog wording in English, Malayalam, and Manglish without forced translation or silent AI rewriting.
-- Linking inventory cannot silently reinterpret an existing price under a changed selling unit.
+- First-time inventory linking and permitted replacement linking cannot silently reinterpret an existing price under a changed selling unit.
 - Build Now, Build Later, Add-on, Separate Product, and Reject boundaries are clear enough for later review without creating engineering design prematurely.
 
 ## 15. Acceptance Criteria
@@ -528,7 +532,9 @@ Labels, validation, focus, contrast, status, confirmations, and error messages m
 - [ ] Conversational mutations require structured preview, explicit confirmation, and the same permission checks as dashboard actions.
 - [ ] Product names, descriptions, and category names accept and preserve English, Malayalam, and Manglish wording without forced translation.
 - [ ] Mixed-language search supports reliable matches, identifies uncertain interpreted matches, and never silently renames, translates, merges, or overwrites catalog records.
-- [ ] If inventory linking changes the selling unit, the preview shows old unit and price, proposed new unit, and the price requiring confirmation; no product, price, unit, or link change occurs until the merchant confirms or replaces the price.
+- [ ] If first-time inventory linking changes the selling unit, the preview shows current unit and price, proposed inventory link and new unit, and the price requiring confirmation.
+- [ ] If permitted replacement linking changes the selling unit, the preview shows current inventory link, current unit and price, proposed replacement inventory link and new unit, and the price requiring confirmation.
+- [ ] For either unit-changing assignment or replacement, no product, current link state, price, or unit change occurs until confirmation and saving succeed; cancellation, incomplete confirmation, validation failure, or save failure preserves existing state, and a successful confirmed price and link change enter the appropriate audit history.
 - [ ] Import creates valid rows, quarantines invalid rows, reports errors, and never overwrites matches automatically.
 - [ ] Search, duplicate checks, validation, imports, messages, and histories do not disclose another business's data.
 - [ ] No workflow introduces unit conversion, variants, bundles, price tiers, margin calculation, custom POS modification, or a second stock truth.
@@ -589,6 +595,7 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 |---|---|---|---|---|
 | 0.1 | 2026-08-04 | Codex | Initial Stage 1 draft based on canonical Product Truth, accepted SB-P-1.10 dependency, repository inspection, and Founder decisions D-001 through D-066; Founder draft confirmation recorded as D-067. Metadata, Mission Snapshot, and Sections 1–19 only. | Founder-confirmed draft — awaiting Mission Control Product Review |
 | 0.2 | 2026-08-04 | Codex | Refined only Builder Review Findings F3, F4, and F5: multilingual entry/search, business-scoped name/SKU/barcode normalization, and Founder-approved unit-change price confirmation recorded as D-068. | Refined draft — awaiting Mission Control review |
+| 0.3 | 2026-08-04 | Codex | Refined only the remaining F5 replacement-link scope so D-068 and the no-silent-price-reinterpretation safeguard cover both first-time assignment and permitted replacement when either changes the selling unit. | Refined draft — awaiting Mission Control review |
 
 ## 19. Governance History
 
@@ -600,3 +607,5 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 | 2026-08-04 | Founder | Confirmed the Stage 1 draft accurately represents the confirmed product decisions and may be prepared for Mission Control Product Review. | Founder draft confirmation recorded as D-067; no Blueprint lock or implementation authorization granted. |
 | 2026-08-04 | Claude Code and Mission Control | Builder Review completed and Mission Control accepted Findings F3, F4, and F5 for Codex refinement through Instruction 1.3. | F3 and F4 authorized as narrow clarifications; Founder-approved F5 decision supplied as authoritative input. No new Builder Review or Engineering Review authorized. |
 | 2026-08-04 | Founder and Codex | Founder-approved F5 unit-change price behavior recorded as D-068 and reflected in Sections 5, 8, 9, 10, 13, 14, and 15. | Existing decisions D-001 through D-067 preserved; Sections 20–21 remain absent; refinement returned for Mission Control review. |
+| 2026-08-04 | Claude Code and Mission Control | Follow-up Builder Review accepted F3 and F4 as resolved and identified only the F5 replacement-link consistency gap. | Instruction 1.5 authorized a narrow consistency refinement without a new Founder decision. |
+| 2026-08-04 | Codex | Refined D-068 and Sections 8, 9, 10, 13, 14, and 15 to apply the existing safeguard consistently to first-time assignment and permitted replacement linking. | No F3 or F4 wording reopened; D-001 through D-067 unchanged; Sections 20–21 remain absent. |
