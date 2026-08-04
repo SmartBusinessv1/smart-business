@@ -1,8 +1,9 @@
 # SB-P-1.11 — Engineering Implementation Specification (EIS)
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-EIS LOCK: NOT APPLIED
+STATUS: DRAFT — REFINED, NOT LOCKED
+EIS VERIFICATION: PENDING
+EIS LOCK: NOT AUTHORIZED
 IMPLEMENTATION PACKAGE: NOT AUTHORIZED
 IMPLEMENTATION: NOT AUTHORIZED
 ```
@@ -16,13 +17,14 @@ IMPLEMENTATION: NOT AUTHORIZED
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (LOCKED — Sections 1–21) |
 | Founder Decisions Covered | D-001 through D-068 |
 | Document Type | Engineering Implementation Specification (EIS) |
-| Document Version | 1.0 |
-| Status | DRAFT — MISSION CONTROL REVIEW REQUIRED |
+| Document Version | 2.0 |
+| Status | DRAFT — REFINED, NOT LOCKED |
 | Author | Claude Code — Engineering Review and Implementation Specification |
 | Governance Basis | SB-P-1.11 Product Blueprint (Builder Review resolved F3–F5, Engineering Review `READY FOR FOUNDER APPROVAL`, Founder Approval granted, Mission Control Blueprint Lock applied — `communication/live/report1.8.md`) |
 | Structural and Engineering Precedent | `docs/phase-1-mission-blueprint/implementation/SB-P-1.10-EIS.md` (LOCKED) |
-| Prior Review | Not yet reviewed |
-| Authorizing Instruction | `communication/live/instruction1.9.md` |
+| Prior Review | Source 18 Stage 10 EIS Review — `communication/live/report1.10.md` — `REFINEMENT REQUIRED`, four specialist reports (`report1.10-supabase-backend.md`, `report1.10-security-permissions.md`, `report1.10-ai-whatsapp.md`, `report1.10-lovable-frontend.md`) |
+| This Revision | Stage 10 refinement pass authorized by `communication/live/instruction1.11.md`, resolving every accepted finding in `report1.10.md` |
+| Authorizing Instruction | `communication/live/instruction1.11.md` |
 
 ## 2. Purpose
 
@@ -30,880 +32,815 @@ This document translates the locked SB-P-1.11 Product Blueprint (Sections 1–21
 
 The Product Blueprint remains the single source of product truth. Every engineering decision recorded here exists to implement a requirement already established in the locked Blueprint. Where any statement in this document could be read as introducing new product behaviour, the Product Blueprint prevails and this document is in error.
 
-This EIS does not redefine what the product is. It describes how the locked Product Catalog & Pricing capability is implemented: the technical domain model, data design, write-integrity mechanics, permission and RLS strategy, service contracts, validation, concurrency, multilingual and import architecture, migration, testing, observability, build sequence, risks, and completion criteria required to build it.
+**This revision (Version 2.0)** resolves every accepted finding from the Source 18 Stage 10 consolidated EIS review (`communication/live/report1.10.md`) and its four specialist reports. No accepted finding required a change to Product Truth. Every correction in this revision is an engineering-implementability fix: replacing an invalid database design, closing an authorization-bypass gap, or making a previously under-specified contract deterministic and testable.
 
-No database schema, SQL migration, RPC implementation, Edge Function, webhook handler, AI prompt, Lovable build prompt, or frontend component is created by this document. Genuine open engineering-parameter choices (index sets, similarity thresholds, import size limits, polling intervals) are proposed with an explicit decision-gate for specialist confirmation during detailed design, mirroring the discipline SB-P-1.10's EIS used for its own index-selection gate.
+No database schema, SQL migration, RPC implementation, Edge Function, webhook handler, AI prompt, Lovable build prompt, or frontend component is created by this document. Genuine open engineering-parameter choices are proposed with an explicit decision-gate for specialist confirmation during detailed design.
 
-This EIS is a **draft**. It has not been reviewed, refined, or locked. It does not authorize an implementation package, application code, database changes, or deployment.
+This EIS is a **draft, refined but not locked**. It has not been independently verified, accepted, or locked. It does not authorize an implementation package, application code, database changes, or deployment.
 
 ## 3. Implementation Principles
 
-These principles govern every engineering decision in this specification, carried forward from the locked Blueprint and Section 20/21 of the Engineering Review, and consistent with the principles SB-P-1.10's EIS established for the domain SB-P-1.11 builds beside.
+These principles govern every engineering decision in this specification, carried forward from the locked Blueprint, Section 20/21 of the Engineering Review, and strengthened by the Stage 10 review.
 
 - **Catalog truth is not inventory truth.** No catalog table, function, or code path may write to `inventory_items` or `inventory_movements`, or treat a catalog-stored value as stock quantity. The SB-P-1.10 ledger remains the sole stock authority (Blueprint §1, §8 "Catalog Product"; D-001).
 - **No silent price reinterpretation.** No code path may allow a previously entered numeric price to acquire a different per-unit meaning without explicit merchant confirmation (D-068).
-- **Append-only value history.** Selling-price, tax, and reference-cost changes are immutable once posted. A correction or later change is a new event, never an update or delete of a prior event (Blueprint §8 "Selling-Price History," "Tax History"; D-011, D-037, D-064).
-- **Single write path per capability.** Every catalog-mutating action, regardless of originating channel (dashboard, import, WhatsApp/voice/photo), passes through the same server-authoritative command for that action. No channel implements its own parallel write logic (Source 12 §4, §10; Blueprint §8 "Audit History," "Business Ownership and Isolation").
-- **Permission-first design.** No catalog read or write path is designed first and restricted afterward; every operation is designed against its Blueprint §8 "Permissions" requirement from the outset, even where full enforcement is sequenced behind a shared permission-engine dependency (Engineering Review, Section 20 "Permission-Engine Dependency").
-- **Business isolation.** Every table, query, and command carries business scope as a first-class constraint, reusing the `business_id`-plus-`owner_id`-subquery pattern already established by `inventory_items` and `inventory_movements`.
-- **Auditability.** Every meaningful catalog change is traceable to a responsible actor, channel, and time, by construction — not by convention (D-064).
-- **Atomic no-change guarantee.** The D-068 safeguard's four failure modes (cancellation, incomplete confirmation, validation failure, save failure) each reduce to "no transaction committed" — Postgres transactional semantics provide the guarantee; the command layer only needs well-defined rejection points.
-- **Reuse before invention.** Every new catalog component reuses an existing, approved pattern (business isolation, idempotency keys, append-only ledgers, `file_import_jobs`, `system_errors`, `pg_cron`) unless no such pattern exists, in which case a new *shared* (not catalog-specific) capability is proposed (audit events, permission flags) per Source 12 §10.
+- **Append-only value history is truly append-only.** A table declared immutable is never the target of an `UPDATE`, including for state-transition purposes. Where a transition must occur (e.g., a schedule being cancelled or activated), it is modelled as a new immutable event plus a change to a *separately designated, explicitly mutable* current-state table — never as a mutation of a row already declared immutable (Stage 10 Finding MC-EIS-001/002, SUPA-1, SUPA-2, SEC-PERM-004).
+- **Commands are the only write boundary.** No table carrying protected catalog, schedule, event, audit, import, or idempotency data grants direct `INSERT`/`UPDATE`/`DELETE` to any client-reachable role. Every protected mutation occurs through a narrowly scoped, independently permission-checked command (Stage 10 Finding MC-EIS-002, SEC-PERM-002; Section 7 below).
+- **Authority is always re-derived, never trusted.** No command accepts a caller-supplied business ID, actor ID, role, or permission claim as authoritative. Every command independently resolves current business membership and current permission from verified server-side state at the moment of execution, regardless of channel (Stage 10 Findings MC-EIS-002, MC-EIS-007, SEC-PERM-002, SEC-PERM-003).
+- **Preview and commit are separate, bound operations.** Any operation requiring merchant confirmation of consequential state (D-068 above all) is preceded by a non-mutating, server-authoritative preview that produces a single-use token binding the exact reviewed state; the commit recomputes and rejects on any drift (Stage 10 Finding MC-EIS-003, SUPA-4, LF-01, LF-02, AIW-004).
+- **Idempotency resolves before mutable-state evaluation.** For a given command call, actor and business are resolved first; the idempotency key and payload fingerprint are then checked before any precondition or stale-state evaluation runs, so a legitimate retry after a successful write returns the original result rather than a spurious rejection (Stage 10 Finding MC-EIS-004, SEC-PERM-005).
+- **Unknown outcomes are never reported as "nothing changed."** A generic transport/API failure where commit status cannot be determined is an `UNKNOWN_OUTCOME`, resolved only by retrying with the *same* idempotency key or performing a read-only idempotency-outcome lookup — never by generating a new key for the same logical action, and never by asserting non-commit before a definitive result is established (Stage 10 Finding MC-EIS-004, LF-04, AIW-008; confirmed engineering direction, this revision).
+- **Permission-first design, action-specific.** Every catalog action checks the single, independently governed permission flag that Blueprint §8 "Permissions" assigns to it — never a broad flag that collapses ordinary maintenance with lifecycle, financial, or linking authority (Stage 10 Finding MC-EIS-006, SEC-PERM-001).
+- **Business isolation extends to references, not only rows.** Every stored reference to an external object (a file, a channel event, a pending confirmation) is bound to its owning business through a verifiable, business-scoped record — never an unconstrained text value (Stage 10 Finding MC-EIS-011, SEC-PERM-007).
+- **Default-deny on unprovable state.** Where a governed dependency check (a D-047 history predicate, a hard-delete eligibility check) cannot be conclusively evaluated, the command denies the action rather than proceeding on an optimistic assumption (Stage 10 Finding MC-EIS-005, MC-EIS-014, SEC-PERM-006).
+- **Auditability with standardized provenance.** Every meaningful catalog change is traceable to a responsible actor, actor type (human or system), channel, request, and time, using the same provenance shape across every dedicated event table — not by convention, and not inconsistently between tables (Stage 10 Finding MC-EIS-015, SEC-PERM-011; D-064).
+- **Reuse before invention, corrected where precedent was unsafe.** Every new catalog component reuses an existing, approved pattern where that pattern is itself sound. Where the Stage 10 review found that a literal precedent (e.g., SB-P-1.10's direct-grant-plus-RLS write pattern) does not meet SB-P-1.11's stronger command-only requirement, this EIS explicitly diverges and states why (Section 7).
 
 ## 4. Architecture and Scope Map (EIS §8.1)
 
 ### Implementation Boundaries
 
-SB-P-1.11 implements: catalog product and category entities; product identity, SKU, barcode, image, description with multilingual entry/display and normalization; one selling unit with inheritance from a linked inventory item; the product–inventory link including the D-068 atomic safeguard; selling price (current + one scheduled + immutable history); tax configuration (business default, product override, non-taxable) with immutable history; reference cost (protected, immutable history); product lifecycle (Active/Archived, conditional deletion); a shared, permission-aware audit-event mechanism first consumed by Catalog; CSV/Excel import with a correction queue; and the catalog-side contract that a future shared conversational engine must satisfy.
+Unchanged from Version 1.0: SB-P-1.11 implements catalog product and category entities; product identity, SKU, barcode, image, description with multilingual entry/display and normalization; one selling unit with inheritance from a linked inventory item; the product–inventory link including the D-068 atomic safeguard; selling price (current + one scheduled + immutable history); tax configuration; reference cost; product lifecycle; a shared, permission-aware audit-event mechanism; CSV/Excel import; and the catalog-side contract a future shared conversational engine must satisfy.
 
-SB-P-1.11 does **not** implement: the SB-P-1.10 inventory ledger itself (consumed, not modified); a generic Manager/Employee permission engine (consumed once available — see Section 8); the shared WhatsApp/voice/photo conversational pipeline itself (consumed once available — see Section 15); Sales Workflow, Purchase Workflow, POS Integration, Financial Reports, or Ask CFO (Blueprint §11 "Separate Product or Governed Mission").
+SB-P-1.11 does **not** implement the SB-P-1.10 inventory ledger, a generic Manager/Employee permission engine, or the shared WhatsApp/voice/photo conversational pipeline itself.
 
-### Repository Components Affected
+### Repository Components Affected (revised)
 
-| Layer | New | Reused unmodified |
-|---|---|---|
-| Database | `catalog_products`, `catalog_categories`, `catalog_selling_price_events`, `catalog_tax_events`, `catalog_reference_cost_events`, `catalog_product_link_events`, `catalog_audit_events`, `catalog_write_idempotency_keys`, `catalog_import_jobs`, `catalog_import_rows`, `business_tax_settings`, `businesses.timezone` column | `businesses` (all other columns), `inventory_items`, `inventory_movements`, `inventory_movement_idempotency_keys`, RLS pattern, `system_errors` |
-| Commands (RPC-equivalent) | All commands listed in Section 12 | `create_inventory_movement`, `preview_inventory_movement`, `inventory_current_stock_batch` (read-only cross-reference for stock-tracked product display) |
-| Scheduled processing | `activate_scheduled_catalog_prices` job | `pg_cron` extension and secure-endpoint automation pattern (Source 02 §7) |
-| Frontend | `src/routes/_authenticated/products.tsx` (+ nested routes), catalog components | `src/components/authed-header.tsx` (extended with a Products nav entry), `src/hooks/use-auth.tsx`, authenticated route guard pattern |
-| Conversational | Catalog intent handler (future, once shared engine exists) | None yet — shared engine does not exist |
+| Layer | New in v2.0 | Unchanged from v1.0 | Reused unmodified |
+|---|---|---|---|
+| Database | `catalog_pending_price_schedules`, `catalog_price_schedule_events`, `catalog_link_preview_tokens`, `catalog_channel_pending_actions`, `catalog_file_references`, `catalog_deletion_records`, provenance columns on every event table | `catalog_products`, `catalog_categories`, `catalog_selling_price_events` (redefined shape), `catalog_tax_events`, `catalog_reference_cost_events`, `catalog_product_link_events`, `catalog_audit_events`, `catalog_write_idempotency_keys`, `catalog_import_jobs`, `catalog_import_rows`, `business_tax_settings`, `businesses.timezone` | `businesses` (other columns), `inventory_items`, `inventory_movements`, `inventory_movement_idempotency_keys`, RLS pattern, `system_errors` |
+| Execution identities | `catalog_command_executor`, `catalog_channel_executor`, `catalog_scheduler_executor` (three dedicated, narrowly-privileged roles — Section 7) | — | — |
+| Commands | `preview_catalog_inventory_link_change`, `get_catalog_command_outcome`, `create_catalog_pending_action`, `confirm_catalog_pending_action`, revised `assign_or_replace_catalog_inventory_link` | All Version 1.0 commands, revised for command-only execution and corrected idempotency ordering | — |
+| Frontend | Preview-driven D-068 confirmation flow, stale-state/unknown-outcome UI states, accessibility/stable-ID requirements | Route structure | `authed-header.tsx`, `use-auth.tsx` |
 
 ### Explicit Exclusions
 
-Unit conversion, packaging, variant hierarchy, multiple barcodes, scanning/labels, price tiers, discounts, multi-currency, margin calculation, richer bulk editing/export, custom POS modification, and any second stock-mutation path are explicitly out of this EIS's scope, matching Blueprint §11 verbatim. Nothing in this EIS proposes a workaround for any Reject item.
+Unchanged: unit conversion, packaging, variant hierarchy, multiple barcodes, scanning/labels, price tiers, discounts, multi-currency, margin calculation, richer bulk editing/export, custom POS modification, and any second stock-mutation path remain out of scope, matching Blueprint §11.
 
-### Dependency Map
+### Dependency Map (unchanged shape, updated to name the three execution identities)
 
 ```text
 SB-P-1.10 Inventory Foundation (implemented, Owner-only)
         │  read-only reference (inventory_item_id link, base_unit)
+        │  row-locked during D-047/D-068 evaluation (Section 9)
         ▼
 SB-P-1.11 Catalog Core  ──────────────► buildable now (Phase 1, this EIS)
+   executed via: catalog_command_executor (dashboard, import)
         │
         ├── depends on ──► Shared Permission Engine (not implemented anywhere)
         │                   → Phase 2a (Section 8)
         │
         ├── depends on ──► Shared Conversational Engine (not implemented anywhere)
+        │                   executes via: catalog_channel_executor
         │                   → Phase 3 (Section 15)
         │
-        └── extends ─────► file_import_jobs conceptual pattern (Source 02 §3.15A, not implemented)
+        └── extends ─────► file_import_jobs conceptual pattern (Source 02 §3.15A)
                             → Phase 2b (Section 14)
+
+Scheduled activation executes via: catalog_scheduler_executor (Section 12)
 ```
 
-### Phased Delivery Sequence (aligned to locked Blueprint §20–21)
+### Phased Delivery Sequence
 
-- **Phase 1 — no cross-mission dependency.** Catalog/category data model, Owner-scoped RLS, D-068 atomic safeguard, price/tax/cost history, multilingual normalization, scheduled-price activation, dashboard CRUD.
-- **Phase 2a — depends on shared permission engine.** Manager/Employee catalog permission enforcement.
-- **Phase 2b — sizeable, no cross-mission blocker.** CSV/Excel import and correction queue.
-- **Phase 3 — depends on shared conversational engine.** Guided WhatsApp/voice/photo catalog workflows.
-
-This EIS specifies the complete technical contract for all four phases so that Phase 2a/2b/3 can begin immediately once their dependency is satisfied, without redesign.
+Unchanged from Version 1.0 (Phase 1 → Phase 2a/2b in parallel → Phase 3), now with the corrected technical contracts below making every phase implementable as specified rather than requiring redesign at build time.
 
 ## 5. Data Model (EIS §8.2)
 
-Implementation-grade entity definitions. No migration or SQL is authored here; this is a data dictionary. Naming follows the existing repository convention (`snake_case`, `business_id` ownership column, `id`/`created_at`/`updated_at` on mutable entities).
+Implementation-grade entity definitions. No migration or SQL is authored here; this is a data dictionary.
+
+### 5.0 Standardized Event Provenance Shape (applies to every dedicated event table below)
+
+Per Stage 10 Finding MC-EIS-015/SEC-PERM-011, every dedicated event table (5.3–5.6) carries this identical provenance block, in addition to its own value-specific fields:
+
+| Field | Type | Nullable | Notes |
+|---|---|---|---|
+| `authorized_by_user_id` | uuid | Yes (system-only events) | The merchant/user who authorized this change. Null only for a purely system-executed event (e.g., a scheduled activation with no human action at that instant — the *original* scheduling authorization is separately preserved, Section 12). |
+| `executed_by_actor_type` | enum (`user`, `system`) | No | Distinguishes human-initiated from system-initiated execution. |
+| `system_run_id` | uuid | Yes | Set only when `executed_by_actor_type = 'system'`; correlates to the scheduler/job invocation that performed the write (Section 12). |
+| `channel` | enum (`dashboard`, `import`, `whatsapp`, `voice`, `photo`, `system`) | No | Originating channel. |
+| `request_id` | uuid | No | Correlates to the originating command call. |
+| `recorded_at` | timestamptz | No | Immutable system insertion time. |
+
+Cost values never appear in any of these provenance fields, in any log, or in any error/metric derived from them (Section 18).
 
 ### 5.1 `catalog_products`
 
-| Field | Type | Nullable | Constraint / Notes |
-|---|---|---|---|
-| `id` | uuid | No | Primary key |
-| `business_id` | uuid | No | FK → `businesses(id)`; composite `UNIQUE (id, business_id)` for downstream FK integrity, mirroring `inventory_items_id_business_uniq` |
-| `name` | text | No | `CHECK (length(btrim(name)) > 0)` |
-| `name_normalized` | text | No | Generated: trimmed, internal-whitespace-collapsed, lower-cased. `UNIQUE (business_id, name_normalized)` — enforces D-026/Rule 8 at the data layer |
-| `description` | text | Yes | Free text; English/Malayalam/Manglish (D-027) |
-| `category_id` | uuid | Yes | FK → `catalog_categories(id)`; composite FK `(category_id, business_id)` → `catalog_categories(id, business_id)` |
-| `sku` | text | Yes | Merchant display value preserved verbatim (D-023) |
-| `sku_normalized` | text | Yes | Generated when `sku IS NOT NULL`: trimmed, lower-cased. Partial `UNIQUE (business_id, sku_normalized) WHERE sku_normalized IS NOT NULL` (D-024/Rule 9) |
-| `barcode` | text | Yes | Merchant display value preserved verbatim (D-020) |
-| `barcode_normalized` | text | Yes | Generated when present: trimmed, lower-cased. Partial `UNIQUE (business_id, barcode_normalized) WHERE barcode_normalized IS NOT NULL` (D-022/Rule 9) |
-| `image_ref` | text | Yes | Object-storage reference (metadata only; file lives in approved storage profile per P00 §41) |
-| `inventory_item_id` | uuid | Yes | FK → `inventory_items(id)`; composite FK `(inventory_item_id, business_id)` → `inventory_items(id, business_id)`. `UNIQUE (inventory_item_id) WHERE inventory_item_id IS NOT NULL` — enforces the inventory-item side of the one-to-one (D-004) |
-| `selling_unit` | text | No | Free text; mirrors `inventory_items.base_unit` while linked (mandatorily kept equal — see Section 7); merchant-editable while non-stock and pre-sales-history (D-051, D-052) |
-| `status` | enum `catalog_product_status` (`active`, `archived`) | No | Default `active` (D-029) |
-| `created_by` | uuid | No | Responsible-user reference |
-| `created_at` / `updated_at` | timestamptz | No | Standard audit timestamps; `updated_at` reflects only `catalog_products` row writes, not history-table events |
-
-Note: **no** `selling_price`, `reference_cost`, `tax_mode`, or `tax_rate` column exists on `catalog_products`. These are derived from the latest applicable row in their respective event tables (Section 5.3–5.5), mirroring SB-P-1.10's "current stock is never stored, always derived" principle (D-066; Engineering Review "Overall Engineering Feasibility"). Unlike inventory's current-stock aggregation (a running `SUM` across potentially many rows), current price/tax/cost derivation is a single indexed "latest effective row for this product" lookup — inherently cheap, with no aggregation-performance concern analogous to SB-P-1.10's index-selection gate.
-
-### 5.2 `catalog_categories`
+Unchanged from Version 1.0 in shape; unchanged fields not repeated here except where affected.
 
 | Field | Type | Nullable | Constraint / Notes |
 |---|---|---|---|
 | `id` | uuid | No | Primary key |
 | `business_id` | uuid | No | FK → `businesses(id)`; composite `UNIQUE (id, business_id)` |
-| `name` | text | No | Merchant display value (D-008) |
-| `name_normalized` | text | No | Generated (trim, collapse whitespace, lower-case). `UNIQUE (business_id, name_normalized)` (D-045/Rule 27) |
-| `status` | enum (`active`, `archived`) | No | Default `active` (D-046) |
-| `created_at` / `updated_at` | timestamptz | No | Standard |
+| `name` / `name_normalized` | text | No | Unchanged — `UNIQUE (business_id, name_normalized)` |
+| `description`, `category_id`, `sku`/`sku_normalized`, `barcode`/`barcode_normalized` | — | — | Unchanged |
+| `image_ref` | uuid | Yes | **Revised (5.11):** FK → `catalog_file_references(id)`, composite `(image_ref, business_id)` → `catalog_file_references(id, business_id)`. No longer unconstrained text (Stage 10 Finding MC-EIS-011, SEC-PERM-007). |
+| `inventory_item_id`, `selling_unit`, `status` | — | — | Unchanged |
+| `created_by`, `created_at`, `updated_at` | — | — | Unchanged |
 
-Archiving a category never deletes the row or cascades to products; `catalog_products.category_id` is set to `NULL` for affected products as part of the same archive command, with the removal recorded as a `catalog_audit_events` entry per affected product (D-046).
+No `selling_price`, `reference_cost`, `tax_mode`, or `tax_rate` column — derived from the latest applicable event row, as in Version 1.0.
 
-### 5.3 `catalog_selling_price_events` (append-only)
+### 5.2 `catalog_categories`
+
+Unchanged from Version 1.0.
+
+### 5.3 Scheduled Price — Corrected Model (Stage 10 Findings MC-EIS-001, SUPA-1, SUPA-2, SUPA-5, SEC-PERM-004)
+
+The Version 1.0 design used a single `catalog_selling_price_events` table with a `now()`-dependent partial unique index and later mutation of prior rows via `superseded_by`. Both are database-invalid. **Version 2.0 separates stable pending-schedule state from immutable effective-price history into two distinct tables plus a genuinely immutable schedule-transition log**, following the Stage 10-recommended pattern (SUPA-2 option 2 / SEC-PERM-004 option 2).
+
+#### `catalog_pending_price_schedules` — mutable current-state table
+
+Exactly one row exists per product with a pending (not-yet-activated, not-yet-cancelled) schedule. This table is **explicitly designated mutable** — it is never claimed to be append-only — and its rows are deleted (not updated-in-place to a terminal status) when a schedule activates, is cancelled, or is replaced; the transition itself is separately recorded immutably (below).
 
 | Field | Type | Nullable | Constraint / Notes |
 |---|---|---|---|
 | `id` | uuid | No | Primary key |
-| `business_id` | uuid | No | FK, composite consistency with `product_id` (see below) |
-| `product_id` | uuid | No | FK; composite `(product_id, business_id)` → `catalog_products(id, business_id)` |
-| `event_type` | enum (`immediate`, `scheduled_created`, `scheduled_activated`, `scheduled_cancelled`, `scheduled_replaced`, `link_confirmed`) | No | `link_confirmed` is used only when this price event is written as part of the D-068 atomic operation (Section 9) |
-| `old_price` | numeric(12,2) | Yes | Null only for a product's first-ever price event |
-| `new_price` | numeric(12,2) | Yes | Null only for a `scheduled_cancelled` event (no new effective price) |
-| `effective_at` | timestamptz | No | When the price takes/took effect (business-relevant time; UTC-stored, see Section 10) |
-| `recorded_at` | timestamptz | No | Immutable system insertion time, default `now()` |
-| `responsible_user_id` | uuid | No | D-011 |
-| `idempotency_key` | uuid | No | See Section 9 durable idempotency contract |
-| `superseded_by` | uuid | Yes | Self-FK; set when a `scheduled_created` row is later cancelled or replaced, linking to the cancelling/replacing event — preserves visibility of both per D-013 |
+| `business_id` | uuid | No | FK, composite consistency with `product_id` |
+| `product_id` | uuid | No | FK; composite `(product_id, business_id)` → `catalog_products(id, business_id)`. **`UNIQUE (product_id)`** — a fully stable, non-volatile constraint with no time predicate; this alone enforces D-013's "at most one pending schedule" and is the direct fix for SUPA-1. |
+| `scheduled_price` | numeric(12,2) | No | |
+| `effective_at` | timestamptz | No | Must be `> created_at` at creation time (future-dated), re-validated at write time — see below |
+| `created_at` | timestamptz | No | |
+| `authorized_by_user_id` | uuid | No | The merchant who scheduled this price |
+| `idempotency_key` | uuid | No | Of the `schedule_catalog_selling_price` (or replace) call that created this row |
 
-`CHECK`: `event_type = 'scheduled_created' OR event_type = 'scheduled_replaced'` requires `effective_at > recorded_at` (future-dated); `event_type IN ('immediate','scheduled_activated','link_confirmed')` requires `effective_at <= recorded_at + tolerance` (no backdating without an explicit authorized workflow, mirroring SB-P-1.10 EIS §4 "Event Time and Record Time Semantics"). No `UPDATE`/`DELETE` grant on this table for any application role (trigger-enforced, mirroring `inventory_movements_reject_mutation()`).
+#### `catalog_price_schedule_events` — immutable, append-only, never updated
 
-**Current price** = latest row by `effective_at` where `effective_at <= now()` and not itself superseded, for the product. **Pending scheduled price** = the row with `event_type = 'scheduled_created'` (or `'scheduled_replaced'`) with `effective_at > now()` and `superseded_by IS NULL`, if any (D-013: at most one — enforced by a partial unique index `UNIQUE (product_id) WHERE event_type IN ('scheduled_created','scheduled_replaced') AND superseded_by IS NULL AND effective_at > now()`, re-validated at write time since `now()` is not index-static — see Section 9 validation).
-
-### 5.4 `catalog_tax_events` (append-only)
+Records every transition of a schedule's lifecycle as a permanent, standalone event. No field on any row in this table is ever modified after insert.
 
 | Field | Type | Nullable | Notes |
 |---|---|---|---|
-| `id`, `business_id`, `product_id`, `recorded_at`, `responsible_user_id`, `idempotency_key` | — | — | Same shape as 5.3 |
-| `old_mode` / `new_mode` | enum (`inherit`, `product_rate`, `non_taxable`) | old nullable on first event | D-036 |
-| `old_rate` / `new_rate` | numeric(5,2) | Yes | Only meaningful when mode = `product_rate` |
+| `id`, `business_id`, `product_id` | — | — | Standard |
+| `event_type` | enum (`created`, `cancelled`, `replaced`, `activated`) | No | |
+| `scheduled_price` | numeric(12,2) | No | The price this event's schedule referred to |
+| `effective_at` | timestamptz | No | The scheduled instant this event's schedule referred to |
+| `resulting_price_event_id` | uuid | Yes | FK → `catalog_selling_price_events(id)`; set only on `event_type = 'activated'`, linking to the one effective-price event it produced |
+| *(standardized provenance block, Section 5.0)* | — | — | `authorized_by_user_id` is the merchant for `created`/`cancelled`/`replaced`; may be null with `executed_by_actor_type = 'system'` for `activated` |
 
-No `effective_at` distinct from `recorded_at` — tax changes are immediate only in Build Now (D-038); `effective_at = recorded_at` always. No `UPDATE`/`DELETE` grant.
+No `UPDATE`/`DELETE` grant on this table for any role, enforced by the same trigger-rejection pattern as `inventory_movements_reject_mutation()`.
 
-### 5.5 `catalog_reference_cost_events` (append-only)
+#### `catalog_selling_price_events` — immutable effective-price ledger, redefined
 
-| Field | Type | Nullable | Notes |
+Now contains **only** rows representing an actual effective price (never a "proposed future" state). One logical scheduled change produces exactly one row here, written at the moment of activation — resolving SUPA-5's duplication ambiguity directly.
+
+| Field | Type | Nullable | Constraint / Notes |
 |---|---|---|---|
-| `id`, `business_id`, `product_id`, `recorded_at`, `responsible_user_id`, `idempotency_key` | — | — | Same shape as 5.3 |
-| `old_cost` / `new_cost` | numeric(12,2) | old nullable on first event | `new_cost >= 0` (D-040) |
+| `id`, `business_id`, `product_id` | — | — | Standard |
+| `event_type` | enum (`immediate`, `activated`, `link_confirmed`) | No | No `scheduled_*` values remain here — those live in `catalog_price_schedule_events` |
+| `old_price` / `new_price` | numeric(12,2) | old nullable on first event | |
+| `effective_at` | timestamptz | No | For `activated`, equals the original scheduled instant, not the job's run time |
+| *(standardized provenance block, Section 5.0)* | — | — | |
 
-Immediate only (D-063). No `UPDATE`/`DELETE` grant. Read access to this table and to the derived current cost is permission-gated separately from `catalog_selling_price_events` (D-014, D-016) — see Section 7.
+No `superseded_by` field. No `UPDATE`/`DELETE` grant. **Current price** = the single latest row by `effective_at` where `effective_at <= now()`, for the product — unambiguous, since only one row per logical change ever exists. **Pending scheduled price** = the (at most one) row in `catalog_pending_price_schedules` for the product, if any — read from a genuinely current-state table, not derived from history.
 
-### 5.6 `catalog_product_link_events` (append-only)
+#### Write-Command Behavior Against This Model
 
-Dedicated, strongly-typed history for D-047/D-068 link lifecycle, distinct from the generic `catalog_audit_events` table because its fields are structurally meaningful (queried for the D-047 lock-boundary check, not just displayed).
+- `schedule_catalog_selling_price`: row-locks the product, checks (via the stable `UNIQUE (product_id)` constraint, re-verified inside the transaction) that no pending schedule exists; inserts one `catalog_pending_price_schedules` row and one `catalog_price_schedule_events` (`created`) row, atomically.
+- `cancel_scheduled_catalog_selling_price`: row-locks the product and the pending-schedule row (deterministic order: product row, then pending-schedule row); deletes the pending row; inserts one `catalog_price_schedule_events` (`cancelled`) row. No `catalog_selling_price_events` row (no price ever became effective).
+- Replacement is modelled as cancel-then-create within one transaction, recorded as a single `replaced` event rather than separate `cancelled`+`created` events, preserving "one logical scheduled change."
+- `activate_scheduled_catalog_prices` (Section 12): claims a due pending-schedule row (`FOR UPDATE SKIP LOCKED`), locks the corresponding product row, deletes the pending row, inserts one `catalog_price_schedule_events` (`activated`) row and exactly one `catalog_selling_price_events` (`activated`) row, links them via `resulting_price_event_id`, all atomically per schedule.
+- Archiving a product with a pending schedule (Blueprint §8 "Scheduled Selling Price") internally invokes the same cancellation path — no duplicated logic.
 
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `id`, `business_id`, `product_id`, `recorded_at`, `responsible_user_id`, `idempotency_key` | — | — | Same shape as 5.3 |
-| `event_type` | enum (`assigned`, `replaced`, `removed`) | No | D-047 |
-| `old_inventory_item_id` / `new_inventory_item_id` | uuid | Yes | Null appropriately for `assigned` (old null) / `removed` (new null) |
-| `old_selling_unit` / `new_selling_unit` | text | Yes | Captures unit consequence |
-| `unit_changed` | boolean | No | `true` when `old_selling_unit <> new_selling_unit` |
-| `price_event_id` | uuid | Yes | FK → `catalog_selling_price_events(id)`; set only when `unit_changed = true` and this operation also wrote a `link_confirmed` price event (D-068) |
+This design has zero `now()`-dependent index predicates, zero mutation of any row a table declares immutable, and a one-to-one mapping between "one logical scheduled change" and "one effective-price event" — directly resolving MC-EIS-001, SUPA-1, SUPA-2, and SUPA-5.
 
-### 5.7 `catalog_audit_events` (generic, append-only)
+### 5.4 `catalog_tax_events`
 
-Shared audit mechanism per Engineering Review §20 "Audit-History Architecture," covering every mutable field not already carried by a dedicated history table: `name`, `description`, `image_ref`, `category_id`, `sku`, `barcode`, `selling_unit` (non-link-driven changes), `status` (lifecycle).
+Unchanged value fields (`old_mode`/`new_mode`, `old_rate`/`new_rate`); now includes the standardized provenance block (5.0) instead of the Version 1.0 minimal `responsible_user_id` (Stage 10 Finding MC-EIS-015).
 
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `id` | uuid | No | Primary key |
-| `business_id` | uuid | No | FK, isolation boundary |
-| `entity_type` | text | No | `'catalog_product'` or `'catalog_category'` (designed for reuse beyond Catalog per Engineering Review reuse guidance) |
-| `entity_id` | uuid | No | Row identifier in the entity's own table |
-| `field_name` | text | No | e.g. `'name'`, `'sku'`, `'status'` |
-| `old_value` | jsonb | Yes | Null on first-ever value |
-| `new_value` | jsonb | Yes | |
-| `actor_user_id` | uuid | No | D-064 |
-| `actor_channel` | enum (`dashboard`, `import`, `whatsapp`, `voice`, `photo`) | No | Supports Section 13 traceability |
-| `request_id` | uuid | No | Correlates to the originating command call |
-| `occurred_at` | timestamptz | No | Default `now()` |
+### 5.5 `catalog_reference_cost_events`
 
-jsonb old/new value shape mirrors the existing `transaction_correction_events.original_values`/`updated_values` pattern, generalized beyond transactions.
+Unchanged value fields; now includes the standardized provenance block (5.0).
+
+### 5.6 `catalog_product_link_events`
+
+Unchanged value fields (`event_type`, `old_inventory_item_id`/`new_inventory_item_id`, `old_selling_unit`/`new_selling_unit`, `unit_changed`, `price_event_id`); now includes the standardized provenance block (5.0). Additionally carries `preview_token_id` (FK → `catalog_link_preview_tokens(id)`, Section 5.9) recording exactly which server-issued preview this event's confirmation resolved.
+
+### 5.7 `catalog_audit_events`
+
+Unchanged shape from Version 1.0 (already carried `actor_channel`/`request_id`); field names aligned to the Section 5.0 standardized vocabulary (`actor_channel` → `channel`) for consistency across all event tables.
 
 ### 5.8 `catalog_write_idempotency_keys`
 
-Mirrors `inventory_movement_idempotency_keys` exactly in contract (not literal schema, since it must reference multiple possible target tables rather than one):
+Unchanged shape. Its role in the corrected command sequencing is specified in Section 11.
+
+### 5.9 `catalog_link_preview_tokens` — new, D-068 preview binding (Stage 10 Findings MC-EIS-003, SUPA-4, LF-01)
+
+Non-authoritative for permission (the commit command re-checks permission independently) — this table exists purely to bind a merchant-reviewed preview to its eventual commit.
+
+| Field | Type | Nullable | Notes |
+|---|---|---|---|
+| `id` | uuid | No | Primary key — the "preview token" |
+| `business_id`, `product_id` | uuid | No | |
+| `requested_by_user_id` | uuid | No | |
+| `current_inventory_item_id_snapshot` | uuid | Yes | |
+| `current_selling_unit_snapshot` | text | No | |
+| `current_price_snapshot` | numeric(12,2) | Yes | |
+| `proposed_inventory_item_id` | uuid | No | |
+| `proposed_base_unit` | text | No | |
+| `unit_changed` | boolean | No | |
+| `price_confirmation_required` | boolean | No | |
+| `d047_eligible` | boolean | No | Result of the Section 9 predicate at preview time |
+| `preview_fingerprint` | text | No | Hash of every value above, recomputed and compared at commit time |
+| `created_at` / `expires_at` | timestamptz | No | Short-lived (recommended 5 minutes — specialist-reviewable parameter) |
+| `consumed_at` | timestamptz | Yes | Set atomically when the token is used (successfully or not) — single-use |
+
+No `UPDATE` after `consumed_at` is set; a consumed or expired token can never be reused (Section 10).
+
+### 5.10 `catalog_channel_pending_actions` — new, non-interactive channel confirmation binding (Stage 10 Findings MC-EIS-007, SEC-PERM-003, AIW-004)
+
+| Field | Type | Nullable | Notes |
+|---|---|---|---|
+| `id` | uuid | No | Primary key — the "pending action" |
+| `business_id` | uuid | No | Server-resolved, never caller-supplied |
+| `actor_user_id` | uuid | No | Server-resolved canonical Smart Business identity |
+| `action_type` | text | No | e.g. `'assign_or_replace_catalog_inventory_link'` |
+| `normalized_payload_fingerprint` | text | No | |
+| `preview_token_id` | uuid | Yes | FK → `catalog_link_preview_tokens(id)` when the action is a D-068 operation |
+| `channel` | enum (`whatsapp`, `voice`, `photo`) | No | |
+| `originating_channel_event_id` | text | No | e.g. WhatsApp message ID; `UNIQUE (channel, originating_channel_event_id)` — deduplicates redelivered webhooks at this layer, independent of the command-level idempotency key |
+| `preview_text` | text | No | Durable text representation of the preview shown to the merchant (Section 15, AIW-007) |
+| `created_at` / `expires_at` | timestamptz | No | |
+| `consumed_at` | timestamptz | Yes | Single-use |
+
+### 5.11 `catalog_file_references` — new, business-bound file metadata (Stage 10 Findings MC-EIS-011, SEC-PERM-007)
 
 | Field | Type | Nullable | Notes |
 |---|---|---|---|
 | `id` | uuid | No | Primary key |
-| `business_id` | uuid | No | Isolation boundary |
-| `operation` | text | No | e.g. `'assign_or_replace_catalog_inventory_link'` |
-| `idempotency_key` | uuid | No | Caller-supplied |
-| `result_ref` | text | No | Free-form pointer (table+id) to the row(s) produced |
-| `payload_fingerprint` | text | No | Conflict detection |
-| `created_at` | timestamptz | No | Default `now()` |
+| `business_id` | uuid | No | Composite `UNIQUE (id, business_id)` for downstream FK integrity |
+| `storage_object_key` | text | No | Reference into the approved storage profile (P00 §41) — never a public URL |
+| `content_type` | text | No | Verified server-side by content inspection, not client-asserted MIME alone |
+| `byte_size` | bigint | No | |
+| `upload_status` | enum (`pending`, `completed`, `failed`) | No | |
+| `safety_scan_status` | enum (`pending`, `clean`, `quarantined`, `not_required`) | No | `not_required` reserved for cases where no scan applies; product images and import files always require a scan |
+| `purpose` | enum (`product_image`, `import_source`) | No | |
+| `uploaded_by` | uuid | No | |
+| `created_at` | timestamptz | No | |
 
-`UNIQUE (business_id, operation, idempotency_key)`. Registration and the operation's writes occur in the same transaction, identical to SB-P-1.10 EIS §6 "Durable Idempotency Contract."
+`catalog_products.image_ref` and `catalog_import_jobs.file_ref` reference this table (5.1, 5.12) rather than unconstrained text. Commands linking a file reference verify `business_id` match, `upload_status = 'completed'`, and `safety_scan_status IN ('clean','not_required')` before accepting it.
 
-### 5.9 `business_tax_settings`
+### 5.12 `catalog_import_jobs` / `catalog_import_rows`
 
-Single current-state row per business (not a ledger — only the *product-level* tax state needs transaction-time evidence per D-037; the business-wide default and pricing mode are simpler current settings, D-018/D-019).
+Structurally unchanged from Version 1.0 except: `file_ref` is now `uuid` FK → `catalog_file_references(id)` (composite business-scoped), and `catalog_import_rows` gains a `claimed_at`/`claimed_by_worker` pair (nullable) supporting safe concurrent per-row claiming during apply (`FOR UPDATE SKIP LOCKED`), mirroring the scheduler's claiming pattern (Section 12; Stage 10 Finding SUPA-10).
 
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `business_id` | uuid | No | Primary key, FK → `businesses(id)` |
-| `pricing_mode` | enum (`tax_inclusive`, `tax_exclusive`) | No | D-019, D-060; `CHECK` at write time that mode cannot change once any completed sale exists (D-061) — the check itself is a forward-compatible no-op in Build Now since Sales Workflow does not yet exist, but the constraint must be present so no future mission can bypass it (see Section 16 migration note) |
-| `default_tax_rate` | numeric(5,2) | Yes | D-018 |
-| `updated_at` / `updated_by` | timestamptz / uuid | No | |
+### 5.13 `catalog_deletion_records` — new, D-065 snapshot (Stage 10 Finding SUPA-9)
 
-### 5.10 `catalog_import_jobs` / `catalog_import_rows`
-
-Extends the approved (not-yet-implemented) `file_import_jobs` conceptual pattern (Source 02 §3.15A) with `import_type = 'catalog'`, plus a dedicated row-level correction-queue table since D-057's per-row update/skip/correct decision is more granular than a job-level status.
-
-**`catalog_import_jobs`**
+Deliberately **not** foreign-keyed to `catalog_products` (the row it describes will no longer exist after the same transaction commits).
 
 | Field | Type | Nullable | Notes |
 |---|---|---|---|
-| `id`, `business_id`, `created_by`, `created_at`, `completed_at` | — | — | Standard |
-| `status` | enum (`pending`, `parsing`, `validating`, `awaiting_correction`, `completed`, `partial_success`, `failed`) | No | Extends `file_import_jobs.status` vocabulary with `awaiting_correction` for D-057 |
-| `file_ref` | text | No | Storage reference, not the file itself |
-| `rows_total` / `rows_valid` / `rows_quarantined` / `rows_applied` | integer | No | Default 0 |
-| `error_report_ref` | text | Yes | |
+| `id` | uuid | No | Primary key |
+| `business_id` | uuid | No | |
+| `deleted_product_id` | uuid | No | Plain column, not FK — D-065 minimal identity snapshot |
+| `product_name_snapshot` | text | No | |
+| `deleted_at` | timestamptz | No | |
+| `deleted_by_user_id` | uuid | No | |
 
-**`catalog_import_rows`**
+### 5.14 `business_tax_settings`
 
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `id`, `business_id` | — | — | Standard |
-| `import_job_id` | uuid | No | FK, composite `(import_job_id, business_id)` |
-| `row_number` | integer | No | 1-based, for merchant-facing error reporting |
-| `raw_payload` | jsonb | No | Original parsed row |
-| `parsed_payload` | jsonb | No | Normalized/typed candidate product fields |
-| `validation_status` | enum (`valid`, `invalid`, `conflict`) | No | D-056 |
-| `validation_errors` | jsonb | Yes | |
-| `match_type` | enum (`none`, `name`, `sku`, `barcode`) | No | Which normalized field matched an existing product, if any |
-| `matched_product_id` | uuid | Yes | FK → `catalog_products(id)` |
-| `correction_decision` | enum (`pending`, `update`, `skip`, `correct`) | No | Default `pending` for `conflict` rows (D-057) |
-| `decided_by` / `decided_at` | uuid / timestamptz | Yes | |
-| `applied_at` | timestamptz | Yes | Set only after the row's decision is committed through the ordinary product write commands (Section 9) |
+Unchanged shape from Version 1.0. The `pricing_mode` write-time constraint is corrected from a claimed table `CHECK` to a command invariant — see Section 13.
 
-### 5.11 `businesses.timezone` (additive column on the existing table)
+### 5.15 `businesses.timezone`
 
-| Field | Type | Nullable | Notes |
-|---|---|---|---|
-| `timezone` | text | No | IANA identifier; `DEFAULT 'Asia/Kolkata'`. No such column exists today (confirmed by direct migration inspection) |
-
-**EIS recommendation (Section 10 elaborates):** a per-business column defaulting to Kerala/India's timezone, rather than a hardcoded application constant. Cost is negligible; it satisfies D-043's literal "business timezone" phrase most directly and avoids a future migration if a non-Kerala market is ever approved. This is an implementation choice within already-approved Product Truth, not a new Founder decision (Engineering Review §20 "Timezone and Scheduled-Price Handling").
+Unchanged from Version 1.0.
 
 ## 6. Business Isolation and RLS Design (EIS §8.3)
 
 ### Tenant Ownership Columns
 
-Every table in Section 5 carries `business_id` and, for child tables of `catalog_products`/`catalog_categories`, a composite FK enforcing that the child's `business_id` matches its parent's — the exact `..._item_business_fk`-style pattern already used by `inventory_movements_item_business_fk`. This is a database-enforced constraint, not an application-layer check alone (SB-P-1.10 EIS §5 "Cross-Business Consistency Enforcement" is the direct precedent and is reused verbatim as a design requirement here).
+Unchanged: every table in Section 5 carries `business_id` and, for child tables, a composite FK enforcing consistency with its parent, mirroring `inventory_movements_item_business_fk`.
 
-### Owner, Manager, and Employee Access Boundaries
+### RLS as a Read Boundary and Defense-in-Depth, Not the Write Boundary
 
-RLS design must express three tiers even though only the Owner tier is enforceable today:
+**Revised per Stage 10 Finding MC-EIS-002/SEC-PERM-002.** In Version 1.0, RLS was described as gating both reads and writes, mirroring SB-P-1.10's pattern of granting `authenticated` direct `INSERT`/`UPDATE` on `inventory_items` and `inventory_movements` with RLS as the isolation layer. The Security and Permissions specialist review used that exact precedent as evidence that RLS-plus-grants does not force command use: a caller with table-level DML privilege can call the Supabase table API directly, bypassing every command-layer validation, confirmation, idempotency, and audit-event creation.
 
-- **Owner:** full access to every catalog table and column for their own business — reuses `business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid())` unmodified.
-- **Manager:** access gated per action by the permission flags defined in Section 7 (`catalog_view`, `catalog_manage`, `catalog_price_manage`, `catalog_tax_manage`, `catalog_cost_manage`, `catalog_inventory_link_manage`), once the shared permission table exists.
-- **Employee (`sale_use`):** a narrower read grant — active, sale-ready products only, selling price and effective tax only, via the permission-aware read command (Section 9), never a direct `SELECT` against `catalog_products` or the cost/history tables.
+**Version 2.0 explicitly does not reuse that write pattern.** For every table in Section 5:
 
-### RLS Policy Intent (design-level, no SQL authored)
+- RLS remains **enabled** on every table, and its `SELECT` policies remain business-scoped exactly as in Version 1.0 (Section 6 table below), serving as read-path isolation and defense-in-depth.
+- **No `INSERT`, `UPDATE`, or `DELETE` privilege is granted to the `authenticated` role on any table in Section 5.** There is no RLS `INSERT`/`UPDATE`/`DELETE` policy to write for `authenticated` because there is no underlying grant for such a policy to gate — the absence of the grant is the primary control, not a policy.
+- All protected writes occur exclusively through the command layer (Section 7), executing as one of three dedicated, narrowly-privileged roles that do hold the necessary table privileges internally.
 
-| Table | SELECT policy intent | INSERT/UPDATE policy intent |
+This is a deliberate, explicit divergence from the SB-P-1.10 migration precedent, made because SB-P-1.11 carries materially higher-stakes invariants per write (D-068 atomicity across four tables, D-047 history-boundary evaluation, idempotency-before-precondition ordering) that a direct-grant-plus-RLS pattern cannot guarantee — a caller bypassing the command layer could satisfy RLS's row-ownership check while still violating D-068's atomicity or D-047's lock condition, since RLS has no way to express those cross-row, cross-table invariants. This observation may have implications for other missions using the direct-grant pattern; that determination is outside this EIS's authorized scope (Section 24).
+
+### RLS Policy Intent Table (revised)
+
+| Table | SELECT policy intent | INSERT/UPDATE/DELETE grant to `authenticated` |
 |---|---|---|
-| `catalog_products`, `catalog_categories` | Business-scoped; once permission engine exists, further gated by `catalog_view` for non-owners | Business-scoped; gated by `catalog_manage` for non-owners |
-| `catalog_selling_price_events`, `catalog_tax_events` | Business-scoped; row-level SELECT does not itself hide cost/margin (only `catalog_reference_cost_events` needs column-level protection) | INSERT only, via command layer; no UPDATE/DELETE grant to any application role (trigger-enforced immutability, mirroring `inventory_movements_reject_mutation()`) |
-| `catalog_reference_cost_events` | Business-scoped **and** gated by `catalog_cost_manage`/owner — see "Protected Financial-Field Read Paths" below | INSERT only, gated by `catalog_cost_manage` |
-| `catalog_product_link_events`, `catalog_audit_events` | Business-scoped; further gated by `catalog_view` once available | INSERT only, via command layer |
-| `catalog_write_idempotency_keys` | Not directly queried by application roles (command-internal) | INSERT only, via command layer (`SECURITY DEFINER` context) |
-| `catalog_import_jobs`, `catalog_import_rows` | Business-scoped; gated by `catalog_manage` (import requires product-creation permission, D-058) | INSERT/UPDATE via command layer only, gated by `catalog_manage` |
-| `business_tax_settings` | Business-scoped, owner and `catalog_tax_manage` | Business-scoped, owner and `catalog_tax_manage` |
-
-### Service-Role Boundaries
-
-`activate_scheduled_catalog_prices` (Section 10) is the only command expected to run under a service-role/`SECURITY DEFINER` context without an interactive `auth.uid()`; it operates across all businesses by design (it is a scheduled sweep), and its own internal logic — not RLS — must enforce that each write it performs is scoped correctly to the product's own `business_id`. No other command requires service-role execution; every merchant- or employee-initiated command executes under `SECURITY INVOKER` with the caller's own RLS context, matching `create_inventory_movement`'s existing pattern exactly.
+| `catalog_products`, `catalog_categories` | Business-scoped; gated by `catalog_view` once permission engine exists | **None** |
+| `catalog_selling_price_events`, `catalog_tax_events`, `catalog_price_schedule_events`, `catalog_product_link_events`, `catalog_audit_events` | Business-scoped and gated by the corresponding action/visibility permission (Section 8) | **None** |
+| `catalog_pending_price_schedules` | Business-scoped, gated by `catalog_price_manage` | **None** — mutated only by the scheduling commands under `catalog_command_executor`/`catalog_scheduler_executor` |
+| `catalog_reference_cost_events` | Business-scoped **and** gated by `catalog_cost_manage`/owner (Section 10) | **None** |
+| `catalog_write_idempotency_keys`, `catalog_link_preview_tokens`, `catalog_channel_pending_actions` | Not directly queried by application roles (command-internal) | **None** |
+| `catalog_import_jobs`, `catalog_import_rows`, `catalog_file_references` | Business-scoped, gated by `catalog_product_manage` | **None** |
+| `catalog_deletion_records` | Business-scoped, gated by `catalog_lifecycle_manage` | **None** |
+| `business_tax_settings` | Business-scoped, owner and `catalog_tax_manage` | **None** |
 
 ### Cross-Business Denial Behavior
 
-Denial must never disclose that a row exists in another business (Blueprint §8 "Business Ownership and Isolation"). A request for a product ID belonging to a different business returns the same "not found" response as a request for a non-existent ID — never a distinct "forbidden" response that would confirm existence.
+Unchanged: denial never discloses that a row exists in another business.
 
-### Protected Financial-Field Read Paths
+### Testing Expectations
 
-Postgres RLS operates at row granularity, not column granularity. Hiding `catalog_reference_cost_events` (and derived current cost/margin) from employees by default (D-014, D-016, D-035) cannot be reliably achieved by RLS alone if a table also contains non-protected columns readable by the same role — but in this design, cost lives in its own dedicated table (Section 5.5), so table-level RLS *is* sufficient for cost specifically: employees simply have no `SELECT` grant on `catalog_reference_cost_events` at all. Where a single response needs to combine protected and unprotected fields for one caller (e.g., a manager with `catalog_price_manage` but not `catalog_cost_manage` viewing a product), the read path is a permission-aware `SECURITY DEFINER` command (`catalog_product_read`, Section 9) that omits cost/margin fields for callers lacking `catalog_cost_manage`, mirroring how `inventory_current_stock_batch` already abstracts inventory reads rather than exposing raw table access. No dashboard or conversational surface may query `catalog_reference_cost_events` directly.
+See Section 21. Testing must now additionally prove that a direct PostgREST `INSERT`/`UPDATE`/`DELETE` attempt against every table above fails for the `authenticated` role while the corresponding command succeeds (Stage 10 Finding MC-EIS-002 verification requirement).
 
-### Testing Expectations for Business Isolation
+## 7. Command Execution Identities and Authorization Architecture (new — resolves EIS §8.4's "enforcement locations" more precisely; Stage 10 Findings MC-EIS-002, MC-EIS-007, SEC-PERM-002, SEC-PERM-003, SEC-PERM-010)
 
-See Section 17 (Testing and Verification Matrix) for the concrete test list; this section states the design requirement that every test category SB-P-1.10 required for `inventory_items`/`inventory_movements` isolation applies identically here.
+Three distinct, narrowly-privileged execution identities are defined. None is `service_role`; none is the raw `authenticated` role holding table grants.
 
-## 7. Permission-Engine Dependency (EIS §8.4)
+| Identity | Who authenticates as this identity | What it may execute | Table privileges |
+|---|---|---|---|
+| `catalog_command_executor` | The dedicated, no-login owner of every merchant-facing `SECURITY DEFINER` command (dashboard and import paths). Individual merchant sessions never authenticate as this role directly — they call the commands, which execute *as* this owner. | Every write/read command in Section 16 reachable from the dashboard and import UI | Full DML on every table in Section 5, held only by this role, never granted directly to `authenticated` |
+| `catalog_channel_executor` | A distinct, credentialed, no-login role used only by the trusted backend service implementing the future shared conversational engine — never by any client, model, or public endpoint. | Only `create_catalog_pending_action`, `confirm_catalog_pending_action`, and read commands needed to render a conversational preview (Section 16) | No direct table DML; calls the same underlying command logic as `catalog_command_executor` through an internal function boundary, after this role's own permission re-verification |
+| `catalog_scheduler_executor` | A distinct, credentialed, no-login role used only by the `pg_cron`-triggered activation job. | Only `activate_scheduled_catalog_prices` | `SELECT`/limited `UPDATE`/`DELETE` on `catalog_pending_price_schedules` and `INSERT` on `catalog_price_schedule_events`/`catalog_selling_price_events`, held only by this role |
 
-Per Engineering Review §20 "Permission-Engine Dependency" (Finding F7): no Manager/Employee permission model exists anywhere in the repository today. This section specifies the contract SB-P-1.11 needs from that shared engine, without implementing it.
+### Function-Level Requirements (apply to every command owned by any of the three roles)
 
-### Catalog Permission Capabilities Required
+- Dedicated no-login function owner (one of the three roles above — never `postgres`, never `service_role`).
+- `REVOKE EXECUTE ... FROM PUBLIC` on every function, followed by an explicit, minimal `GRANT EXECUTE` only to the role(s) that legitimately call it (e.g., `catalog_command_executor`'s dashboard-facing commands grant `EXECUTE` to `authenticated`, which then executes the function body as the owner — the standard, safe `SECURITY DEFINER` pattern; `catalog_channel_executor`'s functions grant `EXECUTE` only to that specific role, never to `authenticated`).
+- Fixed, safe `SET search_path = public` (or a narrower explicit schema list) on every function definition, preventing search-path injection.
+- Fully schema-qualified object references (`public.catalog_products`, not `catalog_products`) inside every function body.
+- Every function independently re-derives the caller's identity (`auth.uid()` for dashboard/import calls; the already-server-verified `actor_user_id` parameter for channel calls, itself re-validated against live membership inside the function — never trusted as pre-authorized) and re-checks the specific permission flag(s) the action requires against **current** state — never a cached, prompt-supplied, or webhook-payload-supplied permission claim.
 
-Derived directly and mechanically from Blueprint §8 "Permissions" (D-016, D-033, D-034, D-035, D-048) — no new capability is invented beyond what that section already enumerates:
+### Why `catalog_channel_executor` Does Not Become General Merchant Authority
+
+The shared conversational engine authenticates to Postgres as `catalog_channel_executor` using its own rotated service credential — this role is never exposed to any client, AI model, or public endpoint, and it is *not* `service_role` (it has no RLS-bypassing blanket privilege; its only privileges are `EXECUTE` on the two named functions). Every function it may call independently re-verifies the passed `actor_user_id`'s *current* business membership and *current* permission flag before performing any action — the role's credential proves only "this call originated from the trusted conversational-engine backend," never "this call is pre-authorized to act as any merchant." This directly satisfies instruction §4.7's "prevent service-role use from becoming general merchant authority."
+
+## 8. Permission-Engine Dependency (EIS §8.4)
+
+### Catalog Permission Capabilities Required — Revised for Action-Specificity (Stage 10 Finding MC-EIS-006, SEC-PERM-001)
+
+Version 1.0's `catalog_manage` collapsed product creation/identity maintenance with lifecycle archive/reactivate/delete authority, contradicting Blueprint §8 "Permissions," which independently controls "product creation and details, lifecycle." **Version 2.0 splits this into two flags:**
 
 | Flag | Blueprint source | Grants |
 |---|---|---|
-| `catalog_view` | §8 "Permissions" — "catalog viewing" | Read product/category list, detail, non-protected history |
-| `catalog_manage` | "product creation and details, lifecycle" | Create, edit identity fields, archive/reactivate/delete, run import (D-058) |
-| `catalog_price_manage` | "selling price" | Immediate and scheduled price changes |
-| `catalog_tax_manage` | "tax" | Tax configuration changes |
-| `catalog_cost_manage` | "reference cost" (D-016) | Reference-cost read and write — separately protected from the above |
-| `catalog_inventory_link_manage` | "inventory linking" (D-048) | Assign/replace/remove the product–inventory link; **also requires** `inventory_view` from the SB-P-1.10 permission surface |
-| `sale_use` | §8 "Permissions" — sale-authorized employee tier (D-035) | View/select active, sale-ready products; see selling price and effective tax only |
+| `catalog_view` | "catalog viewing" | Read product/category list, detail, non-protected history |
+| `catalog_product_manage` | "product creation and details" | Create products; edit name/description/image/category/SKU/barcode; run import (D-058 ties import to product-creation authority) |
+| `catalog_lifecycle_manage` | "lifecycle" | Archive, reactivate, delete (D-031, D-065) |
+| `catalog_price_manage` | "selling price" | Immediate and scheduled price changes; read of price history |
+| `catalog_tax_manage` | "tax" | Tax configuration changes; read of tax history |
+| `catalog_cost_manage` | "reference cost" (D-016) | Reference-cost read and write — separately protected |
+| `catalog_inventory_link_manage` | "inventory linking" (D-048) | Assign/replace/remove the product–inventory link; also requires `inventory_view` from the SB-P-1.10 permission surface |
+| `sale_use` | Sale-authorized employee tier (D-035) | View/select active, sale-ready products; see selling price and effective tax only |
 
-### Owner Defaults
+A Manager granted `catalog_product_manage` no longer implicitly receives archive, reactivation, or deletion authority — that requires the independently grantable `catalog_lifecycle_manage`, restoring the locked Blueprint boundary exactly as SEC-PERM-001 required.
 
-The Owner holds every flag above implicitly, with no explicit grant row required — matching SB-P-1.10's existing Owner-default pattern.
+### History Read Permissions (Stage 10 requirement: "History reads must follow the corresponding protected action or visibility permission")
 
-### Manager and Employee Permission Checks
+| History | Required flag |
+|---|---|
+| `catalog_selling_price_events`, `catalog_pending_price_schedules`, `catalog_price_schedule_events` | `catalog_price_manage` |
+| `catalog_tax_events` | `catalog_tax_manage` |
+| `catalog_reference_cost_events` | `catalog_cost_manage` |
+| `catalog_product_link_events` | `catalog_inventory_link_manage` |
+| `catalog_audit_events` (identity/lifecycle/category fields) | `catalog_view` for identity fields; `catalog_lifecycle_manage` for lifecycle-transition entries |
 
-Each command in Section 9 independently checks the single flag it requires (or `sale_use` for the employee-facing read command), never a coarse "is this user staff" check. `catalog_inventory_link_manage` performs a second check against the SB-P-1.10 `inventory_view` flag, consistent with D-048's explicit two-permission requirement.
+### Owner Defaults, Enforcement Locations, Temporary Sequencing
 
-### Denial Behavior
+Unchanged in substance from Version 1.0, with enforcement locations now precisely Section 7's three-identity architecture rather than a single generic "command layer" statement. Until the shared permission engine exists, every command's permission check resolves to Owner-only (`owner_id = auth.uid()`), matching SB-P-1.10's own accepted Phase 1 posture — this remains safe specifically *because* Section 7 already makes command bypass technically non-viable, so "Owner-only" is a real, enforced boundary rather than an aspirational one.
 
-Identical to Section 6: denial never discloses row existence, and the frontend must never render an action the caller cannot execute (Blueprint §9 "Permission Behaviour"), so every list/detail response already omits actions the caller lacks the flag for, rather than returning them disabled with a reason that leaks other-business state.
+**What must not be exposed prematurely (unchanged, restated):** no UI affordance implying Manager or Employee catalog access ships before the shared engine exists; `sale_use` read access is not exposed until the flag exists to gate it.
 
-### Enforcement Locations
-
-Enforcement is layered, not single-point: (1) **database** — RLS gated on the flag once the permission table exists (Section 6); (2) **command layer** — every command in Section 9 explicitly re-checks its required flag before any write, independent of RLS, mirroring `create_inventory_movement`'s pattern of validating permission inside the function body; (3) **API surface** — no additional layer beyond the command layer, since commands are the API surface (Section 12); (4) **UI** — presentation-only convenience hiding of unavailable actions; UI-level hiding is never treated as a security boundary (Source 12 §13, Source 17 §B11: "frontend visibility is not authorization").
-
-### Temporary Sequencing Constraints (Phase 1, before the shared engine exists)
-
-Until the shared permission engine and its flag table exist:
-
-- Every catalog command still performs its permission check, but the check resolves to **Owner-only** (`owner_id = auth.uid()`), identical to SB-P-1.10's own Phase 1 posture. This is not a design gap — it is the same accepted interim state SB-P-1.10 shipped with, and it is forward-compatible: once the shared flag table exists, each command's single permission check is repointed from the Owner-only condition to the flag lookup, with no change to the command's input/output contract.
-- **What may proceed before the shared engine exists:** all of Phase 1 (Section 4) for the Owner. A solo-owner merchant experiences the complete Build Now catalog capability with no functional gap.
-- **What must not be exposed or enabled prematurely:** any UI affordance implying Manager or Employee catalog access (e.g., a "manage team catalog permissions" screen) must not ship until the shared engine exists — shipping such UI ahead of enforcement would create exactly the "capability does not equal authority" risk Source 17 §A4 warns against. Employee `sale_use` read access likewise must not be exposed until the flag exists to gate it; before then, only the Owner (and, if already implemented by another mission, an equivalent existing staff-facing surface) can be granted dashboard access to any catalog view.
-
-### Explicitly Not Implemented Here
-
-This EIS does not define the shared flag table's own schema, RLS pattern, or cross-mission ownership (that belongs to whichever mission builds the shared engine). It defines only the seven catalog-specific flags above and where SB-P-1.11's own commands must check them.
-
-## 8. Catalog–Inventory Link Integrity (EIS §8.5)
+## 9. Catalog–Inventory Link Integrity (EIS §8.5)
 
 ### One-to-One Business-Scoped Linking
 
-Enforced at the data layer: `catalog_products.inventory_item_id` composite FK `(inventory_item_id, business_id)` → `inventory_items(id, business_id)` (cross-business consistency, same mechanism as `inventory_movements_item_business_fk`), plus `UNIQUE (inventory_item_id) WHERE inventory_item_id IS NOT NULL` (one inventory item → at most one product, D-004). The product side (`catalog_products.id` primary key) already guarantees at most one link per product (D-003).
+Unchanged from Version 1.0: composite FK plus `UNIQUE (inventory_item_id) WHERE inventory_item_id IS NOT NULL`.
 
-### History-Based Lock Condition
+### D-047 History Boundary — Corrected Enforceable Predicate (Stage 10 Findings MC-EIS-005, SUPA-3, SEC-PERM-006)
 
-D-047 locks assignment/removal/replacement once "the product has sales or linked stock-event history." In the current repository, Sales Workflow and Purchase Workflow (the future missions that would create such history) do not exist. The lock check is therefore defined as: *no lock exists if and only if no `inventory_movements` row exists whose `business_event_type`/`business_event_id` (columns already present on `inventory_movements`) reference a sale or purchase event tied to this product.* Because no such event type is ever written by any currently implemented mission, the lock condition is always **unlocked** for every product today — this is the correct and expected Build Now state, not a gap, and the check is written now (rather than deferred) so that Purchase/Sales Workflow missions inherit a lock condition that already works without SB-P-1.11 needing to change once they land, consistent with SB-P-1.10's own principle that "downstream missions must use the same movement-creation path" (SB-P-1.10 EIS §4 "Trusted event-link contract").
+Version 1.0 stated the lock condition checks `inventory_movements.business_event_type`/`business_event_id`, concluding the lock is "always unlocked today" since no mission writes such references yet. The Stage 10 review correctly identified this as under-specified: it does not define **link-tenure** (whether a stock event occurring on the same inventory item *before* or *after* this product's link window should count), nor a concrete transaction/lock order, nor default-deny behavior for the not-yet-existing Sales predicate.
+
+**Version 2.0 defines two independent sub-predicates, both of which must be clear (`false`) for assignment, replacement, or removal to proceed:**
+
+**1. Sale-history predicate — `catalog_has_qualifying_sale_history(product_id)`.**
+Today, hardcoded to always return `false`. This is not a guess or an "unavailable" state requiring default-deny — it is a **definitionally correct** value: no Sales Workflow table exists anywhere in the repository, so no completed sale can possibly have been recorded for any product, by construction. This function is the single, named, versioned integration point a future Sales Workflow mission **must** wire to its own authoritative predicate before production sales are enabled (identical pattern to Section 13's tax-mode-lock integration gate). If, after that integration, a call to the real predicate fails or returns an ambiguous result, the calling command must treat that as "history cannot be proven absent" and **deny** the mutation (fail closed) — the default-deny requirement applies to the *future, real* integration, not to today's deterministic stub.
+
+**2. Linked stock-event-history predicate — `catalog_has_linked_stock_event_history(product_id)`.**
+Evaluable today using `catalog_product_link_events` (Section 5.6, which records the exact tenure window of the *current* link — the timestamp of the most recent `assigned`/`replaced` event for this product) joined against `inventory_movements` for the currently-linked `inventory_item_id`, restricted to movements with `occurred_at >= <current link's tenure-start timestamp>`. A movement predating the current link's tenure (e.g., opening stock recorded before this product ever linked to that inventory item) does **not** count — it did not occur "while linked" to this product. **Engineering interpretation flagged for confirmation (Section 24):** this predicate treats *any* qualifying inventory movement during the tenure window as locking the relationship, not only movements tied to a future sale/purchase business event. This is the more conservative (safer) reading of Blueprint §8 "the product has... linked stock-event history," chosen because the Blueprint does not narrow "stock-event history" to sale-driven events specifically, and a narrower reading is a genuine interpretive question this EIS is not authorized to resolve silently.
+
+### Transaction and Lock Ordering
+
+Every command evaluating the D-047 boundary (`assign_or_replace_catalog_inventory_link`, `remove_catalog_inventory_link`, `delete_catalog_product`) acquires locks in this deterministic order, inside one transaction: (1) `catalog_products` row; (2) the currently-linked `inventory_items` row, if any, via `SELECT ... FOR UPDATE`; (3) the proposed target `inventory_items` row, if different from (2) and if the two inventory-item IDs are compared and locked in ascending identifier order to avoid deadlock when two concurrent link operations reference each other's items. Locking the `inventory_items` row explicitly creates real mutual exclusion against a concurrent SB-P-1.10 `create_inventory_movement` call targeting the same item — since that function locks the same row per its own EIS's "Lock Target: the inventory item" — so a stock movement cannot be posted to an item mid-link-change, and a link cannot change mid-movement-post, resolving the "concurrency behavior when history is created during a link-change attempt" requirement precisely.
 
 ### First-Time Assignment, Permitted Replacement, and Permitted Removal
 
-All three D-047 actions share one atomic command boundary (`assign_or_replace_catalog_inventory_link` for assign/replace; `remove_catalog_inventory_link` for removal — kept as two commands because their risk profiles differ, per below) and the same lock-condition check.
+Unchanged in outcome from Version 1.0. **Removal's engineering resolution is unchanged and reaffirmed:** removal preserves `selling_unit` and current selling price exactly, writes only the approved `catalog_product_link_events` (`removed`) entry, and remains subject to the corrected D-047 predicate above (Stage 10 open-parameter disposition 7, `ACCEPTED AS WRITTEN` with this clarification).
 
-- **Assignment / Replacement** — may change `selling_unit` to the target inventory item's `base_unit`. Triggers the full D-068 safeguard (Section 9) whenever the unit would actually change.
-- **Removal** — sets `inventory_item_id = NULL`. **Engineering resolution:** removal does **not** modify `selling_unit` or the current selling price. The stored unit value at the moment of removal already equals what the (now-former) linked item's base unit was — nothing about that value changes at removal; the product simply becomes a non-stock product whose unit is now editable going forward under the ordinary D-051 rule ("may change only before sales history exists"), the same rule that already governs every other non-stock unit edit. No new price/unit-reinterpretation risk is introduced by removal itself, because removal writes no new unit or price value — only a *future*, separately merchant-initiated D-051 edit could change the unit, and that edit is already fully governed by existing Blueprint rules without needing a D-068-style safeguard. This is a deliberate "leave existing data untouched" default, not an invented product behaviour, and is recorded in Section 19 as a resolved (not escalated) design question, with the reasoning above available for Mission Control to confirm or override.
+## 10. D-068 Atomic Safeguard (EIS §8.6)
 
-### Archive-State Behavior
+### Server-Authoritative Preview Command — New (Stage 10 Findings MC-EIS-003, SUPA-4, LF-01, AIW-004, SEC-PERM-003)
 
-Archiving the linked inventory item never mutates `catalog_products` (D-030). The product's read path (`catalog_product_read`, Section 9) independently checks the linked item's status at read time and surfaces "active product linked to archived inventory — resolution required" without writing anything; sale-readiness evaluation (Blueprint §8 "Sale Readiness") treats this state as not sale-ready.
+```text
+preview_catalog_inventory_link_change(
+  p_product_id uuid,
+  p_target_inventory_item_id uuid
+) RETURNS catalog_link_preview_tokens
+```
 
-### Inventory Base-Unit Authority and Selling-Unit Consequences
+Non-mutating (writes only the token row itself, not any product/link/price state). Resolves, under a `SELECT ... FOR UPDATE` on the product row held only for the duration of this read (released at commit of the preview transaction, since nothing else is written), every value the merchant must review: current link, current unit, current effective price, proposed inventory item and its immutable base unit, `unit_changed`, `price_confirmation_required`, the D-047 predicate result from Section 9, product lifecycle state, and any merchant-visible validation warning. Computes `preview_fingerprint` over all of these values and stores the row in `catalog_link_preview_tokens` with a short expiry. Requires `catalog_inventory_link_manage` + `inventory_view`, exactly as the commit command does — a caller without permission cannot even preview.
 
-`inventory_items.base_unit` is immutable per SB-P-1.10 (§8 "Units of Measure"). A stock-tracked product's `selling_unit` is therefore only ever set as a direct copy of the linked item's `base_unit`, written exclusively by the link commands (Section 9) — no other command may write `catalog_products.selling_unit` for a currently-linked product.
-
-### Transaction and Concurrency Behavior; Stale-Client Protection
-
-The link commands acquire a row lock (`SELECT ... FOR UPDATE`) on the `catalog_products` row before evaluating any precondition, mirroring SB-P-1.10's per-item lock target for `inventory_movements`. Every link-mutating call additionally accepts a `p_precondition_current_link_id` and (when applicable) `p_precondition_current_price` parameter; if either does not match the row's actual current state at lock-acquisition time, the command rejects with a distinct `STALE_STATE` error rather than proceeding — this is the mechanism preventing a merchant from confirming against a preview that has since become outdated (e.g., another session changed the price between preview and confirm).
-
-### Audit Outcomes
-
-Every assignment, replacement, or removal writes one `catalog_product_link_events` row (Section 5.6) and, when a price event also occurs (D-068), one `catalog_selling_price_events` row with `event_type = 'link_confirmed'` — reusing the same price-history mechanism ordinary price edits use, rather than a parallel recording path.
-
-## 9. D-068 Atomic Safeguard (EIS §8.6)
-
-Single command, `assign_or_replace_catalog_inventory_link`, server-authoritative, covering both first-time assignment and permitted replacement.
-
-### Signature (implementation-neutral; final naming is a repository-convention decision)
+### Commit Command — Compare-and-Commit Against the Preview Token
 
 ```text
 assign_or_replace_catalog_inventory_link(
   p_idempotency_key uuid,
-  p_product_id uuid,
-  p_target_inventory_item_id uuid,
-  p_precondition_current_inventory_item_id uuid,   -- NULL for first-time assignment
-  p_precondition_current_price numeric,             -- caller's last-seen price, for stale-state detection
-  p_confirmed_price numeric,                        -- required and validated only when the unit would change
-  p_link_confirmed boolean                          -- baseline confirmation required for every link action, per §9 "Inventory-Link Experience"
+  p_preview_token_id uuid,
+  p_confirmed_price numeric   -- required only when the token's price_confirmation_required = true
 ) RETURNS catalog_products
 ```
 
-### Contract
+1. **Auth and permission.** Resolve caller, re-check `catalog_inventory_link_manage` + `inventory_view` against current state.
+2. **Idempotency-first (Section 11).** Look up `(business_id, operation, idempotency_key)`. Matching key + matching payload fingerprint → return the original result immediately, skipping every step below. Matching key + different fingerprint → `IDEMPOTENCY_CONFLICT`. New key → continue.
+3. **Token resolution.** Load `catalog_link_preview_tokens` by `p_preview_token_id`. Missing, expired, already consumed, or not owned by this caller/business → `STALE_STATE` (no state change; consume the token anyway if found, to prevent any reuse race).
+4. **Row locks, deterministic order (Section 9).**
+5. **Recompute-and-compare.** Recompute every value the token captured (current link, unit, price, target's base unit, `unit_changed`, D-047 eligibility, product status) under the now-held locks, recompute the fingerprint, and compare to `preview_fingerprint`. **Any mismatch → `STALE_STATE`, no state change, token consumed.** This is the compare-and-commit contract SUPA-4/LF-01 required.
+6. **Confirmation completeness.** If `price_confirmation_required = true` on the token, `p_confirmed_price` must be present and valid (D-039-consistent) → else `PRICE_CONFIRMATION_REQUIRED`.
+7. **Atomic writes**, same shape as Version 1.0: `catalog_product_link_events` insert (now also storing `preview_token_id`); `catalog_selling_price_events` (`link_confirmed`) insert if price changed; `catalog_products` update; idempotency-key registration — all in one transaction.
+8. **Commit.** Consume the token. Return the updated product row.
+9. **Any exception at any step → full rollback.** Token consumption itself is committed even on a rejecting path (steps 3, 5, 6), so a rejected token can never be silently retried without a fresh preview — directly satisfying "a stale preview requires a new preview and fresh merchant confirmation; it must never auto-retry with changed values" (instruction §4.4).
 
-1. **Auth.** Reject if `auth.uid()` is null.
-2. **Row lock.** `SELECT ... FOR UPDATE` the `catalog_products` row.
-3. **Stale-client check.** Compare `p_precondition_current_inventory_item_id`/`p_precondition_current_price` against the row's actual current state (current price = latest `catalog_selling_price_events` row). Mismatch → `STALE_STATE` (no change).
-4. **D-047 lock check.** Per Section 8. Locked → `LINK_LOCKED_HISTORY_EXISTS` (no change).
-5. **Target validation.** Target inventory item exists, `status = 'active'`, same `business_id`, and not already linked to a different product (defense-in-depth alongside the DB-level `UNIQUE` constraint) → else `TARGET_INVALID` (no change).
-6. **Baseline confirmation.** `p_link_confirmed` must be `true` (§9 general linking-confirmation rule) → else `CONFIRMATION_REQUIRED` (no change).
-7. **Unit-change evaluation.** Compare current `selling_unit` to target's `base_unit`.
-   - **No change:** proceed to step 9 without price re-confirmation.
-   - **Change:** `p_confirmed_price` must be non-null and satisfy the same validity rule as an ordinary price entry (D-039: must be `> 0` for sale eligibility, though it may also legitimately be left effectively unset if the merchant is not yet ready to price the product — the command accepts `NULL` here only if the product's price was already unset, since D-068 exists specifically to prevent a *populated* price from silently changing meaning) → else `PRICE_CONFIRMATION_REQUIRED` (no change).
-8. **Idempotency check.** Look up `(business_id, 'assign_or_replace_catalog_inventory_link', p_idempotency_key)` in `catalog_write_idempotency_keys`. Existing key + matching payload fingerprint → return the original result. Existing key + different fingerprint → `IDEMPOTENCY_CONFLICT`. New key → proceed.
-9. **Atomic writes (single transaction):**
-   - Insert `catalog_product_link_events` (event_type `assigned`/`replaced`, old/new item IDs, old/new units, `unit_changed`).
-   - If unit changed: insert `catalog_selling_price_events` (`event_type = 'link_confirmed'`, old_price = precondition price, new_price = `p_confirmed_price`, `effective_at = now()`), and set `catalog_product_link_events.price_event_id` to it.
-   - Update `catalog_products.inventory_item_id` and `catalog_products.selling_unit`.
-   - Register the idempotency key with a pointer to the link-event row.
-10. **Commit.** Return the updated `catalog_products` row.
-11. **Any exception at any step → transaction rolls back in full.** No product, unit, price, or link column is left partially updated — Postgres transactional atomicity is the enforcement mechanism, not application-level cleanup logic.
-
-### All Four No-Change Failure Modes
+### All Four No-Change Failure Modes (unchanged guarantee, now backed by the token mechanism)
 
 | Mode | Mechanism |
 |---|---|
-| **Cancellation** | Merchant declines before calling the command at all — no RPC invocation occurs, trivially no state change. |
-| **Incomplete confirmation** | `p_link_confirmed = false` or `p_confirmed_price` omitted when required → step 6/7 rejection, transaction never begins its write phase. |
-| **Validation failure** | Steps 3–5 reject → no writes attempted. |
-| **Save failure** | Any error during step 9 (constraint violation, connection loss, etc.) → transaction rolls back atomically; no partial write is observable. |
+| Cancellation | No preview-commit call occurs |
+| Incomplete confirmation | Missing `p_confirmed_price` when required → step 6 rejection before any write |
+| Validation failure | Steps 3–6 reject → no writes attempted |
+| Save failure | Exception during step 7 → full transactional rollback |
 
-### Error Responses Safe for Lovable and Conversational Channels
+## 11. Price, Tax, and Cost Write Integrity (EIS §8.7) — Idempotency Ordering Corrected
 
-Every rejection returns one of the stable error categories above (`STALE_STATE`, `LINK_LOCKED_HISTORY_EXISTS`, `TARGET_INVALID`, `CONFIRMATION_REQUIRED`, `PRICE_CONFIRMATION_REQUIRED`, `IDEMPOTENCY_CONFLICT`) rather than a raw database error message, so both the dashboard and a future conversational surface can render a merchant-appropriate explanation without parsing SQL error text or leaking schema detail (Source 17 §A10, §B9).
+### Corrected Command Sequencing (Stage 10 Findings MC-EIS-004, SEC-PERM-005; user-confirmed direction this revision)
 
-### `remove_catalog_inventory_link`
+**Every** protected write command (not only D-068's) now follows this exact step order, replacing Version 1.0's "validate-then-check-idempotency" sequence:
 
-Simpler sibling command: same auth/lock/D-047-check/idempotency structure, no price-confirmation branch (Section 8's resolution), single `catalog_product_link_events` insert (`event_type = 'removed'`), sets `inventory_item_id = NULL`, leaves `selling_unit`/price untouched.
+1. **Resolve actor and business** (from `auth.uid()` or, for channel calls, the already-server-verified `actor_user_id` — Section 7).
+2. **Permission check** against current state for the specific flag the action requires.
+3. **Idempotency resolution, before any mutable-state precondition check:**
+   - Look up `(business_id, operation, idempotency_key)` in `catalog_write_idempotency_keys`.
+   - **Matching key + matching payload fingerprint → return the original stored result immediately.** No stale-state, D-047, or other precondition check runs on this path — a legitimate retry after a real success must never be rejected as stale.
+   - **Matching key + different payload fingerprint → `IDEMPOTENCY_CONFLICT`**, a non-retriable state requiring fresh review, never silently treated as a valid retry.
+   - **No matching key → claim it.** The command performs an `INSERT ... ON CONFLICT (business_id, operation, idempotency_key) DO NOTHING` claim row. If the claim insert reports a conflict (another concurrent call already claimed this exact new key), the command takes a `SELECT ... FOR UPDATE` on the claim row and waits for the first caller's transaction to finish, then returns *that* result rather than proceeding independently — this is the defined "concurrency behavior for simultaneous first use" (instruction §4.5).
+   - Only after a key is newly and exclusively claimed does the command proceed to step 4.
+4. **Mutable-state precondition checks** (stale-state/preview-token comparison for D-068; D-047 boundary; row locks; ordinary field validation).
+5. **Writes**, atomically, including finalizing the idempotency-key row with its `result_ref`.
+6. **Commit.**
 
-## 10. Price, Tax, and Cost Write Integrity (EIS §8.7)
+### Unknown-Outcome Reconciliation (Stage 10 Findings MC-EIS-004, LF-04, AIW-008; confirmed engineering direction)
 
-### Authoritative Write Paths
+A generic transport/API failure — a timeout, a dropped connection, an unexpected exception surfaced before the client receives a response — where commit status cannot be determined from the client's perspective is classified as **`UNKNOWN_OUTCOME`**, distinct from every confirmed rejection category above. The system requires:
 
-One command per value type, each the sole writer to its event table: `record_catalog_selling_price_change` (immediate), `schedule_catalog_selling_price` / `cancel_scheduled_catalog_selling_price` (deferred), `record_catalog_tax_change`, `record_catalog_reference_cost_change`. The D-068 command (Section 9) is the only other writer to `catalog_selling_price_events`, and only for its own `link_confirmed` event type.
+- **Retain the same idempotency key for the same logical action.** A client experiencing an unknown outcome never generates a new key for that action.
+- **Reconciliation occurs through one of two paths, both keyed by the same idempotency key:**
+  1. **Same-key retry** — reissue the identical command call with the identical idempotency key and payload. Per step 3 above, if the original call actually committed, this returns the original result deterministically, with no duplicate effect. If the original call never reached the server or never committed, this proceeds as a fresh attempt.
+  2. **Read-only outcome lookup** — `get_catalog_command_outcome(p_business_id, p_operation, p_idempotency_key)`, a non-mutating read command returning the claim row's state (`unclaimed`, `in_progress`, `completed` with `result_ref`, or `failed` with the recorded rejection category) without re-attempting the operation. Useful when a caller (e.g., a webhook handler) prefers to check before resubmitting.
+- **No "nothing changed" report before a definitive result.** The client — dashboard or conversational — must not tell the merchant the action failed, was not saved, or had no effect until either path above returns a **terminal, non-commit** result (a confirmed rejection category, or `unclaimed` from the outcome lookup meaning the server never received or began the request). Until then, the correct UI state is "checking status," never "not saved" and never a silent assumption of success.
+- **Fresh preview and confirmation are required only when:** the reconciled result is `STALE_STATE`; the payload the merchant intends to submit has materially changed since the original attempt; the preview token or pending action has genuinely expired; or reconciliation conclusively establishes the original operation never occurred (an `unclaimed` outcome lookup, or a same-key retry that proceeds as a fresh attempt because no prior claim existed) and the merchant is now initiating a new attempt from current state. In every other case — including a same-key retry that returns the original success or original confirmed rejection — no new preview is required, because no new decision is being made; the system is only resolving the outcome of the decision the merchant already confirmed.
 
-### Append-Only History, Previous/New Values, Responsible Actor
+### Remaining Write-Integrity Requirements
 
-All four event tables (Section 5.3–5.5) carry old/new value, `recorded_at`, and `responsible_user_id` by construction; no `UPDATE`/`DELETE` grant exists on any of them for any application role, mirroring `inventory_movements_reject_mutation()`.
+Unchanged from Version 1.0: authoritative write paths per value type; append-only history with old/new values (now via the Section 5.0 standardized provenance block); UTC storage with business-timezone presentation; server validation per value type; row-locked concurrency handling; permission enforcement per Section 8; cost/margin confidentiality (Section 17); catalog-price authority versus future Sales Workflow overrides unchanged; failure/rollback behavior now precisely defined by the ordering above rather than stated only in principle.
 
-### Business Timezone Context
+## 12. Scheduled Pricing and Timezone Handling (EIS §8.8) — Scheduler Authority Corrected
 
-`effective_at`/`recorded_at` are stored as `timestamptz` (UTC internally, per Postgres convention), matching SB-P-1.10 EIS §4's committed approach. Presentation converts to `businesses.timezone` (Section 5.11) at the read/display layer only — never stored pre-converted.
+### Storage Timezone, Business Timezone Source of Truth, Activation Timestamp Interpretation, DST Safety
 
-### Request/Idempotency Identifiers
+Unchanged from Version 1.0 (Section 11 there): `timestamptz` storage; `businesses.timezone` per-business column defaulting to `Asia/Kolkata`; absolute-instant storage of `effective_at`; DST-safe by construction.
 
-Every write command accepts a caller-supplied `idempotency_key`, checked against `catalog_write_idempotency_keys` exactly as described for the D-068 command (Section 9), scoped `(business_id, operation, idempotency_key)`.
+### Scheduler Execution Identity and Least Privilege (Stage 10 Findings MC-EIS-009, SUPA-6, SUPA-11, SEC-PERM-009)
 
-### Server Validation
+`activate_scheduled_catalog_prices` executes as `catalog_scheduler_executor` (Section 7) — a dedicated, no-login, narrowly-privileged role holding only the specific `SELECT`/`UPDATE`/`DELETE`/`INSERT` privileges its function body requires on `catalog_pending_price_schedules`, `catalog_price_schedule_events`, and `catalog_selling_price_events`. It is **not** the broad `service_role`, correcting Version 1.0's characterization. `pg_cron` invokes the function through this role's credential; no merchant client or public endpoint may execute it (`REVOKE EXECUTE FROM PUBLIC`, no `GRANT` to `authenticated`).
 
-Price: `new_price IS NULL OR new_price > 0` for any write intended to make the product sale-ready-eligible (D-039); the command itself does not enforce sale-readiness (that is a read-time derived state per Blueprint §8 "Sale Readiness"), only that a non-null price is non-negative and non-zero when supplied. Tax: `new_mode IN ('inherit','product_rate','non_taxable')`; `new_rate` required and non-negative only when `new_mode = 'product_rate'`. Cost: `new_cost IS NULL OR new_cost >= 0` (D-040).
+### Bounded Batching, Safe Work Claiming, Per-Row Isolation (SUPA-6, SEC-PERM-009)
 
-### Concurrency Handling
+The job processes **at most 500 due schedules per invocation** (specialist-reviewable parameter), claimed via `SELECT ... FOR UPDATE SKIP LOCKED` on `catalog_pending_price_schedules WHERE effective_at <= now()`, ordered by `effective_at`. **Each claimed schedule is activated in its own sub-transaction** (commit or rollback independently), so one failing row (e.g., a data-integrity edge case on one product) does not abort or delay the batch. If more than 500 schedules are due, the job re-invokes itself or relies on the next scheduled tick to continue — no unbounded single transaction ever holds locks across an unbounded row set.
 
-Row lock on `catalog_products` before evaluating current state, identical pattern to Section 9 step 2, for every price/tax/cost write — prevents two near-simultaneous edits (e.g., dashboard and import-driven) from both reading stale "current" state and silently overwriting each other's history entry.
+### Race Handling with Cancel/Archive
 
-### Permission Enforcement
-
-`record_catalog_selling_price_change`/`schedule_...`/`cancel_...` require `catalog_price_manage`; `record_catalog_tax_change` requires `catalog_tax_manage`; `record_catalog_reference_cost_change` requires `catalog_cost_manage` — each independently, per Section 7.
-
-### Cost and Margin Confidentiality
-
-`record_catalog_reference_cost_change` and any read of `catalog_reference_cost_events` are the only paths touching cost; no other command ever includes a cost value in its return shape unless the caller holds `catalog_cost_manage` (Section 6 "Protected Financial-Field Read Paths"). Build Now performs no margin calculation anywhere (D-062) — no command computes `price - cost`.
-
-### Catalog-Price Authority versus Future Sales Workflow Overrides
-
-`catalog_selling_price_events` is exclusively the catalog's own price history. A future Sales Workflow's sale-time price overrides (Blueprint §8 "Selling Price": "Discounts and authorized sale-time overrides belong to the future Sales Workflow and must never rewrite catalog price history") must write to that future mission's own transaction-time evidence table, never to `catalog_selling_price_events` — this EIS does not define that future table, only states the boundary its design must respect (D-066).
-
-### Failure and Rollback Behavior
-
-Identical principle to Section 9: any exception during a write command's transaction rolls back atomically; no history table ever contains a partially-written row.
-
-## 11. Scheduled Pricing and Timezone Handling (EIS §8.8)
-
-### Storage Timezone
-
-`timestamptz` (UTC-normalized storage) throughout, per Section 10.
-
-### Business Timezone Source of Truth
-
-`businesses.timezone` (Section 5.11), IANA identifier, `DEFAULT 'Asia/Kolkata'`. **EIS decision:** a stored per-business column rather than a hardcoded constant, chosen because it costs one additive column and default value, satisfies D-043's "business timezone" phrasing without ambiguity, and avoids a future migration if a non-Kerala market is ever approved — while the fixed default means every Build Now merchant behaves identically to a hardcoded-IST design in practice. This resolves the open item Engineering Review §20 flagged; it is an implementation choice within already-approved Product Truth, not a new Founder decision.
-
-### Activation Timestamp Interpretation
-
-A merchant schedules a price using a wall-clock date/time in their business's timezone; the frontend converts that to an absolute `timestamptz` (`effective_at`) before calling `schedule_catalog_selling_price`. The stored value is the absolute instant, not a timezone-relative string — activation logic never re-interprets timezone at activation time, only at entry and display time.
-
-### Daylight-Saving-Safe Behavior
-
-`Asia/Kolkata` observes no daylight saving, so this is a non-issue for Build Now's Kerala-only market. The design remains correct for any future IANA-zone business, since `timestamptz` conversion is DST-aware by construction at the point of entry (when the wall-clock time is converted to an absolute instant) — no additional handling is required.
-
-### Job/Worker or Query-Time Activation Model
-
-A `pg_cron`-scheduled job, `activate_scheduled_catalog_prices`, running every **1 minute** (chosen over a coarser interval such as 5 minutes to stay close to D-043's "exact future date and time" language; the resulting activation lag is at most 1 minute — flagged here as a specific, reasoned recommendation subject to specialist confirmation, not an unquestionable final value, mirroring SB-P-1.10 EIS's index-selection decision-gate discipline). The job selects every `catalog_selling_price_events` row with `event_type IN ('scheduled_created','scheduled_replaced')`, `superseded_by IS NULL`, and `effective_at <= now()`, and for each: inserts a new `event_type = 'scheduled_activated'` row with `effective_at = ` the original scheduled instant (not the job's run time) and `recorded_at = now()` (the actual activation moment), and sets `superseded_by` on the original scheduled row to the new activated row. This reuses the existing `pg_cron`-plus-secure-endpoint automation pattern already approved for the Daily Intelligence Engine (Source 02 §7).
-
-### Idempotent Activation
-
-The job itself is naturally idempotent: a row already bearing a non-null `superseded_by` is excluded from the next run's selection, so a job that is somehow invoked twice for the same tick cannot double-activate the same scheduled price. No caller-supplied idempotency key is needed for this specific internal job (unlike merchant-initiated commands), because its trigger condition is itself the idempotency guard.
+Because cancellation, archival, and activation all acquire the deterministic product-then-pending-schedule lock order (Section 9's ordering principle, applied here), a race resolves to whichever transaction acquires the lock first: if the merchant's cancel commits first, activation's claim finds no row and skips silently (no error, no duplicate); if activation commits first, a concurrent cancel attempt finds no pending-schedule row and returns a clear "already activated" outcome to the merchant rather than a generic failure.
 
 ### Missed-Run Recovery
 
-Because the job selects on `effective_at <= now()` rather than `effective_at = <this tick's window>`, a missed run (e.g., the cron infrastructure was down for 10 minutes) self-heals on the next successful run — every price whose activation instant has already passed is activated then, in `effective_at` order, with no manual backfill procedure required.
+Unchanged principle from Version 1.0: selection on `effective_at <= now()` with no upper time-window bound means a missed run self-heals on the next successful run, now additionally protected by `SKIP LOCKED` claiming against double-processing by an overlapping run.
 
-### Conflicting Schedule Handling
+### Bounded Activation Delay and Merchant-Visible Delayed State (instruction §4.10)
 
-D-013 permits at most one pending scheduled price per product; `schedule_catalog_selling_price` and the replace/cancel commands enforce this via the partial unique index described in Section 5.3, re-validated inside the write transaction (not relied upon as index-only enforcement, since `now()`-based partial indexes require the check to also run at write time for correctness under Postgres's index semantics).
+Polling interval remains **1 minute** as an initial engineering value (Stage 10 open-parameter disposition 4, `REFINEMENT REQUIRED` satisfied by the bounds below, not by changing the number). A **maximum acceptable lag budget of 5 minutes** is defined: once `now() > effective_at` for a still-pending schedule, the read path (Section 16) reports the product's price state as **`activating`** — a third UI state distinct from `pending` and `current` — rather than continuing to show the old price as authoritative or prematurely implying the new price is live before the job actually commits it. If lag exceeds the 5-minute budget, this is an operational alert condition (Section 18), not a merchant-facing error — the price still activates correctly once the job runs, just later than the budget target.
 
-### Cancellation/Edit Rules Consistent with Locked Product Truth
+### Authorizing-User and System-Executor Provenance
 
-`cancel_scheduled_catalog_selling_price` writes `event_type = 'scheduled_cancelled'` and sets the original row's `superseded_by` — the cancelled schedule remains permanently visible in history, never deleted (D-013). Archiving a product with a pending schedule cancels it with the same audit trail, per Blueprint §8 "Scheduled Selling Price" ("Archiving requires confirmation and cancels a pending scheduled price with an audit record") — `archive_catalog_product` (Section 12) internally calls the same cancellation path rather than duplicating its logic.
+Satisfied structurally by Section 5.0's standardized provenance block: the `activated` events in both `catalog_price_schedule_events` and `catalog_selling_price_events` carry `authorized_by_user_id` copied forward from the original `catalog_pending_price_schedules.authorized_by_user_id` (the merchant who scheduled it), while `executed_by_actor_type = 'system'` and `system_run_id` identify the job invocation that performed the activation — resolving SUPA-11/SEC-PERM-009's requirement to distinguish the two.
 
-### Auditability
+### Job-Run Identifiers and Observable Lag
 
-Every scheduled-price state transition (`scheduled_created` → `scheduled_activated` **or** `scheduled_cancelled`/`scheduled_replaced`) is its own immutable event row; the full chain remains reconstructable from `catalog_selling_price_events` alone.
+Each job invocation generates one `system_run_id`, attached to every event it writes in that run, and logs (Section 18) its own start time, count processed, count failed, and maximum observed lag for that run.
 
-### UI and Conversational Display Expectations
+## 13. Multilingual Normalization and Search (EIS §8.9)
 
-Per Blueprint §9 "Price Experience": current and pending price are visually distinct, and scheduled activation displays in the business's local timezone (converted at render time from the stored `timestamptz`), never as a raw UTC value.
+Unchanged substantively from Version 1.0, with language sharpened per Stage 10 convergent findings (SUPA specialist disposition, AIW-*, LF-05, instruction §4.16): **`pg_trgm` (or any same-script similarity technique) is same-script typo/approximate-matching assistance only and must never be represented, in this document or in any implementation surfacing it, as cross-script Malayalam/Manglish/English linguistic understanding.** Deterministic, business-scoped, exact-normalized matching (Section 5.1's generated columns and `UNIQUE` constraints) remains the sole authoritative uniqueness mechanism. Possible-match suggestions remain business-scoped, separately labelled, non-authoritative, and never auto-applied.
 
-## 12. Multilingual Normalization and Search (EIS §8.9)
+**Security-critical vs. specialist-deferred index/threshold items, explicitly separated (instruction §4.16):**
 
-### Storage of Merchant-Entered Canonical Text
-
-`catalog_products.name`/`description`, `sku`, `barcode`, `catalog_categories.name` all store the merchant-entered text verbatim, in whatever script/language mix was typed (UTF-8 native to Postgres `text`). No transliteration, translation, or rewriting ever occurs on write.
-
-### Normalization Fields
-
-Generated columns `name_normalized`, `sku_normalized`, `barcode_normalized`, `catalog_categories.name_normalized` (Section 5.1, 5.2) apply only mechanical, language-agnostic transforms: trim, collapse repeated internal whitespace to a single space, Unicode lower-case fold for Latin-script characters. **No** transliteration or cross-script normalization occurs at this layer — Malayalam text is compared byte-for-byte (after whitespace/case handling) against other Malayalam text, never folded against a Manglish or English rendering, matching Rule 8/9/27's explicit boundary ("do not treat different Malayalam spellings, Manglish transliterations, or translated names as automatically equivalent").
-
-### Business-Scoped Deterministic Exact/Normalized Matching
-
-Enforced via the `UNIQUE (business_id, <field>_normalized)` constraints in Section 5 — a hard, deterministic, database-level guarantee, not an application-layer check (mirroring the discipline SB-P-1.10 EIS required for its own uniqueness constraints).
-
-### Transliteration and Spelling-Assistance Boundaries
-
-A "possible match" suggestion (for a name/category that appears related across Malayalam spelling, Manglish transliteration, or translation) is a **read-time, best-effort** feature, not a write-time constraint: `catalog_products_search` (Section 13) may additionally run a trigram-similarity (`pg_trgm`) comparison against `name_normalized` within the business, surfacing candidates above a similarity threshold as "possible match — review" results, separate from exact matches. **Specialist-review decision gate:** the exact similarity threshold (e.g., `similarity() > 0.3`) and whether `pg_trgm` alone is sufficient for cross-script Malayalam/Manglish/English relatedness (it is not linguistically aware — it only catches literal character-sequence overlap, e.g. "Amul milk" vs "amul milk" typo variants, not true semantic equivalence across scripts) is left open for specialist review before implementation; this EIS commits only to the requirement that the mechanism be disclosed as best-effort and never presented as authoritative.
-
-### Uncertain-Match Review Requirement; No Silent Rename/Merge/Translation/Overwrite/Cross-Business Match
-
-`catalog_products_search`'s possible-match results are returned as a distinct, separately labeled result category from exact matches; no command anywhere auto-applies a possible match to rename, merge, or overwrite a record (Rule 27; Blueprint §5, §8 "Search and Filtering"). Possible-match search is always business-scoped by the same `business_id` filter as every other query — never cross-business.
-
-### Indexing Strategy
-
-`UNIQUE` constraints above double as B-tree indexes for exact-match uniqueness/lookup. A `pg_trgm` GIN index on `name_normalized` (and optionally `catalog_categories.name_normalized`) supports the possible-match similarity query without a full table scan; final index confirmation is part of the same specialist decision gate as the threshold question above, consistent with SB-P-1.10 EIS §5's "Index Strategy Decision Gate" precedent of deferring final index selection to query-plan-validated detailed design.
-
-### Test Cases
-
-See Section 17.
-
-## 13. CSV and Excel Import Architecture (EIS §8.10)
-
-### Accepted File Types and Size Boundaries
-
-`.csv`, `.xlsx`. **Recommended, specialist-reviewable limits:** 5,000 rows and 10 MB per file — proposed as a starting operational parameter (not asserted as final), sized to keep synchronous parsing/validation responsive without a background-job architecture more complex than Phase 2b warrants; revisit with real merchant data if evidence shows this is too restrictive.
-
-### Upload and Parsing Boundary
-
-File is uploaded to the approved storage profile (metadata in Supabase, object in R2/Supabase Storage per P00 §41) and referenced by `catalog_import_jobs.file_ref`; parsing happens server-side (Edge Function or equivalent backend process, not client-side), consistent with "never trust client-side validation alone."
-
-### Column Mapping
-
-A fixed, documented header-to-field mapping (name, description, category, SKU, barcode, selling_unit, selling_price, reference_cost, tax_mode, tax_rate) with case-insensitive header matching; unmapped columns are ignored and reported as informational, not treated as errors.
-
-### Validation Staging
-
-Two-phase: (1) **parse + structural validation** (required field present, price/cost numeric and non-negative, tax_mode one of the allowed values) populates `catalog_import_rows.validation_status`; (2) **business-rule validation** (name/SKU/barcode uniqueness against existing products and against other rows in the same file) determines `match_type`/`matched_product_id` and elevates `valid` rows with a match to `conflict`.
-
-### Row-Level Error Reporting
-
-Every `invalid` or `conflict` row carries its own `validation_errors`/`match_type` in `catalog_import_rows`, surfaced per-row in the import summary (Blueprint §9 "Import and Correction Queue").
-
-### Duplicate and Normalization Handling
-
-Matching uses the same `name_normalized`/`sku_normalized`/`barcode_normalized` comparison as ordinary product uniqueness (Section 12) — an import row is never held to a looser or stricter matching standard than dashboard entry.
-
-### Dry-Run/Preview Behavior; Explicit Confirmation Before Write
-
-`stage_catalog_import_rows` performs parsing and validation only — it writes `catalog_import_rows` but never `catalog_products`. A separate, explicit `apply_catalog_import_row`/`apply_catalog_import_valid_rows` command (invoked only after the merchant reviews the staged preview) performs the actual product writes, reusing the ordinary `create_catalog_product`/product-update commands (Section 14) rather than a parallel import-specific write path — so an imported product is created through exactly the same validated, audited path as a dashboard-created one (D-056).
-
-### Partial-Success Policy
-
-Valid rows are applied; invalid rows are never applied; conflict rows wait for an explicit per-row correction decision (`update`/`skip`/`correct`) before being applied (D-057). The job's `status` becomes `partial_success` whenever any row was quarantined or left pending, `completed` only when every row reached a terminal applied/skipped state.
-
-### Idempotency and Retry Behavior
-
-`apply_catalog_import_row` accepts an idempotency key scoped per row (not per job), so a retried apply of the same row cannot double-create a product.
-
-### Audit Trail
-
-Every applied row's resulting product write generates the same `catalog_audit_events`/history-table entries an equivalent dashboard action would, with `actor_channel = 'import'` and `request_id` correlating back to the `catalog_import_jobs.id`.
-
-### Storage Cleanup
-
-Uploaded files are retained only as long as needed for error review and re-download, per a retention policy to be confirmed with the existing storage lifecycle rules (P00 §42) — not defined further here.
-
-### Permission Requirements
-
-`catalog_manage` (owner or manager with product-creation permission, D-058); employees are denied at the command layer regardless of any other flag.
-
-### Security Controls for Malicious or Malformed Files
-
-Server-side parsing only (never `eval`-style spreadsheet formula execution); reject files exceeding size/row limits before parsing begins; reject non-`.csv`/`.xlsx` content type by content inspection, not filename extension alone; treat every cell value as untrusted text requiring the same validation as manually typed input (no special trust for spreadsheet-sourced data).
-
-## 14. WhatsApp, Voice, Text, and Photo Dependency (EIS §8.11)
-
-Per Engineering Review §20 "WhatsApp, Voice, Text, and Photo Integration Dependencies" (Finding F14): the full pipeline (webhook → identity router → multi-modal processing → intent classification → role-based response) described in Source 04/05 does not exist anywhere in the repository. This section defines the catalog-specific contract that pipeline must eventually satisfy — it does not build the pipeline.
-
-### Supported Catalog Intents
-
-An extension of the Source 05 §3 intent taxonomy (which already includes `inventory_update`): a `catalog_update` intent family covering create-product, edit-price, edit-tax, search/find-product, and link/unlink-inventory sub-intents.
-
-### Guided Clarification Requirements
-
-Any extraction with confidence below the pipeline's own threshold (Source 05 §3: "If confidence is low, ask clarification. Never guess.") must produce a structured preview requiring explicit merchant confirmation before any catalog command is called — the conversational layer never calls a write command directly from raw extracted text.
-
-### Media-Handling Boundary
-
-Photo-assisted product capture (e.g., a shelf/label photo) follows the existing approved Vision pipeline (Source 04 §5: receipt image → Vision OCR → GPT parser) generalized to product images; Source 05 §5 "Vision Safety Rules" (safety check, then business-relevance check, only then store) applies identically to catalog photo capture. This EIS does not define new vision-processing logic.
-
-### Confidence and Merchant-Confirmation Requirements
-
-Identical to the dashboard's D-054 requirement: every conversational catalog mutation requires the same structured-preview-then-explicit-confirmation flow as any other channel — the conversational layer is a UI adapter over the same commands, not a separate authority (Source 12 §4 "Business logic shall never be duplicated for individual channels").
-
-### No Autonomous Destructive or Financially Sensitive Writes
-
-The catalog intent handler never calls `delete_catalog_product`, `archive_catalog_product`, or any price/tax/cost-write command without a prior confirmed preview step in the same conversation turn or an explicitly confirmed follow-up turn — never on first extraction.
-
-### Use of the Same Server-Authoritative Catalog Commands as the Dashboard
-
-The intent handler calls the exact commands in Section 15 (Section 12 below) with `actor_channel` set to `whatsapp`/`voice`/`photo` — no parallel catalog-write logic is implemented inside the conversational layer.
-
-### Webhook Idempotency and Retries
-
-Any catalog command invoked from the conversational layer supplies an idempotency key derived from the inbound WhatsApp message ID (or equivalent), consistent with Source 12 §24/Meta webhook-retry-safety requirements, reusing the same `catalog_write_idempotency_keys` contract every other channel uses.
-
-### Auditability
-
-`catalog_audit_events.actor_channel` and `request_id` (Section 5.7) already carry conversational provenance; no separate conversational audit log is needed.
-
-### Permission and Business-Context Resolution
-
-The identity router (Source 04 §3: Owner → Employee → Supplier → Unknown) resolves the sender to a business and role before any catalog intent is processed; the catalog intent handler receives an already-resolved `business_id`/permission context, exactly as every other command does — it does not perform its own identity resolution.
-
-### Sequencing Constraints Before the Shared Conversational Engine Exists
-
-Until the shared pipeline exists, the dashboard-based guided creation experience (structured preview, explicit confirmation; D-053, D-054) is fully buildable in Phase 1 using the same commands, satisfying the "guided" and "confirmation" requirements without WhatsApp/voice/photo specifically. No catalog-specific webhook, intent classifier, or media pipeline may be built ahead of or in place of the shared engine (Source 12 §4/§10 single-implementation principle) — Phase 3 begins only once that shared foundation exists.
-
-## 15. API, RPC, and Command Contracts (EIS §8.12)
-
-Implementation-neutral command surface (final naming/transport is a repository-convention decision at build time). Every write command shares the shape established by `create_inventory_movement`: `SECURITY INVOKER`, `search_path = public`, caller-supplied idempotency key, explicit permission check, row lock where concurrent mutation is possible, single-transaction atomicity.
-
-| Operation | Purpose | Key inputs | Authorization | Idempotent | Consumers |
-|---|---|---|---|---|---|
-| `create_catalog_product` | Create a product | name, optional fields | `catalog_manage` | Yes | Dashboard, import, conversational |
-| `update_catalog_product_identity` | Edit name/description/image/category/SKU/barcode | product_id, changed fields | `catalog_manage` | Yes | Dashboard, import, conversational |
-| `update_catalog_product_unit` | Non-stock unit change | product_id, new unit | `catalog_manage`; rejects if stock-tracked or sales history exists | Yes | Dashboard, conversational |
-| `assign_or_replace_catalog_inventory_link` | D-068 atomic safeguard | see Section 9 | `catalog_inventory_link_manage` + `inventory_view` | Yes | Dashboard, conversational |
-| `remove_catalog_inventory_link` | D-047 removal | product_id | `catalog_inventory_link_manage` | Yes | Dashboard, conversational |
-| `record_catalog_selling_price_change` | Immediate price change | product_id, new_price | `catalog_price_manage` | Yes | Dashboard, import, conversational |
-| `schedule_catalog_selling_price` | Create pending price | product_id, new_price, effective_at | `catalog_price_manage` | Yes | Dashboard, conversational |
-| `cancel_scheduled_catalog_selling_price` | Cancel pending price | product_id | `catalog_price_manage` | Yes | Dashboard, conversational |
-| `activate_scheduled_catalog_prices` | Cron sweep | — (job-internal) | Service-role | Self-idempotent (Section 11) | `pg_cron` only |
-| `record_catalog_tax_change` | Tax configuration change | product_id, mode, rate | `catalog_tax_manage` | Yes | Dashboard, import, conversational |
-| `record_catalog_reference_cost_change` | Cost change | product_id, new_cost | `catalog_cost_manage` | Yes | Dashboard, conversational |
-| `archive_catalog_product` / `reactivate_catalog_product` | Lifecycle | product_id | `catalog_manage` | Yes | Dashboard, conversational |
-| `delete_catalog_product` | Conditional hard delete | product_id | `catalog_manage`; rejects if any dependent history exists (D-031) | Yes | Dashboard |
-| `create_catalog_category` / `archive_catalog_category` | Category lifecycle | name / category_id | `catalog_manage` | Yes | Dashboard, import |
-| `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_row` | Import pipeline (Section 13) | file_ref / job_id / row decision | `catalog_manage` | Yes (per row for apply) | Dashboard |
-| `catalog_products_search` | Permission-aware, multilingual search | business scope, term | `catalog_view` or `sale_use` (narrower shape) | N/A (read) | Dashboard, conversational |
-| `catalog_product_read` / `catalog_products_list_batch` | Permission-aware detail/list read, cost/margin omitted per caller | product_id(s) | `catalog_view` or `sale_use` | N/A (read) | Dashboard, conversational |
-
-Every command's result shape distinguishes success, validation failure, and permission failure as stable, distinct categories (never a generic "error"), so the frontend can never present a blocked action as successful (Blueprint §9 "Permission Behaviour," mirrored from SB-P-1.10 EIS §10).
-
-## 16. Frontend and Lovable Responsibilities (EIS §8.13)
-
-### Routes and Screens
-
-Within the current approved route architecture (TanStack Router, `src/routes/_authenticated/`): `products.tsx` (list + creation entry), `products.index.tsx`, `products.$productId.tsx` (detail: identity, selling info, tax, inventory relationship, lifecycle, histories — per Blueprint §9 "Product Detail"), `products.import.tsx` (Phase 2b). `authed-header.tsx` gains a "Products" nav entry, following its own stated purpose ("so nav-link additions do not drift").
-
-### Form and Preview States
-
-Creation starts with required name only, optional fields visibly optional (Blueprint §9 "Product Creation Experience"). The inventory-link flow renders the D-068 preview (Section 9: current/proposed unit and price) as a distinct confirmation step, never inline with the link-selection form.
-
-### Permission-Aware Presentation
-
-Every screen renders only actions the caller's resolved permission flags allow (Section 7); unavailable actions are hidden or disabled without revealing other-business or higher-privilege state (Blueprint §9 "Permission Behaviour").
-
-### Protected Cost/Margin Rendering
-
-Cost fields render only when `catalog_product_read`'s response includes them (i.e., only for callers with `catalog_cost_manage`) — the frontend never independently decides to hide a field it already received; the omission happens server-side (Section 6).
-
-### Inventory-Link Confirmation Flow
-
-Two-step: (1) select target inventory item, see baseline confirmation (§9 general rule); (2) if the unit would change, see the D-068 preview and confirm/replace price — implemented as a single guided flow that calls `assign_or_replace_catalog_inventory_link` exactly once at final confirmation, never as two separate command calls.
-
-### Import Preview/Error Experience
-
-Staged rows (valid/invalid/conflict) render in three visually distinct groups (Blueprint §9 "Import and Correction Queue"), with conflict rows offering per-row update/skip/correct actions.
-
-### Scheduled-Price Experience
-
-Current and pending price rendered as visually distinct (Blueprint §9 "Price Experience"), pending price's activation time displayed in the business's local timezone (Section 11).
-
-### Multilingual Search Behavior
-
-Search input accepts any script; results separate "matches" from "possible matches — review" (Section 12), never merging the two.
-
-### Loading, Empty, Validation, Conflict, and Failure States
-
-Every command's distinct error categories (Section 15) map to a distinct, merchant-understandable UI state — never a generic error toast for a `STALE_STATE` versus a `PRICE_CONFIRMATION_REQUIRED` versus a permission denial.
-
-### Frontend Responsibilities versus Server-Authoritative Responsibilities
-
-The frontend never computes sale-readiness, normalized uniqueness, or D-068's atomic outcome itself — it only renders server-returned state and calls commands. All business-rule enforcement lives server-side (Sections 9–11), consistent with "frontend visibility is not authorization."
-
-### Accessibility and Mobile Merchant Usability
-
-Per Blueprint §9 "Accessibility Expectations" and "Mobile and Conversational Experience": labels, validation, focus, contrast, and confirmations perceivable without relying on color alone; critical creation/search/confirmation flows usable on a merchant's phone.
-
-## 17. Audit and Observability (EIS §8.14)
-
-- **Append-only audit events:** `catalog_audit_events` (generic fields) plus the four dedicated ledger-style tables (price, tax, cost, link) — see Section 5.
-- **Correlation/request IDs:** every command call carries a `request_id`, propagated into whichever audit/history row it produces, enabling cross-table reconstruction of "what happened in this one user action."
-- **Actor and channel attribution:** `actor_user_id`/`responsible_user_id` plus `actor_channel` on every audit-relevant write (Section 5.7, 5.3–5.6).
-- **Before/after values where permitted:** full old/new values in every history table except that cost values are only ever returned to callers holding `catalog_cost_manage` (Section 6).
-- **Protected financial-data handling:** `catalog_reference_cost_events` never appears in logs or metrics in raw form; if operational logging needs to reference a cost-write event, it logs the event's `id`, not its `old_cost`/`new_cost` values.
-- **Operational logs:** command-level success/failure logged with business/product scope, operation name, and outcome category (mirroring SB-P-1.10 EIS §16's non-negotiable boundary: logs are diagnostic only, never a substitute business record — the history tables remain the sole audit authority).
-- **Failure metrics:** rejection rate by error category (Section 15) tracked per operation, to detect misuse or UX confusion patterns (e.g., a spike in `STALE_STATE` suggesting a concurrency UX problem).
-- **Import metrics:** rows_total/valid/quarantined/applied per job, tracked over time to catch systemic import-quality issues.
-- **Scheduled-price activation metrics:** count and lag (activation time minus `effective_at`) per `activate_scheduled_catalog_prices` run, to catch cron-reliability regressions.
-- **Conversational-channel traceability:** `actor_channel`/`request_id` already satisfy this (Section 14) — no separate mechanism.
-- **Alerting expectations:** sustained increase in `IDEMPOTENCY_CONFLICT` or `STALE_STATE` rates, or any `activate_scheduled_catalog_prices` run exceeding its expected lag budget, warrants operational attention — thresholds are a specialist-review parameter, not fixed here.
-- **Retention and access boundaries:** history tables are never purged (they are the permanent audit trail by Product Truth requirement); operational logs follow the repository's existing log-retention practice, independent of and never a substitute for history-table retention.
-
-## 18. Security and Privacy (EIS §8.15)
-
-- **Tenant isolation:** Section 6 — `business_id`-plus-RLS on every table, database-enforced cross-table consistency.
-- **Least privilege:** every command checks the single, narrowest permission flag it needs (Section 7); no command performs an action broader than its stated purpose.
-- **Permission enforcement:** layered database + command-layer + presentation (Section 7 "Enforcement Locations").
-- **Protected cost/margin data:** Section 6, Section 10 — dedicated table, permission-aware read path only.
-- **Upload security:** Section 13 — server-side parsing, size/type limits, content inspection over filename trust.
-- **Malicious spreadsheet content:** never executed; every cell treated as untrusted text (Section 13).
-- **Webhook/media trust boundaries:** the future conversational engine's own webhook-signature verification and media-safety checks (Source 04 §2, §25; Source 05 §5) apply before any catalog intent is processed — this EIS's catalog intent handler receives already-verified, already-safety-checked input, and does not re-implement those checks itself.
-- **Service-role access:** limited to `activate_scheduled_catalog_prices` (Section 6 "Service-Role Boundaries"); no other command runs outside caller RLS context.
-- **Secret handling:** no secret is introduced by this EIS; any future webhook/API credential belongs to the shared conversational-engine mission, not to catalog-specific configuration.
-- **Audit-log confidentiality:** Section 17 — cost values never appear in logs; access to audit tables themselves follows the same permission flags as the entity they describe.
-- **Rate limiting and abuse protection:** import job creation and scheduled-price creation are natural candidates for a per-business rate limit (e.g., N import jobs per hour) to prevent accidental or malicious resource exhaustion; exact limits are a specialist-review parameter, consistent with Source 04 §16 "Cost Protection Rules."
-- **Safe error disclosure:** Section 9/15 — stable error categories only, never raw database or stack-trace detail returned to a client.
-
-## 19. Migration and Rollout Strategy (EIS §8.16)
-
-No migration is created or run by this EIS. Proposed sequence for detailed design:
-
-1. **Prerequisite checks.** Confirm `businesses`, `inventory_items` schema shape matches Section 5's assumed composite-FK targets (already verified directly against current migrations for this EIS).
-2. **Additive-first rollout.** Add `businesses.timezone` (additive, defaulted, non-breaking) before any catalog table. Add all Section 5 tables as net-new — no existing data requires transformation, since no prior catalog schema exists anywhere in the repository (confirmed by direct migration inspection).
-3. **Backfill expectations.** None required — greenfield tables.
-4. **Indexes and constraints ordering.** All `UNIQUE`/FK/`CHECK` constraints (Sections 5–11) must exist and be active before any write access is granted — no rollout step grants write access ahead of the constraints protecting it, mirroring SB-P-1.10 EIS §14 step 2.
-5. **RLS rollout.** Enable RLS on every new table at creation time, before any application code path is granted access (SB-P-1.10 EIS §14 step 3 precedent).
-6. **Command rollout.** Introduce the shared command layer (Section 15) before any UI surface is built against it (SB-P-1.10 EIS §14 step 5 precedent), so no feature can bypass server-authoritative validation from day one.
-7. **Frontend enablement.** Ship dashboard routes (Section 16) only after their backing commands are live and tested.
-8. **Feature flags.** A flag gating the Products nav entry and routes is justified for Phase 1 rollout (allows database/command layer to land ahead of merchant-visible UI) but is not required for any Product-Truth reason — purely a deployment-sequencing convenience.
-9. **Permission-engine dependency sequencing.** Phase 2a (Manager/Employee enforcement) begins only once the shared flag table exists; until then, every command's permission check resolves to Owner-only (Section 7).
-10. **Conversational-engine dependency sequencing.** Phase 3 begins only once the shared pipeline (Source 04/05) exists; the catalog intent handler is the only new component built at that time — no catalog-specific webhook infrastructure is built earlier.
-11. **Rollback and forward-fix strategy.** Once any history-table row exists, rollback never deletes it (append-only principle, SB-P-1.10 EIS §14 "Migration Safety and Rollback" precedent, adopted verbatim here); a needed reversal is a forward-fix migration.
-12. **Production verification gates.** Per Source 12 §65/§69: RLS and business-isolation tests (Section 17) pass before any production write access is enabled; a smoke test of `create_catalog_product` → `record_catalog_selling_price_change` → `assign_or_replace_catalog_inventory_link` → read-back, against a test business, before general availability.
-
-## 20. Testing and Verification Matrix (EIS §8.17)
-
-| Area | Required test coverage |
+| Must be implemented now (security/correctness-critical) | May remain query-plan/data validated later |
 |---|---|
-| Unit behavior | Each command in Section 15 independently unit-tested for its stated validation rules and error categories |
-| Schema constraints | Every `UNIQUE`/`CHECK`/FK constraint in Section 5 verified to reject the violating case it exists to prevent |
-| RLS and business isolation | Cross-business read/write attempts against every new table return no data and no side effect, including negative tests that denial never discloses existence (Section 6) |
-| Permissions | Each of the seven flags (Section 7) independently tested against authorized and unauthorized callers, for both the Owner-only interim state and the future flag-based state |
-| D-047 history boundaries | Assign/replace/remove all rejected once a (simulated) sale/linked-stock-event reference exists for the product; all permitted before then |
-| D-068 atomicity and all failure modes | Cancellation, incomplete confirmation, validation failure, and save failure each leave product/unit/price/link completely unchanged; successful confirm-and-save is fully atomic under injected mid-transaction failure |
-| Concurrency and stale clients | Two near-simultaneous calls to any price/tax/cost/link command against the same product: one succeeds, the other receives `STALE_STATE` or an equivalent rejection, never a silent overwrite |
-| Price/tax/cost histories | Every write produces exactly one correctly old/new-valued, immutable event row; no `UPDATE`/`DELETE` path exists at any privilege level |
-| Scheduled pricing and timezone behavior | Activation occurs within the defined lag budget (Section 11); a missed cron run self-heals; cancellation/replacement preserve full history; timezone conversion is correct for `Asia/Kolkata` at minimum |
-| Multilingual matching | Exact normalized uniqueness rejects true duplicates and accepts genuinely distinct Malayalam/Manglish/English entries; possible-match suggestions never auto-apply |
-| Imports | Valid rows apply, invalid rows never create a product, conflict rows require an explicit per-row decision, retried `apply_catalog_import_row` calls do not duplicate |
-| Conversational command reuse | (Deferred to Phase 3, but the contract is testable now against Section 15's commands directly, simulating conversational-channel calls) |
-| Audit history | Every meaningful field change (Section 5.7 field list) produces a `catalog_audit_events` row with correct old/new/actor/channel |
-| Accessibility and critical UI states | Section 16 states rendered with correct labels/contrast/focus per Blueprint §9 "Accessibility Expectations" |
-| Negative and adversarial cases | Cross-business ID guessing, malformed import files, oversized uploads, replayed idempotency keys with altered payloads, concurrent D-068 calls with conflicting target items |
+| `UNIQUE (business_id, name_normalized)` / `sku_normalized` / `barcode_normalized` | `pg_trgm` GIN index for possible-match search |
+| RLS business-scope indexes supporting every policy in Section 6 | General list/sort/pagination indexes |
+| `UNIQUE (product_id)` on `catalog_pending_price_schedules` | Similarity threshold tuning against representative Kerala-language data |
+| `catalog_write_idempotency_keys` unique scope index | |
+| D-047 predicate support indexes (`catalog_product_link_events` by product+time, `inventory_movements` by item+time) | |
+| Effective-price lookup index (`catalog_selling_price_events` by product, `effective_at` descending) | |
+| Import row-state and audit-history indexes supporting Section 6 policies | |
 
-## 21. Traceability Matrix (EIS §8.18)
+### Tax-Mode Lock — Command Invariant, Not a Table CHECK (EIS §8.7 relocation; Stage 10 Findings MC-EIS-013, SUPA-7)
 
-| EIS Section | Primary Founder Decisions | Primary Blueprint Sections | Engineering Review Conclusion | Governance/Architecture Source | Future Verification Evidence |
+Version 1.0 stated `business_tax_settings.pricing_mode` was protected by a write-time `CHECK` preventing change once any completed sale exists. **A PostgreSQL `CHECK` constraint cannot query another table, so this is corrected:** the pricing-mode lock is a **command invariant** inside `update_business_tax_settings`, which calls the same `catalog_has_qualifying_sale_history`-style integration point defined in Section 9 (specifically, a business-wide variant checking across all of the business's products) — today hardcoded `false` for the identical reason given in Section 9 (no Sales Workflow exists, so no completed sale can exist). This is a **named, versioned cross-mission integration gate**: production enablement of Sales Workflow must not proceed until this predicate is wired to real data, as an explicit acceptance requirement of that future mission, not an optional enhancement. Until wired, `update_business_tax_settings` allows pricing-mode changes freely, matching current reality — no sales exist anywhere to protect.
+
+## 14. CSV and Excel Import Architecture (EIS §8.10) — Hardened
+
+### File Binding
+
+Import files are referenced via `catalog_file_references` (Section 5.11), not unconstrained text — `catalog_import_jobs.file_ref` verified for business ownership, `upload_status = 'completed'`, and `safety_scan_status = 'clean'` before parsing begins (Stage 10 Findings MC-EIS-011, SEC-PERM-007).
+
+### Structural and Resource Limits (Stage 10 Findings MC-EIS-011, SEC-PERM-008)
+
+Multidimensional limits are **mandatory as a category**; exact values remain configurable engineering parameters (Stage 10 open-parameter disposition 2):
+
+- Accepted types: `.csv`, `.xlsx` only, verified by content inspection, not filename extension.
+- Compressed **and** uncompressed size limits (protects against archive-expansion abuse in `.xlsx`'s zip container) — proposed starting values: 10 MB compressed, 50 MB uncompressed-equivalent.
+- Worksheet count limit (proposed: 1 — reject multi-sheet workbooks for Build Now's single-purpose import), row limit (proposed: 5,000), column count limit, and per-cell content-length limit.
+- Per-business concurrent-import-job limit (proposed: 1 active job) and rate limit (proposed: N jobs per hour), consistent with Source 04 §16 cost-protection rules.
+- No macros, no external-link formulas, no formula execution of any kind during parsing — every cell is read as literal text.
+
+### Formula-Injection Neutralization (Stage 10 Finding MC-EIS-011, SEC-PERM-008)
+
+Any downloadable artifact this system produces from import data — error reports, correction-queue exports, or any other CSV/XLSX generated from merchant or system-generated text — neutralizes any cell value beginning with `=`, `+`, `-`, `@`, a tab, or a carriage return by prefixing it with a non-executing character before writing the export. This applies to every exported text field, including system-generated messages, since even those could theoretically embed a value beginning with a formula-triggering character.
+
+### Quarantine, Retention, Cleanup
+
+Quarantined files (failed safety scan) are isolated from all processing beyond the scan result itself. Raw uploaded files and raw row payloads are retained only for a bounded review window (proposed: 30 days) then deleted. An explicit cancellation command exists for abandoned import jobs, releasing claimed rows and marking the job `failed` with a clear reason.
+
+### Job-Level Confirmation, Apply-Time Revalidation, Resumability (Stage 10 Findings MC-EIS-011, LF-06, SUPA-10)
+
+- `stage_catalog_import_rows` (parse + validate) never writes `catalog_products`, matching Version 1.0.
+- A distinct, explicit final-confirmation step is required before `apply_catalog_import_valid_rows` begins — presenting a summary (counts of valid/invalid/conflict, explicit list of what will and will not be applied) the merchant must confirm.
+- **Apply-time revalidation:** immediately before applying each row, its uniqueness/business-rule validity is re-checked against *current* catalog state (not the state at staging time) — a row valid at staging may have become a conflict if another change occurred meanwhile; it is then re-classified rather than force-applied.
+- **Per-row, resumable application:** rows are claimed via `catalog_import_rows.claimed_at`/`claimed_by_worker` with `FOR UPDATE SKIP LOCKED`, each applied through the ordinary `create_catalog_product`/update commands (reused, not duplicated) with its own idempotency key, so a worker interruption leaves cleanly resumable state — remaining unclaimed or abandoned-claim rows are simply picked up by the next apply pass. **One active apply operation per job** is enforced (a second concurrent apply call for the same job is rejected, not queued silently).
+- Job-level counters (`rows_applied`, etc.) are derived/reconciled from actual row terminal states, never trusted as independently maintained truth (SUPA-10).
+
+### Permission and Security
+
+Unchanged: `catalog_product_manage` required (D-058); employees denied regardless of any other flag; every cell treated as untrusted input requiring the same validation as manual entry.
+
+## 15. WhatsApp, Voice, Text, and Photo Dependency (EIS §8.11) — Channel-Authority Contract
+
+### Removed: Catalog-Owned Intent Taxonomy and Media-Pipeline Generalization (Stage 10 Findings MC-EIS-008, AIW-001, AIW-002)
+
+Version 1.0 defined a specific `catalog_update` intent family with named sub-intents and asserted that Source 04's receipt Vision pipeline "generalizes" to product images. **Both are removed as normative claims.** This EIS states only the capability contract SB-P-1.11 requires from the shared engine; any intent names or pipeline descriptions elsewhere in this document are illustrative only and are subordinate to whatever the future shared-engine mission's own governance defines. SB-P-1.11 does not bind that mission's classifier design, taxonomy, or vision/OCR architecture.
+
+### The Channel-Authority Contract the Shared Engine Must Satisfy (Stage 10 Findings MC-EIS-007, SEC-PERM-003, AIW-003, AIW-004, AIW-005)
+
+Before any catalog command may be invoked from a non-interactive channel, the shared engine, on its own side, must:
+
+1. **Verify the inbound channel event and sender** (webhook signature, Meta verification handshake per Source 04 §2) — this remains entirely the shared engine's own responsibility, not redefined here.
+2. **Resolve one canonical Smart Business identity and business membership** for the sender (Source 04 §3 identity router) — server-side, never trusting a client- or model-supplied identity claim.
+3. **Call `create_catalog_pending_action`** (executing as `catalog_channel_executor`, Section 7) with the server-resolved `business_id`, `actor_user_id`, the intended `action_type`, a normalized payload fingerprint, the `channel`, and `originating_channel_event_id`. This command independently re-verifies the actor currently holds the required permission for the intended action *before* creating the pending action, and — for a D-068 operation — first calls `preview_catalog_inventory_link_change` internally and stores the resulting `preview_token_id` plus a **durable text representation** of the preview (`preview_text`, satisfying AIW-007's requirement that every consequential preview have a durable text form regardless of voice channel).
+4. **Present the durable text preview to the merchant** and await their reply — this messaging/formatting responsibility belongs to the shared engine.
+5. **On the merchant's confirming reply** (itself a new inbound webhook event, deduplicated at the `catalog_channel_pending_actions.UNIQUE(channel, originating_channel_event_id)` layer against redelivery), call **`confirm_catalog_pending_action`** with the pending-action ID and the confirming sender's re-resolved identity. This command re-verifies: not expired, not already consumed, confirming actor matches (or is otherwise separately authorized), **current** permission still holds (re-checked fresh — protects against a permission revoked between preview and confirmation), then invokes the underlying command (e.g., `assign_or_replace_catalog_inventory_link`, passing through the stored `preview_token_id`) exactly as the dashboard path would, under the same idempotency and stale-state rules (Sections 10–11).
+6. **No client, AI layer, webhook handler, or caller-supplied object may assert its own authority** — every permission and business-scope fact used by the confirm step is re-derived from live state at that moment, never carried forward from step 2's resolution or from any AI-extracted content.
+
+### Duplicate Webhooks, Stale Confirmations, Revoked Permissions, Delayed Messages, Reply-Delivery Failure
+
+- **Duplicate webhooks:** deduplicated at two independent layers — `catalog_channel_pending_actions`'s unique channel-event constraint, and the underlying command's own idempotency key.
+- **Stale confirmations:** `expires_at` on the pending action; an expired confirmation attempt is rejected and requires the shared engine to initiate a fresh preview.
+- **Revoked permissions:** caught by the fresh permission re-check in `confirm_catalog_pending_action`, independent of whatever permission state existed at preview time.
+- **Delayed messages:** if a confirmation arrives after `expires_at`, it is treated identically to a stale confirmation — no special-casing by elapsed time beyond the expiry itself.
+- **Reply-delivery failure:** the underlying command's result is already durably committed (or not) before any reply is sent; a failed reply delivery is purely a notification-layer concern and never triggers re-execution of the command (ties directly to Section 11's unknown-outcome contract — the shared engine's own retry of a reply-send is not a retry of the catalog write).
+
+### AI Assistance Boundaries (Stage 10 Finding MC-EIS-008/AIW-006)
+
+Extraction from any channel input must produce field-level provenance/confidence, not a single flattened "extracted" value. Consequential fields — product identity, unit, price, tax treatment/rate, reference cost, barcode/SKU, inventory-link target — are never invented when extraction confidence is insufficient; they remain blank and are explicitly requested from the merchant rather than defaulted. No automatic legal tax classification is ever produced (Blueprint §8 "Tax Treatment").
+
+### Voice Response Boundaries (AIW-007)
+
+Every consequential preview and result has a durable text representation regardless of channel (Section 5.10's `preview_text`). Voice replies remain Owner-only, and only when the voice capability and preference are enabled (Source 04 §7, Source 05 §7); Managers, Employees, Suppliers, and Customers receive text responses only. Cost or other protected financial information is never spoken to a role not authorized to see it.
+
+### Failure Handling (AIW-008)
+
+Channel-level result semantics reuse Section 11's `UNKNOWN_OUTCOME` contract directly: the assistant never acknowledges success before the authoritative command returns a committed result; an uncertain outcome (media-download failure, transcription/OCR failure, model timeout, command-call timeout) triggers the same-key retry or outcome-lookup reconciliation before any status message is sent to the merchant; unresolved failures are logged (Section 18) and escalated without blocking unrelated business functions.
+
+### Deterministic Checks Before Expensive Processing (AIW-009)
+
+Where a request can be resolved deterministically (unsupported role, unrecognized command, missing subscription, safety rejection), identity/role/permission/subscription/safety/business-relevance checks occur before any model, transcription, or vision call — consistent with Source 04 §16 cost-protection rules.
+
+## 16. API, RPC, and Command Contracts (EIS §8.12)
+
+Revised command surface. Every command follows Section 7's identity/grant model and Section 11's idempotency-first ordering.
+
+| Operation | Purpose | Authorization | Executor identity | Idempotent |
+|---|---|---|---|---|
+| `create_catalog_product` | Create a product | `catalog_product_manage` | `catalog_command_executor` | Yes |
+| `update_catalog_product_identity` | Edit name/description/image/category/SKU/barcode | `catalog_product_manage` | `catalog_command_executor` | Yes |
+| `update_catalog_product_unit` | Non-stock unit change | `catalog_product_manage`; rejects if stock-tracked or sales history exists | `catalog_command_executor` | Yes |
+| `preview_catalog_inventory_link_change` | D-068 non-mutating preview | `catalog_inventory_link_manage` + `inventory_view` | `catalog_command_executor`, `catalog_channel_executor` | N/A (read, produces a token) |
+| `assign_or_replace_catalog_inventory_link` | D-068 commit | `catalog_inventory_link_manage` + `inventory_view` | `catalog_command_executor`, `catalog_channel_executor` (via `confirm_catalog_pending_action`) | Yes |
+| `remove_catalog_inventory_link` | D-047 removal | `catalog_inventory_link_manage` | `catalog_command_executor` | Yes |
+| `record_catalog_selling_price_change` | Immediate price change | `catalog_price_manage` | `catalog_command_executor` | Yes |
+| `schedule_catalog_selling_price` / `cancel_scheduled_catalog_selling_price` | Pending price lifecycle | `catalog_price_manage` | `catalog_command_executor` | Yes |
+| `activate_scheduled_catalog_prices` | Cron sweep | Least-privilege scheduler identity only | `catalog_scheduler_executor` only | Self-idempotent (Section 12) |
+| `record_catalog_tax_change` | Tax configuration change | `catalog_tax_manage` | `catalog_command_executor` | Yes |
+| `update_business_tax_settings` | Pricing-mode lock, business tax default | `catalog_tax_manage`; pricing-mode change gated by Section 13's command invariant | `catalog_command_executor` | Yes |
+| `record_catalog_reference_cost_change` | Cost change | `catalog_cost_manage` | `catalog_command_executor` | Yes |
+| `archive_catalog_product` / `reactivate_catalog_product` | Lifecycle | `catalog_lifecycle_manage` | `catalog_command_executor` | Yes |
+| `delete_catalog_product` | Conditional hard delete (Section 23) | `catalog_lifecycle_manage`; default-deny on unresolved dependency | `catalog_command_executor` | Yes |
+| `create_catalog_category` / `archive_catalog_category` | Category lifecycle | `catalog_product_manage` | `catalog_command_executor` | Yes |
+| `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows` | Import pipeline (Section 14) | `catalog_product_manage` | `catalog_command_executor` | Yes (per row for apply) |
+| `create_catalog_pending_action` | Channel pending-action creation | Server-verified actor permission for the intended action | `catalog_channel_executor` only | Yes |
+| `confirm_catalog_pending_action` | Channel confirmation → underlying command | Fresh server-verified permission at confirm time | `catalog_channel_executor` only | Yes |
+| `get_catalog_command_outcome` | Read-only idempotency-outcome lookup (Section 11) | Same permission as the original operation | `catalog_command_executor`, `catalog_channel_executor` | N/A (read) |
+| `catalog_products_search` | Permission-aware, multilingual search | `catalog_view` or `sale_use` | `catalog_command_executor`, `catalog_channel_executor` | N/A (read) |
+| `catalog_product_read` / `catalog_products_list_batch` | Permission-aware detail/list read, cost/margin physically omitted per caller (Section 17) | `catalog_view` or `sale_use` | `catalog_command_executor`, `catalog_channel_executor` | N/A (read) |
+
+Every command's result shape distinguishes, at minimum: confirmed validation rejection, confirmed permission rejection, confirmed transactional failure (no commit), `IDEMPOTENCY_CONFLICT`, `STALE_STATE`, `UNKNOWN_OUTCOME` (client-inferred, not server-returned — see Section 11), and confirmed success — never a single generic error shape.
+
+## 17. Frontend and Lovable Responsibilities (EIS §8.13) — Deterministic State Handling
+
+### Permission-Aware Reads and Sensitive Financial Data — Hardened (Stage 10 Findings MC-EIS-010, SEC-PERM-010)
+
+`catalog_product_read`/`catalog_products_list_batch` execute as `catalog_command_executor`/`catalog_channel_executor` (Section 7's dedicated no-login owners), never with raw client grants to `catalog_reference_cost_events`. Response shapes are **typed at two distinct levels** — a full shape including cost/margin fields, and a restricted shape that physically omits those keys — never a single shape with a nullable cost field, so omission is structural, not a display-layer convenience. Every call re-derives business scope and permission from server-side state; no caller-supplied scope parameter is ever trusted. Cost values never appear in validation errors, import conflict previews, logs, metrics, search results, list totals, or conversational context for a caller lacking `catalog_cost_manage`.
+
+### D-068 Preview Rendering (Stage 10 Findings MC-EIS-003, MC-EIS-012, LF-01, LF-02)
+
+The frontend calls `preview_catalog_inventory_link_change` and renders exactly the returned state — it never computes `unit_changed`, `price_confirmation_required`, or D-047 eligibility itself. The returned `preview_token_id` is held opaquely and submitted unchanged to the commit call.
+
+### Stale-State Flow (LF-02)
+
+On `STALE_STATE`: the frontend (1) stops the mutation flow immediately; (2) discards any locally held "will succeed" assumption; (3) calls `preview_catalog_inventory_link_change` again; (4) visibly explains that the product changed since the merchant last reviewed it; (5) requires a fresh, explicit confirmation against the new preview; (6) never auto-retries the original mutation with the old or silently updated values.
+
+### Idempotency-Key Lifecycle and Unknown-Outcome Reconciliation (Stage 10 Findings MC-EIS-004, MC-EIS-012, LF-03, LF-04)
+
+- One idempotency key is generated per confirmed logical action and persisted for that action's full lifecycle (surviving reconnect/page-navigation via durable local state keyed to the pending action).
+- The confirming control is disabled while the request is pending; no duplicate submission is possible from the same UI instance.
+- On a transport/network failure with no server response, the frontend does **not** report failure. It enters a "checking status" state and either retries the identical call with the identical key or calls `get_catalog_command_outcome`, per Section 11 — this is the confirmed engineering direction for this revision, not left open.
+- A new idempotency key is generated only after a terminal result (success or a confirmed rejection category) or after the merchant materially edits the payload before resubmitting.
+- `IDEMPOTENCY_CONFLICT` is presented as a non-retriable state requiring the merchant to start over with a fresh review, never offered a simple "try again" action.
+
+### Multilingual Possible-Match Presentation (LF-05)
+
+Possible matches are labelled as suggestions, never as duplicates; the original merchant-entered script is shown unchanged; using a suggested existing record requires an explicit user choice, never a preselected default; exact and possible matches are visually and semantically distinct without relying on color alone, with accessible status text for assistive technology.
+
+### Import Summary, Correction, Apply, Progress, Resume (LF-06)
+
+A final confirmation summary (counts and explicit exclusions) precedes apply; apply-time revalidation outcomes are surfaced per row; duplicate "apply" clicks are prevented at the UI layer in addition to the server's one-active-apply-per-job rule; progress is fetched from server-held row state (reconnect-safe, not client-tracked only); applied/skipped/quarantined/conflicted/failed rows use precise, non-implying wording (no row is described as saved unless it was).
+
+### Scheduled-Price Delayed-Activation Presentation (Section 12)
+
+The frontend renders three distinct price states — current, pending (scheduled), and **activating** (past the scheduled instant, awaiting the job) — rather than collapsing "activating" into either of the other two.
+
+### Route and Navigation Exposure (LF-08)
+
+Products navigation is enabled only after Phase 1 commands and Owner-scoped reads are deployed and independently verified; staff/manager controls remain absent until permission enforcement is verified end to end, not merely implemented; conversational entry points remain absent until the shared conversational engine is authorized, available, and verified; no feature-flagged-off route is exposed as a dead link or a misleading "coming soon" affordance inside the active merchant workspace without separate approval.
+
+### Accessibility and Stable Identifiers (LF-07)
+
+Every critical catalog control (product creation submit, D-068 preview/confirm, price/tax/cost edit submit, import stage/apply/cancel, possible-match choice) carries a stable `id`/`data-testid` per Source 03 §13's static-element directive. Required: full keyboard-only completion of every critical flow; focus trapping and restoration in confirmation dialogs (especially D-068's); screen-reader announcement of validation errors, stale-state transitions, save outcomes, import progress, and possible-match uncertainty; responsive/scrollable presentation of wide import tables on mobile; non-color-only indicators for valid/invalid/conflict groupings; reduced-motion-respecting behavior for any loading/progress animation.
+
+## 18. Audit and Observability (EIS §8.14) — Standardized Provenance
+
+Every dedicated event table (Section 5.0) and the generic `catalog_audit_events` table now share the identical provenance vocabulary: business, actor user (where applicable), actor type, authorizing user versus system executor (Section 12), channel, action/permission authority exercised, request/correlation ID, job/run ID for automated execution, recorded time, effective time where applicable, and outcome. Cost values never appear in logs, error messages, metrics, or any provenance field's free-text content (Section 17's response-shape omission is the only path cost ever travels).
+
+Operational metrics now additionally include: `IDEMPOTENCY_CONFLICT` and `STALE_STATE` rates per command (Section 11's reconciliation-health signal); `activate_scheduled_catalog_prices` per-run processed/failed counts and observed lag against the 5-minute budget (Section 12); import job structural-rejection counts (Section 14); channel pending-action expiry/duplicate-webhook counts (Section 15).
+
+Remaining content (correlation IDs, log/ledger separation, retention) unchanged from Version 1.0.
+
+## 19. Security and Privacy (EIS §8.15)
+
+Unchanged core list from Version 1.0, now grounded in the Section 7 identity architecture and the Section 5.11 file-binding model rather than stated at principle level only:
+
+- **Tenant isolation:** Section 6.
+- **Least privilege:** Section 7's three narrowly-scoped executor identities, none of which is `service_role`.
+- **Command-only writes:** Section 6/7 — no direct DML grant to `authenticated` on any protected table.
+- **Protected cost/margin data:** Section 5.5, Section 17 response-shape omission.
+- **Upload security:** Section 5.11, Section 14.
+- **Malicious spreadsheet content and formula injection:** Section 14.
+- **Webhook/media trust boundaries:** the shared engine's own responsibility (Section 15); SB-P-1.11 receives only already-verified input at `catalog_channel_executor`'s boundary.
+- **Service-role access:** none of the three executor identities is `service_role`; nothing in SB-P-1.11 uses it.
+- **`SECURITY DEFINER` hardening:** Section 7's function-level requirements apply uniformly.
+- **Audit-log confidentiality:** Section 18.
+- **Rate limiting and abuse protection:** import job/rate limits (Section 14); a per-business channel pending-action creation rate limit is a specialist-reviewable addition worth considering during detailed design.
+- **Safe error disclosure:** Section 16 — stable categories only, never raw database detail.
+
+## 20. Migration and Rollout Strategy (EIS §8.16)
+
+Sequence unchanged in shape from Version 1.0, updated for the corrected tables and identities:
+
+1. **Prerequisite checks** — unchanged.
+2. **Additive-first rollout** — `businesses.timezone`, then all Section 5 tables as net-new, including the new v2.0 tables (`catalog_pending_price_schedules`, `catalog_price_schedule_events`, `catalog_link_preview_tokens`, `catalog_channel_pending_actions`, `catalog_file_references`, `catalog_deletion_records`).
+3. **Backfill** — none required.
+4. **Constraints before write access** — every `UNIQUE`/FK/`CHECK` constraint active before any command is reachable, including the corrected stable `UNIQUE (product_id)` on `catalog_pending_price_schedules` (no longer a migration-invalid design).
+5. **RLS enabled at creation**, on every table, for every table's `SELECT` policy — with the explicit confirmation step (new in v2.0) that **no** `INSERT`/`UPDATE`/`DELETE` grant to `authenticated` exists on any table before that table is considered rollout-complete (Section 6).
+6. **Three execution identities created and privilege-scoped** (Section 7) before any command referencing them is deployed.
+7. **Command rollout before frontend** — unchanged principle.
+8. **Frontend enablement** — gated per Section 17's route-exposure rule, not merely on command availability.
+9. **Feature flags** — unchanged (deployment convenience only).
+10. **Permission-engine dependency sequencing** — unchanged.
+11. **Conversational-engine dependency sequencing** — now additionally requires `catalog_channel_executor`'s credential to be provisioned and scoped before Phase 3 begins.
+12. **Rollback/forward-fix** — unchanged append-only-preserving principle, now cleanly consistent since no table declared immutable is ever a rollback-mutation target.
+13. **Production verification gates** — Section 21's expanded test matrix, including the new command-bypass-denial and identity-scoping tests, must pass before any production write access is enabled.
+
+## 21. Testing and Verification Matrix (EIS §8.17)
+
+| Area | Required test coverage (v2.0 additions in **bold**) |
+|---|---|
+| Unit behavior | Each command independently unit-tested for its validation rules and error categories |
+| Schema constraints | Every constraint in Section 5, **including the corrected stable `UNIQUE (product_id)` on `catalog_pending_price_schedules` and absence of any `now()`-dependent index predicate anywhere in the schema** |
+| **Command-only write enforcement** | **Direct PostgREST `INSERT`/`UPDATE`/`DELETE` against every protected table fails for `authenticated`, while the corresponding command succeeds and produces complete audit evidence (Section 6)** |
+| **Execution-identity scoping** | **Each of the three executor identities can execute only its assigned commands; `catalog_channel_executor` cannot be used to bypass fresh permission re-verification; `catalog_scheduler_executor` cannot be invoked by any client role** |
+| RLS and business isolation | Cross-business read/write attempts return no data and no side effect for every table, including negative existence-disclosure tests |
+| Permissions | Each of the eight flags (Section 8) independently tested; **Manager granted `catalog_product_manage` alone cannot archive, reactivate, or delete** |
+| D-047 history boundaries | Assign/replace/remove rejected once qualifying history exists within the current link's tenure; **movements predating the current link's tenure do not lock it; the sale-history stub returns `false` deterministically and the interface point is covered by a test asserting it is called** |
+| D-068 atomicity and preview binding | **Preview-then-commit with matching token succeeds; any drift between preview and commit (unit, price, link, lifecycle state) produces `STALE_STATE` with no state change; a consumed or expired token cannot be reused; all four failure modes verified** |
+| **Idempotency ordering and unknown-outcome reconciliation** | **A retry with a matching key and payload after a real success returns the original result even when preconditions would otherwise reject it as stale; a matching key with a different payload is rejected as `IDEMPOTENCY_CONFLICT`; concurrent first-use of the same new key produces exactly one result; `get_catalog_command_outcome` correctly reports `unclaimed`/`in_progress`/`completed`/`failed`** |
+| Price/tax/cost histories | Every write produces exactly one correctly old/new-valued, immutable event row; **no scheduled-price transition ever produces more than one effective-price event; no history-table row is ever the target of `UPDATE`** |
+| Scheduled pricing and timezone behavior | Activation occurs within the lag budget; a missed cron run self-heals; **cancel-vs-activate race resolves deterministically without duplication; per-schedule failure isolation confirmed under an injected fault on one row within a batch** |
+| Multilingual matching | Exact normalized uniqueness rejects true duplicates and accepts distinct entries; possible-match suggestions never auto-apply; **`pg_trgm` explicitly not tested or represented as cross-script correctness** |
+| Imports | Valid rows apply, invalid rows never create a product, conflict rows require explicit decision; **apply-time revalidation correctly re-classifies a formerly valid row that became a conflict; formula-injection payloads are neutralized in every exported artifact; oversized/structurally invalid workbooks are rejected before parsing; per-row resumability confirmed after a simulated worker interruption** |
+| **Channel-authority contract** | **Forged business/actor claims are rejected; duplicate webhook delivery does not re-execute; stale, expired, or permission-revoked confirmations are rejected; `catalog_channel_executor` credential cannot perform any action outside its two granted commands** |
+| Audit history | Every meaningful field change produces a correctly provenance-tagged event row across every table using the Section 5.0 shape |
+| Accessibility and critical UI states | Keyboard-only, screen-reader, mobile, non-color, and reduced-motion behavior verified for D-068 confirmation and import correction flows specifically |
+| Negative and adversarial cases | Cross-business ID guessing, malformed import files, oversized uploads, replayed idempotency keys with altered payloads, concurrent D-068 calls with conflicting target items, **concurrent link-change and inventory-movement creation on the same item** |
+
+## 22. Traceability Matrix (EIS §8.18)
+
+Version 1.0's matrix is preserved and extended with the following new/revised rows:
+
+| EIS Section | Primary Founder Decisions | Primary Blueprint Sections | Stage 10 Finding(s) Resolved | Governance/Architecture Source | Future Verification Evidence |
 |---|---|---|---|---|---|
-| §5.1 `catalog_products` | D-001–D-005, D-020–D-028, D-051, D-052 | §7, §8 "Catalog Product," "Product Name and Description," "SKU," "Barcode," "Selling Unit" | "Data Model and Relationship Assessment" | Source 02 §3 (business-scoped table convention) | Schema test, uniqueness test |
-| §5.2 `catalog_categories` | D-006–D-008, D-045, D-046 | §8 "Categories" | — | — | Schema test |
-| §5.3–§5.5 history tables | D-009–D-019, D-036–D-043, D-062–D-064 | §8 "Selling Price," "Tax Treatment," "Reference Cost Price," "Selling-Price History," "Tax History" | "Write-Path, Concurrency, Idempotency, and Atomicity"; "Audit-History Architecture" | `inventory_movements` append-only precedent | Immutability test, history-correctness test |
-| §5.6 link events, §8–§9 link integrity | D-001–D-005, D-047, D-068 | §8 "Product–Inventory Link," "Selling Unit"; §9 "Inventory-Link Experience"; Rule 28 | "Catalog–Inventory Link Integrity" | SB-P-1.10 §8 "Units of Measure" | D-068 atomicity test suite (§20) |
-| §5.7 `catalog_audit_events` | D-064 | §8 "Audit History" | "Audit-History Architecture" (F18) | `transaction_correction_events` precedent | Audit-completeness test |
-| §5.8 idempotency keys | — (engineering integrity, not product truth) | — | "Write-Path, Concurrency, Idempotency, and Atomicity" | `inventory_movement_idempotency_keys` precedent | Idempotency-conflict test |
-| §5.9 `business_tax_settings` | D-018, D-019, D-059–D-061 | §8 "Tax Treatment," "Tax-Inclusive or Tax-Exclusive Pricing" | — | — | Pricing-mode-lock test |
-| §5.10 import tables, §13 | D-055–D-058 | §8 "CSV and Excel Bulk Import"; §9 "Import and Correction Queue" | "Import Architecture and Safety Controls" (F13) | Source 02 §3.15A `file_import_jobs` | Import correctness/quarantine test |
-| §5.11 timezone, §11 | D-043 | §8 "Scheduled Selling Price"; §9 "Price Experience" | "Timezone and Scheduled-Price Handling" (F12) | SB-P-1.10 EIS §4 "Event Time and Record Time Semantics" | Activation-lag/timezone test |
-| §6 RLS design | D-047, Rule 4 | §8 "Business Ownership and Isolation" | "Row-Level Security and Business Isolation" | `inventory_items`/`inventory_movements` RLS precedent | Cross-business isolation test |
-| §7 permission engine | D-016, D-033–D-035, D-048 | §8 "Permissions" | "Permission-Engine Dependency" (F7) | Source 02 §3.5 `employees` flag concept; Source 12 §13 | Permission-flag test |
-| §9 D-068 command | D-047, D-068 | §8 "Product–Inventory Link," "Selling Unit"; §9; Rule 28 | "D-068 Atomic Safeguard" reasoning throughout | `create_inventory_movement`/`preview_inventory_movement` precedent | §20 D-068 test suite |
-| §12 multilingual | D-023, D-024, D-026, Rules 8, 9, 27 | §5 "AI Assistant, Not AI Judge"; §8 "Product Name and Description," "SKU," "Barcode," "Categories," "Search and Filtering" | "Multilingual Search and Normalization Feasibility" | Source 11/12 Human Language Layer | Normalization/possible-match test |
-| §14 conversational dependency | D-053, D-054 | §8 "WhatsApp, Voice, Text, and Photo Assistance" | "WhatsApp, Voice, Text, and Photo Integration Dependencies" (F14) | Source 04 (full pipeline); Source 05 §3, §14 | Deferred to Phase 3; contract testable now |
-| §15 command surface | D-064, D-066 | §8 (all functional areas) | "API, RPC, and Command Contracts" boundary in §20 | `create_inventory_movement` contract shape | Per-command unit tests |
-| §16 frontend | D-053, D-054 | §9 (all subsections) | — | Source 03 (routing, static-ID directive) | UI/accessibility test |
-| §17 audit/observability | D-064 | §8 "Audit History" | "Security, Privacy, Observability, and Failure Recovery" | Source 02 §3.13 `system_errors` | Metrics/alerting review |
-| §18 security/privacy | D-014, D-016, D-035 | §8 "Permissions" | "Security, Privacy, Observability, and Failure Recovery" | Source 17 Part A (capability governance) | Security test suite |
-| §19 migration | — (engineering sequencing) | — | "Build Sequencing" | SB-P-1.10 EIS §14 precedent | Rollout gate checklist |
+| §5.3 corrected schedule model | D-011–D-013, D-043 | §8 "Scheduled Selling Price" | MC-EIS-001, SUPA-1, SUPA-2, SUPA-5, SEC-PERM-004 | PostgreSQL immutable-index-predicate requirement | Migration compilation test, concurrent create/replace/cancel test |
+| §6, §7 command-only architecture | — (engineering integrity) | Business Rule 24 | MC-EIS-002, SEC-PERM-002 | Source 12 Permission Rules, Source 17 Permission Integrity | Direct-DML-denial test |
+| §8 action-specific flags | D-016, D-033, D-034, D-035, D-048 | §8 "Permissions" | MC-EIS-006, SEC-PERM-001 | — | Permission-matrix test |
+| §9 D-047 predicate | D-047 | §8 "Product–Inventory Link" | MC-EIS-005, SUPA-3, SEC-PERM-006 | SB-P-1.10 §8 "Units of Measure"; `inventory_movements` schema | Tenure-boundary test |
+| §10 D-068 preview/commit | D-047, D-068 | §8, §9, Rule 28 | MC-EIS-003, SUPA-4, LF-01, LF-02, AIW-004, SEC-PERM-003 | — | Compare-and-commit test suite |
+| §11 idempotency ordering | D-064, D-068 | — | MC-EIS-004, SEC-PERM-005, LF-03, LF-04, AIW-003, AIW-008 | — | Retry-after-success test |
+| §12 scheduler authority | D-043 | §8 "Scheduled Selling Price" | MC-EIS-009, SUPA-6, SUPA-11, SEC-PERM-009 | Source 17 least privilege | Scheduler-privilege inspection |
+| §14 file binding, import hardening | D-055–D-058 | §8 "CSV and Excel Bulk Import" | MC-EIS-011, SEC-PERM-007, SEC-PERM-008, LF-06, SUPA-10 | P00 §41–42 storage profile | Formula-injection/resource-limit test |
+| §15 channel-authority contract | D-053, D-054 | §8 "WhatsApp, Voice, Text, and Photo Assistance" | MC-EIS-007, MC-EIS-008, SEC-PERM-003, AIW-001–009 | Source 04, Source 05 | Forged-identity/replay test |
+| §17 frontend determinism | D-053, D-054, D-068 | §9 | MC-EIS-012, LF-01–08 | Source 03 §13 | Accessibility/state-transition test |
+| §18 provenance standardization | D-011, D-037, D-064 | §8 "Audit History" | MC-EIS-015, SEC-PERM-011 | — | Cross-table provenance test |
+| §23 hard delete | D-031, D-065 | §8 "Conditional Permanent Deletion" | MC-EIS-014, SUPA-8, SUPA-9 | — | Deletion-eligibility test |
+| §13 tax-mode lock | D-061 | §8 "Tax-Inclusive or Tax-Exclusive Pricing" | MC-EIS-013, SUPA-7 | — | Integration-gate test (deferred) |
 
-No material technical requirement in this EIS lacks at least one row above tracing it to a Founder decision or Blueprint section.
+No material technical requirement in this EIS lacks at least one row above or in the Version 1.0 matrix tracing it to a Founder decision or Blueprint section.
 
-## 22. Engineering Questions and Risks (Required by Instruction §9)
+## 23. Conditional Hard Deletion — Closed Contract (EIS §8.14/§4.14; Stage 10 Findings MC-EIS-014, SUPA-8, SUPA-9)
+
+Single atomic command `delete_catalog_product`:
+
+1. Row-lock the product.
+2. Evaluate, in the same transaction, **every** current dependency: `catalog_selling_price_events`, `catalog_tax_events`, `catalog_reference_cost_events`, `catalog_product_link_events`, `catalog_audit_events`, `catalog_import_rows.matched_product_id`, `catalog_pending_price_schedules`, the Section 9 sale-history predicate, and the Section 9 linked-stock-event-history predicate.
+3. **Default to denial** if any check is affirmative or if any predicate call (including a future real Sales-domain integration) cannot be conclusively evaluated.
+4. If and only if every check clears: write the D-065 minimal snapshot to `catalog_deletion_records` (Section 5.13) first, then delete the live `catalog_products` row, then commit — both writes atomic in one transaction.
+5. Every dependency table's FK to `catalog_products` uses `ON DELETE RESTRICT`, not `CASCADE` — a second, database-level line of defense if the eligibility check were ever incomplete.
+
+## 24. Engineering Questions and Risks (Required by Instruction §9)
 
 ### Engineering Questions
 
 | # | Question | Disposition | Notes |
 |---|---|---|---|
-| 1 | Exact `pg_trgm` similarity threshold and whether it is sufficient for Malayalam/Manglish possible-match detection | `SPECIALIST REVIEW REQUIRED` | Section 12; not a Product Truth question — the Blueprint already permits a best-effort approach |
-| 2 | Final import file size/row limits (proposed: 5,000 rows / 10 MB) | `SPECIALIST REVIEW REQUIRED` | Section 13; proposed value, not final |
-| 3 | Final index set for every new table | `SPECIALIST REVIEW REQUIRED` | Deferred to query-plan-validated detailed design, mirroring SB-P-1.10 EIS §5's own decision gate |
-| 4 | `activate_scheduled_catalog_prices` polling interval (proposed: 1 minute) | `SPECIALIST REVIEW REQUIRED` | Section 11; tradeoff between activation precision and job load |
-| 5 | Whether the shared permission engine and shared conversational engine are sequenced as separate governed missions, parallel workstreams, or later phases within SB-P-1.11's own implementation | `REFINEMENT REQUIRED` | Not resolved by this EIS — this is a Mission Control sequencing decision per Engineering Review §21; this EIS defines the contract for either outcome without deciding it |
-| 6 | Selling-unit/price treatment upon inventory-link **removal** | Resolved in this EIS (Section 8) — no product ambiguity found; documented for Mission Control confirmation rather than silently asserted | Not `FOUNDER DECISION REQUIRED`: removal writes no new unit/price value, so no reinterpretation risk analogous to D-068 exists; flagged here per instruction §7's "report any genuine unresolved decision" so Mission Control can override this reasoning if it disagrees |
+| 1 | Exact `pg_trgm` similarity threshold and algorithm sufficiency | `SPECIALIST REVIEW REQUIRED` | Section 13; unchanged from v1.0, sharpened language only |
+| 2 | Final CSV/Excel structural limits (rows, worksheets, columns, cell length, compressed/uncompressed size, concurrency/rate) | `SPECIALIST REVIEW REQUIRED` | Section 14; category now mandatory, exact values remain configurable |
+| 3 | Final index set for every new table | `SPECIALIST REVIEW REQUIRED` | Section 13; security-critical subset now explicitly separated from deferred subset |
+| 4 | `activate_scheduled_catalog_prices` polling interval and lag budget | `SPECIALIST REVIEW REQUIRED` | Section 12; 1-minute polling / 5-minute budget proposed, both specialist-reviewable |
+| 5 | Shared permission-engine and shared conversational-engine sequencing and ownership | `REFINEMENT REQUIRED` (Mission Control sequencing decision, restated per Stage 10 consolidated disposition) | Sections 8, 15; contract fully defined, sequencing itself not decided by this EIS |
+| 6 | Selling-unit/price treatment upon inventory-link removal | Resolved, `ACCEPTED AS WRITTEN` per Stage 10 disposition 7 | Section 9; unchanged reasoning from v1.0, reaffirmed by all four specialists |
+| 7 | **D-047 "linked stock-event history" scope: does every inventory movement during link tenure count, or only movements tied to a future sale/purchase business event?** | **Flagged for Mission Control/Founder confirmation, not resolved silently** | Section 9; this EIS adopts the conservative (broader-locking) reading as its working design per SEC-PERM-006's explicit instruction to escalate rather than guess; a narrower reading, if intended, would not require reopening Sections 1–21 but should be confirmed before EIS Lock |
+| 8 | **Whether the SB-P-1.10 direct-grant-plus-RLS write pattern should also be revisited given the same bypass risk identified here** | **Noted transparently; explicitly out of this EIS's authorized scope** | Section 6; SB-P-1.11 diverges from that pattern for its own tables only — no change to any other mission's artifact is proposed or implied |
 
-No item above is `BLOCKED` or `FOUNDER DECISION REQUIRED`. Item 6 is deliberately not escalated as a Founder decision because, on the reasoning in Section 8, it is not a Product Truth ambiguity — it is flagged transparently so Mission Control can check that reasoning rather than have it silently embedded.
+### Blocking Issues
 
-### Non-Blocking Dependencies
+None. Item 7 above is a flagged interpretive question with a stated conservative working resolution, not a blocked or unresolved design — the EIS is fully specified either way, and confirming a narrower reading (if that is Mission Control's intent) would only relax, not redesign, the Section 9 predicate.
 
-The permission-engine and conversational-engine dependencies (Sections 7, 14) are cross-mission, non-catalog-specific, and do not block Phase 1. They block only Phase 2a and Phase 3 respectively.
+### Non-Blocking Dependencies, Security Risks, Migration Risks, Operational Risks, Sequencing Risks, Technical-Debt Risks
 
-### Assumptions Requiring Repository Verification (before implementation begins)
+Carried forward from Version 1.0 with the following updates: the "column-level cost/margin exposure" security risk is now further mitigated by the command-only write architecture (Section 7) eliminating the direct-grant bypass path entirely, not only the read path. The "sequencing risk" of building Phase 2a/3 logic ahead of shared foundations is now additionally mitigated by Section 15's explicit removal of catalog-owned taxonomy, reducing the surface a premature implementation could lock in. No new migration or operational risk category was introduced by this revision beyond those already named in Sections 12 and 14's specialist-reviewable parameters.
 
-- `businesses` table shape (Section 5.11) — verified directly for this EIS against current migrations; must be re-verified if any other mission alters `businesses` before implementation begins.
-- No other mission has, since this EIS was written, introduced a `products`/`catalog` table or a permission/employees table — must be re-checked immediately before implementation.
+## 25. Mandatory Open-Parameter Dispositions — Stage 10 Consolidated (Required by `instruction1.11.md` §5)
 
-### Areas Requiring Specialist Review
+Recorded here as the authoritative disposition for each parameter going forward, consistent with Mission Control's consolidated disposition (`report1.10.md` §4):
 
-Supabase/architecture specialist review is recommended for: RLS policy correctness (Section 6), the D-068 transaction design (Section 9) under load, and the `pg_trgm`/index decisions (Engineering Questions 1–4) — consistent with SB-P-1.10's own precedent of an explicit Supabase Architecture and Security Review pass before EIS lock.
+1. **Multilingual similarity algorithm and threshold** — `REFINEMENT REQUIRED`, satisfied by Section 13's contract refinement; exact measured value remains an engineering parameter.
+2. **CSV/Excel limits** — `REFINEMENT REQUIRED`, satisfied by Section 14's mandatory multidimensional controls; exact operating values remain configurable.
+3. **Index strategy** — `REFINEMENT REQUIRED`, satisfied by Section 5.3's replacement of the invalid scheduled-price index and Section 13's security-critical/deferred separation; final non-critical indexes remain query-plan validated.
+4. **Scheduled-price polling** — `REFINEMENT REQUIRED`, satisfied by Section 12's bounded-lag, missed-run-recovery, and scheduler-privilege requirements; one minute remains an initial value.
+5. **Shared permission-engine sequencing** — `REFINEMENT REQUIRED`, satisfied by Section 8's contract; Manager/Employee catalog access remains blocked until the separately governed shared foundation is implemented and verified.
+6. **Shared conversational-engine sequencing** — `REFINEMENT REQUIRED`, satisfied by Section 15's contract; no catalog-specific substitute pipeline is authorized.
+7. **Inventory-link removal without D-068 price reconfirmation** — `ACCEPTED AS WRITTEN`, with the required clarification (current unit and price preserved, D-047-bound) present in Section 9.
 
-### Product Truth Conflicts
+## 26. Definition of Done (for the eventual implementation, not this EIS)
 
-None identified. Every design decision in this EIS traces to an existing Founder decision or Blueprint section (Section 21); no conflict required escalation.
+Unchanged in substance from Version 1.0, with the following Phase 1 additions: the D-068 preview-token compare-and-commit contract (Section 10) passes its full test suite including drift-in-every-dimension cases; no table in Section 5 grants direct `INSERT`/`UPDATE`/`DELETE` to `authenticated`, verified by privilege inspection as a release gate; the three execution identities (Section 7) exist with exactly their specified minimal grants, verified by privilege inspection; the scheduled-price model (Section 5.3, Section 12) passes concurrent create/cancel/activate testing with zero duplicate effective-price events and zero mutation of any immutable row.
 
-### Security Risks
-
-Column-level cost/margin exposure if a future code change queries `catalog_reference_cost_events` directly instead of through the permission-aware read path (Section 6) — mitigated by keeping cost in its own dedicated table with no non-owner/non-`catalog_cost_manage` grant at all, so the risk requires a privilege-grant mistake, not merely an application-logic mistake, to materialize.
-
-### Migration Risks
-
-None beyond the standard additive-rollout risks addressed in Section 19; no destructive or data-transforming migration is required since the domain is greenfield.
-
-### Operational Risks
-
-`activate_scheduled_catalog_prices` job reliability — mitigated by the missed-run self-healing design (Section 11).
-
-### Sequencing Risks
-
-Building Phase 2a or Phase 3 catalog-specific logic ahead of the shared permission/conversational engines would create exactly the duplicate-implementation risk Source 12 §10 warns against — mitigated by this EIS explicitly gating those phases behind the shared foundations (Sections 7, 14) rather than describing a workaround.
-
-### Technical-Debt Risks
-
-Two: (1) if a future mission needs cost history but does not reuse `catalog_reference_cost_events`'s shape, a divergent pattern could emerge — mitigated by this EIS explicitly recommending the shape be reused; (2) the generic `catalog_audit_events` table (Section 5.7) is designed for reuse but is not yet used by any other mission — its first real multi-consumer validation will only occur once a second mission adopts it.
-
-## 23. Definition of Done (for the eventual implementation, not this EIS)
-
-Implementation of SB-P-1.11 Phase 1 is complete when:
-
-- Every table in Section 5 (excluding Phase 2b/3-specific import/conversational tables) exists with RLS enabled and every constraint specified.
-- Every Phase 1 command in Section 15 is the sole write path to its target table(s), verified by code review and the absence of any alternate write path.
-- The D-068 command passes the full atomicity test suite (Section 20) including all four failure modes.
-- Current price/tax/cost/unit are always correctly derivable and match the latest applicable history-table row in all test scenarios.
-- Business isolation and Owner-scoped permission enforcement pass the full test suite (Section 20), with the flag-based Manager/Employee path structurally ready (Section 7) even though not yet enabled.
-- Multilingual normalization enforces exact uniqueness correctly and possible-match suggestions never auto-apply.
-- Scheduled-price activation meets its lag budget and self-heals after a missed run.
-- Logging, error categorization, and metrics (Section 17) are in place and respect the observability boundaries stated there.
-- No implementation detail in this EIS or the resulting code contradicts Sections 1–21 of the locked Product Blueprint.
-
-Phase 2a is additionally complete when the shared permission engine exists and every flag in Section 7 is enforced through it. Phase 2b is additionally complete when the full import pipeline (Section 13) passes its test suite. Phase 3 is additionally complete when the shared conversational engine exists and the catalog intent handler (Section 14) passes its test suite.
-
-## 24. Document Change Log
+## 27. Document Change Log
 
 | Version | Description |
 |---|---|
-| 1.0 | Initial draft Engineering Implementation Specification, translating locked Product Blueprint SB-P-1.11 (Sections 1–21, D-001–D-068) into an implementation-ready design, per `instruction1.9.md`. Not yet reviewed, refined, or locked. |
+| 1.0 | Initial draft Engineering Implementation Specification, translating locked Product Blueprint SB-P-1.11 into an implementation-ready design, per `instruction1.9.md`. |
+| 2.0 | Stage 10 refinement pass authorized by `instruction1.11.md`, resolving every accepted finding in `report1.10.md` and its four specialist reports (`report1.10-supabase-backend.md`, `report1.10-security-permissions.md`, `report1.10-ai-whatsapp.md`, `report1.10-lovable-frontend.md`). Key corrections: replaced the invalid `now()`-dependent scheduled-price index and mutable-immutable contradiction with a stable pending-schedule table plus genuinely append-only history (Section 5.3); introduced a command-only, three-identity write architecture with no direct DML grants on protected tables (Sections 6–7); restored action-specific Manager permission flags (Section 8); added a server-authoritative D-068 preview/token compare-and-commit contract (Section 10); corrected idempotency ordering to resolve before mutable-state checks and defined the unknown-outcome reconciliation contract (Section 11); defined an enforceable, tenure-bounded D-047 predicate with an explicit interpretive flag for Mission Control confirmation (Section 9); defined a least-privilege scheduler contract with bounded batching and lag budget (Section 12); removed catalog-owned conversational taxonomy/media-pipeline claims and defined a precise channel-authority contract (Section 15); business-bound file references and hardened import security (Section 14); hardened permission-aware read functions (Section 17); standardized audit provenance across all event tables (Sections 5.0, 18); closed the hard-deletion contract (Section 23); and recorded all seven Stage 10 mandatory open-parameter dispositions (Section 25). No Founder decision was created, modified, or reopened; no Product Truth changed. EIS remains DRAFT — REFINED, NOT LOCKED. |
