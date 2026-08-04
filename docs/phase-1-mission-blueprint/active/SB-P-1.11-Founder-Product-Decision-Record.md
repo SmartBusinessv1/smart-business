@@ -83,12 +83,11 @@
 | D-065 | Permitted deletion removes an unused product from the live catalog but retains a minimal audit record containing product identity, business, deletion time, and responsible user. |
 | D-066 | Catalog selling price is the default authoritative price. Future discounts and sale-time overrides belong to Sales Workflow, require their own authority and audit, and never rewrite catalog price history. |
 | D-067 | The Founder confirmed that the Stage 1 Product Blueprint and Founder Product Decision Record accurately represent the confirmed product decisions and may be prepared for Mission Control Product Review. This is not Blueprint lock or implementation approval. |
+| D-068 | When linking a non-stock product to an inventory item would change its selling unit to the inventory item's immutable base unit, the existing selling price must not be silently reinterpreted. Before the link is saved, the merchant must explicitly confirm the selling price for the new unit or enter a replacement price. The preview must show the old unit and price, the proposed new unit, and the price requiring confirmation. Until confirmation succeeds, the product record, selling unit, selling price, and inventory link remain unchanged. The confirmed price and completed link enter the appropriate audit history. This applies only before sale or linked-stock-event history, consistent with D-047. |
 
 ## Open Questions
 
-No unresolved Founder product decision currently prevents drafting Product Blueprint Sections 1–19.
-
-Git branch and commit-message authorization are operational governance inputs, not Product Truth decisions, and remain to be supplied before commit or push.
+No unresolved Founder product decision currently prevents refinement of Product Blueprint Sections 1–19 for Builder Review Findings F3, F4, and F5.
 
 ## Superseded Decisions
 
@@ -101,4 +100,4 @@ None.
 
 ## Final Founder Confirmation
 
-The Founder answered the discovery questions one at a time, confirmed D-001 through D-066, and then confirmed the resulting Stage 1 draft as D-067. Final approval and Blueprint lock remain future lifecycle gates and are not claimed here.
+The Founder answered the discovery questions one at a time, confirmed D-001 through D-066, and then confirmed the resulting Stage 1 draft as D-067. Mission Control Instruction 1.3 records the Founder-approved F5 unit-change price-confirmation decision as D-068. Final approval and Blueprint lock remain future lifecycle gates and are not claimed here.
