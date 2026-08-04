@@ -233,6 +233,24 @@ Unless the Founder explicitly instructs otherwise, Mission Control shall organiz
 
 This four-stage model is the default Mission Control execution principle for every `SB-P.x` mission. It does not bypass Source 18 approval gates, does not permit an actor to approve its own work, and does not authorize any mission or implementation by itself.
 
+### Repository-First Discovery and Source-Grounded Review Discipline
+
+For every `SB-P.x` Stage 1 discovery:
+
+- Codex must search the repository, canonical sources, prior accepted mission records, and other relevant approved evidence before asking the Founder a question.
+- Codex must not ask the Founder to rediscover information already available in approved sources.
+- Codex must ask one discovery question at a time.
+- Codex must not assume missing product decisions, silently fill gaps, or convert engineering conventions into Product Truth.
+- Questions must be limited to genuine unresolved Founder decisions after source review.
+
+For every review performed by Mission Control, including Stage 1 Product Blueprint review:
+
+- Mission Control must review against the governing source file, relevant canonical sources, current repository evidence, and approved mission records.
+- Mission Control must never assume an answer when an appropriate source can be searched or inspected.
+- Mission Control must distinguish confirmed facts, source-backed requirements, reasonable inferences, unresolved questions, and recommendations.
+- Mission Control must identify only real gaps, conflicts, risks, or missing evidence and must not add unnecessary complexity, ceremony, documents, delegation, or scope.
+- When the existing workflow already defines the required action, Mission Control must use the simplest protocol-compliant action unless the Founder explicitly instructs otherwise.
+
 ---
 
 # Next Recommended Mission
