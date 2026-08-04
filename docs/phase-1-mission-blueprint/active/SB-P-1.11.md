@@ -7,9 +7,9 @@
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
 | Mission Type | Product Feature Elaboration |
-| Lifecycle Stage | Stage 1 — Product Definition |
+| Lifecycle Stage | Stage 1 — Product Definition — Blueprint Locked |
 | Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–21 |
-| Status | Complete draft through Section 21 — awaiting Mission Control review and Founder approval |
+| Status | Blueprint Locked — ready for separate EIS authorization |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Codex |
 | Constitutional Authority | Source 01 and Source 11 jointly, subordinate to the Lighthouse Constitution |
@@ -19,7 +19,10 @@
 | Date | 2026-08-04 |
 | Builder Review | Completed by Claude Code; Findings F3, F4, and F5 (including the replacement-link scope) independently verified as resolved (`report1.2.md`, `report1.4.md`, `report1.6.md`) |
 | Engineering Review | Completed by Claude Code; Sections 20–21 added — see Section 21 Engineering Decision and Readiness |
-| Blueprint Lock | Not requested or claimed |
+| Founder Approval | Granted — Founder approved Sections 1–21 and engineering sequencing and authorized Mission Control Blueprint Lock; EIS and implementation remain unauthorized |
+| Mission Control Review | Accepted — completed Product Blueprint, Founder Decisions D-001–D-068, Builder Review verifications, Engineering Review, and Founder lock authorization accepted |
+| Blueprint Lock | Applied by Mission Control on 2026-08-04 — Sections 1–21, Founder Decisions D-001–D-068, and engineering sequencing are locked as authority for the next lifecycle stage |
+| Next Lifecycle Gate | Separate EIS authorization required; EIS preparation and implementation remain unauthorized |
 
 ## Mission Snapshot
 
@@ -611,6 +614,8 @@ Smart Business assists through familiar dashboard, WhatsApp, voice, photo, text,
 | 2026-08-04 | Codex | Refined D-068 and Sections 8, 9, 10, 13, 14, and 15 to apply the existing safeguard consistently to first-time assignment and permitted replacement linking. | No F3 or F4 wording reopened; D-001 through D-067 unchanged; Sections 20–21 remain absent. |
 | 2026-08-04 | Claude Code | Final F5 replacement-link verification confirmed the safeguard applies consistently to first-time assignment and permitted replacement (`report1.6.md`). | Findings F3, F4, and F5 are all `RESOLVED`; D-001 through D-068 unchanged; no protected artifact modified. |
 | 2026-08-04 | Claude Code | Completed the Source 18 Engineering Review authorized by Instruction 1.7 and added Sections 20–21. | Engineering Decision and Readiness: `READY FOR FOUNDER APPROVAL`; D-001 through D-068 unchanged; no new Founder decision created; Blueprint not locked. |
+| 2026-08-04 | Founder | Approved the completed Product Blueprint, including Sections 1–21 and its engineering sequencing, and authorized Mission Control Blueprint Lock. | Founder approval granted for Blueprint Lock only; EIS preparation and implementation remain unauthorized until separately instructed. |
+| 2026-08-04 | Mission Control | Accepted the completed Product Blueprint, Founder Decisions D-001 through D-068, Builder Review verifications, Engineering Review, and Founder authorization; applied the SB-P-1.11 Blueprint Lock through Instruction 1.8. | Sections 1–21, Founder Decisions D-001 through D-068, and engineering sequencing locked as approved authority for the next lifecycle stage; separate EIS authorization remains required and implementation remains unauthorized. |
 
 ## 20. Engineering Review
 
