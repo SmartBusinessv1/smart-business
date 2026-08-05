@@ -543,10 +543,18 @@ CREATE TABLE public.catalog_link_preview_tokens (
   resulting_link_event_id        uuid,
 
   CONSTRAINT catalog_link_preview_tokens_business_id_uniq UNIQUE (business_id, id),
+  -- ON DELETE CASCADE (not RESTRICT): a preview token that was ever
+  -- successfully confirmed already has a corresponding, immutable
+  -- catalog_product_link_events row, and *that* table's own
+  -- ON DELETE RESTRICT is what correctly blocks deleting a product with
+  -- real link history (Rule 21 "business history"). A preview token that
+  -- was never confirmed (open, expired-unconsumed, or superseded without
+  -- ever being confirmed) never changed anything, so it is not "business
+  -- history" and must not by itself block an otherwise-eligible deletion.
   CONSTRAINT catalog_link_preview_tokens_product_fk
     FOREIGN KEY (business_id, product_id)
       REFERENCES public.catalog_products (business_id, id)
-      ON DELETE RESTRICT,
+      ON DELETE CASCADE,
   CONSTRAINT catalog_link_preview_tokens_closure_pair CHECK (
     (closed_at IS NULL AND closed_by_actor_user_id IS NULL AND closure_reason IS NULL) OR
     (closed_at IS NOT NULL AND closure_reason IS NOT NULL)
@@ -858,13 +866,16 @@ CREATE POLICY "read_executor_select_own_business"
 CREATE TABLE public.catalog_audit_events (
   id                      uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   business_id             uuid NOT NULL REFERENCES public.businesses(id) ON DELETE CASCADE,
-  entity_type             text NOT NULL CHECK (entity_type IN ('catalog_product', 'catalog_category')),
+  entity_type             text NOT NULL CHECK (entity_type IN (
+                             'catalog_product', 'catalog_category', 'business_tax_settings'
+                           )),
   entity_id               uuid NOT NULL,
   change_type             text NOT NULL CHECK (change_type IN (
                              'product_created', 'product_identity_updated', 'product_unit_updated',
                              'category_created', 'category_archived',
                              'product_archived', 'product_reactivated',
-                             'inventory_link_assigned', 'inventory_link_replaced', 'inventory_link_removed'
+                             'inventory_link_assigned', 'inventory_link_replaced', 'inventory_link_removed',
+                             'business_tax_settings_updated'
                            )),
   change_payload          jsonb NOT NULL,
   authorized_by_user_id   uuid NOT NULL,
@@ -916,6 +927,7 @@ BEGIN
     WHEN 'inventory_link_assigned' THEN ARRAY['after']
     WHEN 'inventory_link_replaced' THEN ARRAY['before', 'after']
     WHEN 'inventory_link_removed' THEN ARRAY['before']
+    WHEN 'business_tax_settings_updated' THEN ARRAY['before', 'after']
     ELSE NULL
   END;
 
@@ -950,6 +962,8 @@ BEGIN
       ARRAY['inventory_item_id', 'selling_unit']
     WHEN 'inventory_link_removed' THEN
       ARRAY['inventory_item_id', 'selling_unit']
+    WHEN 'business_tax_settings_updated' THEN
+      ARRAY['pricing_mode', 'default_tax_rate']
     ELSE ARRAY[]::text[]
   END;
 
