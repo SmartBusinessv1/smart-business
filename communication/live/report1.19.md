@@ -34,19 +34,19 @@
 
 ## 3. Final Branch Commit SHA
 
-`PENDING-SUBSTANTIVE-COMMIT` — placeholder, to be replaced with the real SHA immediately after the substantive commit is created (see Section 4).
+**Substantive commit** — contains the actual MC-EC-001 through MC-EC-006 refinement (`engineering-contract.md`, `report1.18.md`, and the original version of this report):
 
-This report is necessarily written and first committed before its own commit hash can exist — the same self-referential limit that produced the MC-EC-001 gap in `report1.18.md`. To avoid repeating that gap without fabricating a value, this mission will:
+`220ea4ec3e5ba072fe6b8a16df77ba47b817bc81` — "Refine SB-P-1.11 Engineering Contract: correct MC-EC-001 through MC-EC-006"
 
-1. Commit the substantive refinement (`engineering-contract.md`, `report1.18.md`, and this report) and record that commit's real SHA.
-2. Push the branch and open the pull request, recording the real PR number and URL.
-3. Push one small, documentation-only follow-up commit on the same branch that replaces this section's placeholder and Section 4's placeholder with the real, verified values — never leaving a fabricated or permanently unresolved value in the final document.
+This report was necessarily written and first committed before its own commit hash could exist — the same self-referential limit that produced the MC-EC-001 gap in `report1.18.md`. Rather than repeating that gap or fabricating a value, this section and Section 4 were left as explicit, clearly-labeled placeholders in the substantive commit above, then updated with the real, verified values by one small, documentation-only follow-up commit on this same branch (this commit), immediately after the substantive commit was pushed and the pull request was opened. No fabricated or permanently unresolved value appears in the final, reviewed version of this document.
 
 ---
 
 ## 4. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — placeholder, to be replaced with the real PR number and URL by the same follow-up commit described in Section 3.
+**Pull Request:** #73
+
+**URL:** `https://github.com/SmartBusinessv1/smart-business/pull/73`
 
 ---
 
