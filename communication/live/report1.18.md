@@ -34,13 +34,25 @@
 
 ## 3. Final Commit SHA
 
-Recorded at commit time in Section 7 below (commit created after this report is written, per the required sequence: draft → quality gate → commit → push → PR).
+The final commit on the mission branch `mission/SB-P-1.11-engineering-contract-preparation` (prior to merge) was:
+
+`eb4c7b72da0935850c296f17364c0df9121c539d` — "Prepare SB-P-1.11 Engineering Contract (Stage 12A)"
+
+This is the original branch commit SHA. It is distinct from the commit that was actually written to `main` on merge — see Section 4.
 
 ---
 
 ## 4. Pull-Request Number and URL
 
-Recorded in Section 7 below, after the pull request is opened.
+**Pull Request:** #71
+
+**URL:** `https://github.com/SmartBusinessv1/smart-business/pull/71`
+
+**Merged as:** squash-merge into `main` at commit:
+
+`a2785175eb5a2213c701be7f2e084d7a5176c661`
+
+This squash-merge commit SHA is deliberately distinguished from the original branch commit SHA in Section 3: a GitHub squash merge writes a new commit object onto `main` with different parent linkage (and a different SHA) than the branch's own commit, even though it carries the identical final file content. Both SHAs are recorded here so either can be used to locate the change — the branch commit on `mission/SB-P-1.11-engineering-contract-preparation`'s own history, and the squash-merge commit on `main`'s history (MC-EC-001).
 
 ---
 

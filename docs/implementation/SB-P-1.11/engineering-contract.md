@@ -1,12 +1,12 @@
 Document: Engineering Contract
 
-Version: 1.0
+Version: 1.1
 
 Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (pending)
+Reviewed By: Mission Control (Version 1.0 review recorded findings MC-EC-001 through MC-EC-006; re-review of Version 1.1 pending)
 
 Approval Date: Pending
 
@@ -29,13 +29,15 @@ This contract is not approved. It is not locked. It carries no implementation au
 |---|---|
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
-| Stage | 12A — Engineering Contract Preparation |
+| Stage | 12A — Engineering Contract Preparation and Refinement |
 | Domain | Business Operations Domain |
 | Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` — Sections 1–21, LOCKED |
 | Founder Product Decision Record | `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md` — D-001 through D-068 |
 | Engineering Implementation Specification | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED |
 | Contract Owner | Claude Code, under Mission Control governance |
-| Authorizing Instruction | `communication/live/instruction1.18.md` |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006, requiring narrow refinement |
+| This Revision | Narrow refinement authorized by `communication/live/instruction1.19.md`, correcting only MC-EC-001 through MC-EC-006; no previously accepted content reopened |
+| Authorizing Instruction | `communication/live/instruction1.19.md` |
 | Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this mission authorizes the Engineering Contract only |
 | Upstream Mission Dependency | SB-P-1.10 — Inventory Foundation (accepted, LOCKED) |
 
@@ -132,7 +134,7 @@ The underlying mission objective, unchanged from Blueprint §3, is to establish 
 - Eight command-group-scoped least-privilege owner roles (`catalog_identity_executor`, `catalog_lifecycle_executor`, `catalog_pricing_executor`, `catalog_tax_executor`, `catalog_cost_executor`, `catalog_link_executor`, `catalog_import_executor`, `catalog_read_executor`) plus `catalog_channel_executor` and `catalog_scheduler_executor` — EIS §7.
 - Two genuinely `LOGIN`-capable service-account identities (`catalog_channel_service`, `catalog_scheduler_service`), each holding `EXECUTE` only, never table DML — EIS §7.
 - The Pattern A external-worker scheduler architecture (`list_due_catalog_price_schedule_candidates` and `activate_catalog_price_schedule`, two ordinary `FUNCTION`s, no `PROCEDURE`, no in-database multi-commit transaction control) — EIS §12, Section 18 of this contract.
-- No component introduces a new architectural pattern, external system, or deviation from the current Supabase-based stack (Blueprint §20 "Proposed Architecture and Bounded Components").
+- No component may introduce an external system or architectural pattern other than the service identities, external worker boundary, and integration mechanisms explicitly authorized by the locked EIS — namely `catalog_channel_service`, `catalog_scheduler_service`, and the Pattern A external-worker scheduler boundary (EIS §7, §12). No component may introduce any other external system or deviation from the current Supabase-based stack (Blueprint §20 "Proposed Architecture and Bounded Components"; MC-EC-006).
 
 ## 8. Data-Model Obligations
 
@@ -234,11 +236,21 @@ Inventory movements recorded before the current link tenure do not count.
 
 ## 16. Permission-Engine Obligations and Temporary Sequencing
 
-**[SHARED-SYSTEM DEPENDENCY]** Full enforcement of Blueprint §8 "Permissions" (Manager and sale-authorized-Employee catalog access) requires a shared permission-engine foundation that does not yet exist for any mission in this repository (Blueprint §20 "Permission-Engine Dependency"; §21 "Dependencies Requiring Prior or Parallel Missions"). This is a build-sequencing fact, not a defect, and does not weaken D-014/D-016/D-035's rule that employees cannot see owner financial intelligence by default.
+**[SHARED-SYSTEM DEPENDENCY]** Full enforcement of Blueprint §8 "Permissions" (Manager and sale-authorized-Employee catalog access) requires a shared permission-engine foundation that does not yet exist for any mission in this repository (Blueprint §20 "Permission-Engine Dependency"; §21 "Dependencies Requiring Prior or Parallel Missions"). This is a build-sequencing fact, not a defect, and does not weaken D-014/D-016/D-035's rule that employees cannot see owner financial intelligence by default. The sequencing below is explicit and non-contradictory (MC-EC-002).
 
-**[MANDATORY]** Implementation shall nonetheless implement, and design every command function to independently re-check, the eight permission flags EIS §8 defines: `catalog_view`, `catalog_product_manage`, `catalog_lifecycle_manage`, `catalog_price_manage`, `catalog_tax_manage`, `catalog_cost_manage`, `catalog_inventory_link_manage`, `sale_use` — with inventory linking additionally requiring `inventory_view` (Blueprint §8 "Permissions"; D-016, D-033–D-035, D-048).
+### Phase 1 — [MANDATORY]
 
-**[MANDATORY]** Until the shared permission engine exists, SB-P-1.11's Owner-scoped catalog data model, RLS, and dashboard CRUD are buildable today using the existing Owner-only pattern established by SB-P-1.10 (Blueprint §20 "Engineering conclusion"). Manager and sale-authorized-Employee enforcement is Phase 2a and is sequenced behind the shared engine (Blueprint §20 "Build Sequencing"; Section 24 of this contract).
+- Runtime access remains Owner-only, using the existing Owner-only pattern already established by SB-P-1.10 (Blueprint §20 "Engineering conclusion").
+- Command signatures, authorization boundaries, data structures, and UI gating shall be designed to remain compatible with the future shared permission engine: every command function shall independently re-check the exact permission flag EIS §8 assigns it — `catalog_view`, `catalog_product_manage`, `catalog_lifecycle_manage`, `catalog_price_manage`, `catalog_tax_manage`, `catalog_cost_manage`, `catalog_inventory_link_manage`, `sale_use`, with inventory linking additionally requiring `inventory_view` — even while only the Owner can currently satisfy that check, so no later signature change is required when the shared engine arrives (Blueprint §8 "Permissions"; D-016, D-033–D-035, D-048).
+- No temporary, local, duplicated, or mission-specific substitute permission engine may be invented for SB-P-1.11. Where Manager or Employee enforcement cannot yet be activated, the correct Phase 1 behaviour is Owner-only access, not a bespoke stand-in authorization mechanism.
+- Manager and Employee runtime enforcement must not be activated before the shared permission engine is separately authorized, implemented, verified, and available — **[APPROVAL GATE]** / **[SHARED-SYSTEM DEPENDENCY]**.
+
+### Phase 2a — [SHARED-SYSTEM DEPENDENCY]
+
+- Action-specific Manager and Employee enforcement may be activated only through the approved shared permission engine, once that engine is separately authorized, implemented, verified, and available (Blueprint §20 "Build Sequencing"; Section 24 of this contract).
+- At that point, all eight EIS-defined permission flags and the additional `inventory_view` dependency for inventory linking shall be enforced exactly as locked (Blueprint §8 "Permissions"; D-016, D-033–D-035, D-048; EIS §8).
+
+Neither phase weakens employee default denial of owner financial intelligence (D-014, D-016, D-035); Phase 1's Owner-only runtime access is a stricter, not looser, interim posture than the eventual Manager/Employee model.
 
 ## 17. Audit, Provenance, Idempotency, and Outcome-Reconciliation Obligations
 
@@ -350,7 +362,7 @@ Upstream mission dependency: SB-P-1.10 — Inventory Foundation (accepted). Down
 
 **[MANDATORY]** Implementation must produce test coverage for every item in EIS §21 "Testing and Verification Matrix", including the v2.1/v2.2 additions:
 
-- Execution-identity scoping: each of the eight command-group owners can write only its own assigned tables, verified by privilege inspection per role.
+- Execution-identity scoping (MC-EC-004 — complete privilege verification scope): exact privilege inspection, not merely role existence, for all eight command-group-scoped Layer 2 `NOLOGIN` function-owner roles, `catalog_channel_executor`, and `catalog_scheduler_executor` — each confirmed to write only its own assigned tables; for `catalog_channel_service` and `catalog_scheduler_service` — each confirmed to hold zero direct protected-table DML privilege of any kind; every explicit `EXECUTE` grant confirmed against the specific Layer 1 identity authorized to hold it; every table-level privilege confirmed against the exact grant table in EIS §7 "Least-Privilege Command Authority"; `REVOKE EXECUTE ... FROM PUBLIC` confirmed applied to every command function.
 - Scheduler run semantics: a fault on one candidate does not prevent a later candidate in the same fixed run list from being attempted and committing independently; a crash mid-run leaves already-`activated` candidates durably committed; a candidate that fails once is not reselected within the same run.
 - Rejection-commit coherence: every named rejection category durably persists its idempotency-key row and (for D-068) its token consumption, verified by querying the database directly after a rejected call.
 - Channel dedup layering: a redelivered initiating webhook returns the existing pending action without creating a second one; a redelivered confirming webhook returns the prior outcome without invoking the underlying command a second time.
@@ -367,10 +379,17 @@ This Engineering Contract is acceptable when:
 - Every obligation in Sections 4–26 is traceable to a specific, cited Product Blueprint section, Founder Decision, or EIS section.
 - No requirement in this contract contradicts, narrows, or expands the locked Product Blueprint or the locked EIS.
 - No implementation code, SQL, migration, API, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, or frontend artifact is present in this contract or elsewhere in this mission's output.
-- The contract is specific enough that a builder can execute Sections 4–26 without needing to reinterpret the Blueprint or EIS from scratch.
+- The contract is precise enough that a builder can execute each separately authorized phase (Section 24) without reopening Product Truth or engineering design — this does **not** mean every obligation in Sections 4–26 is immediately executable as one undifferentiated batch (MC-EC-003).
 - All prohibited work in Section 30 is explicitly excluded from authorized scope.
 
-A subsequent implementation mission executing against this contract is separately acceptable only when it satisfies, at minimum, the Blueprint §15 "Acceptance Criteria" checklist and the EIS §26 "Definition of Done" release gates in full, including: privilege inspection confirming each of the eight command-group owner roles holds exactly its specified table privileges; the Pattern A scheduler worker confirmed available and correctly credentialed, and `activate_catalog_price_schedule` confirmed to require no internal transaction-control statement, before reliance; every rejection category confirmed to durably persist its idempotency-key and token-consumption bookkeeping under injected-fault testing; `get_catalog_command_outcome` confirmed to accept no caller-supplied business parameter in its deployed signature.
+**Conditional-obligation discipline (MC-EC-003):** any obligation tagged **[ENVIRONMENT VERIFICATION]**, **[SHARED-SYSTEM DEPENDENCY]**, or **[APPROVAL GATE]** anywhere in Sections 4–29 must not be implemented until its stated condition has been resolved, verified where required, and separately authorized. Acceptance of this contract records that such a condition is correctly identified and gated; it does not itself resolve, verify, or authorize the condition.
+
+A subsequent implementation mission executing against this contract is separately acceptable only when it satisfies, at minimum, the Blueprint §15 "Acceptance Criteria" checklist and the EIS §26 "Definition of Done" release gates in full, including:
+
+- **Complete execution-identity privilege verification (MC-EC-004):** exact privilege inspection — not merely role existence — for all eight command-group-scoped Layer 2 `NOLOGIN` function-owner roles, `catalog_channel_executor`, and `catalog_scheduler_executor`, confirming each holds exactly its specified table privileges and no others; for `catalog_channel_service` and `catalog_scheduler_service`, confirming each holds only its specified `EXECUTE` grants and zero direct protected-table DML of any kind; confirmation of every explicit `EXECUTE` grant on every command function against the specific Layer 1 identity authorized to hold it (EIS §7); confirmation of every table-level privilege against the exact grant table in EIS §7 "Least-Privilege Command Authority"; and confirmation that `REVOKE EXECUTE ... FROM PUBLIC` has been applied to every command function.
+- The Pattern A scheduler worker confirmed available and correctly credentialed, and `activate_catalog_price_schedule` confirmed to require no internal transaction-control statement, before reliance.
+- Every rejection category confirmed to durably persist its idempotency-key and token-consumption bookkeeping under injected-fault testing.
+- `get_catalog_command_outcome` confirmed to accept no caller-supplied business parameter in its deployed signature.
 
 ## 28. Traceability to Blueprint Sections, Founder Decisions, and EIS Sections
 
@@ -399,11 +418,15 @@ A subsequent implementation mission executing against this contract is separatel
 | 24. Dependency and Sequencing | §12, §20, §21 | — | — |
 | 25. Failure Handling | §5 | — | §10, §11, §15 |
 | 26. Testing and Verification | §20 "Verification Expectations" | — | §21 |
-| 29. Open Implementation Parameters | §20, §21 | — | §24, §25 |
+| 29. Preserved EIS Parameter Dispositions | §20, §21 | — | §24, §25 |
 
-## 29. Open Implementation Parameters Preserved by the Locked EIS
+## 29. Preserved EIS Parameter Dispositions
 
-**[ENVIRONMENT VERIFICATION] / [SHARED-SYSTEM DEPENDENCY]** This contract does not resolve the following items; they remain open exactly as the locked EIS §24–§25 leaves them, to be closed during implementation or by separate specialist/Mission Control review:
+This section separates genuinely open items from already-resolved items the locked EIS preserves, correcting Version 1.0's internal inconsistency of presenting both in a single undifferentiated "open" list (MC-EC-005).
+
+### 29.1 Open — Requiring Specialist Review, Environment Verification, or Mission Control Sequencing
+
+**[ENVIRONMENT VERIFICATION] / [SHARED-SYSTEM DEPENDENCY]** This contract does not resolve the following items; they remain open exactly as the locked EIS §24 leaves them, to be closed during implementation or by separate specialist/Mission Control review:
 
 | # | Question | Disposition |
 |---|---|---|
@@ -412,10 +435,19 @@ A subsequent implementation mission executing against this contract is separatel
 | 3 | Final index set for every new table, including `catalog_channel_confirmation_receipts` | `SPECIALIST REVIEW REQUIRED` |
 | 4 | Scheduler worker run interval and lag budget (values unchanged: 1-minute run interval / 5-minute budget) | `SPECIALIST REVIEW REQUIRED` |
 | 5 | Shared permission-engine and shared conversational-engine sequencing and ownership | `REFINEMENT REQUIRED` (Mission Control sequencing decision) |
-| 6 | Selling-unit/price treatment upon inventory-link removal | Resolved, `ACCEPTED AS WRITTEN` |
 | 7 | Availability of Supabase Scheduled Edge Functions (or `pg_cron` + `pg_net`) in the deployed environment for the Pattern A scheduler worker | `SPECIALIST REVIEW REQUIRED` |
 
-None of these items is a blocking design gap (EIS §24 "Blocking Issues": none). The seven Stage 10 mandatory open-parameter dispositions (EIS §25) are likewise unchanged and not reopened by this contract.
+None of these items is a blocking design gap (EIS §24 "Blocking Issues": none). Item numbering matches the locked EIS §24 question numbers exactly, including the intentional gap at item 6 — see Section 29.2.
+
+### 29.2 Resolved — Preserved As Accepted
+
+The following item is closed. It must not be described as open, and must not be reopened by this contract or by any implementation performed against it:
+
+| # | Item | Disposition |
+|---|---|---|
+| 6 | Selling-unit/price treatment upon inventory-link removal | `RESOLVED — ACCEPTED AS WRITTEN` |
+
+The seven Stage 10 mandatory open-parameter dispositions (EIS §25) are likewise unchanged, already resolved, and not reopened by this contract.
 
 ## 30. Explicit Implementation Prohibitions
 
@@ -476,3 +508,4 @@ Only after Mission Control accepts this Engineering Contract may a separate inst
 | Version | Description |
 |---|---|
 | 1.0 | Initial draft Engineering Contract, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21) and the locked SB-P-1.11 EIS (Version 2.2) into an implementation-ready contract, per `instruction1.18.md`. Covers all 29 mandatory content areas. No new Product Truth, Founder decision, or engineering behaviour introduced. Not approved, not locked, no implementation authority. |
+| 1.1 | Narrow refinement authorized by `instruction1.19.md`, correcting Mission Control findings MC-EC-001 through MC-EC-006 identified in review of Version 1.0. Corrected `report1.18.md`'s placeholder execution evidence with the actual branch commit SHA, squash-merge commit SHA, and PR #71 reference, explicitly distinguished (MC-EC-001). Made Section 16's permission-engine sequencing explicit and non-contradictory with separate Phase 1 (Owner-only runtime, forward-compatible signatures, no substitute permission engine) and Phase 2a (shared-engine-gated Manager/Employee enforcement) subsections (MC-EC-002). Refined Section 27's acceptance wording so it does not imply every obligation is immediately executable, and added an explicit rule that `[ENVIRONMENT VERIFICATION]`/`[SHARED-SYSTEM DEPENDENCY]`/`[APPROVAL GATE]`-tagged obligations must not be implemented until their condition is resolved, verified, and separately authorized (MC-EC-003). Expanded the privilege-verification requirements in Sections 26 and 27 to cover the complete execution-identity model — all eight command-group owners, `catalog_channel_executor`, `catalog_scheduler_executor`, both service identities, every `EXECUTE` grant, every table-level privilege, and `PUBLIC` execute revocation — requiring exact privilege inspection rather than role-existence checks (MC-EC-004). Split the former "Open Implementation Parameters" section into Section 29.1 (genuinely open items) and Section 29.2 (the already-`RESOLVED — ACCEPTED AS WRITTEN` inventory-link-removal item), renaming the section "Preserved EIS Parameter Dispositions" (MC-EC-005). Corrected Section 7's architecture wording so it no longer appears to prohibit the EIS-authorized external-worker/service-identity boundary (MC-EC-006). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no implementation authority. |
