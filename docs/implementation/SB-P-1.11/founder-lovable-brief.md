@@ -46,7 +46,7 @@ This document is a preparation draft. It is not approved, not locked, and does n
 
 This brief exists to hand a Founder-readable, technically precise description of exactly what "initial Phase 1" means for SB-P-1.11 to whoever eventually receives implementation authorization — so that Lovable is told exactly what to build, exactly what not to build, and exactly how to prove it built the right thing, without needing to re-derive any of that from the underlying engineering documents.
 
-It converts five already-locked documents and six already-accepted readiness reports into one handoff document. It invents nothing new. Every rule in this brief already exists in a locked source or an accepted Mission Control disposition; this brief only organizes and explains them for a Founder audience.
+It converts five already-locked documents and six already-accepted readiness reports into one handoff document. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
 
 ---
 
@@ -54,7 +54,7 @@ It converts five already-locked documents and six already-accepted readiness rep
 
 For the business owner, initial Phase 1 delivers a working, dashboard-based product catalogue:
 
-- Create, edit, archive, reactivate, and (where eligible) permanently delete products and categories.
+- Create and archive categories. Create, edit, archive, reactivate, and — where eligible — permanently delete products. (Categories support create and archive only; there is no edit, reactivate, or permanent-delete command for a category.)
 - Set and change a product's selling price immediately, with full price history preserved.
 - Set an optional reference cost (never shown to employees by default) and an optional tax treatment, both with full history.
 - Link a catalog product to an existing inventory item, with a mandatory price/unit confirmation step so a price can never silently change its meaning.
@@ -101,7 +101,9 @@ Where a later accepted report corrected an earlier one, this brief uses only the
 
 ## 6. Exact 19-Command Initial Phase 1 Scope Table
 
-Every name below is copied verbatim from the locked Lovable Build Prompt §11 command surface, restricted to the 19 commands `communication/live/report1.27.md`/`report1.28.md` (Matter 4, as corrected) authorize for initial Phase 1. The two merchant-facing scheduling commands and the two scheduler-worker commands from the original 21-command Phase 1 group are excluded (Section 4, Section 14).
+Every name below is copied verbatim from the locked Lovable Build Prompt §11 command surface, restricted to the 19 commands `communication/live/report1.27.md`/`report1.28.md` (Matter 4, as corrected) authorize for initial Phase 1.
+
+The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facing scheduling commands (`schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`) are excluded from Phase 1. The two separate scheduler commands (`list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`) and their runtime were never part of the 21-command Phase 1 group in the first place — the locked Lovable Build Prompt §11 lists them as their own, separately named "Environment-gated scheduler commands" group. Both exclusions are detailed in Section 4 and Section 14.
 
 | Command | Phase | Included in Initial Phase 1 | User or System Actor | Primary Purpose | Main Tables or Protected Resources | Verification Reference |
 |---|---|---|---|---|---|---|
@@ -117,9 +119,9 @@ Every name below is copied verbatim from the locked Lovable Build Prompt §11 co
 | `record_catalog_tax_change` | Phase 1 | Yes | Owner (dashboard) | Change a product-level tax override | `catalog_tax_events`, `catalog_write_idempotency_keys` | CHK-PTC-001 |
 | `update_business_tax_settings` | Phase 1 | Yes | Owner (dashboard) | Set the business-wide tax-inclusive/exclusive default | `business_tax_settings` | CHK-PTC-001; Section 9 (singleton) |
 | `record_catalog_reference_cost_change` | Phase 1 | Yes | Owner (dashboard) | Change the optional reference cost | `catalog_reference_cost_events`, `catalog_products` (read) | CHK-PTC-001, CHK-EMP-001 |
-| `preview_catalog_inventory_link_change` | Phase 1 | Yes | Owner (dashboard) | Preview a first-time or replacement inventory link, unit, and price before saving (D-068 step 1) | `catalog_link_preview_tokens`, `catalog_products` (read), `inventory_items` (read) | CHK-D068-001 |
-| `assign_or_replace_catalog_inventory_link` | Phase 1 | Yes | Owner (dashboard, same actor as the preview) | Confirm and atomically commit a previewed inventory-link change | `catalog_link_preview_tokens`, `catalog_product_link_events`, `catalog_selling_price_events`, `catalog_products` | CHK-D068-001, CHK-D068-002, CHK-ACT-001 (extended) |
-| `remove_catalog_inventory_link` | Phase 1 | Yes | Owner (dashboard) | Remove an existing inventory link | `catalog_product_link_events`, `catalog_products` | CHK-SEP-001, CHK-D068-002 |
+| `preview_catalog_inventory_link_change` | Phase 1 | Yes | Owner (dashboard) | Preview a first-time assignment, replacement, or removal of an inventory link (unit and price where applicable) before saving — step 1 of the D-068 safeguard for every one of these three outcomes | `catalog_link_preview_tokens`, `catalog_products` (read), `inventory_items` (read) | CHK-D068-001 |
+| `assign_or_replace_catalog_inventory_link` | Phase 1 | Yes | Owner (dashboard, same actor as the preview) | Confirm and atomically commit a previewed first-time assignment or replacement — step 2 of the D-068 safeguard, using the valid preview token | `catalog_link_preview_tokens`, `catalog_product_link_events`, `catalog_selling_price_events`, `catalog_products` | CHK-D068-001, CHK-D068-002, CHK-ACT-001 (extended) |
+| `remove_catalog_inventory_link` | Phase 1 | Yes | Owner (dashboard, same actor as the preview) | Confirm and atomically commit a previewed inventory-link removal — step 2 of the D-068 safeguard, using the valid preview token | `catalog_link_preview_tokens`, `catalog_product_link_events`, `catalog_products` | CHK-SEP-001, CHK-D068-001, CHK-D068-002, CHK-ACT-001 (extended) |
 | `get_catalog_command_outcome` | Phase 1 | Yes | Owner (dashboard) | Reconcile the outcome of a prior command call, by idempotency key | `catalog_write_idempotency_keys` | CHK-ISO-002, CHK-IDEM-001 |
 | `catalog_products_search` | Phase 1 | Yes | Owner (dashboard) | Deterministic exact/normalized product search | `catalog_products` (read) | CHK-UX-002; Section 11 |
 | `catalog_product_read` | Phase 1 | Yes | Owner (dashboard) | Read one product's permission-filtered detail | `catalog_products` (read) | CHK-EMP-001 |
@@ -135,8 +137,8 @@ Every name below is copied verbatim from the locked Lovable Build Prompt §11 co
 - **List and search.** The merchant sees their products, can search by name, SKU, or barcode using exact/normalized matching (typo-in-whitespace or letter-case does not create a false "not found"), and can filter by category or lifecycle status.
 - **Create and edit.** Creating or editing a product is a plain form: name (required), optional description/SKU/barcode/category/image, and — once linked to inventory — an inherited unit; otherwise a selling unit the merchant chooses.
 - **Price, tax, and cost.** Selling price, tax treatment, and reference cost each have their own small, clearly labeled edit surface, each preserving full history. Reference cost is owner-only and never shown to any other role by default (Section 9), which matters even though Phase 1 has no other roles yet, because the same screens must not expose it once Phase 2a arrives.
-- **Linking to inventory — the one screen requiring extra care.** When a merchant links a product to an inventory item (or changes an existing link) and that changes the selling unit, the system always shows a preview first: current unit and price, the proposed new unit, and the price the merchant must explicitly confirm or replace. Nothing saves until the merchant reviews and confirms that exact screen. If the merchant closes the tab, gets interrupted, or waits too long, nothing changes — the merchant simply requests a fresh preview. This exists so a number the merchant typed under one unit can never silently become "the same number, but per a different unit" — a real risk for cash-strapped small businesses if it happened silently.
-- **Archiving and deletion.** Archiving a product or category never deletes its history and never silently affects a linked record on the other side (product/inventory). Permanent deletion is only ever offered when there is truly nothing to lose.
+- **Linking to inventory — the one screen requiring extra care.** When a merchant links a product to an inventory item, changes an existing link, or removes a link entirely, the system always shows a preview first — for a link that changes the selling unit, the preview shows current unit and price, the proposed new unit, and the price the merchant must explicitly confirm or replace; for a removal, the preview shows exactly what will stop being linked. Nothing saves until the merchant reviews and confirms that exact preview, and only the same person who opened the preview can confirm it. If the merchant closes the tab, gets interrupted, or waits too long (the preview is valid for 15 minutes only), nothing changes — the merchant simply requests a fresh preview. **Unlinking is not a one-tap action** — it goes through this same preview-and-confirm step before the product-inventory relationship actually changes, exactly like assigning or replacing a link does. This exists so a number the merchant typed under one unit can never silently become "the same number, but per a different unit," and so a link can never disappear from a single accidental tap — both real risks for a cash-strapped small business if either happened silently.
+- **Archiving and deletion.** Archiving a product or category never deletes its history and never silently affects a linked record on the other side (product/inventory). Categories can be created and archived only — there is no command to edit, reactivate, or permanently delete a category once created. For products only, permanent deletion is offered when there is truly nothing to lose, and a product can be reactivated after archiving.
 - **When something seems stuck.** If a save appears to hang or a screen is retried, the merchant is never left guessing — the system can always look up what actually happened using the same reference the original attempt used, rather than risking a duplicate action.
 
 ---
@@ -196,9 +198,18 @@ Different Malayalam spellings, Manglish transliterations, or translated names/SK
 
 ## 12. D-068 Preview, Confirmation, Token, and Audit Lifecycle
 
-The inventory-link safeguard (`preview_catalog_inventory_link_change` → `assign_or_replace_catalog_inventory_link`/`remove_catalog_inventory_link`) works as follows, and none of it is discretionary:
+The inventory-link safeguard is a two-step flow for every one of the three outcomes it governs — first-time assignment, replacement, and removal — and none of it is discretionary:
 
-- **Preview before confirmation.** A non-mutating preview is required before any unit/price-affecting link change; it returns a single-use token binding the exact reviewed state (proposed link, unit, and price).
+```text
+1. preview_catalog_inventory_link_change
+2. assign_or_replace_catalog_inventory_link (assignment/replacement)
+   OR remove_catalog_inventory_link (removal)
+   — using the valid preview token from step 1
+```
+
+**Removal is not exempt from this flow.** `remove_catalog_inventory_link` never runs on its own; it always confirms a preview that `preview_catalog_inventory_link_change` already produced, exactly as `assign_or_replace_catalog_inventory_link` does for assignment/replacement. Everything below applies identically to all three outcomes unless stated otherwise:
+
+- **Preview before confirmation.** A non-mutating preview is required before any inventory-link assignment, replacement, or removal; it returns a single-use token binding the exact reviewed state (proposed link, unit, and price for assignment/replacement; the link being removed for removal).
 - **Token validity: exactly 15 minutes, fixed, server-controlled.** The client cannot supply, extend, renew, or override this. The clock starts at server-side issuance; the boundary is `now() < expires_at`, evaluated on the server only — there is no client-clock dependency and no clock-skew case to handle, because only one clock (the server's) is ever consulted.
 - **No renewal.** There is no "extend" or "refresh" operation. After expiry, the merchant must request a fresh preview, which also re-shows current, accurate state.
 - **Same-actor confirmation.** Only the actor who requested the preview may confirm it. Any mismatch is rejected unconditionally — there is no delegated or "confirm on behalf of" path.
@@ -222,12 +233,14 @@ The inventory-link safeguard (`preview_catalog_inventory_link_change` → `assig
 
 ## 14. Phase Gates and Excluded Future Scope
 
-The locked, complete 28-command surface remains fully authoritative future authority. This brief documents only the 19 commands included in initial Phase 1 (Section 6); the remaining 9 are not implemented, scaffolded, exposed, granted, or partially activated under this brief:
+The locked, complete 28-command surface remains fully authoritative future authority. This brief documents only the 19 commands included in initial Phase 1 (Section 6); the remaining 9 are not implemented, scaffolded, exposed, granted, or partially activated under this brief.
+
+The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facing scheduling commands are excluded from Phase 1. The two separate scheduler commands and their runtime remain excluded under the scheduler gate — they were never part of the 21-command Phase 1 group; the locked Lovable Build Prompt §11 has always listed them as their own separate "Environment-gated scheduler commands" group, independent of which Phase 1 commands are authorized:
 
 | Excluded group | Commands / capability | Gate |
 |---|---|---|
-| Merchant-facing scheduling | `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price` | Excluded from initial Phase 1 by Mission Control disposition — a merchant must never see a scheduling control that cannot actually activate |
-| Scheduler runtime | `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, scheduler worker, `catalog_scheduler_service` identity, `pg_cron`, `pg_net` | Environment-verification gate + separate future implementation authorization |
+| Merchant-facing scheduling (2 of the 21 Phase 1 commands) | `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price` | Excluded from initial Phase 1 by Mission Control disposition — a merchant must never see a scheduling control that cannot actually activate |
+| Scheduler runtime (a separate 2-command group, not part of the 21-command Phase 1 group) | `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, scheduler worker, `catalog_scheduler_service` identity, `pg_cron`, `pg_net` | Environment-verification gate + separate future implementation authorization |
 | Phase 2a | Permission-flag enforcement on existing Phase 1 commands (no new command names) | Requires the shared permission engine — not yet built for any mission |
 | Phase 2b | `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows` and their tables/indexes | Separate future authorization |
 | Phase 3 | `create_catalog_pending_action`, `confirm_catalog_pending_action`, channel pending actions, channel confirmation receipts | Requires the shared conversational engine — not yet built for any mission |
@@ -266,7 +279,7 @@ Every included command and every major boundary maps to the locked Verification 
 | Catalog/inventory separation | No catalog write path touches `inventory_items`/`inventory_movements`; stock status derived only from link presence | CHK-SEP-001–003 | No direct write found; no separate editable "type" field exists | Any violation found |
 | Normalized uniqueness and archived-identity reservation | Schema inspection of the four `_normalized` columns and their composite constraints | CHK-UX-002; Section 8 of this brief | Archived rows continue to occupy their uniqueness slot; no partial active-row-only index exists | Any partial index or non-normalized constraint found |
 | Price/tax/cost/D-047 integrity | Append-only event tables; D-047 tenure-bounded predicate | CHK-PTC-001–002, CHK-D047-001 | History immutable; tenure-bounded reading enforced exactly as locked | Any mutable history row or misapplied predicate |
-| D-068 safeguard | Nine-step commit model; all four failure modes leave state unchanged | CHK-D068-001–002 | Cancellation/incomplete confirmation/validation failure/save failure each leave product, link, unit, and price unchanged | Any partial-state leak on any failure path |
+| D-068 safeguard (assignment, replacement, AND removal) | Nine-step commit model; all four failure modes leave state unchanged; `remove_catalog_inventory_link` requires the same preceding preview and same-actor confirmation as `assign_or_replace_catalog_inventory_link` | CHK-D068-001–002, CHK-ACT-001 (extended to the preview-token flow) | Cancellation/incomplete confirmation/validation failure/save failure each leave product, link, unit, and price unchanged, for assignment, replacement, and removal alike; removal never commits without a valid, unexpired, same-actor preview token | Any partial-state leak on any failure path; any removal that commits without a valid preceding preview |
 | Same-actor confirmation (extended to preview tokens) | Actor-mismatch rejection test | CHK-ACT-001 (extended per `report1.29.md`/`report1.30.md` Item 5) | Mismatched actor unconditionally rejected `ACTOR_MISMATCH` | Any delegated-confirmation path found |
 | Idempotency, audit, stale-state, rejection durability | Direct-query verification after a rejected call | CHK-IDEM-001–002, CHK-AUD-001, CHK-STALE-001, CHK-REJ-001, CHK-UNK-001 | Two-terminal-state model; full provenance shape present; rejections durably persist | Any missing provenance field or lost rejection record |
 | Token validity, retention, and minimization | Schema/behavior inspection against Section 12 | `communication/live/report1.31.md`, `report1.32.md` | 15-minute validity; 90-day/30-day retention; immediate consumption-time redaction; no automated purge claimed | Any deviation from the fixed parameters, or any claim of active automated purge |
