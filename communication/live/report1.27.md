@@ -14,6 +14,8 @@
 
 **Report Type:** Read-only investigation and resolution report. No implementation, no live verification, no Lovable Build Mode use.
 
+**Refinement Notice:** Matters 1, 3, and 4 below (and the consolidated matrix, proposed wording, and final recommendation) were corrected under `communication/live/instruction1.28.md`. See `communication/live/report1.28.md` for the refinement's own completion report and final conclusion. Matters 2 and 5 are unchanged and were not reopened.
+
 ---
 
 ## 1. Branch Name
@@ -55,12 +57,13 @@ No other file was created, modified, renamed, moved, or deleted. No locked docum
 Locked and governing sources (read-only inspection):
 
 - `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` — Product Blueprint, Sections 1–21, LOCKED (Engineering Review discovery text, "Security, Privacy, Observability, and Failure Recovery," "Multilingual Search and Normalization Feasibility," "Import Architecture and Safety Controls").
-- `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED (Sections 1–5, 11, 12, 24).
+- `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED (Sections 1–5, 7, 10, 11, 12, 24).
 - `docs/implementation/SB-P-1.11/engineering-contract.md` — Version 1.1, LOCKED — MISSION CONTROL ACCEPTED (Section 29 "Preserved EIS Parameter Dispositions").
-- `docs/implementation/SB-P-1.11/lovable-build-prompt.md` — Version 1.1, LOCKED — MISSION CONTROL ACCEPTED (Sections 6, 9, 11, 18, 26, 27).
+- `docs/implementation/SB-P-1.11/lovable-build-prompt.md` — Version 1.1, LOCKED — MISSION CONTROL ACCEPTED (Sections 6, 9, 11, 13, 17, 18, 26, 27).
 - `docs/implementation/SB-P-1.11/verification-checklist.md` — Version 1.1, LOCKED — MISSION CONTROL ACCEPTED (§29.1 restatement).
 - `merge/active/02_Supabase_Architecture_Framework.md` — Source 02, §3.13 `public.system_errors`.
-- `communication/live/instruction1.27.md` — this mission's authorizing instruction.
+- `communication/live/instruction1.27.md` — this mission's original authorizing instruction.
+- `communication/live/instruction1.28.md` — narrow refinement authorization for Matters 1, 3, and 4 (added in this refinement).
 
 Repository evidence (direct inspection, not assumption):
 
@@ -87,19 +90,39 @@ No external web research was performed or required. No Lovable Plan Mode questio
 
 **Governing locked-source references:** Blueprint (SB-P-1.11.md) discovery text and "Security, Privacy, Observability, and Failure Recovery"; Source 02 §3.13; Lovable Build Prompt §6, §9; EIS §5.0, §18.
 
-**Technical inference (labeled):** Because Phase 1's command-level outcome tracking is fully self-contained in the idempotency-key mechanism and standard Postgres exception propagation, `system_errors` is not required for any of the 21 Phase 1 commands to function correctly or completely. It is a small, generic, cross-mission reliability-monitoring table (API failures, webhook errors, external service failures, severity, resolution status, displayed in super-admin) that no mission has yet built. Since it is explicitly framed as shared, non-catalog-specific infrastructure (parallel in spirit to how SB-P-1.10 first built the `business_id`/RLS pattern and the idempotency-key pattern that SB-P-1.11 now reuses), whichever mission needs it first is the natural candidate to create it to its generic Source-02-§3.13 shape — provided it is not built catalog-specifically. This is an engineering inference, not a locked requirement: the locked sources do not state which mission must build it or when.
+**Technical inference (labeled):** Because Phase 1's command-level outcome tracking is fully self-contained in the idempotency-key mechanism and standard Postgres exception propagation, `system_errors` is not required for any of the 19 initial Phase 1 commands (Section 10 below) to function correctly or completely. It is a small, generic, cross-mission reliability-monitoring table (API failures, webhook errors, external service failures, severity, resolution status, displayed in super-admin) that no mission has yet built. Since it is explicitly framed as shared, non-catalog-specific infrastructure, building it under SB-P-1.11 specifically would risk exactly the kind of catalog-scoped, single-mission ownership of a cross-mission capability that Source 12 §13's "Single Implementation Rule" and the Blueprint's own reuse-before-duplication principle caution against for the permission engine and conversational engine. This is an engineering inference, not a locked requirement: the locked sources do not state which mission must build it or when — only that it should not be duplicated catalog-specifically.
+
+**Mission Control disposition (fixed per `instruction1.28.md` §3.1):**
+
+```text
+SYSTEM_ERRORS DISPOSITION:
+
+DEFER FROM INITIAL PHASE 1.
+
+Do not create system_errors under SB-P-1.11 initial Phase 1.
+Do not invent a catalog-specific error table.
+Do not reference a nonexistent system_errors table at runtime.
+
+For initial Phase 1, use the locked catalog_write_idempotency_keys
+outcome-of-record, standard transaction rollback, structured database
+errors, and existing repository logging only.
+
+The generic shared system_errors capability requires a separate
+shared-infrastructure mission before cross-mission reuse.
+```
 
 **Recommended disposition:**
 
 ```text
-RESOLVED — INCLUDE IN FUTURE PHASE 1 AUTHORIZATION
+RESOLVED — SEPARATE PREREQUISITE MISSION REQUIRED FOR SHARED SYSTEM_ERRORS,
+BUT NOT REQUIRED BEFORE INITIAL PHASE 1
 ```
 
-Because the table does not exist and two locked documents (Blueprint, Lovable Build Prompt) instruct reuse of it for observability, silence in a future Phase 1 implementation authorization risks Lovable either (a) referencing a nonexistent table, or (b) inventing a catalog-specific duplicate in violation of the reuse-before-duplication principle both documents state. The future authorization should make one explicit, narrow choice: either instruct creation of the minimal, generic (non-catalog-specific) `system_errors` table per Source 02 §3.13 as part of Phase 1's foundational schema work, or explicitly state that Phase 1 observability relies solely on the idempotency-key outcome-of-record and defers `system_errors` creation to a later mission/phase. Either choice is technically valid; only silence is not.
+The table does not exist, is not catalog-specific, and is not named by any locked source as a Phase 1 shared-system dependency gate. Initial Phase 1 does not need it: `catalog_write_idempotency_keys.status` is already the EIS's own outcome-of-record, standard transaction rollback already handles unexpected-failure recovery (EIS §3, "only genuinely unexpected errors trigger an exception-driven full rollback"), and structured database errors plus existing repository logging cover the remaining observability surface without inventing anything new. Building the generic, cross-mission `system_errors` table is out of scope for SB-P-1.11 initial Phase 1 and belongs to a separate shared-infrastructure mission, consistent with how the permission engine and conversational engine were kept out of this mission's build scope.
 
-**Blocks initial Phase 1?** No. None of the 21 Phase 1 commands functionally depend on it (per the EIS's own outcome-of-record design), and no locked source names it as a shared-system dependency gate the way the permission engine and conversational engine are named.
+**Blocks initial Phase 1?** No. Initial Phase 1 must not create `system_errors`, must not invent a catalog-specific substitute, and must not reference a nonexistent `system_errors` table at runtime — all three are satisfied by relying solely on the idempotency-key outcome-of-record, transaction rollback, structured database errors, and existing repository logging.
 
-**Exact next authority required if unresolved:** A single explicit line in the future Founder Lovable Brief or implementation authorization, decided by Mission Control (not a specialist and not a new Founder product decision, since this is a schema-inclusion/sequencing choice, not a change to merchant-facing behavior): either "create the shared `system_errors` table as part of Phase 1" or "Phase 1 observability defers `system_errors`; do not create it and do not invent a substitute."
+**Exact next authority required if unresolved:** None to authorize initial Phase 1. A separate, future Mission Control instruction is required to open a shared-infrastructure mission for the generic `system_errors` capability; this refinement does not create that mission.
 
 ---
 
@@ -145,50 +168,90 @@ RESOLVED — NOT REQUIRED FOR INITIAL PHASE 1 AUTHORIZATION
 - The Blueprint's "Multilingual Search and Normalization Feasibility" section requires "a normalized/generated value used for the business-scoped uniqueness check" for product name, SKU, barcode, and category — an integrity constraint the Blueprint calls "reliably enforceable as a database-level constraint," distinct from the open similarity-threshold question in Matter 2.
 - The scheduler's own run model (EIS §12) requires the candidate-list function to fetch "bounded, `effective_at ASC`, never re-queried mid-run" — implying a query-supporting index on the pending-schedule table's due-date column, but this index exists to serve the scheduler commands Matter 4 addresses, not the 21 Phase 1 commands.
 
-**Governing locked-source references:** EIS §5, §5.10, §11, §12, §24; Engineering Contract §29.1; Lovable Build Prompt §6, §13; Blueprint "Multilingual Search and Normalization Feasibility."
+**Governing locked-source references:** EIS §3, §5, §5.10, §7, §11, §12, §24; Engineering Contract §29.1; Lovable Build Prompt §6, §13; Blueprint §10 "Business Rules" (Rules 8, 9), "Proposed Architecture and Bounded Components," "Multilingual Search and Normalization Feasibility."
 
-**Technical inference (labeled):** Two categories separate cleanly from locked sources alone: (1) **integrity-enforcing** — the four named `UNIQUE` constraints, the mandatory `business_id`-plus-`owner_id` RLS/uniqueness pattern, the composite `UNIQUE (id, business_id)` FK pattern, and business-scoped normalized-uniqueness on product name/SKU/barcode/category — all fixed by locked text, not discretionary; (2) **query-supporting/performance** — indexes that make `catalog_products_search`, `catalog_product_read`, and `catalog_products_list_batch` performant at scale (e.g., a `business_id`-plus-lifecycle-status index, any `pg_trgm` GIN index) — explicitly the deferred EIS §24 item 3, non-blocking, and entangled with Matter 2's own open threshold question for the trigram-specific case. (3) **Later-phase** — indexes supporting Phase 2b bulk import/correction-queue lookups or Phase 3 conversational-intent lookups belong to those phases' own future authorizations. (4) **Scheduler** — the `effective_at`-ordered candidate-fetch index belongs to the scheduler commands Matter 4 excludes from initial Phase 1. (5) **Runtime-evidence-dependent** — any index whose value depends on real per-business row-count and query-pattern data (most of category 2) cannot be responsibly finalized before Phase 1 has real usage.
+**Technical inference (labeled):** Five categories separate cleanly from locked sources: (1) **integrity-enforcing** — named `UNIQUE` constraints, the mandatory `business_id`-plus-`owner_id` RLS/uniqueness pattern, the composite `UNIQUE (id, business_id)` FK pattern, and business-scoped normalized-uniqueness on product name/SKU/barcode/category — required now, though several exact column/expression names are not restated in currently-locked text (see matrix below); (2) **query-supporting/performance** — indexes that make search and list reads performant at scale — explicitly the deferred EIS §24 item 3, non-blocking; (3) **later-phase** — Phase 2b import/correction-queue and Phase 3 conversational-intent indexes belong to those phases' own future authorizations; (4) **scheduler** — the `effective_at`-ordered candidate-fetch index and the pending-schedule/schedule-event tables' own constraints belong to the scheduler and merchant-facing scheduling scope Matter 4 now excludes from initial Phase 1; (5) **runtime-evidence-dependent** — indexes whose value depends on real per-business row-count and query-pattern data cannot be responsibly finalized before Phase 1 has real usage.
+
+**Exact minimum Phase 1 index matrix.** Table scope is the 19 commands Matter 4 (as refined by `instruction1.28.md` §3.3) authorizes for initial Phase 1, derived from the EIS §7 "Least-Privilege Command Authority" table's exact table privileges per command group. `catalog_pending_price_schedules`, `catalog_price_schedule_events` (merchant-facing scheduling, now excluded), `catalog_channel_pending_actions`, `catalog_channel_confirmation_receipts` (Phase 3), and `catalog_import_jobs`, `catalog_import_rows` (Phase 2b) are out of scope and excluded below. Every `id` primary-key row is a labeled inference from the repository-wide `id uuid primary key` convention (evidenced directly for `catalog_channel_confirmation_receipts`, EIS §5.10) rather than an independent restatement for that specific table, since EIS §5.1–5.2 are marked "unchanged from Version 2.0" without reproducing their field lists.
+
+| Table | Constraint or Index Name | Exact Columns or Expression | UNIQUE or Non-Unique | Purpose | Locked-Source Basis | Initial Phase 1 or Deferred |
+|---|---|---|---|---|---|---|
+| `catalog_products` | Primary key (unnamed) | `id` | UNIQUE | Row identity; target of every child table's FK | Inference — repository-wide `id uuid` PK convention (EIS §5.10 example) | Initial Phase 1 |
+| `catalog_products` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency for every child event/reference table | Lovable Build Prompt §13 ("every new table") | Initial Phase 1 |
+| `catalog_products` | Business-scoped name uniqueness (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | Enforce Rule 8 — business-unique product name, ignoring whitespace/case differences | Blueprint §10 Business Rules, Rule 8 | Initial Phase 1 |
+| `catalog_products` | Business-scoped SKU uniqueness (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | Enforce Rule 9 — business-unique SKU, optional/single-valued | Blueprint §10 Business Rules, Rule 9 | Initial Phase 1 |
+| `catalog_products` | Business-scoped barcode uniqueness (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | Enforce Rule 9 — business-unique barcode, optional/single-valued | Blueprint §10 Business Rules, Rule 9 | Initial Phase 1 |
+| `catalog_categories` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_categories` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency (referenced by `catalog_products`) | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_categories` | Business-scoped name uniqueness (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | "Flat, business-owned, normalized-unique name" | Blueprint "Proposed Architecture and Bounded Components" | Initial Phase 1 |
+| `catalog_write_idempotency_keys` | Claim-uniqueness constraint (unnamed) | `(business_id, operation, idempotency_key)` | UNIQUE | Idempotent claim/outcome-of-record for every command call | EIS §11 (`ON CONFLICT (business_id, operation, idempotency_key)`) | Initial Phase 1 |
+| `catalog_write_idempotency_keys` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_selling_price_events` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_selling_price_events` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_tax_events` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_tax_events` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `business_tax_settings` | Singleton/uniqueness shape (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | Rule 17 implies one business-wide tax-mode setting; exact PK/unique mechanism not given | Blueprint §10 Business Rules, Rule 17; EIS §7 (`catalog_tax_executor` grant) | Initial Phase 1 |
+| `catalog_reference_cost_events` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_reference_cost_events` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_link_preview_tokens` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_link_preview_tokens` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_link_preview_tokens` | Single-use token uniqueness (unnamed) | `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` | UNIQUE | D-068 single-use token binding the exact reviewed state | Engineering Contract §12; EIS §10 | Initial Phase 1 |
+| `catalog_product_link_events` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_product_link_events` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_audit_events` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_audit_events` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_deletion_records` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_deletion_records` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency; minimal deletion audit record (Rule 22) | Lovable Build Prompt §13; Blueprint §10 Rule 22 | Initial Phase 1 |
+| `catalog_file_references` | Primary key (unnamed) | `id` | UNIQUE | Row identity | Inference — repository-wide `id uuid` PK convention | Initial Phase 1 |
+| `catalog_file_references` | Composite FK-integrity constraint (unnamed) | `(id, business_id)` | UNIQUE | Cross-table FK consistency | Lovable Build Prompt §13 | Initial Phase 1 |
+| `catalog_pending_price_schedules` | Pending-schedule uniqueness (unnamed) | `(product_id)` | UNIQUE | At most one pending scheduled price per product | EIS §5 (unchanged from v2.0, `report1.12.md` §7 accepted) | Deferred — merchant-facing scheduling excluded (Matter 4) |
+| `catalog_price_schedule_events` | Not enumerated | — | — | Scheduled-price event ledger | EIS §5.3 | Deferred — merchant-facing scheduling excluded (Matter 4) |
+| `catalog_channel_pending_actions` | Initiating-message dedup (unnamed) | `(channel, originating_channel_event_id)` | UNIQUE | Deduplicate initiating inbound channel message | EIS §5 | Deferred — Phase 3 conversational-engine gate |
+| `catalog_channel_confirmation_receipts` | Confirming-message dedup (unnamed) | `(channel, confirming_channel_event_id)` | UNIQUE | Deduplicate confirming inbound channel message | EIS §5.10 | Deferred — Phase 3 conversational-engine gate |
+| `catalog_import_jobs`, `catalog_import_rows` | Not enumerated | — | — | Import job/row tracking | EIS §7 (`catalog_import_executor` grant) | Deferred — Phase 2b |
+
+Not included above: query-supporting/performance indexes (e.g., a `business_id`-plus-lifecycle-status lookup index, any `pg_trgm`/GIN index) are deliberately not named, because naming a specific index definition not given by locked sources would itself be an invented object — these remain EIS §24 item 3's open, non-blocking, specialist-review item. Append-only immutability on every dedicated event table above is enforced by an `UPDATE`/`DELETE`-rejecting trigger (EIS §3; Blueprint, mirroring `inventory_movements`), which is a trigger, not a unique constraint or index, and is noted here for completeness rather than given a matrix row.
 
 **Recommended disposition:**
 
 ```text
-RESOLVED — AUTHORIZE MINIMUM SET AND DEFER PERFORMANCE INDEXES
+PARTIALLY RESOLVED — NAMED MATRIX DETAILS REQUIRE DATABASE SPECIALIST REVIEW
 ```
 
-The minimum set (the four named `UNIQUE` constraints, the mandatory RLS/uniqueness patterns, and the normalized business-scoped uniqueness on product identity fields) is already fixed by locked sources and should be included in the initial Phase 1 authorization as a correctness requirement, not left open. Query-supporting performance indexes, `pg_trgm`-dependent indexes, and any index needing real usage data should be explicitly deferred to specialist review conducted during or shortly after initial Phase 1 implementation, consistent with the EIS's own "Blocking Issues: None" framing of this exact item.
+The matrix establishes every integrity-enforcing constraint's existence, table, purpose, and locked-source basis for all in-scope initial Phase 1 tables, and gives exact columns for the constraints locked sources state explicitly (`catalog_write_idempotency_keys`, the composite `UNIQUE (id, business_id)` pattern). It cannot state a fully "resolved" disposition because six specific cells — the exact normalization column/expression for product name, SKU, barcode, and category (four cells, one per field), the single-use token column on `catalog_link_preview_tokens` (one cell), and the exact singleton shape of `business_tax_settings` (one cell) — are not defined by any currently-locked, independently retrievable source text, and this report does not invent them. Query-supporting performance indexes remain separately, explicitly deferred and are not counted as unresolved matrix gaps, since EIS §24 item 3 already defers them non-blockingly.
 
-**Blocks initial Phase 1?** No — confirmed non-blocking by EIS §24 and Engineering Contract §29.1. The integrity-enforcing subset is not blocked at all (it is already fixed); only the performance-tuning subset is open, and it is explicitly non-blocking.
+**Blocks initial Phase 1?** No — every `BLOCKED` cell names a database-implementation detail (an exact expression or column name) within a constraint whose existence, table, and purpose are already fixed by locked sources; none represents a missing decision about whether the constraint exists. A specialist can supply the exact expression during initial Phase 1 implementation without requiring a new product or Mission Control decision.
 
-**Exact next authority required if unresolved:** A database specialist review to finalize query-supporting and `pg_trgm`-dependent indexes, ideally informed by early Phase 1 usage evidence — this can proceed in parallel with or shortly after initial Phase 1 implementation and does not gate its start.
+**Exact next authority required if unresolved:** A database specialist to finalize the exact normalization expression (e.g., generated column vs. functional unique index) for product name/SKU/barcode/`catalog_categories`.name, the exact single-use token column on `catalog_link_preview_tokens`, and the exact singleton-enforcement mechanism for `business_tax_settings` — needed during initial Phase 1 implementation itself (these are integrity-enforcing, not deferred), but not before initial Phase 1 is authorized. Separately, query-supporting performance indexes require the same specialist review already tracked as non-blocking in Engineering Contract §29.1.
 
 ---
 
-## 10. Matter 4 Findings and Disposition — Initial Phase 1 Scheduler Exclusion
+## 10. Matter 4 Findings and Disposition — Initial Phase 1 Scheduler and Merchant-Facing Scheduling Exclusion
 
-**Question investigated:** Should the initial Phase 1 implementation authorization explicitly exclude the scheduler commands, worker, service identity, and scheduled-runtime activation, and does doing so break the remaining Phase 1 scope or alter the 28-command surface.
+**Question investigated:** Should the initial Phase 1 implementation authorization explicitly exclude the scheduler commands, worker, service identity, scheduled-runtime activation, and — per Mission Control's refinement (`instruction1.28.md` §3.3) — the merchant-facing scheduling controls themselves, and does doing so break the remaining Phase 1 scope or alter the 28-command surface.
 
 **Verified repository facts:**
 
 - The locked Lovable Build Prompt §11 already separates the command surface into five named groups, one of which is: "**Environment-gated scheduler commands:** `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule` — buildable only when the Section 18 environment-verification gate is satisfied *and* scheduler scope is explicitly included in the specific implementation authorization, **independent of which other Phase 1 commands are already authorized**." This is locked text, not a new decision — the scheduler is already architected as separately authorizable.
 - Lovable Build Prompt §7's phase table itself marks Phase 1's scheduled-price activation as "(environment-gated separately from the rest of Phase 1 — Section 11, Section 18)."
 - Lovable Build Prompt §18 confirms the scheduler is two ordinary `FUNCTION`s invoked by an external, genuinely `LOGIN`-capable service (`catalog_scheduler_service`), architecturally independent of the 21 Phase 1 dashboard-CRUD commands' execution identities (EIS §7 — separate command-group owner `catalog_scheduler_executor`, separate from the eight Phase 1 command-group owners).
-- The 28-command surface itself (EIS §16; Lovable Build Prompt §11) is fixed regardless of which commands a given authorization actually builds: "The complete surface remains authoritative regardless of phase — only *execution* is phase-scoped." Excluding the two scheduler commands from an initial authorization changes nothing about the locked surface count or names.
-- Of the 21 Phase 1 commands, two create/cancel scheduled prices without activating them: `schedule_catalog_selling_price` and `cancel_scheduled_catalog_selling_price`. Excluding the scheduler means these two commands remain fully buildable and functional (a merchant can schedule or cancel a future price), but a scheduled price will not automatically activate at its effective time until the scheduler is separately authorized and its EIS §24 item 7 environment-verification gate (Supabase Scheduled Edge Function or `pg_cron`+`pg_net` availability) is satisfied.
+- The 28-command surface itself (EIS §16; Lovable Build Prompt §11) is fixed regardless of which commands a given authorization actually builds: "The complete surface remains authoritative regardless of phase — only *execution* is phase-scoped." Excluding commands from an initial authorization changes nothing about the locked surface count or names.
+- Of the 21 Phase 1 commands, two create/cancel scheduled prices without activating them: `schedule_catalog_selling_price` and `cancel_scheduled_catalog_selling_price`. This report's original analysis (prior to this refinement) treated these two as remaining authorized, on the reasoning that a merchant could schedule or cancel a future price even though it would not auto-activate. Mission Control's refinement corrects this: leaving schedule-creation and cancellation controls active in a build that cannot activate them would let a merchant create a future-price schedule that visually appears capable of automatic activation but silently is not, which is a merchant-facing correctness problem, not merely an inert-but-harmless gap. `instruction1.28.md` §3.3 therefore excludes the merchant-facing scheduling controls themselves from initial Phase 1, not only the scheduler worker.
 - EIS §24 "Blocking Issues: None" explicitly covers items 4 (scheduler run interval/lag budget) and 7 (Edge Function/`pg_net` availability) as non-blocking design gaps.
 
-**Governing locked-source references:** Lovable Build Prompt §7, §11, §18; EIS §7, §12, §24; Engineering Contract §29.1.
+**Governing locked-source references:** Lovable Build Prompt §7, §11, §18; EIS §7, §12, §24; Engineering Contract §29.1; `instruction1.28.md` §3.3.
 
-**Technical inference (labeled):** None required — this matter is directly settled by locked text rather than inference. The only inference offered is the practical consequence noted above: excluding the scheduler leaves `schedule_catalog_selling_price`/`cancel_catalog_scheduled_selling_price` functionally inert with respect to automatic activation until the scheduler is later authorized, which is a disclosure point for the future authorization document, not an engineering ambiguity.
+**Technical inference (labeled):** The scheduler-architecture separation itself is directly settled by locked text, not inference. The merchant-facing-scheduling-disablement consequence is Mission Control's own explicit refinement instruction, not an inference this report originates. The only inference offered is the practical scope count: excluding `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`, `list_due_catalog_price_schedule_candidates`, and `activate_catalog_price_schedule` leaves **19** of the 21 Phase 1 commands authorized for initial Phase 1 (the full 21 minus these two merchant-facing scheduling commands; the two scheduler-worker commands were never among the 21 Phase 1-group commands to begin with — they are their own "Environment-gated scheduler commands" group per Lovable Build Prompt §11).
 
 **Recommended disposition:**
 
 ```text
-RESOLVED — EXCLUDE SCHEDULER FROM INITIAL PHASE 1 AUTHORIZATION
+RESOLVED — EXCLUDE SCHEDULER AND MERCHANT-FACING SCHEDULING FROM INITIAL PHASE 1
 ```
 
-**Blocks initial Phase 1?** No — excluding the scheduler does not break the remaining 19 non-scheduling Phase 1 commands and does not alter the locked 28-command surface; this exclusion is already the locked documents' own designed separation, not a new restriction.
+**Blocks initial Phase 1?** No — excluding the scheduler and merchant-facing scheduling controls does not break the remaining 19 Phase 1 commands and does not alter the locked 28-command surface, which is preserved in full as future authority; this exclusion is a Mission-Control-directed scope narrowing, not a locked-source conflict.
 
-**Exact next authority required if unresolved:** None to resolve this matter itself. A future, separate Mission Control instruction remains required before the scheduler scope may ever be built, gated on the EIS §24 item 7 environment-verification step (confirming Supabase Scheduled Edge Function or `pg_cron`+`pg_net` availability in the deployed environment).
+**Exact next authority required if unresolved:** None to resolve this matter itself. A future, separate Mission Control instruction remains required before the scheduler and merchant-facing scheduling scope may ever be built, gated on the EIS §24 item 7 environment-verification step (confirming Supabase Scheduled Edge Function or `pg_cron`+`pg_net` availability in the deployed environment).
 
 ---
 
@@ -223,10 +286,10 @@ RESOLVED — LATER LOCK RECORD SUPERSEDES LIFECYCLE WORDING ONLY
 
 | Matter | Verified State | Recommended Disposition | Blocks Initial Phase 1? | Further Authority Required |
 |---|---|---|---|---|
-| 1. `system_errors` ownership | Does not exist in current migrations; Founder-approved conceptual precedent (Source 02 §3.13) reused by Blueprint/Build Prompt for observability wording only; not named as a shared-system dependency gate; not required by any EIS command's outcome-of-record | `RESOLVED — INCLUDE IN FUTURE PHASE 1 AUTHORIZATION` | No | Mission Control: one explicit line in the future authorization — create the generic shared table, or explicitly defer it |
-| 2. `pg_trgm` similarity threshold | `SPECIALIST REVIEW REQUIRED` in locked EIS §24 and Engineering Contract §29.1, explicitly non-blocking; no Founder decision sets a value; exact matching is independently sufficient for Phase 1 correctness | `RESOLVED — NOT REQUIRED FOR INITIAL PHASE 1 AUTHORIZATION` | No | Database/search specialist recommendation, needed only before enabling similarity-assisted suggestions |
-| 3. Final Phase 1 index set | Integrity-enforcing constraints (four named `UNIQUE` constraints, `business_id`/RLS pattern, composite `UNIQUE (id, business_id)`, normalized business-scoped uniqueness) fixed by locked sources; query-supporting/performance indexes explicitly `SPECIALIST REVIEW REQUIRED`, non-blocking | `RESOLVED — AUTHORIZE MINIMUM SET AND DEFER PERFORMANCE INDEXES` | No | Database specialist review for performance/`pg_trgm`-dependent indexes, can run parallel to or after initial build |
-| 4. Scheduler exclusion | Locked Lovable Build Prompt §11/§18 already architects the two scheduler commands as independently, environment-gated authorizable, separate from the other 21 Phase 1 commands and from the fixed 28-command surface | `RESOLVED — EXCLUDE SCHEDULER FROM INITIAL PHASE 1 AUTHORIZATION` | No | Future, separate Mission Control instruction, gated on EIS §24 item 7 environment verification |
+| 1. `system_errors` ownership | Does not exist in current migrations; Founder-approved conceptual precedent (Source 02 §3.13), not catalog-specific, not named as a shared-system dependency gate, not required by any EIS command's outcome-of-record; initial Phase 1 uses `catalog_write_idempotency_keys`, transaction rollback, structured database errors, and existing repository logging only | `RESOLVED — SEPARATE PREREQUISITE MISSION REQUIRED FOR SHARED SYSTEM_ERRORS, BUT NOT REQUIRED BEFORE INITIAL PHASE 1` | No | Separate, future Mission Control instruction to open a shared-infrastructure mission for `system_errors`; not required to authorize initial Phase 1 |
+| 2. `pg_trgm` similarity threshold | `SPECIALIST REVIEW REQUIRED` in locked EIS §24 and Engineering Contract §29.1, explicitly non-blocking; no Founder decision sets a value; deterministic exact/normalized matching only for initial Phase 1; similarity-assisted suggestions remain deferred | `RESOLVED — NOT REQUIRED FOR INITIAL PHASE 1 AUTHORIZATION` | No | Database/search specialist recommendation, needed only before enabling similarity-assisted suggestions |
+| 3. Final Phase 1 index set | Exact minimum matrix established (Section 9) for every table in the 19-command initial Phase 1 scope; most constraints' existence, table, and purpose are fixed by locked sources; six specific exact-expression/column cells are `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL`; query-supporting/performance indexes remain separately, non-blockingly deferred | `PARTIALLY RESOLVED — NAMED MATRIX DETAILS REQUIRE DATABASE SPECIALIST REVIEW` | No | Database specialist to finalize the six named exact-expression/column details during initial Phase 1 implementation; not required to authorize initial Phase 1 |
+| 4. Scheduler and merchant-facing scheduling exclusion | Locked Lovable Build Prompt §11/§18 already architects the two scheduler-worker commands as independently, environment-gated authorizable; Mission Control's refinement additionally excludes `schedule_catalog_selling_price`/`cancel_scheduled_catalog_selling_price` (merchant-facing scheduling controls) from initial Phase 1 so a merchant cannot create a schedule that appears capable of automatic activation; 19 of 21 Phase 1 commands remain authorized; the fixed 28-command surface is unchanged | `RESOLVED — EXCLUDE SCHEDULER AND MERCHANT-FACING SCHEDULING FROM INITIAL PHASE 1` | No | Future, separate Mission Control instruction, gated on EIS §24 item 7 environment verification |
 | 5. Stale Build Prompt §26 wording | Verification Checklist locked (PR #87, merged) after Build Prompt §26 was written; §26's implementation-gating statements remain accurate and unmet; only the "package remains incomplete" sentence is stale | `RESOLVED — LATER LOCK RECORD SUPERSEDES LIFECYCLE WORDING ONLY` | No | None — reflect the supersession wording (Section 13) in the next Founder Lovable Brief or implementation authorization |
 
 ---
@@ -257,51 +320,72 @@ must still exist; a separate, explicit Mission Control instruction must
 still authorize implementation of a specific named phase before that
 phase may be built.
 
-SCHEDULER EXCLUSION
+SCHEDULER AND MERCHANT-FACING SCHEDULING EXCLUSION
 
-This authorization excludes the environment-gated scheduler from initial
-scope: list_due_catalog_price_schedule_candidates, activate_catalog_
-price_schedule, the scheduler worker, the catalog_scheduler_service
-identity, pg_cron activation, pg_net activation, and scheduled runtime
-deployment are NOT authorized by this document. schedule_catalog_
-selling_price and cancel_scheduled_catalog_selling_price remain
-authorized and functional for creating and cancelling a pending
-scheduled price; automatic activation at the scheduled effective time
-will not occur until a separate, future Mission Control instruction
-authorizes the scheduler scope after the EIS Section 24 item 7
-environment-verification step is satisfied.
+This authorization excludes both the environment-gated scheduler and
+merchant-facing scheduling controls from initial scope:
+list_due_catalog_price_schedule_candidates, activate_catalog_
+price_schedule, schedule_catalog_selling_price, cancel_scheduled_
+catalog_selling_price, the scheduler worker, the catalog_scheduler_
+service identity, pg_cron activation, pg_net activation, and scheduled
+runtime deployment are NOT authorized by this document. Until the
+scheduler is separately authorized and operational, the product must
+not allow a merchant to create a future-price schedule that appears
+capable of automatic activation. A separate, future Mission Control
+instruction is required to authorize the scheduler and merchant-facing
+scheduling scope, after the EIS Section 24 item 7 environment-
+verification step is satisfied.
+
+SYSTEM_ERRORS DISPOSITION
+
+DEFER FROM INITIAL PHASE 1. Do not create system_errors under initial
+Phase 1. Do not invent a catalog-specific error table. Do not reference
+a nonexistent system_errors table at runtime. Initial Phase 1 uses the
+locked catalog_write_idempotency_keys outcome-of-record, standard
+transaction rollback, structured database errors, and existing
+repository logging only. The generic shared system_errors capability
+requires a separate shared-infrastructure mission before cross-mission
+reuse; that mission is not created by this document.
 
 READINESS CONDITIONS — RESOLVED, NOT BLOCKING
 
-- system_errors: does not yet exist; this authorization [creates the
-  minimal generic Source 02 Section 3.13 shared table as part of Phase 1
-  foundational schema work / explicitly defers system_errors creation —
-  select one before issuing this document].
 - pg_trgm similarity threshold: not required for this authorization;
   catalog_products_search relies on deterministic exact/normalized
-  matching; similarity-assisted suggestion, if included, uses a
-  provisional value subject to later specialist-reviewed tuning and is
-  never presented as authoritative.
-- Final index set: the integrity-enforcing constraint set (business-
-  scoped uniqueness on product identity fields, the four named UNIQUE
-  constraints on schedule/channel/idempotency tables, the business_id-
-  plus-owner_id RLS pattern, and the composite UNIQUE (id, business_id)
-  FK-integrity pattern) is authorized and required now. Query-supporting
-  and pg_trgm-dependent performance indexes are deferred to specialist
-  review during or shortly after initial implementation.
+  matching only; similarity-assisted suggestion remains deferred
+  pending a later specialist recommendation and is never presented as
+  authoritative.
+- Final index set: the exact minimum Phase 1 index matrix
+  (communication/live/report1.27.md Section 9) is authorized and
+  required now for every named constraint whose exact detail is
+  locked-source-confirmed. Query-supporting and pg_trgm-dependent
+  performance indexes remain deferred to specialist review during or
+  shortly after initial implementation.
+
+READINESS CONDITIONS — PARTIALLY RESOLVED, NOT BLOCKING
+
+- Final index set — named exact-detail gaps: the exact normalization
+  column/expression for business-scoped product name, SKU, barcode, and
+  catalog_categories.name uniqueness, the exact single-use token column
+  on catalog_link_preview_tokens, and the exact singleton-enforcement
+  mechanism for business_tax_settings are not defined by currently-
+  locked source text (communication/live/report1.27.md Section 9). A
+  database specialist must supply these exact details during initial
+  Phase 1 implementation. This does not block issuing this
+  authorization.
 
 READINESS CONDITIONS — UNRESOLVED
 
 [None identified by this investigation as of communication/live/
-report1.27.md. Any condition identified after this report must be
-named explicitly before this document is issued.]
+report1.27.md and communication/live/report1.28.md. Any condition
+identified after this report must be named explicitly before this
+document is issued.]
 ```
 
 ---
 
 ## 14. Remaining Blockers, If Any
 
-None. All five matters resolved to a non-blocking disposition with an evidence-backed rationale. Matter 1 leaves one small, explicitly named inclusion/defer choice for Mission Control to state in the future authorization (not a blocker to preparing that authorization — a single line to write into it).
+None. All five matters reached a non-blocking disposition. Matter 3 (final Phase 1 index set) is `PARTIALLY RESOLVED` rather than fully resolved, because six specific exact-expression/column cells in the index matrix (Section 9) are not defined by currently-locked source text; these are named, non-blocking, database-specialist-review items to be closed during initial Phase 1 implementation, not before authorization. Matter 1 (`system_errors`) requires a separate future shared-infrastructure mission, but not before or as part of initial Phase 1.
 
 ---
 
@@ -331,8 +415,9 @@ None of the five matters requires a new Founder Product Decision. Matter 1's rem
 SPECIALIST REVIEW STILL OUTSTANDING (non-blocking):
 - pg_trgm similarity threshold and algorithm sufficiency (Matter 2) — needed before enabling similarity-assisted search suggestions, not before Phase 1 authorization or build.
 - Query-supporting and pg_trgm-dependent performance indexes (Matter 3) — can proceed in parallel with or shortly after initial Phase 1 implementation.
+- Six named exact-detail gaps in the Matter 3 index matrix (Section 9) — normalization column/expression for product name, SKU, barcode, and catalog_categories.name uniqueness (four gaps), the catalog_link_preview_tokens single-use token column (one gap), and the business_tax_settings singleton-enforcement mechanism (one gap) — needed during initial Phase 1 implementation, not before authorization.
 
-Both are already tracked as open items in Engineering Contract §29.1 and are not reopened, expanded, or newly created by this investigation.
+The first two are already tracked as open items in Engineering Contract §29.1 and are not reopened, expanded, or newly created by this investigation. The third is newly identified by the Section 9 matrix required under `instruction1.28.md` §3.2 and does not reopen any prior finding.
 ```
 
 ---
@@ -382,7 +467,7 @@ This report authorizes nothing beyond itself. No Founder Lovable Brief, implemen
 ## 21. Final Recommendation
 
 ```text
-PHASE 1 READINESS RESOLUTION COMPLETE — INITIAL AUTHORIZATION MAY BE PREPARED
+PHASE 1 READINESS PARTIALLY RESOLVED — NAMED BLOCKERS REMAIN
 ```
 
-All five matters reached an evidence-backed, non-blocking disposition using locked sources and direct repository inspection, without inventing any Product Truth, threshold value, index definition, or ownership decision. The only outstanding items are the single Mission-Control-level sequencing line for Matter 1 (Section 13) and two already-tracked, explicitly non-blocking specialist-review items (Matter 2's threshold, Matter 3's performance indexes) that do not gate preparing or issuing an initial Phase 1 implementation authorization.
+**As corrected by `instruction1.28.md`:** four of the five matters (`system_errors`, `pg_trgm` threshold, scheduler and merchant-facing scheduling exclusion, stale Build Prompt §26 wording) reached a fully evidence-backed, non-blocking disposition. Matter 3 (final Phase 1 index set) reached `PARTIALLY RESOLVED — NAMED MATRIX DETAILS REQUIRE DATABASE SPECIALIST REVIEW`: the exact minimum Phase 1 index matrix (Section 9) is established for every in-scope table, but six specific exact-expression/column cells are not defined by currently-locked source text and are explicitly named as `BLOCKED — LOCKED SOURCE DOES NOT DEFINE THE EXACT IMPLEMENTATION DETAIL` rather than invented. Per `instruction1.28.md` §5, this report does not claim full resolution of all five matters while that matrix incompleteness remains. None of the named items — Matter 1's future shared-infrastructure mission, Matter 2's threshold, or Matter 3's six exact-detail gaps and deferred performance indexes — blocks preparing or issuing an initial Phase 1 implementation authorization; each is a named, tracked follow-up to be closed by a specialist or a separate future mission, not a precondition to authorization. See `communication/live/report1.28.md` for this refinement's own final conclusion.
