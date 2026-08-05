@@ -2,28 +2,32 @@ Document: Verification Checklist
 
 Version: 1.1
 
-Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
+Status: LOCKED — MISSION CONTROL ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (Version 1.0 review recorded findings MC-VC-001 through MC-VC-003; re-review of Version 1.1 pending)
+Reviewed By: Mission Control
 
-Approval Date: Pending
+Approval Status: ACCEPTED
+
+Lock Status: LOCKED
+
+Approval Date: 2026-08-05
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Verification Checklist
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVAL: NOT GRANTED
-LOCK: NOT AUTHORIZED
+STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVAL: GRANTED
+LOCK: ACTIVE
 FOUNDER LOVABLE BRIEF: NOT AUTHORIZED
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-**Do not use this document for live verification.** It is a draft. It is not approved, not locked, and carries no implementation, paste-into-Lovable, or Founder Lovable Brief authority. It may be used for live verification only after it is separately reviewed, accepted, and locked by Mission Control. Preparing this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
+**This document is accepted and locked by Mission Control at Version 1.1, but must not yet be used for live verification.** It carries no implementation, paste-into-Lovable, or Founder Lovable Brief authority. Live verification may begin only once a specific implementation phase is separately authorized and built, per Section 2's phase declaration. Acceptance and lock of this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
 
 **Unexecuted-template state of every checklist item in this draft (corrected per MC-VC-001):** this document is a template only. No SB-P-1.11 phase or gated component has been separately authorized for implementation as of this document's preparation, and no live verification run has occurred. Every checklist item's Actual Result, Outcome, Verifier Notes, and Defect Reference fields are therefore left as explicit unexecuted placeholders — never pre-populated with any outcome, including `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` — because assigning any outcome before a real, separately authorized verification run begins would itself misrepresent this template as already executed. A future verifier conducting the first live run must complete Section 2's phase declaration, then: execute every mandatory cross-phase item (Sections 3–7, and every later item designated cross-phase) regardless of which phase is named — these may not receive the deferred outcome except where an item itself explicitly represents a separately unauthorized external activity (Section 2); execute every phase-exclusive item belonging to a phase actually named in the declaration; and select `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` only for phase-exclusive items belonging to a phase or gated component genuinely absent from that declaration.
 
@@ -35,11 +39,11 @@ IMPLEMENTATION AUTHORITY: NONE
 |---|---|
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
-| Stage | 12C — Verification Checklist Preparation and Refinement |
-| Package Position | Third and final document of the Stage 12 Initial Implementation Package (`engineering-contract.md` LOCKED, `lovable-build-prompt.md` LOCKED, `verification-checklist.md` this document) |
-| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.24.md` (`report1.24.md`) → Mission Control review recorded findings MC-VC-001 through MC-VC-003, requiring narrow refinement |
-| This Revision | Narrow refinement authorized by `communication/live/instruction1.25.md`, correcting only MC-VC-001 through MC-VC-003; no previously accepted content reopened |
-| Authorizing Instruction | `communication/live/instruction1.25.md` |
+| Stage | 12C — Verification Checklist Preparation, Refinement, and Lock |
+| Package Position | Third and final document of the Stage 12 Initial Implementation Package (`engineering-contract.md` LOCKED, `lovable-build-prompt.md` LOCKED, `verification-checklist.md` this document, LOCKED — Stage 12 Initial Implementation Package documents now complete) |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.24.md` (`report1.24.md`) → Mission Control review recorded findings MC-VC-001 through MC-VC-003 → Version 1.1 refinement authorized by `communication/live/instruction1.25.md` (`report1.25.md`), resolving MC-VC-001 through MC-VC-003 → Mission Control re-review recorded `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE` |
+| This Revision | Lock-only status and metadata update authorized by `communication/live/instruction1.26.md`, accepting and locking Version 1.1; no substantive content changed |
+| Authorizing Instruction | `communication/live/instruction1.26.md` |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Document Type | Phase-scoped, evidence-driven verification instrument, for use only after separate Mission Control review, acceptance, and lock |
 
@@ -1249,3 +1253,4 @@ This checklist preserves the distinction exactly as locked:
 |---|---|
 | 1.0 | Initial draft Verification Checklist, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21), Founder Decisions D-001–D-068, locked EIS (Version 2.2), locked Engineering Contract (Version 1.1), and locked Lovable Build Prompt (Version 1.1) into a phase-scoped, evidence-driven verification instrument, per `instruction1.24.md`. Covers all 36 mandatory structural areas. Every checklist item defaults to `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` because no implementation phase has been separately authorized as of this document's preparation. No new Product Truth, Founder decision, scope, or engineering behaviour introduced; no MC-VRF, MC-EC, or MC-LBP finding reopened. Not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.25.md`, correcting Mission Control findings MC-VC-001 through MC-VC-003 identified in review of Version 1.0. Replaced every checklist item's pre-populated `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` outcome and "Not yet executed" actual result with explicit unexecuted-template placeholders (`[To be completed during the authorized verification run]` / `[Select one authorized outcome during verification]` / `[To be completed]` / `[Required only for FAIL; otherwise —]`), so an unexecuted template no longer contains completed item-level outcomes (MC-VC-001, all 81 items plus the header banner and Section 34 status block). Added a "Mandatory Cross-Phase Controls" rule to Section 2, and corrected the Outcome Vocabulary's `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` definition, so cross-phase preconditions and governance-integrity checks (Sections 3–7 and every later item designated cross-phase) are mandatory in every live verification run and may not receive the deferred outcome except for the one explicit structural exception (CHK-BE-006, gated on full-package completion) (MC-VC-002). Corrected "four locked authorities" terminology throughout to "four locked Stage 12 authorities," with the Founder Product Decision Record D-001 through D-068 treated consistently as a mandatory preserved decision source, independently traceable and unchanged, not counted among the four (MC-VC-003, Section 1, Section 35 title, CHK-FILES-001). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. |
+| 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-VC-001 through MC-VC-003 as `RESOLVED` and recording `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE`, `FURTHER REFINEMENT REQUIRED: NO`. Per `instruction1.26.md`, this is a lock-only documentation change: Version 1.1's substantive content — the five controlled outcomes, ten-field item structure, unexecuted-template placeholders, mandatory cross-phase controls, phase-exclusive deferred-outcome rule, the five phase/gated-component groups, the locked 28-command grouping, the Owner-only Phase 1 boundary, the prohibition on a substitute permission engine, the shared-system and environment gates, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, idempotency/rejection/unknown-outcome rules, same-actor confirmation, clean-file scanning, employee restrictions, AI Assistant boundaries, multilingual verification, the POS boundary, merchant-safe messaging, the evidence and defect model, the Engineering Contract §29.1/§29.2 separation, the four-locked-Stage-12-authority terminology, and the Founder Product Decision Record's treatment as an independently traceable preserved decision source — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. No live verification run was conducted. The Verification Checklist is now the locked, authoritative Stage 12C verification instrument, completing the three-document Stage 12 Initial Implementation Package; the Founder Lovable Brief, paste-into-Lovable authority, and implementation remain separately unauthorized. |
