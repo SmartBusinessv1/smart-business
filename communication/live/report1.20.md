@@ -36,13 +36,17 @@
 
 **Substantive commit** — contains the lock-only status/metadata update to `engineering-contract.md` and the original version of this report:
 
-`PENDING-SUBSTANTIVE-COMMIT` — explicit placeholder, to be replaced with the real SHA by one small, documentation-only follow-up commit on this same branch immediately after the substantive commit is pushed and the pull request is opened, consistent with how the equivalent MC-EC-001 gap in `report1.18.md` was corrected and how `report1.19.md` itself handled this same self-referential limitation (a report cannot contain its own not-yet-computed commit hash). No fabricated value is used.
+`bc2f2ac6fce1d1e5c451ee679881720e21d44e50` — "Lock SB-P-1.11 Engineering Contract Version 1.1"
+
+Consistent with how the equivalent MC-EC-001 gap in `report1.18.md` was corrected, and how `report1.19.md` handled this same self-referential limitation, this value was recorded by a small, documentation-only follow-up commit on this same branch, immediately after the substantive commit above was pushed and the pull request was opened — never left as a fabricated or permanently unresolved value.
 
 ---
 
 ## 4. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — explicit placeholder, to be replaced with the real PR number and URL by the same follow-up commit described in Section 3.
+**Pull Request:** #75
+
+**URL:** `https://github.com/SmartBusinessv1/smart-business/pull/75`
 
 ---
 
