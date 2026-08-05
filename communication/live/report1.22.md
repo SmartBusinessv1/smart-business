@@ -36,13 +36,17 @@
 
 **Substantive commit** — contains the corrected `lovable-build-prompt.md`, the corrected `report1.21.md`, and the original version of this report:
 
-`PENDING-SUBSTANTIVE-COMMIT` — explicit placeholder, to be replaced with the real SHA by one small, documentation-only follow-up commit on this same branch immediately after the substantive commit is pushed and the pull request is opened, consistent with how this same self-referential limitation (a report cannot contain its own not-yet-computed commit hash) was resolved in `report1.19.md`, `report1.20.md`, and `report1.21.md`. No fabricated value is used in the final, reviewed version of this document.
+`62e6482a749a82e817975022258713748df39760` — "Refine SB-P-1.11 Lovable Build Prompt: correct MC-LBP-001 through MC-LBP-004"
+
+Consistent with how this same self-referential limitation (a report cannot contain its own not-yet-computed commit hash) was resolved in `report1.19.md`, `report1.20.md`, and `report1.21.md`, this value was recorded by a small, documentation-only follow-up commit on this same branch, immediately after the substantive commit above was pushed and the pull request was opened — never left as a fabricated or permanently unresolved value.
 
 ---
 
 ## 4. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — explicit placeholder, to be replaced with the real PR number and URL by the same follow-up commit described in Section 3.
+**Pull Request:** #79
+
+**URL:** `https://github.com/SmartBusinessv1/smart-business/pull/79`
 
 ---
 
