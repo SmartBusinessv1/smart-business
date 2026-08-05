@@ -4,7 +4,13 @@ Product Catalog & Pricing — Initial Phase 1 (19-Command Scope)
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-DRAFT — MISSION CONTROL REVIEW REQUIRED
+LOCKED — MISSION CONTROL ACCEPTED
+
+MISSION CONTROL ACCEPTANCE:
+GRANTED
+
+DOCUMENT LOCK:
+ACTIVE
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -22,7 +28,7 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-This document is a preparation draft. It is not approved, not locked, and does not authorize pasting it into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment. Founder review and a separate, explicit Mission Control implementation authorization are both still required before any of that may happen.
+This document is the accepted, locked Founder-facing restatement of the locked SB-P-1.11 package and accepted readiness dispositions for the approved initial Phase 1 scope of exactly 19 commands. Acceptance and lock do not authorize pasting it into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment. Founder review and a separate, explicit Mission Control implementation authorization are both still required before any of that may happen. The brief remains subordinate to the higher-authority locked sources listed in Section 5; any future discovered inconsistency must be resolved in favor of the higher-authority source through a separately authorized correction mission, not by this document.
 
 ---
 
@@ -34,8 +40,10 @@ This document is a preparation draft. It is not approved, not locked, and does n
 | Mission Name | Product Catalog & Pricing |
 | Document Type | Founder Lovable Brief |
 | Version | 1.0 |
-| Status | DRAFT — MISSION CONTROL REVIEW REQUIRED |
-| Authorizing Instruction | `communication/live/instruction1.33.md` |
+| Status | LOCKED — MISSION CONTROL ACCEPTED |
+| Mission Control Acceptance | GRANTED |
+| Document Lock | ACTIVE |
+| Prepared Under | `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md` (FLB-001–FLB-004); accepted and locked per `communication/live/instruction1.35.md` |
 | Scope Covered | Initial Phase 1 only — 19 of the 28 locked commands |
 | Governing Package | Stage 12 Initial Implementation Package (Product Blueprint, EIS v2.2, Engineering Contract v1.1, Lovable Build Prompt v1.1, Verification Checklist v1.1) — all LOCKED |
 | Readiness Basis | `communication/live/report1.27.md` through `communication/live/report1.32.md` |
@@ -313,7 +321,13 @@ A future authorized implementation run must stop and escalate to Mission Control
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-DRAFT — MISSION CONTROL REVIEW REQUIRED
+LOCKED — MISSION CONTROL ACCEPTED
+
+MISSION CONTROL ACCEPTANCE:
+GRANTED
+
+DOCUMENT LOCK:
+ACTIVE
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -331,4 +345,4 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-This brief does not authorize pasting itself or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, or deployment. It is a preparation draft awaiting Founder review and a separate, explicit Mission Control implementation authorization.
+Acceptance and lock mean this brief is the approved Founder-facing restatement of the locked SB-P-1.11 package and accepted readiness dispositions for the approved 19-command initial Phase 1 scope, and that its phase gates, exclusions, security boundaries, data-integrity boundaries, D-068 safeguards, and verification expectations are accepted as documented; future modification requires a new Mission Control authorization. Acceptance and lock do not mean, and do not authorize, pasting this brief or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, deployment, or consumption of any Lovable credit. Founder review and a separate, explicit Mission Control implementation authorization both remain required before any of that may happen. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
