@@ -2,26 +2,30 @@ Document: Engineering Contract
 
 Version: 1.1
 
-Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
+Status: LOCKED — MISSION CONTROL ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (Version 1.0 review recorded findings MC-EC-001 through MC-EC-006; re-review of Version 1.1 pending)
+Reviewed By: Mission Control
 
-Approval Date: Pending
+Approval Status: ACCEPTED
+
+Lock Status: LOCKED
+
+Approval Date: 2026-08-05
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Engineering Contract
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVAL: NOT GRANTED
-LOCK: NOT AUTHORIZED
+STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVAL: GRANTED
+LOCK: ACTIVE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-This contract is not approved. It is not locked. It carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
+This contract is accepted and locked by Mission Control at Version 1.1. It carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
 
 ## 1. Document Metadata
 
@@ -29,16 +33,16 @@ This contract is not approved. It is not locked. It carries no implementation au
 |---|---|
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
-| Stage | 12A — Engineering Contract Preparation and Refinement |
+| Stage | 12A — Engineering Contract Preparation, Refinement, and Lock |
 | Domain | Business Operations Domain |
 | Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` — Sections 1–21, LOCKED |
 | Founder Product Decision Record | `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md` — D-001 through D-068 |
 | Engineering Implementation Specification | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED |
 | Contract Owner | Claude Code, under Mission Control governance |
-| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006, requiring narrow refinement |
-| This Revision | Narrow refinement authorized by `communication/live/instruction1.19.md`, correcting only MC-EC-001 through MC-EC-006; no previously accepted content reopened |
-| Authorizing Instruction | `communication/live/instruction1.19.md` |
-| Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this mission authorizes the Engineering Contract only |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006 → Version 1.1 refinement authorized by `communication/live/instruction1.19.md` (`report1.19.md`), resolving MC-EC-001 through MC-EC-006 → Mission Control re-review recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ACCEPTED FOR LOCK` |
+| This Revision | Lock-only status and metadata update authorized by `communication/live/instruction1.20.md`, accepting and locking Version 1.1; no substantive content changed |
+| Authorizing Instruction | `communication/live/instruction1.20.md` |
+| Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this mission locks the Engineering Contract only |
 | Upstream Mission Dependency | SB-P-1.10 — Inventory Foundation (accepted, LOCKED) |
 
 ### Reading This Contract
@@ -486,22 +490,21 @@ Before a separate, explicit Mission Control implementation authorization is issu
 ## 31. Required Document Status and Lifecycle Boundary
 
 ```text
-DOCUMENT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVED: NO
-LOCKED: NO
+DOCUMENT STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVED: YES
+LOCKED: YES
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
 After this mission:
 
-- The Engineering Contract remains a draft.
-- Mission Control must review it; refinement may be required.
+- The Engineering Contract is accepted and locked at Version 1.1. Mission Control resolved MC-EC-001 through MC-EC-006 and recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ENGINEERING CONTRACT: ACCEPTED FOR LOCK` (`communication/live/instruction1.20.md`).
 - The Lovable Build Prompt remains unauthorized — **[APPROVAL GATE]**.
 - The Verification Checklist remains unauthorized — **[APPROVAL GATE]**.
-- The Stage 12 Initial Implementation Package is not yet complete.
+- The Stage 12 Initial Implementation Package remains incomplete.
 - Implementation remains unauthorized.
 
-Only after Mission Control accepts this Engineering Contract may a separate instruction authorize preparation of the Lovable Build Prompt.
+Locking the Engineering Contract does not itself authorize the next document or implementation. Mission Control must verify this lock-only diff; only after that verification may a separate instruction authorize preparation of the Lovable Build Prompt.
 
 ## 32. Document Change Log
 
@@ -509,3 +512,4 @@ Only after Mission Control accepts this Engineering Contract may a separate inst
 |---|---|
 | 1.0 | Initial draft Engineering Contract, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21) and the locked SB-P-1.11 EIS (Version 2.2) into an implementation-ready contract, per `instruction1.18.md`. Covers all 29 mandatory content areas. No new Product Truth, Founder decision, or engineering behaviour introduced. Not approved, not locked, no implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.19.md`, correcting Mission Control findings MC-EC-001 through MC-EC-006 identified in review of Version 1.0. Corrected `report1.18.md`'s placeholder execution evidence with the actual branch commit SHA, squash-merge commit SHA, and PR #71 reference, explicitly distinguished (MC-EC-001). Made Section 16's permission-engine sequencing explicit and non-contradictory with separate Phase 1 (Owner-only runtime, forward-compatible signatures, no substitute permission engine) and Phase 2a (shared-engine-gated Manager/Employee enforcement) subsections (MC-EC-002). Refined Section 27's acceptance wording so it does not imply every obligation is immediately executable, and added an explicit rule that `[ENVIRONMENT VERIFICATION]`/`[SHARED-SYSTEM DEPENDENCY]`/`[APPROVAL GATE]`-tagged obligations must not be implemented until their condition is resolved, verified, and separately authorized (MC-EC-003). Expanded the privilege-verification requirements in Sections 26 and 27 to cover the complete execution-identity model — all eight command-group owners, `catalog_channel_executor`, `catalog_scheduler_executor`, both service identities, every `EXECUTE` grant, every table-level privilege, and `PUBLIC` execute revocation — requiring exact privilege inspection rather than role-existence checks (MC-EC-004). Split the former "Open Implementation Parameters" section into Section 29.1 (genuinely open items) and Section 29.2 (the already-`RESOLVED — ACCEPTED AS WRITTEN` inventory-link-removal item), renaming the section "Preserved EIS Parameter Dispositions" (MC-EC-005). Corrected Section 7's architecture wording so it no longer appears to prohibit the EIS-authorized external-worker/service-identity boundary (MC-EC-006). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no implementation authority. |
+| 1.1 (Lock) | Mission Control completed review and re-review of Version 1.1, resolving MC-EC-001 through MC-EC-006 as `RESOLVED` and recording `ENGINEERING CONTRACT REVIEW: PASSED`, `ENGINEERING CONTRACT: ACCEPTED FOR LOCK`. Per `instruction1.20.md`, this is a lock-only documentation change: Version 1.1's substantive obligations, scope boundaries, technical contracts, dependencies, open/resolved EIS parameter dispositions, prohibitions, traceability mappings, and acceptance conditions are unchanged. Only document status, approval metadata, and lock metadata were updated — status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. The Engineering Contract is now the locked, authoritative Stage 12A implementation contract for SB-P-1.11. The Lovable Build Prompt, Verification Checklist, and implementation remain separately unauthorized, per `instruction1.20.md`'s Required Final State. |
