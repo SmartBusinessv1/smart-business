@@ -42,13 +42,13 @@ Before creating any file, both authorized output paths were confirmed absent on 
 
 ## 4. Substantive Commit SHA
 
-`PENDING-SUBSTANTIVE-COMMIT` — to be filled in by a documentation-only follow-up commit once the substantive commit exists, per this repository's established two-commit reporting pattern.
+`4799ba28717cad331388aec86b2fb724f7c7d98e`
 
 ---
 
 ## 5. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — to be filled in by the same follow-up commit.
+PR #101 — `https://github.com/SmartBusinessv1/smart-business/pull/101`
 
 ---
 
