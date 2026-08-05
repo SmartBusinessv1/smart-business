@@ -161,7 +161,7 @@ Preserved exactly as the locked EIS and Engineering Contract leave them, not res
 - Shared permission-engine availability and ownership (gates Phase 2a).
 - Shared conversational-engine availability and ownership (gates Phase 3).
 - Supabase Scheduled Edge Function / `pg_cron` + `pg_net` availability in the deployed environment (gates Section 18's Pattern A scheduler reliance).
-- The seven items in Engineering Contract §29.1 (`pg_trgm` similarity threshold, final CSV/Excel structural limits, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability — repeated from §24 item 5 and item 7).
+- The open dispositions preserved in Engineering Contract §29.1 (`pg_trgm` similarity threshold, final CSV/Excel structural limits, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability — repeated from §24 item 5 and item 7), together with the separately resolved and preserved disposition in §29.2 (selling-unit/price treatment upon inventory-link removal), which remains `RESOLVED — ACCEPTED AS WRITTEN` and is not an open dependency (corrected per MC-LBP-004).
 
 ---
 
