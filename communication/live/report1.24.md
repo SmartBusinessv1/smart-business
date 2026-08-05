@@ -36,15 +36,19 @@
 
 **Substantive commit** — contains the new `verification-checklist.md` and the original version of this report:
 
-`PENDING-SUBSTANTIVE-COMMIT` — explicit placeholder, to be replaced with the real SHA by one small, documentation-only follow-up commit on this same branch immediately after the substantive commit is pushed and the pull request is opened, consistent with how this same self-referential limitation (a report cannot contain its own not-yet-computed commit hash) was resolved in every prior SB-P-1.11 report since `report1.19.md`. No fabricated value is used in the final, reviewed version of this document.
+`0332e305f2f52f6a4f17e46c3ed984b027137844` — "Prepare SB-P-1.11 Verification Checklist (Stage 12C)"
 
-This section explicitly distinguishes the mission-branch commit above from any later squash-merge commit that will appear on `main`, per instruction1.24.md §19's requirement — the squash-merge commit does not yet exist and will be recorded only in a future report, exactly as was done for `report1.18.md` (MC-EC-001) and every subsequent report's own commit-SHA section.
+Consistent with how this same self-referential limitation (a report cannot contain its own not-yet-computed commit hash) was resolved in every prior SB-P-1.11 report since `report1.19.md`, this value was recorded by a small, documentation-only follow-up commit on this same branch, immediately after the substantive commit above was pushed and the pull request was opened — never left as a fabricated or permanently unresolved value.
+
+This section explicitly distinguishes the mission-branch commit above from any later squash-merge commit that will appear on `main`, per instruction1.24.md §19's requirement — the squash-merge commit does not yet exist at report-authoring time and, following the same pattern established for `report1.18.md` (MC-EC-001), a future Mission Control finding (if any) would be the appropriate mechanism to backfill it here; the branch commit above is the authoritative reference for this mission's own work.
 
 ---
 
 ## 4. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — explicit placeholder, to be replaced with the real PR number and URL by the same follow-up commit described in Section 3.
+**Pull Request:** #83
+
+**URL:** `https://github.com/SmartBusinessv1/smart-business/pull/83`
 
 ---
 
