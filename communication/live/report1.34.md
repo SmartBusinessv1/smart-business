@@ -40,13 +40,13 @@ Confirmed via `git fetch --all --prune` followed by `git checkout main` and `git
 
 ## 4. Substantive Commit SHA
 
-`PENDING-SUBSTANTIVE-COMMIT` — to be filled in by a documentation-only follow-up commit once the substantive commit exists, per this repository's established two-commit reporting pattern.
+`eb5b95e0d1474239828f1ff0aed731ae3362a89e`
 
 ---
 
 ## 5. Pull-Request Number and URL
 
-`PENDING-PULL-REQUEST` — to be filled in by the same follow-up commit.
+PR #103 — `https://github.com/SmartBusinessv1/smart-business/pull/103`
 
 ---
 
