@@ -14,6 +14,8 @@
 
 **Report Type:** Documentation-only final parameter-resolution report. No executable SQL, no implementation, no Lovable use. Every field named below is conceptual specialist notation, not a runnable statement.
 
+**Refinement Notice:** Sections 8.2, 8.3, 8.6, the parameter matrix (Section 9), the lifecycle timeline (Section 10), and the final readiness conclusion (Section 21) were corrected under `communication/live/instruction1.32.md`, replacing the rejected indefinite-retention position with the fixed 90-day/30-day retention-and-purge policy. Section 7 (the 15-minute validity period) was not reopened or altered. See `communication/live/report1.32.md` for that correction's own completion report.
+
 ---
 
 ## 1. Branch Name
@@ -46,7 +48,7 @@ PR #97 — `https://github.com/SmartBusinessv1/smart-business/pull/97`
 
 - Created: `communication/live/report1.31.md`
 
-No other file was created, modified, renamed, moved, or deleted.
+No other file was created, modified, renamed, moved, or deleted in the original PR #97 mission. This document was subsequently corrected under `communication/live/instruction1.32.md`; see `communication/live/report1.32.md` for that refinement's own file-change record.
 
 ---
 
@@ -108,12 +110,14 @@ RESOLVED — TOKEN VALIDITY PERIOD ESTABLISHED
 
 ### 8.2 Retention Periods
 
+**Corrected per `instruction1.32.md` §3–§4.** The prior indefinite-retention position is removed and replaced with the fixed Mission Control policy below. Indefinite retention is not the approved policy for either row type.
+
 ```text
-CONSUMED-ROW RETENTION (minimized audit metadata): INDEFINITE
-EXPIRED-UNCONSUMED-ROW RETENTION (minimized audit metadata): INDEFINITE
+CONSUMED-ROW FULL-METADATA RETENTION: 90 DAYS AFTER consumed_at
+EXPIRED-UNCONSUMED-ROW FULL-METADATA RETENTION: 30 DAYS AFTER expires_at
 ```
 
-**Rationale (repository precedent, labeled):** every existing append-only history/ledger table in this repository (`inventory_movements`, `transaction_correction_events`, and every `catalog_*_events` table by locked EIS design) is retained without any deletion, archival, or time-limited purge mechanism — none exists anywhere in the current schema. No locked source states a finite retention duration for any audit-adjacent table. Choosing an arbitrary finite number (e.g., "90 days") here would be unsupported invention; choosing "indefinite, consistent with the rest of this repository's audit-retention precedent" is the one exact, unambiguous, and non-inventive policy value available. This does not mean the raw secret is retained indefinitely — see Section 8.3.
+**Rationale:** these are fixed Mission Control policy deadlines, not repository-precedent-derived defaults. They apply now — as exact, calculable retention windows — even though no cleanup worker, cron job, Edge Function, RPC, function, or other purge mechanism is yet authorized to act on them (Section 8.6). The absence of a current cleanup mechanism does not justify treating retention as indefinite: reaching the end of the fixed window makes a row **purge-eligible** (Section 8.6); it does not, by itself, delete or further minimize anything, because no execution mechanism yet exists to act on that eligibility.
 
 ### 8.3 Raw-Token Treatment — the Mandatory Safety Boundary
 
@@ -121,7 +125,7 @@ EXPIRED-UNCONSUMED-ROW RETENTION (minimized audit metadata): INDEFINITE
 AUDIT RETENTION
 ```
 
-is retaining the row's non-secret evidence fields (Section 8.5) for the indefinite period above.
+is retaining the row's non-secret evidence fields (Section 8.5) for the fixed period above — 90 days after `consumed_at` (consumed rows) or 30 days after `expires_at` (expired-unconsumed rows) — after which the row becomes purge-eligible (Section 8.6).
 
 ```text
 TOKEN USABILITY
@@ -129,10 +133,10 @@ TOKEN USABILITY
 
 is whether the `token` column's value can still grant access to `assign_or_replace_catalog_inventory_link`/`remove_catalog_inventory_link`. These are answered independently, and audit retention never implies or restores token usability:
 
-- **The exact point at which the raw token becomes unusable:** immediately and unconditionally at the instant `consumed_at` is set (consumption) or the instant `now() >= expires_at` is first evaluated at a commit attempt (expiry) — usability is governed entirely by the `consumed_at`/`expires_at` state check already locked in Section 11 of `report1.29.md`, not by whether the raw value has yet been redacted.
-- **Raw-token treatment after consumption:** the `token` column's value is redacted (conceptually, set to `NULL` or replaced with a non-reversible marker) in the same transaction that sets `consumed_at`. The row's `id` (the stable primary key, distinct from the now-redacted `token` bearer value) continues to serve as the row's durable correlation identity.
-- **Raw-token treatment after expiry:** the same redaction is applied — conceptually, on the first commit attempt that observes `now() >= expires_at` for that row, `token` is redacted in the same transaction that records the rejection.
-- Redaction is a data-minimization measure layered on top of, not a substitute for, the state-check enforcement: even if redaction were delayed or failed, `consumed_at`/`expires_at` alone already make the row unusable. Redaction exists so that a database read (backup, replica, incident investigation) never exposes a live-looking bearer value for a token that can no longer be used, satisfying instruction1.31.md §5.2's mandatory boundary that "the raw token value must not remain usable after consumption or expiry."
+- **The exact point at which the token becomes unusable:** immediately and unconditionally at the instant `consumed_at` is set (consumption) or the instant `now() >= expires_at` (expiry) — usability is governed entirely by the mandatory server-side `consumed_at`/`expires_at` state check already locked in Section 11 of `report1.29.md`. For the expiry path in particular, this logical unusability is guaranteed by the check itself the moment the clock passes `expires_at`, regardless of whether anyone ever attempts to use the token again and regardless of whether the raw value has yet been physically redacted.
+- **Raw-token treatment after consumption (unchanged — immediate):** the `token` column's value is redacted (conceptually, set to `NULL` or replaced with a non-reversible marker) in the same transaction that sets `consumed_at`. The row's `id` (the stable primary key, distinct from the now-redacted `token` bearer value) continues to serve as the row's durable correlation identity.
+- **Raw-token treatment after expiry (corrected per `instruction1.32.md` §4 item 9):** logical unusability and physical redaction are no longer treated as necessarily simultaneous for the expiry path. Usability ends immediately at `expires_at` through the mandatory server-side check alone — that guarantee does not wait for anything else. Physical minimization of the stored raw value occurs at whichever comes first: (a) the first authorized interaction with the row after expiry (e.g., a retry attempt against the token, whose rejection-handling transaction also performs the redaction), or (b) a separately authorized future cleanup process (Section 8.6), which does not yet exist. An expired-but-never-retried row therefore remains permanently unusable from the instant of expiry even if its raw value has not yet been physically redacted — the state check, not the presence or absence of the raw value, is what enforces unusability.
+- Redaction is a data-minimization measure layered on top of, not a substitute for, the state-check enforcement: even where redaction is delayed (the expiry path, absent a retry or cleanup run), `consumed_at`/`expires_at` alone already make the row unusable. Redaction exists so that a database read (backup, replica, incident investigation) is less likely to encounter a live-looking bearer value for a token that can no longer be used in any case, satisfying instruction1.31.md §5.2's and instruction1.32.md §4 item 7's mandatory boundary that "the raw token value must not remain usable after consumption or expiry" — a usability guarantee the state check alone already fully provides.
 
 ### 8.4 Rejected/Stale Confirmation-Attempt Evidence
 
@@ -162,16 +166,33 @@ No field beyond this list is retained; in particular, the redacted `token` value
 
 **Ownership between the token row and `catalog_audit_events`:** conceptually both, answering different questions. The token row owns evidence of the D-068 *safeguard's own process* — was a preview issued, by whom, reviewed against what state, and consumed or not. `catalog_product_link_events`/`catalog_audit_events` separately own evidence of the *resulting substantive mutation* once a commit actually succeeds (what changed on the product). Neither duplicates the other; a complete audit trail for one D-068 flow reads both.
 
-**Purge trigger:** none is authorized or defined by this report. Per instruction1.31.md §5.3, this mission does not design a scheduler, worker, function, cron job, or any `pg_cron`/`pg_net`/Edge Function mechanism. Under the indefinite-retention policy in Section 8.2, no row currently becomes purge-eligible; a purge trigger only becomes a live question if a future, separately authorized mission changes retention from indefinite to a finite window.
+**Purge eligibility (corrected per `instruction1.32.md` §3–§4 — exact, fixed points, not "none currently reachable"):**
 
-**Future cleanup authority:** a separate, future, explicitly authorized data-retention/cleanup mission — potentially involving a scheduled batch mechanism — is the responsible future authority. This report names that requirement without designing, scoping, or implementing it.
+```text
+PURGE ELIGIBILITY:
+Consumed row — consumed_at + 90 days.
+Expired-unconsumed row — expires_at + 30 days.
+```
 
-**Behavior until a cleanup mechanism is separately authorized:** rows persist indefinitely in their minimized (raw token redacted, audit metadata intact) form, exactly like every other audit/history table in this repository. This is not a security gap — the security objective (an unusable, redacted bearer value) is already met at minimization — only a storage-growth consideration explicitly deferred to future operational tooling.
+Reaching its eligibility point makes a row a candidate for purge; it does not, by itself, cause any deletion or further minimization, because no execution mechanism yet exists (below).
+
+**After full-metadata retention (corrected per `instruction1.32.md` §4 item 11):** once a row passes its purge-eligibility point, the required outcome is one of exactly two: (a) delete the transient token row entirely, or (b) irreversibly minimize it to durable audit-only evidence, retained according to the general catalog audit-event policy. Durable audit-only evidence must not retain the raw bearer token, the complete `expected_state_snapshot` payload contents, or unnecessary personal data; it retains, where applicable, the same minimal fields as Section 8.5 (business identity, stable record/correlation identity, initiating actor, consuming actor, issue time, expiry time, consumption time, lifecycle outcome, rejection reason, request/idempotency correlation, and a minimal expected-state digest rather than the full snapshot).
+
+**Purge execution — separate future authority required:**
+
+```text
+PURGE EXECUTION:
+Requires a separately authorized cleanup mechanism.
+```
+
+Per instruction1.31.md §5.3 and instruction1.32.md §7–§8, this mission does not design a scheduler, worker, function, cron job, `pg_cron`/`pg_net` activation, or Edge Function to perform that execution. A separate, future, explicitly authorized data-retention/cleanup mission — potentially involving a scheduled batch mechanism — is the responsible future authority. This report names that requirement without designing, scoping, or implementing it.
+
+**Behavior until a cleanup mechanism is separately authorized:** rows may remain physically stored past their purge-eligibility point — including, for the expiry path, potentially still holding an un-redacted (but already permanently unusable) raw value if no retry or cleanup run has yet touched them (Section 8.3). This is not a security gap: token usability ended irreversibly at consumption or expiry, independent of physical storage state or purge timing. **No implementation may claim that automated purge is active** until a cleanup mechanism is separately authorized, built, and verified — this report authorizes no such claim and no such mechanism.
 
 **Business-isolation and actor-privacy requirements:** reads of `catalog_link_preview_tokens` (minimized or not) remain subject to the same business-scoped, permission-aware read path already locked for every other protected table (Lovable Build Prompt §6: "protected-column reads... go through a `SECURITY DEFINER` RPC or view... never a direct table `SELECT` from the client"); no cross-business visibility is introduced. Phase 1 is Owner-only, so no additional actor-privacy segregation among multiple internal roles is required yet; this report does not invent one ahead of the shared permission-engine's future arrival.
 
 - **Locked-source traceability:** Engineering Contract §12; EIS §3, §5.0, §10, §11, §18; Lovable Build Prompt §6, §14, §22; repository migration precedent (`inventory_movements`, `transaction_correction_events`, absence of any purge mechanism anywhere in `supabase/migrations/*.sql`).
-- **Security, privacy, storage, and auditability rationale:** minimization (Section 8.3) satisfies the mandatory raw-token-unusability boundary immediately and independently of retention length; indefinite retention of the remaining non-secret metadata satisfies auditability and replay-investigation needs without inventing an unsupported finite duration, and mirrors this repository's own existing audit-retention posture; deferring the purge mechanism keeps this mission within its documentation-only, non-implementation boundary while still naming the correct future authority.
+- **Security, privacy, storage, and auditability rationale:** minimization (Section 8.3) satisfies the mandatory raw-token-unusability boundary immediately and independently of retention length; the fixed 90-day/30-day full-metadata retention windows satisfy near-term auditability and replay-investigation needs without leaving data retained indefinitely, and fix a fixed Mission Control policy deadline now even though execution of the resulting purge eligibility is deferred to a separately authorized future mechanism; deferring that execution mechanism keeps this mission within its documentation-only, non-implementation boundary while still naming the correct future authority.
 - **Founder decision required:** No. Every choice above is an internal database-security/observability mechanism; none changes merchant-facing product behavior, and none conflicts with or narrows any locked Product Truth.
 - **Final disposition:**
 
@@ -189,20 +210,20 @@ RESOLVED — TOKEN RETENTION AND PURGE POLICY ESTABLISHED
 | Validity start point | `issued_at = now()` at successful `preview_catalog_inventory_link_change` commit | Server (database) clock only; never client-supplied | Removes any dependence on client/browser clock trust | Predictable, single well-defined starting instant | Engineering Contract §12; EIS §3 | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Expiry boundary | Valid while `now() < expires_at`; expired at `now() >= expires_at` | Single server-side comparison at commit-attempt time | Unambiguous, race-free boundary; no clock-skew case exists (one clock only) | Simple to explain: "your preview is valid for 15 minutes from when you opened it" | EIS §10 step 3, step 5 (recompute-and-compare) | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Renewal behavior | Prohibited — no renew/extend command exists or is proposed | Client cannot request renewal; only a fresh `preview_catalog_inventory_link_change` call issues a new token | Prevents indefinite extension of a single bearer token's exposure window | A fresh preview also re-shows current, accurate state — safer than silently extending a stale one | Engineering Contract §12; locked 28-command surface (unchanged) | `RESOLVED — EXACT VALUE ESTABLISHED` |
-| Consumed-row retention | Indefinite (minimized audit metadata only) | Not client-controlled; a fixed repository-wide policy | Matches this repository's universal no-purge audit/history precedent; avoids an unsupported invented finite duration | Preserves a full, permanent explanation of "what happened" for dispute resolution | Repository precedent (`inventory_movements`, `transaction_correction_events`); no locked source sets a finite value | `RESOLVED — EXACT VALUE ESTABLISHED` |
-| Expired-row retention | Indefinite (minimized audit metadata only) | Same as above | Same as above — an expired-but-never-consumed attempt is still legitimate audit evidence | Same as above | Same as above | `RESOLVED — EXACT VALUE ESTABLISHED` |
+| Consumed-row retention | Full non-secret metadata retained for 90 days after `consumed_at`; purge-eligible at `consumed_at + 90 days` | Not client-controlled; a fixed Mission Control policy deadline, applicable now regardless of whether a purge mechanism exists | Bounds how long full metadata persists before becoming eligible for reduction/deletion, while still supporting near-term dispute resolution | Preserves a clear, time-bounded explanation of "what happened" long enough to resolve any near-term merchant dispute | `instruction1.32.md` §3–§4 (fixed Mission Control policy) | `RESOLVED — EXACT VALUE ESTABLISHED` |
+| Expired-row retention | Full non-secret metadata retained for 30 days after `expires_at`; purge-eligible at `expires_at + 30 days` | Same as above | An expired-but-never-consumed attempt is still legitimate near-term audit evidence, with a shorter window than a completed change since no product mutation occurred | Same as above, proportioned to a lower-stakes event | `instruction1.32.md` §3–§4 (fixed Mission Control policy) | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Raw-token treatment after consumption | Redacted (nulled/non-reversible) in the same transaction that sets `consumed_at`; row `id` remains as correlation identity | Server-side, atomic with the state transition — not client-triggered | Ensures a data read can never expose a live-looking bearer value for an already-used token | No merchant-visible effect — purely internal hygiene | Instruction1.31.md §5.2 mandatory boundary; EIS §3 | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Raw-token treatment after expiry | Redacted (nulled/non-reversible) on first commit attempt observing expiry, same transaction as the rejection | Server-side, atomic with the state transition | Same as above, for the expiry path | No merchant-visible effect | Instruction1.31.md §5.2 mandatory boundary; EIS §3 | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Durable audit evidence | `business_id`, `id`, `initiating_actor_user_id`, `consuming_actor_user_id`, `expected_state_snapshot`/digest, `issued_at`, `expires_at`, `consumed_at`, derived outcome (Section 8.5) | Entirely server-recorded; no client-supplied evidence field | Sufficient for dispute resolution and replay investigation without retaining the usable secret | Enables merchant/Mission Control to reconstruct "what was reviewed and by whom" | EIS §5.0, §18; instruction1.31.md §5.1 | `RESOLVED — EXACT VALUE ESTABLISHED` |
 | Rejected-attempt evidence | Captured via the underlying command's existing `catalog_write_idempotency_keys` outcome-of-record — no new mechanism | Server-recorded automatically as part of the already-locked commit-attempt ordering | Reuses an already-locked, tamper-resistant outcome record rather than inventing a parallel one | No new merchant-facing behavior | EIS §3 (idempotency-first ordering), §5.0, §18 | `RESOLVED — EXACT VALUE ESTABLISHED` |
-| Purge trigger | None authorized; not designed under this mission | Not applicable — no mechanism exists | Avoids inventing infrastructure outside this mission's documentation-only authority | Not applicable | Instruction1.31.md §5.3 | `RESOLVED — POLICY ESTABLISHED (NO MECHANISM AUTHORIZED)` |
-| Future cleanup authority | A separately authorized future data-retention/purge mission (not created here) | Not applicable | Names the correct future authority without pre-designing it | Not applicable | Instruction1.31.md §5.3 | `RESOLVED — AUTHORITY NAMED, NOT CREATED` |
+| Purge trigger | Eligibility (not execution) is reached at `consumed_at + 90 days` (consumed) or `expires_at + 30 days` (expired-unconsumed); execution mechanism not authorized | Eligibility is a fixed, calculable policy point; execution requires a separate mechanism this mission does not create | Avoids inventing infrastructure outside this mission's documentation-only authority, while still fixing the deadline now | Not applicable | `instruction1.32.md` §3–§4, §5.3-equivalent boundary | `RESOLVED — ELIGIBILITY FIXED; EXECUTION NOT AUTHORIZED` |
+| Future cleanup authority | A separately authorized future data-retention/purge mission (not created here); no cleanup worker, cron job, Edge Function, RPC, or function exists or is claimed to exist | Not applicable | Names the correct future authority without pre-designing it; prevents any false claim of active automated purge | Not applicable | Instruction1.31.md §5.3; `instruction1.32.md` §4 item 10 | `RESOLVED — AUTHORITY NAMED, NOT CREATED` |
 
 ---
 
 ## 10. Conceptual Lifecycle Timeline
 
-This is conceptual documentation only, not executable state-machine code.
+**Corrected per `instruction1.32.md` §4 item 14.** This is conceptual documentation only, not executable state-machine code.
 
 ```text
 ISSUED
@@ -214,65 +235,74 @@ ISSUED
   Later-replay:        not applicable yet — no attempt has occurred.
 
 ACTIVE
-  Triggering event:   time elapses between ISSUED and either CONSUMED or EXPIRED.
+  Triggering event:   time elapses between ISSUED and either CONSUMED or EXPIRED,
+                        bounded by the fixed, unchanged 15-minute validity period.
   Actor/process:      no actor action required; a passive server-time-bounded state.
   Token usability:     usable, exactly once, until consumed or expired.
   Audit evidence:      unchanged from ISSUED.
   Later-replay:        not applicable — this is the only state in which a first
                         legitimate use can succeed.
 
-CONSUMED
-  Triggering event:   the initiating actor calls assign_or_replace_catalog_inventory_link
-                        (or remove_catalog_inventory_link) with a valid, unexpired token,
-                        and the D-068 nine-step commit model succeeds.
-  Actor/process:      the same actor who initiated the preview (same-actor confirmation,
-                        EIS §3/§15 — a mismatched actor is rejected/ACTOR_MISMATCH, not a
-                        transition to CONSUMED).
-  Token usability:     permanently unusable from this instant.
-  Audit evidence:      consumed_at and consuming_actor_user_id recorded; raw token
-                        redacted in the same transaction (see MINIMIZED).
+CONSUMED OR EXPIRED
+  Triggering event:   CONSUMED — the initiating actor calls
+                        assign_or_replace_catalog_inventory_link (or
+                        remove_catalog_inventory_link) with a valid, unexpired token,
+                        and the D-068 nine-step commit model succeeds (same-actor
+                        confirmation enforced; a mismatched actor is
+                        rejected/ACTOR_MISMATCH, not a transition to CONSUMED).
+                        EXPIRED — now() >= expires_at is reached, whether or not any
+                        attempt is ever made.
+  Actor/process:      CONSUMED: the same actor who initiated the preview. EXPIRED:
+                        server-evaluated; no actor action required.
+  Token usability:     permanently unusable from this instant in both cases — for
+                        EXPIRED, this is guaranteed immediately by the mandatory
+                        expires_at check alone, independent of any later interaction.
+  Audit evidence:      CONSUMED: consumed_at and consuming_actor_user_id recorded;
+                        raw token redacted in the same transaction. EXPIRED: no
+                        consumed_at/consuming_actor_user_id is ever set; raw-token
+                        redaction occurs at the first authorized interaction after
+                        expiry or via a future cleanup process, whichever is first —
+                        the row remains unusable even before that redaction happens.
   Later-replay:        any further attempt against this token → rejected/STALE_STATE.
 
-EXPIRED
-  Triggering event:   now() >= expires_at, first observed at a commit attempt (or simply
-                        elapsing, if no attempt is ever made).
-  Actor/process:      server-evaluated; no actor action required to "cause" expiry.
-  Token usability:     permanently unusable from this instant.
-  Audit evidence:      no consumed_at/consuming_actor_user_id is ever set; raw token
-                        redacted (see MINIMIZED) once an expired-state attempt is
-                        observed, or as part of routine minimization if never attempted.
-  Later-replay:        any attempt against this token → rejected/STALE_STATE.
-
-MINIMIZED
-  Triggering event:   immediately follows CONSUMED or EXPIRED, in the same transaction.
-  Actor/process:      server-side redaction; no actor action.
-  Token usability:     already unusable (unchanged from CONSUMED/EXPIRED); this state
-                        additionally removes the raw bearer value from storage.
+FULL-METADATA RETENTION
+  Triggering event:   begins immediately at CONSUMED or EXPIRED and lasts for the
+                        fixed window: 90 days after consumed_at (consumed), or 30 days
+                        after expires_at (expired-unconsumed).
+  Actor/process:      no actor action required; a passive, calendar-bounded state.
+  Token usability:     already unusable (unchanged).
   Audit evidence:      full non-secret evidence set (Section 8.5) retained; token
-                        column redacted; expected_state_snapshot may be reduced to a
-                        digest.
+                        column redacted (immediately for CONSUMED; opportunistically
+                        or via future cleanup for EXPIRED, per above).
   Later-replay:        unchanged — rejected/STALE_STATE.
 
 PURGE-ELIGIBLE
-  Triggering event:   would occur once a finite retention period elapses.
-  Actor/process:      not currently reachable — Section 8.2 sets retention to
-                        INDEFINITE, so no row becomes purge-eligible under this policy.
+  Triggering event:   the fixed retention window elapses — consumed_at + 90 days, or
+                        expires_at + 30 days.
+  Actor/process:      no actor action required; reaching this point is automatic and
+                        calculable, but it does not itself delete or further minimize
+                        anything, since no execution mechanism is yet authorized.
   Token usability:     already unusable.
-  Audit evidence:      unchanged from MINIMIZED.
+  Audit evidence:      unchanged from FULL-METADATA RETENTION.
   Later-replay:        unchanged — rejected/STALE_STATE.
 
-PURGED OR DURABLE-AUDIT-ONLY
-  Triggering event:   PURGED requires a future, separately authorized cleanup mechanism
-                        (Section 8.6) — not created by this report. DURABLE-AUDIT-ONLY is
-                        the practical terminal state today, since retention is indefinite.
-  Actor/process:      a future authorized mechanism (PURGED), or simply the passage of
-                        time under the current policy (DURABLE-AUDIT-ONLY).
-  Token usability:     already unusable in either case.
-  Audit evidence:      none, if PURGED; unchanged from MINIMIZED, if DURABLE-AUDIT-ONLY
-                        (the state every row is in today and for the foreseeable future).
+PURGED OR AUDIT-ONLY MINIMIZED
+  Triggering event:   requires a future, separately authorized cleanup mechanism
+                        (Section 8.6) that does not yet exist. Until that mechanism is
+                        authorized, built, and verified, no row actually reaches this
+                        state — it remains PURGE-ELIGIBLE, physically stored, and
+                        permanently unusable, and no implementation may claim
+                        automated purge is active.
+  Actor/process:      a future authorized cleanup mechanism only.
+  Token usability:     already unusable in either eventual outcome.
+  Audit evidence:      none, if the row is deleted (PURGED); reduced to the durable
+                        audit-only field set (Section 8.6), excluding the raw bearer
+                        token, the complete expected-state payload, and unnecessary
+                        personal data, if AUDIT-ONLY MINIMIZED instead.
   Later-replay:        if PURGED, a replay attempt resolves as a nonexistent token
                         (rejected/STALE_STATE, indistinguishable from never having
-                        existed); if DURABLE-AUDIT-ONLY, unchanged — rejected/STALE_STATE.
+                        existed); if AUDIT-ONLY MINIMIZED, unchanged — rejected/
+                        STALE_STATE.
 ```
 
 ---
@@ -284,7 +314,7 @@ QUESTION A (VALIDITY PERIOD): INVESTIGATED — RESOLVED
 QUESTION B (RETENTION AND PURGE POLICY): INVESTIGATED — RESOLVED
 ```
 
-One exact validity duration (15 minutes) was selected — not a range. One exact retention-and-purge policy (indefinite minimized-metadata retention; immediate raw-token redaction; no purge mechanism authorized; future authority named) was selected. No blocker was recorded for either question.
+One exact validity duration (15 minutes) was selected — not a range. One exact retention-and-purge policy was selected: 90-day full-metadata retention after `consumed_at` for consumed rows, 30-day full-metadata retention after `expires_at` for expired-unconsumed rows, immediate raw-token redaction on consumption (opportunistic-or-future-cleanup redaction on expiry, with usability guaranteed immediately regardless), fixed purge-eligibility points, and purge execution left to a separately authorized future mechanism. No blocker was recorded for either question. (Corrected per `instruction1.32.md`; the indefinite-retention position this section originally described has been replaced throughout Section 8.)
 
 ---
 
@@ -402,8 +432,33 @@ This report does not claim that implementation is authorized. It authorizes noth
 
 ## 21. Final Readiness Conclusion
 
+**Corrected per `instruction1.32.md` §6.**
+
 ```text
-TOKEN-LIFECYCLE PARAMETERS RESOLVED — PHASE 1 READINESS MAY PROCEED TO MISSION CONTROL REVIEW
+TOKEN VALIDITY:
+RESOLVED — 15 MINUTES, FIXED, SERVER-CONTROLLED
+
+CONSUMED-TOKEN FULL-METADATA RETENTION:
+RESOLVED — 90 DAYS AFTER consumed_at
+
+EXPIRED-UNCONSUMED FULL-METADATA RETENTION:
+RESOLVED — 30 DAYS AFTER expires_at
+
+RAW-TOKEN MINIMIZATION:
+RESOLVED
+
+PURGE ELIGIBILITY:
+RESOLVED
+
+PURGE EXECUTION:
+SEPARATE FUTURE AUTHORITY REQUIRED
+
+TOKEN-LIFECYCLE PARAMETER RESOLUTION:
+COMPLETE
 ```
 
-Both authorized questions reached a fully evidence-backed, non-blocking resolution: an exact 15-minute, fixed, server-controlled validity period (Question A), and an exact retention/minimization/purge policy — indefinite minimized-metadata retention, immediate raw-token redaction on consumption or expiry, reuse of the already-locked idempotency-key mechanism for rejected-attempt evidence, and no purge mechanism authorized or designed, with the correct future authority named instead (Question B). Every previously resolved element of the `catalog_link_preview_tokens` design (`report1.29.md`/`report1.30.md`) remains unchanged. No Founder decision is required, no Product Truth changed, and no implementation, SQL, migration, schema object, Lovable interaction, or scheduler/cleanup mechanism was created.
+```text
+PHASE 1 PRE-IMPLEMENTATION READINESS COMPLETE — FOUNDER LOVABLE BRIEF MAY BE PREPARED
+```
+
+Both authorized questions reached a fully evidence-backed, non-blocking resolution: an exact 15-minute, fixed, server-controlled validity period (Question A, unchanged and not reopened), and an exact retention/minimization/purge policy (Question B, corrected under `instruction1.32.md`) — 90-day full-metadata retention for consumed rows, 30-day full-metadata retention for expired-unconsumed rows, immediate raw-token redaction on consumption with usability-guaranteed/redaction-opportunistic treatment on expiry, fixed purge-eligibility points, reuse of the already-locked idempotency-key mechanism for rejected-attempt evidence, and purge execution left to a separately authorized future mechanism this report does not design. Every previously resolved element of the `catalog_link_preview_tokens` design (`report1.29.md`/`report1.30.md`) remains unchanged. No Founder decision is required, no Product Truth changed, and no implementation, SQL, migration, schema object, Lovable interaction, or scheduler/cleanup mechanism was created. See `communication/live/report1.32.md` for this correction's own completion evidence.
