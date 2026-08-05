@@ -2,27 +2,31 @@ Document: Lovable Build Prompt
 
 Version: 1.1
 
-Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
+Status: LOCKED — MISSION CONTROL ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control (Version 1.0 review recorded findings MC-LBP-001 through MC-LBP-004; re-review of Version 1.1 pending)
+Reviewed By: Mission Control
 
-Approval Date: Pending
+Approval Status: ACCEPTED
+
+Lock Status: LOCKED
+
+Approval Date: 2026-08-05
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVAL: NOT GRANTED
-LOCK: NOT AUTHORIZED
+STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVAL: GRANTED
+LOCK: ACTIVE
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-**Do not paste this document into Lovable.** This is a draft. It is not approved, not locked, and carries no implementation authority. It may be pasted into Lovable only after it has been separately reviewed, accepted, and locked by Mission Control, and only after a separately authorized Founder Lovable Brief and a separate, explicit Mission Control implementation authorization exist for the specific phase being built. Preparing this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
+**Do not paste this document into Lovable yet.** This document is accepted and locked by Mission Control at Version 1.1, but it carries no paste-into-Lovable authority and no implementation authority. It may be pasted into Lovable only after a separately authorized Founder Lovable Brief and a separate, explicit Mission Control implementation authorization exist for the specific phase being built. Acceptance and lock of this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
 
 ---
 
@@ -32,11 +36,11 @@ IMPLEMENTATION AUTHORITY: NONE
 |---|---|
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
-| Stage | 12B — Lovable Build Prompt Preparation and Refinement |
-| Package Position | Second document of the Stage 12 Initial Implementation Package (`engineering-contract.md` LOCKED, `lovable-build-prompt.md` this document, `verification-checklist.md` not yet authorized) |
-| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.21.md` (`report1.21.md`) → Mission Control review recorded findings MC-LBP-001 through MC-LBP-004, requiring narrow refinement |
-| This Revision | Narrow refinement authorized by `communication/live/instruction1.22.md`, correcting only MC-LBP-001 through MC-LBP-004; no previously accepted content reopened |
-| Authorizing Instruction | `communication/live/instruction1.22.md` |
+| Stage | 12B — Lovable Build Prompt Preparation, Refinement, and Lock |
+| Package Position | Second document of the Stage 12 Initial Implementation Package (`engineering-contract.md` LOCKED, `lovable-build-prompt.md` this document, LOCKED, `verification-checklist.md` not yet authorized) |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.21.md` (`report1.21.md`) → Mission Control review recorded findings MC-LBP-001 through MC-LBP-004 → Version 1.1 refinement authorized by `communication/live/instruction1.22.md` (`report1.22.md`), resolving MC-LBP-001 through MC-LBP-004 → Mission Control re-review recorded `LOVABLE BUILD PROMPT REVIEW: PASSED`, `LOVABLE BUILD PROMPT: ACCEPTABLE` |
+| This Revision | Lock-only status and metadata update authorized by `communication/live/instruction1.23.md`, accepting and locking Version 1.1; no substantive content changed |
+| Authorizing Instruction | `communication/live/instruction1.23.md` |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Document Type | Builder-facing prompt, intended for future direct use inside Lovable's AI builder |
 
@@ -443,21 +447,19 @@ Stop and report to Mission Control — do not guess, improvise, or proceed on an
 ## 26. This Prompt Does Not Authorize Implementation
 
 ```text
-LOVABLE BUILD PROMPT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVED: NO
-LOCKED: NO
+LOVABLE BUILD PROMPT STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVED: YES
+LOCKED: YES
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-Preparing this document does not authorize pasting it into Lovable and does not authorize implementation. Before any phase in Section 7 may be built:
+This document is accepted and locked at Version 1.1 (`communication/live/instruction1.23.md`; MC-LBP-001 through MC-LBP-004 resolved). Acceptance and lock do not authorize pasting it into Lovable and do not authorize implementation. Before any phase in Section 7 may be built:
 
-1. Mission Control must review and accept this Lovable Build Prompt.
-2. Mission Control must lock this Lovable Build Prompt.
-3. A separately authorized Founder Lovable Brief must exist.
-4. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
+1. A separately authorized Founder Lovable Brief must exist.
+2. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
 
-The Verification Checklist remains unauthorized until this prompt is accepted and locked. The Stage 12 Initial Implementation Package remains incomplete until all three documents exist and are locked.
+The Verification Checklist remains unauthorized. The Stage 12 Initial Implementation Package remains incomplete until the Verification Checklist also exists and is locked.
 
 ---
 
@@ -497,3 +499,4 @@ Founder Decisions D-001 through D-068 are cited inline throughout Sections 3–2
 |---|---|
 | 1.0 | Initial draft Lovable Build Prompt, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21), locked EIS (Version 2.2), and locked Engineering Contract (Version 1.1) into a phased, repository-first, implementation-ready builder instruction, per `instruction1.21.md`. Covers all 27 mandatory content areas. No new Product Truth, Founder decision, scope, or engineering behaviour introduced. Not approved, not locked, no paste-into-Lovable or implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.22.md`, correcting Mission Control findings MC-LBP-001 through MC-LBP-004 identified in review of Version 1.0. Corrected Section 8's Phase 1 permission behaviour so every command verifies authenticated ownership via `businesses.owner_id` only, without querying, requiring, simulating, hard-coding, or locally recreating the future permission flags during Phase 1 (MC-LBP-001). Restructured Section 11's command surface into explicit phase-scoped groups — Phase 1, Phase 2a (permission activation, no new commands), Phase 2b (import), Phase 3 (channel), and environment-gated scheduler commands — stating that a command outside its authorized phase must not be implemented, scaffolded, exposed, granted, deployed, or partially activated, with all locked names and signatures preserved (MC-LBP-002; consistency edit to Section 7's Phase 1 row). Made Section 24's implementation-evidence requirements phase-scoped, requiring only evidence for the phase actually authorized and built and requiring every deferred obligation to be recorded as `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` (MC-LBP-003). Corrected Section 25's stop-condition wording, which had inaccurately described all seven original EIS disposition entries as open inside Engineering Contract §29.1, to distinguish the genuinely open §29.1 dispositions from the separately resolved and preserved §29.2 disposition (selling-unit/price treatment upon inventory-link removal), which remains closed and is not reopened (MC-LBP-004). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no paste-into-Lovable or implementation authority. |
+| 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-LBP-001 through MC-LBP-004 as `RESOLVED` and recording `LOVABLE BUILD PROMPT REVIEW: PASSED`, `LOVABLE BUILD PROMPT: ACCEPTABLE`. Per `instruction1.23.md`, this is a lock-only documentation change: Version 1.1's substantive content — locked authority hierarchy, exact Build Now scope, Build Later/Add-on/Separate Product/Reject boundaries, repository-first discovery, accepted reuse patterns, phased implementation sequence, Phase 1 Owner-only runtime, Phase 2a/Phase 3 dependency gates, phase-scoped command grouping, phase-scoped evidence requirements, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, same-actor confirmation, AI Assistant boundaries, mandatory clean-file scanning, Pattern A scheduler architecture, employee financial-intelligence restrictions, standard POS bridge boundary, multilingual UX, merchant-safe outcome handling, stop conditions, the Engineering Contract §29.1/§29.2 separation, and traceability to all three locked authorities — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. Paste-into-Lovable authority and implementation authority remain `NONE`. The Verification Checklist and Founder Lovable Brief remain unauthorized; the Stage 12 Initial Implementation Package remains incomplete. |
