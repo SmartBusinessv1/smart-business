@@ -1080,33 +1080,97 @@ GRANT SELECT ON public.catalog_write_idempotency_keys TO catalog_read_executor;
 
 ALTER TABLE public.catalog_write_idempotency_keys ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "identity_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
-CREATE POLICY "lifecycle_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_lifecycle_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
-CREATE POLICY "pricing_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_pricing_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
-CREATE POLICY "tax_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
-CREATE POLICY "cost_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_cost_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
-CREATE POLICY "link_executor_all_own_business"
-  ON public.catalog_write_idempotency_keys FOR ALL TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+-- Corrected per Mission Control's Stage 1 checkpoint disposition: the
+-- accepted terminal idempotency model is insert-only after command
+-- completion or expected rejection. Existing rows are never updated or
+-- deleted by Phase 1 commands, so no FOR UPDATE and no FOR DELETE policy
+-- exists for any role, and no direct authenticated/anon/PUBLIC table
+-- policy exists. Concurrency serialization is handled entirely by the
+-- transaction-scoped advisory lock (catalog_internal.idempotency_lock_key,
+-- report1.37.md LSF-5) before the authoritative row is read or inserted --
+-- Stage 2 command bodies use a plain SELECT (no FOR UPDATE row-locking
+-- clause) against this table, so no UPDATE-privilege dependency exists
+-- here at all.
+
+-- FOR SELECT: every executor that performs a terminal-result lookup --
+-- the six write executors (idempotency-first resolution before proceeding)
+-- plus catalog_read_executor (command 16 only).
+CREATE POLICY "identity_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_identity_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+CREATE POLICY "lifecycle_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_lifecycle_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+CREATE POLICY "pricing_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_pricing_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+CREATE POLICY "tax_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_tax_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+CREATE POLICY "cost_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_cost_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+CREATE POLICY "link_executor_select_own_business"
+  ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_link_executor
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_read_executor
   USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+
+-- FOR INSERT: only the six write-command executor roles (commands 1-15).
+-- catalog_read_executor is deliberately excluded -- commands 16-19 never
+-- claim a key (16 only looks one up; 17-19 take no idempotency_key
+-- parameter at all per report1.37.md Section 5). Business is server-derived
+-- via resolve_owner_business(auth.uid()); actor server-derivation is
+-- enforced in the Stage 2 function body (auth.uid() only, never a
+-- caller-supplied parameter) since this table has no actor column to
+-- additionally constrain here. The terminal-outcome-only requirement is
+-- redundantly asserted in WITH CHECK, on top of the table's own
+-- outcome_status CHECK constraint, for defence in depth.
+CREATE POLICY "identity_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_identity_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+CREATE POLICY "lifecycle_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_lifecycle_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+CREATE POLICY "pricing_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_pricing_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+CREATE POLICY "tax_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_tax_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+CREATE POLICY "cost_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_cost_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+CREATE POLICY "link_executor_insert_own_business"
+  ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_link_executor
+  WITH CHECK (
+    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    AND outcome_status IN ('completed', 'rejected')
+  );
+
+-- No FOR UPDATE policy, no FOR DELETE policy (insert-only terminal model;
+-- also enforced independently by the catalog_event_provenance_guard
+-- BEFORE UPDATE / BEFORE DELETE triggers already attached above).
+-- No direct authenticated, anon, or PUBLIC table policy exists on this
+-- table (matches the REVOKE ALL ... FROM PUBLIC, anon, authenticated
+-- already applied above; only service_role and the seven executors hold
+-- any privilege here).
 
 -- =============================================================================
 -- 13. Table-owner sanity assertions
