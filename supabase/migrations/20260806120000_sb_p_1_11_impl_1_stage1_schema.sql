@@ -85,6 +85,19 @@ BEGIN
   END LOOP;
 END $$;
 
+-- catalog_internal.idempotency_lock_key (below) and catalog_internal.
+-- compute_fingerprint (Stage 2) both call extensions.digest() while
+-- executing AS one of the six write-command executors. Unlike auth,
+-- extensions is not a platform-locked schema -- this GRANT is fully
+-- effective. read_executor is excluded: none of its four commands ever
+-- claim an idempotency key or compute a fingerprint.
+GRANT USAGE ON SCHEMA extensions TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor;
+GRANT EXECUTE ON FUNCTION extensions.digest(text, text) TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor;
+
 -- =============================================================================
 -- 1. Internal (non-Data-API-exposed) schema
 -- =============================================================================
