@@ -1852,6 +1852,30 @@ GRANT EXECUTE ON FUNCTION public.catalog_products_list_batch(uuid[]) TO authenti
 -- Ownership transfer: SECURITY DEFINER executes as the function owner, so
 -- each command now runs as its narrow, NOLOGIN executor role rather than
 -- postgres (report1.37.md Section 8 executor matrix).
+--
+-- Stage 3 correction: ALTER FUNCTION ... OWNER TO requires (a) the
+-- connecting role to be a member of the target role (able to SET ROLE to
+-- it), and (b) the target role to hold CREATE privilege on the object's
+-- schema. On Supabase, the migration-applying `postgres` role is not
+-- automatically a member of roles it creates, and none of the seven
+-- executors were ever granted CREATE ON SCHEMA public (by design -- they
+-- only execute pre-created functions, they never create objects). Both
+-- gaps surfaced only when this migration was actually applied for the
+-- first time (Stage 3 verification against drravyyauixltoihzmwo). Grant
+-- both temporarily, for exactly the nineteen ownership transfers below,
+-- then revoke both immediately after so the steady-state schema retains
+-- neither the membership nor the schema privilege -- postgres already
+-- implicitly controls every executor's privileges through table/schema
+-- ownership regardless, and none of the nineteen functions need CREATE at
+-- runtime (SECURITY DEFINER execution never creates new objects), so
+-- neither grant is needed once the one-time ownership transfer is done.
+GRANT catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor
+  TO postgres;
+GRANT CREATE ON SCHEMA public TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
+
 ALTER FUNCTION public.create_catalog_product(uuid, text, text, uuid, text, text, text) OWNER TO catalog_identity_executor;
 ALTER FUNCTION public.update_catalog_product_identity(uuid, uuid, text, text, uuid, text, text) OWNER TO catalog_identity_executor;
 ALTER FUNCTION public.update_catalog_product_unit(uuid, uuid, text) OWNER TO catalog_identity_executor;
@@ -1877,6 +1901,16 @@ ALTER FUNCTION public.get_catalog_command_outcome(text, uuid) OWNER TO catalog_r
 ALTER FUNCTION public.catalog_products_search(text, boolean, uuid, integer, smallint, text, uuid) OWNER TO catalog_read_executor;
 ALTER FUNCTION public.catalog_product_read(uuid) OWNER TO catalog_read_executor;
 ALTER FUNCTION public.catalog_products_list_batch(uuid[]) OWNER TO catalog_read_executor;
+
+-- All nineteen ownership transfers are complete; revoke both temporary
+-- grants so the final schema state retains neither postgres's membership
+-- in the executors nor the executors' CREATE privilege on public.
+REVOKE catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor
+  FROM postgres;
+REVOKE CREATE ON SCHEMA public FROM
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
 
 -- =============================================================================
 -- 21. Sanity assertions

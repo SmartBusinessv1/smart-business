@@ -30,32 +30,17 @@
 -- 20260721205714_c3b38f2f-5f12-431d-80c2-9b14394cbc20.sql.
 
 -- =============================================================================
--- 0. Internal (non-Data-API-exposed) schema
--- =============================================================================
--- Supabase only exposes schemas explicitly added to the API's exposed-schema
--- list (public, graphql_public by default). catalog_internal is never added
--- to that list, so nothing here is reachable through PostgREST regardless of
--- role grants -- satisfying report1.37.md LSF-8's "non-Data-API-exposed
--- internal schema" requirement structurally, not just by convention.
-CREATE SCHEMA IF NOT EXISTS catalog_internal;
-
-REVOKE ALL ON SCHEMA catalog_internal FROM PUBLIC, anon, authenticated;
-GRANT USAGE ON SCHEMA catalog_internal TO
-  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
-  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
-
--- Neutralize default privileges for anything future work adds to this schema.
-ALTER DEFAULT PRIVILEGES IN SCHEMA catalog_internal
-  REVOKE ALL ON TABLES FROM anon, authenticated;
-ALTER DEFAULT PRIVILEGES IN SCHEMA catalog_internal
-  REVOKE EXECUTE ON FUNCTIONS FROM anon, authenticated;
-
--- =============================================================================
--- 1. Seven NOLOGIN executor roles (report1.37.md Section 8)
+-- 0. Seven NOLOGIN executor roles (report1.37.md Section 8)
 -- =============================================================================
 -- No LOGIN, no BYPASSRLS, no table ownership, no service_role membership,
 -- no inheritance from one another. Each owns only its own command group's
 -- functions (Stage 2) and receives only the narrow table grants below.
+--
+-- Created before the catalog_internal schema below (Stage 3 correction:
+-- the original ordering granted schema USAGE to these roles before they
+-- existed, which errored with "role does not exist" the first time this
+-- migration was actually applied to a real database -- caught by Stage 3
+-- verification against drravyyauixltoihzmwo, never previously executed).
 DO $$
 BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'catalog_identity_executor') THEN
@@ -99,6 +84,27 @@ BEGIN
     END IF;
   END LOOP;
 END $$;
+
+-- =============================================================================
+-- 1. Internal (non-Data-API-exposed) schema
+-- =============================================================================
+-- Supabase only exposes schemas explicitly added to the API's exposed-schema
+-- list (public, graphql_public by default). catalog_internal is never added
+-- to that list, so nothing here is reachable through PostgREST regardless of
+-- role grants -- satisfying report1.37.md LSF-8's "non-Data-API-exposed
+-- internal schema" requirement structurally, not just by convention.
+CREATE SCHEMA IF NOT EXISTS catalog_internal;
+
+REVOKE ALL ON SCHEMA catalog_internal FROM PUBLIC, anon, authenticated;
+GRANT USAGE ON SCHEMA catalog_internal TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
+
+-- Neutralize default privileges for anything future work adds to this schema.
+ALTER DEFAULT PRIVILEGES IN SCHEMA catalog_internal
+  REVOKE ALL ON TABLES FROM anon, authenticated;
+ALTER DEFAULT PRIVILEGES IN SCHEMA catalog_internal
+  REVOKE EXECUTE ON FUNCTIONS FROM anon, authenticated;
 
 -- =============================================================================
 -- 2. Enumerations
