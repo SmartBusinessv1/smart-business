@@ -278,6 +278,33 @@ GRANT EXECUTE ON FUNCTION catalog_internal.resolve_owner_business(uuid) TO
   catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
   catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
 
+-- resolve_owner_business queries public.businesses directly, so every one
+-- of the seven executors -- which run it while executing AS themselves,
+-- SECURITY DEFINER -- needs its own SELECT on that table. Missing on the
+-- first Stage 3 behavioral test that simulated a real authenticated
+-- caller: every command failed with "permission denied for table
+-- businesses" the moment it tried to resolve the caller's business, the
+-- very first thing every one of the nineteen commands does. Structural
+-- verification could not have caught this either, since it never calls a
+-- function as a non-superuser role. business_tax_settings, catalog_
+-- categories, and catalog_products already carry their own per-executor
+-- grants below; businesses is pre-existing (SB-P-1.10) and was never
+-- extended to these new roles until now.
+GRANT SELECT ON public.businesses TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
+
+-- businesses already has RLS enabled with policies scoped only to
+-- authenticated (SB-P-1.10); none of those apply to these seven distinct
+-- roles, so without a matching policy the GRANT above would still yield
+-- zero rows (RLS defaults closed, not merely unauthorized). One combined
+-- policy since all seven need identical logic.
+CREATE POLICY "catalog_executors_select_own_business"
+  ON public.businesses FOR SELECT
+  TO catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+     catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor
+  USING (owner_id = catalog_internal.current_actor_uid());
+
 -- 4.4 Advisory-lock key derivation (report1.37.md LSF-5). Domain-separated,
 -- deterministic digest reduced into the bigint advisory-lock key space. A
 -- collision can only cause temporary serialization contention -- it is
