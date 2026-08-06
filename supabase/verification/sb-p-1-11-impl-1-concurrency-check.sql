@@ -1,0 +1,118 @@
+-- SB-P-1.11-IMPL-1 verification addendum -- true two-session concurrency
+-- checks (instruction1.42.md Section 4). Not a migration; nothing here is
+-- applied automatically. Run against the dedicated non-production test
+-- project (drravyyauixltoihzmwo) only, never against production.
+--
+-- Methodology: `supabase db query` redacts successful row content but
+-- passes error messages through uncensored (see report1.41.md Section 17
+-- and report1.44.md), so every check here is an assertion query --
+-- silent on success, RAISE EXCEPTION with full detail on failure.
+--
+-- True concurrency requires two genuinely independent database
+-- connections. Each numbered block below is a SEPARATE file, run via two
+-- separate `supabase db query -f <file>` invocations launched as two
+-- separate OS processes (e.g. one backgrounded), not two statements in
+-- one script. Both sessions first rendezvous through a database-side
+-- ready/wait barrier (a real, non-temp logging table, since temp tables
+-- are connection-local and invisible across sessions) before either
+-- touches the contended operation -- this removes connection-setup
+-- timing variance from the equation. After the barrier releases, the
+-- "holder" session performs the contended call and then pg_sleep()s
+-- while its transaction is still open (advisory locks and row locks
+-- acquired via FOR UPDATE are transaction-scoped, so they remain held
+-- for the sleep's duration), while the "blocked" session's own call
+-- genuinely blocks on that lock until the holder commits.
+
+-- =============================================================================
+-- 0. Shared evidence-logging table (test scaffolding, not a Phase 1
+-- catalog table -- create once, drop when the verification run is done).
+-- =============================================================================
+-- CREATE TABLE public._sb_p_1_11_addendum_log (
+--   id bigserial PRIMARY KEY,
+--   session_label text NOT NULL,
+--   event text NOT NULL,
+--   detail text,
+--   logged_at timestamptz NOT NULL DEFAULT clock_timestamp()
+-- );
+-- GRANT SELECT, INSERT ON public._sb_p_1_11_addendum_log TO authenticated;
+-- GRANT USAGE, SELECT ON SEQUENCE public._sb_p_1_11_addendum_log_id_seq TO authenticated;
+-- -- This project auto-enables RLS on newly created public tables
+-- -- (observed platform behavior); add a permissive policy for the test
+-- -- role or the barrier INSERTs will fail closed:
+-- CREATE POLICY "addendum_authenticated_all" ON public._sb_p_1_11_addendum_log
+--   FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- =============================================================================
+-- 1. Scope 4.1 -- same-key, same-payload contention.
+-- =============================================================================
+-- Session A (launch first, e.g. backgrounded):
+--   INSERT INTO public._sb_p_1_11_addendum_log (session_label, event, detail)
+--     VALUES ('A1-A', 'session_start', format('backend_pid=%s', pg_backend_pid()));
+--   INSERT INTO public._sb_p_1_11_addendum_log (session_label, event) VALUES ('A1-A', 'ready');
+--   COMMIT;
+--   DO $$
+--   DECLARE v_waited numeric := 0;
+--   BEGIN
+--     WHILE NOT EXISTS (SELECT 1 FROM public._sb_p_1_11_addendum_log WHERE session_label = 'A1-B' AND event = 'ready')
+--           AND v_waited < 90 LOOP
+--       PERFORM pg_sleep(0.1); v_waited := v_waited + 0.1;
+--     END LOOP;
+--   END $$;
+--   INSERT INTO public._sb_p_1_11_addendum_log (session_label, event) VALUES ('A1-A', 'barrier_released');
+--   COMMIT;
+--   SET ROLE authenticated;
+--   SELECT set_config('request.jwt.claims', '{"sub":"<owner-uuid>","role":"authenticated"}', false);
+--   DO $$
+--   DECLARE v_result public.catalog_command_result;
+--   BEGIN
+--     INSERT INTO public._sb_p_1_11_addendum_log (session_label, event) VALUES ('A1-A', 'call_started');
+--     SELECT * INTO v_result FROM public.create_catalog_category('<shared-key>'::uuid, 'Concurrency Test Category');
+--     INSERT INTO public._sb_p_1_11_addendum_log (session_label, event, detail)
+--       VALUES ('A1-A', 'call_returned', format('outcome=%s reason=%s category_id=%s', v_result.outcome, v_result.rejection_reason, v_result.category_id));
+--   END $$;
+--   SELECT pg_sleep(15);  -- holds the advisory lock open for Session B to block on
+--   INSERT INTO public._sb_p_1_11_addendum_log (session_label, event) VALUES ('A1-A', 'session_end_pre_commit');
+--   RESET ROLE;
+--
+-- Session B (launch immediately after, in the same turn): identical
+-- barrier, then after release adds a small deterministic pg_sleep(0.3)
+-- before calling the SAME operation with the SAME key and payload.
+--
+-- Required evidence (observed, report1.44.md Section 6): Session B's
+-- call_started timestamp falls inside Session A's held window and its
+-- call_returned timestamp falls only after Session A's commit; both
+-- sessions' result rows carry the identical category_id; exactly one row
+-- exists in catalog_categories and catalog_write_idempotency_keys for
+-- that key; exactly one catalog_audit_events row exists.
+
+-- =============================================================================
+-- 2. Scope 4.2 -- same-key, DIFFERENT-payload contention.
+-- =============================================================================
+-- Identical structure to Scope 4.1, except Session B calls
+-- create_catalog_category with the SAME idempotency key but a DIFFERENT
+-- category name. Expected: the losing (blocked) session receives
+-- IDEMPOTENCY_CONFLICT once it unblocks; only the winning session's
+-- payload is ever persisted.
+
+-- =============================================================================
+-- 3. Scope 4.3 -- D-068 preview-vs-confirm lock ordering.
+-- =============================================================================
+-- Sequential setup (before the concurrent phase, must commit normally,
+-- no trailing exception): create a product, call
+-- preview_catalog_inventory_link_change(product, 'assign_or_replace',
+-- target_item) to obtain token T1.
+--
+-- Concurrent phase, same barrier pattern as above:
+--   Session A: calls preview_catalog_inventory_link_change again for the
+--     SAME product (supersedes T1, creating T2), then pg_sleep(30) while
+--     holding the product-row FOR UPDATE lock open.
+--   Session B: after a small deterministic offset, calls
+--     assign_or_replace_catalog_inventory_link using the ORIGINAL token
+--     T1 -- this call locks the product row first (matching the accepted
+--     lock order), so it genuinely blocks until Session A commits.
+--
+-- Required evidence: no deadlock; Session B's call blocks for
+-- (approximately) Session A's hold duration, then returns STALE_STATE;
+-- zero catalog_product_link_events rows are created; final product state
+-- (inventory_item_id, price) is internally consistent and unchanged by
+-- either session (since neither successfully confirmed a link).
