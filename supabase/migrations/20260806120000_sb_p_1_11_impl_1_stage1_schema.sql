@@ -318,6 +318,25 @@ CREATE POLICY "catalog_executors_select_own_business"
      catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor
   USING (owner_id = catalog_internal.current_actor_uid());
 
+-- Same gap, same fix, for the two pre-existing SB-P-1.10 tables the D-068
+-- link flow reads directly: preview_catalog_inventory_link_change queries
+-- inventory_items (target-item validation) and inventory_movements (the
+-- D-047 tenure-bounded dependent-history check) -- both scoped only to
+-- catalog_link_executor, the only executor that ever touches them. Also
+-- found only by Stage 3 behavioral testing, immediately after the
+-- businesses fix let commands get one step further.
+GRANT SELECT ON public.inventory_items TO catalog_link_executor;
+CREATE POLICY "catalog_link_executor_select_own_business"
+  ON public.inventory_items FOR SELECT
+  TO catalog_link_executor
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
+
+GRANT SELECT ON public.inventory_movements TO catalog_link_executor;
+CREATE POLICY "catalog_link_executor_select_own_business"
+  ON public.inventory_movements FOR SELECT
+  TO catalog_link_executor
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
+
 -- 4.4 Advisory-lock key derivation (report1.37.md LSF-5). Domain-separated,
 -- deterministic digest reduced into the bigint advisory-lock key space. A
 -- collision can only cause temporary serialization contention -- it is
