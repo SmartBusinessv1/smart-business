@@ -1903,8 +1903,21 @@ ALTER FUNCTION public.catalog_product_read(uuid) OWNER TO catalog_read_executor;
 ALTER FUNCTION public.catalog_products_list_batch(uuid[]) OWNER TO catalog_read_executor;
 
 -- All nineteen ownership transfers are complete; revoke both temporary
--- grants so the final schema state retains neither postgres's membership
--- in the executors nor the executors' CREATE privilege on public.
+-- grants. The CREATE-on-public revoke is fully effective (postgres was
+-- the grantor of its own explicit GRANT above). The role-membership
+-- revoke is only partially effective: on Supabase, CREATE ROLE under
+-- PostgreSQL 16+ CREATEROLE semantics automatically grants the creating
+-- role (postgres) membership in the new role, attributed to supabase_admin
+-- as grantor -- observed empirically during Stage 3 verification against
+-- drravyyauixltoihzmwo. Because postgres is not that grant's grantor, its
+-- own REVOKE cannot remove it (and only supabase_admin could). This
+-- statement is kept because it correctly revokes the explicit grant made
+-- two statements above, and is harmless where the automatic grant doesn't
+-- exist; it is not, and cannot be made, a guarantee that postgres holds
+-- zero membership in these roles on Supabase specifically. This residual
+-- membership grants postgres nothing it did not already control -- it
+-- already owns every catalog table, the catalog_internal schema, and
+-- (until the transfer above) these very functions.
 REVOKE catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
   catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor
   FROM postgres;
