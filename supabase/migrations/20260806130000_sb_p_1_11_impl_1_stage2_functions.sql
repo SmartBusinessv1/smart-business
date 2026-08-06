@@ -8,7 +8,7 @@
 -- executed.
 --
 -- Shared architecture, applied uniformly across all fifteen write commands:
---   1. Re-derive actor (auth.uid()) and business
+--   1. Re-derive actor (catalog_internal.current_actor_uid()) and business
 --      (catalog_internal.resolve_owner_business) -- never caller-supplied.
 --      If either is unavailable, return rejected/PERMISSION_DENIED without
 --      any idempotency bookkeeping (a business_id-scoped row cannot be
@@ -71,7 +71,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -183,7 +183,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -295,7 +295,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -383,7 +383,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -459,7 +459,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -539,7 +539,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -611,7 +611,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -683,7 +683,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -763,7 +763,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -838,7 +838,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -919,7 +919,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -995,7 +995,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -1077,7 +1077,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_product public.catalog_products;
   v_target public.inventory_items;
@@ -1208,7 +1208,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -1378,7 +1378,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_fingerprint text;
   v_existing public.catalog_write_idempotency_keys;
@@ -1508,7 +1508,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_row public.catalog_write_idempotency_keys;
 BEGIN
@@ -1549,7 +1549,7 @@ STABLE
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_query_name text;
   v_query_id text;
@@ -1727,7 +1727,7 @@ STABLE
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
   v_product public.catalog_products;
 BEGIN
@@ -1762,7 +1762,7 @@ STABLE
 SET search_path = ''
 AS $$
 DECLARE
-  v_actor uuid := auth.uid();
+  v_actor uuid := catalog_internal.current_actor_uid();
   v_business uuid;
 BEGIN
   IF v_actor IS NOT NULL THEN
@@ -1798,12 +1798,12 @@ $$;
 -- EXECUTE on every new function to anon, authenticated, service_role. Each
 -- function below has its PUBLIC and anon default EXECUTE explicitly
 -- neutralized, then is given exactly one narrow additional grant: EXECUTE
--- to authenticated (every command re-derives auth.uid() internally and is
+-- to authenticated (every command re-derives catalog_internal.current_actor_uid() internally and is
 -- safe to expose broadly; anon is never granted). service_role is left
 -- untouched, matching the same principle applied to every table and
 -- catalog_internal helper in Stage 1 -- it already holds BYPASSRLS at the
 -- platform level, and none of these commands behave usefully called
--- without an authenticated user context anyway (auth.uid() resolves NULL,
+-- without an authenticated user context anyway (catalog_internal.current_actor_uid() resolves NULL,
 -- so every command deterministically returns PERMISSION_DENIED). Ownership
 -- is then transferred to the function's designated executor role
 -- (report1.37.md Section 8) so SECURITY DEFINER runs as that narrow role,

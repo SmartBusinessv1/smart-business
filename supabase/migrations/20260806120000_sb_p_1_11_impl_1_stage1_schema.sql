@@ -225,6 +225,40 @@ GRANT EXECUTE ON FUNCTION catalog_internal.normalize_name(text) TO
 GRANT EXECUTE ON FUNCTION catalog_internal.normalize_identifier(text) TO
   catalog_identity_executor, catalog_read_executor;
 
+-- 4.2b Current-actor resolution, replicating Supabase's built-in
+-- auth.uid()'s exact logic without depending on the auth schema. Every
+-- RLS policy and every Stage 2 command needs the caller's uid while
+-- executing AS a narrow SECURITY DEFINER-owned executor role -- and on
+-- Supabase, USAGE ON SCHEMA auth cannot be granted to a custom role (a
+-- platform-enforced guard around the sensitive auth schema: attempts to
+-- grant it are silently reverted, even though the granting statement
+-- itself reports success -- discovered only by Stage 3 behavioral
+-- verification against drravyyauixltoihzmwo; static review and structural
+-- verification alone could not have caught this, since neither ever calls
+-- a function as a non-superuser role). current_setting() is a core
+-- Postgres builtin requiring no schema grant at all, and is the exact
+-- mechanism auth.uid() itself uses internally, so this reproduces
+-- identical semantics (including its two-path fallback) with no forbidden
+-- dependency. Security is unaffected: the value still comes solely from
+-- the session's PostgREST-verified JWT claim, never from a caller-
+-- supplied parameter.
+CREATE OR REPLACE FUNCTION catalog_internal.current_actor_uid()
+RETURNS uuid
+LANGUAGE sql
+STABLE
+SET search_path = ''
+AS $$
+  SELECT coalesce(
+    nullif(current_setting('request.jwt.claim.sub', true), ''),
+    (nullif(current_setting('request.jwt.claims', true), '')::jsonb ->> 'sub')
+  )::uuid;
+$$;
+
+REVOKE ALL ON FUNCTION catalog_internal.current_actor_uid() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION catalog_internal.current_actor_uid() TO
+  catalog_identity_executor, catalog_lifecycle_executor, catalog_pricing_executor,
+  catalog_tax_executor, catalog_cost_executor, catalog_link_executor, catalog_read_executor;
+
 -- 4.3 Owner/business resolution helper: re-derives the caller's business
 -- through current Owner authority only. Used by every Stage 2 command.
 -- Returns NULL (never raises) when the caller is not an authenticated
@@ -307,25 +341,29 @@ ALTER TABLE public.catalog_categories ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "identity_executor_select_own_business"
   ON public.catalog_categories FOR SELECT
   TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "identity_executor_insert_own_business"
   ON public.catalog_categories FOR INSERT
   TO catalog_identity_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "identity_executor_update_own_business"
   ON public.catalog_categories FOR UPDATE
   TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_categories FOR SELECT
   TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- Narrow, column-limited direct authenticated read, Owner-business scoped.
+-- Deliberately still auth.uid() (not catalog_internal.current_actor_uid()):
+-- this is the one policy that runs as authenticated directly, not via a
+-- SECURITY DEFINER executor, and authenticated already has legitimate
+-- platform-granted access to the auth schema.
 CREATE POLICY "authenticated_select_own_business_category_columns"
   ON public.catalog_categories FOR SELECT
   TO authenticated
@@ -442,50 +480,50 @@ ALTER TABLE public.catalog_products ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "identity_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "identity_executor_insert_own_business"
   ON public.catalog_products FOR INSERT TO catalog_identity_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "identity_executor_update_own_business"
   ON public.catalog_products FOR UPDATE TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "lifecycle_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_lifecycle_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "lifecycle_executor_update_own_business"
   ON public.catalog_products FOR UPDATE TO catalog_lifecycle_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "pricing_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_pricing_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "tax_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "cost_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_cost_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "cost_executor_update_own_business"
   ON public.catalog_products FOR UPDATE TO catalog_cost_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "link_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_update_own_business"
   ON public.catalog_products FOR UPDATE TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 7. business_tax_settings
@@ -513,17 +551,17 @@ ALTER TABLE public.business_tax_settings ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "tax_executor_select_own_business"
   ON public.business_tax_settings FOR SELECT TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "tax_executor_insert_own_business"
   ON public.business_tax_settings FOR INSERT TO catalog_tax_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "tax_executor_update_own_business"
   ON public.business_tax_settings FOR UPDATE TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.business_tax_settings FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 8. catalog_link_preview_tokens (mutable D-068 lifecycle row)
@@ -616,14 +654,14 @@ ALTER TABLE public.catalog_link_preview_tokens ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "link_executor_select_own_business"
   ON public.catalog_link_preview_tokens FOR SELECT TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_insert_own_business"
   ON public.catalog_link_preview_tokens FOR INSERT TO catalog_link_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_update_own_business"
   ON public.catalog_link_preview_tokens FOR UPDATE TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 9. Immutable event tables: shared provenance shape
@@ -685,19 +723,19 @@ ALTER TABLE public.catalog_selling_price_events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "pricing_executor_select_own_business"
   ON public.catalog_selling_price_events FOR SELECT TO catalog_pricing_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "pricing_executor_insert_own_business"
   ON public.catalog_selling_price_events FOR INSERT TO catalog_pricing_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_select_own_business"
   ON public.catalog_selling_price_events FOR SELECT TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_insert_own_business"
   ON public.catalog_selling_price_events FOR INSERT TO catalog_link_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_selling_price_events FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- 9.2 catalog_tax_events
 CREATE TABLE public.catalog_tax_events (
@@ -746,13 +784,13 @@ ALTER TABLE public.catalog_tax_events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "tax_executor_select_own_business"
   ON public.catalog_tax_events FOR SELECT TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "tax_executor_insert_own_business"
   ON public.catalog_tax_events FOR INSERT TO catalog_tax_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_tax_events FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- 9.3 catalog_reference_cost_events (cost-confidential: no audit-table
 -- privilege for catalog_cost_executor anywhere in this migration).
@@ -798,13 +836,13 @@ ALTER TABLE public.catalog_reference_cost_events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "cost_executor_select_own_business"
   ON public.catalog_reference_cost_events FOR SELECT TO catalog_cost_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "cost_executor_insert_own_business"
   ON public.catalog_reference_cost_events FOR INSERT TO catalog_cost_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_reference_cost_events FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- 9.4 catalog_product_link_events
 CREATE TABLE public.catalog_product_link_events (
@@ -858,13 +896,13 @@ ALTER TABLE public.catalog_product_link_events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "link_executor_select_own_business"
   ON public.catalog_product_link_events FOR SELECT TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_insert_own_business"
   ON public.catalog_product_link_events FOR INSERT TO catalog_link_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_product_link_events FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 10. catalog_audit_events (closed JSON allowlist, no cost data)
@@ -1016,16 +1054,16 @@ ALTER TABLE public.catalog_audit_events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "identity_executor_insert_own_business"
   ON public.catalog_audit_events FOR INSERT TO catalog_identity_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "lifecycle_executor_insert_own_business"
   ON public.catalog_audit_events FOR INSERT TO catalog_lifecycle_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "tax_executor_insert_own_business"
   ON public.catalog_audit_events FOR INSERT TO catalog_tax_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_insert_own_business"
   ON public.catalog_audit_events FOR INSERT TO catalog_link_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 11. catalog_deletion_records (minimal, non-cost deletion snapshot)
@@ -1059,7 +1097,7 @@ ALTER TABLE public.catalog_deletion_records ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "lifecycle_executor_insert_own_business"
   ON public.catalog_deletion_records FOR INSERT TO catalog_lifecycle_executor
-  WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- =============================================================================
 -- 12. catalog_write_idempotency_keys (shared outcome-of-record)
@@ -1117,32 +1155,32 @@ ALTER TABLE public.catalog_write_idempotency_keys ENABLE ROW LEVEL SECURITY;
 -- plus catalog_read_executor (command 16 only).
 CREATE POLICY "identity_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_identity_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "lifecycle_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_lifecycle_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "pricing_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_pricing_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "tax_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_tax_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "cost_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_cost_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "link_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_link_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 CREATE POLICY "read_executor_select_own_business"
   ON public.catalog_write_idempotency_keys FOR SELECT TO catalog_read_executor
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 -- FOR INSERT: only the six write-command executor roles (commands 1-15).
 -- catalog_read_executor is deliberately excluded -- commands 16-19 never
 -- claim a key (16 only looks one up; 17-19 take no idempotency_key
 -- parameter at all per report1.37.md Section 5). Business is server-derived
--- via resolve_owner_business(auth.uid()); actor server-derivation is
--- enforced in the Stage 2 function body (auth.uid() only, never a
+-- via resolve_owner_business(catalog_internal.current_actor_uid()); actor server-derivation is
+-- enforced in the Stage 2 function body (catalog_internal.current_actor_uid() only, never a
 -- caller-supplied parameter) since this table has no actor column to
 -- additionally constrain here. The terminal-outcome-only requirement is
 -- redundantly asserted in WITH CHECK, on top of the table's own
@@ -1150,37 +1188,37 @@ CREATE POLICY "read_executor_select_own_business"
 CREATE POLICY "identity_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_identity_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 CREATE POLICY "lifecycle_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_lifecycle_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 CREATE POLICY "pricing_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_pricing_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 CREATE POLICY "tax_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_tax_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 CREATE POLICY "cost_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_cost_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 CREATE POLICY "link_executor_insert_own_business"
   ON public.catalog_write_idempotency_keys FOR INSERT TO catalog_link_executor
   WITH CHECK (
-    business_id = catalog_internal.resolve_owner_business(auth.uid())
+    business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid())
     AND outcome_status IN ('completed', 'rejected')
   );
 
