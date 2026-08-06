@@ -527,6 +527,7 @@ GRANT ALL ON public.catalog_products TO service_role;
 GRANT INSERT, SELECT, UPDATE ON public.catalog_products TO catalog_identity_executor;
 GRANT SELECT, UPDATE ON public.catalog_products TO catalog_lifecycle_executor;
 GRANT SELECT ON public.catalog_products TO catalog_pricing_executor;
+GRANT UPDATE (current_selling_price) ON public.catalog_products TO catalog_pricing_executor;
 GRANT SELECT ON public.catalog_products TO catalog_tax_executor;
 GRANT SELECT ON public.catalog_products TO catalog_cost_executor;
 GRANT UPDATE (current_reference_cost) ON public.catalog_products TO catalog_cost_executor;
@@ -559,6 +560,10 @@ CREATE POLICY "lifecycle_executor_update_own_business"
 CREATE POLICY "pricing_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_pricing_executor
   USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
+CREATE POLICY "pricing_executor_update_own_business"
+  ON public.catalog_products FOR UPDATE TO catalog_pricing_executor
+  USING (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()))
+  WITH CHECK (business_id = catalog_internal.resolve_owner_business(catalog_internal.current_actor_uid()));
 
 CREATE POLICY "tax_executor_select_own_business"
   ON public.catalog_products FOR SELECT TO catalog_tax_executor
