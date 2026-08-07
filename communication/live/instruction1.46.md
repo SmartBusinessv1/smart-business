@@ -91,7 +91,7 @@ The Operator must not execute while the Founder is unavailable.
 
 One execution attempt is authorized during:
 
-**06 August 2026, 10:30 PM IST through 07 August 2026, 12:30 AM IST.**
+**07 August 2026, 2:25 PM IST through 07 August 2026, 4:25 PM IST.**
 
 This authorization expires at the end of that window.
 
