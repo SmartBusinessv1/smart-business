@@ -59,6 +59,13 @@ export function AuthedHeader({ email, onSignOut }: Props) {
           >
             Inventory
           </Link>
+          <Link
+            to="/catalog"
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            activeProps={{ className: "text-foreground font-medium" }}
+          >
+            Catalog
+          </Link>
           {email ? (
             <span className="hidden text-xs text-muted-foreground lg:inline" title={email}>
               {email}
@@ -114,6 +121,14 @@ export function AuthedHeader({ email, onSignOut }: Props) {
               activeProps={{ className: "text-foreground font-medium" }}
             >
               Inventory
+            </Link>
+            <Link
+              to="/catalog"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-3 text-base text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              activeProps={{ className: "text-foreground font-medium" }}
+            >
+              Catalog
             </Link>
             {email ? (
               <span className="px-3 pt-2 text-xs text-muted-foreground">{email}</span>
