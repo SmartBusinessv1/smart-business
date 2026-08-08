@@ -22,8 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedTransactionsRouteImport } from './routes/_authenticated/transactions'
 import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCatalogRouteImport } from './routes/_authenticated/catalog'
 import { Route as AuthenticatedInventoryIndexRouteImport } from './routes/_authenticated/inventory.index'
+import { Route as AuthenticatedCatalogIndexRouteImport } from './routes/_authenticated/catalog.index'
 import { Route as AuthenticatedInventoryItemIdRouteImport } from './routes/_authenticated/inventory.$itemId'
+import { Route as AuthenticatedCatalogProductIdRouteImport } from './routes/_authenticated/catalog.$productId'
 
 const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
   id: '/terms-of-service',
@@ -90,17 +93,34 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCatalogRoute = AuthenticatedCatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedInventoryIndexRoute =
   AuthenticatedInventoryIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedInventoryRoute,
   } as any)
+const AuthenticatedCatalogIndexRoute =
+  AuthenticatedCatalogIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCatalogRoute,
+  } as any)
 const AuthenticatedInventoryItemIdRoute =
   AuthenticatedInventoryItemIdRouteImport.update({
     id: '/$itemId',
     path: '/$itemId',
     getParentRoute: () => AuthenticatedInventoryRoute,
+  } as any)
+const AuthenticatedCatalogProductIdRoute =
+  AuthenticatedCatalogProductIdRouteImport.update({
+    id: '/$productId',
+    path: '/$productId',
+    getParentRoute: () => AuthenticatedCatalogRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -113,10 +133,13 @@ export interface FileRoutesByFullPath {
   '/start': typeof StartRoute
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
+  '/catalog': typeof AuthenticatedCatalogRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inventory': typeof AuthenticatedInventoryRouteWithChildren
   '/transactions': typeof AuthenticatedTransactionsRoute
+  '/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
   '/inventory/$itemId': typeof AuthenticatedInventoryItemIdRoute
+  '/catalog/': typeof AuthenticatedCatalogIndexRoute
   '/inventory/': typeof AuthenticatedInventoryIndexRoute
 }
 export interface FileRoutesByTo {
@@ -131,7 +154,9 @@ export interface FileRoutesByTo {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/transactions': typeof AuthenticatedTransactionsRoute
+  '/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
   '/inventory/$itemId': typeof AuthenticatedInventoryItemIdRoute
+  '/catalog': typeof AuthenticatedCatalogIndexRoute
   '/inventory': typeof AuthenticatedInventoryIndexRoute
 }
 export interface FileRoutesById {
@@ -146,10 +171,13 @@ export interface FileRoutesById {
   '/start': typeof StartRoute
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
+  '/_authenticated/catalog': typeof AuthenticatedCatalogRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/inventory': typeof AuthenticatedInventoryRouteWithChildren
   '/_authenticated/transactions': typeof AuthenticatedTransactionsRoute
+  '/_authenticated/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
   '/_authenticated/inventory/$itemId': typeof AuthenticatedInventoryItemIdRoute
+  '/_authenticated/catalog/': typeof AuthenticatedCatalogIndexRoute
   '/_authenticated/inventory/': typeof AuthenticatedInventoryIndexRoute
 }
 export interface FileRouteTypes {
@@ -164,10 +192,13 @@ export interface FileRouteTypes {
     | '/start'
     | '/super-admin'
     | '/terms-of-service'
+    | '/catalog'
     | '/dashboard'
     | '/inventory'
     | '/transactions'
+    | '/catalog/$productId'
     | '/inventory/$itemId'
+    | '/catalog/'
     | '/inventory/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -182,7 +213,9 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/dashboard'
     | '/transactions'
+    | '/catalog/$productId'
     | '/inventory/$itemId'
+    | '/catalog'
     | '/inventory'
   id:
     | '__root__'
@@ -196,10 +229,13 @@ export interface FileRouteTypes {
     | '/start'
     | '/super-admin'
     | '/terms-of-service'
+    | '/_authenticated/catalog'
     | '/_authenticated/dashboard'
     | '/_authenticated/inventory'
     | '/_authenticated/transactions'
+    | '/_authenticated/catalog/$productId'
     | '/_authenticated/inventory/$itemId'
+    | '/_authenticated/catalog/'
     | '/_authenticated/inventory/'
   fileRoutesById: FileRoutesById
 }
@@ -309,12 +345,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/catalog': {
+      id: '/_authenticated/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof AuthenticatedCatalogRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/inventory/': {
       id: '/_authenticated/inventory/'
       path: '/'
       fullPath: '/inventory/'
       preLoaderRoute: typeof AuthenticatedInventoryIndexRouteImport
       parentRoute: typeof AuthenticatedInventoryRoute
+    }
+    '/_authenticated/catalog/': {
+      id: '/_authenticated/catalog/'
+      path: '/'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof AuthenticatedCatalogIndexRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
     }
     '/_authenticated/inventory/$itemId': {
       id: '/_authenticated/inventory/$itemId'
@@ -323,8 +373,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInventoryItemIdRouteImport
       parentRoute: typeof AuthenticatedInventoryRoute
     }
+    '/_authenticated/catalog/$productId': {
+      id: '/_authenticated/catalog/$productId'
+      path: '/$productId'
+      fullPath: '/catalog/$productId'
+      preLoaderRoute: typeof AuthenticatedCatalogProductIdRouteImport
+      parentRoute: typeof AuthenticatedCatalogRoute
+    }
   }
 }
+
+interface AuthenticatedCatalogRouteChildren {
+  AuthenticatedCatalogProductIdRoute: typeof AuthenticatedCatalogProductIdRoute
+  AuthenticatedCatalogIndexRoute: typeof AuthenticatedCatalogIndexRoute
+}
+
+const AuthenticatedCatalogRouteChildren: AuthenticatedCatalogRouteChildren = {
+  AuthenticatedCatalogProductIdRoute: AuthenticatedCatalogProductIdRoute,
+  AuthenticatedCatalogIndexRoute: AuthenticatedCatalogIndexRoute,
+}
+
+const AuthenticatedCatalogRouteWithChildren =
+  AuthenticatedCatalogRoute._addFileChildren(AuthenticatedCatalogRouteChildren)
 
 interface AuthenticatedInventoryRouteChildren {
   AuthenticatedInventoryItemIdRoute: typeof AuthenticatedInventoryItemIdRoute
@@ -343,12 +413,14 @@ const AuthenticatedInventoryRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCatalogRoute: typeof AuthenticatedCatalogRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRouteWithChildren
   AuthenticatedTransactionsRoute: typeof AuthenticatedTransactionsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCatalogRoute: AuthenticatedCatalogRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedInventoryRoute: AuthenticatedInventoryRouteWithChildren,
   AuthenticatedTransactionsRoute: AuthenticatedTransactionsRoute,

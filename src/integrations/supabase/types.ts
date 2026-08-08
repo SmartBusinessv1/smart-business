@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      business_tax_settings: {
+        Row: {
+          business_id: string
+          created_at: string
+          default_tax_rate: number | null
+          id: string
+          pricing_mode: Database["public"]["Enums"]["catalog_pricing_mode"]
+          updated_at: string
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          default_tax_rate?: number | null
+          id?: string
+          pricing_mode: Database["public"]["Enums"]["catalog_pricing_mode"]
+          updated_at?: string
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          default_tax_rate?: number | null
+          id?: string
+          pricing_mode?: Database["public"]["Enums"]["catalog_pricing_mode"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "business_tax_settings_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: true
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       businesses: {
         Row: {
           category: string
@@ -43,6 +78,638 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      catalog_audit_events: {
+        Row: {
+          authority_basis: string
+          authorized_by_user_id: string
+          business_id: string
+          change_payload: Json
+          change_type: string
+          channel: string
+          entity_id: string
+          entity_type: string
+          executed_by_actor_type: string
+          id: string
+          recorded_at: string
+          request_id: string
+          system_run_id: string | null
+        }
+        Insert: {
+          authority_basis?: string
+          authorized_by_user_id: string
+          business_id: string
+          change_payload: Json
+          change_type: string
+          channel?: string
+          entity_id: string
+          entity_type: string
+          executed_by_actor_type?: string
+          id?: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Update: {
+          authority_basis?: string
+          authorized_by_user_id?: string
+          business_id?: string
+          change_payload?: Json
+          change_type?: string
+          channel?: string
+          entity_id?: string
+          entity_type?: string
+          executed_by_actor_type?: string
+          id?: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_audit_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_categories: {
+        Row: {
+          business_id: string
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+          name_normalized: string
+          status: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          updated_at: string
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          name: string
+          name_normalized: string
+          status?: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          updated_at?: string
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+          name_normalized?: string
+          status?: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_categories_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_deletion_records: {
+        Row: {
+          business_id: string
+          deleted_at: string
+          deleted_by_user_id: string
+          deleted_product_id: string
+          id: string
+          product_name_snapshot: string
+        }
+        Insert: {
+          business_id: string
+          deleted_at?: string
+          deleted_by_user_id: string
+          deleted_product_id: string
+          id?: string
+          product_name_snapshot: string
+        }
+        Update: {
+          business_id?: string
+          deleted_at?: string
+          deleted_by_user_id?: string
+          deleted_product_id?: string
+          id?: string
+          product_name_snapshot?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_deletion_records_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_link_preview_tokens: {
+        Row: {
+          business_id: string
+          closed_at: string | null
+          closed_by_actor_user_id: string | null
+          closure_reason: string | null
+          current_inventory_item_id: string | null
+          current_selling_price: number | null
+          current_selling_unit: string | null
+          expected_state_fingerprint: string
+          expires_at: string
+          id: string
+          initiating_actor_user_id: string
+          issued_at: string
+          price_confirmation_required: boolean
+          product_id: string
+          proposed_selling_unit: string | null
+          requested_action: Database["public"]["Enums"]["catalog_link_action"]
+          resulting_link_event_id: string | null
+          target_inventory_item_id: string | null
+        }
+        Insert: {
+          business_id: string
+          closed_at?: string | null
+          closed_by_actor_user_id?: string | null
+          closure_reason?: string | null
+          current_inventory_item_id?: string | null
+          current_selling_price?: number | null
+          current_selling_unit?: string | null
+          expected_state_fingerprint: string
+          expires_at: string
+          id?: string
+          initiating_actor_user_id: string
+          issued_at?: string
+          price_confirmation_required: boolean
+          product_id: string
+          proposed_selling_unit?: string | null
+          requested_action: Database["public"]["Enums"]["catalog_link_action"]
+          resulting_link_event_id?: string | null
+          target_inventory_item_id?: string | null
+        }
+        Update: {
+          business_id?: string
+          closed_at?: string | null
+          closed_by_actor_user_id?: string | null
+          closure_reason?: string | null
+          current_inventory_item_id?: string | null
+          current_selling_price?: number | null
+          current_selling_unit?: string | null
+          expected_state_fingerprint?: string
+          expires_at?: string
+          id?: string
+          initiating_actor_user_id?: string
+          issued_at?: string
+          price_confirmation_required?: boolean
+          product_id?: string
+          proposed_selling_unit?: string | null
+          requested_action?: Database["public"]["Enums"]["catalog_link_action"]
+          resulting_link_event_id?: string | null
+          target_inventory_item_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_link_preview_tokens_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_link_preview_tokens_product_fk"
+            columns: ["business_id", "product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+        ]
+      }
+      catalog_product_link_events: {
+        Row: {
+          action: Database["public"]["Enums"]["catalog_link_action"]
+          authority_basis: string
+          authorized_by_user_id: string
+          business_id: string
+          channel: string
+          executed_by_actor_type: string
+          id: string
+          new_inventory_item_id: string | null
+          new_selling_unit: string | null
+          preview_token_id: string
+          previous_inventory_item_id: string | null
+          previous_selling_unit: string | null
+          product_id: string
+          recorded_at: string
+          request_id: string
+          resulting_price_event_id: string | null
+          system_run_id: string | null
+        }
+        Insert: {
+          action: Database["public"]["Enums"]["catalog_link_action"]
+          authority_basis?: string
+          authorized_by_user_id: string
+          business_id: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_inventory_item_id?: string | null
+          new_selling_unit?: string | null
+          preview_token_id: string
+          previous_inventory_item_id?: string | null
+          previous_selling_unit?: string | null
+          product_id: string
+          recorded_at?: string
+          request_id?: string
+          resulting_price_event_id?: string | null
+          system_run_id?: string | null
+        }
+        Update: {
+          action?: Database["public"]["Enums"]["catalog_link_action"]
+          authority_basis?: string
+          authorized_by_user_id?: string
+          business_id?: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_inventory_item_id?: string | null
+          new_selling_unit?: string | null
+          preview_token_id?: string
+          previous_inventory_item_id?: string | null
+          previous_selling_unit?: string | null
+          product_id?: string
+          recorded_at?: string
+          request_id?: string
+          resulting_price_event_id?: string | null
+          system_run_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_product_link_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_product_link_events_preview_token_id_fkey"
+            columns: ["preview_token_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_link_preview_tokens"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_product_link_events_product_fk"
+            columns: ["business_id", "product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+          {
+            foreignKeyName: "catalog_product_link_events_resulting_price_event_id_fkey"
+            columns: ["resulting_price_event_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_selling_price_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_products: {
+        Row: {
+          barcode: string | null
+          barcode_normalized: string | null
+          business_id: string
+          category_id: string | null
+          created_at: string
+          created_by: string
+          current_reference_cost: number | null
+          current_selling_price: number | null
+          description: string | null
+          id: string
+          inventory_item_id: string | null
+          inventory_link_established_at: string | null
+          name: string
+          name_normalized: string
+          selling_unit: string
+          sku: string | null
+          sku_normalized: string | null
+          status: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          tax_rate_percent: number | null
+          tax_treatment: Database["public"]["Enums"]["catalog_tax_treatment"]
+          updated_at: string
+        }
+        Insert: {
+          barcode?: string | null
+          barcode_normalized?: string | null
+          business_id: string
+          category_id?: string | null
+          created_at?: string
+          created_by: string
+          current_reference_cost?: number | null
+          current_selling_price?: number | null
+          description?: string | null
+          id?: string
+          inventory_item_id?: string | null
+          inventory_link_established_at?: string | null
+          name: string
+          name_normalized: string
+          selling_unit?: string
+          sku?: string | null
+          sku_normalized?: string | null
+          status?: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          tax_rate_percent?: number | null
+          tax_treatment?: Database["public"]["Enums"]["catalog_tax_treatment"]
+          updated_at?: string
+        }
+        Update: {
+          barcode?: string | null
+          barcode_normalized?: string | null
+          business_id?: string
+          category_id?: string | null
+          created_at?: string
+          created_by?: string
+          current_reference_cost?: number | null
+          current_selling_price?: number | null
+          description?: string | null
+          id?: string
+          inventory_item_id?: string | null
+          inventory_link_established_at?: string | null
+          name?: string
+          name_normalized?: string
+          selling_unit?: string
+          sku?: string | null
+          sku_normalized?: string | null
+          status?: Database["public"]["Enums"]["catalog_lifecycle_status"]
+          tax_rate_percent?: number | null
+          tax_treatment?: Database["public"]["Enums"]["catalog_tax_treatment"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_products_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_products_category_fk"
+            columns: ["business_id", "category_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_categories"
+            referencedColumns: ["business_id", "id"]
+          },
+          {
+            foreignKeyName: "catalog_products_inventory_item_fk"
+            columns: ["inventory_item_id", "business_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id", "business_id"]
+          },
+        ]
+      }
+      catalog_reference_cost_events: {
+        Row: {
+          authority_basis: string
+          authorized_by_user_id: string
+          business_id: string
+          channel: string
+          executed_by_actor_type: string
+          id: string
+          new_cost: number
+          previous_cost: number | null
+          product_id: string
+          recorded_at: string
+          request_id: string
+          system_run_id: string | null
+        }
+        Insert: {
+          authority_basis?: string
+          authorized_by_user_id: string
+          business_id: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_cost: number
+          previous_cost?: number | null
+          product_id: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Update: {
+          authority_basis?: string
+          authorized_by_user_id?: string
+          business_id?: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_cost?: number
+          previous_cost?: number | null
+          product_id?: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_reference_cost_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_reference_cost_events_product_fk"
+            columns: ["business_id", "product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+        ]
+      }
+      catalog_selling_price_events: {
+        Row: {
+          authority_basis: string
+          authorized_by_user_id: string
+          business_id: string
+          channel: string
+          executed_by_actor_type: string
+          id: string
+          new_price: number
+          previous_price: number | null
+          product_id: string
+          recorded_at: string
+          request_id: string
+          source: string
+          system_run_id: string | null
+        }
+        Insert: {
+          authority_basis?: string
+          authorized_by_user_id: string
+          business_id: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_price: number
+          previous_price?: number | null
+          product_id: string
+          recorded_at?: string
+          request_id?: string
+          source: string
+          system_run_id?: string | null
+        }
+        Update: {
+          authority_basis?: string
+          authorized_by_user_id?: string
+          business_id?: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_price?: number
+          previous_price?: number | null
+          product_id?: string
+          recorded_at?: string
+          request_id?: string
+          source?: string
+          system_run_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_selling_price_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_selling_price_events_product_fk"
+            columns: ["business_id", "product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+        ]
+      }
+      catalog_tax_events: {
+        Row: {
+          authority_basis: string
+          authorized_by_user_id: string
+          business_id: string
+          channel: string
+          executed_by_actor_type: string
+          id: string
+          new_rate_percent: number | null
+          new_treatment: Database["public"]["Enums"]["catalog_tax_treatment"]
+          previous_rate_percent: number | null
+          previous_treatment:
+            | Database["public"]["Enums"]["catalog_tax_treatment"]
+            | null
+          product_id: string
+          recorded_at: string
+          request_id: string
+          system_run_id: string | null
+        }
+        Insert: {
+          authority_basis?: string
+          authorized_by_user_id: string
+          business_id: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_rate_percent?: number | null
+          new_treatment: Database["public"]["Enums"]["catalog_tax_treatment"]
+          previous_rate_percent?: number | null
+          previous_treatment?:
+            | Database["public"]["Enums"]["catalog_tax_treatment"]
+            | null
+          product_id: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Update: {
+          authority_basis?: string
+          authorized_by_user_id?: string
+          business_id?: string
+          channel?: string
+          executed_by_actor_type?: string
+          id?: string
+          new_rate_percent?: number | null
+          new_treatment?: Database["public"]["Enums"]["catalog_tax_treatment"]
+          previous_rate_percent?: number | null
+          previous_treatment?:
+            | Database["public"]["Enums"]["catalog_tax_treatment"]
+            | null
+          product_id?: string
+          recorded_at?: string
+          request_id?: string
+          system_run_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_tax_events_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_tax_events_product_fk"
+            columns: ["business_id", "product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+        ]
+      }
+      catalog_write_idempotency_keys: {
+        Row: {
+          business_id: string
+          created_at: string
+          id: string
+          idempotency_key: string
+          operation: string
+          outcome_status: string
+          payload_fingerprint: string
+          rejection_reason: string | null
+          result_ref: Json | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          id?: string
+          idempotency_key: string
+          operation: string
+          outcome_status: string
+          payload_fingerprint: string
+          rejection_reason?: string | null
+          result_ref?: Json | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          id?: string
+          idempotency_key?: string
+          operation?: string
+          outcome_status?: string
+          payload_fingerprint?: string
+          rejection_reason?: string | null
+          result_ref?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_write_idempotency_keys_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       inventory_items: {
         Row: {
@@ -311,6 +978,73 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      archive_catalog_category: {
+        Args: {
+          p_category_id: string
+          p_confirm_uncategorize?: boolean
+          p_idempotency_key: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      archive_catalog_product: {
+        Args: { p_idempotency_key: string; p_product_id: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      assign_or_replace_catalog_inventory_link: {
+        Args: {
+          p_confirmed_price?: number
+          p_idempotency_key: string
+          p_preview_token_id: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      catalog_product_read: { Args: { p_product_id: string }; Returns: Json }
+      catalog_products_list_batch: {
+        Args: { p_product_ids: string[] }
+        Returns: Database["public"]["CompositeTypes"]["catalog_product_summary"][]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_product_summary"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      catalog_products_search: {
+        Args: {
+          p_category_id?: string
+          p_cursor_id?: string
+          p_cursor_match_rank?: number
+          p_cursor_name_normalized?: string
+          p_include_archived?: boolean
+          p_limit?: number
+          p_query?: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_product_summary"][]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_product_summary"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       correct_transaction: {
         Args: {
           p_amount: number
@@ -340,6 +1074,34 @@ export type Database = {
         SetofOptions: {
           from: "*"
           to: "transactions"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      create_catalog_category: {
+        Args: { p_idempotency_key: string; p_name: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      create_catalog_product: {
+        Args: {
+          p_barcode?: string
+          p_category_id?: string
+          p_description?: string
+          p_idempotency_key: string
+          p_name: string
+          p_selling_unit?: string
+          p_sku?: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
           isOneToOne: true
           isSetofReturn: false
         }
@@ -381,6 +1143,26 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      delete_catalog_product: {
+        Args: { p_idempotency_key: string; p_product_id: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      get_catalog_command_outcome: {
+        Args: { p_idempotency_key: string; p_operation: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_outcome"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_outcome"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       inventory_current_stock_batch: {
         Args: { p_item_ids: string[] }
         Returns: {
@@ -391,6 +1173,20 @@ export type Database = {
       inventory_movement_remaining_compensable: {
         Args: { p_movement_id: string }
         Returns: number
+      }
+      preview_catalog_inventory_link_change: {
+        Args: {
+          p_product_id: string
+          p_requested_action: string
+          p_target_inventory_item_id?: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_link_preview_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_link_preview_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       preview_inventory_movement: {
         Args: {
@@ -403,8 +1199,124 @@ export type Database = {
           projected_stock: number
         }[]
       }
+      reactivate_catalog_product: {
+        Args: { p_idempotency_key: string; p_product_id: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      record_catalog_reference_cost_change: {
+        Args: {
+          p_idempotency_key: string
+          p_new_cost: number
+          p_product_id: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      record_catalog_selling_price_change: {
+        Args: {
+          p_idempotency_key: string
+          p_new_price: number
+          p_product_id: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      record_catalog_tax_change: {
+        Args: {
+          p_idempotency_key: string
+          p_product_id: string
+          p_rate_percent?: number
+          p_treatment: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      remove_catalog_inventory_link: {
+        Args: { p_idempotency_key: string; p_preview_token_id: string }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      update_business_tax_settings: {
+        Args: {
+          p_default_tax_rate?: number
+          p_idempotency_key: string
+          p_pricing_mode: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      update_catalog_product_identity: {
+        Args: {
+          p_barcode: string
+          p_category_id: string
+          p_description: string
+          p_idempotency_key: string
+          p_name: string
+          p_product_id: string
+          p_sku: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      update_catalog_product_unit: {
+        Args: {
+          p_idempotency_key: string
+          p_product_id: string
+          p_selling_unit: string
+        }
+        Returns: Database["public"]["CompositeTypes"]["catalog_command_result"]
+        SetofOptions: {
+          from: "*"
+          to: "catalog_command_result"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
+      catalog_lifecycle_status: "active" | "archived"
+      catalog_link_action: "assign_or_replace" | "remove"
+      catalog_pricing_mode: "tax_inclusive" | "tax_exclusive"
+      catalog_tax_treatment:
+        | "inherit_business_default"
+        | "product_specific_rate"
+        | "non_taxable"
       inventory_direction: "increase" | "decrease"
       inventory_item_status: "active" | "archived"
       inventory_movement_type:
@@ -416,7 +1328,47 @@ export type Database = {
         | "correction"
     }
     CompositeTypes: {
-      [_ in never]: never
+      catalog_command_outcome: {
+        found: boolean | null
+        outcome: string | null
+        rejection_reason: string | null
+        result_ref: Json | null
+        recorded_at: string | null
+      }
+      catalog_command_result: {
+        outcome: string | null
+        rejection_reason: string | null
+        product_id: string | null
+        category_id: string | null
+        idempotency_key: string | null
+        recorded_at: string | null
+      }
+      catalog_link_preview_result: {
+        outcome: string | null
+        rejection_reason: string | null
+        preview_token_id: string | null
+        requested_action: string | null
+        current_inventory_item_id: string | null
+        current_selling_unit: string | null
+        current_selling_price: number | null
+        proposed_inventory_item_id: string | null
+        proposed_selling_unit: string | null
+        price_confirmation_required: boolean | null
+        expires_at: string | null
+      }
+      catalog_product_summary: {
+        id: string | null
+        name: string | null
+        sku: string | null
+        barcode: string | null
+        category_id: string | null
+        selling_unit: string | null
+        current_selling_price: number | null
+        status: string | null
+        is_stock_tracked: boolean | null
+        match_rank: number | null
+        name_normalized: string | null
+      }
     }
   }
 }
@@ -541,6 +1493,14 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      catalog_lifecycle_status: ["active", "archived"],
+      catalog_link_action: ["assign_or_replace", "remove"],
+      catalog_pricing_mode: ["tax_inclusive", "tax_exclusive"],
+      catalog_tax_treatment: [
+        "inherit_business_default",
+        "product_specific_rate",
+        "non_taxable",
+      ],
       inventory_direction: ["increase", "decrease"],
       inventory_item_status: ["active", "archived"],
       inventory_movement_type: [
