@@ -839,6 +839,14 @@ function ArchiveCategoryFlow({
 }) {
   const queryClient = useQueryClient();
   const [idempotencyKey] = useState(() => newIdempotencyKey());
+  // The explicit confirmed attempt (p_confirm_uncategorize: true) is a
+  // materially different command from the initial attempt, not a retry of
+  // it -- the backend's payload fingerprint differs, so reusing the initial
+  // key would make the confirmed call collide as IDEMPOTENCY_CONFLICT
+  // instead of completing. Minted exactly once, the first time the backend
+  // reports CONFIRMATION_REQUIRED, and reused for any retry of that same
+  // confirmed attempt (duplicate-submit and unknown-outcome safety intact).
+  const [confirmIdempotencyKey, setConfirmIdempotencyKey] = useState<string | null>(null);
   const [needsConfirm, setNeedsConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [reconciling, setReconciling] = useState(false);
@@ -847,12 +855,13 @@ function ArchiveCategoryFlow({
     mutationFn: async (confirmUncategorize: boolean) => {
       if (!category) throw new Error("No category selected.");
       setError(null);
+      const key = confirmUncategorize ? (confirmIdempotencyKey as string) : idempotencyKey;
       const result = await runCommandWithRecovery(
         "archive_catalog_category",
-        idempotencyKey,
+        key,
         async () =>
           archiveCategoryRaw({
-            idempotencyKey,
+            idempotencyKey: key,
             categoryId: category.id,
             confirmUncategorize,
           }),
@@ -870,6 +879,7 @@ function ArchiveCategoryFlow({
         return;
       }
       if (result.rejection_reason === "CONFIRMATION_REQUIRED") {
+        setConfirmIdempotencyKey((prev) => prev ?? newIdempotencyKey());
         setNeedsConfirm(true);
         return;
       }

@@ -1,0 +1,31 @@
+-- SB-P-1.11-RR-2: grant remediation for the Defect 4 category-read gap.
+--
+-- Authorized by communication/live/instruction1.62.md Section 3 (Defect 4),
+-- evidenced by communication/live/report1.64.md Section 5.4 and
+-- independently re-confirmed against production immediately before this
+-- migration via has_table_privilege(). The existing, already-accepted RLS
+-- policy `authenticated_select_own_business_category_columns` on
+-- public.catalog_categories (business-scoped: `business_id IN (SELECT id
+-- FROM businesses WHERE owner_id = auth.uid())`) has never been able to
+-- take effect, because RLS policies only restrict rows an already-granted
+-- statement is permitted to touch -- they do not themselves grant the
+-- underlying table-level privilege. `authenticated` was never granted the
+-- base SELECT privilege the policy assumes.
+--
+-- This grant is scoped to SELECT only; no INSERT, UPDATE, or DELETE is
+-- granted, preserving the existing command-only write boundary for this
+-- table (writes remain exclusively through create_catalog_category /
+-- archive_catalog_category). Behaviorally verified complete and correct in
+-- the dedicated test project (drravyyauixltoihzmwo) before being applied
+-- here -- see communication/live/report1.67.md Section 4.
+--
+-- Note: the two other privilege gaps identified alongside this one in
+-- report1.64.md (Defects 2 and 3 -- catalog_tax_executor UPDATE on
+-- catalog_products, and catalog_lifecycle_executor's history-table reads
+-- for delete_catalog_product) were found, during the same test-project
+-- verification, to require an RLS policy change beyond a GRANT alone --
+-- out of scope for this mission per instruction1.62.md Section 4 item 6
+-- and Section 12. They are deliberately NOT included in this migration.
+-- See report1.67.md Section 4 for the full evidence and the precise
+-- follow-up this leaves for separate authorization.
+GRANT SELECT ON TABLE public.catalog_categories TO authenticated;
