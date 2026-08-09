@@ -7,11 +7,11 @@
 | Mission | SB-P-1.11 — Product Catalog & Pricing |
 | Gap-closure mission | SB-P-1.11-GC-1 |
 | Document | Engineering Implementation Specification |
-| Revision | 2.0 — Engineering + Security Design Lock Reconciliation |
-| Status | Mission Control draft for Security & Permissions Architecture re-review |
-| Prepared by | Mission Control (v1.0), reconciled by Claude Code (v2.0) |
-| Reconciled per | `communication/live/instruction1.70.md`, `communication/live/report1.75.md`, `communication/live/report1.76.md` |
-| Canonical baseline | `3093527432e4ab7067d7bd0ee8173c219ef476c0` |
+| Revision | 3.0 — RSB Security Reconciliation |
+| Status | Mission Control draft for narrow Security & Permissions Architecture confirmation |
+| Prepared by | Mission Control (v1.0), reconciled by Claude Code (v2.0, v3.0) |
+| Reconciled per | `communication/live/instruction1.70.md`, `communication/live/report1.75.md`, `communication/live/report1.76.md`, `communication/live/report1.77.md`, `communication/live/instruction1.71.md`, `communication/live/report1.78.md`, `communication/live/instruction1.72.md` |
+| Canonical baseline | `47353544b78b63b9f0fd65c7ae94d18684e06183` |
 | Canonical repository | `SmartBusinessv1/smart-business` |
 | Product domain | `smartbusiness.teamlips.com` |
 | Implementation authority | NONE until separately authorized |
@@ -44,6 +44,16 @@ This specification does not authorize implementation by itself. Mission Control 
 ### 1.1 Revision 2.0 summary
 
 Revision 1.0 was independently reviewed by Claude Code Engineering (`report1.75.md`, verdict `CHANGES REQUIRED BEFORE BUILD LOCK`) and by Security & Permissions Architecture (`report1.76.md`, verdict `SECURITY CHANGES REQUIRED`). This revision closes every material finding from both reviews. Every finding is mapped to its resolution in the companion reconciliation report, `communication/live/report1.77.md`. The single Product Truth-adjacent inconsistency found (Engineering finding ENG-2 / EIS §21) is resolved per Mission Control's own controlling decision (§3 below), not by an engineering judgment call. No other Product Truth decision changed. This revision remains a specification; it authorizes no implementation.
+
+### 1.2 Revision 3.0 summary
+
+Revision 2.0 was independently re-reviewed by Security & Permissions Architecture (`communication/live/report1.78.md`, verdict `SECURITY CHANGES REQUIRED BEFORE BUILD LOCK`). The focused re-review verified thirteen of sixteen original findings as resolved, and identified three residual blockers, all specific to the import-support bookkeeping design in Part K §45.5 and §45.5.4:
+
+- **RSB-1** — Revision 2.0 granted `authenticated` direct `INSERT`/`UPDATE` on the import-support tables, which the re-review found insufficient once those same rows are relied on as batch/row audit and orchestration-state evidence, not merely display data.
+- **RSB-2** — Revision 2.0 specified `pg_advisory_xact_lock(...)` as the batch-commit concurrency primitive, which the re-review found unexecutable as written: a stateless TanStack server function using a caller-JWT-scoped client has no mechanism to acquire and hold a single Postgres transaction-scoped advisory lock across the multi-step orchestration sequence the way an existing single-transaction `SECURITY DEFINER` command does internally.
+- **RSB-3** — As a consequence of RSB-1, batch/row audit fields (`initiated_by`, `resolved_by`, `resolved_product_id`, lifecycle status, timestamps) were forgeable by the ordinary authenticated REST role, undermining their trustworthiness as audit evidence.
+
+This revision closes all three by replacing the authenticated-writable bookkeeping design with a narrow, server-only bookkeeping write path (§45.1.1) and an atomic compare-and-set batch-state acquisition mechanism (§45.5.4), while preserving every other locked decision from Revision 2.0 unchanged. The full finding-by-finding resolution is in `communication/live/report1.79.md`. This revision remains a specification; it authorizes no implementation.
 
 ---
 
@@ -113,7 +123,14 @@ The research report locks the implementation-planning baseline of:
 - `communication/live/instruction1.69.md` — retrospective registration of the two specialist reviews below.
 - `communication/live/report1.75.md` — Claude Code Engineering Review, verdict `CHANGES REQUIRED BEFORE BUILD LOCK`.
 - `communication/live/report1.76.md` — Security & Permissions Architecture Review, verdict `SECURITY CHANGES REQUIRED`.
-- `communication/live/instruction1.70.md` — the reconciliation mandate this revision executes.
+- `communication/live/instruction1.70.md` — the reconciliation mandate Revision 2.0 executed.
+- `communication/live/report1.77.md` — Revision 2.0's finding-by-finding reconciliation map.
+
+### RSB reconciliation evidence (Revision 3.0 inputs)
+
+- `communication/live/instruction1.71.md` — authorization for the focused Security re-review of Revision 2.0.
+- `communication/live/report1.78.md` — Security & Permissions Architecture focused re-review, verdict `SECURITY CHANGES REQUIRED BEFORE BUILD LOCK`, identifying RSB-1 through RSB-3.
+- `communication/live/instruction1.72.md` — the reconciliation mandate this revision executes.
 
 ---
 
@@ -127,7 +144,7 @@ This gap closure must not create a twentieth public Catalog command merely to ad
 
 The existing Catalog write model remains command-only for browser-facing product/category mutations.
 
-Bulk import is therefore specified as a governed **server-side orchestration workflow**, not a new general-purpose public Catalog command. The workflow invokes existing Catalog commands/executors for authorized row-level mutations, exactly as designed in Revision 1.0. **Revision 2.0 additionally locks the exact mechanism** (Part K) by which the orchestration layer coordinates state without introducing a twentieth `SECURITY DEFINER` function: import-batch/row bookkeeping is plain, RLS-governed, business-isolated application data — never a Catalog command, never Product Truth, never itself authoritative over any Catalog mutation. See §45 (Part K) for the exact design and its accepted trade-off.
+Bulk import is therefore specified as a governed **server-side orchestration workflow**, not a new general-purpose public Catalog command. The workflow invokes existing Catalog commands/executors for authorized row-level mutations, exactly as designed in Revision 1.0. **Revision 2.0 additionally locked the exact mechanism** (Part K) by which the orchestration layer coordinates state without introducing a twentieth `SECURITY DEFINER` function: import-batch/row bookkeeping is business-isolated application data — never a Catalog command, never Product Truth, never itself authoritative over any Catalog mutation. **Revision 3.0 corrects that mechanism's write path** (§45.1.1, §45.5.3) per the focused Security re-review (`report1.78.md`, RSB-1 through RSB-3): bookkeeping writes are now server-only, not `authenticated`-writable, closing the audit-forgeability concern the original RLS-only design left open. See §45 (Part K) for the complete current design.
 
 The implementation must preserve:
 
@@ -373,15 +390,15 @@ Quarantine records are business-isolated (RLS-scoped to the owning `business_id`
 Locked architecture (resolves ENG-1 — see Part K §45.1 for the complete server-function boundary):
 
 1. Browser submits `FormData` containing the file to an authenticated TanStack Start server function.
-2. The server function's auth middleware (the existing, currently-unused `requireSupabaseAuth`) re-derives the authenticated actor and hands the function a Supabase client scoped to that actor's own JWT — never service-role.
-3. The server function derives the actor's business via the same `catalog_internal.resolve_owner_business`-equivalent read path every existing command already uses; it never trusts a client-supplied business identifier.
+2. The server function's auth middleware (the existing, currently-unused `requireSupabaseAuth`) re-derives the authenticated actor and hands the function a Supabase client scoped to that actor's own JWT — never service-role. This caller-JWT client is used for every Catalog read/write in the flow (duplicate checks via `catalog_products_search`, and the eventual `create_catalog_product` call).
+3. The server function derives the actor's business via the same `catalog_internal.resolve_owner_business`-equivalent read path every existing command already uses; it never trusts a client-supplied business identifier. Owner status is independently re-derived the same way.
 4. The server parses rows under the hard limits in §6/Part K §45.3.
-5. The server performs non-mutating validation/duplicate-classification (Part K §45.4) and persists the batch/row bookkeeping (Part K §45.5) — no Catalog Product Truth is touched.
-6. After merchant confirmation, the server orchestrates each `READY` row through the existing governed Catalog mutation path (`create_catalog_product`), using the caller's own JWT-scoped client — the same RLS and executor-privilege boundary a browser call would hit.
+5. The server performs non-mutating validation/duplicate-classification (Part K §45.4) using the caller-JWT client, then persists the batch/row bookkeeping (Part K §45.5) using the **narrow server-only bookkeeping client** (§45.1.1) — never the caller-JWT client, never the browser. No Catalog Product Truth is touched at this stage.
+6. After merchant confirmation, and only after re-deriving actor/business/Owner authority again from the caller's JWT, the server atomically claims the batch for commit (§45.5.4) via the server-only bookkeeping client, then orchestrates each `READY` row through the existing governed Catalog mutation path (`create_catalog_product`) using the caller's own JWT-scoped client — the same RLS and executor-privilege boundary a browser call would hit.
 7. Each successful product creation obtains normal audit/idempotency behavior, because it is a normal call to an unmodified existing command.
-8. Row outcomes are recorded against the import batch (Part K §45.5).
+8. Row outcomes are recorded against the import batch, again via the server-only bookkeeping client (Part K §45.5).
 
-The implementation must not expose service-role credentials to the browser. No service-role credential is used anywhere in this design — see Part K §45.1 and §45.12 for the explicit confirmation.
+The implementation must not expose service-role credentials to the browser, and this design never does — see Part K §45.1.1 and §45.12 for the narrow, explicitly bounded use of the existing server-only credential for bookkeeping writes only, never for Catalog Product Truth or for calling Catalog commands with elevated authority.
 
 The import orchestration endpoint is not a Catalog command and is not counted in the 19-command contract, because it issues no new `SECURITY DEFINER` Postgres function and mutates Catalog Product Truth only by calling the existing, unmodified commands.
 
@@ -395,8 +412,8 @@ An accidental page refresh or repeat confirmation must not create duplicate prod
 
 - each batch receives a server-generated, cryptographically unguessable opaque batch identifier at preview time;
 - each row receives its own row-operation idempotency key at preview time, persisted immediately — never regenerated on retry;
-- a confirmed/committed batch cannot be committed twice (enforced via batch `status` plus a `pg_advisory_xact_lock` keyed by batch id, reusing the exact locking pattern every existing Catalog command already uses for its own idempotency check);
-- concurrent commit attempts on the same batch serialize through that lock and produce one authoritative outcome;
+- a confirmed/committed batch cannot be committed twice, enforced via an atomic compare-and-set transition on the batch's `status` column, performed by the server-only bookkeeping client (§45.5.4) — not via a session-scoped Postgres advisory lock, which a stateless server function cannot hold across the multi-step orchestration sequence;
+- concurrent commit attempts on the same batch race on that single conditional `UPDATE`; exactly one succeeds, and the other observes zero rows updated and returns a truthful non-mutating result (`IN_PROGRESS` or `ALREADY_COMMITTED`) without attempting any row mutation;
 - row-level successful outcomes are durable (the row's persisted status becomes `CREATED` with its `resolved_product_id`), distinguishing already-created rows from retryable failures;
 - re-uploading the same file as a brand-new batch is always permitted and creates a new, independent batch; normal duplicate Product rules (§10) apply to it exactly as to any other batch — file hash is never used for automatic deduplication or suppression.
 
@@ -861,6 +878,25 @@ At minimum verify:
 32. Presets cannot create or mutate another business's categories.
 33. Selecting an unused preset creates no database row.
 
+## 32B. Mandatory Negative Security Tests — Import-Support Write Boundary (added — resolves RSB-1, RSB-2, RSB-3, `instruction1.72.md` §5)
+
+34. The authenticated browser/REST role cannot `INSERT` a row into `catalog_import_batches` or `catalog_import_rows` (direct PostgREST attempt is rejected — no grant exists).
+35. The authenticated browser/REST role cannot `UPDATE` any column on either table (direct PostgREST attempt is rejected — no grant exists).
+36. The authenticated browser/REST role cannot `DELETE` from either table.
+37. An Owner can `SELECT` only their own business's batch/row records; a second, independent Owner querying the same batch id sees an empty result (extends test 20/21 to explicitly re-confirm under the Revision 3.0 SELECT-only grant model).
+38. An Employee identity (once real permission infrastructure exists to construct one) receives zero rows from either table, same as today's Owner-only reality confirms by construction (no non-Owner identity can exist yet).
+39. The privileged bookkeeping credential is never present in any browser-observable surface (response body, response headers, client bundle, `window`/global scope, console, or network payload) at any point in the preview or commit flow.
+40. Caller-JWT authorization (actor/business/Owner re-derivation) is proven to occur, and to fail closed on an invalid/expired/missing token, **before** any bookkeeping write is attempted — a request with a bad token never reaches the privileged client at all.
+41. The privileged bookkeeping client cannot be induced (via crafted request input) to perform any operation against `catalog_products`, `catalog_categories`, or any table other than the two import-support tables.
+42. Two concurrent commit requests for the same batch: exactly one succeeds in claiming it (the conditional `UPDATE` affects exactly one row across both attempts combined); the other receives `IN_PROGRESS` or `ALREADY_COMMITTED` and performs zero row mutations.
+43. Replaying a commit request after a prior successful commit returns `ALREADY_COMMITTED` and creates no additional products.
+44. A partial-retry commit (some rows already `CREATED` from a prior interrupted attempt) reuses each row's original, already-persisted `row_idempotency_key` — verified by direct inspection that no row's `row_idempotency_key` value changes between the first and retried commit attempt.
+45. An already-`CREATED` row is not recreated or duplicated on retry, and its `resolved_product_id` is unchanged.
+46. `resolved_product_id` written to any row can be traced to an actual, real `create_catalog_product` outcome for that exact row — no code path permits writing a `resolved_product_id` that did not come from a genuine command result.
+47. `initiated_by`, `resolved_by`, `created_at`, `resolved_at`, and `committed_at` cannot be set to an arbitrary/forged value through any client-reachable path — confirmed both by the absent `authenticated` write grant (tests 34–36) and by the bookkeeping client never accepting these as client-supplied input.
+48. After a simulated partial failure (some rows fail, batch left in `failed` state), a subsequent successful retry leaves batch/row state fully consistent: every row reaches a terminal state, and the batch reaches `committed` exactly once.
+49. Business isolation holds across the entire commit sequence — a batch/row claimed and committed for Business A is never visible, claimable, or mutable via any code path reachable by Business B's actor.
+
 ---
 
 ## 33. Mandatory Engineering Tests — Selling Units
@@ -930,6 +966,7 @@ Locked design, full detail in Part K §45.15:
 - Parsing, row validation, and duplicate-classification logic are implemented as plain, framework-independent TypeScript functions with no dependency on the TanStack Start request/response lifecycle — unit-testable directly via the existing `vitest` suite exactly like today's pure-logic code, with no server context required.
 - The thin `createServerFn` wrapper (auth extraction via `requireSupabaseAuth`, `FormData` parsing, invoking the pure functions above, calling the existing Catalog RPCs) is integration-tested by importing and invoking its exported handler directly in a test module, against the dedicated test Supabase project (`drravyyauixltoihzmwo`), using the same genuine-Auth-user pattern already established in `tests/setup/test-clients.ts` — no live HTTP server or browser is required.
 - New tests live in `tests/catalog-import/`, mirroring the existing `tests/inventory/` structure and conventions. This is the first committed automated Catalog test coverage of any kind in this repository (Catalog verification to date has been ad-hoc, non-committed scratchpad scripts across RR-1 through RR-3, ID-1/ID-2, and CP-1) and establishes the durable pattern for all Catalog test coverage going forward, per Mission Control's requirement in `instruction1.70.md` §4 ENG-7.
+- **Testing the narrow server-only bookkeeping client (§45.1.1, added in Revision 3.0):** this repository already has an established, safe pattern for test-context privileged Supabase access — `.env.test.local`'s `SUPABASE_TEST_SERVICE_ROLE_KEY`, used throughout the `RR-1`/`RR-2`/`RR-3` mission chain exclusively against the dedicated test project (`drravyyauixltoihzmwo`), never production. The §32B negative-test matrix (direct REST write rejection, concurrent-commit race, retry/idempotency, forged-field rejection) is executed against that same test project using that same existing credential-loading convention — no new secret-handling pattern is introduced for testing purposes.
 
 ---
 
@@ -1084,9 +1121,32 @@ Every server function re-derives, on every call, from the caller's own JWT (neve
 - the actor's business (via the same business-resolution read path every existing Catalog command uses internally);
 - Owner status (direct `businesses.owner_id = actor` check).
 
-The database client used inside these server functions is created exactly as `requireSupabaseAuth` already does: the anon/publishable key plus the caller's own Bearer token, with `persistSession: false`. **No service-role key is created, imported, or referenced anywhere in this module.** This satisfies SEC-11 directly: there is no privileged credential in this design to misuse, because the design does not use one — every database operation, including the new bookkeeping-table reads/writes in §45.5, executes with exactly the caller's own `authenticated`-role privilege, RLS-enforced identically to a hypothetical direct browser call.
+The database client used inside these server functions for **all Catalog reads/writes** (`catalog_products_search` duplicate checks, `create_catalog_product`, `record_catalog_reference_cost_change`) is created exactly as `requireSupabaseAuth` already does: the anon/publishable key plus the caller's own Bearer token, with `persistSession: false`. This client's privilege is exactly `authenticated`, RLS-enforced identically to a hypothetical direct browser call — it can never bypass Catalog RLS or the existing command boundary.
+
+Import-support bookkeeping writes use a second, narrow, server-only client — see §45.1.1. That client is never used for Catalog reads or writes.
 
 Test architecture for this surface is locked in §45.15.
+
+### 45.1.1 Narrow server-only bookkeeping client (RSB-1, RSB-3 — resolves the residual concern in SEC-7/SEC-9/SEC-11)
+
+Revision 2.0 made `catalog_import_batches`/`catalog_import_rows` directly writable by the `authenticated` role under RLS. The focused Security re-review (`report1.78.md`) found this insufficient: those same rows are relied on as the batch/row audit trail and the commit/retry state machine, so an ordinary authenticated actor being able to forge `status`, `resolved_product_id`, `resolved_by`, or timestamps through the plain REST API materially weakens their trustworthiness as evidence, even though it can never touch Catalog Product Truth.
+
+**Locked correction:** all `INSERT`/`UPDATE` writes to `catalog_import_batches` and `catalog_import_rows` are performed exclusively by a second, narrow, server-only Supabase client, distinct from the caller-JWT client above. Concretely, this reuses the credential this codebase already has and has never used for Catalog: `src/integrations/supabase/client.server.ts`'s existing `supabaseAdmin` (the service-role client, already present, already reviewed as never exposed to client bundles — confirmed originally in `SB-P-1.11-RR-1` Workstream B and re-confirmed unchanged by this design). No new credential type, secret, or Supabase feature is introduced.
+
+This client is bound by hard, explicit rules, verbatim from `instruction1.70.md` §3.5:
+
+- it is **never** sent to browser code, client environment variables, logs, responses, downloads, or telemetry;
+- it is used **only** for `INSERT`/`UPDATE` on the two import-support tables — no other table, and no `SELECT`/`DELETE` beyond what the commit algorithm in §45.5.4 requires internally;
+- it is **never** used to establish or substitute for actor/business/Owner authority — that authority is always independently re-derived from the caller's own JWT via the caller-JWT client (§45.1) **before** any bookkeeping write is attempted, on every preview and every commit call;
+- it is **never** used to create, update, or delete `catalog_products`, `catalog_categories`, or any other Catalog Product Truth table;
+- it is **never** used to call `create_catalog_product` or any other Catalog command — all nineteen commands are invoked exclusively through the caller-JWT client, exactly as an interactive browser call would;
+- it performs **no** dynamic, client-influenced table or column selection — every query it issues is a fixed, hard-coded operation against one of exactly two tables, never constructed from request input.
+
+**Isolation model for this specific write path:** because the service-role credential bypasses Row-Level Security by Postgres/Supabase design (this is standard, expected `service_role` behavior, not a defect), tenant isolation for bookkeeping *writes* is enforced by application code, not by RLS: every `INSERT`/`UPDATE` this client issues is parameterized with the `business_id` independently re-derived from the caller's JWT within the same request handler, never accepted from client input, matching the discipline every existing Catalog command already applies at the SQL level. RLS remains fully enabled on both tables and continues to govern the separate, `authenticated`-role **read** path (§45.5.3) — the two are independent controls, not substitutes for each other.
+
+This does **not** create a twentieth public Catalog command, per `instruction1.70.md` §3.1/§3.5: no new `SECURITY DEFINER` Postgres function is added, and the credential is never used to grant elevated authority over Catalog Product Truth.
+
+**Import boundary/bundling note:** `client.server.ts`'s own existing comment already documents the exact safety rule Build Mode must follow: "Top-level import is safe only in other `.server.ts` modules — route files and `*.functions.ts` ship to the client bundle. Load inside server handlers: `const { supabaseAdmin } = await import("@/integrations/supabase/client.server")`." The bookkeeping module in `src/server-functions/catalog-import.ts` must load `supabaseAdmin` this same way — a dynamic import inside the server-function handler body, never a top-level import — so the bundler cannot pull the service-role-capable module into any client-shipped bundle. This is an existing, already-established convention, not a new rule invented by this design.
 
 ## 45.2 CSV/XLSX parser choice (ENG-5, SEC-1, SEC-2, SEC-3)
 
@@ -1174,36 +1234,56 @@ Two new tables, both plain `authenticated`-role RLS tables — **not** owned by 
 
 Explicitly **not** stored anywhere in this schema (SEC-8): unrecognized/unknown spreadsheet columns, workbook metadata, formulas, external links, the raw file binary, raw database primary keys supplied by the spreadsheet, or any system/permission metadata.
 
-### 45.5.3 RLS and grants
+### 45.5.3 RLS and grants (revised in Revision 3.0 — resolves RSB-1, RSB-3)
 
-```
-GRANT SELECT, INSERT ON catalog_import_batches, catalog_import_rows TO authenticated;
-GRANT UPDATE (status, committed_at) ON catalog_import_batches TO authenticated;
-GRANT UPDATE (status, resolved_product_id, resolved_by, resolved_at, correction_reason) ON catalog_import_rows TO authenticated;
--- no DELETE grant to authenticated on either table.
+```sql
+GRANT SELECT ON catalog_import_batches, catalog_import_rows TO authenticated;
+REVOKE INSERT, UPDATE, DELETE ON catalog_import_batches, catalog_import_rows FROM authenticated;
 ```
 
-RLS policies (both tables, `FOR ALL` unless noted), mirroring the exact `auth.uid()`-based pattern already used by `businesses`/`transactions` in this schema:
+`authenticated` receives **read-only** access. All `INSERT`/`UPDATE` is performed exclusively by the narrow server-only bookkeeping client (§45.1.1). Neither table grants `authenticated` any write privilege at all — this is the direct correction for RSB-1: Revision 2.0's `GRANT INSERT`/`GRANT UPDATE (...)` statements are removed outright, not narrowed.
 
+RLS policy governing the `authenticated` `SELECT` path (both tables), mirroring the exact `auth.uid()`-based pattern already used by `businesses`/`transactions` in this schema:
+
+```sql
+CREATE POLICY owner_select_own_business ON catalog_import_batches
+  FOR SELECT TO authenticated
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+
+CREATE POLICY owner_select_own_business ON catalog_import_rows
+  FOR SELECT TO authenticated
+  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
 ```
-USING (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-WITH CHECK (business_id = catalog_internal.resolve_owner_business(auth.uid()))
-```
 
-This guarantees: cross-business `SELECT`/`INSERT`/`UPDATE` is denied outright (SEC-7); a query for a batch id belonging to a different business or to no business at all returns an identical empty result in both cases, satisfying "foreign and nonexistent batch identifiers are publicly indistinguishable" (SEC-7, SEC-9); ordinary employees (who hold no `businesses.owner_id` relationship) receive zero rows from either table, satisfying "no import-batch or quarantine access for Employees" (SEC-7, §14).
+This guarantees: cross-business `SELECT` is denied outright (SEC-7); a query for a batch id belonging to a different business or to no business at all returns an identical empty result in both cases, satisfying "foreign and nonexistent batch identifiers are publicly indistinguishable" (SEC-7, SEC-9); ordinary employees (who hold no `businesses.owner_id` relationship) receive zero rows from either table, satisfying "no import-batch or quarantine access for Employees" (SEC-7, §14).
 
-**Named, accepted design trade-off (recorded here, not hidden):** because these are plain `authenticated`-role tables rather than `SECURITY DEFINER`-function-mediated, a technically sophisticated actor could bypass the server function and write directly to their own business's `catalog_import_rows`/`catalog_import_batches` rows via the ordinary REST API — for example, forging a row's `status` to `CREATED` with an arbitrary `resolved_product_id`. This is deliberately accepted rather than closed with a new `SECURITY DEFINER` function, because closing it that way would require a twentieth Catalog-adjacent command, which `instruction1.70.md` §3.1–§3.2 forbids outright. The blast radius of this trade-off is bounded and does not constitute a security regression: forging bookkeeping-table content can only affect the actor's **own** business's import history (RLS-enforced), can **never** create, modify, or delete an actual `catalog_products`/`catalog_categories` row (that requires a real, independent, fully-revalidating call to `create_catalog_product`, which this bookkeeping data never authorizes on its own), and can never expose another business's data. This is recorded as an **ACCEPTED LIMITATION** in `report1.77.md`, not silently omitted.
+The server-only bookkeeping client (§45.1.1) is the `service_role` Postgres role, which bypasses RLS by standard Supabase design — no additional `GRANT` statement is needed or added for it; this is the same implicit, pre-existing behavior `service_role` already has on every table in this schema, not a new privilege introduced by this design. Because RLS does not constrain that client, tenant isolation for its writes is enforced entirely by the application-code discipline specified in §45.1.1 (server-derived `business_id`, no dynamic table/column selection), not by a database policy. This is stated explicitly here so the boundary is never mistaken for an RLS guarantee it does not have.
 
-### 45.5.4 Batch/row lifecycle and idempotency algorithm (ENG-4, SEC-9)
+**Revision 2.0's previously "accepted, named limitation"** — that a technically sophisticated `authenticated` actor could forge their own business's bookkeeping rows via direct REST access — **is fully closed by this correction**, not merely narrowed: `authenticated` now has zero write grant on either table, so no REST-level forgery of `status`, `resolved_product_id`, `resolved_by`, `resolved_at`, or `committed_at` is possible through any path other than the server-only bookkeeping client, which itself never accepts client-supplied values for those fields (§45.5.4, §3.7 of `instruction1.72.md`).
+
+### 45.5.4 Batch/row lifecycle and idempotency algorithm (ENG-4, SEC-9 — commit mechanism revised in Revision 3.0 to resolve RSB-2)
 
 Batch states: `previewed → committing → committed`, or `previewed → committing → failed` (retryable back to `committing`).
 
-1. **Preview (Stage 2):** server creates one `catalog_import_batches` row (`status = 'previewed'`) and one `catalog_import_rows` row per parsed data row, each with its own `row_idempotency_key` generated and persisted immediately. No Catalog Product Truth is touched.
-2. **Commit (Stage 4):** server re-derives actor/business from the JWT (never trusts the request body for these). It reads the batch row (RLS already ensures it belongs to the caller's business or returns nothing). If `status = 'committed'`, reject with `ALREADY_COMMITTED` — no mutation attempted. If `status = 'committing'`, reject with `IN_PROGRESS`. Otherwise, the server acquires `pg_advisory_xact_lock(hashtext(batch_id::text))` — the identical locking primitive every existing Catalog command already uses for its own idempotency check (e.g. `create_catalog_product`'s `pg_advisory_xact_lock(catalog_internal.idempotency_lock_key(...))`) — then sets `status = 'committing'`.
-3. For each row with `status IN ('READY', 'FAILED')` (the `FAILED` inclusion is what makes partial retry safe), the server calls `create_catalog_product` using that row's **persisted** `row_idempotency_key` — never a freshly generated one. Because `create_catalog_product`'s own internal idempotency table (`catalog_write_idempotency_keys`, keyed `(business_id, operation, idempotency_key)`) already recognizes a resubmission with the same key and payload fingerprint as already-completed and replays the original result rather than inserting again, a retried commit is safe even if the server crashed mid-loop on a prior attempt.
-4. Each row's outcome updates its own `status` (`CREATED` with `resolved_product_id`, or `FAILED` with a reason) independently — one row's failure does not block or roll back any other row (D-056).
-5. After all rows are processed, the batch transitions to `committed` (`committed_at = now()`) if every row reached a terminal state, or `failed` if the loop itself was interrupted (in which case a retry of the commit call resumes from step 3, safely, per the row-level idempotency above).
-6. **Concurrency:** two simultaneous commit requests for the same batch serialize through the advisory lock; the second to acquire it observes `status` already `committing` or `committed` and exits without attempting any row mutation, producing exactly one authoritative outcome (SEC-9's "concurrent confirmation does not duplicate products").
+1. **Preview (Stage 2):** server re-derives actor/business/Owner authority via the caller-JWT client, then — via the server-only bookkeeping client (§45.1.1) — creates one `catalog_import_batches` row (`status = 'previewed'`, `initiated_by` = the server-derived actor) and one `catalog_import_rows` row per parsed data row, each with its own `row_idempotency_key` generated and persisted immediately. No Catalog Product Truth is touched.
+2. **Commit (Stage 4) — atomic claim, not an advisory lock:** the server re-derives actor/business/Owner authority again from the caller's JWT (never from the request body). Using the server-only bookkeeping client, it issues one conditional update:
+
+   ```sql
+   UPDATE catalog_import_batches
+      SET status = 'committing'
+    WHERE id = $batch_id
+      AND business_id = $business_id   -- server-derived, never client-supplied
+      AND status IN ('previewed', 'failed')
+   RETURNING *;
+   ```
+
+   This single statement is the entire concurrency primitive — it replaces Revision 2.0's `pg_advisory_xact_lock(...)` step, which the focused Security re-review (`report1.78.md`) correctly found unexecutable from a stateless TanStack server function using a caller-JWT-scoped client: there is no mechanism in this architecture for the server function to acquire and hold a single Postgres transaction-scoped advisory lock open across the multi-step orchestration sequence, unlike an existing single-transaction `SECURITY DEFINER` command, which acquires and releases its lock within one atomic function call.
+   - If the `UPDATE` claims exactly one row, this request — and only this request — proceeds to step 3.
+   - If it claims zero rows, the server re-reads the batch (via the same server-only client, still scoped to `business_id = $business_id`). A missing row (no batch with this id for this business) returns `NOT_FOUND`. A row found with `status = 'committing'` returns `IN_PROGRESS`. A row found with `status = 'committed'` returns `ALREADY_COMMITTED`. In every zero-row-claimed case, **no row mutation of any kind is attempted.**
+3. For each row with `status IN ('READY', 'FAILED')` (the `FAILED` inclusion is what makes partial retry safe), the server calls `create_catalog_product` — through the **caller-JWT client**, never the bookkeeping client — using that row's **persisted** `row_idempotency_key` — never a freshly generated one. Because `create_catalog_product`'s own internal idempotency table (`catalog_write_idempotency_keys`, keyed `(business_id, operation, idempotency_key)`) already recognizes a resubmission with the same key and payload fingerprint as already-completed and replays the original result rather than inserting again, a retried commit is safe even if the server crashed mid-loop on a prior attempt.
+4. Each row's outcome is written back — via the server-only bookkeeping client only — updating its own `status` (`CREATED` with `resolved_product_id` taken verbatim from the `create_catalog_product` result, never from client input; or `FAILED` with a reason) independently. One row's failure does not block or roll back any other row (D-056). `resolved_product_id` can therefore only ever be a value that a real, governed Catalog command actually returned — there is no code path that accepts a client-supplied product id into this column.
+5. After all rows are processed, the batch transitions to `committed` (`committed_at = now()`, both server-produced) if every row reached a terminal state, or `failed` if the loop itself was interrupted (in which case a retry of the commit call re-enters at step 2, safely: the conditional `UPDATE`'s `status IN ('previewed', 'failed')` clause is exactly what makes a `failed` batch retryable, and step 3's per-row idempotency makes the retried row loop itself safe).
+6. **Concurrency:** two simultaneous commit requests for the same batch race on the single conditional `UPDATE` in step 2; Postgres's own row-level locking during that statement guarantees exactly one request's `UPDATE` succeeds, and the other observes zero rows affected and returns the correct non-mutating result — never attempting a second, conflicting orchestration pass. This satisfies SEC-9's "concurrent confirmation does not duplicate products" and RSB-2's requirement for an "executable atomic compare-and-set batch-state acquisition model" precisely as specified in `instruction1.70.md` §3.6.
 
 Re-uploading the same file as a new batch is always permitted and creates an entirely independent batch/row set with its own fresh idempotency keys; ordinary duplicate-product rules (§45.4) apply to it exactly as to any other batch. File content hash, if computed at all, is recorded as informational metadata only and never drives automatic deduplication or suppression (SEC-9).
 
@@ -1243,9 +1323,18 @@ As locked in §10: `Update existing product` is removed from Build Now scope ent
 
 Any cell value beginning with `=`, `+`, `-`, or `@` (after leading whitespace is trimmed) is treated as untrusted text throughout — it is never evaluated during import (neither parser evaluates formulas at all, per §45.2) and, for the Stage 5 downloadable/viewable correction result (§8), any such value is re-emitted with a neutralizing prefix (e.g. a leading `'` / tab character, the standard CSV-formula-injection mitigation) so that reopening the correction file in a spreadsheet application cannot trigger formula evaluation, while the merchant-visible value (rendered in the app's own UI, not a spreadsheet) remains unmodified and fully readable.
 
-## 45.12 Privileged/service-role boundary — explicit confirmation (SEC-11)
+## 45.12 Privileged/service-role boundary — explicit confirmation (SEC-11, revised in Revision 3.0 per RSB-1/RSB-3)
 
-Restated for clarity because SEC-11 asks for an explicit answer: this design uses **no service-role credential anywhere** in the bulk-import flow. Every database operation — file-parsing-adjacent validation reads, `catalog_import_batches`/`catalog_import_rows` bookkeeping, `catalog_products_search` duplicate checks, and the final `create_catalog_product` calls — executes through a Supabase client scoped to the calling actor's own JWT (anon/publishable key + their Bearer token), exactly as `requireSupabaseAuth` already constructs it today for the one existing (currently unused) consumer of that middleware. There is no "privileged server credential... genuinely required" scenario in this design to specify a narrow boundary for, because the design was deliberately shaped (§3, §45.1) to avoid ever needing one.
+Revision 2.0 stated this design used no service-role credential anywhere. The focused Security re-review (`report1.78.md`) determined that claim's underlying design (bookkeeping writes as plain `authenticated`-role RLS operations) was itself the source of RSB-1/RSB-3, and required a narrow, server-only privileged write path instead (§45.1.1). This section is corrected accordingly, not merely re-asserted.
+
+**Current design:** exactly one privileged credential is used, exactly one purpose: the existing `supabaseAdmin` service-role client (`src/integrations/supabase/client.server.ts`), used **only** for `INSERT`/`UPDATE` on `catalog_import_batches`/`catalog_import_rows` (§45.1.1, §45.5.3, §45.5.4). It is bound by the explicit rule list in §45.1.1, restated here as the direct answer to SEC-11/`instruction1.70.md` §3.5:
+
+- caller-JWT authorization (actor, business, Owner status, and — where relevant — Reference Cost authority) is independently re-derived and checked **before** any privileged bookkeeping action, on every preview and every commit call — the privileged client is never itself the authorization mechanism, only a post-authorization persistence mechanism;
+- it never creates/updates/deletes Catalog Product Truth, never calls `create_catalog_product` or any of the other eighteen commands, and never receives elevated authority over them on the actor's behalf;
+- it performs no arbitrary client-selected table/column operation — every query is a fixed operation against exactly one of two named tables;
+- it is never sent to browser code, client environment variables, logs, responses, downloads, or telemetry, and is loaded only via dynamic import inside the server-function handler body, never a top-level import (the same rule `client.server.ts` already documents for every other consumer of `supabaseAdmin`).
+
+All Catalog reads and mutations continue through the caller-JWT-scoped client and the existing nineteen-command surface, exactly as Revision 2.0 specified and as `instruction1.70.md` §3.4/§3.5 require. No generic privileged "arbitrary Catalog mutation" helper exists anywhere in this design.
 
 ## 45.13 Preset configuration location (SEC-14)
 
@@ -1266,7 +1355,7 @@ See Part H §37 for the locked summary. In brief: pure parsing/validation/classi
 
 ## 46. Explicit Confirmation: Exactly 19 Public Catalog Commands Remain
 
-This revision introduces zero new `SECURITY DEFINER` Postgres functions and zero new entries in the public Catalog command surface. The two new tables in §45.5 are plain `authenticated`-role RLS tables, architecturally identical in kind to `businesses`/`transactions` (which are also not part of, and never have been part of, the 19-command count). Every actual Catalog Product Truth mutation performed by the import workflow is a normal call to one of the existing 19 commands (specifically `create_catalog_product`, and — for Reference Cost — `record_catalog_reference_cost_change`, both unmodified). This satisfies `instruction1.70.md` §3.1 and §6.22 directly.
+This revision introduces zero new `SECURITY DEFINER` Postgres functions and zero new entries in the public Catalog command surface. The two new tables in §45.5 remain business-isolated, RLS-protected application data — `authenticated` now holds `SELECT` only (§45.5.3, revised in Revision 3.0), with writes confined to the narrow server-only bookkeeping client (§45.1.1) — architecturally still outside, and never counted as part of, the 19-command surface, the same way `businesses`/`transactions` already are. Every actual Catalog Product Truth mutation performed by the import workflow is a normal call to one of the existing 19 commands (specifically `create_catalog_product`, and — for Reference Cost — `record_catalog_reference_cost_change`, both unmodified), issued exclusively through the caller-JWT client, never the bookkeeping client. This satisfies `instruction1.70.md` §3.1 and `instruction1.72.md` §3.1/§8 directly.
 
 ---
 
@@ -1292,6 +1381,14 @@ No item above is marked `BLOCKED`. Any genuinely unresolved item discovered duri
 
 ---
 
+## 48. Revision History
+
+| Revision | Trigger | Verdict at handoff |
+|---|---|---|
+| 1.0 | Mission Control draft | Reviewed by Engineering (`report1.75.md`) and Security (`report1.76.md`) |
+| 2.0 | Engineering + Security design-lock reconciliation (`instruction1.70.md`) | `report1.77.md`: `READY FOR SECURITY RE-REVIEW` |
+| 3.0 | Focused Security re-review found RSB-1/RSB-2/RSB-3 (`report1.78.md`); this reconciliation (`instruction1.72.md`) | `report1.79.md`: see that report's final verdict |
+
 ## Next Logical Step
 
-Submit this Revision 2.0 to Security & Permissions Architecture for a focused re-review against `report1.76.md`'s original sixteen findings, using `communication/live/report1.77.md` as the finding-by-finding reconciliation map. If that re-review returns `SECURITY READY FOR BUILD LOCK`, Mission Control may then separately authorize SB-P-1.11-GC-1 Build Mode.
+Submit this Revision 3.0 to Security & Permissions Architecture for a **narrow confirmation** limited to RSB-1, RSB-2, and RSB-3, using `communication/live/report1.79.md` as the finding-by-finding resolution map. Per `instruction1.72.md` §9, this revision does not itself claim `READY FOR BUILD LOCK` — only a subsequent, separate positive Security confirmation of this narrow correction, followed by a separate Mission Control Build Mode authorization, can advance SB-P-1.11-GC-1 toward implementation.
