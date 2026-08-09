@@ -1,0 +1,70 @@
+# SMART BUSINESS — CLAUDE CODE ENGINEERING REVIEW RECORD
+
+## SB-P-1.11-GC-1 — BUILD NOW GAP CLOSURE
+
+**Report ID:** report1.75  
+**Parent Mission:** SB-P-1.11 — Product Catalog & Pricing  
+**Workstream:** SB-P-1.11-GC-1 — Build Now Gap Closure  
+**Execution Environment:** Claude Code in VS Code  
+**Review Type:** Engineering Review  
+**Historical Transport:** Founder-mediated copy/paste  
+**Registration:** Retrospective under `communication/live/instruction1.69.md`  
+**Implementation Authority:** NONE  
+**Build Authority:** NONE
+
+> Historical accuracy note: the review below was returned before this repository record was created. It is preserved here as the review evidence supplied back to Mission Control. This file must not be interpreted as proof that GitHub carried the original instruction before execution.
+
+---
+
+I now have a thorough, evidence-based picture. Let me present the full engineering review.
+
+---
+
+# Engineering Review: SB-P-1.11 Build Now Gap Closure EIS
+
+**Reviewed against:** canonical `main` @ `907d1b06473317921534a34e843d9823496fc61d`, live production schema (`gysgzasfcjvtrgaigfyn`), and the locked SB-P-1.11 Catalog architecture as verified across RR-1 through RR-3 and CP-1.
+
+**Overall assessment:** The EIS is well-constructed, correctly conservative about the 19-command boundary, and its own "Engineering Review Questions" (§44) show real self-awareness of what's unresolved. Direct inspection of the live schema, RLS, and function bodies confirms most of its architectural assumptions are sound — but it also surfaces **one genuine architectural inconsistency** (not just an open question) that the spec itself doesn't seem to know it has, plus several places where "TBD in Engineering Design Lock" is doing more work than the spec admits, because the underlying capability doesn't exist yet in any form.
+
+## Findings by focus area
+
+**1. CSV/XLSX bulk-import server-side orchestration** The EIS's "authenticated server endpoint/action" is achievable cleanly using infrastructure that already exists but is **currently unused anywhere in the app**: `src/integrations/supabase/auth-middleware.ts`'s `requireSupabaseAuth` (a TanStack Start `createMiddleware({type:'function'}).server(...)`) already extracts the caller's Bearer token, validates it via `supabase.auth.getClaims()`, and hands a per-request Supabase client scoped to *that user's own JWT* (anon key + their token, never service-role) into context. A bulk-import server function built on this middleware, calling `create_catalog_product` per row through that client, would execute with exactly the same RLS/executor privileges as if the browser called it directly — no privileged bypass, no new grant needed. This is the right answer to EIS Q1/Q2, but **no** **`createServerFn`** **exists anywhere in this codebase today** — this middleware is scaffolded but never wired to an actual server function. Part A would be the first real use of this execution surface. That's not disqualifying, but it means there is zero precedent, zero existing test pattern, and zero production mileage on this code path in this app — Phase 1 should say so explicitly rather than treat it as "just call existing RPCs from a server."
+
+**2. Preserving exactly 19 public Catalog commands** — **genuine gap found.** Confirmed via direct `pg_proc` query: exactly 19 functions, no more. Row-level product creation via `create_catalog_product` cleanly reuses the existing surface with no changes needed. **But §21 step 4 ("if an archived same-name category exists... surface a clear choice consistent with current category lifecycle rules — e.g. review/reactivate") describes a capability that does not exist.** There is no `reactivate_catalog_category` among the 19 commands — only `reactivate_catalog_product` exists; categories only have `create_catalog_category` and `archive_catalog_category`. Worse, I confirmed the actual constraint: `catalog_categories_business_name_normalized_uniq` is `UNIQUE(business_id, name_normalized)` **with no status qualifier** — it blocks a new category with the same normalized name regardless of whether the existing one is active or archived. So today, with zero changes, archiving a category with a given name permanently blocks ever creating another category with that name in that business, through any existing path — interactive or bulk. This is a pre-existing dead-end the current interactive UI already has (it just never surfaces archived categories, so nobody's hit it), and this EIS's preset-matching logic in Part C is the first place that will make it *visible and likely*, since presets are exactly the kind of common name a merchant might archive-then-want-again. This needs an explicit Mission Control decision — not an engineering judgment call — because closing it means either adding a 20th command (`reactivate_catalog_category`, contradicting the EIS's own locked boundary) or accepting that §21 step 4's "reactivate" language must be struck and replaced with something achievable today (e.g., block the preset silently, surface "an archived category with this name already exists; choose a different name" with no resolution path). The spec cannot ship as currently worded — it references a command that isn't there.
+
+**3. Import validation/quarantine/correction flow** Structurally sound and correctly modeled on `create_catalog_product`'s existing `EXCEPTION WHEN unique_violation` pattern (confirmed via `prosrc`: business\_id is derived server-side from the actor's JWT via `catalog_internal.resolve_owner_business`, never client-supplied — so "no arbitrary business\_id" from a spreadsheet is already structurally guaranteed by reusing the real command, not something new to build or test). One real duplicate-detection gap, though smaller than it first looked: `catalog_products` has **no direct SELECT grant for** **`authenticated`** — only the executor roles can read it directly (confirmed via `pg_policies`). So a server function running as the caller's own `authenticated`-scoped client cannot query `catalog_products` directly for a non-mutating pre-check; it must go through `catalog_products_search`, exactly as a browser would. I checked that function's body: it *does* rank-match against `barcode_normalized` (rank 1), `sku_normalized` (rank 2), and exact `name_normalized` (rank 3) in a single call, separately from prefix/substring fuzzy matches (ranks 4–5) — so exact-duplicate detection *is* achievable without a new RPC, contrary to what I initially suspected. But it requires the import orchestration to run `catalog_products_search` once per distinct identity field per row (or accept ambiguity) and correctly treat only ranks 1–3 as "duplicate," never ranks 4–5, to avoid conflating genuine near-duplicates with real identity matches. The EIS doesn't spell this out and should.
+
+**4. Idempotency and retry safety** The existing `catalog_write_idempotency_keys` table (`UNIQUE(business_id, operation, idempotency_key)`) is correctly reusable for row-level idempotency exactly as-is — one fresh key per row, no schema change needed there. But §13's "a confirmed batch cannot be committed twice" is a *different* mechanism this table doesn't provide at all, and the EIS states the requirement without specifying the mechanism. The actual correctness-critical detail: the server must persist each row's assigned idempotency key **at preview time**, keyed by `(batch_id, row_number)`, and any retry of the commit step must look up and reuse that same persisted key rather than minting a fresh one — otherwise a naive retry (fresh UUID per attempt) defeats row-level idempotency entirely and creates duplicate products. This exact mechanism needs to be locked in Phase 1, not left as "engineering must define."
+
+**5. Duplicate name/SKU/barcode handling** Sound in principle (§10, D-057) and consistent with the existing `UNIQUENESS_CONFLICT` rejection path. The `Update existing product` option is correctly hedged ("only if... already-authorized existing Catalog update commands" — otherwise "leave the row unresolved") — this is the right instinct given `update_catalog_product_identity` exists and could plausibly serve this, but the EIS should decide now, not defer to implementation, since it changes the Stage 3 UI surface materially.
+
+**6. Required support tables/schema** The EIS is right that new tables are needed (batch metadata + row-level quarantine, per §11/§29) and right to gate them on Security & Permissions Architecture review. One thing worth adding to that review's checklist: whichever role owns/inserts these new tables needs its own RLS posture designed from scratch (there's no existing "batch" or "import" pattern anywhere in this schema to copy from — this is genuinely new table-family design, not a variant of an existing one).
+
+**7. Category and selling-unit preset implementation** §28's instinct (presets as version-controlled constants, not database rows; no insert-20-categories-at-signup) is correct and consistent with D-008. Confirmed the read paths needed already exist: `catalog_categories` direct SELECT is already granted to `authenticated` (the RR-2/RR-3 Defect 4 fix), with RLS scoped to `business_id` and **no status filter in the policy itself** — meaning archived categories are already technically readable this way if the client stops filtering `.eq('status','active')`, which is useful for implementing the archived-name-collision detection in finding #2 above, even though there's no path to *act* on what's found yet.
+
+**8. Inventory ↔ Catalog workflow clarification** Correctly scoped as copy/UX-only, no data-model change, consistent with D-001/D-002/D-050 and exactly the friction the Founder actually hit in CP-1 (`report1.71.md` §5). Nothing architecturally concerning here.
+
+**9. Tax-settings UX clarification** Also correctly scoped as copy-only, and correctly insists the rate field must **not** be disabled in tax-exclusive mode (I confirmed against the actual Founder finding in `report1.71.md`: the Founder found it *confusing*, not wrong — the EIS's framing that this is a clarity fix, not a model change, matches the actual recorded feedback precisely).
+
+**10. Test strategy and migration sequence** Here's the biggest under-stated risk in the spec: **there is currently zero committed automated test coverage for Catalog anywhere in this repository.** `tests/` contains only `tests/inventory/*.test.ts` (17 files) — no `tests/catalog/*` exists at all. Every Catalog verification across RR-1 through RR-3, ID-1/ID-2, and CP-1 in this mission chain was done via ad-hoc, non-committed Python scripts in a scratchpad. Part H's "Mandatory Engineering Tests" (§32–36) would therefore be **the first committed automated Catalog tests of any kind** in this codebase, not just new tests for one new feature — and the existing `tests/inventory/*` pattern (multiple parameterized Supabase clients calling RPCs/tables directly, no server layer involved) has no precedent for testing TanStack Start server-function-hosted logic (the parsing/batching/orchestration code Part A actually needs to test). Phase 1 should explicitly decide the test architecture for the server-function layer, not assume the existing vitest+RPC pattern extends to it for free.
+
+**Additional confirmed-absent capabilities, not previously flagged as explicitly as they should be:**
+
+- No CSV/XLSX parsing dependency exists in `package.json` today — this is a **new** dependency, meaning EIS Q5 ("which parser") needs a locked answer with an explicit security read (both major ecosystems here — SheetJS-family `xlsx` and `exceljs` — have had real CVE history around malicious workbook input; this deserves the same scrutiny this mission chain has applied to every other dependency change).
+- No Supabase Storage bucket or file-upload UI component exists anywhere in this app today. File transport (multipart to the server function, or stage-then-process via Storage) is entirely new surface.
+- Confirmed manager/employee role infrastructure genuinely does not exist in the schema (zero matches for either term in any migration) — this validates the EIS's own §14 hedge as accurate, not overstated.
+
+## Required specification changes before Build Lock
+
+1. **Resolve the category-reactivation gap (finding #2).** Either strike "review/reactivate" from §21 step 4 and specify the actual achievable behavior (no reactivation path exists today), or explicitly ask Mission Control to authorize a 20th command as a scoped exception — do not leave the spec referencing a capability that isn't there.
+2. **Specify the exact duplicate-detection call pattern** against `catalog_products_search` (which fields, how many calls per row, which match-ranks count as "duplicate" vs. "fuzzy/ignore").
+3. **Specify the exact batch/row idempotency-key persistence mechanism** (assign-at-preview, reuse-on-retry), not just the requirement.
+4. **Lock the CSV/XLSX parser choice and its security review** before Build Mode, given no parsing dependency exists today.
+5. **Define the file-upload transport** (multipart-to-server-function vs. Storage-staged) explicitly, since neither exists in this app yet.
+6. **Define the test strategy for the server-function layer specifically**, distinct from the existing RPC-level `tests/inventory` pattern, since none exists today for that layer.
+
+None of these invalidate the EIS's overall architecture — the core design (server function using the caller's own JWT-scoped client, reusing existing RPCs for actual writes, presets as constants not data) is sound and matches how this repo already does things elsewhere. But six concrete, specification-level gaps — one of them a real inconsistency, not just an open question — need to be closed before Build Mode can be safely authorized.
+
+## Final Verdict
+
+**`CHANGES REQUIRED BEFORE BUILD LOCK`**
