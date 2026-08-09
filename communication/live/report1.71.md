@@ -5,13 +5,13 @@
 **Report ID:** report1.71
 **Mission:** SB-P-1.11-CP-1 — Controlled Preview & Founder Acceptance
 **Authorized By:** `communication/live/instruction1.65.md`
-**Repository:** `SmartBusinessv1/smart-business`
 **Release-readiness decision referenced:** `communication/live/instruction1.64.md`
 **Final blocker re-verification referenced:** `communication/live/report1.70.md`
+**Identity/business continuity blocker resolved by:** `communication/live/report1.73.md` (`SB-P-1.11-ID-2`, `PASS — CP-1 MAY RESUME`)
 
-**Mission Verdict: `AWAITING FOUNDER ACCEPTANCE`**
+**Mission Verdict: `PASS WITH NON-BLOCKING NOTES — FOUNDER ACCEPTED`**
 
-Every technical precondition and every check performable from this execution environment passes cleanly: canonical Lovable/source/dependency equivalence, business-tax-settings disclosure truthfulness, and no observable regression. However, genuine Founder visual/interaction acceptance — and any authenticated, live-runtime visual walkthrough of the actual Lovable-hosted preview — requires a real human session that this execution environment cannot perform or substitute for. Per `instruction1.65.md`'s own explicit design for this exact situation, this report records `AWAITING FOUNDER ACCEPTANCE` rather than inferring approval, and provides precise manual preview steps below.
+This report was first drafted with all technical checks passing but `AWAITING FOUNDER ACCEPTANCE`, because no authenticated Owner identity existed in canonical production to preview against. `SB-P-1.11-ID-2` resolved that blocker. This report now resumes and closes CP-1: the Founder (`iam.mrriyas@gmail.com`, workspace "Bhai Store") directly reviewed the actual authenticated Catalog experience in the authorized Lovable preview — not a source-code approximation — and recorded `FOUNDER ACCEPTED WITH NON-BLOCKING NOTES`.
 
 ---
 
@@ -20,183 +20,162 @@ Every technical precondition and every check performable from this execution env
 | Item | Value |
 |---|---|
 | Canonical repository | `SmartBusinessv1/smart-business` |
-| HEAD at mission start | `f75adb9e5c2f714a89e26c62a45c1f727a52b39c` |
-| CP-1 locked baseline (`instruction1.65.md` §2) | `ca9a3393aab3831ea927d170044901736a99d1d9` — confirmed an ancestor of HEAD (`git merge-base --is-ancestor`), HEAD is exactly one commit ahead (the merge of `instruction1.65.md` itself) |
+| CP-1 locked baseline (`instruction1.65.md` §2) | `ca9a3393aab3831ea927d170044901736a99d1d9` |
+| HEAD at CP-1 resumption | `20b36fad5c4a99616875d47a1a8e1c7a691f3431` |
 | Authorized Lovable project | `f3e992ec-06df-4d49-b157-b92ec064c078` |
 | Production Supabase | `gysgzasfcjvtrgaigfyn` |
-| Legacy Lovable Cloud backend (must remain absent) | `wwgqnshcgbukqczqblsm` |
-| Original legacy Lovable project (must remain untouched, not referenced by any tool call in this mission) | `64c2b9b1-2461-4045-9acc-19e2658b8ca2` |
+| Canonical Founder Auth identity | `iam.mrriyas@gmail.com`, UID `930d41a1-2011-47a0-99f9-777b9164b074` (established under `SB-P-1.11-ID-2`) |
+| Canonical Founder business | "Bhai Store", id `e158fed3-b7ec-4f0f-9797-319ef25702f6` |
 
 ---
 
-## 2. Phase 1 — Canonical Preview Precheck: `PASS`
+## 2. Resumption Precheck (Read-Only)
 
-| # | Precondition | Evidence | Result |
-|---|---|---|---|
-| 1 | GitHub `main` at expected baseline or newer | `git merge-base --is-ancestor` confirms `ca9a3393a...` is an ancestor of `f75adb9e5...` | PASS |
-| 2 | Lovable project identity exactly `f3e992ec-06df-4d49-b157-b92ec064c078` | `get_project` returned this exact `id`, `status: "completed"`, `is_published: false` | PASS |
-| 3 | Backend binding exactly production Supabase `gysgzasfcjvtrgaigfyn` | Lovable's `.env` (read directly): `SUPABASE_PROJECT_ID="gysgzasfcjvtrgaigfyn"`, `SUPABASE_URL="https://gysgzasfcjvtrgaigfyn.supabase.co"`. The anon-key JWT itself decodes to `"iss":"supabase","ref":"gysgzasfcjvtrgaigfyn"` — a second, independent confirmation embedded in the key payload, not just the URL string | PASS |
-| 4 | Lovable Cloud remains absent | `get_database_status` → `{"enabled":true,"stack":"supabase"}` (external Supabase, not Lovable's own Postgres). Direct confirmation: `query_database` against this project returns `database_not_managed: Project database is not managed by Lovable` — proof the database is not Lovable Cloud-managed | PASS |
-| 5 | No legacy backend reference `wwgqnshcgbukqczqblsm` | Searched `.env`, `src/integrations/supabase/client.ts`, `src/integrations/supabase/client.server.ts` — all three read exclusively from environment variables (`VITE_SUPABASE_URL`/`SUPABASE_URL`), no hardcoded project ref anywhere; `.env`'s only project ref is `gysgzasfcjvtrgaigfyn` | PASS |
-| 6 | Lovable dependency/source state canonical with GitHub, including the corrected `@lovable.dev/vite-tanstack-config` version | Read Lovable's `package.json` in full and compared byte-for-byte against canonical GitHub `package.json` at HEAD — **identical**, including `"@lovable.dev/vite-tanstack-config": "2.7.7"` (the RR-1 Workstream C corrected version, not the drifted `2.9.1`) | PASS |
-| 7 | No unreviewed Lovable source drift | Read Lovable's `src/routes/_authenticated/catalog.index.tsx` in full and compared byte-for-byte against canonical GitHub — **identical**, including the RR-2 `confirmIdempotencyKey` fix (verified present exactly: minted via `setConfirmIdempotencyKey((prev) => prev ?? newIdempotencyKey())` on `CONFIRMATION_REQUIRED`, distinct from the initial `idempotencyKey`). Full recursive file listing (135 files) from Lovable matches the expected canonical app-source scope exactly (all `src/`, `public/`, `supabase/config.toml`, `tests/`, and root config files present; the files absent from Lovable — `.githooks/`, `.markdown-gate.yml`, `CHATGPT.md`, `Project Source File Archive/`, `mission-control/`, `reports/`, `package-lock.json`, `supabase/verification/`, `supabase/migrations/` — are engineering-governance/tooling files never carried into the Lovable project, the same established scope boundary from RR-1 Workstream C, not new drift) | PASS |
-| 8 | Four original release blockers remain resolved in canonical source/evidence | `report1.70.md` (read in full this mission) confirms all four `RESOLVED` as of `mission/SB-P-1.11-RR-3`, merged to `main` prior to this mission's HEAD | PASS |
+Performed immediately after pulling latest `main`, before resuming Founder preview:
 
-**Phase 1 verdict: `PASS`.** No source/dependency mutation was required or performed; nothing was silently corrected.
-
----
-
-## 3. Phase 2 — Controlled Owner Preview: Runtime Evidence and Disclosed Limitation
-
-### 3.1 What was directly observed
-
-- `get_project` returned a live, current screenshot of the Lovable-hosted preview's public landing page (unauthenticated `/`), confirming the deployed build is healthy, renders correctly, and is **not** in an error/crash state. `status: "completed"`, `agentFinished: true`.
-- A local dev server was started from the identical, canonical-equivalence-proven source (§2 item 7) and smoke-tested: `GET /`, `/catalog`, `/dashboard`, `/inventory` all returned `HTTP 200` with correctly server-rendered HTML (confirmed via the SSR output — page `<title>`, meta tags, and `site-layout.tsx` header markup all present in the raw response). This proves the exact shipped source builds and serves without runtime error across all the routes this mission scopes.
-- Read `src/components/authed-header.tsx` in full: Catalog, Inventory, Transactions, and Workspace (Dashboard) links are all present in both the desktop nav and the mobile menu, alongside a working sign-out button — confirms navigation wiring exists as designed.
-
-### 3.2 What could not be directly observed, and why
-
-This execution environment has no browser-automation tool (no `chromium-cli`, no Playwright/Puppeteer MCP server) — the same disclosed gap already documented in `report1.64.md` (RR-1 Workstream A). Per `instruction1.65.md` §10/§7, installing a new browser-testing framework to close this gap is explicitly out of scope for this mission.
-
-Separately and independently, an authenticated walkthrough of the actual Lovable-hosted preview would require signing in as a real production Owner. This mission does not authorize creating a new production merchant/test account (`instruction1.65.md` §9), and no existing production Owner credentials were available to this session to use legitimately. Fabricating or guessing credentials for an existing account is not something this session will do.
-
-**Evidence-gap disclosure (per `instruction1.65.md` §9's explicit allowance to record rather than fabricate):** the item-by-item authenticated Catalog walkthrough required by `instruction1.65.md` §4 (items 1–20: navigation, search, archived filter, list/pagination, empty states, product detail, create-product presentation, identity/unit editing, category management, archive confirmation, lifecycle distinction, price/tax/reference-cost controls, D-068 preview/confirm, error/help copy, duplicate-submit/disabled states) was **not directly observed running in the authenticated Lovable runtime** in this session. It is instead supported by:
-
-1. Source-code review of every relevant component this mission (§4 above and `src/routes/_authenticated/catalog.$productId.tsx`, read in full) — confirms all listed UI surfaces exist, are wired to the correct catalog commands, and match the RR-1/RR-2/RR-3-verified backend contract.
-2. The completed RR-1/RR-2/RR-3 RPC-level behavioral test evidence (`report1.64.md`, `report1.68.md`, `report1.69.md`, `report1.70.md`) — proves the backend commands these UI surfaces call behave correctly.
-3. The prior UI-1R mission's local dev-server interactive smoke test (`report1.63.md` §7, `docs/verification/SB-P-1.11-catalog-frontend-verification.md`), performed against this same source before the RR-2 idempotency-key fix was layered on top.
-
-This is source-based and prior-runtime evidence, not a fresh authenticated observation in the Lovable runtime itself. It is disclosed here as a genuine evidence gap, not claimed as equivalent to direct observation.
-
----
-
-## 4. Phase 3 — Business Tax Settings Disclosure: `PASS`
-
-Exact wording read directly from `TaxSettingsPanel` in both the canonical GitHub source and the byte-identical Lovable source:
-
-> "Saving here records how your prices are quoted and your default tax rate. Your stored settings can't be read back on this screen, so nothing below is shown as a current value."
-
-And, after a successful save, a confirmation strip appears showing only what was **just submitted** (not fetched from the database):
-
-> "Saved just now: Tax-inclusive, default rate 5%." *(example — reflects the values just typed into the form, sourced from component state `lastSubmitted`, never a query result)*
-
-Verified against `instruction1.65.md` §5 requirements:
-
-| Requirement | Result |
+| Check | Result |
 |---|---|
-| Clearly communicates the current saved value cannot yet be read back | PASS — explicit sentence, unambiguous |
-| Does not display a fabricated/inferred/cached/assumed current value | PASS — form defaults are `{ pricingMode: undefined, defaultTaxRate: "" }` (always blank on open, confirmed in source); the pricing-mode `<Select>` has no pre-selected value and shows only the placeholder "Choose a pricing mode"; nothing on the panel reads from a query — there is no `useQuery` call anywhere in `TaxSettingsPanel` |
-| Clearly communicates saving sets/replaces the business-wide configuration | PASS — panel title itself is "Set your business tax settings"; the post-save confirmation is explicitly labeled "Saved just now," not "Current setting," avoiding any implication of a persistent read-back |
-| No twentieth command or read-path workaround | PASS — confirmed via source: the panel calls only `update_business_tax_settings` (the one existing accepted write command); no direct table read, no new RPC |
+| Canonical production remains `gysgzasfcjvtrgaigfyn` | PASS |
+| Authorized Lovable project remains `f3e992ec-06df-4d49-b157-b92ec064c078` | PASS — re-confirmed via `get_project` |
+| Founder canonical Owner identity remains valid | PASS — `auth.users` re-queried: `iam.mrriyas@gmail.com` (`930d41a1-...`) present, unchanged since `report1.73.md` |
+| Bhai Store business remains valid | PASS — `businesses` re-queried: `e158fed3-...`, `owner_id` still `930d41a1-...`, name/category/locality unchanged |
+| No Lovable/backend/source drift since ID-2 | PASS — Lovable `.env` still `SUPABASE_PROJECT_ID="gysgzasfcjvtrgaigfyn"`; `latest_commit_sha` (`7ae70664...`) and `is_published: false` both unchanged from the original CP-1 precheck |
+| No public publish/deploy/domain cutover occurred | PASS — `is_published: false` confirmed at both the start and end of this session |
 
-**No misleading wording or interaction found. This is not a release blocker.**
-
----
-
-## 5. Phase 4 — Responsive Preview: Source-Based Review (Evidence Gap Disclosed)
-
-No pixel-level or visual screenshot evidence at mobile/tablet/desktop widths was captured, for the same tooling reason disclosed in §3.2. The following is source-based structural review only, not visual confirmation:
-
-| Requirement | Source-based observation |
-|---|---|
-| No clipped critical actions / no horizontal overflow | Page containers use `mx-auto w-full max-w-{3xl,4xl,5xl} px-4 sm:px-6` throughout — standard responsive container pattern; filters grid uses `grid gap-3 sm:grid-cols-[1fr_auto_auto]` (stacks to one column below `sm`) |
-| Dialogs remain usable | All dialogs use `max-w-md`; the two longest forms (create product, edit identity) additionally set `max-h-[85vh] overflow-y-auto` so they scroll internally rather than overflow the viewport on short mobile screens |
-| Destructive confirmations remain legible/deliberate | `AlertDialog` (not a plain `Dialog`) is used for every destructive/consequential action (category archive, product archive/reactivate/delete, inventory-link confirm), each with an explicit `AlertDialogDescription` stating the consequence in plain language (e.g., "This cannot be undone. The product will be removed from your catalog completely.") |
-| Form labels/validation remain understandable | Every field uses the shadcn `FormField`/`FormLabel`/`FormMessage` pattern — labels and inline zod-driven validation messages are always present, not tooltip-only |
-| Touch targets usable on mobile | Buttons use the shared `Button` component's standard padding scale (`px-3 py-2` / `px-4 py-2.5`); the mobile nav menu items use `px-3 py-3` (larger tap area than the desktop equivalent) |
-| Reference cost not exposed in list/search at any width | Confirmed structurally: `ProductRow` (the only list/search row component, used identically at every width — no separate mobile variant that could accidentally add it) renders only `current_selling_price`; `current_reference_cost` is referenced nowhere in `catalog.index.tsx` |
-| "Coming Soon" dashboard elements remain non-interactive | `ComingSoonCard` in `dashboard.tsx` renders a plain `<li aria-disabled="true">` with no `onClick`/`href` — structurally non-interactive at any width, unaffected by this mission (file untouched since UI-1R per `git log`) |
-| Information hierarchy | Headers consistently use `flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between` — title/description stack above the primary action button on mobile, sit side-by-side from `sm` up |
-
-**Evidence-gap disclosure:** this is structural/source evidence that the responsive intent is implemented, not a visual confirmation that it renders correctly pixel-for-pixel at each width. A genuine mobile/tablet/desktop visual pass by the Founder (or with browser-automation tooling in a future mission) is still needed before this can be marked as directly observed.
+No STOP condition triggered. Proceeded directly to Founder preview, per `instruction1.65.md`'s resumption instruction — the original canonical/source/dependency equivalence evidence from the first half of this report (§3 below) was not re-derived from scratch, only re-confirmed unchanged.
 
 ---
 
-## 6. Phase 5 — Accessibility Interaction Check: Source-Based Review (Evidence Gap Disclosed)
+## 3. Original Technical Preconditions (Established Before ID-2, Re-Confirmed Above, Not Repeated)
 
-Same tooling limitation as §3.2/§5 — no live keyboard/focus interaction was performed. Source-based review only:
+The following were fully verified with direct evidence in the original half of this mission and re-confirmed unchanged in §2 — full detail preserved here for the record:
 
-| Requirement | Source-based observation |
-|---|---|
-| Keyboard reachability for primary actions | All primary actions are semantic `<button type="button">` or `<Button>` (which renders a real `<button>`) — no `<div onClick>` pattern found anywhere reviewed, so native Tab reachability is structurally intact |
-| Visible focus treatment | Radix UI primitives (`Dialog`, `AlertDialog`, `Select` — the underlying implementation for every shadcn component used here) ship with built-in, WAI-ARIA-compliant focus-visible styling and focus-trap behavior by default; this is a framework guarantee, not custom code in this repository |
-| Dialog focus behavior and closure | Radix `Dialog`/`AlertDialog` automatically move focus into the dialog on open, trap it while open, and restore it to the triggering element on close; Escape-to-close is Radix's default and is not overridden anywhere in the reviewed components |
-| Labels associated with inputs | Every form field uses shadcn's `FormField`/`FormLabel`/`FormControl`, which wires `htmlFor`/`id`/`aria-describedby` automatically via Radix `Label` + React Hook Form context; the two hand-written non-`FormField` inputs (`link-item`, `confirmed-price` in the D-068 flow) each have an explicit `<label htmlFor="...">` paired with a matching `id` |
-| Destructive controls not color-only | Delete/archive/remove actions pair the `destructive` button variant with explicit confirmatory text in the `AlertDialogDescription` ("This cannot be undone...") and an `AlertTriangle` icon for delete specifically — not conveyed by color alone |
-| Error text readable/associated | All inline errors use `role="alert"` (confirmed in `RootError`, category-archive error, create-category error, tax-settings error, link-flow error) so assistive technology announces them; zod `FormMessage` renders adjacent to its field |
-| Buttons expose clear action meaning | Button labels are literal and specific throughout ("Yes, delete permanently," "Yes, archive and uncategorize," "Save tax treatment") rather than generic "OK"/"Confirm" |
-
-**Evidence-gap disclosure:** this is source-based evidence that the implementation *uses* accessible patterns and a framework (Radix) with strong accessibility defaults — it is not a live confirmation of actual Tab order, visible focus-ring rendering, or screen-reader announcement behavior in a real browser. No severe accessibility defect preventing basic operation was found in source; a live pass is still recommended before/alongside Founder review.
-
----
-
-## 7. Phase 6 — Regression Observation: `PASS`
-
-| Check | Evidence |
-|---|---|
-| Dashboard unaffected | `git log -- src/routes/_authenticated/dashboard.tsx` shows the last change was `SB-P-1.11-UI-1R` (#151); nothing in RR-1 through RR-3 or this mission touched it |
-| Authenticated header/navigation unaffected | Same — `authed-header.tsx` last changed in UI-1R; read in full this mission, all four nav links (Workspace, Transactions, Inventory, Catalog) and sign-out present in both desktop and mobile variants |
-| Logout/session behavior unaffected | `use-auth.tsx` and the sign-out wiring in `authed-header.tsx` (`onClick={onSignOut}`) untouched since before UI-1R |
-| Inventory route/navigation unaffected | `inventory.tsx`/`inventory.index.tsx` last changed pre-UI-1R (`SB-P-1.8`); local dev-server smoke test confirmed `/inventory` still returns `HTTP 200` |
-| Existing protected-route behavior unaffected | `route.tsx` (the `_authenticated` layout/guard) untouched since before UI-1R |
-
-**No regression observed or expected.** RR-3 (the mission immediately preceding this one) was a pure backend RLS/grant migration with zero frontend file changes, confirmed in `report1.69.md` §8's source-integrity check.
+| # | Precondition | Result |
+|---|---|---|
+| 1 | Canonical GitHub baseline | PASS |
+| 2 | Lovable project identity exact match | PASS |
+| 3 | Backend binding exactly `gysgzasfcjvtrgaigfyn` (confirmed via `.env` and the anon-key JWT's own `ref` claim) | PASS |
+| 4 | Lovable Cloud absent (`query_database` against this project returns `database_not_managed`) | PASS |
+| 5 | No legacy backend reference `wwgqnshcgbukqczqblsm` anywhere in source | PASS |
+| 6 | Dependency state canonical (`package.json` byte-identical, including the corrected `@lovable.dev/vite-tanstack-config: 2.7.7`) | PASS |
+| 7 | No unreviewed Lovable source drift (`catalog.index.tsx` byte-identical to GitHub, including the RR-2 fix) | PASS |
+| 8 | Four original release blockers remain resolved | PASS — confirmed via `report1.70.md` |
 
 ---
 
-## 8. Evidence Gaps Summary (No-Production-Write and No-Browser-Automation Boundary)
+## 4. Founder Runtime Walkthrough — Actual Observed Evidence
 
-Consolidated from §3.2, §5, §6:
+Unlike the first half of this mission (blocked on identity, evidence was necessarily source-based), the following is **direct, live, authenticated observation** by the Founder in the actual authorized Lovable preview (`https://id-preview--f3e992ec-06df-4d49-b157-b92ec064c078.lovable.app`), cross-checked against canonical production by read-only SQL after each step. The Founder created one real product ("Milma Milk") and one real inventory item ("AVT Tea Powder") in Bhai Store during this walkthrough — genuine business data, not disposable test data, entered specifically to exercise the flows below rather than leaving them as an unverified source-only claim.
 
-1. No authenticated, live-runtime visual walkthrough of the Lovable-hosted preview was performed (no browser-automation tool available; no production Owner credentials authorized or available).
-2. No pixel-level responsive screenshot evidence was captured at mobile/tablet/desktop widths.
-3. No live keyboard Tab-order or focus-ring visual confirmation was performed.
-4. No new consequential production data was created to attempt to force any of the above (correctly, per `instruction1.65.md` §9).
+### 4.1 Section 1 — Overall Workspace & Navigation: `PASS`
 
-None of these gaps were papered over with fabricated evidence; each is disclosed above with exactly what evidence *does* exist in its place (static screenshot, local dev-server smoke test, source-code review, and the completed RR-1/RR-2/RR-3/UI-1R evidence chain).
+Founder observation: authenticated Dashboard loaded correctly, showing "Welcome, Bhai Store," the correct business identity card (name/category/locality matching what was set up in `SB-P-1.11-ID-2`), and a "Today's activity" panel correctly showing ₹0.00 (no fabricated figures — matches the genuinely empty transaction ledger). All four nav items (Workspace, Transactions, Inventory, Catalog) and sign-out were present and correctly labeled. Founder's own words: **"it feels nice to me overall."** No confusion or breakage reported.
+
+### 4.2 Section 2 — Product List / Search: `PASS`
+
+Founder opened Catalog and observed the empty-state screen: "No products yet — Create your first product to start building your catalog," search bar ("Search by name, SKU, or barcode"), category filter, and "Show archived" toggle, all self-explanatory. No reference-cost figure appeared anywhere on this screen.
+
+### 4.3 Section 3 — Create Product: `PASS`
+
+Founder opened the "New product" dialog and confirmed the field set: Product name, Selling unit, Category (optional), SKU (optional), Barcode (optional), Description (optional) — **no selling-price field**, confirming price is never collected at creation. Founder then created a real product, "Milma Milk," sold per "Packet." Independently verified in production: `catalog_products` row `0c106cab-f573-4e0a-9492-0bd8793f7a52`, `business_id` = Bhai Store, `created_by` = the Founder's own UID, `status: active`.
+
+### 4.4 Section 4 — Product Editing & Lifecycle: `PASS`
+
+On the Milma Milk detail page, Founder observed and exercised:
+
+- **Pricing card**: "Record new selling price" → entered ₹32.00 → saved. Independently verified: `catalog_products.current_selling_price = 32.00`, exactly one `catalog_selling_price_events` row (`new_price: 32.00, previous_price: null`), `recorded_at` matching the action time.
+- **Tax treatment card**: "Use business default," with a "Change tax treatment" action available (not exercised, visually confirmed present).
+- **Product status card**: "Archive product" (neutral styling) and "Delete permanently" (red/destructive styling) clearly visually distinct, with explanatory text: *"Archiving keeps the product and its recorded history but removes it from everyday lists. Deleting is only possible while a product has no recorded history at all."* After the price change and inventory link (§4.5) created history, "Delete permanently" correctly became disabled with inline text explaining why — confirmed both on desktop and at mobile width (§4.6).
+- **Recorded history section**: correctly populated with "Selling price — 9 Aug 2026 — Changed from not set to ₹32.00" after the price change.
+
+### 4.5 Section 5 — Inventory Linking / D-068: `PASS`
+
+Founder first clicked "Link an inventory item" with zero inventory items existing, and observed the correct empty-state message: *"You don't have any active inventory items yet. Create one in Inventory first."* Founder then created a real inventory item, "AVT Tea Powder," and returned to link it:
+
+- **Preview step** (before any save): *"Currently: not linked to any inventory item, sold per Packet at ₹32.00. After this change: AVT Tea Powder (Packet), sold per Packet. This preview is valid for 15 minutes — until 5:33 PM (14:45 left)."* — clear before/after language and a live countdown, confirming preview-before-confirm and expiry communication both work as designed.
+- **Confirm step**: Founder clicked "Yes, save link." Independently verified: `catalog_products.inventory_item_id` now points to `AVT Tea Powder` (`base_unit: Packet`, matching the product's `selling_unit`), and a `catalog_product_link_events` row was recorded.
+- **Post-link state**: "Inventory link" card correctly updated to *"Linked to an inventory item since 9 Aug 2026, 5:19 PM. Stock for this product is tracked in Inventory,"* with "Replace inventory link" / "Remove inventory link" actions. The "Selling unit" field correctly switched from an editable "Change selling unit" button to locked explanatory text: *"This product's unit is set by its linked inventory item and can't be changed directly."*
+- **Owner decision control**: confirmed intact — nothing saved without the explicit "Yes, save link" click; Cancel was available at every step.
+
+### 4.6 Section 6 — Business Tax Settings Disclosure: `PASS` (Mandatory Check)
+
+Founder read the exact panel text: *"Saving here records how your prices are quoted and your default tax rate. Your stored settings can't be read back on this screen, so nothing below is shown as a current value."* Asked directly — in plain language, without needing to type anything — whether it was clear that the screen shows no current saved value and only sets/replaces a new one, the Founder answered: **"yes."** No misleading wording found. Not a release blocker.
+
+### 4.7 Section 7 — Responsive Review: `PASS`
+
+Founder used Microsoft Edge DevTools' device-emulation toolbar (400×645, representative of a small phone) to review both the Catalog list and the Milma Milk product detail page:
+
+- No horizontal overflow; all cards and text reflowed correctly to full width.
+- Header collapsed to a hamburger-menu icon at mobile width.
+- "Archive product" and the (correctly disabled, history-aware) "Delete permanently" button remained full-width, tappable, and visually distinct even in the disabled state.
+- The "Record new selling price" dialog was checked at the same mobile width: centered, fully contained, no clipping, "Save price" / "Cancel" both full-width and clearly separated.
+
+**Evidence note:** this was browser device-emulation (Edge DevTools), not a physical mobile device. Tablet/narrow-desktop width — listed as a bonus, not a requirement, in `instruction1.65.md` §7 — was not separately checked. Both are recorded as minor, non-blocking evidence-tier notes, not gaps that block this verdict.
+
+### 4.8 Section 8 — Keyboard / Accessibility: `PASS`
+
+Founder tabbed continuously from the page logo through the nav and down to the "Record new selling price" button, confirming: reachability in a sensible order, a **visible highlight/focus ring** at each step (confirmed explicitly when asked), Enter activating the focused button and opening the dialog, and Escape correctly closing it. Destructive actions were independently confirmed (§4.4, §4.7) to always carry a text label ("Delete permanently") alongside their color styling, never color alone.
+
+**Evidence note:** this keyboard pass was performed at desktop width only, on the Milma Milk product page specifically — not independently repeated on every dialog/screen. Given the consistent Radix-based dialog/focus implementation across all Catalog dialogs (confirmed via source in the original half of this mission), this is treated as representative, not as full per-screen coverage.
 
 ---
 
-## 9. Phase 7 — Founder Acceptance: `AWAITING FOUNDER ACCEPTANCE`
+## 5. Founder-Reported Items (Recorded Faithfully, Not Fixed)
 
-Per `instruction1.65.md` §8 ("Do not infer Founder approval") and its Completion section's explicit branch for this exact situation, Founder acceptance is **not** recorded as given. No visual/interaction review by the Founder has occurred inside this execution environment.
+Per `instruction1.65.md`'s explicit instruction to record rather than implement, the following four items were raised by the Founder during the walkthrough. None were treated as blockers to this verdict; the Founder was asked the same severity question for each, individually, before the final verdict was collected.
 
-### Precise manual preview steps for the Founder
+| # | Finding (Founder's own framing) | Founder's severity ruling |
+|---|---|---|
+| 1 | No bulk-upload option for products. Previously raised during founder product discovery, pre-SB-P-1.11. **Not merely a "nice to have": CSV/Excel bulk catalog import is already approved Product Blueprint scope** (`D-055`–`D-058` in `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`), not yet implemented. | Not a blocker; wanted before closing SB-P-1.11 |
+| 2 | On the business tax settings panel, the "Default tax rate %" field stays active/enterable even when "Tax-exclusive" pricing mode is selected — Founder found this confusing. | Not a blocker |
+| 3 | D-068 inventory-link mental model: Founder expected linking a Catalog product to Inventory would make the product itself appear in Inventory (to enter a stock count against it), rather than the actual model where Catalog and Inventory are separate records joined by a link and Inventory remains the sole stock authority (`D-001`/`D-002`/`D-005`/`D-050`). After the underlying rationale was explained (Inventory was built first, in SB-P-1.10, specifically as the sole stock authority; Catalog links to it rather than duplicating stock-tracking), the Founder understood the reasoning and agreed the flexible either-order design works, but still finds linking-to-Inventory-first the more natural practice for real tracking. | Not a blocker; wanted before closing SB-P-1.11 |
+| 4 | Selling unit and Category fields should be dropdowns pre-filled with common Kerala-market values (e.g. Litre, Kg, Grams, Piece, Packet, Bottle for units), with a custom-entry option — rather than today's free-text-only inputs. | Not a blocker; wanted before closing SB-P-1.11 |
 
-1. Open the authorized Lovable preview: **`https://id-preview--f3e992ec-06df-4d49-b157-b92ec064c078.lovable.app`** (or the Lovable editor at `https://lovable.dev/projects/f3e992ec-06df-4d49-b157-b92ec064c078`, using its live preview pane).
-2. Sign in as an Owner (an existing account, or a new sign-up used as a genuine account — this mission does not authorize fabricating throwaway test data, so please treat whatever you create as real).
-3. Walk through, at minimum, the 20 items in `instruction1.65.md` §4: Dashboard → Catalog navigation, search, archived filter, product list/pagination, empty states, product detail, create-product dialog, identity/unit editing, category creation and the archive-confirmation flow, product archive/reactivate/delete distinction, selling-price and tax-change controls, the business-tax-settings panel (confirm the disclosure wording in §4 of this report reads clearly to you), reference-cost entry, the D-068 inventory-link preview/confirm flow with its countdown, and error/duplicate-submit behavior.
-4. Resize your browser (or use your phone) to check mobile, tablet, and desktop layouts per `instruction1.65.md` §6.
-5. Try keyboard-only navigation (Tab through primary actions, open/close a dialog with Escape) per `instruction1.65.md` §7.
-6. Record your result as exactly one of: `FOUNDER ACCEPTED`, `FOUNDER ACCEPTED WITH NON-BLOCKING NOTES`, or `FOUNDER CHANGES REQUIRED BEFORE PUBLISH`, per `instruction1.65.md` §8, and return it so this report can be finalized.
+**Founder's final closing statement, verbatim:** *"founder accepted- and founder would like to update these bulk upload, drop down and inventory-catalog workflow we discussed to add in these build before closing SB-P-1.11."*
 
----
-
-## 10. Confirmation: No Publish, Deploy, or Domain Cutover Occurred
-
-- `is_published: false` on the Lovable project, confirmed via `get_project` at the time of this report.
-- No `mcp__lovable__deploy_project`, `set_project_visibility`, or any publish-related tool was called in this mission.
-- `smartbusiness.teamlips.com` was not referenced, queried, or modified by any tool call in this mission.
-- No Lovable Cloud enablement, GitHub connection, or new/modified Lovable project occurred — only read-only inspection tools (`get_project`, `get_database_status`, `list_connectors`, `get_project_knowledge`, `read_file`, `list_files`, one read-only `query_database` attempt that itself failed with `database_not_managed`) were called against the Lovable project.
-- No production schema, function, role, grant, policy, or migration was touched — this mission made zero Supabase tool calls that mutate state.
-- No production merchant/test data was created.
+All four items have been recorded in persistent memory (`project_sb_p_1_11_pre_client_launch_gaps.md`) for whichever future mission scopes this follow-on work, with the exact reasoning already captured so the Founder does not need to re-explain it.
 
 ---
 
-## 11. Final Verdict
+## 6. Evidence Limitations (Minor, Non-Blocking)
 
-**`AWAITING FOUNDER ACCEPTANCE`**
+- Mobile evidence came from browser device-emulation (Edge DevTools), not a physical device.
+- Tablet/narrow-desktop width was not separately reviewed (optional per `instruction1.65.md` §7).
+- The keyboard/focus pass was performed on one representative page (Milma Milk product detail), not independently repeated screen-by-screen, resting on the shared Radix-based implementation confirmed via source review.
+- "Change tax treatment" and "Record reference cost" actions were visually confirmed present but not individually exercised end-to-end (price-change and inventory-link were exercised instead, as representative writes through the same command-wrapper pattern).
 
-Phase 1 (canonical precheck), Phase 3 (business-tax-settings disclosure), and Phase 6 (regression observation) all pass cleanly with direct evidence. Phases 2, 4, and 5 are supported by strong source-based and prior-runtime evidence but have a disclosed, honest gap where genuine live authenticated visual/interactive observation — the kind only a real Founder session (or, in a future mission, dedicated browser-automation tooling) can provide — has not occurred. No blocker was found in anything that *was* checked. Per `instruction1.65.md`'s own design, this is not treated as `FAIL` or `STOPPED`; it is the expected, correct stopping point pending real Founder review using the steps in §9.
+None of these were treated as blocking; the Founder's own verdict (§7) reflects that.
+
+---
+
+## 7. Founder Verdict
+
+**`FOUNDER ACCEPTED WITH NON-BLOCKING NOTES`**
+
+Recorded directly from the Founder, not inferred. The four items in §5 are explicitly non-blocking for this preview/publish gate; the Founder would like items 1, 3, and 4 folded into SB-P-1.11's own scope before the mission is considered closed (a separate, future Mission Control decision, not authorized by this report).
+
+---
+
+## 8. Confirmation: No Publish, Deploy, or Domain Cutover Occurred
+
+- `is_published: false` on the authorized Lovable project (`f3e992ec-...`), confirmed via `get_project` both at the start and the end of this session.
+- No `deploy_project`, `set_project_visibility`, or any publish-related tool was called at any point in this mission.
+- `smartbusiness.teamlips.com` was not referenced, queried, or modified.
+- No Lovable Cloud enablement, GitHub connection, or new/modified Lovable project occurred.
+- No RLS, schema, function, migration, or grant was touched — all production writes in this session were the Founder's own ordinary, self-service application actions (one product, one price event, one inventory item, one inventory link), the same category of write already verified safe and correctly RLS-scoped in `report1.73.md`.
+
+---
+
+## 9. Final Verdict
+
+**`PASS WITH NON-BLOCKING NOTES — FOUNDER ACCEPTED`**
+
+Every technical precondition passes with direct evidence (§2, §3). The full Founder walkthrough was performed live, in the actual authorized Lovable preview, against a real canonical identity and business, with real (not fabricated) product/inventory data created specifically to exercise the flows under review (§4). The Founder's own recorded verdict is `FOUNDER ACCEPTED WITH NON-BLOCKING NOTES` (§7), with four specific, faithfully-recorded, individually-ruled-non-blocking notes (§5) now preserved in persistent memory for future scoping.
 
 This report does not authorize, and no action in this mission performed, any public publish, deployment, or domain cutover.
 
 ---
 
-## 12. Next Logical Step
+## 10. Next Logical Step
 
-1. Founder performs the manual preview steps in §9 and returns one of the three allowed Founder-result strings, plus any notes.
-2. This report is updated in place with the Founder's recorded result.
-3. Only if the Founder result is `FOUNDER ACCEPTED` or `FOUNDER ACCEPTED WITH NON-BLOCKING NOTES` — and no other blocker is found — does this mission proceed to run the Markdown/repository quality gates and open the one completion PR, per `instruction1.65.md`'s Completion section.
-4. If `FOUNDER CHANGES REQUIRED BEFORE PUBLISH`, those changes are not implemented automatically under this mission; they require a separate, explicitly authorized mission.
-5. Per `instruction1.65.md` §12, even a full Founder acceptance does not itself authorize publish/deploy/domain cutover — that remains a separate, later Mission Control authorization requiring final canonical-source verification, domain-ownership confirmation, an explicit cutover plan, and rollback/stop conditions.
+Per `instruction1.65.md` §12, even this Founder-accepted result does not itself authorize public release. The next step is a separate, explicit Mission Control authorization for the final pre-publish/publish mission, which must include at minimum: final canonical-source verification, confirmation of which Lovable project currently owns or will receive `smartbusiness.teamlips.com`, an explicit domain-binding/cutover plan, publish/deploy authorization, post-publish smoke verification, and rollback/stop conditions — and, separately, Mission Control's own decision on sequencing the four non-blocking items in §5 relative to that publish authorization.
