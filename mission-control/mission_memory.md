@@ -48,6 +48,7 @@
 - Complete the production Terms of Service.
 - Resume SB-INF-1.2 after both legal pages are published.
 - Schedule a future canonical-source metadata-normalization mission for Sources 02 through 08 to remove legacy `Smart Business V2.2` headers and reconcile the Source 07 title with the approved `/survey` deprecation and `/start` route.
+- Immediately after SB-P-1.11 is fully completed and its communication closure is merged, execute a small documentation-only governance mission: `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment`. Its purpose is to reconcile the active repository handover protocol, Source 18 mission-lifecycle communication wording, Mission Control memory, and `communication/live/` operating guidance so repository-first AI-to-AI handovers are unambiguous and the Founder is not used as a manual message bus.
 
 ---
 
@@ -255,7 +256,8 @@ For every review performed by Mission Control, including Stage 1 Product Bluepri
 
 # Next Recommended Mission
 
-- Implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
+- After SB-P-1.11 is fully completed and its communication closure is merged, execute `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment` as the next immediate task. This is a small, documentation-only governance mission to remove ambiguity between the active `communication/live/` exchange practice and the durable `communication/missions/[MISSION-ID]/` record defined by the current governance sources.
+- After that communication-governance alignment is complete, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
 
 ---
 
