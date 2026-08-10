@@ -7,11 +7,11 @@
 | Mission | SB-P-1.11 — Product Catalog & Pricing |
 | Gap-closure mission | SB-P-1.11-GC-1 |
 | Document | Engineering Implementation Specification |
-| Revision | 3.0 — RSB Security Reconciliation |
-| Status | Mission Control draft for narrow Security & Permissions Architecture confirmation |
-| Prepared by | Mission Control (v1.0), reconciled by Claude Code (v2.0, v3.0) |
-| Reconciled per | `communication/live/instruction1.70.md`, `communication/live/report1.75.md`, `communication/live/report1.76.md`, `communication/live/report1.77.md`, `communication/live/instruction1.71.md`, `communication/live/report1.78.md`, `communication/live/instruction1.72.md` |
-| Canonical baseline | `47353544b78b63b9f0fd65c7ae94d18684e06183` |
+| Revision | 4.0 — Supabase Architecture Correction Reconciliation |
+| Status | Mission Control draft for Supabase Backend Architecture re-confirmation |
+| Prepared by | Mission Control (v1.0), reconciled by Claude Code (v2.0, v3.0, v4.0) |
+| Reconciled per | `communication/live/instruction1.70.md`, `communication/live/report1.75.md`, `communication/live/report1.76.md`, `communication/live/report1.77.md`, `communication/live/instruction1.71.md`, `communication/live/report1.78.md`, `communication/live/instruction1.72.md`, `communication/live/report1.79.md`, `communication/live/report1.80.md`, `communication/live/instruction1.74.md`, `communication/live/report1.81.md`, `communication/live/instruction1.75.md` |
+| Canonical baseline | `f637d39f75d36836c5fe50dc623eed5543daad35` |
 | Canonical repository | `SmartBusinessv1/smart-business` |
 | Product domain | `smartbusiness.teamlips.com` |
 | Implementation authority | NONE until separately authorized |
@@ -47,13 +47,23 @@ Revision 1.0 was independently reviewed by Claude Code Engineering (`report1.75.
 
 ### 1.2 Revision 3.0 summary
 
-Revision 2.0 was independently re-reviewed by Security & Permissions Architecture (`communication/live/report1.78.md`, verdict `SECURITY CHANGES REQUIRED BEFORE BUILD LOCK`). The focused re-review verified thirteen of sixteen original findings as resolved, and identified three residual blockers, all specific to the import-support bookkeeping design in Part K §45.5 and §45.5.4:
+Revision 2.0 was independently re-reviewed by Security & Permissions Architecture (`communication/live/report1.78.md`, verdict `SECURITY CHANGES REQUIRED BEFORE BUILD LOCK`). The focused re-review verified thirteen of sixteen original findings as resolved, and identified three residual blockers, all specific to the import-support bookkeeping design in Part K §45.5:
 
 - **RSB-1** — Revision 2.0 granted `authenticated` direct `INSERT`/`UPDATE` on the import-support tables, which the re-review found insufficient once those same rows are relied on as batch/row audit and orchestration-state evidence, not merely display data.
 - **RSB-2** — Revision 2.0 specified `pg_advisory_xact_lock(...)` as the batch-commit concurrency primitive, which the re-review found unexecutable as written: a stateless TanStack server function using a caller-JWT-scoped client has no mechanism to acquire and hold a single Postgres transaction-scoped advisory lock across the multi-step orchestration sequence the way an existing single-transaction `SECURITY DEFINER` command does internally.
 - **RSB-3** — As a consequence of RSB-1, batch/row audit fields (`initiated_by`, `resolved_by`, `resolved_product_id`, lifecycle status, timestamps) were forgeable by the ordinary authenticated REST role, undermining their trustworthiness as audit evidence.
 
-This revision closes all three by replacing the authenticated-writable bookkeeping design with a narrow, server-only bookkeeping write path (§45.1.1) and an atomic compare-and-set batch-state acquisition mechanism (§45.5.4), while preserving every other locked decision from Revision 2.0 unchanged. The full finding-by-finding resolution is in `communication/live/report1.79.md`. This revision remains a specification; it authorizes no implementation.
+This revision closes all three by replacing the authenticated-writable bookkeeping design with a narrow, server-only bookkeeping write path (§45.1.1) and an atomic compare-and-set batch-state acquisition mechanism (§45.5.5), while preserving every other locked decision from Revision 2.0 unchanged. The full finding-by-finding resolution is in `communication/live/report1.79.md`. This revision remains a specification; it authorizes no implementation.
+
+### 1.3 Revision 4.0 summary
+
+Revision 3.0 was independently confirmed by Security & Permissions Architecture (`communication/live/report1.80.md`, verdict `SECURITY READY FOR BUILD LOCK` — the RSB-1/2/3 design-contract corrections were verified resolved with no regression) and then independently reviewed by Supabase Backend Architecture (`communication/live/report1.81.md`, verdict `SUPABASE ARCHITECTURE CHANGES REQUIRED BEFORE BUILD LOCK`). The Supabase review found the RSB-corrected design directionally sound but the exact database contract underspecified against this repository's actual privilege baseline and helper/grant model — seven backend-persistence defects (BA-1 through BA-7), none of them Product Truth or security-model changes:
+
+- **BA-1** — the repository's forward-compatible default-privilege rule (`ALTER DEFAULT PRIVILEGES ... GRANT ALL ON TABLES TO anon, authenticated, service_role`) means any newly created table is automatically granted to `anon` too, unless explicitly revoked; Revision 3.0's grant statements never revoked it.
+- **BA-2** — Revision 3.0's proposed RLS predicate called `catalog_internal.resolve_owner_business(auth.uid())`, a helper this repository's own Stage 1 Catalog migration deliberately revokes `EXECUTE` on from `authenticated` (granted only to the seven Catalog executor roles) — the proposed policy could never actually execute for the role it was written for.
+- **BA-3 through BA-7** — the two support tables lacked tenant-binding composite foreign keys, row-identity/idempotency uniqueness constraints, status-coupled audit-coherence checks, a non-destructive delete/retention posture, and one unambiguous batch-committed/row-failed terminal-state rule.
+
+This revision closes all seven with the exact table/grant/RLS/state-machine contract in the corrected §45.5, re-using two patterns this repository already has proven, working examples of elsewhere in the same schema: the `UNIQUE(business_id, id)` composite-key pattern already present on both `catalog_products` and `catalog_categories`, and the exact `authenticated`-executable RLS predicate (`business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid())`) already live today on `catalog_categories`' own `authenticated` SELECT policy. No Product Truth, security-model, or Selling-Unit/Category/Inventory-link/Tax-settings decision changed. The full finding-by-finding resolution is in `communication/live/report1.82.md`. This revision remains a specification; it authorizes no implementation.
 
 ---
 
@@ -130,7 +140,17 @@ The research report locks the implementation-planning baseline of:
 
 - `communication/live/instruction1.71.md` — authorization for the focused Security re-review of Revision 2.0.
 - `communication/live/report1.78.md` — Security & Permissions Architecture focused re-review, verdict `SECURITY CHANGES REQUIRED BEFORE BUILD LOCK`, identifying RSB-1 through RSB-3.
-- `communication/live/instruction1.72.md` — the reconciliation mandate this revision executes.
+- `communication/live/instruction1.72.md` — the reconciliation mandate Revision 3.0 executed.
+- `communication/live/report1.79.md` — Revision 3.0's finding-by-finding RSB resolution map.
+
+### Supabase architecture reconciliation evidence (Revision 4.0 inputs)
+
+- `communication/live/instruction1.73.md` — authorization for the narrow Security confirmation of Revision 3.0.
+- `communication/live/report1.80.md` — Security & Permissions Architecture narrow confirmation, verdict `SECURITY READY FOR BUILD LOCK`.
+- `communication/live/instruction1.74.md` — authorization for the Supabase Backend Architecture review of Revision 3.0.
+- `communication/live/report1.81.md` — Supabase Backend Architecture review, verdict `SUPABASE ARCHITECTURE CHANGES REQUIRED BEFORE BUILD LOCK`, identifying BA-1 through BA-7.
+- `communication/live/instruction1.75.md` — the reconciliation mandate this revision executes.
+- `merge/active/02_Supabase_Architecture_Framework.md` — governing Supabase architecture framework.
 
 ---
 
@@ -144,7 +164,7 @@ This gap closure must not create a twentieth public Catalog command merely to ad
 
 The existing Catalog write model remains command-only for browser-facing product/category mutations.
 
-Bulk import is therefore specified as a governed **server-side orchestration workflow**, not a new general-purpose public Catalog command. The workflow invokes existing Catalog commands/executors for authorized row-level mutations, exactly as designed in Revision 1.0. **Revision 2.0 additionally locked the exact mechanism** (Part K) by which the orchestration layer coordinates state without introducing a twentieth `SECURITY DEFINER` function: import-batch/row bookkeeping is business-isolated application data — never a Catalog command, never Product Truth, never itself authoritative over any Catalog mutation. **Revision 3.0 corrects that mechanism's write path** (§45.1.1, §45.5.3) per the focused Security re-review (`report1.78.md`, RSB-1 through RSB-3): bookkeeping writes are now server-only, not `authenticated`-writable, closing the audit-forgeability concern the original RLS-only design left open. See §45 (Part K) for the complete current design.
+Bulk import is therefore specified as a governed **server-side orchestration workflow**, not a new general-purpose public Catalog command. The workflow invokes existing Catalog commands/executors for authorized row-level mutations, exactly as designed in Revision 1.0. **Revision 2.0 additionally locked the exact mechanism** (Part K) by which the orchestration layer coordinates state without introducing a twentieth `SECURITY DEFINER` function: import-batch/row bookkeeping is business-isolated application data — never a Catalog command, never Product Truth, never itself authoritative over any Catalog mutation. **Revision 3.0 corrects that mechanism's write path** (§45.1.1, §45.5.4) per the focused Security re-review (`report1.78.md`, RSB-1 through RSB-3): bookkeeping writes are now server-only, not `authenticated`-writable, closing the audit-forgeability concern the original RLS-only design left open. See §45 (Part K) for the complete current design.
 
 The implementation must preserve:
 
@@ -381,7 +401,7 @@ D-056 requires invalid rows to be quarantined rather than created as live produc
 
 The uploaded spreadsheet itself is **not stored** after the parse/preview lifecycle (Part K §45.9) — only the allowlisted, validated field values needed for correction and audit are persisted per row.
 
-Quarantine records are business-isolated (RLS-scoped to the owning `business_id`, server-derived and immutable) and unavailable to ordinary employees (Part K §45.5.3).
+Quarantine records are business-isolated (RLS-scoped to the owning `business_id`, server-derived and immutable) and unavailable to ordinary employees (Part K §45.5.4).
 
 ---
 
@@ -394,7 +414,7 @@ Locked architecture (resolves ENG-1 — see Part K §45.1 for the complete serve
 3. The server function derives the actor's business via the same `catalog_internal.resolve_owner_business`-equivalent read path every existing command already uses; it never trusts a client-supplied business identifier. Owner status is independently re-derived the same way.
 4. The server parses rows under the hard limits in §6/Part K §45.3.
 5. The server performs non-mutating validation/duplicate-classification (Part K §45.4) using the caller-JWT client, then persists the batch/row bookkeeping (Part K §45.5) using the **narrow server-only bookkeeping client** (§45.1.1) — never the caller-JWT client, never the browser. No Catalog Product Truth is touched at this stage.
-6. After merchant confirmation, and only after re-deriving actor/business/Owner authority again from the caller's JWT, the server atomically claims the batch for commit (§45.5.4) via the server-only bookkeeping client, then orchestrates each `READY` row through the existing governed Catalog mutation path (`create_catalog_product`) using the caller's own JWT-scoped client — the same RLS and executor-privilege boundary a browser call would hit.
+6. After merchant confirmation, and only after re-deriving actor/business/Owner authority again from the caller's JWT, the server atomically claims the batch for commit (§45.5.5) via the server-only bookkeeping client, then orchestrates each `READY` row through the existing governed Catalog mutation path (`create_catalog_product`) using the caller's own JWT-scoped client — the same RLS and executor-privilege boundary a browser call would hit.
 7. Each successful product creation obtains normal audit/idempotency behavior, because it is a normal call to an unmodified existing command.
 8. Row outcomes are recorded against the import batch, again via the server-only bookkeeping client (Part K §45.5).
 
@@ -408,11 +428,11 @@ The import orchestration endpoint is not a Catalog command and is not counted in
 
 An accidental page refresh or repeat confirmation must not create duplicate products.
 
-**Locked algorithm (resolves ENG-4/SEC-9 — full detail in Part K §45.5.4):**
+**Locked algorithm (resolves ENG-4/SEC-9 — full detail in Part K §45.5.5):**
 
 - each batch receives a server-generated, cryptographically unguessable opaque batch identifier at preview time;
 - each row receives its own row-operation idempotency key at preview time, persisted immediately — never regenerated on retry;
-- a confirmed/committed batch cannot be committed twice, enforced via an atomic compare-and-set transition on the batch's `status` column, performed by the server-only bookkeeping client (§45.5.4) — not via a session-scoped Postgres advisory lock, which a stateless server function cannot hold across the multi-step orchestration sequence;
+- a confirmed/committed batch cannot be committed twice, enforced via an atomic compare-and-set transition on the batch's `status` column, performed by the server-only bookkeeping client (§45.5.5) — not via a session-scoped Postgres advisory lock, which a stateless server function cannot hold across the multi-step orchestration sequence;
 - concurrent commit attempts on the same batch race on that single conditional `UPDATE`; exactly one succeeds, and the other observes zero rows updated and returns a truthful non-mutating result (`IN_PROGRESS` or `ALREADY_COMMITTED`) without attempting any row mutation;
 - row-level successful outcomes are durable (the row's persisted status becomes `CREATED` with its `resolved_product_id`), distinguishing already-created rows from retryable failures;
 - re-uploading the same file as a brand-new batch is always permitted and creates a new, independent batch; normal duplicate Product rules (§10) apply to it exactly as to any other batch — file hash is never used for automatic deduplication or suppression.
@@ -776,12 +796,12 @@ Bulk import requires the two support tables specified in Part K §45.5 (`catalog
 Confirmed answers to this section's original open questions:
 
 - New tables are required: yes, exactly two (Part K §45.5).
-- Quarantine is represented safely without new public commands: yes — both tables are plain `authenticated`-role RLS tables, never `SECURITY DEFINER` functions, never counted in the 19-command contract (Part K §45.1, §3 above).
-- RLS: business-isolated, server-derived `business_id`, no cross-business access — exact policies in Part K §45.5.3.
-- Retention: no raw file retention; row/batch bookkeeping retention policy in Part K §45.9.
+- Quarantine is represented safely without new public commands: yes — both tables are plain application tables (`authenticated` SELECT-only under RLS; writes via the narrow server-only bookkeeping client, §45.1.1), never `SECURITY DEFINER` functions, never counted in the 19-command contract (Part K §45.1, §3 above).
+- RLS: business-isolated, server-derived `business_id`, no cross-business access — exact policies in Part K §45.5.4.
+- Retention: no raw file retention; row/batch bookkeeping retention policy in Part K §45.5.3, §45.9.
 - Server orchestration uses existing Catalog RPCs without privileged bypass: confirmed — see Part K §45.1, §45.12.
-- Commit idempotency: Part K §45.5.4.
-- Partial failures: Part K §45.5.5.
+- Commit idempotency: Part K §45.5.5.
+- Partial failures: Part K §45.5.6.
 
 No production migration may proceed until a separate Build Mode mission applies and behaviorally verifies this exact schema against the dedicated test project first, per this repository's established migration discipline (test-project-first, then production, matching the pattern already used throughout SB-P-1.11-RR-1 through RR-3).
 
@@ -808,7 +828,7 @@ The UI must distinguish at least:
 - invalid tax configuration;
 - permission denied;
 - stale, already-committed, or in-progress import batch;
-- unrecognized/foreign batch identifier (indistinguishable from a nonexistent one — Part K §45.5.3);
+- unrecognized/foreign batch identifier (indistinguishable from a nonexistent one — Part K §45.5.4);
 - server save failure;
 - partial completion.
 
@@ -1136,13 +1156,13 @@ Revision 2.0 made `catalog_import_batches`/`catalog_import_rows` directly writab
 This client is bound by hard, explicit rules, verbatim from `instruction1.70.md` §3.5:
 
 - it is **never** sent to browser code, client environment variables, logs, responses, downloads, or telemetry;
-- it is used **only** for `INSERT`/`UPDATE` on the two import-support tables — no other table, and no `SELECT`/`DELETE` beyond what the commit algorithm in §45.5.4 requires internally;
+- it is used **only** for `INSERT`/`UPDATE` on the two import-support tables — no other table, and no `SELECT`/`DELETE` beyond what the commit algorithm in §45.5.5 requires internally;
 - it is **never** used to establish or substitute for actor/business/Owner authority — that authority is always independently re-derived from the caller's own JWT via the caller-JWT client (§45.1) **before** any bookkeeping write is attempted, on every preview and every commit call;
 - it is **never** used to create, update, or delete `catalog_products`, `catalog_categories`, or any other Catalog Product Truth table;
 - it is **never** used to call `create_catalog_product` or any other Catalog command — all nineteen commands are invoked exclusively through the caller-JWT client, exactly as an interactive browser call would;
 - it performs **no** dynamic, client-influenced table or column selection — every query it issues is a fixed, hard-coded operation against one of exactly two tables, never constructed from request input.
 
-**Isolation model for this specific write path:** because the service-role credential bypasses Row-Level Security by Postgres/Supabase design (this is standard, expected `service_role` behavior, not a defect), tenant isolation for bookkeeping *writes* is enforced by application code, not by RLS: every `INSERT`/`UPDATE` this client issues is parameterized with the `business_id` independently re-derived from the caller's JWT within the same request handler, never accepted from client input, matching the discipline every existing Catalog command already applies at the SQL level. RLS remains fully enabled on both tables and continues to govern the separate, `authenticated`-role **read** path (§45.5.3) — the two are independent controls, not substitutes for each other.
+**Isolation model for this specific write path:** because the service-role credential bypasses Row-Level Security by Postgres/Supabase design (this is standard, expected `service_role` behavior, not a defect), tenant isolation for bookkeeping *writes* is enforced by application code, not by RLS: every `INSERT`/`UPDATE` this client issues is parameterized with the `business_id` independently re-derived from the caller's JWT within the same request handler, never accepted from client input, matching the discipline every existing Catalog command already applies at the SQL level. RLS remains fully enabled on both tables and continues to govern the separate, `authenticated`-role **read** path (§45.5.4) — the two are independent controls, not substitutes for each other.
 
 This does **not** create a twentieth public Catalog command, per `instruction1.70.md` §3.1/§3.5: no new `SECURITY DEFINER` Postgres function is added, and the credential is never used to grant elevated authority over Catalog Product Truth.
 
@@ -1195,9 +1215,11 @@ A row is classified `POSSIBLE_MATCH` if **any** of its identity-field searches r
 
 This adds read load (up to 3 search calls per row) but no new capability, no new grant, and no risk beyond what an equivalent number of interactive searches by the same merchant would already produce.
 
-## 45.5 Support tables: schema, grants, RLS (ENG-2, ENG-4, ENG-6, SEC-7, SEC-8, SEC-9)
+## 45.5 Support tables: schema, grants, RLS (ENG-2, ENG-4, ENG-6, SEC-7, SEC-8, SEC-9 — physical contract corrected in Revision 4.0 per BA-1 through BA-7)
 
-Two new tables, both plain `authenticated`-role RLS tables — **not** owned by a `SECURITY DEFINER` executor, **not** counted in the 19-command contract, and **never treated as authoritative for any Catalog mutation** (the actual mutation always re-validates independently inside the unmodified `create_catalog_product`).
+Two new tables, business-isolated application data — **not** owned by a `SECURITY DEFINER` executor, **not** counted in the 19-command contract, and **never treated as authoritative for any Catalog mutation** (the actual mutation always re-validates independently inside the unmodified `create_catalog_product`).
+
+`report1.81.md` (Supabase Backend Architecture review) found Revision 3.0's table/grant/RLS design directionally correct but underspecified against this repository's actual privilege baseline and helper/grant model. §45.5.1–§45.5.2 lock the exact table contracts; §45.5.3 locks delete/retention; §45.5.4 locks grants/RLS; §45.5.5 locks the commit algorithm; §45.5.6 covers partial-failure representation. Each subsection states inline exactly what changed from Revision 3.0 and why.
 
 ### 45.5.1 `catalog_import_batches`
 
@@ -1206,66 +1228,114 @@ Two new tables, both plain `authenticated`-role RLS tables — **not** owned by 
 | `id` | `uuid` PK, `default gen_random_uuid()` | Opaque batch identifier — cryptographically unguessable, satisfying SEC-9. |
 | `business_id` | `uuid` NOT NULL, FK `businesses(id)` | Server-derived at creation; never client-supplied. |
 | `initiated_by` | `uuid` NOT NULL, FK `auth.users(id)` | The actor who started the import. |
-| `original_filename` | `text` | Display metadata only — never used as a storage path, never executable, sanitized before storage (SEC-1, SEC-15). |
-| `file_kind` | `text` CHECK IN `('csv','xlsx')` | |
-| `row_count` | `integer` NOT NULL | Total data rows parsed. |
-| `status` | `text` CHECK IN `('previewed','committing','committed','failed')` | State machine — see §45.5.4. |
+| `original_filename` | `text` **NOT NULL** | Every persisted batch represents an accepted, already-parsed source file — Stage 1 (§8) never creates a batch without one, so nullability is explicitly closed, not accidental (BA-5). Display metadata only — never used as a storage path, never executable, sanitized before storage (SEC-1, SEC-15). |
+| `file_kind` | `text` **NOT NULL** `CHECK (file_kind IN ('csv','xlsx'))` | |
+| `row_count` | `integer` **NOT NULL** `CHECK (row_count >= 0)` | Total data rows parsed; zero is a legitimate parse outcome (an empty file) and is explicitly allowed, not treated as an error (BA-5). |
+| `status` | `text` **NOT NULL** `DEFAULT 'previewed'` `CHECK (status IN ('previewed','committing','committed','failed'))` | Explicit initial-state contract via `DEFAULT` — every row is inserted as `previewed` and nothing else (BA-5). State machine — see §45.5.5. |
 | `created_at` | `timestamptz` NOT NULL default `now()` | |
-| `committed_at` | `timestamptz` NULL | |
+| `committed_at` | `timestamptz` NULL, `CHECK ((status = 'committed') = (committed_at IS NOT NULL))` | Bidirectional coherence (BA-5): `committed_at` is set if and only if `status = 'committed'` — neither a committed batch missing its timestamp nor a non-committed batch carrying one is representable. |
+
+**Constraints:** `UNIQUE (business_id, id)` in addition to the `id` primary key (BA-3) — the same pattern already proven on `catalog_products` and `catalog_categories` in this schema (`catalog_products_business_id_uniq`, `catalog_categories_business_id_uniq`), confirmed by direct inspection of production at reconciliation time. This composite key is what makes the tenant-binding child foreign key in §45.5.2 possible.
+
+**Indexes:** `(business_id, created_at DESC, id)` for Owner-scoped batch history/list reads. No status-only index is added — the atomic claim in §45.5.5 addresses a single row by primary key, so a status-only index provides no benefit for that operation (per `report1.81.md` §2.1's own guidance, accepted as-is).
 
 ### 45.5.2 `catalog_import_rows`
 
 | Column | Type | Notes |
 |---|---|---|
 | `id` | `uuid` PK, `default gen_random_uuid()` | |
-| `batch_id` | `uuid` NOT NULL, FK `catalog_import_batches(id) ON DELETE CASCADE` | |
-| `business_id` | `uuid` NOT NULL, FK `businesses(id)` | Denormalized copy of the batch's business, server-derived, enabling a direct RLS check on this table without a join, and defense-in-depth against any future query that filters only on this table. |
-| `row_number` | `integer` NOT NULL | 1-based position in the source file. |
-| `status` | `text` CHECK IN `('READY','NEEDS_CORRECTION','POSSIBLE_MATCH','SKIPPED','CREATED','FAILED')` | |
-| `parsed_snapshot` | `jsonb` NOT NULL | **Allowlisted fields only** (§45.8): name, selling_unit, category_label, sku, barcode, description, selling_price, tax_treatment, tax_rate_percent. `reference_cost` is included only if `has_reference_cost_authority` (below) is true for the importing actor at parse time; otherwise the column is omitted from the snapshot entirely, not merely hidden in the UI (SEC-6). |
-| `has_reference_cost_authority` | `boolean` NOT NULL | Recorded once at parse time so downstream display/commit logic never has to re-derive it from a mutable source, and so a later authority change cannot retroactively expose a value that was correctly withheld at import time. |
-| `correction_reason` | `text` NULL | One of a fixed set of application-defined reason codes (e.g. `MISSING_NAME`, `DUPLICATE_NAME`, `DUPLICATE_SKU`, `DUPLICATE_BARCODE`, `INVALID_UNIT`, `INVALID_CATEGORY`, `INVALID_PRICE`, `INVALID_TAX`) — never a raw database error message (SEC-8, §30). |
-| `matched_product_id` | `uuid` NULL, FK `catalog_products(id)` | Set only for `POSSIBLE_MATCH` rows; same-business only, per §45.4. |
-| `row_idempotency_key` | `uuid` NOT NULL, `default gen_random_uuid()` | Assigned once, at row-insert (preview) time. Never regenerated. Passed verbatim to `create_catalog_product` at commit time. |
-| `resolved_product_id` | `uuid` NULL, FK `catalog_products(id)` | Set only after a successful `create_catalog_product` call for this row. |
+| `batch_id` | `uuid` NOT NULL | Part of the composite tenant-binding FK below — no longer an independent FK to `catalog_import_batches(id)` alone (BA-3). |
+| `business_id` | `uuid` NOT NULL | Denormalized copy of the batch's business, server-derived, enabling a direct RLS check on this table without a join. **Corrected in Revision 4.0:** `FOREIGN KEY (business_id, batch_id) REFERENCES catalog_import_batches (business_id, id)` — a single composite foreign key, replacing Revision 3.0's two independent FKs. This makes a row whose `business_id` disagrees with its own batch's `business_id` structurally impossible to insert, even under a service-role bug that bypasses RLS (BA-3) — the exact defense-in-depth `report1.81.md` §2.2 item 1 required. |
+| `row_number` | `integer` **NOT NULL** `CHECK (row_number >= 1)` | 1-based position in the source file (BA-4). |
+| `status` | `text` **NOT NULL** `CHECK (status IN ('READY','NEEDS_CORRECTION','POSSIBLE_MATCH','SKIPPED','CREATED','FAILED'))` | No column default — Stage 2 parsing always inserts each row with its classification already computed and explicit (BA-5); there is no valid "unclassified" insert. |
+| `parsed_snapshot` | `jsonb` NOT NULL | **Allowlisted fields only** (§45.8): name, selling_unit, category_label, sku, barcode, description, selling_price, tax_treatment, tax_rate_percent. `reference_cost` is included only if `has_reference_cost_authority` (below) is true for the importing actor at parse time; otherwise the column is omitted from the snapshot entirely, not merely hidden in the UI (SEC-6). No database JSON schema is required beyond this application-level allowlist plus the Build Mode tests in §32 proving Reference Cost omission (`report1.81.md` §2.2 item 9, accepted as-is). |
+| `has_reference_cost_authority` | `boolean` **NOT NULL** | Recorded once at parse time so downstream display/commit logic never has to re-derive it from a mutable source, and so a later authority change cannot retroactively expose a value that was correctly withheld at import time. |
+| `correction_reason` | `text` NULL, `CHECK (correction_reason IS NULL OR correction_reason IN ('MISSING_NAME','DUPLICATE_NAME','DUPLICATE_SKU','DUPLICATE_BARCODE','INVALID_UNIT','INVALID_CATEGORY','INVALID_PRICE','INVALID_TAX'))` | **Corrected in Revision 4.0:** the reason-code set is now a database-enforced closed vocabulary, not just a comment describing intended application behavior (BA-5) — this exact eight-value list is version 1 of the vocabulary; extending it is a additive migration, never a silent free-text fallback. Never a raw database error message (SEC-8, §30). |
+| `matched_product_id` | `uuid` NULL | **Corrected in Revision 4.0:** `FOREIGN KEY (business_id, matched_product_id) REFERENCES catalog_products (business_id, id)` — a same-business composite FK, replacing a plain `FK catalog_products(id)`. Postgres's default `MATCH SIMPLE` FK semantics mean the constraint is not evaluated at all when `matched_product_id IS NULL`, preserving the required null-safety for rows with no match (BA-3). Set only for `POSSIBLE_MATCH` rows; same-business only, per §45.4. |
+| `row_idempotency_key` | `uuid` NOT NULL, `default gen_random_uuid()`, **`UNIQUE (business_id, row_idempotency_key)`** | Assigned once, at row-insert (preview) time. Never regenerated. Passed verbatim to `create_catalog_product` at commit time. **Corrected in Revision 4.0:** the uniqueness constraint is now explicit rather than merely a stated intent (BA-4) — business-scoped (not bare-column-global) uniqueness is chosen deliberately, consistent with every other idempotency-key scope in this schema (`catalog_write_idempotency_keys_scope_uniq` is likewise `(business_id, operation, idempotency_key)`, never a global key), so a coincidental UUID collision across two unrelated businesses cannot occur in principle but is not the mechanism relied on for isolation either way. |
+| `resolved_product_id` | `uuid` NULL | **Corrected in Revision 4.0:** `FOREIGN KEY (business_id, resolved_product_id) REFERENCES catalog_products (business_id, id)`, same same-business composite pattern and null-safety as `matched_product_id` above (BA-3). Set only after a successful `create_catalog_product` call for this row. |
 | `resolved_by` | `uuid` NULL, FK `auth.users(id)` | |
 | `resolved_at` | `timestamptz` NULL | |
 | `created_at` | `timestamptz` NOT NULL default `now()` | |
 
-Explicitly **not** stored anywhere in this schema (SEC-8): unrecognized/unknown spreadsheet columns, workbook metadata, formulas, external links, the raw file binary, raw database primary keys supplied by the spreadsheet, or any system/permission metadata.
-
-### 45.5.3 RLS and grants (revised in Revision 3.0 — resolves RSB-1, RSB-3)
+**Status-coupled resolution check (new in Revision 4.0, BA-5):**
 
 ```sql
-GRANT SELECT ON catalog_import_batches, catalog_import_rows TO authenticated;
-REVOKE INSERT, UPDATE, DELETE ON catalog_import_batches, catalog_import_rows FROM authenticated;
+CHECK (
+  (status = 'CREATED' AND resolved_product_id IS NOT NULL AND resolved_by IS NOT NULL AND resolved_at IS NOT NULL)
+  OR
+  (status <> 'CREATED' AND resolved_product_id IS NULL AND resolved_by IS NULL AND resolved_at IS NULL)
+)
 ```
 
-`authenticated` receives **read-only** access. All `INSERT`/`UPDATE` is performed exclusively by the narrow server-only bookkeeping client (§45.1.1). Neither table grants `authenticated` any write privilege at all — this is the direct correction for RSB-1: Revision 2.0's `GRANT INSERT`/`GRANT UPDATE (...)` statements are removed outright, not narrowed.
+This closes both directions `report1.81.md` §2.2 item 6 required: a `CREATED` row cannot exist without its full resolution evidence, and — just as importantly — a non-`CREATED` row (including a `FAILED` one) can never carry a `resolved_product_id`, ruling out a forged or stale created-product reference on a row that was never actually created.
 
-RLS policy governing the `authenticated` `SELECT` path (both tables), mirroring the exact `auth.uid()`-based pattern already used by `businesses`/`transactions` in this schema:
+**Constraints:** `UNIQUE (batch_id, row_number)` (BA-4) — one stable persisted identity per source row inside a batch.
+
+**Indexes:** `(business_id, batch_id, row_number)` for business-scoped batch row delivery, and `(business_id, batch_id, status, row_number)` for commit/retry row selection (`status IN ('READY','FAILED')`, per §45.5.5 step 3). Build Mode must verify the actual query planner path chosen once the composite FK/unique constraints above exist, since they may already satisfy part of this coverage (`report1.81.md` §2.2, accepted as an explicit Build Mode verification item, not invented certainty here). No index on `parsed_snapshot`.
+
+Explicitly **not** stored anywhere in this schema (SEC-8): unrecognized/unknown spreadsheet columns, workbook metadata, formulas, external links, the raw file binary, raw database primary keys supplied by the spreadsheet, or any system/permission metadata.
+
+### 45.5.3 Delete and retention behavior (new in Revision 4.0 — resolves BA-6)
+
+Revision 3.0 specified `catalog_import_rows.batch_id ... ON DELETE CASCADE`, which contradicts §45.9's own "retained indefinitely by default" audit-evidence posture: deleting one batch row would silently erase every row-level audit record beneath it with no separate authorization. **Corrected:** the `(business_id, batch_id)` composite FK in §45.5.2 uses `ON DELETE RESTRICT` (Postgres's default when unspecified is `NO ACTION`, which is equally acceptable here; either fails closed). Accepted Build Now posture:
+
+- no user/browser delete grant (already true — §45.5.4 grants no `DELETE` to `authenticated`);
+- no server-orchestration delete path exists anywhere in this design;
+- no `ON DELETE CASCADE` between batch and rows;
+- a batch row cannot be deleted while rows referencing it still exist, and no code path in this specification ever attempts to delete either;
+- destructive evidence removal, if ever needed, requires a future, separately authorized retention/migration mission — not an implicit consequence of this schema.
+
+### 45.5.4 RLS and grants (corrected in Revision 4.0 — resolves BA-1, BA-2; RSB-1/RSB-3 closure from Revision 3.0 preserved)
+
+**Step 1 — neutralize inherited default privileges (BA-1).** This repository's own `supabase/migrations/20260727000000_reconcile_default_grants.sql` establishes, for forward-compatibility, `ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO anon, authenticated, service_role;` — confirmed by direct inspection at reconciliation time. Any table created by a normal migration (which runs as `postgres`) is therefore **automatically** granted to `anon` and `authenticated` in full unless explicitly revoked. Revision 3.0's grant statements never revoked this inherited baseline. The corrected migration contract must, immediately after `CREATE TABLE` for each of the two support tables:
 
 ```sql
+REVOKE ALL ON catalog_import_batches, catalog_import_rows FROM anon, authenticated;
+GRANT SELECT ON catalog_import_batches, catalog_import_rows TO authenticated;
+```
+
+`anon` ends with zero privilege on either table. `authenticated` ends with `SELECT` only — `INSERT`/`UPDATE`/`DELETE` remain revoked, exactly as Revision 3.0's RSB-1 closure intended, but now starting from an explicitly neutralized baseline rather than an assumed-empty one. `service_role` retains its standard implicit full access (the same behavior it has on every table in this schema by default) — this is required, not incidental, because §45.1.1's server-only bookkeeping client depends on it.
+
+**Step 2 — enable RLS and use an executable predicate (BA-2).** Revision 3.0 proposed a `USING` clause calling `catalog_internal.resolve_owner_business(auth.uid())`. Direct inspection of production at reconciliation time confirms this repository's Stage 1 Catalog migration grants `EXECUTE` on that function only to the seven Catalog executor roles (`catalog_cost_executor`, `catalog_identity_executor`, `catalog_lifecycle_executor`, `catalog_link_executor`, `catalog_pricing_executor`, `catalog_read_executor`, `catalog_tax_executor`) plus `postgres` — **not** `authenticated`. A policy written against it could never actually execute for the `authenticated` role it was intended to protect. Per `instruction1.75.md` §4.5, this must be corrected without broadening `catalog_internal` exposure merely to make the policy work.
+
+**Corrected predicate:** this repository already has a proven, live, working example of exactly this need — `catalog_categories`' own `authenticated` `SELECT` policy (`authenticated_select_own_business_category_columns`, added under `SB-P-1.11-RR-2`/`RR-3`), which uses a direct public-table predicate instead of the internal helper:
+
+```sql
+ALTER TABLE catalog_import_batches ENABLE ROW LEVEL SECURITY;
+ALTER TABLE catalog_import_rows ENABLE ROW LEVEL SECURITY;
+
 CREATE POLICY owner_select_own_business ON catalog_import_batches
   FOR SELECT TO authenticated
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid()));
 
 CREATE POLICY owner_select_own_business ON catalog_import_rows
   FOR SELECT TO authenticated
-  USING (business_id = catalog_internal.resolve_owner_business(auth.uid()));
+  USING (business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid()));
 ```
 
-This guarantees: cross-business `SELECT` is denied outright (SEC-7); a query for a batch id belonging to a different business or to no business at all returns an identical empty result in both cases, satisfying "foreign and nonexistent batch identifiers are publicly indistinguishable" (SEC-7, SEC-9); ordinary employees (who hold no `businesses.owner_id` relationship) receive zero rows from either table, satisfying "no import-batch or quarantine access for Employees" (SEC-7, §14).
+This is the exact predicate text already live in production on `catalog_categories` — reused verbatim, not reinvented, and confirmed executable by `authenticated` because `businesses` is a plain public table `authenticated` already has ordinary read access to (via that table's own existing RLS), with no dependency on any `catalog_internal` helper.
 
-The server-only bookkeeping client (§45.1.1) is the `service_role` Postgres role, which bypasses RLS by standard Supabase design — no additional `GRANT` statement is needed or added for it; this is the same implicit, pre-existing behavior `service_role` already has on every table in this schema, not a new privilege introduced by this design. Because RLS does not constrain that client, tenant isolation for its writes is enforced entirely by the application-code discipline specified in §45.1.1 (server-derived `business_id`, no dynamic table/column selection), not by a database policy. This is stated explicitly here so the boundary is never mistaken for an RLS guarantee it does not have.
+**Guarantees, both tables:** RLS is enabled (mandatory, not optional); there is no policy for `anon` (and no grant for it to use one); the single `FOR SELECT TO authenticated` policy is Owner-scoped; there are no authenticated `INSERT`/`UPDATE`/`DELETE` policies (none are needed — no such grant exists to evaluate a policy against); a query for a batch id belonging to a different business, or to no business at all, returns an identical empty result in both cases, making foreign and nonexistent batch identifiers indistinguishable to `authenticated` callers (SEC-7, SEC-9); ordinary employees (who hold no `businesses.owner_id` relationship) and any Manager identity (no permission infrastructure exists to grant one — §14) receive zero rows from either table under the current fail-closed Phase 1 posture.
 
-**Revision 2.0's previously "accepted, named limitation"** — that a technically sophisticated `authenticated` actor could forge their own business's bookkeeping rows via direct REST access — **is fully closed by this correction**, not merely narrowed: `authenticated` now has zero write grant on either table, so no REST-level forgery of `status`, `resolved_product_id`, `resolved_by`, `resolved_at`, or `committed_at` is possible through any path other than the server-only bookkeeping client, which itself never accepts client-supplied values for those fields (§45.5.4, §3.7 of `instruction1.72.md`).
+**Service-role bypass, restated precisely:** the server-only bookkeeping client (§45.1.1) is the `service_role` Postgres role, which bypasses RLS by standard Supabase design. This is explicitly **not** treated as tenant enforcement — RLS governs only the `authenticated` read path above; tenant isolation for `service_role` writes is enforced entirely by the application-code discipline specified in §45.1.1 (server-derived `business_id`, no dynamic table/column selection) plus, new in Revision 4.0, the database-level tenant-binding composite foreign keys in §45.5.2, which make a cross-business row structurally unrepresentable even if the application-code discipline were ever violated by a bug.
 
-### 45.5.4 Batch/row lifecycle and idempotency algorithm (ENG-4, SEC-9 — commit mechanism revised in Revision 3.0 to resolve RSB-2)
+**Revision 2.0's previously "accepted, named limitation"** — that a technically sophisticated `authenticated` actor could forge their own business's bookkeeping rows via direct REST access — **remains fully closed**, exactly as Revision 3.0 established: `authenticated` has zero write grant on either table (now doubly confirmed by the explicit `REVOKE ALL ... FROM anon, authenticated` above, not merely an omitted grant), so no REST-level forgery of `status`, `resolved_product_id`, `resolved_by`, `resolved_at`, or `committed_at` is possible through any path other than the server-only bookkeeping client, which itself never accepts client-supplied values for those fields (§45.5.5).
+
+### 45.5.5 Batch/row lifecycle and idempotency algorithm (ENG-4, SEC-9 — commit mechanism revised in Revision 3.0 to resolve RSB-2; terminal-state rule corrected in Revision 4.0 to resolve BA-7)
 
 Batch states: `previewed → committing → committed`, or `previewed → committing → failed` (retryable back to `committing`).
 
-1. **Preview (Stage 2):** server re-derives actor/business/Owner authority via the caller-JWT client, then — via the server-only bookkeeping client (§45.1.1) — creates one `catalog_import_batches` row (`status = 'previewed'`, `initiated_by` = the server-derived actor) and one `catalog_import_rows` row per parsed data row, each with its own `row_idempotency_key` generated and persisted immediately. No Catalog Product Truth is touched.
+**Corrected terminal/retryable rule (BA-7):** Revision 3.0 stated the batch becomes `committed` "if every row reached a terminal state," while separately stating `FAILED` rows are retryable — since a `committed` batch's claim predicate (`status IN ('previewed','failed')`) structurally excludes it from ever being reclaimed, these two statements were incompatible whenever a commit attempt ended with any row still `FAILED`. **Locked resolution, exactly as `report1.81.md` §5.3 recommended and `instruction1.75.md` §4.6 requires:**
+
+- a batch transitions to `committed` **only when zero rows remain in `FAILED` state** after this commit attempt — i.e., every row that was `READY` or `FAILED` entering this attempt is now `CREATED`;
+- if **any** row is still `FAILED` when the commit loop finishes, the batch ends this attempt as `failed` (not `committed`), which is exactly what makes it reclaimable by a future commit request against the same batch;
+- `NEEDS_CORRECTION`, `POSSIBLE_MATCH`, and `SKIPPED` are terminal **non-save** row outcomes decided during Stage 2/3 preview, before the commit loop ever runs on them — they do not participate in the commit loop's `READY`/`FAILED` set and never force a retry by themselves;
+- once a batch reaches `committed`, it is never reopened — the claim predicate in §45.5.5 step 2 guarantees this structurally, not just by convention.
+
+This is a pure backend state-machine clarification with no merchant-facing behavior change: the Stage 5 outcome summary (§8) already reports row-level counts (created/failed/skipped/matched) independently of the batch's own internal `status` value, so a merchant sees the identical, accurate per-row breakdown either way.
+
+1. **Preview (Stage 2):** server re-derives actor/business/Owner authority via the caller-JWT client, then — via the server-only bookkeeping client (§45.1.1) — creates one `catalog_import_batches` row (`status = 'previewed'` by column default, `initiated_by` = the server-derived actor) and one `catalog_import_rows` row per parsed data row, each with its own `row_idempotency_key` generated and persisted immediately, and each with its Stage 2/3 classification already explicit (no default status). No Catalog Product Truth is touched.
 2. **Commit (Stage 4) — atomic claim, not an advisory lock:** the server re-derives actor/business/Owner authority again from the caller's JWT (never from the request body). Using the server-only bookkeeping client, it issues one conditional update:
 
    ```sql
@@ -1277,19 +1347,19 @@ Batch states: `previewed → committing → committed`, or `previewed → commit
    RETURNING *;
    ```
 
-   This single statement is the entire concurrency primitive — it replaces Revision 2.0's `pg_advisory_xact_lock(...)` step, which the focused Security re-review (`report1.78.md`) correctly found unexecutable from a stateless TanStack server function using a caller-JWT-scoped client: there is no mechanism in this architecture for the server function to acquire and hold a single Postgres transaction-scoped advisory lock open across the multi-step orchestration sequence, unlike an existing single-transaction `SECURITY DEFINER` command, which acquires and releases its lock within one atomic function call.
+   This single statement is the entire concurrency primitive — it replaces Revision 2.0's `pg_advisory_xact_lock(...)` step, which the focused Security re-review (`report1.78.md`) correctly found unexecutable from a stateless TanStack server function using a caller-JWT-scoped client, and which `report1.81.md` §5.1 independently re-confirmed is an executable compare-and-set mechanism: PostgreSQL rechecks the `WHERE` predicate after any row-lock wait, so at most one concurrent claimant can ever receive the row from `RETURNING`.
    - If the `UPDATE` claims exactly one row, this request — and only this request — proceeds to step 3.
    - If it claims zero rows, the server re-reads the batch (via the same server-only client, still scoped to `business_id = $business_id`). A missing row (no batch with this id for this business) returns `NOT_FOUND`. A row found with `status = 'committing'` returns `IN_PROGRESS`. A row found with `status = 'committed'` returns `ALREADY_COMMITTED`. In every zero-row-claimed case, **no row mutation of any kind is attempted.**
 3. For each row with `status IN ('READY', 'FAILED')` (the `FAILED` inclusion is what makes partial retry safe), the server calls `create_catalog_product` — through the **caller-JWT client**, never the bookkeeping client — using that row's **persisted** `row_idempotency_key` — never a freshly generated one. Because `create_catalog_product`'s own internal idempotency table (`catalog_write_idempotency_keys`, keyed `(business_id, operation, idempotency_key)`) already recognizes a resubmission with the same key and payload fingerprint as already-completed and replays the original result rather than inserting again, a retried commit is safe even if the server crashed mid-loop on a prior attempt.
-4. Each row's outcome is written back — via the server-only bookkeeping client only — updating its own `status` (`CREATED` with `resolved_product_id` taken verbatim from the `create_catalog_product` result, never from client input; or `FAILED` with a reason) independently. One row's failure does not block or roll back any other row (D-056). `resolved_product_id` can therefore only ever be a value that a real, governed Catalog command actually returned — there is no code path that accepts a client-supplied product id into this column.
-5. After all rows are processed, the batch transitions to `committed` (`committed_at = now()`, both server-produced) if every row reached a terminal state, or `failed` if the loop itself was interrupted (in which case a retry of the commit call re-enters at step 2, safely: the conditional `UPDATE`'s `status IN ('previewed', 'failed')` clause is exactly what makes a `failed` batch retryable, and step 3's per-row idempotency makes the retried row loop itself safe).
-6. **Concurrency:** two simultaneous commit requests for the same batch race on the single conditional `UPDATE` in step 2; Postgres's own row-level locking during that statement guarantees exactly one request's `UPDATE` succeeds, and the other observes zero rows affected and returns the correct non-mutating result — never attempting a second, conflicting orchestration pass. This satisfies SEC-9's "concurrent confirmation does not duplicate products" and RSB-2's requirement for an "executable atomic compare-and-set batch-state acquisition model" precisely as specified in `instruction1.70.md` §3.6.
+4. Each row's outcome is written back — via the server-only bookkeeping client only — updating its own `status` (`CREATED` with `resolved_product_id` taken verbatim from the `create_catalog_product` result, never from client input; or `FAILED` with a reason) independently. One row's failure does not block or roll back any other row (D-056). `resolved_product_id` can therefore only ever be a value that a real, governed Catalog command actually returned — there is no code path that accepts a client-supplied product id into this column, and the status-coupled `CHECK` constraint in §45.5.2 makes any other combination unrepresentable at the database level regardless.
+5. After all rows are processed: if zero rows remain `FAILED`, the batch transitions to `committed` (`committed_at = now()`, both server-produced, and consistent with the `CHECK` constraint in §45.5.1); if one or more rows remain `FAILED`, the batch transitions to `failed` instead (per the corrected BA-7 rule above), and a retry of the commit call re-enters at step 2, safely — step 3's per-row idempotency makes the retried row loop itself safe, reusing each row's original, unchanged `row_idempotency_key`.
+6. **Concurrency:** two simultaneous commit requests for the same batch race on the single conditional `UPDATE` in step 2; Postgres's own row-level locking during that statement guarantees exactly one request's `UPDATE` succeeds, and the other observes zero rows affected and returns the correct non-mutating result — never attempting a second, conflicting orchestration pass. This satisfies SEC-9's "concurrent confirmation does not duplicate products" and RSB-2's requirement for an "executable atomic compare-and-set batch-state acquisition model" precisely as specified in `instruction1.70.md` §3.6, independently re-confirmed executable by `report1.81.md` §5.1.
 
 Re-uploading the same file as a new batch is always permitted and creates an entirely independent batch/row set with its own fresh idempotency keys; ordinary duplicate-product rules (§45.4) apply to it exactly as to any other batch. File content hash, if computed at all, is recorded as informational metadata only and never drives automatic deduplication or suppression (SEC-9).
 
-### 45.5.5 Partial failure representation (ENG-1, §30)
+### 45.5.6 Partial failure representation (ENG-1, §30)
 
-A row that fails at commit time (e.g. a race where another interactive action created a conflicting product between preview and commit) is marked `FAILED` with a `correction_reason`, is retryable on the next commit attempt against the same batch, and never silently disappears from the outcome summary (§8 Stage 5) — the "failed-at-save count" is always reported truthfully, never folded into "successfully created."
+A row that fails at commit time (e.g. a race where another interactive action created a conflicting product between preview and commit) is marked `FAILED` with a `correction_reason` drawn from the closed vocabulary in §45.5.2, is retryable on the next commit attempt against the same batch (which, per the corrected §45.5.5 rule, also means the batch itself ends that attempt as `failed` rather than `committed`), and never silently disappears from the outcome summary (§8 Stage 5) — the "failed-at-save count" is always reported truthfully, never folded into "successfully created."
 
 ## 45.6 File transport (ENG-6)
 
@@ -1327,7 +1397,7 @@ Any cell value beginning with `=`, `+`, `-`, or `@` (after leading whitespace is
 
 Revision 2.0 stated this design used no service-role credential anywhere. The focused Security re-review (`report1.78.md`) determined that claim's underlying design (bookkeeping writes as plain `authenticated`-role RLS operations) was itself the source of RSB-1/RSB-3, and required a narrow, server-only privileged write path instead (§45.1.1). This section is corrected accordingly, not merely re-asserted.
 
-**Current design:** exactly one privileged credential is used, exactly one purpose: the existing `supabaseAdmin` service-role client (`src/integrations/supabase/client.server.ts`), used **only** for `INSERT`/`UPDATE` on `catalog_import_batches`/`catalog_import_rows` (§45.1.1, §45.5.3, §45.5.4). It is bound by the explicit rule list in §45.1.1, restated here as the direct answer to SEC-11/`instruction1.70.md` §3.5:
+**Current design:** exactly one privileged credential is used, exactly one purpose: the existing `supabaseAdmin` service-role client (`src/integrations/supabase/client.server.ts`), used **only** for `INSERT`/`UPDATE` on `catalog_import_batches`/`catalog_import_rows` (§45.1.1, §45.5.4, §45.5.5). It is bound by the explicit rule list in §45.1.1, restated here as the direct answer to SEC-11/`instruction1.70.md` §3.5:
 
 - caller-JWT authorization (actor, business, Owner status, and — where relevant — Reference Cost authority) is independently re-derived and checked **before** any privileged bookkeeping action, on every preview and every commit call — the privileged client is never itself the authorization mechanism, only a post-authorization persistence mechanism;
 - it never creates/updates/deletes Catalog Product Truth, never calls `create_catalog_product` or any of the other eighteen commands, and never receives elevated authority over them on the actor's behalf;
@@ -1340,12 +1410,14 @@ All Catalog reads and mutations continue through the caller-JWT-scoped client an
 
 Selling Unit and Category preset constants (the exact CORE/SECONDARY lists in §16 and §19, plus the alias maps in §17) live in a new version-controlled source file, e.g. `src/lib/catalog-presets.ts`, exported as plain readonly TypeScript arrays/objects. They are compiled into the application bundle like any other constant; there is no database table, no seed migration, no per-business row, and no application code path that allows a merchant to modify the shared preset list. Selecting a preset only ever creates or selects an ordinary, already-governed, business-owned `catalog_categories` row through `create_catalog_category` (§21) — the preset list itself is never merchant-mutable data.
 
-## 45.14 Audit-event model (SEC-13)
+## 45.14 Audit-event model (SEC-13, audit trust basis corrected in Revision 4.0 per BA-5/`instruction1.75.md` §4.7)
 
 Two audit surfaces, kept deliberately separate:
 
 - **Per-product audit** — unchanged. Every product created via import produces exactly the same `catalog_audit_events` row (`change_type = 'product_created'`) that interactive creation already produces, because it is the same unmodified `create_catalog_product` call. No new audit table or event type is needed for successful product creation.
 - **Per-batch audit** — the `catalog_import_batches`/`catalog_import_rows` records themselves (§45.5) already carry `initiated_by`, `created_at`, `committed_at`, and per-row `resolved_by`/`resolved_at`, which together answer every question §31 requires (who imported what batch, when, which rows created which products, which were rejected/skipped/matched) without a separate audit table. Neither table stores the full spreadsheet, raw rejected cell content beyond the allowlisted snapshot, or Reference Cost values outside the gated field (§45.7, §45.8).
+
+**Trustworthiness basis, stated precisely (BA-5):** this evidence is credible for two independent, compounding reasons, not one. First, `authenticated` has no write grant on either table (§45.5.4), so no ordinary REST request can forge it. Second — new in Revision 4.0, because the write path itself uses `service_role` and therefore bypasses RLS — the database schema now also enforces, at the constraint level, that the evidence cannot become *internally* incoherent even under an application bug in the privileged bookkeeping code: the composite tenant-binding foreign keys (§45.5.2) make a row impossible to insert against the wrong business or the wrong batch; the status-coupled `CHECK` constraint (§45.5.2) makes a `CREATED` row without full resolution evidence, or a non-`CREATED` row carrying forged resolution evidence, unrepresentable; the `committed_at`/`status` coherence `CHECK` (§45.5.1) makes the same true at the batch level; and the `UNIQUE (batch_id, row_number)` / `UNIQUE (business_id, row_idempotency_key)` constraints (§45.5.2) make duplicate or ambiguous row identity unrepresentable. Server-only writes prevent external forgery; these constraints prevent internal incoherence even from a trusted-but-fallible writer. Both are required for the audit evidence to be treated as trustworthy — server-only access alone, Revision 3.0's original position, was necessary but not sufficient, exactly as `report1.81.md` §6 found.
 
 ## 45.15 Server-function test architecture (ENG-7)
 
@@ -1355,7 +1427,7 @@ See Part H §37 for the locked summary. In brief: pure parsing/validation/classi
 
 ## 46. Explicit Confirmation: Exactly 19 Public Catalog Commands Remain
 
-This revision introduces zero new `SECURITY DEFINER` Postgres functions and zero new entries in the public Catalog command surface. The two new tables in §45.5 remain business-isolated, RLS-protected application data — `authenticated` now holds `SELECT` only (§45.5.3, revised in Revision 3.0), with writes confined to the narrow server-only bookkeeping client (§45.1.1) — architecturally still outside, and never counted as part of, the 19-command surface, the same way `businesses`/`transactions` already are. Every actual Catalog Product Truth mutation performed by the import workflow is a normal call to one of the existing 19 commands (specifically `create_catalog_product`, and — for Reference Cost — `record_catalog_reference_cost_change`, both unmodified), issued exclusively through the caller-JWT client, never the bookkeeping client. This satisfies `instruction1.70.md` §3.1 and `instruction1.72.md` §3.1/§8 directly.
+This revision introduces zero new `SECURITY DEFINER` Postgres functions and zero new entries in the public Catalog command surface. The two new tables in §45.5 remain business-isolated, RLS-protected application data — `authenticated` now holds `SELECT` only (§45.5.4, corrected in Revision 4.0 to use an executable predicate), with writes confined to the narrow server-only bookkeeping client (§45.1.1) — architecturally still outside, and never counted as part of, the 19-command surface, the same way `businesses`/`transactions` already are. Every actual Catalog Product Truth mutation performed by the import workflow is a normal call to one of the existing 19 commands (specifically `create_catalog_product`, and — for Reference Cost — `record_catalog_reference_cost_change`, both unmodified), issued exclusively through the caller-JWT client, never the bookkeeping client. This satisfies `instruction1.70.md` §3.1 and `instruction1.72.md` §3.1/§8 directly.
 
 ---
 
@@ -1367,7 +1439,7 @@ The fifteen questions in Revision 1.0's §44 are answered throughout Part K; the
 3 (batch/quarantine tables + RLS): §45.5.
 4 (file/row limits): §45.3.
 5 (XLSX parser + bounding): §45.2.
-6–7 (batch/row idempotency, partial-failure retry): §45.5.4, §45.5.5.
+6–7 (batch/row idempotency, partial-failure retry): §45.5.5, §45.5.6.
 8 (D-058 Manager representation): §14, §45.7.
 9 (Reference Cost gating): §45.7.
 10 (Category preset duplicate avoidance): §21, §45.4 (categories), noting §45.4 itself covers product duplicate detection specifically.
@@ -1387,8 +1459,11 @@ No item above is marked `BLOCKED`. Any genuinely unresolved item discovered duri
 |---|---|---|
 | 1.0 | Mission Control draft | Reviewed by Engineering (`report1.75.md`) and Security (`report1.76.md`) |
 | 2.0 | Engineering + Security design-lock reconciliation (`instruction1.70.md`) | `report1.77.md`: `READY FOR SECURITY RE-REVIEW` |
-| 3.0 | Focused Security re-review found RSB-1/RSB-2/RSB-3 (`report1.78.md`); this reconciliation (`instruction1.72.md`) | `report1.79.md`: see that report's final verdict |
+| 3.0 | Focused Security re-review found RSB-1/RSB-2/RSB-3 (`report1.78.md`); this reconciliation (`instruction1.72.md`) | `report1.79.md`: `READY FOR NARROW SECURITY CONFIRMATION` |
+| — | Narrow Security confirmation of Revision 3.0 (`instruction1.73.md`) | `report1.80.md`: `SECURITY READY FOR BUILD LOCK` |
+| — | Supabase Backend Architecture review of Revision 3.0 (`instruction1.74.md`) | `report1.81.md`: `SUPABASE ARCHITECTURE CHANGES REQUIRED BEFORE BUILD LOCK`, identifying BA-1 through BA-7 |
+| 4.0 | Supabase architecture correction reconciliation (`instruction1.75.md`) | `report1.82.md`: see that report's final verdict |
 
 ## Next Logical Step
 
-Submit this Revision 3.0 to Security & Permissions Architecture for a **narrow confirmation** limited to RSB-1, RSB-2, and RSB-3, using `communication/live/report1.79.md` as the finding-by-finding resolution map. Per `instruction1.72.md` §9, this revision does not itself claim `READY FOR BUILD LOCK` — only a subsequent, separate positive Security confirmation of this narrow correction, followed by a separate Mission Control Build Mode authorization, can advance SB-P-1.11-GC-1 toward implementation.
+Submit this Revision 4.0 to Supabase Backend Architecture for a re-confirmation limited to BA-1 through BA-7, using `communication/live/report1.82.md` as the finding-by-finding resolution map. Per `instruction1.75.md` §6, this revision does not itself claim `READY FOR BUILD LOCK` — only a subsequent, separate positive Supabase Backend Architecture re-confirmation of this correction, consistent with Security's already-standing `SECURITY READY FOR BUILD LOCK` verdict (`report1.80.md`, unregressed by this revision per §5 of this document's own regression check in `report1.82.md`), followed by a separate Mission Control Build Mode authorization, can advance SB-P-1.11-GC-1 toward implementation.
