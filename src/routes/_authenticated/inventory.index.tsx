@@ -45,7 +45,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+// Optional return context from Catalog's "Create inventory item" navigation
+// (SB-P-1.11-GC-1, EIS §24 Path B) — used only to show a "Back to <product>"
+// link and, when set, auto-open item creation. No prefill of product data:
+// this is navigation-only, per the EIS's explicit fallback when prefill
+// would add cross-module complexity.
+const inventorySearchSchema = z.object({
+  create: z.boolean().optional(),
+  returnTo: z.string().optional(),
+  returnLabel: z.string().optional(),
+});
+
 export const Route = createFileRoute("/_authenticated/inventory/")({
+  validateSearch: inventorySearchSchema,
   head: () => ({
     meta: [
       { title: "Inventory — Smart Business" },
@@ -93,6 +105,26 @@ function InventoryIndexBoundary() {
   return <InventoryList business={businessQuery.data} />;
 }
 
+function ReturnContextBanner({
+  returnTo,
+  returnLabel,
+}: {
+  returnTo: string;
+  returnLabel?: string;
+}) {
+  return (
+    <div className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-2.5">
+      <p className="text-sm text-foreground">
+        Once you've created the item, come back to finish linking it
+        {returnLabel ? ` to "${returnLabel}"` : ""}.
+      </p>
+      <Link to={returnTo} className="shrink-0 text-sm font-medium text-primary hover:underline">
+        Back to product
+      </Link>
+    </div>
+  );
+}
+
 function LoadingSection() {
   return (
     <section className="mx-auto flex w-full max-w-3xl items-center justify-center px-4 py-24 sm:px-6">
@@ -122,9 +154,7 @@ function NoBusinessYet() {
   return (
     <section className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-20">
       <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
-        <h1 className="text-xl font-semibold text-card-foreground">
-          Set up your business first
-        </h1>
+        <h1 className="text-xl font-semibold text-card-foreground">Set up your business first</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Finish setting up your business identity before recording inventory.
         </p>
@@ -140,12 +170,13 @@ function NoBusinessYet() {
 }
 
 function InventoryList({ business }: { business: Business }) {
+  const routeSearch = Route.useSearch();
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<ItemStatusFilter>("active");
   const [stockFilter, setStockFilter] = useState<"all" | "in_stock" | "no_stock" | "negative">(
     "all",
   );
-  const [createOpen, setCreateOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(() => !!routeSearch.create);
 
   const itemsQuery = useQuery({
     queryKey: ["inventory", business.id, "list", { status, search }],
@@ -165,6 +196,12 @@ function InventoryList({ business }: { business: Business }) {
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-16">
+      {routeSearch.returnTo ? (
+        <ReturnContextBanner
+          returnTo={routeSearch.returnTo}
+          returnLabel={routeSearch.returnLabel}
+        />
+      ) : null}
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
@@ -209,10 +246,7 @@ function InventoryList({ business }: { business: Business }) {
             <SelectItem value="all">All statuses</SelectItem>
           </SelectContent>
         </Select>
-        <Select
-          value={stockFilter}
-          onValueChange={(v) => setStockFilter(v as typeof stockFilter)}
-        >
+        <Select value={stockFilter} onValueChange={(v) => setStockFilter(v as typeof stockFilter)}>
           <SelectTrigger className="sm:w-[180px]" aria-label="Stock status">
             <SelectValue />
           </SelectTrigger>
@@ -251,22 +285,12 @@ function InventoryList({ business }: { business: Business }) {
         )}
       </section>
 
-      <CreateItemDialog
-        open={createOpen}
-        onOpenChange={setCreateOpen}
-        businessId={business.id}
-      />
+      <CreateItemDialog open={createOpen} onOpenChange={setCreateOpen} businessId={business.id} />
     </section>
   );
 }
 
-function EmptyState({
-  hasAnyItems,
-  onCreate,
-}: {
-  hasAnyItems: boolean;
-  onCreate: () => void;
-}) {
+function EmptyState({ hasAnyItems, onCreate }: { hasAnyItems: boolean; onCreate: () => void }) {
   return (
     <div className="rounded-2xl border border-dashed border-border/70 bg-muted/30 p-8 text-center">
       <p className="text-sm font-medium text-foreground">
@@ -302,9 +326,7 @@ function ItemRow({ item }: { item: InventoryListEntry }) {
       >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="truncate text-base font-semibold text-card-foreground">
-              {item.name}
-            </h3>
+            <h3 className="truncate text-base font-semibold text-card-foreground">{item.name}</h3>
             {item.status === "archived" ? (
               <Badge variant="outline" className="shrink-0">
                 Archived
@@ -407,10 +429,7 @@ function CreateItemDialog({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit((v) => mutation.mutate(v))}
-            className="space-y-4"
-          >
+          <form onSubmit={form.handleSubmit((v) => mutation.mutate(v))} className="space-y-4">
             <FormField
               control={form.control}
               name="name"

@@ -9,8 +9,7 @@ import type { Database, Json } from "./types";
 
 export type CommandResult = Database["public"]["CompositeTypes"]["catalog_command_result"];
 export type CommandOutcome = Database["public"]["CompositeTypes"]["catalog_command_outcome"];
-export type LinkPreviewResult =
-  Database["public"]["CompositeTypes"]["catalog_link_preview_result"];
+export type LinkPreviewResult = Database["public"]["CompositeTypes"]["catalog_link_preview_result"];
 export type ProductSummary = Database["public"]["CompositeTypes"]["catalog_product_summary"];
 export type TaxTreatment = Database["public"]["Enums"]["catalog_tax_treatment"];
 export type PricingMode = Database["public"]["Enums"]["catalog_pricing_mode"];
@@ -210,6 +209,22 @@ export async function listCategories(): Promise<CatalogCategory[]> {
     .from("catalog_categories")
     .select("id, name, status")
     .eq("status", "active")
+    .order("name");
+  if (error) throw error;
+  return (data ?? []) as CatalogCategory[];
+}
+
+/**
+ * Active AND archived categories, for the preset selector's archived-name
+ * conflict detection (SB-P-1.11-GC-1, EIS §21) — an archived category's
+ * name must never be silently reused, so the selector needs to see it to
+ * surface the truthful conflict message. Same narrow authenticated grant
+ * as listCategories(); no new access introduced.
+ */
+export async function listAllCategories(): Promise<CatalogCategory[]> {
+  const { data, error } = await supabase
+    .from("catalog_categories")
+    .select("id, name, status")
     .order("name");
   if (error) throw error;
   return (data ?? []) as CatalogCategory[];
@@ -439,18 +454,14 @@ export async function previewInventoryLinkChange(input: {
   requestedAction: LinkAction;
   targetInventoryItemId?: string | null;
 }): Promise<LinkPreviewResult> {
-  const args: Database["public"]["Functions"]["preview_catalog_inventory_link_change"]["Args"] =
-    {
-      p_product_id: input.productId,
-      p_requested_action: input.requestedAction,
-    };
+  const args: Database["public"]["Functions"]["preview_catalog_inventory_link_change"]["Args"] = {
+    p_product_id: input.productId,
+    p_requested_action: input.requestedAction,
+  };
   if (input.targetInventoryItemId) {
     args.p_target_inventory_item_id = input.targetInventoryItemId;
   }
-  const { data, error } = await supabase.rpc(
-    "preview_catalog_inventory_link_change",
-    args,
-  );
+  const { data, error } = await supabase.rpc("preview_catalog_inventory_link_change", args);
   if (error) throw error;
   return data as LinkPreviewResult;
 }
@@ -468,10 +479,7 @@ export async function assignOrReplaceInventoryLink(input: {
   if (input.confirmedPrice !== null && input.confirmedPrice !== undefined) {
     args.p_confirmed_price = input.confirmedPrice;
   }
-  const { data, error } = await supabase.rpc(
-    "assign_or_replace_catalog_inventory_link",
-    args,
-  );
+  const { data, error } = await supabase.rpc("assign_or_replace_catalog_inventory_link", args);
   if (error) throw error;
   return assertCompleted(data as CommandResult, "link");
 }
@@ -578,8 +586,6 @@ export async function runCommandWithRecovery(
       }
       throw new CatalogRejection(outcome.rejection_reason ?? null, context);
     }
-    throw new Error(
-      "We couldn't reach the server, and nothing was saved. Please try again.",
-    );
+    throw new Error("We couldn't reach the server, and nothing was saved. Please try again.");
   }
 }

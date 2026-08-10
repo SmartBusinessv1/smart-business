@@ -12,6 +12,31 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       business_tax_settings: {
@@ -208,6 +233,130 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "businesses"
             referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_import_batches: {
+        Row: {
+          business_id: string
+          committed_at: string | null
+          created_at: string
+          file_kind: string
+          id: string
+          initiated_by: string
+          original_filename: string
+          row_count: number
+          status: string
+        }
+        Insert: {
+          business_id: string
+          committed_at?: string | null
+          created_at?: string
+          file_kind: string
+          id?: string
+          initiated_by: string
+          original_filename: string
+          row_count: number
+          status?: string
+        }
+        Update: {
+          business_id?: string
+          committed_at?: string | null
+          created_at?: string
+          file_kind?: string
+          id?: string
+          initiated_by?: string
+          original_filename?: string
+          row_count?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_import_batches_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalog_import_rows: {
+        Row: {
+          batch_id: string
+          business_id: string
+          correction_reason: string | null
+          created_at: string
+          has_reference_cost_authority: boolean
+          id: string
+          matched_product_id: string | null
+          parsed_snapshot: Json
+          resolved_at: string | null
+          resolved_by: string | null
+          resolved_product_id: string | null
+          row_idempotency_key: string
+          row_number: number
+          status: string
+        }
+        Insert: {
+          batch_id: string
+          business_id: string
+          correction_reason?: string | null
+          created_at?: string
+          has_reference_cost_authority: boolean
+          id?: string
+          matched_product_id?: string | null
+          parsed_snapshot: Json
+          resolved_at?: string | null
+          resolved_by?: string | null
+          resolved_product_id?: string | null
+          row_idempotency_key?: string
+          row_number: number
+          status: string
+        }
+        Update: {
+          batch_id?: string
+          business_id?: string
+          correction_reason?: string | null
+          created_at?: string
+          has_reference_cost_authority?: boolean
+          id?: string
+          matched_product_id?: string | null
+          parsed_snapshot?: Json
+          resolved_at?: string | null
+          resolved_by?: string | null
+          resolved_product_id?: string | null
+          row_idempotency_key?: string
+          row_number?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalog_import_rows_batch_fk"
+            columns: ["business_id", "batch_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_import_batches"
+            referencedColumns: ["business_id", "id"]
+          },
+          {
+            foreignKeyName: "catalog_import_rows_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalog_import_rows_matched_product_fk"
+            columns: ["business_id", "matched_product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
+          },
+          {
+            foreignKeyName: "catalog_import_rows_resolved_product_fk"
+            columns: ["business_id", "resolved_product_id"]
+            isOneToOne: false
+            referencedRelation: "catalog_products"
+            referencedColumns: ["business_id", "id"]
           },
         ]
       }
@@ -1491,6 +1640,9 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       catalog_lifecycle_status: ["active", "archived"],

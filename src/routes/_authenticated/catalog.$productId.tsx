@@ -25,8 +25,9 @@ import { useAuth } from "@/hooks/use-auth";
 import {
   archiveProduct,
   assignOrReplaceInventoryLink,
+  createCategory,
   deleteProduct,
-  listCategories,
+  listAllCategories,
   listInventoryItemsForPicker,
   newIdempotencyKey,
   previewInventoryLinkChange,
@@ -48,6 +49,11 @@ import {
   type TaxTreatment,
 } from "@/integrations/supabase/catalog";
 import { formatCurrencyINR } from "@/lib/utils";
+import { SellingUnitSelector } from "@/components/catalog/selling-unit-selector";
+import {
+  CategorySelector,
+  type CreateCategoryResult,
+} from "@/components/catalog/category-selector";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -156,9 +162,9 @@ function ProductDetailView({ product }: { product: ProductDetail }) {
   const { user } = useAuth();
   const userId = user?.id ?? null;
 
-  const categoriesQuery = useQuery({
-    queryKey: ["catalog", "categories"],
-    queryFn: listCategories,
+  const allCategoriesQuery = useQuery({
+    queryKey: ["catalog", "categories", "all"],
+    queryFn: listAllCategories,
   });
 
   const businessQuery = useQuery({
@@ -186,9 +192,9 @@ function ProductDetailView({ product }: { product: ProductDetail }) {
   const isArchived = product.status === "archived";
   const hasHistory = (product.history ?? []).length > 0 || isLinked;
 
-  const categories = categoriesQuery.data ?? [];
+  const allCategories = allCategoriesQuery.data ?? [];
   const categoryName = product.category_id
-    ? categories.find((c) => c.id === product.category_id)?.name
+    ? allCategories.find((c) => c.id === product.category_id)?.name
     : undefined;
 
   return (
@@ -304,9 +310,7 @@ function ProductDetailView({ product }: { product: ProductDetail }) {
               <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                 Selling unit
               </p>
-              <p className="text-lg font-semibold text-card-foreground">
-                {product.selling_unit}
-              </p>
+              <p className="text-lg font-semibold text-card-foreground">{product.selling_unit}</p>
               {isLinked ? (
                 <p className="mt-1 text-sm text-muted-foreground">
                   This product's unit is set by its linked inventory item and can't be changed
@@ -370,7 +374,7 @@ function ProductDetailView({ product }: { product: ProductDetail }) {
         open={identityOpen}
         onOpenChange={setIdentityOpen}
         product={product}
-        categories={categories}
+        allCategories={allCategories}
         onDone={refresh}
       />
       <UnitDialog
@@ -545,8 +549,8 @@ function LifecyclePanel({
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">
-          Archiving keeps the product and its recorded history but removes it from everyday
-          lists. Deleting is only possible while a product has no recorded history at all.
+          Archiving keeps the product and its recorded history but removes it from everyday lists.
+          Deleting is only possible while a product has no recorded history at all.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {isArchived ? (
@@ -567,16 +571,12 @@ function LifecyclePanel({
                 Delete permanently
               </Button>
               <span className="text-xs text-muted-foreground">
-                This product has recorded history and can no longer be permanently deleted. You
-                can archive it instead.
+                This product has recorded history and can no longer be permanently deleted. You can
+                archive it instead.
               </span>
             </div>
           ) : (
-            <Button
-              type="button"
-              variant="destructive"
-              onClick={() => setConfirm("delete")}
-            >
+            <Button type="button" variant="destructive" onClick={() => setConfirm("delete")}>
               <Trash2 className="mr-1.5 h-4 w-4" aria-hidden="true" />
               Delete permanently
             </Button>
@@ -668,17 +668,37 @@ function IdentityDialog({
   open,
   onOpenChange,
   product,
-  categories,
+  allCategories,
   onDone,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   product: ProductDetail;
-  categories: CatalogCategory[];
+  allCategories: CatalogCategory[];
   onDone: () => void;
 }) {
+  const queryClient = useQueryClient();
   const [idempotencyKey] = useState(() => newIdempotencyKey());
   const [reconciling, setReconciling] = useState(false);
+
+  async function handleCreateCategory(name: string): Promise<CreateCategoryResult> {
+    try {
+      const key = newIdempotencyKey();
+      const result = await runCommandWithRecovery(
+        "create_catalog_category",
+        key,
+        () => createCategory({ idempotencyKey: key, name }),
+        "default",
+      );
+      if (result.outcome === "completed" && result.category_id) {
+        void queryClient.invalidateQueries({ queryKey: ["catalog", "categories"] });
+        return { id: result.category_id };
+      }
+      return { error: rejectionMessage(result.rejection_reason) };
+    } catch (err) {
+      return { error: err instanceof Error ? err.message : rejectionMessage(null) };
+    }
+  }
   const form = useForm<IdentityForm>({
     resolver: zodResolver(identitySchema),
     defaultValues: {
@@ -759,21 +779,14 @@ function IdentityDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="No category" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value={NO_CATEGORY}>No category</SelectItem>
-                      {categories.map((c) => (
-                        <SelectItem key={c.id} value={c.id}>
-                          {c.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <CategorySelector
+                      value={field.value ?? NO_CATEGORY}
+                      onChange={field.onChange}
+                      categories={allCategories}
+                      onCreateCategory={handleCreateCategory}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -930,8 +943,8 @@ function UnitDialog({
         <DialogHeader>
           <DialogTitle>Change selling unit</DialogTitle>
           <DialogDescription>
-            The selling unit is how you quote this product's price (for example per piece, per
-            kg, per plate).
+            The selling unit is how you quote this product's price (for example per piece, per kg,
+            per plate).
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -943,7 +956,7 @@ function UnitDialog({
                 <FormItem>
                   <FormLabel>Selling unit</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. piece, kg, plate" {...field} />
+                    <SellingUnitSelector value={field.value} onChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -1106,11 +1119,7 @@ function PriceDialog({
 
 const taxSchema = z
   .object({
-    treatment: z.enum([
-      "inherit_business_default",
-      "product_specific_rate",
-      "non_taxable",
-    ]),
+    treatment: z.enum(["inherit_business_default", "product_specific_rate", "non_taxable"]),
     ratePercent: z.string().optional(),
   })
   .refine(
@@ -1160,8 +1169,7 @@ function TaxDialog({
             idempotencyKey,
             productId: product.id,
             treatment: v.treatment as TaxTreatment,
-            ratePercent:
-              v.treatment === "product_specific_rate" ? Number(v.ratePercent) : null,
+            ratePercent: v.treatment === "product_specific_rate" ? Number(v.ratePercent) : null,
           }),
         "default",
         () => setReconciling(true),
@@ -1210,12 +1218,8 @@ function TaxDialog({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="inherit_business_default">
-                        Use business default
-                      </SelectItem>
-                      <SelectItem value="product_specific_rate">
-                        Product-specific rate
-                      </SelectItem>
+                      <SelectItem value="inherit_business_default">Use business default</SelectItem>
+                      <SelectItem value="product_specific_rate">Product-specific rate</SelectItem>
                       <SelectItem value="non_taxable">Non-taxable</SelectItem>
                     </SelectContent>
                   </Select>
@@ -1526,8 +1530,7 @@ function InventoryLinkFlow({
   });
 
   const open = action !== null;
-  const priceInvalid =
-    priceRequired && (!confirmedPrice.trim() || !(Number(confirmedPrice) > 0));
+  const priceInvalid = priceRequired && (!confirmedPrice.trim() || !(Number(confirmedPrice) > 0));
 
   return (
     <>
@@ -1559,15 +1562,40 @@ function InventoryLinkFlow({
           </DialogHeader>
           {action === "assign_or_replace" ? (
             <div className="space-y-2">
+              <div className="rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                <p>
+                  <span className="font-medium text-foreground">Catalog</span> is what you sell.{" "}
+                  <span className="font-medium text-foreground">Inventory</span> is what you count
+                  and track as stock.
+                </p>
+                <p className="mt-1">
+                  Linking connects this sale item to a stock item. Creating a Catalog product does
+                  not automatically create stock.
+                </p>
+              </div>
               <label className="text-sm font-medium text-foreground" htmlFor="link-item">
                 Inventory item
               </label>
               {itemsQuery.isPending ? (
                 <Skeleton className="h-10 w-full rounded-md" />
               ) : items.length === 0 ? (
-                <p className="text-sm text-muted-foreground">
-                  You don't have any active inventory items yet. Create one in Inventory first.
-                </p>
+                <div className="space-y-2 rounded-md border border-dashed border-border/70 bg-muted/20 p-3">
+                  <p className="text-sm text-muted-foreground">
+                    Stock is tracked in Inventory, separately from Catalog. Create an inventory item
+                    first, then link it here so sales and stock refer to the same item.
+                  </p>
+                  <Link
+                    to="/inventory"
+                    search={{
+                      create: true,
+                      returnTo: `/catalog/${product.id}`,
+                      returnLabel: product.name,
+                    }}
+                    className="inline-flex items-center justify-center rounded-md border border-border/60 px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                  >
+                    Create inventory item
+                  </Link>
+                </div>
               ) : (
                 <Select value={targetItemId} onValueChange={setTargetItemId}>
                   <SelectTrigger id="link-item">
@@ -1586,20 +1614,13 @@ function InventoryLinkFlow({
           ) : null}
           {error ? <RootError message={error} /> : null}
           <DialogFooter>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-              disabled={previewing}
-            >
+            <Button type="button" variant="outline" onClick={onClose} disabled={previewing}>
               Cancel
             </Button>
             <Button
               type="button"
               onClick={() => void runPreview()}
-              disabled={
-                previewing || (action === "assign_or_replace" && !targetItemId)
-              }
+              disabled={previewing || (action === "assign_or_replace" && !targetItemId)}
             >
               {previewing ? (
                 <Loader2 className="mr-1.5 h-4 w-4 animate-spin" aria-hidden="true" />
@@ -1661,10 +1682,7 @@ function InventoryLinkFlow({
 
           {priceRequired ? (
             <div className="space-y-2">
-              <label
-                className="text-sm font-medium text-foreground"
-                htmlFor="confirmed-price"
-              >
+              <label className="text-sm font-medium text-foreground" htmlFor="confirmed-price">
                 Selling price per {preview?.proposed_selling_unit ?? product.selling_unit}
               </label>
               <Input
@@ -1678,8 +1696,8 @@ function InventoryLinkFlow({
                 onChange={(e) => setConfirmedPrice(e.target.value)}
               />
               <p className="text-xs text-muted-foreground">
-                The unit is changing, so the previous price no longer means the same thing.
-                Please enter the price for the new unit.
+                The unit is changing, so the previous price no longer means the same thing. Please
+                enter the price for the new unit.
               </p>
             </div>
           ) : null}
