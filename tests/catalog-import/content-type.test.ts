@@ -52,7 +52,7 @@ describe("verifyXlsxStructure", () => {
     expect(() => verifyXlsxStructure(zip, 25 * 1024 * 1024)).toThrow(ImportLimitError);
   });
 
-  it("rejects when the declared decompressed size exceeds the limit", () => {
+  it("rejects when the real decompressed size exceeds the limit", () => {
     const bigContent = "x".repeat(2000);
     const zip = buildZip([{ name: "[Content_Types].xml", content: bigContent }]);
     expect(() => verifyXlsxStructure(zip, 1000)).toThrow(ImportLimitError);
@@ -61,5 +61,43 @@ describe("verifyXlsxStructure", () => {
     } catch (err) {
       expect((err as ImportLimitError).code).toBe("DECOMPRESSED_TOO_LARGE");
     }
+  });
+
+  // SEC-IMP-2 (report1.85.md §3): a malicious workbook whose ZIP central
+  // directory UNDERSTATES its true expansion must still be rejected --
+  // containment must be enforced against actual produced bytes, never
+  // against attacker-controlled declared metadata.
+  it("rejects a decompression-bomb fixture whose declared size lies (understates real expansion)", () => {
+    const trueContent = "A".repeat(200_000); // highly compressible, real size 200,000 bytes
+    const zip = buildZip([
+      {
+        name: "[Content_Types].xml",
+        content: trueContent,
+        declaredUncompressedSize: 10, // the lie: header claims only 10 bytes
+      },
+    ]);
+    // A declared-size-only check would see "10 bytes" and pass a 1000-byte
+    // budget easily. The real budget must still catch the true 200,000-byte
+    // expansion.
+    expect(() => verifyXlsxStructure(zip, 1000)).toThrow(ImportLimitError);
+    try {
+      verifyXlsxStructure(zip, 1000);
+    } catch (err) {
+      expect((err as ImportLimitError).code).toBe("DECOMPRESSED_TOO_LARGE");
+    }
+  });
+
+  it("accepts a truthfully-small workbook even when nested inside a large-looking declared size lie in the other direction (over-statement is not a containment bypass)", () => {
+    // Declaring a size LARGER than reality is not a security problem (the
+    // real bytes are still small); confirms the check is about the true
+    // ceiling, not merely "declared === real".
+    const zip = buildZip([
+      {
+        name: "[Content_Types].xml",
+        content: PLAIN_CONTENT_TYPES_XML,
+        declaredUncompressedSize: 999_999,
+      },
+    ]);
+    expect(() => verifyXlsxStructure(zip, 25 * 1024 * 1024)).not.toThrow();
   });
 });

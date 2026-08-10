@@ -17,18 +17,20 @@ export const IMPORT_LIMITS = {
   maxParseMs: 10_000,
 } as const;
 
+export type ImportLimitErrorCode =
+  | "FILE_TOO_LARGE"
+  | "DECOMPRESSED_TOO_LARGE"
+  | "TOO_MANY_ROWS"
+  | "TOO_MANY_COLUMNS"
+  | "CELL_TOO_LONG"
+  | "PARSE_TIMEOUT"
+  | "UNSUPPORTED_FILE_TYPE"
+  | "MALFORMED_FILE"
+  | "ENCRYPTED_OR_MACRO_FILE";
+
 export class ImportLimitError extends Error {
-  readonly code:
-    | "FILE_TOO_LARGE"
-    | "DECOMPRESSED_TOO_LARGE"
-    | "TOO_MANY_ROWS"
-    | "TOO_MANY_COLUMNS"
-    | "CELL_TOO_LONG"
-    | "PARSE_TIMEOUT"
-    | "UNSUPPORTED_FILE_TYPE"
-    | "MALFORMED_FILE"
-    | "ENCRYPTED_OR_MACRO_FILE";
-  constructor(code: ImportLimitError["code"], message: string) {
+  readonly code: ImportLimitErrorCode;
+  constructor(code: ImportLimitErrorCode, message: string) {
     super(message);
     this.name = "ImportLimitError";
     this.code = code;

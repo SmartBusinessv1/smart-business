@@ -9,6 +9,15 @@ import { deflateRawSync } from "node:zlib";
 export interface ZipFixtureEntry {
   name: string;
   content: string;
+  /**
+   * When set, this value is written into the local/central header
+   * uncompressedSize fields INSTEAD of the real `content` length -- while
+   * the actual stored compressed bytes still decompress to the real, full
+   * `content`. This builds a decompression-bomb fixture: declared
+   * metadata understates true expansion, exactly the attack SEC-IMP-2's
+   * containment must survive without trusting declared sizes at all.
+   */
+  declaredUncompressedSize?: number;
 }
 
 export function buildZip(entries: ZipFixtureEntry[]): Buffer {
@@ -20,6 +29,7 @@ export function buildZip(entries: ZipFixtureEntry[]): Buffer {
     const nameBuf = Buffer.from(entry.name, "utf-8");
     const dataBuf = Buffer.from(entry.content, "utf-8");
     const compressed = deflateRawSync(dataBuf);
+    const declaredSize = entry.declaredUncompressedSize ?? dataBuf.length;
 
     const localHeader = Buffer.alloc(30);
     localHeader.writeUInt32LE(0x04034b50, 0);
@@ -30,7 +40,7 @@ export function buildZip(entries: ZipFixtureEntry[]): Buffer {
     localHeader.writeUInt16LE(0, 12); // mod date
     localHeader.writeUInt32LE(0, 14); // crc32 (unchecked by our reader)
     localHeader.writeUInt32LE(compressed.length, 18);
-    localHeader.writeUInt32LE(dataBuf.length, 22);
+    localHeader.writeUInt32LE(declaredSize, 22);
     localHeader.writeUInt16LE(nameBuf.length, 26);
     localHeader.writeUInt16LE(0, 28); // extra length
 
@@ -47,7 +57,7 @@ export function buildZip(entries: ZipFixtureEntry[]): Buffer {
     centralHeader.writeUInt16LE(0, 14); // mod date
     centralHeader.writeUInt32LE(0, 16); // crc32
     centralHeader.writeUInt32LE(compressed.length, 20);
-    centralHeader.writeUInt32LE(dataBuf.length, 24);
+    centralHeader.writeUInt32LE(declaredSize, 24);
     centralHeader.writeUInt16LE(nameBuf.length, 28);
     centralHeader.writeUInt16LE(0, 30); // extra length
     centralHeader.writeUInt16LE(0, 32); // comment length
