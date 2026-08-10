@@ -83,3 +83,27 @@ export interface ClassifiedRow {
 export interface IdentitySearchFn {
   (query: string): Promise<{ id: string | null; name: string | null; match_rank: number | null }[]>;
 }
+
+// ---------------------------------------------------------------------------
+// SEC-IMP-5 (report1.85.md §6) — durable multi-command row follow-up state.
+// ---------------------------------------------------------------------------
+
+/** The three commercial-field commands a row's snapshot may require in
+ * addition to create_catalog_product, each with its own deterministic
+ * follow-up idempotency key (idempotency.ts). */
+export type FollowUpOperation = "selling_price" | "tax" | "reference_cost";
+
+/**
+ * "pending" — not yet attempted this commit attempt.
+ * "complete" — the governed command's own result.outcome was "completed".
+ * "failed" — a transport/ambiguous error whose outcome could not be
+ *   resolved via get_catalog_command_outcome either; retryable.
+ * "rejected" — the governed command returned a definite rejection outcome;
+ *   still retryable (the row stays FAILED), but will not resolve itself
+ *   without a corrected re-upload if the rejection is deterministic.
+ */
+export type FollowUpState = "pending" | "complete" | "failed" | "rejected";
+
+/** Keyed only by the operations a given row's snapshot actually requires
+ * — persisted verbatim in catalog_import_rows.follow_up_state. */
+export type FollowUpStateMap = Partial<Record<FollowUpOperation, FollowUpState>>;

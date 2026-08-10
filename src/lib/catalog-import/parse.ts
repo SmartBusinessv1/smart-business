@@ -4,9 +4,12 @@
 // dependency.
 import Papa from "papaparse";
 import ExcelJS from "exceljs";
-import { verifyCsvStructure, verifyXlsxStructure } from "./content-type";
-import { IMPORT_LIMITS, ImportLimitError } from "./limits";
-import { mapHeaders } from "./fields";
+// Explicit .ts extensions: this module is part of parse-worker.ts's
+// dependency closure, loaded directly by node:worker_threads (see that
+// file's own comment for why Node's native resolution needs them here).
+import { verifyCsvStructure, verifyXlsxStructure } from "./content-type.ts";
+import { IMPORT_LIMITS, ImportLimitError } from "./limits.ts";
+import { mapHeaders } from "./fields.ts";
 import type { ParseOutcome, RawImportRow, RecognizedFieldKey } from "./types";
 
 function checkCellLength(value: string, rowNumber: number): void {
