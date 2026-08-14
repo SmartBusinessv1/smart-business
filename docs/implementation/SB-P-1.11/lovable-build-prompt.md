@@ -1,32 +1,32 @@
 Document: Lovable Build Prompt
 
-Version: 1.1
+Version: 1.2 (DRAFT reconciliation revision — Version 1.1 remains the last Mission-Control-accepted lock, preserved in the Document Change Log below)
 
-Status: LOCKED — MISSION CONTROL ACCEPTED
+Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control
+Reviewed By: Mission Control review pending for this revision (Version 1.1 was previously reviewed and locked; see Document Change Log)
 
-Approval Status: ACCEPTED
+Approval Status: PENDING RECONCILIATION REVIEW
 
-Lock Status: LOCKED
+Lock Status: NOT LOCKED
 
-Approval Date: 2026-08-05
+Reconciliation Date: 2026-08-15
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Lovable Build Prompt
 
 ```text
-STATUS: LOCKED — MISSION CONTROL ACCEPTED
-APPROVAL: GRANTED
-LOCK: ACTIVE
+STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+APPROVAL: PENDING
+LOCK: NOT ACTIVE
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-**Do not paste this document into Lovable yet.** This document is accepted and locked by Mission Control at Version 1.1, but it carries no paste-into-Lovable authority and no implementation authority. It may be pasted into Lovable only after a separately authorized Founder Lovable Brief and a separate, explicit Mission Control implementation authorization exist for the specific phase being built. Acceptance and lock of this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
+**Do not paste this document into Lovable.** This is a reconciled draft revision of the previously locked (Version 1.1) Lovable Build Prompt, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). It is **not** yet Mission Control accepted or locked, carries no paste-into-Lovable authority, and no implementation authority. It may be pasted into Lovable only after this revision is separately reviewed and re-locked, a separately authorized Founder Lovable Brief exists, and a separate, explicit Mission Control implementation authorization exists for the specific phase being built. This revision does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
 
 ---
 
@@ -57,11 +57,12 @@ This prompt is subordinate to, and must never contradict, expand, weaken, or rei
 3. Source 18 — SB-P Mission Lifecycle and Delivery Framework.
 4. **SB-P-1.11 Product Blueprint** (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`), Sections 1–21, LOCKED — Product Truth, merchant behaviour, scope, exclusions, approved sequencing.
 5. **SB-P-1.11 Founder Decisions D-001 through D-068** (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`).
-6. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — architecture, technical contracts, data integrity, permissions, security, scheduler design, interfaces, testing obligations.
-7. **SB-P-1.11 Engineering Contract, Version 1.1, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — binding builder obligations, phase boundaries, dependencies, prohibitions, acceptance conditions.
+6. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — architecture, technical contracts, data integrity, permissions, security, scheduler design, interfaces, testing obligations, except the CSV/XLSX parser-runtime and import-support-state architecture reassigned to item 6A.
+6A. **Canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`** (`communication/live/report1.126.md` and its locked chain: `report1.108.md`, `report1.115.md`, `report1.123.md`, `report1.124.md`, `report1.125.md`) — authoritative for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, the Parser Upload Lease/EC-2 Supabase support-state architecture, and the parser response contract. Where an earlier EIS v2.2 statement about the parser or import RPC surface conflicts with this canonical set, the canonical set governs.
+7. **SB-P-1.11 Engineering Contract, Version 1.2, DRAFT — MISSION CONTROL REVIEW REQUIRED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — binding builder obligations, phase boundaries, dependencies, prohibitions, acceptance conditions. Reconciled alongside this document under `communication/live/instruction1.118.md`; not yet re-locked.
 8. This Lovable Build Prompt.
 
-If anything below appears to conflict with any of the six locked sources above it, the locked source governs and this prompt is in error. Stop and report the conflict (Section 25) rather than resolving it by guessing.
+If anything below appears to conflict with any of the locked sources above it, the locked source governs and this prompt is in error. Stop and report the conflict (Section 25) rather than resolving it by guessing.
 
 ---
 
@@ -83,7 +84,7 @@ Build only what the locked Blueprint (§7 "Core Deliverables", §8 "Detailed Fun
 - Complete audit history for every meaningful field change (Blueprint §8 "Audit History"; D-064).
 - Multilingual (English/Malayalam/Manglish) search, filtering, and dashboard experience (Blueprint §8 "Search and Filtering", "Dashboard Experience"; §9 "Multilingual Catalog Experience").
 - Dashboard-based guided creation and confirmation for permitted catalog actions (buildable now; the WhatsApp/voice/photo channel itself is gated — Section 9).
-- Safeguarded CSV/Excel bulk import with a correction queue (Blueprint §8 "CSV and Excel Bulk Import"; D-055–D-058) — Phase 2b, not cross-mission-blocked.
+- Safeguarded CSV/Excel bulk import with a correction queue (Blueprint §8 "CSV and Excel Bulk Import"; D-055–D-058) — Phase 2b, not cross-mission-blocked. The parser-runtime and import-support-state architecture for this scope is governed by the canonical Lambda Parser EIS (Section 2 item 6A), not by the in-Supabase placeholder architecture EIS v2.2 originally described — see Section 11 and Section 17.
 - Business ownership and isolation across every catalog, category, event, identifier, image, import, and correction record (Blueprint §8 "Business Ownership and Isolation"; Rule 1, Rule 4).
 
 Nothing beyond this list, and beyond what Sections 7–20 of this prompt further specify, may be built under this prompt.
@@ -107,7 +108,7 @@ Before writing or proposing any code, inspect the current repository state and c
 
 - No `products` or `catalog` route exists yet under `src/routes/_authenticated/`. Confirmed present today: `dashboard.tsx`, `inventory.tsx`, `inventory.index.tsx`, `inventory.$itemId.tsx`, `transactions.tsx`, `route.tsx`.
 - `src/components/authed-header.tsx` is the single centralized navigation component for authenticated routes; no parallel navigation mechanism exists.
-- No CSV/XLSX parsing dependency exists in `package.json` yet. Adding one is Phase 2b scope only, not Phase 1.
+- **Reconciled per the canonical Lambda Parser EIS:** `papaparse`, `exceljs`, and the Node built-in `node:zlib` are the locked CSV/XLSX parser dependency set (`report1.126.md` Section 7) and, per repository evidence, already exist in `package.json`. Confirm current repository state independently before building — this reconciliation does not itself re-verify `package.json` — but do not assume "not yet added" from this document alone. Adding or changing any parser dependency remains Phase 2b scope, not Phase 1, and remains outside Lovable's responsibility for the externalized Lambda runtime portion (Section 11, Section 17).
 - No WhatsApp webhook, voice, or AI-conversation code exists in `src/`; the dashboard shows only a disabled "Coming soon" WhatsApp assistant card. This is expected and must remain true until Phase 3 is separately authorized (Section 9).
 - No `employees`, `business_members`, or role/permission-flag table exists anywhere in the current migrations; `businesses.owner_id` is the only implemented authority column. This is the exact condition Section 8's Owner-only boundary assumes — confirm it still holds before building any permission check.
 - Supabase migrations follow the existing `supabase/migrations/<UTC-timestamp>_<uuid>.sql` naming convention (Lovable/Supabase generates this automatically on migration creation — do not hand-invent a different naming scheme).
@@ -139,7 +140,7 @@ Build only in the order below, and only the phase or phases a separate, explicit
 |---|---|---|
 | **Phase 1** | Core catalog and category data model; Owner-scoped dashboard CRUD and RLS; selling-unit inheritance and the D-068 single-RPC atomic safeguard; price/tax/cost value-history tables; multilingual exact-match normalization; scheduled-price activation via the Pattern A external-worker scheduler (environment-gated separately from the rest of Phase 1 — Section 11, Section 18) | None — buildable as soon as separately authorized |
 | **Phase 2a** | Manager and sale-authorized-Employee catalog permission enforcement (Blueprint §8 "Permissions"; D-016, D-033–D-035, D-048) | **[SHARED-SYSTEM DEPENDENCY]** — requires the shared permission engine, not yet built for any mission |
-| **Phase 2b** | CSV/Excel bulk import and correction queue, extending the `file_import_jobs` conceptual pattern | None — may run parallel to Phase 1 if separately resourced and authorized |
+| **Phase 2b** | CSV/Excel bulk import and correction queue. Catalog-side write path: the existing nineteen public Catalog commands only, principally `create_catalog_product` and the price/tax/reference-cost follow-up commands — no twentieth command. Parser runtime: the canonical Lambda Parser EIS (Section 2 item 6A) — external AWS Lambda, transient S3 ingress, Parser Upload Lease/EC-2 support state — not the earlier `file_import_jobs`-conceptual-pattern placeholder | None — may run parallel to Phase 1 if separately resourced and authorized. AWS Lambda/S3/IAM Roles Anywhere provisioning and the Supabase parser-support-state migration are separately controlled infrastructure/database work, not Lovable scope (Section 11) |
 | **Phase 3** | Guided WhatsApp/voice/photo catalog intent handling (Blueprint §8; D-053, D-054) | **[SHARED-SYSTEM DEPENDENCY]** — requires the shared conversational engine, not yet built for any mission |
 
 Do not begin Phase 2a or Phase 3 work under any circumstance until their named shared-system dependency is separately authorized, implemented, verified, and available, and a specific Mission Control instruction authorizes that phase.
@@ -194,6 +195,7 @@ is explicitly authorized by Mission Control.
 - Distinguish current and pending price visually; show scheduled activation in the business timezone; preserve two-decimal price precision; state clearly whether the business uses tax-inclusive or tax-exclusive pricing.
 - Implement the D-068 preview UI exactly as Section 15 specifies — this is the single highest-risk UI surface in this mission.
 - Build the import and correction-queue UI (Phase 2b) to distinguish valid, quarantined, and conflicting rows, and to report errors understandably through the dashboard.
+- **Lambda Parser EIS boundary — reconciled.** Lovable remains the main Smart Business application environment for this UI and for the Catalog-side import request/status flow. Lovable does not build, host, or recreate the CSV/XLSX parsing engine itself: the expensive parse step is externalized to the narrow AWS Lambda runtime locked by `report1.126.md` (Section 2 item 6A). Lovable-side code integrates with that boundary (initiating an upload/preview request and rendering the returned allowlisted result) — it must never receive, hold, or forward an AWS credential of any kind to browser code, must never perform CSV/XLSX structural parsing, decompression, or Lambda-equivalent logic inside the Lovable/Cloudflare application runtime, and must never write Catalog or Inventory Product Truth directly from parser output — every product write remains behind the existing nineteen public Catalog commands, invoked only after the Parser Upload Lease reaches `CONSUMED` and Smart Business's own server-side validation/classification succeeds (Section 17).
 - Preserve mobile, conversational-adjacent, desktop, and accessibility parity — labels, validation, focus, contrast, status, and confirmations must remain perceivable without relying on color alone.
 - Never let a sensitive value (reference cost, margin-adjacent data, another business's data) leak through list totals, search results, import errors, messages, or audit views, including in error text.
 - Do not invent new merchant-facing copy that implies a capability this prompt does not authorize (e.g., do not imply automatic tax compliance, guaranteed legal classification, or margin calculation — Section 4 "Reject").
@@ -210,7 +212,7 @@ is explicitly authorized by Mission Control.
 
   - **Phase 1 — Owner-only catalog and category operations, product identity and lifecycle, price/tax/cost operations, inventory-link preview/assignment/removal, protected reads, and command-outcome reconciliation:** `create_catalog_product`, `update_catalog_product_identity`, `update_catalog_product_unit`, `create_catalog_category`, `archive_catalog_category`, `archive_catalog_product`, `reactivate_catalog_product`, `delete_catalog_product`, `record_catalog_selling_price_change`, `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`, `record_catalog_tax_change`, `update_business_tax_settings`, `record_catalog_reference_cost_change`, `preview_catalog_inventory_link_change`, `assign_or_replace_catalog_inventory_link`, `remove_catalog_inventory_link`, `get_catalog_command_outcome`, `catalog_products_search`, `catalog_product_read`, `catalog_products_list_batch`.
   - **Phase 2a — permission activation, not new commands:** no new catalog command name is introduced in Phase 2a. This phase activates shared-permission-engine enforcement on the applicable Phase 1 commands above, and only after the permission-engine dependency (Section 9) and Phase 2a itself are separately authorized.
-  - **Phase 2b — import commands:** `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows`, plus only the locked import-related reads or supporting boundaries the EIS already defines.
+  - **Phase 2b — import, reconciled per the canonical Lambda Parser EIS (Section 2 item 6A):** zero new Catalog commands. The EIS v2.2 placeholder surface (`create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows`) is superseded — Product Truth for imported products is written only through the existing nineteen public Catalog commands (Phase 1 group above), principally `create_catalog_product` and the price/tax/reference-cost follow-up commands, invoked with caller-JWT authority. Import-support bookkeeping (batch/row status, classification, correction-queue state) and the parser-runtime support surface (Parser Upload Lease and EC-2 guard `SECURITY DEFINER` helpers) are narrow, non-Product-Truth, `service_role`-only state — not public Catalog commands, not counted in this command surface, and never callable with a caller-JWT/browser credential.
   - **Phase 3 — channel commands:** `create_catalog_pending_action`, `confirm_catalog_pending_action`, plus only the locked channel execution and outcome-reconciliation boundary the EIS already defines.
   - **Environment-gated scheduler commands:** `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule` — buildable only when the Section 18 environment-verification gate is satisfied *and* scheduler scope is explicitly included in the specific implementation authorization, independent of which other Phase 1 commands are already authorized.
 
@@ -313,12 +315,12 @@ Implement as a single atomic, transactional RPC — never a client-orchestrated 
 
 ## 17. Mandatory Clean-File Scanning and Import Safeguards
 
-**[MANDATORY]** (Engineering Contract §19; EIS §14)
+**[MANDATORY]** (Engineering Contract §19; EIS §14; canonical Lambda Parser EIS `report1.126.md` for the parser-runtime portion)
 
-- `product_image` and `import_source` each require `safety_scan_status = 'clean'` — `not_required` is never a valid state for either purpose, checked server-side at every point of use, not only at upload.
-- Re-check at: `create_catalog_product`/`update_catalog_product_identity` when accepting an `image_ref`; `create_catalog_import_job` when accepting a `file_ref`; `stage_catalog_import_rows` immediately before parsing.
-- Client-supplied purpose or scan status is never authoritative — always read `catalog_file_references`'s own server-recorded columns.
-- Import (Phase 2b): valid rows saved; invalid rows quarantined without creating live products; rows matching an existing business-unique name/SKU/barcode are never auto-overwritten and enter a correction queue for explicit owner/manager decision.
+- `product_image` requires `safety_scan_status = 'clean'` — `not_required` is never a valid state, checked server-side at every point of use, not only at upload. Re-check at: `create_catalog_product`/`update_catalog_product_identity` when accepting an `image_ref`.
+- **Import file integrity — reconciled.** The EIS v2.2 `create_catalog_import_job`/`stage_catalog_import_rows` re-check points are superseded. The locked integrity chain for an uploaded CSV/XLSX file is: client-computed SHA-256 bound to a server-issued Parser Upload Lease before any upload capability is issued; exact object-key/byte-length/checksum enforcement at the S3 upload boundary; independent Lambda-side `HeadObject` verification with `ChecksumMode = ENABLED` before the object is read; hostile-file structural/decompression containment inside the Lambda runtime before any row is parsed. Lovable-side code never re-implements this chain; it only initiates the request and awaits the allowlisted result.
+- Client-supplied purpose, scan status, or parser result is never authoritative — always read the server's own recorded state, never trust a client-supplied override.
+- Import (Phase 2b): valid rows saved; invalid rows quarantined without creating live products; rows matching an existing business-unique name/SKU/barcode are never auto-overwritten and enter a correction queue for explicit decision. **Phase 1 import authority is Owner-only**, consistent with Section 8's Phase 1 Owner-only runtime boundary and confirmed by `report1.126.md` Section 6; the eventual owner-or-manager rule (Blueprint §8; D-058) activates only once the Phase 2a shared permission engine is separately authorized, implemented, and available — this does not reopen or contradict D-058.
 - One optional product image; a missing image never blocks creation or sale readiness.
 
 ---
@@ -440,11 +442,23 @@ Stop and report to Mission Control — do not guess, improvise, or proceed on an
 - It is unclear which phase (Section 7) is currently authorized for building.
 - A genuine product or UX need cannot be satisfied by any command in Section 11's exact list, and would require a new write path.
 - Any instruction elsewhere would require modifying a locked document (Blueprint, Founder Decision Record, EIS, or Engineering Contract).
-- Any of the open dispositions preserved in Engineering Contract §29.1 (`pg_trgm` threshold, CSV/Excel limits, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability) must be resolved to proceed and has not yet been resolved. This is distinct from the separately resolved and preserved disposition in §29.2 (selling-unit/price treatment upon inventory-link removal), which is closed, accepted as written, and must never be treated as an open stop condition or reopened (MC-LBP-004).
+- Any of the open dispositions preserved in Engineering Contract §29.1 (`pg_trgm` threshold, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability) must be resolved to proceed and has not yet been resolved. This is distinct from the separately resolved and preserved disposition in §29.2 (selling-unit/price treatment upon inventory-link removal), which is closed, accepted as written, and must never be treated as an open stop condition or reopened (MC-LBP-004). CSV/Excel structural limits are no longer among these open items — they are now resolved and locked by the canonical Lambda Parser EIS (`report1.126.md`; Engineering Contract §29.1 item 2, reconciled).
 
 ---
 
 ## 26. This Prompt Does Not Authorize Implementation
+
+**Current status (Version 1.2, this reconciliation):**
+
+```text
+LOVABLE BUILD PROMPT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+APPROVED: PENDING
+LOCKED: NO
+PASTE-INTO-LOVABLE AUTHORITY: NONE
+IMPLEMENTATION AUTHORITY: NONE
+```
+
+**Historical record (Version 1.1, preserved, superseded by the above for current status purposes):**
 
 ```text
 LOVABLE BUILD PROMPT STATUS: LOCKED — MISSION CONTROL ACCEPTED
@@ -454,12 +468,13 @@ PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-This document is accepted and locked at Version 1.1 (`communication/live/instruction1.23.md`; MC-LBP-001 through MC-LBP-004 resolved). Acceptance and lock do not authorize pasting it into Lovable and do not authorize implementation. Before any phase in Section 7 may be built:
+Version 1.1 was accepted and locked (`communication/live/instruction1.23.md`; MC-LBP-001 through MC-LBP-004 resolved). Version 1.2 is a reconciled draft revision, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the canonical Lambda Parser EIS (`communication/live/report1.126.md`), and is not yet Mission Control reviewed or re-locked. Version 1.1's prior lock is a preserved historical fact and does not carry forward automatically. Regardless of version, acceptance/lock never authorizes pasting this document into Lovable and never authorizes implementation. Before any phase in Section 7 may be built:
 
-1. A separately authorized Founder Lovable Brief must exist.
-2. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
+1. This Version 1.2 revision (and the concurrently reconciled Engineering Contract Version 1.2 and Verification Checklist Version 1.2) must be separately reviewed and re-locked by Mission Control (Stage 13).
+2. A separately authorized Founder Lovable Brief must exist.
+3. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
 
-The Verification Checklist remains unauthorized. The Stage 12 Initial Implementation Package remains incomplete until the Verification Checklist also exists and is locked.
+The Verification Checklist is concurrently reconciled to matching `DRAFT — MISSION CONTROL REVIEW REQUIRED` status under the same mission. The Stage 12 Initial Implementation Package remains incomplete until all three documents are re-locked.
 
 ---
 
@@ -500,3 +515,4 @@ Founder Decisions D-001 through D-068 are cited inline throughout Sections 3–2
 | 1.0 | Initial draft Lovable Build Prompt, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21), locked EIS (Version 2.2), and locked Engineering Contract (Version 1.1) into a phased, repository-first, implementation-ready builder instruction, per `instruction1.21.md`. Covers all 27 mandatory content areas. No new Product Truth, Founder decision, scope, or engineering behaviour introduced. Not approved, not locked, no paste-into-Lovable or implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.22.md`, correcting Mission Control findings MC-LBP-001 through MC-LBP-004 identified in review of Version 1.0. Corrected Section 8's Phase 1 permission behaviour so every command verifies authenticated ownership via `businesses.owner_id` only, without querying, requiring, simulating, hard-coding, or locally recreating the future permission flags during Phase 1 (MC-LBP-001). Restructured Section 11's command surface into explicit phase-scoped groups — Phase 1, Phase 2a (permission activation, no new commands), Phase 2b (import), Phase 3 (channel), and environment-gated scheduler commands — stating that a command outside its authorized phase must not be implemented, scaffolded, exposed, granted, deployed, or partially activated, with all locked names and signatures preserved (MC-LBP-002; consistency edit to Section 7's Phase 1 row). Made Section 24's implementation-evidence requirements phase-scoped, requiring only evidence for the phase actually authorized and built and requiring every deferred obligation to be recorded as `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` (MC-LBP-003). Corrected Section 25's stop-condition wording, which had inaccurately described all seven original EIS disposition entries as open inside Engineering Contract §29.1, to distinguish the genuinely open §29.1 dispositions from the separately resolved and preserved §29.2 disposition (selling-unit/price treatment upon inventory-link removal), which remains closed and is not reopened (MC-LBP-004). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no paste-into-Lovable or implementation authority. |
 | 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-LBP-001 through MC-LBP-004 as `RESOLVED` and recording `LOVABLE BUILD PROMPT REVIEW: PASSED`, `LOVABLE BUILD PROMPT: ACCEPTABLE`. Per `instruction1.23.md`, this is a lock-only documentation change: Version 1.1's substantive content — locked authority hierarchy, exact Build Now scope, Build Later/Add-on/Separate Product/Reject boundaries, repository-first discovery, accepted reuse patterns, phased implementation sequence, Phase 1 Owner-only runtime, Phase 2a/Phase 3 dependency gates, phase-scoped command grouping, phase-scoped evidence requirements, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, same-actor confirmation, AI Assistant boundaries, mandatory clean-file scanning, Pattern A scheduler architecture, employee financial-intelligence restrictions, standard POS bridge boundary, multilingual UX, merchant-safe outcome handling, stop conditions, the Engineering Contract §29.1/§29.2 separation, and traceability to all three locked authorities — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. Paste-into-Lovable authority and implementation authority remain `NONE`. The Verification Checklist and Founder Lovable Brief remain unauthorized; the Stage 12 Initial Implementation Package remains incomplete. |
+| 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added Section 2 item 6A naming the canonical Lambda Parser EIS and its precedence for the parser-runtime scope only, and updated item 7 to reference the concurrently reconciled Engineering Contract Version 1.2 (DRAFT). Corrected Section 5's stale "no CSV/XLSX parsing dependency" discovery claim. Corrected Section 7's Phase 2b row to name the locked Catalog-command-unchanged / externalized-Lambda-runtime architecture in place of the `file_import_jobs` conceptual pattern. Added an explicit Lovable/Lambda responsibility-boundary paragraph to Section 10 (no browser AWS credentials, no in-Lovable parsing, no direct Product Truth writes from parser output). Corrected Section 11's Phase 2b command-surface line from the stale three-placeholder-command list to zero new Catalog commands, with the parser-support helper surface explicitly named as non-Catalog, `service_role`-only state. Corrected Section 17's re-check points and import-authority statement to the reconciled integrity chain and the Phase 1 Owner-only posture, consistent with Section 8 and without reopening D-058. No other section was reopened or reinterpreted; unaffected UI/product instructions, prohibitions, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no paste-into-Lovable or implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |

@@ -1,33 +1,33 @@
 Document: Verification Checklist
 
-Version: 1.1
+Version: 1.2 (DRAFT reconciliation revision — Version 1.1 remains the last Mission-Control-accepted lock, preserved in the Document Change Log below)
 
-Status: LOCKED — MISSION CONTROL ACCEPTED
+Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control
+Reviewed By: Mission Control review pending for this revision (Version 1.1 was previously reviewed and locked; see Document Change Log)
 
-Approval Status: ACCEPTED
+Approval Status: PENDING RECONCILIATION REVIEW
 
-Lock Status: LOCKED
+Lock Status: NOT LOCKED
 
-Approval Date: 2026-08-05
+Reconciliation Date: 2026-08-15
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Verification Checklist
 
 ```text
-STATUS: LOCKED — MISSION CONTROL ACCEPTED
-APPROVAL: GRANTED
-LOCK: ACTIVE
+STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+APPROVAL: PENDING
+LOCK: NOT ACTIVE
 FOUNDER LOVABLE BRIEF: NOT AUTHORIZED
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-**This document is accepted and locked by Mission Control at Version 1.1, but must not yet be used for live verification.** It carries no implementation, paste-into-Lovable, or Founder Lovable Brief authority. Live verification may begin only once a specific implementation phase is separately authorized and built, per Section 2's phase declaration. Acceptance and lock of this document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
+**This is a reconciled draft revision of the previously locked (Version 1.1) Verification Checklist, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`), and must not be used for live verification.** It is not yet Mission Control accepted or locked, and carries no implementation, paste-into-Lovable, or Founder Lovable Brief authority. Live verification may begin only once this revision is separately reviewed and re-locked, and a specific implementation phase is separately authorized and built, per Section 2's phase declaration. This revision does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
 
 **Unexecuted-template state of every checklist item in this draft (corrected per MC-VC-001):** this document is a template only. No SB-P-1.11 phase or gated component has been separately authorized for implementation as of this document's preparation, and no live verification run has occurred. Every checklist item's Actual Result, Outcome, Verifier Notes, and Defect Reference fields are therefore left as explicit unexecuted placeholders — never pre-populated with any outcome, including `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` — because assigning any outcome before a real, separately authorized verification run begins would itself misrepresent this template as already executed. A future verifier conducting the first live run must complete Section 2's phase declaration, then: execute every mandatory cross-phase item (Sections 3–7, and every later item designated cross-phase) regardless of which phase is named — these may not receive the deferred outcome except where an item itself explicitly represents a separately unauthorized external activity (Section 2); execute every phase-exclusive item belonging to a phase actually named in the declaration; and select `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` only for phase-exclusive items belonging to a phase or gated component genuinely absent from that declaration.
 
@@ -40,21 +40,24 @@ IMPLEMENTATION AUTHORITY: NONE
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
 | Stage | 12C — Verification Checklist Preparation, Refinement, and Lock |
-| Package Position | Third and final document of the Stage 12 Initial Implementation Package (`engineering-contract.md` LOCKED, `lovable-build-prompt.md` LOCKED, `verification-checklist.md` this document, LOCKED — Stage 12 Initial Implementation Package documents now complete) |
-| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.24.md` (`report1.24.md`) → Mission Control review recorded findings MC-VC-001 through MC-VC-003 → Version 1.1 refinement authorized by `communication/live/instruction1.25.md` (`report1.25.md`), resolving MC-VC-001 through MC-VC-003 → Mission Control re-review recorded `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE` |
-| This Revision | Lock-only status and metadata update authorized by `communication/live/instruction1.26.md`, accepting and locking Version 1.1; no substantive content changed |
-| Authorizing Instruction | `communication/live/instruction1.26.md` |
+| Package Position | Third and final document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md` this document — all three reconciled to Version 1.2, `DRAFT — MISSION CONTROL REVIEW REQUIRED`, under this same mission; Stage 12 Initial Implementation Package requires a fresh Stage 13 Mission Control package review before any of the three may be re-locked) |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.24.md` (`report1.24.md`) → Mission Control review recorded findings MC-VC-001 through MC-VC-003 → Version 1.1 refinement authorized by `communication/live/instruction1.25.md` (`report1.25.md`), resolving MC-VC-001 through MC-VC-003 → Mission Control re-review recorded `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE` → Version 1.1 lock-only update authorized by `communication/live/instruction1.26.md` |
+| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22). Not yet Mission Control reviewed or locked; see Section 36 for the exact delta |
+| Authorizing Instruction | `communication/live/instruction1.118.md` (this revision); `communication/live/instruction1.26.md` (Version 1.1 lock, preserved history) |
+| Canonical Lambda Parser EIS | `communication/live/report1.126.md` — `LAMBDA PARSER EIS — APPROVED — LOCKED`. Governs the CSV/XLSX parser-runtime and import-support-state verification content in this checklist; see the precedence note below |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Document Type | Phase-scoped, evidence-driven verification instrument, for use only after separate Mission Control review, acceptance, and lock |
 
 This checklist is subordinate to, and must never contradict, expand, weaken, or reinterpret, its governing sources (corrected terminology per MC-VC-003). This checklist derives from four locked Stage 12 authorities:
 
 1. **SB-P-1.11 Product Blueprint** (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`), Sections 1–21, LOCKED.
-2. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`).
-3. **SB-P-1.11 Engineering Contract, Version 1.1, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/engineering-contract.md`).
-4. **SB-P-1.11 Lovable Build Prompt, Version 1.1, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`).
+2. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — except the CSV/XLSX parser-runtime and import-support-state architecture, reassigned below.
+3. **SB-P-1.11 Engineering Contract, Version 1.2, DRAFT — MISSION CONTROL REVIEW REQUIRED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — reconciled alongside this document; not yet re-locked.
+4. **SB-P-1.11 Lovable Build Prompt, Version 1.2, DRAFT — MISSION CONTROL REVIEW REQUIRED** (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`) — reconciled alongside this document; not yet re-locked.
 
 The **SB-P-1.11 Founder Product Decision Record, D-001 through D-068** (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`), is a mandatory preserved decision source governing the Blueprint and all downstream documents. It must remain independently traceable and unchanged. It is not counted among the four locked Stage 12 authorities above, but no checklist item may contradict, expand, weaken, or reinterpret it any more than it may the four authorities themselves.
+
+The **canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`** (`communication/live/report1.126.md` and its locked chain: `report1.108.md`, `report1.115.md`, `report1.123.md`, `report1.124.md`, `report1.125.md`) is likewise a mandatory preserved authority, not counted among the four locked Stage 12 authorities above, but authoritative specifically for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, the Parser Upload Lease/EC-2 Supabase support-state architecture, and the parser response contract. Where an item elsewhere in this checklist cites EIS v2.2 for that specific scope, the canonical Lambda Parser EIS governs instead (`communication/live/instruction1.118.md` §3).
 
 If any checklist item appears to conflict with any of the four locked Stage 12 authorities or the Founder Product Decision Record, the locked source governs and this checklist is in error. Stop verification of that item, do not resolve the conflict by assumption or new design, and report it (Section 34).
 
@@ -266,9 +269,9 @@ A phase not yet separately authorized must never be verified as if it were built
   - **Verifier Notes:** [To be completed]
   - **Defect Reference:** [Required only for FAIL; otherwise —]
 
-- **CHK-LOCK-004** — The Engineering Contract Version 1.1 is byte-identical to its locked state.
+- **CHK-LOCK-004** — The Engineering Contract, at the version this checklist itself was locked against (Version 1.2 after this reconciliation is separately re-locked; Version 1.1 historically), is byte-identical to its locked state.
   - **Phase / Component:** Cross-phase precondition.
-  - **Locked-Source Reference:** `docs/implementation/SB-P-1.11/engineering-contract.md`, Version 1.1, LOCKED — MISSION CONTROL ACCEPTED.
+  - **Locked-Source Reference:** `docs/implementation/SB-P-1.11/engineering-contract.md`. This reconciliation revises it to Version 1.2, `DRAFT — MISSION CONTROL REVIEW REQUIRED`; this check applies once Version 1.2 (or later) is itself locked.
   - **Expected Result:** No change across the implementation's commit range.
   - **Verification Method:** `git diff` on the file path.
   - **Evidence Location:** Git diff output.
@@ -277,9 +280,20 @@ A phase not yet separately authorized must never be verified as if it were built
   - **Verifier Notes:** [To be completed]
   - **Defect Reference:** [Required only for FAIL; otherwise —]
 
-- **CHK-LOCK-005** — The Lovable Build Prompt Version 1.1 is byte-identical to its locked state.
+- **CHK-LOCK-005A** — The canonical Lambda Parser EIS lock record is byte-identical to its locked state (added by reconciliation, GC-22).
   - **Phase / Component:** Cross-phase precondition.
-  - **Locked-Source Reference:** `docs/implementation/SB-P-1.11/lovable-build-prompt.md`, Version 1.1, LOCKED — MISSION CONTROL ACCEPTED.
+  - **Locked-Source Reference:** `communication/live/report1.126.md`, `LAMBDA PARSER EIS — APPROVED — LOCKED`.
+  - **Expected Result:** No change to `report1.126.md` (or the reports it locks: `report1.108.md`, `report1.115.md`, `report1.123.md`, `report1.124.md`, `report1.125.md`) across the implementation's commit range.
+  - **Verification Method:** `git diff` on each file path.
+  - **Evidence Location:** Git diff output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LOCK-005** — The Lovable Build Prompt, at the version this checklist itself was locked against (Version 1.2 after this reconciliation is separately re-locked; Version 1.1 historically), is byte-identical to its locked state.
+  - **Phase / Component:** Cross-phase precondition.
+  - **Locked-Source Reference:** `docs/implementation/SB-P-1.11/lovable-build-prompt.md`. This reconciliation revises it to Version 1.2, `DRAFT — MISSION CONTROL REVIEW REQUIRED`; this check applies once Version 1.2 (or later) is itself locked.
   - **Expected Result:** No change across the implementation's commit range.
   - **Verification Method:** `git diff` on the file path.
   - **Evidence Location:** Git diff output.
@@ -394,8 +408,8 @@ Applies only if Phase 2a is named in Section 2. Otherwise every item below: `NOT
 
 - **CHK-P2A-002** — No new catalog command name was introduced for Phase 2a.
   - **Phase / Component:** Phase 2a.
-  - **Locked-Source Reference:** Lovable Build Prompt §11 "Phase 2a — permission activation, not new commands."
-  - **Expected Result:** The EIS §16 28-command list is unchanged; Phase 2a activates checks on existing Phase 1 commands only.
+  - **Locked-Source Reference:** Lovable Build Prompt §11 "Phase 2a — permission activation, not new commands."; `report1.91.md` §13; `report1.126.md` Section 6.
+  - **Expected Result:** The canonical nineteen public Catalog commands (CHK-BE-004; `report1.91.md` §13 — unchanged, exactly 19, no twentieth) are unchanged; Phase 2a activates permission checks on those same nineteen commands only and introduces no new Catalog command. See CHK-BE-004A for the separate, broader phase-scoped public function inventory, to which Phase 2a also adds nothing.
   - **Verification Method:** Diff of `pg_proc` command list before/after Phase 2a activation.
   - **Evidence Location:** SQL query output.
   - **Actual Result:** [To be completed during the authorized verification run]
@@ -431,22 +445,22 @@ Applies only if Phase 2a is named in Section 2. Otherwise every item below: `NOT
 
 Applies only if Phase 2b is named in Section 2. Otherwise every item below: `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED`.
 
-- **CHK-P2B-001** — Only `create_catalog_import_job`, `stage_catalog_import_rows`, and `apply_catalog_import_valid_rows`, plus locked supporting reads, are implemented.
+- **CHK-P2B-001** — Reconciled per the canonical Lambda Parser EIS (`report1.126.md`): no twentieth public Catalog command is introduced for import, and no import-executor-owned command surface (`create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows`) exists.
   - **Phase / Component:** Phase 2b.
-  - **Locked-Source Reference:** EIS §16; Lovable Build Prompt §11 "Phase 2b."
-  - **Expected Result:** No import-related command exists outside this exact list.
-  - **Verification Method:** `pg_proc` listing filtered to import-related names.
+  - **Locked-Source Reference:** `report1.126.md` Section 6 ("exactly nineteen public Catalog commands; no twentieth Catalog command"); Engineering Contract §19 (reconciled); Lovable Build Prompt §11 "Phase 2b" (reconciled).
+  - **Expected Result:** `pg_proc` lists exactly the same nineteen public Catalog commands present before Phase 2b was built — no `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows`, or any other new public Catalog command. Product Truth for imported rows is written only via `create_catalog_product` and the existing price/tax/reference-cost follow-up commands. Any import-support tables/functions (batch/row bookkeeping, Parser Upload Lease, EC-2 guard) exist only as narrow, `service_role`-only, non-Catalog-command state — see CHK-LPE items in Section 29A.
+  - **Verification Method:** `pg_proc` listing filtered to `catalog%`/`%catalog%`, diffed against the locked nineteen-command list before and after Phase 2b implementation.
   - **Evidence Location:** SQL query output.
   - **Actual Result:** [To be completed during the authorized verification run]
   - **Outcome:** [Select one authorized outcome during verification]
   - **Verifier Notes:** [To be completed]
   - **Defect Reference:** [Required only for FAIL; otherwise —]
 
-- **CHK-P2B-002** — Import is restricted to the owner or a manager holding product-creation permission.
+- **CHK-P2B-002** — Reconciled: Phase 1 bulk-import runtime access is Owner-only.
   - **Phase / Component:** Phase 2b (interacts with Phase 2a if active).
-  - **Locked-Source Reference:** D-058; Lovable Build Prompt §17.
-  - **Expected Result:** An employee-role user cannot call `create_catalog_import_job`.
-  - **Verification Method:** Authenticated test as an employee.
+  - **Locked-Source Reference:** `report1.126.md` Section 6 ("Owner-only Phase 1 import authority"); Engineering Contract §19 (reconciled); Lovable Build Prompt §17 (reconciled). D-058 and Blueprint §8 remain the eventual owner-or-manager target rule, activated only once Phase 2a's shared permission engine is separately authorized (Engineering Contract §16) — this item verifies the Phase 1 interim posture, not a reopening of D-058.
+  - **Expected Result:** A Manager-role user cannot initiate or confirm a bulk import while Phase 2a is not active; an Employee-role user cannot initiate or confirm a bulk import in any phase. Only the authenticated Owner (`businesses.owner_id` match) can obtain a Parser Upload Lease, an EC-2 guard, or invoke `create_catalog_product`/follow-up commands via the import path.
+  - **Verification Method:** Authenticated test as a Manager (with Phase 2a inactive) and as an Employee; confirm both are denied at the server-derived business-ownership check before any Parser Upload Lease or Catalog command is reached.
   - **Evidence Location:** Test output.
   - **Actual Result:** [To be completed during the authorized verification run]
   - **Outcome:** [Select one authorized outcome during verification]
@@ -616,16 +630,28 @@ Applies only if the environment-gated scheduler is named in Section 2. Otherwise
   - **Verifier Notes:** [To be completed]
   - **Defect Reference:** [Required only for FAIL; otherwise —]
 
-- **CHK-BE-004** — The locked, phase-scoped 28-command surface is exactly what is implemented for the authorized phase(s), with no alternate name, substitute RPC, or additional command.
+- **CHK-BE-004** — The canonical nineteen public Catalog commands are exactly what exists — no alternate name, substitute RPC, additional command, or twentieth command (corrected per MC-GC22-001; this item previously conflated the canonical nineteen-command boundary with a broader "25-command"/"28-command" figure that included non-Catalog-command functions).
+  - **Phase / Component:** Cross-phase. The canonical nineteen-command boundary does not grow or shrink by phase in this checklist's own model: Phase 2a activates permission checks on these same nineteen (CHK-P2A-002), and Phase 2b (reconciled) introduces zero additional ones (CHK-P2B-001). The broader, phase-scoped public function inventory beyond these nineteen is a separate item — CHK-BE-004A.
+  - **Locked-Source Reference:** `report1.91.md` §13 (direct `pg_proc`/`pg_namespace`/`pg_roles` verification, "Exactly 19. No twentieth command exists or was proposed."); `report1.126.md` Section 6 ("exactly nineteen public Catalog commands — no twentieth command"); EIS §16; Engineering Contract §11, §13.
+  - **Expected Result:** `pg_proc` lists exactly these nineteen public Catalog commands and no others: `archive_catalog_category`, `archive_catalog_product`, `assign_or_replace_catalog_inventory_link`, `catalog_product_read`, `catalog_products_list_batch`, `catalog_products_search`, `create_catalog_category`, `create_catalog_product`, `delete_catalog_product`, `get_catalog_command_outcome`, `preview_catalog_inventory_link_change`, `reactivate_catalog_product`, `record_catalog_reference_cost_change`, `record_catalog_selling_price_change`, `record_catalog_tax_change`, `remove_catalog_inventory_link`, `update_business_tax_settings`, `update_catalog_product_identity`, `update_catalog_product_unit`. This set already includes the public read/query functions (`catalog_product_read`, `catalog_products_list_batch`, `catalog_products_search`, `get_catalog_command_outcome`) as members of the nineteen, not a separate category. Parser/import-support helper functions (Parser Upload Lease and EC-2 guard `SECURITY DEFINER` functions — Section 29A) are never members of this list; they are non-Catalog-command, `service_role`-only support state.
+  - **Verification Method:** `SELECT proname FROM pg_proc WHERE pronamespace = 'public'::regnamespace AND (proname LIKE 'catalog%' OR proname LIKE '%catalog%')`; diff against this exact nineteen-name list.
+  - **Evidence Location:** SQL query output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-BE-004A** — The broader, phase-scoped public catalog-domain function/RPC inventory — explicitly not the Catalog command boundary — matches what is implemented for the authorized phase(s), with no alternate name, substitute RPC, or additional function (added per MC-GC22-001, replacing the terminology this item's predecessor used).
   - **Phase / Component:** All phases (scoped per group below).
   - **Locked-Source Reference:** EIS §16; Engineering Contract §11, §13; Lovable Build Prompt §11.
-  - **Expected Result:** For each authorized phase, exactly its named commands exist and no others, matching this grouping:
-    - **Phase 1 (21 commands):** `create_catalog_product`, `update_catalog_product_identity`, `update_catalog_product_unit`, `create_catalog_category`, `archive_catalog_category`, `archive_catalog_product`, `reactivate_catalog_product`, `delete_catalog_product`, `record_catalog_selling_price_change`, `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`, `record_catalog_tax_change`, `update_business_tax_settings`, `record_catalog_reference_cost_change`, `preview_catalog_inventory_link_change`, `assign_or_replace_catalog_inventory_link`, `remove_catalog_inventory_link`, `get_catalog_command_outcome`, `catalog_products_search`, `catalog_product_read`, `catalog_products_list_batch`.
-    - **Phase 2a (0 new commands):** permission-engine enforcement activated on the Phase 1 commands above only.
-    - **Phase 2b (3 commands):** `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows`.
-    - **Phase 3 (2 commands):** `create_catalog_pending_action`, `confirm_catalog_pending_action`.
-    - **Environment-gated scheduler (2 commands):** `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`.
-  - **Verification Method:** `SELECT proname FROM pg_proc WHERE pronamespace = 'public'::regnamespace AND proname LIKE 'catalog%' OR proname LIKE '%catalog%'`; diff against the phase's authorized list.
+  - **Terminology note (MC-GC22-001):** this item names a broader public function/RPC inventory across phases, not a locked Catalog-command count. The canonical nineteen public Catalog commands (CHK-BE-004) are closed and do not grow. The functions below beyond the nineteen — scheduled-price functions, channel/pending-action functions, and scheduler functions — are forward-looking functions for later phases; this reconciliation does not independently verify they are already built, and no combined numeric total across groups is asserted as a locked figure.
+  - **Expected Result:** For each authorized phase, exactly its named functions exist and no others, matching this grouping:
+    - **Phase 1 — the nineteen canonical Catalog commands (CHK-BE-004), plus two scheduled-price functions not yet part of the verified nineteen:** `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`.
+    - **Phase 2a — zero new functions:** permission-engine enforcement activated on the Phase 1 functions above only.
+    - **Phase 2b — zero new functions (reconciled):** no `create_catalog_import_job`, `stage_catalog_import_rows`, or `apply_catalog_import_valid_rows`. Import writes Product Truth only through the nineteen canonical Catalog commands (CHK-BE-004). Parser/import-support helper functions (Parser Upload Lease and EC-2 guard — Section 29A) are non-Catalog-command, `service_role`-only support state, never counted in this or any Catalog-command inventory.
+    - **Phase 3 — channel/pending-action functions:** `create_catalog_pending_action`, `confirm_catalog_pending_action`.
+    - **Environment-gated scheduler functions:** `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`.
+  - **Verification Method:** `SELECT proname FROM pg_proc WHERE pronamespace = 'public'::regnamespace AND (proname LIKE 'catalog%' OR proname LIKE '%catalog%')`; diff against the phase's authorized list; separately confirm CHK-BE-004's nineteen remain exactly unchanged regardless of which other phases are authorized.
   - **Evidence Location:** SQL query output.
   - **Actual Result:** [To be completed during the authorized verification run]
   - **Outcome:** [Select one authorized outcome during verification]
@@ -902,11 +928,11 @@ Applies only if the environment-gated scheduler is named in Section 2. Otherwise
 
 ## 21. File Scanning and Import-Safety Verification
 
-- **CHK-SCAN-001** — `product_image` and `import_source` require server-recorded `clean` scan status; `not_required` is rejected.
+- **CHK-SCAN-001** — `product_image` requires server-recorded `clean` scan status (`not_required` rejected); the CSV/XLSX import file passes the reconciled Lambda Parser EIS integrity chain in place of an `import_source` scan-status check.
   - **Phase / Component:** Phase 1 (image), Phase 2b (import).
-  - **Locked-Source Reference:** EIS §14; Engineering Contract §19; Lovable Build Prompt §17.
-  - **Expected Result:** Linking a file with `safety_scan_status` other than `clean` is rejected at every re-check point (`create_catalog_product`/`update_catalog_product_identity`, `create_catalog_import_job`, `stage_catalog_import_rows`).
-  - **Verification Method:** Attempt linking with each non-`clean` status, including `not_required`, at each re-check point.
+  - **Locked-Source Reference:** EIS §14 (image); Engineering Contract §19 (reconciled); Lovable Build Prompt §17 (reconciled); `report1.126.md` for the import file-integrity chain.
+  - **Expected Result:** Linking a product image with `safety_scan_status` other than `clean` is rejected at `create_catalog_product`/`update_catalog_product_identity`. Uploading an import file that fails the Lambda Parser EIS integrity chain (checksum mismatch, `HeadObject` verification failure, hostile-file structural rejection) never reaches row parsing and never produces a Parser Upload Lease in `CONSUMED` state — see Section 29A CHK-LPE items for the exact checksum/integrity verification cases.
+  - **Verification Method:** Attempt linking a product image with each non-`clean` status, including `not_required`. For import, attempt an upload with a deliberately mismatched checksum and confirm rejection before parsing (cross-reference Section 29A).
   - **Evidence Location:** Test transcripts per re-check point.
   - **Actual Result:** [To be completed during the authorized verification run]
   - **Outcome:** [Select one authorized outcome during verification]
@@ -1136,6 +1162,188 @@ Applies only after a phase is separately authorized, implemented, and the Lovabl
 
 ---
 
+## 29A. Lambda Parser EIS — Infrastructure, Security, and Supabase Support-State Verification (added by reconciliation, GC-22)
+
+Applies only if Phase 2b is named in Section 2. Otherwise every item below: `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED`. Every item below is an unexecuted template placeholder, exactly like every other item in this checklist — none is pre-populated with `PASS`, `FAIL`, or any other outcome. This section carries forward, as required verification obligations rather than completed findings, the later-evidence list `communication/live/report1.126.md` Section 10 records as still outstanding at EIS lock, and the acceptance evidence locked by `communication/live/report1.120.md`/`report1.122.md` for the enforcement-first migration order. Locking the canonical Lambda Parser EIS does **not** satisfy any item below.
+
+- **CHK-LPE-001** — Production-equivalent AWS4-X509 / IAM Roles Anywhere `CreateSession` signature acceptance.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 1; `report1.107.md`.
+  - **Expected Result:** A `CreateSession` request signed from the actual production-equivalent Cloudflare/Lovable server runtime, using the manual AWS4-X509 implementation, is accepted by AWS and returns temporary session credentials scoped to the exact intended IAM role.
+  - **Verification Method:** Controlled non-production run against a real AWS Roles Anywhere Trust Anchor/Profile from the deployed-equivalent server runtime.
+  - **Evidence Location:** Signed request/response transcript (sanitized — no credential material retained).
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-002** — No workload private-key/certificate material reaches any browser-visible artifact.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 2; `report1.106.md`/`report1.107.md`.
+  - **Expected Result:** Client bundle, source maps, `VITE_*` variables, browser network responses, logs, and telemetry contain no private key, certificate, or AWS session credential.
+  - **Verification Method:** Inspect the built client bundle and source maps; inspect network responses reaching the browser during an import preview; grep logs/telemetry output.
+  - **Evidence Location:** Bundle/source-map inspection output; network capture; log excerpt (sanitized).
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-003** — Effective IAM policy inspection and negative authorization tests for both authority classes.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 3; `report1.106.md` §8.
+  - **Expected Result:** The external caller principal's effective policy permits only the narrow S3 upload-signing scope and the exact Lambda Function URL invocation (`lambda:InvokedViaFunctionUrl = true`), and cannot invoke Lambda through the ordinary `InvokeFunction` API, administer Lambda/IAM, or read/list/delete S3 objects. The Lambda execution role's effective policy permits only the exact object read/delete scope and bounded logging, and holds no Supabase/database credential.
+  - **Verification Method:** Read the deployed IAM policy documents directly (not merely the specification); attempt each prohibited action and confirm denial.
+  - **Evidence Location:** IAM policy export; negative-test transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-004** — S3 presigned POST exact-key, exact-length, and exact-SHA-256 enforcement.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 4; `report1.108.md` §10–§11; `report1.116.md`.
+  - **Expected Result:** An upload attempt with a wrong object key, a byte length outside the pinned `content-length-range`, or a checksum not matching the policy-pinned value is rejected by S3 before the object is stored.
+  - **Verification Method:** Attempt uploads varying each of the three bound values independently; confirm rejection for each.
+  - **Evidence Location:** S3 request/response transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-005** — Lambda `HeadObject` checksum/length verification with `ChecksumMode = ENABLED`; parse never entered on any mismatch.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 5; `report1.112.md` §5.
+  - **Expected Result:** `HeadObject` is called with `ChecksumMode = ENABLED`; missing checksum metadata, a checksum mismatch, or a size mismatch each fail closed with the corresponding bounded internal code (`HEAD_CHECKSUM_METADATA_MISSING`, `HEAD_CHECKSUM_MISMATCH`, `HEAD_SIZE_MISMATCH`) and no call to `verifyCsvStructure`/`verifyXlsxStructure`/Papa Parse/ExcelJS occurs in any of these cases.
+  - **Verification Method:** Construct fixtures for each mismatch case; instrument or log-inspect to directly assert the parser was never invoked.
+  - **Evidence Location:** Lambda execution logs (sanitized); test transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-006** — Browser holds no S3 `GET`/`LIST`/`DELETE` capability.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 6; `report1.108.md` §10.
+  - **Expected Result:** An attempted `GET`, `LIST`, or `DELETE` against the parser-ingress bucket using only browser-available credentials/capabilities is denied.
+  - **Verification Method:** Attempt each operation using only what the browser session actually receives.
+  - **Evidence Location:** Test transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-007** — Effective ACL inspection for `public.parser_upload_leases` proves direct `service_role` privilege is exactly `{ SELECT }`.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 7; `report1.118.md`; `report1.122.md`.
+  - **Expected Result:** A direct effective-privilege inspection (not a read of migration source text) shows `service_role` holds `SELECT` only on `public.parser_upload_leases`, with no residual `INSERT`/`UPDATE`/`DELETE`/`ALL` surviving the repository's default-privilege inheritance.
+  - **Verification Method:** Query `information_schema.role_table_grants` (or equivalent) for `service_role` against `public.parser_upload_leases` after migration.
+  - **Evidence Location:** SQL query output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-008** — Direct `service_role` `INSERT`/`UPDATE`/`DELETE` on `parser_upload_leases` is denied; lifecycle mutation succeeds only through the nine accepted helper functions.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 8; `report1.118.md` §3, §8.
+  - **Expected Result:** A direct `INSERT`/`UPDATE`/`DELETE` attempt as `service_role` against `public.parser_upload_leases`, bypassing every helper, is denied at the permission layer. Each of `issue_parser_upload_lease`, `confirm_parser_upload_lease`, `claim_parser_upload_lease`, `mark_parser_upload_lease_dispatched`, `complete_parser_upload_lease`, `fail_parser_upload_lease`, `expire_parser_upload_lease`, `acquire_parser_preview_guard`, and `release_parser_preview_guard` succeeds for its own legal predicate.
+  - **Verification Method:** Attempt each direct DML statement; call each helper function under its legal precondition.
+  - **Evidence Location:** SQL error output; function-call transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-009** — One-winner claim, duplicate-dispatch, replay, and unknown-outcome tests prove no same-lease second Lambda dispatch authority can be created.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 9; `report1.116.md` §4; `report1.118.md` §9.
+  - **Expected Result:** Of two concurrent `claim_parser_upload_lease` calls against the same lease, exactly one succeeds. A retried claim/dispatch attempt against an already-`CLAIMED` or terminal lease affects zero rows and does not invoke Lambda again. A lease left `CLAIMED` past the dispatch-resolution timeout resolves to `FAILED` with `DISPATCH_OUTCOME_UNKNOWN`, never back to a dispatchable state.
+  - **Verification Method:** Concurrent-request race test; retry test against a `CLAIMED`/terminal lease; timeout-resolution test.
+  - **Evidence Location:** Test transcripts; database state before/after.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-010** — EC-2 concurrency, rate-window, and expiry evidence.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 10; `report1.116.md` §5–§6.
+  - **Expected Result:** A business cannot hold a second concurrent guard while one is active; the fixed 10-minute attempt window and its reset semantics behave as specified; an abandoned guard self-recovers via expiry without manual intervention.
+  - **Verification Method:** Concurrent-guard-acquisition test; rate-window boundary test; abandoned-guard expiry test.
+  - **Evidence Location:** Test transcripts; database state.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-011** — Lambda cold/warm timing and application parser-budget evidence.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 11; `report1.108.md` §13.
+  - **Expected Result:** Both cold-started and warm-execution-environment invocations complete a maximum-shape legitimate fixture within the locked 15-second Lambda timeout, with application parser execution measured within the locked 10-second budget.
+  - **Verification Method:** Cold and warm invocation timing measurement against maximum-shape CSV/XLSX fixtures.
+  - **Evidence Location:** Timing measurement output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-012** — Response-ceiling boundary fixtures and deterministic above-ceiling rejection.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 items 12–13; `report1.112.md` §4; `report1.114.md`.
+  - **Expected Result:** A response at/immediately below 4,194,304 bytes streams successfully; a response above that ceiling — including the true maximum-legitimate CSV/XLSX-shaped case where it exceeds the ceiling — fails closed with `RESPONSE_TOO_LARGE`, zero success bytes emitted, before streaming begins.
+  - **Verification Method:** The full fixture matrix locked by `report1.114.md` §4 (maximum-legitimate CSV/XLSX, at-ceiling, below-ceiling representative, immediately-above-ceiling).
+  - **Evidence Location:** Measured serialized byte counts; stream-completion/rejection transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-013** — Hostile-file containment fixtures.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 14; `report1.108.md` §12.
+  - **Expected Result:** Decompression-bomb, macro-enabled, encrypted/password-protected, archive-disguised, oversized (`>5,242,880` bytes), over-row/-column/-cell, and CSV-formula-injection fixtures are each rejected or neutralized exactly per the locked closed-code taxonomy, with zero import-support or Product Truth write in any case.
+  - **Verification Method:** Run the full locked hostile-fixture set against the deployed Lambda parser.
+  - **Evidence Location:** Test transcripts; sanitized rejection codes.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-014** — S3 immediate-deletion and Lifecycle-backstop evidence.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 15; `report1.108.md` §13; `report1.112.md` §6.
+  - **Expected Result:** The raw object is deleted immediately after the verified read and before decompression/parsing begins in the success path; an abandoned/orphaned object is removed only by the 1-day Lifecycle backstop, never presented as immediate deletion; a `DeleteObject` failure produces a sanitized internal alert, not merchant-visible detail.
+  - **Verification Method:** Timing/ordering instrumentation on a successful parse; abandoned-upload fixture observed across the backstop window.
+  - **Evidence Location:** S3 access logs (sanitized); timing transcripts.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-015** — Staged secret scanning and artifact/log review.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.126.md` Section 10 item 16; `report1.108.md` §16.
+  - **Expected Result:** No raw merchant file content, row/cell value, private key, AWS credential, presigned-policy secret, or raw provider error body appears in any log, telemetry stream, or build artifact produced by the parser boundary.
+  - **Verification Method:** Automated secret scan plus manual sampling of logs/artifacts generated during test runs.
+  - **Evidence Location:** Secret-scan output; log/artifact review notes.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-LPE-016** — Final enforcement-first migration verification before application cutover.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** `report1.120.md` §4, §10; `report1.122.md` §8.
+  - **Expected Result:** The seven-step activation order (create schema → install invariants/helpers → neutralize `PUBLIC`/`anon`/`authenticated` → neutralize and narrow `service_role` to `{ SELECT }` on `parser_upload_leases` → grant narrow helper `EXECUTE` → complete the twelve-item pre-cutover evidence set → only then activate) completed in full, in order, with no partial state, before any Smart Business endpoint, route, dispatch path, or import flow began depending on the lease lifecycle.
+  - **Verification Method:** Read the implementation's own migration/deployment record against the locked seven-step order; confirm no application code path referenced the lifecycle before the recorded verification evidence was captured.
+  - **Evidence Location:** Migration/deployment record; implementation completion report.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+---
+
 ## 30. Production-Domain Verification at `smartbusiness.teamlips.com`
 
 Applies only after a phase is separately authorized, implemented, and deployed to production under its own separate authorization. Otherwise: `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED`.
@@ -1209,7 +1417,7 @@ This document, as prepared, is an unexecuted template only (corrected per MC-VC-
 
 ## 35. Traceability to the Four Locked Stage 12 Authorities and the Founder Product Decision Record
 
-| Checklist Section | Blueprint / Founder Decision | EIS v2.2 Reference | Engineering Contract v1.1 Reference | Lovable Build Prompt v1.1 Reference |
+| Checklist Section | Blueprint / Founder Decision | EIS v2.2 Reference | Engineering Contract v1.2 Reference | Lovable Build Prompt v1.2 Reference |
 |---|---|---|---|---|
 | 7. Build Now and Exclusion Boundaries | §7, §8, §11 | §4–§23 | §4, §5 | §3, §4 |
 | 8. Phase 1 Owner-Only Runtime | §8 "Permissions" | §8 | §16 (Phase 1) | §8 |
@@ -1234,15 +1442,16 @@ This document, as prepared, is an unexecuted template only (corrected per MC-VC-
 | 27. Tests and Quality Gates | §20 "Verification Expectations" | §21 | §26 | §24 |
 | 28. Lovable Publish Evidence | — | — | §21 (precedent) | §24 |
 | 29. Supabase/Migration/RLS/Privilege/Environment | §20 | §14, §19, §20 | §20, §23 | §11, §18 |
+| 29A. Lambda Parser EIS Verification (added by reconciliation, GC-22) | §8 "CSV and Excel Bulk Import" (scheduling only) | — (superseded by `report1.126.md` for this scope) | §2 item 6A, §19 (reconciled) | §2 item 6A, §11, §17 (reconciled) |
 | 30. Production-Domain Verification | — | — | §21 (precedent) | §24 |
 
 Founder Decisions D-001 through D-068 are cited inline within each section above rather than repeated in this table; every citation traces to the same decision numbers the Engineering Contract's own traceability table (§28) and the Lovable Build Prompt's own traceability table (§27) already map to their sections.
 
 ### Engineering Contract §29.1 / §29.2 Preservation
 
-This checklist preserves the distinction exactly as locked:
+This checklist preserves the distinction exactly as locked, reconciled for one item:
 
-- **§29.1 — six genuinely open dispositions:** `pg_trgm` similarity threshold, final CSV/Excel structural limits, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability. None of these is a checklist defect; each remains `SPECIALIST REVIEW REQUIRED` or `REFINEMENT REQUIRED` as the Engineering Contract already states.
+- **§29.1 — five genuinely open dispositions, reconciled from six:** `pg_trgm` similarity threshold, final index set, scheduler run interval/lag budget, permission/conversational-engine sequencing ownership, Edge Function/`pg_net` availability. None of these is a checklist defect; each remains `SPECIALIST REVIEW REQUIRED` or `REFINEMENT REQUIRED` as the Engineering Contract already states. Final CSV/Excel structural limits — formerly the sixth open item — is no longer open: it is resolved and locked by the canonical Lambda Parser EIS (`report1.126.md`; Engineering Contract §29.1 item 2, reconciled). It remains present in the Engineering Contract's own §29.1 table (with a corrected disposition, not removed), so the original item numbering (including the intentional gap at item 6, reserved for §29.2) is unchanged.
 - **§29.2 — one separately resolved and preserved disposition:** selling-unit/price treatment upon inventory-link removal, `RESOLVED — ACCEPTED AS WRITTEN`. This checklist does not verify it as an open item, does not treat it as a dependency or stop condition, and does not reopen or reinterpret it.
 
 ---
@@ -1254,3 +1463,5 @@ This checklist preserves the distinction exactly as locked:
 | 1.0 | Initial draft Verification Checklist, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21), Founder Decisions D-001–D-068, locked EIS (Version 2.2), locked Engineering Contract (Version 1.1), and locked Lovable Build Prompt (Version 1.1) into a phase-scoped, evidence-driven verification instrument, per `instruction1.24.md`. Covers all 36 mandatory structural areas. Every checklist item defaults to `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` because no implementation phase has been separately authorized as of this document's preparation. No new Product Truth, Founder decision, scope, or engineering behaviour introduced; no MC-VRF, MC-EC, or MC-LBP finding reopened. Not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.25.md`, correcting Mission Control findings MC-VC-001 through MC-VC-003 identified in review of Version 1.0. Replaced every checklist item's pre-populated `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` outcome and "Not yet executed" actual result with explicit unexecuted-template placeholders (`[To be completed during the authorized verification run]` / `[Select one authorized outcome during verification]` / `[To be completed]` / `[Required only for FAIL; otherwise —]`), so an unexecuted template no longer contains completed item-level outcomes (MC-VC-001, all 81 items plus the header banner and Section 34 status block). Added a "Mandatory Cross-Phase Controls" rule to Section 2, and corrected the Outcome Vocabulary's `NOT AUTHORIZED IN THIS PHASE — NOT IMPLEMENTED` definition, so cross-phase preconditions and governance-integrity checks (Sections 3–7 and every later item designated cross-phase) are mandatory in every live verification run and may not receive the deferred outcome except for the one explicit structural exception (CHK-BE-006, gated on full-package completion) (MC-VC-002). Corrected "four locked authorities" terminology throughout to "four locked Stage 12 authorities," with the Founder Product Decision Record D-001 through D-068 treated consistently as a mandatory preserved decision source, independently traceable and unchanged, not counted among the four (MC-VC-003, Section 1, Section 35 title, CHK-FILES-001). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. |
 | 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-VC-001 through MC-VC-003 as `RESOLVED` and recording `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE`, `FURTHER REFINEMENT REQUIRED: NO`. Per `instruction1.26.md`, this is a lock-only documentation change: Version 1.1's substantive content — the five controlled outcomes, ten-field item structure, unexecuted-template placeholders, mandatory cross-phase controls, phase-exclusive deferred-outcome rule, the five phase/gated-component groups, the locked 28-command grouping, the Owner-only Phase 1 boundary, the prohibition on a substitute permission engine, the shared-system and environment gates, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, idempotency/rejection/unknown-outcome rules, same-actor confirmation, clean-file scanning, employee restrictions, AI Assistant boundaries, multilingual verification, the POS boundary, merchant-safe messaging, the evidence and defect model, the Engineering Contract §29.1/§29.2 separation, the four-locked-Stage-12-authority terminology, and the Founder Product Decision Record's treatment as an independently traceable preserved decision source — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. No live verification run was conducted. The Verification Checklist is now the locked, authoritative Stage 12C verification instrument, completing the three-document Stage 12 Initial Implementation Package; the Founder Lovable Brief, paste-into-Lovable authority, and implementation remain separately unauthorized. |
+| 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added the canonical Lambda Parser EIS as a mandatory preserved authority in Section 1, alongside (not counted among) the four locked Stage 12 authorities, matching the existing Founder Product Decision Record pattern. Corrected CHK-P2B-001 and CHK-P2B-002 (Section 10) to verify zero new Catalog commands and Phase 1 Owner-only import authority, replacing the stale three-placeholder-command and owner-or-manager verification targets. Corrected CHK-BE-004 (Section 14) and CHK-P2A-002's "28-command" cross-reference to the reconciled 25-command total, with an explicit note that only the Phase 2b row was reconciled and the Phase 1/Phase 3/scheduler rows were not independently audited by this mission. Corrected CHK-SCAN-001 (Section 21) to verify the reconciled Lambda Parser EIS integrity chain in place of the stale import-job re-check points. Added new Section 29A ("Lambda Parser EIS — Infrastructure, Security, and Supabase Support-State Verification") with sixteen new unexecuted-template checklist items (`CHK-LPE-001` through `CHK-LPE-016`) carrying forward, as required verification obligations, the later-evidence list `report1.126.md` Section 10 records as outstanding and the enforcement-first migration acceptance evidence locked by `report1.120.md`/`report1.122.md` — no item is pre-populated with any outcome. Added a Section 35 traceability row for Section 29A and corrected the §29.1 open-dispositions count from six to five, consistent with the Engineering Contract's own reconciliation. Updated CHK-LOCK-004 and CHK-LOCK-005 (Section 3) to reference the reconciled Version 1.2 targets rather than the superseded Version 1.1 byte-identity target, and added CHK-LOCK-005A verifying the new canonical Lambda Parser EIS lock record's own integrity. No other section was reopened or reinterpreted; unaffected verification items, the outcome vocabulary, the ten-field item structure, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |
+| 1.2 (MC-GC22-001 correction, DRAFT) | Bounded correction, pushed to the existing Version 1.2 reconciliation on PR #272 per Mission Control review finding MC-GC22-001: the prior Version 1.2 draft's CHK-BE-004 and CHK-P2A-002 introduced a "25-command"/"28-command" figure that contradicted the canonical "exactly nineteen public Catalog commands; no twentieth Catalog command" boundary, by summing the nineteen together with forward-looking, not-yet-verified-built scheduled-price/channel/scheduler functions under the single label "command." Re-verified the canonical nineteen directly against `report1.91.md` §13 (unchanged from repository authority). Split the former CHK-BE-004 into CHK-BE-004 (verifies exactly the closed nineteen-name Catalog command list, cross-phase) and CHK-BE-004A (verifies the separate, broader phase-scoped public function/RPC inventory, explicitly relabeled away from "Catalog command surface" language, asserting no combined numeric total as a locked figure). Corrected CHK-P2A-002 to reference the nineteen-command boundary directly instead of the retired 25-command figure. No other item, section, or prior GC-22 reconciliation content was reopened; status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout. |
