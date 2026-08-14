@@ -1,31 +1,31 @@
 Document: Engineering Contract
 
-Version: 1.1
+Version: 1.2 (DRAFT reconciliation revision — Version 1.1 remains the last Mission-Control-accepted lock, preserved in the Document Change Log below)
 
-Status: LOCKED — MISSION CONTROL ACCEPTED
+Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control
+Reviewed By: Mission Control review pending for this revision (Version 1.1 was previously reviewed and locked; see Document Change Log)
 
-Approval Status: ACCEPTED
+Approval Status: PENDING RECONCILIATION REVIEW
 
-Lock Status: LOCKED
+Lock Status: NOT LOCKED
 
-Approval Date: 2026-08-05
+Reconciliation Date: 2026-08-15
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Engineering Contract
 
 ```text
-STATUS: LOCKED — MISSION CONTROL ACCEPTED
-APPROVAL: GRANTED
-LOCK: ACTIVE
+STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+APPROVAL: PENDING
+LOCK: NOT ACTIVE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-This contract is accepted and locked by Mission Control at Version 1.1. It carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
+This is a reconciled draft revision of the previously locked (Version 1.1) Engineering Contract, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). It is **not** yet Mission Control accepted or locked; the historical fact that Version 1.1 was previously locked is preserved in the Document Change Log (Section 32) but does not carry forward to this revision automatically. This document carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
 
 ## 1. Document Metadata
 
@@ -37,12 +37,13 @@ This contract is accepted and locked by Mission Control at Version 1.1. It carri
 | Domain | Business Operations Domain |
 | Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` — Sections 1–21, LOCKED |
 | Founder Product Decision Record | `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md` — D-001 through D-068 |
-| Engineering Implementation Specification | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED |
+| Engineering Implementation Specification | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — Version 2.2, LOCKED — remains authoritative for every engineering area this reconciliation does not name |
+| Canonical Lambda Parser EIS | `communication/live/report1.126.md` — `LAMBDA PARSER EIS — APPROVED — LOCKED`; the combined engineering contract formed by `report1.108.md` plus the final accepted Infrastructure (`report1.115.md`), Supabase Backend (`report1.123.md`), and Security & Permissions (`report1.124.md`) correction/confirmation chains and `report1.125.md`. Governs the CSV/XLSX parser-runtime and import-support-state architecture; where it conflicts with an earlier statement in the EIS v2.2 or in this contract, `report1.126.md`'s canonical set governs (Section 2) |
 | Contract Owner | Claude Code, under Mission Control governance |
-| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006 → Version 1.1 refinement authorized by `communication/live/instruction1.19.md` (`report1.19.md`), resolving MC-EC-001 through MC-EC-006 → Mission Control re-review recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ACCEPTED FOR LOCK` |
-| This Revision | Lock-only status and metadata update authorized by `communication/live/instruction1.20.md`, accepting and locking Version 1.1; no substantive content changed |
-| Authorizing Instruction | `communication/live/instruction1.20.md` |
-| Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this mission locks the Engineering Contract only |
+| Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006 → Version 1.1 refinement authorized by `communication/live/instruction1.19.md` (`report1.19.md`), resolving MC-EC-001 through MC-EC-006 → Mission Control re-review recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ACCEPTED FOR LOCK` → Version 1.1 lock-only update authorized by `communication/live/instruction1.20.md` |
+| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22). Not yet Mission Control reviewed or locked; see Section 32 for the exact delta |
+| Authorizing Instruction | `communication/live/instruction1.118.md` (this revision); `communication/live/instruction1.20.md` (Version 1.1 lock, preserved history) |
+| Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this reconciliation revises all three documents together under a single mission |
 | Upstream Mission Dependency | SB-P-1.10 — Inventory Foundation (accepted, LOCKED) |
 
 ### Reading This Contract
@@ -64,12 +65,13 @@ Execution of this mission, and of any later implementation performed against thi
 3. Source 18 — SB-P Mission Lifecycle and Delivery Framework.
 4. SB-P-1.11 Product Blueprint, Sections 1–21, LOCKED (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`).
 5. SB-P-1.11 Founder Decisions D-001 through D-068 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`).
-6. SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`).
+6. SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — for the CSV/XLSX parser-runtime and import-support-state architecture specifically, superseded at the same precedence level by item 6A below where the two conflict.
+6A. **Canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`** (`communication/live/report1.126.md` and its locked chain: `report1.108.md`, the final Infrastructure PASS `report1.115.md`, the final Supabase Backend PASS `report1.123.md`, the final Security & Permissions PASS `report1.124.md`, and `report1.125.md`) — authoritative specifically for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, the Parser Upload Lease/EC-2 Supabase support-state architecture, and the parser response contract. Where an earlier EIS v2.2 statement about the CSV/XLSX parser or import RPC surface conflicts with this canonical set, the canonical set governs (`communication/live/instruction1.118.md` §3). EIS v2.2 remains fully authoritative for every other SB-P-1.11 engineering area this canonical set does not name.
 7. This Engineering Contract.
 
-**[MANDATORY]** Neither the locked Product Blueprint nor the locked EIS may be modified, reinterpreted, weakened, expanded, or contradicted by this contract, by any later document in the Stage 12 package, or by implementation performed against them. No requirement in this contract may override, narrow, or expand either locked source. Where this contract and either locked source appear to diverge, the locked source governs and this contract is in error; implementation must pause and Mission Control clarification is required before proceeding.
+**[MANDATORY]** Neither the locked Product Blueprint, the locked EIS v2.2, nor the canonical locked Lambda Parser EIS may be modified, reinterpreted, weakened, expanded, or contradicted by this contract, by any later document in the Stage 12 package, or by implementation performed against them. No requirement in this contract may override, narrow, or expand any locked source. Where this contract and a locked source appear to diverge, the locked source governs and this contract is in error; implementation must pause and Mission Control clarification is required before proceeding.
 
-The Product Blueprint remains authoritative for Product Truth, Founder Decisions D-001–D-068, merchant behaviour, scope, exclusions, and approved sequencing (Blueprint §17 "Product Philosophy Summary"; EIS §2). The locked EIS v2.2 remains authoritative for engineering architecture, technical contracts, data integrity, permissions, security, scheduler design, interfaces, testing obligations, and implementation constraints (EIS §2).
+The Product Blueprint remains authoritative for Product Truth, Founder Decisions D-001–D-068, merchant behaviour, scope, exclusions, and approved sequencing (Blueprint §17 "Product Philosophy Summary"; EIS §2). The locked EIS v2.2 remains authoritative for engineering architecture, technical contracts, data integrity, permissions, security, scheduler design, interfaces, testing obligations, and implementation constraints (EIS §2), except for the parser-runtime scope reassigned to item 6A above. Within that narrow scope, the canonical Lambda Parser EIS (`report1.126.md`) is authoritative; it does not alter Product Truth, Founder Decisions, or any engineering area outside that scope.
 
 ## 3. Mission Objective
 
@@ -283,15 +285,16 @@ Neither phase weakens employee default denial of owner financial intelligence (D
 
 ## 19. File Upload, Scanning, Import, and Storage Obligations
 
-**[MANDATORY]** Implementation shall implement the closed file-scanning matrix and import architecture of EIS §14:
+**[MANDATORY]** Implementation shall implement the closed file-scanning matrix of EIS §14 for `product_image`, and the CSV/XLSX bulk-import architecture as reconciled below against the canonical Lambda Parser EIS (`communication/live/report1.126.md`, Section 2 item 6A):
 
-- `product_image` and `import_source` each require `safety_scan_status = 'clean'` — `not_required` is not a valid linking/parsing/previewing/applying state for either purpose, enforced server-side at every point of use, not only at upload.
-- Server-side re-check points: `create_catalog_product`/`update_catalog_product_identity` at `image_ref` acceptance; `create_catalog_import_job` at `file_ref` acceptance; `stage_catalog_import_rows` immediately before parsing.
-- Client-supplied purpose or scan status is never authoritative; every check reads `catalog_file_references`'s own server-recorded columns.
-- File binding, structural/resource limits, formula-injection neutralization, quarantine/retention, job-level confirmation, apply-time revalidation, and resumability are unchanged from Version 2.0 (EIS §14).
-- An owner or a manager with product-creation permission may import; employees may not (Blueprint §8 "CSV and Excel Bulk Import"; D-058 — itself dependent on the permission engine, Section 16 of this contract).
-- Valid rows are saved; invalid rows are quarantined without creating live products; rows matching an existing business-unique name/SKU/barcode are never auto-overwritten and enter a correction queue (Blueprint §8 "CSV and Excel Bulk Import"; D-055–D-057).
-- One optional product image supports visual recognition; a missing image never blocks creation or sale readiness (Blueprint §8 "Product Image"; D-028).
+- `product_image` requires `safety_scan_status = 'clean'` — `not_required` is not a valid linking/previewing/applying state, enforced server-side at every point of use, not only at upload. Re-check points: `create_catalog_product`/`update_catalog_product_identity` at `image_ref` acceptance.
+- **CSV/XLSX import architecture — reconciled.** EIS v2.2 §14's `create_catalog_import_job`/`stage_catalog_import_rows`/`apply_catalog_import_valid_rows` placeholder RPC surface is superseded by the canonical Lambda Parser EIS for the parsing step. Product Truth for an imported product is written only through the existing nineteen public Catalog commands — principally `create_catalog_product` and the price/tax/reference-cost follow-up commands — invoked with caller-JWT authority; import processing never introduces a twentieth Catalog command or a dedicated import-executor write path to `catalog_products`. Bulk-import bookkeeping (batch/row status, classification, correction-queue state) is narrow, non-Product-Truth support state, structurally analogous to the already-accepted BKR-1 through BKR-5 Inventory-side import-support pattern.
+- **Parser runtime — reconciled.** The expensive CSV/XLSX parsing step (structural verification, decompression containment, row/column/cell extraction) is externalized to a narrow AWS Lambda runtime, not performed in-process. The full architecture — transient private S3 upload ingress with exact object-key/byte-length/SHA-256 binding, `ChecksumMode = ENABLED` Lambda-side verification, IAM Roles Anywhere credentials, the six-state Parser Upload Lease lifecycle (`ISSUED`/`UPLOADED`/`CLAIMED`/`CONSUMED`/`FAILED`/`EXPIRED`) with one-winner dispatch authority, the EC-2 durable/shared per-business pre-parse guard, the locked input/output limits, and the deterministic `RESPONSE_TOO_LARGE` response-ceiling contract — is not re-derived here; it is governed exactly as locked by `report1.126.md` and its chain. Implementation must not invent, narrow, or substitute any part of that architecture.
+- Client-supplied purpose, scan status, or parser result is never authoritative on its own; Catalog-side re-check points read `catalog_file_references`'s own server-recorded columns, and import-support writes occur only after the Parser Upload Lease reaches `CONSUMED` and Smart Business's own field validation/classification succeeds — no import-support or Product Truth write occurs on parser failure or on parser success alone (EC-3, preserved unchanged).
+- Formula-injection neutralization, quarantine/retention, batch-level confirmation, and apply-time revalidation for the Catalog-side import workflow remain as already accepted; only the parsing mechanism and its transport/support-state architecture are reconciled by this revision.
+- **Import authority — Phase 1.** Consistent with Section 16's Phase 1/Phase 2a sequencing and confirmed by the canonical Lambda Parser EIS (`report1.126.md` Section 6, "Frozen Product Truth / Founder Workflow Result": "Owner-only Phase 1 import authority"): Phase 1 bulk-import runtime access is Owner-only. Blueprint §8 "CSV and Excel Bulk Import" and D-058 describe the eventual target rule — an owner or a manager holding product-creation permission may import; employees may not — but, exactly as Section 16 already establishes for every other catalog permission, the Manager path cannot be activated before the shared permission engine (Phase 2a) is separately authorized, implemented, verified, and available. Phase 1's Owner-only import posture is a stricter, not looser, interim rule than the eventual Blueprint/D-058 model, and does not reopen or contradict D-058.
+- Valid rows are saved; invalid rows are quarantined without creating live products; rows matching an existing business-unique name/SKU/barcode are never auto-overwritten and enter a correction queue (Blueprint §8 "CSV and Excel Bulk Import"; D-055–D-057) — unaffected by this reconciliation.
+- One optional product image supports visual recognition; a missing image never blocks creation or sale readiness (Blueprint §8 "Product Image"; D-028) — unaffected by this reconciliation.
 
 ## 20. WhatsApp, Text, Voice, and Photo Channel Boundaries
 
@@ -344,7 +347,7 @@ Neither phase weakens employee default denial of owner financial intelligence (D
 
 - **Phase 1 — no cross-mission dependency:** core catalog and category data model, Owner-scoped dashboard CRUD and RLS, selling-unit inheritance and the D-068 single-RPC atomic safeguard, price/tax/cost value-history tables, multilingual exact-match normalization, and scheduled-price activation via Pattern A.
 - **Phase 2a — [SHARED-SYSTEM DEPENDENCY]:** Manager and sale-authorized-Employee catalog permission enforcement (Blueprint §8 "Permissions"; D-016, D-033–D-035, D-048), depending on a shared permission-engine foundation not yet built for any mission.
-- **Phase 2b — sizeable but not cross-mission-blocked:** CSV/Excel bulk import and correction queue, extending the `file_import_jobs` conceptual pattern; may proceed in parallel with Phase 1 if resourced separately.
+- **Phase 2b — sizeable but not cross-mission-blocked:** CSV/Excel bulk import and correction queue; may proceed in parallel with Phase 1 if resourced separately. This resourcing/scheduling classification is unchanged by this reconciliation and remains a Mission Control sequencing decision. What has changed is the required architecture when Phase 2b is built: the parser-runtime and import-support-state design is no longer an open `file_import_jobs`-conceptual-pattern placeholder — it is now the canonical, fully locked Lambda Parser EIS (Section 2 item 6A; Section 19).
 - **Phase 3 — [SHARED-SYSTEM DEPENDENCY]:** guided WhatsApp/voice/photo catalog intent handling (Blueprint §8; D-053, D-054), depending on the shared conversational-engine foundation not yet built for any mission.
 
 **[APPROVAL GATE]** Mission Control decides whether either dependency (permission engine, conversational engine) is sequenced as a separate governed mission, a parallel workstream, or a later phase within SB-P-1.11's own implementation lifecycle (Blueprint §21 "Dependencies Requiring Prior or Parallel Missions"). Neither dependency is specific to SB-P-1.11.
@@ -435,7 +438,7 @@ This section separates genuinely open items from already-resolved items the lock
 | # | Question | Disposition |
 |---|---|---|
 | 1 | Exact `pg_trgm` similarity threshold and algorithm sufficiency | `SPECIALIST REVIEW REQUIRED` |
-| 2 | Final CSV/Excel structural limits | `SPECIALIST REVIEW REQUIRED` |
+| 2 | Final CSV/Excel structural limits | `RESOLVED BY THE CANONICAL LAMBDA PARSER EIS` — locked exactly: 5,242,880-byte maximum compressed input; 25 × 1024 × 1024-byte XLSX actual-produced-decompressed ceiling; maximum 2,000 rows; maximum 40 columns; maximum 2,000 characters per cell; 4,194,304-byte serialized-response ceiling with deterministic pre-stream `RESPONSE_TOO_LARGE` (`communication/live/report1.126.md` Section 7). No longer open; reclassified out of Section 29.1 by this reconciliation, not by a new specialist review performed in this mission. |
 | 3 | Final index set for every new table, including `catalog_channel_confirmation_receipts` | `SPECIALIST REVIEW REQUIRED` |
 | 4 | Scheduler worker run interval and lag budget (values unchanged: 1-minute run interval / 5-minute budget) | `SPECIALIST REVIEW REQUIRED` |
 | 5 | Shared permission-engine and shared conversational-engine sequencing and ownership | `REFINEMENT REQUIRED` (Mission Control sequencing decision) |
@@ -489,6 +492,17 @@ Before a separate, explicit Mission Control implementation authorization is issu
 
 ## 31. Required Document Status and Lifecycle Boundary
 
+**Current status (Version 1.2, this reconciliation):**
+
+```text
+DOCUMENT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+APPROVED: PENDING
+LOCKED: NO
+IMPLEMENTATION AUTHORITY: NONE
+```
+
+**Historical record (Version 1.1, preserved, superseded by the above for current status purposes):**
+
 ```text
 DOCUMENT STATUS: LOCKED — MISSION CONTROL ACCEPTED
 APPROVED: YES
@@ -496,12 +510,18 @@ LOCKED: YES
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-After this mission:
+After the Version 1.1 lock mission (`communication/live/instruction1.20.md`):
 
-- The Engineering Contract is accepted and locked at Version 1.1. Mission Control resolved MC-EC-001 through MC-EC-006 and recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ENGINEERING CONTRACT: ACCEPTED FOR LOCK` (`communication/live/instruction1.20.md`).
+- The Engineering Contract was accepted and locked at Version 1.1. Mission Control resolved MC-EC-001 through MC-EC-006 and recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ENGINEERING CONTRACT: ACCEPTED FOR LOCK` (`communication/live/instruction1.20.md`).
 - The Lovable Build Prompt remains unauthorized — **[APPROVAL GATE]**.
 - The Verification Checklist remains unauthorized — **[APPROVAL GATE]**.
 - The Stage 12 Initial Implementation Package remains incomplete.
+
+After this reconciliation mission (`communication/live/instruction1.118.md`, SB-P-1.11-GC-22):
+
+- Version 1.2 is a reconciled draft revision, not yet Mission Control reviewed or locked. Version 1.1's prior lock is a preserved historical fact (above) and does not carry forward automatically to Version 1.2.
+- The Lovable Build Prompt and Verification Checklist are reconciled to matching `DRAFT — MISSION CONTROL REVIEW REQUIRED` status alongside this document, under the same mission.
+- All three Stage 12 package documents require a separate Mission Control package review (Stage 13) before any of them may be re-locked.
 - Implementation remains unauthorized.
 
 Locking the Engineering Contract does not itself authorize the next document or implementation. Mission Control must verify this lock-only diff; only after that verification may a separate instruction authorize preparation of the Lovable Build Prompt.
@@ -513,3 +533,4 @@ Locking the Engineering Contract does not itself authorize the next document or 
 | 1.0 | Initial draft Engineering Contract, translating the locked SB-P-1.11 Product Blueprint (Sections 1–21) and the locked SB-P-1.11 EIS (Version 2.2) into an implementation-ready contract, per `instruction1.18.md`. Covers all 29 mandatory content areas. No new Product Truth, Founder decision, or engineering behaviour introduced. Not approved, not locked, no implementation authority. |
 | 1.1 | Narrow refinement authorized by `instruction1.19.md`, correcting Mission Control findings MC-EC-001 through MC-EC-006 identified in review of Version 1.0. Corrected `report1.18.md`'s placeholder execution evidence with the actual branch commit SHA, squash-merge commit SHA, and PR #71 reference, explicitly distinguished (MC-EC-001). Made Section 16's permission-engine sequencing explicit and non-contradictory with separate Phase 1 (Owner-only runtime, forward-compatible signatures, no substitute permission engine) and Phase 2a (shared-engine-gated Manager/Employee enforcement) subsections (MC-EC-002). Refined Section 27's acceptance wording so it does not imply every obligation is immediately executable, and added an explicit rule that `[ENVIRONMENT VERIFICATION]`/`[SHARED-SYSTEM DEPENDENCY]`/`[APPROVAL GATE]`-tagged obligations must not be implemented until their condition is resolved, verified, and separately authorized (MC-EC-003). Expanded the privilege-verification requirements in Sections 26 and 27 to cover the complete execution-identity model — all eight command-group owners, `catalog_channel_executor`, `catalog_scheduler_executor`, both service identities, every `EXECUTE` grant, every table-level privilege, and `PUBLIC` execute revocation — requiring exact privilege inspection rather than role-existence checks (MC-EC-004). Split the former "Open Implementation Parameters" section into Section 29.1 (genuinely open items) and Section 29.2 (the already-`RESOLVED — ACCEPTED AS WRITTEN` inventory-link-removal item), renaming the section "Preserved EIS Parameter Dispositions" (MC-EC-005). Corrected Section 7's architecture wording so it no longer appears to prohibit the EIS-authorized external-worker/service-identity boundary (MC-EC-006). No previously accepted content was reopened; no new Product Truth, Founder decision, scope, or engineering behaviour was introduced. Status remains DRAFT — MISSION CONTROL REVIEW REQUIRED; not approved, not locked, no implementation authority. |
 | 1.1 (Lock) | Mission Control completed review and re-review of Version 1.1, resolving MC-EC-001 through MC-EC-006 as `RESOLVED` and recording `ENGINEERING CONTRACT REVIEW: PASSED`, `ENGINEERING CONTRACT: ACCEPTED FOR LOCK`. Per `instruction1.20.md`, this is a lock-only documentation change: Version 1.1's substantive obligations, scope boundaries, technical contracts, dependencies, open/resolved EIS parameter dispositions, prohibitions, traceability mappings, and acceptance conditions are unchanged. Only document status, approval metadata, and lock metadata were updated — status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. The Engineering Contract is now the locked, authoritative Stage 12A implementation contract for SB-P-1.11. The Lovable Build Prompt, Verification Checklist, and implementation remain separately unauthorized, per `instruction1.20.md`'s Required Final State. |
+| 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added Section 2 item 6A naming the canonical Lambda Parser EIS and its precedence for the parser-runtime scope only. Corrected Section 19: replaced the stale EIS v2.2 `create_catalog_import_job`/`stage_catalog_import_rows`/`apply_catalog_import_valid_rows` placeholder architecture and re-check points with the locked reality (Product Truth for imports remains behind the existing nineteen public Catalog commands — no twentieth command; parsing is externalized to the locked AWS Lambda/S3/IAM-Roles-Anywhere runtime and Parser Upload Lease/EC-2 support-state architecture); corrected the bulk-import authority statement to the Phase 1 Owner-only posture already established by Section 16's sequencing pattern, without reopening or contradicting D-058 (Blueprint §8 and D-058 remain the eventual target rule once the Phase 2a permission engine is separately authorized). Added a clarifying clause to Section 24 distinguishing Phase 2b's unchanged resourcing/scheduling classification from its now-locked required architecture. Reclassified Section 29.1 item 2 ("Final CSV/Excel structural limits") from `SPECIALIST REVIEW REQUIRED` to resolved, citing the exact locked limits in `report1.126.md`. No other section was reopened or reinterpreted; unaffected Product Truth, Founder decisions, permission rules, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |
