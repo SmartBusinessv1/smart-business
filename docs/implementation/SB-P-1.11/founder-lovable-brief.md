@@ -296,7 +296,9 @@ Do not build, scaffold, or expose any command or capability outside that phase.
 Do not invent an alternate command name, signature, or direct table write path.
 
 Follow the branch/PR workflow in Section 15.3 of the Founder brief exactly.
-Produce the Builder Completion Report at the path in Section 15.5 of the Founder brief.
+Produce the Builder Completion Report at exactly:
+docs/implementation/SB-P-1.11/lovable-build-completion-report.md
+(Section 15.5 of the Founder brief) — not a communication/live/ mission report.
 Stop and escalate to Mission Control per Section 17 of the Founder brief on any
 ambiguity, conflict, or mismatch — do not guess, improvise, or narrow/expand scope.
 ```
@@ -318,11 +320,17 @@ ambiguity, conflict, or mismatch — do not guess, improvise, or narrow/expand s
 
 ### 15.4 Expected Builder Output and Changed-File Reporting
 
-The implementation run must report, at minimum: the exact branch name and final commit SHA; the exact list of files created, modified, or deleted, with none outside the authorized phase's scope; confirmation that every command built matches Section 6's exact nineteen names, signatures, and table references with no renamed, combined, split, or invented command; confirmation that nothing listed in Section 4 or Section 14 was implemented, scaffolded, or exposed; and the evidence Section 16 of this brief requires for the authorized phase, produced as the implementation proceeds rather than reconstructed afterward from memory.
+The implementation run must report, at minimum: the exact branch name and final commit SHA; the exact list of files created, modified, or deleted, with none outside the authorized phase's scope; confirmation that every command built matches Section 6's exact nineteen names, signatures, and table references with no renamed, combined, split, or invented command; confirmation that nothing listed in Section 4 or Section 14 was implemented, scaffolded, or exposed; and the evidence Section 16 of this brief requires for the authorized phase, produced as the implementation proceeds rather than reconstructed afterward from memory. This output is recorded in the exact Builder Completion Report artifact named in Section 15.5 (`docs/implementation/SB-P-1.11/lovable-build-completion-report.md`) — not in a `communication/live/` mission report.
 
 ### 15.5 Builder Completion Report Path
 
-The implementation run's completion report belongs in `communication/live/` following this mission's existing numbered-report convention (`reportN.M.md`, the next number not yet used in that directory at the time the report is written), titled to name the authorized phase (for example, an "Initial Phase 1 Implementation Completion Report"). It must be created on the same PR as the implementation, following the same Markdown Quality Gate, secret-scan, and whitespace discipline every report in this mission chain already follows, and must not claim any outcome beyond what the authorized phase's own scope covers.
+`docs/implementation/SB-P-1.11/lovable-build-completion-report.md` — the exact, lifecycle-defined Builder Completion Report artifact required by SB-P Mission Lifecycle and Delivery Framework Stages 15–16 (corrected per MC-GC28-001). A future authorized Lovable implementation run must produce this exact file at this exact path; it is created or updated on the same PR as the implementation. Its status immediately after implementation is:
+
+```text
+IMPLEMENTATION REPORTED — VERIFICATION PENDING
+```
+
+This artifact reports, at minimum, everything Section 15.4 requires, and must not claim any outcome beyond what the authorized phase's own scope covers. **Do not substitute a `communication/live/report*.md` mission report for this artifact.** A `communication/live/` mission report may exist alongside it only if a future, separate Mission Control instruction specifically authorizes one — that separate report, if it ever exists, is not the Builder Completion Report and does not replace the requirement above.
 
 ### 15.6 Necessary PowerShell Commands
 

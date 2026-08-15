@@ -24,7 +24,7 @@ Confirmed via `git rev-parse HEAD` immediately after fast-forward synchronizatio
 
 ## 2. Branch and Commit Evidence
 
-**Branch:** `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation`
+**Branch:** `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation-Claude` (corrected per MC-GC28-001; the exact name a strict reading of `instruction1.124.md`'s naming convention implies, `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation`, was found already present on the remote as a stale, already-merged source branch from `instruction1.124.md`'s own authoring — confirmed byte-identical to what is already on `main` — so this work used the `-Claude`-suffixed name instead of force-pushing over it; see Section 11A)
 
 The two authorized files (one reconciled, one new) are committed together in a single commit on this branch. Consistent with every prior report in this mission chain, the exact commit SHA is not recorded inside this report's own body — a commit cannot contain its own resulting hash within its own diff — and is instead reported in the pull request and in this mission's final response to Mission Control.
 
@@ -115,12 +115,30 @@ Section 15 was substantially expanded to contain, explicitly and unambiguously, 
 2. **The exact locked Lovable Build Prompt path** — Section 15.2 (and Section 5 item 9).
 3. **The required implementation branch/PR workflow** — Section 15.3.
 4. **The expected builder output and changed-file reporting** — Section 15.4.
-5. **The Builder Completion Report path** — Section 15.5.
+5. **The Builder Completion Report path** — Section 15.5: `docs/implementation/SB-P-1.11/lovable-build-completion-report.md`, the exact SB-P Mission Lifecycle Stages 15–16 artifact, status `IMPLEMENTATION REPORTED — VERIFICATION PENDING` immediately after implementation (corrected per MC-GC28-001; see Section 11A). Not a `communication/live/report*.md` mission report — a separate mission report may exist only if a future, separate Mission Control instruction specifically authorizes one, and it would not replace this artifact.
 6. **Only the necessary PowerShell commands** — Section 15.6.
 7. **Explicit stop conditions for branch, package-version, authority, or scope mismatch** — Section 15.7 (in addition to Section 17's general stop conditions).
 8. **Explicit statement that the current draft is not authorized for use until Mission Control separately approves Stage 14** — Section 15.8, and restated in the document's own front matter and Section 18.
 
 None of Section 15's content authorizes implementation inside this document; every subsection states it governs a future, separately authorized run only.
+
+---
+
+## 11A. Mission Control Review Correction — MC-GC28-001 (Builder Completion Report Path / Branch-Evidence Correction)
+
+Mission Control reviewed PR #284 and returned `CHANGES REQUIRED` with one finding, **MC-GC28-001**, covering two defects:
+
+1. The original Founder Lovable Brief §15.5 described the Builder Completion Report as belonging in `communication/live/`, following this mission's dynamic numbered mission-report convention (`reportN.M.md`). This was incorrect — the Builder Completion Report is a distinct, lifecycle-defined artifact at a fixed path, not a `communication/live/` mission report, and the two must never be substituted for one another.
+2. This report's original §2 cited branch `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation` — the name a strict reading of `instruction1.124.md`'s naming convention implies. The actual work was pushed to `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation-Claude` (confirmed by `git push` output and by PR #284's own head ref), because the implied name was already present on the remote as a stale, already-merged source branch from `instruction1.124.md`'s own authoring — confirmed byte-identical to what already merged into `main` via PR #283 — and was not overwritten.
+
+**Correction applied**, pushed to this same branch/PR, no new PR opened:
+
+- Corrected Founder Lovable Brief §15.5 to name the exact lifecycle path, `docs/implementation/SB-P-1.11/lovable-build-completion-report.md`, as the Builder Completion Report artifact required by SB-P Mission Lifecycle and Delivery Framework Stages 15–16, with its post-implementation status `IMPLEMENTATION REPORTED — VERIFICATION PENDING`, and an explicit statement that a `communication/live/report*.md` mission report must not substitute for it and may exist only if separately authorized in the future.
+- Corrected §15.1's instruction template and §15.4's expected-output description so both point consistently to the same exact path, rather than only cross-referencing Section 15.5 indirectly.
+- Corrected this report's §2 to record the actual branch name, `mission/SB-P-1.11-GC-28-Stage-14-Founder-Lovable-Brief-Reconciliation-Claude`, with the naming-collision explanation.
+- Corrected this report's §11 item 5 to state the exact Builder Completion Report path and status directly, rather than only cross-referencing Section 15.5.
+- Nothing else was reopened: the exact nineteen-command taxonomy, package references, D-023/D-024 treatment, Founder Workflow placement, Lambda Parser boundary, phase sequencing, Version 1.1 `DRAFT` status, every authority field, the repository-hygiene classification, the Blueprint-path classification, and every locked source remain exactly as the original reconciliation left them.
+- No implementation or Lovable use is authorized by this correction. Final disposition (Section 16 below) is unchanged: `SB-P-1.11 FOUNDER LOVABLE BRIEF VERSION 1.1 RECONCILIATION — READY FOR MISSION CONTROL STAGE 14 REVIEW`.
 
 ---
 
