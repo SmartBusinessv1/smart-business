@@ -4,13 +4,16 @@ Product Catalog & Pricing — Initial Phase 1 (Exactly 19 Public Catalog Command
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-DRAFT — MISSION CONTROL REVIEW REQUIRED
+LOCKED — MISSION CONTROL ACCEPTED
 
 MISSION CONTROL ACCEPTANCE:
-PENDING
+GRANTED
 
 DOCUMENT LOCK:
-NOT ACTIVE
+ACTIVE
+
+STAGE 14 FOUNDER HANDOFF AUTHORITY:
+GRANTED
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -28,7 +31,7 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-**This document is a reconciled draft revision (Version 1.1) of the previously locked (Version 1.0) Founder Lovable Brief, prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28) to reconcile it against the current locked SB-P-1.11 Version 1.2 implementation package, the GC-27-amended Founder Product Decision Record, and current Git state.** It is **not** yet Mission Control accepted or locked, and carries no paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment authority. The historical fact that Version 1.0 was previously accepted and locked against the then-current package is preserved in the Change History (Section 19) but does not carry forward to this revision automatically. Founder review and a separate, explicit Mission Control Stage 14 authorization are both still required before this brief may be used for anything. The brief remains subordinate to the higher-authority locked sources listed in Section 5; any future discovered inconsistency must be resolved in favor of the higher-authority source through a separately authorized correction mission, not by this document.
+**This document is the reconciled, Mission-Control-accepted and locked Version 1.1 Founder Lovable Brief, prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28) to reconcile it against the current locked SB-P-1.11 Version 1.2 implementation package, the GC-27-amended Founder Product Decision Record, and current Git state, and accepted and locked as the current approved Stage 14 Founder-facing handoff document under `communication/live/instruction1.125.md` (SB-P-1.11-GC-29).** Stage 14 Founder Handoff Authority is `GRANTED`: the Founder may rely on and receive this document as the approved handoff for the current SB-P-1.11 initial Phase 1 scope. This lock still carries **no** paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment authority — implementation remains separately gated (Section 15.8, Section 18). The historical fact that Version 1.0 was previously accepted and locked against a since-superseded package, and the full Version 1.1 reconciliation and Stage 14 acceptance history, are preserved in the Change History (Section 19). The brief remains subordinate to the higher-authority locked sources listed in Section 5; any future discovered inconsistency must be resolved in favor of the higher-authority source through a separately authorized correction mission, not by this document.
 
 ---
 
@@ -40,14 +43,15 @@ NONE
 | Mission Name | Product Catalog & Pricing |
 | Document Type | Founder Lovable Brief |
 | Version | 1.1 |
-| Status | DRAFT — MISSION CONTROL REVIEW REQUIRED |
-| Mission Control Acceptance | PENDING |
-| Document Lock | NOT ACTIVE |
-| Prepared Under | Version 1.0 prepared under `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md` (FLB-001–FLB-004); accepted and locked per `communication/live/instruction1.35.md`. This Version 1.1 reconciliation prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28); not yet Mission Control reviewed or locked — see Section 19 for the exact delta |
+| Status | LOCKED — MISSION CONTROL ACCEPTED |
+| Mission Control Acceptance | GRANTED |
+| Document Lock | ACTIVE |
+| Stage 14 Founder Handoff Authority | GRANTED |
+| Prepared Under | Version 1.0 prepared under `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md` (FLB-001–FLB-004); accepted and locked per `communication/live/instruction1.35.md`. Version 1.1 reconciliation prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28), correcting MC-GC28-001; Stage 14 review passed and Version 1.1 accepted and locked under `communication/live/instruction1.125.md` (SB-P-1.11-GC-29) — see Section 19 for the exact delta |
 | Scope Covered | Initial Phase 1 only — exactly 19 public Catalog commands; no twentieth Catalog command. Scheduled-price, channel/pending-action, scheduler, and parser-support functions are separately classified and are not counted in, or added to, this total (Section 6, Section 14) |
 | Governing Package | Stage 12 Implementation Package — `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (Product Blueprint, LOCKED), `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` (EIS v2.2, LOCKED, except the CSV/XLSX parser-runtime/import-support-state architecture reassigned to the canonical Lambda Parser EIS), `communication/live/report1.126.md` (canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`), Engineering Contract Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED`, Lovable Build Prompt Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED`, Verification Checklist Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED` (`communication/live/instruction1.122.md`, SB-P-1.11-GC-26) |
 | Founder Decision Basis | Founder Product Decision Record D-001 through D-068, including D-023 and D-024 as formally amended under SB-P-1.11-GC-27 (`communication/live/instruction1.123.md`; see Section 5); Founder Workflow Reconciliation Record FWR-001 through FWR-005 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`) |
-| Readiness Basis | Version 1.0 basis: `communication/live/report1.27.md` through `communication/live/report1.32.md`. Package reconciliation/correction/lock basis for this revision: `communication/live/report1.126.md` through `communication/live/report1.132.md` |
+| Readiness Basis | Version 1.0 basis: `communication/live/report1.27.md` through `communication/live/report1.32.md`. Package reconciliation/correction/lock/Stage-14-acceptance basis for this revision: `communication/live/report1.126.md` through `communication/live/report1.134.md` |
 
 ---
 
@@ -275,7 +279,7 @@ Two governance items remain open and are not resolved, remediated, or claimed co
 
 ## 15. Stage 14 Founder Handoff — Lovable Execution Instructions for a Future Authorized Implementation Run
 
-**Every instruction in this section is for a future, separately authorized run only. None of it is active now — this draft itself is not authorized for use until Mission Control separately completes Stage 14 review and grants a specific, explicit authorization for it (see the status block at the top of this document and Section 18).** The subsections below are the exact Stage 14 handoff fields `communication/live/instruction1.124.md` §11 requires this brief to contain, so that once Stage 14 authorization is granted, the Founder can hand a builder run everything it needs without re-deriving anything.
+**This document is now Mission Control accepted and locked as the approved Stage 14 Founder-facing handoff (see the status block at the top of this document and Section 18) — the Founder may rely on it for exactly that purpose. That acceptance is not implementation authorization: every instruction in this section still describes a future, separately authorized implementation run only, and none of it is active now.** Pasting Section 15.1's instruction into Lovable, opening Lovable Plan Mode or Build Mode, or creating an implementation branch still each require a separate, explicit Mission Control implementation authorization that this document does not itself grant (Section 15.8). The subsections below are the exact Stage 14 handoff fields `communication/live/instruction1.124.md` §11 requires this brief to contain, so that once a separate implementation authorization is granted, the Founder can hand a builder run everything it needs without re-deriving anything.
 
 ### 15.1 The Exact Lovable Instruction
 
@@ -360,9 +364,9 @@ gh pr create --title "<exact phase name>" --base main
 
 In addition to Section 17's general stop conditions, a future authorized run must stop and escalate to Mission Control — never guess, improvise, or proceed — if: the branch it was told to use does not match what the authorization names; the Engineering Contract, Lovable Build Prompt, or Verification Checklist on `main` is not at the exact locked Version 1.2 state this brief cites in Section 5; the authorization's stated implementation authority does not match what this brief or the Lovable Build Prompt describes for the named phase; or the requested scope includes anything this brief's Section 4 or Section 14 lists as excluded.
 
-### 15.8 This Draft Is Not Authorized for Use
+### 15.8 Founder Handoff Acceptance Does Not Authorize Implementation
 
-To restate plainly: this Version 1.1 draft, on its own, authorizes nothing in this section. It becomes eligible for Founder use only after Mission Control completes a separate Stage 14 review of this exact document and issues a separate, explicit authorization naming it. Until then, Section 15.1's instruction text must not be pasted into Lovable, Lovable Plan Mode or Build Mode must not be entered for this mission, and no branch in Section 15.3's pattern may be created for implementation purposes.
+To restate plainly: this Version 1.1 document is Mission Control accepted and locked as the approved Stage 14 Founder handoff (Section 1, Section 18) — the Founder may use it as that reference now. That acceptance, on its own, still authorizes nothing in this Section 15 beyond reading and preparing. Section 15.1's instruction text must not be pasted into Lovable, Lovable Plan Mode or Build Mode must not be entered for this mission, and no branch in Section 15.3's pattern may be created for implementation purposes, until a separate, explicit Mission Control implementation authorization exists for the specific phase — recorded, per the SB-P Mission Lifecycle and Delivery Framework, at `communication/missions/SB-P-1.11/mission-control/implementation-authorization.md` — and repository hygiene has been completed and independently verified (Section 14A).
 
 ### 15.9 General Build Sequence (Reference)
 
@@ -426,13 +430,16 @@ A future authorized implementation run must stop and escalate to Mission Control
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-DRAFT — MISSION CONTROL REVIEW REQUIRED
+LOCKED — MISSION CONTROL ACCEPTED
 
 MISSION CONTROL ACCEPTANCE:
-PENDING
+GRANTED
 
 DOCUMENT LOCK:
-NOT ACTIVE
+ACTIVE
+
+STAGE 14 FOUNDER HANDOFF AUTHORITY:
+GRANTED
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -450,7 +457,7 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-This Version 1.1 draft is **not yet** Mission Control accepted or locked. It is the reconciled Founder-facing restatement of the locked SB-P-1.11 Version 1.2 package and current Founder decision record for the 19-command initial Phase 1 scope, prepared for a separate Mission Control Stage 14 review. Until that review grants acceptance, this draft does not authorize, and must not be treated as authorizing, pasting this brief or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, deployment, or consumption of any Lovable credit. Founder review and a separate, explicit Mission Control Stage 14 acceptance, followed by a separate, explicit implementation authorization, both remain required before any of that may happen. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
+This Version 1.1 document is **Mission Control accepted and locked** as the current approved Stage 14 Founder-facing handoff document for SB-P-1.11's 19-command initial Phase 1 scope, following Mission Control's Stage 14 review of this exact document (`communication/live/instruction1.125.md`, SB-P-1.11-GC-29). Stage 14 Founder Handoff Authority is `GRANTED`: the Founder may rely on and receive this document as the approved handoff, review the exact future Lovable instruction and required files, and use it to prepare for the next governance prerequisite and later implementation-authorization decision. This acceptance is deliberately narrow and does **not** authorize, and must not be treated as authorizing, pasting this brief or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, deployment, or consumption of any Lovable credit — each of those remains `NONE` above regardless of this document's own lock status. A separate, explicit Mission Control implementation authorization — recorded at `communication/missions/SB-P-1.11/mission-control/implementation-authorization.md` per the SB-P Mission Lifecycle and Delivery Framework — and independently verified completion of repository hygiene both remain required before any of that may happen. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
 
 ---
 
@@ -474,3 +481,7 @@ Reconciles the Founder Lovable Brief against the current locked SB-P-1.11 Versio
 - Added this Change History section, preserving Version 1.0's original wording and disposition above without erasing it.
 
 No new Product Truth, Founder decision, or engineering architecture was invented by this reconciliation. Repository hygiene and the Blueprint lifecycle path remain as stated in Section 14A above; neither was remediated by this mission. Status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout this revision; not approved, not locked, no paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, or publishing/deployment authority.
+
+**Version 1.1 — Stage 14 accepted and locked, under `communication/live/instruction1.125.md` (SB-P-1.11-GC-29).**
+
+GC-28 (`communication/live/instruction1.124.md`) produced Version 1.1 as a reconciled Stage 14 review draft, corrected per Mission Control review finding MC-GC28-001 (`communication/live/report1.133.md`, Section 11A: Builder Completion Report path and branch-evidence correction). Mission Control's Stage 14 review of that corrected draft passed, recording `MC-GC28-001 — RESOLVED`, `STAGE 14 FOUNDER LOVABLE BRIEF RECONCILIATION — PASS`, and `PR #284 — APPROVED FOR HUMAN MERGE`; PR #284 was then human-merged. This GC-29 instruction accepts and locks that exact reviewed Version 1.1 content as the current approved Stage 14 Founder handoff document. Status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; Mission Control Acceptance changed from `PENDING` to `GRANTED`; Document Lock changed from `NOT ACTIVE` to `ACTIVE`; a new `STAGE 14 FOUNDER HANDOFF AUTHORITY: GRANTED` field was added. `PASTE-INTO-LOVABLE AUTHORITY`, `LOVABLE PLAN MODE AUTHORITY`, `LOVABLE BUILD MODE AUTHORITY`, `IMPLEMENTATION AUTHORITY`, and `PUBLISHING OR DEPLOYMENT AUTHORITY` all remain `NONE` — this acceptance grants Founder handoff/reference use only, never implementation or Lovable use. No substantive Product Truth, architecture, workflow, or command-surface content changed in GC-29: the exact nineteen-public-Catalog-command boundary, command names/signatures, phase sequencing, the GC-27-amended D-023/D-024 treatment, FWR-001 through FWR-005 placement, D-047/D-068 safeguards, the Owner-only posture, Catalog/Inventory truth separation, the Inventory-first sequence, the canonical Lambda Parser EIS architecture, and the exact Builder Completion Report path (`docs/implementation/SB-P-1.11/lovable-build-completion-report.md`) and post-implementation status (`IMPLEMENTATION REPORTED — VERIFICATION PENDING`) are all unchanged from the GC-28/MC-GC28-001 state. Only lifecycle/status/handoff-authority wording whose truth changed because Version 1.1 is now accepted and locked was updated (front matter, Section 1, Section 15 intro and Section 15.8, Section 18, and this entry). Repository hygiene remains incomplete and mandatory before any future implementation authorization/Build; it was not remediated by this mission. The Blueprint `active/` lifecycle path remains non-blocking housekeeping and was not moved or modified. No implementation branch was created and no Builder Completion Report was produced by this mission.
