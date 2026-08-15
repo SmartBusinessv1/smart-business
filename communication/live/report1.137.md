@@ -44,7 +44,13 @@ Branch:
 
 `mission/SB-P-1.11-GC-32-Implementation-Authorization-Record-Execution`
 
-Pull request number and URL are recorded in Section 10 after PR creation.
+Pull request:
+
+`#291 — Create SB-P-1.11 Initial Phase 1 implementation authorization record`
+
+PR URL:
+
+`https://github.com/SmartBusinessv1/smart-business/pull/291`
 
 ---
 
@@ -153,11 +159,11 @@ No application code, SQL, Supabase, AWS, Lovable project state, dependency, depl
 
 ## 10. PR / Final Branch Evidence
 
-PR: `PENDING CREATION`
+PR: `#291`
 
-PR URL: `PENDING CREATION`
+PR URL: `https://github.com/SmartBusinessv1/smart-business/pull/291`
 
-Final branch head SHA: reported externally after the final report update because the report cannot embed the SHA of the commit that contains its own final contents.
+Final branch head SHA: reported externally after this final report update because the report cannot embed the SHA of the commit that contains its own final contents.
 
 ---
 
