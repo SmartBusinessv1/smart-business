@@ -70,9 +70,11 @@ Only the obsolete "at most one optional" phrase — stale once D-023 confirms ev
 
 ## 6. Confirmation — Amendment Matches FWR-003/FWR-004 and Introduces No New Behavior
 
-The amended D-023 and the consistency-aligned D-024, read together, satisfy every point of the governing rule `instruction1.123.md` §3 records as already Founder-approved (mirroring the Founder Workflow Reconciliation Record's FWR-003 and FWR-004):
+`instruction1.123.md` §3 records ten preserved elements of the already Founder-approved governing rule (mirroring the Founder Workflow Reconciliation Record's FWR-003 and FWR-004). The amended D-023 and the consistency-aligned D-024 directly express eight of them; the remaining two are preserved existing constraints that this amendment does not duplicate into the decision-record wording, because they were never decision-record-level content in the first place (corrected per MC-GC27-001; see Section 6A below).
 
-| Governing rule point (§3) | Where satisfied |
+**Directly expressed in the amended D-023/D-024:**
+
+| Governing rule point (§3) | Where expressed |
 |---|---|
 | 1. Merchant-supplied SKU input is optional | D-023 |
 | 2. Every newly created Catalog product resolves to one SKU | D-023 ("uses one SKU per Catalog product"); D-024 ("A product has one SKU") |
@@ -80,10 +82,33 @@ The amended D-023 and the consistency-aligned D-024, read together, satisfy ever
 | 4. Absent SKU → Smart Business generates one business-scoped unique tracking SKU | D-023 |
 | 5. Generated SKU must not collide with supplied or generated SKUs in the same business | D-024 ("unique within its business") |
 | 6. Different businesses may use the same SKU value | D-024 ("different businesses may use the same SKU") |
-| 7. Absence of merchant SKU must not block product creation | D-023 |
+| 10. Absence of merchant SKU must not block product creation | D-023 |
 | 8. Same canonical rule applies across every creation channel | D-023 (explicit channel-list clause) |
 
-No fact, rule, or behavior beyond this governing set was introduced. This amendment translates already Founder-approved Product Truth (recorded in the Founder Workflow Reconciliation Record and already carried into the locked Version 1.2 implementation package under GC-24/`instruction1.120.md` and GC-26/`instruction1.122.md`) into the Founder Product Decision Record itself; it does not create new Product Truth.
+**Preserved existing constraints not duplicated into D-023/D-024:**
+
+| Governing rule point (§3) | Where already governed |
+|---|---|
+| 7. Generated SKU must not unnecessarily encode sensitive information | Engineering Contract §9A (FWR-003 bullet: "must not encode sensitive information unnecessarily") — locked Version 1.2 package, untouched by this mission |
+| 9. SKU identity remains governed by the existing audit/history obligations | Engineering Contract §9A (FWR-003 bullet: "governed by the same audit/history rules as any other identity change"); Founder Product Decision Record D-064 (unchanged by this mission) |
+
+No fact, rule, or behavior beyond this ten-point governing set was introduced. This amendment translates already Founder-approved Product Truth (recorded in the Founder Workflow Reconciliation Record and already carried into the locked Version 1.2 implementation package under GC-24/`instruction1.120.md` and GC-26/`instruction1.122.md`) into the Founder Product Decision Record itself; it does not create new Product Truth. Points 7 and 9 remain fully in force exactly as already governed at the engineering-contract and decision-record level (D-064) — this amendment does not remove, weaken, narrow, or otherwise touch either constraint; it simply does not restate them a second time inside D-023/D-024's own terse wording, consistent with the decision record's existing style of not duplicating engineering-level detail already carried by the locked implementation package (compare, e.g., D-064's own general audit-history obligation, which D-023 has never individually restated for any other identity field).
+
+---
+
+## 6A. Mission Control Review Correction — MC-GC27-001 (Governing-Rule Coverage Overclaim)
+
+Mission Control reviewed PR #282 and returned `CHANGES REQUIRED` with one finding, **MC-GC27-001**: Section 6's original eight-row mapping table was introduced with the claim that the amended D-023/D-024 text "satisfy every point" of `instruction1.123.md` §3's governing rule. `instruction1.123.md` §3 in fact records ten preserved elements, not eight; the original table omitted two of them — point 7 ("SKU generation must not encode sensitive information unnecessarily") and point 9 ("SKU identity remains governed by the existing audit/history obligations") — so the "satisfies every point" claim overstated what the amended decision-record wording itself expresses.
+
+**D-023 and D-024's live decision wording is accepted as correct and was not changed by this correction.** The finding is about this report's own characterization of coverage, not about the amendment itself.
+
+**Correction applied**, pushed to this same branch/PR, no new PR opened:
+
+- Corrected Section 6 to remove the "satisfy every point" claim and to explicitly distinguish the eight governing-rule points directly expressed in the amended D-023/D-024 wording from the two preserved existing constraints (points 7 and 9) that this amendment does not duplicate into the decision-record text.
+- Added the missing two points to Section 6, each with a citation to where they are already governed: point 7 and point 9 are both already stated in Engineering Contract §9A's FWR-003 bullet (part of the already-locked Version 1.2 package, untouched by this mission), and point 9 is additionally covered by the Founder Product Decision Record's own existing D-064 general audit-history obligation (also unchanged by this mission).
+- **Confirmation:** neither preserved constraint was removed, weakened, or narrowed by GC-27. Engineering Contract §9A (locked, `LOCKED — MISSION CONTROL ACCEPTED`, untouched by this mission per Section 8 above) and Founder Product Decision Record D-064 (byte-identical before and after this mission, confirmed in Section 7 below) both remain exactly as they were before this mission began. This amendment's D-023/D-024 wording simply does not restate them a second time, consistent with the decision record's existing style — no other decision individually restates engineering-level detail the locked package already carries.
+- No change was made to D-023, D-024, or any other Founder decision as part of this correction. No change was made to the locked Version 1.2 package, Product Blueprint, EIS, Founder Lovable Brief, code, SQL, Supabase, AWS, Lovable, or repository-hygiene scope. Exactly the same two files remain this PR's changed-file set: the Founder Product Decision Record (unchanged by this correction) and this report (corrected).
+- Final disposition (Section 12 below) is unchanged: `SB-P-1.11 D-023 FOUNDER DECISION-RECORD AMENDMENT — COMPLETE — MISSION CONTROL VERIFICATION REQUIRED`.
 
 ---
 
