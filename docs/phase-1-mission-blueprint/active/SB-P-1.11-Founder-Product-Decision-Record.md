@@ -38,8 +38,8 @@
 | D-020 | Build Now includes one optional manually entered barcode. Scanning, label generation, hardware workflows, and POS synchronization are deferred. |
 | D-021 | Each product has at most one optional barcode in Build Now. Multiple or alternate barcodes are deferred. |
 | D-022 | A barcode is unique within a business but may be used by different businesses. |
-| D-023 | Build Now includes one optional merchant-defined SKU. SKU does not block product creation. |
-| D-024 | A product has at most one optional SKU, unique within its business; different businesses may use the same SKU. |
+| D-023 | *(Amended under SB-P-1.11-GC-27 — see Amendment History below.)* Build Now uses one SKU per Catalog product. Merchant-supplied SKU input is optional: when supplied, Smart Business validates and uses it if permitted; when absent, Smart Business automatically assigns a business-scoped unique tracking SKU. Absence of a merchant-supplied SKU does not block product creation. The same rule applies identically across dashboard/manual creation, Catalog CSV/XLSX import, Inventory-first creation, WhatsApp text, voice, and photo-assisted creation, and future governed creation channels. |
+| D-024 | *(Consistency-aligned under SB-P-1.11-GC-27 — see Amendment History below.)* A product has one SKU, unique within its business; different businesses may use the same SKU. |
 | D-025 | Build Now has no product-variant hierarchy. Each separately priced, identified, or stocked size or flavour is a separate product. Structured variants are deferred. |
 | D-026 | Product name is required and unique within its business. Separate sizes or flavours must be distinguishable in the name. |
 | D-027 | Build Now includes an optional text description. |
@@ -92,6 +92,17 @@ No unresolved Founder product decision currently prevents refinement of Product 
 ## Superseded Decisions
 
 None.
+
+## Amendment History
+
+**D-023 — formally amended under SB-P-1.11-GC-27 (`communication/live/instruction1.123.md`).**
+
+- **Original wording (2026-08-04, Stage 1 Founder confirmation, preserved here for historical auditability):** "Build Now includes one optional merchant-defined SKU. SKU does not block product creation."
+- **Amended wording (in effect above):** "Build Now uses one SKU per Catalog product. Merchant-supplied SKU input is optional: when supplied, Smart Business validates and uses it if permitted; when absent, Smart Business automatically assigns a business-scoped unique tracking SKU. Absence of a merchant-supplied SKU does not block product creation. The same rule applies identically across dashboard/manual creation, Catalog CSV/XLSX import, Inventory-first creation, WhatsApp text, voice, and photo-assisted creation, and future governed creation channels."
+- **Reason:** the original wording described merchant-supplied SKU as the only entry path and did not account for the Smart Business–generated business-scoped tracking SKU assigned when the merchant supplies none. The Founder Workflow Reconciliation Record (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`, FWR-003 and FWR-004) recorded this generated-SKU behavior as Founder-approved Product Truth and classified D-023 as `AMENDMENT REQUIRED` pending a formal decision-record amendment. This amendment implements that already Founder-approved FWR-003/FWR-004 rule; it does not create new Product Truth.
+- **D-024 received only a minimum consistency wording alignment**, not a substantive amendment: the phrase "at most one optional SKU" was removed because it became textually stale once D-023 confirmed every product resolves to exactly one SKU (merchant-supplied or generated) rather than an optionally-absent one; D-024's existing uniqueness/business-scope rule ("unique within its business; different businesses may use the same SKU") is preserved unchanged in meaning.
+- **No other Founder decision (D-001 through D-022, D-025 through D-068) was reopened, reinterpreted, or modified by this amendment.**
+- **No implementation authority was granted by this amendment.** This is a governance-record correction only; it does not authorize application code, SQL, migrations, Supabase/AWS/Lovable mutation, repository hygiene remediation, Blueprint lifecycle movement, deployment, publication, or production activity, and it does not itself modify the already-locked SB-P-1.11 Version 1.2 implementation package (`docs/implementation/SB-P-1.11/engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`), which already carried this same generated-SKU behavior forward under `communication/live/instruction1.120.md` (SB-P-1.11-GC-24) and `communication/live/instruction1.122.md` (SB-P-1.11-GC-26).
 
 ## Source Conflicts and Mission Control Resolutions
 
