@@ -42,8 +42,8 @@ IMPLEMENTATION AUTHORITY: NONE
 | Stage | 12C — Verification Checklist Preparation, Refinement, and Lock |
 | Package Position | Third and final document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md` this document — all three reconciled to Version 1.2, `DRAFT — MISSION CONTROL REVIEW REQUIRED`, under this same mission; Stage 12 Initial Implementation Package requires a fresh Stage 13 Mission Control package review before any of the three may be re-locked) |
 | Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.24.md` (`report1.24.md`) → Mission Control review recorded findings MC-VC-001 through MC-VC-003 → Version 1.1 refinement authorized by `communication/live/instruction1.25.md` (`report1.25.md`), resolving MC-VC-001 through MC-VC-003 → Mission Control re-review recorded `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE` → Version 1.1 lock-only update authorized by `communication/live/instruction1.26.md` |
-| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22). Not yet Mission Control reviewed or locked; see Section 36 for the exact delta |
-| Authorizing Instruction | `communication/live/instruction1.118.md` (this revision); `communication/live/instruction1.26.md` (Version 1.1 lock, preserved history) |
+| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22); corrected per Mission Control finding MC-GC22-001 (PR #272); further bounded-corrected by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), adding Section 17A verification coverage for Founder Workflow Reconciliation Record obligations FWR-001 through FWR-005. Not yet Mission Control reviewed or locked; see Section 36 for the exact delta |
+| Authorizing Instruction | `communication/live/instruction1.120.md` (this revision); `communication/live/instruction1.118.md` (Version 1.2 reconciliation, preserved); `communication/live/instruction1.26.md` (Version 1.1 lock, preserved history) |
 | Canonical Lambda Parser EIS | `communication/live/report1.126.md` — `LAMBDA PARSER EIS — APPROVED — LOCKED`. Governs the CSV/XLSX parser-runtime and import-support-state verification content in this checklist; see the precedence note below |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Document Type | Phase-scoped, evidence-driven verification instrument, for use only after separate Mission Control review, acceptance, and lock |
@@ -782,6 +782,166 @@ Applies only if the environment-gated scheduler is named in Section 2. Otherwise
 
 ---
 
+## 17A. Founder Workflow Reconciliation Verification — Inventory Onboarding, Generated SKU, and Inventory-First Orchestration (FWR-001 through FWR-005) (added by correction, GC-24)
+
+Authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control finding MC-GC23-002 (`report1.128.md`). Every item below is an unexecuted template placeholder, exactly like every other item in this checklist — none is pre-populated with `PASS`, `FAIL`, or any other outcome. These items verify Engineering Contract §9A and Lovable Build Prompt §14A, both carrying the Founder Workflow Reconciliation Record (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`, FWR-001 through FWR-005). Adding this section does not itself satisfy any item; each item requires its own authorized verification run.
+
+- **CHK-FWR-001** — Inventory/Opening Stock bulk-onboarding template availability, schema, and version identification.
+  - **Phase / Component:** Phase 2b (import scope, analogous to CHK-BE-IMP template coverage under Section 10).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-002; Engineering Contract §9A; Lovable Build Prompt §14A.
+  - **Expected Result:** A downloadable Inventory/Opening Stock template exists, distinguishes required from optional fields, provides merchant-friendly examples, carries an identifiable schema/version marker, and is never itself treated as submitted or validated data.
+  - **Verification Method:** Download the template; inspect its field set against the Inventory/Opening Stock import contract; confirm version identification.
+  - **Evidence Location:** Downloaded template file; schema/version inspection output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-002** — Catalog bulk-import template availability, schema, and version identification.
+  - **Phase / Component:** Phase 2b.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-002; Engineering Contract §9A; Lovable Build Prompt §14A.
+  - **Expected Result:** A downloadable Catalog import template exists, distinguishes required from optional fields, provides merchant-friendly examples, carries an identifiable schema/version marker, and is never itself treated as submitted or validated data.
+  - **Verification Method:** Download the template; inspect its field set against the Catalog import contract; confirm version identification.
+  - **Evidence Location:** Downloaded template file; schema/version inspection output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-003** — Smart Business–generated SKU is assigned exactly when merchant SKU is absent.
+  - **Phase / Component:** Phase 1 (cross-phase — applies wherever Catalog product creation is authorized).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-003; Engineering Contract §9A; Lovable Build Prompt §14A.
+  - **Expected Result:** Product creation with no merchant-supplied SKU results in a Smart Business–generated, business-scoped SKU recorded as the product's SKU; product creation with a merchant-supplied SKU never overwrites it with a generated value.
+  - **Verification Method:** Create products with and without a supplied SKU; inspect the persisted `sku` value and its provenance in each case.
+  - **Evidence Location:** Test-run output; database row inspection.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-004** — Generated SKU uniqueness and non-collision with merchant-supplied SKUs.
+  - **Phase / Component:** Phase 1 (cross-phase).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-003; Engineering Contract §9A.
+  - **Expected Result:** A generated SKU is unique within its business, never collides with any existing merchant-supplied SKU in the same business, and does not unnecessarily encode sensitive information.
+  - **Verification Method:** Attempt to force a collision by creating many products without a supplied SKU and by pre-seeding a merchant-supplied SKU matching a plausible generated pattern; confirm no collision occurs.
+  - **Evidence Location:** Test-run output; database constraint/uniqueness inspection.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-005** — Merchant-supplied SKU is never displaced, and remains optional.
+  - **Phase / Component:** Phase 1 (cross-phase).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-003; D-023 (Founder Product Decision Record — disposition `AMENDMENT REQUIRED` per Founder Workflow Reconciliation Record §3; text not yet amended; corrected per MC-GC24-001).
+  - **Expected Result:** A merchant may still create a product with no SKU input required; a merchant-supplied SKU is validated and used exactly as supplied, never replaced or supplemented by a generated value.
+  - **Verification Method:** Create products through the dashboard supplying a SKU and omitting one; confirm the merchant-supplied value is preserved unchanged.
+  - **Evidence Location:** Test-run output; database row inspection.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-006** — Identical SKU rule enforced across every creation channel; no channel-specific SKU logic exists.
+  - **Phase / Component:** Cross-phase (Phase 1 dashboard/Inventory-first; Phase 2b bulk import; Phase 3 WhatsApp text/voice/photo, gated).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-004; Engineering Contract §9A; Lovable Build Prompt §14A.
+  - **Expected Result:** The same domain rule (supplied → validate/use; absent → generate) is implemented once and reused by every creation channel; no channel-specific SKU-handling code path exists.
+  - **Verification Method:** Code-path/diff inspection confirming a single shared SKU-resolution implementation invoked by every creation entry point, not a duplicated or divergent implementation per channel.
+  - **Evidence Location:** Source diff inspection output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-007** — Inventory-first creation presents an existing exact/authorized Catalog match for confirmation; no silent duplicate Catalog product is created.
+  - **Phase / Component:** Phase 1.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-005 step 2; Engineering Contract §9A; Lovable Build Prompt §14A; D-068.
+  - **Expected Result:** When an exact/authorized matching Catalog product already exists, the Inventory-first flow presents the proposed link for explicit merchant confirmation; it never creates a second Catalog product for the same identity without that confirmation.
+  - **Verification Method:** Attempt Inventory-first creation for an item matching an existing Catalog product; confirm the preview/confirmation step and the absence of an auto-created duplicate.
+  - **Evidence Location:** Test-run output; database row inspection.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-008** — Inventory-first creation with no existing match creates the Catalog product before the Inventory entity, via a canonical Catalog command.
+  - **Phase / Component:** Phase 1.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-005 steps 3–4; Engineering Contract §9A; Lovable Build Prompt §14A.
+  - **Expected Result:** When no suitable Catalog product exists, the Inventory-first flow calls `create_catalog_product` (caller-JWT authority) before creating the Inventory entity; no direct table write bypasses the command.
+  - **Verification Method:** Trace the exact call sequence for a genuinely new item with no Catalog match; confirm command invocation order and authority.
+  - **Evidence Location:** Server-side call trace; database row `created_at` ordering.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-009** — Governed Catalog↔Inventory link is established before any Opening Stock movement is recorded.
+  - **Phase / Component:** Phase 1.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-005 steps 5–6; Engineering Contract §9A; Lovable Build Prompt §14A; BKR-2.
+  - **Expected Result:** The governed one-to-one Catalog↔Inventory link (BKR-2) exists before any Opening Stock inventory movement is recorded for the same item; no code path records Opening Stock ahead of, or without, the link.
+  - **Verification Method:** Trace the exact call sequence for Inventory-first creation with a non-zero opening quantity; confirm link-then-movement ordering.
+  - **Evidence Location:** Server-side call trace; database row inspection (link timestamp vs. movement timestamp).
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-010** — D-047 tenure-bounded enforcement holds for Inventory-first-created links; no historical/stock-event-bearing item is silently retro-linked.
+  - **Phase / Component:** Phase 1.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-005; Engineering Contract §11, §9A; D-047.
+  - **Expected Result:** An inventory item already carrying stock-event history cannot be silently linked or relinked through the Inventory-first flow; such a case is fail-closed and requires the separately governed reconciliation path, not automatic linking.
+  - **Verification Method:** Attempt Inventory-first linking against an inventory item with existing movement history; confirm rejection/fail-closed behavior.
+  - **Evidence Location:** Test-run output; rejection outcome record.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-011** — D-068 preview and explicit confirmation is required wherever Inventory-first linking would change selling-unit meaning.
+  - **Phase / Component:** Phase 1.
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-005; Engineering Contract §12, §9A; D-068.
+  - **Expected Result:** If the Inventory-first flow's governed link would change the product's selling unit, the existing D-068 preview/confirmation safeguard applies identically to this creation path — no numeric price is silently reinterpreted under a new unit.
+  - **Verification Method:** Trigger an Inventory-first link that changes selling-unit meaning; confirm the preview/confirmation step fires and blocks silent reinterpretation.
+  - **Evidence Location:** Test-run output; UI/preview trace.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-012** — Opening Stock quantity is created only through an Inventory movement; no bulk-onboarding or Inventory-first code path writes current stock directly.
+  - **Phase / Component:** Cross-phase (Phase 1 Inventory-first; Phase 2b bulk onboarding).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-001, FWR-005; SB-P-1.10 Inventory Truth (unmodified); Engineering Contract §9A.
+  - **Expected Result:** Every opening-quantity value, whether from Inventory-first creation or Inventory/Opening Stock bulk onboarding, is recorded only via `create_inventory_movement`; no code path writes `inventory_items` current-quantity-equivalent state directly.
+  - **Verification Method:** Full-text search of the diff for any direct write to inventory quantity state outside the existing movement RPC; trace both creation paths' actual write calls.
+  - **Evidence Location:** Search output; server-side call trace.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-013** — Idempotency, replay, and unknown-outcome behavior hold across the multi-step Inventory-first/bulk-onboarding workflow.
+  - **Phase / Component:** Cross-phase (Phase 1 Inventory-first; Phase 2b bulk onboarding).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-001, FWR-005; BKR-1 through BKR-5; Section 19 of this checklist (Idempotency, Audit, Provenance, Stale-State, Rejection, and Unknown-Outcome Verification).
+  - **Expected Result:** A replayed request at any step of the Catalog-resolve/create → Inventory-create → link → Opening-Stock sequence returns the prior terminal outcome rather than re-executing or duplicating state; a genuinely ambiguous failure after dispatch is reported as `UNKNOWN_OUTCOME`, never silently as "nothing changed."
+  - **Verification Method:** Replay each step's request with the same idempotency key after a simulated interruption; confirm idempotent/`UNKNOWN_OUTCOME` behavior matches Section 19's model.
+  - **Evidence Location:** Test-run output; idempotency-key table inspection.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+- **CHK-FWR-014** — Inventory/Opening Stock bulk-onboarding and Inventory-first runtime access remain Owner-only in Phase 1, with no Manager/Employee expansion.
+  - **Phase / Component:** Phase 1 (activation gated behind Phase 2a, matching CHK-OWN coverage under Section 8).
+  - **Locked-Source Reference:** Founder Workflow Reconciliation Record FWR-001, §5 "Required Pre-Implementation Gates"; `report1.96.md` §9; `report1.102.md`; Engineering Contract §9A, §16.
+  - **Expected Result:** No Manager- or Employee-scoped RLS policy or permission check exists for `inventory_items`, `inventory_movements`, `inventory_import_batches`, or `inventory_import_rows`; every Inventory-first and bulk-onboarding runtime path checks `businesses.owner_id = auth.uid()` only, exactly as Section 8 already requires for Catalog.
+  - **Verification Method:** RLS-policy and permission-check inspection on the named tables and code paths; confirm no Manager/Employee-reachable path exists.
+  - **Evidence Location:** SQL query output (`pg_policies`); code-path inspection output.
+  - **Actual Result:** [To be completed during the authorized verification run]
+  - **Outcome:** [Select one authorized outcome during verification]
+  - **Verifier Notes:** [To be completed]
+  - **Defect Reference:** [Required only for FAIL; otherwise —]
+
+---
+
 ## 18. Price, Tax, Reference-Cost, D-047, and D-068 Integrity Verification
 
 - **CHK-PTC-001** — Selling price, reference cost, and tax history are append-only, immutable event tables.
@@ -1430,6 +1590,7 @@ This document, as prepared, is an unexecuted template only (corrected per MC-VC-
 | 15. Command-Only Writes | §8 (Business Rules) | §3, §6, §7 | §13 | §12 |
 | 16. Business Isolation | §8 "Business Ownership and Isolation" | §6, §11 | §14 | §13 |
 | 17. Catalog/Inventory Separation | §2, §8 | §3, §9 | §9 | §14 |
+| 17A. Founder Workflow Reconciliation Verification (added by correction, GC-24) | §8 "CSV and Excel Bulk Import", "SKU" | — (Founder Workflow Reconciliation Record) | §9A | §14A |
 | 18. Price/Tax/Cost/D-047/D-068 | §8, §9 | §9, §10, §11 | §10, §11, §12 | §15 |
 | 19. Idempotency/Audit/Stale/Rejection/Unknown-Outcome | §5 | §5.0, §10, §11, §18 | §17, §25 | §17, §22 |
 | 20. Same-Actor Confirmation | §5 | §15 | §20 | §16 |
@@ -1465,3 +1626,5 @@ This checklist preserves the distinction exactly as locked, reconciled for one i
 | 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-VC-001 through MC-VC-003 as `RESOLVED` and recording `VERIFICATION CHECKLIST REVIEW: PASSED`, `VERIFICATION CHECKLIST: ACCEPTABLE`, `FURTHER REFINEMENT REQUIRED: NO`. Per `instruction1.26.md`, this is a lock-only documentation change: Version 1.1's substantive content — the five controlled outcomes, ten-field item structure, unexecuted-template placeholders, mandatory cross-phase controls, phase-exclusive deferred-outcome rule, the five phase/gated-component groups, the locked 28-command grouping, the Owner-only Phase 1 boundary, the prohibition on a substitute permission engine, the shared-system and environment gates, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, idempotency/rejection/unknown-outcome rules, same-actor confirmation, clean-file scanning, employee restrictions, AI Assistant boundaries, multilingual verification, the POS boundary, merchant-safe messaging, the evidence and defect model, the Engineering Contract §29.1/§29.2 separation, the four-locked-Stage-12-authority terminology, and the Founder Product Decision Record's treatment as an independently traceable preserved decision source — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. No live verification run was conducted. The Verification Checklist is now the locked, authoritative Stage 12C verification instrument, completing the three-document Stage 12 Initial Implementation Package; the Founder Lovable Brief, paste-into-Lovable authority, and implementation remain separately unauthorized. |
 | 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added the canonical Lambda Parser EIS as a mandatory preserved authority in Section 1, alongside (not counted among) the four locked Stage 12 authorities, matching the existing Founder Product Decision Record pattern. Corrected CHK-P2B-001 and CHK-P2B-002 (Section 10) to verify zero new Catalog commands and Phase 1 Owner-only import authority, replacing the stale three-placeholder-command and owner-or-manager verification targets. Corrected CHK-BE-004 (Section 14) and CHK-P2A-002's "28-command" cross-reference to the reconciled 25-command total, with an explicit note that only the Phase 2b row was reconciled and the Phase 1/Phase 3/scheduler rows were not independently audited by this mission. Corrected CHK-SCAN-001 (Section 21) to verify the reconciled Lambda Parser EIS integrity chain in place of the stale import-job re-check points. Added new Section 29A ("Lambda Parser EIS — Infrastructure, Security, and Supabase Support-State Verification") with sixteen new unexecuted-template checklist items (`CHK-LPE-001` through `CHK-LPE-016`) carrying forward, as required verification obligations, the later-evidence list `report1.126.md` Section 10 records as outstanding and the enforcement-first migration acceptance evidence locked by `report1.120.md`/`report1.122.md` — no item is pre-populated with any outcome. Added a Section 35 traceability row for Section 29A and corrected the §29.1 open-dispositions count from six to five, consistent with the Engineering Contract's own reconciliation. Updated CHK-LOCK-004 and CHK-LOCK-005 (Section 3) to reference the reconciled Version 1.2 targets rather than the superseded Version 1.1 byte-identity target, and added CHK-LOCK-005A verifying the new canonical Lambda Parser EIS lock record's own integrity. No other section was reopened or reinterpreted; unaffected verification items, the outcome vocabulary, the ten-field item structure, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |
 | 1.2 (MC-GC22-001 correction, DRAFT) | Bounded correction, pushed to the existing Version 1.2 reconciliation on PR #272 per Mission Control review finding MC-GC22-001: the prior Version 1.2 draft's CHK-BE-004 and CHK-P2A-002 introduced a "25-command"/"28-command" figure that contradicted the canonical "exactly nineteen public Catalog commands; no twentieth Catalog command" boundary, by summing the nineteen together with forward-looking, not-yet-verified-built scheduled-price/channel/scheduler functions under the single label "command." Re-verified the canonical nineteen directly against `report1.91.md` §13 (unchanged from repository authority). Split the former CHK-BE-004 into CHK-BE-004 (verifies exactly the closed nineteen-name Catalog command list, cross-phase) and CHK-BE-004A (verifies the separate, broader phase-scoped public function/RPC inventory, explicitly relabeled away from "Catalog command surface" language, asserting no combined numeric total as a locked figure). Corrected CHK-P2A-002 to reference the nineteen-command boundary directly instead of the retired 25-command figure. No other item, section, or prior GC-22 reconciliation content was reopened; status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout. |
+| 1.2 (GC-24 correction, DRAFT) | Bounded correction authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control finding MC-GC23-002 (`report1.128.md`): the checklist lacked verification coverage for the Founder Workflow Reconciliation Record's FWR-001 through FWR-005, now carried into Engineering Contract §9A and Lovable Build Prompt §14A. Added new Section 17A, "Founder Workflow Reconciliation Verification — Inventory Onboarding, Generated SKU, and Inventory-First Orchestration (FWR-001 through FWR-005)," with fourteen new unexecuted-template checklist items (`CHK-FWR-001` through `CHK-FWR-014`) covering: Inventory/Opening Stock and Catalog import template availability/schema/version identification (CHK-FWR-001–002); generated-SKU-when-absent behavior, uniqueness/collision avoidance, and merchant-supplied-SKU preservation (CHK-FWR-003–005); the identical SKU rule across every creation channel (CHK-FWR-006); Inventory-first exact/authorized-match handling with no silent duplicate, Catalog-before-Inventory creation ordering, and governed-link-before-Opening-Stock ordering (CHK-FWR-007–009); D-047 fail-closed behavior and D-068 preview/confirmation for selling-unit-affecting links (CHK-FWR-010–011); Opening-Stock-movement-only quantity creation (CHK-FWR-012); multi-step idempotency/replay/unknown-outcome behavior (CHK-FWR-013); and Owner-only Phase 1 authority with no Manager/Employee expansion for Inventory onboarding (CHK-FWR-014) — no item is pre-populated with any outcome. Added a Section 35 traceability row for Section 17A. No other section was reopened or reinterpreted; unaffected verification items, the outcome vocabulary, the ten-field item structure, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout; not approved, not locked, no Founder Lovable Brief, no paste-into-Lovable authority, no implementation authority. |
+| 1.2 (MC-GC24-001 correction, DRAFT) | Bounded correction, pushed to the existing PR #276 per Mission Control review finding MC-GC24-001: `CHK-FWR-005`'s Locked-Source Reference cited D-023 as "(reconciled, not amended)," which incorrectly implied the Founder Workflow Reconciliation Record's own §3 table records D-023 as already compatible/reconciled. It does not — that table records D-023's disposition as `AMENDMENT REQUIRED`. Corrected `CHK-FWR-005`'s Locked-Source Reference to cite D-023's actual `AMENDMENT REQUIRED` disposition and to note its text has not yet been amended. `CHK-FWR-005`'s own Expected Result and Verification Method — verifying that merchant-supplied SKU remains optional and is never displaced — were already correct and are unchanged; only the Locked-Source Reference's characterization of D-023's amendment status was corrected. No other item, section, or prior GC-24 content was reopened; status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout. |
