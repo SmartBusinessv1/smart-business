@@ -112,6 +112,25 @@ Package lock is not represented, in any of the three documents or in this report
 
 ---
 
+## 9A. Mission Control Review Correction — MC-GC26-001 (Post-Lock Next-Gate / Residual-Classification Wording)
+
+Mission Control reviewed PR #280 and returned `CHANGES REQUIRED` with one finding, **MC-GC26-001**, covering two defects introduced by the original GC-26 lock text:
+
+1. `verification-checklist.md` §34's closing sentence stated that "the recommended next action is a separate, explicit Mission Control implementation authorization for a specific named phase" — this incorrectly implied implementation authorization was the immediate expected next step, rather than one of several separately gated, not-yet-satisfied prerequisites (`instruction1.122.md` §13: formal D-023 amendment reconciliation and repository hygiene completion/verification remain mandatory before implementation authorization/Build).
+2. The three new "1.2 (Package Lock, GC-26)" change-log entries (one per package document) each described the four residual governance items from `report1.130.md` §9 using a single undifferentiated closing clause ("remain open, separately governed prerequisites" in the Engineering Contract and Verification Checklist; "mandatory before Founder Lovable Brief authorization/use and before implementation authorization" in the Lovable Build Prompt) — implying all four items share one blanket gate classification. They do not: the Blueprint `active/` lifecycle-path item is non-blocking housekeeping, distinct from the other three items' Stage-14/implementation-authorization gates. This report's own Section 7 (above) already stated the four distinct classifications correctly; only the three package documents' change-log entries had drifted from it.
+
+**Correction applied**, pushed to this same branch/PR, no new PR opened:
+
+- Corrected `verification-checklist.md` §34's closing sentence to state that package lock does not determine or authorize the next lifecycle action, that Mission Control must separately determine and authorize it, that implementation authorization remains blocked until the formal D-023 amendment reconciliation and repository hygiene completion/verification are satisfied (`report1.130.md` §9), and that live verification begins only after a specific implementation phase has been separately authorized and built — matching the exact wording Mission Control specified.
+- Corrected all three package documents' "1.2 (Package Lock, GC-26)" change-log entries' four-residual-item sentence to state each item's own distinct accepted gate classification, exactly as `report1.130.md` §9 and this report's own Section 7 already record: stale `founder-lovable-brief.md` terminology gates Stage 14 Founder Lovable Brief authorization/use and implementation execution relying on that brief; D-023's textual amendment gates Stage 14 Founder Lovable Brief final authorization/use and implementation authorization/Build; repository hygiene gates implementation authorization/Build; the Blueprint `active/` lifecycle path is non-blocking housekeeping only.
+- Added a new "1.2 (MC-GC26-001 correction, LOCKED)" change-log entry to all three package documents, documenting this correction without editing or removing the original "1.2 (Package Lock, GC-26)" entry's own text.
+- All lock metadata changes already applied (Section 4 above) are preserved exactly unchanged — `Version: 1.2`, `STATUS: LOCKED — MISSION CONTROL ACCEPTED`, `APPROVAL: GRANTED`, `LOCK: ACTIVE`, `IMPLEMENTATION AUTHORITY: NONE`, `PASTE-INTO-LOVABLE AUTHORITY: NONE`, and `FOUNDER LOVABLE BRIEF: NOT AUTHORIZED` were not touched by this correction.
+- No substantive package obligation, Product Truth, architecture, workflow, security, verification logic, checklist outcome, Founder record, Blueprint, EIS, code, SQL, Supabase, AWS, Lovable, or repository-hygiene file was modified. Exactly the same four files remain the authorized changed-file set: `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, `report1.131.md` (this report, updated).
+
+`git diff --stat` for this correction shows three small, targeted hunks — `engineering-contract.md` (+2/−1), `lovable-build-prompt.md` (+2/−1), `verification-checklist.md` (+3/−2) — confined entirely to the change-log entries and the §34 closing sentence identified above.
+
+---
+
 ## 10. Final Disposition
 
 `SB-P-1.11 IMPLEMENTATION PACKAGE VERSION 1.2 LOCK COMPLETE — MISSION CONTROL VERIFICATION REQUIRED`
