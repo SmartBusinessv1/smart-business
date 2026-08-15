@@ -172,6 +172,26 @@ Confirmed unaffected by this correction: `CHK-P2B-001`'s own wording (already st
 
 ---
 
+## 13B. Mission Control Stage 13 Review and GC-24 Bounded Correction (MC-GC23-001 through MC-GC23-003)
+
+Mission Control performed the Stage 13 Implementation Package Review this report's §14 disposition below invited (`communication/live/report1.128.md`, reviewing merged `main` at `dc83d581821d4664bb459ea1f97f289aeb03b187`, PR #273) and returned `SB-P-1.11 IMPLEMENTATION PACKAGE REVIEW — CHANGES REQUIRED`, recording three blocking findings:
+
+- **MC-GC23-001** — `lovable-build-prompt.md` still stated, in two live locations (§11 "Exact command surface," §12 command-only-write-boundary), that the locked command surface was "fixed at twenty-eight names," contradicting the canonical nineteen-public-Catalog-command boundary that `verification-checklist.md`'s `CHK-BE-004`/`CHK-BE-004A` already correctly states (MC-GC22-001, §13A above). This defect predates GC-22: GC-22's own authorized scope (`instruction1.118.md`) was the canonical Lambda Parser EIS reconciliation, not the command-taxonomy question, so this report's §5.2 correctly did not claim to have reconciled it — but §14's "READY FOR MISSION CONTROL REVIEW" disposition did not flag it as an outstanding cross-document risk either.
+- **MC-GC23-002** — none of the three package documents yet carried the Founder Workflow Reconciliation Record's FWR-001 through FWR-005 (Inventory/Opening Stock bulk onboarding, downloadable import templates, generated SKU, one canonical SKU rule across channels, Inventory-first orchestration) as Build Now obligations. This content postdates the documents' original Version 1.0/1.1 lock and was outside GC-22's own Lambda-Parser-only scope, so this report did not claim to have carried it either — but the package as a whole was not yet complete for Stage 13 acceptance without it.
+- **MC-GC23-003** — this report's evidence record, read together with §14's disposition, could be misread as claiming the package was fully consistent and complete for package lock once Stage 13 review occurred. Mission Control's finding: "the correction mission should update the reconciliation evidence so the audit record no longer claims completeness that the package itself does not yet satisfy."
+
+**This is not a claim that GC-22 or the MC-GC22-001 correction (§13A) were themselves defective.** Both were correctly scoped and correctly executed within their own authorized boundaries; neither introduced the twenty-eight-command language in `lovable-build-prompt.md` (which predates GC-22 and was never in GC-22's scope to fix) nor omitted Founder Workflow content that GC-22 was never authorized to add. Stage 13's review correctly identified that the *package as a whole* — inclusive of defects and gaps outside GC-22's own narrow authorization — was not yet ready for lock, and that this report's final disposition language did not make that distinction explicit.
+
+**Bounded correction applied**, authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), on a new branch and PR (not appended to PR #272, which is already merged):
+
+- Corrected `lovable-build-prompt.md` §11 and §12 to state the closed nineteen-public-Catalog-command boundary explicitly, matching `CHK-BE-004`/`CHK-BE-004A`'s already-accepted taxonomy, with scheduled-price/channel/pending-action/scheduler functions relabeled as separately classified, non-boundary groups (MC-GC23-001).
+- Added new Section 9A to `engineering-contract.md`, Section 14A to `lovable-build-prompt.md`, and Section 17A (fourteen new unexecuted-template checklist items, `CHK-FWR-001` through `CHK-FWR-014`) to `verification-checklist.md`, translating the Founder Workflow Reconciliation Record's FWR-001 through FWR-005 into implementation-ready obligations in all three documents (MC-GC23-002). Full detail is recorded in `communication/live/report1.129.md`.
+- Appended this section to this report, without editing or removing §1 through §13A above, so the historical record of what GC-22 and the MC-GC22-001 correction actually did — and did not claim to do — remains intact (MC-GC23-003).
+
+**Supersession note:** §14 below's disposition, `SB-P-1.11 IMPLEMENTATION PACKAGE RECONCILIATION — READY FOR MISSION CONTROL REVIEW`, is a historical record of GC-22's own claim at the time it was written and is preserved unedited below. It is **superseded** by `communication/live/report1.128.md`'s `CHANGES REQUIRED` disposition and, following this correction, by `communication/live/report1.129.md`'s disposition, which is the current authoritative record of package readiness. §14's disposition must not be read, cited, or relied upon as the package's current status.
+
+---
+
 ## 14. Final Reconciliation Disposition
 
 `SB-P-1.11 IMPLEMENTATION PACKAGE RECONCILIATION — READY FOR MISSION CONTROL REVIEW`
