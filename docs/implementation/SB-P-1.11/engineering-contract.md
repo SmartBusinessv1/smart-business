@@ -1,31 +1,33 @@
 Document: Engineering Contract
 
-Version: 1.2 (DRAFT reconciliation revision — Version 1.1 remains the last Mission-Control-accepted lock, preserved in the Document Change Log below)
+Version: 1.2 (LOCKED — MISSION CONTROL ACCEPTED — the reconciled, corrected, and re-reviewed revision; Version 1.1's prior lock and the full GC-22/GC-24/GC-25/GC-26 chain are preserved in the Document Change Log below)
 
-Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
+Status: LOCKED — MISSION CONTROL ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control review pending for this revision (Version 1.1 was previously reviewed and locked; see Document Change Log)
+Reviewed By: Mission Control
 
-Approval Status: PENDING RECONCILIATION REVIEW
+Approval Status: ACCEPTED
 
-Lock Status: NOT LOCKED
+Lock Status: LOCKED
 
 Reconciliation Date: 2026-08-15
+
+Lock Date: 2026-08-15
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Engineering Contract
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVAL: PENDING
-LOCK: NOT ACTIVE
+STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVAL: GRANTED
+LOCK: ACTIVE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-This is a reconciled draft revision of the previously locked (Version 1.1) Engineering Contract, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). It is **not** yet Mission Control accepted or locked; the historical fact that Version 1.1 was previously locked is preserved in the Document Change Log (Section 32) but does not carry forward to this revision automatically. This document carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
+This is the reconciled, corrected, and Mission-Control-accepted Version 1.2 Engineering Contract, originally prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`), corrected under `communication/live/instruction1.120.md` (SB-P-1.11-GC-24) to carry the Founder Workflow Reconciliation Record's FWR-001 through FWR-005 and to resolve Mission Control review findings, re-reviewed and found ready for package lock by `communication/live/report1.130.md` (SB-P-1.11-GC-25), and locked by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26). The historical fact that Version 1.1 was previously locked, and the full reconciliation/correction/review chain that produced this Version 1.2 lock, are preserved in the Document Change Log (Section 32). This document still carries no implementation authority. It authorizes no application code, SQL, migration, RLS policy, RPC implementation, Edge Function, scheduler worker, AI prompt, Lovable project change, test, infrastructure, deployment, or production activity.
 
 ## 1. Document Metadata
 
@@ -41,8 +43,8 @@ This is a reconciled draft revision of the previously locked (Version 1.1) Engin
 | Canonical Lambda Parser EIS | `communication/live/report1.126.md` — `LAMBDA PARSER EIS — APPROVED — LOCKED`; the combined engineering contract formed by `report1.108.md` plus the final accepted Infrastructure (`report1.115.md`), Supabase Backend (`report1.123.md`), and Security & Permissions (`report1.124.md`) correction/confirmation chains and `report1.125.md`. Governs the CSV/XLSX parser-runtime and import-support-state architecture; where it conflicts with an earlier statement in the EIS v2.2 or in this contract, `report1.126.md`'s canonical set governs (Section 2) |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.18.md` (`report1.18.md`) → Mission Control review recorded findings MC-EC-001 through MC-EC-006 → Version 1.1 refinement authorized by `communication/live/instruction1.19.md` (`report1.19.md`), resolving MC-EC-001 through MC-EC-006 → Mission Control re-review recorded `ENGINEERING CONTRACT REVIEW: PASSED`, `ACCEPTED FOR LOCK` → Version 1.1 lock-only update authorized by `communication/live/instruction1.20.md` |
-| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22); further bounded-corrected by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), carrying Founder Workflow Reconciliation Record obligations FWR-001 through FWR-005 into Section 9A. Not yet Mission Control reviewed or locked; see Section 32 for the exact delta |
-| Authorizing Instruction | `communication/live/instruction1.118.md` (this revision); `communication/live/instruction1.20.md` (Version 1.1 lock, preserved history) |
+| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22); bounded-corrected by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), carrying Founder Workflow Reconciliation Record obligations FWR-001 through FWR-005 into Section 9A; re-reviewed and found `READY FOR PACKAGE LOCK` by `communication/live/report1.130.md` (SB-P-1.11-GC-25); locked by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26), a status/metadata-only lock update with no substantive content change; see Section 32 for the exact delta |
+| Authorizing Instruction | `communication/live/instruction1.122.md` (this lock); `communication/live/instruction1.120.md` (GC-24 correction, preserved history); `communication/live/instruction1.118.md` (GC-22 reconciliation, preserved history); `communication/live/instruction1.20.md` (Version 1.1 lock, preserved history) |
 | Package Position | First document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`); this reconciliation revises all three documents together under a single mission |
 | Upstream Mission Dependency | SB-P-1.10 — Inventory Foundation (accepted, LOCKED) |
 
@@ -516,7 +518,16 @@ Before a separate, explicit Mission Control implementation authorization is issu
 
 ## 31. Required Document Status and Lifecycle Boundary
 
-**Current status (Version 1.2, this reconciliation):**
+**Current status (Version 1.2, locked by GC-26):**
+
+```text
+DOCUMENT STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVED: YES
+LOCKED: YES
+IMPLEMENTATION AUTHORITY: NONE
+```
+
+**Historical record (Version 1.2 draft/reconciliation states, preserved, superseded by the above for current status purposes):**
 
 ```text
 DOCUMENT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
@@ -541,14 +552,20 @@ After the Version 1.1 lock mission (`communication/live/instruction1.20.md`):
 - The Verification Checklist remains unauthorized — **[APPROVAL GATE]**.
 - The Stage 12 Initial Implementation Package remains incomplete.
 
-After this reconciliation mission (`communication/live/instruction1.118.md`, SB-P-1.11-GC-22):
+After the GC-22 reconciliation and GC-24 correction missions (`communication/live/instruction1.118.md`, `communication/live/instruction1.120.md`), and through the GC-23/GC-25 Stage 13 review chain (`communication/live/report1.128.md`, `communication/live/report1.130.md`):
 
-- Version 1.2 is a reconciled draft revision, not yet Mission Control reviewed or locked. Version 1.1's prior lock is a preserved historical fact (above) and does not carry forward automatically to Version 1.2.
-- The Lovable Build Prompt and Verification Checklist are reconciled to matching `DRAFT — MISSION CONTROL REVIEW REQUIRED` status alongside this document, under the same mission.
-- All three Stage 12 package documents require a separate Mission Control package review (Stage 13) before any of them may be re-locked.
-- Implementation remains unauthorized.
+- Version 1.2 was a reconciled, then corrected, draft revision, not yet Mission Control reviewed or locked. Version 1.1's prior lock was a preserved historical fact (above) and did not carry forward automatically to Version 1.2.
+- The Lovable Build Prompt and Verification Checklist were reconciled and corrected to matching `DRAFT — MISSION CONTROL REVIEW REQUIRED` status alongside this document.
+- Mission Control's focused Stage 13 re-review (`report1.130.md`) found the corrected Version 1.2 three-document package `READY FOR PACKAGE LOCK`.
 
-Locking the Engineering Contract does not itself authorize the next document or implementation. Mission Control must verify this lock-only diff; only after that verification may a separate instruction authorize preparation of the Lovable Build Prompt.
+After this package-lock mission (`communication/live/instruction1.122.md`, SB-P-1.11-GC-26):
+
+- The Engineering Contract is accepted and locked at Version 1.2. This lock is a status/approval/lock-metadata-only update — no substantive Product Truth, architecture, workflow, permission, security, verification, phase, or implementation obligation changed from the Mission-Control-reviewed Version 1.2 content.
+- The Lovable Build Prompt and Verification Checklist are locked to matching `LOCKED — MISSION CONTROL ACCEPTED` status under the same mission.
+- The Stage 12 Initial Implementation Package is `APPROVED — LOCKED`.
+- Implementation, Build Lock, Build Mode, paste-into-Lovable use, Founder Lovable Brief use, deployment, publication, production action, and SB-P-1.11 acceptance remain unauthorized. Package lock does not imply implementation authorization. Before implementation authorization or Build, the D-023 Founder Product Decision Record amendment and repository hygiene completion remain mandatory, separately governed prerequisites (`report1.130.md` §9).
+
+Locking the Engineering Contract does not itself authorize implementation. Mission Control must separately determine and authorize any next lifecycle action.
 
 ## 32. Document Change Log
 
@@ -560,3 +577,4 @@ Locking the Engineering Contract does not itself authorize the next document or 
 | 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added Section 2 item 6A naming the canonical Lambda Parser EIS and its precedence for the parser-runtime scope only. Corrected Section 19: replaced the stale EIS v2.2 `create_catalog_import_job`/`stage_catalog_import_rows`/`apply_catalog_import_valid_rows` placeholder architecture and re-check points with the locked reality (Product Truth for imports remains behind the existing nineteen public Catalog commands — no twentieth command; parsing is externalized to the locked AWS Lambda/S3/IAM-Roles-Anywhere runtime and Parser Upload Lease/EC-2 support-state architecture); corrected the bulk-import authority statement to the Phase 1 Owner-only posture already established by Section 16's sequencing pattern, without reopening or contradicting D-058 (Blueprint §8 and D-058 remain the eventual target rule once the Phase 2a permission engine is separately authorized). Added a clarifying clause to Section 24 distinguishing Phase 2b's unchanged resourcing/scheduling classification from its now-locked required architecture. Reclassified Section 29.1 item 2 ("Final CSV/Excel structural limits") from `SPECIALIST REVIEW REQUIRED` to resolved, citing the exact locked limits in `report1.126.md`. No other section was reopened or reinterpreted; unaffected Product Truth, Founder decisions, permission rules, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |
 | 1.2 (GC-24 correction, DRAFT) | Bounded correction authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control finding MC-GC23-002 (`report1.128.md`): the prior Version 1.2 draft did not carry the Founder Workflow Reconciliation Record's FWR-001 through FWR-005 into this contract. Added new Section 9A, "Founder Workflow Reconciliation — Inventory Onboarding, Generated SKU, and Inventory-First Orchestration (FWR-001 through FWR-005)," translating the Founder Workflow Reconciliation Record (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`) into contract-level obligations: Inventory/Opening Stock bulk onboarding (FWR-001); downloadable Catalog and Inventory/Opening Stock templates (FWR-002); Smart Business–generated business-scoped SKU when merchant SKU is absent (FWR-003); one canonical SKU rule across every creation channel (FWR-004); and the exact six-step Inventory-first orchestration order preserving Catalog/Inventory truth separation, D-047, and D-068 (FWR-005). Added a corresponding Build Now bullet to Section 4, cross-reference notes to Sections 19 and 20, a Section 28 traceability row, and clarified Section 4's and Section 8's product-identifier bullets to note the generated-SKU rule without reopening D-023. This section reconciles, and does not amend or reinterpret, D-023's "optional, merchant-defined" SKU description, exactly as the Founder Workflow Reconciliation Record's own §3 table already records (`COMPATIBLE WITH CONDITION`). No previously accepted content was reopened; Section 9's Catalog/Inventory separation, Section 11's D-047 enforcement, Section 12's D-068 safeguard, the nineteen-public-Catalog-command boundary, caller-JWT Product Truth writes, and Opening-Stock-movement-only quantity creation are unchanged. No new Product Truth, Founder decision, or engineering architecture was invented; BKR-1 through BKR-5 remain the concrete, already-established mechanism satisfying these obligations. Status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout; not approved, not locked, no implementation authority. |
 | 1.2 (MC-GC24-001 correction, DRAFT) | Bounded correction, pushed to the existing PR #276 per Mission Control review finding MC-GC24-001: the prior Version 1.2 GC-24 draft's Section 9A FWR-003 bullet and Section 28 traceability row characterized the Founder Workflow Reconciliation Record's own §3 table as recording D-023's disposition as `COMPATIBLE WITH CONDITION` — this was incorrect. The Founder Workflow Reconciliation Record §3 table records D-023's disposition as `AMENDMENT REQUIRED`, not `COMPATIBLE WITH CONDITION`. Corrected Section 9A's FWR-003 bullet to state accurately that the later Founder Workflow Reconciliation Record and this contract govern the generated-SKU Build Now behavior, that D-023's text in the Founder Product Decision Record still reads "one optional merchant-defined SKU" only and has not itself been amended, and that D-023's own amendment remains a separately tracked housekeeping requirement not performed by this contract, this mission, or any change to the Founder Product Decision Record (outside this mission's authorized five-file scope). Corrected Section 28's traceability row to cite D-023's actual `AMENDMENT REQUIRED` disposition. The accepted FWR-003 product behavior itself — merchant SKU optional; Smart Business generates one business-scoped unique tracking SKU when absent; one SKU per product; business uniqueness; no collision with merchant-supplied SKUs; common rule across creation channels — is unchanged; only the characterization of D-023's amendment status was corrected. No other item, section, or prior GC-24 content was reopened; status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout. |
+| 1.2 (Package Lock, GC-26) | Lock-only status and metadata update authorized by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26), applied after Mission Control's focused Stage 13 re-review (`communication/live/report1.130.md`, SB-P-1.11-GC-25) found the corrected Version 1.2 three-document package `READY FOR PACKAGE LOCK`, with MC-GC23-001 through MC-GC23-003 and MC-GC24-001 all `RESOLVED`. Document status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from `PENDING RECONCILIATION REVIEW` to `ACCEPTED`; lock changed from `NOT LOCKED` to `LOCKED`; the front-matter and Section 31 status blocks were updated to match (`STATUS: LOCKED — MISSION CONTROL ACCEPTED`, `APPROVAL: GRANTED`, `LOCK: ACTIVE`). `IMPLEMENTATION AUTHORITY: NONE` is preserved unchanged. Version remains `1.2`. No substantive Product Truth, architecture, workflow, security, verification, phase, permission, or implementation obligation was added, removed, or reinterpreted by this lock — Sections 1 through 30 and Section 32's own prior entries are otherwise unchanged. The Engineering Contract is now the locked, authoritative Stage 12A implementation contract for SB-P-1.11 Version 1.2. Package lock does not authorize implementation, Build Lock, Build Mode, paste-into-Lovable use, Founder Lovable Brief use, deployment, publication, production action, or SB-P-1.11 acceptance. The four residual governance items identified by `report1.130.md` §9 — stale twenty-eight-command terminology in `founder-lovable-brief.md`, D-023 remaining textually unamended in the Founder Product Decision Record, incomplete repository hygiene, and the Blueprint's `active/` lifecycle path — are explicitly not resolved by this lock and remain open, separately governed prerequisites. |

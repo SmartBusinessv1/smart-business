@@ -1,32 +1,34 @@
 Document: Lovable Build Prompt
 
-Version: 1.2 (DRAFT reconciliation revision — Version 1.1 remains the last Mission-Control-accepted lock, preserved in the Document Change Log below)
+Version: 1.2 (LOCKED — MISSION CONTROL ACCEPTED — the reconciled, corrected, and re-reviewed revision; Version 1.1's prior lock and the full GC-22/GC-24/GC-25/GC-26 chain are preserved in the Document Change Log below)
 
-Status: DRAFT — MISSION CONTROL REVIEW REQUIRED
+Status: LOCKED — MISSION CONTROL ACCEPTED
 
 Created By: Claude Code
 
-Reviewed By: Mission Control review pending for this revision (Version 1.1 was previously reviewed and locked; see Document Change Log)
+Reviewed By: Mission Control
 
-Approval Status: PENDING RECONCILIATION REVIEW
+Approval Status: ACCEPTED
 
-Lock Status: NOT LOCKED
+Lock Status: LOCKED
 
 Reconciliation Date: 2026-08-15
+
+Lock Date: 2026-08-15
 
 Mission: SB-P-1.11
 
 # SB-P-1.11 — Product Catalog & Pricing — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
-APPROVAL: PENDING
-LOCK: NOT ACTIVE
+STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVAL: GRANTED
+LOCK: ACTIVE
 PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-**Do not paste this document into Lovable.** This is a reconciled draft revision of the previously locked (Version 1.1) Lovable Build Prompt, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). It is **not** yet Mission Control accepted or locked, carries no paste-into-Lovable authority, and no implementation authority. It may be pasted into Lovable only after this revision is separately reviewed and re-locked, a separately authorized Founder Lovable Brief exists, and a separate, explicit Mission Control implementation authorization exists for the specific phase being built. This revision does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
+**Do not paste this document into Lovable.** This is the reconciled, corrected, and Mission-Control-accepted Version 1.2 Lovable Build Prompt, originally prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the later-locked canonical Lambda Parser EIS (`communication/live/report1.126.md`), corrected under `communication/live/instruction1.120.md` (SB-P-1.11-GC-24) to resolve MC-GC23-001 and carry the Founder Workflow Reconciliation Record's FWR-001 through FWR-005, re-reviewed and found ready for package lock by `communication/live/report1.130.md` (SB-P-1.11-GC-25), and locked by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26). Document lock still carries **no paste-into-Lovable authority and no implementation authority**. It may be pasted into Lovable only after a separately authorized Founder Lovable Brief exists (the current `founder-lovable-brief.md` still carries stale twenty-eight-command terminology and must be corrected first — `report1.130.md` §9.1) and a separate, explicit Mission Control implementation authorization exists for the specific phase being built. This document does not authorize application code, SQL, migrations, RLS policies, RPC implementations, Edge Functions, scheduler workers, tests, Lovable project changes, infrastructure, deployment, or production activity of any kind.
 
 ---
 
@@ -39,8 +41,8 @@ IMPLEMENTATION AUTHORITY: NONE
 | Stage | 12B — Lovable Build Prompt Preparation, Refinement, and Lock |
 | Package Position | Second document of the Stage 12 Initial Implementation Package (`engineering-contract.md`, `lovable-build-prompt.md` this document, `verification-checklist.md`); this reconciliation revises all three documents together under a single mission |
 | Prior Reviews | Version 1.0 prepared under `communication/live/instruction1.21.md` (`report1.21.md`) → Mission Control review recorded findings MC-LBP-001 through MC-LBP-004 → Version 1.1 refinement authorized by `communication/live/instruction1.22.md` (`report1.22.md`), resolving MC-LBP-001 through MC-LBP-004 → Mission Control re-review recorded `LOVABLE BUILD PROMPT REVIEW: PASSED`, `LOVABLE BUILD PROMPT: ACCEPTABLE` |
-| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22); further bounded-corrected by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving MC-GC23-001 (command taxonomy) and carrying Founder Workflow Reconciliation Record obligations FWR-001 through FWR-005 into Section 14A. Not yet Mission Control reviewed or locked; see Section 28 for the exact delta |
-| Authorizing Instruction | `communication/live/instruction1.120.md` (this revision); `communication/live/instruction1.118.md` (Version 1.2 reconciliation, preserved); `communication/live/instruction1.23.md` (Version 1.1 lock, preserved history) |
+| This Revision | Version 1.2 — minimal-delta reconciliation against the newly locked canonical Lambda Parser EIS (`report1.126.md`), authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22); bounded-corrected by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving MC-GC23-001 (command taxonomy) and carrying Founder Workflow Reconciliation Record obligations FWR-001 through FWR-005 into Section 14A; re-reviewed and found `READY FOR PACKAGE LOCK` by `communication/live/report1.130.md` (SB-P-1.11-GC-25); locked by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26), a status/metadata-only lock update with no substantive content change; see Section 28 for the exact delta |
+| Authorizing Instruction | `communication/live/instruction1.122.md` (this lock); `communication/live/instruction1.120.md` (GC-24 correction, preserved history); `communication/live/instruction1.118.md` (GC-22 reconciliation, preserved history); `communication/live/instruction1.23.md` (Version 1.1 lock, preserved history) |
 | Contract Owner | Claude Code, under Mission Control governance |
 | Document Type | Builder-facing prompt, intended for future direct use inside Lovable's AI builder |
 
@@ -59,7 +61,7 @@ This prompt is subordinate to, and must never contradict, expand, weaken, or rei
 5. **SB-P-1.11 Founder Decisions D-001 through D-068** (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`).
 6. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — architecture, technical contracts, data integrity, permissions, security, scheduler design, interfaces, testing obligations, except the CSV/XLSX parser-runtime and import-support-state architecture reassigned to item 6A.
 6A. **Canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`** (`communication/live/report1.126.md` and its locked chain: `report1.108.md`, `report1.115.md`, `report1.123.md`, `report1.124.md`, `report1.125.md`) — authoritative for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, the Parser Upload Lease/EC-2 Supabase support-state architecture, and the parser response contract. Where an earlier EIS v2.2 statement about the parser or import RPC surface conflicts with this canonical set, the canonical set governs.
-7. **SB-P-1.11 Engineering Contract, Version 1.2, DRAFT — MISSION CONTROL REVIEW REQUIRED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — binding builder obligations, phase boundaries, dependencies, prohibitions, acceptance conditions. Reconciled alongside this document under `communication/live/instruction1.118.md`; not yet re-locked.
+7. **SB-P-1.11 Engineering Contract, Version 1.2, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — binding builder obligations, phase boundaries, dependencies, prohibitions, acceptance conditions. Reconciled, corrected, and locked alongside this document (`communication/live/instruction1.118.md`, `communication/live/instruction1.120.md`, `communication/live/instruction1.122.md`).
 8. This Lovable Build Prompt.
 
 If anything below appears to conflict with any of the locked sources above it, the locked source governs and this prompt is in error. Stop and report the conflict (Section 25) rather than resolving it by guessing.
@@ -474,7 +476,17 @@ Stop and report to Mission Control — do not guess, improvise, or proceed on an
 
 ## 26. This Prompt Does Not Authorize Implementation
 
-**Current status (Version 1.2, this reconciliation):**
+**Current status (Version 1.2, locked by GC-26):**
+
+```text
+LOVABLE BUILD PROMPT STATUS: LOCKED — MISSION CONTROL ACCEPTED
+APPROVED: YES
+LOCKED: YES
+PASTE-INTO-LOVABLE AUTHORITY: NONE
+IMPLEMENTATION AUTHORITY: NONE
+```
+
+**Historical record (Version 1.2 draft/reconciliation states, preserved, superseded by the above for current status purposes):**
 
 ```text
 LOVABLE BUILD PROMPT STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
@@ -494,13 +506,14 @@ PASTE-INTO-LOVABLE AUTHORITY: NONE
 IMPLEMENTATION AUTHORITY: NONE
 ```
 
-Version 1.1 was accepted and locked (`communication/live/instruction1.23.md`; MC-LBP-001 through MC-LBP-004 resolved). Version 1.2 is a reconciled draft revision, prepared under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the canonical Lambda Parser EIS (`communication/live/report1.126.md`), and is not yet Mission Control reviewed or re-locked. Version 1.1's prior lock is a preserved historical fact and does not carry forward automatically. Regardless of version, acceptance/lock never authorizes pasting this document into Lovable and never authorizes implementation. Before any phase in Section 7 may be built:
+Version 1.1 was accepted and locked (`communication/live/instruction1.23.md`; MC-LBP-001 through MC-LBP-004 resolved). Version 1.2 was reconciled under `communication/live/instruction1.118.md` (SB-P-1.11-GC-22) to incorporate the canonical Lambda Parser EIS (`communication/live/report1.126.md`), corrected under `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), re-reviewed and found ready for package lock by `communication/live/report1.130.md` (SB-P-1.11-GC-25), and is now locked under `communication/live/instruction1.122.md` (SB-P-1.11-GC-26). Version 1.1's prior lock remains a preserved historical fact and did not carry forward automatically to Version 1.2 — Version 1.2 earns this lock on its own reviewed, corrected, and re-reviewed content. **Regardless of version, this lock never authorizes pasting this document into Lovable and never authorizes implementation.** Before any phase in Section 7 may be built:
 
-1. This Version 1.2 revision (and the concurrently reconciled Engineering Contract Version 1.2 and Verification Checklist Version 1.2) must be separately reviewed and re-locked by Mission Control (Stage 13).
-2. A separately authorized Founder Lovable Brief must exist.
-3. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
+1. A separately authorized Founder Lovable Brief must exist. The current `founder-lovable-brief.md` still carries stale twenty-eight-command terminology and must be corrected before it may be authorized or used (`report1.130.md` §9.1) — this document's lock does not correct or authorize that brief.
+2. The D-023 Founder Product Decision Record amendment must be formally reconciled (`report1.130.md` §9.2) — not performed by this lock.
+3. Repository hygiene must be completed (`report1.130.md` §9.3) — not performed by this lock.
+4. A separate, explicit Mission Control instruction must authorize implementation of a specific named phase.
 
-The Verification Checklist is concurrently reconciled to matching `DRAFT — MISSION CONTROL REVIEW REQUIRED` status under the same mission. The Stage 12 Initial Implementation Package remains incomplete until all three documents are re-locked.
+The Verification Checklist is concurrently locked to matching `LOCKED — MISSION CONTROL ACCEPTED` status under the same mission. The Stage 12 Initial Implementation Package is `APPROVED — LOCKED` once all three documents are locked.
 
 ---
 
@@ -544,3 +557,4 @@ Founder Decisions D-001 through D-068 are cited inline throughout Sections 3–2
 | 1.1 (Lock) | Mission Control completed review of Version 1.1, resolving MC-LBP-001 through MC-LBP-004 as `RESOLVED` and recording `LOVABLE BUILD PROMPT REVIEW: PASSED`, `LOVABLE BUILD PROMPT: ACCEPTABLE`. Per `instruction1.23.md`, this is a lock-only documentation change: Version 1.1's substantive content — locked authority hierarchy, exact Build Now scope, Build Later/Add-on/Separate Product/Reject boundaries, repository-first discovery, accepted reuse patterns, phased implementation sequence, Phase 1 Owner-only runtime, Phase 2a/Phase 3 dependency gates, phase-scoped command grouping, phase-scoped evidence requirements, command-only writes, business isolation, catalog/inventory separation, D-047, D-068, same-actor confirmation, AI Assistant boundaries, mandatory clean-file scanning, Pattern A scheduler architecture, employee financial-intelligence restrictions, standard POS bridge boundary, multilingual UX, merchant-safe outcome handling, stop conditions, the Engineering Contract §29.1/§29.2 separation, and traceability to all three locked authorities — is unchanged. Only document status, approval metadata, and lock metadata were updated: status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from not granted to `GRANTED`; lock changed from not authorized to `ACTIVE`. Paste-into-Lovable authority and implementation authority remain `NONE`. The Verification Checklist and Founder Lovable Brief remain unauthorized; the Stage 12 Initial Implementation Package remains incomplete. |
 | 1.2 (Reconciliation, DRAFT) | Minimal-delta, authority-preserving reconciliation authorized by `communication/live/instruction1.118.md` (SB-P-1.11-GC-22), incorporating the newly locked canonical Lambda Parser EIS (`communication/live/report1.126.md`). Added Section 2 item 6A naming the canonical Lambda Parser EIS and its precedence for the parser-runtime scope only, and updated item 7 to reference the concurrently reconciled Engineering Contract Version 1.2 (DRAFT). Corrected Section 5's stale "no CSV/XLSX parsing dependency" discovery claim. Corrected Section 7's Phase 2b row to name the locked Catalog-command-unchanged / externalized-Lambda-runtime architecture in place of the `file_import_jobs` conceptual pattern. Added an explicit Lovable/Lambda responsibility-boundary paragraph to Section 10 (no browser AWS credentials, no in-Lovable parsing, no direct Product Truth writes from parser output). Corrected Section 11's Phase 2b command-surface line from the stale three-placeholder-command list to zero new Catalog commands, with the parser-support helper surface explicitly named as non-Catalog, `service_role`-only state. Corrected Section 17's re-check points and import-authority statement to the reconciled integrity chain and the Phase 1 Owner-only posture, consistent with Section 8 and without reopening D-058. No other section was reopened or reinterpreted; unaffected UI/product instructions, prohibitions, and package structure are preserved verbatim. No new Product Truth, Founder decision, or engineering architecture was invented. Status is `DRAFT — MISSION CONTROL REVIEW REQUIRED`; not approved, not locked, no paste-into-Lovable or implementation authority. Repository hygiene and Blueprint lifecycle-path housekeeping were not addressed by this reconciliation and remain separately unresolved. |
 | 1.2 (GC-24 correction, DRAFT) | Bounded correction authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control findings MC-GC23-001 and MC-GC23-002 (`report1.128.md`). **MC-GC23-001:** Section 11's "Exact command surface" bullet and Section 12's command-only-write-boundary bullet previously stated a single locked "twenty-eight names" surface conflating the nineteen-public-Catalog-command Product Truth boundary with scheduled-price, channel/pending-action, and scheduler functions. Corrected Section 11 to state the closed nineteen-command boundary explicitly, split the former single "Phase 1" command list into the nineteen canonical commands (`CHK-BE-004`) and the two Phase 1 scheduled-price functions as a separately labeled, non-boundary group (`CHK-BE-004A`), and labeled the Phase 3 and scheduler groups likewise as separate from the boundary; corrected Section 12's cross-reference accordingly. **MC-GC23-002:** the prior Version 1.2 draft did not carry the Founder Workflow Reconciliation Record's FWR-001 through FWR-005 into this prompt. Added new Section 14A, "Founder Workflow Reconciliation — Inventory Onboarding, Generated SKU, and Inventory-First Orchestration (FWR-001 through FWR-005)," translating the Founder Workflow Reconciliation Record into builder-facing instructions: Inventory/Opening Stock bulk onboarding (FWR-001); downloadable Catalog and Inventory/Opening Stock templates (FWR-002); Smart Business–generated business-scoped SKU when merchant SKU is absent (FWR-003); one canonical SKU rule across every creation channel (FWR-004); and the exact six-step Inventory-first orchestration order (FWR-005). Added a corresponding Build Now bullet to Section 3, cross-reference notes to Section 17, a Section 27 traceability row, and clarified Section 3's product-identifier bullets to note the generated-SKU rule without reopening D-023. No previously accepted content was reopened; Section 14's Catalog/Inventory separation, Section 15's D-047/D-068 safeguards, the nineteen-public-Catalog-command boundary, caller-JWT Product Truth writes, and Opening-Stock-movement-only quantity creation are unchanged. No new Product Truth, Founder decision, or engineering architecture was invented. Status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout; not approved, not locked, no paste-into-Lovable or implementation authority. |
+| 1.2 (Package Lock, GC-26) | Lock-only status and metadata update authorized by `communication/live/instruction1.122.md` (SB-P-1.11-GC-26), applied after Mission Control's focused Stage 13 re-review (`communication/live/report1.130.md`, SB-P-1.11-GC-25) found the corrected Version 1.2 three-document package `READY FOR PACKAGE LOCK`, with MC-GC23-001 through MC-GC23-003 and MC-GC24-001 all `RESOLVED`. Document status changed from `DRAFT — MISSION CONTROL REVIEW REQUIRED` to `LOCKED — MISSION CONTROL ACCEPTED`; approval changed from `PENDING RECONCILIATION REVIEW` to `ACCEPTED`; lock changed from `NOT LOCKED` to `LOCKED`; the front-matter and Section 26 status blocks were updated to match (`STATUS: LOCKED — MISSION CONTROL ACCEPTED`, `APPROVAL: GRANTED`, `LOCK: ACTIVE`). `PASTE-INTO-LOVABLE AUTHORITY: NONE` and `IMPLEMENTATION AUTHORITY: NONE` are both preserved unchanged — this lock does not grant either. Version remains `1.2`. No substantive builder-facing instruction, phase boundary, command surface, Founder Workflow obligation, or prohibition was added, removed, or reinterpreted by this lock — Sections 1 through 25 and Section 28's own prior entries are otherwise unchanged. The Lovable Build Prompt is now the locked, authoritative Stage 12B builder instruction for SB-P-1.11 Version 1.2, still not authorized for paste-into-Lovable use or implementation. The four residual governance items identified by `report1.130.md` §9 — stale twenty-eight-command terminology in `founder-lovable-brief.md`, D-023 remaining textually unamended in the Founder Product Decision Record, incomplete repository hygiene, and the Blueprint's `active/` lifecycle path — are explicitly not resolved by this lock and remain open, separately governed prerequisites, mandatory before Founder Lovable Brief authorization/use and before implementation authorization. |
