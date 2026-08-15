@@ -50,7 +50,7 @@ No other repository path was created, modified, renamed, or deleted. `.env.test.
 
 ---
 
-## 4. Local Environment Preservation — Confirmed Successful, No Values Exposed
+## 4. Local Environment Preservation — Confirmed Successful
 
 Followed `instruction1.126.md` §5 exactly, in order, before any Git-tracking change:
 
@@ -59,9 +59,9 @@ Followed `instruction1.126.md` §5 exactly, in order, before any Git-tracking ch
 3. **Backup verified before any Git-tracking change.** SHA-256 checksums of each original file were computed and compared against the corresponding backup copy — both pairs matched exactly, confirming byte-for-byte backup integrity before proceeding.
 4. **Index-only untracking.** `git rm --cached .env .env.test` was used — this removes the files from Git's index only; it does not touch the working-tree copies.
 5. **Post-operation verification.** Immediately after the `git rm --cached` operation, both files were confirmed still present on disk with unchanged file sizes, and SHA-256 checksums were recomputed and found identical to the pre-operation checksums — proving the working-tree content was untouched by the Git operation.
-6. **No value exposure.** No content, checksum-adjacent value, or fragment of either file's contents appears anywhere in this report, the terminal transcript intended for sharing, the commit, the PR description, or the sanitized example files. Only file sizes and pass/fail checksum-match confirmations are recorded.
+6. **Committed-artifact exposure (accurate statement, corrected per MC-GC30-001).** No environment value was committed to any new file, this completion report, a sanitized example file, or any PR diff addition — confirmed by direct search of every file in this mission's changed-file set. During diagnosis, however, one `git diff --cached` command displayed an already-known Supabase anon/publishable value in the executing session's terminal/conversation output while inspecting the `.env` removal diff. This violated `instruction1.126.md` §5 item 6's procedural instruction not to print such values, and is recorded transparently in Section 15A below rather than concealed. The displayed value was already present in repository history and had already been classified by Mission Control as public/publishable and non-credential-grade (Section 10, Section 11); no service-role key, private API key, password, private key, or newly discovered credential-grade secret was exposed at any point in this mission.
 
-Local environment preservation is proven successful.
+Local environment preservation — the file-integrity guarantee this section exists to prove — is fully successful. The one procedural deviation above is a diagnostic-output handling error, not a preservation failure and not a new secret disclosure; it is addressed in full in Section 15A.
 
 ---
 
@@ -198,8 +198,27 @@ Per `instruction1.126.md` §13, this mission's completion does not itself clear 
 
 ---
 
+## 15A. MC-GC30-001 — Execution-Output Deviation Record
+
+Mission Control reviewed PR #288 and returned `CHANGES REQUIRED` with one finding, **MC-GC30-001**: this report's original Section 4 item 6 made an absolute "no value exposure" claim that did not accurately account for a terminal-output deviation that occurred during diagnosis. This section records that deviation transparently, exactly as it occurred, without reproducing the value or any fragment sufficient to reconstruct it.
+
+**What happened:** while verifying the `.env` untracking step, one `git diff --cached` command run in this mission's executing session displayed the full diff of the file removal, which necessarily included the pre-existing content of the lines being removed — among them, the tracked `.env`'s Supabase anon/publishable key value. That value appeared in the executing session's terminal/conversation output.
+
+**What this is not:**
+
+- It is **not** a newly discovered credential-grade secret. The value was already present in repository history before this mission began (Section 11, findings #7–8 and #9–10) and was already classified there as a Supabase anon/publishable key.
+- It is **not** a service-role key, private API key, password, private key, or any equivalent credential-grade material — no such value was displayed, generated, or exposed at any point in this mission.
+- It was **not** committed, staged, or included in any file this mission created or modified — confirmed by direct search of `report1.135.md`, `.gitignore`, `.env.example`, and `.env.test.example`, each returning zero matches for the value.
+- It does **not** trigger `instruction1.126.md` §8 item 7's security STOP condition, which is scoped to newly discovered credential-grade secrets, and it does not change the credential-rotation determination in Section 11 — that determination already accounted for this exact value as part of the full-history scan.
+
+**What this is:** a procedural deviation from `instruction1.126.md` §5 item 6, which instructs that secret/local configuration values must never be printed, pasted, or included in "the terminal transcript intended for sharing" — regardless of whether the specific value is itself credential-grade. The diagnostic command that produced this output should have redacted the value (as every other diagnostic command in this mission did, using targeted redaction before displaying file contents) rather than running an unredacted `git diff` against a file known to contain a tracked secret-pattern value. This is recorded here, in full, rather than omitted from the report, so that Mission Control's audit trail reflects exactly what occurred.
+
+**Disposition of this finding:** procedural deviation, non-credential-grade, already-classified value, not committed anywhere, no rotation required, no STOP condition triggered. No further action beyond this record and the corrected Section 4/Section 16 wording is required.
+
+---
+
 ## 16. Final Disposition
 
 `SB-P-1.11 REPOSITORY HYGIENE REMEDIATION — COMPLETE — INDEPENDENT VERIFICATION REQUIRED`
 
-`.env` and `.env.test` are removed from Git tracking with local working copies fully and verifiably preserved (checksum-matched before and after, no values exposed anywhere). `.gitignore` now correctly ignores `.env`, `.env.*` (except the two sanitized examples), `.claude/`, and `gitleaks-report.json`, while preserving every pre-existing unrelated rule. Sanitized `.env.example` and `.env.test.example` were created, contain no real secrets, and remain trackable. The current-tree scan (scoped to exactly what will be tracked after this fix) found 2 findings, both already-reviewed, non-credential-grade (a UUID test-token and a Supabase anon/publishable key discussion). The full-history scan found 10 findings, all classified as the same two non-credential-grade categories — no service-role key, private API key, password, or private key anywhere in current tree or full history. No credential rotation is required. No history rewrite occurred. All protected Product Truth, governance, package, code, and infrastructure scopes are confirmed zero-diff. `git diff --check` and the Markdown quality gate both pass cleanly. This report and the accompanying remediation grant no implementation, paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, deployment, publication, or production authority — the next eligible step is Mission Control's own independent repository-hygiene verification on current `main`, after which Mission Control may consider creating the separate, dedicated implementation-authorization record.
+`.env` and `.env.test` are removed from Git tracking with local working copies fully and verifiably preserved (checksum-matched before backup, after backup, after untracking, and again post-commit). No credential-grade secret was newly exposed or committed by this mission: no environment value was committed to any new file, this report, a sanitized example, or any PR diff addition. Section 15A records, transparently and without reproducing the value, one non-credential publishable-value terminal-output deviation (MC-GC30-001) that occurred during diagnosis — an already-known, already-classified Supabase anon/publishable value displayed in the executing session's own terminal/conversation output, not committed anywhere, not a service-role key or other credential-grade material, and not a newly discovered secret. `.gitignore` now correctly ignores `.env`, `.env.*` (except the two sanitized examples), `.claude/`, and `gitleaks-report.json`, while preserving every pre-existing unrelated rule. Sanitized `.env.example` and `.env.test.example` were created, contain no real secrets, and remain trackable. The current-tree scan (scoped to exactly what will be tracked after this fix) found 2 findings, both already-reviewed, non-credential-grade (a UUID test-token and a Supabase anon/publishable key discussion). The full-history scan found 10 findings, all classified as the same two non-credential-grade categories — no service-role key, private API key, password, or private key anywhere in current tree or full history. No credential rotation is required. No history rewrite occurred. All protected Product Truth, governance, package, code, and infrastructure scopes are confirmed zero-diff. `git diff --check` and the Markdown quality gate both pass cleanly. This report and the accompanying remediation grant no implementation, paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, deployment, publication, or production authority — the next eligible step is Mission Control's own independent repository-hygiene verification on current `main`, after which Mission Control may consider creating the separate, dedicated implementation-authorization record.
