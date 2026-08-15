@@ -4,23 +4,25 @@
 
 **Authorization Record:** `communication/missions/SB-P-1.11/mission-control/implementation-authorization.md`  
 **Authorized Phase:** Initial Phase 1 — Catalog Foundation  
-**Authorization Date:** 2026-08-15  
+**Original Authorization Date:** 2026-08-15  
+**Workspace Operating Model Amendment Date:** 2026-08-16  
 **Authorizing Authority:** Founder / Smart Business Mission Control  
 **Authorized Builder:** Lovable  
-**Activation Condition:** This authorization becomes active only after the pull request containing this exact record is human-reviewed and merged to `main`.
+**Activation Condition:** The original authorization became active after human merge. The 2026-08-16 workspace operating model amendment becomes active only after the pull request containing this amended record and `lovable-workspace-operating-model.md` is human-reviewed and merged to `main`.
 
 ---
 
 ## 1. Authority State
 
 - **Stage 15 Implementation Authority:** `GRANTED — INITIAL PHASE 1 ONLY`
-- **Paste-Into-Lovable Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY`
-- **Lovable Plan Mode Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY`
-- **Lovable Build Mode Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY`
+- **Paste-Into-Lovable Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY, SUBJECT TO THE MERGED WORKSPACE OPERATING MODEL`
+- **Lovable Plan Mode Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY, SUBJECT TO THE MERGED WORKSPACE OPERATING MODEL`
+- **Lovable Build Mode Authority:** `GRANTED — FOR THIS AUTHORIZED INITIAL PHASE 1 RUN ONLY, SUBJECT TO THE MERGED WORKSPACE OPERATING MODEL`
+- **Canonical Repository Transfer Authority:** `NONE — SEPARATE MISSION CONTROL AUTHORIZATION REQUIRED AFTER LOVABLE IMPLEMENTATION`
 - **Deployment / Production Authority:** `NONE`
 - **Scope Expansion Authority:** `NONE`
 
-These grants are dormant until this record is human-reviewed and merged to `main`. Before that merge, implementation authority remains `NONE`.
+The original Stage 15 authorization remains valid in scope. The workspace/repository execution path described in this amended record is dormant until the amendment PR is human-reviewed and merged to `main`. Until then, do not begin the Lovable run because the earlier direct-repository assumption is no longer accepted as the execution path.
 
 ---
 
@@ -55,31 +57,59 @@ The following remain governing constraints for this authorized run:
 - `communication/live/report1.126.md` — canonical Lambda Parser EIS — `LAMBDA PARSER EIS — APPROVED — LOCKED`;
 - `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md` — including GC-27-amended D-023 and D-024;
 - `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md` — FWR-001 through FWR-005;
-- `docs/implementation/SB-P-1.11/founder-lovable-brief.md` — Version 1.1 — `LOCKED — MISSION CONTROL ACCEPTED`, Stage 14 Founder Handoff Authority `GRANTED`.
+- `docs/implementation/SB-P-1.11/founder-lovable-brief.md` — Version 1.1 — `LOCKED — MISSION CONTROL ACCEPTED`, Stage 14 Founder Handoff Authority `GRANTED`;
+- `communication/missions/SB-P-1.11/mission-control/lovable-workspace-operating-model.md` — current Lovable workspace / repository authority operating model after its human merge.
 
-Where a later accepted locked source explicitly supersedes an earlier statement, the later accepted locked source governs.
+Where a later accepted locked source or explicit Mission Control operational amendment supersedes an earlier execution assumption without changing Product Truth, the later accepted record governs that execution detail.
 
 ---
 
-## 5. Authorized Builder and Handoff
+## 5. Authorized Builder and Lovable Workspace
 
 **Authorized Builder:** `Lovable`
 
-After this authorization record is human-reviewed and merged to `main`, the Founder may use the locked Founder Lovable Brief Version 1.1 as the approved Stage 14 handoff/reference and may paste the exact authorized instruction for this Initial Phase 1 run into Lovable.
+For this run, the authorized Lovable project is exactly:
 
-No other builder, phase, or scope is authorized by this record.
+- **Display name:** `Smart Business Implementation Workspace`
+- **Lovable project ID:** `f3e992ec-06df-4d49-b157-b92ec064c078`
+- **Connected derivative repository:** `SmartBusinessv1/starter-supab-shell`
+
+The historical project:
+
+- **Display name:** `Smart Business Legacy Lovable Workspace`
+- **Lovable project ID:** `64c2b9b1-2461-4045-9acc-19e2658b8ca2`
+
+is not authorized for new implementation under this mission.
+
+After this amended record and the operating-model record are human-reviewed and merged to `main`, the Founder may use the locked Founder Lovable Brief Version 1.1 as the Stage 14 handoff/reference together with the amended execution instruction supplied by Mission Control for the Implementation Workspace.
+
+No other Lovable project, builder, phase, or scope is authorized by this record.
 
 ---
 
-## 6. Authorized Implementation Branch
+## 6. Canonical Repository and Authorized Branch
 
-The authorized implementation branch is exactly:
+The canonical implementation repository remains exactly:
+
+`SmartBusinessv1/smart-business`
+
+The canonical implementation branch remains exactly:
 
 `implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation`
 
-The implementation branch must be created from the merged `main` SHA that contains this final implementation-authorization record.
+Because Lovable cannot safely import/bind the existing canonical repository into the verified external-Supabase-first Implementation Workspace, the branch requirement is applied at the **canonical repository transfer stage**, not by pretending the Lovable-connected derivative repository is canonical.
 
-If the branch name differs, or the branch does not descend from the merged `main` containing this record, STOP and escalate to Mission Control.
+Therefore:
+
+1. Lovable performs the authorized build only in `Smart Business Implementation Workspace`.
+2. Lovable-generated code may be recorded in `SmartBusinessv1/starter-supab-shell` as implementation evidence / transfer source.
+3. `starter-supab-shell` does not become canonical and must not be treated as the authorized branch.
+4. After Lovable reports implementation, Mission Control must separately authorize a mechanical repository-transfer step onto `implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation` in `SmartBusinessv1/smart-business`.
+5. That canonical branch must descend from the then-current approved `main` containing this amended authorization and operating-model record.
+6. The transfer actor must preserve the verified Lovable delta exactly within authorized scope and must not redesign, modernize, reinterpret, or expand it.
+7. The transfer actor may not approve its own transfer as independent verification.
+
+If any actor attempts to substitute `starter-supab-shell` for `smart-business`, or to bypass the separately authorized canonical-transfer gate, STOP and escalate to Mission Control.
 
 ---
 
@@ -108,6 +138,10 @@ This authorization does **not** permit:
 - governance or locked-document edits during implementation;
 - direct table-write shortcuts that bypass locked command/security boundaries;
 - deployment, production publication, or production mutation;
+- custom-domain reassignment;
+- GitHub repository rename, disconnection, reconnection, or source-of-truth substitution;
+- use of `Smart Business Legacy Lovable Workspace` for new implementation;
+- treating `starter-supab-shell` as canonical;
 - any scope expansion beyond Initial Phase 1.
 
 Deployment / Production Authority remains `NONE`. Scope Expansion Authority remains `NONE`.
@@ -116,7 +150,7 @@ Deployment / Production Authority remains `NONE`. Scope Expansion Authority rema
 
 ## 9. Mandatory Builder Completion Report
 
-The authorized implementation run must create or update exactly:
+The authorized implementation run must create or update the lifecycle artifact at exactly:
 
 `docs/implementation/SB-P-1.11/lovable-build-completion-report.md`
 
@@ -124,7 +158,9 @@ Its immediate post-implementation status must be:
 
 `IMPLEMENTATION REPORTED — VERIFICATION PENDING`
 
-This lifecycle artifact must contain the implementation evidence required by the locked Founder Lovable Brief and Verification Checklist. A `communication/live/report*.md` file must not be substituted for it.
+During the Lovable workspace build, the report may first exist in the derivative implementation source if that is where Lovable writes. It does not become the canonical lifecycle artifact until the separately authorized repository-transfer step reproduces the verified report and authorized implementation delta into `SmartBusinessv1/smart-business` on the exact canonical implementation branch.
+
+A `communication/live/report*.md` file must not be substituted for this lifecycle artifact.
 
 ---
 
@@ -132,8 +168,12 @@ This lifecycle artifact must contain the implementation evidence required by the
 
 Lovable / the implementing operator must STOP and escalate to Mission Control if:
 
-- current `main` does not contain this merged implementation authorization;
-- the implementation branch name differs from `implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation`;
+- current canonical `main` does not contain the merged implementation authorization and merged workspace operating model;
+- the Lovable project is not `Smart Business Implementation Workspace` / `f3e992ec-06df-4d49-b157-b92ec064c078`;
+- any attempt is made to use `Smart Business Legacy Lovable Workspace` for new implementation;
+- any actor treats `starter-supab-shell` as the canonical Smart Business repository;
+- any actor attempts canonical transfer before Mission Control separately authorizes that transfer;
+- the future canonical implementation branch name differs from `implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation`;
 - any locked package artifact differs from Version 1.2 / locked state;
 - the Founder Lovable Brief is not Version 1.1 / locked state;
 - requested work includes anything outside Initial Phase 1;
@@ -141,7 +181,7 @@ Lovable / the implementing operator must STOP and escalate to Mission Control if
 - repository hygiene regresses or a credential-grade secret is discovered;
 - the required verification evidence cannot be produced without altering scope.
 
-No guessing, silent substitution, scope expansion, or workaround around a locked boundary is permitted.
+No guessing, silent substitution, scope expansion, repository-authority substitution, or workaround around a locked boundary is permitted.
 
 ---
 
@@ -149,14 +189,19 @@ No guessing, silent substitution, scope expansion, or workaround around a locked
 
 This record is a governance authorization artifact, not implementation itself.
 
-Until the pull request containing this exact record is human-reviewed and merged to `main`:
+The original Stage 15 scope authorization was already merged. However, after discovery of the Lovable project/repository topology, Mission Control placed execution on HOLD rather than allowing implementation under an incorrect direct-repository assumption.
 
-- Stage 15 Implementation Authority remains `NONE`;
-- Paste-Into-Lovable Authority remains `NONE`;
-- Lovable Plan Mode Authority remains `NONE`;
-- Lovable Build Mode Authority remains `NONE`.
+Until the pull request containing this amended record and `lovable-workspace-operating-model.md` is human-reviewed and merged to `main`:
 
-After merge, and only for the exact Initial Phase 1 run defined above, the grants in Section 1 become active.
+- do not paste the Stage 15 build instruction into Lovable;
+- do not begin Lovable Plan Mode for this implementation run;
+- do not begin Lovable Build Mode for this implementation run;
+- do not create or perform the canonical repository-transfer step.
+
+After that merge, and only for the exact Initial Phase 1 run defined above:
+
+- Lovable execution may proceed in `Smart Business Implementation Workspace`;
+- the canonical-transfer step remains separately gated and unauthorized until Mission Control explicitly authorizes it after Lovable implementation evidence exists.
 
 No deployment or production authority is granted at any point by this record.
 
@@ -164,4 +209,4 @@ No deployment or production authority is granted at any point by this record.
 
 ## 12. Mission Control Decision
 
-`SB-P-1.11 INITIAL PHASE 1 IMPLEMENTATION AUTHORIZATION — GRANTED UPON HUMAN MERGE OF THIS RECORD`
+`SB-P-1.11 INITIAL PHASE 1 IMPLEMENTATION AUTHORIZATION — PRESERVED IN SCOPE; LOVABLE WORKSPACE EXECUTION PATH AMENDED; CANONICAL TRANSFER SEPARATELY GATED`
