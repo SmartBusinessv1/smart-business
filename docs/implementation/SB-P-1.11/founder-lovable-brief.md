@@ -1,16 +1,16 @@
 # SB-P-1.11 — Founder Lovable Brief
 
-Product Catalog & Pricing — Initial Phase 1 (19-Command Scope)
+Product Catalog & Pricing — Initial Phase 1 (Exactly 19 Public Catalog Commands)
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-LOCKED — MISSION CONTROL ACCEPTED
+DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 MISSION CONTROL ACCEPTANCE:
-GRANTED
+PENDING
 
 DOCUMENT LOCK:
-ACTIVE
+NOT ACTIVE
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -28,7 +28,7 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-This document is the accepted, locked Founder-facing restatement of the locked SB-P-1.11 package and accepted readiness dispositions for the approved initial Phase 1 scope of exactly 19 commands. Acceptance and lock do not authorize pasting it into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment. Founder review and a separate, explicit Mission Control implementation authorization are both still required before any of that may happen. The brief remains subordinate to the higher-authority locked sources listed in Section 5; any future discovered inconsistency must be resolved in favor of the higher-authority source through a separately authorized correction mission, not by this document.
+**This document is a reconciled draft revision (Version 1.1) of the previously locked (Version 1.0) Founder Lovable Brief, prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28) to reconcile it against the current locked SB-P-1.11 Version 1.2 implementation package, the GC-27-amended Founder Product Decision Record, and current Git state.** It is **not** yet Mission Control accepted or locked, and carries no paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, publishing, or deployment authority. The historical fact that Version 1.0 was previously accepted and locked against the then-current package is preserved in the Change History (Section 19) but does not carry forward to this revision automatically. Founder review and a separate, explicit Mission Control Stage 14 authorization are both still required before this brief may be used for anything. The brief remains subordinate to the higher-authority locked sources listed in Section 5; any future discovered inconsistency must be resolved in favor of the higher-authority source through a separately authorized correction mission, not by this document.
 
 ---
 
@@ -39,14 +39,15 @@ This document is the accepted, locked Founder-facing restatement of the locked S
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
 | Document Type | Founder Lovable Brief |
-| Version | 1.0 |
-| Status | LOCKED — MISSION CONTROL ACCEPTED |
-| Mission Control Acceptance | GRANTED |
-| Document Lock | ACTIVE |
-| Prepared Under | `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md` (FLB-001–FLB-004); accepted and locked per `communication/live/instruction1.35.md` |
-| Scope Covered | Initial Phase 1 only — 19 of the 28 locked commands |
-| Governing Package | Stage 12 Initial Implementation Package (Product Blueprint, EIS v2.2, Engineering Contract v1.1, Lovable Build Prompt v1.1, Verification Checklist v1.1) — all LOCKED |
-| Readiness Basis | `communication/live/report1.27.md` through `communication/live/report1.32.md` |
+| Version | 1.1 |
+| Status | DRAFT — MISSION CONTROL REVIEW REQUIRED |
+| Mission Control Acceptance | PENDING |
+| Document Lock | NOT ACTIVE |
+| Prepared Under | Version 1.0 prepared under `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md` (FLB-001–FLB-004); accepted and locked per `communication/live/instruction1.35.md`. This Version 1.1 reconciliation prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28); not yet Mission Control reviewed or locked — see Section 19 for the exact delta |
+| Scope Covered | Initial Phase 1 only — exactly 19 public Catalog commands; no twentieth Catalog command. Scheduled-price, channel/pending-action, scheduler, and parser-support functions are separately classified and are not counted in, or added to, this total (Section 6, Section 14) |
+| Governing Package | Stage 12 Implementation Package — `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (Product Blueprint, LOCKED), `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` (EIS v2.2, LOCKED, except the CSV/XLSX parser-runtime/import-support-state architecture reassigned to the canonical Lambda Parser EIS), `communication/live/report1.126.md` (canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`), Engineering Contract Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED`, Lovable Build Prompt Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED`, Verification Checklist Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED` (`communication/live/instruction1.122.md`, SB-P-1.11-GC-26) |
+| Founder Decision Basis | Founder Product Decision Record D-001 through D-068, including D-023 and D-024 as formally amended under SB-P-1.11-GC-27 (`communication/live/instruction1.123.md`; see Section 5); Founder Workflow Reconciliation Record FWR-001 through FWR-005 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`) |
+| Readiness Basis | Version 1.0 basis: `communication/live/report1.27.md` through `communication/live/report1.32.md`. Package reconciliation/correction/lock basis for this revision: `communication/live/report1.126.md` through `communication/live/report1.132.md` |
 
 ---
 
@@ -54,7 +55,7 @@ This document is the accepted, locked Founder-facing restatement of the locked S
 
 This brief exists to hand a Founder-readable, technically precise description of exactly what "initial Phase 1" means for SB-P-1.11 to whoever eventually receives implementation authorization — so that Lovable is told exactly what to build, exactly what not to build, and exactly how to prove it built the right thing, without needing to re-derive any of that from the underlying engineering documents.
 
-It converts five already-locked documents and six already-accepted readiness reports into one handoff document. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
+It converts the locked Stage 12 package, the Founder Product Decision Record (including its GC-27 amendment), the Founder Workflow Reconciliation Record, and the accepted readiness/reconciliation report chain (Section 5) into one handoff document. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
 
 ---
 
@@ -63,6 +64,7 @@ It converts five already-locked documents and six already-accepted readiness rep
 For the business owner, initial Phase 1 delivers a working, dashboard-based product catalogue:
 
 - Create and archive categories. Create, edit, archive, reactivate, and — where eligible — permanently delete products. (Categories support create and archive only; there is no edit, reactivate, or permanent-delete command for a category.)
+- Enter a SKU when creating or editing a product, or leave it blank — SKU input is always optional. When the merchant leaves it blank, Smart Business automatically assigns a business-scoped unique tracking SKU so the product still resolves to exactly one SKU; a merchant-supplied SKU is always validated and used as given, never overwritten (D-023 as amended, FWR-003; Section 6, Section 7).
 - Set and change a product's selling price immediately, with full price history preserved.
 - Set an optional reference cost (never shown to employees by default) and an optional tax treatment, both with full history.
 - Link a catalog product to an existing inventory item, with a mandatory price/unit confirmation step so a price can never silently change its meaning.
@@ -79,7 +81,9 @@ This is not an oversight list — every item below is either future approved Pro
 
 - **No scheduled/future pricing.** A merchant cannot yet schedule a price to change automatically at a future date, and no automatic price-schedule activation runs. This includes `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`, `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, the scheduler worker, the scheduler's own service identity, and any `pg_cron`/`pg_net` activation. Scheduling is approved future Product Truth, not part of this scope, so that a merchant can never be shown a "scheduled price" control that looks like it will activate itself when nothing is actually watching for it.
 - **No Manager or Employee catalogue access.** Only the owner can use any catalogue feature until a shared, cross-mission permission engine exists and is separately authorized (Phase 2a).
-- **No bulk CSV/Excel import.** Import, its correction queue, and its supporting tables are a separate, later phase (Phase 2b).
+- **No bulk CSV/Excel Catalog import.** Import, its correction queue, and its supporting bookkeeping are a separate, later phase (Phase 2b), using the canonical Lambda Parser EIS runtime (Section 10, Section 14) — not part of this initial Phase 1 handoff.
+- **No Inventory/Opening Stock CSV/XLSX bulk onboarding or downloadable import templates yet.** The accepted Founder Workflow rule for Inventory/Opening Stock bulk onboarding (FWR-001) and downloadable Catalog and Inventory/Opening Stock templates (FWR-002) is locked package content (Engineering Contract §9A, Lovable Build Prompt §14A) but is Phase 2b-adjacent, structurally parallel to Catalog CSV import — it is not part of this initial Phase 1 dashboard scope (Section 14).
+- **No Inventory-first product creation flow yet.** The accepted Founder Workflow orchestration for creating a new inventory item that resolves or creates its Catalog identity, links it, and records Opening Stock (FWR-005) is locked package content (Engineering Contract §9A, Lovable Build Prompt §14A) but is not part of this initial Phase 1 dashboard scope; only Catalog-first product creation (`create_catalog_product`) is included here (Section 14).
 - **No WhatsApp, voice, or photo-based catalogue actions.** Conversational catalogue intent handling depends on a shared conversational engine that does not yet exist (Phase 3).
 - **No "did-you-mean" or similarity-based search suggestions.** Search is exact and normalized only — no `pg_trgm`, no similarity/GIN indexing, no fuzzy or phonetic matching, no transliteration, and no AI-based normalization of any kind.
 - **No discretionary performance tuning.** Only the integrity-enforcing constraints already fixed by locked sources are included; query-performance indexes that depend on real usage data or specialist review are deferred.
@@ -95,23 +99,25 @@ In order of authority, all currently on `main` and unchanged by this brief:
 1. Lighthouse Constitution.
 2. Smart Business Master System Manifesto.
 3. Smart Business Product Truth Map.
-4. Founder Product Decisions D-001 through D-068 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`).
-5. SB-P-1.11 Product Blueprint — LOCKED (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`).
-6. SB-P-1.11 EIS Version 2.2 — LOCKED (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`).
-7. SB-P-1.11 Engineering Contract Version 1.1 — LOCKED (`docs/implementation/SB-P-1.11/engineering-contract.md`).
-8. SB-P-1.11 Lovable Build Prompt Version 1.1 — LOCKED (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`).
-9. SB-P-1.11 Verification Checklist Version 1.1 — LOCKED (`docs/implementation/SB-P-1.11/verification-checklist.md`).
-10. Accepted readiness reports `communication/live/report1.27.md` through `communication/live/report1.32.md` (Phase 1 readiness resolution, database specialist resolution, and token-lifecycle parameter resolution, each as corrected by its own accepted Mission Control review).
+4. Founder Product Decisions D-001 through D-068 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`), including D-023 and D-024 as formally amended under SB-P-1.11-GC-27 (`communication/live/instruction1.123.md`; `communication/live/report1.132.md`). D-023's amended text governs the generated-SKU behavior in Section 3, Section 6, and Section 7 of this brief; D-023's original wording and the amendment's audit trail remain preserved, unedited, in the Founder Product Decision Record's own Amendment History section — this brief does not restate that history.
+5. Founder Workflow Reconciliation Record FWR-001 through FWR-005 (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`) — a mandatory preserved authority, not counted among the four locked Stage 12 authorities below, governing the generated-SKU rule and the Inventory-onboarding/Inventory-first obligations named in Section 4 and Section 14.
+6. SB-P-1.11 Product Blueprint — LOCKED (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`).
+7. SB-P-1.11 EIS Version 2.2 — LOCKED (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — except the CSV/XLSX parser-runtime and import-support-state architecture, reassigned to item 7A below.
+7A. Canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED` (`communication/live/report1.126.md` and its locked chain) — authoritative specifically for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, and the Parser Upload Lease/EC-2 support-state architecture (Section 10, Section 14).
+8. SB-P-1.11 Engineering Contract Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED` (`docs/implementation/SB-P-1.11/engineering-contract.md`; `communication/live/instruction1.122.md`, SB-P-1.11-GC-26).
+9. SB-P-1.11 Lovable Build Prompt Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED` (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`).
+10. SB-P-1.11 Verification Checklist Version 1.2 — `LOCKED — MISSION CONTROL ACCEPTED` (`docs/implementation/SB-P-1.11/verification-checklist.md`).
+11. Accepted readiness reports `communication/live/report1.27.md` through `communication/live/report1.32.md` (original Version 1.0 Phase 1 readiness resolution, database specialist resolution, and token-lifecycle parameter resolution, each as corrected by its own accepted Mission Control review), and the package reconciliation/correction/review/lock chain `communication/live/report1.126.md` through `communication/live/report1.132.md`.
 
-Where a later accepted report corrected an earlier one, this brief uses only the latest accepted disposition. This brief does not add, remove, or reinterpret anything in the list above.
+Where a later accepted report or correction governs over earlier stale wording, this brief uses only the latest accepted disposition. This brief does not add, remove, or reinterpret anything in the list above.
 
 ---
 
 ## 6. Exact 19-Command Initial Phase 1 Scope Table
 
-Every name below is copied verbatim from the locked Lovable Build Prompt §11 command surface, restricted to the 19 commands `communication/live/report1.27.md`/`report1.28.md` (Matter 4, as corrected) authorize for initial Phase 1.
+Every name below is copied verbatim from the locked Lovable Build Prompt §11 command surface. These nineteen names are the complete, closed Product Truth command boundary — **exactly 19 public Catalog commands; no twentieth Catalog command** — independently re-verified against `pg_proc`/`pg_namespace`/`pg_roles` (`communication/live/report1.91.md` §13) and originally scoped for initial Phase 1 by `communication/live/report1.27.md`/`report1.28.md` (Matter 4, as corrected).
 
-The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facing scheduling commands (`schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price`) are excluded from Phase 1. The two separate scheduler commands (`list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`) and their runtime were never part of the 21-command Phase 1 group in the first place — the locked Lovable Build Prompt §11 lists them as their own, separately named "Environment-gated scheduler commands" group. Both exclusions are detailed in Section 4 and Section 14.
+All nineteen public Catalog commands are included in this initial Phase 1 scope. Two further public functions are Phase 1 scope in the locked package but are classified separately from the nineteen-command boundary, not counted within it, and excluded from this initial Phase 1 handoff by Mission Control disposition: the two merchant-facing scheduling functions, `schedule_catalog_selling_price` and `cancel_scheduled_catalog_selling_price` (a merchant must never see a scheduling control that cannot actually activate). A further, separately classified, environment-gated scheduler function group — `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, and their runtime — is independently gated and likewise excluded from this initial Phase 1 handoff; the locked Lovable Build Prompt §11 has always listed it as its own group, distinct from Catalog commands and from the two scheduling functions above. Both exclusions are detailed in Section 4 and Section 14. Generated-SKU behavior (D-023 as amended, FWR-003/FWR-004; Section 3, Section 7) applies to `create_catalog_product` and `update_catalog_product_identity` below exactly as it applies everywhere else the same rule governs — it is not a new command and does not change this table's command count.
 
 | Command | Phase | Included in Initial Phase 1 | User or System Actor | Primary Purpose | Main Tables or Protected Resources | Verification Reference |
 |---|---|---|---|---|---|---|
@@ -144,6 +150,7 @@ The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facin
 - **Catalogue entry point.** A Products/Catalog navigation entry extends the existing dashboard header, following the same pattern already used for Inventory — no second navigation surface.
 - **List and search.** The merchant sees their products, can search by name, SKU, or barcode using exact/normalized matching (typo-in-whitespace or letter-case does not create a false "not found"), and can filter by category or lifecycle status.
 - **Create and edit.** Creating or editing a product is a plain form: name (required), optional description/SKU/barcode/category/image, and — once linked to inventory — an inherited unit; otherwise a selling unit the merchant chooses.
+- **SKU is always optional, never blank.** The merchant may type a SKU or leave the field empty. A typed SKU is validated and used exactly as entered. An empty field is never treated as "no SKU" for the product's own identity — Smart Business automatically assigns a business-scoped unique tracking SKU instead, so every product still resolves to exactly one SKU (D-023 as amended, FWR-003/FWR-004). This is the same rule dashboard, bulk import, and every other governed creation channel will use — no channel invents its own SKU behavior.
 - **Price, tax, and cost.** Selling price, tax treatment, and reference cost each have their own small, clearly labeled edit surface, each preserving full history. Reference cost is owner-only and never shown to any other role by default (Section 9), which matters even though Phase 1 has no other roles yet, because the same screens must not expose it once Phase 2a arrives.
 - **Linking to inventory — the one screen requiring extra care.** When a merchant links a product to an inventory item, changes an existing link, or removes a link entirely, the system always shows a preview first — for a link that changes the selling unit, the preview shows current unit and price, the proposed new unit, and the price the merchant must explicitly confirm or replace; for a removal, the preview shows exactly what will stop being linked. Nothing saves until the merchant reviews and confirms that exact preview, and only the same person who opened the preview can confirm it. If the merchant closes the tab, gets interrupted, or waits too long (the preview is valid for 15 minutes only), nothing changes — the merchant simply requests a fresh preview. **Unlinking is not a one-tap action** — it goes through this same preview-and-confirm step before the product-inventory relationship actually changes, exactly like assigning or replacing a link does. This exists so a number the merchant typed under one unit can never silently become "the same number, but per a different unit," and so a link can never disappear from a single accidental tap — both real risks for a cash-strapped small business if either happened silently.
 - **Archiving and deletion.** Archiving a product or category never deletes its history and never silently affects a linked record on the other side (product/inventory). Categories can be created and archived only — there is no command to edit, reactivate, or permanently delete a category once created. For products only, permanent deletion is offered when there is truly nothing to lose, and a product can be reactivated after archiving.
@@ -153,7 +160,7 @@ The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facin
 
 ## 8. Data Model and Integrity Boundaries
 
-Every table below is new to this mission; none is a Phase 1-only object — it is simply the subset relevant to the 19 included commands (Section 6). Later-phase tables (`catalog_pending_price_schedules`, `catalog_price_schedule_events`, `catalog_channel_pending_actions`, `catalog_channel_confirmation_receipts`, `catalog_import_jobs`, `catalog_import_rows`) are locked future authority and are explicitly out of this scope (Section 14).
+Every table below is new to this mission; none is a Phase 1-only object — it is simply the subset relevant to the 19 included commands (Section 6). Later-phase tables (`catalog_pending_price_schedules`, `catalog_price_schedule_events`, `catalog_channel_pending_actions`, `catalog_channel_confirmation_receipts`, `catalog_import_batches`, `catalog_import_rows`, and the Inventory-side `inventory_import_batches`/`inventory_import_rows`) are locked future authority and are explicitly out of this scope (Section 14). All import-support bookkeeping is narrow, non-Product-Truth support state — never a Catalog command, never counted in the nineteen-command boundary (Section 6, Section 10).
 
 **In-scope tables:** `catalog_products`, `catalog_categories`, `catalog_selling_price_events`, `catalog_tax_events`, `business_tax_settings`, `catalog_reference_cost_events`, `catalog_link_preview_tokens`, `catalog_product_link_events`, `catalog_audit_events`, `catalog_deletion_records`, `catalog_file_references`, `catalog_write_idempotency_keys`.
 
@@ -181,7 +188,7 @@ Every table below is new to this mission; none is a Phase 1-only object — it i
 
 ## 10. Command-Only Write Model and Idempotency
 
-- No protected catalog table ever grants direct client `INSERT`/`UPDATE`/`DELETE`. Every mutation goes through one of the 19 named commands above (or, for future phases, the remaining 9 commands of the locked 28 — Section 14).
+- No protected catalog table ever grants direct client `INSERT`/`UPDATE`/`DELETE`. Every mutation goes through one of the 19 named commands above, or — for future phases, once separately authorized — the separately classified scheduled-price, channel/pending-action, and scheduler functions named in Section 14, none of which is part of, or an addition to, the nineteen-command boundary.
 - Idempotency resolves before any mutable-state check, on every command: actor and business are derived first, then the idempotency key and payload fingerprint are checked, before any precondition or stale-state evaluation runs. `catalog_write_idempotency_keys.status` has exactly two terminal values (`completed`, `rejected`) — never a durable "in progress" state.
 - A rejected attempt is a committed outcome, not an aborted transaction: rejection bookkeeping (idempotency status, D-068 token consumption where applicable) durably persists even when the protected business tables themselves were never touched.
 - If a UI need cannot be satisfied by one of the 19 named commands, that is a stop condition (Section 17) — never license to add a new write path.
@@ -241,46 +248,136 @@ The inventory-link safeguard is a two-step flow for every one of the three outco
 
 ## 14. Phase Gates and Excluded Future Scope
 
-The locked, complete 28-command surface remains fully authoritative future authority. This brief documents only the 19 commands included in initial Phase 1 (Section 6); the remaining 9 are not implemented, scaffolded, exposed, granted, or partially activated under this brief.
+The nineteen-command Catalog Product Truth boundary is closed: **exactly 19 public Catalog commands; no twentieth Catalog command.** This brief documents only these nineteen for initial Phase 1 (Section 6). Every other group in the table below is separately classified, phase-gated future authority — none of it is part of, or an addition to, the nineteen-command boundary, and no combined numeric total across groups is asserted anywhere in this brief.
 
-The initial scope contains 19 of the 21 Phase 1 commands. The two merchant-facing scheduling commands are excluded from Phase 1. The two separate scheduler commands and their runtime remain excluded under the scheduler gate — they were never part of the 21-command Phase 1 group; the locked Lovable Build Prompt §11 has always listed them as their own separate "Environment-gated scheduler commands" group, independent of which Phase 1 commands are authorized:
+| Excluded group | Commands / capability | Classification | Gate |
+|---|---|---|---|
+| Merchant-facing scheduling | `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price` | Separately classified public functions, not part of the nineteen-command boundary | Excluded from initial Phase 1 by Mission Control disposition — a merchant must never see a scheduling control that cannot actually activate |
+| Scheduler runtime | `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, scheduler worker, `catalog_scheduler_service` identity, `pg_cron`, `pg_net` | Separately classified, environment-gated public functions, not part of the nineteen-command boundary | Environment-verification gate + separate future implementation authorization |
+| Phase 2a | Permission-flag enforcement on the existing nineteen Catalog commands (no new command names) | No new command surface | Requires the shared permission engine — not yet built for any mission |
+| Phase 2b — Catalog CSV/XLSX import | Zero new Catalog commands. Product Truth for an imported product is written only through the existing nineteen public Catalog commands, principally `create_catalog_product` and the price/tax/reference-cost follow-up commands, under caller-JWT authority. Parsing is externalized to the canonical Lambda Parser EIS (Section 10). Import-support bookkeeping (`catalog_import_batches`, `catalog_import_rows`) is narrow, non-Product-Truth, `service_role`-only support state | No new command surface; narrow non-Product-Truth support state only | Separate future authorization |
+| Phase 2b-adjacent — Inventory/Opening Stock bulk onboarding (FWR-001, FWR-002) | Inventory/Opening Stock CSV/XLSX bulk onboarding; downloadable Catalog and Inventory/Opening Stock templates. Structurally parallel to Catalog import; opening quantity is established only through a governed Opening Stock inventory movement, never a direct write | Locked package content (Engineering Contract §9A, Lovable Build Prompt §14A); no new Catalog command | Separate future authorization; Phase 1 Owner-only posture once authorized |
+| Inventory-first orchestration (FWR-005) | Resolve/create Catalog identity → create Inventory entity → establish governed link → record Opening Stock as an Inventory movement only after the link exists. Preserves Catalog/Inventory truth separation, D-047, and D-068; no silent duplicate Catalog creation | Locked package content (Engineering Contract §9A, Lovable Build Prompt §14A); no new Catalog command | Separate future authorization |
+| Phase 3 | `create_catalog_pending_action`, `confirm_catalog_pending_action`, channel pending actions, channel confirmation receipts | Separately classified public functions, not part of the nineteen-command boundary | Requires the shared conversational engine — not yet built for any mission |
 
-| Excluded group | Commands / capability | Gate |
-|---|---|---|
-| Merchant-facing scheduling (2 of the 21 Phase 1 commands) | `schedule_catalog_selling_price`, `cancel_scheduled_catalog_selling_price` | Excluded from initial Phase 1 by Mission Control disposition — a merchant must never see a scheduling control that cannot actually activate |
-| Scheduler runtime (a separate 2-command group, not part of the 21-command Phase 1 group) | `list_due_catalog_price_schedule_candidates`, `activate_catalog_price_schedule`, scheduler worker, `catalog_scheduler_service` identity, `pg_cron`, `pg_net` | Environment-verification gate + separate future implementation authorization |
-| Phase 2a | Permission-flag enforcement on existing Phase 1 commands (no new command names) | Requires the shared permission engine — not yet built for any mission |
-| Phase 2b | `create_catalog_import_job`, `stage_catalog_import_rows`, `apply_catalog_import_valid_rows` and their tables/indexes | Separate future authorization |
-| Phase 3 | `create_catalog_pending_action`, `confirm_catalog_pending_action`, channel pending actions, channel confirmation receipts | Requires the shared conversational engine — not yet built for any mission |
+Generated-SKU behavior (D-023 as amended, FWR-003/FWR-004) is **not** in this table — it is not excluded from initial Phase 1. It applies now, identically, to `create_catalog_product` and `update_catalog_product_identity` within this brief's own scope (Section 3, Section 6, Section 7), and will apply identically, without any channel-specific variation, once each later channel above is separately authorized.
 
 No command outside the authorized initial Phase 1 scope may be implemented, scaffolded, exposed, granted, deployed, or partially activated by any future Lovable run this brief eventually feeds — that requires its own separate, explicit Mission Control authorization naming that specific phase or gate.
 
+### 14A. Residual Governance Items Outside This Brief's Authority to Resolve
+
+Two governance items remain open and are not resolved, remediated, or claimed complete by this brief:
+
+- **Repository hygiene remains incomplete.** It is mandatory before any future implementation authorization/Build, independent of this brief's own reconciliation status. This brief does not perform hygiene remediation and does not claim it is complete.
+- **The locked Product Blueprint remains under the `docs/phase-1-mission-blueprint/active/` lifecycle path.** This is non-blocking housekeeping only — it does not invalidate the locked Blueprint, this brief, or the locked Version 1.2 package, and it is not a Build blocker. This brief does not move or modify the Blueprint.
+
 ---
 
-## 15. Lovable Execution Instructions for a Future Authorized Implementation Run
+## 15. Stage 14 Founder Handoff — Lovable Execution Instructions for a Future Authorized Implementation Run
 
-**These instructions are for a future, separately authorized run only. They are not active now (see the status block at the top of this document and Section 18).** When, and only when, a Founder- and Mission-Control-authorized implementation run begins:
+**Every instruction in this section is for a future, separately authorized run only. None of it is active now — this draft itself is not authorized for use until Mission Control separately completes Stage 14 review and grants a specific, explicit authorization for it (see the status block at the top of this document and Section 18).** The subsections below are the exact Stage 14 handoff fields `communication/live/instruction1.124.md` §11 requires this brief to contain, so that once Stage 14 authorization is granted, the Founder can hand a builder run everything it needs without re-deriving anything.
 
-1. Attach the locked Lovable Build Prompt Version 1.1 (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`) in full — it remains the complete builder instruction; this brief summarizes it for Founder review, it does not replace it.
-2. Build exactly the 19 commands in Section 6, and no others, using the exact locked signatures, table names, and role/privilege model already specified in the EIS and Engineering Contract.
-3. Implement every boundary in Sections 8–13 of this brief exactly as stated — none of it is optional or subject to "simplification."
-4. Do not implement, scaffold, or expose anything listed in Section 4 or Section 14.
-5. Do not design, build, or activate any cleanup/purge mechanism for `catalog_link_preview_tokens` — reaching purge eligibility (Section 12) is the limit of this scope.
-6. Produce the evidence named in Section 16 as the implementation proceeds, not after the fact from memory.
-7. Stop and escalate per Section 17 rather than guessing at any ambiguity.
+### 15.1 The Exact Lovable Instruction
+
+Once, and only once, Mission Control has separately authorized this specific implementation run naming this specific phase, the Founder pastes an instruction into Lovable equivalent to the following. This text is a template for that future authorized moment — pasting it now, before authorization, is exactly what Section 18's Paste-Into-Lovable Authority `NONE` prohibits.
+
+```text
+Mission: SB-P-1.11 — Product Catalog & Pricing
+Phase authorized: Initial Phase 1 (exactly 19 public Catalog commands; no twentieth)
+Authorizing Mission Control instruction: [cite the specific future authorization instruction file]
+
+Read and follow docs/implementation/SB-P-1.11/lovable-build-prompt.md (Version 1.2,
+LOCKED — MISSION CONTROL ACCEPTED) in full. It is the complete, binding builder
+instruction. This Founder brief (docs/implementation/SB-P-1.11/founder-lovable-brief.md)
+is a Founder-facing summary of it, not a replacement or an independent authority.
+
+Build only the 19 named commands in Lovable Build Prompt Section 11's Phase 1 group.
+Do not build, scaffold, or expose any command or capability outside that phase.
+Do not invent an alternate command name, signature, or direct table write path.
+
+Follow the branch/PR workflow in Section 15.3 of the Founder brief exactly.
+Produce the Builder Completion Report at the path in Section 15.5 of the Founder brief.
+Stop and escalate to Mission Control per Section 17 of the Founder brief on any
+ambiguity, conflict, or mismatch — do not guess, improvise, or narrow/expand scope.
+```
+
+### 15.2 Locked Lovable Build Prompt Path
+
+`docs/implementation/SB-P-1.11/lovable-build-prompt.md` — Version 1.2, `LOCKED — MISSION CONTROL ACCEPTED`. This is the complete, binding builder instruction; this brief summarizes and restates it for Founder review, it does not replace it. Any future correction to the Lovable Build Prompt supersedes this brief's summary of it.
+
+### 15.3 Required Implementation Branch / PR Workflow
+
+1. Start from current merged `main`; fetch and fast-forward synchronize before any change.
+2. Create a new, dedicated implementation branch — do not implement on `main` and do not reuse a document-reconciliation mission branch. Name it descriptively for the authorized phase, e.g. `implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation`.
+3. Implement only what the specific Mission Control authorization names for that phase.
+4. Do not use `git add .`; stage only the files the authorized phase's scope covers.
+5. Run the repository Markdown Quality Gate, and every test/verification obligation Section 16 and the locked Verification Checklist name for the authorized phase, before committing.
+6. Commit with a message describing exactly what was implemented and under which authorization.
+7. Open a pull request against `main` for Mission Control review. Do not approve or merge your own pull request under any circumstance.
+8. Wait for explicit Mission Control review and merge before treating any part of the authorized phase as accepted.
+
+### 15.4 Expected Builder Output and Changed-File Reporting
+
+The implementation run must report, at minimum: the exact branch name and final commit SHA; the exact list of files created, modified, or deleted, with none outside the authorized phase's scope; confirmation that every command built matches Section 6's exact nineteen names, signatures, and table references with no renamed, combined, split, or invented command; confirmation that nothing listed in Section 4 or Section 14 was implemented, scaffolded, or exposed; and the evidence Section 16 of this brief requires for the authorized phase, produced as the implementation proceeds rather than reconstructed afterward from memory.
+
+### 15.5 Builder Completion Report Path
+
+The implementation run's completion report belongs in `communication/live/` following this mission's existing numbered-report convention (`reportN.M.md`, the next number not yet used in that directory at the time the report is written), titled to name the authorized phase (for example, an "Initial Phase 1 Implementation Completion Report"). It must be created on the same PR as the implementation, following the same Markdown Quality Gate, secret-scan, and whitespace discipline every report in this mission chain already follows, and must not claim any outcome beyond what the authorized phase's own scope covers.
+
+### 15.6 Necessary PowerShell Commands
+
+Only the commands a Founder actually needs to prepare for and verify a future authorized run — none of these commands themselves authorize or begin implementation:
+
+```powershell
+# Synchronize to the latest merged main before anything else
+git checkout main
+git pull origin main
+git rev-parse HEAD   # confirm this matches the SHA Mission Control's authorization cites
+
+# Create the dedicated implementation branch (only after authorization is granted)
+git checkout -b implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation
+
+# After implementation: verify exactly the intended files are staged, never git add .
+git status --short
+
+# Run the repository Markdown Quality Gate before committing any Markdown change
+python tools/markdown/quality_gate.py <changed-markdown-files>
+
+# Push the branch and open a PR for Mission Control review (never self-merge)
+git push -u origin implementation/SB-P-1.11-Initial-Phase-1-Catalog-Foundation
+gh pr create --title "<exact phase name>" --base main
+```
+
+### 15.7 Explicit Stop Conditions for This Handoff
+
+In addition to Section 17's general stop conditions, a future authorized run must stop and escalate to Mission Control — never guess, improvise, or proceed — if: the branch it was told to use does not match what the authorization names; the Engineering Contract, Lovable Build Prompt, or Verification Checklist on `main` is not at the exact locked Version 1.2 state this brief cites in Section 5; the authorization's stated implementation authority does not match what this brief or the Lovable Build Prompt describes for the named phase; or the requested scope includes anything this brief's Section 4 or Section 14 lists as excluded.
+
+### 15.8 This Draft Is Not Authorized for Use
+
+To restate plainly: this Version 1.1 draft, on its own, authorizes nothing in this section. It becomes eligible for Founder use only after Mission Control completes a separate Stage 14 review of this exact document and issues a separate, explicit authorization naming it. Until then, Section 15.1's instruction text must not be pasted into Lovable, Lovable Plan Mode or Build Mode must not be entered for this mission, and no branch in Section 15.3's pattern may be created for implementation purposes.
+
+### 15.9 General Build Sequence (Reference)
+
+1. Build exactly the 19 commands in Section 6, and no others, using the exact locked signatures, table names, and role/privilege model already specified in the EIS and Engineering Contract.
+2. Implement every boundary in Sections 8–13 of this brief exactly as stated — none of it is optional or subject to "simplification."
+3. Do not implement, scaffold, or expose anything listed in Section 4 or Section 14.
+4. Do not design, build, or activate any cleanup/purge mechanism for `catalog_link_preview_tokens` — reaching purge eligibility (Section 12) is the limit of this scope.
+5. Produce the evidence named in Section 16 as the implementation proceeds, not after the fact from memory.
+6. Stop and escalate per Section 17 and Section 15.7 rather than guessing at any ambiguity.
 
 ---
 
 ## 16. Required Verification Evidence
 
-Every included command and every major boundary maps to the locked Verification Checklist Version 1.1 or to a named accepted readiness disposition. No new verification standard is introduced here, and no live verification has occurred as of this brief.
+Every included command and every major boundary maps to the locked Verification Checklist Version 1.2 or to a named accepted readiness disposition. No new verification standard is introduced here, and no live verification has occurred as of this brief.
 
 | Scope Item | Required Evidence | Checklist or Report Reference | Pass Condition | Stop Condition |
 |---|---|---|---|---|
 | Repository sync, branch, and locked-source integrity | Fresh-sync branch; byte-identical locked documents | CHK-REPO-001–003, CHK-LOCK-001–005, CHK-FILES-001–002 | Every locked document byte-identical; changed-file list matches authorization exactly | Any locked document differs, or an unauthorized file changed |
 | Build Now / exclusion boundary | Implemented scope is a strict subset of Build Now; no Build Later/Add-on/Reject item present | CHK-SCOPE-001–002 | No excluded capability (Section 4, Section 14) present anywhere in the diff | Any excluded capability found |
 | Owner-only enforcement | Every command's auth check is exactly `businesses.owner_id = auth.uid()` | CHK-P1-001–005 | No permission flag, role, or substitute engine queried or simulated | Any Manager/Employee access path found |
-| Exact 28-command surface, phase-scoped | Only the 19 named commands implemented for this phase; no alternate name or substitute RPC | CHK-BE-004–005 | Command names/signatures match Section 6 exactly | Any renamed, combined, split, or invented command |
+| Exact nineteen-command Catalog boundary, phase-scoped | Only the 19 named commands implemented for this phase; no alternate name or substitute RPC; no combined numeric total asserted | CHK-BE-004, CHK-BE-004A, CHK-BE-005 | Command names/signatures match Section 6 exactly; scheduled-price/channel/scheduler/parser-support functions remain separately classified, never counted as part of the nineteen | Any renamed, combined, split, or invented command; any framing that treats a broader function group as part of the nineteen |
+| Generated SKU, uniqueness, and one-canonical-rule-across-channels | SKU-generation-when-absent behavior; collision/uniqueness; merchant-supplied SKU preservation; identical rule regardless of channel | CHK-FWR-003, CHK-FWR-004, CHK-FWR-005, CHK-FWR-006 | Product creation without a supplied SKU results in a generated, business-scoped, unique SKU; a supplied SKU is preserved unchanged; no channel-specific SKU logic exists | Any generated SKU that collides, encodes sensitive information, or is produced by channel-specific logic; any merchant-supplied SKU silently overwritten |
 | Three-layer identity model and privilege scoping | Role/grant inspection per EIS §7 | CHK-BE-001–003, CHK-BE-006 (full-package check deferred until every phase is authorized) | Each of the eight command-group owners holds only its own table privileges | Any role holds cross-group DML |
 | Command-only writes | No direct client DML on any protected table | CHK-CMD-001–002 | Direct client `INSERT`/`UPDATE`/`DELETE` attempt fails | Any protected table grants client DML |
 | Business isolation | RLS presence; cross-business idempotency-key probe | CHK-ISO-001–003 | Cross-business probe indistinguishable from nonexistent record | Any cross-business disclosure |
@@ -321,13 +418,13 @@ A future authorized implementation run must stop and escalate to Mission Control
 
 ```text
 FOUNDER LOVABLE BRIEF STATUS:
-LOCKED — MISSION CONTROL ACCEPTED
+DRAFT — MISSION CONTROL REVIEW REQUIRED
 
 MISSION CONTROL ACCEPTANCE:
-GRANTED
+PENDING
 
 DOCUMENT LOCK:
-ACTIVE
+NOT ACTIVE
 
 PASTE-INTO-LOVABLE AUTHORITY:
 NONE
@@ -345,4 +442,27 @@ PUBLISHING OR DEPLOYMENT AUTHORITY:
 NONE
 ```
 
-Acceptance and lock mean this brief is the approved Founder-facing restatement of the locked SB-P-1.11 package and accepted readiness dispositions for the approved 19-command initial Phase 1 scope, and that its phase gates, exclusions, security boundaries, data-integrity boundaries, D-068 safeguards, and verification expectations are accepted as documented; future modification requires a new Mission Control authorization. Acceptance and lock do not mean, and do not authorize, pasting this brief or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, deployment, or consumption of any Lovable credit. Founder review and a separate, explicit Mission Control implementation authorization both remain required before any of that may happen. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
+This Version 1.1 draft is **not yet** Mission Control accepted or locked. It is the reconciled Founder-facing restatement of the locked SB-P-1.11 Version 1.2 package and current Founder decision record for the 19-command initial Phase 1 scope, prepared for a separate Mission Control Stage 14 review. Until that review grants acceptance, this draft does not authorize, and must not be treated as authorizing, pasting this brief or the Lovable Build Prompt into Lovable, Lovable Plan Mode, Lovable Build Mode, implementation of any kind, publishing, deployment, or consumption of any Lovable credit. Founder review and a separate, explicit Mission Control Stage 14 acceptance, followed by a separate, explicit implementation authorization, both remain required before any of that may happen. This brief is intended to restate locked requirements and accepted Mission Control dispositions. It does not have authority to create new Product Truth or implementation requirements. Any inconsistency with a locked source must be resolved in favor of the locked source.
+
+---
+
+## 19. Change History
+
+**Version 1.0 — historical, accepted and locked (preserved, superseded by Version 1.1's current status above).**
+
+Prepared under `communication/live/instruction1.33.md`; refined per `communication/live/instruction1.34.md`, resolving Mission Control findings FLB-001 through FLB-004; accepted and locked per `communication/live/instruction1.35.md`, recording `FOUNDER LOVABLE BRIEF STATUS: LOCKED — MISSION CONTROL ACCEPTED`, `MISSION CONTROL ACCEPTANCE: GRANTED`, `DOCUMENT LOCK: ACTIVE`. Version 1.0 restated the then-current locked package: Product Blueprint, EIS Version 2.2, Engineering Contract Version 1.1, Lovable Build Prompt Version 1.1, Verification Checklist Version 1.1 — all `LOCKED` at that time — and the accepted readiness reports `report1.27.md` through `report1.32.md`. Version 1.0's own command-surface framing described the initial Phase 1 scope as "19 of the 28 locked commands" / "19 of the 21 Phase 1 commands," language later found stale and superseded once the broader package reconciliation chain (GC-22 through GC-27) established the precise nineteen-public-Catalog-command boundary with scheduled-price, channel/pending-action, scheduler, and parser-support functions classified separately. Version 1.0's paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, and publishing/deployment authorities were, and remain in this historical record, all `NONE` — Version 1.0's lock never granted use authority, only document acceptance.
+
+**Version 1.1 — this reconciliation, DRAFT, prepared under `communication/live/instruction1.124.md` (SB-P-1.11-GC-28).**
+
+Reconciles the Founder Lovable Brief against the current locked SB-P-1.11 Version 1.2 implementation package (`communication/live/instruction1.122.md`, SB-P-1.11-GC-26), the GC-27-amended Founder Product Decision Record D-023/D-024 (`communication/live/instruction1.123.md`), the Founder Workflow Reconciliation Record's FWR-001 through FWR-005, and the canonical Lambda Parser EIS (`communication/live/report1.126.md`). Does **not** carry Version 1.0's lock authority forward — Version 1.1 is `DRAFT — MISSION CONTROL REVIEW REQUIRED`, `MISSION CONTROL ACCEPTANCE: PENDING`, `DOCUMENT LOCK: NOT ACTIVE`, with every use-authority field (`PASTE-INTO-LOVABLE`, `LOVABLE PLAN MODE`, `LOVABLE BUILD MODE`, `IMPLEMENTATION`, `PUBLISHING OR DEPLOYMENT`) explicitly `NONE`. Changes in this revision:
+
+- Updated the authority hierarchy (Section 5) to reference D-023/D-024 as GC-27-amended, the Founder Workflow Reconciliation Record, the canonical Lambda Parser EIS, and Engineering Contract/Lovable Build Prompt/Verification Checklist Version 1.2 `LOCKED — MISSION CONTROL ACCEPTED`, replacing every Version 1.1-package or Version 2.2-parser-architecture reference Version 1.0 carried.
+- Removed every stale combined-command framing ("19 of the 28 locked commands," "19 of the 21 Phase 1 commands," "the locked, complete 28-command surface," "remaining 9 commands of the locked 28," "Exact 28-command surface") and replaced it with the current locked rule: exactly 19 public Catalog commands, no twentieth Catalog command, with scheduled-price, channel/pending-action, scheduler, and parser-support functions classified separately and no combined numeric total asserted (Section 1, Section 6, Section 10, Section 14, Section 16).
+- Corrected the stale placeholder Phase 2b import architecture (`create_catalog_import_job`/`stage_catalog_import_rows`/`apply_catalog_import_valid_rows`, `catalog_import_jobs`/`catalog_import_rows`) to the reconciled reality: zero new Catalog commands, parsing externalized to the canonical Lambda Parser EIS, import-support bookkeeping in `catalog_import_batches`/`catalog_import_rows` as narrow non-Product-Truth support state (Section 8, Section 14).
+- Added generated-SKU behavior (D-023 as amended, FWR-003/FWR-004) to the initial Phase 1 scope it already governs — dashboard/manual product creation and edit — without adding a new command (Section 3, Section 6, Section 7).
+- Added Inventory/Opening Stock bulk onboarding, downloadable import templates, and Inventory-first orchestration (FWR-001, FWR-002, FWR-005) to Section 4 and Section 14 as locked package content correctly gated outside this initial Phase 1 dashboard scope, without collapsing them into it and without inventing new implementation detail beyond the locked package.
+- Substantially expanded Section 15 into the required Stage 14 Founder handoff fields: the exact future Lovable instruction (15.1), the locked Lovable Build Prompt path (15.2), the required implementation branch/PR workflow (15.3), expected builder output and changed-file reporting (15.4), the Builder Completion Report path (15.5), only the necessary PowerShell commands (15.6), explicit handoff-specific stop conditions (15.7), and an explicit not-authorized-for-use statement (15.8) — none of which Version 1.0 contained in this form.
+- Added generated-SKU verification coverage (`CHK-FWR-003` through `CHK-FWR-006`) to Section 16 and corrected the nineteen-command verification row's citations to `CHK-BE-004`/`CHK-BE-004A`/`CHK-BE-005`.
+- Added this Change History section, preserving Version 1.0's original wording and disposition above without erasing it.
+
+No new Product Truth, Founder decision, or engineering architecture was invented by this reconciliation. Repository hygiene and the Blueprint lifecycle path remain as stated in Section 14A above; neither was remediated by this mission. Status remains `DRAFT — MISSION CONTROL REVIEW REQUIRED` throughout this revision; not approved, not locked, no paste-into-Lovable, Lovable Plan Mode, Lovable Build Mode, implementation, or publishing/deployment authority.
