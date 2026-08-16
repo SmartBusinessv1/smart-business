@@ -12,6 +12,10 @@
 
 ---
 
+**Correction note (2026-08-17):** Mission Control's review of this report under `communication/live/instruction1.131.md` (findings `MC-S19-001`, `MC-S19-002`) is recorded in `communication/live/report1.141.md`. The corrections strengthened the evidentiary basis for the production-security claim in §2 below (direct read-only production database verification, not previously performed) and corrected authority wording in `decision-log.md`. The disposition and material finding below are unchanged in substance.
+
+---
+
 ## 1. Detailed Mission-Scoped Report
 
 The complete Stage 19 verification — scope, methods, commands/checks executed, environment identities inspected, full item-by-item Verification Checklist disposition, security/business-isolation/RLS assessment, and regression findings — is recorded at:
