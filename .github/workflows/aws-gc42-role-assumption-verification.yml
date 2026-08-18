@@ -1,0 +1,173 @@
+name: GC-42 AWS Role Assumption Verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  intended-main-environment-assumption:
+    name: Intended main/environment OIDC assumption
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: aws-nonprod-parser
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AWS_REGION: ap-south-1
+      AWS_DEFAULT_REGION: ap-south-1
+      EXPECTED_ACCOUNT_ID: "658980433673"
+      EXPECTED_ENVIRONMENT: nonprod
+      DEPLOY_ROLE_ARN: arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-DeployRole
+    steps:
+      - name: Verify main-only and non-production preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${AWS_REGION}" = "ap-south-1"
+          test "${EXPECTED_ENVIRONMENT}" = "nonprod"
+          echo "GC42_PREFLIGHT_PASS account=${EXPECTED_ACCOUNT_ID} region=${AWS_REGION} environment=${EXPECTED_ENVIRONMENT} ref=${GITHUB_REF}"
+
+      - name: Assume exact deploy role with GitHub OIDC
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          token_response="$(curl --fail --silent --show-error \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")"
+          web_identity_token="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])' <<<"${token_response}")"
+
+          session_name="gc42-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          response_file="$(mktemp)"
+          trap 'rm -f "${response_file}"' EXIT
+
+          aws sts assume-role-with-web-identity \
+            --role-arn "${DEPLOY_ROLE_ARN}" \
+            --role-session-name "${session_name}" \
+            --web-identity-token "${web_identity_token}" \
+            --duration-seconds 900 \
+            --output json > "${response_file}"
+
+          readarray -t creds < <(python3 - "${response_file}" <<'PY'
+          import json
+          import sys
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          c = data["Credentials"]
+          print(c["AccessKeyId"])
+          print(c["SecretAccessKey"])
+          print(c["SessionToken"])
+          print(data["AssumedRoleUser"]["Arn"])
+          PY
+          )
+
+          echo "::add-mask::${creds[0]}"
+          echo "::add-mask::${creds[1]}"
+          echo "::add-mask::${creds[2]}"
+          {
+            echo "AWS_ACCESS_KEY_ID=${creds[0]}"
+            echo "AWS_SECRET_ACCESS_KEY=${creds[1]}"
+            echo "AWS_SESSION_TOKEN=${creds[2]}"
+          } >> "${GITHUB_ENV}"
+
+          echo "ASSUMED_ROLE_SESSION_ARN=${creds[3]}"
+          echo "ROLE_SESSION_NAME=${session_name}"
+          echo "GC42_INTENDED_ASSUME_ROLE_PASS"
+
+      - name: Verify caller identity and isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          caller="$(aws sts get-caller-identity --output json)"
+          account="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["Account"])' <<<"${caller}")"
+          arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["Arn"])' <<<"${caller}")"
+
+          test "${account}" = "${EXPECTED_ACCOUNT_ID}"
+          case "${arn}" in
+            arn:aws:sts::658980433673:assumed-role/TeamLIPS-SB-NonProd-Parser-DeployRole/*) ;;
+            *) echo "UNEXPECTED_CALLER_ARN"; exit 1 ;;
+          esac
+
+          echo "STS_CALLER_ACCOUNT=${account}"
+          echo "STS_CALLER_ARN=${arn}"
+          echo "GC42_CALLER_IDENTITY_PASS"
+
+  negative-environment-mismatch:
+    name: Reject token without required environment subject
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AWS_REGION: ap-south-1
+      AWS_DEFAULT_REGION: ap-south-1
+      DEPLOY_ROLE_ARN: arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-DeployRole
+    steps:
+      - name: Prove non-environment OIDC subject is rejected
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          token_response="$(curl --fail --silent --show-error \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")"
+          web_identity_token="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])' <<<"${token_response}")"
+
+          output_file="$(mktemp)"
+          error_file="$(mktemp)"
+          trap 'rm -f "${output_file}" "${error_file}"' EXIT
+
+          if aws sts assume-role-with-web-identity \
+            --role-arn "${DEPLOY_ROLE_ARN}" \
+            --role-session-name "gc42-neg-env-${GITHUB_RUN_ID}" \
+            --web-identity-token "${web_identity_token}" \
+            --duration-seconds 900 \
+            --output json >"${output_file}" 2>"${error_file}"; then
+            echo "GC42_NEGATIVE_ENVIRONMENT_UNEXPECTED_SUCCESS"
+            exit 1
+          fi
+
+          echo "GC42_NEGATIVE_ENVIRONMENT_REJECTION_PASS"
+
+  negative-ref-mismatch:
+    name: Reject non-main ref OIDC subject
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AWS_REGION: ap-south-1
+      AWS_DEFAULT_REGION: ap-south-1
+      DEPLOY_ROLE_ARN: arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-DeployRole
+    steps:
+      - name: Prove non-main ref subject is rejected
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          token_response="$(curl --fail --silent --show-error \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")"
+          web_identity_token="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])' <<<"${token_response}")"
+
+          output_file="$(mktemp)"
+          error_file="$(mktemp)"
+          trap 'rm -f "${output_file}" "${error_file}"' EXIT
+
+          if aws sts assume-role-with-web-identity \
+            --role-arn "${DEPLOY_ROLE_ARN}" \
+            --role-session-name "gc42-neg-ref-${GITHUB_RUN_ID}" \
+            --web-identity-token "${web_identity_token}" \
+            --duration-seconds 900 \
+            --output json >"${output_file}" 2>"${error_file}"; then
+            echo "GC42_NEGATIVE_REF_UNEXPECTED_SUCCESS"
+            exit 1
+          fi
+
+          echo "NEGATIVE_REF=${GITHUB_REF}"
+          echo "GC42_NEGATIVE_REF_REJECTION_PASS"
