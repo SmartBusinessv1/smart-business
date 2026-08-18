@@ -1,0 +1,202 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VerifyAwsIdentity",
+      "Effect": "Allow",
+      "Action": "sts:GetCallerIdentity",
+      "Resource": "*"
+    },
+    {
+      "Sid": "ManageExactParserLambda",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:PublishVersion",
+        "lambda:CreateAlias",
+        "lambda:UpdateAlias",
+        "lambda:GetAlias",
+        "lambda:ListAliases",
+        "lambda:ListVersionsByFunction",
+        "lambda:PutFunctionConcurrency",
+        "lambda:DeleteFunctionConcurrency",
+        "lambda:GetFunctionConcurrency",
+        "lambda:CreateFunctionUrlConfig",
+        "lambda:UpdateFunctionUrlConfig",
+        "lambda:GetFunctionUrlConfig",
+        "lambda:DeleteFunctionUrlConfig",
+        "lambda:TagResource",
+        "lambda:UntagResource"
+      ],
+      "Resource": [
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser",
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser:*"
+      ]
+    },
+    {
+      "Sid": "DenyNonIamFunctionUrl",
+      "Effect": "Deny",
+      "Action": [
+        "lambda:CreateFunctionUrlConfig",
+        "lambda:UpdateFunctionUrlConfig"
+      ],
+      "Resource": [
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser",
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser:*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "lambda:FunctionUrlAuthType": "AWS_IAM"
+        }
+      }
+    },
+    {
+      "Sid": "ManageExactParserIngressBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:GetBucketLocation",
+        "s3:GetBucketPolicy",
+        "s3:PutBucketPolicy",
+        "s3:DeleteBucketPolicy",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:GetEncryptionConfiguration",
+        "s3:PutEncryptionConfiguration",
+        "s3:GetLifecycleConfiguration",
+        "s3:PutLifecycleConfiguration",
+        "s3:GetBucketCors",
+        "s3:PutBucketCors",
+        "s3:GetBucketVersioning",
+        "s3:PutBucketVersioning",
+        "s3:GetBucketTagging",
+        "s3:PutBucketTagging",
+        "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::teamlips-sb-np-parser-658980433673-ap-south-1"
+    },
+    {
+      "Sid": "VerifyExactParserIngressObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectAttributes",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::teamlips-sb-np-parser-658980433673-ap-south-1/*"
+    },
+    {
+      "Sid": "ManageExactParserLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:PutRetentionPolicy",
+        "logs:DeleteRetentionPolicy",
+        "logs:TagResource",
+        "logs:UntagResource"
+      ],
+      "Resource": "arn:aws:logs:ap-south-1:658980433673:log-group:/aws/lambda/teamlips-sb-np-parser*"
+    },
+    {
+      "Sid": "ReadLogGroupInventory",
+      "Effect": "Allow",
+      "Action": "logs:DescribeLogGroups",
+      "Resource": "*"
+    },
+    {
+      "Sid": "CreateOnlyBoundaryProtectedRuntimeRoles",
+      "Effect": "Allow",
+      "Action": "iam:CreateRole",
+      "Resource": [
+        "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-LambdaExecutionRole",
+        "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-WorkloadRole"
+      ],
+      "Condition": {
+        "ArnEquals": {
+          "iam:PermissionsBoundary": "arn:aws:iam::658980433673:policy/TeamLIPS-SB-NonProd-Parser-RuntimeBoundary"
+        }
+      }
+    },
+    {
+      "Sid": "ManageOnlyExactRuntimeRolePolicies",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:PutRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:ListRolePolicies"
+      ],
+      "Resource": [
+        "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-LambdaExecutionRole",
+        "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-WorkloadRole"
+      ]
+    },
+    {
+      "Sid": "PassOnlyLambdaExecutionRole",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-LambdaExecutionRole",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Sid": "PassOnlyWorkloadRoleToRolesAnywhere",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-WorkloadRole",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "rolesanywhere.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Sid": "CreateOnlyTaggedParserRolesAnywhereResources",
+      "Effect": "Allow",
+      "Action": [
+        "rolesanywhere:CreateTrustAnchor",
+        "rolesanywhere:CreateProfile"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Project": "SmartBusiness",
+          "aws:RequestTag/Environment": "nonprod",
+          "aws:RequestTag/Workstream": "SB-P-1.11",
+          "aws:RequestTag/Component": "lambda-parser",
+          "aws:RequestTag/Owner": "TeamLIPS",
+          "aws:RequestTag/ManagedBy": "GitHubActions"
+        },
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "Project",
+            "Environment",
+            "Workstream",
+            "Component",
+            "Owner",
+            "ManagedBy"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "ReadRolesAnywhereInventory",
+      "Effect": "Allow",
+      "Action": [
+        "rolesanywhere:ListTrustAnchors",
+        "rolesanywhere:ListProfiles"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

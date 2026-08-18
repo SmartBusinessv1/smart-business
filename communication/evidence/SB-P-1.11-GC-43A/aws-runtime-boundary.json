@@ -1,0 +1,64 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowExactParserObjectLifecycle",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::teamlips-sb-np-parser-658980433673-ap-south-1/*"
+    },
+    {
+      "Sid": "AllowExactParserFunctionUrlInvocation",
+      "Effect": "Allow",
+      "Action": "lambda:InvokeFunctionUrl",
+      "Resource": [
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser",
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser:*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "lambda:FunctionUrlAuthType": "AWS_IAM"
+        }
+      }
+    },
+    {
+      "Sid": "AllowExactParserFunctionInvocation",
+      "Effect": "Allow",
+      "Action": "lambda:InvokeFunction",
+      "Resource": [
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser",
+        "arn:aws:lambda:ap-south-1:658980433673:function:teamlips-sb-np-parser:*"
+      ]
+    },
+    {
+      "Sid": "AllowExactParserRuntimeLogging",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:ap-south-1:658980433673:log-group:/aws/lambda/teamlips-sb-np-parser:*"
+    },
+    {
+      "Sid": "DenyRuntimeControlPlaneEscalation",
+      "Effect": "Deny",
+      "Action": [
+        "iam:*",
+        "organizations:*",
+        "sso:*",
+        "sso-directory:*",
+        "sso-oauth:*",
+        "account:*",
+        "billing:*",
+        "sts:AssumeRole",
+        "sts:AssumeRoleWithWebIdentity",
+        "sts:AssumeRoleWithSAML"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
