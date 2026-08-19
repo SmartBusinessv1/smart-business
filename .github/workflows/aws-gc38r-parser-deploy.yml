@@ -13,19 +13,46 @@ name: SB-P-1.11-GC-38R Parser Non-Production Deploy
 # Idempotent by design: every AWS resource is created only if it does not
 # already exist (check-then-create), so re-running this workflow (e.g. to
 # push updated Lambda code) never re-provisions IAM/Roles-Anywhere/S3
-# state that already exists, and never rotates the workload certificate
-# unless `reissue_workload_certificate` is explicitly set to true (see
-# report1.108.md §7.1's certificate rotation/reissuance requirement).
+# state that already exists.
+#
+# Trust Anchor CA custody (corrected per Security & Permissions Architecture
+# review of PR #332): the Trust Anchor's CA private key is never generated,
+# received, held, or written to disk by this workflow, under any input
+# combination, at any point -- including transiently. It remains under
+# Founder-controlled secure/offline custody outside GitHub Actions entirely
+# (report1.108.md §7.1's rotation/reissuance/revocation requirement, read
+# narrowly: the *workload* end-entity certificate is what this workflow may
+# help reissue; the CA itself is out of its custody by design).
+#
+#  - First-time Trust Anchor creation supplies only the CA *certificate*
+#    (public material) via the `trust_anchor_ca_certificate_pem` input,
+#    which the Founder generates and signs entirely offline beforehand.
+#  - Workload end-entity certificate issuance (first-time or reissuance,
+#    `generate_workload_csr: true`) has this workflow generate a fresh
+#    *workload* keypair (not the CA) and a CSR, hand off the workload
+#    private key + CSR via the short-lived artifact below, and stop there.
+#    The Founder signs the CSR offline using their own CA custody and
+#    manually provisions the resulting workload certificate (alongside the
+#    already-handed-off workload private key) into the approved server
+#    secret store -- this workflow is never involved in that signing step
+#    and never sees the signed certificate.
 
 on:
   workflow_dispatch:
     inputs:
-      reissue_workload_certificate:
+      trust_anchor_ca_certificate_pem:
         description: >-
-          Reissue the workload end-entity certificate under the existing
-          Trust Anchor's CA (requires the PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY
-          environment secret to already be set from a prior creation run).
-          Leave false for an ordinary Lambda code deploy.
+          PEM-encoded CA certificate (public material only -- never the
+          private key), generated and held offline by the Founder. Required
+          only for first-time Trust Anchor creation; ignored once a Trust
+          Anchor already exists.
+        type: string
+        default: ""
+      generate_workload_csr:
+        description: >-
+          Generate a fresh workload keypair and certificate signing request
+          for the Founder to sign offline against the existing Trust
+          Anchor's CA. Leave false for an ordinary Lambda code deploy.
         type: boolean
         default: false
 
@@ -346,78 +373,56 @@ jobs:
           echo "GC38R_WORKLOAD_ROLE_CONFIGURED"
 
       # -----------------------------------------------------------------
-      # IAM Roles Anywhere -- self-signed non-production CA registered as
-      # the Trust Anchor, plus an end-entity certificate/key issued from
-      # it. Reconciled against the locked EIS's certificate
-      # rotation/reissuance/revocation requirement (report1.108.md §7.1,
-      # §17 item 7):
+      # IAM Roles Anywhere -- Trust Anchor registration and Profile.
       #
-      #  - First-time creation (no Trust Anchor of this exact name yet):
-      #    a fresh CA and end-entity certificate are generated. The CA
-      #    private key is included in the one-time handoff artifact
-      #    alongside the end-entity material, with an explicit
-      #    instruction for Mission Control to move it into the
-      #    `PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY` GitHub Actions
-      #    environment secret (`aws-nonprod-parser`) -- this is what
-      #    makes later end-entity reissuance possible without ever
-      #    creating a second Trust Anchor. The deploy role has no
-      #    Roles Anywhere update/delete authority by design, so this
-      #    workflow itself never persists the CA key anywhere; only a
-      #    human, using GitHub's own encrypted-secret storage (no new
-      #    AWS authority, no file/artifact left behind after this run),
-      #    can make it durably available for later runs.
-      #  - Reissuance (Trust Anchor already exists, this run was
-      #    explicitly dispatched with `reissue_workload_certificate:
-      #    true`, and the CA private key secret is available): a new
-      #    end-entity keypair is generated and signed by the *same* CA
-      #    (read only from the secret, never regenerated, never written
-      #    to disk outside this step's own temp directory), so the
-      #    existing Trust Anchor/Profile are untouched -- an overlapping
-      #    reissuance, not a replacement. If reissuance is requested but
-      #    the CA secret is absent, this step fails closed rather than
-      #    silently skipping.
-      #  - Immediate revocation on suspected compromise is out of this
-      #    deploy role's authority by construction (no
-      #    rolesanywhere:UpdateTrustAnchor/DeleteTrustAnchor grant, and
-      #    none is added here -- that would broaden AWS authority beyond
-      #    what GC-41/GC-43 approved). Emergency revocation requires the
-      #    same one-time elevated root/IAM-admin path already established
-      #    for RuntimeBoundary changes (report1.153.md §9); this workflow
-      #    only documents that, it does not perform it.
+      # CA-key custody correction (Security & Permissions Architecture
+      # review of PR #332): this workflow never generates, receives,
+      # holds, or writes the Trust Anchor CA private key, under any input
+      # or code path, at any point -- not even transiently. The CA is
+      # entirely Founder-controlled, offline, outside GitHub Actions.
+      # First-time creation consumes only the CA *certificate* (public
+      # material) supplied via the `trust_anchor_ca_certificate_pem`
+      # input; if a Trust Anchor of this exact name already exists, its
+      # ARN is reused and the input is ignored. There is never a second
+      # code path here that generates a CA -- exactly one Trust Anchor is
+      # ever created by this workflow.
+      #
+      # Immediate revocation on suspected compromise is out of this
+      # deploy role's authority by construction (no
+      # rolesanywhere:UpdateTrustAnchor/DeleteTrustAnchor grant, and none
+      # is added here -- that would broaden AWS authority beyond what
+      # GC-41/GC-43 approved). Emergency revocation requires the same
+      # one-time elevated root/IAM-admin path already established for
+      # RuntimeBoundary changes (report1.153.md §9), performed entirely
+      # outside this workflow.
       # -----------------------------------------------------------------
-      - name: Create/reissue IAM Roles Anywhere trust anchor and profile
+      - name: Create IAM Roles Anywhere trust anchor
         id: roles_anywhere
         shell: bash
         env:
-          CA_PRIVATE_KEY_SECRET: ${{ secrets.PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY }}
-          REISSUE_REQUESTED: ${{ github.event.inputs.reissue_workload_certificate }}
+          CA_CERTIFICATE_PEM: ${{ github.event.inputs.trust_anchor_ca_certificate_pem }}
         run: |
           set -euo pipefail
 
           existing_ta="$(aws rolesanywhere list-trust-anchors --output json \
             | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((t['trustAnchorArn'] for t in d.get('trustAnchors',[]) if t.get('name')=='${TRUST_ANCHOR_NAME}'), ''))")"
 
-          cert_generated=false
-          mkdir -p /tmp/parser-pki
-          cd /tmp/parser-pki
+          if [ -n "${existing_ta}" ]; then
+            echo "GC38R_TRUST_ANCHOR_EXISTS arn=${existing_ta}"
+            trust_anchor_arn="${existing_ta}"
+          else
+            if [ -z "${CA_CERTIFICATE_PEM}" ]; then
+              echo "GC38R_TRUST_ANCHOR_BOOTSTRAP_MISSING_CA_CERTIFICATE" >&2
+              echo "No Trust Anchor named ${TRUST_ANCHOR_NAME} exists yet, and no trust_anchor_ca_certificate_pem input was supplied. This workflow does not generate a CA itself -- the Founder must generate the CA offline and re-dispatch this workflow with its public certificate in that input." >&2
+              exit 1
+            fi
 
-          if [ -z "${existing_ta}" ]; then
-            openssl genrsa -out ca.key 2048
-            openssl req -x509 -new -key ca.key -sha256 -days 3650 \
-              -subj "/O=Team LIPS/OU=Smart Business Non-Production/CN=Smart Business Parser Ingress CA" \
-              -out ca.pem
-
-            openssl genrsa -out end-entity.key 2048
-            openssl req -new -key end-entity.key \
-              -subj "/O=Team LIPS/OU=Smart Business Non-Production/CN=Smart Business Parser Ingress Caller" \
-              -out end-entity.csr
-            openssl x509 -req -in end-entity.csr -CA ca.pem -CAkey ca.key -CAcreateserial \
-              -days 397 -sha256 -out end-entity.pem
-            openssl pkcs8 -topk8 -nocrypt -in end-entity.key -out end-entity.pkcs8.pem
+            mkdir -p /tmp/parser-pki
+            printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem
 
             ta_response="$(aws rolesanywhere create-trust-anchor \
               --name "${TRUST_ANCHOR_NAME}" \
-              --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData=$(cat ca.pem | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')}" \
+              --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData=$(python3 -c 'import sys,json; print(json.dumps(open(sys.argv[1]).read()))' /tmp/parser-pki/ca.pem)}" \
               --enabled \
               --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
                      Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
@@ -425,63 +430,9 @@ jobs:
               --output json)"
             trust_anchor_arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["trustAnchor"]["trustAnchorArn"])' <<<"${ta_response}")"
             echo "GC38R_TRUST_ANCHOR_CREATED arn=${trust_anchor_arn}"
-            cert_generated=true
-
-            # Never printed to the log and never round-tripped through
-            # GITHUB_ENV. Written only to a workspace-local directory
-            # picked up by the short-retention artifact upload step
-            # below -- the only handoff channel available to this
-            # workflow, since it has no Cloudflare/Lovable access to
-            # deliver secret material directly into the server's own
-            # secret store (report1.108.md §20.4 -- that provisioning
-            # step, and durably storing the CA key as a GitHub secret for
-            # future reissuance, are explicitly human/Mission Control
-            # actions).
-            mkdir -p "${GITHUB_WORKSPACE}/.parser-pki-handoff"
-            cp end-entity.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-certificate.pem"
-            cp end-entity.pkcs8.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-private-key.pem"
-            cp ca.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/trust-anchor-ca.pem"
-            cp ca.key "${GITHUB_WORKSPACE}/.parser-pki-handoff/trust-anchor-ca-private-key.pem"
-          elif [ "${REISSUE_REQUESTED}" = "true" ]; then
-            if [ -z "${CA_PRIVATE_KEY_SECRET}" ]; then
-              echo "GC38R_REISSUE_REQUESTED_BUT_CA_SECRET_MISSING" >&2
-              echo "Reissuance was requested but the PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY environment secret is not set. Cannot sign a new end-entity certificate without the existing Trust Anchor's CA private key, and this workflow will not create a second Trust Anchor as a substitute (that would leave two trust anchors live for the same non-production role, widening the acceptance surface, not narrowing it)." >&2
-              exit 1
-            fi
-            printf '%s' "${CA_PRIVATE_KEY_SECRET}" > ca.key
-            aws rolesanywhere get-trust-anchor --trust-anchor-id "$(basename "${existing_ta}")" \
-              --output json | python3 -c 'import json,sys; print(json.load(sys.stdin)["trustAnchor"]["source"]["sourceData"]["x509CertificateData"])' \
-              > ca.pem
-
-            openssl genrsa -out end-entity.key 2048
-            openssl req -new -key end-entity.key \
-              -subj "/O=Team LIPS/OU=Smart Business Non-Production/CN=Smart Business Parser Ingress Caller" \
-              -out end-entity.csr
-            openssl x509 -req -in end-entity.csr -CA ca.pem -CAkey ca.key -CAcreateserial \
-              -days 397 -sha256 -out end-entity.pem
-            openssl pkcs8 -topk8 -nocrypt -in end-entity.key -out end-entity.pkcs8.pem
-
-            trust_anchor_arn="${existing_ta}"
-            echo "GC38R_END_ENTITY_CERTIFICATE_REISSUED trust_anchor_arn=${trust_anchor_arn}"
-            cert_generated=true
-
-            mkdir -p "${GITHUB_WORKSPACE}/.parser-pki-handoff"
-            cp end-entity.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-certificate.pem"
-            cp end-entity.pkcs8.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-private-key.pem"
-            # The CA key/cert are not re-included here: they were already
-            # handed off once at creation and are expected to already be
-            # durably stored (as the environment secret this branch just
-            # read them back from) -- re-emitting them on every
-            # reissuance would only multiply the number of places the CA
-            # key has ever been written to disk, working against "do not
-            # persist insecurely."
-          else
-            echo "GC38R_TRUST_ANCHOR_EXISTS arn=${existing_ta}"
-            trust_anchor_arn="${existing_ta}"
           fi
 
           echo "trust_anchor_arn=${trust_anchor_arn}" >> "${GITHUB_OUTPUT}"
-          echo "cert_generated=${cert_generated}" >> "${GITHUB_OUTPUT}"
 
           existing_profile="$(aws rolesanywhere list-profiles --output json \
             | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((p['profileArn'] for p in d.get('profiles',[]) if p.get('name')=='${ROLES_ANYWHERE_PROFILE_NAME}'), ''))")"
@@ -504,6 +455,45 @@ jobs:
             echo "GC38R_PROFILE_CREATED arn=${profile_arn}"
           fi
           echo "profile_arn=${profile_arn}" >> "${GITHUB_OUTPUT}"
+
+      # -----------------------------------------------------------------
+      # Workload certificate signing request -- generates only a *workload*
+      # keypair and CSR (never the CA). The CSR (public request material)
+      # and the new workload private key are hand off via the short-lived
+      # artifact below for the Founder to: (1) sign the CSR offline using
+      # their own CA custody, producing the workload certificate, and
+      # (2) provision that certificate, together with the workload
+      # private key from this same artifact, into the approved server
+      # secret store. This workflow is never involved in the signing step
+      # and never receives the signed certificate back.
+      # -----------------------------------------------------------------
+      - name: Generate workload certificate signing request
+        id: workload_csr
+        if: github.event.inputs.generate_workload_csr == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/parser-pki
+          cd /tmp/parser-pki
+
+          openssl genrsa -out workload.key 2048
+          openssl req -new -key workload.key \
+            -subj "/O=Team LIPS/OU=Smart Business Non-Production/CN=Smart Business Parser Ingress Caller" \
+            -out workload.csr
+          openssl pkcs8 -topk8 -nocrypt -in workload.key -out workload.pkcs8.pem
+
+          # Never printed to the log and never round-tripped through
+          # GITHUB_ENV. The CSR is public request material (safe to
+          # hand off); the workload private key is server secret material
+          # (not the CA) that must reach the approved server secret store
+          # -- exactly the same handoff channel already used for every
+          # other secret this workflow cannot deliver directly
+          # (report1.108.md §20.4).
+          mkdir -p "${GITHUB_WORKSPACE}/.parser-pki-handoff"
+          cp workload.csr "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-certificate-signing-request.csr"
+          cp workload.pkcs8.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-private-key.pem"
+          echo "GC38R_WORKLOAD_CSR_GENERATED"
+          echo "csr_generated=true" >> "${GITHUB_OUTPUT}"
 
       # -----------------------------------------------------------------
       # Lambda -- function, version, alias, AWS_IAM Function URL, finite
@@ -594,26 +584,22 @@ jobs:
             echo "| Trust anchor ARN | ${{ steps.roles_anywhere.outputs.trust_anchor_arn }} |"
             echo "| Profile ARN | ${{ steps.roles_anywhere.outputs.profile_arn }} |"
             echo "| Workload role ARN | arn:aws:iam::${EXPECTED_ACCOUNT_ID}:role/${WORKLOAD_ROLE_NAME} |"
-            echo "| New workload certificate generated this run | ${{ steps.roles_anywhere.outputs.cert_generated }} |"
+            echo "| Workload CSR generated this run | ${{ steps.workload_csr.outputs.csr_generated || 'false' }} |"
           } >> "${GITHUB_STEP_SUMMARY}"
 
-      - name: Upload workload certificate material for out-of-band handoff
-        if: steps.roles_anywhere.outputs.cert_generated == 'true'
+      - name: Upload workload CSR/private key for out-of-band handoff
+        if: steps.workload_csr.outputs.csr_generated == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: gc38r-workload-pki-handoff
+          name: gc38r-workload-csr-handoff
           path: .parser-pki-handoff/
           retention-days: 1
 
-      - name: New workload certificate material handoff notice
-        if: steps.roles_anywhere.outputs.cert_generated == 'true'
+      - name: Workload CSR handoff notice
+        if: steps.workload_csr.outputs.csr_generated == 'true'
         shell: bash
         run: |
-          if [ -f "${GITHUB_WORKSPACE}/.parser-pki-handoff/trust-anchor-ca-private-key.pem" ]; then
-            echo "::warning::A new Trust Anchor CA and workload end-entity certificate/private key were generated this run and uploaded as the short-lived (1-day retention) build artifact 'gc38r-workload-pki-handoff', never printed to this log. Only repository collaborators with Actions read access can download it. Mission Control must retrieve it from this run's Artifacts and: (1) provision workload-private-key.pem/workload-certificate.pem into the approved server secret store (Cloudflare Worker secret bindings) out of band; (2) store trust-anchor-ca-private-key.pem durably as the PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY GitHub Actions environment secret on aws-nonprod-parser, so a future run can reissue the end-entity certificate without creating a second Trust Anchor; (3) delete the artifact and any local copies once both are done. Do not paste this material into any log, PR, issue, commit, or chat."
-          else
-            echo "::warning::The workload end-entity certificate was reissued this run under the existing Trust Anchor's CA and uploaded as the short-lived (1-day retention) build artifact 'gc38r-workload-pki-handoff', never printed to this log. Mission Control must retrieve workload-private-key.pem/workload-certificate.pem and provision them into the approved server secret store (Cloudflare Worker secret bindings) out of band, then delete the artifact/local copies. The Trust Anchor/Profile were not modified. Do not paste this material into any log, PR, issue, commit, or chat."
-          fi
+          echo "::warning::A new workload keypair and certificate signing request were generated this run and uploaded as the short-lived (1-day retention) build artifact 'gc38r-workload-csr-handoff' (workload-certificate-signing-request.csr, workload-private-key.pem), never printed to this log. This workflow never touched the Trust Anchor CA private key and never will. Mission Control/Founder must: (1) download the artifact; (2) sign workload-certificate-signing-request.csr offline using the Founder-controlled CA custody to produce the workload certificate; (3) provision that certificate together with workload-private-key.pem into the approved server secret store (Cloudflare Worker secret bindings) out of band; (4) delete the artifact and any local copies. The Trust Anchor/Profile were not modified. Do not paste this material into any log, PR, issue, commit, or chat."
 
       - name: Remove local PKI handoff copy from the runner workspace
         if: always()
