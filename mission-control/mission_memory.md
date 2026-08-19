@@ -49,6 +49,7 @@
 - Resume SB-INF-1.2 after both legal pages are published.
 - Schedule a future canonical-source metadata-normalization mission for Sources 02 through 08 to remove legacy `Smart Business V2.2` headers and reconcile the Source 07 title with the approved `/survey` deprecation and `/start` route.
 - Immediately after SB-P-1.11 is fully completed and its communication closure is merged, execute a small documentation-only governance mission: `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment`. Its purpose is to reconcile the active repository handover protocol, Source 18 mission-lifecycle communication wording, Mission Control memory, and `communication/live/` operating guidance so repository-first AI-to-AI handovers are unambiguous and the Founder is not used as a manual message bus.
+- SB-P-1.11 / GC-38R — Create a secure encrypted offline USB backup of `teamlips-sb-np-parser-ca.key.pem` and `teamlips-sb-np-parser-ca.cert.pem`; keep the CA-key passphrase and USB recovery information separately. The current Founder-controlled CA working copy remains outside the repository at `C:\TeamLIPS-Offline-PKI`. Never place the CA private key in GitHub, project storage, cloud-synced folders, chat, or CI.
 
 ---
 
