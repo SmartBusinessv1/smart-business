@@ -61,6 +61,7 @@ CREATE TABLE public.parser_upload_leases (
   expected_byte_length  integer NOT NULL
                           CHECK (expected_byte_length > 0 AND expected_byte_length <= 5242880),
   expected_sha256_b64   text NOT NULL,
+  file_kind             text NOT NULL CHECK (file_kind IN ('csv', 'xlsx')),
   created_by            uuid NOT NULL,
   state                 text NOT NULL DEFAULT 'ISSUED'
                           CHECK (state IN ('ISSUED', 'UPLOADED', 'CLAIMED', 'CONSUMED', 'FAILED', 'EXPIRED')),
@@ -117,9 +118,13 @@ COMMENT ON TABLE public.parser_upload_leases IS
   'one external Lambda parse -- never Product Truth, never a Catalog '
   'command, never merchant-visible (report1.108.md §5.12). '
   'business_id/guard_token/object_key/expected_byte_length/'
-  'expected_sha256_b64/created_by/issued_at/expires_at are immutable '
-  'authority fields: no transition function below ever assigns them '
-  '(report1.118.md §3.3).';
+  'expected_sha256_b64/file_kind/created_by/issued_at/expires_at are '
+  'immutable authority fields: no transition function below ever assigns '
+  'them (report1.118.md §3.3). file_kind in particular is bound once at '
+  'issuance and re-read from this row at confirm/dispatch time -- never '
+  're-asserted by the browser at that later step (report1.108.md §5.3''s '
+  'never-trust-the-browser-after-issuance rule, applied identically to '
+  'every declared-at-issuance field).';
 
 -- =============================================================================
 -- Step 2 -- invariants/helpers. Nine SECURITY DEFINER functions, each
@@ -200,6 +205,7 @@ CREATE OR REPLACE FUNCTION public.issue_parser_upload_lease(
   p_object_key text,
   p_expected_byte_length integer,
   p_expected_sha256_b64 text,
+  p_file_kind text,
   p_created_by uuid
 )
 RETURNS TABLE (lease_id uuid, expires_at timestamptz)
@@ -228,9 +234,9 @@ BEGIN
 
   INSERT INTO public.parser_upload_leases
       (business_id, guard_token, object_key, expected_byte_length,
-       expected_sha256_b64, created_by, state, issued_at, expires_at)
+       expected_sha256_b64, file_kind, created_by, state, issued_at, expires_at)
   VALUES (p_business_id, p_guard_token, p_object_key, p_expected_byte_length,
-          p_expected_sha256_b64, p_created_by, 'ISSUED', now(), v_expires_at)
+          p_expected_sha256_b64, p_file_kind, p_created_by, 'ISSUED', now(), v_expires_at)
   RETURNING id INTO v_lease_id;
 
   UPDATE public.parser_preview_guards
@@ -397,7 +403,7 @@ REVOKE ALL ON public.parser_upload_leases FROM PUBLIC, anon, authenticated;
 
 REVOKE ALL ON FUNCTION public.acquire_parser_preview_guard(uuid) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.release_parser_preview_guard(uuid, uuid, uuid) FROM PUBLIC, anon, authenticated;
-REVOKE ALL ON FUNCTION public.issue_parser_upload_lease(uuid, uuid, text, integer, text, uuid) FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON FUNCTION public.issue_parser_upload_lease(uuid, uuid, text, integer, text, text, uuid) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.confirm_parser_upload_lease(uuid, uuid) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.claim_parser_upload_lease(uuid, uuid) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.mark_parser_upload_lease_dispatched(uuid, uuid) FROM PUBLIC, anon, authenticated;
@@ -445,7 +451,7 @@ ALTER TABLE public.parser_upload_leases ENABLE ROW LEVEL SECURITY;
 
 GRANT EXECUTE ON FUNCTION public.acquire_parser_preview_guard(uuid) TO service_role;
 GRANT EXECUTE ON FUNCTION public.release_parser_preview_guard(uuid, uuid, uuid) TO service_role;
-GRANT EXECUTE ON FUNCTION public.issue_parser_upload_lease(uuid, uuid, text, integer, text, uuid) TO service_role;
+GRANT EXECUTE ON FUNCTION public.issue_parser_upload_lease(uuid, uuid, text, integer, text, text, uuid) TO service_role;
 GRANT EXECUTE ON FUNCTION public.confirm_parser_upload_lease(uuid, uuid) TO service_role;
 GRANT EXECUTE ON FUNCTION public.claim_parser_upload_lease(uuid, uuid) TO service_role;
 GRANT EXECUTE ON FUNCTION public.mark_parser_upload_lease_dispatched(uuid, uuid) TO service_role;

@@ -229,6 +229,7 @@ export const parserLeasePreview = createServerFn({ method: "POST" })
         p_object_key: objectKey,
         p_expected_byte_length: data.byteLength,
         p_expected_sha256_b64: data.sha256B64,
+        p_file_kind: data.fileKind,
         p_created_by: userId,
       },
     );
@@ -289,11 +290,19 @@ interface LeaseRow {
   object_key: string;
   expected_byte_length: number;
   expected_sha256_b64: string;
+  file_kind: string;
 }
 
+// file_kind is deliberately not part of this validator: the browser
+// declares it once at parserLeasePreview issuance time (bound immutably
+// into the lease row alongside object_key/expected_byte_length/
+// expected_sha256_b64), and is re-read from that authoritative row below
+// -- never re-asserted by the browser at confirm/dispatch time
+// (report1.108.md §5.3's never-trust-the-browser-after-issuance rule,
+// applied identically to every declared-at-issuance field).
 export const parserLeaseConfirmAndDispatch = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .validator((data: { leaseId: string; fileKind: "csv" | "xlsx" }) => data)
+  .validator((data: { leaseId: string }) => data)
   .handler(async ({ data, context }): Promise<ParserLeaseDispatchResult> => {
     const { supabase, userId } = context;
     const businessId = await loadOwnedBusinessId(supabase, userId);
@@ -320,7 +329,9 @@ export const parserLeaseConfirmAndDispatch = createServerFn({ method: "POST" })
 
     const { data: lease, error: leaseErr } = await supabaseAdmin
       .from("parser_upload_leases")
-      .select("id, business_id, guard_token, object_key, expected_byte_length, expected_sha256_b64")
+      .select(
+        "id, business_id, guard_token, object_key, expected_byte_length, expected_sha256_b64, file_kind",
+      )
       .eq("id", data.leaseId)
       .eq("business_id", businessId)
       .maybeSingle<LeaseRow>();
@@ -394,7 +405,7 @@ export const parserLeaseConfirmAndDispatch = createServerFn({ method: "POST" })
           leaseId: lease.id,
           expectedByteLength: lease.expected_byte_length,
           expectedSha256B64: lease.expected_sha256_b64,
-          fileKind: data.fileKind,
+          fileKind: lease.file_kind,
         },
       });
     } catch (err) {

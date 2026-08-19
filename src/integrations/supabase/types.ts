@@ -1049,6 +1049,7 @@ export type Database = {
           expected_sha256_b64: string;
           expires_at: string;
           failure_reason: string | null;
+          file_kind: string;
           guard_token: string;
           id: string;
           issued_at: string;
@@ -1066,6 +1067,7 @@ export type Database = {
           expected_sha256_b64: string;
           expires_at: string;
           failure_reason?: string | null;
+          file_kind: string;
           guard_token: string;
           id?: string;
           issued_at?: string;
@@ -1083,6 +1085,7 @@ export type Database = {
           expected_sha256_b64?: string;
           expires_at?: string;
           failure_reason?: string | null;
+          file_kind?: string;
           guard_token?: string;
           id?: string;
           issued_at?: string;
@@ -1451,6 +1454,7 @@ export type Database = {
           p_created_by: string;
           p_expected_byte_length: number;
           p_expected_sha256_b64: string;
+          p_file_kind: string;
           p_guard_token: string;
           p_object_key: string;
         };
