@@ -424,9 +424,9 @@ jobs:
               --name "${TRUST_ANCHOR_NAME}" \
               --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData=$(python3 -c 'import sys,json; print(json.dumps(open(sys.argv[1]).read()))' /tmp/parser-pki/ca.pem)}" \
               --enabled \
-              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
-                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
-                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions \
+              --tags key=Project,value=SmartBusiness key=Environment,value=nonprod \
+                     key=Workstream,value=SB-P-1.11 key=Component,value=lambda-parser \
+                     key=Owner,value=TeamLIPS key=ManagedBy,value=GitHubActions \
               --output json)"
             trust_anchor_arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["trustAnchor"]["trustAnchorArn"])' <<<"${ta_response}")"
             echo "GC38R_TRUST_ANCHOR_CREATED arn=${trust_anchor_arn}"
@@ -447,9 +447,9 @@ jobs:
               --role-arns "${workload_role_arn}" \
               --enabled \
               --duration-seconds 900 \
-              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
-                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
-                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions \
+              --tags key=Project,value=SmartBusiness key=Environment,value=nonprod \
+                     key=Workstream,value=SB-P-1.11 key=Component,value=lambda-parser \
+                     key=Owner,value=TeamLIPS key=ManagedBy,value=GitHubActions \
               --output json)"
             profile_arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["profile"]["profileArn"])' <<<"${profile_response}")"
             echo "GC38R_PROFILE_CREATED arn=${profile_arn}"
