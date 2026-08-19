@@ -58,3 +58,6 @@ MARKDOWN_REPAIR_SUMMARY.txt
 
 # Local secret-scan artifacts (never commit)
 gitleaks-report.json
+
+# Lambda parser build artifact (produced by lambda/parser/build.mjs)
+lambda/parser/dist/

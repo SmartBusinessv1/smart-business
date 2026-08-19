@@ -1,0 +1,607 @@
+name: SB-P-1.11-GC-38R Parser Non-Production Deploy
+
+# Deploys the locked Lambda Parser EIS's AWS infrastructure to the already
+# provisioned, narrowly-scoped non-production execution boundary
+# (instruction1.144.md). Manually triggered only; every mutating step runs
+# strictly within the approved GitHub OIDC -> TeamLIPS-SB-NonProd-Parser-
+# DeployRole path, gated by the `aws-nonprod-parser` protected environment
+# and the `refs/heads/main`-only trust condition already enforced by the
+# deploy role's trust policy (communication/evidence/SB-P-1.11-GC-43A/
+# aws-deploy-role-trust.json). No static AWS credential is used anywhere in
+# this workflow. No production account, region, or resource is touched.
+#
+# Idempotent by design: every AWS resource is created only if it does not
+# already exist (check-then-create), so re-running this workflow (e.g. to
+# push updated Lambda code) never re-provisions IAM/Roles-Anywhere/S3
+# state that already exists.
+#
+# Trust Anchor CA custody (corrected per Security & Permissions Architecture
+# review of PR #332): the Trust Anchor's CA private key is never generated,
+# received, held, or written to disk by this workflow, under any input
+# combination, at any point -- including transiently. It remains under
+# Founder-controlled secure/offline custody outside GitHub Actions entirely
+# (report1.108.md §7.1's rotation/reissuance/revocation requirement, read
+# narrowly: the *workload* end-entity certificate is what this workflow may
+# help reissue; the CA itself is out of its custody by design).
+#
+#  - First-time Trust Anchor creation supplies only the CA *certificate*
+#    (public material) via the `trust_anchor_ca_certificate_pem` input,
+#    which the Founder generates and signs entirely offline beforehand.
+#  - Workload end-entity certificate issuance (first-time or reissuance,
+#    `generate_workload_csr: true`) has this workflow generate a fresh
+#    *workload* keypair (not the CA) and a CSR, hand off the workload
+#    private key + CSR via the short-lived artifact below, and stop there.
+#    The Founder signs the CSR offline using their own CA custody and
+#    manually provisions the resulting workload certificate (alongside the
+#    already-handed-off workload private key) into the approved server
+#    secret store -- this workflow is never involved in that signing step
+#    and never sees the signed certificate.
+
+on:
+  workflow_dispatch:
+    inputs:
+      trust_anchor_ca_certificate_pem:
+        description: >-
+          PEM-encoded CA certificate (public material only -- never the
+          private key), generated and held offline by the Founder. Required
+          only for first-time Trust Anchor creation; ignored once a Trust
+          Anchor already exists.
+        type: string
+        default: ""
+      generate_workload_csr:
+        description: >-
+          Generate a fresh workload keypair and certificate signing request
+          for the Founder to sign offline against the existing Trust
+          Anchor's CA. Leave false for an ordinary Lambda code deploy.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+  AWS_DEFAULT_REGION: ap-south-1
+  EXPECTED_ACCOUNT_ID: "658980433673"
+  DEPLOY_ROLE_ARN: arn:aws:iam::658980433673:role/TeamLIPS-SB-NonProd-Parser-DeployRole
+  RUNTIME_BOUNDARY_ARN: arn:aws:iam::658980433673:policy/TeamLIPS-SB-NonProd-Parser-RuntimeBoundary
+  LAMBDA_EXECUTION_ROLE_NAME: TeamLIPS-SB-NonProd-Parser-LambdaExecutionRole
+  WORKLOAD_ROLE_NAME: TeamLIPS-SB-NonProd-Parser-WorkloadRole
+  LAMBDA_FUNCTION_NAME: teamlips-sb-np-parser
+  BUCKET_NAME: teamlips-sb-np-parser-658980433673-ap-south-1
+  TRUST_ANCHOR_NAME: teamlips-sb-np-parser-trust-anchor
+  ROLES_ANYWHERE_PROFILE_NAME: teamlips-sb-np-parser-profile
+
+jobs:
+  deploy:
+    name: Deploy non-production parser infrastructure
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: aws-nonprod-parser
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      lambda_function_arn: ${{ steps.summary.outputs.lambda_function_arn }}
+      function_url: ${{ steps.summary.outputs.function_url }}
+      trust_anchor_arn: ${{ steps.summary.outputs.trust_anchor_arn }}
+      profile_arn: ${{ steps.summary.outputs.profile_arn }}
+      workload_role_arn: ${{ steps.summary.outputs.workload_role_arn }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Lambda bundle
+        run: npm run build:lambda
+
+      - name: Package Lambda deployment artifact
+        run: |
+          set -euo pipefail
+          cd lambda/parser/dist
+          zip -q -X ../handler.zip handler.js
+          cd ../../..
+          ls -la lambda/parser/handler.zip
+
+      - name: Preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${AWS_REGION}" = "ap-south-1"
+          echo "GC38R_PREFLIGHT_PASS account=${EXPECTED_ACCOUNT_ID} region=${AWS_REGION} ref=${GITHUB_REF}"
+
+      - name: Assume TeamLIPS-SB-NonProd-Parser-DeployRole via GitHub OIDC
+        shell: bash
+        run: |
+          set -euo pipefail
+          token_response="$(curl --fail --silent --show-error \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")"
+          web_identity_token="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])' <<<"${token_response}")"
+
+          session_name="gc38r-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          response_file="$(mktemp)"
+          trap 'rm -f "${response_file}"' EXIT
+
+          aws sts assume-role-with-web-identity \
+            --role-arn "${DEPLOY_ROLE_ARN}" \
+            --role-session-name "${session_name}" \
+            --web-identity-token "${web_identity_token}" \
+            --duration-seconds 3600 \
+            --output json > "${response_file}"
+
+          readarray -t creds < <(python3 - "${response_file}" <<'PY'
+          import json, sys
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          c = data["Credentials"]
+          print(c["AccessKeyId"])
+          print(c["SecretAccessKey"])
+          print(c["SessionToken"])
+          PY
+          )
+          echo "::add-mask::${creds[0]}"
+          echo "::add-mask::${creds[1]}"
+          echo "::add-mask::${creds[2]}"
+          {
+            echo "AWS_ACCESS_KEY_ID=${creds[0]}"
+            echo "AWS_SECRET_ACCESS_KEY=${creds[1]}"
+            echo "AWS_SESSION_TOKEN=${creds[2]}"
+          } >> "${GITHUB_ENV}"
+
+      - name: Verify caller identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          caller="$(aws sts get-caller-identity --output json)"
+          account="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["Account"])' <<<"${caller}")"
+          arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["Arn"])' <<<"${caller}")"
+          test "${account}" = "${EXPECTED_ACCOUNT_ID}"
+          case "${arn}" in
+            arn:aws:sts::658980433673:assumed-role/TeamLIPS-SB-NonProd-Parser-DeployRole/*) ;;
+            *) echo "UNEXPECTED_CALLER_ARN"; exit 1 ;;
+          esac
+          echo "GC38R_CALLER_IDENTITY_PASS account=${account}"
+
+      # -----------------------------------------------------------------
+      # S3 -- private transient parser-ingress bucket (Lambda Parser EIS
+      # §10). Block Public Access all four settings, TLS-only bucket
+      # policy, default encryption, versioning disabled, 1-day Lifecycle
+      # expiration backstop.
+      # -----------------------------------------------------------------
+      - name: Create/configure S3 ingress bucket
+        shell: bash
+        run: |
+          set -euo pipefail
+          if aws s3api head-bucket --bucket "${BUCKET_NAME}" 2>/dev/null; then
+            echo "GC38R_S3_BUCKET_EXISTS"
+          else
+            aws s3api create-bucket \
+              --bucket "${BUCKET_NAME}" \
+              --region "${AWS_REGION}" \
+              --create-bucket-configuration LocationConstraint="${AWS_REGION}"
+            echo "GC38R_S3_BUCKET_CREATED"
+          fi
+
+          aws s3api put-public-access-block \
+            --bucket "${BUCKET_NAME}" \
+            --public-access-block-configuration \
+              BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+
+          aws s3api put-bucket-encryption \
+            --bucket "${BUCKET_NAME}" \
+            --server-side-encryption-configuration \
+              '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
+
+          cat > /tmp/bucket-policy.json <<POLICY
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DenyInsecureTransport",
+                "Effect": "Deny",
+                "Principal": "*",
+                "Action": "s3:*",
+                "Resource": [
+                  "arn:aws:s3:::${BUCKET_NAME}",
+                  "arn:aws:s3:::${BUCKET_NAME}/*"
+                ],
+                "Condition": { "Bool": { "aws:SecureTransport": "false" } }
+              }
+            ]
+          }
+          POLICY
+          aws s3api put-bucket-policy --bucket "${BUCKET_NAME}" --policy file:///tmp/bucket-policy.json
+
+          cat > /tmp/lifecycle.json <<'LIFECYCLE'
+          {
+            "Rules": [
+              {
+                "ID": "parser-ingress-1-day-backstop",
+                "Filter": { "Prefix": "parser-ingress/" },
+                "Status": "Enabled",
+                "Expiration": { "Days": 1 }
+              }
+            ]
+          }
+          LIFECYCLE
+          aws s3api put-bucket-lifecycle-configuration \
+            --bucket "${BUCKET_NAME}" \
+            --lifecycle-configuration file:///tmp/lifecycle.json
+
+          echo "GC38R_S3_BUCKET_CONFIGURED"
+
+      # -----------------------------------------------------------------
+      # IAM -- the two boundary-protected runtime roles. Both created
+      # only with the exact RuntimeBoundary permissions boundary attached
+      # (required by the deploy policy's own CreateRole condition).
+      # -----------------------------------------------------------------
+      - name: Create/configure Lambda execution role
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/lambda-trust.json <<'TRUST'
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": { "Service": "lambda.amazonaws.com" },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          }
+          TRUST
+
+          if aws iam get-role --role-name "${LAMBDA_EXECUTION_ROLE_NAME}" >/dev/null 2>&1; then
+            echo "GC38R_LAMBDA_EXEC_ROLE_EXISTS"
+          else
+            aws iam create-role \
+              --role-name "${LAMBDA_EXECUTION_ROLE_NAME}" \
+              --assume-role-policy-document file:///tmp/lambda-trust.json \
+              --permissions-boundary "${RUNTIME_BOUNDARY_ARN}" \
+              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
+                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
+                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions
+            echo "GC38R_LAMBDA_EXEC_ROLE_CREATED"
+          fi
+
+          cat > /tmp/lambda-exec-policy.json <<POLICY
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowExactParserObjectReadDelete",
+                "Effect": "Allow",
+                "Action": ["s3:GetObject", "s3:DeleteObject"],
+                "Resource": "arn:aws:s3:::${BUCKET_NAME}/*"
+              },
+              {
+                "Sid": "AllowExactParserRuntimeLogging",
+                "Effect": "Allow",
+                "Action": ["logs:CreateLogStream", "logs:PutLogEvents"],
+                "Resource": "arn:aws:logs:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:log-group:/aws/lambda/${LAMBDA_FUNCTION_NAME}:*"
+              }
+            ]
+          }
+          POLICY
+          aws iam put-role-policy \
+            --role-name "${LAMBDA_EXECUTION_ROLE_NAME}" \
+            --policy-name teamlips-sb-np-parser-lambda-exec-policy \
+            --policy-document file:///tmp/lambda-exec-policy.json
+          echo "GC38R_LAMBDA_EXEC_ROLE_CONFIGURED"
+
+      - name: Create/configure workload role
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/workload-trust.json <<'TRUST'
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": { "Service": "rolesanywhere.amazonaws.com" },
+                "Action": ["sts:AssumeRole", "sts:TagSession", "sts:SetSourceIdentity"],
+                "Condition": {
+                  "ArnEquals": {
+                    "aws:SourceArn": "arn:aws:rolesanywhere:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:trust-anchor/*"
+                  }
+                }
+              }
+            ]
+          }
+          TRUST
+
+          if aws iam get-role --role-name "${WORKLOAD_ROLE_NAME}" >/dev/null 2>&1; then
+            echo "GC38R_WORKLOAD_ROLE_EXISTS"
+          else
+            aws iam create-role \
+              --role-name "${WORKLOAD_ROLE_NAME}" \
+              --assume-role-policy-document file:///tmp/workload-trust.json \
+              --permissions-boundary "${RUNTIME_BOUNDARY_ARN}" \
+              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
+                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
+                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions
+            echo "GC38R_WORKLOAD_ROLE_CREATED"
+          fi
+
+          cat > /tmp/workload-policy.json <<POLICY
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowExactParserObjectPutOnly",
+                "Effect": "Allow",
+                "Action": "s3:PutObject",
+                "Resource": "arn:aws:s3:::${BUCKET_NAME}/*"
+              },
+              {
+                "Sid": "AllowExactParserFunctionUrlInvocation",
+                "Effect": "Allow",
+                "Action": "lambda:InvokeFunctionUrl",
+                "Resource": [
+                  "arn:aws:lambda:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:function:${LAMBDA_FUNCTION_NAME}",
+                  "arn:aws:lambda:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:function:${LAMBDA_FUNCTION_NAME}:*"
+                ],
+                "Condition": { "StringEquals": { "lambda:FunctionUrlAuthType": "AWS_IAM" } }
+              },
+              {
+                "Sid": "AllowExactParserFunctionInvocationViaFunctionUrlOnly",
+                "Effect": "Allow",
+                "Action": "lambda:InvokeFunction",
+                "Resource": [
+                  "arn:aws:lambda:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:function:${LAMBDA_FUNCTION_NAME}",
+                  "arn:aws:lambda:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:function:${LAMBDA_FUNCTION_NAME}:*"
+                ],
+                "Condition": { "Bool": { "lambda:InvokedViaFunctionUrl": "true" } }
+              }
+            ]
+          }
+          POLICY
+          aws iam put-role-policy \
+            --role-name "${WORKLOAD_ROLE_NAME}" \
+            --policy-name teamlips-sb-np-parser-workload-policy \
+            --policy-document file:///tmp/workload-policy.json
+          echo "GC38R_WORKLOAD_ROLE_CONFIGURED"
+
+      # -----------------------------------------------------------------
+      # IAM Roles Anywhere -- Trust Anchor registration and Profile.
+      #
+      # CA-key custody correction (Security & Permissions Architecture
+      # review of PR #332): this workflow never generates, receives,
+      # holds, or writes the Trust Anchor CA private key, under any input
+      # or code path, at any point -- not even transiently. The CA is
+      # entirely Founder-controlled, offline, outside GitHub Actions.
+      # First-time creation consumes only the CA *certificate* (public
+      # material) supplied via the `trust_anchor_ca_certificate_pem`
+      # input; if a Trust Anchor of this exact name already exists, its
+      # ARN is reused and the input is ignored. There is never a second
+      # code path here that generates a CA -- exactly one Trust Anchor is
+      # ever created by this workflow.
+      #
+      # Immediate revocation on suspected compromise is out of this
+      # deploy role's authority by construction (no
+      # rolesanywhere:UpdateTrustAnchor/DeleteTrustAnchor grant, and none
+      # is added here -- that would broaden AWS authority beyond what
+      # GC-41/GC-43 approved). Emergency revocation requires the same
+      # one-time elevated root/IAM-admin path already established for
+      # RuntimeBoundary changes (report1.153.md §9), performed entirely
+      # outside this workflow.
+      # -----------------------------------------------------------------
+      - name: Create IAM Roles Anywhere trust anchor
+        id: roles_anywhere
+        shell: bash
+        env:
+          CA_CERTIFICATE_PEM: ${{ github.event.inputs.trust_anchor_ca_certificate_pem }}
+        run: |
+          set -euo pipefail
+
+          existing_ta="$(aws rolesanywhere list-trust-anchors --output json \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((t['trustAnchorArn'] for t in d.get('trustAnchors',[]) if t.get('name')=='${TRUST_ANCHOR_NAME}'), ''))")"
+
+          if [ -n "${existing_ta}" ]; then
+            echo "GC38R_TRUST_ANCHOR_EXISTS arn=${existing_ta}"
+            trust_anchor_arn="${existing_ta}"
+          else
+            if [ -z "${CA_CERTIFICATE_PEM}" ]; then
+              echo "GC38R_TRUST_ANCHOR_BOOTSTRAP_MISSING_CA_CERTIFICATE" >&2
+              echo "No Trust Anchor named ${TRUST_ANCHOR_NAME} exists yet, and no trust_anchor_ca_certificate_pem input was supplied. This workflow does not generate a CA itself -- the Founder must generate the CA offline and re-dispatch this workflow with its public certificate in that input." >&2
+              exit 1
+            fi
+
+            mkdir -p /tmp/parser-pki
+            printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem
+
+            ta_response="$(aws rolesanywhere create-trust-anchor \
+              --name "${TRUST_ANCHOR_NAME}" \
+              --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData=$(python3 -c 'import sys,json; print(json.dumps(open(sys.argv[1]).read()))' /tmp/parser-pki/ca.pem)}" \
+              --enabled \
+              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
+                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
+                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions \
+              --output json)"
+            trust_anchor_arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["trustAnchor"]["trustAnchorArn"])' <<<"${ta_response}")"
+            echo "GC38R_TRUST_ANCHOR_CREATED arn=${trust_anchor_arn}"
+          fi
+
+          echo "trust_anchor_arn=${trust_anchor_arn}" >> "${GITHUB_OUTPUT}"
+
+          existing_profile="$(aws rolesanywhere list-profiles --output json \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((p['profileArn'] for p in d.get('profiles',[]) if p.get('name')=='${ROLES_ANYWHERE_PROFILE_NAME}'), ''))")"
+
+          if [ -n "${existing_profile}" ]; then
+            echo "GC38R_PROFILE_EXISTS arn=${existing_profile}"
+            profile_arn="${existing_profile}"
+          else
+            workload_role_arn="arn:aws:iam::${EXPECTED_ACCOUNT_ID}:role/${WORKLOAD_ROLE_NAME}"
+            profile_response="$(aws rolesanywhere create-profile \
+              --name "${ROLES_ANYWHERE_PROFILE_NAME}" \
+              --role-arns "${workload_role_arn}" \
+              --enabled \
+              --duration-seconds 900 \
+              --tags Key=Project,Value=SmartBusiness Key=Environment,Value=nonprod \
+                     Key=Workstream,Value=SB-P-1.11 Key=Component,Value=lambda-parser \
+                     Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions \
+              --output json)"
+            profile_arn="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["profile"]["profileArn"])' <<<"${profile_response}")"
+            echo "GC38R_PROFILE_CREATED arn=${profile_arn}"
+          fi
+          echo "profile_arn=${profile_arn}" >> "${GITHUB_OUTPUT}"
+
+      # -----------------------------------------------------------------
+      # Workload certificate signing request -- generates only a *workload*
+      # keypair and CSR (never the CA). The CSR (public request material)
+      # and the new workload private key are hand off via the short-lived
+      # artifact below for the Founder to: (1) sign the CSR offline using
+      # their own CA custody, producing the workload certificate, and
+      # (2) provision that certificate, together with the workload
+      # private key from this same artifact, into the approved server
+      # secret store. This workflow is never involved in the signing step
+      # and never receives the signed certificate back.
+      # -----------------------------------------------------------------
+      - name: Generate workload certificate signing request
+        id: workload_csr
+        if: github.event.inputs.generate_workload_csr == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/parser-pki
+          cd /tmp/parser-pki
+
+          openssl genrsa -out workload.key 2048
+          openssl req -new -key workload.key \
+            -subj "/O=Team LIPS/OU=Smart Business Non-Production/CN=Smart Business Parser Ingress Caller" \
+            -out workload.csr
+          openssl pkcs8 -topk8 -nocrypt -in workload.key -out workload.pkcs8.pem
+
+          # Never printed to the log and never round-tripped through
+          # GITHUB_ENV. The CSR is public request material (safe to
+          # hand off); the workload private key is server secret material
+          # (not the CA) that must reach the approved server secret store
+          # -- exactly the same handoff channel already used for every
+          # other secret this workflow cannot deliver directly
+          # (report1.108.md §20.4).
+          mkdir -p "${GITHUB_WORKSPACE}/.parser-pki-handoff"
+          cp workload.csr "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-certificate-signing-request.csr"
+          cp workload.pkcs8.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-private-key.pem"
+          echo "GC38R_WORKLOAD_CSR_GENERATED"
+          echo "csr_generated=true" >> "${GITHUB_OUTPUT}"
+
+      # -----------------------------------------------------------------
+      # Lambda -- function, version, alias, AWS_IAM Function URL, finite
+      # reserved concurrency, CloudWatch log group with bounded retention.
+      # -----------------------------------------------------------------
+      - name: Create/update Lambda function
+        id: lambda_fn
+        shell: bash
+        run: |
+          set -euo pipefail
+          lambda_role_arn="arn:aws:iam::${EXPECTED_ACCOUNT_ID}:role/${LAMBDA_EXECUTION_ROLE_NAME}"
+
+          if aws logs describe-log-groups \
+               --log-group-name-prefix "/aws/lambda/${LAMBDA_FUNCTION_NAME}" \
+               --output json | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('logGroups') else 1)"; then
+            echo "GC38R_LOG_GROUP_EXISTS"
+          else
+            aws logs create-log-group --log-group-name "/aws/lambda/${LAMBDA_FUNCTION_NAME}"
+            aws logs put-retention-policy --log-group-name "/aws/lambda/${LAMBDA_FUNCTION_NAME}" --retention-in-days 14
+            echo "GC38R_LOG_GROUP_CREATED"
+          fi
+
+          if aws lambda get-function --function-name "${LAMBDA_FUNCTION_NAME}" >/dev/null 2>&1; then
+            aws lambda update-function-code \
+              --function-name "${LAMBDA_FUNCTION_NAME}" \
+              --zip-file fileb://lambda/parser/handler.zip \
+              --publish \
+              --output json > /tmp/update-result.json
+            echo "GC38R_LAMBDA_CODE_UPDATED"
+          else
+            aws lambda create-function \
+              --function-name "${LAMBDA_FUNCTION_NAME}" \
+              --runtime nodejs24.x \
+              --role "${lambda_role_arn}" \
+              --handler handler.handler \
+              --zip-file fileb://lambda/parser/handler.zip \
+              --timeout 15 \
+              --memory-size 2048 \
+              --environment "Variables={PARSER_INGRESS_BUCKET=${BUCKET_NAME},AWS_NODEJS_CONNECTION_REUSE_ENABLED=1}" \
+              --publish \
+              --tags Project=SmartBusiness,Environment=nonprod,Workstream=SB-P-1.11,Component=lambda-parser,Owner=TeamLIPS,ManagedBy=GitHubActions \
+              --output json > /tmp/create-result.json
+            echo "GC38R_LAMBDA_CREATED"
+          fi
+
+          aws lambda put-function-concurrency \
+            --function-name "${LAMBDA_FUNCTION_NAME}" \
+            --reserved-concurrent-executions 5
+
+          function_arn="$(aws lambda get-function --function-name "${LAMBDA_FUNCTION_NAME}" \
+            --output json | python3 -c 'import json,sys; print(json.load(sys.stdin)["Configuration"]["FunctionArn"])')"
+          echo "function_arn=${function_arn}" >> "${GITHUB_OUTPUT}"
+
+          if aws lambda get-function-url-config --function-name "${LAMBDA_FUNCTION_NAME}" >/dev/null 2>&1; then
+            echo "GC38R_FUNCTION_URL_EXISTS"
+          else
+            aws lambda create-function-url-config \
+              --function-name "${LAMBDA_FUNCTION_NAME}" \
+              --auth-type AWS_IAM \
+              --invoke-mode RESPONSE_STREAM
+            echo "GC38R_FUNCTION_URL_CREATED"
+          fi
+
+          function_url="$(aws lambda get-function-url-config --function-name "${LAMBDA_FUNCTION_NAME}" \
+            --output json | python3 -c 'import json,sys; print(json.load(sys.stdin)["FunctionUrl"])')"
+          echo "function_url=${function_url}" >> "${GITHUB_OUTPUT}"
+
+      - name: Emit non-secret deployment summary
+        id: summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "lambda_function_arn=${{ steps.lambda_fn.outputs.function_arn }}" >> "${GITHUB_OUTPUT}"
+          echo "function_url=${{ steps.lambda_fn.outputs.function_url }}" >> "${GITHUB_OUTPUT}"
+          echo "trust_anchor_arn=${{ steps.roles_anywhere.outputs.trust_anchor_arn }}" >> "${GITHUB_OUTPUT}"
+          echo "profile_arn=${{ steps.roles_anywhere.outputs.profile_arn }}" >> "${GITHUB_OUTPUT}"
+          echo "workload_role_arn=arn:aws:iam::${EXPECTED_ACCOUNT_ID}:role/${WORKLOAD_ROLE_NAME}" >> "${GITHUB_OUTPUT}"
+          {
+            echo "## GC-38R Non-Production Parser Deployment"
+            echo ""
+            echo "| Resource | Value |"
+            echo "|---|---|"
+            echo "| Account | ${EXPECTED_ACCOUNT_ID} |"
+            echo "| Region | ${AWS_REGION} |"
+            echo "| Lambda function ARN | ${{ steps.lambda_fn.outputs.function_arn }} |"
+            echo "| Function URL | ${{ steps.lambda_fn.outputs.function_url }} |"
+            echo "| S3 bucket | ${BUCKET_NAME} |"
+            echo "| Trust anchor ARN | ${{ steps.roles_anywhere.outputs.trust_anchor_arn }} |"
+            echo "| Profile ARN | ${{ steps.roles_anywhere.outputs.profile_arn }} |"
+            echo "| Workload role ARN | arn:aws:iam::${EXPECTED_ACCOUNT_ID}:role/${WORKLOAD_ROLE_NAME} |"
+            echo "| Workload CSR generated this run | ${{ steps.workload_csr.outputs.csr_generated || 'false' }} |"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload workload CSR/private key for out-of-band handoff
+        if: steps.workload_csr.outputs.csr_generated == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: gc38r-workload-csr-handoff
+          path: .parser-pki-handoff/
+          retention-days: 1
+
+      - name: Workload CSR handoff notice
+        if: steps.workload_csr.outputs.csr_generated == 'true'
+        shell: bash
+        run: |
+          echo "::warning::A new workload keypair and certificate signing request were generated this run and uploaded as the short-lived (1-day retention) build artifact 'gc38r-workload-csr-handoff' (workload-certificate-signing-request.csr, workload-private-key.pem), never printed to this log. This workflow never touched the Trust Anchor CA private key and never will. Mission Control/Founder must: (1) download the artifact; (2) sign workload-certificate-signing-request.csr offline using the Founder-controlled CA custody to produce the workload certificate; (3) provision that certificate together with workload-private-key.pem into the approved server secret store (Cloudflare Worker secret bindings) out of band; (4) delete the artifact and any local copies. The Trust Anchor/Profile were not modified. Do not paste this material into any log, PR, issue, commit, or chat."
+
+      - name: Remove local PKI handoff copy from the runner workspace
+        if: always()
+        shell: bash
+        run: rm -rf "${GITHUB_WORKSPACE}/.parser-pki-handoff" /tmp/parser-pki

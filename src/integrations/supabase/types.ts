@@ -1000,6 +1000,109 @@ export type Database = {
           },
         ];
       };
+      parser_preview_guards: {
+        Row: {
+          acquired_at: string;
+          attempt_count_in_window: number;
+          attempt_window_started_at: string;
+          business_id: string;
+          expires_at: string;
+          guard_token: string;
+          lease_id: string | null;
+        };
+        Insert: {
+          acquired_at: string;
+          attempt_count_in_window?: number;
+          attempt_window_started_at: string;
+          business_id: string;
+          expires_at: string;
+          guard_token?: string;
+          lease_id?: string | null;
+        };
+        Update: {
+          acquired_at?: string;
+          attempt_count_in_window?: number;
+          attempt_window_started_at?: string;
+          business_id?: string;
+          expires_at?: string;
+          guard_token?: string;
+          lease_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "parser_preview_guards_business_id_fkey";
+            columns: ["business_id"];
+            isOneToOne: true;
+            referencedRelation: "businesses";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      parser_upload_leases: {
+        Row: {
+          business_id: string;
+          claimed_at: string | null;
+          confirmed_at: string | null;
+          created_by: string;
+          dispatched_at: string | null;
+          expected_byte_length: number;
+          expected_sha256_b64: string;
+          expires_at: string;
+          failure_reason: string | null;
+          file_kind: string;
+          guard_token: string;
+          id: string;
+          issued_at: string;
+          object_key: string;
+          state: string;
+          terminal_at: string | null;
+        };
+        Insert: {
+          business_id: string;
+          claimed_at?: string | null;
+          confirmed_at?: string | null;
+          created_by: string;
+          dispatched_at?: string | null;
+          expected_byte_length: number;
+          expected_sha256_b64: string;
+          expires_at: string;
+          failure_reason?: string | null;
+          file_kind: string;
+          guard_token: string;
+          id?: string;
+          issued_at?: string;
+          object_key: string;
+          state?: string;
+          terminal_at?: string | null;
+        };
+        Update: {
+          business_id?: string;
+          claimed_at?: string | null;
+          confirmed_at?: string | null;
+          created_by?: string;
+          dispatched_at?: string | null;
+          expected_byte_length?: number;
+          expected_sha256_b64?: string;
+          expires_at?: string;
+          failure_reason?: string | null;
+          file_kind?: string;
+          guard_token?: string;
+          id?: string;
+          issued_at?: string;
+          object_key?: string;
+          state?: string;
+          terminal_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "parser_upload_leases_business_id_fkey";
+            columns: ["business_id"];
+            isOneToOne: false;
+            referencedRelation: "businesses";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       transaction_correction_events: {
         Row: {
           business_id: string;
@@ -1118,6 +1221,13 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      acquire_parser_preview_guard: {
+        Args: { p_business_id: string };
+        Returns: {
+          business_id: string;
+          guard_token: string;
+        }[];
+      };
       archive_catalog_category: {
         Args: {
           p_category_id: string;
@@ -1184,6 +1294,18 @@ export type Database = {
           isOneToOne: false;
           isSetofReturn: true;
         };
+      };
+      claim_parser_upload_lease: {
+        Args: { p_business_id: string; p_lease_id: string };
+        Returns: boolean;
+      };
+      complete_parser_upload_lease: {
+        Args: { p_business_id: string; p_lease_id: string };
+        Returns: boolean;
+      };
+      confirm_parser_upload_lease: {
+        Args: { p_business_id: string; p_lease_id: string };
+        Returns: boolean;
       };
       correct_transaction: {
         Args: {
@@ -1293,6 +1415,18 @@ export type Database = {
           isSetofReturn: false;
         };
       };
+      expire_parser_upload_lease: {
+        Args: { p_business_id: string; p_lease_id: string };
+        Returns: boolean;
+      };
+      fail_parser_upload_lease: {
+        Args: {
+          p_business_id: string;
+          p_failure_reason: string;
+          p_lease_id: string;
+        };
+        Returns: boolean;
+      };
       get_catalog_command_outcome: {
         Args: { p_idempotency_key: string; p_operation: string };
         Returns: Database["public"]["CompositeTypes"]["catalog_command_outcome"];
@@ -1313,6 +1447,25 @@ export type Database = {
       inventory_movement_remaining_compensable: {
         Args: { p_movement_id: string };
         Returns: number;
+      };
+      issue_parser_upload_lease: {
+        Args: {
+          p_business_id: string;
+          p_created_by: string;
+          p_expected_byte_length: number;
+          p_expected_sha256_b64: string;
+          p_file_kind: string;
+          p_guard_token: string;
+          p_object_key: string;
+        };
+        Returns: {
+          expires_at: string;
+          lease_id: string;
+        }[];
+      };
+      mark_parser_upload_lease_dispatched: {
+        Args: { p_business_id: string; p_lease_id: string };
+        Returns: boolean;
       };
       preview_catalog_inventory_link_change: {
         Args: {
@@ -1391,6 +1544,14 @@ export type Database = {
           isOneToOne: true;
           isSetofReturn: false;
         };
+      };
+      release_parser_preview_guard: {
+        Args: {
+          p_business_id: string;
+          p_guard_token: string;
+          p_lease_id: string;
+        };
+        Returns: boolean;
       };
       remove_catalog_inventory_link: {
         Args: { p_idempotency_key: string; p_preview_token_id: string };
