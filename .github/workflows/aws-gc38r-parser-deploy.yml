@@ -25,8 +25,17 @@ name: SB-P-1.11-GC-38R Parser Non-Production Deploy
 # help reissue; the CA itself is out of its custody by design).
 #
 #  - First-time Trust Anchor creation supplies only the CA *certificate*
-#    (public material) via the `trust_anchor_ca_certificate_pem` input,
+#    (public material) via the `trust_anchor_ca_certificate_base64` input,
 #    which the Founder generates and signs entirely offline beforehand.
+#    The input carries the certificate as a single-line Base64 encoding of
+#    the exact PEM file bytes -- not raw multi-line PEM text -- because
+#    GitHub Actions' workflow_dispatch web UI does not reliably preserve
+#    embedded newlines pasted into a plain string field (confirmed by
+#    runner-side diagnostic evidence: report1.161.md/report1.162.md). A
+#    single unbroken Base64 line has no embedded newline for that
+#    mechanism to lose, sidestepping the defect entirely rather than
+#    depending on any particular input mechanism's newline-preservation
+#    behavior.
 #  - Workload end-entity certificate issuance (first-time or reissuance,
 #    `generate_workload_csr: true`) has this workflow generate a fresh
 #    *workload* keypair (not the CA) and a CSR, hand off the workload
@@ -40,10 +49,14 @@ name: SB-P-1.11-GC-38R Parser Non-Production Deploy
 on:
   workflow_dispatch:
     inputs:
-      trust_anchor_ca_certificate_pem:
+      trust_anchor_ca_certificate_base64:
         description: >-
-          PEM-encoded CA certificate (public material only -- never the
-          private key), generated and held offline by the Founder. Required
+          Base64 encoding of the exact bytes of the PEM-encoded CA
+          certificate (public material only -- never the private key),
+          generated and held offline by the Founder, as one unbroken line
+          (for example via
+          [Convert]::ToBase64String([IO.File]::ReadAllBytes("ca.pem")) in
+          PowerShell -- see report1.162.md for the exact command). Required
           only for first-time Trust Anchor creation; ignored once a Trust
           Anchor already exists.
         type: string
@@ -381,7 +394,7 @@ jobs:
       # or code path, at any point -- not even transiently. The CA is
       # entirely Founder-controlled, offline, outside GitHub Actions.
       # First-time creation consumes only the CA *certificate* (public
-      # material) supplied via the `trust_anchor_ca_certificate_pem`
+      # material) supplied via the `trust_anchor_ca_certificate_base64`
       # input; if a Trust Anchor of this exact name already exists, its
       # ARN is reused and the input is ignored. There is never a second
       # code path here that generates a CA -- exactly one Trust Anchor is
@@ -395,12 +408,21 @@ jobs:
       # one-time elevated root/IAM-admin path already established for
       # RuntimeBoundary changes (report1.153.md §9), performed entirely
       # outside this workflow.
+      #
+      # Input transport (corrected per instruction1.156.md, report1.162.md):
+      # the certificate arrives as a single-line Base64 encoding of the
+      # exact PEM file bytes, decoded here into /tmp/parser-pki/ca.pem
+      # before the existing fail-closed diagnostics run unchanged below.
+      # A single unbroken Base64 line has no embedded newline for
+      # GitHub Actions' workflow_dispatch web UI to lose, which is what a
+      # runner-side diagnostic run (report1.161.md) proved was happening
+      # to the previous raw multi-line PEM input.
       # -----------------------------------------------------------------
       - name: Create IAM Roles Anywhere trust anchor
         id: roles_anywhere
         shell: bash
         env:
-          CA_CERTIFICATE_PEM: ${{ github.event.inputs.trust_anchor_ca_certificate_pem }}
+          CA_CERTIFICATE_B64: ${{ github.event.inputs.trust_anchor_ca_certificate_base64 }}
         run: |
           set -euo pipefail
 
@@ -411,14 +433,24 @@ jobs:
             echo "GC38R_TRUST_ANCHOR_EXISTS arn=${existing_ta}"
             trust_anchor_arn="${existing_ta}"
           else
-            if [ -z "${CA_CERTIFICATE_PEM}" ]; then
+            if [ -z "${CA_CERTIFICATE_B64}" ]; then
               echo "GC38R_TRUST_ANCHOR_BOOTSTRAP_MISSING_CA_CERTIFICATE" >&2
-              echo "No Trust Anchor named ${TRUST_ANCHOR_NAME} exists yet, and no trust_anchor_ca_certificate_pem input was supplied. This workflow does not generate a CA itself -- the Founder must generate the CA offline and re-dispatch this workflow with its public certificate in that input." >&2
+              echo "No Trust Anchor named ${TRUST_ANCHOR_NAME} exists yet, and no trust_anchor_ca_certificate_base64 input was supplied. This workflow does not generate a CA itself -- the Founder must generate the CA offline and re-dispatch this workflow with its public certificate (Base64-encoded, see report1.162.md) in that input." >&2
               exit 1
             fi
 
             mkdir -p /tmp/parser-pki
-            printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem
+            # Strip incidental whitespace/newlines defensively (a clean
+            # single-line value from the recommended PowerShell command
+            # never contains any), then decode. GNU base64 -d fails closed
+            # (non-zero exit) on genuinely malformed input.
+            if ! printf '%s' "${CA_CERTIFICATE_B64}" \
+                 | tr -d '[:space:]' \
+                 | base64 -d > /tmp/parser-pki/ca.pem 2>/tmp/parser-pki/ca-b64-decode-error.txt; then
+              echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=base64_decode_failed" >&2
+              cat /tmp/parser-pki/ca-b64-decode-error.txt >&2
+              exit 1
+            fi
 
             # Runner-side certificate integrity diagnostic (instruction1.154.md
             # SS4). Fails closed, before any AWS API call, if the certificate
@@ -458,7 +490,7 @@ jobs:
             expected_fingerprint="51:3A:3A:71:CD:B6:67:92:AA:E6:00:CB:2E:2A:D5:52:28:71:DB:61:BB:AE:6F:76:BF:B4:85:FA:C8:CD:B1:7E"
             if [ "${computed_fingerprint}" != "${expected_fingerprint}" ]; then
               echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=fingerprint_mismatch expected=${expected_fingerprint} actual=${computed_fingerprint}" >&2
-              echo "The certificate that reached this runner does not match the Founder-verified local certificate. This indicates an input-transport/transcription defect (for example, newline loss when pasting into the GitHub Actions 'Run workflow' web form), not a certificate-content problem. Re-supply the certificate via a channel that preserves embedded newlines (for example 'gh workflow run ... -f trust_anchor_ca_certificate_pem=\"\$(cat ca.pem)\"') rather than pasting into the web form, and do not regenerate the CA." >&2
+              echo "The certificate that reached this runner does not match the Founder-verified local certificate. With Base64 transport this is no longer expected to be a newline-loss defect (a single unbroken Base64 line has no embedded newline to lose); check that the pasted trust_anchor_ca_certificate_base64 value is complete and untruncated and was generated from the exact same public CA certificate file the locked fingerprint was computed from, and do not regenerate the CA." >&2
               exit 1
             fi
             echo "GC38R_CERT_DIAGNOSTIC fingerprint_match=true"
