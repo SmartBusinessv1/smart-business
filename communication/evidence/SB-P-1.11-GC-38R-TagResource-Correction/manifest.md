@@ -2,39 +2,58 @@
 
 ## Status
 
-`STOPPED — ADMINISTRATIVE EXECUTION PATH NOT EXPLICITLY AUTHORIZED`
+`GC-38R TAGRESOURCE ADMIN CORRECTION — READY FOR INDEPENDENT SECURITY VERIFICATION`
 
-## Instruction
+## Governing instructions
 
-`communication/live/instruction1.148.md`
+- `communication/live/instruction1.148.md`
+- `communication/live/instruction1.149.md`
 
 ## Canonical main SHA used
 
-`e9e907f18513e5a357d3367cad7815f4d5bb9a0c`
+`6b5cd66fda261511a682b2ef38c9486662503f36`
 
-## Evidence collected before stop
+## Execution path
 
-- AWS sign-in state was provider-observed as signed out.
-- Available console sign-in options were IAM user and root user.
-- No currently authenticated non-root administrative session existed.
-- Existing Smart Business AWS access history for this account has used the Founder root user; no IAM-user administrative path was established for this mission.
-- No AWS mutation was performed.
-- No Phase B rerun occurred.
+A fresh Founder account-owner AWS console session protected by the existing MFA device was used solely for the exact deploy-policy amendment authorized by `instruction1.149.md`.
 
-## Stop-condition rationale
+No IAM user, access key, persistent credential, new trust path, or reusable administrative identity was created.
 
-`instruction1.148.md` authorizes Infrastructure Operations to use only an already-approved administrative path and requires STOP rather than improvisation if the exact correction cannot be made without broader or newly inferred authority.
+## Provider-derived evidence captured
 
-The instruction does not explicitly authorize a fresh Founder root+MFA session for this correction. Prior one-time root authorization from a different mission is not treated as automatically reusable authority.
+1. `deploy-policy-v2.json`
+   - Effective default `TeamLIPS-SB-NonProd-Parser-DeployPolicy` after correction.
+   - Adds only `rolesanywhere:TagResource` for the approved Trust Anchor/Profile ARN classes.
+   - Includes all six locked GC-38R request-tag constraints and the exact six-key `aws:TagKeys` restriction.
+   - Does not add `rolesanywhere:UntagResource` or broader Roles Anywhere authority.
 
-Creating a new IAM user or new administrative trust path would itself exceed the narrow correction scope.
+2. `deploy-role-trust.json`
+   - Read-only capture of the unchanged GitHub Actions OIDC trust relationship for `TeamLIPS-SB-NonProd-Parser-DeployRole`.
 
-## Required Mission Control decision
+3. `provider-verification.md`
+   - AWS showed DeployPolicy Version 2 as Default after the amendment.
+   - AWS showed RuntimeBoundary Version 2 remained Default and was not edited.
+   - AWS showed IAM users `(0)`.
+   - AWS Security credentials showed MFA `(1)` and Access keys `(0)` for the account-owner session.
+   - The one-time session was signed out immediately after verification.
 
-Authorize, if approved, one-time Founder root+MFA use solely to amend:
+4. `session-closure.md`
+   - Records the privileged-session closure and confirms no persistent account-owner access key was created.
 
-`TeamLIPS-SB-NonProd-Parser-DeployPolicy`
+## Preservation statements
 
-with the exact `rolesanywhere:TagResource` statement already defined in `instruction1.148.md`, then capture provider-derived evidence and immediately sign out.
+- RuntimeBoundary was not changed.
+- Deploy-role OIDC trust was not changed.
+- GitHub Environment protections were not changed.
+- CA custody/private-key handling was not touched.
+- Existing partial GC-38R non-production resources were preserved; nothing was deleted, recreated, repaired, replaced, or manually mutated.
+- No Lambda, S3, IAM Roles Anywhere Trust Anchor/Profile, parser/runtime, Supabase, Lovable, or production state was created or changed under this instruction.
+- Phase B was not rerun.
 
-No other AWS mutation, no new IAM user, no static credentials, and no Phase B rerun should be authorized by that patch.
+## GitHub Environment protection evidence note
+
+No GitHub settings mutation occurred in this execution. The previously merged provider-derived GitHub Environment evidence remains the canonical protection baseline; this correction did not access or alter those settings.
+
+## Next gate
+
+Independent Security & Permissions Architecture verification of the bounded TagResource correction and one-time Founder-session closure. Phase B remains unauthorized until Mission Control issues a separate authorization after Security PASS.
