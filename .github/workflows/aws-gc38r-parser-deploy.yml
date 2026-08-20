@@ -422,7 +422,7 @@ jobs:
 
             ta_response="$(aws rolesanywhere create-trust-anchor \
               --name "${TRUST_ANCHOR_NAME}" \
-              --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData=$(python3 -c 'import sys,json; print(json.dumps(open(sys.argv[1]).read()))' /tmp/parser-pki/ca.pem)}" \
+              --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData@=file:///tmp/parser-pki/ca.pem}" \
               --enabled \
               --tags key=Project,value=SmartBusiness key=Environment,value=nonprod \
                      key=Workstream,value=SB-P-1.11 key=Component,value=lambda-parser \
