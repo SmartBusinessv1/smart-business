@@ -431,8 +431,14 @@ jobs:
             # algorithm) is logged.
             cert_byte_count="$(wc -c < /tmp/parser-pki/ca.pem | xargs)"
             cert_line_count="$(wc -l < /tmp/parser-pki/ca.pem | xargs)"
-            begin_marker_count="$(grep -c '^-----BEGIN CERTIFICATE-----$' /tmp/parser-pki/ca.pem || true)"
-            end_marker_count="$(grep -c '^-----END CERTIFICATE-----$' /tmp/parser-pki/ca.pem || true)"
+            # CRLF-tolerant marker check: tr operates only on the piped stream
+            # here, never on the file itself, so /tmp/parser-pki/ca.pem's
+            # original bytes remain unchanged for the fingerprint computation
+            # below and for the AWS request later in this step. A valid
+            # certificate with \r\n line endings must not fail this check
+            # before the fingerprint comparison is ever reached.
+            begin_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----BEGIN CERTIFICATE-----$' || true)"
+            end_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----END CERTIFICATE-----$' || true)"
             echo "GC38R_CERT_DIAGNOSTIC byte_count=${cert_byte_count} line_count=${cert_line_count} begin_markers=${begin_marker_count} end_markers=${end_marker_count}"
 
             if [ "${begin_marker_count}" != "1" ] || [ "${end_marker_count}" != "1" ]; then

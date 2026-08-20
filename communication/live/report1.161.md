@@ -12,6 +12,18 @@
 
 ---
 
+## Mission Control Review Correction — CRLF Marker-Check Robustness
+
+Mission Control reviewed PR #350 and identified one narrow diagnostic robustness issue, now corrected:
+
+The original `begin_marker_count`/`end_marker_count` checks in §7's diagnostic patch matched the PEM `BEGIN`/`END` markers with a plain `grep -c '^-----BEGIN CERTIFICATE-----$'` against `/tmp/parser-pki/ca.pem` directly. Whether that anchor reliably matches a line ending in `\r\n` (CRLF) rather than plain `\n` (LF) depends on the specific `grep` implementation and version, not on any documented, portable guarantee — a valid PEM certificate with CRLF line endings (a legitimate, common variant; OpenSSL and AWS's own PEM parsers both accept it transparently) could therefore fail this diagnostic's marker check before the diagnostic ever reached the fingerprint comparison that is the check's actual load-bearing purpose. That would be a false diagnostic failure masking, rather than revealing, the real signal.
+
+**Correction:** the marker checks now strip `\r` from a piped copy of the file's content before matching (`tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c ...`), making the check unambiguously CRLF-tolerant regardless of the runner's `grep` behavior. Critically, `tr` here operates only on the stream piped into `grep` — it never writes back to or otherwise modifies `/tmp/parser-pki/ca.pem` on disk. The original file bytes remain byte-for-byte unchanged for the subsequent `openssl x509 -fingerprint` computation (§7) and for the AWS `--source ...@=file:///tmp/parser-pki/ca.pem` request later in the same step, exactly as required.
+
+No other line in the diagnostic, and no other file, was touched by this correction. Full before/after detail and new test evidence are in §7 and §8 below; §5.1's classification is otherwise unchanged by this correction.
+
+---
+
 ## 1. Exact Canonical `main` SHA Reviewed
 
 `b54cac9a96169a9e65182a764b4e5cd7de749e67`
@@ -111,7 +123,7 @@ This does not establish that the actual Team LIPS non-production parser CA is mi
 
 **Exact file:** `.github/workflows/aws-gc38r-parser-deploy.yml` — the `Create IAM Roles Anywhere trust anchor` step only.
 
-**Exact diff** (57 lines added, 0 removed, inserted between the existing `printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem` line and the existing `aws rolesanywhere create-trust-anchor` invocation — no existing line altered):
+**Exact diff, as corrected** (63 lines added, 0 removed relative to the pre-diagnostic baseline, inserted between the existing `printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem` line and the existing `aws rolesanywhere create-trust-anchor` invocation — no existing line altered; the marker-count lines below reflect the CRLF-tolerance correction described above, not the original PR #350 submission):
 
 ```diff
              mkdir -p /tmp/parser-pki
@@ -128,8 +140,14 @@ This does not establish that the actual Team LIPS non-production parser CA is mi
 +            # algorithm) is logged.
 +            cert_byte_count="$(wc -c < /tmp/parser-pki/ca.pem | xargs)"
 +            cert_line_count="$(wc -l < /tmp/parser-pki/ca.pem | xargs)"
-+            begin_marker_count="$(grep -c '^-----BEGIN CERTIFICATE-----$' /tmp/parser-pki/ca.pem || true)"
-+            end_marker_count="$(grep -c '^-----END CERTIFICATE-----$' /tmp/parser-pki/ca.pem || true)"
++            # CRLF-tolerant marker check: tr operates only on the piped
++            # stream here, never on the file itself, so ca.pem's original
++            # bytes remain unchanged for the fingerprint computation below
++            # and for the AWS request later in this step. A valid
++            # certificate with \r\n line endings must not fail this check
++            # before the fingerprint comparison is ever reached.
++            begin_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----BEGIN CERTIFICATE-----$' || true)"
++            end_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----END CERTIFICATE-----$' || true)"
 +            echo "GC38R_CERT_DIAGNOSTIC byte_count=${cert_byte_count} line_count=${cert_line_count} begin_markers=${begin_marker_count} end_markers=${end_marker_count}"
 +
 +            if [ "${begin_marker_count}" != "1" ] || [ "${end_marker_count}" != "1" ]; then
@@ -195,8 +213,9 @@ This is a **diagnostic**, not a blind respray of the CLI invocation the instruct
 - `bash -n` syntax check of the extracted step script (via a temporary local extraction, deleted before commit): clean, no syntax errors.
 - **Local, static reproduction of the diagnostic logic itself**, against synthetic (non-CA, throwaway, immediately deleted) test certificates generated in this session, never touching the real CA or any private key:
   - a synthetic self-signed certificate generated with explicit `keyUsage=critical,keyCertSign,cRLSign` correctly produces `basic_constraints="CA:TRUE, pathlen:0"` and `key_usage="Certificate Sign, CRL Sign"`, and the diagnostic's `case` checks correctly report PASS for both;
-  - a synthetic self-signed certificate generated **without** an explicit Key Usage extension (a plain `openssl req -x509 -new -subj ...` invocation) correctly produces `Basic Constraints: CA:TRUE` (OpenSSL 3.5.7 default) but an **empty** Key Usage field, and the diagnostic's `key_usage` `case` check correctly reports FAIL with `reason=key_usage_missing_certificate_sign` — confirming the diagnostic would have caught exactly this class of certificate-generation gap had it been present.
-- `git diff --stat`: exactly 1 file changed, 57 insertions, 0 deletions — no existing line altered.
+  - a synthetic self-signed certificate generated **without** an explicit Key Usage extension (a plain `openssl req -x509 -new -subj ...` invocation) correctly produces `Basic Constraints: CA:TRUE` (OpenSSL 3.5.7 default) but an **empty** Key Usage field, and the diagnostic's `key_usage` `case` check correctly reports FAIL with `reason=key_usage_missing_certificate_sign` — confirming the diagnostic would have caught exactly this class of certificate-generation gap had it been present;
+  - **added for the CRLF-robustness correction:** the same well-formed synthetic certificate re-encoded with `\r\n` line endings (`sed 's/$/\r/'` over the LF original) confirmed to have real `0d 0a` byte pairs via `xxd`. Against the corrected (`tr -d '\r' | grep ...`) marker check, this CRLF file and its LF original both correctly report `begin_markers=1 end_markers=1` and proceed to `GC38R_CERT_DIAGNOSTIC_PASS`; a wrong-fingerprint case and the Key-Usage-missing case were re-run alongside it and continue to fail with the correct, specific reasons. `sha256sum` of the CRLF test file taken before and after the marker check confirms the file itself is byte-for-byte unchanged by the `tr` pipe, and `openssl x509 -fingerprint -sha256` against the LF and CRLF versions of the same certificate returns an identical fingerprint either way, confirming CRLF-vs-LF has no effect on the fingerprint comparison this diagnostic exists to protect.
+- `git diff --stat` (against `main`): exactly 1 file changed, 63 insertions, 0 deletions — no existing line altered.
 - Repository-wide grep confirms zero occurrences of `PARSER_TRUST_ANCHOR_CA_PRIVATE_KEY`, `ca.key`, `ca-private-key`, or CA generation/signing commands anywhere in the corrected file — identical to its pre-review state.
 - Manual review confirms the diagnostic never prints the PEM body (`cat`/`echo` of the certificate's own content is never executed; only byte/line counts, marker counts, the SHA-256 fingerprint, and short extracted metadata strings are logged) and never reads, references, or requires any private key.
 - Staged-diff secret-pattern scan: clean.
@@ -207,7 +226,7 @@ Confirmed, per `instruction1.154.md` §5: no IAM permission, deploy-role trust, 
 
 ## 10. Confirmation — No AWS Mutation or Rerun Occurred
 
-Confirmed. This review consisted entirely of: reading the workflow file and prior reports at the cited canonical SHA; researching AWS/GitHub documentation via `WebFetch`/`WebSearch` (read-only); generating and testing synthetic throwaway certificates locally (no AWS or GitHub interaction); editing 57 lines of workflow YAML; and static validation (§8). No `aws` CLI command was run against any AWS account. No AWS resource was created, deleted, modified, or queried. The `aws-gc38r-parser-deploy.yml` workflow was not triggered or dispatched. No Phase B rerun occurred, and none is authorized by this review.
+Confirmed. This review (including the Mission Control-requested CRLF-robustness correction) consisted entirely of: reading the workflow file and prior reports at the cited canonical SHA; researching AWS/GitHub documentation via `WebFetch`/`WebSearch` (read-only); generating and testing synthetic throwaway certificates locally, including CRLF-re-encoded variants (no AWS or GitHub interaction); editing 63 lines of workflow YAML; and static validation (§8). No `aws` CLI command was run against any AWS account. No AWS resource was created, deleted, modified, or queried. The `aws-gc38r-parser-deploy.yml` workflow was not triggered or dispatched. No Phase B rerun occurred, and none is authorized by this review.
 
 ## 11. Final Disposition
 
