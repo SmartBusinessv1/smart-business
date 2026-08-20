@@ -420,6 +420,69 @@ jobs:
             mkdir -p /tmp/parser-pki
             printf '%s' "${CA_CERTIFICATE_PEM}" > /tmp/parser-pki/ca.pem
 
+            # Runner-side certificate integrity diagnostic (instruction1.154.md
+            # SS4). Fails closed, before any AWS API call, if the certificate
+            # that actually reached this runner does not match the
+            # Founder-verified local certificate -- distinguishing an
+            # input-transport/transcription defect from a genuine provider-side
+            # rejection. Never prints the PEM body; never touches any private
+            # key; only non-secret metadata (byte/line counts, marker counts,
+            # SHA-256 fingerprint, Basic Constraints, Key Usage, signature
+            # algorithm) is logged.
+            cert_byte_count="$(wc -c < /tmp/parser-pki/ca.pem | xargs)"
+            cert_line_count="$(wc -l < /tmp/parser-pki/ca.pem | xargs)"
+            # CRLF-tolerant marker check: tr operates only on the piped stream
+            # here, never on the file itself, so /tmp/parser-pki/ca.pem's
+            # original bytes remain unchanged for the fingerprint computation
+            # below and for the AWS request later in this step. A valid
+            # certificate with \r\n line endings must not fail this check
+            # before the fingerprint comparison is ever reached.
+            begin_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----BEGIN CERTIFICATE-----$' || true)"
+            end_marker_count="$(tr -d '\r' < /tmp/parser-pki/ca.pem | grep -c '^-----END CERTIFICATE-----$' || true)"
+            echo "GC38R_CERT_DIAGNOSTIC byte_count=${cert_byte_count} line_count=${cert_line_count} begin_markers=${begin_marker_count} end_markers=${end_marker_count}"
+
+            if [ "${begin_marker_count}" != "1" ] || [ "${end_marker_count}" != "1" ]; then
+              echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=marker_count_not_exactly_one" >&2
+              exit 1
+            fi
+
+            if ! openssl x509 -in /tmp/parser-pki/ca.pem -noout -text > /tmp/parser-pki/ca-cert-text.txt 2>/tmp/parser-pki/ca-cert-parse-error.txt; then
+              echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=openssl_parse_failed" >&2
+              cat /tmp/parser-pki/ca-cert-parse-error.txt >&2
+              exit 1
+            fi
+
+            computed_fingerprint="$(openssl x509 -in /tmp/parser-pki/ca.pem -noout -fingerprint -sha256 | sed -E 's/^.*Fingerprint=//')"
+            echo "GC38R_CERT_DIAGNOSTIC computed_sha256_fingerprint=${computed_fingerprint}"
+
+            expected_fingerprint="51:3A:3A:71:CD:B6:67:92:AA:E6:00:CB:2E:2A:D5:52:28:71:DB:61:BB:AE:6F:76:BF:B4:85:FA:C8:CD:B1:7E"
+            if [ "${computed_fingerprint}" != "${expected_fingerprint}" ]; then
+              echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=fingerprint_mismatch expected=${expected_fingerprint} actual=${computed_fingerprint}" >&2
+              echo "The certificate that reached this runner does not match the Founder-verified local certificate. This indicates an input-transport/transcription defect (for example, newline loss when pasting into the GitHub Actions 'Run workflow' web form), not a certificate-content problem. Re-supply the certificate via a channel that preserves embedded newlines (for example 'gh workflow run ... -f trust_anchor_ca_certificate_pem=\"\$(cat ca.pem)\"') rather than pasting into the web form, and do not regenerate the CA." >&2
+              exit 1
+            fi
+            echo "GC38R_CERT_DIAGNOSTIC fingerprint_match=true"
+
+            basic_constraints="$(grep -A1 'X509v3 Basic Constraints' /tmp/parser-pki/ca-cert-text.txt | tail -1 | xargs)"
+            key_usage="$(grep -A1 'X509v3 Key Usage' /tmp/parser-pki/ca-cert-text.txt | tail -1 | xargs)"
+            signature_algorithm="$(grep 'Signature Algorithm' /tmp/parser-pki/ca-cert-text.txt | head -1 | xargs)"
+            echo "GC38R_CERT_DIAGNOSTIC basic_constraints=\"${basic_constraints}\" key_usage=\"${key_usage}\" signature_algorithm=\"${signature_algorithm}\""
+
+            case "${basic_constraints}" in
+              *CA:TRUE*) ;;
+              *) echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=basic_constraints_not_ca_true" >&2; exit 1 ;;
+            esac
+
+            # IAM Roles Anywhere trust-anchor certificate requirement
+            # (docs.aws.amazon.com/rolesanywhere/latest/userguide/trust-model.html,
+            # "Signature validation"): key usage MUST include Certificate Sign.
+            case "${key_usage}" in
+              *"Certificate Sign"*) ;;
+              *) echo "GC38R_CERT_DIAGNOSTIC_FAIL reason=key_usage_missing_certificate_sign" >&2; exit 1 ;;
+            esac
+
+            echo "GC38R_CERT_DIAGNOSTIC_PASS"
+
             ta_response="$(aws rolesanywhere create-trust-anchor \
               --name "${TRUST_ANCHOR_NAME}" \
               --source "sourceType=CERTIFICATE_BUNDLE,sourceData={x509CertificateData@=file:///tmp/parser-pki/ca.pem}" \
