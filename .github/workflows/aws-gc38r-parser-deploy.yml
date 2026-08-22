@@ -584,9 +584,9 @@ jobs:
           # -- exactly the same handoff channel already used for every
           # other secret this workflow cannot deliver directly
           # (report1.108.md §20.4).
-          mkdir -p "${GITHUB_WORKSPACE}/.parser-pki-handoff"
-          cp workload.csr "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-certificate-signing-request.csr"
-          cp workload.pkcs8.pem "${GITHUB_WORKSPACE}/.parser-pki-handoff/workload-private-key.pem"
+          mkdir -p "${GITHUB_WORKSPACE}/parser-pki-handoff"
+          cp workload.csr "${GITHUB_WORKSPACE}/parser-pki-handoff/workload-certificate-signing-request.csr"
+          cp workload.pkcs8.pem "${GITHUB_WORKSPACE}/parser-pki-handoff/workload-private-key.pem"
           echo "GC38R_WORKLOAD_CSR_GENERATED"
           echo "csr_generated=true" >> "${GITHUB_OUTPUT}"
 
@@ -714,7 +714,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: gc38r-workload-csr-handoff
-          path: .parser-pki-handoff/
+          path: parser-pki-handoff/
           retention-days: 1
 
       - name: Workload CSR handoff notice
@@ -726,4 +726,4 @@ jobs:
       - name: Remove local PKI handoff copy from the runner workspace
         if: always()
         shell: bash
-        run: rm -rf "${GITHUB_WORKSPACE}/.parser-pki-handoff" /tmp/parser-pki
+        run: rm -rf "${GITHUB_WORKSPACE}/parser-pki-handoff" /tmp/parser-pki
