@@ -634,9 +634,36 @@ jobs:
             echo "GC38R_LAMBDA_CREATED"
           fi
 
-          aws lambda put-function-concurrency \
-            --function-name "${LAMBDA_FUNCTION_NAME}" \
-            --reserved-concurrent-executions 5
+          # ---------------------------------------------------------------
+          # Reserved concurrency 5 is the intended steady-state control and
+          # is attempted on every run. New AWS accounts can carry a reduced
+          # Lambda concurrency quota that rejects any nonzero per-function
+          # reservation until AWS raises it; PutFunctionConcurrency returns
+          # a specific InvalidParameterValueException for exactly that
+          # condition. Only that narrowly-matched condition is treated as a
+          # temporary non-production compatibility case (instruction1.162.md
+          # / report1.164.md) -- every other PutFunctionConcurrency error
+          # still fails the workflow closed. No state is persisted between
+          # runs, so a future authorized run retries concurrency 5 first and
+          # the intended control restores automatically as soon as AWS
+          # permits it.
+          # ---------------------------------------------------------------
+          concurrency_error="/tmp/put-function-concurrency-error.txt"
+          if aws lambda put-function-concurrency \
+               --function-name "${LAMBDA_FUNCTION_NAME}" \
+               --reserved-concurrent-executions 5 \
+               2>"${concurrency_error}"; then
+            echo "GC38R_LAMBDA_RESERVED_CONCURRENCY_APPLIED value=5"
+          elif grep -q 'InvalidParameterValueException' "${concurrency_error}" \
+               && grep -q 'UnreservedConcurrentExecution' "${concurrency_error}" \
+               && grep -q 'below its minimum value' "${concurrency_error}"; then
+            echo "GC38R_LAMBDA_RESERVED_CONCURRENCY_DEFERRED_NEW_ACCOUNT_QUOTA"
+            echo "  PutFunctionConcurrency rejected reserved-concurrent-executions=5: this account's reduced new-account Lambda concurrency quota does not currently permit it. Continuing this run without per-function reserved concurrency; concurrency 5 will be retried automatically on the next authorized run."
+          else
+            echo "GC38R_LAMBDA_RESERVED_CONCURRENCY_FAILED reason=unexpected_put_function_concurrency_error" >&2
+            cat "${concurrency_error}" >&2
+            exit 1
+          fi
 
           function_arn="$(aws lambda get-function --function-name "${LAMBDA_FUNCTION_NAME}" \
             --output json | python3 -c 'import json,sys; print(json.load(sys.stdin)["Configuration"]["FunctionArn"])')"
