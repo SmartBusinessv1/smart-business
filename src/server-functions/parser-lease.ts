@@ -94,7 +94,7 @@ function loadParserAwsConfig(): ParserAwsConfig {
     privateKeyPem: process.env.PARSER_WORKLOAD_PRIVATE_KEY_PEM,
   };
   const missing = Object.entries(required)
-    .filter(([, v]) => v === undefined || v === "")
+    .filter(([k, v]) => k !== "certificateChainPem" && (v === undefined || v === ""))
     .map(([k]) => k);
   if (missing.length > 0) {
     throw new Error(`PARSER_AWS_CONFIG_MISSING:${missing.join(",")}`);
