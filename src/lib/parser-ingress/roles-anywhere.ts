@@ -199,10 +199,22 @@ export async function createRolesAnywhereSession(
     trustAnchorArn: params.trustAnchorArn,
   });
 
-  const certDer = pemToDer(params.certificatePem);
-  const chainDer =
-    params.certificateChainPem.trim().length > 0 ? pemToDer(params.certificateChainPem) : null;
-  const serialHex = extractSerialNumberHex(certDer);
+  // instruction1.172.md -- temporary sanitized diagnostic categorization
+  // (removed once GC-38R Phase C C5 evidence is captured). Every catch here
+  // discards the original error entirely and throws a fixed, non-secret
+  // category string only -- never certificate/key content, never a
+  // provider body, never anything derived from the caught error itself.
+  let certDer: Uint8Array;
+  let chainDer: Uint8Array | null;
+  let serialHex: string;
+  try {
+    certDer = pemToDer(params.certificatePem);
+    chainDer =
+      params.certificateChainPem.trim().length > 0 ? pemToDer(params.certificateChainPem) : null;
+    serialHex = extractSerialNumberHex(certDer);
+  } catch {
+    throw new Error("certificate_parse_failed");
+  }
 
   const now = new Date();
   const { amzDate, dateStamp } = amzDateStamp(now);
@@ -226,36 +238,52 @@ export async function createRolesAnywhereSession(
   const credentialScope = `${dateStamp}/${params.region}/${ROLES_ANYWHERE_SERVICE}/aws4_request`;
   const stringToSign = [ALGORITHM, amzDate, credentialScope, hashedCanonicalRequest].join("\n");
 
-  const privateKey = await crypto.subtle.importKey(
-    "pkcs8",
-    pemToDer(params.privateKeyPem).slice().buffer as ArrayBuffer,
-    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
-    false, // non-extractable
-    ["sign"],
-  );
-  const signatureBytes = new Uint8Array(
-    await crypto.subtle.sign(
-      "RSASSA-PKCS1-v1_5",
-      privateKey,
-      new TextEncoder().encode(stringToSign).slice().buffer as ArrayBuffer,
-    ),
-  );
-  const signatureHex = toHex(signatureBytes);
+  let privateKey: CryptoKey;
+  try {
+    privateKey = await crypto.subtle.importKey(
+      "pkcs8",
+      pemToDer(params.privateKeyPem).slice().buffer as ArrayBuffer,
+      { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+      false, // non-extractable
+      ["sign"],
+    );
+  } catch {
+    throw new Error("private_key_import_failed");
+  }
+
+  let signatureHex: string;
+  try {
+    const signatureBytes = new Uint8Array(
+      await crypto.subtle.sign(
+        "RSASSA-PKCS1-v1_5",
+        privateKey,
+        new TextEncoder().encode(stringToSign).slice().buffer as ArrayBuffer,
+      ),
+    );
+    signatureHex = toHex(signatureBytes);
+  } catch {
+    throw new Error("signature_failed");
+  }
 
   const authorizationHeader = `${ALGORITHM} Credential=${serialHex}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signatureHex}`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { ...headers, authorization: authorizationHeader },
-    body,
-  });
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: { ...headers, authorization: authorizationHeader },
+      body,
+    });
+  } catch {
+    throw new Error("create_session_network_failed");
+  }
 
   if (!response.ok) {
     // Never surface the raw provider body -- it may echo request detail.
-    throw new Error(`ROLES_ANYWHERE_CREATE_SESSION_FAILED:${response.status}`);
+    throw new Error(`create_session_http_failed:${response.status}`);
   }
 
-  const payload = (await response.json()) as {
+  let payload: {
     credentialSet?: {
       credentials?: {
         accessKeyId: string;
@@ -265,9 +293,14 @@ export async function createRolesAnywhereSession(
       };
     }[];
   };
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error("create_session_malformed_response");
+  }
   const credentials = payload.credentialSet?.[0]?.credentials;
   if (!credentials) {
-    throw new Error("ROLES_ANYWHERE_CREATE_SESSION_MALFORMED_RESPONSE");
+    throw new Error("create_session_malformed_response");
   }
   return credentials;
 }
