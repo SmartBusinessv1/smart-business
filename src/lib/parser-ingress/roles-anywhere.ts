@@ -97,15 +97,28 @@ function readTlv(
 }
 
 /**
+ * Converts an unsigned big-endian byte sequence to its decimal string
+ * representation, with no precision loss (BigInt, not Number).
+ */
+function bytesToDecimal(bytes: Uint8Array): string {
+  let value = 0n;
+  for (const byte of bytes) value = value * 256n + BigInt(byte);
+  return value.toString(10);
+}
+
+/**
  * Extracts the certificate serial number (the value AWS4-X509 places in the
  * Authorization header's Credential field in place of an access key id) as
- * a lowercase hex string, from a DER-encoded X.509 certificate.
+ * a decimal string, from a DER-encoded X.509 certificate. AWS IAM Roles
+ * Anywhere's CreateSession signing process requires the decimal
+ * representation of the certificate serial number at this exact position
+ * (report1.172.md's Phase A review; instruction1.174.md) -- not hexadecimal.
  *
  * Certificate ::= SEQUENCE { tbsCertificate, signatureAlgorithm, signatureValue }
  * TBSCertificate ::= SEQUENCE { [0] version (optional, context tag 0xA0),
  *                                serialNumber INTEGER, ... }
  */
-function extractSerialNumberHex(der: Uint8Array): string {
+export function extractSerialNumberDecimal(der: Uint8Array): string {
   const certificate = readTlv(der, 0);
   if (certificate.tag !== 0x30) throw new Error("PARSER_INGRESS_CERT_NOT_SEQUENCE");
   const tbsCertificate = readTlv(der, certificate.contentStart);
@@ -125,7 +138,7 @@ function extractSerialNumberHex(der: Uint8Array): string {
   if (bytes.length > 1 && bytes[0] === 0x00 && (bytes[1] & 0x80) !== 0) {
     bytes = bytes.subarray(1);
   }
-  return toHex(bytes);
+  return bytesToDecimal(bytes);
 }
 
 // ---------------------------------------------------------------------------
@@ -206,12 +219,12 @@ export async function createRolesAnywhereSession(
   // provider body, never anything derived from the caught error itself.
   let certDer: Uint8Array;
   let chainDer: Uint8Array | null;
-  let serialHex: string;
+  let serialDecimal: string;
   try {
     certDer = pemToDer(params.certificatePem);
     chainDer =
       params.certificateChainPem.trim().length > 0 ? pemToDer(params.certificateChainPem) : null;
-    serialHex = extractSerialNumberHex(certDer);
+    serialDecimal = extractSerialNumberDecimal(certDer);
   } catch {
     throw new Error("certificate_parse_failed");
   }
@@ -265,7 +278,7 @@ export async function createRolesAnywhereSession(
     throw new Error("signature_failed");
   }
 
-  const authorizationHeader = `${ALGORITHM} Credential=${serialHex}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signatureHex}`;
+  const authorizationHeader = `${ALGORITHM} Credential=${serialDecimal}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signatureHex}`;
 
   let response: Response;
   try {
