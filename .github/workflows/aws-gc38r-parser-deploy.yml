@@ -80,6 +80,7 @@ env:
   RUNTIME_BOUNDARY_ARN: arn:aws:iam::658980433673:policy/TeamLIPS-SB-NonProd-Parser-RuntimeBoundary
   LAMBDA_EXECUTION_ROLE_NAME: TeamLIPS-SB-NonProd-Parser-LambdaExecutionRole
   WORKLOAD_ROLE_NAME: TeamLIPS-SB-NonProd-Parser-WorkloadRole
+  WORKLOAD_TRUST_ANCHOR_ARN: arn:aws:rolesanywhere:ap-south-1:658980433673:trust-anchor/b0282d51-b071-4c03-97d3-546e2f405baa
   LAMBDA_FUNCTION_NAME: teamlips-sb-np-parser
   BUCKET_NAME: teamlips-sb-np-parser-658980433673-ap-south-1
   TRUST_ANCHOR_NAME: teamlips-sb-np-parser-trust-anchor
@@ -315,7 +316,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat > /tmp/workload-trust.json <<'TRUST'
+          cat > /tmp/workload-trust.json <<TRUST
           {
             "Version": "2012-10-17",
             "Statement": [
@@ -325,7 +326,7 @@ jobs:
                 "Action": ["sts:AssumeRole", "sts:TagSession", "sts:SetSourceIdentity"],
                 "Condition": {
                   "ArnEquals": {
-                    "aws:SourceArn": "arn:aws:rolesanywhere:${AWS_REGION}:${EXPECTED_ACCOUNT_ID}:trust-anchor/*"
+                    "aws:SourceArn": "${WORKLOAD_TRUST_ANCHOR_ARN}"
                   }
                 }
               }
@@ -333,8 +334,44 @@ jobs:
           }
           TRUST
 
+          python3 - /tmp/workload-trust.json "${WORKLOAD_TRUST_ANCHOR_ARN}" <<'PY'
+          import json
+          import sys
+
+          policy_path, expected_source_arn = sys.argv[1:3]
+          expected_actions = {"sts:AssumeRole", "sts:TagSession", "sts:SetSourceIdentity"}
+
+          with open(policy_path, encoding="utf-8") as handle:
+              policy = json.load(handle)
+
+          statements = policy.get("Statement", [])
+          if len(statements) != 1:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=statement_count")
+
+          statement = statements[0]
+          if statement.get("Principal") != {"Service": "rolesanywhere.amazonaws.com"}:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=principal")
+          if set(statement.get("Action", [])) != expected_actions:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=actions")
+
+          condition = statement.get("Condition", {})
+          if set(condition) != {"ArnEquals"}:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=condition_operator")
+
+          source_arn = condition["ArnEquals"].get("aws:SourceArn")
+          if source_arn != expected_source_arn:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=source_arn")
+          if "${" in source_arn or "*" in source_arn:
+              raise SystemExit("GC38R_WORKLOAD_TRUST_POLICY_INVALID reason=placeholder_or_wildcard")
+
+          print("GC38R_WORKLOAD_TRUST_POLICY_RENDER_PASS exact_trust_anchor=true placeholders=false wildcard=false")
+          PY
+
           if aws iam get-role --role-name "${WORKLOAD_ROLE_NAME}" >/dev/null 2>&1; then
-            echo "GC38R_WORKLOAD_ROLE_EXISTS"
+            aws iam update-assume-role-policy \
+              --role-name "${WORKLOAD_ROLE_NAME}" \
+              --policy-document file:///tmp/workload-trust.json
+            echo "GC38R_WORKLOAD_ROLE_TRUST_POLICY_UPDATED"
           else
             aws iam create-role \
               --role-name "${WORKLOAD_ROLE_NAME}" \
@@ -345,6 +382,13 @@ jobs:
                      Key=Owner,Value=TeamLIPS Key=ManagedBy,Value=GitHubActions
             echo "GC38R_WORKLOAD_ROLE_CREATED"
           fi
+
+          actual_source_arn="$(aws iam get-role \
+            --role-name "${WORKLOAD_ROLE_NAME}" \
+            --output json \
+            | python3 -c 'import json,sys; p=json.load(sys.stdin)["Role"]["AssumeRolePolicyDocument"]; print(p["Statement"][0]["Condition"]["ArnEquals"]["aws:SourceArn"])')"
+          test "${actual_source_arn}" = "${WORKLOAD_TRUST_ANCHOR_ARN}"
+          echo "GC38R_WORKLOAD_ROLE_TRUST_POLICY_VERIFY_PASS exact_trust_anchor=true"
 
           cat > /tmp/workload-policy.json <<POLICY
           {
