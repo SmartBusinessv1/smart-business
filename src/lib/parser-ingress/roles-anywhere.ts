@@ -212,11 +212,16 @@ export async function createRolesAnywhereSession(
     trustAnchorArn: params.trustAnchorArn,
   });
 
-  // instruction1.172.md -- temporary sanitized diagnostic categorization
-  // (removed once GC-38R Phase C C5 evidence is captured). Every catch here
+  // instruction1.172.md / instruction1.186.md -- sanitized failure
+  // categorization for the Roles Anywhere credential path. Every catch here
   // discards the original error entirely and throws a fixed, non-secret
   // category string only -- never certificate/key content, never a
   // provider body, never anything derived from the caught error itself.
+  // The caller (parser-lease.ts) no longer extracts/logs these category
+  // strings post-C5 (instruction1.186.md's repository cleanup removed that
+  // consumer deliberately, conservatively, without touching this validated
+  // signing implementation) -- they remain here only as an inert,
+  // already-sanitized fail-closed boundary around each risky step.
   let certDer: Uint8Array;
   let chainDer: Uint8Array | null;
   let serialDecimal: string;

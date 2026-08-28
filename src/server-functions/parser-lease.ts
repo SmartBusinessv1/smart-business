@@ -49,29 +49,6 @@ function sanitizedError(): Error {
   return new Error(GENERIC_SERVER_ERROR);
 }
 
-// instruction1.172.md -- temporary sanitized diagnostic categorization for
-// the Roles Anywhere credential path (removed once GC-38R Phase C C5
-// evidence is captured). Only ever logs one of a small, fixed set of
-// non-secret category strings roles-anywhere.ts itself throws; any other
-// error (including an arbitrary/unexpected message that could echo
-// provider or crypto-library detail) is deliberately collapsed to a
-// single generic fallback so nothing beyond this allowlist ever reaches
-// logSanitized.
-const ROLES_ANYWHERE_DIAGNOSTIC_CATEGORIES = new Set([
-  "certificate_parse_failed",
-  "private_key_import_failed",
-  "signature_failed",
-  "create_session_network_failed",
-  "create_session_malformed_response",
-]);
-
-export function categorizeAwsCredentialError(err: unknown): string {
-  const message = err instanceof Error ? err.message : "";
-  if (ROLES_ANYWHERE_DIAGNOSTIC_CATEGORIES.has(message)) return message;
-  if (/^create_session_http_failed:\d{3}$/.test(message)) return message;
-  return "unknown_local_failure";
-}
-
 async function loadOwnedBusinessId(supabase: AuthedClient, userId: string): Promise<string | null> {
   const { data, error } = await supabase
     .from("businesses")
@@ -279,11 +256,8 @@ export const parserLeasePreview = createServerFn({ method: "POST" })
         credentials,
       });
     } catch (err) {
-      logSanitized("presign_failed", {
-        businessId,
-        leaseId: lease.lease_id,
-        category: categorizeAwsCredentialError(err),
-      });
+      logSanitized("presign_failed", { businessId, leaseId: lease.lease_id });
+      void err;
       throw sanitizedError();
     }
 
@@ -435,11 +409,8 @@ export const parserLeaseConfirmAndDispatch = createServerFn({ method: "POST" })
         },
       });
     } catch (err) {
-      logSanitized("dispatch_transport_error", {
-        businessId,
-        leaseId: data.leaseId,
-        category: categorizeAwsCredentialError(err),
-      });
+      logSanitized("dispatch_transport_error", { businessId, leaseId: data.leaseId });
+      void err;
       await finalizeFail("DISPATCH_OUTCOME_UNKNOWN");
       return rejected("TRANSPORT_ERROR", "PARSER_SERVICE_UNAVAILABLE");
     }

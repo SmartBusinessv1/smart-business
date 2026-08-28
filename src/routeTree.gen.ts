@@ -21,7 +21,6 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedTransactionsRouteImport } from './routes/_authenticated/transactions'
 import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
-import { Route as AuthenticatedGc38rC5DiagnosticRouteImport } from './routes/_authenticated/gc38r-c5-diagnostic'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCatalogRouteImport } from './routes/_authenticated/catalog'
 import { Route as AuthenticatedInventoryIndexRouteImport } from './routes/_authenticated/inventory.index'
@@ -90,12 +89,6 @@ const AuthenticatedInventoryRoute = AuthenticatedInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedGc38rC5DiagnosticRoute =
-  AuthenticatedGc38rC5DiagnosticRouteImport.update({
-    id: '/gc38r-c5-diagnostic',
-    path: '/gc38r-c5-diagnostic',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -149,7 +142,6 @@ export interface FileRoutesByFullPath {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/catalog': typeof AuthenticatedCatalogRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/gc38r-c5-diagnostic': typeof AuthenticatedGc38rC5DiagnosticRoute
   '/inventory': typeof AuthenticatedInventoryRouteWithChildren
   '/transactions': typeof AuthenticatedTransactionsRoute
   '/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
@@ -169,7 +161,6 @@ export interface FileRoutesByTo {
   '/super-admin': typeof SuperAdminRoute
   '/terms-of-service': typeof TermsOfServiceRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/gc38r-c5-diagnostic': typeof AuthenticatedGc38rC5DiagnosticRoute
   '/transactions': typeof AuthenticatedTransactionsRoute
   '/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
   '/catalog/import': typeof AuthenticatedCatalogImportRoute
@@ -191,7 +182,6 @@ export interface FileRoutesById {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/_authenticated/catalog': typeof AuthenticatedCatalogRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/gc38r-c5-diagnostic': typeof AuthenticatedGc38rC5DiagnosticRoute
   '/_authenticated/inventory': typeof AuthenticatedInventoryRouteWithChildren
   '/_authenticated/transactions': typeof AuthenticatedTransactionsRoute
   '/_authenticated/catalog/$productId': typeof AuthenticatedCatalogProductIdRoute
@@ -214,7 +204,6 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/catalog'
     | '/dashboard'
-    | '/gc38r-c5-diagnostic'
     | '/inventory'
     | '/transactions'
     | '/catalog/$productId'
@@ -234,7 +223,6 @@ export interface FileRouteTypes {
     | '/super-admin'
     | '/terms-of-service'
     | '/dashboard'
-    | '/gc38r-c5-diagnostic'
     | '/transactions'
     | '/catalog/$productId'
     | '/catalog/import'
@@ -255,7 +243,6 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/_authenticated/catalog'
     | '/_authenticated/dashboard'
-    | '/_authenticated/gc38r-c5-diagnostic'
     | '/_authenticated/inventory'
     | '/_authenticated/transactions'
     | '/_authenticated/catalog/$productId'
@@ -364,13 +351,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInventoryRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/gc38r-c5-diagnostic': {
-      id: '/_authenticated/gc38r-c5-diagnostic'
-      path: '/gc38r-c5-diagnostic'
-      fullPath: '/gc38r-c5-diagnostic'
-      preLoaderRoute: typeof AuthenticatedGc38rC5DiagnosticRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -457,7 +437,6 @@ const AuthenticatedInventoryRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCatalogRoute: typeof AuthenticatedCatalogRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedGc38rC5DiagnosticRoute: typeof AuthenticatedGc38rC5DiagnosticRoute
   AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRouteWithChildren
   AuthenticatedTransactionsRoute: typeof AuthenticatedTransactionsRoute
 }
@@ -465,7 +444,6 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCatalogRoute: AuthenticatedCatalogRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedGc38rC5DiagnosticRoute: AuthenticatedGc38rC5DiagnosticRoute,
   AuthenticatedInventoryRoute: AuthenticatedInventoryRouteWithChildren,
   AuthenticatedTransactionsRoute: AuthenticatedTransactionsRoute,
 }
