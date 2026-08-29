@@ -122,3 +122,20 @@ Exactly 19 public Catalog commands confirmed via migration source, live database
 **Mission Control:** review the Stage 21/22 output and `communication/live/report1.188.md`; Stage 23 (Mission Control Acceptance) remains unauthorized until this review is complete and a separate explicit authorization is issued.
 
 **Claude Code:** stop and wait for Mission Control review. No Stage 23 or Stage 24 action is authorized.
+
+## 2026-08-29 — Mission Control → Stage 24 Gate — Stage 23 Acceptance Recorded
+
+- **From:** Mission Control
+- **To:** Mission Control / future Stage 24 assigned recorder
+- **Lifecycle stage completed:** `Stage 23 — Mission Control Acceptance`
+- **Canonical review baseline:** `994dc530f8a4f19bb423018dcaa2023a70402ef4`
+- **Disposition:** `SB-P-1.11 — ACCEPTED WITH FOLLOW-UP`
+- **Primary record:** `communication/missions/SB-P-1.11/mission-control/23-mission-control-acceptance.md`
+- **Consolidated record:** `communication/live/report1.189.md`
+- **Material blocking finding:** None.
+- **Follow-ups preserved:** `F23-01` through `F23-05` as defined in the Stage 23 acceptance record.
+- **Release/activation boundary:** no application deployment/publication, parser/bulk-import production activation, pilot readiness, or production release is authorized by acceptance.
+
+### Next Action
+
+After human merge of the Stage 23 acceptance record, Mission Control may separately authorize **Stage 24 — Documentation Closure**. The Stage 24 recorder must preserve all five follow-ups, identify the accepted final repository state, state deployment/activation status accurately, verify repository synchronization, and record `COMPLETED — FORMALLY ACCEPTED` only after the closure record itself is reviewed and merged.
