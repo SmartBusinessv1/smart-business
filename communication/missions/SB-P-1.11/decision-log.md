@@ -71,3 +71,16 @@ The actual branch starting SHA must be verified and recorded after the continuit
 - **Disposition:** `SB-P-1.11 STAGES 21–22 — EVIDENCE & FORMAL REPORT COMPLETE — READY FOR MISSION CONTROL ACCEPTANCE REVIEW`.
 - **Authority exercised:** Evidence organization and formal report synthesis only. No application code, migration, schema, RLS, grant, dependency, Lovable, AWS, Cloudflare, or production change was made. No Stage 23 acceptance or Stage 24 closure occurred or is authorized by this entry.
 - **Next action:** Mission Control review of the Stage 21/22 output and `report1.188.md`, and a separate explicit authorization before Stage 23 may begin.
+
+## 2026-08-29 — Stage 23 Mission Control Acceptance — ACCEPTED WITH FOLLOW-UP
+
+- **Decision authority:** Mission Control under Source 18 Stage 23.
+- **Canonical review baseline:** `994dc530f8a4f19bb423018dcaa2023a70402ef4` (merge of PR #424, containing the canonical Stage 21 Evidence Package and Stage 22 Formal Completion Report).
+- **Decision:** `SB-P-1.11 — ACCEPTED WITH FOLLOW-UP`.
+- **Material blocking finding:** None.
+- **Accepted non-blocking follow-ups:** `F23-01` live multi-business/cross-tenant RLS probe; `F23-02` live concurrent-retry/actor-mismatch probe; `F23-03` full parameter-signature parity for the remaining 16 commands; `F23-04` live production-domain browser/HTTP verification after authorized deployment; `F23-05` exhaustive GC-1 historical provenance re-derivation.
+- **Founder authority check:** No additional Founder product-decision approval is required for this Stage 23 disposition because no new product decision is introduced, no scope deviation is accepted, no material unresolved follow-up is carried, and Product Truth is unchanged.
+- **Boundary:** This acceptance does not authorize application deployment/publication, parser/bulk-import production activation, pilot readiness, production release, new database/infrastructure mutation, Product Truth change, or Stage 24 closure.
+- **Primary acceptance record:** `communication/missions/SB-P-1.11/mission-control/23-mission-control-acceptance.md`.
+- **Consolidated communication:** `communication/live/report1.189.md`.
+- **Next action:** After human merge of the Stage 23 acceptance record, Mission Control may separately authorize `Stage 24 — Documentation Closure`.
