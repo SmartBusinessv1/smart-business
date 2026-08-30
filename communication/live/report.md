@@ -88,17 +88,19 @@ No ambiguity exists at the **database** layer (production vs. test are unambiguo
 
 **[PLATFORM-DIRECT]** All three Inventory tables exist with RLS enabled: `inventory_items` (4 policies), `inventory_movements` (3 policies), `inventory_movement_idempotency_keys` (2 policies). All six Inventory functions exist, owned by `postgres`, `SECURITY DEFINER = false` (invoker-rights by design, per the Engineering Contract), with `create_inventory_movement`'s `search_path` confirmed exactly `public, extensions` (the FIX-DIGEST-1.0 correction).
 
-### 4.3 Material Finding — `anon` Table Grant on Inventory Tables (Non-Blocking, Explained)
+### 4.3 Material Finding — `anon` Table Grant on Inventory Tables (Security Specialist Disposition Required)
 
 **[PLATFORM-DIRECT]** `anon` (the unauthenticated role) currently holds a full `GRANT ALL` (`SELECT/INSERT/UPDATE/DELETE/TRUNCATE/REFERENCES/TRIGGER`) on `inventory_items`, `inventory_movements`, and `inventory_movement_idempotency_keys` in production — directly contradicting the accepted SB-P-1.10 evidence record's own claim ("Confirmed no `anon` GRANT... exists on any inventory table").
 
 **Root cause, found and confirmed [REPO]:** `supabase/migrations/20260727000000_reconcile_default_grants.sql` (`SB-MIG-1.2E-C`, dated three days after the SB-P-1.10 acceptance evidence was gathered) deliberately grants `ALL` on `businesses`, `inventory_items`, `inventory_movement_idempotency_keys`, `inventory_movements`, `transaction_correction_events`, and `transactions` to `anon`/`authenticated`/`service_role`, with an explicit, reasoned comment: tables created via Supabase's own dashboard/Management-API tooling (as this production project's earliest objects were) receive broad default ACLs automatically, and this migration makes that *already-real, already-verified production state* explicit and reproducible, on the documented premise that **RLS — not table grants — is the real access-control gate** in Supabase's own intended architecture.
 
-**Verified this session, not assumed:** every RLS policy on all three tables is scoped only to `{authenticated}` or `{catalog_link_executor}` — **zero policies apply to `anon` or `PUBLIC`**. With RLS enabled and no applicable policy, `anon` sees/affects zero rows on every operation despite the raw grant — the grant is rendered functionally inert. **This is not a critical/high security finding**; it is a materially weaker defense-in-depth posture than the Catalog security model (which explicitly `REVOKE`s before narrow re-granting) and it means the accepted SB-P-1.10 evidence record's specific "no anon grant" claim is now stale and should be corrected for the record. **Non-blocking; recommended as a release condition:** Mission Control decide whether to (a) accept the RLS-only posture as-is for release, matching Supabase's own documented default model, or (b) harden Inventory/`businesses`/Transactions tables to the Catalog model's `REVOKE`-first pattern before wider release.
+**Verified this session, not assumed:** every RLS policy on all three tables is scoped only to `{authenticated}` or `{catalog_link_executor}` — **zero policies apply to `anon` or `PUBLIC`**. With RLS enabled and no applicable policy, `anon` sees/affects zero rows on every operation despite the raw grant — RLS currently **appears** to make anonymous access functionally default-deny. **This report does not unilaterally finalize that appearance as an acceptable release posture from engineering review alone**, because it directly contradicts the accepted SB-P-1.10 evidence record's own "no anon grant" claim and is a materially weaker defense-in-depth posture than the Catalog security model (which explicitly `REVOKE`s before narrow re-granting).
+
+**Disposition:** `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL`. Mission Control requires a narrow, independent Security & Permissions Architecture review to decide whether the current grant posture is acceptable as-is or must be hardened (e.g., to the Catalog model's `REVOKE`-first pattern) before release approval. This is not classified as a critical/high active exploit (RLS currently blocks every observed access path), but it is also not closed by this gate's own engineering review.
 
 ### 4.4 SB-P-1.10 Parity Conclusion
 
-**PASS — EVIDENCE VERIFIED**, with the §4.3 finding recorded as a disclosed, non-blocking condition rather than a silent gap.
+**PASS — EVIDENCE VERIFIED**, with the §4.3 finding carried forward as a release-approval condition requiring independent security-specialist disposition (§12), not closed by this report.
 
 ## 5. SB-P-1.11 GC-40 Production-Parity Assessment
 
@@ -119,6 +121,7 @@ No ambiguity exists at the **database** layer (production vs. test are unambiguo
 - **Employee financial-intelligence restrictions:** **NOT APPLICABLE** — no Employee role/permission infrastructure exists yet in either accepted mission.
 - **Service-role / privileged-path boundaries:** **[PLATFORM-DIRECT]** — `service_role` confirmed as the only broad-access role everywhere queried this session and throughout GC-40; never reachable from shipped client code (confirmed at Stage 19 via frontend RPC-only call-site audit).
 - **RLS state, all SB-P-1.10/1.11 production tables:** **[PLATFORM-DIRECT]** — 18 tables checked fresh this session (§4.2, §5), all `rls_enabled = true`.
+- **`anon` grant posture on Inventory tables:** **[PLATFORM-DIRECT]** — `anon` holds `GRANT ALL` on the three Inventory tables (§4.3); RLS currently appears to make this functionally default-deny (zero applicable policies for `anon`), but this report does not finalize that as an acceptable posture on its own — `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL` (§12).
 - **Storage policies:** **NOT APPLICABLE** — no Supabase Storage bucket is part of either accepted mission's schema (the parser path uses external S3, §7, not Supabase Storage).
 - **Parser-support tables/functions:** **[PLATFORM-DIRECT]** — covered in §5; infrastructure-only, non-Product-Truth, confirmed default-deny.
 
@@ -162,11 +165,11 @@ No production write probe was performed, per Gate 1's own prohibition.
 | Acceptance evidence | `PASS — EVIDENCE VERIFIED` | `docs/implementation/SB-P-1.10/completion-report.md`, SB-P-1.11 Stage 21–24 chain, both cite full acceptance |
 | Pilot evidence where required | `NOT APPLICABLE` for the core release; `READY — REQUIRES EXECUTION-GATE VERIFICATION` for parser/bulk-import specifically | §2, §7.4 |
 | Database migration status | `PASS — EVIDENCE VERIFIED` | §4.1, §5 — full parity, fresh, direct |
-| Backup readiness | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §9 — Pro-plan backup tier known; exact current backup/PITR configuration and last-successful-backup timestamp not independently queryable this session |
+| Backup readiness | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §10 — Pro-plan tier confirmed; current backup/PITR configuration, retention window, and last-successful-backup timestamp classified `UNRESOLVED — REQUIRES DIRECT PLATFORM EVIDENCE` |
 | Rollback path | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §9 — database/application rollback targets identifiable in principle; not yet formally documented as an execution-ready runbook for this specific release |
 | Secrets and configuration | `FOLLOW-UP — NON-BLOCKING` | Parser-path production configuration not repository-visible by design (§7.2 item 6); no evidence of a secret exposure found |
 | Authentication and permissions | `PASS — EVIDENCE VERIFIED` | §6 |
-| RLS and merchant isolation | `PASS — EVIDENCE VERIFIED`, with one disclosed condition | §4.3, §5, §6 |
+| RLS and merchant isolation | `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL` | §4.3, §5, §6 — RLS currently appears to make `anon` access to Inventory tables functionally default-deny, but the underlying `GRANT ALL` posture requires independent Security & Permissions Architecture disposition, not engineering-review self-certification |
 | Monitoring and logging | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | Database-side has no dedicated app-level monitoring evidence surfaced this session; parser-side CloudWatch/alarm state is §7.2 item 7 |
 | Support readiness | `FOLLOW-UP — NON-BLOCKING` | Not assessed this session; Source 12 §65 requires it before release but no evidence (positive or negative) was located |
 | Legal and policy readiness | `FOLLOW-UP — NON-BLOCKING` | Outside this session's evidence; `mission-control/mission_memory.md` records Privacy Policy/Terms as still placeholder-only for an unrelated deferred mission (`SB-INF-1.2`) — worth Mission Control confirming this does not also gate this release |
@@ -181,7 +184,7 @@ Per the instruction's explicit directive, Founder approval is **not** marked PAS
 
 | Item | Classification | Disposition for this release |
 |---|---|---|
-| `F23-01` — live multi-business/cross-tenant RLS runtime probe | Release-gating (should be executed in the next controlled gate before or immediately after phased release) | Not yet performed; RLS design/policy-scoping is confirmed sound this session (§4.2/§5), but a live probe (real two-business cross-access attempt) remains outstanding |
+| `F23-01` — live multi-business/cross-tenant RLS runtime probe | Release-gating — **must be completed and pass before Founder release-approval and before production release execution**, not merely "before or immediately after" release; also retained in the post-release regression plan (§11) as a repeat check, not as its first required execution | Not yet performed; RLS design/policy-scoping is confirmed sound this session (§4.2/§5), but the first successful live probe (real two-business cross-access attempt) must occur and pass pre-release |
 | `F23-02` — live concurrent-retry / actor-mismatch idempotency probe | Post-deployment validation | Belongs in the post-release validation plan (§11); not release-blocking on its own given the idempotency mechanism's design/schema is already verified |
 | `F23-03` — parameter-signature parity for remaining 16 of 19 Catalog commands | Documentation-only / non-blocking | Does not affect runtime behavior already independently confirmed; can proceed in parallel with or after release |
 | `F23-04` — live `smartbusiness.teamlips.com` browser/HTTP verification | Post-deployment validation (structurally cannot happen before deployment) | Mandatory first post-release validation step (§11) |
@@ -191,7 +194,7 @@ None of the five is silently discarded.
 
 ## 10. Backup, Rollback, and Incident Readiness
 
-- **Database backup/recovery readiness:** **[HISTORICAL-ACCEPTED]** — every GC-40 migration instruction required and Mission Control confirmed "a current scheduled physical backup with Restore capability" before each production mutation this session; the project is on Supabase's Pro plan (per the CLI wrapper's own tracked label), which includes daily backups with point-in-time recovery. **[UNRESOLVED]** the exact current retention window and most-recent successful backup timestamp are dashboard-only facts not queryable via SQL in this session.
+- **Database backup/recovery readiness:** **[HISTORICAL-ACCEPTED]** — every GC-40 migration instruction required and Mission Control confirmed "a current scheduled physical backup with Restore capability" before each production mutation this session; that historical confirmation stands as accepted evidence for the GC-40 window specifically. The project is on Supabase's Pro plan (per the CLI wrapper's own tracked label). **This report does not infer that the plan tier alone proves the current backup/PITR configuration is active or correctly retained now.** **[UNRESOLVED — REQUIRES DIRECT PLATFORM EVIDENCE]** the current backup/PITR configuration, retention window, and most-recent successful backup timestamp are dashboard-only facts, not queryable via SQL, and were not verified this session.
 - **Migration rollback/forward-recovery path:** **[REPO]** `docs/migration/README.md`'s Default-Deny Execution Rule already requires this for any future migration; no new migration is proposed by this release.
 - **Application rollback target:** **[UNRESOLVED]** — depends on §3.3's unresolved "what is currently live" question; cannot be named precisely until that is confirmed by platform evidence.
 - **Parser feature kill switch/deactivation path:** **[REPO — architecturally confirmed, not drilled]** §7.4 — a `REVOKE EXECUTE` on the nine helper functions from `service_role` is a complete, schema-safe kill switch; never rehearsed as a live drill.
@@ -211,7 +214,7 @@ To be executed only after a separately authorized release, using safe controlled
 6. **Safe transaction integration/regression check** — confirm Transactions module behavior is unaffected (no SB-P-1.10/1.11-attributable regression, consistent with Stage 19's own confirmation).
 7. **Database health** — connection health, no elevated error rate on the production project immediately post-release.
 8. **Permissions and RLS** — re-confirm, post-release, that `authenticated`/`anon`/`PUBLIC` grants and policy scoping match §4–§6 of this report exactly (detect any release-time drift).
-9. **`F23-01`** — live cross-tenant isolation probe: two real (test) businesses, confirm zero cross-visibility on Inventory and Catalog data.
+9. **`F23-01` (repeat/regression check)** — live cross-tenant isolation probe: two real (test) businesses, confirm zero cross-visibility on Inventory and Catalog data. The **first** successful closure of this probe is a pre-release gating requirement (§9, §12), not a post-release step; this post-release execution re-confirms no regression, it is not the first time the check is performed.
 10. **`F23-02`** — concurrent-retry / actor-mismatch idempotency probe against the live post-release environment.
 11. **`F23-03`** — complete the remaining 16-of-19 Catalog command signature parity review (can run in parallel, non-blocking to go-live itself).
 12. **`F23-04`** — the production-domain browser/HTTP verification this follow-up has been waiting on since Stage 19; this is the first point in the lifecycle where it becomes executable.
@@ -227,13 +230,14 @@ To be executed only after a separately authorized release, using safe controlled
 - No named recovery owner (§8).
 - No canonical evidence of explicit Founder approval for this exact combined release scope (§8) — Gate 1 does not and cannot supply this.
 - §3.3's application-publication-state ambiguity should be resolved by direct platform evidence before a release date is set, even though it is not a Stop-condition identity ambiguity.
+- `F23-01` — the first successful live multi-business/cross-tenant RLS runtime probe must be completed and pass **before** Founder release-approval and before production release execution (§9); design/policy-scoping evidence alone does not satisfy this.
+- §4.3 — the `anon` `GRANT ALL` finding on Inventory tables requires an independent Security & Permissions Architecture specialist disposition before release approval: `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL`. RLS currently appears to make anonymous access functionally default-deny, but that appearance is not treated as sufficient, on engineering review alone, to finalize the posture as acceptable or to require hardening.
 
 **Non-blocking follow-ups:**
 
-- §4.3 — `anon` grant on Inventory/`businesses`/Transactions tables; RLS renders it inert, but Mission Control should explicitly decide whether to harden it to the Catalog `REVOKE`-first pattern.
 - §7.2/§7.3 — AWS/Cloudflare parser infrastructure specialist verification, and the outstanding CA-key offline-backup item.
 - §8 — support readiness and legal/policy readiness not evidenced either way this session.
-- `F23-01` through `F23-05` per §9's mapping.
+- `F23-02` through `F23-05` per §9's mapping (`F23-01` is a blocker above, not a non-blocking follow-up).
 - §3.2 — the missing dedicated `SB-MIG-1.2F` technical evidence folder (documentation completeness, not a functional gap).
 
 ## 13. Exact External Specialist/Platform Evidence Still Required
@@ -251,7 +255,7 @@ To be executed only after a separately authorized release, using safe controlled
 
 ## 14. Recommended Next Controlled Gate
 
-A **Gate 2 — Targeted Evidence Closure** cycle, scoped narrowly to resolving the ten items in §13, plus explicit Mission Control decisions on the two disclosed non-blocking conditions in §4.3 and §7.3 — followed by, only after Gate 2 closes cleanly, a **Gate 3 — Release Authorization and Execution** cycle that carries the actual Founder approval, release-owner/recovery-owner naming, and the authorized deployment/activation sequence itself (core Inventory/Catalog release first; parser/bulk-import activation separately and later, feature-gated, per §7.4).
+A **Gate 2 — Targeted Evidence Closure** cycle, scoped narrowly to resolving the ten items in §13, the independent Security & Permissions Architecture disposition required by §4.3, the pre-release `F23-01` probe required by §9, and Mission Control's decision on the non-blocking condition in §7.3 — followed by, only after Gate 2 closes cleanly, a **Gate 3 — Release Authorization and Execution** cycle that carries the actual Founder approval, release-owner/recovery-owner naming, and the authorized deployment/activation sequence itself (core Inventory/Catalog release first; parser/bulk-import activation separately and later, feature-gated, per §7.4).
 
 ## 15. Gate 1 Result
 
