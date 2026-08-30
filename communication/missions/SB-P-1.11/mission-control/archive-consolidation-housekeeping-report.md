@@ -12,7 +12,7 @@
 ## 1. Exact Base and Execution Commit
 
 - **Base commit (canonical `main` at intake):** `0711c9e26ecbef0af797746644c3a6ca53016f40`
-- **Execution commit:** recorded at the head of this branch's authorized commit (see PR); this report is prepared in the same commit as the consolidation output, so the execution commit is the branch's tip commit at the time this PR was opened.
+- **Execution commit:** `dcb55bc8cd4f624bb0a8df2029ba8926ad6a7fb9`
 
 ## 2. Canonical Input Used
 
