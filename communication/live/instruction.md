@@ -4,306 +4,220 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `SB-P-1.10 + SB-P-1.11 Production Release & Runtime Activation — Gate 1 Release Readiness Assessment`
+**Mission Name:** `SB-P-1.10 + SB-P-1.11 Production Release & Runtime Activation — Gate 2A Security & Isolation Evidence Closure`
 
 **From:** Mission Control
 
-**To:** `Claude Code — Repository-Capable Engineering Operator`
+**To:** `Security & Permissions Architecture`
 
-**Status:** `ACTIVE — READ-ONLY RELEASE READINESS GATE`
+**Status:** `ACTIVE — TARGETED EVIDENCE CLOSURE — SECURITY / ISOLATION ONLY`
 
 **Date:** `2026-08-30`
 
 ---
 
-## Mission Objective
+## Gate Context
 
-Open the fresh governed communication cycle for the combined production release/runtime-activation path for the already accepted capabilities from:
+Gate 1 — Release Readiness Assessment is accepted with the canonical result:
 
-- `SB-P-1.10 — Inventory Foundation`; and
-- `SB-P-1.11 — Product Catalog & Pricing`.
+`READY WITH CONDITIONS`
 
-Gate 1 is a **read-only release-readiness assessment only**.
+Gate 1 was merged through PR #431 at canonical `main` commit:
 
-Determine whether the current canonical repository, production environment, migrations, permissions, external parser infrastructure, recovery posture, support/legal posture, and outstanding acceptance follow-ups are sufficiently verified to advance to a separately authorized production release/runtime-activation execution gate.
+`9326c07ac4a7a15acba879d1c983d076c256e03a`
 
-This instruction does **not** authorize deployment, publication, parser activation, feature exposure, database mutation, infrastructure mutation, migration execution, secret changes, or production write testing.
+Gate 2 is the targeted evidence-closure stage before any Founder release-approval review or production release execution.
 
-## Governing Release Framework
+To preserve one-controlled-action-at-a-time discipline, this instruction activates **Gate 2A only**.
+
+Gate 2A closes the two security/isolation release conditions identified by Gate 1:
+
+1. the independent Security & Permissions Architecture disposition on the production Inventory `anon` grant posture; and
+2. `F23-01` — the first successful live multi-business/cross-tenant RLS runtime isolation probe required before Founder release approval and before production release execution.
+
+Gate 2B and later evidence-closure work are not authorized by this instruction.
+
+## Governing Sources
 
 Execute according to:
 
 - `merge/active/00_Lighthouse_Constitution.md`
 - `merge/active/01_Smart_Business_Master_System_Manifesto.md`
 - `merge/active/02_Supabase_Architecture_Framework.md`
-- `merge/active/03_Lovable_Build_Framework.md`
-- `merge/active/04_API_WhatsApp_OpenAI_Framework.md`
-- `merge/active/05_AI_Behaviour_and_Model_Training_Framework.md`
-- `merge/active/09_Master_Roadmap_Command.md`
 - `merge/active/11_Smart_Business_Product_Truth_Map.md`
 - `merge/active/12_Product_Execution_and_Release_Framework.md`
 - `merge/active/17_AI_Operations_Manual.md`
-- current accepted SB-P-1.10 and SB-P-1.11 implementation, evidence, acceptance, closure, archive, and Mission Control records.
+- accepted SB-P-1.10 security/implementation evidence;
+- accepted SB-P-1.11 security/implementation evidence;
+- `communication/live/report.md` as the accepted Gate 1 evidence record after PR #431 merge.
 
-For this workstream, **Source 12 is the primary release-governance framework**. Source 18 lifecycle stages for SB-P-1.10 and SB-P-1.11 are already closed and must not be reopened.
+Source 12 remains the primary release-governance authority for this workstream.
 
-Source 12 requires the release path to distinguish implementation completion, feature acceptance, pilot readiness where applicable, the release checklist, Mission Control recommendation, Founder approval, and authorized deployment. Deployment capability alone is not release authority.
+SB-P-1.10 and SB-P-1.11 Source 18 lifecycle stages remain closed and must not be reopened.
 
-## Canonical Intake Baseline
+## Canonical Production Identity
 
-At instruction preparation, canonical `main` is:
+For this gate, production database identity is the current accepted production Supabase project:
 
-`3d2d3a44e67d82755ca79ebf37e6ae408b1e2329`
+`gysgzasfcjvtrgaigfyn`
 
-The execution actor must freshly verify `main` at mission intake and report any later movement before relying on this baseline.
+Historical SB-P-1.10 documentation that called this project a test project describes the pre-cutover environment state and must not be used as current production identity.
 
-Known accepted-state references to verify, not merely assume:
+Current isolated test project:
 
-- `docs/implementation/SB-P-1.10/completion-report.md` records `SB-P-1.10 — COMPLETED — FORMALLY ACCEPTED`.
-- `communication/missions/SB-P-1.11/mission-control/24-documentation-closure.md` and associated mission records close SB-P-1.11 as `COMPLETED — FORMALLY ACCEPTED`.
-- `communication/archive/SB-P-1.11/` is the closed SB-P-1.11 communication archive.
-- The full 393-file SB-P-1.11 forensic source snapshot remains retained through Phase 1 and is not in scope for modification.
+`drravyyauixltoihzmwo`
 
-## Required Gate 1 Assessment
+Gate 2A must verify the actual target before any direct platform check and STOP if the target cannot be proven.
 
-### 1. Canonical release baseline
+## Authorized Scope
 
-Verify and record:
+### A. Independent `anon` Grant Security Disposition
 
-- current canonical `main` commit;
-- open PRs or branches that could materially alter the release baseline;
-- exact application commit intended for eventual production deployment;
-- whether SB-P-1.10 and SB-P-1.11 accepted code and migration artifacts are both present in that baseline;
-- whether any accepted implementation exists only in a non-canonical Lovable or derivative repository state.
+Independently assess the Gate 1 finding that production currently grants `anon` broad table privileges on:
 
-Do not perform code transfer or reconciliation in this gate. Report any mismatch as a blocker or required corrective action.
+- `inventory_items`
+- `inventory_movements`
+- `inventory_movement_idempotency_keys`
 
-### 2. Accepted-mission continuity
+Gate 1 traced this posture to:
 
-Verify the final accepted/closed status and material unresolved follow-ups for both product missions.
+`supabase/migrations/20260727000000_reconcile_default_grants.sql`
 
-For SB-P-1.11, explicitly carry forward:
+Gate 1 also reported that RLS is enabled and no applicable Inventory policies are granted to `anon` or `PUBLIC`.
 
-- `F23-01` — live multi-business/cross-tenant RLS runtime probe;
-- `F23-02` — live concurrent-retry / actor-mismatch idempotency probe;
-- `F23-03` — parameter-signature parity verification for the remaining 16 of 19 Catalog commands;
-- `F23-04` — live `smartbusiness.teamlips.com` browser/HTTP verification after authorized deployment;
-- `F23-05` — exhaustive GC-1 historical provenance re-derivation.
+Do not accept the engineering conclusion by inheritance. Independently verify and determine whether the current posture is acceptable for this release.
 
-Classify which are release-gating, post-deployment validation, pilot-readiness, or documentation-only. Do not silently discard any accepted follow-up.
+The review must cover at minimum:
 
-### 3. Production environment identity
+- effective privileges for `anon`, `authenticated`, `service_role`, `PUBLIC`, and any relevant executor role;
+- RLS enabled/forced state where relevant;
+- all applicable policies on the three Inventory tables;
+- whether any function, view, RPC, trigger, default privilege, ownership path, or role inheritance can allow `anon` to bypass the apparent default-deny outcome;
+- whether broad table grants create a material defense-in-depth weakness even when RLS currently blocks row access;
+- consistency with current Smart Business deny-by-default and merchant-isolation principles;
+- comparison with the narrower Catalog `REVOKE`-first posture only as security architecture evidence, not as automatic proof that Inventory must match it.
 
-Resolve the **current actual production identity from evidence**. Historical records contain environment-identity changes and older project references; do not trust an old label merely because it appears in an accepted historical report.
+Final security disposition must be exactly one of:
 
-Verify, as far as available tooling permits:
+- `ACCEPTABLE AS-IS FOR THIS RELEASE`
+- `HARDENING REQUIRED BEFORE RELEASE APPROVAL`
+- `BLOCKED — INSUFFICIENT SECURITY EVIDENCE`
 
-- production Supabase project identity/ref;
-- isolated test/staging project identity/ref;
-- production application/Lovable project identity and publication state;
-- production domain routing for `smartbusiness.teamlips.com`;
-- which environment currently serves the accepted application;
-- whether any environment naming or ownership ambiguity remains.
+If hardening is required, identify the narrow corrective action, but **do not implement it in Gate 2A**.
 
-If direct external-platform verification is not available to Claude Code, identify the exact specialist/platform evidence required rather than guessing.
+### B. `F23-01` Live Cross-Tenant Runtime Isolation Probe
 
-### 4. Production migration parity
+Execute the first successful live production multi-business/cross-tenant isolation probe required by Gate 1.
 
-Build the exact migration/parity assessment for both accepted missions.
+This authorization is deliberately narrow:
 
-For SB-P-1.10, verify whether all accepted inventory schema/functions/security corrections — including later idempotency and function-setting corrections — are present in the **actual current production database**, not merely repository history or an old Lovable-managed backend.
+- use only pre-existing, clearly designated test users/businesses already present in production;
+- do not create a new production user, business, inventory item, catalog item, transaction, or other business record;
+- do not modify any production row;
+- do not change authentication, RLS, grants, policies, roles, claims, secrets, configuration, or infrastructure;
+- use read-only access attempts only;
+- preserve exact evidence of actor identity, business identity, request/auth context, target entity, expected denial/zero-visibility result, and actual result.
 
-For SB-P-1.11, verify the accepted GC-40 production migration state, including the four canonical migration versions and the resolved migration-history bookkeeping incident.
+At minimum, prove:
 
-Do not execute, repair, reconcile, or re-run any migration in Gate 1.
+1. Business A owner can read Business A Inventory data as authorized.
+2. Business A owner cannot read Business B Inventory data.
+3. Business B owner can read Business B Inventory data as authorized.
+4. Business B owner cannot read Business A Inventory data.
+5. Repeat the same cross-business read-isolation proof for the release-relevant Catalog/Pricing data surface.
+6. Confirm no cross-business leakage through any directly used release-relevant RPC/read helper involved in those surfaces.
 
-If production parity cannot be proven read-only, identify the exact bounded verification or corrective gate required.
+If suitable pre-existing test identities/data do not exist, or completing the probe would require production data creation or mutation, STOP and report the exact bounded prerequisite. Do not improvise.
 
-### 5. Authentication, permissions, RLS, and isolation readiness
+`F23-01` may be marked closed only if the live production probe passes with evidence.
 
-Assess release readiness for:
+## Required Security Analysis
 
-- authentication and protected routes;
-- business/merchant isolation;
-- Owner-only or permission-scoped Catalog/Inventory actions;
-- employee financial-intelligence restrictions;
-- service-role or privileged-path boundaries;
-- current RLS state for all SB-P-1.10 and SB-P-1.11 production tables;
-- relevant storage policies and parser-support tables/functions.
+The specialist must distinguish:
 
-Map `F23-01` and any SB-P-1.10 isolation evidence into the release verification plan.
+- table-level ACL;
+- row-level policy enforcement;
+- function/RPC execution rights;
+- `SECURITY INVOKER` vs `SECURITY DEFINER` behavior;
+- role inheritance and effective privileges;
+- authenticated owner access;
+- anonymous access;
+- cross-business authenticated access;
+- privileged/service-role access.
 
-No production write probe is authorized in Gate 1.
+UI hiding is not security evidence.
 
-### 6. Parser and bulk-import activation readiness
+Repository intent alone is not runtime evidence.
 
-Assess the current non-production and production-readiness state of the SB-P-1.11 parser/bulk-import path.
+RLS being enabled alone is not sufficient evidence without effective-policy and runtime-isolation verification.
 
-Verify or identify evidence required for:
+## Required Output
 
-- AWS Lambda parser deployment package/version;
-- S3 buckets/prefixes and access boundaries;
-- IAM roles and least-privilege posture;
-- AWS Roles Anywhere / certificate-chain posture where applicable;
-- Cloudflare routing/configuration where applicable;
-- production environment variables/configuration;
-- parser upload leases/preview guards and related database support;
-- failure/retry/idempotency controls;
-- logging/monitoring;
-- rollback/deactivation path;
-- merchant feature exposure/feature gating.
-
-The preferred release posture is **feature-gated merchant bulk import**, not automatic universal exposure. Gate 1 must recommend the safest bounded activation sequence without activating anything.
-
-### 7. Source 12 release checklist assessment
-
-For every Source 12 §65 checklist item, classify:
-
-- `PASS — EVIDENCE VERIFIED`
-- `READY — REQUIRES EXECUTION-GATE VERIFICATION`
-- `FOLLOW-UP — NON-BLOCKING`
-- `BLOCKED`
-- `NOT APPLICABLE`
-
-Cover at minimum:
-
-- approved scope;
-- branch and commit;
-- target environment;
-- acceptance evidence;
-- pilot evidence where required;
-- database migration status;
-- backup readiness;
-- rollback path;
-- secrets/configuration;
-- authentication/permissions;
-- RLS/merchant isolation;
-- monitoring/logging;
-- support readiness;
-- legal/policy readiness;
-- known limitations;
-- release owner;
-- recovery owner;
-- Founder approval.
-
-Do **not** mark Founder approval PASS in Gate 1 unless explicit release approval for this exact release scope already exists in canonical evidence.
-
-### 8. Pilot-readiness applicability
-
-Source 12 states pilot readiness is required where applicable and separately defines product-level pilot-readiness criteria.
-
-Determine whether this combined capability release should be treated as:
-
-- a phased production feature release into an already-live product;
-- a controlled pilot release;
-- or another Source 12 release type.
-
-Explain what Part 3 evidence is already reusable, what must be revalidated for these capabilities, and what can legitimately remain outside this release scope.
-
-Do not infer pilot approval.
-
-### 9. Backup, rollback, and incident readiness
-
-Assess and document the required recovery posture before any execution authorization, including:
-
-- database backup/recovery readiness;
-- migration rollback or forward-recovery path;
-- application rollback target;
-- parser feature kill switch/deactivation path;
-- infrastructure rollback/reversion path;
-- evidence/log preservation;
-- explicit release operator and recovery owner requirements.
-
-### 10. Post-release validation plan
-
-Prepare the exact safe validation plan required by Source 12 §69 after any later authorized release.
-
-It must include, where applicable:
-
-- application availability;
-- authentication;
-- protected routes;
-- Inventory workflow;
-- Catalog/Pricing workflow;
-- safe transaction integration/regression checks;
-- database health;
-- permissions and RLS;
-- `F23-01` cross-tenant runtime isolation probe;
-- `F23-02` concurrent retry / actor-mismatch probe;
-- `F23-03` remaining Catalog command signature parity verification;
-- `F23-04` production-domain browser/HTTP verification;
-- parser/bulk-import controlled smoke test only if separately activated;
-- logs/monitoring/error-rate checks;
-- support-channel readiness.
-
-Production validation must use safe controlled test data and separately authorized write probes where writes are required.
-
-## Required Gate 1 Output
-
-Write the complete response only to:
+Write the complete Gate 2A result only to:
 
 `communication/live/report.md`
 
 The report must contain:
 
 1. exact intake `main` commit;
-2. release type recommendation;
-3. current production/test/application environment identity assessment;
-4. SB-P-1.10 production-parity assessment;
-5. SB-P-1.11 GC-40 production-parity assessment;
-6. permissions/RLS/security readiness;
-7. parser/AWS/S3/Roles Anywhere/Cloudflare/configuration readiness;
-8. Source 12 §65 release-checklist matrix;
-9. mapping of all F23-01 through F23-05;
-10. backup/rollback/recovery assessment;
-11. post-release validation plan;
-12. exact blockers and non-blocking follow-ups;
-13. exact external specialist/platform evidence still required;
-14. recommended next controlled gate;
-15. explicit statement whether Gate 1 result is `READY FOR FOUNDER RELEASE-APPROVAL REVIEW`, `READY WITH CONDITIONS`, or `NOT READY`.
-
-The report must distinguish repository-verified facts, directly platform-verified facts, historical accepted evidence, and unresolved claims.
+2. exact verified production project identity;
+3. evidence sources and direct-platform checks performed;
+4. effective privilege matrix for the relevant Inventory surface;
+5. independent `anon` grant analysis;
+6. exact final `anon` grant security disposition;
+7. `F23-01` test identities/businesses described without exposing secrets;
+8. exact read-only probe steps and results for Inventory;
+9. exact read-only probe steps and results for Catalog/Pricing;
+10. RPC/read-helper isolation findings where applicable;
+11. whether `F23-01` is `CLOSED — PASS`, `FAIL`, or `BLOCKED — PREREQUISITE REQUIRED`;
+12. any critical/high security finding;
+13. any required corrective action, without implementing it;
+14. explicit confirmation that no production mutation occurred;
+15. Gate 2A final result exactly as one of:
+   - `PASS — SECURITY CONDITION CLOSED AND F23-01 CLOSED`
+   - `CONDITION REMAINS — CORRECTIVE ACTION REQUIRED`
+   - `BLOCKED — EVIDENCE INSUFFICIENT`
 
 ## Explicitly Not Authorized
 
-Gate 1 does not authorize:
+Gate 2A does not authorize:
 
-- application deployment or Lovable publication;
-- production release;
-- Founder approval by inference;
-- production database writes;
-- migration execution, repair, push, reconciliation, or rollback;
-- Supabase configuration mutation;
-- AWS Lambda deployment/update;
-- S3 mutation other than read-only inspection where available;
-- IAM, Roles Anywhere, certificate, or policy mutation;
-- Cloudflare mutation;
-- secret/environment-variable mutation;
-- parser or bulk-import production activation;
+- `GRANT`, `REVOKE`, policy, RLS, role, function, trigger, or schema changes;
+- production database writes of any kind;
+- creation of production test data;
+- migration creation or execution;
+- application deployment/publication;
+- Supabase configuration changes;
+- AWS, S3, IAM, Roles Anywhere, Lambda, Cloudflare, DNS, WAF, certificate, or secret changes;
+- parser/bulk-import activation;
 - merchant feature exposure;
-- destructive tests;
-- creation of production test business data;
-- SB-P-1.10 or SB-P-1.11 Product Truth changes;
-- reopening Source 18 lifecycle stages;
+- release execution;
+- Founder approval by inference;
+- SB-P-1.10 or SB-P-1.11 lifecycle reopening;
+- Product Truth changes;
 - starting SB-P-1.12;
 - self-approval or self-merge.
 
 ## Stop Conditions
 
-STOP and report to Mission Control if any of the following is encountered:
+STOP and report if:
 
-- production environment identity cannot be resolved sufficiently to distinguish production from test/staging;
-- the accepted application baseline is not clearly traceable to canonical `main`;
-- SB-P-1.10 or SB-P-1.11 production migration parity is materially uncertain;
-- merchant isolation, authentication, or permissions have a critical/high unresolved finding;
-- required recovery/rollback posture for a material production change is absent;
-- a required verification would need a production mutation not authorized here;
-- an external platform must be changed rather than inspected;
-- a contradiction with Product Truth or accepted mission scope is discovered;
-- release execution would require Founder approval that has not yet been explicitly recorded.
+- production identity cannot be proven before inspection;
+- the required test users/businesses are not clearly designated for safe production verification;
+- any required F23-01 step would need a production write or data creation;
+- any security check would require changing a grant, policy, role, claim, config, secret, or infrastructure state;
+- a critical/high security or merchant-isolation issue is found;
+- evidence is insufficient to distinguish anonymous, authenticated-owner, cross-business, and privileged behavior;
+- the current application/runtime path materially differs from the assumed security surface in a way that invalidates the probe.
 
-A STOP in one domain does not authorize improvisation in another.
+A STOP authorizes no corrective mutation.
+
+## Gate 2 Continuation Boundary
+
+Passing Gate 2A does **not** complete Gate 2 and does **not** authorize Gate 3.
+
+After Gate 2A is accepted, Mission Control will separately activate the next bounded Gate 2 evidence-closure action covering the remaining release blockers, including application publication identity, backup/PITR evidence, support/legal readiness, release/recovery ownership, and external parser infrastructure readiness.
 
 ---
 
-**Mission Control boundary:** Gate 1 establishes release readiness evidence and the next authorization decision only. It creates no production execution authority.
+**Mission Control boundary:** Gate 2A is independent security/isolation evidence closure only. It creates no production release or mutation authority.
