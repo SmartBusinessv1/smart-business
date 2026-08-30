@@ -4,13 +4,13 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `Gate 2A-C2 — Inventory Anonymous-Privilege Hardening Production Execution`
+**Mission Name:** `Gate 2A-C3A — F23-01 Production-Safe Test Identity & Business Prerequisite Establishment`
 
 **From:** Mission Control
 
 **To:** `Claude Code — Repository-Capable Engineering Operator`
 
-**Status:** `ACTIVE — NARROW PRODUCTION SECURITY CORRECTION EXECUTION`
+**Status:** `ACTIVE — BOUNDED PRODUCTION TEST-PREREQUISITE ESTABLISHMENT`
 
 **Date:** `2026-08-30`
 
@@ -18,21 +18,21 @@
 
 ## Context
 
-Gate 2A identified the production Inventory anonymous-privilege posture as:
+Gate 2A established that `F23-01` could not be executed safely because production contained no clearly designated, pre-existing test owner/business pairs that Security & Permissions Architecture could use without repurposing real merchant identities.
 
-`HARDENING REQUIRED BEFORE RELEASE APPROVAL`
+Gate 2A-C2 has now closed the separate Inventory anonymous-privilege hardening condition with:
 
-Gate 2A-C1 prepared and test-validated exactly one forward security migration and closed with:
+`PASS — PRODUCTION HARDENING APPLIED AND VERIFIED`
 
-`PASS — CORRECTION PREPARED AND TEST-VALIDATED — PRODUCTION EXECUTION PENDING`
+Canonical `main` after PR #437 is:
 
-The Gate 2A-C1 implementation/evidence was merged through PR #435 at canonical `main` commit:
+`b8a6472ff3494e0af45505e51f3b285d150e6086`
 
-`6a4b92f23eac7d330a02757c3d42ea948403ba91`
+`F23-01` remains open and release-gating.
 
-This instruction authorizes the next bounded action only: execute the already-reviewed, already-test-validated migration against the current production Supabase project and verify the result.
+This instruction authorizes only the prerequisite establishment required to make a later, separately authorized read-only `F23-01` cross-tenant runtime probe safe and reproducible.
 
-This is a corrective security action within Gate 2. It is **not** a product release, application deployment, parser activation, F23-01 execution, or Founder release approval.
+This instruction does **not** authorize executing `F23-01` itself.
 
 ## Canonical Production Identity
 
@@ -40,108 +40,130 @@ Authorized production Supabase project:
 
 `gysgzasfcjvtrgaigfyn`
 
-Current isolated test project — reference only:
+Isolated test project — reference only:
 
 `drravyyauixltoihzmwo`
 
-Before any production mutation, independently verify that the target is exactly `gysgzasfcjvtrgaigfyn` and STOP if production/test identity is ambiguous.
-
-## Authorized Migration — Exact File Only
-
-The only migration authorized for production execution is:
-
-`supabase/migrations/20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`
-
-The executing actor must verify that the file on current canonical `main` is byte-for-byte unchanged from the human-merged Gate 2A-C1 version.
-
-No modification to this migration is authorized in Gate 2A-C2.
-
-If the migration needs editing, if any additional migration is pending, or if production state differs materially from the validated assumptions, STOP and report to Mission Control.
+Before any production mutation, independently verify the target is exactly `gysgzasfcjvtrgaigfyn` and STOP if production/test identity is ambiguous.
 
 ## Authorized Objective
 
-Apply exactly the above migration to production and prove that it removes the unnecessary Inventory anonymous authority while preserving the accepted authenticated/privileged behavior and existing RLS policy state.
+Establish exactly two clearly designated production-safe Smart Business verification owner identities and exactly two corresponding businesses, one owned by each identity, with the minimum release-relevant Inventory and Catalog/Pricing data required for a later read-only `F23-01` isolation probe.
 
-The intended correction is limited to:
+The resulting actors/businesses must be unambiguously recognizable as controlled verification fixtures and must never be confused with real merchants.
 
-- removing unnecessary `anon` privileges from:
-  - `public.inventory_items`;
-  - `public.inventory_movements`;
-  - `public.inventory_movement_idempotency_keys`;
-- removing unnecessary anonymous/PUBLIC EXECUTE access from the six Inventory-domain functions exactly as encoded in the reviewed migration;
-- correcting `postgres`-created public-schema default privileges exactly as encoded in that migration.
+No real merchant identity, business, or existing business data may be repurposed.
 
-Nothing else is authorized.
+## Required Designation Standard
 
-## Required Pre-Execution Production Evidence
+Create exactly two verification actors:
 
-Before executing the migration, capture and report the current production state for:
+- `F23-01 Verification Owner A`
+- `F23-01 Verification Owner B`
 
-1. exact project identity/ref, name, region, and healthy status;
-2. exact canonical `main` commit and migration file identity/hash;
-3. production migration history showing the new Gate 2A-C1 migration is not yet applied;
-4. dry-run output proving **exactly one** migration is pending and that it is the authorized Gate 2A-C1 migration;
-5. effective table privileges for `anon`, `authenticated`, `service_role`, `catalog_link_executor`, and `PUBLIC` on the three Inventory tables;
-6. function EXECUTE privileges for the six Inventory-domain functions, including the two known `PUBLIC` EXECUTE paths;
-7. `postgres` public-schema default privileges for tables/functions;
-8. RLS enabled/forced state and exact policy inventory for the three Inventory tables;
-9. current backup/recovery readiness suitable for this production security mutation, including direct evidence that a current recoverable backup/restore capability exists. Do not infer backup readiness from plan tier alone.
+Create exactly two businesses:
 
-If current production evidence materially differs from the Gate 2A/Gate 2A-C1 assumptions, STOP before execution.
+- `SB F23-01 Verification Business A — DO NOT USE`
+- `SB F23-01 Verification Business B — DO NOT USE`
 
-## Production Execution Authorization
+Use dedicated non-merchant verification email identities under a Team LIPS-controlled domain if the existing supported Auth creation path requires email addresses. Do not expose passwords, tokens, service-role keys, refresh tokens, session tokens, or other credentials in Git, PR text, logs, screenshots, or `communication/live/report.md`.
 
-After all required pre-checks pass, Mission Control authorizes execution of **exactly one** production migration:
+Where supported by the existing production Auth/user metadata model, add a clear machine-readable marker such as:
 
-`20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`
+- purpose: `F23-01`
+- environment: `production-verification`
+- non_merchant_test_identity: `true`
 
-Use the repository's controlled production Supabase CLI path and its existing production-confirmation safeguard.
+Do not invent a new schema column or migration merely to carry these markers.
 
-Required discipline:
+## Authorized Production Mutations
 
-- dry-run first;
-- verify exactly one pending migration;
-- explicit production confirmation only for this authorized execution;
-- execute once;
-- do not use migration repair;
-- do not re-run if migration history shows it applied;
-- do not execute any other migration;
-- do not improvise SQL outside the already-reviewed migration.
+This gate is the bounded exception that authorizes the minimum production writes needed to establish the prerequisite.
 
-If execution fails partially, reports unexpected DDL/ACL behavior, or migration history becomes uncertain, STOP. Do not repair, retry, manually compensate, or broaden scope without a new Mission Control authorization.
+You may create only:
 
-## Required Immediate Post-Execution Verification
+1. exactly two dedicated verification Auth users/owner identities;
+2. exactly two corresponding businesses, one per verification owner;
+3. the minimum Inventory fixture data needed to prove same-tenant visibility and cross-tenant denial later — preferably one clearly named Inventory item per business;
+4. the minimum Catalog/Pricing fixture data needed to prove same-tenant visibility and cross-tenant denial later — preferably one clearly named product/catalog record per business and only the supporting category/price/reference records strictly required by the accepted schema/workflow;
+5. only the ownership/link rows strictly required by the accepted production model to make those fixtures valid.
 
-After successful execution, verify directly in production:
+All created fixture names/descriptions must include an obvious `F23-01 VERIFICATION` marker.
 
-1. migration history contains the authorized Gate 2A-C1 migration exactly once;
-2. `anon` has no privileges on the three Inventory tables;
-3. `anon` has no unintended EXECUTE on any of the six Inventory-domain functions;
-4. `PUBLIC` EXECUTE is absent from:
-   - `public.inventory_items_guard()`;
-   - `public.inventory_movements_reject_mutation()`;
-5. `authenticated`, `service_role`, and `catalog_link_executor` effective grants remain unchanged from pre-execution evidence;
-6. the `postgres` default-privilege baseline no longer grants `anon` broad table rights or function EXECUTE on future public-schema objects;
-7. RLS enabled/forced state remains unchanged;
-8. all nine Inventory policies remain unchanged in name, command, and role scope;
-9. safe read-only runtime checks as `anon` confirm hard authorization denial on representative table/function access, without creating or mutating production business data;
-10. database health remains normal after the migration.
+Do not create transactions, purchases, customers, suppliers, employees, attendance, parser jobs, imports, or unrelated data.
 
-Do not perform authenticated business workflow writes in this gate. Product/runtime regression checks that require business-data mutation belong to later authorized validation gates.
+## Creation Path Requirements
 
-## Known Residuals Explicitly Out of Scope
+Before writing, inspect the canonical accepted schema and supported creation paths and use the narrowest existing valid path.
 
-Gate 2A-C1 disclosed two separate residuals. They remain **out of scope** here:
+Preferred order:
 
-1. `supabase_admin`-created-object default privileges;
-2. the same-root-cause broad grants on:
-   - `businesses`;
-   - `transactions`;
-   - `transaction_correction_events`.
+1. existing supported application/RPC/business onboarding path if it can establish the two fixtures safely and deterministically;
+2. existing documented administrative/auth provisioning path if application-level creation is not suitable;
+3. narrowly scoped direct database inserts only if the accepted schema requires them and the exact integrity/ownership requirements are fully understood.
 
-Do not modify, correct, or expand into these surfaces under Gate 2A-C2.
+Do not bypass required constraints merely for convenience.
 
-Their existence does not authorize scope expansion. Report any new evidence about them only as a follow-up.
+Do not create or modify a migration.
+
+Do not alter RLS, grants, policies, roles, functions, schemas, triggers, defaults, Auth configuration, OAuth configuration, or application code.
+
+If creating the prerequisite safely would require any of those changes, STOP and report.
+
+## Required Pre-Mutation Evidence
+
+Before creating anything, capture and report:
+
+1. exact canonical `main` commit;
+2. exact verified production project identity;
+3. direct current backup/recovery evidence suitable for this bounded production-data mutation;
+4. confirmation that no pre-existing canonical `F23-01` verification pair already exists;
+5. exact existing supported Auth/business creation path selected and why;
+6. exact tables/RPCs/admin APIs expected to be touched at a semantic level;
+7. the minimum Inventory and Catalog/Pricing fixture shape to be created;
+8. confirmation that no real merchant identity/business/data will be reused.
+
+If an existing canonical verification pair is found, STOP before creating duplicates and report it to Mission Control.
+
+## Credential Handling Boundary
+
+Any credentials required for the two verification actors must be generated securely and handled outside repository evidence.
+
+The report may record only:
+
+- non-secret verification identity labels;
+- redacted email form if needed;
+- Auth user UUIDs only if existing evidence practice permits and they are necessary for reproducibility;
+- business UUIDs/fixture UUIDs only as non-secret technical evidence.
+
+Never record passwords or session credentials.
+
+After prerequisite establishment, do not perform login-based cross-tenant testing in this gate.
+
+## Required Post-Creation Verification
+
+After creation, verify directly that:
+
+1. exactly two new verification owner identities exist and are clearly designated;
+2. exactly two new verification businesses exist and each is owned only by its intended verification owner;
+3. each verification owner can be mapped unambiguously to its own business through the accepted ownership model;
+4. each business contains the minimum Inventory fixture required for `F23-01`;
+5. each business contains the minimum Catalog/Pricing fixture required for `F23-01`;
+6. fixture identifiers/names are unambiguously distinguishable between Business A and Business B;
+7. no real merchant row was modified;
+8. no unrelated production data was created or modified;
+9. no RLS/grant/policy/schema/function/configuration state changed;
+10. database health remains normal.
+
+Do not execute cross-business visibility attempts yet. That belongs to Gate 2A-C3B.
+
+## Cleanup and Lifecycle
+
+These are controlled release-verification fixtures, not demo merchants and not production customers.
+
+Do **not** delete them in this gate. They must remain available for the immediately following `F23-01` read-only verification gate.
+
+The completion report must recommend a later explicit cleanup/archive decision after `F23-01` and any immediate post-release regression use is complete. No automatic cleanup is authorized here.
 
 ## Required Repository Output
 
@@ -149,51 +171,46 @@ After execution, update only:
 
 `communication/live/report.md`
 
-No new migration should be created. No existing migration should be edited.
+No migration, application code, configuration file, or test file should be changed.
 
-Submit the report through a controlled branch and PR. Do not self-merge.
+Submit through a controlled branch and PR. Do not self-merge.
 
 ## Required Report Content
 
 The report must include:
 
 1. exact intake `main` commit;
-2. verified production project identity;
-3. exact authorized migration file and file hash/identity verification;
-4. pre-execution migration-history state;
-5. backup/recovery evidence;
-6. complete pre-execution ACL/function/default-privilege/RLS-policy evidence;
-7. exact dry-run result proving only the authorized migration was pending;
-8. exact production execution command path at a semantic level and execution result;
-9. post-execution migration-history result;
-10. post-execution ACL/function/default-privilege evidence;
-11. proof that authenticated, `service_role`, and `catalog_link_executor` grants were preserved;
-12. RLS/policy unchanged evidence;
-13. safe `anon` read-only runtime-denial checks;
+2. verified production identity;
+3. direct backup/recovery evidence;
+4. duplicate/pre-existing prerequisite check;
+5. exact creation path used;
+6. non-secret designation of Owner A / Owner B;
+7. non-secret designation and IDs of Business A / Business B where appropriate;
+8. exact minimal Inventory fixture established for each business;
+9. exact minimal Catalog/Pricing fixture established for each business;
+10. ownership/mapping verification;
+11. confirmation that no real merchant identity/data was reused or modified;
+12. confirmation that no unrelated production mutation occurred;
+13. confirmation that RLS/grants/policies/schema/functions/configuration were unchanged;
 14. database-health observation;
-15. explicit statement that no unrelated production mutation occurred;
-16. exact residual/follow-up items still open;
-17. Gate 2A-C2 final result exactly one of:
-   - `PASS — PRODUCTION HARDENING APPLIED AND VERIFIED`
-   - `CORRECTION REQUIRED — PRODUCTION STATE NOT VERIFIED`
-   - `BLOCKED — PRODUCTION EXECUTION NOT PERFORMED`
-   - `STOP — PRODUCTION EXECUTION INCIDENT`
+15. exact prerequisite status;
+16. exact recommended next gate: `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`;
+17. final result exactly one of:
+   - `PASS — F23-01 PRODUCTION-SAFE TEST PREREQUISITE ESTABLISHED`
+   - `BLOCKED — SAFE PREREQUISITE COULD NOT BE ESTABLISHED`
+   - `STOP — PREREQUISITE ESTABLISHMENT INCIDENT`
 
 ## Explicitly Not Authorized
 
-This instruction does not authorize:
+This gate does not authorize:
 
-- editing the already-reviewed migration;
-- creating another migration;
-- executing any migration other than `20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`;
-- migration repair/reconciliation;
-- manual production SQL outside read-only verification and the authorized migration execution;
-- changes to `businesses`, `transactions`, or `transaction_correction_events` permissions;
-- `supabase_admin` role membership/default-privilege correction;
-- RLS/policy redesign;
-- function-body or schema changes;
-- production business-data creation or mutation;
-- F23-01 execution or creation of test identities/businesses;
+- executing `F23-01` cross-tenant read probes;
+- using or impersonating real merchant identities;
+- creating more than two verification Auth users;
+- creating more than two verification businesses;
+- transactions or unrelated business data;
+- migration creation/execution/repair/reconciliation;
+- RLS, policy, grant, role, function, trigger, schema, default-privilege, or Auth-configuration changes;
 - application deployment/publication;
 - AWS, S3, IAM, Roles Anywhere, Lambda, Cloudflare, DNS, WAF, parser, certificate, secret, or environment-variable changes;
 - parser/bulk-import activation;
@@ -210,33 +227,37 @@ This instruction does not authorize:
 STOP before mutation if:
 
 - production identity cannot be proven;
-- canonical `main` or migration file identity is uncertain;
-- more than the one authorized migration is pending;
-- the authorized migration already appears applied;
-- current production ACL/RLS/default-privilege state materially differs from the validated baseline;
-- current recoverable backup/restore capability cannot be positively verified;
-- a Critical/High security or merchant-isolation issue is discovered;
-- execution would require any migration/file modification or additional SQL.
+- current recoverable backup/restore evidence cannot be positively verified;
+- a canonical F23-01 verification pair already exists;
+- the supported creation path is ambiguous or requires schema/security/configuration changes;
+- exact ownership isolation cannot be established safely;
+- creation would require using a real merchant identity/business;
+- more than the minimum two-user/two-business fixture set is required;
+- a Critical/High security or data-integrity concern is found.
 
 STOP after mutation if:
 
-- execution errors or appears partial;
-- migration history is ambiguous;
-- expected grants/default privileges are not achieved;
-- authenticated/service-role/catalog-link-executor rights drift unexpectedly;
-- RLS/policy state changes unexpectedly;
-- database health degrades.
+- more than the authorized fixture rows/users are created;
+- ownership mapping is incorrect or ambiguous;
+- real merchant data is affected;
+- RLS/grants/policies/schema/functions/configuration drift;
+- database health degrades;
+- partial creation leaves the prerequisite in an uncertain state.
 
-A STOP authorizes no repair, retry, rollback, compensation, or scope expansion.
+A STOP authorizes no improvised repair, deletion, retry, compensation, or scope expansion. Report the exact state to Mission Control.
 
 ## Continuation Boundary
 
-A PASS closes the Inventory `anon` hardening production-execution condition only.
+A PASS closes only the `F23-01` **prerequisite**.
 
-It does **not** close `F23-01`, complete Gate 2, authorize Founder release approval, or authorize production release/runtime activation.
+It does not close `F23-01` itself.
 
-After a PASS is independently reviewed and accepted by Mission Control, the next action will be separately authorized.
+After Mission Control independently reviews and accepts the prerequisite evidence, Mission Control will separately authorize:
+
+`Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
+
+That later gate will be read-only and will use the two controlled verification identities/businesses established here.
 
 ---
 
-**Mission Control boundary:** Gate 2A-C2 authorizes one exact, test-validated security migration against production and immediate verification only. No other production change is authorized.
+**Mission Control boundary:** Gate 2A-C3A authorizes only the minimum production verification-fixture creation required to make `F23-01` safe. No cross-tenant probe or release authority is created.
