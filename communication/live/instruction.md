@@ -4,13 +4,13 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `Gate 2A-C1 — Inventory Anonymous-Privilege Hardening Preparation & Test Validation`
+**Mission Name:** `Gate 2A-C2 — Inventory Anonymous-Privilege Hardening Production Execution`
 
 **From:** Mission Control
 
 **To:** `Claude Code — Repository-Capable Engineering Operator`
 
-**Status:** `ACTIVE — NARROW CORRECTIVE SECURITY AUTHORIZATION — TEST-ONLY EXECUTION`
+**Status:** `ACTIVE — NARROW PRODUCTION SECURITY CORRECTION EXECUTION`
 
 **Date:** `2026-08-30`
 
@@ -18,173 +18,225 @@
 
 ## Context
 
-Gate 2A Security & Isolation Evidence Closure is canonical on `main` at:
-
-`259ca4acd71b524f653e5be5ebea92361db20bcf`
-
-The independent Security & Permissions Architecture disposition is:
+Gate 2A identified the production Inventory anonymous-privilege posture as:
 
 `HARDENING REQUIRED BEFORE RELEASE APPROVAL`
 
-The accepted Gate 2A report established that production `anon` currently has unnecessary broad privileges on the Inventory surface and that public-schema default privileges can reproduce broad anonymous authority on future objects.
+Gate 2A-C1 prepared and test-validated exactly one forward security migration and closed with:
 
-This corrective action exists only to prepare and prove the narrow least-privilege correction before any production mutation is considered.
+`PASS — CORRECTION PREPARED AND TEST-VALIDATED — PRODUCTION EXECUTION PENDING`
 
-## Authorized Objective
+The Gate 2A-C1 implementation/evidence was merged through PR #435 at canonical `main` commit:
 
-Create the smallest forward-only security migration required to harden the Inventory anonymous-access posture and validate that migration in the isolated Smart Business test project only.
+`6a4b92f23eac7d330a02757c3d42ea948403ba91`
 
-This instruction does **not** authorize applying the correction to production.
+This instruction authorizes the next bounded action only: execute the already-reviewed, already-test-validated migration against the current production Supabase project and verify the result.
 
-## Canonical Environment Identity
+This is a corrective security action within Gate 2. It is **not** a product release, application deployment, parser activation, F23-01 execution, or Founder release approval.
 
-Production — reference only, **NO MUTATION AUTHORIZED**:
+## Canonical Production Identity
+
+Authorized production Supabase project:
 
 `gysgzasfcjvtrgaigfyn`
 
-Authorized test environment for execution/validation:
+Current isolated test project — reference only:
 
 `drravyyauixltoihzmwo`
 
-Before any test execution, independently verify the target is the test project and STOP if target identity is ambiguous.
+Before any production mutation, independently verify that the target is exactly `gysgzasfcjvtrgaigfyn` and STOP if production/test identity is ambiguous.
 
-## Authorized Correction Scope
+## Authorized Migration — Exact File Only
 
-The migration may modify only security grants/default privileges necessary to address the Gate 2A finding.
+The only migration authorized for production execution is:
 
-At minimum, evaluate and implement the narrowest safe form of:
+`supabase/migrations/20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`
 
-1. revoke unnecessary `anon` privileges on:
-   - `public.inventory_items`
-   - `public.inventory_movements`
-   - `public.inventory_movement_idempotency_keys`
-2. remove unnecessary `anon` EXECUTE rights on Inventory-domain functions/RPCs unless an explicit anonymous product use case is proven from canonical Product Truth or implementation requirements;
-3. correct relevant public-schema default privileges for future tables/functions so broad anonymous rights are not automatically recreated;
-4. preserve all intentional authenticated Owner behavior;
-5. preserve the narrow `catalog_link_executor` access path;
-6. preserve intentional `service_role` privileged behavior;
-7. preserve existing RLS policies and merchant isolation unless a grant-only correction cannot safely close the condition, in which case STOP and report rather than broadening scope.
+The executing actor must verify that the file on current canonical `main` is byte-for-byte unchanged from the human-merged Gate 2A-C1 version.
 
-Do not change business logic, Product Truth, schemas, function bodies, RLS policy predicates, role membership, application code, or unrelated permissions.
+No modification to this migration is authorized in Gate 2A-C2.
 
-## Required Pre-Change Evidence
+If the migration needs editing, if any additional migration is pending, or if production state differs materially from the validated assumptions, STOP and report to Mission Control.
 
-Capture from the test project before applying the migration:
+## Authorized Objective
 
-- exact project identity;
-- effective ACLs for the three Inventory tables;
-- Inventory-domain function EXECUTE privileges for `anon`;
-- relevant default privileges for objects created by `postgres` and `supabase_admin`;
-- current RLS enabled state and policy inventory;
-- authenticated/service-role/catalog-link-executor rights required to preserve intended behavior.
+Apply exactly the above migration to production and prove that it removes the unnecessary Inventory anonymous authority while preserving the accepted authenticated/privileged behavior and existing RLS policy state.
 
-## Test-Only Migration Execution Authorization
+The intended correction is limited to:
 
-You may:
+- removing unnecessary `anon` privileges from:
+  - `public.inventory_items`;
+  - `public.inventory_movements`;
+  - `public.inventory_movement_idempotency_keys`;
+- removing unnecessary anonymous/PUBLIC EXECUTE access from the six Inventory-domain functions exactly as encoded in the reviewed migration;
+- correcting `postgres`-created public-schema default privileges exactly as encoded in that migration.
 
-- create exactly one new forward migration under `supabase/migrations/`;
-- apply that migration to `drravyyauixltoihzmwo` only;
-- run read-only or safely transactional verification in the test project;
-- use existing designated test data already present in the test project;
-- run automated tests relevant to the affected security boundary.
+Nothing else is authorized.
 
-You may **not** execute the migration against production.
+## Required Pre-Execution Production Evidence
 
-## Required Verification After Test Execution
+Before executing the migration, capture and report the current production state for:
 
-Prove in the test project that:
+1. exact project identity/ref, name, region, and healthy status;
+2. exact canonical `main` commit and migration file identity/hash;
+3. production migration history showing the new Gate 2A-C1 migration is not yet applied;
+4. dry-run output proving **exactly one** migration is pending and that it is the authorized Gate 2A-C1 migration;
+5. effective table privileges for `anon`, `authenticated`, `service_role`, `catalog_link_executor`, and `PUBLIC` on the three Inventory tables;
+6. function EXECUTE privileges for the six Inventory-domain functions, including the two known `PUBLIC` EXECUTE paths;
+7. `postgres` public-schema default privileges for tables/functions;
+8. RLS enabled/forced state and exact policy inventory for the three Inventory tables;
+9. current backup/recovery readiness suitable for this production security mutation, including direct evidence that a current recoverable backup/restore capability exists. Do not infer backup readiness from plan tier alone.
 
-- `anon` has no unnecessary table privileges on the three Inventory tables;
-- `anon` cannot read, insert, update, delete, truncate, maintain, trigger, or otherwise exercise unintended authority on those tables;
-- unintended Inventory-domain RPC/function EXECUTE rights for `anon` are removed;
-- default privileges no longer automatically recreate broad anonymous table/function authority for the relevant object creators;
-- authenticated Owner access remains correct;
-- `catalog_link_executor` remains limited to its intended narrow read path;
-- `service_role` retains required privileged behavior;
-- RLS remains enabled and unchanged unless explicitly proven otherwise in the diff;
-- no unrelated table/function/grant/default-privilege surface changed;
-- repository test suite and Markdown Quality Gate pass where applicable.
+If current production evidence materially differs from the Gate 2A/Gate 2A-C1 assumptions, STOP before execution.
 
-## Required Repository Scope
+## Production Execution Authorization
 
-Expected code change is limited to:
+After all required pre-checks pass, Mission Control authorizes execution of **exactly one** production migration:
 
-- one new security migration under `supabase/migrations/`;
-- `communication/live/report.md` for the completion report;
-- narrowly necessary test/evidence files only if required by existing repository practice.
+`20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`
 
-If implementation would require application code changes, Product Truth changes, RLS policy redesign, role redesign, or more than one migration, STOP and report to Mission Control.
+Use the repository's controlled production Supabase CLI path and its existing production-confirmation safeguard.
 
-## Required Output
+Required discipline:
 
-Write the complete result to:
+- dry-run first;
+- verify exactly one pending migration;
+- explicit production confirmation only for this authorized execution;
+- execute once;
+- do not use migration repair;
+- do not re-run if migration history shows it applied;
+- do not execute any other migration;
+- do not improvise SQL outside the already-reviewed migration.
+
+If execution fails partially, reports unexpected DDL/ACL behavior, or migration history becomes uncertain, STOP. Do not repair, retry, manually compensate, or broaden scope without a new Mission Control authorization.
+
+## Required Immediate Post-Execution Verification
+
+After successful execution, verify directly in production:
+
+1. migration history contains the authorized Gate 2A-C1 migration exactly once;
+2. `anon` has no privileges on the three Inventory tables;
+3. `anon` has no unintended EXECUTE on any of the six Inventory-domain functions;
+4. `PUBLIC` EXECUTE is absent from:
+   - `public.inventory_items_guard()`;
+   - `public.inventory_movements_reject_mutation()`;
+5. `authenticated`, `service_role`, and `catalog_link_executor` effective grants remain unchanged from pre-execution evidence;
+6. the `postgres` default-privilege baseline no longer grants `anon` broad table rights or function EXECUTE on future public-schema objects;
+7. RLS enabled/forced state remains unchanged;
+8. all nine Inventory policies remain unchanged in name, command, and role scope;
+9. safe read-only runtime checks as `anon` confirm hard authorization denial on representative table/function access, without creating or mutating production business data;
+10. database health remains normal after the migration.
+
+Do not perform authenticated business workflow writes in this gate. Product/runtime regression checks that require business-data mutation belong to later authorized validation gates.
+
+## Known Residuals Explicitly Out of Scope
+
+Gate 2A-C1 disclosed two separate residuals. They remain **out of scope** here:
+
+1. `supabase_admin`-created-object default privileges;
+2. the same-root-cause broad grants on:
+   - `businesses`;
+   - `transactions`;
+   - `transaction_correction_events`.
+
+Do not modify, correct, or expand into these surfaces under Gate 2A-C2.
+
+Their existence does not authorize scope expansion. Report any new evidence about them only as a follow-up.
+
+## Required Repository Output
+
+After execution, update only:
 
 `communication/live/report.md`
 
-The report must state:
+No new migration should be created. No existing migration should be edited.
+
+Submit the report through a controlled branch and PR. Do not self-merge.
+
+## Required Report Content
+
+The report must include:
 
 1. exact intake `main` commit;
-2. exact test-project identity used;
-3. new migration filename and purpose;
-4. exact SQL security changes at a semantic level;
-5. pre-change privilege/default-privilege evidence;
-6. test migration execution result;
-7. post-change privilege/default-privilege evidence;
-8. regression verification for authenticated, `catalog_link_executor`, and `service_role` paths;
-9. RLS/policy unchanged confirmation;
-10. repository files changed;
-11. test and Markdown Quality Gate results;
-12. any deviations or unresolved risks;
-13. explicit confirmation that production `gysgzasfcjvtrgaigfyn` was not mutated;
-14. recommended exact production execution gate if test validation passes;
-15. final result exactly one of:
-   - `PASS — CORRECTION PREPARED AND TEST-VALIDATED — PRODUCTION EXECUTION PENDING`
-   - `CORRECTION REQUIRED`
-   - `BLOCKED — SAFE NARROW CORRECTION NOT PROVEN`
+2. verified production project identity;
+3. exact authorized migration file and file hash/identity verification;
+4. pre-execution migration-history state;
+5. backup/recovery evidence;
+6. complete pre-execution ACL/function/default-privilege/RLS-policy evidence;
+7. exact dry-run result proving only the authorized migration was pending;
+8. exact production execution command path at a semantic level and execution result;
+9. post-execution migration-history result;
+10. post-execution ACL/function/default-privilege evidence;
+11. proof that authenticated, `service_role`, and `catalog_link_executor` grants were preserved;
+12. RLS/policy unchanged evidence;
+13. safe `anon` read-only runtime-denial checks;
+14. database-health observation;
+15. explicit statement that no unrelated production mutation occurred;
+16. exact residual/follow-up items still open;
+17. Gate 2A-C2 final result exactly one of:
+   - `PASS — PRODUCTION HARDENING APPLIED AND VERIFIED`
+   - `CORRECTION REQUIRED — PRODUCTION STATE NOT VERIFIED`
+   - `BLOCKED — PRODUCTION EXECUTION NOT PERFORMED`
+   - `STOP — PRODUCTION EXECUTION INCIDENT`
 
 ## Explicitly Not Authorized
 
 This instruction does not authorize:
 
-- any production database mutation;
-- migration push/apply/repair against `gysgzasfcjvtrgaigfyn`;
-- production `GRANT`, `REVOKE`, default-privilege, policy, RLS, function, schema, or role changes;
-- creation or mutation of production test data;
+- editing the already-reviewed migration;
+- creating another migration;
+- executing any migration other than `20260830120000_sb_rel_1_10_1_11_gate2a_c1_inventory_anon_privilege_hardening.sql`;
+- migration repair/reconciliation;
+- manual production SQL outside read-only verification and the authorized migration execution;
+- changes to `businesses`, `transactions`, or `transaction_correction_events` permissions;
+- `supabase_admin` role membership/default-privilege correction;
+- RLS/policy redesign;
+- function-body or schema changes;
+- production business-data creation or mutation;
+- F23-01 execution or creation of test identities/businesses;
 - application deployment/publication;
-- Supabase production configuration changes;
-- AWS, S3, IAM, Roles Anywhere, Lambda, Cloudflare, DNS, certificate, WAF, parser, or secret changes;
-- F23-01 execution or test-identity creation;
-- release approval or release execution;
-- Founder approval by inference;
-- reopening SB-P-1.10 or SB-P-1.11 lifecycle stages;
+- AWS, S3, IAM, Roles Anywhere, Lambda, Cloudflare, DNS, WAF, parser, certificate, secret, or environment-variable changes;
+- parser/bulk-import activation;
+- merchant feature exposure;
+- product release execution;
+- Founder release approval by inference;
 - Product Truth changes;
+- reopening SB-P-1.10 or SB-P-1.11 lifecycle stages;
 - starting SB-P-1.12;
 - self-approval or self-merge.
 
 ## Stop Conditions
 
-STOP if:
+STOP before mutation if:
 
-- test-project identity cannot be proven;
-- the correction cannot be expressed as one narrow forward security migration;
-- authenticated Owner behavior would need to change;
-- `catalog_link_executor` or required `service_role` behavior cannot be preserved;
-- RLS policy logic must be changed to make the correction work;
-- application code must change;
-- the migration creates material uncertainty about existing production behavior;
-- verification reveals a new Critical/High security issue;
-- any required step would mutate production.
+- production identity cannot be proven;
+- canonical `main` or migration file identity is uncertain;
+- more than the one authorized migration is pending;
+- the authorized migration already appears applied;
+- current production ACL/RLS/default-privilege state materially differs from the validated baseline;
+- current recoverable backup/restore capability cannot be positively verified;
+- a Critical/High security or merchant-isolation issue is discovered;
+- execution would require any migration/file modification or additional SQL.
 
-A STOP authorizes no production action.
+STOP after mutation if:
+
+- execution errors or appears partial;
+- migration history is ambiguous;
+- expected grants/default privileges are not achieved;
+- authenticated/service-role/catalog-link-executor rights drift unexpectedly;
+- RLS/policy state changes unexpectedly;
+- database health degrades.
+
+A STOP authorizes no repair, retry, rollback, compensation, or scope expansion.
 
 ## Continuation Boundary
 
-A PASS here authorizes **nothing further automatically**.
+A PASS closes the Inventory `anon` hardening production-execution condition only.
 
-Mission Control must separately review the implementation/evidence and issue a new explicit production-execution authorization before the migration may be applied to `gysgzasfcjvtrgaigfyn`.
+It does **not** close `F23-01`, complete Gate 2, authorize Founder release approval, or authorize production release/runtime activation.
 
-After production hardening is independently verified, `F23-01` still remains a separate prerequisite requiring designated production-safe test identities/businesses.
+After a PASS is independently reviewed and accepted by Mission Control, the next action will be separately authorized.
 
 ---
 
-**Mission Control boundary:** Gate 2A-C1 prepares and test-validates the least-privilege correction only. Production remains untouched.
+**Mission Control boundary:** Gate 2A-C2 authorizes one exact, test-validated security migration against production and immediate verification only. No other production change is authorized.
