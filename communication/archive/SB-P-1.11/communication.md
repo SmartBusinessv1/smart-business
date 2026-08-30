@@ -38,6 +38,17 @@ The absent standard report suffixes are preserved as historical facts rather tha
 
 For exact historical body text, original filenames, special-suffix reports, and all intermediate corrections, the `source/` snapshot is authoritative. This `communication.md` is the consolidated control record and chronology index for that lossless snapshot.
 
+## Dual Archive Model — Consolidated Reading Files Plus Retained Forensic Sources
+
+Following the Mission Control-authorized archive consolidation housekeeping action (`communication/missions/SB-P-1.11/mission-control/archive-consolidation-housekeeping-instruction.md`), this archive operates as two complementary layers, neither of which replaces the other:
+
+1. **Consolidated operational reading files** — `communication/archive/SB-P-1.11/instruction.md` and `communication/archive/SB-P-1.11/report.md`. Each contains every instruction-side or report-side Markdown communication from the retained `source/` snapshot, concatenated in chronological/natural mission order, with an `# Original File: `communication/live/<original-filename>`` provenance header inserted before each entry's exact, unaltered body. These two files are the fast, single-document way to read the full instruction or report chronology without opening 197 or 193 separate files.
+2. **Retained forensic individual source files** — the complete 393-file `source/` subtree (source tree SHA `790e4aef4d8cdfc98052fdd0fbf0eab373b9a326`), preserved byte-for-byte and individually addressable, for exact provenance lookup, correction-history inspection, or evidentiary interpretation of one specific historical file.
+
+The consolidated files are a **derived, provenance-preserving reading convenience**, not a replacement for the source snapshot. The individual source files under `source/` are classified `TEMPORARY PHASE 1 FORENSIC COMMUNICATION SOURCES — RETAIN UNTIL PHASE 1 COMPLETION` and must remain in the repository, unmodified, throughout Phase 1, regardless of the consolidated files' existence. Non-Markdown evidence (the two Lovable synchronization manifests under `source/evidence/`) is never embedded into the consolidated Markdown files and remains individually retained.
+
+Deletion of any individual `source/` file during Phase 1 requires a separate, future, explicit Mission Control housekeeping authorization issued only after Phase 1 is formally completed and only after that future action independently verifies the consolidated files remain complete and provenance-preserving substitutes. This housekeeping action does not itself authorize any such deletion.
+
 ## Chronology and Correction History
 
 The archived cycle begins with the reset base files for SB-P-1.11 Stage 1 Product Definition on 2026-08-04 and continues through the completed Source 18 lifecycle and final documentation closure on 2026-08-29.
