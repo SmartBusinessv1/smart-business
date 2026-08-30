@@ -62,6 +62,18 @@
 
 ---
 
+# SB-P-1.11 Communication Archive Retention (Phase 1)
+
+- SB-P-1.11 now has consolidated archive reading files `communication/archive/SB-P-1.11/instruction.md` and `communication/archive/SB-P-1.11/report.md`, created and verified by the Mission Control-authorized archive consolidation housekeeping action.
+- The exact 393-file individual source snapshot under `communication/archive/SB-P-1.11/source/` (source tree SHA `790e4aef4d8cdfc98052fdd0fbf0eab373b9a326`) must be retained through the end of Phase 1.
+- No individual SB-P-1.11 source communication file may be deleted during Phase 1 merely because a consolidated equivalent exists.
+- After Phase 1 is formally completed, Mission Control must open a dedicated communication-archive housekeeping action.
+- That future housekeeping must verify the consolidated files are complete and provenance-preserving before deleting the redundant individual Markdown communication files.
+- Non-Markdown evidence that remains necessary for provenance (the two Lovable synchronization manifests under `source/evidence/`) must be retained separately even after individual Markdown source cleanup.
+- The future cleanup is not automatically authorized by this decision; it requires a separate controlled action after Phase 1 completion.
+
+---
+
 # Cross-Room Dependencies
 
 | Depends On | Waiting For | Status |
