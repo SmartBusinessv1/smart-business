@@ -166,13 +166,13 @@ No production write probe was performed, per Gate 1's own prohibition.
 | Pilot evidence where required | `NOT APPLICABLE` for the core release; `READY — REQUIRES EXECUTION-GATE VERIFICATION` for parser/bulk-import specifically | §2, §7.4 |
 | Database migration status | `PASS — EVIDENCE VERIFIED` | §4.1, §5 — full parity, fresh, direct |
 | Backup readiness | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §10 — Pro-plan tier confirmed; current backup/PITR configuration, retention window, and last-successful-backup timestamp classified `UNRESOLVED — REQUIRES DIRECT PLATFORM EVIDENCE` |
-| Rollback path | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §9 — database/application rollback targets identifiable in principle; not yet formally documented as an execution-ready runbook for this specific release |
+| Rollback path | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | §10 — database/application rollback targets identifiable in principle; not yet formally documented as an execution-ready runbook for this specific release |
 | Secrets and configuration | `FOLLOW-UP — NON-BLOCKING` | Parser-path production configuration not repository-visible by design (§7.2 item 6); no evidence of a secret exposure found |
 | Authentication and permissions | `PASS — EVIDENCE VERIFIED` | §6 |
 | RLS and merchant isolation | `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL` | §4.3, §5, §6 — RLS currently appears to make `anon` access to Inventory tables functionally default-deny, but the underlying `GRANT ALL` posture requires independent Security & Permissions Architecture disposition, not engineering-review self-certification |
 | Monitoring and logging | `READY — REQUIRES EXECUTION-GATE VERIFICATION` | Database-side has no dedicated app-level monitoring evidence surfaced this session; parser-side CloudWatch/alarm state is §7.2 item 7 |
-| Support readiness | `FOLLOW-UP — NON-BLOCKING` | Not assessed this session; Source 12 §65 requires it before release but no evidence (positive or negative) was located |
-| Legal and policy readiness | `FOLLOW-UP — NON-BLOCKING` | Outside this session's evidence; `mission-control/mission_memory.md` records Privacy Policy/Terms as still placeholder-only for an unrelated deferred mission (`SB-INF-1.2`) — worth Mission Control confirming this does not also gate this release |
+| Support readiness | `BLOCKED — EVIDENCE REQUIRED BEFORE RELEASE APPROVAL` | Not assessed this session; Source 12 §65 requires it before release and §66 lists "missing support readiness" as a release-blocking condition, so unresolved evidence is classified `BLOCKED`, not `FOLLOW-UP`, until positive evidence is produced |
+| Legal and policy readiness | `BLOCKED — EVIDENCE REQUIRED BEFORE RELEASE APPROVAL` | Outside this session's evidence; `mission-control/mission_memory.md` records Privacy Policy/Terms as still placeholder-only for an unrelated deferred mission (`SB-INF-1.2`). Source 12 §66 lists "missing legal or policy requirement" as release-blocking, so this is classified `BLOCKED` pending Mission Control confirming whether that placeholder status also gates this release |
 | Known limitations | `PASS — EVIDENCE VERIFIED` | Fully itemized: F23-01–F23-05 (§9), §4.3 finding, §7 gaps |
 | Release owner | `BLOCKED` | Not named in any canonical evidence reviewed this session |
 | Recovery owner | `BLOCKED` | Not named in any canonical evidence reviewed this session |
@@ -232,11 +232,11 @@ To be executed only after a separately authorized release, using safe controlled
 - §3.3's application-publication-state ambiguity should be resolved by direct platform evidence before a release date is set, even though it is not a Stop-condition identity ambiguity.
 - `F23-01` — the first successful live multi-business/cross-tenant RLS runtime probe must be completed and pass **before** Founder release-approval and before production release execution (§9); design/policy-scoping evidence alone does not satisfy this.
 - §4.3 — the `anon` `GRANT ALL` finding on Inventory tables requires an independent Security & Permissions Architecture specialist disposition before release approval: `READY WITH CONDITION — SECURITY SPECIALIST DISPOSITION REQUIRED BEFORE RELEASE APPROVAL`. RLS currently appears to make anonymous access functionally default-deny, but that appearance is not treated as sufficient, on engineering review alone, to finalize the posture as acceptable or to require hardening.
+- §8 — support readiness and legal/policy readiness: `BLOCKED — EVIDENCE REQUIRED BEFORE RELEASE APPROVAL`. Source 12 §66 lists both "missing support readiness" and "missing legal or policy requirement" as release-blocking conditions; unresolved evidence is classified `BLOCKED`, not treated as merely non-blocking. This does not itself adjudicate the known-placeholder legal pages (`SB-INF-1.2`) — it means their readiness cannot be called non-blocking without positive evidence.
 
 **Non-blocking follow-ups:**
 
 - §7.2/§7.3 — AWS/Cloudflare parser infrastructure specialist verification, and the outstanding CA-key offline-backup item.
-- §8 — support readiness and legal/policy readiness not evidenced either way this session.
 - `F23-02` through `F23-05` per §9's mapping (`F23-01` is a blocker above, not a non-blocking follow-up).
 - §3.2 — the missing dedicated `SB-MIG-1.2F` technical evidence folder (documentation completeness, not a functional gap).
 
