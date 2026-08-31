@@ -4,33 +4,31 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `Gate 2A-C3A-H1 — Human/Operator F23-01 Prerequisite Establishment`
+**Mission Name:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
 
 **From:** Mission Control
 
-**To:** `Founder / Authorized Human Production Operator`
+**To:** `Founder / Authorized Human Production Operator`, with Claude Code as repository-capable read-only verifier/reporting operator
 
-**Status:** `ACTIVE — HUMAN/OPERATOR PRODUCTION FIXTURE AUTHORIZATION`
+**Status:** `ACTIVE AFTER HUMAN MERGE — READ-ONLY LIVE CROSS-TENANT VERIFICATION AUTHORIZATION`
 
-**Date:** `2026-08-30`
+**Date:** `2026-08-31`
 
 ---
 
 ## Context
 
-Gate 2A-C3A attempted to establish the production-safe verification prerequisite for `F23-01` but closed with:
+Gate 2A-C3A-H1 is canonically complete with:
 
-`BLOCKED — SAFE PREREQUISITE COULD NOT BE ESTABLISHED`
+`PASS — F23-01 PRODUCTION-SAFE TEST PREREQUISITE ESTABLISHED`
 
-The blocker was an execution-environment/tool-permission constraint. No production fixture row or verification Auth user was created.
+The accepted H1 report was merged through PR #442 at canonical `main` commit:
 
-The blocked attempt was merged through PR #439 at canonical `main` commit:
+`86819258b0d7e8babb3acb304393c3ec5ec78853`
 
-`b2a191f168be25e2fbbb1366be2ecdfc92c1370d`
+The verified production fixture set now exists specifically so Smart Business can perform the previously blocked `F23-01` cross-tenant read-isolation verification without using real merchant identities or data.
 
-The prior attempt also produced a complete, test-validated fixture design. Mission Control now authorizes a human/operator-controlled prerequisite establishment using the supported Supabase Auth administrative path for the two synthetic verification owners.
-
-This instruction does **not** authorize `F23-01` cross-tenant probing itself.
+This gate authorizes only that read-isolation verification.
 
 ## Canonical Production Identity
 
@@ -46,186 +44,214 @@ Region:
 
 `ap-south-1`
 
-Before any production mutation, the human/operator must independently verify this exact project identity in Supabase and STOP if there is any ambiguity.
+STOP if the production project identity is ambiguous or differs from the above.
+
+## Authorized Verification Identities and Fixtures
+
+Use only the existing synthetic verification identities and fixtures below.
+
+### Owner A
+
+- Auth UUID: `2eaba621-7a06-497f-b878-2e68c0d0d8b7`
+- Email: `sb-f23-01-verification-owner-a@teamlips.com`
+- Business A: `8c3e977f-b6b0-43a0-8b13-a04381d7bf4c`
+- Inventory Item A: `64c2e6d3-8e44-4be1-ab83-a83f3f83a62e`
+- Catalog Product A: `e3c3feb1-b307-4edc-80d8-bd0d51ff31c1`
+
+### Owner B
+
+- Auth UUID: `c520961e-f43f-4cba-9e22-b0e4f2256253`
+- Email: `sb-f23-01-verification-owner-b@teamlips.com`
+- Business B: `bed8bd00-dd1e-42f9-b155-c50d34427a2a`
+- Inventory Item B: `123132f5-d88d-4511-8f7d-792fe3e5b18b`
+- Catalog Product B: `39e4b06e-de97-4121-97fd-da6d728750e0`
+
+Do not create replacement users, businesses, Inventory items, Catalog products, or any additional fixture data.
 
 ## Authorized Objective
 
-Establish exactly two controlled, non-merchant production verification owner identities and exactly two corresponding verification businesses, with only the minimum Inventory and Catalog/Pricing fixture data required for the later read-only `F23-01` cross-tenant isolation probe.
+Prove, using authenticated production requests from the two controlled verification owners, that each owner can read its own authorized fixture data but cannot read the other verification owner's corresponding business-scoped data.
 
-The fixture set must remain clearly separated from real merchant data and must be unmistakably labeled as verification-only.
+This is a live RLS/permission verification.
 
-## Required Verification Identities
+It is not a data-mutation test.
 
-Create exactly two synthetic production Auth users using the **supported Supabase Auth Admin path**. Do not insert directly into `auth.users`.
+It is not an application release test.
 
-Required labels/emails:
+## Security Boundary
 
-- Owner A: `F23-01 Verification Owner A`
-  - email: `sb-f23-01-verification-owner-a@teamlips.com`
-- Owner B: `F23-01 Verification Owner B`
-  - email: `sb-f23-01-verification-owner-b@teamlips.com`
+Passwords, access tokens, refresh tokens, session cookies, recovery links, service-role keys, and other credentials must remain private to the authorized human/operator environment.
 
-Use Supabase Dashboard Authentication user administration or an equivalent supported `auth.admin.createUser()` administrative API path.
+Do not paste or commit any credential or session value into:
 
-Where the supported Auth path allows metadata, set clear non-secret markers equivalent to:
+- Git;
+- PR text;
+- screenshots;
+- chat;
+- `communication/live/report.md`.
 
-- `purpose = F23-01`
-- `environment = production-verification`
-- `non_merchant_test_identity = true`
+Claude Code must not request or receive these secrets.
 
-Do not expose passwords, service-role keys, access tokens, refresh tokens, session cookies, recovery links, or other secrets in Git, PR text, screenshots, chat, or `communication/live/report.md`.
+The human/operator may authenticate each synthetic owner using the supported Supabase Auth client/API path and run only the read-only requests authorized below.
 
-If a supported administrative Auth path cannot create the users safely, STOP. Direct `auth.users` SQL insertion is not authorized by this instruction.
+## Required Test Sequence
 
-## Authorized Business Fixtures
+Run the tests in both directions.
 
-After the two Auth users exist, establish exactly two businesses:
+### Phase A — Owner A Own-Scope Control
 
-- `SB F23-01 Verification Business A — DO NOT USE`
-- `SB F23-01 Verification Business B — DO NOT USE`
+Authenticate as Owner A and confirm the returned authenticated user identity is exactly:
 
-Business A must be owned only by Owner A.
+`2eaba621-7a06-497f-b878-2e68c0d0d8b7`
 
-Business B must be owned only by Owner B.
+Then perform read-only own-scope controls for:
 
-Preferred continuity IDs from the test-validated Gate 2A-C3A plan may be reused if the supported creation path permits explicit IDs without bypassing integrity controls:
+1. Business A by exact UUID;
+2. Inventory Item A by exact UUID;
+3. Catalog Product A through the supported `catalog_product_read` RPC.
 
-- Business A planned UUID: `936c9ec9-57b0-47f8-ae39-b91aabdc0a48`
-- Business B planned UUID: `6f74c746-3172-4bb7-8e0c-d31fdb6158d8`
+The own-scope controls must succeed before any Owner A cross-tenant probe is interpreted.
 
-If the supported path generates different business UUIDs, that is acceptable. Record the actual non-secret IDs in the completion evidence.
+### Phase B — Owner A Cross-Tenant Probe
 
-## Supported Creation Path for Business and Fixture Data
+While still authenticated as Owner A, attempt read-only access to exactly:
 
-After Auth provisioning, use the narrowest existing supported authenticated application/API/RPC path available.
+1. Business B by exact UUID;
+2. Inventory Item B by exact UUID;
+3. Catalog Product B through the supported `catalog_product_read` RPC.
 
-Preferred order:
+PASS condition:
 
-1. authenticate as each synthetic verification owner and use the normal application/PostgREST business onboarding path for its own business;
-2. create one Inventory item per business through the normal authenticated Inventory insert path;
-3. create one Catalog product per business through the accepted `create_catalog_product(...)` RPC as that business owner.
+Owner A receives no Business B, Inventory Item B, or Catalog Product B data.
 
-A human operator may use a short local administrative script or Supabase client only if it uses supported Auth/API/RPC interfaces and preserves the same owner-authenticated semantics.
+Acceptable isolation outcomes include an empty result, not-found result, or governed authorization denial, provided no protected row fields are disclosed.
 
-Do not use a service-role bypass for owner-scoped fixture creation unless the supported owner-authenticated path is genuinely unavailable and Mission Control separately authorizes that exception.
+Do not treat differing safe-denial status codes by themselves as a failure if no cross-tenant data is disclosed.
 
-Do not create or edit migrations.
+### Phase C — Owner B Own-Scope Control
 
-Do not alter RLS, grants, policies, roles, functions, triggers, schemas, default privileges, Auth configuration, OAuth configuration, or application code.
+Authenticate as Owner B and confirm the returned authenticated user identity is exactly:
 
-## Minimum Inventory Fixture
+`c520961e-f43f-4cba-9e22-b0e4f2256253`
 
-Create exactly one clearly labeled Inventory item in each verification business:
+Then perform read-only own-scope controls for:
 
-- Business A: `F23-01 VERIFICATION Item A`
-- Business B: `F23-01 VERIFICATION Item B`
+1. Business B by exact UUID;
+2. Inventory Item B by exact UUID;
+3. Catalog Product B through the supported `catalog_product_read` RPC.
 
-Use `base_unit = 'unit'` unless the accepted runtime path requires another existing valid value.
+The own-scope controls must succeed before any Owner B cross-tenant probe is interpreted.
 
-Preferred continuity IDs from the prior validated plan may be reused if supported:
+### Phase D — Owner B Cross-Tenant Probe
 
-- Item A planned UUID: `c8818d0a-7de5-4c00-9257-52e99226ad08`
-- Item B planned UUID: `c12d5726-27c5-47d6-8390-d4d106e08677`
+While still authenticated as Owner B, attempt read-only access to exactly:
 
-If the supported path generates different IDs, record the actual IDs instead.
+1. Business A by exact UUID;
+2. Inventory Item A by exact UUID;
+3. Catalog Product A through the supported `catalog_product_read` RPC.
 
-Do not create Inventory movements or transactions in this gate.
+PASS condition:
 
-## Minimum Catalog/Pricing Fixture
+Owner B receives no Business A, Inventory Item A, or Catalog Product A data.
 
-Create exactly one Catalog product per verification business through the accepted `create_catalog_product(...)` RPC:
+Acceptable isolation outcomes include an empty result, not-found result, or governed authorization denial, provided no protected row fields are disclosed.
 
-- Business A: `F23-01 VERIFICATION Product A`
-- Business B: `F23-01 VERIFICATION Product B`
+## Approved Read Paths
 
-Use only the minimum required fields. Do not create categories, barcodes, SKUs, price history, import jobs, or supporting records unless the accepted RPC/schema requires them.
+Use the narrowest supported authenticated read path already established during H1:
 
-If the RPC returns generated product IDs, record those non-secret IDs in the completion evidence.
+- Business: authenticated PostgREST read filtered by exact `id`;
+- Inventory: authenticated PostgREST read filtered by exact `id`;
+- Catalog: supported `catalog_product_read(p_product_id)` RPC.
 
-## Required Pre-Mutation Controls
+Do not use service-role authority or unrestricted database-owner SQL to simulate the owner sessions for the F23-01 result.
 
-Before creating anything, the human/operator must verify:
+Read-only unrestricted SQL may be used later by Claude Code only for evidence reconciliation that does not substitute for the actual owner-authenticated probe.
 
-1. canonical production project identity is exactly `gysgzasfcjvtrgaigfyn`;
-2. a current recoverable production backup exists;
-3. no existing canonical `F23-01` verification users/businesses already exist;
-4. the supported Supabase Auth Admin creation path is available;
-5. no real merchant identity/business/data will be reused;
-6. the supported authenticated business/Inventory/Catalog creation paths are available without schema/security/configuration change.
+## Required Human/Operator Evidence
 
-STOP if any of these cannot be proven.
-
-## Required Post-Creation Verification
-
-After establishment, verify without running cross-tenant probes that:
-
-1. exactly two synthetic verification Auth users exist;
-2. exactly two verification businesses exist;
-3. Business A maps only to Owner A;
-4. Business B maps only to Owner B;
-5. Business A contains exactly the intended minimum Inventory fixture for this gate;
-6. Business B contains exactly the intended minimum Inventory fixture for this gate;
-7. Business A contains exactly the intended minimum Catalog/Pricing fixture for this gate;
-8. Business B contains exactly the intended minimum Catalog/Pricing fixture for this gate;
-9. no real merchant identity/business/data was modified;
-10. no unrelated production data was created;
-11. no RLS/grant/policy/schema/function/configuration state changed;
-12. production database health remains normal.
-
-Do not execute cross-business read attempts in this gate.
-
-## Human/Operator Evidence Handoff
-
-The human/operator must return a concise completion record to Mission Control containing only non-secret evidence:
+Return only non-secret evidence sufficient to establish:
 
 - verified production project identity;
-- confirmation of current backup/recovery readiness;
-- Owner A Auth user UUID;
-- Owner B Auth user UUID;
-- Business A UUID;
-- Business B UUID;
-- Inventory Item A UUID;
-- Inventory Item B UUID;
-- Catalog Product A UUID;
-- Catalog Product B UUID;
-- confirmation that the two Auth users were created through Supabase Auth Admin rather than direct `auth.users` SQL;
-- confirmation that each business/fixture was created through the supported authenticated application/API/RPC path;
-- confirmation that no real merchant data or unrelated production data changed;
-- confirmation that no schema/security/configuration change occurred;
-- final result.
+- Owner A authenticated identity UUID;
+- Owner A own-scope Business A result;
+- Owner A own-scope Inventory A result;
+- Owner A own-scope Catalog A result;
+- Owner A cross-tenant Business B outcome;
+- Owner A cross-tenant Inventory B outcome;
+- Owner A cross-tenant Catalog B outcome;
+- Owner B authenticated identity UUID;
+- Owner B own-scope Business B result;
+- Owner B own-scope Inventory B result;
+- Owner B own-scope Catalog B result;
+- Owner B cross-tenant Business A outcome;
+- Owner B cross-tenant Inventory A outcome;
+- Owner B cross-tenant Catalog A outcome;
+- confirmation that every operation was read-only;
+- confirmation that no credential or session secret was recorded;
+- final human/operator result.
 
-Do not include credentials or secrets.
+Where useful, record HTTP status or error class, but do not record tokens, headers containing secrets, or verbose payloads that expose unrelated data.
 
-After the human/operator completes the production action, Claude Code or another repository-capable operator may perform **read-only verification only** and write the canonical result to:
+## Claude Code Verification and Canonical Reporting
 
-`communication/live/report.md`
+After the human/operator completes the authenticated probe and records the non-secret evidence in `communication/live/report.md` through the approved repository flow, Claude Code may:
 
-That repository report must be submitted through a controlled PR and must not be self-merged.
+1. perform full repository intake;
+2. review the human/operator evidence against this instruction;
+3. independently verify only read-only facts that its approved capabilities can prove without receiving owner credentials;
+4. distinguish authenticated human/operator observations from independently re-provable database/repository facts;
+5. update `communication/live/report.md` with the canonical Gate 2A-C3B result;
+6. submit the report through a protected branch and PR;
+7. not self-merge.
+
+Claude Code must not replay the authenticated cross-tenant probes unless Mission Control separately authorizes a safe credential/session mechanism that preserves the security boundary above.
+
+## PASS Criteria
+
+Gate 2A-C3B may PASS only if all of the following are true:
+
+1. Owner A own-scope controls succeed.
+2. Owner B own-scope controls succeed.
+3. Owner A cannot read Business B.
+4. Owner A cannot read Inventory Item B.
+5. Owner A cannot read Catalog Product B through the supported Catalog read contract.
+6. Owner B cannot read Business A.
+7. Owner B cannot read Inventory Item A.
+8. Owner B cannot read Catalog Product A through the supported Catalog read contract.
+9. No cross-tenant protected row data is disclosed during any denial.
+10. No mutation occurs.
+11. No real merchant identity or data is used for the probe.
+12. No schema, RLS, grant, policy, function, trigger, Auth configuration, migration, application, deployment, parser, infrastructure, or release state is changed.
+
+Any cross-tenant protected-data disclosure is a FAIL and a security blocker.
 
 ## Required Final Result
 
 The canonical report must end with exactly one of:
 
-- `PASS — F23-01 PRODUCTION-SAFE TEST PREREQUISITE ESTABLISHED`
-- `BLOCKED — HUMAN/OPERATOR PREREQUISITE NOT ESTABLISHED`
-- `STOP — PREREQUISITE ESTABLISHMENT INCIDENT`
+- `PASS — F23-01 LIVE CROSS-TENANT READ ISOLATION VERIFIED`
+- `FAIL — F23-01 CROSS-TENANT READ ISOLATION BREACH`
+- `BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
+- `STOP — F23-01 VERIFICATION INCIDENT`
 
 ## Explicitly Not Authorized
 
-This instruction does not authorize:
+This gate does not authorize:
 
-- direct SQL insertion into `auth.users`;
-- execution of `F23-01` cross-tenant read probes;
-- use or impersonation of real merchant identities;
-- creation of more than two verification Auth users;
-- creation of more than two verification businesses;
-- transactions, purchases, customers, suppliers, employees, attendance, parser jobs, imports, or unrelated business data;
+- any `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, mutation RPC, or destructive operation;
+- creation, editing, or deletion of Auth users or business fixtures;
+- fixture cleanup;
+- use of real merchant identities or data for testing;
+- service-role impersonation of owner sessions;
+- direct SQL mutation;
 - migration creation/execution/repair/reconciliation;
-- RLS, policy, grant, role, function, trigger, schema, default-privilege, or Auth-configuration changes;
-- application deployment/publication;
-- AWS, S3, IAM, Roles Anywhere, Lambda, Cloudflare, DNS, WAF, parser, certificate, secret, or environment-variable changes;
-- parser/bulk-import activation;
-- merchant feature exposure;
+- RLS, policy, grant, role, function, trigger, schema, default-privilege, Auth-configuration, OAuth, or secret changes;
+- application-code changes;
+- Lovable changes;
+- deployment or publication;
+- parser or bulk-import activation;
+- AWS, Lambda, S3, IAM, Roles Anywhere, Cloudflare, DNS, WAF, certificate, or environment-variable changes;
 - product release execution;
 - Founder release approval by inference;
 - Product Truth changes;
@@ -235,40 +261,29 @@ This instruction does not authorize:
 
 ## Stop Conditions
 
-STOP before mutation if:
+STOP and report without improvisation if:
 
 - production project identity is ambiguous;
-- current recoverable backup capability cannot be positively verified;
-- an existing canonical F23-01 verification pair is found;
-- supported Supabase Auth Admin provisioning is unavailable;
-- business/Inventory/Catalog establishment would require direct Auth-table manipulation, schema/security/configuration change, or reuse of real merchant data;
-- more than the minimum two-user/two-business fixture set is required;
-- a Critical/High security or data-integrity concern appears.
-
-STOP after mutation if:
-
-- more than the authorized verification identities/businesses/fixtures are created;
-- ownership mapping is wrong or ambiguous;
-- real merchant data is affected;
-- unrelated production data changes;
-- RLS/grants/policies/schema/functions/configuration drift;
+- either verification owner cannot authenticate through the supported Auth path;
+- authenticated identity UUID does not match the intended owner;
+- own-scope controls fail before the corresponding cross-tenant probe;
+- a requested read path would require a mutation or privileged bypass;
+- any cross-tenant response exposes protected row data;
+- the test unexpectedly affects real merchant data;
 - production health degrades;
-- partial creation leaves fixture state uncertain.
+- credentials or session secrets are exposed;
+- a Critical/High security concern appears.
 
-A STOP does not authorize improvised cleanup, repair, retries, credential exposure, or scope expansion. Report the exact state to Mission Control.
+A STOP or FAIL does not authorize repair, policy changes, cleanup, retesting through a different privileged path, or scope expansion.
 
 ## Continuation Boundary
 
-A PASS closes only the `F23-01` prerequisite.
+A PASS closes only the F23-01 live cross-tenant read-isolation requirement within Gate 2A Security & Isolation.
 
-It does not close `F23-01` itself.
+It does not by itself close all Gate 2 release readiness work and does not authorize release, deployment, parser/bulk-import activation, merchant exposure, or Founder production acceptance.
 
-After Mission Control independently accepts the prerequisite evidence, Mission Control will separately authorize:
-
-`Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
-
-That later gate will be read-only and must use only these controlled verification identities/businesses.
+Mission Control must review the canonical result before authorizing any next release-readiness gate.
 
 ---
 
-**Mission Control boundary:** Gate 2A-C3A-H1 authorizes a human/operator to establish exactly two supported Auth-admin-created verification owners and the minimum corresponding production fixtures required for `F23-01`. No cross-tenant probe or release authority is created.
+**Mission Control boundary:** Gate 2A-C3B authorizes a read-only, two-direction authenticated production isolation probe using only the established synthetic verification identities and fixtures. No mutation, repair, release, or merchant exposure authority is created.
