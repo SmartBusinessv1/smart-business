@@ -71,7 +71,7 @@ Total `public.businesses` count is 3 — exactly one pre-existing real business 
 
 ### 3.3 Business A maps only to Owner A / 3.4 Business B maps only to Owner B
 
-**[INDEPENDENTLY VERIFIED]** via §3.2's `owner_id` columns — each business's `owner_id` matches exactly one verification owner, with no ambiguity (the `businesses.owner_id` column is itself `UNIQUE`, so no business can have more than one owner by construction).
+**[INDEPENDENTLY VERIFIED]** via §3.2's `owner_id` columns — each business row's `owner_id` matches exactly the intended verification owner's UUID. A single business row having exactly one owner follows trivially from `owner_id` being a scalar (non-array) column, not from the table's `UNIQUE` constraint on that column — that constraint instead guarantees the reverse direction, that no single owner UUID can appear as `owner_id` on more than one business row. The exact-UUID match already shown is sufficient on its own for the ownership-mapping conclusion.
 
 ### 3.5 / 3.6 Minimum Inventory fixture per business
 
@@ -107,15 +107,15 @@ Every field, including the microsecond-precision `created_at` timestamps, matche
 
 ### 3.9 No real merchant identity/business/data modified
 
-**[INDEPENDENTLY VERIFIED]** by count reconciliation: `businesses` = 3 (1 pre-existing + 2 new), `inventory_items` = 3 (1 pre-existing + 2 new), `catalog_products` = 4 (2 pre-existing + 2 new), `auth.users` = 4 (2 pre-existing + 2 new). Every count is exactly "prior baseline + exactly 2," with no row content for any pre-existing entity read or referenced by this verification (only aggregate counts and exact-UUID lookups for the new fixtures were used).
+**[INDEPENDENTLY VERIFIED, narrowly]:** row-count reconciliation across the four affected tables — `businesses` = 3 (1 pre-existing + 2 new), `inventory_items` = 3 (1 pre-existing + 2 new), `catalog_products` = 4 (2 pre-existing + 2 new), `auth.users` = 4 (2 pre-existing + 2 new) — proves that no extra row was *created* in any of these four tables beyond the expected "+2" fixture set, and the exact-UUID lookups in §3.1–§3.8 prove the two new rows in each table are exactly the intended fixtures. **This does not independently prove no pre-existing real-merchant row was *updated* or otherwise modified** — a count alone cannot detect an in-place edit to an existing row. **[HUMAN/OPERATOR-ATTESTED]:** the stronger claim that no real merchant identity/business/data was modified is the human/operator's own confirmation (item 12 of their handoff record); this verifier had no read-only audit/history source available to independently confirm it and did not read the content of any pre-existing row to check.
 
 ### 3.10 No unrelated production data created
 
-**[INDEPENDENTLY VERIFIED]** — the same count reconciliation in §3.9 shows no more than the authorized 2 users / 2 businesses / 2 Inventory items / 2 Catalog products were added anywhere.
+**[INDEPENDENTLY VERIFIED, narrowly]:** the same count reconciliation in §3.9 covers only the four tables actually inspected (`businesses`, `inventory_items`, `catalog_products`, `auth.users`) and shows no more than the authorized 2 users / 2 businesses / 2 Inventory items / 2 Catalog products were added in *those four tables*. **[HUMAN/OPERATOR-ATTESTED]:** the broader claim that no unrelated production data was created anywhere (e.g., in tables this verification did not query) is the human/operator's own confirmation (item 13 of their handoff record), not independently evidenced here.
 
-### 3.11 No RLS/grant/policy/schema/function/configuration state changed
+### 3.11 RLS/policy counts and selected Inventory grants unchanged (narrower than full RLS/grant/policy/schema/function/configuration scope)
 
-**[INDEPENDENTLY VERIFIED].** RLS remains enabled with byte-identical policy counts across all 16 checked Inventory/Catalog/`businesses` tables, matching Gate 2A-C2's own post-execution baseline exactly (`businesses`=5, `inventory_items`=4, `inventory_movement_idempotency_keys`=2, `inventory_movements`=3, and all 12 `catalog_*` tables unchanged). `anon`/`authenticated`/`service_role`/`catalog_link_executor` grants on all three Inventory tables were re-checked and remain exactly as Gate 2A-C2 left them — in particular, `anon` remains completely absent (the Gate 2A-C2 hardening was not reverted or affected by this gate's activity).
+**[INDEPENDENTLY VERIFIED, narrowly]:** RLS remains enabled with byte-identical *policy counts* across the 16 Inventory/Catalog/`businesses` tables actually checked, matching Gate 2A-C2's own post-execution baseline exactly (`businesses`=5, `inventory_items`=4, `inventory_movement_idempotency_keys`=2, `inventory_movements`=3, and all 12 `catalog_*` tables unchanged). The specific `anon`/`authenticated`/`service_role`/`catalog_link_executor` table-privilege grants on the three Inventory tables were re-checked and remain exactly as Gate 2A-C2 left them — `anon` remains completely absent. **This evidence is limited to the RLS-enabled flag, policy counts, and the specific grants checked on those three tables** — it does not independently establish that no schema, function, trigger, Auth configuration, default privilege, or other configuration surface changed anywhere else. **[HUMAN/OPERATOR-ATTESTED]:** the broader claim that no migration/schema/RLS/policy/grant/role/function/trigger/default-privilege/Auth-configuration change occurred is the human/operator's own confirmation (item 13 of their handoff record), not independently evidenced beyond the narrow scope above.
 
 ### 3.12 Production database health remains normal
 
@@ -141,6 +141,8 @@ Every command issued in this task was read-only: `projects list` and eleven `db 
 2. Business names use a plain hyphen where the instruction specified an em dash — cosmetic only.
 
 Neither affects the fixtures' fitness for the later `F23-01` probe: both owners, both businesses, both Inventory items, and both Catalog products exist, are correctly and exclusively cross-referenced to their own owner, and are unambiguously distinguishable from each other and from real merchant data by name and email alone.
+
+**Why the narrowed evidence boundaries in §3.9–§3.11 do not change the disposition:** every required post-creation criterion concerning the fixtures' own existence, ownership, and shape (§3.1–§3.8) is fully and directly independently verified. The three broader safety claims (no real-merchant modification anywhere, no unrelated data anywhere, no schema/function/configuration change anywhere) rest on the human/operator's own explicit, itemized attestation, and nothing independently checked in this verification contradicts them. H1 does not require every safety claim to be independently re-proven by Claude Code when it is already explicitly attested by the authorized human/operator and no available read-only evidence conflicts with it — it requires that Claude Code not manufacture proof for what it cannot establish, which this report now does not.
 
 ## 7. Recommended Next Gate
 
