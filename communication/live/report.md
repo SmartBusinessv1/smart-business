@@ -4,53 +4,146 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
+**Gate:** `Gate 2A-C3B-D1 — F23-01 Verification-Path Read-Only Diagnosis`
 
-**From:** `Founder / Authorized Human Production Operator`
+**Parent Gate:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
 
-**To:** `Mission Control / Claude Code read-only verifier`
+**From:** `Claude Code — repository-capable read-only diagnostic/verifier`
+
+**To:** `Mission Control`
 
 **In Reply To:** `communication/live/instruction.md`
 
-**Status:** `ACTIVE AFTER HUMAN MERGE — AWAITING AUTHENTICATED READ-ONLY PROBE`
+**Status:** `ACTIVE AFTER HUMAN MERGE — AWAITING READ-ONLY DIAGNOSIS`
 
 **Date:** `2026-08-31`
 
 ---
 
-## Reporting Boundary
+## 1. Preserved Human/Operator Attempt
 
-This report shell is active only for Gate 2A-C3B.
+The first authorized Gate 2A-C3B human/operator probe is preserved as a blocked verification attempt and is not overwritten by this diagnosis.
 
-After this gate's authorization PR is human-reviewed and merged, the Founder / Authorized Human Production Operator may execute only the read-only authenticated cross-tenant probe defined in `communication/live/instruction.md` using the two established F23-01 verification owners and fixtures.
+### Production identity
 
-No production mutation, repair, policy change, application change, parser/bulk-import activation, deployment, publication, merchant exposure, fixture cleanup, or release action is authorized.
+- Project: `gysgzasfcjvtrgaigfyn`
+- Name: `smart-business`
+- Region: `ap-south-1`
 
-Do not include passwords, access tokens, refresh tokens, session cookies, service-role keys, authorization headers, or other secrets in this report.
+### Owner A
 
-## Required Human/Operator Evidence
+Authenticated identity:
 
-Record only the non-secret outcomes required by the active instruction, including:
+- expected: `2eaba621-7a06-497f-b878-2e68c0d0d8b7`
+- actual: `2eaba621-7a06-497f-b878-2e68c0d0d8b7`
 
-- production project identity;
-- Owner A authenticated UUID and own-scope control results;
-- Owner A cross-tenant outcomes against Business B, Inventory B, and Catalog Product B;
-- Owner B authenticated UUID and own-scope control results;
-- Owner B cross-tenant outcomes against Business A, Inventory A, and Catalog Product A;
-- confirmation that every operation was read-only;
-- confirmation that no protected cross-tenant row data was disclosed;
-- confirmation that no credential/session secret was recorded;
-- human/operator result.
+Own-scope results:
 
-After the human/operator evidence is recorded through the approved repository flow, Claude Code may perform only the read-only verification/reporting work authorized by `communication/live/instruction.md` and submit the canonical report through a protected branch and PR.
+- Business A: `SAFE ERROR / DENIAL — HTTP 404`
+- Inventory A: `SAFE ERROR / DENIAL — HTTP 404`
+- Catalog A: `PRODUCT RETURNED: e3c3feb1-b307-4edc-80d8-bd0d51ff31c1`
 
-No self-merge.
+Cross-tenant results:
 
-## Required Final Result
+- Business B: `SAFE ERROR / DENIAL — HTTP 404`
+- Inventory B: `SAFE ERROR / DENIAL — HTTP 404`
+- Catalog B: `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`
 
-The completed canonical report must end with exactly one of:
+### Owner B
 
-- `PASS — F23-01 LIVE CROSS-TENANT READ ISOLATION VERIFIED`
-- `FAIL — F23-01 CROSS-TENANT READ ISOLATION BREACH`
-- `BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
-- `STOP — F23-01 VERIFICATION INCIDENT`
+Authenticated identity:
+
+- expected: `c520961e-f43f-4cba-9e22-b0e4f2256253`
+- actual: `c520961e-f43f-4cba-9e22-b0e4f2256253`
+
+Own-scope results:
+
+- Business B: `SAFE ERROR / DENIAL — HTTP 404`
+- Inventory B: `SAFE ERROR / DENIAL — HTTP 404`
+- Catalog B: `PRODUCT RETURNED: 39e4b06e-de97-4121-97fd-da6d728750e0`
+
+Cross-tenant results:
+
+- Business A: `SAFE ERROR / DENIAL — HTTP 404`
+- Inventory A: `SAFE ERROR / DENIAL — HTTP 404`
+- Catalog A: `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`
+
+Human/operator confirmation supplied to Mission Control:
+
+- the authorized script completed only the read sequence shown above;
+- no repair or additional test was performed after the script's stop boundary;
+- no password/token/session value was supplied to Mission Control.
+
+Mission Control classification:
+
+`BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
+
+Reason:
+
+- Business and Inventory own-scope controls did not succeed, so their cross-tenant 404 outcomes are not interpretable as isolation proof;
+- Catalog own-scope controls succeeded, but the cross-tenant RPC result shape was deliberately not printed, so Catalog cross-tenant non-disclosure was not proven;
+- no protected cross-tenant disclosure was proven by the recorded evidence.
+
+## 2. Diagnostic Boundary
+
+This report may be completed only under the read-only diagnosis authorized by the current instruction.
+
+No authenticated Owner A/Owner B probe replay, mutation, repair, migration, RLS/grant/function change, application change, infrastructure change, release action, or F23 retest is authorized.
+
+## 3. Canonical Baseline
+
+To be completed by Claude Code.
+
+- Exact `main` SHA reviewed:
+- Production project identity:
+- Drift assessment:
+
+## 4. Evidence Inspected
+
+To be completed by Claude Code.
+
+## 5. D1 — Business 404 Diagnosis
+
+To be completed by Claude Code.
+
+## 6. D2 — Inventory 404 Diagnosis
+
+To be completed by Claude Code.
+
+## 7. D3 — Fixture Existence / Relationship Verification
+
+To be completed by Claude Code.
+
+## 8. D4 — Catalog Cross-Tenant Result Contract
+
+To be completed by Claude Code.
+
+## 9. D5 — Protected-Data Risk Classification
+
+To be completed by Claude Code.
+
+## 10. D6 — Retest Eligibility / Smallest Safe Method
+
+To be completed by Claude Code.
+
+## 11. Evidence Classification
+
+Separate:
+
+- independently verified facts;
+- human/operator-attested facts;
+- semantic/documentation inference;
+- unresolved facts.
+
+## 12. No-Mutation / No-Secret Confirmation
+
+To be completed by Claude Code.
+
+## 13. Final Disposition
+
+End with exactly one of:
+
+- `PASS — VERIFICATION PATH DIAGNOSED — F23-01 RETEST ELIGIBLE`
+- `BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
+- `FAIL — MATERIAL SECURITY DEFECT IDENTIFIED`
+- `STOP — DIAGNOSTIC INCIDENT`
