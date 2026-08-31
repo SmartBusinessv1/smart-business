@@ -4,7 +4,7 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Gate:** `Gate 2A-C3B-D1 — F23-01 Verification-Path Read-Only Diagnosis`
+**Gate:** `Gate 2A-C3B-D2 — Business/Inventory HTTP 404 Read-Only Diagnosis`
 
 **Parent Gate:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
 
@@ -12,7 +12,7 @@
 
 **To:** `Claude Code — repository-capable read-only diagnostic/verifier`
 
-**Status:** `ACTIVE AFTER HUMAN MERGE — READ-ONLY DIAGNOSTIC AUTHORIZATION`
+**Status:** `ACTIVE AFTER HUMAN MERGE — NARROW READ-ONLY HTTP-DIAGNOSTIC AUTHORIZATION`
 
 **Date:** `2026-08-31`
 
@@ -20,33 +20,30 @@
 
 ## 1. Trigger
 
-The first authorized human/operator Gate 2A-C3B probe completed without mutation but did not satisfy the PASS criteria.
+Gate 2A-C3B-D1 closed canonically through PR #445 with:
 
-Human/operator evidence established:
+`BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
 
-- production project identity matched `gysgzasfcjvtrgaigfyn / smart-business / ap-south-1`;
-- Owner A authenticated UUID matched `2eaba621-7a06-497f-b878-2e68c0d0d8b7`;
-- Owner B authenticated UUID matched `c520961e-f43f-4cba-9e22-b0e4f2256253`;
-- Owner A own-scope Catalog A returned product `e3c3feb1-b307-4edc-80d8-bd0d51ff31c1`;
-- Owner B own-scope Catalog B returned product `39e4b06e-de97-4121-97fd-da6d728750e0`;
-- Business and Inventory exact-ID reads returned HTTP 404 for both own-scope and cross-tenant requests;
-- both cross-tenant Catalog RPC calls returned a non-empty result shape that the human probe deliberately did not print, recorded only as `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`;
-- no protected cross-tenant row disclosure was proven;
-- the human probe stopped without repair, mutation, privileged bypass, or additional testing.
+D1 independently established that:
 
-Mission Control classification of that attempt:
+- the production fixtures still exist and are correctly owned;
+- the relevant `businesses` and `inventory_items` RLS policies and grants are intact;
+- both relations exist under the expected names;
+- the human probe used the correct PostgREST query-filter request shape: `?id=eq.<uuid>&select=id`;
+- the recorded Business/Inventory own-scope and cross-tenant requests nevertheless returned HTTP 404;
+- the exact cause of those 404 responses remains unresolved.
 
-`BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
+Catalog response semantics are sufficiently understood for a later retest, but Business and Inventory are not yet retest-eligible.
 
-This instruction does not overwrite the blocked attempt. It creates only the narrow read-only diagnosis needed to understand the verification path before any separately authorized retest.
+This instruction authorizes only the smallest additional read-only diagnosis necessary to identify, or sharply bound, the source of the Business/Inventory HTTP 404 behavior.
 
 ## 2. Canonical Baseline
 
-Before diagnosis, verify canonical repository `SmartBusinessv1/smart-business` and STOP if `main` has materially changed from the authorization baseline in a way that affects this gate.
+Before diagnosis, verify canonical repository `SmartBusinessv1/smart-business`.
 
-Authorization baseline SHA:
+Expected authorization baseline:
 
-`a6d5d37f61ad65e8b183270970e522fbb28b6225`
+`c0cb506ffd9dbefbedf85fa995153f8bbe69f07b`
 
 Authorized production Supabase project:
 
@@ -54,161 +51,147 @@ Authorized production Supabase project:
 - name: `smart-business`;
 - region: `ap-south-1`.
 
-The test project `drravyyauixltoihzmwo` is not a substitute for the production evidence under diagnosis.
+STOP if current state has materially changed in a way that affects this gate.
 
 ## 3. Objective
 
-Diagnose, without replaying the owner-authenticated probe and without changing any state:
+Determine, without using Owner A or Owner B credentials and without changing production state, why the prior correctly-shaped requests to:
 
-1. why the approved Business exact-ID PostgREST read path returned HTTP 404 even for the authenticated owner's own existing fixture;
-2. why the approved Inventory exact-ID PostgREST read path returned HTTP 404 even for the authenticated owner's own existing fixture;
-3. what response contract `catalog_product_read(p_product_id)` uses for a cross-tenant/non-readable product and whether the human script's `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED` can be explained as a safe denial/result envelope rather than returned protected product data;
-4. whether the original human probe script/read-path assumptions were incorrect, incomplete, or incompatible with the current production API contract;
-5. the smallest safe read-only retest method, if determinable, that would allow a later human/operator Gate 2A-C3B retest to distinguish own-scope success from cross-tenant non-disclosure without printing secrets or unrelated data.
+- `/rest/v1/businesses?id=eq.<uuid>&select=id`
+- `/rest/v1/inventory_items?id=eq.<uuid>&select=id`
 
-This is diagnosis only. A retest requires a separate Mission Control authorization after this report is reviewed and merged.
+were recorded by the human probe as HTTP 404.
 
-## 4. Authorized Read-Only Evidence Sources
+The diagnosis must focus on the HTTP/PostgREST/API boundary, not re-open already-settled fixture/RLS/grant questions unless new evidence contradicts D1.
 
-Claude Code may inspect only what is necessary, including:
+## 4. Authorized Read-Only Evidence
 
-- canonical repository source and migrations;
-- generated Supabase types;
-- current RLS policies and grants through read-only production catalog queries;
-- function definitions, signatures, ownership/security mode, search path, and EXECUTE grants through read-only production catalog queries;
-- table/schema exposure and PostgREST-relevant grants through read-only production metadata queries;
-- current production project identity/health;
-- non-secret API/server logs only if they can be inspected without exposing credentials or unrelated merchant payloads;
-- prior canonical H1/Gate 2A evidence necessary to reconcile fixture existence and known policy state.
+Claude Code may use only the minimum necessary read-only sources:
 
-Read-only unrestricted SQL may be used for metadata/evidence reconciliation only. It must not be used to simulate Owner A or Owner B and must not substitute for the later authenticated human probe.
+1. canonical repository and prior Gate 2A-C3B/D1 evidence;
+2. current production project identity and health;
+3. non-secret Supabase API/PostgREST logs from the relevant time window, where available;
+4. non-secret request metadata such as request path, method, status, PostgREST error code/class, response content type, and safe response body fields that do not expose merchant data or credentials;
+5. current PostgREST/API schema-exposure or routing configuration through supported read-only project/config/metadata paths, if available;
+6. narrowly scoped unauthenticated or publishable-key-only read-only route-existence probes against the two synthetic fixture IDs, only if needed to distinguish route/schema-cache behavior from authorization behavior.
 
-## 5. Required Diagnostic Questions
+Any diagnostic HTTP probe must be `GET`, `HEAD`, or `OPTIONS` only. It must use no Owner A/Owner B token, no service-role key, no database-owner simulation, and no real merchant identifier.
 
-Answer each explicitly.
+A publishable/anon-key route probe is not an F23-01 isolation retest and must not be interpreted as owner-level RLS evidence.
 
-### D1 — Business 404
+## 5. Required Questions
 
-Determine the most evidence-supported cause of the Business own-scope HTTP 404.
+### H1 — Exact prior HTTP evidence
 
-Distinguish at minimum between:
+If logs preserve the original probe requests, determine for Business and Inventory:
 
-- REST route/schema exposure issue;
-- table/role grant issue;
-- RLS result behavior;
-- malformed request/path assumption;
-- table name/API contract mismatch;
-- another evidenced cause.
+- exact request method/path shape;
+- HTTP status;
+- PostgREST/Supabase error code or class, if any;
+- safe response-body/error-message fields, if available;
+- whether the 404 originated from PostgREST routing/schema cache, an upstream API layer, or another evidenced component.
 
-Do not infer from HTTP code alone.
+Do not record authorization headers, JWTs, cookies, passwords, or keys.
 
-### D2 — Inventory 404
+### H2 — Route/schema exposure
 
-Perform the same diagnosis for `inventory_items`.
+Determine whether `public.businesses` and `public.inventory_items` are currently exposed through the production PostgREST API route expected by the application.
 
-Determine whether the cause is the same as Business or different.
+Distinguish between:
 
-### D3 — Own-Scope Fixture Existence
+- relation exists in PostgreSQL;
+- relation is exposed through PostgREST;
+- route is reachable;
+- role is authorized to read rows.
 
-Read-only independently confirm that the exact Business A/B and Inventory A/B fixture rows still exist in production under the expected ownership/business relationships.
+Do not treat these as the same fact.
 
-Do not mutate or recreate anything.
+### H3 — Safe route probe
 
-### D4 — Catalog Cross-Tenant Result Contract
+If logs/config are insufficient, perform the smallest safe non-owner route-existence probe necessary.
 
-Inspect `catalog_product_read(p_product_id)` and determine the exact safe response shape for:
+The probe may confirm only route behavior and error class. It must not use Owner A/B credentials or attempt to prove tenant isolation.
 
-- an authorized own-scope product;
-- a non-readable/cross-tenant product;
-- not-found or governed denial where applicable.
+### H4 — Root-cause classification
 
-Determine whether a non-empty JSON envelope can represent a safe non-disclosure outcome.
+Classify the 404 cause as one of:
 
-Do not claim the actual human cross-tenant payload contents unless evidence exists. The human script intentionally did not record them.
+- `CONFIRMED — POSTGREST ROUTE/SCHEMA EXPOSURE`
+- `CONFIRMED — API/REQUEST CONSTRUCTION OUTSIDE ID FILTER`
+- `CONFIRMED — UPSTREAM/API GATEWAY BEHAVIOR`
+- `CONFIRMED — OTHER EVIDENCED CAUSE`
+- `UNRESOLVED — INSUFFICIENT READ-ONLY EVIDENCE`
 
-### D5 — Protected-Data Risk
+Do not infer a cause solely from HTTP status.
 
-Determine whether any evidence currently proves protected cross-tenant data disclosure.
+### H5 — Retest readiness
 
-If none, say exactly that. Do not convert ambiguity into PASS.
+State whether Business/Inventory can now be safely retested and, if yes, provide the exact smallest human probe adjustment required.
 
-If a material security defect is independently identified, classify it and STOP; no repair is authorized.
+A recommendation may change request headers, safe response/error parsing, schema header, or endpoint construction only if directly supported by evidence.
 
-### D6 — Retest Eligibility
-
-If the diagnosis is sufficient, provide the exact smallest change to the human read-only verification method needed for a later retest.
-
-The recommendation may adjust request paths or safe response parsing only.
-
-It must not require:
-
-- service-role impersonation;
-- database-owner simulation of owner sessions;
-- new fixtures;
-- schema/RLS/grant/function changes;
-- application changes;
-- privileged bypass.
+No database/application repair is authorized.
 
 ## 6. Explicitly Not Authorized
 
-This diagnosis does not authorize:
+This gate does not authorize:
 
-- replaying Owner A or Owner B authenticated sessions;
-- requesting or receiving either owner's password, token, cookie, refresh token, recovery link, or authorization header;
-- `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, DDL, mutation RPCs, fixture cleanup, or any other production mutation;
-- creating/editing/deleting Auth users or fixtures;
+- Owner A or Owner B authentication/session replay;
+- requesting or receiving Owner credentials or tokens;
+- service-role impersonation or privileged owner simulation;
+- F23-01 retest;
+- production `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, mutation RPC, or DDL;
+- fixture creation/edit/cleanup;
 - migration creation or execution;
-- RLS, policy, grant, role, function, trigger, schema, default-privilege, Auth, OAuth, or secret changes;
-- application-code changes;
-- Lovable changes;
+- RLS, policy, grant, schema, role, function, trigger, Auth, OAuth, default-privilege, secret, or API configuration changes;
+- application or Lovable changes;
 - AWS/Lambda/parser/bulk-import changes;
 - Cloudflare/DNS/domain changes;
 - deployment, publication, release, or merchant exposure;
-- F23-01 retest;
 - F23-02/F23-03/F23-04 progression;
 - Product Truth changes;
-- reopening SB-P-1.10 or SB-P-1.11;
-- starting another Product Mission;
+- reopening accepted Product Missions;
 - self-merge.
+
+If diagnosis reveals that a configuration or implementation change is required, record that fact and STOP. Do not perform the change.
 
 ## 7. Evidence Precision
 
-Separate every material statement as one of:
+Tag material claims as:
 
-- independently verified;
-- human/operator-attested;
-- inferred from documented/runtime semantics;
-- unresolved.
+- `[INDEPENDENTLY VERIFIED]`
+- `[HUMAN/OPERATOR-ATTESTED]`
+- `[INFERRED FROM DOCUMENTED/RUNTIME SEMANTICS]`
+- `[UNRESOLVED]`
 
-Do not claim the human Catalog cross-tenant payload was safe merely because the script printed `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`.
-
-Do not claim Business/Inventory isolation from matching 404 outcomes because own-scope controls also returned 404.
+Preserve the prior blocked F23-01 attempt and D1 result. Do not rewrite either as PASS.
 
 ## 8. Required Report
 
 Update `communication/live/report.md` with:
 
-1. exact canonical `main` SHA reviewed;
-2. production identity verified;
+1. canonical SHA reviewed;
+2. production identity/health;
 3. evidence inspected;
-4. answers D1–D6;
+4. H1–H5 answers;
 5. whether any material security defect is proven;
-6. exact retest recommendation if eligible;
-7. no-mutation/no-secret confirmation;
-8. final disposition.
+6. whether any configuration/implementation correction appears necessary;
+7. exact retest recommendation, if eligible;
+8. no-mutation/no-secret/no-owner-session confirmation;
+9. final disposition.
 
-The report must end with exactly one of:
+End with exactly one of:
 
-- `PASS — VERIFICATION PATH DIAGNOSED — F23-01 RETEST ELIGIBLE`
-- `BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
-- `FAIL — MATERIAL SECURITY DEFECT IDENTIFIED`
-- `STOP — DIAGNOSTIC INCIDENT`
+- `PASS — HTTP 404 CAUSE DIAGNOSED — BUSINESS/INVENTORY RETEST ELIGIBLE`
+- `BLOCKED — HTTP 404 DIAGNOSIS INCONCLUSIVE`
+- `FAIL — MATERIAL SECURITY OR API-BOUNDARY DEFECT IDENTIFIED`
+- `STOP — HTTP DIAGNOSTIC INCIDENT`
 
-Submit the report through a protected branch and PR. Do not self-merge.
+Submit through a protected branch and PR. Do not self-merge.
 
 ## 9. Continuation Boundary
 
-A diagnostic PASS does not itself rerun or close F23-01.
+A PASS here does not retest or close F23-01.
 
 It makes only a separately authorized human/operator F23-01 retest eligible for Mission Control consideration.
 
@@ -216,4 +199,4 @@ No downstream release-readiness authority is created.
 
 ---
 
-**Mission Control boundary:** explain the failed verification path with read-only evidence; do not repair, replay owner sessions, retest F23-01, or advance release readiness.
+**Mission Control boundary:** diagnose the Business/Inventory HTTP 404 mechanism using only non-owner read-only evidence; do not repair, replay owner sessions, retest F23-01, or advance release readiness.
