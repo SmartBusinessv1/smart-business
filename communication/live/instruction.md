@@ -4,286 +4,216 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Mission Name:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
+**Gate:** `Gate 2A-C3B-D1 — F23-01 Verification-Path Read-Only Diagnosis`
+
+**Parent Gate:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
 
 **From:** Mission Control
 
-**To:** `Founder / Authorized Human Production Operator`, with Claude Code as repository-capable read-only verifier/reporting operator
+**To:** `Claude Code — repository-capable read-only diagnostic/verifier`
 
-**Status:** `ACTIVE AFTER HUMAN MERGE — READ-ONLY LIVE CROSS-TENANT VERIFICATION AUTHORIZATION`
+**Status:** `ACTIVE AFTER HUMAN MERGE — READ-ONLY DIAGNOSTIC AUTHORIZATION`
 
 **Date:** `2026-08-31`
 
 ---
 
-## Context
+## 1. Trigger
 
-Gate 2A-C3A-H1 is canonically complete with:
+The first authorized human/operator Gate 2A-C3B probe completed without mutation but did not satisfy the PASS criteria.
 
-`PASS — F23-01 PRODUCTION-SAFE TEST PREREQUISITE ESTABLISHED`
+Human/operator evidence established:
 
-The accepted H1 report was merged through PR #442 at canonical `main` commit:
+- production project identity matched `gysgzasfcjvtrgaigfyn / smart-business / ap-south-1`;
+- Owner A authenticated UUID matched `2eaba621-7a06-497f-b878-2e68c0d0d8b7`;
+- Owner B authenticated UUID matched `c520961e-f43f-4cba-9e22-b0e4f2256253`;
+- Owner A own-scope Catalog A returned product `e3c3feb1-b307-4edc-80d8-bd0d51ff31c1`;
+- Owner B own-scope Catalog B returned product `39e4b06e-de97-4121-97fd-da6d728750e0`;
+- Business and Inventory exact-ID reads returned HTTP 404 for both own-scope and cross-tenant requests;
+- both cross-tenant Catalog RPC calls returned a non-empty result shape that the human probe deliberately did not print, recorded only as `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`;
+- no protected cross-tenant row disclosure was proven;
+- the human probe stopped without repair, mutation, privileged bypass, or additional testing.
 
-`86819258b0d7e8babb3acb304393c3ec5ec78853`
+Mission Control classification of that attempt:
 
-The verified production fixture set now exists specifically so Smart Business can perform the previously blocked `F23-01` cross-tenant read-isolation verification without using real merchant identities or data.
+`BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
 
-This gate authorizes only that read-isolation verification.
+This instruction does not overwrite the blocked attempt. It creates only the narrow read-only diagnosis needed to understand the verification path before any separately authorized retest.
 
-## Canonical Production Identity
+## 2. Canonical Baseline
+
+Before diagnosis, verify canonical repository `SmartBusinessv1/smart-business` and STOP if `main` has materially changed from the authorization baseline in a way that affects this gate.
+
+Authorization baseline SHA:
+
+`a6d5d37f61ad65e8b183270970e522fbb28b6225`
 
 Authorized production Supabase project:
 
-`gysgzasfcjvtrgaigfyn`
+- project ID: `gysgzasfcjvtrgaigfyn`;
+- name: `smart-business`;
+- region: `ap-south-1`.
 
-Project name:
+The test project `drravyyauixltoihzmwo` is not a substitute for the production evidence under diagnosis.
 
-`smart-business`
+## 3. Objective
 
-Region:
+Diagnose, without replaying the owner-authenticated probe and without changing any state:
 
-`ap-south-1`
+1. why the approved Business exact-ID PostgREST read path returned HTTP 404 even for the authenticated owner's own existing fixture;
+2. why the approved Inventory exact-ID PostgREST read path returned HTTP 404 even for the authenticated owner's own existing fixture;
+3. what response contract `catalog_product_read(p_product_id)` uses for a cross-tenant/non-readable product and whether the human script's `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED` can be explained as a safe denial/result envelope rather than returned protected product data;
+4. whether the original human probe script/read-path assumptions were incorrect, incomplete, or incompatible with the current production API contract;
+5. the smallest safe read-only retest method, if determinable, that would allow a later human/operator Gate 2A-C3B retest to distinguish own-scope success from cross-tenant non-disclosure without printing secrets or unrelated data.
 
-STOP if the production project identity is ambiguous or differs from the above.
+This is diagnosis only. A retest requires a separate Mission Control authorization after this report is reviewed and merged.
 
-## Authorized Verification Identities and Fixtures
+## 4. Authorized Read-Only Evidence Sources
 
-Use only the existing synthetic verification identities and fixtures below.
+Claude Code may inspect only what is necessary, including:
 
-### Owner A
+- canonical repository source and migrations;
+- generated Supabase types;
+- current RLS policies and grants through read-only production catalog queries;
+- function definitions, signatures, ownership/security mode, search path, and EXECUTE grants through read-only production catalog queries;
+- table/schema exposure and PostgREST-relevant grants through read-only production metadata queries;
+- current production project identity/health;
+- non-secret API/server logs only if they can be inspected without exposing credentials or unrelated merchant payloads;
+- prior canonical H1/Gate 2A evidence necessary to reconcile fixture existence and known policy state.
 
-- Auth UUID: `2eaba621-7a06-497f-b878-2e68c0d0d8b7`
-- Email: `sb-f23-01-verification-owner-a@teamlips.com`
-- Business A: `8c3e977f-b6b0-43a0-8b13-a04381d7bf4c`
-- Inventory Item A: `64c2e6d3-8e44-4be1-ab83-a83f3f83a62e`
-- Catalog Product A: `e3c3feb1-b307-4edc-80d8-bd0d51ff31c1`
+Read-only unrestricted SQL may be used for metadata/evidence reconciliation only. It must not be used to simulate Owner A or Owner B and must not substitute for the later authenticated human probe.
 
-### Owner B
+## 5. Required Diagnostic Questions
 
-- Auth UUID: `c520961e-f43f-4cba-9e22-b0e4f2256253`
-- Email: `sb-f23-01-verification-owner-b@teamlips.com`
-- Business B: `bed8bd00-dd1e-42f9-b155-c50d34427a2a`
-- Inventory Item B: `123132f5-d88d-4511-8f7d-792fe3e5b18b`
-- Catalog Product B: `39e4b06e-de97-4121-97fd-da6d728750e0`
+Answer each explicitly.
 
-Do not create replacement users, businesses, Inventory items, Catalog products, or any additional fixture data.
+### D1 — Business 404
 
-## Authorized Objective
+Determine the most evidence-supported cause of the Business own-scope HTTP 404.
 
-Prove, using authenticated production requests from the two controlled verification owners, that each owner can read its own authorized fixture data but cannot read the other verification owner's corresponding business-scoped data.
+Distinguish at minimum between:
 
-This is a live RLS/permission verification.
+- REST route/schema exposure issue;
+- table/role grant issue;
+- RLS result behavior;
+- malformed request/path assumption;
+- table name/API contract mismatch;
+- another evidenced cause.
 
-It is not a data-mutation test.
+Do not infer from HTTP code alone.
 
-It is not an application release test.
+### D2 — Inventory 404
 
-## Security Boundary
+Perform the same diagnosis for `inventory_items`.
 
-Passwords, access tokens, refresh tokens, session cookies, recovery links, service-role keys, and other credentials must remain private to the authorized human/operator environment.
+Determine whether the cause is the same as Business or different.
 
-Do not paste or commit any credential or session value into:
+### D3 — Own-Scope Fixture Existence
 
-- Git;
-- PR text;
-- screenshots;
-- chat;
-- `communication/live/report.md`.
+Read-only independently confirm that the exact Business A/B and Inventory A/B fixture rows still exist in production under the expected ownership/business relationships.
 
-Claude Code must not request or receive these secrets.
+Do not mutate or recreate anything.
 
-The human/operator may authenticate each synthetic owner using the supported Supabase Auth client/API path and run only the read-only requests authorized below.
+### D4 — Catalog Cross-Tenant Result Contract
 
-## Required Test Sequence
+Inspect `catalog_product_read(p_product_id)` and determine the exact safe response shape for:
 
-Run the tests in both directions.
+- an authorized own-scope product;
+- a non-readable/cross-tenant product;
+- not-found or governed denial where applicable.
 
-### Phase A — Owner A Own-Scope Control
+Determine whether a non-empty JSON envelope can represent a safe non-disclosure outcome.
 
-Authenticate as Owner A and confirm the returned authenticated user identity is exactly:
+Do not claim the actual human cross-tenant payload contents unless evidence exists. The human script intentionally did not record them.
 
-`2eaba621-7a06-497f-b878-2e68c0d0d8b7`
+### D5 — Protected-Data Risk
 
-Then perform read-only own-scope controls for:
+Determine whether any evidence currently proves protected cross-tenant data disclosure.
 
-1. Business A by exact UUID;
-2. Inventory Item A by exact UUID;
-3. Catalog Product A through the supported `catalog_product_read` RPC.
+If none, say exactly that. Do not convert ambiguity into PASS.
 
-The own-scope controls must succeed before any Owner A cross-tenant probe is interpreted.
+If a material security defect is independently identified, classify it and STOP; no repair is authorized.
 
-### Phase B — Owner A Cross-Tenant Probe
+### D6 — Retest Eligibility
 
-While still authenticated as Owner A, attempt read-only access to exactly:
+If the diagnosis is sufficient, provide the exact smallest change to the human read-only verification method needed for a later retest.
 
-1. Business B by exact UUID;
-2. Inventory Item B by exact UUID;
-3. Catalog Product B through the supported `catalog_product_read` RPC.
+The recommendation may adjust request paths or safe response parsing only.
 
-PASS condition:
+It must not require:
 
-Owner A receives no Business B, Inventory Item B, or Catalog Product B data.
+- service-role impersonation;
+- database-owner simulation of owner sessions;
+- new fixtures;
+- schema/RLS/grant/function changes;
+- application changes;
+- privileged bypass.
 
-Acceptable isolation outcomes include an empty result, not-found result, or governed authorization denial, provided no protected row fields are disclosed.
+## 6. Explicitly Not Authorized
 
-Do not treat differing safe-denial status codes by themselves as a failure if no cross-tenant data is disclosed.
-
-### Phase C — Owner B Own-Scope Control
-
-Authenticate as Owner B and confirm the returned authenticated user identity is exactly:
-
-`c520961e-f43f-4cba-9e22-b0e4f2256253`
-
-Then perform read-only own-scope controls for:
-
-1. Business B by exact UUID;
-2. Inventory Item B by exact UUID;
-3. Catalog Product B through the supported `catalog_product_read` RPC.
-
-The own-scope controls must succeed before any Owner B cross-tenant probe is interpreted.
-
-### Phase D — Owner B Cross-Tenant Probe
-
-While still authenticated as Owner B, attempt read-only access to exactly:
-
-1. Business A by exact UUID;
-2. Inventory Item A by exact UUID;
-3. Catalog Product A through the supported `catalog_product_read` RPC.
-
-PASS condition:
-
-Owner B receives no Business A, Inventory Item A, or Catalog Product A data.
-
-Acceptable isolation outcomes include an empty result, not-found result, or governed authorization denial, provided no protected row fields are disclosed.
-
-## Approved Read Paths
-
-Use the narrowest supported authenticated read path already established during H1:
-
-- Business: authenticated PostgREST read filtered by exact `id`;
-- Inventory: authenticated PostgREST read filtered by exact `id`;
-- Catalog: supported `catalog_product_read(p_product_id)` RPC.
-
-Do not use service-role authority or unrestricted database-owner SQL to simulate the owner sessions for the F23-01 result.
-
-Read-only unrestricted SQL may be used later by Claude Code only for evidence reconciliation that does not substitute for the actual owner-authenticated probe.
-
-## Required Human/Operator Evidence
-
-Return only non-secret evidence sufficient to establish:
-
-- verified production project identity;
-- Owner A authenticated identity UUID;
-- Owner A own-scope Business A result;
-- Owner A own-scope Inventory A result;
-- Owner A own-scope Catalog A result;
-- Owner A cross-tenant Business B outcome;
-- Owner A cross-tenant Inventory B outcome;
-- Owner A cross-tenant Catalog B outcome;
-- Owner B authenticated identity UUID;
-- Owner B own-scope Business B result;
-- Owner B own-scope Inventory B result;
-- Owner B own-scope Catalog B result;
-- Owner B cross-tenant Business A outcome;
-- Owner B cross-tenant Inventory A outcome;
-- Owner B cross-tenant Catalog A outcome;
-- confirmation that every operation was read-only;
-- confirmation that no credential or session secret was recorded;
-- final human/operator result.
-
-Where useful, record HTTP status or error class, but do not record tokens, headers containing secrets, or verbose payloads that expose unrelated data.
-
-## Claude Code Verification and Canonical Reporting
-
-After the human/operator completes the authenticated probe and records the non-secret evidence in `communication/live/report.md` through the approved repository flow, Claude Code may:
-
-1. perform full repository intake;
-2. review the human/operator evidence against this instruction;
-3. independently verify only read-only facts that its approved capabilities can prove without receiving owner credentials;
-4. distinguish authenticated human/operator observations from independently re-provable database/repository facts;
-5. update `communication/live/report.md` with the canonical Gate 2A-C3B result;
-6. submit the report through a protected branch and PR;
-7. not self-merge.
-
-Claude Code must not replay the authenticated cross-tenant probes unless Mission Control separately authorizes a safe credential/session mechanism that preserves the security boundary above.
-
-## PASS Criteria
-
-Gate 2A-C3B may PASS only if all of the following are true:
-
-1. Owner A own-scope controls succeed.
-2. Owner B own-scope controls succeed.
-3. Owner A cannot read Business B.
-4. Owner A cannot read Inventory Item B.
-5. Owner A cannot read Catalog Product B through the supported Catalog read contract.
-6. Owner B cannot read Business A.
-7. Owner B cannot read Inventory Item A.
-8. Owner B cannot read Catalog Product A through the supported Catalog read contract.
-9. No cross-tenant protected row data is disclosed during any denial.
-10. No mutation occurs.
-11. No real merchant identity or data is used for the probe.
-12. No schema, RLS, grant, policy, function, trigger, Auth configuration, migration, application, deployment, parser, infrastructure, or release state is changed.
-
-Any cross-tenant protected-data disclosure is a FAIL and a security blocker.
-
-## Required Final Result
-
-The canonical report must end with exactly one of:
-
-- `PASS — F23-01 LIVE CROSS-TENANT READ ISOLATION VERIFIED`
-- `FAIL — F23-01 CROSS-TENANT READ ISOLATION BREACH`
-- `BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE`
-- `STOP — F23-01 VERIFICATION INCIDENT`
-
-## Explicitly Not Authorized
-
-This gate does not authorize:
-
-- any `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, mutation RPC, or destructive operation;
-- creation, editing, or deletion of Auth users or business fixtures;
-- fixture cleanup;
-- use of real merchant identities or data for testing;
-- service-role impersonation of owner sessions;
-- direct SQL mutation;
-- migration creation/execution/repair/reconciliation;
-- RLS, policy, grant, role, function, trigger, schema, default-privilege, Auth-configuration, OAuth, or secret changes;
+This diagnosis does not authorize:
+
+- replaying Owner A or Owner B authenticated sessions;
+- requesting or receiving either owner's password, token, cookie, refresh token, recovery link, or authorization header;
+- `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, DDL, mutation RPCs, fixture cleanup, or any other production mutation;
+- creating/editing/deleting Auth users or fixtures;
+- migration creation or execution;
+- RLS, policy, grant, role, function, trigger, schema, default-privilege, Auth, OAuth, or secret changes;
 - application-code changes;
 - Lovable changes;
-- deployment or publication;
-- parser or bulk-import activation;
-- AWS, Lambda, S3, IAM, Roles Anywhere, Cloudflare, DNS, WAF, certificate, or environment-variable changes;
-- product release execution;
-- Founder release approval by inference;
+- AWS/Lambda/parser/bulk-import changes;
+- Cloudflare/DNS/domain changes;
+- deployment, publication, release, or merchant exposure;
+- F23-01 retest;
+- F23-02/F23-03/F23-04 progression;
 - Product Truth changes;
-- reopening SB-P-1.10 or SB-P-1.11 lifecycle stages;
-- starting SB-P-1.12;
-- self-approval or self-merge.
+- reopening SB-P-1.10 or SB-P-1.11;
+- starting another Product Mission;
+- self-merge.
 
-## Stop Conditions
+## 7. Evidence Precision
 
-STOP and report without improvisation if:
+Separate every material statement as one of:
 
-- production project identity is ambiguous;
-- either verification owner cannot authenticate through the supported Auth path;
-- authenticated identity UUID does not match the intended owner;
-- own-scope controls fail before the corresponding cross-tenant probe;
-- a requested read path would require a mutation or privileged bypass;
-- any cross-tenant response exposes protected row data;
-- the test unexpectedly affects real merchant data;
-- production health degrades;
-- credentials or session secrets are exposed;
-- a Critical/High security concern appears.
+- independently verified;
+- human/operator-attested;
+- inferred from documented/runtime semantics;
+- unresolved.
 
-A STOP or FAIL does not authorize repair, policy changes, cleanup, retesting through a different privileged path, or scope expansion.
+Do not claim the human Catalog cross-tenant payload was safe merely because the script printed `RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED`.
 
-## Continuation Boundary
+Do not claim Business/Inventory isolation from matching 404 outcomes because own-scope controls also returned 404.
 
-A PASS closes only the F23-01 live cross-tenant read-isolation requirement within Gate 2A Security & Isolation.
+## 8. Required Report
 
-It does not by itself close all Gate 2 release readiness work and does not authorize release, deployment, parser/bulk-import activation, merchant exposure, or Founder production acceptance.
+Update `communication/live/report.md` with:
 
-Mission Control must review the canonical result before authorizing any next release-readiness gate.
+1. exact canonical `main` SHA reviewed;
+2. production identity verified;
+3. evidence inspected;
+4. answers D1–D6;
+5. whether any material security defect is proven;
+6. exact retest recommendation if eligible;
+7. no-mutation/no-secret confirmation;
+8. final disposition.
+
+The report must end with exactly one of:
+
+- `PASS — VERIFICATION PATH DIAGNOSED — F23-01 RETEST ELIGIBLE`
+- `BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
+- `FAIL — MATERIAL SECURITY DEFECT IDENTIFIED`
+- `STOP — DIAGNOSTIC INCIDENT`
+
+Submit the report through a protected branch and PR. Do not self-merge.
+
+## 9. Continuation Boundary
+
+A diagnostic PASS does not itself rerun or close F23-01.
+
+It makes only a separately authorized human/operator F23-01 retest eligible for Mission Control consideration.
+
+No downstream release-readiness authority is created.
 
 ---
 
-**Mission Control boundary:** Gate 2A-C3B authorizes a read-only, two-direction authenticated production isolation probe using only the established synthetic verification identities and fixtures. No mutation, repair, release, or merchant exposure authority is created.
+**Mission Control boundary:** explain the failed verification path with read-only evidence; do not repair, replay owner sessions, retest F23-01, or advance release readiness.
