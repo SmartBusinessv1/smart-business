@@ -121,8 +121,9 @@ All evidence below was gathered read-only, without authenticating as Owner A, Ow
 8. Role-level PostgREST-relevant GUC overrides (`pg_db_role_setting`) on the `authenticator` and `postgres` roles.
 9. Repository source: `src/integrations/supabase/inventory.ts` (the app's own supported read pattern), the Gate 2A-C1 hardening migration, the `businesses`/`inventory_items`/catalog schema and function migrations, and the prior Gate 2A-C3A-H1/Gate 2A-C3B instruction and report history for fixture-ID and evidence continuity.
 10. The Gate 2A-C3B instruction's own "Approved Read Paths" section, confirming the intended request shape (PostgREST GET filtered by exact `id`; Catalog via the `catalog_product_read` RPC).
+11. Mission Control's review of the prior version of this report, which disclosed the literal request-filter form the human/operator's probe script used for Business/Inventory reads: `$SupabaseUrl/rest/v1/$Table?id=eq.$Id&select=id` — a standard PostgREST query-filter request, not a path-segment request.
 
-The human/operator's original probe script itself was not committed to the repository at any point and is not available for direct inspection; where a conclusion depends on its exact request code, that is marked **[UNRESOLVED]** below rather than asserted.
+The human/operator's original probe script itself was not committed to the repository at any point and remains otherwise unavailable for direct line-by-line inspection; item 11 above is the one exception (its literal request-filter form was disclosed to this diagnosis by Mission Control, not independently observed by this diagnosis, and is tagged **[HUMAN/OPERATOR-ATTESTED]** accordingly). Where a conclusion still depends on parts of the script this diagnosis cannot see, that is marked **[UNRESOLVED]** below rather than asserted.
 
 ## 5. D1 — Business 404 Diagnosis
 
@@ -134,15 +135,17 @@ The human/operator's original probe script itself was not committed to the repos
 
 **[INDEPENDENTLY VERIFIED, narrowly] Inconclusive on schema-exposure config.** No `pgrst.db_schemas` (or related) GUC override was found on the `authenticator` role. This is consistent with default single-schema (`public`) exposure but is not, by itself, positive proof of the exact PostgREST-exposed-schema configuration, since Supabase's schema-exposure setting is primarily a Management-API/project-config value rather than a role-level GUC this diagnosis can read directly.
 
-**[INFERRED FROM DOCUMENTED/RUNTIME SEMANTICS] Most evidence-supported cause: malformed request/path assumption or table-name/API-contract mismatch in the verification script itself, not a database-side defect.** PostgREST's REST convention is exact-ID filtering via a query parameter (`GET /rest/v1/businesses?id=eq.<uuid>`), never a path-segment resource ID (`GET /rest/v1/businesses/<uuid>`) — the latter is a common and easy assumption to carry over from typical path-based REST-API conventions, and PostgREST returns HTTP 404 ("relation/route not found in schema cache", PGRST205-class) when the requested route does not resolve to a known relation, as distinct from the 200/`[]` (denied-but-valid-route) or 406/PGRST116 (singular-representation zero-row) responses a correctly-shaped request would produce. This single explanation is also the only one of the candidate causes that uniformly accounts for **all four** Business outcomes recorded (Owner A own-scope, Owner A cross-tenant, Owner B own-scope, Owner B cross-tenant all returned identical 404s) without requiring RLS, grants, or schema state to differ between the own-scope and cross-tenant halves of the same authenticated session — which the evidence in §1 shows they do not.
+**[HUMAN/OPERATOR-ATTESTED] Path-segment/route-mismatch theory withdrawn.** Mission Control has disclosed that the probe script's actual Business/Inventory requests used the standard PostgREST query-filter form (`$SupabaseUrl/rest/v1/$Table?id=eq.$Id&select=id`), not a path-segment resource ID. The request-shape theory in the prior version of this report was therefore factually incorrect and is withdrawn, not merely softened.
 
-**[UNRESOLVED]** The exact literal request the script issued cannot be confirmed: the script was not committed to the repository and its code was not available to this diagnosis. This diagnosis identifies the most evidence-supported *class* of cause (client-side request-shape/route mismatch) and independently rules out every database-side alternative Mission Control listed, but cannot cite the literal line of code responsible.
+**[UNRESOLVED] Cause of the four HTTP 404s.** With RLS, grants, relation identity, and request shape all independently ruled out or confirmed correct, no evidence available to this diagnosis explains why a correctly-shaped, RLS-permissive, fully-granted own-scope request returned HTTP 404 rather than the expected row (or, for the cross-tenant half, why it returned 404 rather than the 200/`[]` an RLS-driven denial would normally produce). This diagnosis does not have — and this turn is not authorized to gather — the additional read-only evidence (e.g. the exact response headers/PostgREST error `code` the script received, or the request's `apikey`/`Authorization` headers) that would be needed to settle this. The cause remains genuinely unresolved, not merely unconfirmed.
 
 ## 6. D2 — Inventory 404 Diagnosis
 
 **[INDEPENDENTLY VERIFIED]** The same exclusions apply, on the same evidence pattern, to `public.inventory_items`: its live `SELECT` policy (`"Owners can view their inventory items"`, `USING (business_id IN (SELECT id FROM businesses WHERE owner_id = auth.uid()))`) is unchanged and would permit Owner A's own-scope Inventory Item A read; `authenticated` holds full table-level `SELECT`; the relation exists as an ordinary table under its exact expected name with no shadowing singular relation. All four Inventory outcomes (both owners, own-scope and cross-tenant) returned identical 404s, the same uniform pattern as Business.
 
-**[INFERRED FROM DOCUMENTED/RUNTIME SEMANTICS] The cause is the same as Business, not a different, table-specific defect.** Both tables use the identical approved read path (PostgREST GET filtered by exact `id`), both show the identical all-four-combinations-404 pattern, and both have RLS/grant/relation-identity evidence that rules out a database-side explanation. There is no evidence distinguishing a Business-specific defect from an Inventory-specific one; the single most evidence-consistent explanation is one shared request-shape/route issue in the verification method that affected both tables identically.
+**[HUMAN/OPERATOR-ATTESTED]** Mission Control's disclosure of the actual request-filter form (§4 item 11) applies to Inventory identically to Business — both used the same `?id=eq.<Id>&select=id` query-filter shape. The path-segment theory is withdrawn here for the same reason as §5.
+
+**[UNRESOLVED] Whether the cause is the same as Business.** Both tables use the identical approved read path, show the identical all-four-combinations-404 pattern, and have identical RLS/grant/relation-identity evidence ruling out a database-side explanation. That symmetry is consistent with one shared cause affecting both tables identically, but this diagnosis has no independent way to confirm they share a single root cause rather than two coincidentally-identical ones. The cause itself — shared or not — is unresolved, for the same reason given in §5.
 
 ## 7. D3 — Fixture Existence / Relationship Verification
 
@@ -169,7 +172,7 @@ No cross-linkage exists: neither Inventory item nor Catalog product references t
 4. If no row matches, returns SQL `NULL` — with an explicit source comment: *"Unauthenticated caller and nonexistent/foreign product both produce the same NULL result — no existence-leaking branch."*
 5. Only on a match does it return the full product-detail JSON (via `SECURITY DEFINER`, bypassing table RLS entirely by design, in favor of this explicit ownership predicate).
 
-**[INDEPENDENTLY VERIFIED] Safe by construction, not merely by convention:** because step 3's predicate requires the *target* row's `business_id` to equal the *caller's own* resolved business, a cross-tenant call (Owner A resolving to Business A, requesting Product B, whose `business_id` is Business B) cannot match any row under any circumstance — the query returns zero rows purely from the `WHERE` clause, before any "is this mine?" check would even be needed. There is no code path in this function that can return another tenant's product fields.
+**[INDEPENDENTLY VERIFIED] Safe by construction, not merely by convention, under the inspected deployed function/helper definitions and expected authenticated owner resolution:** because step 3's predicate requires the *target* row's `business_id` to equal the *caller's own* resolved business, a cross-tenant call (Owner A resolving to Business A, requesting Product B, whose `business_id` is Business B) cannot match any row under the `catalog_product_read` / `current_actor_uid` / `resolve_owner_business` logic as deployed and inspected here — the query returns zero rows purely from the `WHERE` clause, before any "is this mine?" check would even be needed. This claim is bounded to that inspected code path; it does not extend to any other route, helper, or future code change not inspected by this diagnosis.
 
 **[INFERRED FROM DOCUMENTED/RUNTIME SEMANTICS]** A PostgREST RPC call to a function that returns a scalar `NULL` is serialized as HTTP 200 with a JSON response body containing the literal value `null` — this is a "result" in the sense that the HTTP call succeeds and returns a body, but it is the documented safe non-disclosure envelope, not disclosed product data.
 
@@ -180,20 +183,20 @@ No cross-linkage exists: neither Inventory item nor Catalog product references t
 **[INDEPENDENTLY VERIFIED]** No evidence available to this diagnosis proves that protected cross-tenant data was disclosed. Specifically:
 
 - Business/Inventory cross-tenant reads returned HTTP 404 (a safe denial/non-disclosure class of outcome, whatever its precise cause), not row data.
-- The Catalog RPC's own deployed logic makes cross-tenant disclosure structurally impossible via the mechanism described in §8, independent of what the human script printed.
+- The Catalog RPC's own deployed logic, under the inspected code path described in §8, makes cross-tenant disclosure structurally impossible, independent of what the human script printed.
 
-**No material security defect is identified by this diagnosis.** Every RLS policy, table grant, and function-execute grant inspected on `businesses`, `inventory_items`, and `catalog_product_read` is exactly as the schema migrations define it, with no drift from the Gate 2A-C2/H1 baseline. The most evidence-supported explanation for the prior gate's inconclusive result is a verification-method/request-shape issue in the human/operator's script, not a database-side access-control defect.
+**No material security defect is identified by this diagnosis.** Every RLS policy, table grant, and function-execute grant inspected on `businesses`, `inventory_items`, and `catalog_product_read` is exactly as the schema migrations define it, with no drift from the Gate 2A-C2/H1 baseline. For Catalog, the prior gate's inconclusive result is fully explained by the function's own safe-by-design `NULL` response (§8) — not a defect. For Business/Inventory, the cause of the four HTTP 404s is **[UNRESOLVED]** (§5, §6): the request-shape/route-mismatch theory previously proposed here has been withdrawn as factually incorrect (Mission Control disclosed the actual script used a standard, correctly-shaped query-filter request), and RLS/grants/relation-identity are independently ruled out, but no alternative cause is yet evidenced. This is an open diagnostic question, not a confirmed access-control defect — nothing inspected shows RLS or grants behaving other than as designed — but it is also not yet a closed, understood cause.
 
 This is stated as an absence of proof of disclosure and an absence of an identified defect — not as an affirmative proof that no disclosure could ever occur under any circumstance. Ambiguity is not converted into a PASS of F23-01 itself: F23-01 remains `BLOCKED — F23-01 LIVE VERIFICATION INCONCLUSIVE` per Mission Control's own classification in §1, unchanged by this diagnosis.
 
 ## 10. D6 — Retest Eligibility / Smallest Safe Method
 
-**Eligible.** The diagnosis is sufficient to recommend a retest-method correction confined to request shape and response parsing, with no fixture, schema, RLS, grant, function, or application change:
+**Split by control.** The prior version of this section recommended a Business/Inventory query-filter-vs-path-segment correction; Mission Control has confirmed the script already used the correct query-filter form, so that recommendation was wrong and is withdrawn, not merely narrowed.
 
-1. **Business/Inventory reads:** issue the request exactly as the application itself does (`src/integrations/supabase/inventory.ts`'s own pattern) — a PostgREST GET against `/rest/v1/businesses` or `/rest/v1/inventory_items` with the ID supplied as a query filter (`id=eq.<uuid>`), never as a URL path segment. Treat a zero-row response (`[]`, HTTP 200) as the "no access / not found" outcome, and treat any 404/406 with a PostgREST error `code` field (e.g. `PGRST205`, `PGRST116`) as a **request-shape defect in the probe itself**, to be corrected and re-run, not as an isolation result to interpret.
-2. **Catalog RPC:** call `catalog_product_read` exactly as before, but explicitly parse and record whether the returned JSON body is the literal value `null` (safe non-disclosure — expected for both "not found" and "not yours") versus a populated object with product fields (would indicate disclosure and must STOP immediately). Do not classify a non-error HTTP response as ambiguous without first checking whether its body is `null`.
+1. **Catalog RPC — retest-eligible now.** Call `catalog_product_read` exactly as before, but explicitly parse and record whether the returned JSON body is the literal value `null` (safe non-disclosure — expected for both "not found" and "not yours") versus a populated object with product fields (would indicate disclosure and must STOP immediately). Do not classify a non-error HTTP response as ambiguous without first checking whether its body is `null`. This requires no fixture, schema, RLS, grant, function, or application change — only a response-parsing correction to the retest script.
+2. **Business/Inventory reads — not yet retest-eligible.** No evidence-supported method correction is currently known: the request the prior probe used was already correctly shaped, and every database-side explanation this diagnosis can check (RLS, grants, relation identity) is independently ruled out. Re-running the identical, already-correct request without understanding why it returned 404 would not distinguish a genuine isolation result from a still-unexplained failure mode. **A further narrow diagnostic step is required before retest eligibility for these two controls** — for example, read-only inspection of the exact HTTP response headers / PostgREST error `code` the original probe received (if captured), or another Mission-Control-directed read-only check — before Mission Control authorizes a Business/Inventory retest.
 
-This recommendation requires none of: service-role impersonation, database-owner simulation of owner sessions, new fixtures, schema/RLS/grant/function changes, or application changes — it is a correction to the retest script's own request construction and response parsing only.
+No new production query, owner-session replay, mutation, repair, or fixture change is recommended or was performed to reach this conclusion.
 
 ## 11. Evidence Classification
 
@@ -205,22 +208,22 @@ This recommendation requires none of: service-role impersonation, database-owner
 - Relation identity/kind — both tables exist as ordinary tables under their exact expected names, with no shadowing singular relation (§5, §6).
 - Existence and correct ownership/business-linkage of all six F23-01 fixture rows (§7).
 - Exact deployed definition of `catalog_product_read` and its supporting functions, byte-identical to migration source, and its `EXECUTE` grants (§8).
-- The structural (WHERE-clause-level) impossibility of the Catalog RPC returning another tenant's product data (§8, §9).
+- The structural (WHERE-clause-level) impossibility, under the inspected deployed code path, of the Catalog RPC returning another tenant's product data (§8, §9).
 - Production project identity and health (`ACTIVE_HEALTHY`) (§3).
 
-**Human/operator-attested facts (carried forward from §1, not re-verified here):**
+**Human/operator-attested facts (carried forward from §1, or disclosed by Mission Control in review, not independently re-verified here):**
 
 - The exact sequence and literal outcomes the human/operator's script recorded (authenticated identity UUIDs, the 404s, the "RPC RETURNED A RESULT" labels).
 - That the script performed only the read sequence shown, with no repair or additional testing, and that no credential/session secret was exposed to Mission Control.
+- The literal Business/Inventory request-filter form Mission Control disclosed in review (`?id=eq.$Id&select=id`), confirming a correctly-shaped query-filter request, not a path-segment request (§4 item 11, §5, §6).
 
 **Inferred from documented/runtime semantics (not independently re-executed):**
 
-- That PostgREST's own request-routing contract explains 404 for a path-segment-style ID request but not for a correctly-shaped, RLS-denied, or zero-row query filter request (§5, §6).
 - That a scalar-`NULL`-returning RPC serializes as HTTP 200 with a literal `null` body under PostgREST's documented RPC contract (§8).
 
 **Unresolved facts:**
 
-- The literal request code / exact defect in the human/operator's probe script (not committed to the repository, not available for inspection) (§5, §6).
+- **The actual cause of the four Business/Inventory HTTP 404 responses (§5, §6).** The previously proposed request-shape/path-segment theory is withdrawn as factually incorrect. RLS, grants, and relation identity are independently ruled out. No alternative cause is evidenced by anything available to this diagnosis.
 - What the script's own "RPC RETURNED A RESULT — MANUAL REVIEW REQUIRED" classification logic actually checked, and what literal response body it received (§8).
 - The exact PostgREST-exposed-schema configuration value (no positive read-only source was available beyond the absence of a role-level GUC override) (§5).
 
@@ -233,6 +236,8 @@ This recommendation requires none of: service-role impersonation, database-owner
 
 ## 13. Final Disposition
 
-Every required post-creation/diagnostic question (D1–D6) has an evidence-grounded answer; no material security defect was identified; the fixture set is confirmed intact; a concrete, minimal, safe retest-method correction is identified requiring no fixture, schema, RLS, grant, function, or application change. The residual unresolved items (§11) concern only the literal contents of a script that was never committed to the repository, not any database-side fact within this diagnosis's authorized evidence sources — none of them prevent Mission Control from evaluating retest eligibility.
+D3, D4, and D5 are fully diagnosed: the fixture set is confirmed intact, the Catalog cross-tenant contract is independently verified safe-by-design under the inspected code path, and no material security defect was identified anywhere inspected. D1 and D2, however, no longer have an evidence-grounded cause: the request-shape theory this report previously relied on was factually incorrect (Mission Control disclosed the probe script already used a correctly-shaped query-filter request), and with RLS, grants, and relation identity independently ruled out, the cause of the four Business/Inventory HTTP 404s is genuinely unresolved rather than merely unconfirmed. Per §10, Business/Inventory is therefore not yet retest-eligible — re-running the same, already-correct request would not resolve anything — while Catalog alone is retest-ready with the noted response-parsing correction.
 
-`PASS — VERIFICATION PATH DIAGNOSED — F23-01 RETEST ELIGIBLE`
+Because the diagnosis is inconclusive on two of the six required diagnostic questions (D1, D2), the overall gate disposition is revised from the prior `PASS` to:
+
+`BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
