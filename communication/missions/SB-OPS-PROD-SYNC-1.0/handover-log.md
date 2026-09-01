@@ -94,3 +94,57 @@ Mission Control review of `report1` and target PR `starter-supab-shell#1`; separ
 - Supabase mutation;
 - AWS/Lambda deployment;
 - historical Lovable reuse.
+
+## 2026-09-02 — Mission Control → Claude Code
+
+**Stage:** 02 — Lovable tooling compatibility correction  
+**From:** Smart Business Mission Control  
+**To:** Claude Code / Repository Synchronization Operator  
+**Status:** AUTHORIZED — NARROW CORRECTION
+
+### Mission Control review finding
+
+Stage 01 application/runtime synchronization is accepted for continuation, but target PR `starter-supab-shell#1` shall not merge yet because the synchronization replaced the target production Lovable tooling dependency `@lovable.dev/vite-tanstack-config` version `2.13.1` with canonical version `2.7.7` and copied the corresponding canonical lockfile state.
+
+The target baseline is the authority for the new production Lovable workspace's tooling compatibility. This correction fixes the overly broad dependency-parity instruction; it is not attributed as an execution failure by Claude Code.
+
+### Authoritative instruction
+
+`communication/missions/SB-OPS-PROD-SYNC-1.0/mission-control/02-lovable-tooling-compatibility-correction-instruction.md` (`instruction2`)
+
+### Target
+
+- Repository: `SmartBusinessv1/starter-supab-shell`
+- Branch: `mission/SB-OPS-PROD-SYNC-1.0-runtime-sync`
+- Existing target PR: `starter-supab-shell#1`
+- Pre-correction stage-01 commit: `d82c9a4c74598408899315cf5f0ff7cbe35ad61e`
+- Target tooling baseline authority: `fd7c29c11882a164799e00584701a9db46e06cca`
+
+### Authorized correction scope
+
+- `package.json`
+- `bun.lock`
+- only a directly proven minimal source compatibility correction if required by build evidence
+
+Approved commit message:
+
+`Preserve production Lovable tooling compatibility`
+
+### Next required output
+
+Claude Code shall update target PR #1 and write:
+
+`claude-code/02-lovable-tooling-compatibility-correction-report.md`
+
+as `report2`, then update this mission README, handover log, and decision log through a separate canonical communication branch/PR.
+
+### Not yet authorized
+
+- merge of target PR #1;
+- Lovable publication;
+- domain cutover;
+- Supabase mutation;
+- AWS/Lambda deployment;
+- Catalog dropdown implementation;
+- Inventory bulk-import implementation;
+- historical Lovable reuse.
