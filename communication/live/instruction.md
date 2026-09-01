@@ -2,212 +2,227 @@
 
 # Instruction
 
-**Mission ID:** `SB-REL-1.10-1.11`
+**Mission ID:** `SB-OPS-PROD-SYNC-1.0`
 
-**Gate:** `Gate 2A-C3B-IR1 — Test-Project Legacy Service-Role Credential Containment`
-
-**Parent Incident:** `Gate 2A-C3B-D2 — STOP — HTTP DIAGNOSTIC INCIDENT`
+**Mission Name:** `Production Runtime Synchronization & Lovable Recovery`
 
 **From:** Mission Control
 
-**To:** `Founder / Authorized Human Supabase Operator`, with Claude Code limited to repository/read-only dependency verification and reporting support
+**To:** `Claude Code / Repository Synchronization Operator`, with Lovable used only for the authorized production implementation workspace after repository synchronization
 
-**Status:** `PENDING HUMAN MERGE — TEST-PROJECT-ONLY SECURITY CONTAINMENT AUTHORIZATION`
+**Status:** `ACTIVE — FOUNDER PRIORITY EXECUTION`
 
 **Date:** `2026-09-01`
 
 ---
 
-## 1. Trigger
+## 1. Founder Priority
 
-PR #447 closed Gate 2A-C3B-D2 with:
+Before `SB-P-1.12`, restore the intended Smart Business production delivery path without reopening historical governance loops.
 
-`STOP — HTTP DIAGNOSTIC INCIDENT`
+The immediate objective is to synchronize the approved production/runtime implementation through `SB-P-1.10` and `SB-P-1.11` into the repository and Lovable project that were intentionally created for production delivery.
 
-The incident was limited to the Supabase **test project**:
+This mission is execution-focused. Do not create new governance gates, redesign approved product decisions, or re-open already accepted historical debates unless a genuine technical contradiction prevents safe synchronization.
 
-- project ID: `drravyyauixltoihzmwo`;
-- name: `smart-business-test`;
-- region: `ap-south-1`.
+## 2. Authoritative Identities
 
-A legacy JWT-style `service_role` API key for that test project was displayed in session tool output and must therefore be treated as compromised.
+### Canonical implementation source
 
-No production secret exposure was evidenced. Production project `gysgzasfcjvtrgaigfyn` is explicitly outside this gate.
+Repository:
 
-Current read-only verification confirms the test project remains `ACTIVE_HEALTHY` and has an active modern publishable key. The incident report also records that a newer secret-key pair exists, but any secret value must remain private to the human/operator environment.
+`SmartBusinessv1/smart-business`
 
-## 2. Security Objective
+Branch:
 
-Contain the compromised test-project legacy privileged credential using the smallest safe supported Supabase path.
+`main`
 
-The preferred outcome is:
+This repository remains the canonical implementation and historical truth source.
 
-1. identify any legitimate test-only dependency still using the legacy `service_role` key;
-2. move that dependency to a modern `sb_secret_...` key where required and supported;
-3. verify no required test dependency remains on the legacy JWT keys;
-4. disable the test project's legacy API keys through Supabase's supported API Keys controls;
-5. verify the legacy keys are disabled and the test project remains operational enough for its intended non-production role;
-6. record non-secret evidence only.
+### Production Lovable delivery repository
 
-Supabase's current platform model treats legacy `service_role` as the predecessor of modern secret keys. Legacy keys may be disabled after dependencies are migrated. Do not regenerate or expose the legacy JWT secret as part of this gate.
+Repository:
 
-## 3. Canonical Baseline
+`SmartBusinessv1/starter-supab-shell`
 
-Before containment, verify canonical repository `SmartBusinessv1/smart-business`.
+This is the GitHub repository associated with the intended production Lovable implementation path.
 
-Expected baseline after PR #447:
+### Production Lovable project
 
-`70fa05adc799ce637433e64467bf8d65562b7011`
+Project ID:
 
-STOP if canonical state materially changed in a way that affects this incident response.
+`f3e992ec-06df-4d49-b157-b92ec064c078`
 
-## 4. Authorized Environment
+Display name:
 
-**Authorized:**
+`Smart Business Implementation Workspace`
 
-- Supabase test project only: `drravyyauixltoihzmwo / smart-business-test / ap-south-1`;
-- canonical repository read-only dependency inspection;
-- test-only CI/config/integration dependency inspection where the Founder/operator has access;
-- Supabase Dashboard `Settings → API Keys` for the test project;
-- replacement of a legitimate test-only legacy `service_role` dependency with an existing or newly-created modern secret key, only where necessary for containment;
-- disabling the test project's legacy API keys after dependency verification;
-- non-secret functional verification of the test environment after containment.
+The fact that this workspace is stale does not make the historical Lovable project authoritative.
 
-**Not authorized:**
+### Authoritative production Supabase
 
-- production project `gysgzasfcjvtrgaigfyn`;
-- production keys, Auth, data, RLS, grants, functions, migrations, deployment, application release, or domain changes;
-- F23-01 retest or any Owner A/Owner B session replay;
-- F23-02/F23-03/F23-04 progression;
-- unrelated test-project schema/data changes;
-- JWT signing-key rotation unless separately authorized after evidence shows it is required;
-- broad infrastructure changes;
-- disclosure of any new or existing secret in chat, Git, screenshots, PR text, logs, or report files.
+Project ID:
 
-## 5. Required Containment Sequence
+`gysgzasfcjvtrgaigfyn`
 
-### C1 — Verify target
+Production runtime synchronization must preserve this Supabase identity.
 
-In Supabase Dashboard confirm all three before any mutation:
+### Historical Lovable project — excluded
 
-- project ID `drravyyauixltoihzmwo`;
-- project name `smart-business-test`;
-- region `ap-south-1`.
+Project ID:
 
-STOP on mismatch.
+`64c2b9b1-2461-4045-9acc-19e2658b8ca2`
 
-### C2 — Confirm modern replacement capability
+This project is historical only and must not be used as the production synchronization source, even if it is currently published or contains later experimental work.
 
-Open:
+Its Lovable Cloud backend binding is one of the reasons the production delivery path moved away from it.
 
-`Settings → API Keys`
+## 3. Mission Objective
 
-Confirm that the project has modern Publishable and Secret API Keys available.
+Bring `SmartBusinessv1/starter-supab-shell` to the current approved production/runtime application state represented in `SmartBusinessv1/smart-business/main`, through `SB-P-1.10` and `SB-P-1.11`, without copying unnecessary governance/history material or reintroducing Lovable Cloud drift.
 
-Do not reveal or copy any secret into chat or repository evidence.
+The desired flow is:
 
-If no usable modern secret key exists, creating one for **test-project backend use only** is authorized under this containment gate.
+`smart-business/main → starter-supab-shell → Lovable f3e992... → publish → smartbusiness.teamlips.com`
 
-### C3 — Dependency check
+Domain cutover is a later step in this same recovery sequence and is not authorized by this repository synchronization instruction unless separately activated after runtime verification.
 
-Before disabling legacy keys, determine whether any required test-only component still depends on legacy `anon` or `service_role` credentials.
+## 4. Required First Action — Read-Only Synchronization Map
 
-Check only the minimum relevant surfaces, including as applicable:
+Before modifying `starter-supab-shell`, compare it against canonical `smart-business/main` and produce an exact synchronization map.
 
-- test application/backend environment variables;
-- CI/CD secrets;
-- Edge Functions secrets;
-- test workers/cron/automation;
-- database webhooks or `pg_net` calls;
-- local test operator scripts;
-- third-party test integrations.
+Classify differences as:
 
-Repository references to environment-variable names alone are not proof that a live dependency still uses the compromised value.
+1. **Production/runtime files to synchronize**
+2. **Canonical-only governance/history/evidence files not required in the Lovable delivery repository**
+3. **Target-repository-specific files that must be preserved**
+4. **Environment or platform-generated drift that must not be copied**
+5. **Unresolved genuine implementation gaps**
 
-Do not reveal secret values while checking.
+Do not infer authority from file recency alone.
 
-### C4 — Replace privileged dependency if needed
+## 5. Production Runtime Scope
 
-If a legitimate test-only backend dependency still uses the compromised legacy `service_role` key:
+Expected runtime scope includes, as applicable:
 
-- replace only that dependency with a modern secret key;
-- use the supported header/client pattern for modern secret keys;
-- change no unrelated configuration;
-- verify the dependency works without exposing the key.
+- `src/**`
+- production application routes and components
+- runtime Supabase client/config integration
+- approved `package.json` dependency state
+- approved lockfile state
+- `supabase/config.toml`
+- runtime helper code required by the application
+- parser/import code required by approved Inventory or Catalog workflows
+- other production application files proven necessary by repository comparison
 
-If replacing the dependency would require application-code changes, schema changes, production changes, or scope expansion beyond a secret/config substitution, STOP and report `BLOCKED` for separate authorization.
+Do not blindly copy the entire canonical repository.
 
-### C5 — Disable legacy test-project API keys
+## 6. Excluded From Blind Synchronization
 
-After C3/C4 establish that required test dependencies no longer need the legacy keys, disable the legacy API keys for **test project `drravyyauixltoihzmwo` only** using Supabase's supported `Settings → API Keys` control.
+Do not copy merely for parity:
 
-This may disable both legacy `anon` and legacy `service_role` together. That is acceptable for the test project only after dependency verification confirms modern-key readiness.
+- `communication/**`
+- historical mission archives
+- governance-only documentation
+- evidence packages
+- old test evidence
+- historical Lovable workaround records
+- secrets or local environment files
+- generated platform drift
 
-Do not change production legacy-key state.
+Copy a non-runtime file only when it is demonstrably required by the production build or repository operation.
 
-### C6 — Verify containment
+## 7. Load-Bearing Runtime Boundary
 
-Confirm, without exposing secret values:
+After synchronization, the production Lovable path must use:
 
-- test project remains `ACTIVE_HEALTHY`;
-- legacy API keys show disabled/inactive;
-- modern publishable key remains active;
-- required test-only backend dependency, if any was migrated, functions with the modern secret key;
-- no production setting was changed;
-- no secret value was recorded in repository evidence.
+`gysgzasfcjvtrgaigfyn`
 
-Do not test the compromised legacy key by printing or reusing it. Dashboard/key-state evidence is sufficient.
+It must not use Lovable Cloud project:
 
-## 6. Required Human Evidence
+`wwgqnshcgbukqczqblsm`
 
-Record only non-secret outcomes:
+It must not use test project:
 
-- exact test-project identity verified;
-- whether a modern secret key existed or had to be created;
-- dependency surfaces checked;
-- whether any dependency required migration;
-- whether legacy keys were disabled successfully;
-- post-containment project health;
-- confirmation production was untouched;
-- confirmation no secret was recorded.
+`drravyyauixltoihzmwo`
 
-Do not include screenshots if they display any key value.
+No production Supabase schema, RLS, grant, Auth, or migration change is authorized merely to achieve repository synchronization.
 
-## 7. Stop Conditions
+## 8. Product State Required Before Publication
 
-STOP immediately if:
+The recovered production application must represent approved work through `SB-P-1.10` and `SB-P-1.11`.
 
-- project identity is ambiguous;
-- the Dashboard action appears to target production;
-- disabling legacy keys would break an unresolved required dependency;
-- a required migration needs code/schema changes outside secret substitution;
-- any new secret becomes exposed;
-- the test project becomes unhealthy and cannot be restored through the same bounded key/config action;
-- Supabase presents a destructive JWT-signing-key rotation rather than simple legacy API-key disablement;
-- scope expansion is required.
+Special practical attention is required for the two Founder-priority bulk workflows:
 
-## 8. Final Result
+### Inventory / opening-stock bulk workflow
 
-The canonical containment report must end with exactly one of:
+Determine the exact current implementation state in canonical `smart-business` and identify any genuine missing merchant-facing upload/import UI required before publication.
 
-- `PASS — TEST LEGACY PRIVILEGED CREDENTIAL CONTAINED`
-- `BLOCKED — TEST LEGACY CREDENTIAL CONTAINMENT INCOMPLETE`
-- `FAIL — TEST CREDENTIAL CONTAINMENT FAILED`
-- `STOP — CREDENTIAL-CONTAINMENT INCIDENT`
+### Catalog bulk import
 
-## 9. Continuation Boundary
+Preserve the approved CSV/XLSX import architecture and ensure the practical merchant experience includes, where already approved or implemented:
 
-A PASS here closes only the credential-exposure incident.
+- file upload;
+- preview before import;
+- category selection/correction through dropdown/select behavior;
+- selling-unit selection/correction through dropdown/select behavior;
+- valid/invalid/conflict row visibility;
+- explicit confirmation before live creation;
+- no duplication of Inventory stock truth into Catalog.
 
-It does **not** resume F23-01 automatically.
+Do not take implementation behavior from the historical Lovable workspace unless Mission Control later authorizes a narrowly identified UX reconstruction after comparing it with canonical decisions.
 
-After canonical containment is complete, Mission Control must separately decide whether the next action is:
+## 9. Git Safety
 
-- a further HTTP/authenticated-path diagnostic step; or
-- a newly instrumented human F23-01 retest.
+Repository synchronization work must use a mission branch and pull request.
 
-No downstream release-readiness authority is created.
+No direct AI push to `main`.
+
+No self-merge.
+
+No force push or history rewrite.
+
+No secrets may be committed.
+
+Do not overwrite target-repository-specific configuration until its purpose is understood.
+
+## 10. Stop Conditions
+
+Stop and report only if one of these is true:
+
+- the production Lovable workspace cannot be proven associated with `starter-supab-shell`;
+- synchronization would require changing production Supabase schema/RLS/Auth/grants;
+- the canonical source and intended production runtime contain an irreconcilable architectural conflict;
+- a secret is encountered in tracked content;
+- the target repository contains necessary production-only changes not present in canonical source and authority cannot be determined;
+- synchronization would bind the application to Lovable Cloud or the test Supabase project.
+
+Ordinary file divergence, stale code, missing UI, build errors, or fixable dependency differences are implementation work, not governance blockers.
+
+## 11. First Report Required
+
+Before making synchronization changes, report:
+
+- canonical `smart-business/main` SHA;
+- current `starter-supab-shell/main` SHA;
+- exact production/runtime divergence;
+- target-only files that should be preserved;
+- files/directories that should be synchronized;
+- files/directories deliberately excluded;
+- verified Supabase binding state;
+- verified Lovable project/repository relationship if observable;
+- Inventory bulk-workflow implementation status;
+- Catalog bulk-import implementation status;
+- minimal proposed synchronization commit scope;
+- any genuine blocker.
+
+End the first report with exactly one:
+
+`READY — PRODUCTION RUNTIME SYNCHRONIZATION MAPPED`
+
+or
+
+`BLOCKED — PRODUCTION RUNTIME SYNCHRONIZATION CANNOT SAFELY START`
 
 ---
 
-**Mission Control boundary:** contain only the exposed test-project legacy privileged credential; protect production, protect secrets, and do not resume F23-01 until containment is canonically complete.
+**Mission Control boundary:** restore the intended production delivery path quickly, preserve canonical product truth, keep the historical Lovable project historical, and do not turn ordinary implementation work into governance delay.
