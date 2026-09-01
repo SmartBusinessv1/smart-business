@@ -1,8 +1,8 @@
 # SB-OPS-PROD-SYNC-1.0 — Production Runtime Synchronization & Lovable Recovery
 
-**Status:** ACTIVE — FOUNDER PRIORITY EXECUTION — STAGE 01 EXECUTED, AWAITING REVIEW  
-**Current stage:** 01 — Runtime synchronization execution (executed; target PR open for review)  
-**Current owner:** Mission Control (review) — next stage owner not yet assigned  
+**Status:** ACTIVE — FOUNDER PRIORITY EXECUTION — STAGE 02 AUTHORIZED  
+**Current stage:** 02 — Lovable tooling compatibility correction  
+**Current owner:** Claude Code / Repository Synchronization Operator  
 **Mission Control:** Smart Business Mission Control  
 **Date activated:** 2026-09-01
 
@@ -27,29 +27,37 @@ Synchronize the approved production/runtime implementation from `SmartBusinessv1
 
 ### Mission Control
 
-- [`mission-control/01-runtime-synchronization-instruction.md`](mission-control/01-runtime-synchronization-instruction.md) — `instruction1`, authorizes Claude Code to execute the mapped target-repository synchronization.
+- [`mission-control/01-runtime-synchronization-instruction.md`](mission-control/01-runtime-synchronization-instruction.md) — `instruction1`, authorized Claude Code to execute the mapped target-repository synchronization.
+- [`mission-control/02-lovable-tooling-compatibility-correction-instruction.md`](mission-control/02-lovable-tooling-compatibility-correction-instruction.md) — `instruction2`, narrowly authorizes correction of the target-specific Lovable tooling dependency/lockfile state before target PR #1 may merge.
 
 ### Claude Code
 
 - [`claude-code/01-runtime-synchronization-report.md`](claude-code/01-runtime-synchronization-report.md) — `report1`, stage 01 execution result: `PASS — PRODUCTION RUNTIME SYNCHRONIZATION PR READY FOR REVIEW`.
+- Expected next record: `claude-code/02-lovable-tooling-compatibility-correction-report.md` — `report2` after target PR #1 is updated.
 
 ## Current branch / PR state
 
 - Canonical synchronization map recorded through merged PR `#450`.
+- Stage 01 communication/report recorded through merged canonical PR `#452`.
 - Target implementation branch: `SmartBusinessv1/starter-supab-shell:mission/SB-OPS-PROD-SYNC-1.0-runtime-sync`.
-- Target runtime synchronization PR: [`SmartBusinessv1/starter-supab-shell#1`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/1) — commit `d82c9a4`, `OPEN`, not merged, not self-approved.
-- This mission-communication update: on branch `mission/SB-OPS-PROD-SYNC-1.0-stage01-report` in `SmartBusinessv1/smart-business`, via a separate PR (not self-merged).
+- Target runtime synchronization PR: [`SmartBusinessv1/starter-supab-shell#1`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/1) — current stage-01 commit `d82c9a4`, `OPEN`, not merged, not self-approved.
+
+## Stage 01 Mission Control review result
+
+The application/runtime synchronization is accepted for correction-and-review continuation, but target PR #1 is not yet approved for merge because stage 01 replaced the target production Lovable tooling package `@lovable.dev/vite-tanstack-config` version `2.13.1` with canonical version `2.7.7` and copied the corresponding canonical lockfile state.
+
+This is classified as target-specific platform compatibility drift created by an overly broad synchronization instruction, not as a failure of Claude Code's execution.
 
 ## Known remaining practical gaps after synchronization
 
-1. Catalog bulk-import direct Category/Unit correction dropdown UX — reusable selectors are now present in the target repo via this synchronization but not yet wired into the import review screen.
-2. Inventory / Opening Stock merchant-facing CSV/XLSX bulk workflow — not found in canonical runtime during this synchronization; unchanged by stage 01.
+1. Catalog bulk-import direct Category/Unit correction dropdown UX — reusable selectors are present in the target repo but are not yet wired into the import review screen.
+2. Inventory / Opening Stock merchant-facing CSV/XLSX bulk workflow — not found in canonical runtime during stage 01.
 
-These are implementation follow-ups, not blockers to repository synchronization.
+These remain implementation follow-ups and are not part of stage 02.
 
 ## Next authorized action
 
-Mission Control reviews `report1` and target PR `starter-supab-shell#1`, decides on the disclosed `bun.lock`/frozen-install environment deviation (§12 of `report1`), and separately authorizes the next stage (e.g. merge of the target PR, then Lovable-side verification) before publication or domain work proceeds.
+Claude Code reads `mission-control/02-lovable-tooling-compatibility-correction-instruction.md` (`instruction2`), performs the narrow dependency/tooling correction on the existing target branch, updates `starter-supab-shell#1`, and writes `report2` plus required mission handover records.
 
 ## Not yet authorized
 
@@ -58,4 +66,6 @@ Mission Control reviews `report1` and target PR `starter-supab-shell#1`, decides
 - production domain cutover;
 - Supabase migration/schema/RLS/Auth/data mutation;
 - AWS/Lambda deployment;
+- Catalog dropdown wiring;
+- Inventory bulk-import implementation;
 - use of the historical Lovable workspace as production source.
