@@ -48,7 +48,7 @@
 - Complete the production Terms of Service.
 - Resume SB-INF-1.2 after both legal pages are published.
 - Schedule a future canonical-source metadata-normalization mission for Sources 02 through 08 to remove legacy `Smart Business V2.2` headers and reconcile the Source 07 title with the approved `/survey` deprecation and `/start` route.
-- Immediately after SB-P-1.11 is fully completed and its communication closure is merged, execute a small documentation-only governance mission: `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment`. Its purpose is to reconcile the active repository handover protocol, Source 18 mission-lifecycle communication wording, Mission Control memory, and `communication/live/` operating guidance so repository-first AI-to-AI handovers are unambiguous and the Founder is not used as a manual message bus.
+- After the current `SB-OPS-PROD-SYNC-1.0` production recovery and cutover work is completed, execute `SB-GOV-COMMS-1.3 — AI Communication Protocol Enforcement`. Trigger: when the Founder says “now let us do the communication channel clear” or equivalent, Mission Control shall start this mission. Its purpose is to mechanically enforce the `communication/live/` instruction/report sequence, reduce AI communication drift, and remove the need for the Founder to repeatedly detect and correct communication-channel mistakes.
 - SB-P-1.11 / GC-38R — Create a secure encrypted offline USB backup of `teamlips-sb-np-parser-ca.key.pem` and `teamlips-sb-np-parser-ca.cert.pem`; keep the CA-key passphrase and USB recovery information separately. The current Founder-controlled CA working copy remains outside the repository at `C:\TeamLIPS-Offline-PKI`. Never place the CA private key in GitHub, project storage, cloud-synced folders, chat, or CI.
 
 ---
@@ -269,8 +269,8 @@ For every review performed by Mission Control, including Stage 1 Product Bluepri
 
 # Next Recommended Mission
 
-- After SB-P-1.11 is fully completed and its communication closure is merged, execute `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment` as the next immediate task. This is a small, documentation-only governance mission to remove ambiguity between the active `communication/live/` exchange practice and the durable `communication/missions/[MISSION-ID]/` record defined by the current governance sources.
-- After that communication-governance alignment is complete, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
+- After the current `SB-OPS-PROD-SYNC-1.0` production recovery and cutover work is completed, execute `SB-GOV-COMMS-1.3 — AI Communication Protocol Enforcement` when the Founder says “now let us do the communication channel clear” or equivalent. The mission should convert the active communication protocol from prose-only guidance into mechanically enforced sequencing so `communication/live/` remains the sole active AI-to-AI bus and communication drift is caught automatically rather than by the Founder.
+- After that communication-governance enforcement is complete, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
 
 ---
 
