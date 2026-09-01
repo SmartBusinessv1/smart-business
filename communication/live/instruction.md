@@ -4,199 +4,210 @@
 
 **Mission ID:** `SB-REL-1.10-1.11`
 
-**Gate:** `Gate 2A-C3B-D2 — Business/Inventory HTTP 404 Read-Only Diagnosis`
+**Gate:** `Gate 2A-C3B-IR1 — Test-Project Legacy Service-Role Credential Containment`
 
-**Parent Gate:** `Gate 2A-C3B — F23-01 Live Cross-Tenant Read-Isolation Verification`
+**Parent Incident:** `Gate 2A-C3B-D2 — STOP — HTTP DIAGNOSTIC INCIDENT`
 
 **From:** Mission Control
 
-**To:** `Claude Code — repository-capable read-only diagnostic/verifier`
+**To:** `Founder / Authorized Human Supabase Operator`, with Claude Code limited to repository/read-only dependency verification and reporting support
 
-**Status:** `ACTIVE AFTER HUMAN MERGE — NARROW READ-ONLY HTTP-DIAGNOSTIC AUTHORIZATION`
+**Status:** `PENDING HUMAN MERGE — TEST-PROJECT-ONLY SECURITY CONTAINMENT AUTHORIZATION`
 
-**Date:** `2026-08-31`
+**Date:** `2026-09-01`
 
 ---
 
 ## 1. Trigger
 
-Gate 2A-C3B-D1 closed canonically through PR #445 with:
+PR #447 closed Gate 2A-C3B-D2 with:
 
-`BLOCKED — VERIFICATION-PATH DIAGNOSIS INCONCLUSIVE`
+`STOP — HTTP DIAGNOSTIC INCIDENT`
 
-D1 independently established that:
+The incident was limited to the Supabase **test project**:
 
-- the production fixtures still exist and are correctly owned;
-- the relevant `businesses` and `inventory_items` RLS policies and grants are intact;
-- both relations exist under the expected names;
-- the human probe used the correct PostgREST query-filter request shape: `?id=eq.<uuid>&select=id`;
-- the recorded Business/Inventory own-scope and cross-tenant requests nevertheless returned HTTP 404;
-- the exact cause of those 404 responses remains unresolved.
-
-Catalog response semantics are sufficiently understood for a later retest, but Business and Inventory are not yet retest-eligible.
-
-This instruction authorizes only the smallest additional read-only diagnosis necessary to identify, or sharply bound, the source of the Business/Inventory HTTP 404 behavior.
-
-## 2. Canonical Baseline
-
-Before diagnosis, verify canonical repository `SmartBusinessv1/smart-business`.
-
-Expected authorization baseline:
-
-`c0cb506ffd9dbefbedf85fa995153f8bbe69f07b`
-
-Authorized production Supabase project:
-
-- project ID: `gysgzasfcjvtrgaigfyn`;
-- name: `smart-business`;
+- project ID: `drravyyauixltoihzmwo`;
+- name: `smart-business-test`;
 - region: `ap-south-1`.
 
-STOP if current state has materially changed in a way that affects this gate.
+A legacy JWT-style `service_role` API key for that test project was displayed in session tool output and must therefore be treated as compromised.
 
-## 3. Objective
+No production secret exposure was evidenced. Production project `gysgzasfcjvtrgaigfyn` is explicitly outside this gate.
 
-Determine, without using Owner A or Owner B credentials and without changing production state, why the prior correctly-shaped requests to:
+Current read-only verification confirms the test project remains `ACTIVE_HEALTHY` and has an active modern publishable key. The incident report also records that a newer secret-key pair exists, but any secret value must remain private to the human/operator environment.
 
-- `/rest/v1/businesses?id=eq.<uuid>&select=id`
-- `/rest/v1/inventory_items?id=eq.<uuid>&select=id`
+## 2. Security Objective
 
-were recorded by the human probe as HTTP 404.
+Contain the compromised test-project legacy privileged credential using the smallest safe supported Supabase path.
 
-The diagnosis must focus on the HTTP/PostgREST/API boundary, not re-open already-settled fixture/RLS/grant questions unless new evidence contradicts D1.
+The preferred outcome is:
 
-## 4. Authorized Read-Only Evidence
+1. identify any legitimate test-only dependency still using the legacy `service_role` key;
+2. move that dependency to a modern `sb_secret_...` key where required and supported;
+3. verify no required test dependency remains on the legacy JWT keys;
+4. disable the test project's legacy API keys through Supabase's supported API Keys controls;
+5. verify the legacy keys are disabled and the test project remains operational enough for its intended non-production role;
+6. record non-secret evidence only.
 
-Claude Code may use only the minimum necessary read-only sources:
+Supabase's current platform model treats legacy `service_role` as the predecessor of modern secret keys. Legacy keys may be disabled after dependencies are migrated. Do not regenerate or expose the legacy JWT secret as part of this gate.
 
-1. canonical repository and prior Gate 2A-C3B/D1 evidence;
-2. current production project identity and health;
-3. non-secret Supabase API/PostgREST logs from the relevant time window, where available;
-4. non-secret request metadata such as request path, method, status, PostgREST error code/class, response content type, and safe response body fields that do not expose merchant data or credentials;
-5. current PostgREST/API schema-exposure or routing configuration through supported read-only project/config/metadata paths, if available;
-6. narrowly scoped unauthenticated or publishable-key-only read-only route-existence probes against the two synthetic fixture IDs, only if needed to distinguish route/schema-cache behavior from authorization behavior.
+## 3. Canonical Baseline
 
-Any diagnostic HTTP probe must be `GET`, `HEAD`, or `OPTIONS` only. It must use no Owner A/Owner B token, no service-role key, no database-owner simulation, and no real merchant identifier.
+Before containment, verify canonical repository `SmartBusinessv1/smart-business`.
 
-A publishable/anon-key route probe is not an F23-01 isolation retest and must not be interpreted as owner-level RLS evidence.
+Expected baseline after PR #447:
 
-## 5. Required Questions
+`70fa05adc799ce637433e64467bf8d65562b7011`
 
-### H1 — Exact prior HTTP evidence
+STOP if canonical state materially changed in a way that affects this incident response.
 
-If logs preserve the original probe requests, determine for Business and Inventory:
+## 4. Authorized Environment
 
-- exact request method/path shape;
-- HTTP status;
-- PostgREST/Supabase error code or class, if any;
-- safe response-body/error-message fields, if available;
-- whether the 404 originated from PostgREST routing/schema cache, an upstream API layer, or another evidenced component.
+**Authorized:**
 
-Do not record authorization headers, JWTs, cookies, passwords, or keys.
+- Supabase test project only: `drravyyauixltoihzmwo / smart-business-test / ap-south-1`;
+- canonical repository read-only dependency inspection;
+- test-only CI/config/integration dependency inspection where the Founder/operator has access;
+- Supabase Dashboard `Settings → API Keys` for the test project;
+- replacement of a legitimate test-only legacy `service_role` dependency with an existing or newly-created modern secret key, only where necessary for containment;
+- disabling the test project's legacy API keys after dependency verification;
+- non-secret functional verification of the test environment after containment.
 
-### H2 — Route/schema exposure
+**Not authorized:**
 
-Determine whether `public.businesses` and `public.inventory_items` are currently exposed through the production PostgREST API route expected by the application.
-
-Distinguish between:
-
-- relation exists in PostgreSQL;
-- relation is exposed through PostgREST;
-- route is reachable;
-- role is authorized to read rows.
-
-Do not treat these as the same fact.
-
-### H3 — Safe route probe
-
-If logs/config are insufficient, perform the smallest safe non-owner route-existence probe necessary.
-
-The probe may confirm only route behavior and error class. It must not use Owner A/B credentials or attempt to prove tenant isolation.
-
-### H4 — Root-cause classification
-
-Classify the 404 cause as one of:
-
-- `CONFIRMED — POSTGREST ROUTE/SCHEMA EXPOSURE`
-- `CONFIRMED — API/REQUEST CONSTRUCTION OUTSIDE ID FILTER`
-- `CONFIRMED — UPSTREAM/API GATEWAY BEHAVIOR`
-- `CONFIRMED — OTHER EVIDENCED CAUSE`
-- `UNRESOLVED — INSUFFICIENT READ-ONLY EVIDENCE`
-
-Do not infer a cause solely from HTTP status.
-
-### H5 — Retest readiness
-
-State whether Business/Inventory can now be safely retested and, if yes, provide the exact smallest human probe adjustment required.
-
-A recommendation may change request headers, safe response/error parsing, schema header, or endpoint construction only if directly supported by evidence.
-
-No database/application repair is authorized.
-
-## 6. Explicitly Not Authorized
-
-This gate does not authorize:
-
-- Owner A or Owner B authentication/session replay;
-- requesting or receiving Owner credentials or tokens;
-- service-role impersonation or privileged owner simulation;
-- F23-01 retest;
-- production `INSERT`, `UPDATE`, `DELETE`, `UPSERT`, `PATCH`, mutation RPC, or DDL;
-- fixture creation/edit/cleanup;
-- migration creation or execution;
-- RLS, policy, grant, schema, role, function, trigger, Auth, OAuth, default-privilege, secret, or API configuration changes;
-- application or Lovable changes;
-- AWS/Lambda/parser/bulk-import changes;
-- Cloudflare/DNS/domain changes;
-- deployment, publication, release, or merchant exposure;
+- production project `gysgzasfcjvtrgaigfyn`;
+- production keys, Auth, data, RLS, grants, functions, migrations, deployment, application release, or domain changes;
+- F23-01 retest or any Owner A/Owner B session replay;
 - F23-02/F23-03/F23-04 progression;
-- Product Truth changes;
-- reopening accepted Product Missions;
-- self-merge.
+- unrelated test-project schema/data changes;
+- JWT signing-key rotation unless separately authorized after evidence shows it is required;
+- broad infrastructure changes;
+- disclosure of any new or existing secret in chat, Git, screenshots, PR text, logs, or report files.
 
-If diagnosis reveals that a configuration or implementation change is required, record that fact and STOP. Do not perform the change.
+## 5. Required Containment Sequence
 
-## 7. Evidence Precision
+### C1 — Verify target
 
-Tag material claims as:
+In Supabase Dashboard confirm all three before any mutation:
 
-- `[INDEPENDENTLY VERIFIED]`
-- `[HUMAN/OPERATOR-ATTESTED]`
-- `[INFERRED FROM DOCUMENTED/RUNTIME SEMANTICS]`
-- `[UNRESOLVED]`
+- project ID `drravyyauixltoihzmwo`;
+- project name `smart-business-test`;
+- region `ap-south-1`.
 
-Preserve the prior blocked F23-01 attempt and D1 result. Do not rewrite either as PASS.
+STOP on mismatch.
 
-## 8. Required Report
+### C2 — Confirm modern replacement capability
 
-Update `communication/live/report.md` with:
+Open:
 
-1. canonical SHA reviewed;
-2. production identity/health;
-3. evidence inspected;
-4. H1–H5 answers;
-5. whether any material security defect is proven;
-6. whether any configuration/implementation correction appears necessary;
-7. exact retest recommendation, if eligible;
-8. no-mutation/no-secret/no-owner-session confirmation;
-9. final disposition.
+`Settings → API Keys`
 
-End with exactly one of:
+Confirm that the project has modern Publishable and Secret API Keys available.
 
-- `PASS — HTTP 404 CAUSE DIAGNOSED — BUSINESS/INVENTORY RETEST ELIGIBLE`
-- `BLOCKED — HTTP 404 DIAGNOSIS INCONCLUSIVE`
-- `FAIL — MATERIAL SECURITY OR API-BOUNDARY DEFECT IDENTIFIED`
-- `STOP — HTTP DIAGNOSTIC INCIDENT`
+Do not reveal or copy any secret into chat or repository evidence.
 
-Submit through a protected branch and PR. Do not self-merge.
+If no usable modern secret key exists, creating one for **test-project backend use only** is authorized under this containment gate.
+
+### C3 — Dependency check
+
+Before disabling legacy keys, determine whether any required test-only component still depends on legacy `anon` or `service_role` credentials.
+
+Check only the minimum relevant surfaces, including as applicable:
+
+- test application/backend environment variables;
+- CI/CD secrets;
+- Edge Functions secrets;
+- test workers/cron/automation;
+- database webhooks or `pg_net` calls;
+- local test operator scripts;
+- third-party test integrations.
+
+Repository references to environment-variable names alone are not proof that a live dependency still uses the compromised value.
+
+Do not reveal secret values while checking.
+
+### C4 — Replace privileged dependency if needed
+
+If a legitimate test-only backend dependency still uses the compromised legacy `service_role` key:
+
+- replace only that dependency with a modern secret key;
+- use the supported header/client pattern for modern secret keys;
+- change no unrelated configuration;
+- verify the dependency works without exposing the key.
+
+If replacing the dependency would require application-code changes, schema changes, production changes, or scope expansion beyond a secret/config substitution, STOP and report `BLOCKED` for separate authorization.
+
+### C5 — Disable legacy test-project API keys
+
+After C3/C4 establish that required test dependencies no longer need the legacy keys, disable the legacy API keys for **test project `drravyyauixltoihzmwo` only** using Supabase's supported `Settings → API Keys` control.
+
+This may disable both legacy `anon` and legacy `service_role` together. That is acceptable for the test project only after dependency verification confirms modern-key readiness.
+
+Do not change production legacy-key state.
+
+### C6 — Verify containment
+
+Confirm, without exposing secret values:
+
+- test project remains `ACTIVE_HEALTHY`;
+- legacy API keys show disabled/inactive;
+- modern publishable key remains active;
+- required test-only backend dependency, if any was migrated, functions with the modern secret key;
+- no production setting was changed;
+- no secret value was recorded in repository evidence.
+
+Do not test the compromised legacy key by printing or reusing it. Dashboard/key-state evidence is sufficient.
+
+## 6. Required Human Evidence
+
+Record only non-secret outcomes:
+
+- exact test-project identity verified;
+- whether a modern secret key existed or had to be created;
+- dependency surfaces checked;
+- whether any dependency required migration;
+- whether legacy keys were disabled successfully;
+- post-containment project health;
+- confirmation production was untouched;
+- confirmation no secret was recorded.
+
+Do not include screenshots if they display any key value.
+
+## 7. Stop Conditions
+
+STOP immediately if:
+
+- project identity is ambiguous;
+- the Dashboard action appears to target production;
+- disabling legacy keys would break an unresolved required dependency;
+- a required migration needs code/schema changes outside secret substitution;
+- any new secret becomes exposed;
+- the test project becomes unhealthy and cannot be restored through the same bounded key/config action;
+- Supabase presents a destructive JWT-signing-key rotation rather than simple legacy API-key disablement;
+- scope expansion is required.
+
+## 8. Final Result
+
+The canonical containment report must end with exactly one of:
+
+- `PASS — TEST LEGACY PRIVILEGED CREDENTIAL CONTAINED`
+- `BLOCKED — TEST LEGACY CREDENTIAL CONTAINMENT INCOMPLETE`
+- `FAIL — TEST CREDENTIAL CONTAINMENT FAILED`
+- `STOP — CREDENTIAL-CONTAINMENT INCIDENT`
 
 ## 9. Continuation Boundary
 
-A PASS here does not retest or close F23-01.
+A PASS here closes only the credential-exposure incident.
 
-It makes only a separately authorized human/operator F23-01 retest eligible for Mission Control consideration.
+It does **not** resume F23-01 automatically.
+
+After canonical containment is complete, Mission Control must separately decide whether the next action is:
+
+- a further HTTP/authenticated-path diagnostic step; or
+- a newly instrumented human F23-01 retest.
 
 No downstream release-readiness authority is created.
 
 ---
 
-**Mission Control boundary:** diagnose the Business/Inventory HTTP 404 mechanism using only non-owner read-only evidence; do not repair, replay owner sessions, retest F23-01, or advance release readiness.
+**Mission Control boundary:** contain only the exposed test-project legacy privileged credential; protect production, protect secrets, and do not resume F23-01 until containment is canonically complete.
