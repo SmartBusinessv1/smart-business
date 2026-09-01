@@ -42,3 +42,12 @@ No self-merge, publication, domain cutover, Supabase mutation, or AWS/Lambda dep
 
 **Date:** 2026-09-02  
 **Decision:** `bun install --frozen-lockfile` could not be reproduced in the verification environment because the canonical `bun.lock` records at least one dependency resolved from a Lovable-internal private npm registry not reachable outside Lovable's own build environment. A non-frozen diagnostic install (resolving from public npm) was used for build/lint verification only; its resulting lockfile changes were discarded before commit. The `bun.lock` committed to the target PR is the exact, unmodified canonical file from the mapped source SHA — no local reconciliation was performed on it. This is recorded as an environment-verification limitation for Mission Control/Founder awareness, not as a defect in the synchronized dependency state.
+
+## D-008 — Preserve target-specific production Lovable tooling compatibility
+
+**Date:** 2026-09-02  
+**Decision:** Mission Control review found that stage 01 changed `SmartBusinessv1/starter-supab-shell` from its pre-synchronization target-specific `@lovable.dev/vite-tanstack-config` version `2.13.1` to canonical version `2.7.7`. Because `starter-supab-shell` is the delivery repository intentionally created for production Lovable project `f3e992ec-06df-4d49-b157-b92ec064c078`, its pre-synchronization Lovable tooling state is treated as target-specific platform compatibility configuration unless direct evidence proves a downgrade is required.
+
+Target PR `starter-supab-shell#1` is therefore held from merge pending a narrow correction under `mission-control/02-lovable-tooling-compatibility-correction-instruction.md` (`instruction2`). Claude Code is authorized to preserve `2.13.1`, retain all SB-P-1.10/SB-P-1.11 runtime dependencies and scripts required by the synchronized application, and narrowly reconcile `package.json`/`bun.lock` on the existing target branch. This finding corrects an overly broad synchronization instruction and is not classified as a Claude Code execution failure.
+
+No target merge, Lovable publication, production domain cutover, Supabase mutation, AWS/Lambda deployment, or unrelated feature work is authorized by this decision.
