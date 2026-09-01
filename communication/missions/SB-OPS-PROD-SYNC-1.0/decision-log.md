@@ -51,3 +51,13 @@ No self-merge, publication, domain cutover, Supabase mutation, or AWS/Lambda dep
 Target PR `starter-supab-shell#1` is therefore held from merge pending a narrow correction under `mission-control/02-lovable-tooling-compatibility-correction-instruction.md` (`instruction2`). Claude Code is authorized to preserve `2.13.1`, retain all SB-P-1.10/SB-P-1.11 runtime dependencies and scripts required by the synchronized application, and narrowly reconcile `package.json`/`bun.lock` on the existing target branch. This finding corrects an overly broad synchronization instruction and is not classified as a Claude Code execution failure.
 
 No target merge, Lovable publication, production domain cutover, Supabase mutation, AWS/Lambda deployment, or unrelated feature work is authorized by this decision.
+
+## D-009 — Stage 02 execution result
+
+**Date:** 2026-09-02  
+**Decision:** Stage 02 (`instruction2`) was executed against `SmartBusinessv1/starter-supab-shell` branch `mission/SB-OPS-PROD-SYNC-1.0-runtime-sync`, updating target PR [`starter-supab-shell#1`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/1) to commit `1b84c6462ee4a49c57c866e77e1e4b91935fdc80`. `@lovable.dev/vite-tanstack-config` is restored to `2.13.1`; the SB-P-1.11 additions (`@aws-sdk/client-s3`, `aws4fetch`, `build:lambda`) are retained; the three `2.7.7`-only devDependencies (`@tanstack/router-core`, `esbuild`, `seroval`) are removed, proven unnecessary by a passing build. Result: `PASS — LOVABLE TOOLING COMPATIBILITY CORRECTION READY FOR REVIEW`. Full detail in `report2` (`claude-code/02-lovable-tooling-compatibility-correction-report.md`). The PR was updated but not merged or self-approved.
+
+## D-010 — Frozen-lockfile deviation resolved
+
+**Date:** 2026-09-02  
+**Decision:** The `bun install --frozen-lockfile` deviation disclosed in `D-007` (stage 01) does not recur after the stage 02 correction. The lockfile reconciled in stage 02 — built from the target baseline's own `2.13.1` lockfile plus only the newly-required SB-P-1.11 entries — is fully self-consistent and passes `bun install --frozen-lockfile` cleanly. This is recorded so Mission Control/the Founder do not need to carry the stage 01 deviation forward as an open concern into stage 02's review.
