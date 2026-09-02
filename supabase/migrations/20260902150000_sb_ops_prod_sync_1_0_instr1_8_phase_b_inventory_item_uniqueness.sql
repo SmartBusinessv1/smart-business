@@ -1,0 +1,48 @@
+-- SB-OPS-PROD-SYNC-1.0 instruction1.8 -- Phase B schema-level one-to-one
+-- guarantee that an Inventory item is the dedicated identity of at most
+-- one Catalog product per business.
+--
+-- This is the exact invariant verified and preserved as non-executable
+-- design/evidence in
+-- communication/evidence/SB-OPS-PROD-SYNC-1.0-instr1-6/phase-b-design-and-proof.md
+-- (instruction1.6 Phase B, packaging-corrected on smart-business#463).
+-- It was deliberately withheld from supabase/migrations/** at that time
+-- because it is mechanically proven to fail against a database
+-- containing a duplicate (business_id, inventory_item_id) state, and
+-- production contained exactly one such duplicate (Mango, Milma Milk
+-- both referencing AVT Tea Powder).
+--
+-- That duplicate has since been repaired under instruction1.7
+-- (supabase/migrations/20260902140000_..._mango_milma_milk_repair.sql,
+-- report1.7.md, PASS) and independently re-confirmed at zero duplicate
+-- groups immediately before this file was authorized to run
+-- (instruction1.8, report1.8.md). This file is now the promotion of
+-- that same, unmodified design into an executable production migration
+-- -- nothing about the invariant itself is redesigned here.
+--
+-- Lifecycle predicate (unchanged from the verified design): NOT
+-- filtered by catalog_products.status. An archived product's
+-- inventory_item_id remains permanently reserved, exactly like this
+-- same table's existing name/SKU/barcode uniqueness constraints, whose
+-- own schema comment already states the policy this migration extends
+-- for consistency: "Archived identities remain reserved: plain,
+-- non-partial constraints" (20260806120000_sb_p_1_11_impl_1_stage1_
+-- schema.sql). Reactivating an archived product requires no special
+-- handling under this rule: archive_catalog_product/
+-- reactivate_catalog_product never touch inventory_item_id, so a
+-- reactivated product's link was never released and this constraint
+-- was never at risk of being violated by it. A plain (non-partial)
+-- UNIQUE constraint is sufficient: Postgres treats each NULL
+-- inventory_item_id (a non-stock-tracked product) as distinct from
+-- every other NULL, so multiple non-stock-tracked products remain
+-- unaffected.
+--
+-- This constraint is the sole authoritative guarantee; the Phase A
+-- application-level guard (20260902120000_..._phase_a_link_reuse_
+-- guard.sql, already deployed to production) uses the identical
+-- predicate (business_id, inventory_item_id, excluding the row's own
+-- id), so neither layer can accept a case the other would reject.
+
+ALTER TABLE public.catalog_products
+  ADD CONSTRAINT catalog_products_business_inventory_item_uniq
+  UNIQUE (business_id, inventory_item_id);
