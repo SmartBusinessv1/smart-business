@@ -185,7 +185,7 @@ None of the three steps above were executed against production under this instru
 
 ## 13. PRs and Commits
 
-- Canonical `smart-business`: same PR throughout, no new sequence — [`SmartBusinessv1/smart-business#463`](https://github.com/SmartBusinessv1/smart-business/pull/463), branch `mission/SB-OPS-PROD-SYNC-1.0-instr1-6-backend-integrity`, `OPEN`, not merged. Original commits `af6b3b6` / `6e062c6`; this packaging correction adds a new commit on the same branch/PR (exact SHA in the PR history at the time of review).
+- Canonical `smart-business`: same PR throughout, no new sequence — [`SmartBusinessv1/smart-business#463`](https://github.com/SmartBusinessv1/smart-business/pull/463), branch `mission/SB-OPS-PROD-SYNC-1.0-instr1-6-backend-integrity`, `OPEN`, not merged. Original commits `af6b3b6` / `6e062c6`; this packaging correction is commit `d923f42` on the same branch/PR.
 - `starter-supab-shell` client copy fix: commit `96442fd`, PR [`SmartBusinessv1/starter-supab-shell#5`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/5) — `OPEN`, not merged, not touched by this correction.
 
 No PR in either repository was merged or self-approved. No production Supabase mutation was made or attempted at any point, including during this correction.
