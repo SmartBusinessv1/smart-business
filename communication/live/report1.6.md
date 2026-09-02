@@ -148,7 +148,7 @@ None of the three steps above were executed against production under this instru
 
 ## 12. PRs and Commits
 
-- Canonical `smart-business` (this report + both migration files + `docs/migration/README.md` update): branch `mission/SB-OPS-PROD-SYNC-1.0-instr1-6-backend-integrity`, PR to be opened against `main` immediately after this file is committed.
+- Canonical `smart-business` (this report + both migration files + `docs/migration/README.md` update): commit `af6b3b6`, PR [`SmartBusinessv1/smart-business#463`](https://github.com/SmartBusinessv1/smart-business/pull/463) — `OPEN`, not merged.
 - `starter-supab-shell` client copy fix: commit `96442fd`, PR [`SmartBusinessv1/starter-supab-shell#5`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/5) — `OPEN`, not merged.
 
 No PR in either repository was merged or self-approved. No production Supabase mutation was made or attempted.
