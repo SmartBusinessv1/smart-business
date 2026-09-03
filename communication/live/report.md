@@ -8,133 +8,108 @@
 
 **To:** Smart Business Mission Control
 
-**Status:** `MC1–MC4 EXTRACTED — SB-P-1.0→SB-P-1.11 TARGET LOCKED — NEXT BATCH PENDING`
+**Status:** `MC1–MC8 EXTRACTED — SB-P-1.0→SB-P-1.11 TARGET LOCKED — NEXT EVIDENCE BATCH PENDING`
 
 ---
 
 ## Evidence Intake Completed
 
-Founder supplied the raw historical Project Source exports:
+Founder supplied and Mission Control directly reviewed:
+
+### Batch MC-01
 
 - `Archived-MC1.txt`
 - `Archived-MC2.txt`
 - `Archived-MC3.txt`
 - `Archived-MC4.txt`
 
-Mission Control directly reviewed the batch and corroborated its material repository claims.
-
-Durable batch record:
+Durable record:
 
 `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/MC1-MC4-batch-extraction.md`
 
-## Historical Mission Range Locked
+### Batch MC-02
 
-The Founder has clarified that the reconstruction must establish the complete Product Mission history from:
+- `Archived-MC5.txt`
+- `Archived-MC6.txt`
+- `Archived-MC7.txt`
+- `Archived-MC8.txt`
 
-`SB-P-1.0` through `SB-P-1.11`.
+Durable record:
 
-The mission must account for every Product Mission identifier in that sequence, including early missions whose original operating model predates the modern Source 18 Blueprint/EIS/contract lifecycle.
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/MC5-MC8-batch-extraction.md`
 
-Locked target record:
+## MC5–MC8 Historical Contribution
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/SB-P-1.0-to-1.11-reconstruction-target.md`
+This batch represents a later `SB-P-1.11` execution period rather than early Smart Business inception.
 
-Later Mission Control rooms may contain retrospective or dependency evidence about earlier Product Missions. Every extraction batch must therefore collect those references rather than considering only the room's own chronological period.
+The strongest directly supported progression is:
 
-## Completed-Folder End State
+`MC5 — prove AWS/Lambda security architecture against the real runtime`
 
-The final Phase 1 continuity must present a continuous mission sequence under:
+→ `MC6 — verify Lovable workspace and repository authority before building`
 
-`docs/phase-1-mission-blueprint/completed/`
+→ `MC7 — semantically reconcile canonical and derivative repositories before writing`
 
-Current repository state contains the canonical `SB-P-1.10.md` and `SB-P-1.11.md` Product Blueprint records in that folder. `SB-P-1.9` is currently represented primarily under `docs/implementation/SB-P-1.9/`.
+→ `MC8 — change only what reconciliation proves is missing`.
 
-After sufficient evidence collection and reconciliation, this mission must create records for `SB-P-1.0` through `SB-P-1.9` in the completed folder, producing a continuous `SB-P-1.0` through `SB-P-1.11` mission sequence.
+Institutional learning:
 
-Any early record reconstructed after the fact must state prominently:
+**Authority, runtime, repository state, and evidence state are separate truths. Reconcile them before execution.**
 
-`Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`
+## Capability / Tool Evolution Added
 
-No such files are created in this first batch. Evidence must come first.
+MC5–MC8 materially establish that by this period Team LIPS had developed or was actively operating capabilities around:
 
-## Chronology Boundary
+- AWS Lambda parser architecture;
+- AWS IAM and IAM Roles Anywhere evaluation;
+- X.509/workload-identity security reasoning;
+- Lovable/Cloudflare runtime compatibility analysis;
+- multiple Lovable project/workspace management;
+- canonical `smart-business` versus derivative `starter-supab-shell` repository reconciliation;
+- read-only semantic canonicalization gates;
+- evidence-only canonicalization where application code is already correct;
+- independent Security & Permissions Architecture review.
 
-MC1–MC4 do **not** establish Smart Business inception.
+The exact first introduction dates for AWS/Lambda and the Lovable/repository lineage remain open historical questions.
 
-They represent a later Phase 1 historical segment centered on:
+## SB-P-1.0 → SB-P-1.11 Effect
 
-- governance-source consolidation and replacement verification;
-- exact migration inventory/default-deny containment;
-- SB-P-1.11 readiness review using Codex and Claude Code;
-- corrective communication closure and proportionate-governance learning.
+- `SB-P-1.0` through `SB-P-1.4`: still `UNRESOLVED`. MC5–MC8 add no safe mission-name or completion evidence for these early missions.
+- `SB-P-1.5` through `SB-P-1.10`: no material strengthening of original mission history from this batch alone.
+- `SB-P-1.11`: materially strengthened with direct infrastructure-security, environment-authority, canonical-reconciliation, and builder-evidence history.
 
-However, all references they contain to earlier SB-P missions are valid retrospective/dependency evidence and remain part of the reconstruction.
+## Lessons-Learned Requirement
 
-## Confirmed Institutional Learning
+Every subsequent evidence batch continues to extract together:
 
-The evidence-backed progression is:
+- mission chronology and authority;
+- implementation/verification evidence;
+- failures and corrections;
+- lessons learned;
+- tools/platforms/resources introduced or matured;
+- Team LIPS capability gains;
+- unresolved evidence gaps.
 
-`MC1 — prove before replacing`
+## Open Cross-Questions
 
-→ `MC2 — reconcile the proof exactly and contain risky historical authority by default`
+Highest priority now:
 
-→ `MC3 — bind readiness and authority to the correct lifecycle stage`
+1. exact first introduction of AWS/Lambda and why it replaced or supplemented the preceding parser approach;
+2. complete Lovable project/repository/Supabase lineage;
+3. exact creation and authority transition between `smart-business` and `starter-supab-shell`;
+4. specialist-room evidence for `SB-P-1.0` through `SB-P-1.4`;
+5. which later AWS/IAM/reconciliation practices became organization-wide Team LIPS capabilities.
 
-→ `MC4 — apply controls proportionately without manufacturing ceremony`.
+No Founder clarification is required yet.
 
-The resulting inferred operating doctrine is:
+## Metadata Boundary
 
-**Maximum clarity, minimum necessary ceremony.**
+No final SB-P lifecycle metadata normalization has been performed.
 
-This is institutional learning, not Product Truth or a governance amendment.
-
-## Capability Snapshot Established by This Batch
-
-Confirmed as operational by this historical period:
-
-- GitHub canonical repository and mission branches;
-- protected-main pull-request workflow;
-- GitHub Actions Markdown Quality Gate;
-- Codex repository read/write, branch, push/PR, build and Markdown capabilities with explicit limitations;
-- Claude Code independent engineering review;
-- Supabase backend/test-versus-production environment awareness and RLS context;
-- Lovable builder/runtime context;
-- repository-first communication and archive handoff;
-- direct Mission Control GitHub tooling sufficient for bounded administrative repository work.
-
-Not yet established by MC1–MC4:
-
-- exact `SB-P-1.0` through `SB-P-1.8` names, objectives and completion evidence;
-- the canonical completed-history treatment for `SB-P-1.9`;
-- when AWS / AWS Lambda entered Smart Business;
-- when broad MCP/connector-assisted operations emerged;
-- domain/DNS setup chronology;
-- first Lovable project creation and publishing chronology;
-- first Supabase environment creation and eventual prod/test separation chronology.
-
-## Cross-Question Queue Opened
-
-The durable batch record creates targeted questions covering:
-
-1. `SB-P-1.0` through `SB-P-1.8` identity, mission names, objectives, chronology and completion evidence;
-2. `SB-P-1.9` canonical historical evidence and current lifecycle state;
-3. `teamlips.com` / `smartbusiness.teamlips.com` domain and public-foundation history;
-4. Lovable capability/project evolution;
-5. Supabase environment evolution;
-6. GitHub/protected-main/direct-connector evolution;
-7. Claude Code and Codex adoption/maturation;
-8. AWS / AWS Lambda introduction.
-
-These questions should first be answered through later Mission Control archives, relevant specialist-room exports, Claude Code/Codex history, and repository evidence. Founder clarification is not yet required.
-
-## SB-P Metadata Boundary
-
-No final SB-P mission classification or lifecycle metadata normalization has been performed.
-
-The evidence-backed completed-mission register remains pending the earlier historical evidence.
+No completed-folder continuity files for `SB-P-1.0` through `SB-P-1.9` are created yet. Evidence collection and reconciliation remain in progress.
 
 ## Next Input
 
-Continue with the next chronological Mission Control archive batch after MC4. Every subsequent batch must deliberately search for both current-period events and retrospective evidence about any mission from `SB-P-1.0` through `SB-P-1.11`.
+Continue with the next chronological Mission Control archive batch after MC8, while prioritizing early Infrastructure Operations, Lovable/Lovable Lab, Supabase, and Claude/engineering history for the unresolved `SB-P-1.0` through `SB-P-1.4` sequence.
 
-**Current result:** `PASS — MC1–MC4 HISTORICAL BATCH EXTRACTED; COMPLETE SB-P-1.0→SB-P-1.11 RECONSTRUCTION TARGET LOCKED; NEXT EVIDENCE BATCH PENDING`.
+**Current result:** `PASS — MC5–MC8 DIRECTLY EXTRACTED; SB-P-1.11 INFRASTRUCTURE/CANONICALIZATION HISTORY STRENGTHENED; EARLY SB-P-1.0→1.4 STILL REQUIRES SPECIALIST EVIDENCE`.
