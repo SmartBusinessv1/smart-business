@@ -26,9 +26,9 @@
 
 **Activation Date:** 2026-08-01
 
-**Temporary Phase 1 Compensating Control:** ACTIVE
+**Temporary Phase 1 Compensating Control:** RETIRED 2026-08-02
 
-**Branch Protection:** NOT CONFIGURED
+**Branch Protection:** CONFIGURED AND INDEPENDENTLY VERIFIED
 
 **Governing References:** `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`
 
@@ -341,7 +341,7 @@ Permission does not create capability. Shell and Git access, repository access, 
 
 Codex may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact authorized files, commit with the approved message, push the authorized branch, and open or update a pull request. AI-authored work normally uses a mission branch.
 
-Direct AI push to `main` is prohibited except for a narrowly scoped governance or communication update explicitly authorized by the Founder or Mission Control under the active temporary compensating control. Codex shall not self-approve or self-merge, force push, rewrite history, stage unrelated files, use `git add .` unless every working-tree change is authorized, resolve conflicts silently, bypass protection or review, alter branch protection, or expose credentials.
+Direct AI push to `main` is prohibited; all AI changes reach `main` only through the mission-branch pull-request path. Technical branch protection for `main` is configured and independently verified, and the temporary Phase 1 compensating control was retired on 2026-08-02. Codex shall not self-approve or self-merge, force push, rewrite history, stage unrelated files, use `git add .` unless every working-tree change is authorized, resolve conflicts silently, bypass protection or review, alter branch protection, or expose credentials.
 
 Merge authority is restricted to the Founder, a Mission Control-authorized human maintainer, or a separately approved automated merge mechanism after required checks and reviews. When Founder action is required, exact Git commands and expected evidence must appear directly in chat.
 

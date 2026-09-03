@@ -16,21 +16,24 @@ communication/
 ├── live/
 │   ├── instruction.md
 │   └── report.md
+├── missions/
+│   └── <MISSION-ID>/          # durable canonical mission record (stays here)
 └── archive/
     └── <MISSION-ID>/
-        └── communication.md
+        ├── communication.md    # readable chronology, index, reconciled closure
+        ├── instruction.md      # byte-identical former live file(s)
+        └── report.md
 ```
 
-As missions progress, `communication/live/` may also contain numbered follow-up files such as:
+Three locations, three questions:
 
-```text
-instruction1.1.md
-report1.1.md
-instruction1.2.md
-report1.2.md
-```
+| Location | Purpose | Question it answers |
+|---|---|---|
+| `communication/live/` | Transient current handoff | *What needs attention now?* |
+| `communication/missions/<MISSION-ID>/` | Durable canonical mission state (Source 18 Section 10) | *Where does this mission stand?* |
+| `communication/archive/<MISSION-ID>/` | Frozen transient communication history | *What exact instruction/report exchange occurred?* |
 
-The initial exchange uses `instruction.md` and `report.md`. Each continuation uses exactly one matching numbered pair, beginning with suffix `1.1` and incrementing monotonically (`1.2`, `1.3`, `1.4`, and so on). An instruction and its report must share the exact suffix.
+The default live model is the reusable base pair `instruction.md` and `report.md`, reused in place for each new handoff after the preceding handoff has been durably recorded in the mission record or archived. `communication/live/` does not accumulate long-lived numbered chains by default. Monotonically numbered pairs (`instruction1.1.md` with `report1.1.md`, then `1.2`, and so on) are used only when Mission Control explicitly authorizes a multi-turn compatibility sequence for a mission; an instruction and its report must then share the exact suffix. Existing numbered live chains and archived numbered exchanges remain valid historical evidence.
 
 ---
 
@@ -87,18 +90,12 @@ Mission packages under `communication/missions/` may include preserved historica
 
 Use:
 
-- `instruction.md` for the first instruction from Mission Control.
-- `report.md` for the first response from the assigned specialist AI.
-- Numbered follow-up pairs for additional exchanges.
+- `instruction.md` for the current instruction from Mission Control.
+- `report.md` for the current response from the assigned specialist AI.
 
-Examples:
+The base pair is reused in place for each new handoff. It may be reused only after the preceding handoff has been durably recorded in `communication/missions/<MISSION-ID>/` or archived; the earlier content must already be preserved before the base pair is reused, so nothing is lost by overwriting.
 
-```text
-instruction1.1.md
-report1.1.md
-instruction1.2.md
-report1.2.md
-```
+Numbered follow-up pairs (`instruction1.1.md` / `report1.1.md`, then `1.2`, and so on) are a non-default option, used only when Mission Control explicitly authorizes a multi-turn compatibility sequence for a mission. When used, they must preserve chronological order; their numeric suffix reflects sequence, not mission phase or priority; and each instruction and its report must share the exact suffix.
 
 Each instruction and report must clearly identify:
 
@@ -111,49 +108,30 @@ Each instruction and report must clearly identify:
 
 Do not place unrelated missions in the same instruction or report file.
 
-Numbered communication files must preserve chronological order. Their numeric suffix reflects sequence, not mission phase or priority.
-
-No active instruction or report may be silently overwritten. Base templates are restored only after explicit closure, reconciliation of provisional fields, archive creation, and archive verification.
+No active instruction or report may be silently overwritten to conceal an earlier exchange. Base templates are restored only after explicit closure, reconciliation of provisional fields, archive creation, and archive verification.
 
 ---
 
 ## Archive Rules
 
-When communication is complete and the mission has been accepted, postponed, cancelled, or otherwise closed:
+When communication is complete and the mission has been accepted, postponed, cancelled, or otherwise closed, the assigned closure AI archives the completed `communication/live/` exchange — not the durable `communication/missions/<MISSION-ID>/` record, which stays where it is with its README status updated in place.
 
-1. Create a mission folder inside `communication/archive/`.
-2. Combine all mission instruction and report files into one chronological record.
-3. Save the complete record as:
+Every archive package uses one format with three distinct roles (defined in full in `AI_Communication_and_Handover_Protocol.md` Section 26):
 
-```text
-communication/archive/<MISSION-ID>/communication.md
-```
+1. **Readable chronology and index — `communication/archive/<MISSION-ID>/communication.md`.** The human-readable chronology of the exchange, an ordered index of the preserved source files with their Git blob SHAs and sizes, and a clearly labelled **Final Reconciled Closure** section (final disposition, closure authority and date, final commit and pull request, unresolved follow-ups, the durable mission record path where one exists, and confirmation that live templates were restored).
+2. **Immutable source exchange evidence.** The exact former `communication/live/` files — `instruction.md`, `report.md`, and any authorized `instruction1.x.md` / `report1.x.md` pairs — preserved byte-identically alongside `communication.md`. These are historical evidence and are never rewritten to modernize status, paths, or later repository state.
+3. **Final reconciled closure state.** Normally the labelled section inside `communication.md`; a large or specialist-heavy exchange may instead use a separate `communication/archive/<MISSION-ID>/report.md`, linked from `communication.md`. Exactly one placement per mission.
 
-4. Preserve the exchange in alternating chronological order:
+Procedure:
 
-```text
-Instruction
-Report
-Instruction1.1
-Report1.1
-Instruction1.2
-Report1.2
-...
-```
+1. Create `communication/archive/<MISSION-ID>/`.
+2. Copy every former live file into it byte-identically; include every instruction and every report even when counts differ.
+3. Write `communication.md` as the chronology, the indexed manifest of those files, and the Final Reconciled Closure section.
+4. Verify every former live file is represented and every Git blob SHA in the manifest matches.
+5. Remove the mission-specific numbered live files only after the archive package is created and verified.
+6. Restore the reusable templates `communication/live/instruction.md` and `communication/live/report.md`.
 
-5. Clearly label every section with its original source file.
-6. Include every instruction and every report, even when counts differ. For example, a mission may contain ten instructions and eleven reports.
-7. Remove mission-specific numbered files from `communication/live/` only after the combined archive has been created and verified.
-8. Restore reusable templates in:
-
-```text
-communication/live/instruction.md
-communication/live/report.md
-```
-
-Archived communication is historical evidence and should not be rewritten except to correct an obvious administrative error.
-
-The earlier two-file archive model using separate `instruction.md` and `report.md` files is retired for future missions. Existing historical archives may remain unchanged unless Mission Control explicitly authorizes normalization.
+Archived communication is historical evidence and must not be rewritten except to correct an obvious administrative error. Archive packages created before this format was defined remain valid as they stand and are not retrofitted unless Mission Control explicitly authorizes normalization.
 
 ---
 
@@ -164,7 +142,7 @@ Whenever Mission Control or another authorized AI writes an instruction for a sp
 ```text
 Created:
 
-communication/live/instruction1.1.md
+communication/live/instruction.md
 
 Commit:
 
@@ -180,7 +158,7 @@ Pull the latest main branch.
 
 Read and execute:
 
-communication/live/instruction1.1.md
+communication/live/instruction.md
 
 Use the repository communication workflow only.
 
@@ -196,7 +174,7 @@ Rules:
 - Show the exact created file path.
 - Show the full commit SHA.
 - Provide a pull command only when the Founder must pull manually.
-- Provide the exact minimal handoff prompt the Founder must paste into the specialist AI.
+- Provide the exact minimal handoff prompt the Founder must paste into the specialist AI. This prompt is an activation pointer only — it names the repository file to read. Instruction content, clarifications, and findings live in the repository; the Founder is not asked to relay them through chat.
 - Include a Founder Brief with no fewer than three and no more than ten bullets.
 - The brief must summarize the instruction, not repeat the full document.
 
@@ -204,12 +182,17 @@ Rules:
 
 ## Founder Notification Standard — Specialist Report Received
 
-Whenever a specialist AI completes work and pushes a report or mission closure, the response to the Founder must use this format:
+Whenever a specialist AI pushes a report, the response to the Founder must use this format. The headline states the **actual** state — specialist work reported is not mission closure.
 
 ```text
-Mission closure complete.
+<HEADLINE — one of:
+  "Specialist report pushed — awaiting Mission Control review."
+  "Mission Control accepted — <MISSION-ID> ACCEPTED[ WITH FOLLOW-UP]."
+  "Mission closed and archived — <MISSION-ID> COMPLETED — FORMALLY ACCEPTED.">
 
-Commit: <full commit SHA> — "<commit message>" — pushed to origin/main (<previous short SHA>..<new short SHA>).
+Commit: <full commit SHA> — "<commit message>" — pushed to branch <mission/MISSION-ID-slug> (<previous short SHA>..<new short SHA>).
+
+Pull request: #<NN> → main — <OPEN | MERGED | CLOSED>. <"Not self-approved, not self-merged." when OPEN>
 
 Files changed:
 
@@ -218,7 +201,7 @@ Files changed:
 - <state whether mission-control/mission_memory.md changed>
 - <state whether product, infrastructure, authentication, database, deployment, configuration, or governance changes were made>
 
-<MISSION-ID> CLOSED
+Mission status: <exact Source 18 / archive status>
 
 Brief to Founder:
 
@@ -230,7 +213,8 @@ Brief to Founder:
 Rules:
 
 - Preserve the specialist AI's factual report.
-- Show the full commit SHA and commit message.
+- Use a headline that matches the real state. A pushed report with an open pull request is `awaiting Mission Control review`, not closure. Only Mission Control records acceptance; only documentation closure records `COMPLETED — FORMALLY ACCEPTED`.
+- Show the full commit SHA and commit message, the mission branch, and the pull-request number and state. AI changes are pushed to the mission branch and reach `main` only through the pull request; never describe an AI change as pushed directly to `main`.
 - Summarize all material file changes.
 - State clearly whether `mission-control/mission_memory.md` changed.
 - State clearly whether any product, infrastructure, authentication, database, deployment, configuration, or governance changes occurred.
@@ -244,19 +228,17 @@ Rules:
 
 Codex and Claude Code may perform Git operations only under complete explicit mission authority defined by `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
 
-Authorization must identify AI, mission, repository, branch, authorized paths or scope, and commit message. Permission does not create capability.
+Authorization must identify AI, mission, repository, the branch authorization (the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, and the commit-message authorization (permission to use mission-scoped descriptive commit messages or a specifically locked commit message). Exact branch text and exact commit text are required only when Mission Control specifically locks them. Permission does not create capability.
 
 Before commit or push, verify remote identity, base branch and SHA, current branch, authorized working-tree state, exact staged names and statuses, quality gates, whitespace checks, and secret or credential safety. Authority expires on any governing state change.
 
-AI-authored implementation work normally uses a mission branch. Direct AI push to `main` is prohibited except for a narrowly scoped governance or communication update explicitly authorized under the temporary Founder-approved Phase 1 compensating control. Self-merge, force push, history rewriting, unrelated staging, and silent conflict resolution remain prohibited.
+AI-authored work uses a mission branch and reaches `main` only through a pull request. Direct AI push to `main` is prohibited. Self-merge, self-approval, force push, history rewriting, unrelated staging, and silent conflict resolution remain prohibited. Technical branch protection for `main` is configured and independently verified; the temporary Phase 1 compensating control was retired on 2026-08-02.
 
-Recurring live exchanges use exactly paired numbered instruction and report files. At explicit closure, provisional report fields are reconciled, communication is consolidated and archived, numbered live files are removed only after verification, and base templates are restored.
+The default live exchange is the reusable base pair `instruction.md` / `report.md`. Numbered instruction/report chains are used only when Mission Control explicitly authorizes a multi-turn compatibility sequence. At explicit closure, provisional report fields are reconciled, the live exchange is archived using the one archive package format, numbered live files are removed only after verification, and base templates are restored.
 
 When Founder action or local synchronization is required, exact PowerShell commands, document name, action, and expected evidence must be shown directly in chat. The Founder shall not need to open a Founder Brief to obtain commands.
 
 GitHub connector operations affect the remote only; they do not update a local clone.
-
-The temporary compensating control must be retired after branch protection is configured and verified.
 
 ---
 

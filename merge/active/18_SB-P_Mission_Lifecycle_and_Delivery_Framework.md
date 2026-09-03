@@ -517,15 +517,16 @@ git pull --ff-only origin main
 git status
 ```
 
-Exact-file commit and push:
+Exact-file commit and push (authorized mission branch):
 
 ```powershell
+git switch -c mission/[MISSION-ID]-[SHORT-SLUG] origin/main
 git branch --show-current
 git status
 git diff --check
 git add "exact/path/to/file.md"
-git commit -m "Approved commit message"
-git push origin main
+git commit -m "Authorized mission-scoped commit message"
+git push -u origin mission/[MISSION-ID]-[SHORT-SLUG]
 git status
 git log -1 --oneline
 ```
@@ -538,7 +539,7 @@ git add `
   "exact/path/file-two.md"
 ```
 
-If the branch is unexpected, a pull cannot fast-forward, validation fails, or unrelated files appear, stop and report to Mission Control.
+An authorized AI pushes only the mission branch and then opens or updates a pull request targeting `main`. Direct AI push to protected `main` is prohibited; merge to `main` is performed only by the Founder, a Mission Control-authorized human maintainer, or a separately approved automated merge mechanism after required reviews and checks. If the branch is unexpected, a pull cannot fast-forward, validation fails, or unrelated files appear, stop and report to Mission Control.
 
 ## Appendix F — Mission Handover Template
 
