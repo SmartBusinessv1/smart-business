@@ -5,6 +5,8 @@
 **Prepared by:** Claude Code, under `communication/live/instruction1.44.md`
 **Evidence basis:** `communication/live/report1.47.md`
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The status above is preserved unchanged as this runbook's accurate state at preparation time. It is no longer current: the two migrations this runbook covers were subsequently applied to production under a separate, later execution mission not audited in detail by this continuity mission — their presence in production was independently confirmed at SB-P-1.11 Stage 19 ("the Initial Phase 1 19-command boundary … was independently confirmed correctly configured in production regardless", `docs/implementation/SB-P-1.11/evidence/gc40-production-migration-reconciliation.md` §1) and is unaffected by this document's own remaining "not executable" framing. Treat this runbook and its companions (`SB-P-1.11-production-rollback-and-recovery.md`, `SB-P-1.11-production-verification-checklist.md`) as historical preparation evidence for that already-completed execution, not as a currently pending task. See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
+
 ---
 
 ## 0. Governing Rule

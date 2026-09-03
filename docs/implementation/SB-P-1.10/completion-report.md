@@ -16,6 +16,8 @@ Mission: SB-P-1.10
 
 # SB-P-1.10 — Inventory Foundation — Completion Report
 
+> **Runtime-topology continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** This report's `Runtime Environment` (§1) and Deployment Status (§6) describe the runtime as it truthfully was at acceptance (31 July 2026): the Lovable-managed runtime published at `https://smartbusiness.teamlips.com`, backed by Lovable Cloud project `wwgqnshcgbukqczqblsm`, with Supabase project `gysgzasfcjvtrgaigfyn` used only as this mission's dedicated **test-only** project (§5, §6, Retraction note). This is preserved as accurate historical evidence and is **not** current. Production subsequently migrated off Lovable Cloud onto Supabase project `gysgzasfcjvtrgaigfyn` (`SB-MIG-1.2E`/`1.2F`/`1.2F-A`, per `docs/migration/README.md`), and the delivery repository/Lovable project were themselves later resynchronized under `SB-OPS-PROD-SYNC-1.0`. As of that mission's closure, `gysgzasfcjvtrgaigfyn` is the authoritative **production** Supabase project — the same project ref this report names as test-only — and `wwgqnshcgbukqczqblsm` is excluded/historical. See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` for the full chronology and current topology.
+
 ## Formal Acceptance Record
 
 Mission Control formally accepts SB-P-1.10 — Inventory Foundation as completed.

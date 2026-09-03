@@ -3,6 +3,8 @@
 **Mission:** SB-P-1.11-PROD-PREP-1 — Production Migration Runbook and Preflight
 **Status:** `PREPARED — NOT EXECUTABLE ON ITS OWN — USE ONLY DURING AN AUTHORIZED PRODUCTION EXECUTION MISSION`
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** This decision framework's companion migration (`docs/operations/SB-P-1.11-production-migration-runbook.md`) was subsequently executed against production; see that document's own continuity note and `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`. This document's content is preserved unchanged as the prepared decision framework; whether it was actually invoked during that execution is not established by this audit.
+
 This document does not create or execute a destructive rollback migration. It is a decision framework, prepared in advance so that a real failure during a future, separately authorized execution mission is handled by pre-agreed procedure rather than improvisation under pressure.
 
 ---

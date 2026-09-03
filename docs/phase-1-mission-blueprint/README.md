@@ -16,9 +16,12 @@ This directory contains governed Product Blueprint documents for Smart Business 
 phase-1-mission-blueprint/
 ├── README.md
 ├── active/
-│   └── SB-P-1.10.md
 └── completed/
+    ├── SB-P-1.10.md
+    └── SB-P-1.11.md
 ```
+
+> This example reflects current repository state. As of `SB-DOC-1.10-1.11-CONTINUITY-1.0`, `active/` currently holds no Product Blueprint document; the next Phase 1 mission's Blueprint is created there when drafting begins. For the post-completion evolution of `SB-P-1.10` and `SB-P-1.11` after their own acceptance — later Founder refinements, defect corrections, and the current production topology — see `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
 
 ## Mission Status Categories
 

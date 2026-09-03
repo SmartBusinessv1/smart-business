@@ -6,7 +6,7 @@
 | ------------------------ | ------------------------------------------------------------------------------- |
 | Mission ID                | SB-P-1.10                                                                      |
 | Mission Name              | Inventory Foundation                                                           |
-| Related Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.10.md` (LOCKED)                 |
+| Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.10.md` (LOCKED)             |
 | Blueprint Version          | 1.3                                                                            |
 | Document Type              | Engineering Implementation Specification (EIS)                                |
 | Document Version           | 1.2                                                                            |

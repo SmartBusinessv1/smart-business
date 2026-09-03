@@ -17,6 +17,8 @@
 | Implementation authority | NONE until separately authorized |
 | Public publish / deploy / domain cutover | NOT AUTHORIZED |
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The metadata above is preserved unchanged as the accurate record of this document's own revision-4.0 status (Supabase Backend Architecture re-confirmation pending). It is no longer current: this Build Now gap-closure scope — CSV/XLSX Catalog bulk import, the Category/Selling Unit preset selectors, and the Inventory ↔ Catalog linking-workflow clarity in Part D — was subsequently separately authorized, implemented, and is now part of the formally accepted SB-P-1.11 mission (Source 18 Stage 23/24 closure). Note also that Part D §24's "Path A — Choose existing Inventory item" merchant-facing design was itself later superseded by a Founder-authorized product refinement: ordinary stock-tracked products now use a system-managed dedicated Inventory identity rather than merchant selection from existing items (`SB-OPS-PROD-SYNC-1.0` instructions 1.5–1.8). See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` for the full chronology and evidence.
+
 ---
 
 ## 1. Purpose
@@ -73,7 +75,7 @@ Engineering must preserve the following canonical sources and decisions.
 
 ### Product decisions
 
-`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`
+`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md`
 
 Relevant locked decisions include:
 

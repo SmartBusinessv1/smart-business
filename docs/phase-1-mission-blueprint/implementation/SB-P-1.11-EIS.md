@@ -8,13 +8,15 @@ IMPLEMENTATION PACKAGE: NOT AUTHORIZED
 IMPLEMENTATION: NOT AUTHORIZED
 ```
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The status block above is preserved unchanged as the accurate record at EIS lock time. It is no longer current: implementation was subsequently separately authorized and completed, formally accepted at Source 18 Stage 23 (`ACCEPTED WITH FOLLOW-UP`) and closed at Stage 24 (`COMPLETED — FORMALLY ACCEPTED`) — see `communication/missions/SB-P-1.11/mission-control/23-mission-control-acceptance.md` and `24-documentation-closure.md`, and `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` for the full chronology.
+
 ## 1. Document Metadata
 
 | Field | Value |
 |---|---|
 | Mission ID | SB-P-1.11 |
 | Mission Name | Product Catalog & Pricing |
-| Related Product Blueprint | `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (LOCKED — Sections 1–21) |
+| Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md` (LOCKED — Sections 1–21) |
 | Founder Decisions Covered | D-001 through D-068 |
 | Document Type | Engineering Implementation Specification (EIS) |
 | Document Version | 2.2 |

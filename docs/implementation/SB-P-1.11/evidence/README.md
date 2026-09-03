@@ -25,9 +25,9 @@ Everything else required by `instruction1.195.md` §4 is indexed in this documen
 
 ## A. Locked Product Truth / Blueprint Traceability
 
-- **Locked Product Blueprint:** [`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`](../../../phase-1-mission-blueprint/active/SB-P-1.11.md) — Status: `Blueprint Locked`, Sections 1–21, Product Authority: Founder, Constitutional Authority: Source 01 and Source 11 jointly.
-- **Founder Product Decision Record:** [`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`](../../../phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md) — Founder Decisions D-001 through D-068, the same decision range the EIS covers.
-- **Founder Workflow Reconciliation Record:** [`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`](../../../phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md).
+- **Locked Product Blueprint:** [`docs/phase-1-mission-blueprint/completed/SB-P-1.11.md`](../../../phase-1-mission-blueprint/completed/SB-P-1.11.md) — Status: `Blueprint Locked`, Sections 1–21, Product Authority: Founder, Constitutional Authority: Source 01 and Source 11 jointly.
+- **Founder Product Decision Record:** [`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md`](../../../phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md) — Founder Decisions D-001 through D-068, the same decision range the EIS covers.
+- **Founder Workflow Reconciliation Record:** [`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`](../../../phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md).
 - **Stage 19 confirmation of byte-identity:** `communication/missions/SB-P-1.11/claude-code/19-independent-verification-report.md`, Verification Checklist row `CHK-LOCK-001–005, 005A` — "Product Blueprint, Founder Product Decision Record, EIS, Engineering Contract, Lovable Build Prompt, Verification Checklist, canonical Lambda Parser EIS record all confirmed present at their previously-locked versions; zero diff found against any of them during this verification pass."
 
 No Blueprint, Founder Decision Record, or Product Truth content was changed by this Stage 21/22 work, by GC-40, or by any repository change reviewed in this package.

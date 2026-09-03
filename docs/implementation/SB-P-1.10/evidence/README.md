@@ -1,5 +1,7 @@
 # SB-P-1.10 — Inventory Foundation — Evidence Index
 
+> **Continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** Every reference below to the Lovable-managed backend (`wwgqnshcgbukqczqblsm`) as production, and to `gysgzasfcjvtrgaigfyn` as this mission's separate test-only project, is preserved unchanged as accurate historical evidence from July 2026. It is not current: `gysgzasfcjvtrgaigfyn` is now the authoritative production Supabase project and `wwgqnshcgbukqczqblsm` is excluded/historical (`docs/migration/README.md`; `SB-OPS-PROD-SYNC-1.0`). See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
+
 This directory holds the evidence collected under four authorised missions:
 
 - **SB-P-1.10-LOVE-CR-1.0** — Evidence Collection and Completion Report

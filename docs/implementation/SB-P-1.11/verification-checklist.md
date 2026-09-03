@@ -52,12 +52,12 @@ IMPLEMENTATION AUTHORITY: NONE
 
 This checklist is subordinate to, and must never contradict, expand, weaken, or reinterpret, its governing sources (corrected terminology per MC-VC-003). This checklist derives from four locked Stage 12 authorities:
 
-1. **SB-P-1.11 Product Blueprint** (`docs/phase-1-mission-blueprint/active/SB-P-1.11.md`), Sections 1–21, LOCKED.
+1. **SB-P-1.11 Product Blueprint** (`docs/phase-1-mission-blueprint/completed/SB-P-1.11.md`), Sections 1–21, LOCKED.
 2. **SB-P-1.11 Engineering Implementation Specification, Version 2.2, LOCKED** (`docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`) — except the CSV/XLSX parser-runtime and import-support-state architecture, reassigned below.
 3. **SB-P-1.11 Engineering Contract, Version 1.2, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/engineering-contract.md`) — reconciled, corrected, and locked alongside this document.
 4. **SB-P-1.11 Lovable Build Prompt, Version 1.2, LOCKED — MISSION CONTROL ACCEPTED** (`docs/implementation/SB-P-1.11/lovable-build-prompt.md`) — reconciled, corrected, and locked alongside this document.
 
-The **SB-P-1.11 Founder Product Decision Record, D-001 through D-068** (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`), is a mandatory preserved decision source governing the Blueprint and all downstream documents. It must remain independently traceable and unchanged. It is not counted among the four locked Stage 12 authorities above, but no checklist item may contradict, expand, weaken, or reinterpret it any more than it may the four authorities themselves.
+The **SB-P-1.11 Founder Product Decision Record, D-001 through D-068** (`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md`), is a mandatory preserved decision source governing the Blueprint and all downstream documents. It must remain independently traceable and unchanged. It is not counted among the four locked Stage 12 authorities above, but no checklist item may contradict, expand, weaken, or reinterpret it any more than it may the four authorities themselves.
 
 The **canonical Lambda Parser EIS, `LAMBDA PARSER EIS — APPROVED — LOCKED`** (`communication/live/report1.126.md` and its locked chain: `report1.108.md`, `report1.115.md`, `report1.123.md`, `report1.124.md`, `report1.125.md`) is likewise a mandatory preserved authority, not counted among the four locked Stage 12 authorities above, but authoritative specifically for the external AWS Lambda parser runtime, transient S3 ingress, IAM Roles Anywhere credential path, the Parser Upload Lease/EC-2 Supabase support-state architecture, and the parser response contract. Where an item elsewhere in this checklist cites EIS v2.2 for that specific scope, the canonical Lambda Parser EIS governs instead (`communication/live/instruction1.118.md` §3).
 
@@ -215,7 +215,7 @@ A phase not yet separately authorized must never be verified as if it were built
 - **CHK-FILES-001** — The implementation's changed-file list matches exactly what its own authorization permitted, and does not touch any of the four locked Stage 12 authorities or the Founder Product Decision Record.
   - **Phase / Component:** Cross-phase precondition.
   - **Locked-Source Reference:** Engineering Contract §30 "Explicit Implementation Prohibitions"; Lovable Build Prompt §23 "Explicit No-Go List."
-  - **Expected Result:** `git diff --name-status` between the implementation's base and head commits shows only files the phase's authorization permits; none of `docs/phase-1-mission-blueprint/active/SB-P-1.11.md`, the Founder Product Decision Record, `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`, `docs/implementation/SB-P-1.11/engineering-contract.md`, or `docs/implementation/SB-P-1.11/lovable-build-prompt.md` appears.
+  - **Expected Result:** `git diff --name-status` between the implementation's base and head commits shows only files the phase's authorization permits; none of `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md`, the Founder Product Decision Record, `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md`, `docs/implementation/SB-P-1.11/engineering-contract.md`, or `docs/implementation/SB-P-1.11/lovable-build-prompt.md` appears.
   - **Verification Method:** `git diff --name-status <base>..<head>`; compare against the authorization's named scope.
   - **Evidence Location:** Git diff output, stored with the Builder Completion Report.
   - **Actual Result:** [To be completed during the authorized verification run]
@@ -240,9 +240,9 @@ A phase not yet separately authorized must never be verified as if it were built
 
 - **CHK-LOCK-001** — The Product Blueprint is byte-identical to its locked state.
   - **Phase / Component:** Cross-phase precondition.
-  - **Locked-Source Reference:** `docs/phase-1-mission-blueprint/active/SB-P-1.11.md`, Sections 1–21, LOCKED.
+  - **Locked-Source Reference:** `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md`, Sections 1–21, LOCKED.
   - **Expected Result:** `git diff` shows no change to this file across the implementation's commit range.
-  - **Verification Method:** `git diff <base>..<head> -- docs/phase-1-mission-blueprint/active/SB-P-1.11.md`.
+  - **Verification Method:** `git diff <base>..<head> -- docs/phase-1-mission-blueprint/completed/SB-P-1.11.md`.
   - **Evidence Location:** Git diff output.
   - **Actual Result:** [To be completed during the authorized verification run]
   - **Outcome:** [Select one authorized outcome during verification]
@@ -251,7 +251,7 @@ A phase not yet separately authorized must never be verified as if it were built
 
 - **CHK-LOCK-002** — The Founder Product Decision Record is byte-identical to its locked state.
   - **Phase / Component:** Cross-phase precondition.
-  - **Locked-Source Reference:** `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md`, D-001 through D-068.
+  - **Locked-Source Reference:** `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md`, D-001 through D-068.
   - **Expected Result:** No change across the implementation's commit range.
   - **Verification Method:** `git diff` on the file path.
   - **Evidence Location:** Git diff output.
@@ -786,7 +786,7 @@ Applies only if the environment-gated scheduler is named in Section 2. Otherwise
 
 ## 17A. Founder Workflow Reconciliation Verification — Inventory Onboarding, Generated SKU, and Inventory-First Orchestration (FWR-001 through FWR-005) (added by correction, GC-24)
 
-Authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control finding MC-GC23-002 (`report1.128.md`). Every item below is an unexecuted template placeholder, exactly like every other item in this checklist — none is pre-populated with `PASS`, `FAIL`, or any other outcome. These items verify Engineering Contract §9A and Lovable Build Prompt §14A, both carrying the Founder Workflow Reconciliation Record (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`, FWR-001 through FWR-005). Adding this section does not itself satisfy any item; each item requires its own authorized verification run.
+Authorized by `communication/live/instruction1.120.md` (SB-P-1.11-GC-24), resolving Mission Control finding MC-GC23-002 (`report1.128.md`). Every item below is an unexecuted template placeholder, exactly like every other item in this checklist — none is pre-populated with `PASS`, `FAIL`, or any other outcome. These items verify Engineering Contract §9A and Lovable Build Prompt §14A, both carrying the Founder Workflow Reconciliation Record (`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md`, FWR-001 through FWR-005). Adding this section does not itself satisfy any item; each item requires its own authorized verification run.
 
 - **CHK-FWR-001** — Inventory/Opening Stock bulk-onboarding template availability, schema, and version identification.
   - **Phase / Component:** Phase 2b (import scope, analogous to CHK-BE-IMP template coverage under Section 10).
