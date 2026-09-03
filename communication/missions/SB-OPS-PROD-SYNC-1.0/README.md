@@ -1,71 +1,93 @@
 # SB-OPS-PROD-SYNC-1.0 — Production Runtime Synchronization & Lovable Recovery
 
-**Status:** ACTIVE — FOUNDER PRIORITY EXECUTION — STAGE 02 EXECUTED, AWAITING REVIEW  
-**Current stage:** 02 — Lovable tooling compatibility correction (executed; target PR updated for review)  
-**Current owner:** Mission Control (review) — next stage owner not yet assigned  
+**Status:** COMPLETE — PRODUCTION CUTOVER VERIFIED  
+**Current stage:** CLOSED — production runtime live and legacy workspace unpublished  
+**Current owner:** Mission Control — mission closed  
 **Mission Control:** Smart Business Mission Control  
-**Date activated:** 2026-09-01
+**Date activated:** 2026-09-01  
+**Date closed:** 2026-09-03
 
 ## Objective
 
-Synchronize the approved production/runtime implementation from `SmartBusinessv1/smart-business` into `SmartBusinessv1/starter-supab-shell`, preserve the intended production Supabase binding, restore the intended Lovable production implementation path, then verify the remaining practical bulk-import gaps before publication.
+Synchronize the approved production/runtime implementation from `SmartBusinessv1/smart-business` into `SmartBusinessv1/starter-supab-shell`, preserve the intended production Supabase binding, restore the intended Lovable production implementation path, close the practical Catalog / Opening Stock gaps required for safe merchant use, repair the discovered Product → Inventory integrity issue, publish the verified runtime, and cut over `smartbusiness.teamlips.com`.
+
+**Objective status:** ACHIEVED.
 
 ## Authoritative identities
 
 - Canonical implementation repository: `SmartBusinessv1/smart-business`
-- Mapped canonical runtime snapshot: `53b16a464be15e9c6b8f1d74827f9dce8cf9f928`
 - Production delivery repository: `SmartBusinessv1/starter-supab-shell`
-- Target baseline: `fd7c29c11882a164799e00584701a9db46e06cca`
-- Authorized target branch: `mission/SB-OPS-PROD-SYNC-1.0-runtime-sync`
-- Production Lovable project: `f3e992ec-06df-4d49-b157-b92ec064c078`
+- Active production Lovable project: `f3e992ec-06df-4d49-b157-b92ec064c078`
+- Active Lovable display name: `Smart Business`
+- Active verified delivery commit: `205b3f7ab486242ee91e843c61de784b0cb0d21d`
 - Production Supabase project: `gysgzasfcjvtrgaigfyn`
+- Production domain: `https://smartbusiness.teamlips.com`
+- Published Lovable fallback URL: `https://starter-supab-shell.lovable.app`
 - Historical Lovable project excluded: `64c2b9b1-2461-4045-9acc-19e2658b8ca2`
+- Historical Lovable display name after cleanup: `Legacy Workspace-old`
+- Historical Lovable publication state: unpublished
 - Lovable Cloud project excluded: `wwgqnshcgbukqczqblsm`
-- Test Supabase project excluded: `drravyyauixltoihzmwo`
+- Test Supabase project: `drravyyauixltoihzmwo`
 
 ## Material communication
 
 ### Mission Control
 
-- [`mission-control/01-runtime-synchronization-instruction.md`](mission-control/01-runtime-synchronization-instruction.md) — `instruction1`, authorized Claude Code to execute the mapped target-repository synchronization.
-- [`mission-control/02-lovable-tooling-compatibility-correction-instruction.md`](mission-control/02-lovable-tooling-compatibility-correction-instruction.md) — `instruction2`, narrowly authorizes correction of the target-specific Lovable tooling dependency/lockfile state before target PR #1 may merge.
+- [`mission-control/01-runtime-synchronization-instruction.md`](mission-control/01-runtime-synchronization-instruction.md) — initial runtime synchronization authorization.
+- [`mission-control/02-lovable-tooling-compatibility-correction-instruction.md`](mission-control/02-lovable-tooling-compatibility-correction-instruction.md) — target-specific Lovable tooling compatibility correction.
+- [`mission-control/03-production-cutover-closure-report.md`](mission-control/03-production-cutover-closure-report.md) — final production cutover and mission closure record.
 
 ### Claude Code
 
-- [`claude-code/01-runtime-synchronization-report.md`](claude-code/01-runtime-synchronization-report.md) — `report1`, stage 01 execution result: `PASS — PRODUCTION RUNTIME SYNCHRONIZATION PR READY FOR REVIEW`.
-- [`claude-code/02-lovable-tooling-compatibility-correction-report.md`](claude-code/02-lovable-tooling-compatibility-correction-report.md) — `report2`, stage 02 execution result: `PASS — LOVABLE TOOLING COMPATIBILITY CORRECTION READY FOR REVIEW`.
+- [`claude-code/01-runtime-synchronization-report.md`](claude-code/01-runtime-synchronization-report.md) — stage 01 synchronization result.
+- [`claude-code/02-lovable-tooling-compatibility-correction-report.md`](claude-code/02-lovable-tooling-compatibility-correction-report.md) — stage 02 tooling compatibility result.
 
-## Current branch / PR state
+### Live communication sequence
 
-- Canonical synchronization map recorded through merged PR `#450`.
-- Stage 01 communication/report recorded through merged canonical PR `#452`.
-- Stage 02 authorization recorded through merged canonical PR `#453`.
-- Target implementation branch: `SmartBusinessv1/starter-supab-shell:mission/SB-OPS-PROD-SYNC-1.0-runtime-sync`.
-- Target runtime synchronization PR: [`SmartBusinessv1/starter-supab-shell#1`](https://github.com/SmartBusinessv1/starter-supab-shell/pull/1) — current commit `1b84c64` (`Preserve production Lovable tooling compatibility`), `OPEN`, not merged, not self-approved.
-- This mission-communication update: on branch `mission/SB-OPS-PROD-SYNC-1.0-stage02-report` in `SmartBusinessv1/smart-business`, via a separate PR (not self-merged).
+Follow-up execution and evidence continued through `communication/live/instruction1.1.md` … `instruction1.9.md` and their matching reports. The final execution report is `communication/live/report1.9.md`.
 
-## Stage 02 correction result
+## Accepted mission outcomes
 
-`@lovable.dev/vite-tanstack-config` is restored to the target baseline's `2.13.1`. The SB-P-1.11 additions required by the synchronized runtime (`@aws-sdk/client-s3`, `aws4fetch`, `build:lambda`) are retained; the three `2.7.7`-only devDependencies (`@tanstack/router-core`, `esbuild`, `seroval`) are removed, proven unnecessary by a passing build. `bun install --frozen-lockfile` now passes cleanly (an improvement over stage 01's disclosed lockfile deviation). Lint result is unchanged from stage 01 (same pre-existing CRLF noise and 7 warnings; nothing new). Full detail in `report2`.
+1. Production runtime synchronized into the Lovable delivery repository.
+2. Target-specific Lovable tooling compatibility preserved.
+3. Parser corrected for the production runtime environment.
+4. Catalog inline correction implemented and runtime-verified.
+5. Opening Stock bulk import implemented and runtime-verified.
+6. Standard stock Product → Inventory identity locked as system-managed one-to-one.
+7. Historical Mango / Milma Milk / AVT Tea Powder production association defect repaired.
+8. Phase A server reuse guard deployed.
+9. Phase B database uniqueness constraint deployed: `UNIQUE (business_id, inventory_item_id)`.
+10. Test migration history reconciled without executing the production-specific data repair in test.
+11. Auth, protected-route, session, public-navigation, Workspace, Transactions, Inventory, and Catalog checks passed.
+12. Active Lovable project published.
+13. `smartbusiness.teamlips.com` connected and verified live.
+14. Active Lovable project renamed `Smart Business`.
+15. Historical Lovable project renamed `Legacy Workspace-old` and unpublished without deletion or cloud-resource pause.
+16. Production domain rechecked after legacy unpublication and confirmed healthy by the Founder.
 
-## Known remaining practical gaps after synchronization
+## Key repository milestones
 
-1. Catalog bulk-import direct Category/Unit correction dropdown UX — reusable selectors are present in the target repo but are not yet wired into the import review screen.
-2. Inventory / Opening Stock merchant-facing CSV/XLSX bulk workflow — not found in canonical runtime during stage 01.
+- target runtime synchronization / Lovable compatibility: `SmartBusinessv1/starter-supab-shell#1`
+- parser correction: target `#2`, canonical `#457`
+- Catalog / Opening Stock import: target `#3`, canonical `#459`
+- one-to-one Product → Inventory client behavior: target `#4`, canonical `#461`
+- Phase A server guard: canonical `#463`, target `#5`
+- production data repair evidence: canonical `#465`
+- Phase B unique constraint: canonical `#467`
+- test migration-history reconciliation: canonical `#469`
 
-These remain implementation follow-ups and are not part of stage 01 or stage 02.
+## Final production state
+
+`https://smartbusiness.teamlips.com` serves the intended verified Smart Business production runtime through Lovable project `f3e992ec-06df-4d49-b157-b92ec064c078`, bound to production Supabase `gysgzasfcjvtrgaigfyn`.
+
+The excluded historical Lovable project is retained only as historical evidence and is not published.
+
+## Remaining nonblocking debt
+
+Previously retained inconclusive verification debt remains nonblocking unless new evidence establishes merchant harm, financial-truth corruption, cross-business exposure, or unsafe continuation. No new blocker is carried forward from this mission.
 
 ## Next authorized action
 
-Mission Control reviews `report2` and the updated target PR `starter-supab-shell#1`, and separately authorizes the next stage (e.g. merge of the target PR, then Lovable-side verification) before publication or domain work proceeds.
+None under `SB-OPS-PROD-SYNC-1.0`.
 
-## Not yet authorized
-
-- merge to `starter-supab-shell/main` by Claude Code;
-- Lovable publication;
-- production domain cutover;
-- Supabase migration/schema/RLS/Auth/data mutation;
-- AWS/Lambda deployment;
-- Catalog dropdown wiring;
-- Inventory bulk-import implementation;
-- use of the historical Lovable workspace as production source.
+Any further product, infrastructure, governance, security, communication-protocol, or implementation work requires separate active authorization.
