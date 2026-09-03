@@ -1,17 +1,23 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# Report — Awaiting Mission Activation
+# Report — Active Communication Protocol Alignment
 
-**Mission ID:** `NONE`
+**Mission ID:** `SB-GOV-COMMS-1.3`
+
+**Mission Name:** `Active Communication Protocol Alignment`
+
+**From:** `Claude Code / Repository Governance & Documentation Operator`
 
 **To:** Smart Business Mission Control
 
-**Status:** `IDLE — NO ACTIVE SPECIALIST REPORT`
+**In Reply To:** `communication/live/instruction.md`
+
+**Status:** `PENDING — AWAITING SPECIALIST EXECUTION AFTER HUMAN MERGE`
+
+**Date:** `2026-09-03`
 
 ---
 
-`communication/live/` is currently reset and contains no active mission report.
+This is the fresh reply file for `SB-GOV-COMMS-1.3`.
 
-When Mission Control activates the next mission, replace this placeholder with the fresh report template paired to that instruction.
-
-Do not reuse a prior mission report or continue an archived instruction/report sequence.
+The assigned specialist shall replace this placeholder with the complete governance-alignment report after the activation PR is human-merged and the mission is executed on its separately authorized mission branch.
