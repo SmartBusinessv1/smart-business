@@ -1,6 +1,6 @@
 // SB-P-1.11-GC-1 — Selling Unit and Category preset vocabulary.
 //
-// Locked in docs/phase-1-mission-blueprint/active/SB-P-1.11-Build-Now-Gap-Closure-EIS.md
+// Locked in docs/phase-1-mission-blueprint/completed/SB-P-1.11-Build-Now-Gap-Closure-EIS.md
 // Part K §45.13 (SEC-14): presets are UI suggestions compiled into the
 // application bundle, never a database table, never a global mandatory
 // taxonomy, and never merchant-mutable data. Selecting a preset only ever
