@@ -33,14 +33,13 @@
 | SB-OPS-PROD-SYNC-1.0 | Production Runtime Synchronization & Lovable Recovery | COMPLETE — PRODUCTION CUTOVER VERIFIED, 2026-09-03 | PR #470 (`eca9e73`); superseded the SB-REL-1.10-1.11 release-readiness cycle (PR #449). Found and corrected a parser runtime-compatibility defect and a Product↔Inventory identity defect; a production schema incident in this window was disclosed and corrected with no data loss |
 | SB-DOC-1.10-1.11-CONTINUITY-1.0 | SB-P-1.10 / SB-P-1.11 Post-Completion Continuity Reconciliation | COMPLETE — HUMAN MERGED, 2026-09-03 | PR #472 (`e84f212`); created the continuity record above; archived PR #473 |
 | SB-DOC-PHASE1-CLASSIFICATION-1.0 | Phase 1 Blueprint Lifecycle Classification Cleanup | COMPLETE — HUMAN MERGED, 2026-09-03 | PR #474 (`54281fb`); reclassified `SB-P-1.11-Build-Now-Gap-Closure-EIS.md` from `active/` to `completed/`; archived PR #475 |
+| SB-GOV-COMMS-1.3 | Active Communication Protocol Alignment | COMPLETED — FORMALLY ACCEPTED, 2026-09-03 | PR #476 (`1b99c1b`, activation); PR #477 (`809caec`, governance alignment — protocol, `communication/README.md`, `AGENTS.md`, Source 18 Appendix E, both EOS GitHub workflows, this memory); PR #478 closed unmerged as superseded; PR #479 authorized final closure; closure/archive PR — see `communication/archive/SB-GOV-COMMS-1.3/communication.md` |
 
 ---
 
 # Active Mission
 
-- Mission ID: SB-GOV-COMMS-1.3
-- Mission Name: Active Communication Protocol Alignment
-- Status: ACTIVE — activation PR #476 (`1b99c1b`) human-merged 2026-09-03; documentation-only governance reconciliation of the active communication protocol, `communication/README.md`, `AGENTS.md`, actor instructions, Source 18 command wording, and this memory
+- NONE — READY FOR NEXT AUTHORIZED MISSION
 
 ---
 
@@ -64,7 +63,7 @@
 - Complete the production Terms of Service.
 - Resume SB-INF-1.2 after both legal pages are published.
 - Schedule a future canonical-source metadata-normalization mission for Sources 02 through 08 to remove legacy `Smart Business V2.2` headers and reconcile the Source 07 title with the approved `/survey` deprecation and `/start` route.
-- `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment` is ACTIVE (see Active Mission). On acceptance, confirm this memory, `communication/README.md`, the AI Communication and Handover Protocol, `AGENTS.md`, and the actor instructions all present the one communication model.
+- Final SB-P lifecycle metadata normalization is deferred until the historical continuity reconstruction (see Next Recommended Mission) establishes the evidence-backed completed-mission register.
 - SB-P-1.11 non-blocking follow-ups `F23-01`–`F23-05` (accepted at Stage 23/24): live multi-business/cross-tenant RLS runtime probe; live concurrent-retry/actor-mismatch idempotency probe; complete parameter-signature parity for the remaining 16 of 19 Catalog commands; live production-domain browser/HTTP verification; exhaustive GC-1 historical-instruction re-derivation. Current status is tracked in `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` §17.
 - SB-P-1.11 / GC-38R — Create a secure encrypted offline USB backup of `teamlips-sb-np-parser-ca.key.pem` and `teamlips-sb-np-parser-ca.cert.pem`; keep the CA-key passphrase and USB recovery information separately. The current Founder-controlled CA working copy remains outside the repository at `C:\TeamLIPS-Offline-PKI`. Never place the CA private key in GitHub, project storage, cloud-synced folders, chat, or CI.
 
@@ -288,8 +287,9 @@ For every review performed by Mission Control, including Stage 1 Product Bluepri
 
 # Next Recommended Mission
 
-- Complete `SB-GOV-COMMS-1.3 — Active Communication Protocol Alignment` (currently ACTIVE): Mission Control review of the governance-alignment pull request, then acceptance and communication closure.
-- After that communication-governance alignment is accepted, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
+- **NOT YET ACTIVATED** — Historical continuity reconstruction: reconstruct the evidence-backed record of Smart Business from inception through SB-P-1.11 completion (historical Mission Control and specialist-room chats in batches, Claude Code and Codex evidence, GitHub repository history, tool/platform/capability evolution, and Founder clarification where evidence is incomplete). Its output is the evidence-backed completed SB-P mission register. It must start as a fresh mission and a fresh communication cycle; it is not activated by the SB-GOV-COMMS-1.3 closure/archive.
+- Final SB-P lifecycle metadata normalization is deferred until that reconstruction establishes the completed-mission register.
+- After the reconstruction, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
 
 ---
 
