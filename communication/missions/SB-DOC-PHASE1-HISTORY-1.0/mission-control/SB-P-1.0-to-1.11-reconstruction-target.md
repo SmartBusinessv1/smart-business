@@ -56,7 +56,7 @@ The Founder requires the final Phase 1 completed records to present a continuous
 
 `docs/phase-1-mission-blueprint/completed/`
 
-Current repository state at mission start contains the canonical `SB-P-1.10.md` and `SB-P-1.11.md` Product Blueprint records in this folder. `SB-P-1.9` is currently represented primarily under `docs/implementation/SB-P-1.9/`, not by a mission file in the completed Blueprint folder.
+Current repository state at mission start contains the canonical `SB-P-1.10.md` and `SB-P-1.11.md` Product Blueprint records in this folder. `SB-P-1.9` is currently represented primarily under `docs/implementation/SB-P-1.9/`, because the `docs/phase-1-mission-blueprint/` lifecycle structure was introduced only after `SB-P-1.9` had already been completed.
 
 After the historical reconstruction is sufficiently evidenced, the intended completed-folder sequence is:
 
@@ -72,6 +72,24 @@ After the historical reconstruction is sufficiently evidenced, the intended comp
 - `SB-P-1.9.md`
 - `SB-P-1.10.md`
 - `SB-P-1.11.md`
+
+### SB-P-1.9 Reconciliation Rule
+
+`SB-P-1.9` shall receive a canonical mission continuity/completion record at:
+
+`docs/phase-1-mission-blueprint/completed/SB-P-1.9.md`
+
+This is required to prevent a future reader from interpreting the absence of `SB-P-1.9` from the completed mission sequence as evidence that the mission was incomplete or missing.
+
+The existing implementation and evidence directory:
+
+`docs/implementation/SB-P-1.9/`
+
+must remain in place as the authoritative implementation/evidence location. The reconstruction mission must not delete, flatten, or relocate that implementation evidence merely to make the completed folder visually continuous.
+
+The completed-folder `SB-P-1.9.md` record shall point to the authoritative implementation, deployment, runtime-verification, acceptance and other durable evidence discovered during reconstruction.
+
+Because `SB-P-1.9` predates the modern Product Blueprint directory structure, its completed-folder record must accurately state its historical provenance and must not pretend that a contemporaneous Source 18 Product Blueprint lifecycle existed when it did not.
 
 ### Non-Fabrication Classification for Early Records
 
@@ -115,6 +133,20 @@ The sequence must be reconstructed by correlating, as available:
 
 A reference to an earlier mission in a later room is useful retrospective/dependency evidence, but it does not by itself replace the need to recover the earlier mission's own execution history where available.
 
+### Priority Evidence Search for SB-P-1.0 Through SB-P-1.4
+
+The reconstruction should expect the strongest missing evidence for `SB-P-1.0` through `SB-P-1.4` to come from early specialist-room history rather than from later formal Product Mission artifacts.
+
+Prioritize extraction from:
+
+- Infrastructure Operations — domain, DNS, GitHub, environment, deployment, account/platform setup and operational chronology;
+- Lovable / Lovable Lab — first project creation, public website, authentication/workspace foundation, publishing, custom-domain and runtime evolution;
+- Supabase — initial project creation, schema/auth/RLS setup, environment identity and backend foundation;
+- Claude / engineering rooms — technical implementation, correction and review history;
+- Founder and Mission Control evidence — mission naming, authority, completion decisions and runtime confirmation.
+
+Do not assume that specialist evidence will prove every missing mission. Use it to progressively establish or reject candidate identities, objectives and completion states.
+
 ## Completion Gate for This Historical Mission
 
 `SB-DOC-PHASE1-HISTORY-1.0` is not ready for final closure until Mission Control can present:
@@ -125,8 +157,9 @@ A reference to an earlier mission in a later room is useful retrospective/depend
 4. a lessons-learned record;
 5. an evidence/open-questions ledger with remaining gaps honestly classified;
 6. the completed-folder continuity records for `SB-P-1.0` through `SB-P-1.9`, created only after sufficient evidence review;
-7. verification that existing `SB-P-1.10` and `SB-P-1.11` records remain historically intact except for any separately authorized current-metadata reconciliation;
-8. final SB-P lifecycle metadata normalization based on the completed evidence-backed register, not assumptions.
+7. explicit verification that `docs/implementation/SB-P-1.9/` remains intact as implementation/evidence authority while `docs/phase-1-mission-blueprint/completed/SB-P-1.9.md` provides the canonical mission-continuity entry;
+8. verification that existing `SB-P-1.10` and `SB-P-1.11` records remain historically intact except for any separately authorized current-metadata reconciliation;
+9. final SB-P lifecycle metadata normalization based on the completed evidence-backed register, not assumptions.
 
 ## Current State
 
