@@ -221,7 +221,7 @@ Unexpected staged files, deletions, or renames require a stop report.
 
 Before commit, the AI shall run the repository's approved secret-detection or security check where available. If no approved automated check exists, the AI shall inspect staged changes for credentials, tokens, keys, passwords, and environment values and record that limitation in the handover.
 
-The commit message shall be mission-approved. A commit does not approve the work.
+The commit message shall be mission-authorized: a locked commit message where Mission Control locked one, otherwise a mission-scoped descriptive commit message. A commit does not approve the work.
 
 ## 12. Push and Pull-Request Rules
 
@@ -271,9 +271,13 @@ When Founder action is required, exact PowerShell commands shall be shown direct
 
 The following wording, with every bracketed value resolved, is required for mission-scoped authorization:
 
-> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY], using branch [AUTHORIZED BRANCH], limited to [AUTHORIZED PATHS OR SCOPE], with commit message [APPROVED COMMIT MESSAGE], and to fetch, pull fast-forward only, stage exact authorized files, commit, push the authorized mission branch, and open or update the pull request.
+> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY], using [the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` | locked branch [LOCKED BRANCH NAME]], limited to [AUTHORIZED PATHS OR SCOPE], using [mission-scoped descriptive commit messages | the locked commit message [LOCKED COMMIT MESSAGE]], and to fetch, pull fast-forward only, stage exact authorized files, commit, push the authorized mission branch, and open or update the pull request.
 
-AI name, Mission ID, repository, branch, authorized paths or scope, and approved commit message are mandatory. If any value is missing or ambiguous, the AI shall stop and request clarification.
+Mandatory values are: AI name, Mission ID, repository, the branch authorization (either the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, and the commit-message authorization (either permission to use mission-scoped descriptive commit messages or a specifically locked commit message).
+
+Per the Founder Git-authorization decision, Mission Control may explicitly authorize the standard mission-branch convention and mission-scoped descriptive commit messages. Exact branch text and exact commit text are required only when Mission Control specifically locks them. This changes only the authorization form; every scope, staging, review, protected-branch, no-self-merge, and validation control in this protocol remains in force.
+
+If any mandatory value is missing or ambiguous, the AI shall stop and request clarification.
 
 Without explicit authority, the AI shall prepare commands but shall not execute commit or push.
 
@@ -337,7 +341,7 @@ Mission-scoped Git authority expires when:
 - Mission Control revokes authority;
 - the mission is paused, closed, superseded, or rejected;
 - the authorized branch or scope changes;
-- the approved commit message changes materially;
+- a Mission Control-locked branch name or locked commit message changes materially;
 - unrelated working-tree changes appear;
 - validation fails;
 - a merge or rebase conflict occurs;
@@ -423,14 +427,25 @@ Stage B shall verify that no remaining statement says Codex or Claude Code can n
 
 ## 26. Communication Closure and Archive Governance
 
-Active mission communication shall not remain indefinitely in the active communication area after the communication cycle or mission is complete.
+The transient live exchange shall not remain indefinitely in `communication/live/` after the communication cycle or mission is complete. The durable mission record is a separate thing and is treated differently, as set out below.
 
-### Active and Archive Locations
+### Three Communication Locations
 
-- Active: `communication/missions/[MISSION-ID]/`
-- Canonical repository archive: `communication/archive/[MISSION-ID]/`
+- **Transient current handoff — `communication/live/`.** Holds only the current active instruction and current reply. Archived at closure. Answers: *what needs attention now?*
+- **Durable canonical mission state — `communication/missions/[MISSION-ID]/`.** The permanent structured mission record defined by Source 18 Section 10: README, stage/actor reports, decision log, handover log, Founder briefs, Mission Control acceptance/closure records, and links to authoritative artifacts. It is Source 18 canonical durable mission evidence. A completed mission folder **remains in `communication/missions/`**; it is not moved into `communication/archive/` merely because the mission closes. At closure its README status is updated (for example to `COMPLETED — FORMALLY ACCEPTED` or `ARCHIVED`) in place. Answers: *where does this mission stand?*
+- **Frozen transient communication history — `communication/archive/[MISSION-ID]/`.** The archived copy of the completed `communication/live/` exchange for that mission. Answers: *what exact transient instruction/report exchange occurred?*
 
-The repository's existing approved archive convention maps the proposed `communication/archive/missions/[MISSION-ID]/` structure to `communication/archive/[MISSION-ID]/`. This mapping shall be recorded in the archive handover. A future change to the canonical archive path requires separate approval.
+Only the `communication/live/` exchange is archived to `communication/archive/[MISSION-ID]/`. Where a mission also keeps a `communication/missions/[MISSION-ID]/` record, the archive package links to it as the canonical durable record and does not copy or relocate it. A future change to the canonical archive path requires separate approval.
+
+### Archive Package Format
+
+Every `communication/archive/[MISSION-ID]/` package uses one format with three clearly distinct roles:
+
+1. **Readable chronology and index — `communication/archive/[MISSION-ID]/communication.md`.** A human-readable chronology of the exchange, an ordered index of the preserved source files with their Git blob SHAs and sizes, and a clearly separated **Final Reconciled Closure** section (see role 3). Where a durable mission record exists, `communication.md` links to `communication/missions/[MISSION-ID]/` as the canonical stage-based mission evidence.
+2. **Immutable source exchange evidence.** The exact former `communication/live/` files preserved byte-identically alongside `communication.md`: `instruction.md`, `report.md`, and any Mission Control-authorized `instruction1.x.md` / `report1.x.md` pairs. These are historical evidence and shall never be rewritten to modernize status, paths, or later repository state.
+3. **Final reconciled closure state.** Normally the labelled **Final Reconciled Closure** section inside `communication.md`, recording final disposition, closure authority and date, final commit and pull request, unresolved follow-ups, the durable mission record path where one exists, and confirmation that the live templates were restored. A mission with a large or specialist-heavy exchange may instead place this in a separate `communication/archive/[MISSION-ID]/report.md`; when it does, `communication.md` must link to it. Exactly one of the two placements is used per mission.
+
+Archive packages created before this format was defined remain valid as they stand and are not retrofitted.
 
 ### Archive Preconditions
 
@@ -442,30 +457,30 @@ Before archiving, the assigned AI shall verify:
 - final commit and pull-request references are recorded;
 - unresolved follow-ups are named;
 - authoritative artifacts remain outside the communication archive where required;
-- no active actor still requires the folder;
+- no active actor still requires the live exchange;
 - Founder or Mission Control has explicitly confirmed closure.
 - every associated pull request is merged, closed, or explicitly accepted by Mission Control as an open follow-up reference.
 
 Any open follow-up pull request shall be recorded in the archived README.
 
-Before archiving, the assigned AI shall identify repository links pointing to the active communication path. Where required, it shall update those links or leave an approved redirect or index record at the former active location. The active and archive locations must not both present themselves as authoritative mission communication.
+Before archiving, the assigned AI shall identify repository links pointing to the `communication/live/` exchange being archived. Where required, it shall update those links or leave an approved index record. The archive package shall not present itself as current executable authority, and shall not compete with the durable `communication/missions/[MISSION-ID]/` record.
 
 ### Archive Action
 
 The assigned AI shall:
 
-1. update the mission README status to `ARCHIVED`;
+1. update the durable mission README status in place (for example to `COMPLETED — FORMALLY ACCEPTED` or `ARCHIVED`), leaving `communication/missions/[MISSION-ID]/` where it is;
 2. record archive authority and date;
 3. record final repository and mission references;
-4. preserve all actor reports, decisions, handovers, Founder Briefs, and supporting records;
-5. move the complete mission communication folder from the active path to the canonical archive path;
+4. confirm all actor reports, decisions, handovers, Founder Briefs, and supporting records are preserved in `communication/missions/[MISSION-ID]/`;
+5. archive the completed `communication/live/` exchange into `communication/archive/[MISSION-ID]/` using the Archive Package Format above — the byte-identical former live files plus `communication.md`;
 6. preserve Git history;
 7. update any active communication index;
-8. update `communication/live/report.md`;
+8. reconcile and update `communication/live/report.md`, then restore the live base templates;
 9. commit and push when mission-scoped Git authority is active;
 10. otherwise provide exact Founder PowerShell commands directly in chat.
 
-The archive operation shall preserve all file content and Git traceability. No communication record may be omitted from the archive commit. The assigned AI shall verify the complete moved-file list before commit.
+The archive operation shall preserve all file content and Git traceability. No live communication file may be omitted from the archive package. The assigned AI shall verify the complete archived-file list against the former `communication/live/` contents before commit.
 
 The archived README shall record mission ID, final disposition, archive date and authority, final commit and pull request, active authoritative artifacts, unresolved follow-up missions, and non-governing communication-history status.
 
@@ -491,12 +506,12 @@ The AI assigned by Mission Control for communication closure owns the archive ac
 | `COMMUNICATION CLOSURE PENDING` | Mission Control |
 | `READY FOR ARCHIVE` | Founder or Mission Control |
 | `ARCHIVING IN PROGRESS` | Assigned AI records after authorization |
-| `ARCHIVED` | Assigned AI records after successful move and synchronization |
+| `ARCHIVED` | Assigned AI records after the live exchange is archived and synchronized |
 | `REACTIVATION AUTHORIZED` | Mission Control only |
 
 ### Archive Failure and Stop Conditions
 
-The AI shall stop and report if the destination contains conflicting content, active and archive folders would create duplicate authority, the mission README is incomplete, final commit or PR references are missing where required, unrelated files appear in the move, validation fails, active work remains, repository state is not synchronized, or known references would break without an approved update plan.
+The AI shall stop and report if the destination contains conflicting content, the archive package and the durable mission record would present themselves as competing authoritative mission communication, the mission README is incomplete, final commit or PR references are missing where required, unrelated files appear in the archive package, validation fails, active work remains, repository state is not synchronized, or known references would break without an approved update plan.
 
 ### Communication Archive Record
 
@@ -507,13 +522,14 @@ The AI shall stop and report if the destination contains conflicting content, ac
 - Final disposition:
 - Closure confirmed by:
 - Closure confirmation date:
-- Active communication path:
+- Live exchange path archived:
 - Archive path:
+- Durable mission record (retained in place):
 - Final commit SHA:
 - Final pull-request reference:
 - Final authoritative artifacts:
 - Open follow-up missions:
-- Files moved:
+- Live files archived:
 - Validation performed:
 - Archive commit SHA:
 - Repository synchronization:
@@ -529,31 +545,28 @@ The first exchange in a live communication cycle uses:
 - instruction: `communication/live/instruction.md`;
 - response: `communication/live/report.md`.
 
-### Recurring Exchange
+### Recurring Exchange — Default Transient Base Pair
 
-When Mission Control or the Founder issues another instruction based on the current report, the next pair uses `instruction1.1.md` and `report1.1.md`. Further exchanges continue monotonically as `instruction1.2.md` with `report1.2.md`, `instruction1.3.md` with `report1.3.md`, and so on. Numbers shall not be reused.
+The default model for every new handoff is the reusable base pair:
+
+- `communication/live/instruction.md`
+- `communication/live/report.md`
+
+When Mission Control or the Founder issues the next instruction based on the current report, the base pair is reused in place for the new handoff. It may be reused only after the preceding handoff state has been durably recorded in the mission record (`communication/missions/[MISSION-ID]/`) or archived as appropriate. No instruction or report may be silently overwritten to conceal an earlier exchange: the preceding content must already be preserved in the durable mission record or the `communication/archive/[MISSION-ID]/` package before the base pair is reused.
+
+`communication/live/` shall not accumulate long-lived `instruction1.x.md` / `report1.x.md` chains by default.
+
+### Optional Numbered Compatibility Sequence
+
+Monotonically numbered pairs — `instruction1.1.md` with `report1.1.md`, then `instruction1.2.md` with `report1.2.md`, and so on — remain valid and may be used only when Mission Control explicitly authorizes a multi-turn compatibility sequence for a specific mission. Numbers shall not be reused. Existing numbered live chains and archived numbered exchanges remain valid historical evidence.
 
 ### Pairing and Ordering
 
-Each numbered instruction shall have exactly one report with the identical suffix. A report shall not respond to a differently numbered instruction.
+When a numbered sequence is authorized, each numbered instruction shall have exactly one report with the identical suffix, and a report shall not respond to a differently numbered instruction.
 
-The live folder shall preserve chronological order. No file may be silently overwritten to conceal an earlier instruction or report. Corrections shall use the next numbered pair unless Mission Control explicitly authorizes an administrative correction to the base template files.
+Whether the base pair or an authorized numbered sequence is in use, the live folder shall preserve chronological order and no file may be silently overwritten to conceal an earlier instruction or report. Corrections use the next authorized numbered pair, or an administrative correction to the base template files when Mission Control explicitly authorizes one.
 
-The complete live sequence is:
-
-```text
-instruction.md
-report.md
-instruction1.1.md
-report1.1.md
-instruction1.2.md
-report1.2.md
-instruction1.3.md
-report1.3.md
-...
-```
-
-A new numbered pair shall be created only for a real new communication turn. Routine publication of already-authorized files does not itself require another correction pair unless Mission Control identifies a substantive issue.
+A new exchange — a base-pair reuse or a new numbered pair — shall be created only for a real new communication turn. Routine publication of already-authorized files does not itself require a correction pair unless Mission Control identifies a substantive issue.
 
 ### Provisional Publication Status
 
@@ -593,14 +606,14 @@ Whenever an instruction or report is created or updated on GitHub and the Founde
 
 Only after explicit Founder or Mission Control closure confirmation, the assigned AI shall:
 
-1. verify that every instruction/report pair is complete;
+1. verify that every instruction/report pair in the live exchange is complete;
 2. verify that no active instruction is unresolved;
 3. verify final repository, commit, pull-request, decision, and follow-up references;
 4. reconcile every provisional field using final verified repository evidence;
-5. consolidate the full chronological sequence into one coherent communication record and one coherent final report;
-6. preserve every base and numbered instruction/report entry;
-7. move the consolidated records to the canonical archive path;
-8. verify that every source live file is represented in the archive;
+5. build the `communication.md` readable chronology and index for the exchange;
+6. preserve every base and authorized numbered instruction/report file byte-identically as immutable source exchange evidence;
+7. assemble the archive package at `communication/archive/[MISSION-ID]/` using the Archive Package Format in Section 26;
+8. verify that every former live file is represented in the archive package;
 9. remove temporary numbered live files only after archive verification succeeds;
 10. restore `communication/live/instruction.md` to the approved instruction template;
 11. restore `communication/live/report.md` to the approved report template;
@@ -608,12 +621,7 @@ Only after explicit Founder or Mission Control closure confirmation, the assigne
 13. verify that `communication/live/` is ready for a new cycle;
 14. commit and push when authorized, or provide exact Founder commands directly in chat.
 
-The archive shall contain at minimum:
-
-- `communication/archive/[MISSION-ID]/communication.md`, containing the complete chronological instruction/report transcript, including original provisional events;
-- `communication/archive/[MISSION-ID]/report.md`, containing the final reconciled closure report with outcomes, decisions, verification, final Git state, unresolved follow-ups, archive references, closure authority, mission ID, closure date, final commit and pull request, and confirmation that live templates were restored.
-
-Where the canonical repository archive already contains mission records, a non-conflicting approved subpath shall be used and the mapping recorded.
+The archive package contents and the placement of the final reconciled closure state are defined by the Archive Package Format in Section 26. The durable mission record under `communication/missions/[MISSION-ID]/` is retained in place, not moved; the archive package links to it.
 
 After successful closure, the live folder shall contain only the approved default live files and any separately approved index. At minimum, it shall contain `communication/live/instruction.md` and `communication/live/report.md`, both restored to approved templates.
 
@@ -621,15 +629,17 @@ The assigned AI shall tell the Founder directly: **Communication is completed an
 
 Consolidation shall not lose content, delete unresolved decisions, rewrite historical meaning, archive an unanswered instruction, create duplicate active authority, or remove numbered files before archive content and Git traceability are verified.
 
-## 28. Current Instruction Conflicts
+## 28. Draft-Time Instruction Conflicts — Resolved (Historical)
+
+The conflicts below existed when this protocol was drafted under `SB-GOV-COMMS-1.0` / `1.1` / `1.2`. They are retained here as history and no longer describe current repository state.
 
 At draft creation:
 
-- approved `AGENTS.md`, `CLAUDE.md`, and `CHATGPT.md` prohibit automatic AI commit and push;
-- `communication/README.md` states that an active instruction may authorize automatic AI commit and push;
-- draft EOS ChatGPT and Claude GitHub workflows preserve human-only commit and push authority.
+- approved `AGENTS.md`, `CLAUDE.md`, and `CHATGPT.md` prohibited automatic AI commit and push;
+- `communication/README.md` stated that an active instruction may authorize automatic AI commit and push;
+- draft EOS ChatGPT and Claude GitHub workflows preserved human-only commit and push authority.
 
-Until Mission Control and Founder approve a canonical amendment, the stricter approved repository instructions prevail. This protocol does not activate the proposed automation model.
+**Resolution.** The Founder-approved activation recorded in the Protocol Change Log (Version 1.0, `SB-GOV-COMMS-ACT-1.0`) and the Stage A / Stage B alignment activated controlled, mission-scoped AI Git authority consistently across `AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`, `communication/README.md`, and both EOS GitHub workflow documents. Technical branch protection for `main` was configured and independently verified, and the temporary Phase 1 compensating control was retired on 2026-08-02. Direct AI push to `main` remains prohibited; all AI changes use the mission-branch pull-request path, with no self-approval and no self-merge. The stricter draft-time reading no longer applies.
 
 ## 29. Review and Activation
 

@@ -173,15 +173,17 @@ Codex and Claude Code may perform automatic Git operations only when an active F
 - AI name;
 - Mission ID;
 - repository;
-- authorized branch;
+- the branch authorization: either the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` or a specifically locked branch name;
 - authorized file paths or scope;
-- approved commit message.
+- the commit-message authorization: either permission to use mission-scoped descriptive commit messages or a specifically locked commit message.
+
+Per the Founder Git-authorization decision, Mission Control may explicitly authorize the standard mission-branch convention and mission-scoped descriptive commit messages. Exact branch text and exact commit text are required only when Mission Control specifically locks them. This changes only the authorization form; it does not weaken explicit mission authority, named repository, authorized scope, the protected-`main` pull-request workflow, exact staged-file verification, required quality and security checks, no self-approval, no self-merge, Mission Control review, or human merge authority.
 
 Mission authority grants governance permission only. It does not create shell, filesystem, Git, GitHub, connector, credential, authentication, or repository capability.
 
 Before an authorized commit or push, the AI shall verify the configured remote, current branch, authorized base branch and SHA, clean tree or authorized changes, exact staged paths using `git diff --cached --name-status`, applicable quality gates, `git diff --cached --check`, and staged content for secrets or credentials.
 
-The AI may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact files, commit with the approved message, push the authorized branch, open or update a pull request, and record repository references.
+The AI may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact files, commit with the authorized commit message, push the authorized branch, open or update a pull request, and record repository references.
 
 AI-authored implementation work normally uses `mission/[MISSION-ID]-[SHORT-SLUG]`.
 
