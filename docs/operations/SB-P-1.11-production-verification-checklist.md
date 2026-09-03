@@ -2,6 +2,8 @@
 
 **Mission:** SB-P-1.11-PROD-PREP-1 — Production Migration Runbook and Preflight
 **Status:** `PREPARED — NOT EXECUTABLE ON ITS OWN — USE ONLY DURING AN AUTHORIZED PRODUCTION EXECUTION MISSION`
+
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** This checklist's companion migration (`docs/operations/SB-P-1.11-production-migration-runbook.md`) was subsequently executed against production; see that document's own continuity note and `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`. Whether this specific checklist's rows were filled in with observed values during that execution is not established by this audit; the checklist's expected structural/security state was independently reconfirmed by later SB-P-1.11 Stage 19 verification and the GC-40 evidence package regardless.
 **Use:** Run in full immediately after `docs/operations/SB-P-1.11-production-migration-runbook.md` Section 6 completes, before Section 15 sign-off. Every check is **read-only**. All queries target project `gysgzasfcjvtrgaigfyn` only — reconfirm via `docs/operations/SB-P-1.11-production-migration-runbook.md` Section 3 before running any query here if any time has passed since Section 6.
 
 Mark each row ☐ / ☑ with the observed value, not just pass/fail — a checklist entry without the actual observed number is not acceptable evidence for Section 15 sign-off.

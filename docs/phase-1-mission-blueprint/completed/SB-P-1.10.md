@@ -16,6 +16,8 @@
 | Mission Control Status  | Approved                   |
 | Last Updated            | 2026-07-21                 |
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The `Mission Status: Approved` / `Blueprint Status: Active` values above are preserved unchanged as the historically accurate lock-time record — this Blueprint's Sections 1–19 remain `LOCKED` and were never reopened. This document now also physically lives under `completed/`, reflecting that SB-P-1.10 implementation, testing, and Mission Control formal acceptance are complete (`docs/implementation/SB-P-1.10/completion-report.md`, `COMPLETED — FORMALLY ACCEPTED`, approved 2026-07-31). For the current authoritative production runtime and Supabase topology, which materially changed after this Blueprint and its EIS were written, see `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
+
 ## Mission Snapshot
 
 | Item                              | Details                                                                                                                                                                                                                                                                                                                   |

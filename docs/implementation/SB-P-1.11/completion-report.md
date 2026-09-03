@@ -14,6 +14,8 @@
 
 This status is the exact status required by Source 18 Stage 22 and `instruction1.195.md` §5. **Creating this report is not Mission Control acceptance.** Stage 23 (Mission Control Acceptance) has not occurred and is not authorized by this document.
 
+> **Post-report lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The status above is preserved unchanged as this Stage 22 report's own accurate statement at the moment it was written. It is superseded, not contradicted: Stage 23 Mission Control Acceptance subsequently occurred (`ACCEPTED WITH FOLLOW-UP`, `communication/missions/SB-P-1.11/mission-control/23-mission-control-acceptance.md`) and Stage 24 Documentation Closure followed (`COMPLETED — FORMALLY ACCEPTED`, `24-documentation-closure.md`). Separately, §13's statement that production parser/bulk-import activation and application deployment "remain separately governed release/activation decisions that remain unauthorized" was also later authorized and completed under `SB-OPS-PROD-SYNC-1.0` (production Lovable publication and `smartbusiness.teamlips.com` custom-domain cutover). See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` for the full chronology.
+
 ---
 
 ## 1. Mission Scope and Locked Product Truth Reference
@@ -22,8 +24,8 @@ SB-P-1.11 — Product Catalog & Pricing — implements the Initial Phase 1 Catal
 
 Locked Product Truth authority:
 
-- Product Blueprint: `docs/phase-1-mission-blueprint/active/SB-P-1.11.md` (Sections 1–21, Locked).
-- Founder Product Decision Record: `docs/phase-1-mission-blueprint/active/SB-P-1.11-Founder-Product-Decision-Record.md` (D-001–D-068).
+- Product Blueprint: `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md` (Sections 1–21, Locked).
+- Founder Product Decision Record: `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md` (D-001–D-068).
 - Bulk-import scope: `docs/phase-1-mission-blueprint/active/SB-P-1.11-Build-Now-Gap-Closure-EIS.md`.
 
 No Product Truth, Blueprint, EIS, or Founder decision was created, altered, or reinterpreted by this report or by any work it summarizes.

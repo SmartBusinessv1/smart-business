@@ -13,6 +13,8 @@
 | Implementation Authority | NONE |
 | Production Migration Authority | NONE |
 
+> **Lifecycle continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The status/authority fields above are preserved unchanged as this record's accurate state at authoring time (2026-08-12), before implementation. They are no longer current: FWR-001 (Inventory bulk onboarding) and the CSV/XLSX Opening Stock import it describes were subsequently implemented and runtime-verified under `SB-OPS-PROD-SYNC-1.0` (its instruction1.4), and FWR-003/FWR-004 (generated SKU) were implemented under the original SB-P-1.11 mission and later formally amended into D-023 (see the Founder Product Decision Record's Amendment History). FWR-005's Catalog-first "Link to Inventory" orchestration was itself later refined — see the Founder Product Decision Record's "Later Product Refinement" note. Full chronology: `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
+
 ---
 
 ## 1. Purpose

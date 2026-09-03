@@ -1,5 +1,7 @@
 # SB-P-1.10 — Runtime Verification Notes
 
+> **Runtime-topology continuity note (added 2026-09-03, `SB-DOC-1.10-1.11-CONTINUITY-1.0`).** The Lovable Cloud backend (`wwgqnshcgbukqczqblsm`) named below was the true production runtime at the time of this mission (July 2026) and is preserved as historical evidence. It is no longer current: production later migrated to Supabase project `gysgzasfcjvtrgaigfyn` (`SB-MIG-1.2E`/`1.2F`/`1.2F-A`) and the delivery repository/Lovable project were resynchronized under `SB-OPS-PROD-SYNC-1.0`. See `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` for the current topology.
+
 **Mission:** SB-P-1.10-LOVE-CR-1.0 · **Environment:** Lovable-managed
 runtime (published at https://smartbusiness.teamlips.com; Lovable Cloud
 backend ref `wwgqnshcgbukqczqblsm`).
