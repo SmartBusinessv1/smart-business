@@ -130,8 +130,10 @@ None. The instruction supplied the one Founder decision needed (Section 3, the G
 ## 10. Pull Request and Head Commit
 
 - Mission branch: `mission/SB-GOV-COMMS-1.3-protocol-alignment` → base `main` (`1b99c1b1012fe526cdac634dffe09faca18008fe`).
-- Substantive commit: `3db1bfb9bdd3a727378e0d77ea11265e9c698354`.
-- Pull request: `PENDING PUBLICATION` — to be opened targeting `main` immediately after this reply is committed and the branch is pushed; PR number and final head SHA recorded in a follow-up update to this file. Not self-approved, not self-merged.
+- Substantive commit: `3db1bfb9bdd3a727378e0d77ea11265e9c698354` — "SB-GOV-COMMS-1.3: align active communication protocol and governance".
+- Reply commit: `6c36c334` — "SB-GOV-COMMS-1.3: reply with governance-alignment report".
+- Pull request: [`SmartBusinessv1/smart-business#477`](https://github.com/SmartBusinessv1/smart-business/pull/477), `mission/SB-GOV-COMMS-1.3-protocol-alignment` → `main`, `OPEN`, not self-approved, not self-merged.
+- Final branch head SHA is recorded by the commit that carries this update to Section 10.
 
 ---
 
