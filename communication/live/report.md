@@ -146,6 +146,21 @@ Pull request: [`SmartBusinessv1/smart-business#472`](https://github.com/SmartBus
 
 Confirmed. No application code, SQL, migration, RLS, grant, Auth setting, infrastructure configuration, DNS record, Lovable project, Supabase project, or AWS resource was read for mutation, written to, or otherwise touched by this mission. Every action taken was a Git working-tree change under `docs/**` and `communication/live/**`, verified by staged-path inspection (§11) to contain nothing outside that scope.
 
+## 16. Post-Review Correction Addendum
+
+Mission Control reviewed PR `#472` (`COMMENTED`, 2026-09-03T10:57:07Z) and required two narrow factual corrections in `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` §18 before merge, both now applied:
+
+1. The SB-P-1.10 Blueprint source-index entry incorrectly said it was "moved from `active/` under this mission." `SB-P-1.10.md` was already under `docs/phase-1-mission-blueprint/completed/` before this mission began — this mission annotated it (§6 of the same document) but did not move it. Corrected to state it was already under `completed/` and was annotated, not moved. The historical Blueprint body itself was not touched by this correction.
+2. The PR-index entry for `#470` incorrectly attributed both the production-cutover mission closure and the live-communication archival to `#470`. Corrected per Mission Control's exact split: `#470` — production-cutover mission closure; `#471` — archive `SB-OPS-PROD-SYNC-1.0` live communication, reset `communication/live/`, and activate `SB-DOC-1.10-1.11-CONTINUITY-1.0`.
+
+A direct recheck of every other file changed under this mission (`communication/live/report.md` itself, and every occurrence of "SB-P-1.10" + "moved" and of `#470` across the changed set) found no further occurrence of either error — only the two instances Mission Control identified existed.
+
+`docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`'s §4 chronology entry for `#470`/`#471` was independently re-checked against this same correction and requires no change — it already stated only that `SB-OPS-PROD-SYNC-1.0` "closed … PR `#470`" and that this mission "was activated immediately after (PR `#471`)," without attributing archival to `#470`.
+
+Markdown Quality Gate re-run on the corrected file (`python tools/markdown/pre_commit_markdown_gate.py`, pre-commit hook equivalent): `QUALITY GATE PASSED` — 0 lint issues, 0 validation failures, 19 headings with no invalid jumps.
+
+Updated head commit: `<recorded below after push>` (commit message `Apply Mission Control's two continuity corrections`), same branch/PR `#472`. No other file was changed by this correction.
+
 ---
 
 `PASS — SB-P-1.10 / SB-P-1.11 CONTINUITY RECONCILIATION READY FOR MISSION CONTROL REVIEW`

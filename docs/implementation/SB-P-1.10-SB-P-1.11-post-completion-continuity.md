@@ -158,7 +158,7 @@ Separated clearly from blockers — none of the following is reported as a defec
 ## 18. Source and Evidence Index
 
 **Blueprint / EIS / Founder-decision layer**
-- `docs/phase-1-mission-blueprint/completed/SB-P-1.10.md` — SB-P-1.10 Product Blueprint (LOCKED, moved from `active/` under this mission).
+- `docs/phase-1-mission-blueprint/completed/SB-P-1.10.md` — SB-P-1.10 Product Blueprint (LOCKED; already under `completed/` before this mission began — annotated with a lifecycle continuity note under this mission, not moved).
 - `docs/phase-1-mission-blueprint/implementation/SB-P-1.10-EIS.md` — SB-P-1.10 EIS (LOCKED).
 - `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md` — SB-P-1.11 Product Blueprint (LOCKED, moved from `active/` under this mission per Stage 23/24 evidence).
 - `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md` — D-001–D-068 (moved; carries the "Later Product Refinement" note, §5/§9 above).
@@ -192,7 +192,7 @@ Separated clearly from blockers — none of the following is reported as a defec
 - `docs/migration/README.md` — current authoritative migration-family status, including the four `SB-OPS-PROD-SYNC-1.0` migrations (§9–§11 above) and the "Environment-Specific Historical Migrations" pattern (§12 above).
 
 **Canonical repository PRs (this continuity chain)**
-- `#457` — parser runtime correction. `#459` — Step-4 Catalog review + Inventory Opening Stock import. `#461` — Product↔Inventory identity UI correction. `#463` — Phase A reuse guard + Phase B design (packaging-corrected). `#465` — controlled production repair. `#467` — Phase B schema deployment. `#469` — test migration-history reconciliation. `#470` — `SB-OPS-PROD-SYNC-1.0` mission closure/archival (merge commit `eca9e738d0233314264a5805b37cd18cedf16ca7`). `#471` — archive production-recovery communication and activate `SB-DOC-1.10-1.11-CONTINUITY-1.0`.
+- `#457` — parser runtime correction. `#459` — Step-4 Catalog review + Inventory Opening Stock import. `#461` — Product↔Inventory identity UI correction. `#463` — Phase A reuse guard + Phase B design (packaging-corrected). `#465` — controlled production repair. `#467` — Phase B schema deployment. `#469` — test migration-history reconciliation. `#470` — production-cutover mission closure (merge commit `eca9e738d0233314264a5805b37cd18cedf16ca7`). `#471` — archive `SB-OPS-PROD-SYNC-1.0` live communication, reset `communication/live/`, and activate `SB-DOC-1.10-1.11-CONTINUITY-1.0`.
 - Production delivery repository (`starter-supab-shell`) PRs: `#1` (runtime sync + Lovable tooling correction), `#2` (parser correction), `#3` (Step-4), `#4` (Product↔Inventory identity UI correction), `#5` (client copy fix for the `UNIQUENESS_CONFLICT` rejection reason).
 
 ---
