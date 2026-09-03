@@ -66,7 +66,7 @@ A repository-wide search for the exact old path string after all repairs confirm
 
 ## 7. PR Number and Head Commit
 
-Pull request: [`SmartBusinessv1/smart-business#474`](https://github.com/SmartBusinessv1/smart-business/pull/474), branch `mission/SB-DOC-PHASE1-CLASSIFICATION-1.0-cleanup` → `main`, `OPEN`, not merged, not self-approved. Head commit: `805d152e68cdc91ce881221f615120ea0d2ed810` (commit message `Reclassify SB-P-1.11-Build-Now-Gap-Closure-EIS.md as completed and repair references`; pre-commit Markdown Quality Gate: `PASS`).
+Pull request: [`SmartBusinessv1/smart-business#474`](https://github.com/SmartBusinessv1/smart-business/pull/474), branch `mission/SB-DOC-PHASE1-CLASSIFICATION-1.0-cleanup` → `main`, `OPEN`, not merged, not self-approved. Head commit: `3f79fa37a453457774ffb97015b422dcb29d7845` (this report's own commit, `Write SB-DOC-PHASE1-CLASSIFICATION-1.0 execution report`; the substantive documentation-content commit is `805d152e68cdc91ce881221f615120ea0d2ed810`, `Reclassify SB-P-1.11-Build-Now-Gap-Closure-EIS.md as completed and repair references`). Both commits' pre-commit Markdown Quality Gate: `PASS`.
 
 ---
 
