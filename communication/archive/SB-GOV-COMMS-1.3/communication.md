@@ -52,7 +52,7 @@ This repository has `core.autocrlf=true`; blob bytes are the canonical LF object
 | [`#477`](https://github.com/SmartBusinessv1/smart-business/pull/477) | Accepted governance alignment: protocol, `communication/README.md`, `AGENTS.md`, Source 18 Appendix E, both EOS GitHub workflows, `mission_memory.md` | `MERGED` — merge commit `809caecde2b2642a0eb0080082c58335d5ad1f32` |
 | [`#478`](https://github.com/SmartBusinessv1/smart-business/pull/478) | Proposed final closure metadata reconciliation | `CLOSED — SUPERSEDED, NOT MERGED`. Represented by its GitHub PR history and closure comment only; no file from `#478` is on `main` or in this archive. |
 | [`#479`](https://github.com/SmartBusinessv1/smart-business/pull/479) | Authorized this final closure and archive (added `instruction1.1.md`) | `MERGED` — merge commit `45bfed7458acb8b8bb6bcc02bf8aeb22d42aacb3` |
-| Closure/archive PR | This archive package, `communication/live/` reset, and `mission_memory.md` closure update | `PENDING` — PR number and merge commit reconciled in the Final Reconciled Closure section below after the PR is opened and merged. |
+| [`#480`](https://github.com/SmartBusinessv1/smart-business/pull/480) | This archive package, `communication/live/` reset, and `mission_memory.md` closure update | `OPEN` — not self-approved, not self-merged. Merge commit reconciled in the Final Reconciled Closure section below after human merge, if the repository workflow requires it. |
 
 ## Final Reconciled Closure
 
@@ -64,8 +64,8 @@ This repository has `core.autocrlf=true`; blob bytes are the canonical LF object
 - **Archive path:** `communication/archive/SB-GOV-COMMS-1.3/`
 - **Durable mission record (retained in place):** none — `SB-GOV-COMMS-1.3` had no `communication/missions/SB-GOV-COMMS-1.3/` folder.
 - **Governance-alignment PR:** `#477`, merge commit `809caecde2b2642a0eb0080082c58335d5ad1f32`.
-- **Closure/archive PR:** `PENDING` — number and merge commit recorded here once the PR is opened and merged.
-- **Branch head SHA at closure PR open:** `PENDING` — recorded once the branch is pushed.
+- **Closure/archive PR:** [`#480`](https://github.com/SmartBusinessv1/smart-business/pull/480), `mission/SB-GOV-COMMS-1.3-closure-archive` → `main`, `OPEN` at time of writing. Merge commit recorded here after human merge if the repository workflow requires it.
+- **Branch head SHA at closure PR open:** `498e0a6272725aab23073f98cc25983cabfa3939` (the archive/reset/memory commit). The reconciliation commit that carries these PR references is the final branch head.
 - **Live templates restored:** `communication/live/instruction.md` (blob `f596f80679d1106d38527d54e071d6e899b4b99f`) and `communication/live/report.md` (blob `3f20a20ca3d3841a517d22fbff48eb9259ca9f86`); `communication/live/` now contains exactly the idle base pair.
 - **Files archived:** `communication.md` + 4 byte-identical source files (manifest in Section 3).
 - **Validation performed:** byte-identical Git blob SHA comparison for all 4 source files; Markdown Quality Gate `PASS`; `git diff --check` clean; changed-path scope within `communication/archive/SB-GOV-COMMS-1.3/**`, `communication/live/**`, `mission-control/mission_memory.md`; secret scan clean.
