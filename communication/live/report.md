@@ -159,7 +159,7 @@ A direct recheck of every other file changed under this mission (`communication/
 
 Markdown Quality Gate re-run on the corrected file (`python tools/markdown/pre_commit_markdown_gate.py`, pre-commit hook equivalent): `QUALITY GATE PASSED` — 0 lint issues, 0 validation failures, 19 headings with no invalid jumps.
 
-Updated head commit: `<recorded below after push>` (commit message `Apply Mission Control's two continuity corrections`), same branch/PR `#472`. No other file was changed by this correction.
+Updated head commit: `17a34798970c2b099a60657196e177c6149c58be` (commit message `Apply Mission Control's two continuity corrections`), same branch/PR `#472`. No other file was changed by this correction.
 
 ---
 
