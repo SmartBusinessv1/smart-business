@@ -57,7 +57,7 @@ This document exists so that a reader returning to Smart Business without chat h
 
 ## 6. Parser and Bulk-Import Implementation/Corrections
 
-`SB-P-1.11-GC-1` (`docs/phase-1-mission-blueprint/active/SB-P-1.11-Build-Now-Gap-Closure-EIS.md`, Revision 4.0) specified CSV/XLSX Catalog bulk import, Selling Unit/Category preset selectors, Inventory↔Catalog linking UX clarity, and tax-settings UX clarity as Build Now gap-closure scope, pending a Supabase Backend Architecture re-confirmation and separate Build Mode authorization at the time it was last revised.
+`SB-P-1.11-GC-1` (`docs/phase-1-mission-blueprint/completed/SB-P-1.11-Build-Now-Gap-Closure-EIS.md`, Revision 4.0) specified CSV/XLSX Catalog bulk import, Selling Unit/Category preset selectors, Inventory↔Catalog linking UX clarity, and tax-settings UX clarity as Build Now gap-closure scope, pending a Supabase Backend Architecture re-confirmation and separate Build Mode authorization at the time it was last revised.
 
 That scope was subsequently authorized and implemented, in two stages:
 
@@ -164,7 +164,7 @@ Separated clearly from blockers — none of the following is reported as a defec
 - `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md` — D-001–D-068 (moved; carries the "Later Product Refinement" note, §5/§9 above).
 - `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Workflow-Reconciliation-Record.md` — FWR-001–005 (moved).
 - `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` — SB-P-1.11 EIS v2.2 (LOCKED; stays under `implementation/` per repository folder semantics).
-- `docs/phase-1-mission-blueprint/active/SB-P-1.11-Build-Now-Gap-Closure-EIS.md` — SB-P-1.11-GC-1 (implementation EIS artifact; stays under `active/` per repository folder semantics, carries a lifecycle continuity note).
+- `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Build-Now-Gap-Closure-EIS.md` — SB-P-1.11-GC-1 (completed implementation EIS artifact; moved from `active/` to `completed/` under `SB-DOC-PHASE1-CLASSIFICATION-1.0`, once its gap-closure scope's absorption into the formally accepted SB-P-1.11 mission was established; carries a lifecycle continuity note).
 
 **Implementation layer**
 - `docs/implementation/SB-P-1.10/completion-report.md`, `engineering-contract.md`, `verification-checklist.md`, `evidence/README.md`, `evidence/runtime/runtime-notes.md`.

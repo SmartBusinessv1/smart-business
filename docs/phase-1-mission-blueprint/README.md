@@ -21,7 +21,7 @@ phase-1-mission-blueprint/
     └── SB-P-1.11.md
 ```
 
-> This example reflects current repository state. As of `SB-DOC-1.10-1.11-CONTINUITY-1.0`, `active/` currently holds no Product Blueprint document; the next Phase 1 mission's Blueprint is created there when drafting begins. For the post-completion evolution of `SB-P-1.10` and `SB-P-1.11` after their own acceptance — later Founder refinements, defect corrections, and the current production topology — see `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
+> This example reflects current repository state. As of `SB-DOC-PHASE1-CLASSIFICATION-1.0`, `active/` is empty — it holds no Product Blueprint document and no other Phase 1 Blueprint-area artifact; the next Phase 1 mission's Blueprint is created there when drafting begins. `completed/` also now holds the completed `SB-P-1.11-Build-Now-Gap-Closure-EIS.md` gap-closure specification alongside the two Product Blueprints, as completed historical specification evidence, not current active work. For the post-completion evolution of `SB-P-1.10` and `SB-P-1.11` after their own acceptance — later Founder refinements, defect corrections, and the current production topology — see `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md`.
 
 ## Mission Status Categories
 

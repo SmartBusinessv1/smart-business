@@ -26,7 +26,7 @@ Locked Product Truth authority:
 
 - Product Blueprint: `docs/phase-1-mission-blueprint/completed/SB-P-1.11.md` (Sections 1–21, Locked).
 - Founder Product Decision Record: `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Founder-Product-Decision-Record.md` (D-001–D-068).
-- Bulk-import scope: `docs/phase-1-mission-blueprint/active/SB-P-1.11-Build-Now-Gap-Closure-EIS.md`.
+- Bulk-import scope: `docs/phase-1-mission-blueprint/completed/SB-P-1.11-Build-Now-Gap-Closure-EIS.md`.
 
 No Product Truth, Blueprint, EIS, or Founder decision was created, altered, or reinterpreted by this report or by any work it summarizes.
 
