@@ -140,7 +140,7 @@ The new continuity document's §18 indexes every source document used, plus nine
 
 ## 14. PR Number and Head Commit
 
-Recorded once the pull request is opened — see the follow-up note appended to this report before final push (this mission's branch is `mission/SB-DOC-1.10-1.11-CONTINUITY-1.0-reconciliation`, commit message `Reconcile SB-P-1.10 and SB-P-1.11 continuity evidence`, per instruction.md §10).
+Pull request: [`SmartBusinessv1/smart-business#472`](https://github.com/SmartBusinessv1/smart-business/pull/472), branch `mission/SB-DOC-1.10-1.11-CONTINUITY-1.0-reconciliation` → `main`, `OPEN`, not merged, not self-approved. Documentation-content head commit: `d3e2e9ab371e6cb626bd729f63a410eb74f29c1c` (commit message `Reconcile SB-P-1.10 and SB-P-1.11 continuity evidence`, per instruction.md §10 — pre-commit Markdown quality gate: `PASS`). This report itself is recorded in a small follow-up commit on the same branch/PR, consistent with this repository's established pattern for a report that must cite its own PR number.
 
 ## 15. Confirmation of No Runtime/Database/Infrastructure/Production Mutation
 
