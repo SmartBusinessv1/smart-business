@@ -61,3 +61,28 @@ No target merge, Lovable publication, production domain cutover, Supabase mutati
 
 **Date:** 2026-09-02  
 **Decision:** The `bun install --frozen-lockfile` deviation disclosed in `D-007` (stage 01) does not recur after the stage 02 correction. The lockfile reconciled in stage 02 — built from the target baseline's own `2.13.1` lockfile plus only the newly-required SB-P-1.11 entries — is fully self-consistent and passes `bun install --frozen-lockfile` cleanly. This is recorded so Mission Control/the Founder do not need to carry the stage 01 deviation forward as an open concern into stage 02's review.
+
+## D-011 — Standard Product → Inventory identity locked one-to-one
+
+**Date:** 2026-09-02  
+**Decision:** For standard Smart Business stock-tracked products, Catalog-to-Inventory association is system-managed and one-to-one. Merchants do not manually link unrelated products to Inventory items. Inventory remains the sole stock-truth ledger, while the relationship is created and maintained automatically by Smart Business. Advanced variants, packs, bundles, recipes, and shared raw-material models remain outside this standard rule and require separate future scope.
+
+## D-012 — Production integrity correction accepted
+
+**Date:** 2026-09-02  
+**Decision:** The historical production state in which Mango and Milma Milk were associated with the AVT Tea Powder Inventory item was repaired. Dedicated Inventory identities were restored, the incorrect AVT stock effect was corrected while preserving audit history, duplicate Product → Inventory groups were verified at zero, the Phase A server guard was deployed, and the Phase B database constraint `UNIQUE (business_id, inventory_item_id)` was deployed. The integrity gap is structurally closed for the approved standard one-to-one model.
+
+## D-013 — Production Lovable cutover accepted
+
+**Date:** 2026-09-03  
+**Decision:** Lovable project `f3e992ec-06df-4d49-b157-b92ec064c078`, with active delivery commit `205b3f7ab486242ee91e843c61de784b0cb0d21d` and production Supabase binding `gysgzasfcjvtrgaigfyn`, is accepted as the active Smart Business production Lovable project. It is published and `https://smartbusiness.teamlips.com` is connected and runtime-verified healthy.
+
+## D-014 — Lovable naming cleanup and legacy unpublication
+
+**Date:** 2026-09-03  
+**Decision:** To prevent future operational confusion, the active production Lovable project is named `Smart Business`. Historical project `64c2b9b1-2461-4045-9acc-19e2658b8ca2` is named `Legacy Workspace-old`, remains excluded from production authority, and is unpublished without deletion or cloud-resource pause. Only the active production Lovable project shall carry the current `Smart Business` display name.
+
+## D-015 — Mission closure
+
+**Date:** 2026-09-03  
+**Decision:** `SB-OPS-PROD-SYNC-1.0` is closed with final disposition `COMPLETE — PRODUCTION CUTOVER VERIFIED`. After legacy unpublication, the Founder rechecked `https://smartbusiness.teamlips.com` and confirmed production healthy. No new production blocker is carried forward. Further implementation, governance, infrastructure, security, or product work requires separate authorization.
