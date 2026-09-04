@@ -2,7 +2,7 @@
 
 ## Mission State
 
-**Status:** `ACTIVE — MC1–MC12 EXTRACTED; SB-P-1.0→SB-P-1.11 RECONSTRUCTION TARGET LOCKED`
+**Status:** `ACTIVE — MC1–MC13 EXTRACTED; SB-P-1.0→SB-P-1.11 RECONSTRUCTION TARGET LOCKED`
 
 **Authority:** Smart Business Mission Control / Founder-approved activation
 
@@ -120,25 +120,63 @@ Combined institutional learning:
 
 **Reconcile before writing. Close only what was proven. Resume only what failed. Claim only what the evidence demonstrates.**
 
+### Batch MC-04 — Mission Control MC13
+
+Founder supplied a direct raw transcript:
+
+- `MC-13 chat.txt`
+
+Historical start marker:
+
+- merged PR #443 — `Authorize Gate 2A-C3B live F23-01 isolation verification`.
+
+Durable extraction:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/MC13-batch-extraction.md`
+
+Evidence state:
+
+`DIRECT RAW-TRANSCRIPT EXTRACTION — REPOSITORY CORROBORATED WHERE AVAILABLE`
+
+Key contribution:
+
+- successor Mission Control takeover and stale-memory/current-evidence reconciliation;
+- production Lovable/delivery-repository/Supabase topology correction;
+- canonical-versus-delivery runtime synchronization discipline;
+- preservation of target-specific Lovable platform state;
+- post-acceptance SB-P-1.10/SB-P-1.11 productionisation and release-readiness continuity;
+- AWS/Lambda/IAM/security boundary maturation;
+- communication-governance alignment;
+- activation and execution of the Phase 1 historical-continuity reconstruction mission itself;
+- Founder-locked requirement to reconstruct lessons, tools/platforms/resources, and Team LIPS capability evolution alongside mission history.
+
+Inferred institutional learning — not governance:
+
+**Preserve current truth, historical truth, and organizational learning as separate but connected records.**
+
 ## SB-P Register Effect So Far
 
 - `SB-P-1.0` through `SB-P-1.4`: still `UNRESOLVED`; specialist histories remain the highest-value evidence source.
-- `SB-P-1.5` through `SB-P-1.9`: increasingly referenced retrospectively, but their original-era histories still require specialist and repository synthesis.
-- `SB-P-1.10`: later accepted dependency history is known; original mission synthesis still needs its own continuity pass.
-- `SB-P-1.11`: substantially strengthened across product lifecycle, AWS/Lambda security, Lovable/repository alignment, canonical reconciliation, production migrations, runtime verification, and evidence-precision/release-readiness history.
+- `SB-P-1.5` through `SB-P-1.8`: increasingly supported through retrospective dependency/progression evidence, but their original-era histories still require specialist and repository synthesis.
+- `SB-P-1.9`: mission existence/history is established and MC13 locks its completed-folder continuity placement without fabricating a contemporaneous Blueprint.
+- `SB-P-1.10`: accepted Inventory dependency and later production-runtime continuity are established; original mission synthesis still needs a compact continuity pass.
+- `SB-P-1.11`: substantially strengthened across lifecycle, release-readiness, production runtime synchronization, Catalog/Inventory relationship, AWS/Lambda security, production hardening, communication closure, and evidence precision.
 
-## Capability / Tool Evolution Established Through MC12
+## Capability / Tool Evolution Established Through MC13
 
 The Mission Control batches collectively establish that Team LIPS had developed or was operating capabilities around:
 
-- GitHub canonical repository, mission branches, protected-main PR flow, and Markdown CI;
+- GitHub canonical repository, mission branches, protected-main PR flow, Markdown CI, and direct PR evidence review;
 - Codex repository operations and Claude Code engineering/verification;
-- Lovable builder/runtime operation and multiple-project/repository reconciliation;
-- Supabase test/production awareness, RLS context, production migration execution, migration-history repair, and postflight verification;
-- AWS Lambda parser architecture, IAM/IAM Roles Anywhere evaluation, X.509/workload-identity reasoning, and Security & Permissions Architecture review;
+- Lovable builder/runtime operation, multiple-project reconciliation, and canonical-vs-delivery repository synchronization;
+- Supabase test/production awareness, RLS context, production migration execution, migration-history repair, postflight verification, and production backend recovery;
+- AWS Lambda parser architecture, IAM/IAM Roles Anywhere evaluation, X.509/workload-identity reasoning, and independent Security & Permissions Architecture review;
 - PowerShell REST/RPC production verification and token/session-aware troubleshooting;
-- direct GitHub PR evidence review and durable compensating review comments;
-- evidence-tier distinction between independent verification and human/operator attestation.
+- human-secret / AI-verifier separation for authenticated production checks;
+- transient-vs-durable-vs-archived mission communication;
+- raw transcript recovery when Project Source abstraction is incomplete;
+- evidence-tier distinction between independent verification and human/operator attestation;
+- historical reconstruction that tracks lessons, tools/platforms/resources, and organizational capability growth alongside product missions.
 
 The exact first-introduction chronology for many of these capabilities remains open and should be reconstructed from early specialist histories.
 
@@ -158,6 +196,8 @@ For any early mission that predates the modern Product Blueprint lifecycle, the 
 
 ## Current Boundary
 
+Mission Control archive intake is current through MC13.
+
 No final SB-P lifecycle metadata normalization is authorized yet.
 
 No early mission is to be retroactively assigned a modern Blueprint/EIS/contract/acceptance chain without evidence.
@@ -168,11 +208,13 @@ No Founder clarification is currently required. Unresolved questions must first 
 
 ## Next Evidence Priority
 
-1. Move from later Mission Control history into early specialist-room evidence, especially Infrastructure Operations, Lovable/Lovable Lab, Supabase, and Claude/engineering.
-2. Recover the exact identity, objective, chronology, authority, tools, lessons, and completion evidence for `SB-P-1.0` through `SB-P-1.4`.
-3. Reconstruct original-era evidence for `SB-P-1.5` through `SB-P-1.9`, not only later retrospective references.
-4. Identify the exact introduction sequence for domains/DNS, first Lovable project/publication, first Supabase environment, GitHub/protected-main, Claude/Codex, MCP/connectors, AWS/Lambda, and related Team LIPS capabilities.
-5. Continue extracting lessons learned and tool/platform/resource/capability evolution alongside mission history in every batch.
+1. Infrastructure Operations — recover early domain/DNS, GitHub, environment, deployment, account/platform, and AWS/Lambda chronology.
+2. Lovable / Lovable Lab — recover first project/public site/auth/workspace/publishing/custom-domain history and later project transitions.
+3. Supabase — recover initial project/schema/Auth/RLS/environment/backend foundation and production/test evolution.
+4. Claude / Engineering — recover early implementation/correction/review history and tool adoption.
+5. Use Security & Permissions Architecture and other rooms as targeted cross-question sources.
+6. Recover exact identity, objective, chronology, authority, tools, lessons, and completion evidence for `SB-P-1.0` through `SB-P-1.4` before creating continuity files.
+7. Continue extracting lessons learned and tool/platform/resource/capability evolution alongside mission history in every specialist batch.
 
 ## Current Communication
 
