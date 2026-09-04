@@ -8,20 +8,17 @@
 
 **To:** Smart Business Mission Control
 
-**Status:** `MC1–MC12 EXTRACTED — SB-P-1.0→SB-P-1.11 TARGET LOCKED — EARLY SPECIALIST EVIDENCE NEXT`
+**Status:** `MC1–MC13 EXTRACTED — MISSION CONTROL ARCHIVE INTAKE CURRENT — EARLY SPECIALIST EVIDENCE NEXT`
 
 ---
 
 ## Evidence Intake Completed
 
-Founder supplied and Mission Control directly reviewed:
+Mission Control has now completed Mission Control archive extraction through MC13.
 
 ### Batch MC-01
 
-- `Archived-MC1.txt`
-- `Archived-MC2.txt`
-- `Archived-MC3.txt`
-- `Archived-MC4.txt`
+`MC1–MC4`
 
 Durable record:
 
@@ -29,10 +26,7 @@ Durable record:
 
 ### Batch MC-02
 
-- `Archived-MC5.txt`
-- `Archived-MC6.txt`
-- `Archived-MC7.txt`
-- `Archived-MC8.txt`
+`MC5–MC8`
 
 Durable record:
 
@@ -40,102 +34,110 @@ Durable record:
 
 ### Batch MC-03
 
-- `Archived-MC9.txt`
-- `Archived-MC10.txt`
-- `Archived-MC11.txt`
-- `Archived-MC12.txt`
+`MC9–MC12`
 
 Durable record:
 
 `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/MC9-MC12-batch-extraction.md`
 
-The MC10–MC12 Project Source exports are narrow snapshots rather than complete room transcripts. The durable record therefore limits claims to the directly supplied material and repository corroboration.
+### Batch MC-04
 
-## MC9–MC12 Historical Contribution
+Founder supplied a direct raw transcript:
 
-The strongest directly supported progression is:
+`MC-13 chat.txt`
 
-`MC9 — reconcile present canonical state before transfer`
+Historical start marker:
 
-→ `MC10 — close only the exact proven production workstream`
+merged PR #443 — `Authorize Gate 2A-C3B live F23-01 isolation verification`.
 
-→ `MC11 — recover from transient failure at the exact checkpoint`
+Durable record:
 
-→ `MC12 — claim only what the evidence actually proves`.
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/MC13-batch-extraction.md`
 
-Institutional learning:
+Extraction result:
 
-**Reconcile before writing. Close only what was proven. Resume only what failed. Claim only what the evidence demonstrates.**
+`PASS — FULL MC-13 DIRECTLY EXTRACTED AND HISTORICAL BOUNDARIES PRESERVED`
 
-This extends the earlier inferred doctrine:
+## MC13 Historical Contribution
 
-**Maximum clarity, minimum necessary ceremony.**
+MC13 adds the transition from late Phase 1 release-readiness into deliberate institutional-memory reconstruction.
 
-## Repository Corroboration
+Its strongest directly supported contributions are:
 
-Material repository cross-checks support the archive claims:
+- successor Mission Control takeover and current-state reverification;
+- stale Mission Memory versus stronger canonical evidence reconciliation;
+- production Lovable / delivery repository / Supabase topology correction;
+- canonical-versus-delivery runtime synchronization and recovery;
+- preservation of target-specific Lovable platform/tooling state;
+- post-acceptance productionisation/release-readiness continuity for SB-P-1.10/SB-P-1.11;
+- AWS/Lambda/IAM/security boundary maturation;
+- communication-governance alignment and durable mission-state separation;
+- activation of `SB-DOC-PHASE1-HISTORY-1.0`;
+- Founder-locked `SB-P-1.0 → SB-P-1.11` reconstruction range;
+- completed-folder continuity rule;
+- SB-P-1.9 historical-placement rule;
+- mandatory lessons-learned, tools/platforms/resources, and Team LIPS capability-evolution outputs.
 
-- PR #293 records the canonical-transfer rule requiring file comparison before write and STOP-on-conflict rather than improvisation.
-- PR #422 records the exact four-migration GC-40 production package and the downstream non-authorization boundary.
-- PR #442's final merged language demonstrates the narrowed evidence-tier claims requested by Mission Control in MC12.
+Inferred institutional learning — not governance:
 
-## Capability / Tool Evolution Added
+**Preserve current truth, historical truth, and organizational learning as separate but connected records.**
 
-MC9–MC12 materially strengthen the historical capability register with:
+## Founder Decisions Preserved
 
-- canonical-versus-derivative repository chronology reconciliation;
-- controlled Lovable-to-canonical transfer reasoning;
-- Supabase production migration execution and migration-history repair;
-- production RLS/grant/function postflight verification;
-- PowerShell REST/RPC production verification;
-- authenticated token/session refresh discipline;
-- GitHub PR evidence-tier review and durable correction comments;
-- Claude Code read-only production verification;
-- compensating review controls when formal GitHub review mechanics are unavailable;
-- Markdown Quality Gate treated as CI evidence rather than governance authority.
+The reconstruction must:
+
+- cover `SB-P-1.0` through `SB-P-1.11` continuously;
+- later present `docs/phase-1-mission-blueprint/completed/SB-P-1.0.md` through `SB-P-1.11.md` continuously once evidence is sufficient;
+- label early continuity records as historical continuity records, not retroactive Product Blueprints;
+- create a later `SB-P-1.9.md` completed-folder continuity record while preserving `docs/implementation/SB-P-1.9/` as authoritative implementation/evidence history;
+- recover lessons learned across the whole sequence;
+- recover tools/platforms/resources across the whole sequence;
+- reconstruct how Team LIPS capabilities evolved, not only what product features were built.
 
 ## SB-P-1.0 → SB-P-1.11 Effect
 
-- `SB-P-1.0` through `SB-P-1.4`: remain `UNRESOLVED`; MC9–MC12 provide no safe original mission identities or completion histories.
-- `SB-P-1.5` through `SB-P-1.9`: still require original-era specialist/repository synthesis rather than later retrospective references alone.
-- `SB-P-1.10`: later accepted dependency history is known but its original mission continuity still needs synthesis.
-- `SB-P-1.11`: materially strengthened through canonical-transfer conflict handling, production migration closure, runtime verification recovery, and evidence-precision/release-readiness history.
+- `SB-P-1.0` through `SB-P-1.4`: remain `UNRESOLVED`; early specialist histories are now the highest-value evidence source.
+- `SB-P-1.5` through `SB-P-1.8`: retrospective progression/dependency evidence is stronger, but original-era synthesis remains incomplete.
+- `SB-P-1.9`: historical continuity placement is now explicitly locked; no retroactive Blueprint fabrication is permitted.
+- `SB-P-1.10`: accepted dependency and later production-runtime continuity are strengthened.
+- `SB-P-1.11`: substantially strengthened through release-readiness, production synchronization, Catalog/Inventory truth, AWS/Lambda/IAM, production hardening, communication closure, and evidence-history context.
 
-## Lessons-Learned Requirement
+## Lessons / Capability Evolution Added by MC13
 
-The reconstruction continues to extract together:
+MC13 materially strengthens the historical capability register with:
 
-- mission chronology and authority;
-- implementation/verification evidence;
-- failures and corrections;
-- lessons learned;
-- tools/platforms/resources introduced or matured;
-- Team LIPS capability gains;
-- unresolved evidence gaps.
+- exact production-topology reconciliation across canonical GitHub, delivery GitHub, Lovable, Supabase, and custom-domain layers;
+- bounded canonical-to-delivery synchronization rather than naive repository mirroring;
+- preservation of destination-specific platform state;
+- human-secret / AI-verifier separation for authenticated production checks;
+- direct runtime and production evidence discipline;
+- narrow Security/IAM reverification;
+- transient-versus-durable-versus-archived communication architecture;
+- raw transcript recovery when Project Source representation is incomplete;
+- systematic historical extraction of lessons, tools/resources, and organizational capabilities.
 
-## Open Cross-Questions
+## Mission Control Archive Intake Boundary
 
-Highest priority now:
+Mission Control history is now current through MC13.
 
-1. exact identities, names, objectives, chronology and completion evidence for `SB-P-1.0` through `SB-P-1.4`;
-2. original-era continuity evidence for `SB-P-1.5` through `SB-P-1.9`;
-3. domain/DNS and public-foundation chronology;
-4. first Lovable project/build/publication history and later workspace/repository transitions;
-5. first Supabase project/environment creation and production/test evolution;
-6. GitHub/protected-main and AI connector/MCP evolution;
-7. Claude Code/Codex adoption chronology;
-8. exact first AWS/Lambda capability introduction and preceding parser approach.
+The next phase should not continue mechanically collecting later Mission Control rooms. The highest-value evidence is now the early specialist history required to resolve the beginning of the Product Mission sequence.
 
-No Founder clarification is required yet.
+## Next Evidence Priority
+
+1. **Infrastructure Operations** — domain/DNS, GitHub, environment, deployment, account/platform, and AWS/Lambda chronology.
+2. **Lovable / Lovable Lab** — first project/public site/auth/workspace/publishing/custom-domain and later project transitions.
+3. **Supabase** — first project/schema/Auth/RLS/environment/backend foundation and production/test evolution.
+4. **Claude / Engineering** — early implementation/correction/review history and tool adoption.
+5. Security & Permissions Architecture and other specialist rooms as targeted cross-question sources.
+
+The immediate historical objective remains to resolve `SB-P-1.0` through `SB-P-1.4` and strengthen original-era evidence for `SB-P-1.5` through `SB-P-1.9`.
 
 ## Metadata Boundary
 
 No final SB-P lifecycle metadata normalization has been performed.
 
-No completed-folder continuity files for `SB-P-1.0` through `SB-P-1.9` are created yet. Evidence collection and reconciliation remain in progress.
+No `SB-P-1.0` through `SB-P-1.9` completed-folder continuity records are created yet.
 
-## Next Input
+No Founder clarification is required at this point; specialist and repository evidence must be exhausted first.
 
-With MC1–MC12 now extracted, the highest-value next evidence is the **early specialist-room history**, especially Infrastructure Operations, Lovable/Lovable Lab, Supabase, and Claude/engineering. Those rooms should be queried specifically for early mission identity and chronology rather than merely summarized wholesale.
-
-**Current result:** `PASS — MC1–MC12 HISTORICAL MISSION CONTROL EVIDENCE EXTRACTED; LATER SB-P-1.11 HISTORY STRONGLY STRENGTHENED; EARLY SB-P-1.0→1.4 SPECIALIST EVIDENCE NOW PRIORITY`.
+**Current result:** `PASS — MC1–MC13 MISSION CONTROL HISTORY EXTRACTED; MISSION CONTROL ARCHIVE INTAKE CURRENT; SPECIALIST-ROOM RECONSTRUCTION IS NEXT`.
