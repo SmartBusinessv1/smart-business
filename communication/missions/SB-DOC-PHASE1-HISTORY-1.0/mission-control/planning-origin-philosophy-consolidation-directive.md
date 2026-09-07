@@ -81,6 +81,7 @@ Current durable records include:
 
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-5-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-6-principles-and-quotes.md`
+- `founder/planning-origin/SMART-BUSINESS-planning-origin-part-7-principles-and-quotes.md`
 
 Part 6 additionally corrects a material Part 5 interpretation:
 
@@ -90,6 +91,31 @@ Part 6 additionally corrects a material Part 5 interpretation:
 - Smart Business is not being built for sale; the primary mission is to create an exceptional experience and genuine value for merchants.
 
 This correction must govern the final consolidation.
+
+### Part 7 philosophy checkpoint
+
+Part 7 extends the corpus substantially and must be preserved as a distinct checkpoint because the planning dialogue reaches:
+
+- **31 cumulative Lighthouse / Team LIPS planning-era principles**; and
+- **10 separate Institution Design Principles**.
+
+The `31` count belongs to the historical planning-room numbering and must not be misrepresented as the current Lighthouse Constitution's formal numbering.
+
+Part 7 also preserves especially important direct Founder ideas including:
+
+- technology should wrap around existing human/merchant habits rather than force people to adapt;
+- AI should tell the truth while protecting dignity and feelings through language, hope, and useful next actions;
+- AI should show employee/business analytics while humans retain consequential decisions;
+- user trust and merchant-specific intelligence are not assets to exploit;
+- employee creativity and quality of life are inputs to product excellence;
+- user dependency must never become a pricing opportunity;
+- products may pivot or end while responsibility to existing users and the larger mission remains;
+- outsiders may participate at product/tool/course level but should not redirect Lighthouse's mission;
+- Lighthouse should be designed as a renewable system whose values fuel continuing creation;
+- **`the operator may change, but the system runs`**;
+- future leaders should reason from **humans serving humans** and value creation rather than merely ask what the Founder would have done.
+
+The Part 7 record also contains assistant-created institutional formulations on leadership, capital, innovation economics, reputation, culture, user outcomes, transparent guidance, purpose-driven renewal, and preserving the human problem rather than an old solution. These must remain clearly labeled `ASSISTANT SYNTHESIS / HISTORICAL CANDIDATE` unless later Founder review promotes them.
 
 ---
 
