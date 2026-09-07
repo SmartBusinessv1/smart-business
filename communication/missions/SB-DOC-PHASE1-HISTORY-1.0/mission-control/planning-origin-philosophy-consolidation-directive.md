@@ -45,7 +45,7 @@ Assistant-authored names, principles, metaphors, constitutions, SOPs, templates,
 
 Historical language may be preserved even when it was later refined, provided the later correction or canonical evolution is recorded clearly.
 
-Planning-era technical sequencing, MVP deferrals, schema sketches, routes, and phase labels must also be fenced from current Product Truth when later sources supersede them.
+Planning-era technical sequencing, MVP deferrals, schema sketches, routes, AI-project role diagrams, vendor assumptions, and phase labels must also be fenced from current Product Truth when later sources supersede them.
 
 ---
 
@@ -74,7 +74,8 @@ Its expected content includes:
 - contradictions, corrections, and superseded wording where relevant;
 - the institutional carriers developed later in the planning room, including archive systems, stories, SOP concepts, decision rubrics, leadership-transfer ideas, hiring/onboarding/mentorship concepts, and execution-reality tests;
 - the Founder Operating System sequence and the direct future-self letter;
-- the transition from philosophy into concrete Smart Business build dependencies and CTO knowledge transfer.
+- the transition from philosophy into concrete Smart Business build dependencies and CTO knowledge transfer;
+- the transition from CTO knowledge transfer into source-pack codification and the current-source lineage.
 
 ---
 
@@ -89,6 +90,7 @@ Current durable records include:
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-7-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-8-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-9-principles-and-quotes.md`
+- `founder/planning-origin/SMART-BUSINESS-planning-origin-part-10-principles-and-quotes.md`
 
 Part 6 additionally corrects a material Part 5 interpretation:
 
@@ -196,6 +198,44 @@ Part 9 should be remembered as the next maturity transition:
 
 **principles → institutional carriers → Founder self-governance → first execution dependencies → CTO transfer.**
 
+### Part 10 philosophy checkpoint — CTO transfer becomes source-pack codification
+
+Part 10 preserves fewer new philosophical principles and more **Founder continuity decisions** about how the accumulated vision should be translated into engineering knowledge.
+
+Important Founder decisions / accepted directions include:
+
+- old source documents should be **merged and corrected**, not casually discarded;
+- stale domain references in older files should be automatically reconciled to the latest locked domain architecture during current merges;
+- `teamlips.com` is corporate identity while `smartbusiness.teamlips.com` is the product domain;
+- `/survey` is merged into `/start`;
+- public header routes settle as `/`, `/how-it-works`, `/start`, `/contact`, `/dashboard` as Login;
+- footer routes settle as `/contact`, `/privacy-policy`, `/terms-of-service`;
+- `/super-admin` and `/api/whatsapp-webhook` remain hidden/system routes;
+- a persistent `Team_LIPS_Smart_Business_CTO` knowledge layer should be created before direct implementation;
+- old architecture documents should be treated as knowledge/provenance and reconciled before builders act.
+
+Part 10 also contains an important assistant-led architecture-cleanup pass whose later canonical echoes should be preserved without misattributing the wording to the Founder:
+
+- absolute claims like `mathematically impossible` should become testable engineering statements;
+- loss-prevention/fraud language should become respectful anomaly/review language;
+- security quarantine events and business alerts should be separate;
+- database foundations should not be frozen to `exactly 7 tables`;
+- pricing values should be configurable rather than permanent code identity;
+- hard usage ceilings should not punish legitimate merchant growth;
+- an AI engineering system should audit contradictions and dependencies before generating code.
+
+Part 10 is also the clearest provenance bridge into the current `01_Smart_Business_Master_System_Manifesto.md`: the planning room explicitly merges an older Manifesto with later Founder decisions, domain corrections, product philosophy, modularity, Ask CFO, static IDs, operational sustainability, trust stewardship, and Team LIPS culture.
+
+Its historical AI-role diagram — Founder → ChatGPT/CPO → Claude/CTO → builders — must be preserved as lineage only. Current Source 17 and Source 18 materially supersede that authority model with Mission Control, Codex, Claude Code, specialist reviews, repository-first evidence, stage gates, and no-self-approval controls.
+
+Part 10 should be remembered as:
+
+**Founder/product story → architecture critique → CTO brain → canonical route correction → source-pack codification.**
+
+Within the longer planning-room maturity arc:
+
+**principles → institutional carriers → Founder self-governance → execution dependencies → CTO transfer → governance/source codification.**
+
 ---
 
 ## 5. Mission Control continuity rule
@@ -205,6 +245,8 @@ The planning chat remains open-ended.
 Do not create the final organizational synthesis merely because one philosophy sequence appears complete.
 
 Part 9 itself says the Founder OS / philosophical interrogation is complete, but that does **not** mean the full planning-chat extraction is complete.
+
+Part 10 begins the source-pack codification phase, but that also does **not** establish that the full planning chat has been supplied.
 
 Continue:
 
@@ -226,7 +268,10 @@ After that confirmation:
 10. preserve the future-self letter as a direct Founder reflection with exact source-part provenance;
 11. reconcile planning-era MVP/build sequencing against current Product Truth so old `later` labels do not create unauthorized feature demotion;
 12. trace the public-site → Meta → parallel Supabase/login → WhatsApp-heartbeat sequence into the later Phase 0 / early Phase 1 historical reconstruction;
-13. submit the consolidated file for Founder review before any governance promotion.
+13. trace the planning-era Claude Project / CTO-brain approach into the later Source 17 / Source 18 role and governance evolution;
+14. trace Part 10 route and Manifesto decisions into the current source package without treating the historical draft as current authority;
+15. identify where planning-era source-pack creation contributed to early governance growth and later numbering collisions;
+16. submit the consolidated file for Founder review before any governance promotion.
 
 ---
 
@@ -248,9 +293,10 @@ This directive does not:
 
 - modify current governance;
 - create a new Lighthouse Constitution;
-- activate any planning-era Decision Constitution, Founder OS label, SOP, Master Build Brief, or CTO Build Bible;
+- activate any planning-era Decision Constitution, Founder OS label, SOP, Master Build Brief, CTO Build Bible, or Claude Project directive;
 - modify Smart Business Product Truth;
 - change current Build Now / Build Later / Add-on / Separate Product / Reject classifications;
+- restore old routes, old table counts, old vendor assumptions, or old hard usage limits;
 - authorize public publication of historical quotes;
 - establish employment, investment, acquisition, privacy, succession, or legal policy;
 - authorize product implementation.
