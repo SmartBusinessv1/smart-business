@@ -75,7 +75,8 @@ Its expected content includes:
 - the institutional carriers developed later in the planning room, including archive systems, stories, SOP concepts, decision rubrics, leadership-transfer ideas, hiring/onboarding/mentorship concepts, and execution-reality tests;
 - the Founder Operating System sequence and the direct future-self letter;
 - the transition from philosophy into concrete Smart Business build dependencies and CTO knowledge transfer;
-- the transition from CTO knowledge transfer into source-pack codification and the current-source lineage.
+- the transition from CTO knowledge transfer into source-pack codification and the current-source lineage;
+- the transition from source-pack codification into architecture/permission rules where Lighthouse values become technical constraints.
 
 ---
 
@@ -91,6 +92,7 @@ Current durable records include:
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-8-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-9-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-10-principles-and-quotes.md`
+- `founder/planning-origin/SMART-BUSINESS-planning-origin-part-11-principles-and-quotes.md`
 
 Part 6 additionally corrects a material Part 5 interpretation:
 
@@ -236,6 +238,49 @@ Within the longer planning-room maturity arc:
 
 **principles → institutional carriers → Founder self-governance → execution dependencies → CTO transfer → governance/source codification.**
 
+### Part 11 philosophy checkpoint — values become architecture constraints
+
+Part 11 preserves the point where accumulated philosophy begins to govern concrete database, permission, lifecycle, and frontend decisions.
+
+Important Founder decisions / corrections include:
+
+- field research can overturn generic MVP simplification when removing a capability would remove customer value;
+- attendance should not be casually delayed because local merchants showed strong interest;
+- POS connection matters to the primary supermarket/mini-mart audience, while custom POS modifications inside the core remain rejected;
+- an employee allowed to add transactions must not thereby gain owner financial intelligence;
+- employees should be able to view their **own** attendance and later receive their own owner-approved payroll summaries;
+- employees may request attendance corrections but cannot directly rewrite attendance;
+- attendance architecture should preserve raw event plus approved human/business context;
+- owner-created recurring automation can be executed by AI, but AI does not create authority;
+- Start-page OPEN / WAITLIST / CLOSED control is needed so early growth cannot outrun the ability to serve;
+- Excel/PDF import is a respect-for-existing-work feature, not merely a convenience;
+- old prompt playbooks should be reviewed and distilled into clean framework truth rather than uploaded wholesale as active knowledge;
+- where a newer decision has no real old-prompt equivalent, it should be recorded honestly as new rather than given fabricated provenance;
+- Project Instructions and Project Sources serve different purposes;
+- Markdown and NotebookLM audio emerge as institutional carriers for AI/human understanding.
+
+Part 11 contains assistant formulations that later echo strongly in canonical sources and should be preserved with provenance labels, including:
+
+- **`Staff can contribute data and understand themselves. They cannot access owner intelligence.`**
+- **`System data + human context = business truth.`**
+- **`Raw data records what happened. Human context explains why it happened.`**
+- **`AI executes delegated authority. AI does not replace ownership.`**
+- **`Do not grow faster than the ability to serve.`**
+- **`People first.`**
+- **`Do not punish existing habits. Help users migrate from them.`**
+- **`Raw material → discussion → final document → source of truth.`**
+- **`We preserve the learning, not every mistake we made while learning.`**
+
+These remain `ASSISTANT SYNTHESIS / HISTORICAL CANDIDATE` unless a later Founder/current source explicitly adopts them. Several already have direct canonical echoes in Sources 02–08 and 11.
+
+Part 11 should be remembered as:
+
+**source codification → architecture normalization → Founder field-reality correction → human-context and permission architecture.**
+
+Within the longer planning-room maturity arc:
+
+**principles → institutional carriers → Founder self-governance → execution dependencies → CTO transfer → governance/source codification → values expressed as technical constraints.**
+
 ---
 
 ## 5. Mission Control continuity rule
@@ -246,7 +291,7 @@ Do not create the final organizational synthesis merely because one philosophy s
 
 Part 9 itself says the Founder OS / philosophical interrogation is complete, but that does **not** mean the full planning-chat extraction is complete.
 
-Part 10 begins the source-pack codification phase, but that also does **not** establish that the full planning chat has been supplied.
+Part 10 begins the source-pack codification phase, and Part 11 extends it into architecture normalization, but neither establishes that the full planning chat has been supplied.
 
 Continue:
 
@@ -271,7 +316,10 @@ After that confirmation:
 13. trace the planning-era Claude Project / CTO-brain approach into the later Source 17 / Source 18 role and governance evolution;
 14. trace Part 10 route and Manifesto decisions into the current source package without treating the historical draft as current authority;
 15. identify where planning-era source-pack creation contributed to early governance growth and later numbering collisions;
-16. submit the consolidated file for Founder review before any governance promotion.
+16. trace Part 11 Supabase/Lovable normalization into current Sources 02–08 and distinguish Founder correction from assistant implementation proposal;
+17. preserve the Part 11 permission/human-context/growth-control lineage as examples of Lighthouse principles becoming product constraints;
+18. preserve the planning-era source-management distinction between raw prompt history, Project Instructions, and cleaned Project Sources as institutional history rather than current tooling authority;
+19. submit the consolidated file for Founder review before any governance promotion.
 
 ---
 
@@ -293,10 +341,11 @@ This directive does not:
 
 - modify current governance;
 - create a new Lighthouse Constitution;
-- activate any planning-era Decision Constitution, Founder OS label, SOP, Master Build Brief, CTO Build Bible, or Claude Project directive;
+- activate any planning-era Decision Constitution, Founder OS label, SOP, Master Build Brief, CTO Build Bible, Claude Project directive, Supabase prompt, or Lovable prompt;
 - modify Smart Business Product Truth;
 - change current Build Now / Build Later / Add-on / Separate Product / Reject classifications;
-- restore old routes, old table counts, old vendor assumptions, or old hard usage limits;
+- restore old routes, old table counts, old vendor assumptions, old cron times, or old hard usage limits;
+- authorize current schema, RLS, POS, attendance, payroll, import/export, growth-control, backup, or automation implementation;
 - authorize public publication of historical quotes;
 - establish employment, investment, acquisition, privacy, succession, or legal policy;
 - authorize product implementation.
