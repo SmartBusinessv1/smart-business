@@ -41,7 +41,7 @@ Every philosophy extraction must distinguish at minimum:
 - `CURRENT CANONICAL ECHO`
 - `HISTORICAL CANDIDATE`
 
-Assistant-authored names, principles, metaphors, or polished wording must never be silently promoted into Founder-authored doctrine.
+Assistant-authored names, principles, metaphors, constitutions, SOPs, templates, or polished wording must never be silently promoted into Founder-authored doctrine.
 
 Historical language may be preserved even when it was later refined, provided the later correction or canonical evolution is recorded clearly.
 
@@ -69,7 +69,8 @@ Its expected content includes:
 - Founder motivation, recognition, independence, and legacy reflections;
 - metaphors and assistant-created formulations worth later Founder review;
 - mappings from historical language into later canonical Lighthouse / Smart Business sources;
-- contradictions, corrections, and superseded wording where relevant.
+- contradictions, corrections, and superseded wording where relevant;
+- the institutional carriers developed later in the planning room, including archive systems, stories, SOP concepts, decision rubrics, leadership-transfer ideas, hiring/onboarding/mentorship concepts, and execution-reality tests.
 
 ---
 
@@ -82,6 +83,7 @@ Current durable records include:
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-5-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-6-principles-and-quotes.md`
 - `founder/planning-origin/SMART-BUSINESS-planning-origin-part-7-principles-and-quotes.md`
+- `founder/planning-origin/SMART-BUSINESS-planning-origin-part-8-principles-and-quotes.md`
 
 Part 6 additionally corrects a material Part 5 interpretation:
 
@@ -117,6 +119,43 @@ Part 7 also preserves especially important direct Founder ideas including:
 
 The Part 7 record also contains assistant-created institutional formulations on leadership, capital, innovation economics, reputation, culture, user outcomes, transparent guidance, purpose-driven renewal, and preserving the human problem rather than an old solution. These must remain clearly labeled `ASSISTANT SYNTHESIS / HISTORICAL CANDIDATE` unless later Founder review promotes them.
 
+### Part 8 philosophy checkpoint — principles become institutional carriers
+
+Part 8 changes the form of the record. Instead of mainly adding more numbered principles, it attempts to **turn the accumulated philosophy into systems that can carry judgment across time**.
+
+Part 8 includes assistant-generated proposals for:
+
+- a multi-layer Founder Archive;
+- Constitution / Strategy / Operating System / Story & Judgment / Archive Control layers;
+- a Mission Firewall concept;
+- leadership scorecards and CEO rubrics;
+- hiring, onboarding, mentorship, story-card and decision-rationale templates;
+- Lighthouse, Team LIPS, and Smart Business draft SOP books;
+- a draft Lighthouse Decision Constitution;
+- release/experiment decision gates;
+- NotebookLM narrative source material and a Malayalam two-host discussion prompt.
+
+These are **historical institutional-design artifacts**, not current governance. Their value is that they show the planning room trying to solve a new problem: how to preserve Founder reasoning without requiring Founder presence in every future decision.
+
+Part 8 also adds direct Founder execution-reality decisions that must be preserved prominently:
+
+- direct Founder involvement for the first roughly 10–20 Smart Business merchants;
+- continued Founder involvement through 20–100 with `/start` carrying more onboarding load;
+- **no Founder time for future Lighthouse systems/courses/next products until Smart Business reaches roughly 100 clients**;
+- early-stage Founder approval structures may later change when strong leadership exists beyond the Founder;
+- **`Taking responsibility is much required than coding itself.`**;
+- early Team LIPS hiring should strongly value responsibility, human understanding, and mission alignment;
+- first serious profit should use **balanced allocation** across stability, product, employees, growth, and future experimentation;
+- pricing may change for genuine cost/value/sustainability reasons but not because users are dependent;
+- technological expertise does not mean Team LIPS knows the user's full reality;
+- Team LIPS should point out needs and offer strong solutions rather than impose them;
+- **users should adopt useful technology with their consent**;
+- talented people should be redirected respectfully before being rejected when their perspective conflicts with mission principles.
+
+Part 8 should be remembered as the maturity transition:
+
+**principles → institutional carriers → execution trade-offs.**
+
 ---
 
 ## 5. Mission Control continuity rule
@@ -139,7 +178,9 @@ After that confirmation:
 4. preserve direct Founder wording separately from later assistant interpretation;
 5. identify candidate principles that later became canonical;
 6. identify valuable historical candidates not yet formalized;
-7. submit the consolidated file for Founder review before any governance promotion.
+7. preserve the evolution from philosophy into SOP/decision/archive systems without treating historical drafts as active governance;
+8. identify NotebookLM/founder-archive/storytelling records that may carry organizational judgment into future onboarding and institutional memory;
+9. submit the consolidated file for Founder review before any governance promotion.
 
 ---
 
@@ -161,6 +202,7 @@ This directive does not:
 
 - modify current governance;
 - create a new Lighthouse Constitution;
+- activate any planning-era Decision Constitution or SOP;
 - modify Smart Business Product Truth;
 - authorize public publication of historical quotes;
 - establish employment, investment, acquisition, privacy, or legal policy;
