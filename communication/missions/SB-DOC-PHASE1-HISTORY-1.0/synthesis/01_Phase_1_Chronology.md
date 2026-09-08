@@ -1,7 +1,7 @@
 # SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Chronology
 
-**Document status:** PHASE B — RECONCILIATION PASS 1 — EVIDENCE-BACKED DRAFT  
-**Purpose:** Reconcile the extracted Mission Control, specialist-room, Founder, repository, runtime, and platform evidence into one time-ordered Smart Business Phase 1 history.  
+**Document status:** PHASE B — RECONCILIATION PASS 2 — PLANNING-ORIGIN RECONCILED DRAFT  
+**Purpose:** Reconcile the extracted Mission Control, specialist-room, Founder, planning-origin, repository, runtime, and platform evidence into one time-ordered Smart Business Phase 1 history.  
 **Authority boundary:** Historical synthesis only. This file is not Product Truth, not a Product Blueprint, not an EIS, and not a new mission authorization.
 
 ## 1. Evidence method
@@ -9,6 +9,7 @@
 Historical claims use the mission evidence labels:
 
 - `CONFIRMED`
+- `FOUNDER-CLARIFIED — STRONGLY CORROBORATED`
 - `STRONGLY SUPPORTED`
 - `CHAT-ONLY HISTORICAL`
 - `CONTRADICTED`
@@ -23,7 +24,7 @@ The chronology separates:
 
 This prevents later governance, platform state, or roadmap labels from being projected backward onto earlier execution.
 
-## 2. Phase 0 — Command Foundation
+## 2. Phase 0 — Command Foundation / `SB-P-1.0`
 
 ### Historical state
 
@@ -32,12 +33,28 @@ This prevents later governance, platform state, or roadmap labels from being pro
 The historical command foundation comprised the early Smart Business operating system around:
 
 - ChatGPT Project;
-- Mission Control;
-- specialist rooms;
-- project source files;
-- Founder-directed mission routing.
+- initial shared Project Knowledge sources;
+- specialist rooms and Labs;
+- Founder-directed room calibration;
+- Source 09 / roadmap-state command layer;
+- Mission Control activation and mission routing.
 
-**Classification:** `CONFIRMED` as historical project state.
+The Founder later clarified that the early Product Mission identity was:
+
+`SB-P-1.0 — Command Foundation`.
+
+Planning-origin evidence strongly corroborates that clarification:
+
+- Part 12 shows the first Source `00–08` Project Knowledge stack completed/uploaded and the shift toward specialist-room execution;
+- Part 13 shows specialist rooms being created/calibrated and the Founder identifying the need for a cross-room `play maker`;
+- Part 14 shows Source 09 emerging specifically for Mission Control, Mission Control activated against Sources `00–09`, and Mission Control explicitly declaring `Phase 0 — Command Foundation` complete;
+- Part 20 later shows the Founder formally authorizing Phase 1 execution and Mission Control activating Phase 1.1 as the first execution objective.
+
+**Classification:** `FOUNDER-CLARIFIED — STRONGLY CORROBORATED`.
+
+**Provenance boundary:** no claim is made that the literal contemporaneous heading `SB-P-1.0 — Command Foundation` has been recovered. The mapping is Founder historical clarification plus strong contemporaneous corroboration.
+
+**Namespace boundary:** `SB-INF-1.0 — Supabase Project Provisioning` remains a separate infrastructure mission.
 
 **Boundary:** No retroactive Source 18 acceptance package is claimed for Phase 0.
 
@@ -67,6 +84,8 @@ Founder Room and Infrastructure evidence show Phase 1.1 active with Infrastructu
 
 The mission was verification-only and prohibited DNS changes.
 
+Planning Part 20 independently captures the planning-to-execution transition: the Founder formally authorizes Phase 1 execution, and Mission Control responds by activating Phase 1.1 Domain Verification as the first execution objective, routing it to `09_Infrastructure_Operations`, defining evidence and completion criteria, and predefining the handover to Phase 1.2.
+
 **Classification:** `CONFIRMED`.
 
 ### Late June 2026 — `SB-P-1.2 — Smart Business Subdomain`
@@ -74,6 +93,8 @@ The mission was verification-only and prohibited DNS changes.
 After SB-P-1.1 acceptance, the next Product Mission established the Smart Business product subdomain while preserving unrelated Google Workspace and DNS records.
 
 The key operational rule was not to guess the Lovable destination target.
+
+Planning Part 20 later records Phase 1.1 and Phase 1.2 as complete and Phase 1.3 ready to resume.
 
 **Classification:** `CONFIRMED`.
 
@@ -100,6 +121,8 @@ Evidence across Lovable, Infrastructure, Admin Lab and ChatGPT Claude-oriented r
 - engineering-platform calibration and integration verification.
 
 The early repository-first principle emerged: governance remains higher authority while GitHub becomes canonical implementation truth.
+
+The final planning source independently corroborates this broader identity by naming the current milestone `AI Development Environment & Public Website Foundation` and recording Phase 1.3 as ready to resume after 1.1 and 1.2 completed.
 
 **Classification:** `CONFIRMED` for the broader mission identity; the narrower website-only label is preserved as an earlier naming state.
 
@@ -328,27 +351,26 @@ That recovery also corrected parser runtime compatibility and a Product↔Invent
 
 The authoritative production Supabase project later became `gysgzasfcjvtrgaigfyn`; the historical Lovable Cloud backend is excluded from current authority.
 
-## 11. The unresolved predecessor: `SB-P-1.0`
+## 11. Final planning-origin bridge
 
-After direct extraction of Mission Control archives and all supplied Smart Business ChatGPT Project rooms, plus repository searches, no original-era artifact has yet been found that explicitly assigns an identity to `SB-P-1.0`.
+The complete `smart_business_planning_1–20` extraction now connects the original Founder planning process directly to the independently reconstructed Smart Business Project HQ execution history.
 
-A strong contextual lead exists:
+The final planning source records:
 
-`SB-INF-1.0 — Supabase Project Provisioning`
+- source/governance synchronization completed;
+- Founder formally authorizes Phase 1 execution;
+- Mission Control activates `SB-P-1.1 — Domain Verification`;
+- Mission Control routes work to Infrastructure Operations with evidence/acceptance requirements;
+- later Phase 1.1 and Phase 1.2 are recorded complete;
+- `SB-P-1.3 — AI Development Environment & Public Website Foundation` is recorded ready to resume / active focus.
 
-is directly evidenced as an early infrastructure mission.
-
-However:
-
-`SB-INF-1.0` ≠ proven `SB-P-1.0`.
-
-The Founder recollection that `SB-P-1.0` may have been Supabase provisioning remains a high-value clarification lead, but the chronology retains `SB-P-1.0` as unresolved until an explicit Founder historical clarification or stronger contemporaneous evidence establishes the mapping.
+This explains why the original planning chat becomes less central toward its end: execution had shifted into Mission Control and specialist rooms. That interpretation is strongly corroborated by the parallel MC, Infrastructure, Lovable, Admin, Founder, Security and repository histories.
 
 ## 12. Chronology synthesis result
 
-The Phase 1 story is now substantially continuous:
+The Phase 1 story is now continuous:
 
-`Phase 0 Command Foundation`
+`SB-P-1.0 Command Foundation`
 
 → `SB-P-1.1 Domain Verification`
 
@@ -378,4 +400,6 @@ The Phase 1 story is now substantially continuous:
 
 → post-acceptance production/runtime synchronization.
 
-The only missing Product Mission identity in the required continuous range is `SB-P-1.0`.
+The Product Mission identity gap previously recorded for `SB-P-1.0` is now resolved through Founder clarification plus strong planning-era corroboration.
+
+The next major Founder-origin evidence layer is the preserved NotebookLM record set, which should be used to recover full feature depth and populate the Smart Business Feature Definition Library before final historical closeout.
