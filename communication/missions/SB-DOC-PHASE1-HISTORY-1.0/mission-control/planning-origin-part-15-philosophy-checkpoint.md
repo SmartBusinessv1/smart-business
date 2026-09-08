@@ -83,7 +83,53 @@ Part 15 contains significant organizational-design ideas, but the historical Lig
 
 ---
 
-## 5. Continuity instruction
+## 5. Future Smart Business organizational learning-system requirement
+
+The Founder has directed that after the complete historical extraction is finished, Smart Business shall create an improved repository-native implementation of the planning-era resource / skill / capability / lessons-memory concept.
+
+The intended system should be self-improving and learn from eligible durable evidence such as:
+
+- completed missions;
+- repository-captured mission conversations and handovers;
+- completion reports;
+- evidence packages;
+- Founder decisions;
+- specialist findings;
+- verification reports;
+- repository history;
+- lessons learned;
+- other approved sources.
+
+The Founder specifically wants to reduce or eliminate repetitive human copy/paste and investigate GitHub Actions or equivalent repository automation so institutional learning compounds automatically.
+
+The future system must separate at minimum:
+
+- Resource Memory;
+- Skill Memory;
+- Capability Memory;
+- Lessons-Learned Memory.
+
+It should preserve provenance, confidence, scope, maturity, auditability, reversibility, and deduplication.
+
+Important boundary:
+
+**automatic learning must not become autonomous governance mutation.**
+
+The later architecture must preserve Founder authority, Mission Control authority, Source 17 / Source 18 boundaries, and the distinction between evidence, candidate learning, proven capability, institutional memory, and binding governance.
+
+The intended compounding loop is:
+
+**Mission executes → evidence is preserved → lessons/capabilities are extracted → organizational memory improves → future mission starts stronger.**
+
+This future requirement is durably recorded in:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/post-history-organizational-learning-system-directive.md`
+
+Do not implement the system during historical extraction. It requires a separately authorized Mission Control mission after the Founder explicitly confirms that historical extraction is complete.
+
+---
+
+## 6. Continuity instruction
 
 Continue the two-pass extraction for every subsequent planning part:
 
