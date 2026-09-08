@@ -437,10 +437,104 @@ Applicability is classified as one or more of:
 
 **Applicability:** Lighthouse principle reinforcement; Team LIPS organization-wide capability.
 
-## 12. Register result
+## 12. Founder-vision preservation and execution-speed lessons
 
-The most important Phase 1 learning is not a single technical rule. It is a repeated pattern:
+### L-41 — Product Truth summary depth can still lose Founder workflow depth
+
+**What happened:** The historical reconstruction showed that several Founder-developed capabilities survived in active sources only as short feature summaries. The original planning conversations often contained much richer detail about actors, workflow, exceptions, permissions, language, failure states, cross-feature relationships and intended merchant experience. Later engineering missions therefore inherited the feature name and broad boundary without always inheriting the full product behaviour the Founder had already worked through.
+
+**Learned:** A feature name plus a short bullet list is insufficient for a product whose value lives in workflow detail. Compression can become product drift even when the summary is technically accurate.
+
+**Changed:** A durable `docs/phase-1-mission-blueprint/smart-business-features/` layer is being created so confirmed Founder capabilities can be preserved at feature depth and inherited by future Product Blueprints, EIS work and Claude Code implementation.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide product-development capability.
+
+### L-42 — `Add-on`, `Build Later`, `pilot sequencing` and `not in this mission` are different states
+
+**What happened:** Historical planning used labels such as MVP, later, after pilot and add-on while later Founder decisions and current Product Truth sometimes promoted or clarified those same capabilities. Narrow SB-P missions also correctly rejected work outside their authorized scope. Across many handoffs, those different meanings could be interpreted as one generic reason not to build a confirmed capability.
+
+**Learned:** Commercial packaging, roadmap timing, mission scope and product existence must never be conflated. `Add-on` does not mean `Build Later`. `Not authorized in this mission` does not mean `not part of Smart Business`. A superseded planning-era `later` suggestion cannot override a later Founder decision.
+
+**Changed:** Feature records shall state current Founder intent, packaging, build classification, dependencies and superseded historical sequencing separately.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide execution capability.
+
+### L-43 — Narrow mission safety requires a master product-completion view
+
+**What happened:** Source 18 correctly evolved Smart Business toward tightly bounded Product Missions, explicit stage ownership and independent verification. However, mission-local scope discipline can create a fragmented experience when there is no equally strong persistent view of every confirmed capability the finished app must contain.
+
+**Learned:** Narrow missions are good for safety, but product completeness must be tracked above the individual mission. Otherwise every room can be locally correct while the overall Founder vision advances too slowly or incompletely.
+
+**Changed:** The Feature Definition Library shall act as a persistent product-completion input. Mission Control should know not only the current mission status but also which approved features are `UNDEFINED`, `DEFINED`, `BLUEPRINTED`, `EIS LOCKED`, `IMPLEMENTED`, `VERIFIED`, or `ACCEPTED`.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide program-management capability.
+
+### L-44 — Governance must protect implementation, not become a substitute for implementation
+
+**What happened:** As Smart Business matured, source files, evidence requirements, security review, communication protocols, lifecycle stages and historical continuity controls expanded substantially. Many of those controls solved real problems, but report/version loops and repeated narrow reviews also consumed significant execution attention.
+
+**Learned:** More governance is not automatically safer. A control is valuable when it prevents a real failure, clarifies authority or produces necessary proof. Ceremony that repeats already-proven work slows the product and can indirectly increase drift by separating the Founder decision from eventual implementation.
+
+**Changed:** Apply the existing doctrine `Maximum clarity, minimum necessary ceremony`: reuse evidence, resume from the exact failed checkpoint, parallelize independent reviews where safe, and avoid reopening already-settled Product Truth.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide capability.
+
+### L-45 — A real blocker should have the narrowest possible blast radius
+
+**What happened:** Phase 1 produced legitimate security, RLS, IAM, runtime, CI and evidence blockers. Those blockers were necessary and in several cases prevented unsafe execution. But a blocker affecting one dependency can be perceived or operationally treated as a reason to defer broader approved product work.
+
+**Learned:** Security cannot be bypassed, but it also must not silently become product de-scoping. A blocker should stop only the unsafe dependent action unless evidence proves a wider stop is required.
+
+**Changed:** Mission Control should record each blocker with: affected capability, exact dependency, why the block exists, what remains safe to continue, owner, evidence needed to unblock, and the precise resumption checkpoint.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide security/program capability.
+
+### L-46 — Current-source inconsistency creates conservative AI behaviour and accidental delay
+
+**What happened:** Historical and current source evolution left some lower-level framework wording behind later Founder decisions and Product Truth—for example voice packaging, Staff/HR classification, older voice-add-on terminology and earlier Daily Intelligence timing assumptions. An implementation AI facing two approved-looking statements may pause, narrow scope or preserve the older restriction rather than risk violating governance.
+
+**Learned:** AI conservatism is often a rational response to inconsistent authority. Fast execution requires synchronized truth, not instructions telling builders to ignore conflicts.
+
+**Changed:** After historical extraction, run a narrow source-reconciliation mission that compares each detailed feature record against Source 01, Source 11 and relevant frameworks; patch only proven conflicts under Founder/Mission Control authority and preserve historical wording in archives rather than active execution sources.
+
+**Applicability:** Smart Business governance candidate; Team LIPS organization-wide knowledge-management capability.
+
+### L-47 — Build vertically from a complete feature contract
+
+**What happened:** Rich capabilities such as Smart Order & Delivery and Ask CFO span frontend, backend, permissions, AI, messaging, database state, failure handling and acceptance evidence. Building only a page, table or API slice does not complete the merchant capability.
+
+**Learned:** The fastest secure path is not to reduce a feature into disconnected tasks; it is to define the whole capability once, then implement it vertically in bounded increments against one shared feature contract.
+
+**Changed:** Remaining SB-P work should use the chain: `Founder Feature Definition → Product Blueprint → EIS → implementation package → frontend/backend/integration build → runtime verification → independent verification → acceptance`, while reusing existing foundations and avoiding duplicate architecture.
+
+**Applicability:** Smart Business product-quality lesson; Team LIPS organization-wide engineering capability.
+
+## 13. Prevention model — build fast, secure and faithful to Founder vision
+
+The combined lessons now require five protections for the remainder of Phase 1:
+
+1. **Preserve complete feature intent before implementation.** Every confirmed feature gets a durable feature record with purpose, users, workflows, permissions, edge cases, dependencies, non-goals and acceptance expectations.
+2. **Keep one product-completion register.** Mission-local status must roll up to a complete view of the finished Smart Business app.
+3. **Keep blockers narrow and explicit.** Record what is blocked, what is not blocked, why, and the exact unblock condition.
+4. **Reconcile conflicting active sources once, not repeatedly inside every build mission.** Current Product Truth must be internally consistent before builders inherit it.
+5. **Use security as a design property, not a late-stage stop sign.** RLS, tenant isolation, confirmation, auditability, privacy and least privilege should be designed into the feature EIS so secure implementation and fast implementation become the same path.
+
+The intended operating result is:
+
+**Founder vision preserved in full → one authoritative feature contract → narrow secure engineering design → vertical implementation → evidence-backed acceptance → next feature.**
+
+## 14. Register result
+
+The most important Phase 1 learning is now two connected patterns.
+
+Truth-discovery pattern:
 
 **observe → verify → act narrowly → record evidence → correct openly → preserve history → improve the system.**
 
-That pattern is the strongest reusable Team LIPS capability produced by Smart Business Phase 1.
+Product-delivery pattern:
+
+**preserve Founder intent → reconcile current truth → define the complete feature → design security into it → build vertically → verify once with strong evidence → move forward without reopening settled decisions.**
+
+Together these protect the two things Smart Business needs at the same time:
+
+**original Founder vision and secure execution velocity.**
