@@ -170,7 +170,7 @@ The following feature families are currently known and will receive dedicated fi
 | Smart Reminder Assistant | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
 | Daily Intelligence Rhythm | Ledger + Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Universal Document Intelligence / Receipt Intelligence | Core cross-feature capability | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Human Language Layer | Core cross-feature capability | BUILD NOW | Pending detailed recovery |
+| Human Language Layer | Core cross-feature capability | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Stock / Supplier / Reorder Intelligence | Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Smart Stock Assistant | Ledger add-on | BUILD NOW | Covered provisionally in Stock seed; deeper packaging/workflow recovery required |
 | Staff / HR Assistant | Ledger + Manager add-on | BUILD NOW | **NotebookLM seed created — deep extraction required** |
