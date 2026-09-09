@@ -114,6 +114,28 @@ Feature files should describe **product behavior**, not prematurely hardcode imp
 
 ---
 
+# NotebookLM Recovery Status
+
+NotebookLM feature recovery has now begun.
+
+The Founder-uploaded `notebook LM briefing.txt` is treated as a **seed map**, not as the complete NotebookLM evidence corpus.
+
+Feature files marked:
+
+> **NOTEBOOKLM SEED — DEEP EXTRACTION REQUIRED**
+
+preserve confirmed capability direction but are deliberately **not implementation-ready**. They must be deepened through the NotebookLM Q&A extraction process before Blueprint/EIS work uses them as complete feature contracts.
+
+The durable NotebookLM question bank is maintained at:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
+
+Seed extraction record:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Briefing_Seed_Extraction_01.md`
+
+---
+
 # Feature Completion Principle
 
 A feature is not complete because a screen exists.
@@ -142,25 +164,29 @@ The following feature families are currently known and will receive dedicated fi
 
 | Feature | Commercial position | Build commitment | Feature file status |
 |---|---|---|---|
-| Ledger / Business Memory | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
+| Ledger / Business Memory | Ledger + Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | WhatsApp Intelligence | Core conversation channel capability | BUILD NOW | Pending detailed recovery |
-| Ask CFO | Ledger + Manager core | BUILD NOW | **Created** |
+| Ask CFO | Ledger + Manager core | BUILD NOW | **Created — planning-depth record; NotebookLM enrichment pending** |
 | Smart Reminder Assistant | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
-| Daily Intelligence Rhythm | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
-| Universal Document Intelligence | Core cross-feature capability | BUILD NOW | Pending detailed recovery |
+| Daily Intelligence Rhythm | Ledger + Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
+| Universal Document Intelligence / Receipt Intelligence | Core cross-feature capability | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Human Language Layer | Core cross-feature capability | BUILD NOW | Pending detailed recovery |
-| Stock Intelligence | Manager core | BUILD NOW | Pending detailed recovery |
-| Smart Stock Assistant | Ledger add-on | BUILD NOW | Pending detailed recovery |
-| Staff / HR Assistant | Ledger + Manager add-on | BUILD NOW | Pending detailed recovery |
+| Stock / Supplier / Reorder Intelligence | Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
+| Smart Stock Assistant | Ledger add-on | BUILD NOW | Covered provisionally in Stock seed; deeper packaging/workflow recovery required |
+| Staff / HR Assistant | Ledger + Manager add-on | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Compliance Shield | Ledger + Manager add-on | BUILD NOW | Pending detailed recovery |
 | Smart Voice Assistant Plus | Ledger + Manager add-on | BUILD NOW | Pending detailed recovery |
-| Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot clients** | **Created** |
-| Support Automation | Core support foundation | BUILD NOW | Pending detailed recovery |
+| Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot clients** | **Created — planning-depth record; NotebookLM enrichment pending** |
+| Support Automation | Core support foundation | BUILD NOW | **NotebookLM seed created — deep extraction required** |
 | Payment / Subscription lifecycle | Platform/core commercial capability | BUILD NOW | Pending detailed recovery |
+| Payment Verification Intelligence | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
+| Smart Credit Awareness | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
 | POS Connection & Intelligence | Manager core / integration layer | BUILD NOW | Pending detailed recovery |
+| Operational Dashboard / Manager Risk Intelligence | Manager core | BUILD NOW | Pending detailed recovery |
+| Receipt Cabinet | Ledger + Manager core | BUILD NOW | Covered provisionally in Document/Receipt seed; deep retrieval workflow required |
 | Super Admin Cockpit | Founder/platform operations | BUILD NOW within approved current scope | Pending detailed recovery |
 
-Additional feature records will be added as the planning-room and NotebookLM extractions recover them.
+Additional feature records will be added as NotebookLM extraction recovers them.
 
 ---
 
@@ -168,7 +194,9 @@ Additional feature records will be added as the planning-room and NotebookLM ext
 
 For a feature mission, the recommended Product Definition input becomes:
 
-**Current Source 11 + relevant feature file + verified repository state + unresolved Founder questions only.**
+**Current Source 11 + relevant mature feature file + verified repository state + unresolved Founder questions only.**
+
+A `NOTEBOOKLM SEED` file is not yet a mature feature file and must not be mistaken for a complete implementation contract.
 
 The feature file should reduce repeated discovery, not bypass Product Governance.
 
