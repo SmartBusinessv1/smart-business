@@ -183,3 +183,34 @@ The planning chat did not fail to continue because execution stopped.
 It became less central because the Founder successfully created the Smart Business operating environment that replaced the planning chat as the main execution surface.
 
 That is the historical handover the reconstruction now preserves.
+
+---
+
+## 10. Mandatory carry-forward for future Mission Control
+
+The Founder has directed that the execution lessons recovered during this mission must not depend on periodic Founder reminders.
+
+Future Mission Control rooms must inherit the durable guardrail record:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/founder-product-completion-and-blocker-guardrails.md`
+
+The four central carry-forward rules are:
+
+> **Every SB-P mission must state which confirmed Smart Business features it advances, and Mission Control must maintain the global product-completion view while the mission maintains its local scope.**
+
+Every material blocker must identify:
+
+> **Blocked:** exact unsafe dependency  
+> **Still allowed:** everything independent of that dependency  
+> **Evidence required:** exact proof needed  
+> **Resume point:** exact checkpoint
+
+And every remaining Product Mission must preserve these two principles:
+
+> **Local mission safety must never create global product incompleteness.**
+
+> **Build the complete approved feature vertically, secure it by design, prove it, then move forward.**
+
+These are Founder-directed institutional operating requirements and governance-promotion candidates. They do not silently amend the active numbered source set inside this historical mission.
+
+Before final closeout of `SB-DOC-PHASE1-HISTORY-1.0`, Mission Control should verify that these guardrails are included in the successor Mission Control handover and are considered during the planned post-history source/governance reconciliation.
