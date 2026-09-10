@@ -4,6 +4,10 @@
 **Status:** TEMPORARY CONTINUITY WORKSPACE — DELETE ONLY AFTER FINAL RECONCILIATION IS VERIFIED  
 **Purpose:** Preserve staged Founder-origin product recovery from NotebookLM and the recovered Ground Zero Smart Business ideation chat until the final Smart Business Feature Definition Library is reconciled and accepted.
 
+**Successor Mission Control handover:**
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`
+
 ---
 
 ## Current continuity state
@@ -185,6 +189,7 @@ The temporary extraction must carry these current corrections forward:
 - Smart Credit Awareness warns and provides context; it must not block owner decisions. AI informs; owner decides.
 - Payment/bank matching must not guess when multiple plausible matches exist. Ambiguity requires human confirmation.
 - Financial reconciliation must stop only the uncertain write/link, preserve evidence, and keep unrelated business operations available.
+- Support Automation must preserve the **100+ FAQ** direction with FAQ-first handling, English/Malayalam/Manglish support, AI escalation only when needed, ticketing for unresolved cases, and privacy-respecting support review.
 
 ---
 
@@ -248,19 +253,18 @@ Deletion must happen through a normal repository change so Git history continues
 
 If a new Mission Control room is activated before this extraction finishes, it must:
 
-1. Read this README.
-2. Read every completed or partial `Section_*_of_7_*.md` file in numerical order.
-3. For Section 5, read **both** Section 5 files before proceeding.
-4. Read the main NotebookLM question bank and batch instructions.
-5. Read the current Smart Business Feature Definition Library.
-6. Continue from the first incomplete question/section; current continuation point is **Section 6 / Question 69**.
-7. Do not restart completed extraction work.
-8. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
+1. Read `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`.
+2. Read this README.
+3. Read every completed or partial `Section_*_of_7_*.md` file in numerical order.
+4. For Section 5, read **both** Section 5 files before proceeding.
+5. Read the main NotebookLM question bank and batch instructions.
+6. Read the current Smart Business Feature Definition Library.
+7. Continue from the first incomplete question/section; current continuation point is **Section 6 / Question 69**.
+8. Do not restart completed extraction work.
+9. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
 
 ---
 
 ## Final principle
 
-Temporary extraction files exist to protect continuity, not to become permanent parallel Product Truth.
-
-**Recover deeply → reconcile carefully → create durable feature truth → verify completeness → then remove the temporary layer.**
+**Temporary evidence protects continuity. Mature feature truth protects execution.**
