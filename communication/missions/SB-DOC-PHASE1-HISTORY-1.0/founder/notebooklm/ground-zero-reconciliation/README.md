@@ -99,7 +99,7 @@ For every section, preserve these separately:
 Record what NotebookLM supports, including:
 
 - feature details;
--- examples;
+- examples;
 - workflow descriptions;
 - package/timing labels;
 - technical assumptions;
