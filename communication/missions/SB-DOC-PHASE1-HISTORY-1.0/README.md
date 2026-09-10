@@ -2,25 +2,33 @@
 
 ## Mission State
 
-**Status:** `ACTIVE — PHASE B RECONCILIATION PASS 1 COMPLETE; FOUNDER CLARIFICATION GATE PENDING FOR SB-P-1.0`
+**Status:** `ACTIVE — FOUNDER-ORIGIN RECOVERY COMPLETE THROUGH QUESTION 68; SECTION 6 NEXT`
 
 **Authority:** Smart Business Mission Control / Founder-approved activation
 
-**Scope:** Smart Business inception through formal completion of `SB-P-1.11`.
+**Scope:** Smart Business inception through formal completion of `SB-P-1.11`, plus recovery of the original Founder feature vision needed to prevent future implementation drift.
+
+**Exact successor handover:**
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`
+
+---
 
 ## Objective
 
-Build a durable, evidence-backed institutional record of Smart Business Phase 1 before final SB-P lifecycle metadata normalization.
+Build a durable, evidence-backed institutional record of Smart Business Phase 1 and preserve enough Founder-origin product detail that future Product Missions can build the complete approved Smart Business without reconstructing old chats.
 
-The locked Product Mission range is:
+Locked historical Product Mission range:
 
-`SB-P-1.0` → `SB-P-1.11`.
+`SB-P-1.0` → `SB-P-1.11`
 
-The mission must preserve historical truth without inventing modern lifecycle artifacts for early missions that predate Source 18.
+The mission must preserve historical truth without inventing modern Source 18 lifecycle artifacts for early missions that predate Source 18.
+
+---
 
 ## Evidence Rules
 
-Historical claims use:
+Historical claims use evidence-appropriate language such as:
 
 - `CONFIRMED`
 - `STRONGLY SUPPORTED`
@@ -28,15 +36,19 @@ Historical claims use:
 - `CONTRADICTED`
 - `UNRESOLVED`
 
-Do not fabricate Product Blueprints, EIS records, contracts, stage gates, runtime verification, approval, acceptance or mission identity to make the historical sequence appear complete.
+Do not fabricate Product Blueprints, EIS records, contracts, stage gates, runtime verification, approval, acceptance or mission identity merely to make early history look complete.
 
-## Phase A — Evidence Intake
+Historical evidence does not override current Founder direction or current canonical Product Truth.
 
-**State:** `COMPLETE FOR ALL SUPPLIED SMART BUSINESS CHATGPT PROJECT ROOMS`
+---
 
-The mission has durably extracted and reconciled:
+# Phase A — Historical Evidence Intake
 
-- Mission Control MC1–MC13;
+**State:** `COMPLETE FOR ALL SUPPLIED SMART BUSINESS CHATGPT PROJECT ROOMS AND THE 20-PART SMART BUSINESS PLANNING ROOM`
+
+The mission has durably extracted/reconciled:
+
+- Mission Control generations supplied through the historical extraction;
 - Infrastructure Operations;
 - Lovable Room and Lovable Lab;
 - Supabase Room and Supabase Lab;
@@ -45,16 +57,17 @@ The mission has durably extracted and reconciled:
 - Admin Lab;
 - AI & WhatsApp;
 - Security & Permissions Architecture;
-- Founder Room and the supplied historical Founder reference PDFs;
-- relevant GitHub/repository, runtime and later continuity evidence.
+- Founder Room and supplied Founder reference materials;
+- relevant GitHub/repository/runtime evidence;
+- `smart_business_planning_1` through `smart_business_planning_20`.
 
-The ChatGPT Claude-oriented rooms are not Claude.ai or Claude Code evidence. Claude Code / VS Code chat history remains supplementary and should be recovered only if a specific reasoning gap cannot be resolved from durable repository evidence.
+The ChatGPT Claude-oriented rooms are not Claude.ai / Claude Code execution evidence. Durable GitHub evidence remains primary where available.
 
-## Phase B — Reconciliation & Synthesis
+---
 
-**State:** `PASS 1 COMPLETE — REVIEW PENDING`
+# Phase B — Reconciliation & Historical Synthesis
 
-The six required synthesis outputs are now drafted at:
+The existing synthesis artifacts are maintained at:
 
 ```text
 communication/missions/SB-DOC-PHASE1-HISTORY-1.0/synthesis/
@@ -66,85 +79,215 @@ communication/missions/SB-DOC-PHASE1-HISTORY-1.0/synthesis/
 └── 06_Evidence_and_Open_Questions_Ledger.md
 ```
 
-These are evidence-backed historical synthesis artifacts, not governance or Product Truth.
+These are historical synthesis artifacts, not Product Truth or governance.
 
-## Reconciled SB-P Register
+## Reconciled Product Mission identity
 
-| Mission | Reconciled identity | Current historical disposition |
-| --- | --- | --- |
-| `SB-P-1.0` | **UNRESOLVED** | `UNRESOLVED HISTORICAL STATE` |
-| `SB-P-1.1` | Domain Verification | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.2` | Smart Business Subdomain | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.3` | AI Development Environment & Public Website Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.4` | Bootstrap Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.5` | Application Access Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.6` | Business Identity Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.7` | Business Workspace Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.8` | Business Operations Foundation | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.9` | Merchant Workflow Refinement | `COMPLETED — HISTORICALLY VERIFIED` |
-| `SB-P-1.10` | Inventory Foundation | `COMPLETED — FORMALLY ACCEPTED` |
-| `SB-P-1.11` | Product Catalog & Pricing | `COMPLETED — FORMALLY ACCEPTED` |
+The former unresolved state for `SB-P-1.0` has been superseded by later Founder clarification plus strong planning-era and Mission Control corroboration.
 
-## Principal Remaining Historical Gap
+Current historical judgement:
 
-`SB-P-1.0` is now the only major unresolved Product Mission identity in the required sequence.
+`SB-P-1.0 — Command Foundation`
 
-Direct evidence confirms an early infrastructure mission:
+Provenance boundary:
 
-`SB-INF-1.0 — Supabase Project Provisioning`
+This is a later Founder-clarified historical identity strongly corroborated by direct Phase 0 / Phase 1 transition evidence. Do not falsely claim that an original-era heading literally named `SB-P-1.0 — Command Foundation` unless such contemporaneous evidence is later recovered.
 
-The Founder remembers a possible relationship between Supabase provisioning and `SB-P-1.0`, but no recovered original-era source explicitly maps those identifiers.
+`SB-INF-1.0 — Supabase Project Provisioning` remains a separate infrastructure mission.
 
-After Phase B Pass 1 is human-merged, the next safe gate is a **narrow Founder historical clarification** of `SB-P-1.0`.
+---
 
-The Founder clarification must be recorded as later historical clarification, not misrepresented as contemporaneous documentary evidence.
+# Phase C — Founder-Origin Feature Recovery
 
-## Reconciled Historical Boundaries
+**State:** `ACTIVE — QUESTIONS 1–68 COMPLETE; SECTIONS 6–7 PENDING`
 
-The synthesis preserves these distinctions:
+The Founder recovered two major evidence streams:
 
-- Roadmap `Phase 1.4 — Meta Business Verification Submission` and Product Mission `SB-P-1.4 — Bootstrap Foundation` are separate numbering namespaces.
-- `SB-P-1.3` preserves the earlier narrower `Lovable Public Website Foundation` label while using the broader evidenced executed identity.
-- `SB-P-1.5` preserves `Authentication Foundation` as an earlier proposed label while using `Application Access Foundation` as the executed identity.
-- Supabase project `gysgzasfcjvtrgaigfyn` was test-only at SB-P-1.10 acceptance and became production later; both states remain historically true for their respective periods.
-- Product Mission acceptance, canonical repository state, delivery repository state, Lovable publication state, backend identity and production runtime are separate facts.
+1. NotebookLM — later Smart Business V2.2/source-era product knowledge;
+2. Ground Zero Smart Business ideation chat — earliest known Founder product ideation evidence.
 
-## Completed-Folder End State
+Temporary reconciliation workspace:
 
-The Founder requires a continuous Phase 1 mission index under:
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/ground-zero-reconciliation/`
+
+Current state:
+
+- Section 1 — COMPLETE — Questions 1–8
+- Section 2 — COMPLETE — Questions 9–18
+- Section 3 — COMPLETE — Questions 19–34
+- Section 4 — COMPLETE — Questions 35–51
+- Section 5 — COMPLETE — Questions 52–68 across two files
+- Section 6 — PENDING — Questions 69–86
+- Section 7 — PENDING — Questions 87–100
+
+A successor Mission Control must continue from **Section 6 / Question 69** and must not restart Questions 1–68.
+
+Question bank:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
+
+Detailed continuation instructions:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`
+
+---
+
+# Smart Business Feature Definition Library
+
+Durable feature contracts belong at:
+
+`docs/phase-1-mission-blueprint/smart-business-features/`
+
+The feature library exists because high-level Product Truth can correctly state what a feature is while still omitting enough workflow depth for a builder to produce a materially incomplete implementation.
+
+The final Founder-origin reconciliation must deepen/create complete feature files after all seven evidence sections are recovered.
+
+Founder build commitment rule:
+
+- a Founder-invented capability that remains approved and aligned with current Smart Business is intended to be built;
+- `Add-on` is commercial packaging, not automatically `Build Later`;
+- technical dependencies may change sequence without changing product commitment;
+- security may block an unsafe implementation path, not silently erase approved Product Truth.
+
+---
+
+# Founder Anti-Drift Execution Guardrails
+
+Future Mission Control must preserve:
+
+> **Every SB-P mission must state which confirmed Smart Business features it advances, and Mission Control must maintain the global product-completion view while the mission maintains its local scope.**
+
+Every blocker must state:
+
+- **Blocked:** exact unsafe dependency
+- **Still allowed:** everything independent of that dependency
+- **Evidence required:** exact proof needed
+- **Resume point:** exact checkpoint
+
+And:
+
+> **Local mission safety must never create global product incompleteness.**
+
+> **Build the complete approved feature vertically, secure it by design, prove it, then move forward.**
+
+---
+
+# Remaining Work Before Mission Closure
+
+## 1. Complete Section 6
+
+Questions 69–86:
+
+- Compliance Shield;
+- Support Automation / 100+ FAQ;
+- subscriptions/payments/lifecycle;
+- Super Admin / Platform Stewardship;
+- onboarding / first experience.
+
+## 2. Complete Section 7
+
+Questions 87–100:
+
+- cross-feature architecture;
+- shared foundations;
+- edge/failure states;
+- confirmation gates;
+- clarification rules;
+- privacy/dignity;
+- AI authority;
+- historical evolution;
+- Founder corrections;
+- contradictions;
+- residual completeness.
+
+## 3. Perform final seven-section feature reconciliation
+
+Deepen/create the mature Smart Business Feature Definition Library so future Product Blueprints and Claude Code EIS work can operate without reconstructing old chats.
+
+## 4. Create the global product-completion view
+
+Track every confirmed feature, build commitment, package, implementation state, advancing SB-P mission, dependency, blocker and next action.
+
+## 5. Prepare current-source conflict reconciliation
+
+Surface stale source conflicts discovered through recovery. Do not silently mutate canonical Product Truth/governance; route changes through proper Founder/Mission Control authority.
+
+## 6. Finalize historical synthesis
+
+Update chronology, mission register, capability evolution, tools/platform/resources, lessons learned and evidence/open questions with the final Founder-origin evidence.
+
+## 7. Create historical continuity records for `SB-P-1.0` through `SB-P-1.9`
+
+Required destination:
 
 `docs/phase-1-mission-blueprint/completed/`
 
-The repository already contains the actual historical/canonical Product Blueprints:
+Current `main` contains formal `SB-P-1.10` and `SB-P-1.11` records, but the early continuity records still need to be created.
 
-- `SB-P-1.10.md`
-- `SB-P-1.11.md`
-
-After the `SB-P-1.0` clarification and final synthesis review, this mission must create historical continuity records for `SB-P-1.0` through `SB-P-1.9`.
-
-Every early reconstructed record must state prominently:
+Each early record must clearly state:
 
 `Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`
 
-`docs/implementation/SB-P-1.9/` must remain intact as the authoritative implementation/evidence location; the later completed-folder `SB-P-1.9.md` will point to it.
+Preserve `docs/implementation/SB-P-1.9/` as the existing implementation/evidence location.
 
-## Current Boundary
+## 8. Create the deferred organizational philosophy synthesis
 
-No completed-folder files for `SB-P-1.0` through `SB-P-1.9` are authorized by this Phase B Pass 1 draft.
+Create:
 
-No final SB-P lifecycle metadata normalization is authorized yet.
+`Lighthouse_Team_LIPS_Organizational_Principles_Quotes_and_Founder_Reflections.md`
 
-No existing `SB-P-1.10` or `SB-P-1.11` historical Blueprint is to be rewritten as a reconstructed-history document.
+using the planning-origin philosophy checkpoints and recovered Founder evidence. Separate direct Founder quotations from assistant-created historical formulations.
 
-## Next Gate
+## 9. Mission closeout verification
 
-1. Human review/merge of the Phase B Pass 1 synthesis.
-2. Narrow Founder clarification of `SB-P-1.0`.
-3. Reconcile that clarification into the mission register and evidence ledger.
-4. Create the `SB-P-1.0` through `SB-P-1.9` completed-folder continuity package.
-5. Verify `docs/implementation/SB-P-1.9/` remains intact and `SB-P-1.10` / `SB-P-1.11` remain historically intact.
-6. Perform final lifecycle-metadata normalization and mission closure review.
+Close only after:
 
-The locked reconstruction target remains:
+- Questions 1–100 are durably extracted;
+- feature library is mature and checked for omissions;
+- historical synthesis is current;
+- tools/resources/capability and lessons registers are current;
+- `SB-P-1.0` → `SB-P-1.11` continuity is complete;
+- contradictions are resolved or explicitly open;
+- product-completion view exists;
+- philosophy synthesis exists;
+- temporary Founder-origin workspace is no longer required for continuity.
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/SB-P-1.0-to-1.11-reconstruction-target.md`
+Only then may the temporary Ground Zero reconciliation workspace be deleted/archived through a normal repository change that preserves Git provenance.
+
+---
+
+# Post-History Follow-On Missions
+
+Two major follow-ons are already identified but are not silently authorized by historical-mission completion.
+
+## Organizational Learning Engine
+
+Founder-directed requirement:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/post-history-organizational-learning-system-directive.md`
+
+Future architecture should maintain Resource Memory, Skill Memory, Capability Memory and Lessons-Learned Memory, with provenance/confidence/maturity and GitHub Action automation where safe.
+
+Automatic learning must not become autonomous governance or Product Truth mutation.
+
+## Accelerated secure product execution
+
+After feature recovery and required source reconciliation, remaining Product Missions should execute from:
+
+**Mature Feature File → Product Blueprint → EIS → complete vertical implementation → runtime verification → independent verification → acceptance.**
+
+---
+
+# Exact Next Gate
+
+**Successor Mission Control starts at Section 6 / Question 69.**
+
+Read in this order:
+
+1. `mission-control/successor-handover-section-6-onward.md`
+2. `founder/notebooklm/ground-zero-reconciliation/README.md`
+3. completed Section 1–5 temporary files in order
+4. `founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
+5. `docs/phase-1-mission-blueprint/smart-business-features/README.md`
+
+Then collect paired NotebookLM + Ground Zero answers for Questions 69–86.
