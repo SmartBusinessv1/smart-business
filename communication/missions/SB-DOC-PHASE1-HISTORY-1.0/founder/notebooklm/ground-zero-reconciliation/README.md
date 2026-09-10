@@ -6,6 +6,19 @@
 
 ---
 
+## Current continuity state
+
+- **Section 1 — COMPLETE** — Questions 1–8
+- **Section 2 — COMPLETE** — Questions 9–18
+- **Section 3 — COMPLETE** — Questions 19–34
+- **Section 4 — COMPLETE** — Questions 35–51
+- **Questions 1–51 — durably extracted**
+- **Sections 5–7 — pending**
+
+A successor Mission Control should continue from **Section 5 / Question 52**. It must not restart Sections 1–4.
+
+---
+
 ## Why this workspace exists
 
 The historical extraction is too important to depend on one live ChatGPT/Mission Control conversation staying available.
@@ -141,6 +154,21 @@ Examples that require current reconciliation include:
 The correct method is:
 
 **preserve original problem + preserve original feature intent + preserve later Founder correction + build the current secure human-centered version.**
+
+---
+
+## Current Founder corrections already protected
+
+The temporary extraction must carry these current corrections forward:
+
+- Daily Intelligence uses **7:00 AM / 10:30 AM / 10:00 PM**; older `06:00 / 09:15 / 22:00` references are historical only.
+- Basic Voice is included in Ledger and Manager; Voice Plus is the deeper premium voice-conversation layer.
+- Smart Stock Assistant is a Ledger add-on path; Manager already includes Stock Intelligence.
+- Standard POS bridge is allowed. Custom client-specific POS modification inside Smart Business core is rejected; use integration/extension layers.
+- Staff access is permission-scoped; employees do not receive owner financial intelligence by default.
+- Counter/Risk Intelligence observes and reports; it does not accuse employees or autonomously judge guilt.
+- Reorder Intelligence asks for confirmation by default; automatic execution requires explicit stored owner-delegated authority.
+- Ask CFO remains an intelligence/clarity feature, not an autonomous business authority.
 
 ---
 
