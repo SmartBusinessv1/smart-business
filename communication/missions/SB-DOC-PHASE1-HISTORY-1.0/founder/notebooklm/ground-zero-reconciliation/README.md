@@ -12,13 +12,13 @@
 - **Section 2 — COMPLETE** — Questions 9–18
 - **Section 3 — COMPLETE** — Questions 19–34
 - **Section 4 — COMPLETE** — Questions 35–51
-- **Section 5 — PARTIAL** — Questions 52–58 extracted; Questions 59–68 not present in the currently uploaded source body
-- **Questions 1–58 — durably extracted**
-- **Section 5 remainder + Sections 6–7 — pending**
+- **Section 5 — COMPLETE** — Questions 52–68, preserved across two Section 5 files
+- **Questions 1–68 — durably extracted**
+- **Sections 6–7 — pending**
 
-A successor Mission Control should continue from **Section 5 / Question 59**. It must not restart Sections 1–4 or Questions 52–58.
+A successor Mission Control should continue from **Section 6 / Question 69**. It must not restart Sections 1–5.
 
-Important source-completeness note: the file currently supplied under the Section 5 name ends after the Ground Zero answer to Question 58. Do not reconstruct Questions 59–68 from earlier sources as a substitute for the intended paired NotebookLM + Ground Zero recovery.
+Section 5 is intentionally split because the original Section 5 upload stopped after Question 58 and the Founder later supplied a continuation containing complete paired NotebookLM + Ground Zero answers for Questions 59–68.
 
 ---
 
@@ -78,7 +78,13 @@ Use:
 
 `Section_4_of_7_Language_Voice_Stock_POS_and_Dashboard.md`
 
-`Section_5_of_7_HR_Order_Delivery_Credit_and_Payments.md`
+Section 5 is split across:
+
+`Section_5_of_7_HR_Order_Delivery_Credit_and_Payments.md` — Questions 52–58
+
+`Section_5_of_7_Part_B_Order_Delivery_Credit_and_Payment_Verification.md` — Questions 59–68
+
+Then continue with:
 
 `Section_6_of_7_Compliance_Support_Subscriptions_Admin_Onboarding.md`
 
@@ -174,6 +180,11 @@ The temporary extraction must carry these current corrections forward:
 - Ask CFO remains an intelligence/clarity feature, not an autonomous business authority.
 - Attendance uses purpose-limited, point-in-time location verification rather than continuous employee tracking.
 - Attendance and payroll corrections preserve the raw event plus approved human context; they must not silently erase history.
+- Smart Order & Delivery is an approved add-on for **Ledger and Manager** and must be validated before the first 10 pilot merchants; it is not a marketplace and must protect the merchant's own customer relationship.
+- Customer silence after an otherwise well-proven delivery is **not** an automatic delivery exception.
+- Smart Credit Awareness warns and provides context; it must not block owner decisions. AI informs; owner decides.
+- Payment/bank matching must not guess when multiple plausible matches exist. Ambiguity requires human confirmation.
+- Financial reconciliation must stop only the uncertain write/link, preserve evidence, and keep unrelated business operations available.
 
 ---
 
@@ -239,11 +250,12 @@ If a new Mission Control room is activated before this extraction finishes, it m
 
 1. Read this README.
 2. Read every completed or partial `Section_*_of_7_*.md` file in numerical order.
-3. Read the main NotebookLM question bank and batch instructions.
-4. Read the current Smart Business Feature Definition Library.
-5. Continue from the first incomplete question/section.
-6. Do not restart completed extraction work.
-7. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
+3. For Section 5, read **both** Section 5 files before proceeding.
+4. Read the main NotebookLM question bank and batch instructions.
+5. Read the current Smart Business Feature Definition Library.
+6. Continue from the first incomplete question/section; current continuation point is **Section 6 / Question 69**.
+7. Do not restart completed extraction work.
+8. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
 
 ---
 
