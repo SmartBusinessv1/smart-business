@@ -12,10 +12,13 @@
 - **Section 2 — COMPLETE** — Questions 9–18
 - **Section 3 — COMPLETE** — Questions 19–34
 - **Section 4 — COMPLETE** — Questions 35–51
-- **Questions 1–51 — durably extracted**
-- **Sections 5–7 — pending**
+- **Section 5 — PARTIAL** — Questions 52–58 extracted; Questions 59–68 not present in the currently uploaded source body
+- **Questions 1–58 — durably extracted**
+- **Section 5 remainder + Sections 6–7 — pending**
 
-A successor Mission Control should continue from **Section 5 / Question 52**. It must not restart Sections 1–4.
+A successor Mission Control should continue from **Section 5 / Question 59**. It must not restart Sections 1–4 or Questions 52–58.
+
+Important source-completeness note: the file currently supplied under the Section 5 name ends after the Ground Zero answer to Question 58. Do not reconstruct Questions 59–68 from earlier sources as a substitute for the intended paired NotebookLM + Ground Zero recovery.
 
 ---
 
@@ -169,6 +172,8 @@ The temporary extraction must carry these current corrections forward:
 - Counter/Risk Intelligence observes and reports; it does not accuse employees or autonomously judge guilt.
 - Reorder Intelligence asks for confirmation by default; automatic execution requires explicit stored owner-delegated authority.
 - Ask CFO remains an intelligence/clarity feature, not an autonomous business authority.
+- Attendance uses purpose-limited, point-in-time location verification rather than continuous employee tracking.
+- Attendance and payroll corrections preserve the raw event plus approved human context; they must not silently erase history.
 
 ---
 
@@ -233,10 +238,10 @@ Deletion must happen through a normal repository change so Git history continues
 If a new Mission Control room is activated before this extraction finishes, it must:
 
 1. Read this README.
-2. Read every completed `Section_*_of_7_*.md` file in numerical order.
+2. Read every completed or partial `Section_*_of_7_*.md` file in numerical order.
 3. Read the main NotebookLM question bank and batch instructions.
 4. Read the current Smart Business Feature Definition Library.
-5. Continue from the first incomplete section.
+5. Continue from the first incomplete question/section.
 6. Do not restart completed extraction work.
 7. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
 
