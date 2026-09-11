@@ -2,7 +2,7 @@
 
 **Status:** FULL HYDRATION & COMPLETENESS PASS — COMPLETE PENDING PR MERGE / MAIN VERIFICATION  
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0`  
-**Scope:** All 22 Smart Business feature/foundation contracts  
+**Scope:** All 24 Smart Business feature/foundation contracts  
 **Purpose:** Prove that current `PRESERVE — STILL CURRENT` and `PRESERVE + EVOLVE` Founder-origin behaviors have a durable mature feature destination.
 
 ---
@@ -20,7 +20,10 @@ It verifies/materializes the current feature library using:
 - project-room historical extraction;
 - current Founder direction;
 - Source 01;
+- Source 04 API / WhatsApp / OpenAI Communication Framework;
+- Source 05 AI Behaviour Framework;
 - Source 11 Product Truth;
+- P00 Operational Profiles;
 - Final Feature Reconciliation Register;
 - relevant current permissions, AI, support, execution and architecture governance.
 
@@ -42,7 +45,7 @@ A `PRESERVE` / `PRESERVE + EVOLVE` behavior with no current feature/foundation d
 
 ---
 
-## 3. Full 22-Contract Review
+## 3. Full 24-Contract Review
 
 | # | Feature / Foundation | Primary Founder-origin evidence | Final reconciliation destination | Hydration result in this pass | Current residual |
 |---|---|---|---|---|---|
@@ -67,7 +70,9 @@ A `PRESERVE` / `PRESERVE + EVOLVE` behavior with no current feature/foundation d
 | 19 | Super Admin & Platform Stewardship | Section 6 + Section 7 | §27 + §§28–31 | **AMENDED — FULL HYDRATION.** Health, errors/quarantine, support, accounts/subscriptions, controlled onboarding, AI cost/quality, analytics, backup/storage, least-privilege merchant access and privileged audit are materialized. | Historical 250-merchant cap/status strings not current unless separately reactivated. |
 | 20 | Onboarding & First Experience | Section 6 Q84–86 + Section 7 | §26 + §§28–30 | **AMENDED — FULL HYDRATION.** `/start`, progressive discovery/recommendation, identity/import, activation, first practical wins/24h intent, channel/language continuity, support/recovery and acceptance are materialized. | Trial policy unresolved. |
 | 21 | Permissions / Business Isolation / Role Authority | Sections 2–7, especially 5 + 7 | §19 + §§28–30 | **AMENDED — FULL HYDRATION.** Owner/Manager/Employee/external roles, server-side business isolation, conversation/AI boundary, self-service, delegation, support access, entitlement + permission, runtime revalidation, confirmation binding and audit are materialized. | None for core model. |
-| 22 | Shared Product Foundations | Section 7 Q87–100 + cross-feature Sections 1–6 | §§28–31 | **AMENDED — FULL HYDRATION.** Business Memory, identities, permissions, conversation, language, UDI, document memory, reminder/automation, notifications, confirmation, audit/context, idempotency, location, integration, schedulers, failure containment, stable schema, performance and AI authority are materialized. | None. |
+| 22 | Shared Product Foundations | Section 7 Q87–100 + cross-feature Sections 1–6 | §§28–31 | **AMENDED — FULL HYDRATION.** Business Memory, identities, permissions, conversation, AI orchestration linkage, language, UDI, document memory, reminder/automation, notifications, confirmation, audit/context, idempotency, location, integration, schedulers, failure containment, stable schema, performance and AI authority are materialized. | None. |
+| 23 | WhatsApp Intelligence & Channel Adapter | Source 04 + P00 WhatsApp profile + Sections 1–7 / Q87–100 | §5 + shared §§28–31 | **ADDED — FULL HYDRATION.** Webhook/provider boundary, identity routing, entitlement/permission gate, text/voice/media/document intake, shared AI routing, Ask CFO/reminders, templates, outbound delivery, media security, retries/idempotency, outage continuity, cross-channel memory/action parity, audit and acceptance are materialized. | Provider implementation/version details remain downstream architecture. |
+| 24 | AI Orchestration & OpenAI Intelligence Foundation | Source 04 + Source 05 + P00 OpenAI profile + Q87–100 cross-feature flows | Shared §§28–31 + AI authority | **ADDED — FULL HYDRATION.** Central OpenAI-backed intelligence/orchestration, intent-first routing, multimodal convergence, permission-aware context, controlled tool calling, Ask CFO/Reminder/UDI/Voice/Daily Intelligence/Support integration, model routing, structured validation, failure recovery, privacy, cost and acceptance are materialized. | Exact model/service routing is downstream architecture and may evolve under governance. |
 
 ---
 
@@ -115,13 +120,30 @@ The following behaviors deliberately live in shared contracts rather than being 
 - reminder/standing automation → `11_Smart_Reminder_and_Delegated_Automation.md`;
 - language → `09_Human_Language_Layer.md`;
 - voice → `12_Voice_and_Voice_Plus.md`;
-- native conversation/channel continuity → `10_Conversation_Workspace_and_Channel_Independence.md`.
+- native conversation/channel continuity → `10_Conversation_Workspace_and_Channel_Independence.md`;
+- WhatsApp provider/channel transport → `23_WhatsApp_Intelligence_and_Channel_Adapter.md`;
+- central AI reasoning/orchestration/OpenAI integration → `24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`.
 
 A specialized feature may reference these foundations instead of re-specifying their internal architecture.
 
 ---
 
-## 7. Definition vs Implementation Boundary
+## 7. AI Brain Architecture Clarification
+
+The library now explicitly distinguishes four responsibilities:
+
+1. **OpenAI-backed AI orchestration** understands language/modalities, reasons, extracts, summarizes and prepares structured tool calls.
+2. **Permission/Business Isolation** determines what an actor may access or execute.
+3. **Business Memory/domain services** hold authoritative data and deterministic business logic.
+4. **Human confirmation/delegated authority** controls consequential execution.
+
+This prevents the phrase `master brain` from being misimplemented as unrestricted model authority.
+
+The intended product experience is one coherent AI assistant across WhatsApp, Conversation Workspace, voice, Ask CFO, documents/OCR, reminders and other feature domains.
+
+---
+
+## 8. Definition vs Implementation Boundary
 
 This matrix proves that the **approved current product definition has durable feature destinations**.
 
@@ -129,6 +151,8 @@ It does not prove:
 
 - code exists;
 - runtime behavior works;
+- OpenAI/model integration is implemented;
+- WhatsApp integration is implemented;
 - security verification has passed;
 - pilot readiness;
 - production release.
@@ -137,7 +161,7 @@ Implementation state remains controlled by the Current Implementation vs Mature 
 
 ---
 
-## 8. Historical Workspace Retention Rule
+## 9. Historical Workspace Retention Rule
 
 Founder-origin extraction Sections 1–7 must remain preserved until this hydration PR is merged and verified on `main`.
 
@@ -147,4 +171,4 @@ After merge, they remain historical provenance and should not be deleted merely 
 
 ## Final Principle
 
-**Every approved behavior has a home. Shared behavior has one authoritative foundation. Unresolved decisions stay unresolved. Historical mechanisms do not regain authority by accident.**
+**Every approved behavior has a home. Shared behavior has one authoritative foundation. One governed intelligence layer connects the product. Channels adapt transport, not business truth. Unresolved decisions stay unresolved. Historical mechanisms do not regain authority by accident.**
