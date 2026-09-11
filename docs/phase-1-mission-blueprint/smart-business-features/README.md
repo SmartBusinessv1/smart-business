@@ -2,41 +2,67 @@
 
 ## Purpose
 
-This folder preserves detailed, durable feature intent for Smart Business so future SB-P missions, Claude Code, Lovable, Supabase, AI/WhatsApp specialists, testers, and Mission Control do not have to reconstruct the product from scattered chats or compressed summaries.
+This folder preserves detailed, durable current feature intent for Smart Business so future SB-P missions, Claude Code, Lovable, Supabase, AI/WhatsApp specialists, testers and Mission Control do not have to reconstruct the product from scattered chats or compressed summaries.
 
-It exists because a high-level Product Truth statement may correctly say **what** a feature is while still omitting enough workflow detail that a builder can implement a technically valid but materially incomplete product.
-
-The feature library closes that gap.
+A high-level Product Truth statement can correctly say **what** a feature is while omitting enough workflow depth for a builder to produce a materially incomplete product. The Feature Definition Library closes that gap.
 
 ---
 
-## Authority Boundary
+# Authority Boundary
 
 These feature files are **Founder-feature elaboration and Product Blueprint inputs**.
 
 They:
 
-- preserve current Founder direction and recovered Founder product intent;
-- expand approved feature behavior in implementation-ready product language;
+- preserve current Founder direction;
+- preserve reconciled Founder-origin product intent;
+- expand approved feature behaviour in implementation-useful product language;
 - provide durable input to future Product Blueprints and EIS work;
-- prevent AI or implementation tools from silently simplifying approved capabilities;
-- do not independently supersede the Lighthouse Constitution, Source 01, Source 11, or other active governance.
+- prevent AI/builders from silently simplifying approved capabilities;
+- do not independently supersede the Lighthouse Constitution, Source 01, Source 11 or other active governance.
 
-If a feature file conflicts with current canonical Product Truth, the conflict must be surfaced and reconciled through Founder/Mission Control before implementation.
+If a feature file conflicts with current canonical Product Truth, the conflict must be surfaced and reconciled through Founder/Mission Control. A lower-level builder must never resolve the conflict by silently dropping feature behaviour.
 
-A lower-level builder must never resolve such a conflict by silently dropping feature behavior.
+---
+
+# Final Founder-Origin Reconciliation Status
+
+The dedicated Founder-origin recovery and reconciliation has now reached the mature reconciliation stage.
+
+Evidence reconciled includes:
+
+- Founder-origin Sections 1–7 / Questions 1–100;
+- NotebookLM historical extraction;
+- Ground Zero historical recovery;
+- complete `smart_business_planning_1–20` extraction;
+- Founder/project-room historical extraction;
+- Phase 1 synthesis/evolution/lessons registers;
+- current Founder direction;
+- Source 01;
+- Source 11 Product Truth;
+- relevant current AI, support, security, execution and authority governance.
+
+The controlling disposition register is:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/01_Final_Feature_Reconciliation_Register.md`
+
+Every recovered historical behaviour is assigned to one current bucket:
+
+- `PRESERVE — STILL CURRENT`
+- `PRESERVE + EVOLVE`
+- `HISTORICAL IMPLEMENTATION DETAIL`
+- `SUPERSEDED / REJECTED BEHAVIOUR`
+- `UNRESOLVED FOUNDER DECISION`
+
+Historical evidence remains preserved separately. The mature library represents the reconciled current direction.
 
 ---
 
 # Founder Build Commitment Rule
 
-The Founder has clarified the following operating distinction:
-
-## Build Commitment
-
 A Founder-invented capability that remains approved and aligned with current Smart Business is intended to be built.
 
-Historical assistant labels such as:
+Historical labels such as:
 
 - MVP-only;
 - after pilot;
@@ -45,37 +71,23 @@ Historical assistant labels such as:
 - too much for V1;
 - defer for simplicity;
 
-must not silently demote the capability unless the Founder/current authoritative Product Truth explicitly confirms that deferral.
+must not silently demote the capability unless current Founder/Product Truth explicitly confirms deferral.
 
-## Commercial Packaging
-
-`Add-on` describes how a merchant obtains the capability.
-
-It does **not** automatically mean `Build Later`.
+`Add-on` describes commercial availability. It does **not** automatically mean `Build Later`.
 
 A capability may therefore be:
 
-> **Build Now + Add-on**
+> **BUILD NOW + ADD-ON**
 
-## Implementation Sequencing
+Technical dependencies may change build order without changing product commitment.
 
-Technical dependencies may change build order without changing feature commitment.
+Security/integrity/privacy findings may block an unsafe implementation path but must not be translated into an unapproved decision that the feature itself should not exist.
 
-Example:
+Required blocker language:
 
-A feature may wait for a shared Permission Engine or Location Foundation before implementation, while remaining fully committed for the current product build.
-
-## Security Blockers
-
-Security, integrity, privacy, or production-safety findings may block an unsafe implementation path.
-
-They must not be translated into an unapproved Product Truth decision that the feature itself should not exist.
-
-Required language when blocked:
-
-- Product commitment: unchanged / approved.
-- Blocked step: exact implementation step.
-- Reason: exact verified dependency or risk.
+- Product commitment: approved / unchanged.
+- Blocked step: exact unsafe/dependent step.
+- Reason: exact evidence-backed dependency/risk.
 - Recovery: minimum safe correction.
 - Unrelated safe work: continue.
 
@@ -94,61 +106,158 @@ Every mature feature file should contain, where applicable:
 7. Permission Boundaries
 8. Complete User Journeys
 9. WhatsApp Experience
-10. Dashboard / App Experience
-11. AI Behavior
+10. Conversation Workspace / App Experience
+11. AI Behaviour
 12. Business Memory / Data Requirements
 13. Shared Foundations to Reuse
 14. Integrations
 15. Confirmation Rules
-16. Error and Exception Behavior
+16. Error and Exception Behaviour
 17. Privacy and Trust Boundaries
 18. Performance Expectations
 19. Acceptance Scenarios
 20. Dependencies
 21. Explicit Non-goals
-22. Historical Corrections / Superseded Classifications
+22. Historical Corrections / Superseded Behaviour
 23. Provenance
 24. Unresolved Founder Questions, if any
 
-Feature files should describe **product behavior**, not prematurely hardcode implementation technology where the architecture can remain flexible.
+Feature files describe **product behaviour**, not prematurely fixed technology. Historical provider/model/table/timing assumptions belong in engineering provenance unless current architecture explicitly adopts them.
 
 ---
 
-# NotebookLM Recovery Status
+# Global Product Completion View
 
-NotebookLM feature recovery has now begun.
+The authoritative reconciled product-completion view is:
 
-The Founder-uploaded `notebook LM briefing.txt` is treated as a **seed map**, not as the complete NotebookLM evidence corpus.
+`00_Global_Product_Completion_View.md`
 
-Feature files marked:
+It separates:
 
-> **NOTEBOOKLM SEED — DEEP EXTRACTION REQUIRED**
+- committed product capability;
+- commercial position;
+- Build Now/Add-on status;
+- product-definition state;
+- current implementation evidence status;
+- next controlled checkpoint.
 
-preserve confirmed capability direction but are deliberately **not implementation-ready**. They must be deepened through the NotebookLM Q&A extraction process before Blueprint/EIS work uses them as complete feature contracts.
+A mature feature contract does not prove implementation, runtime verification, pilot readiness or release.
 
-The durable NotebookLM question bank is maintained at:
+---
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
+# Reconciled Feature Register
 
-Seed extraction record:
+| # | Feature / Foundation | Current commercial position | Build commitment | Library state |
+|---|---|---|---|---|
+| 01 | Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot merchants** | Reconciled existing contract |
+| 02 | Ask CFO | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
+| 03 | Ledger / Business Memory | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
+| 04 | Daily Intelligence Rhythm | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
+| 05 | Universal Document & Receipt Intelligence / Receipt Cabinet | Core cross-feature | **BUILD NOW** | Reconciled existing contract |
+| 06 | Staff / HR Assistant | Ledger + Manager add-on | **BUILD NOW + ADD-ON** | Reconciled existing contract |
+| 07 | Stock / Supplier / Reorder Intelligence | Manager core; Ledger Smart Stock path | **BUILD NOW** | Reconciled existing contract |
+| 08 | Support Automation / 100+ FAQ | Core support foundation | **BUILD NOW** | Reconciled existing contract |
+| 09 | Human Language Layer | Core cross-feature | **BUILD NOW** | Reconciled existing contract |
+| 10 | Conversation Workspace & Channel Independence | Core shared conversational channel | **BUILD NOW** | Mature reconciled contract |
+| 11 | Smart Reminder & Delegated Automation | Ledger + Manager core/shared foundation | **BUILD NOW** | Mature reconciled contract |
+| 12 | Basic Voice + Voice Plus | Core + add-on depth | **BUILD NOW** | Mature reconciled contract |
+| 13 | POS / Counter Intelligence / Closing Cash | Manager core/integration | **BUILD NOW** | Mature reconciled contract |
+| 14 | Smart Credit Awareness | Ledger + Manager core | **BUILD NOW** | Mature reconciled contract |
+| 15 | Payment Verification & Bank Reconciliation | Ledger + Manager core | **BUILD NOW** | Mature reconciled contract |
+| 16 | Compliance Shield | Ledger + Manager add-on | **BUILD NOW + ADD-ON** | Mature reconciled contract |
+| 17 | Operational Dashboard & Manager Workspace | Manager core + appropriate Ledger surfaces | **BUILD NOW** | Mature reconciled contract |
+| 18 | Subscription, Payment & Account Lifecycle | Platform/core commercial | **BUILD NOW** | Mature reconciled contract |
+| 19 | Super Admin & Platform Stewardship | Internal platform operations | **BUILD NOW within approved scope** | Mature reconciled contract |
+| 20 | Onboarding & First Experience | Core activation/conversion | **BUILD NOW** | Mature reconciled contract |
+| 21 | Permissions, Business Isolation & Role Authority | Core shared foundation | **BUILD NOW** | Mature reconciled contract |
+| 22 | Shared Product Foundations | Cross-product architecture contract | **BUILD NOW** | Mature reconciled contract |
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Briefing_Seed_Extraction_01.md`
+Receipt Cabinet remains explicitly named inside the Universal Document & Receipt Intelligence family rather than creating a duplicate storage/memory architecture.
+
+Payment Verification and Bank Email Sync remain separately named capabilities inside one connected financial-reconciliation family.
+
+Stock, Supplier and Reorder remain one connected operational-intelligence family with explicit sub-feature boundaries.
+
+---
+
+# Locked Reconciliation Corrections
+
+The mature library must never regress to these superseded states:
+
+- hard customer-credit blocking by default;
+- employee/customer accusation by AI;
+- continuous employee GPS surveillance;
+- automatic wage punishment;
+- blind supplier procurement without valid Owner delegation;
+- Ask CFO as a write-capable business authority;
+- duplicate channel-specific Business Memory/permissions/AI logic;
+- custom client-specific POS modification inside core;
+- subscription-driven destructive schema creation/deletion;
+- routine broad Super Admin access to merchant private data;
+- customer silence automatically failing an otherwise sufficiently proven delivery;
+- old `/survey`, `smartbusiness.in`, `audit.smartbusiness.in` or `start.smartbusiness.in` references as current routes;
+- old 06:00/09:15 Daily Intelligence timing as current schedule.
+
+---
+
+# Current Unresolved Founder Decisions
+
+The final reconciliation deliberately leaves only genuinely unresolved product/commercial decisions open:
+
+1. current free-trial policy;
+2. exact current pricing for Voice Plus;
+3. exact current pricing for Staff/HR;
+4. exact current pricing for Smart Stock Assistant;
+5. exact current pricing for Smart Order & Delivery;
+6. exact long-term retention/deletion duration after cancellation/non-payment;
+7. whether sensitive employee KYC/national-ID storage is a committed requirement and under what legal/privacy basis;
+8. whether broader wholesaler/marketplace ecosystem expansion should become a separate future product/capability;
+9. whether third-party financial/underwriting/lending products should ever be pursued separately.
+
+These unresolved questions do not block unrelated approved Build Now work.
+
+---
+
+# Use in Future SB-P Missions
+
+For a future feature mission, Product Definition input should be:
+
+**Source 11 + relevant mature feature file(s) + Shared Product Foundations + verified current repository/runtime state + only the unresolved Founder questions relevant to that mission.**
+
+A Product Blueprint should state any intentional refinement/difference from the mature feature contract. Claude Code/EIS then converts locked product intent into engineering detail.
+
+Before creating a new subsystem, builders must inspect existing:
+
+- Business Memory;
+- permissions/business isolation;
+- Human Language Layer;
+- Conversation/intent/action services;
+- Universal Document Intelligence;
+- Reminder/automation;
+- notifications;
+- identities;
+- audit/history;
+- location foundation;
+- error/security handling;
+- idempotency patterns.
+
+Reuse before duplicate creation.
 
 ---
 
 # Feature Completion Principle
 
-A feature is not complete because a screen exists.
+A feature is not complete because a screen or file exists.
 
-A feature is complete only when every required layer is accounted for:
+A feature is complete only when required layers are accounted for and proven, including as applicable:
 
-- Product behavior;
+- product behaviour;
 - UI;
 - backend/data;
 - permissions/RLS;
 - AI/intelligence;
-- channel behavior;
-- scheduler/background jobs where applicable;
+- channel behaviour;
+- scheduler/background jobs;
 - integrations;
 - failure handling;
 - security;
@@ -156,79 +265,25 @@ A feature is complete only when every required layer is accounted for:
 - runtime verification;
 - acceptance evidence.
 
----
-
-# Initial Feature Register
-
-The following feature families are currently known and will receive dedicated files as historical planning and NotebookLM recovery continues.
-
-| Feature | Commercial position | Build commitment | Feature file status |
-|---|---|---|---|
-| Ledger / Business Memory | Ledger + Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| WhatsApp Intelligence | Core conversation channel capability | BUILD NOW | Pending detailed recovery |
-| Ask CFO | Ledger + Manager core | BUILD NOW | **Created — planning-depth record; NotebookLM enrichment pending** |
-| Smart Reminder Assistant | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
-| Daily Intelligence Rhythm | Ledger + Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Universal Document Intelligence / Receipt Intelligence | Core cross-feature capability | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Human Language Layer | Core cross-feature capability | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Stock / Supplier / Reorder Intelligence | Manager core | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Smart Stock Assistant | Ledger add-on | BUILD NOW | Covered provisionally in Stock seed; deeper packaging/workflow recovery required |
-| Staff / HR Assistant | Ledger + Manager add-on | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Compliance Shield | Ledger + Manager add-on | BUILD NOW | Pending detailed recovery |
-| Smart Voice Assistant Plus | Ledger + Manager add-on | BUILD NOW | Pending detailed recovery |
-| Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot clients** | **Created — planning-depth record; NotebookLM enrichment pending** |
-| Support Automation | Core support foundation | BUILD NOW | **NotebookLM seed created — deep extraction required** |
-| Payment / Subscription lifecycle | Platform/core commercial capability | BUILD NOW | Pending detailed recovery |
-| Payment Verification Intelligence | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
-| Smart Credit Awareness | Ledger + Manager core | BUILD NOW | Pending detailed recovery |
-| POS Connection & Intelligence | Manager core / integration layer | BUILD NOW | Pending detailed recovery |
-| Operational Dashboard / Manager Risk Intelligence | Manager core | BUILD NOW | Pending detailed recovery |
-| Receipt Cabinet | Ledger + Manager core | BUILD NOW | Covered provisionally in Document/Receipt seed; deep retrieval workflow required |
-| Super Admin Cockpit | Founder/platform operations | BUILD NOW within approved current scope | Pending detailed recovery |
-
-Additional feature records will be added as NotebookLM extraction recovers them.
-
----
-
-# Use in Future SB-P Missions
-
-For a feature mission, the recommended Product Definition input becomes:
-
-**Current Source 11 + relevant mature feature file + verified repository state + unresolved Founder questions only.**
-
-A `NOTEBOOKLM SEED` file is not yet a mature feature file and must not be mistaken for a complete implementation contract.
-
-The feature file should reduce repeated discovery, not bypass Product Governance.
-
-A future Product Blueprint should cite the relevant feature file and explicitly list any differences, refinements, or unresolved conflicts.
-
-Claude Code's EIS then converts the locked product intent into engineering detail.
+`Product committed` ≠ `implemented` ≠ `verified` ≠ `pilot-ready` ≠ `released`.
 
 ---
 
 # Anti-Drift Rule
 
-No future AI or specialist should remove, postpone, or simplify a behavior merely because:
+No future AI, specialist or narrow mission may remove, postpone or simplify an approved behavior merely because:
 
 - it is difficult;
-- it crosses frontend and backend;
+- it crosses frontend/backend;
 - it requires an integration;
 - it is an add-on;
-- it was once called future by an older assistant;
-- the current mission has a narrow technical focus.
+- an older assistant called it future;
+- current mission scope is narrower.
 
-If a behavior is not in the current mission, record it as **still committed / not in this mission**, not as rejected or deferred unless that decision is actually authorized.
+If a behaviour is outside the current mission, record it as **still committed / not in this mission**.
 
 ---
 
 ## Final Principle
 
-**Protect the feature. Gate the implementation.**
-
-Build commitment is product truth.
-
-Build order is program management.
-
-Security governs how safely the feature is delivered.
-
-None of those should silently rewrite the others.
+**Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation.**
