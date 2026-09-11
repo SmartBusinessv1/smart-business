@@ -17,12 +17,19 @@
 - **Section 3 — COMPLETE** — Questions 19–34
 - **Section 4 — COMPLETE** — Questions 35–51
 - **Section 5 — COMPLETE** — Questions 52–68, preserved across two Section 5 files
-- **Questions 1–68 — durably extracted**
-- **Sections 6–7 — pending**
+- **Section 6 — COMPLETE** — Questions 69–86
+- **Questions 1–86 — durably extracted**
+- **Section 7 — PENDING** — Questions 87–100
 
-A successor Mission Control should continue from **Section 6 / Question 69**. It must not restart Sections 1–5.
+The current continuation point is **Section 7 / Question 87**. Do not restart Sections 1–6.
 
-Section 5 is intentionally split because the original Section 5 upload stopped after Question 58 and the Founder later supplied a continuation containing complete paired NotebookLM + Ground Zero answers for Questions 59–68.
+Section 5 remains intentionally split because the original Section 5 upload stopped after Question 58 and the Founder later supplied a continuation containing complete paired NotebookLM + Ground Zero answers for Questions 59–68.
+
+Section 6 is preserved as:
+
+`Section_6_of_7_Compliance_Support_Subscriptions_Admin_Onboarding.md`
+
+It continues the same temporary extraction series and is not a final mature feature contract.
 
 ---
 
@@ -30,20 +37,20 @@ Section 5 is intentionally split because the original Section 5 upload stopped a
 
 The historical extraction is too important to depend on one live ChatGPT/Mission Control conversation staying available.
 
-The Founder has recovered two valuable product-origin evidence streams:
+The Founder recovered two valuable product-origin evidence streams:
 
 1. **NotebookLM** — primarily preserves later Smart Business V2.2/source-era product knowledge, feature inventories, workflows, packaging, and historical implementation assumptions.
 2. **Ground Zero Smart Business ideation chat** — predates the Smart Business Planning room and preserves the earliest known Founder product intent, merchant problems, feature ambition, first-experience ideas, and early system behaviour.
 
 The two sources must be preserved separately before final reconciliation.
 
-This workspace gives any successor Mission Control room a durable repository-based handover path if the current room is replaced before all extraction sections are complete.
+This workspace gives Mission Control a durable repository-based continuity path until all seven extraction sections and the later mature feature reconciliation are complete.
 
 ---
 
 ## Extraction structure
 
-The existing 100-question Founder-origin extraction bank is divided into seven sections:
+The 100-question Founder-origin extraction bank is divided into seven sections:
 
 1. **Section 1 — Questions 1–8**  
    Product vision, complete inventory, classification, merchant problems, product identity, channels, first experience, and negative product boundaries.
@@ -66,13 +73,11 @@ The existing 100-question Founder-origin extraction bank is divided into seven s
 7. **Section 7 — Questions 87–100**  
    Cross-feature architecture, shared foundations, failures/edge cases, confirmation gates, privacy/dignity, AI authority, historical evolution, assistant/Founder corrections, contradictions, and residual completeness.
 
-Each section should be committed to this folder as soon as the paired NotebookLM + Ground Zero answers are extracted.
+Each section must be committed to this folder as soon as its paired NotebookLM + Ground Zero answers are extracted.
 
 ---
 
 ## File naming convention
-
-Use:
 
 `Section_1_of_7_Product_Vision_and_Inventory.md`
 
@@ -88,9 +93,11 @@ Section 5 is split across:
 
 `Section_5_of_7_Part_B_Order_Delivery_Credit_and_Payment_Verification.md` — Questions 59–68
 
-Then continue with:
+Section 6:
 
 `Section_6_of_7_Compliance_Support_Subscriptions_Admin_Onboarding.md`
+
+Then continue with:
 
 `Section_7_of_7_Cross_Feature_Edges_Evolution_and_Completeness.md`
 
@@ -154,7 +161,7 @@ Do not demote an original Founder feature merely because an old assistant called
 
 At the same time, do not revive historically unsafe or superseded behaviour merely because it existed in Ground Zero.
 
-Examples that require current reconciliation include:
+Examples requiring current reconciliation include:
 
 - hard customer-credit blocking;
 - automatic fraud/theft conclusions;
@@ -190,6 +197,25 @@ The temporary extraction must carry these current corrections forward:
 - Payment/bank matching must not guess when multiple plausible matches exist. Ambiguity requires human confirmation.
 - Financial reconciliation must stop only the uncertain write/link, preserve evidence, and keep unrelated business operations available.
 - Support Automation must preserve the **100+ FAQ** direction with FAQ-first handling, English/Malayalam/Manglish support, AI escalation only when needed, ticketing for unresolved cases, and privacy-respecting support review.
+
+---
+
+## Section 6 high-value continuity findings
+
+Section 6 preserves several major historical conflicts/evolution points that must survive into the final reconciliation:
+
+- Ground Zero 14-day full-access promotional pass vs later V2.2 no-free-trial/freemium model;
+- 100+ FAQ Founder direction vs later 60-item FAQ implementation matrix;
+- compliance packaging moving between standalone/add-on framing and common Reminder Engine inclusion;
+- workforce/add-on pricing changes;
+- Smart Order & Delivery present in Ground Zero while later four-add-on matrices omitted it;
+- aggressive 180-day deletion/purge ideas vs archive/rehydration/grace concepts;
+- historical broad Super Admin/service-role bypass assumptions vs purpose-limited support/platform access;
+- Ground Zero waitlist/closed onboarding around a 250-merchant launch cohort while later sources omit literal OPEN/WAITLIST/CLOSED labels;
+- historical 06:00 AM first-day pulse vs current Founder-approved 7:00 AM / 10:30 AM / 10:00 PM Daily Intelligence rhythm;
+- Ground Zero automatic customer-credit collection/outreach assumptions vs current owner-decision authority.
+
+Do not resolve these silently during Section 7 extraction.
 
 ---
 
@@ -249,9 +275,9 @@ Deletion must happen through a normal repository change so Git history continues
 
 ---
 
-## Successor Mission Control handover rule
+## Mission Control continuity rule
 
-If a new Mission Control room is activated before this extraction finishes, it must:
+If Mission Control changes before this extraction finishes, it must:
 
 1. Read `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`.
 2. Read this README.
@@ -259,9 +285,9 @@ If a new Mission Control room is activated before this extraction finishes, it m
 4. For Section 5, read **both** Section 5 files before proceeding.
 5. Read the main NotebookLM question bank and batch instructions.
 6. Read the current Smart Business Feature Definition Library.
-7. Continue from the first incomplete question/section; current continuation point is **Section 6 / Question 69**.
+7. Continue from the first incomplete question/section; current continuation point is **Section 7 / Question 87**.
 8. Do not restart completed extraction work.
-9. Do not produce final feature contracts until the evidence needed for that feature has been recovered or the Founder explicitly authorizes earlier finalization.
+9. Do not produce final feature contracts until all seven sections are recovered or the Founder explicitly authorizes earlier finalization.
 
 ---
 
