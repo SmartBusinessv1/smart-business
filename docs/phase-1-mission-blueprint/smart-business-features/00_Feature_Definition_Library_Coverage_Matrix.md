@@ -1,8 +1,9 @@
 # Smart Business — Feature Definition Library Coverage Matrix
 
-**Status:** FULL HYDRATION & COMPLETENESS PASS — COMPLETE PENDING PR MERGE / MAIN VERIFICATION  
+**Status:** FULL HYDRATION & COMPLETENESS PASS — **COMPLETE & HYDRATED — VERIFIED ON MAIN**  
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0`  
 **Scope:** All 25 Smart Business feature/foundation contracts  
+**Main verification:** PR #532 merged at `875ee49453e270ed320e57ad7438676db91226f8`  
 **Purpose:** Prove that current `PRESERVE — STILL CURRENT` and `PRESERVE + EVOLVE` Founder-origin behaviors have a durable mature feature destination.
 
 ---
@@ -181,9 +182,9 @@ Implementation state remains controlled by the Current Implementation vs Mature 
 
 ## 10. Historical Workspace Retention Rule
 
-Founder-origin extraction Sections 1–7 must remain preserved until this hydration PR is merged and verified on `main`.
+PR #532 has merged and the 25-contract Feature Definition Library has been verified on `main` at `875ee49453e270ed320e57ad7438676db91226f8`.
 
-After merge, they remain historical provenance and should not be deleted merely because mature contracts exist. Any later archive/cleanup must preserve Git history and Mission Control's ability to trace a mature behavior back to its historical evidence.
+Founder-origin extraction Sections 1–7 remain preserved as historical provenance. They must not be deleted merely because mature contracts exist. Any later archive/cleanup must preserve Git history and Mission Control's ability to trace a mature behavior back to its historical evidence.
 
 ---
 
