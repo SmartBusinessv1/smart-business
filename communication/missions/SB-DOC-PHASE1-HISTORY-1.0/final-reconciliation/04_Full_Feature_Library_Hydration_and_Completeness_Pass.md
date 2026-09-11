@@ -10,13 +10,21 @@
 
 ## 1. Why This Gate Was Required
 
-After the Dedicated Final Feature Reconciliation and Seed-to-Mature Normalization, the Smart Business Feature Definition Library had all 22 destinations, but the Founder identified an important remaining risk:
+After the Dedicated Final Feature Reconciliation and Seed-to-Mature Normalization, the Smart Business Feature Definition Library had the original feature destinations, but the Founder identified an important remaining risk:
 
 > individual feature files must themselves contain the recovered Founder-origin behavior, rather than relying on a central reconciliation register to carry missing detail.
 
 Mission Control accepted that correction.
 
 A mature-looking filename/header is not enough. The actual feature contract must be sufficiently hydrated for future Blueprint/EIS work.
+
+Founder review during this pass also identified three shared foundations that were functionally present but too implicit for the anti-compression purpose:
+
+- WhatsApp Intelligence & Channel Adapter;
+- AI Orchestration & OpenAI Intelligence Foundation;
+- Document, Media Storage & Retention Foundation.
+
+Those are now first-class mature contracts, bringing the library to **25 contracts**.
 
 ---
 
@@ -31,9 +39,13 @@ This completeness pass used the already-approved reconciliation authority and pr
 - project-room historical extraction;
 - current Founder direction;
 - Source 01;
+- Source 04 API / WhatsApp / OpenAI Communication Framework;
+- Source 05 AI Behaviour Framework;
 - Source 11 Product Truth;
+- Smart Business Environment Activation Manual;
+- P00 Operational Profiles;
 - Final Feature Reconciliation Register;
-- current AI/permission/support/security/execution governance.
+- current AI/permission/storage/support/security/execution governance.
 
 Historical extraction was not reopened. Product Truth was not redesigned.
 
@@ -41,7 +53,7 @@ Historical extraction was not reopened. Product Truth was not redesigned.
 
 ## 3. Review Standard
 
-Every one of the 22 individual feature/foundation contracts was checked for the applicable mature-contract dimensions:
+All **25 individual feature/foundation contracts** are now governed by the applicable mature-contract dimensions:
 
 - feature identity / Founder problem;
 - build commitment and commercial position;
@@ -51,8 +63,9 @@ Every one of the 22 individual feature/foundation contracts was checked for the 
 - WhatsApp behavior where relevant;
 - Conversation Workspace behavior where relevant;
 - Human Language / Voice behavior where relevant;
-- AI authority;
+- AI authority and orchestration relationship;
 - Business Memory/data relationships;
+- document/media storage and retrieval where relevant;
 - shared foundations;
 - integrations;
 - confirmation/clarification;
@@ -67,9 +80,9 @@ Every one of the 22 individual feature/foundation contracts was checked for the 
 
 ---
 
-## 4. Files Amended in This Pass
+## 4. Existing Contracts Amended in This Pass
 
-The following contracts required material expansion/correction:
+The following existing contracts required material expansion/correction:
 
 1. `01_Smart_Order_and_Delivery_Assistant.md`
 2. `10_Conversation_Workspace_and_Channel_Independence.md`
@@ -86,7 +99,13 @@ The following contracts required material expansion/correction:
 13. `21_Permissions_Business_Isolation_and_Role_Authority.md`
 14. `22_Shared_Product_Foundations.md`
 
-A new durable coverage artifact was also created:
+New first-class mature contracts added after Founder review:
+
+15. `23_WhatsApp_Intelligence_and_Channel_Adapter.md`
+16. `24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`
+17. `25_Document_Media_Storage_and_Retention_Foundation.md`
+
+A durable coverage artifact was also created and updated:
 
 `docs/phase-1-mission-blueprint/smart-business-features/00_Feature_Definition_Library_Coverage_Matrix.md`
 
@@ -109,26 +128,51 @@ They were not rewritten merely to create Git churn.
 
 ---
 
-## 6. Important Defect Corrected
+## 6. Important Corrections and Clarifications
+
+### Smart Order & Delivery privacy correction
 
 The previous `01_Smart_Order_and_Delivery_Assistant.md` contained stale language implying default active/live route tracking of Delivery Staff after Start Delivery.
 
-That conflicted with the final reconciled current rule:
+The individual contract now follows the final reconciled rule:
 
 - location is purpose-limited;
 - point-in-time delivery proof/context is supported;
 - default continuous employee route GPS surveillance is rejected;
 - customer silence alone does not create a delivery failure where configured proof is sufficient.
 
-The individual contract itself has now been corrected, not merely overridden by the central reconciliation register.
+### WhatsApp channel boundary
+
+WhatsApp is now explicitly a channel adapter, not a separate Smart Business engine. It owns provider/webhook/media/template/delivery concerns while reusing shared Business Memory, permissions, AI orchestration and domain services.
+
+### OpenAI intelligence boundary
+
+OpenAI is now explicitly represented as the central governed intelligence/orchestration layer across language, voice, Ask CFO, OCR/document understanding, reminders and conversational routing.
+
+It does not own permissions, permanent Business Memory or final human authority.
+
+### Cloudflare R2 / Supabase storage boundary
+
+The Founder clarified the architecture rationale:
+
+- merchant media volume is unpredictable and may become large;
+- Smart Business should avoid overloading or unnecessarily increasing Supabase storage cost with document/image/voice binaries;
+- Cloudflare R2 is the intended object-storage layer for eligible binary memories;
+- Supabase remains authoritative for ownership, permissions, metadata, business linkage and retrieval authorization;
+- clients retrieve R2-backed files only through the governed Smart Business control path.
+
+The exact historical 60-day migration timing is not automatically current, and the historical 180-day destructive purge is not current authority. Exact long-term retention/deletion duration remains unresolved.
 
 ---
 
 ## 7. Major Hydration Improvements
 
-This pass materially deepened the previously compressed contracts for:
+This pass materially deepened or made explicit:
 
 - native Conversation Workspace/channel continuity;
+- WhatsApp provider/channel behavior;
+- central OpenAI-backed AI orchestration;
+- scalable R2-backed document/image/voice/media storage;
 - reminders/delegated standing authority;
 - Basic Voice / Voice Plus;
 - standard POS / respectful counter intelligence / closing cash;
@@ -184,6 +228,7 @@ This gate does **not**:
 - implement product code;
 - change production schema/data;
 - mark any feature implemented/verified/released;
+- claim R2/OpenAI/WhatsApp runtime implementation merely because their mature contracts exist;
 - reopen Questions 1–100;
 - resolve the separate canonical/Lovable opening-stock/import drift;
 - erase historical implementation detail.
@@ -194,7 +239,7 @@ This gate does **not**:
 
 After this hydration PR is merged and verified on `main`, the Feature Definition Library can be treated as:
 
-**`COMPLETE & HYDRATED CURRENT PRODUCT-DEFINITION INPUT`**
+**`COMPLETE & HYDRATED CURRENT PRODUCT-DEFINITION INPUT — 25 CONTRACT MODEL`**
 
 The next narrow technical continuity gate can then return to:
 
@@ -202,7 +247,7 @@ The next narrow technical continuity gate can then return to:
 
 followed by governed sequencing of remaining Build Now Product Missions using:
 
-**Source 11 + relevant hydrated mature feature contract(s) + Shared Product Foundations + verified current implementation/runtime state.**
+**Source 11 + relevant hydrated mature feature contract(s) + Shared Product Foundations + relevant AI/channel/storage foundations + verified current implementation/runtime state.**
 
 ---
 
