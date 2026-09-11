@@ -1,24 +1,56 @@
-# Smart Business Conversation Workspace & Channel Independence
+# Smart Business Feature Definition — Conversation Workspace & Channel Independence
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW**  
+**Commercial availability:** Core shared conversational channel for Ledger + Manager  
+**Authority boundary:** The native Smart Business conversation surface is a first-class alternative to WhatsApp, not a separate business engine and not merely an outage-only fallback.
 
-**Feature Name:** Smart Business Conversation Workspace  
-**Product Type:** Core shared conversational channel  
-**Availability:** Ledger + Manager  
-**Build Commitment:** **BUILD NOW**  
-**Founder Decision:** The web application must provide a first-class chat-style Smart Business experience that can substitute for WhatsApp when needed and may also be used by merchant choice.
+---
 
-## Founder Problem Statement
+## 1. Feature Identity
 
-Smart Business cannot depend on one third-party communication channel or force an owner to remain on the phone where WhatsApp is installed. A merchant working from a laptop, tablet or desktop must be able to continue the same Smart Business conversation and business workflows without interruption.
+The Smart Business Conversation Workspace is the chat-style interaction surface inside the Smart Business web application.
 
-## Lighthouse Principle
+It allows an authorized user to communicate with the same Smart Business assistant through the app using text, voice, images and business files, while receiving useful replies and downloadable outputs.
 
-Technology serves the merchant. Channel choice must improve freedom and continuity without splitting the product into separate systems.
+It exists so merchants can continue working when:
 
-## Supported Merchant Inputs
+- WhatsApp API is degraded or unavailable;
+- the merchant does not want to use the phone on which WhatsApp is installed;
+- the merchant prefers a laptop, desktop or tablet for a particular task;
+- richer file/upload/download interaction is easier in the web app.
 
-The Conversation Workspace must support, subject to normal permissions and product rules:
+---
+
+## 2. Founder Problem Statement
+
+Smart Business is conversation-first, but conversation-first must not mean channel-dependent.
+
+A third-party messaging outage must not stop the merchant's business system. Likewise, a merchant should not be forced to stay on a phone when a larger workspace is more convenient.
+
+The native workspace must therefore provide continuity without creating two versions of Smart Business.
+
+---
+
+## 3. Lighthouse Principles
+
+The feature must preserve:
+
+- merchant freedom of channel choice;
+- continuity without duplicate business logic;
+- simplicity and familiar chat interaction;
+- human decision ownership;
+- privacy and role boundaries;
+- one Business Memory;
+- one permission model;
+- one confirmation/clarification model;
+- no security bypass for convenience.
+
+---
+
+## 4. Supported Inputs
+
+Subject to role, feature availability and normal validation, the Conversation Workspace must support:
 
 - text;
 - voice;
@@ -26,142 +58,366 @@ The Conversation Workspace must support, subject to normal permissions and produ
 - Excel;
 - CSV;
 - PDF;
-- supported business documents.
+- other approved business documents.
 
-## Supported Smart Business Outputs
+An uploaded file is not automatically trusted business truth. File interpretation follows Universal Document Intelligence rules.
 
-The workspace must support:
+---
+
+## 5. Supported Outputs
+
+The workspace should support, where useful and authorized:
 
 - text responses;
-- voice responses where the user's role, product entitlement and privacy context permit;
-- useful image/media responses where applicable;
-- Ask CFO conversations;
-- reminder interaction;
-- business confirmations and clarification prompts;
-- downloadable Excel, CSV and PDF outputs.
+- short voice responses;
+- structured visual summaries;
+- useful images/media where a feature needs them;
+- Ask CFO responses;
+- confirmations and clarification prompts;
+- reminders/actions presented for human choice;
+- downloadable Excel/CSV/PDF outputs;
+- business-document retrieval where permitted.
 
-## One Product, Multiple Channels
+Dense numerical data should favor readable text/tables/files rather than forcing long audio.
 
-WhatsApp and the Conversation Workspace must share:
+---
+
+## 6. One Product, Multiple Channels
+
+WhatsApp and the Conversation Workspace must share the same underlying:
 
 - business identity;
+- user identity;
 - Business Memory;
-- conversation context/history where permitted;
+- conversation/context model where permitted;
 - Permission Engine;
 - Human Language Layer;
 - Universal Document Intelligence;
 - Ask CFO reasoning;
+- reminder/automation services;
+- notification/action services;
 - confirmation/clarification rules;
-- reminder/automation foundations;
-- business action services;
-- auditability.
+- audit/idempotency foundations.
 
-They must not maintain separate ledgers, permission rules, reminder engines, document parsers or feature-specific business logic merely because the channel differs.
+They must not create separate ledgers, separate permissions, separate reminders, separate document parsers or feature-specific business truth merely because the channel differs.
 
-## Users and Permissions
+---
+
+## 7. Channel Continuity
+
+A user should be able to begin a valid workflow in one approved channel and continue in another without duplicating the underlying business record.
+
+Where a workflow contains a pending consequential confirmation:
+
+- the system should preserve the pending state safely;
+- the exact reviewed action must remain bound to the confirmation;
+- authority must be revalidated before execution;
+- switching channels must not silently reinterpret or execute the action.
+
+Conversation context may follow the user within current privacy/retention policy, but authoritative stored business state always controls over transient chat memory.
+
+---
+
+## 8. Users and Permission Boundaries
 
 ### Owner
 
-May use the full set of capabilities allowed by their subscription and business authority.
+May access capabilities available to the business and Owner role.
 
 ### Manager
 
-May use only capabilities explicitly delegated by the Owner. Manager access does not automatically include Owner financial intelligence.
+May access only Owner-delegated capabilities. Manager status does not automatically grant Owner profit, Ask CFO or unrestricted intelligence.
 
 ### Employee
 
-May use the workspace only for specifically permitted operational actions and self-service information. Ask CFO, profit, full analytics and Owner reports remain unavailable by default.
+May access the workspace only for explicitly permitted operational actions and approved self-service information.
 
-Other roles should receive only purpose-limited interfaces where current Product Truth explicitly permits them; the Owner Conversation Workspace is not a general public portal.
+### Customer / Supplier / Delivery Staff
 
-## Expected User Experience
+Do not receive the Owner's general Conversation Workspace. Their participation is through purpose-limited workflows/channels explicitly defined by the relevant feature.
 
-The workspace should feel like conversing with the same Smart Business assistant already known from WhatsApp, not learning a second product.
+---
 
-A user should be able to begin in one approved channel and continue in another without losing business identity or creating duplicate records. Channel transitions must preserve authoritative stored state and should preserve relevant conversation context within privacy/retention boundaries.
+## 9. Ask CFO in the Workspace
 
-## WhatsApp Failure / Degradation Behaviour
+Ask CFO must be available through the Conversation Workspace under the same read-only intelligence boundary as WhatsApp.
 
-If WhatsApp API delivery or availability fails:
+Ask CFO may:
 
-- the web Conversation Workspace remains available when Smart Business itself is healthy;
-- background jobs, POS/API ingestion, payment reconciliation and other channel-independent services continue where their dependencies are healthy;
-- failed WhatsApp delivery is reported as a channel failure, not as failure of the underlying business action unless the action itself failed;
-- queued/retry behaviour must avoid duplicate consequential actions.
+- retrieve authorized business facts;
+- explain and compare;
+- identify patterns;
+- suggest actions;
+- offer continuation into another feature.
 
-## Ask CFO
+Ask CFO does not gain record-write authority merely because it is displayed inside the app.
 
-Ask CFO in the workspace uses the same read-only intelligence boundary as every other channel.
+---
 
-Ask CFO may explain and suggest. If the user chooses a consequential action, the appropriate authorized feature service performs it under its own confirmation and permission rules.
+## 10. Document and File Experience
 
-## Documents and Files
-
-Excel/CSV/PDF/image uploads must reuse Universal Document Intelligence:
+Image/Excel/CSV/PDF/business-document uploads reuse Universal Document Intelligence:
 
 **upload → interpret → preview → clarify where needed → confirm → validated update**.
 
-Uncertain interpretation must not silently create business records.
+The workspace should let users:
 
-## Language and Voice
+- upload;
+- review extracted/interpreted content;
+- correct uncertainty;
+- confirm the intended business action;
+- receive success/failure state;
+- retrieve permitted documents/exports later.
 
-English, Malayalam and Manglish are first-class. Voice should be natural, concise and privacy-aware. Sensitive Owner information should not be spoken in a context where the user's role or environment makes audio inappropriate.
+Unsupported or unsafe files must fail clearly without affecting unrelated product operation.
 
-## Authentication and Identity
+---
 
-Authentication method and Smart Business identity are separate concepts. Approved login methods may evolve, but the same authorised user must resolve to the same business identity and permissions across channels.
+## 11. Voice Experience
 
-## Error and Exception Behaviour
+Basic Voice is available according to current plan/permission rules.
+
+Voice in the workspace should support:
+
+- business input;
+- questions;
+- reminders;
+- operational commands;
+- clarification;
+- short useful responses.
+
+Voice Plus adds deeper multi-turn voice depth, but the workspace must not require Voice Plus for basic approved voice interaction.
+
+---
+
+## 12. Human Language
+
+English, Malayalam and Manglish are first-class.
+
+The user should not need to adopt formal software terminology to use the workspace. Mixed-language business expressions should be interpreted through the shared Human Language Layer.
+
+Consequential ambiguity must trigger clarification rather than guesswork.
+
+---
+
+## 13. Business Actions
+
+The workspace may prepare or initiate feature actions, but execution belongs to the underlying feature service.
+
+Examples:
+
+- create a Ledger transaction;
+- confirm an interpreted receipt;
+- create a reminder;
+- create an order draft;
+- approve a reorder;
+- submit an attendance correction request.
+
+Each action must inherit:
+
+- current role permission;
+- feature-specific confirmation rules;
+- idempotency/audit behavior;
+- current business state.
+
+The chat UI itself is never the source of authority.
+
+---
+
+## 14. WhatsApp Failure / Degradation Behavior
+
+If WhatsApp delivery or API availability fails while Smart Business remains healthy:
+
+- the Conversation Workspace remains usable;
+- background jobs continue where dependencies are healthy;
+- POS/API ingestion continues where available;
+- payment reconciliation continues;
+- scheduled business intelligence may continue through other approved surfaces/channels;
+- failed WhatsApp delivery is reported as a channel failure, not automatically as failure of the underlying business action;
+- retry must not duplicate consequential actions.
+
+---
+
+## 15. Authentication and Session Boundaries
+
+Authentication method and Smart Business business identity are separate concepts.
+
+The workspace must:
+
+- require a valid authorized session;
+- resolve the correct business/role;
+- prevent cross-business context leakage;
+- handle session expiry/re-authentication safely;
+- revalidate permission before consequential execution.
+
+UI visibility does not substitute for server/data authorization.
+
+---
+
+## 16. Conversation History and Retention
+
+Conversation history may improve continuity, but it is not unlimited authority or permanent memory by default.
+
+Retention must follow current privacy/account-lifecycle policy.
+
+The system must distinguish:
+
+- conversational context;
+- durable Business Memory;
+- documents/files;
+- audit/history;
+- temporary preview/confirmation state.
+
+These should not be collapsed into one uncontrolled transcript store.
+
+---
+
+## 17. Clarification and Confirmation
+
+The workspace must ask the smallest useful question when consequential intent is unclear.
+
+Examples:
+
+- ambiguous customer/supplier;
+- unclear amount/date;
+- uncertain document extraction;
+- multiple payment matches;
+- unclear item/quantity;
+- permission-sensitive action.
+
+Confirmation must bind to the exact reviewed action and current actor/state. Execution-time permission revalidation is required.
+
+---
+
+## 18. Error and Exception Behavior
 
 Handle at minimum:
 
-- channel outage;
+- WhatsApp/channel outage;
+- web session expiry;
 - failed file upload;
 - unsupported/unsafe file;
 - low-confidence interpretation;
-- stale session;
 - permission change during conversation;
 - duplicate submission;
-- failed response rendering/download;
-- user switching channels during an unfinished confirmation flow.
+- stale confirmation;
+- provider/model failure;
+- failed download/render;
+- channel switch during pending confirmation;
+- underlying feature service failure.
 
-Consequential execution must revalidate current server-side authority immediately before action.
+A narrow failure must not freeze unrelated Smart Business operation.
 
-## Privacy and Trust Boundaries
+---
 
-- No cross-business context leakage.
-- No employee escalation into Owner intelligence through the chat surface.
-- Conversation history retention must follow current privacy/retention policy.
-- A channel must not broaden access merely because its UI exposes a control.
-- Business continuity must not become an excuse for bypassing security.
+## 19. Privacy and Trust Boundaries
 
-## Performance Expectations
+- No cross-business conversation context leakage.
+- No Employee escalation into Owner intelligence through chat.
+- No channel-based permission widening.
+- Sensitive audio should not be played to unauthorized roles.
+- File access follows business/role authorization.
+- Continuity does not justify bypassing security.
+- Merchant data remains merchant data; the chat surface is not a platform surveillance channel.
 
-Critical conversation interactions should target the current Smart Business sub-3-second experience where technically reasonable. Slow operations should clearly indicate progress without weakening correctness.
+---
 
-## Explicit Non-goals
+## 20. Performance and UX Expectations
 
-- a separate web-only business engine;
+Common conversation interactions should target the current Smart Business sub-3-second experience where technically reasonable.
+
+Longer operations should:
+
+- show progress;
+- avoid duplicate submission;
+- allow safe retry/recovery;
+- never trade away permission, integrity or confirmation safeguards merely for speed.
+
+The interface should feel calm, familiar and useful rather than like a complex ERP console.
+
+---
+
+## 21. Shared Foundations to Reuse
+
+Reuse:
+
+- Business Memory;
+- Permission Engine / business isolation;
+- Human Language Layer;
+- Universal Document Intelligence;
+- Ask CFO;
+- Voice foundation;
+- Reminder/Delegated Automation;
+- shared identities;
+- notification foundation;
+- audit/idempotency;
+- feature-specific action services.
+
+---
+
+## 22. Explicit Non-goals
+
+- a separate web-only Ledger or intelligence engine;
 - a generic unrestricted AI chatbot;
 - replacing WhatsApp as a product decision;
-- duplicating feature logic by channel;
+- duplicating data/permissions by channel;
 - offline-without-internet operation unless separately approved;
-- public customer/supplier access to Owner intelligence.
+- public customer/supplier portal into Owner intelligence.
 
-## Historical Corrections / Superseded Behaviour
+---
+
+## 23. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Owner enters a text transaction in the workspace and receives accurate stored-state confirmation.
+2. Owner sends voice and receives the same permission/clarification behavior as text.
+3. User uploads an image/PDF/CSV and receives UDI preview before consequential update.
+4. Owner uses Ask CFO without granting it record-write authority.
+5. Employee cannot obtain Owner intelligence through conversation prompts.
+6. Workflow can begin on WhatsApp and continue in the app without duplicate business records.
+7. WhatsApp outage does not stop healthy app/background operations.
+8. Permission revoked before execution blocks only the pending action.
+9. Duplicate/retry does not duplicate consequential writes.
+10. Cross-business context leakage is impossible under server-side authorization.
+
+---
+
+## 24. Historical Corrections / Superseded Behavior
 
 Superseded:
 
 - treating WhatsApp as the only usable Smart Business interface;
-- separate channel-specific business logic;
-- assuming a third-party messaging outage should stop all business-system operation.
+- treating the native app as a passive dashboard only;
+- separate business logic per channel;
+- allowing a WhatsApp outage to halt unrelated backend/web operations.
 
-Historical carrier-SMS fallback concepts remain implementation history, not a current required product channel.
+Historical carrier-SMS fallback ideas remain implementation history, not a required current channel.
 
-## Provenance
+---
 
-Reconciled from Founder-origin Section 7 Q90, cross-feature anti-duplication evidence, planning/project-room extraction, current Founder direction and Source 11 Conversation First / Channel Independence truth.
+## 25. Provenance and Hydration Coverage
 
-## Unresolved Founder Questions
+Reconciled from:
 
-None for the existence, build commitment or first-class status of this capability. Exact UI navigation placement and implementation technology are product/engineering design decisions under current governance.
+- Founder direct Q90 update in Founder-origin Section 7;
+- Section 7 cross-feature architecture/anti-duplication/failure evidence;
+- planning/project-room conversation-first history;
+- Final Feature Reconciliation Register §§5, 28–30;
+- Source 01 and Source 11 Conversation First / Channel Independence truth.
+
+**Hydration result:** all current Founder-origin behaviors assigned to Conversation Workspace/channel independence are explicitly represented here or delegated to named shared feature contracts.
+
+---
+
+## 26. Unresolved Founder Questions
+
+None regarding existence, first-class status or Build Now commitment.
+
+Exact visual navigation placement, component design and implementation technology remain downstream product/engineering design decisions.
+
+---
+
+## 27. Completion Gate
+
+Completion requires a verified native conversational experience across text/voice/files, shared Business Memory, role enforcement, confirmation, document handling, channel continuity, error recovery and runtime acceptance. A chat-looking screen alone is not feature completion.

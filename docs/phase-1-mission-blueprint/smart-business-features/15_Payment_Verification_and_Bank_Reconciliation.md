@@ -1,131 +1,392 @@
-# Payment Verification & Bank Reconciliation
+# Smart Business Feature Definition — Payment Verification & Bank Reconciliation
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW**  
+**Commercial availability:** Ledger + Manager core financial-integrity capability  
+**Authority boundary:** Smart Business may ingest and match trustworthy payment evidence. Ambiguity must be surfaced for human confirmation; the system must never guess among plausible financial matches.
 
-**Availability:** Ledger + Manager core  
-**Build Commitment:** **BUILD NOW**
+---
 
-## Founder Problem Statement
+## 1. Feature Identity
 
-Digital-payment evidence often arrives separately from the sale or repayment that a merchant recorded. Smart Business must help establish financial clarity without duplicating revenue, trusting screenshots blindly, or guessing between plausible matches.
+Payment Verification & Bank Reconciliation determines whether a recorded payment is supported by authoritative evidence and links that evidence to the correct existing business record without duplicating revenue or silently rewriting facts.
 
-## Core Capability
+This feature includes the historical Bank Email Sync direction as one possible secure evidence-ingestion path, while keeping provider/transport implementation flexible.
 
-The feature should support:
+---
 
-- pending/unverified payment state where appropriate;
-- secure ingestion of approved authoritative payment/bank evidence;
-- extraction of amount, direction, reference/UTR where available, timestamp, account/payment-mode context and useful description;
-- tenant/business mapping;
-- matching against existing Ledger/POS/order/credit records;
-- safe verification of strong matches;
-- duplicate-event protection;
-- ambiguity review;
-- unmatched-evidence review;
-- audit history;
-- Ledger/dashboard/Ask CFO visibility of verification state.
+## 2. Founder Problem Statement
 
-## Authority and Evidence Rule
+Merchants may have:
 
-A screenshot or user assertion is not automatically authoritative settlement evidence. The system should use the strongest approved evidence available.
+- Ledger entries marked paid;
+- UPI/bank/card evidence arriving separately;
+- bank emails/notifications;
+- screenshots or receipts;
+- cash/COD events;
+- multiple transactions with similar amounts;
+- missing Ledger records discovered from bank evidence.
 
-Unauthenticated or untrusted incoming messages must not be treated as bank truth.
+Without reconciliation, Smart Business can either falsely trust an unverified claim or create duplicate revenue. The feature exists to protect financial truth.
 
-## Matching Behaviour
+---
 
-A strong deterministic match may verify an existing record rather than insert duplicate revenue.
+## 3. Lighthouse Principles
 
-Matching may consider, as available:
+- Never fabricate payment certainty.
+- Preserve both business record and external evidence.
+- Strong match verifies; it does not duplicate the transaction.
+- Ambiguous match requires human confirmation.
+- Narrow uncertainty blocks only the uncertain link/write.
+- Auditability over silent overwrite.
+- Provider choice is implementation detail; authenticity and integrity are product requirements.
 
-- unique payment reference;
+---
+
+## 4. Payment Verification States
+
+A payment/business record may need states such as:
+
+- pending/unverified;
+- evidence received;
+- matched/verified;
+- ambiguous/review required;
+- mismatched;
+- unlinked evidence;
+- reversed/invalidated where authoritative evidence supports it.
+
+Exact enum names are implementation choices. The durable behavior is that verification state is explicit and traceable.
+
+---
+
+## 5. Evidence Sources
+
+Approved evidence may come from secure/authorized sources such as:
+
+- bank/payment provider API/webhook;
+- authenticated bank email ingestion;
+- payment gateway record;
+- verified settlement file;
+- merchant-uploaded evidence requiring appropriate review;
+- COD/order-delivery evidence where the workflow supports it;
+- other approved financial integrations.
+
+An unauthenticated message or arbitrary text claim must not automatically become authoritative payment evidence.
+
+---
+
+## 6. Evidence Ingestion
+
+Ingestion should preserve:
+
+- business scope;
+- source/provider;
+- external reference/UTR where available;
 - amount;
-- credit/debit direction;
-- timestamp/window;
-- payment mode;
-- party/account context;
-- linked order/customer/transaction state.
+- direction;
+- timestamp;
+- payer/payee/account hints where permitted;
+- raw evidence/reference sufficient for audit;
+- ingestion time;
+- authenticity/validation state;
+- dedupe/idempotency key.
 
-No historical fixed matching window is Product Truth. The engineering design must choose and verify a safe strategy.
+Sensitive financial evidence must follow current privacy/security/retention rules.
 
-## Ambiguous Match
+---
 
-If more than one plausible record matches:
+## 7. Matching Principles
 
-1. do not guess;
-2. preserve the evidence;
-3. show the candidate matches to an authorized human;
-4. require explicit selection before linking/verifying;
-5. bind confirmation to the exact evidence and target record;
-6. revalidate permission and state at execution.
+Matching may use reliable signals such as:
 
-## Mismatch Behaviour
+- amount;
+- reference/UTR;
+- timestamp/time window;
+- direction;
+- customer/supplier/account identity;
+- payment method;
+- linked order/credit context;
+- provider-specific identifiers.
 
-If recorded and authoritative amounts differ:
+Historical fixed formulas/windows (for example five minutes or 24 hours) are implementation provenance, not immutable Product Truth.
 
-- preserve both values;
-- show the variance clearly;
-- do not silently overwrite either side;
-- allow the Owner/authorized user to correct/reconcile through governed financial correction.
+Matching logic should be deterministic/idempotent where possible and explainable enough for human review.
 
-## Unmatched Evidence
+---
 
-If trusted bank/payment evidence has no matching business record, surface it as an unlinked event. Do not fabricate a sale, customer or purpose.
+## 8. Strong Match
 
-## Duplicate Handling
+When evidence strongly matches one existing record:
 
-Repeated delivery of the same authoritative event must be idempotent. A duplicated bank webhook/email must not create duplicated income or repayment.
+- link the evidence to that record;
+- mark/derive verification state appropriately;
+- preserve the original transaction identity;
+- do not create a duplicate sale/income/payment;
+- preserve source/reference/audit history;
+- notify/surface success where useful.
 
-## Smart Credit Integration
+Verification is a property/link of the existing business truth, not a second financial transaction.
 
-Verified repayment evidence may confirm a customer repayment and update outstanding credit through the governed Credit/Ledger path. Ambiguous customer/payment identity requires confirmation.
+---
 
-## POS / Order Integration
+## 9. Ambiguous Match
 
-Payment state may be associated with POS sales or Order & Delivery records where reliable identifiers exist. One subsystem must not create duplicate financial truth in another.
+When multiple plausible records could match:
 
-## Ask CFO
+- do not choose silently;
+- present the relevant candidates/context to an authorized human;
+- ask for the smallest useful confirmation;
+- bind the confirmation to the exact evidence/candidate state;
+- revalidate state/permission before linking.
 
-Ask CFO may explain verified/unverified status, mismatches and reconciliation gaps using read-only intelligence. It cannot force a match or modify financial history itself.
+If no safe choice is made, evidence remains in review/unlinked state.
 
-## Permissions
+---
 
-Owner has full authorized reconciliation access. Manager only if delegated. Employees may see only payment status needed for their permitted operational task and never broad bank intelligence by default.
+## 10. Mismatch
 
-## Failure Containment
+If payment evidence conflicts with a recorded amount/reference/state:
 
-Core rule:
+- preserve both pieces of evidence;
+- show the variance;
+- do not overwrite one with the other;
+- allow authorized correction/review through normal Ledger/payment workflows;
+- keep audit history.
 
-> Stop the uncertain financial write/link, not the whole business.
+---
 
-If bank ingestion or matching fails, unrelated Ledger, stock, POS, HR and other safe workflows continue.
+## 11. Unlinked Evidence
 
-## Error / Exception Cases
+Authoritative evidence may arrive without a corresponding Ledger transaction.
 
-- spoofed/untrusted evidence;
-- parser failure;
+In that case:
+
+- preserve it as unlinked evidence;
+- surface it to the Owner/authorized user;
+- allow classification/linking or creation through a governed flow;
+- do not auto-create income/expense if business meaning is ambiguous.
+
+---
+
+## 12. Duplicate Evidence and Idempotency
+
+The same bank/provider event may arrive more than once.
+
+The system must prevent:
+
+- duplicate evidence records where avoidable;
+- duplicate verification actions;
+- duplicate revenue/payment entries;
+- repeated notifications/actions caused by retries.
+
+External reference/provider identity should support idempotent processing.
+
+---
+
+## 13. Reversals / Corrections
+
+If authoritative evidence later changes (for example reversal/failure/chargeback where applicable), the product must preserve the history and update verification state through an auditable path.
+
+Do not silently erase the prior verified state.
+
+Ledger correction rules continue to apply to consequential business-record changes.
+
+---
+
+## 14. Smart Credit Relationship
+
+Repayments/customer credit may use Payment Verification to support whether money was actually received.
+
+A verified bank event should link to the correct repayment/credit relationship without:
+
+- duplicating income;
+- reducing the wrong customer's balance;
+- guessing when multiple matches exist.
+
+---
+
+## 15. Order & Delivery / COD Relationship
+
+COD collection and delivery completion are related but distinct facts.
+
+Where COD evidence is recorded:
+
+- expected amount;
+- collected amount;
+- delivery proof;
+- Ledger/payment record;
+- verification state
+
+must link consistently without duplicate financial truth.
+
+---
+
+## 16. Ask CFO and Daily Intelligence
+
+Ask CFO/Daily Intelligence may report authorized payment/reconciliation facts such as:
+
+- unverified payments;
+- mismatches;
+- unlinked evidence;
+- verified receipts;
+- ageing review queue.
+
+They must not convert uncertainty into certainty.
+
+---
+
+## 17. Users and Permissions
+
+### Owner
+
+Default authority to review/resolve financial reconciliation.
+
+### Manager
+
+Only delegated financial/reconciliation scope.
+
+### Employee
+
+May record permitted operational payment information but should not automatically receive business-wide bank/reconciliation intelligence.
+
+### Platform/support
+
+No routine access to merchant banking/financial evidence. Support access follows separate purpose-limited governance.
+
+---
+
+## 18. Channels and Language
+
+Authorized review/clarification may occur through Workspace/WhatsApp where secure and suitable, using English/Malayalam/Manglish.
+
+Sensitive evidence should not be exposed in an inappropriate channel merely for convenience.
+
+---
+
+## 19. Confirmation and Authority
+
+Human confirmation is required when:
+
+- multiple plausible matches exist;
+- a mismatch correction changes business truth;
+- unlinked evidence is being classified into a consequential record;
+- current authority/record state requires review.
+
+Confirmation must bind exact evidence/record/action and current actor.
+
+---
+
+## 20. Failure Containment
+
+If reconciliation is unavailable or ambiguous:
+
+- stop only the uncertain link/write;
+- preserve evidence safely;
+- show recovery/review path;
+- allow unrelated Ledger, inventory, orders and other safe operations to continue.
+
+A bank integration outage must not globally freeze Smart Business.
+
+---
+
+## 21. Error and Exception Behavior
+
+Handle:
+
+- provider outage;
+- malformed/unsupported evidence;
+- authenticity failure;
 - duplicate event;
-- same-value collision;
-- wrong amount;
-- missing reference;
-- stale evidence;
-- no candidate transaction;
-- multiple candidate transactions;
-- permission change;
-- downstream bank/channel outage.
+- multiple candidates;
+- no candidate;
+- amount/reference mismatch;
+- stale candidate state;
+- permission revoked during review;
+- reversal/chargeback where relevant;
+- channel notification failure.
 
-## Explicit Non-goals
+---
 
-- phone/SMS scraping as assumed default architecture;
-- trusting customer screenshots as final settlement proof;
-- guessing matches;
-- duplicate income creation;
-- globally blocking Smart Business because reconciliation is uncertain;
-- exposing broad banking data to staff.
+## 22. Privacy and Security
 
-## Historical Corrections
+- Authenticate/validate evidence source where authoritative status is claimed.
+- Encrypt/protect sensitive financial information according to architecture policy.
+- Business isolation is mandatory.
+- Limit staff/platform exposure.
+- Preserve audit without unnecessary disclosure.
+- Never accept an unauthenticated arbitrary message as authoritative bank evidence.
 
-Historical `24-hour amount lookback`, shorter rolling windows, named banks, SendGrid endpoints and exact routes are implementation provenance. The mature requirement is safe authenticated evidence ingestion, idempotency and ambiguity-to-human confirmation.
+---
 
-## Provenance
+## 23. Shared Foundations to Reuse
 
-Reconciled from Founder-origin Section 5B and Section 7, planning history, current financial-integrity lessons, Source 11 Payment Verification Assistant + Bank Email Sync, and current confirmation/security doctrine.
+Reuse:
+
+- Ledger / Business Memory;
+- Customer/Supplier identity;
+- Permission Engine;
+- audit/idempotency;
+- Notification foundation;
+- Smart Credit;
+- Order & Delivery financial linkage;
+- Ask CFO/Daily Intelligence read paths.
+
+---
+
+## 24. Explicit Non-goals
+
+- guessing among plausible matches;
+- duplicate revenue creation from bank evidence;
+- permanent dependence on SendGrid or any one provider;
+- immutable historic five-minute/24-hour matching formula;
+- global system lock on reconciliation failure;
+- accepting unauthenticated evidence as authoritative.
+
+---
+
+## 25. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Strong unique match verifies existing transaction without duplication.
+2. Duplicate provider event is idempotent.
+3. Multiple candidates require human selection.
+4. No candidate becomes unlinked evidence, not fabricated transaction.
+5. Mismatch preserves both facts and variance.
+6. Repayment links to correct customer credit.
+7. COD evidence does not duplicate Ledger revenue.
+8. Permission revocation before confirmation blocks only pending link.
+9. Provider outage leaves unrelated product operational.
+10. Ask CFO cannot report ambiguous evidence as verified.
+11. Cross-business financial evidence access is denied.
+12. Reversal preserves history rather than erasing prior state.
+
+---
+
+## 26. Historical Corrections / Superseded Behavior
+
+Historical implementation details retained only as provenance:
+
+- exact five-minute/24-hour matching windows;
+- UTR-specific formulas;
+- SendGrid as fixed provider.
+
+Superseded:
+
+- guessing ambiguous matches;
+- unauthenticated evidence treated as authoritative;
+- reconciliation failure globally blocking unrelated work.
+
+---
+
+## 27. Provenance and Hydration Coverage
+
+Reconciled from Founder-origin Section 5 Part B and Section 7; planning/project-room payment/bank-sync history; Final Feature Reconciliation Register §22 and §§29–30; current financial-integrity/security governance; Source 01/11.
+
+**Hydration result:** all current recovered Payment Verification/Bank Reconciliation behaviors and anti-guessing corrections are represented here or delegated to Ledger/identity/permission shared foundations.
+
+---
+
+## 28. Completion Gate
+
+Complete only when authenticated evidence ingestion, deterministic/idempotent matching, ambiguity review, mismatches/unlinked evidence, financial linking, permissions, audit, narrow failure containment and runtime acceptance are proven end-to-end.

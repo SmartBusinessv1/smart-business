@@ -1,118 +1,414 @@
-# Super Admin & Platform Stewardship
+# Smart Business Feature Definition — Super Admin & Platform Stewardship
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW within approved internal scope**  
+**Commercial availability:** Internal Team LIPS platform operations capability  
+**Authority boundary:** Super Admin stewards platform health, security, support and commercial operations. It is not a merchant-business-owner role and does not grant routine access to merchant private business intelligence.
 
-**Product Type:** Internal platform operations capability  
-**Route:** Hidden/internal `/super-admin`  
-**Build Commitment:** **BUILD NOW within approved current scope**
+---
 
-## Purpose
+## 1. Feature Identity
 
-Give Team LIPS the minimum platform-level capability required to keep Smart Business healthy, secure, supportable and sustainable without turning Super Admin into a hidden merchant-owner account.
+Super Admin is the hidden/internal operations plane for Team LIPS to safely run Smart Business as a SaaS platform.
 
-## Platform Operations Scope
+It supports platform stewardship such as:
 
-Approved internal capability may include:
+- health/error visibility;
+- quarantine/security operations;
+- backup/storage oversight;
+- support ticket operations;
+- onboarding/growth control;
+- subscription/entitlement operations;
+- AI usage/quality/cost monitoring;
+- operational analytics;
+- provider/integration health;
+- controlled release/onboarding state where approved.
 
-- system health;
-- error registry;
-- security/quarantine review;
-- support ticket administration;
-- backup/recovery controls;
-- subscription/entitlement operations where authorized;
-- platform-quality and AI-usage telemetry;
-- integration/runtime health;
-- operational QA/testing state;
-- aggregate feature-adoption/service-quality intelligence where privacy rules allow.
+It must be privacy-bounded and auditable.
 
-## Merchant Data Boundary
+---
 
-Team LIPS does not routinely browse or monitor individual merchant business data.
+## 2. Founder Problem Statement
 
-Account-specific access is permitted only when a real support/security/operational purpose and current authorization exist, using least privilege, bounded scope, auditability and revocation.
+A real SaaS product cannot be operated safely without an internal view of:
 
-A support ticket does not automatically grant unrestricted ledger, profit, HR, customer-credit or document access.
+- system failures;
+- support demand;
+- data-processing health;
+- subscription/account state;
+- AI/provider cost and quality;
+- backup/storage posture;
+- onboarding load;
+- release/incident conditions.
 
-## Support Access
+But giving platform operators broad routine access to merchant sales, profit, customer debt or private records would violate the Lighthouse trust model.
 
-Where troubleshooting requires merchant-specific information:
+The challenge is therefore **operational visibility without casual merchant surveillance**.
 
-- purpose must be clear;
-- access should be mutually agreed/authorized according to current support policy;
-- scope must be limited to the affected area;
-- access must be auditable;
-- unnecessary unrelated data stays unavailable;
-- temporary access should end when the purpose ends.
+---
 
-## Quarantine / Security Review
+## 3. Lighthouse Principles
 
-Security review may inspect evidence necessary to understand an actual unsafe event. Security evidence and ordinary business alerts must remain separate concepts.
+- Merchant data belongs to the merchant.
+- Platform stewardship is not merchant decision authority.
+- Least privilege.
+- Purpose-limited access.
+- Every privileged path should be auditable.
+- Aggregate/health telemetry by default; merchant-content access only when justified.
+- Support investigation requires a real support/security purpose.
+- Do not hide broad master-key access behind a friendly admin UI.
 
-Normal permission denials, business ambiguities or staff operational mistakes are not automatically security incidents.
+---
 
-## Platform Telemetry
+## 4. Hidden/Internal Route
 
-Platform stewardship may use system-level information such as:
+The approved internal route is:
 
+`/super-admin`
+
+It must remain hidden/internal and protected by explicit authorization.
+
+The route existing alone does not mean the feature is implemented.
+
+---
+
+## 5. Platform Health
+
+Super Admin may expose system-level health such as:
+
+- frontend/backend availability;
+- API/edge/server-function failures;
+- database/storage health;
+- queue/scheduler/job failures;
+- integration/provider status;
+- latency/error trends;
+- parser/import failures;
+- WhatsApp delivery health;
+- payment/billing integration health;
+- backup/restore status.
+
+Health views should avoid displaying merchant private content when metadata/aggregate state is sufficient.
+
+---
+
+## 6. Error Registry / Quarantine
+
+Platform operators should be able to understand and act on operational failures through a controlled error/quarantine view.
+
+Useful information may include:
+
+- error category;
+- affected component;
+- first/last occurrence;
+- counts/trend;
+- business/user reference where operationally required;
+- sanitized context;
+- current owner/assignee;
+- resolution status;
+- related evidence/logs.
+
+Raw sensitive payloads should not be displayed by default merely because they are available in logs.
+
+---
+
+## 7. Support Operations
+
+Support tickets should integrate with Super Admin for:
+
+- queue/status;
+- issue category;
+- merchant/account reference;
+- troubleshooting steps;
+- permitted temporary diagnostic access;
+- resolution history.
+
+Merchant-specific content access must follow current Support framework:
+
+- unresolved/account-specific need;
+- mutual agreement/authorized support purpose where applicable;
+- module-scoped least privilege;
+- time/purpose bounds;
+- auditability;
+- access revoked when purpose ends.
+
+A ticket does not grant unrestricted merchant-data access.
+
+---
+
+## 8. Merchant / Account Administration
+
+Super Admin may support approved operational administration such as:
+
+- account/business lookup by safe identifiers;
+- subscription/entitlement state;
+- onboarding/provisioning state;
+- account status;
+- support/security flags;
+- reactivation/recovery actions where authorized.
+
+Platform operators must not impersonate the merchant or change business facts merely for convenience.
+
+---
+
+## 9. Subscription and Entitlement Operations
+
+Approved platform users may manage or investigate:
+
+- plan/add-on entitlement state;
+- billing-provider reconciliation;
+- payment failure state;
+- administrative corrections with audit;
+- lifecycle issues.
+
+Commercial admin actions must remain separate from merchant financial records.
+
+---
+
+## 10. Onboarding / Growth Control
+
+Historical Founder intent included controlled cohort growth and `open / waitlist / closed` style platform gating.
+
+Current product truth preserves the **capability for controlled onboarding/release**, while exact historical 250-merchant cap/status strings are implementation history unless separately reaffirmed.
+
+Super Admin may therefore support approved controls for:
+
+- onboarding open/paused/closed state;
+- waitlist/queue where current growth plan uses it;
+- pilot/cohort limits;
+- release readiness signals.
+
+These controls must not silently redefine product scope or pricing.
+
+---
+
+## 11. AI Operations / Quality / Cost
+
+Super Admin may expose privacy-respecting platform telemetry such as:
+
+- model/provider usage;
+- token/compute cost;
+- failure rates;
+- latency;
+- fallback usage;
+- confidence/clarification metrics;
+- AI quality indicators;
+- abuse/fair-usage signals where governed.
+
+Prefer aggregate/system telemetry. Do not turn AI observability into routine reading of merchant conversations/business intelligence.
+
+---
+
+## 12. Product / Adoption Analytics
+
+Appropriate aggregate/platform metrics may include:
+
+- active merchants;
+- lifecycle transitions;
+- feature adoption;
+- onboarding conversion;
+- support volume;
 - error rates;
-- latency/availability;
-- feature usage/adoption at an appropriate aggregate level;
-- model/API cost and reliability;
-- queue/job health;
-- storage/database growth;
-- support volumes;
-- QA results.
+- storage growth;
+- AI usage/cost;
+- performance;
+- reliability;
+- trial/paid conversion if a trial policy exists.
 
-Operational intelligence must respect merchant privacy and must not become routine analysis of private business performance.
+Metrics must respect privacy and should not expose individual merchant intelligence unless operationally necessary and authorized.
 
-## Authority Boundary
+---
 
-Super Admin governs the Smart Business platform. It does not inherit the merchant Owner's business-decision authority.
+## 13. Backup / Storage / Recovery
 
-Super Admin must not:
+Platform stewardship may include visibility/control for:
 
-- make merchant credit decisions;
-- modify a merchant's payroll as business judgment;
-- place supplier orders for a merchant without delegated merchant authority;
-- use Ask CFO on private merchant data for curiosity/operations;
-- sell/share merchant intelligence;
-- create product authority because privileged technical credentials exist.
+- backup status;
+- restore readiness;
+- storage capacity/growth;
+- retention jobs;
+- archival/deletion jobs;
+- failed data-maintenance processes.
 
-## Privileged Operations
+Recovery tools must not become unrestricted browsing interfaces.
 
-Privileged operations should use the narrowest viable access and preserve evidence of actor, purpose, target and outcome. One-time/bootstrap privilege must not silently become permanent runtime privilege.
+---
 
-## Testing and Quality
+## 14. Privileged Access Model
 
-Admin/operations tooling may surface automated QA and runtime evidence. Green CI or a healthy provider status is evidence only; it does not replace product/runtime/security acceptance appropriate to the workstream.
+Super Admin access should be role/capability-scoped.
 
-## Error / Exception Behaviour
+Possible internal capabilities may be separated, for example:
+
+- platform health;
+- support operations;
+- billing/account operations;
+- security incident response;
+- deployment/release operations.
+
+A single broad permanent master role should not be the default operational model.
+
+Privileged actions require strong authentication and audit appropriate to risk.
+
+---
+
+## 15. Merchant-content Access Boundary
+
+By default, Super Admin should see operational metadata rather than merchant-content detail.
+
+If a legitimate support/security purpose requires merchant-specific content:
+
+1. identify the purpose;
+2. verify authority/consent/process required by governance;
+3. scope access to the minimum module/data/time;
+4. record privileged access;
+5. perform the support/security task;
+6. revoke/end access when the purpose ends.
+
+Routine browsing of merchant sales/profit/credit/customer records is rejected.
+
+---
+
+## 16. Security and Incident Response
+
+Super Admin may help with:
+
+- suspicious platform activity;
+- compromised integration/provider state;
+- quarantine/recovery;
+- privileged-session review;
+- incident evidence;
+- emergency disabling of a narrow unsafe path.
+
+Security intervention should be narrow whenever possible. One incident does not justify global unrelated merchant disruption.
+
+---
+
+## 17. Auditability
+
+Privileged actions should preserve, as applicable:
+
+- internal actor;
+- role/capability;
+- target business/account/component;
+- action;
+- purpose/reason;
+- time;
+- result;
+- elevated-access grant/revocation;
+- related ticket/incident/change reference.
+
+Audit must be protected from routine tampering.
+
+---
+
+## 18. Notifications / Escalations
+
+Platform alerts should prioritize meaningful operational risk rather than noise.
+
+Examples:
+
+- repeated provider failure;
+- backup failure;
+- security incident;
+- billing integration degradation;
+- queue growth;
+- critical latency/error spike.
+
+The internal notification system should support ownership/acknowledgement where useful.
+
+---
+
+## 19. Error and Exception Behavior
 
 Handle:
 
-- incomplete telemetry;
-- stale provider state;
-- access request without authorization;
-- expired support access;
-- backup/recovery failure;
-- quarantine evidence unavailable;
-- entitlement/provider mismatch;
-- destructive action requiring stronger confirmation.
+- admin authorization failure;
+- partial telemetry outage;
+- stale metrics;
+- provider outage;
+- failed privileged action;
+- conflicting billing state;
+- failed backup/restore;
+- access-grant expiry;
+- support ticket without sufficient authorization;
+- audit write failure.
 
-Destructive operations require explicit current authority and verified target state.
+Privileged uncertainty must fail safely.
 
-## Explicit Non-goals
+---
 
-- routine merchant financial surveillance;
-- master-key browsing as normal support practice;
-- platform staff acting as merchant managers;
-- hidden government/private reporting of merchant business data;
-- treating technical access as permission.
+## 20. Shared Foundations to Reuse
 
-## Historical Corrections
+Reuse:
 
-Rejected historical assumptions include broad permanent service-role/master bypass and unrestricted Founder access to private merchant ledgers. Preserve the platform-health/support intent; evolve access into purpose-limited least privilege.
+- internal authentication/authorization;
+- audit/security logging;
+- subscription/entitlement services;
+- Support Automation/ticketing;
+- platform telemetry;
+- Notification foundation;
+- onboarding/lifecycle controls;
+- backup/storage systems.
 
-## Provenance
+Super Admin should not duplicate merchant-domain business logic.
 
-Reconciled from Founder-origin Section 6/7, project-room operational lessons, Source 01 Trust Stewardship, Source 06 Team LIPS Access Principle, Source 11 Super Admin/Platform Stewardship and current security/authority governance.
+---
+
+## 21. Explicit Non-goals
+
+- merchant business-owner mode;
+- routine Founder/Team LIPS browsing of merchant sales/profit/customer debt;
+- permanent unrestricted service-role/master-key operations;
+- silent support impersonation;
+- AI-generated merchant decisions;
+- using private merchant data for unrelated monetization.
+
+---
+
+## 22. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Unauthorized user cannot access `/super-admin`.
+2. Internal role sees only assigned platform capabilities.
+3. Platform health can be monitored without merchant-content exposure by default.
+4. Support ticket does not grant unrestricted data access.
+5. Purpose-limited temporary access is auditable and revocable.
+6. Subscription/admin correction records actor/reason/result.
+7. AI usage/cost metrics are available without routine merchant conversation reading.
+8. Backup/storage failure is visible and actionable.
+9. Security incident can disable a narrow path without unnecessary global shutdown.
+10. Privileged action audit cannot be bypassed through ordinary UI.
+11. Controlled onboarding state does not hardcode old 250-merchant rule unless separately authorized.
+
+---
+
+## 23. Historical Corrections / Superseded Behavior
+
+Preserved:
+
+- strong internal platform operations cockpit;
+- controlled onboarding/growth capability;
+- health, support, subscription, AI quality/cost and backup stewardship.
+
+Superseded:
+
+- routine broad merchant-data browsing;
+- unrestricted permanent service-role access as normal operations;
+- Super Admin acting as merchant decision-maker.
+
+Historical 250-merchant cap and exact status strings remain provenance unless reaffirmed.
+
+---
+
+## 24. Provenance and Hydration Coverage
+
+Reconciled from Founder-origin Section 6 and Section 7; Ground Zero platform-control history; planning/project-room operations history; Final Feature Reconciliation Register §27 and §§28–31; Source 06 support/privacy principles and current security governance.
+
+**Hydration result:** current approved Super Admin/platform-stewardship behaviors and privacy boundaries are represented here, while historical broad-access assumptions are explicitly rejected.
+
+---
+
+## 25. Completion Gate
+
+Complete only when internal authorization, health/telemetry, support/billing/onboarding operations, purpose-limited merchant access, security response, backups, privileged audit and runtime acceptance are proven end-to-end.

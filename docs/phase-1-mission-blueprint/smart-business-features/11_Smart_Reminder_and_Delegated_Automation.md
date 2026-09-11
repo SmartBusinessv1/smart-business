@@ -1,151 +1,361 @@
-# Smart Reminder Assistant & Delegated Automation
+# Smart Business Feature Definition — Smart Reminder & Delegated Automation
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW**  
+**Commercial availability:** Ledger + Manager core/shared foundation  
+**Authority boundary:** Reminders help humans remember. Automation may execute only within explicit stored authority; a trigger never creates permission.
 
-**Feature Name:** Smart Reminder Assistant  
-**Availability:** Ledger + Manager core  
-**Build Commitment:** **BUILD NOW**  
-**Shared Foundation Role:** Other approved Smart Business features must reuse this reminder/automation foundation rather than create duplicate schedulers.
+---
 
-## Founder Problem Statement
+## 1. Feature Identity
 
-Merchants carry supplier promises, customer follow-ups, renewals, staff matters, meetings and personal/business commitments in memory. Smart Business should reduce that mental load while preserving human control.
+Smart Reminder is the shared Smart Business foundation for remembering commitments, follow-ups, deadlines and context. Delegated Automation extends that foundation only where an Owner has explicitly granted a bounded standing instruction.
 
-## Core Reminder Behaviour
+Other features must reuse this system rather than create separate reminder schedulers.
 
-Users with permission can create reminders conversationally, including business and appropriate personal reminders. A reminder should preserve:
+---
 
-- what must be remembered;
-- when;
-- relevant person/business/feature context;
-- recurrence where requested;
-- creator/business scope;
-- state/history.
+## 2. Founder Problem Statement
 
-If timing or meaning is unclear, ask the smallest useful clarification.
+Merchants carry too many obligations in memory:
 
-## Interaction Model
+- supplier follow-up;
+- customer credit collection;
+- licences and renewals;
+- stock review;
+- employee matters;
+- delivery follow-up;
+- business/personal commitments;
+- Ask CFO discussions to revisit later.
 
-A reminder may offer context-appropriate actions such as:
+Smart Business should reduce that mental load without turning reminders into hidden machine authority.
+
+---
+
+## 3. Lighthouse Principles
+
+- AI Assistant, Not AI Judge.
+- Human decision ownership.
+- Reminder ≠ proof that an event happened.
+- Trigger ≠ authority.
+- Default consequential behavior is confirmation-first.
+- Standing automation is explicit delegated authority, not autonomous AI sovereignty.
+- Avoid duplicate/noisy reminders.
+- Preserve history and auditability.
+
+---
+
+## 4. Core Reminder Model
+
+A reminder should preserve, as applicable:
+
+- business/user scope;
+- creator;
+- title/intent;
+- due date/time;
+- timezone;
+- recurrence;
+- related customer/supplier/employee/document/order/credit/compliance object;
+- source conversation/context reference;
+- status;
+- snooze/reschedule history;
+- completion actor/time;
+- notification delivery state.
+
+The model should be shared across features.
+
+---
+
+## 5. Natural-language Creation
+
+Approved users may create reminders through text or voice in WhatsApp or the Conversation Workspace.
+
+Examples:
+
+- `Remind me tomorrow to call ABC Traders.`
+- `Next Monday remind me to check the FSSAI renewal.`
+- `Remind me at 6 PM to continue this Ask CFO discussion.`
+
+If timing, target or intent is ambiguous, ask the smallest useful clarification.
+
+---
+
+## 6. Reminder Interaction
+
+Context-appropriate actions may include:
 
 - Done / Already Done;
 - Snooze;
 - Tomorrow;
 - Next week;
-- Custom reschedule.
+- Custom reschedule;
+- Open related record/action where permitted.
 
-The exact controls should fit the reminder rather than use one rigid historical button set.
+Exact buttons are a UX decision; the durable behavior is human acknowledgement/rescheduling with preserved history.
 
-Recurring reminders must preserve recurrence and occurrence history without creating duplicate noise.
+---
 
-## Cross-Feature Reuse
+## 7. Recurring Reminders
 
-The shared Reminder Engine may be used by:
+Recurring reminders must preserve the recurrence rule separately from each occurrence.
 
-- Ask CFO follow-up;
+Completing one occurrence must not silently destroy future recurrence.
+
+The system must avoid duplicate occurrences caused by retries or channel duplication.
+
+---
+
+## 8. Cross-feature Reuse
+
+This foundation is reused by, among others:
+
+- Ask CFO continuation;
 - Compliance Shield;
 - supplier/reorder follow-up;
 - Smart Credit Awareness;
 - stock/expiry review;
 - Staff/HR actions;
-- Smart Order & Delivery exceptions/follow-up;
-- onboarding or support only where current Product Truth authorizes a user-facing reminder.
+- Order & Delivery follow-up/exceptions;
+- approved onboarding/support follow-up.
 
-## Reminder vs Automation
+Feature-specific reminder tables/schedulers are rejected unless architecture demonstrates a genuinely separate domain requirement.
 
-A **reminder** asks a human to act, decide, acknowledge or reschedule.
+---
 
-An **automation rule** performs a bounded action only because valid authority already exists.
+## 9. Reminder vs Business Event
 
-Core law:
+A reminder becoming due does not prove:
 
-> Automation is delegated authority, not machine sovereignty.
+- payment happened;
+- supplier order was placed;
+- employee action occurred;
+- licence was renewed;
+- customer paid;
+- delivery completed.
 
-Default for consequential business action: **ask confirmation**.
+The actual business event must be recorded through the appropriate governed feature service.
 
-## Owner-Delegated Standing Rules
+---
 
-An Owner may create a standing rule such as a bounded reorder instruction. A mature rule should preserve:
+## 10. Reminder → Consequential Action
 
-- exact business scope;
-- action type;
+A reminder may offer a bounded action such as:
+
+- `Paid & Log Expense`;
+- `Mark customer payment received`;
+- `Approve reorder`;
+- `Open renewal document`.
+
+Before action:
+
+1. identify the exact target/action;
+2. verify current state;
+3. verify actor permission;
+4. show/confirm consequential facts unless a valid standing rule already authorizes the action;
+5. execute through the authoritative feature service;
+6. preserve linked reminder/business audit history.
+
+---
+
+## 11. Delegated Standing Automation
+
+An Owner may deliberately create a bounded standing rule.
+
+A mature standing rule should preserve:
+
+- business scope;
+- exact action type;
 - trigger conditions;
 - target/item/person;
-- limits/quantity/value where relevant;
-- destination/channel where relevant;
-- creator and authority provenance;
+- quantity/value/limit where relevant;
+- permitted channel/destination where relevant;
+- creator/authority provenance;
+- effective date/time;
 - enabled/paused/revoked state;
-- creation/modification timestamps;
+- modification history;
 - trigger/execution history;
-- failure/retry state.
+- failure/retry history.
 
-The system must never invent permission or expand a rule beyond its stored scope.
+The rule must never expand itself beyond stored authority.
 
-## Consequential Action from a Reminder
+---
 
-A reminder may contain an explicit action such as `Paid & Log Expense` only when:
+## 12. Reorder Example
 
-1. the user has authority;
-2. the exact amount/party/action is known or reviewed;
-3. the user explicitly confirms unless a valid standing rule already covers the action;
-4. the normal governed Ledger/action service performs the write;
-5. the reminder and financial audit history remain linked and intact.
+Default:
 
-A due date passing is never proof that payment or another business event occurred.
+> Low stock detected → Smart Business suggests reorder → Owner reviews/approves/edits/defers/cancels.
 
-## Permissions
+Only when the Owner has created a valid bounded standing rule may the approved reorder action execute automatically within that exact scope.
 
-- Owner: full reminder/standing-rule authority within product limits.
-- Manager: only delegated reminder/automation authority.
-- Employee: only permitted self/operational reminders or workflow actions; cannot create Owner-level financial automation by default.
-- Other roles: only bounded workflow interactions explicitly supported by their feature.
+A historical background trigger is not authority by itself.
 
-## Notification / Channel Behaviour
+---
 
-Reminder state is channel-independent. Delivery may use approved channels, but one reminder should not become duplicated business truth because it was surfaced in WhatsApp and the Conversation Workspace.
+## 13. Users and Permissions
 
-## Confirmation and Security
+### Owner
 
-Consequential automation must:
+May create/manage reminders and approved standing rules within product limits.
+
+### Manager
+
+May create reminders and automation only within Owner-delegated authority.
+
+### Employee
+
+May use permitted self/operational reminders. Employees cannot create Owner-level financial/procurement automation by default.
+
+### Other roles
+
+Only bounded workflow interactions explicitly provided by their feature.
+
+---
+
+## 14. Channel Behavior
+
+Reminder truth is channel-independent.
+
+A reminder shown in both WhatsApp and the Conversation Workspace remains one reminder, not two records.
+
+Notification delivery failure is separate from reminder/business state.
+
+---
+
+## 15. Human Language and Voice
+
+Reminder creation/interaction supports English, Malayalam and Manglish through the shared Human Language Layer, plus Basic Voice where permitted.
+
+Ambiguous time phrases must be clarified when necessary rather than silently guessed.
+
+---
+
+## 16. Confirmation and Execution Security
+
+Consequential execution must:
 
 - bind confirmation to the exact reviewed action/state/actor;
-- revalidate current permission immediately before execution;
+- revalidate authorization immediately before execution;
 - use idempotency/duplicate protection;
-- preserve actor and authority provenance;
-- stop only the affected action on failure.
+- record actor and authority provenance;
+- fail narrowly if underlying state changed.
 
-## Error and Exception Behaviour
+A stale confirmation must not execute a changed action.
+
+---
+
+## 17. Notification Behavior
+
+Use the shared Notification foundation.
+
+Notification should respect:
+
+- user role;
+- preferred language;
+- channel availability;
+- quiet/reasonable delivery behavior where appropriate;
+- duplicate suppression;
+- privacy.
+
+Notification success does not equal business-action success.
+
+---
+
+## 18. Error and Exception Behavior
 
 Handle:
 
-- ambiguous time;
+- ambiguous date/time;
 - missing target/context;
-- stale or changed underlying business state;
+- stale related business state;
 - duplicate trigger;
-- notification failure;
+- notification provider failure;
 - revoked permission;
-- revoked/paused standing rule;
-- action execution failure;
-- recurring schedule conflict.
+- paused/revoked standing rule;
+- failed action execution;
+- recurrence conflict;
+- timezone change;
+- channel outage.
 
-A reminder notification failure must not falsely mark the underlying task complete.
+A broken reminder path must not freeze unrelated features.
 
-## Privacy
+---
 
-Private/personal reminders must not leak to staff or other roles. Cross-feature reminders inherit the permissions of the underlying business object.
+## 19. Privacy and Trust
 
-## Explicit Non-goals
+- Private/personal reminders must not leak to staff.
+- Feature-linked reminders inherit permission sensitivity of the linked object.
+- Reminder text should avoid exposing sensitive Owner information to unauthorized roles.
+- Automation history must be auditable to the authority that created it.
 
-- duplicate reminder systems per feature;
-- AI-created authority;
-- silent financial commitments;
-- treating notification delivery as proof of business completion;
-- automatic supplier ordering without direct confirmation or valid stored delegation.
+---
 
-## Historical Corrections
+## 20. Shared Foundations to Reuse
 
-Preserve the original goal of proactive assistance. Reject older blind autonomous-daemon framing where it created consequential business authority. Historical fixed category enums, cron times and button sets are implementation provenance.
+Reuse:
 
-## Provenance
+- Business Memory/linking;
+- identities;
+- Permission Engine;
+- Human Language Layer;
+- Conversation channels;
+- Notification foundation;
+- audit/idempotency;
+- feature action services.
 
-Reconciled from Founder-origin Sections 3, 6 and 7; Source 05 delegated-authority rules; Source 06 supplier automation rules; Source 11 Smart Reminder Assistant; and project security lessons on exact confirmation binding and execution-time permission revalidation.
+---
+
+## 21. Explicit Non-goals
+
+- duplicate reminder engines per feature;
+- AI-created permission;
+- silent financial/procurement commitments;
+- due date treated as proof of event;
+- blind supplier orders;
+- global product lock because one reminder failed.
+
+---
+
+## 22. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Natural-language one-time reminder.
+2. Ambiguous timing → clarification.
+3. Recurring reminder preserves future occurrences/history.
+4. Snooze/reschedule does not create duplicate reminder truth.
+5. Same reminder visible across channels without duplication.
+6. Reminder due does not create payment/event automatically.
+7. Consequential action requires valid confirmation or standing authority.
+8. Standing rule cannot exceed stored limit/scope.
+9. Revoked permission blocks execution at runtime.
+10. Notification failure does not falsely mark completion.
+11. Duplicate trigger is idempotent.
+12. Narrow failure leaves unrelated operations available.
+
+---
+
+## 23. Historical Corrections / Superseded Behavior
+
+Preserve proactive assistance.
+
+Superseded:
+
+- blind autonomous-daemon framing;
+- trigger interpreted as authority;
+- feature-specific duplicate schedulers;
+- historical fixed enums/button sets/cron times as immutable Product Truth.
+
+---
+
+## 24. Provenance and Hydration Coverage
+
+Reconciled from Founder-origin Sections 3, 6 and 7; planning/project-room history; Final Feature Reconciliation Register §11 and §§28–30; current security lessons on exact confirmation binding and execution-time revalidation; Source 01/11.
+
+**Hydration result:** all current reminder/delegated-automation behaviors recovered from Founder-origin evidence are represented here or delegated to named shared action/notification/permission foundations.
+
+---
+
+## 25. Completion Gate
+
+Complete only when reminder creation, recurrence, interaction, cross-channel continuity, notifications, delegated rules, confirmation/revalidation, audit/idempotency, privacy, failure recovery and runtime acceptance are proven together.

@@ -1,139 +1,556 @@
-# Shared Smart Business Product Foundations
+# Smart Business Feature Definition — Shared Product Foundations
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW — CROSS-PRODUCT ARCHITECTURE CONTRACT**  
+**Commercial availability:** Shared across Ledger, Manager and approved add-ons  
+**Authority boundary:** New features must reuse and extend shared foundations where appropriate. A narrow feature mission must not silently create duplicate truth, permissions, reminders, documents, identities, AI brains or channel-specific business logic.
 
-**Product Type:** Cross-product architecture/product contract  
-**Build Commitment:** **BUILD NOW as reusable foundations**
+---
 
-## Purpose
+## 1. Feature Identity
 
-Prevent Smart Business from becoming a collection of duplicated feature silos. Approved channels and feature families should reuse authoritative foundations wherever the underlying concern is the same.
+Shared Product Foundations define the reusable product architecture that lets Smart Business remain one coherent assistant as features grow.
 
-## Foundation 1 — Business Memory
+These foundations exist to prevent each feature or channel from independently recreating:
 
-One merchant-scoped source of authoritative business history supports Ledger, documents, credit, payments, stock, suppliers, orders, attendance context and other approved domains.
+- Business Memory;
+- permissions;
+- identities;
+- conversation context;
+- AI orchestration/intelligence;
+- reminders;
+- notifications;
+- document interpretation;
+- location;
+- clarification/confirmation;
+- audit/history;
+- idempotency;
+- integration patterns.
 
-Feature-specific records may exist where domain modeling requires them, but channels must not create parallel competing business truth.
+The contract protects simplicity, consistency, security and long-term maintainability.
 
-## Foundation 2 — Permission Engine & Business Isolation
+---
 
-All channels/features reuse the same authoritative identity, business scope and permission truth. UI visibility or model instructions do not replace server/data authorization.
+## 2. Founder Problem Statement
 
-## Foundation 3 — Human Language Layer
+Smart Business evolved through many feature ideas. Without an explicit shared-foundation rule, future builders could create:
 
-English, Malayalam and Manglish understanding is a shared product layer reused across WhatsApp, Conversation Workspace, voice, support, reminders, HR, supplier/customer and delivery workflows.
+- separate Ledgers for WhatsApp and web;
+- separate AI brains per feature/channel;
+- duplicate customer/supplier identities;
+- separate reminder tables per module;
+- feature-specific OCR pipelines;
+- inconsistent permissions;
+- duplicated notification logic;
+- conflicting interpretations of the same business event.
 
-## Foundation 4 — Universal Document Intelligence
+That would make the product harder to trust and maintain.
 
-One document interpretation pattern supports:
+---
 
-- receipts/invoices;
-- stock/supplier documents;
-- rosters;
-- order lists;
-- compliance documents;
-- Excel/CSV/PDF imports;
-- other approved business files.
+## 3. Lighthouse Principles
 
-Required pattern where consequential interpretation is involved:
+- One product, not a collection of mini-apps.
+- Reuse before duplication.
+- Technology serves human clarity.
+- Human authority remains consistent across features.
+- Preserve provenance and auditability.
+- Narrow feature scope must not erase global product completeness.
+- Standardize the foundation; customize/integrate at the edges.
 
-**interpret → preview → clarify if needed → confirm → validated update**.
+---
 
-## Foundation 5 — Reminder / Delegated Automation Engine
+## 4. Business Memory Foundation
 
-Features reuse one reminder state model and bounded automation-authority pattern. A trigger does not create authority.
+Smart Business should maintain one authoritative business-memory model across approved features/channels.
 
-## Foundation 6 — Notification / Communication Layer
+Business Memory may include linked domain facts such as:
 
-Approved outbound communication should reuse common:
+- Ledger events;
+- customers/credit;
+- suppliers;
+- inventory/catalog;
+- documents;
+- orders/deliveries;
+- attendance/HR;
+- payments/reconciliation;
+- compliance records;
+- reminders;
+- operational context.
 
-- recipient identity;
-- role/permission rules;
-- language preference;
-- template/content safeguards;
-- opt-out rules where applicable;
-- delivery/retry/idempotency behavior;
-- channel adapters.
+A feature may own its domain model while still contributing to one connected Business Memory.
 
-Channel adapter differences must not duplicate business rules.
+Do not create a second truth merely because a new UI/channel is introduced.
 
-## Foundation 7 — Conversation Context & Clarification
+---
 
-Approved conversational channels share intent/context principles. Ambiguity is classified as normal business uncertainty unless evidence indicates a security event.
+## 5. Identity Foundation
 
-The platform should remember enough permitted context for natural follow-up while respecting privacy/retention boundaries.
+Shared identities should be reused where appropriate for:
 
-## Foundation 8 — Identity / Business Contacts
+- business;
+- Owner;
+- Manager;
+- Employee;
+- customer;
+- supplier;
+- delivery staff;
+- product/catalog item;
+- external integration/provider references.
 
-Owner, manager, employee, customer, supplier and delivery identities should be reused across features rather than recreated independently in each module. Domain-specific relationship tables may exist but must link to consistent merchant-scoped identities.
+Avoid duplicate identity silos caused by channel, add-on or feature boundaries.
 
-## Foundation 9 — Point-in-Time Location
+Identity matching must clarify ambiguity before consequential linking.
 
-Attendance and delivery may reuse a purpose-limited location-verification primitive. Location collection occurs only for an approved operational purpose and must not expand into continuous surveillance by default.
+---
 
-## Foundation 10 — Audit / Human Context
+## 6. Permission / Business Isolation Foundation
 
-Consequential corrections preserve:
+One authoritative permission/business-isolation model applies across:
 
-- original event/state;
-- later correction/context;
+- UI/workspace;
+- WhatsApp;
+- Conversation Workspace;
+- server functions/APIs;
+- database/RLS;
+- background jobs;
+- integrations;
+- exports/files;
+- AI tools.
+
+Feature-specific permissions may extend the model but cannot bypass it.
+
+---
+
+## 7. Conversation / Intent-Action Foundation
+
+Approved conversational channels should share:
+
+- intent understanding;
+- role/permission context;
+- business identity;
+- clarification rules;
+- confirmation model;
+- action dispatch;
+- Business Memory;
+- audit/idempotency.
+
+WhatsApp and the native Conversation Workspace must not implement separate feature logic.
+
+This foundation is implemented in concert with the dedicated AI orchestration contract rather than by embedding independent LLM logic into each channel.
+
+---
+
+## 8. Human Language Foundation
+
+English, Malayalam and Manglish support is shared across relevant features/channels.
+
+Features should not each create independent slang dictionaries or language rules.
+
+The foundation should support:
+
+- natural Kerala business vocabulary;
+- mixed-language text/voice;
+- name/unit variation;
+- clarification of consequential ambiguity;
+- user language preference where appropriate.
+
+---
+
+## 9. Universal Document Intelligence Foundation
+
+One shared document-intelligence pipeline should support feature-specific document types through domain adapters/rules.
+
+Core pattern:
+
+**capture/upload → interpret → preview → clarify where needed → confirm → validated domain update**.
+
+Feature modules should not build separate OCR/file parsers merely because their target record differs.
+
+---
+
+## 10. Document / Receipt Memory Foundation
+
+Original/relevant business documents should use a shared secure storage/retrieval model where suitable, with:
+
+- business/actor/source linkage;
+- document identity/version;
+- permission-scoped retrieval;
+- retention/privacy;
+- links to resulting business records.
+
+Receipt Cabinet is a named capability inside this shared document-memory direction, not a duplicate storage universe.
+
+---
+
+## 11. Reminder / Delegated Automation Foundation
+
+One shared Reminder Engine supports:
+
+- business/personal reminders;
+- compliance;
+- supplier/reorder follow-up;
+- credit follow-up;
+- HR;
+- delivery;
+- Ask CFO continuation.
+
+Standing automation rules are stored delegated authority, not AI-created permission.
+
+Feature-specific schedulers should be justified by true domain needs rather than convenience.
+
+---
+
+## 12. Notification Foundation
+
+A shared Notification foundation should coordinate approved outbound communication across channels.
+
+It should support:
+
+- recipient identity/role;
+- language;
+- channel preference/availability;
+- template/provider requirements;
+- delivery/retry state;
+- duplicate suppression;
+- privacy;
+- link to originating business event.
+
+Notification delivery is separate from business-event completion.
+
+---
+
+## 13. Confirmation / Clarification Foundation
+
+Shared confirmation principles apply across features:
+
+- clarify uncertain identity/intent before consequential write;
+- preview uncertain/material document import;
+- bind confirmation to exact actor/action/state/object;
+- revalidate permission/state at execution;
+- do not treat generic/stale `Yes` as unlimited authority.
+
+Feature UX may differ, but integrity rules remain consistent.
+
+---
+
+## 14. Audit / Human Context Foundation
+
+Consequential features should preserve relevant audit/provenance such as:
+
+- raw/original event;
 - actor;
-- authority provenance;
-- timestamps;
-- resulting current state.
+- source/channel;
+- interpretation;
+- correction;
+- authorized human context;
+- confirmation/approval;
+- resulting action;
+- timestamps.
 
-This supports transactions, attendance, orders, credit, payment reconciliation and other consequential workflows.
+Human context should be able to change interpretation without silently erasing original evidence.
 
-## Foundation 11 — Error / Exception / Security Separation
+---
 
-Keep separate concepts for:
+## 15. Idempotency / Duplicate Protection
 
-- ordinary user/business ambiguity;
-- validation failure;
-- technical/system error;
-- operational business alert;
-- genuine security/abuse/quarantine event.
+Shared patterns are required for actions vulnerable to retry/duplication, including:
 
-Do not route every problem into security quarantine.
+- payment/provider events;
+- POS ingestion;
+- document imports;
+- reminders;
+- automation triggers;
+- order creation/assignment;
+- Ledger writes;
+- notifications;
+- AI/tool execution retries;
+- WhatsApp webhook retries.
 
-## Foundation 12 — Idempotency / Duplicate Protection
+A retry must not create duplicate financial/business truth.
 
-External events, imports, POS data, bank/payment evidence, reminders and other retried operations need appropriate idempotency/duplicate handling. Idempotency is a behavioral/concurrency contract, not merely an identifier column.
+---
 
-## Foundation 13 — Channel-Independent Intent / Action Layer
+## 16. Location Foundation
 
-WhatsApp and Conversation Workspace should translate user intent into the same authorised product services. Future approved channels should plug into this layer without changing feature truth.
+Where features need location, use a shared purpose-limited primitive rather than independent tracking systems.
 
-## Foundation 14 — Stable Entitlement Architecture
+Approved uses may include:
 
-Subscription changes should normally change entitlement/permission, not dynamically create/drop core schema. Product modules may evolve, but the system should avoid live structural churn merely because a user upgrades/downgrades.
+- point-in-time attendance verification;
+- customer delivery destination;
+- point-in-time delivery proof/context;
+- other explicitly approved operational purposes.
 
-## Anti-Duplication Rule
+Default continuous employee surveillance is rejected.
 
-Before creating a new table, service, permission model, reminder mechanism, document parser, notification engine, identity record or channel-specific workflow, builders must inspect and reuse existing foundations where they correctly fit.
+Each feature must define:
 
-This is not a rule that everything belongs in one table/service. Legitimate domain separation is allowed when it prevents coupling and preserves integrity. The rule is **one authoritative foundation per concern**, not `one component for everything`.
+- why location is needed;
+- who may see it;
+- when it is captured;
+- how long it is retained;
+- when access ends.
 
-## Performance and Sustainability
+---
 
-Shared foundations should support fast, secure and reliable operation and reduce redundant compute/storage/API cost. Cost optimization must not degrade genuine merchant experience or privacy.
+## 17. Integration / Extension Foundation
 
-## Explicit Non-goals
+Smart Business should standardize core business behavior and customize/integrate at the edge.
 
-- one duplicate business engine per channel;
-- one OCR stack per feature;
-- one scheduler per feature;
-- duplicated employee/customer/supplier identities;
-- permissions encoded independently in each UI;
-- subscription-driven destructive schema mutation;
-- centralization that creates an unsafe monolith merely to claim reuse.
+Use approved extension/adapter patterns for:
 
-## Historical Corrections
+- POS;
+- payment/bank providers;
+- WhatsApp;
+- OpenAI/model services;
+- billing providers;
+- storage/document services;
+- future external systems.
 
-The historical `Unified Day 1 Table Initialization Law` survives as an architectural lesson—stable schema/entitlements over destructive subscription-driven schema mutation—not as a permanent count/list of historical tables.
+Custom client-specific modifications inside core are rejected unless explicitly reclassified through governance.
 
-Historical model names, exact table names, cloud providers and cron schedules remain implementation provenance.
+---
 
-## Provenance
+## 18. Scheduler / Background Job Foundation
 
-Reconciled primarily from Founder-origin Section 7 Q87–100, all earlier sections' reuse patterns, Source 01 modular/database philosophy, Source 11 reuse/anti-duplication handoff rules and Phase 1 security/engineering lessons.
+Scheduled work may include:
+
+- Daily Intelligence;
+- reminders;
+- safe retries;
+- retention/cleanup;
+- sync/reconciliation;
+- other deterministic already-authorized jobs.
+
+A background job may execute maintenance/authorized actions but cannot create new human/business authority.
+
+Jobs should be:
+
+- idempotent where needed;
+- observable;
+- narrowly retryable;
+- permission/authority-aware at execution where consequential.
+
+---
+
+## 19. Error and Narrow-failure Foundation
+
+Product-wide rule:
+
+> Block only what is unsafe or unavailable. Keep unrelated safe work available.
+
+Shared error behavior should support:
+
+- clear failure reason;
+- safe retry/recovery;
+- no false success;
+- preserved user input/evidence where appropriate;
+- operational observability;
+- narrow containment.
+
+One failing provider/module should not automatically freeze Smart Business globally.
+
+---
+
+## 20. Data / Schema Stability Principle
+
+Founder-origin history included a useful Day-1 stable-schema lesson.
+
+Current reconciliation preserves the architectural principle:
+
+- avoid destructive/dynamic schema creation/deletion based on subscription state;
+- keep historical records durable;
+- use entitlements/permissions to control capability;
+- evolve schema through governed migrations.
+
+Exact table inventory may evolve.
+
+---
+
+## 21. Performance Foundation
+
+Current product direction targets a responsive experience (sub-3-second for critical interactions where technically reasonable), without weakening:
+
+- authorization;
+- financial correctness;
+- confirmation;
+- privacy;
+- auditability.
+
+Shared caching/query/model-selection patterns should be used where safe rather than repeated feature-level reinvention.
+
+---
+
+## 22. Platform Quality / Testability
+
+Shared product quality expectations include:
+
+- stable identifiers/test hooks for critical UI flows where appropriate;
+- deterministic tests for financial/permission rules;
+- integration failure tests;
+- runtime verification;
+- independent verification before Mission Control acceptance.
+
+Green CI alone is not feature acceptance.
+
+---
+
+## 23. Privacy / Data Ownership Foundation
+
+- Merchant data belongs to merchant.
+- No cross-business leakage.
+- No routine platform access to merchant private intelligence.
+- Support access is purpose-limited.
+- Staff data is role/purpose limited.
+- Individual merchant data must not be sold for unrelated monetization.
+- Aggregate product/operational insight must be privacy-respecting/governed.
+
+---
+
+## 24. AI Authority Foundation
+
+Across all features, AI may:
+
+- remember through authorized Smart Business memory;
+- organize;
+- calculate;
+- interpret;
+- explain;
+- identify patterns;
+- suggest;
+- prepare drafts/actions.
+
+AI does not independently create permission or final business authority.
+
+The Owner remains the final human decision-maker for consequential merchant decisions unless a valid stored delegation explicitly covers execution.
+
+---
+
+## 25. AI Orchestration / OpenAI Intelligence Foundation
+
+Smart Business requires one shared intelligence/orchestration layer connecting channels and feature domains.
+
+The dedicated mature contract is:
+
+`24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`
+
+OpenAI is the current approved intelligence provider supporting language understanding, intent classification, structured extraction, multimodal/document interpretation, Ask CFO reasoning, summarisation, recommendation and controlled function/tool calling.
+
+The orchestration foundation must connect:
+
+- WhatsApp and the Conversation Workspace;
+- text, voice, image and document inputs;
+- Human Language;
+- Universal Document Intelligence;
+- Ledger / Business Memory;
+- Ask CFO;
+- Reminder Engine;
+- stock/supplier/reorder;
+- orders/delivery;
+- HR;
+- support;
+- other approved feature domains.
+
+Core separation of responsibility:
+
+- **OpenAI / AI layer:** understand, reason, extract, summarize, suggest and prepare structured tool calls.
+- **Permission Engine:** decides what the actor is allowed to access/do.
+- **Business Memory / domain services:** own authoritative merchant data and deterministic business rules.
+- **Confirmation / delegated authority:** controls consequential execution.
+- **Human:** retains final decision ownership except where an explicit valid standing delegation already exists.
+
+No feature or channel should create a parallel AI brain merely because its interface or domain differs.
+
+---
+
+## 26. Dedicated Channel Adapter Contracts
+
+The native Conversation Workspace and WhatsApp are separate channel experiences over the same foundations.
+
+Dedicated WhatsApp behavior is defined in:
+
+`23_WhatsApp_Intelligence_and_Channel_Adapter.md`
+
+WhatsApp owns transport/provider concerns such as webhooks, templates, media transfer and delivery state. It does not own Business Memory, permissions or feature logic.
+
+---
+
+## 27. Dependency Rule for Product Missions
+
+Every future Product Mission/EIS must state:
+
+1. which mature feature(s) it advances;
+2. which shared foundations it reuses;
+3. whether it consumes AI orchestration and/or a channel adapter;
+4. what already exists and must not be duplicated;
+5. what remains committed but outside current mission;
+6. exact blockers/dependencies;
+7. required evidence for acceptance.
+
+A narrow mission cannot demote unimplemented feature scope to `Build Later` by convenience.
+
+---
+
+## 28. Explicit Non-goals
+
+- duplicate Business Memory by channel;
+- duplicate Permission Engine per feature;
+- duplicate AI brain/orchestrator per channel or feature;
+- duplicate reminder scheduler per feature;
+- duplicate OCR/document pipeline;
+- duplicate customer/supplier identity silos;
+- continuous employee GPS foundation;
+- subscription-driven create/drop of core domain tables;
+- AI/tool capability treated as authority;
+- custom client-specific core forks.
+
+---
+
+## 29. Acceptance Scenarios
+
+Architecture/Product Mission verification should prove at least:
+
+1. WhatsApp and Conversation Workspace use one Business Memory/action truth.
+2. WhatsApp and Conversation Workspace share one permission-aware AI orchestration path rather than separate feature brains.
+3. Cross-business access is blocked consistently across channels/services/AI tools.
+4. Multiple features reuse one Reminder Engine.
+5. Multiple document types reuse one UDI pipeline with domain adapters.
+6. Customer/supplier identity is not duplicated solely by channel/feature.
+7. Consequential confirmation is exact and revalidated at execution.
+8. Duplicate external/retry events are idempotent.
+9. Attendance/delivery location uses purpose-limited shared primitive.
+10. Feature/provider failure is narrowly contained.
+11. Subscription changes do not dynamically destroy core schema/history.
+12. Audit retains raw evidence plus authorized human context where required.
+13. OpenAI/model outage does not corrupt authoritative business state.
+14. Future implementation documents identify reused foundations before introducing new subsystems.
+
+---
+
+## 30. Historical Corrections / Superseded Behavior
+
+Superseded:
+
+- channel-specific Ledgers/permissions;
+- separate WhatsApp-only vs web-only AI/business engines;
+- dynamic schema create/drop by subscription state;
+- duplicate per-feature reminders/OCR without architectural reason;
+- continuous employee surveillance as shared location pattern;
+- custom client-specific core modifications.
+
+Historical provider/model/table/timing constants remain engineering provenance unless current architecture separately adopts them.
+
+---
+
+## 31. Provenance and Hydration Coverage
+
+Reconciled primarily from Founder-origin Section 7 Q87–100, supported by Sections 1–6 cross-feature evidence; Smart Business Planning 1–20; Source 04 API/WhatsApp/OpenAI Framework; Source 05 AI Behaviour Framework; P00 OpenAI/WhatsApp Operational Profiles; project-room security/architecture lessons; Final Feature Reconciliation Register §§28–31; Source 01/02/11/12/17 as relevant.
+
+**Hydration result:** all current recovered anti-duplication, shared-foundation, AI orchestration, channel-adapter, failure-containment, confirmation, privacy and AI-authority behaviors have an explicit home in this contract or a named specialized feature contract.
+
+---
+
+## 32. Completion Gate
+
+Shared Foundations are not a one-time implementation milestone. They are complete enough for a release only when the relevant foundation is proven and every feature mission demonstrably reuses/extends it without creating conflicting parallel truth, permissions or AI orchestration.

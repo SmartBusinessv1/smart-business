@@ -1,133 +1,419 @@
-# Permissions, Business Isolation & Role Authority
+# Smart Business Feature Definition — Permissions, Business Isolation & Role Authority
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **BUILD NOW — CORE SHARED FOUNDATION**  
+**Commercial availability:** Core platform/product foundation  
+**Authority boundary:** Permission is granted by authenticated business authority and enforced server/data-side. UI visibility, AI confidence or tool capability never creates authority.
 
-**Product Type:** Core shared security/product foundation  
-**Build Commitment:** **BUILD NOW**  
-**Applies To:** Every Smart Business channel, screen, API, AI flow, background job and integration.
+---
 
-## Purpose
+## 1. Feature Identity
 
-Protect merchant privacy and human authority while allowing useful delegation. Permission truth must live at authoritative server/data boundaries rather than depending on hidden buttons, route names or AI prompt obedience alone.
+This contract defines who may see or do what inside Smart Business and guarantees that one business/user role cannot access another business's protected data or Owner-only intelligence.
 
-## User Authority Model
+It is a shared foundation used by every feature, channel and integration.
+
+---
+
+## 2. Founder Problem Statement
+
+Smart Business serves Owners, Managers, Employees, Suppliers, Customers and Delivery Staff in different ways.
+
+Without a strong permission model:
+
+- staff could see Owner profit/intelligence;
+- one business could leak into another;
+- support/admin access could become too broad;
+- a chat interface could bypass UI restrictions;
+- delegated automation could exceed Owner intent;
+- feature integrations could silently widen access.
+
+The product must remain useful without forcing every user into the same privilege level.
+
+---
+
+## 3. Lighthouse Principles
+
+- Owner retains highest business authority.
+- Manager authority is delegated, not assumed.
+- Employees are operational/self-service users where permitted.
+- Suppliers/customers/delivery staff are purpose-limited participants.
+- AI Assistant, Not AI Judge.
+- Tool access ≠ permission.
+- UI hiding ≠ authorization.
+- Business isolation is a product promise.
+- Denial of a normal unauthorized request is not automatically a moral/security accusation.
+
+---
+
+## 4. Core Authority Model
 
 ### Owner
 
-Highest authority within the merchant business. May access Owner intelligence, approve changes, manage users/subscriptions, export business data and delegate bounded permissions.
+Highest business-level authority within product/governance limits.
+
+Can delegate bounded capabilities to Managers/Employees.
 
 ### Manager
 
-Delegated business role. Receives only permissions granted by Owner/current policy. Manager does not automatically inherit Ask CFO, profit, broad analytics or Owner-only controls.
+Receives only permissions explicitly delegated by Owner/current policy.
+
+Manager does **not** automatically receive:
+
+- Owner profit intelligence;
+- unrestricted Ask CFO;
+- all financial reports;
+- all HR/customer data;
+- all billing/platform controls.
 
 ### Employee
 
-Operational user. May perform explicitly permitted actions such as:
+Operational access only as permitted.
+
+May include, depending on role/configuration:
 
 - add permitted transactions;
 - upload permitted receipts/documents;
-- record attendance;
+- operate stock/order tasks;
 - view own attendance;
-- request corrections;
-- participate in assigned stock/order/delivery workflows where permitted.
+- request attendance correction/leave;
+- perform assigned delivery/order work.
 
-Employee cannot access Owner financial intelligence by default.
+Employees do not receive Owner financial intelligence by default.
 
 ### Supplier
 
-Communication participant only for approved supplier/procurement workflows. No dashboard/business-intelligence access.
+Purpose-limited communication participant in supplier/reorder workflows. No merchant business-intelligence access.
 
 ### Customer
 
-Business participant for their own order/status/receipt interactions. No merchant dashboard, Ask CFO, other-customer data or business intelligence.
+Purpose-limited participant in customer-credit/order/delivery workflows. No merchant dashboard/Ask CFO access.
 
 ### Delivery Staff
 
-Operational employee/delegate with only delivery-task information required for assigned work plus explicitly permitted self-service information.
+Purpose-limited assigned-delivery user. No unrelated customers/orders or Owner intelligence.
 
-## Multi-Tenant Business Isolation
+---
 
-Every business record and operation must resolve to the correct merchant/business boundary. No user, AI flow, API or background process may cross that boundary merely because it can technically query the data.
+## 5. Permission Dimensions
 
-Database/RLS/server authorization must enforce isolation where applicable.
+Permission decisions may need to consider:
 
-## Channel Independence
+- authenticated user;
+- business membership;
+- role;
+- explicit delegated capability;
+- object/record ownership/scope;
+- action type (read/create/update/approve/export/admin);
+- feature entitlement;
+- channel/context;
+- temporary/purpose-limited grant;
+- current account/subscription/security state.
 
-Permissions must be consistent across:
+Avoid a simplistic role-only model where a capability needs finer delegation.
 
-- WhatsApp;
-- Conversation Workspace;
-- dashboard;
-- APIs/POS;
-- document imports;
-- reminders/automations;
-- AI/Ask CFO;
-- support/admin tooling.
+---
 
-Switching channel or authentication method must not increase authority.
+## 6. Business Isolation
 
-## Preview and Execution Authority
+Every protected business record must be scoped to the correct business.
 
-For consequential operations:
+Server/database authorization must prevent:
 
-1. derive actor and business identity from trusted server state;
-2. verify permission before preview;
-3. bind any confirmation token/state to the exact reviewed action, target and expected state;
-4. revalidate permission immediately before execution;
-5. preserve actor/authority provenance in audit history.
+- cross-business reads;
+- cross-business writes;
+- cross-business conversation context;
+- cross-business file/document access;
+- cross-business exports;
+- cross-business integration mapping.
 
-Permission at preview time is not permanent authority.
+Client-provided `business_id` or UI route state must never be trusted by itself as authorization.
 
-## Owner-Delegated Authority
+---
 
-Owner may delegate bounded business permissions or standing automation rules. Delegation must be explicit, scoped, revocable and auditable.
+## 7. Server-side Authorization
 
-AI does not create permission. Tool access does not create permission. A historical approval does not automatically create current authority for a different action.
+Authorization should be enforced at appropriate server/database layers, for example through:
 
-## Data Visibility
+- Row Level Security;
+- vetted RPC/service boundaries;
+- server functions;
+- capability checks;
+- object/action validation.
 
-Sensitive fields may require structurally different response shapes rather than merely returning protected values as null/hidden UI fields.
+UI controls are secondary usability protections only.
 
-Owner-only or cost-sensitive information should be physically omitted from unauthorized response contracts where appropriate.
+---
 
-## Normal Permission Denial vs Security Event
+## 8. Conversation / AI Permission Boundary
 
-A user asking for information they are not permitted to access should receive a respectful permission denial. It is not automatically a security/quarantine event.
+WhatsApp and the native Conversation Workspace must use the same permission model.
 
-Actual abuse, bypass attempts or unsafe payloads may use the security/quarantine path.
+A natural-language prompt cannot widen access.
 
-## Support / Super Admin
+Examples:
 
-Platform operators do not inherit merchant Owner authority. Account-specific support access must be purpose-limited, authorized, least-privilege and auditable.
+- Employee asking `What is our profit?` → deny/redirect according to policy.
+- Employee asking `Show my attendance` → allow if permitted.
+- Manager asking Ask CFO without Owner-delegated intelligence access → deny/limit.
+- Customer asking for another customer's order → deny.
 
-## Error and Exception Behaviour
+AI must never infer that because it has data in context it is allowed to reveal it.
 
-Handle:
+---
 
-- revoked permission mid-session;
-- duplicate/stale confirmation;
-- role changed after preview;
-- cross-business identifier mismatch;
-- invalid delegation;
-- expired temporary support access;
-- unauthorized API/token use;
-- UI showing a control the backend rejects.
+## 9. Ask CFO / Owner Intelligence
 
-The correct response is a safe denial/recovery path, not a silent downgrade or data leak.
+Ask CFO is Owner intelligence by default.
 
-## Explicit Non-goals
+Manager access requires explicit delegation/current Product Truth.
 
-- UI-only authorization;
-- employee access to Owner intelligence by default;
-- technical service-role capability treated as business permission;
-- broad permanent Super Admin merchant-data access;
-- dynamic schema deletion/addition as entitlement enforcement;
-- channel-specific permission engines.
+Employees, suppliers, customers and delivery staff do not receive Owner-wide Ask CFO intelligence.
 
-## Historical Corrections
+This boundary is server/data-enforced, not merely a hidden button.
 
-Ground Zero's rigid `write-only employee` model evolves into useful permission-scoped self-service while keeping Owner intelligence protected. Broad service bypasses and ordinary denial-as-security-violation patterns are superseded.
+---
 
-## Provenance
+## 10. Employee Self-service
 
-Reconciled from Founder-origin Sections 1, 5 and 7; Source 05 role-based AI permissions; Source 06 employee/support privacy; Source 11 User Authority Model; Supabase/security lessons on RLS/effective privileges; and Mission Control authority doctrine.
+Historical `write-only employee` concepts are superseded where too restrictive.
+
+Employees may receive useful self-service when explicitly permitted, including:
+
+- own attendance;
+- own correction requests;
+- own leave/request status;
+- assigned tasks/orders/deliveries;
+- other job-specific information.
+
+Self-service must not expose unrelated staff or Owner intelligence.
+
+---
+
+## 11. Permission-scoped Transaction / Operational Contribution
+
+An Employee may add transactions, receipts/documents, stock/order events or other operations only when the Owner/current role grants that capability.
+
+Created records preserve actor identity.
+
+Permission to create does not automatically grant permission to:
+
+- read all history;
+- edit/correct all records;
+- export business data;
+- view analytics.
+
+---
+
+## 12. Delegated Automation Authority
+
+A standing automation rule is a stored delegation from an authorized Owner.
+
+Execution must verify:
+
+- rule still enabled;
+- actor/business scope;
+- exact target/action/limits;
+- current entitlement/state;
+- no revocation/permission change.
+
+A scheduler, AI model or tool can trigger a check but cannot create permission.
+
+---
+
+## 13. Supplier / Customer / Delivery Participation
+
+External participants receive only the minimum information necessary for their workflow.
+
+Examples:
+
+- Supplier sees order/request details relevant to that supplier.
+- Customer sees their own order/delivery/credit communication.
+- Delivery Staff sees the assigned customer's delivery details.
+
+They must never become generic users of merchant Business Memory or analytics.
+
+---
+
+## 14. Temporary / Purpose-limited Support Access
+
+Team LIPS support may require narrow merchant-specific troubleshooting access.
+
+Such access must follow Support/Super Admin governance:
+
+- legitimate support/security purpose;
+- required consent/authorization process;
+- minimum module/data;
+- time/purpose bounded;
+- privileged actor identity;
+- audit;
+- revocation when resolved.
+
+A support ticket does not imply permanent broad access.
+
+---
+
+## 15. Authentication vs Authorization
+
+Authentication answers **who is this user?**
+
+Authorization answers **what may this user do here?**
+
+A valid login/session alone does not grant:
+
+- business membership;
+- Owner role;
+- cross-business access;
+- feature entitlement;
+- admin privileges.
+
+---
+
+## 16. Feature Entitlements
+
+Plan/add-on state may gate whether a feature is available, but entitlement is not a replacement for role permission.
+
+Both may be required:
+
+`entitled business + authorized user + allowed action/object`.
+
+Do not dynamically create/drop domain schema merely to represent entitlement state.
+
+---
+
+## 17. Permission Changes and Runtime Revalidation
+
+Permissions can change while a user has:
+
+- an open screen;
+- pending confirmation;
+- queued action;
+- automation rule;
+- long conversation.
+
+Consequential execution must revalidate current authority immediately before action.
+
+A stale UI/confirmation must not execute after permission is revoked.
+
+---
+
+## 18. Confirmation Binding
+
+Where confirmation is required, it must bind:
+
+- exact actor;
+- exact business;
+- exact action;
+- exact target/object;
+- exact reviewed state/value;
+- expiry/version as appropriate.
+
+A generic `Yes` or stale preview must not authorize a materially changed action.
+
+---
+
+## 19. Auditability
+
+Material authorization/delegation events should preserve, as applicable:
+
+- permission granted/revoked;
+- grantor/actor;
+- role/capability;
+- scope;
+- timestamp;
+- resulting action/denial where security-sensitive;
+- temporary elevated access;
+- automation authority provenance.
+
+Do not turn routine permission denials into accusatory incident logs by default.
+
+---
+
+## 20. Error and Denial Behavior
+
+When access is denied:
+
+- do not leak protected data while explaining;
+- say what the user can do next where useful;
+- preserve normal product operation;
+- avoid accusation/shame;
+- escalate only if behavior actually meets security/abuse criteria.
+
+A permission failure in one feature should not globally sign out/block unrelated allowed work unless security requires it.
+
+---
+
+## 21. Privacy and Dignity
+
+- No continuous employee surveillance through permissions tooling.
+- No hidden staff scoring/accusation.
+- No routine broad admin visibility into merchant data.
+- No cross-business analytics leakage.
+- Permission design should support useful work rather than punish non-Owner users.
+
+---
+
+## 22. Shared Foundation Reuse
+
+Every feature must use this permission/business-isolation foundation rather than inventing independent role logic.
+
+Feature contracts may add domain-specific permissions, but they must compose with the shared model.
+
+---
+
+## 23. Explicit Non-goals
+
+- UI-only permission enforcement;
+- Manager = automatic Owner-equivalent;
+- Employee = permanent useless write-only account;
+- support ticket = unrestricted access;
+- AI/tool = authority;
+- subscription state = permission to destroy schema;
+- routine denial = security accusation.
+
+---
+
+## 24. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Owner can access Owner-authorized data in own business only.
+2. Cross-business query/write is denied server-side.
+3. Manager sees only delegated capabilities.
+4. Employee can add an approved transaction but cannot read Owner analytics.
+5. Employee can see own attendance if permitted.
+6. Employee cannot gain Ask CFO via natural-language prompt.
+7. Supplier/customer/delivery user sees only own bounded workflow data.
+8. Permission revoked after preview blocks execution at runtime.
+9. Feature entitlement plus role permission are both enforced.
+10. Temporary support access is scoped/audited/revoked.
+11. Standing automation cannot exceed Owner-delegated scope.
+12. Normal denial is respectful and does not expose data.
+
+---
+
+## 25. Historical Corrections / Superseded Behavior
+
+Superseded:
+
+- broad Manager/Employee inheritance of Owner intelligence;
+- UI hiding as the security model;
+- employee permanently `write-only` with no useful approved self-service;
+- routine denial logged as moral/security violation;
+- service/master-key access as ordinary broad operational path.
+
+Preserved: strong RLS/business isolation and explicit role/capability delegation.
+
+---
+
+## 26. Provenance and Hydration Coverage
+
+Reconciled from Founder-origin Sections 2–7, especially Section 5/7 role and permission evidence; planning/project-room security lessons; Final Feature Reconciliation Register §19 and §§28–30; Source 02 Supabase architecture; Source 11 authority model; current Security & Permissions governance.
+
+**Hydration result:** all cross-feature Owner/Manager/Employee/external-role authority and business-isolation corrections recovered through the Founder-origin mission are represented here.
+
+---
+
+## 27. Completion Gate
+
+Complete only when the permission model is implemented and independently verified across database/server/UI/conversation/integrations, with business isolation, runtime revalidation, delegation, external-role scoping, privileged support access and acceptance evidence.

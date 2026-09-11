@@ -1,812 +1,587 @@
-# Smart Order & Delivery Assistant
+# Smart Business Feature Definition — Smart Order & Delivery Assistant
 
-## Feature Identity
-
-**Feature Name:** Smart Order & Delivery Assistant  
-**Product Type:** Optional add-on  
-**Availability:** Smart Business Ledger + Smart Business Manager  
-**Build Commitment:** **BUILD NOW — required before first 10 pilot clients**  
-**Founder Intent:** Give local merchants professional ordering and delivery capability for their own customer relationships without turning Smart Business into a public marketplace.
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **ADD-ON + BUILD NOW — validate before first 10 pilot merchants**  
+**Commercial availability:** Smart Business Ledger + Smart Business Manager add-on  
+**Authority boundary:** Merchant serves its own approved customer relationships. This is not a public marketplace. Owner/authorized humans retain consequential decision authority.
 
 ---
 
-## 1. Founder Problem Statement
+## 1. Feature Identity
 
-Kerala local businesses such as restaurants, bakeries, supermarkets, groceries, and wholesale shops often manage orders and delivery through:
+Smart Order & Delivery Assistant gives a local merchant a professional way to receive, confirm, prepare, assign, deliver and close customer orders without turning Smart Business into a public marketplace.
 
-- phone calls;
-- informal WhatsApp messages;
-- handwritten notes;
-- staff memory;
-- repeated address questions;
-- manual delivery assignment;
-- follow-up calls asking where the delivery is;
-- cash collection without structured proof.
+It must work with the way Kerala merchants already operate: phone calls, WhatsApp, handwritten lists, staff-entered orders, voice, paper notes and direct customer relationships.
 
-The goal is not to replace the merchant's customer relationship.
-
-The goal is to make that existing relationship easier to operate.
+The feature is a private merchant-customer operating network.
 
 ---
 
-## 2. Lighthouse Principle
+## 2. Founder Problem Statement
 
-This feature must follow:
+Local merchants often manage delivery through fragmented human memory:
 
-- Humans serving humans.
-- Technology adapts to real human behavior.
-- Small businesses deserve professional capability without enterprise complexity.
-- Customer trust is a responsibility.
-- Ask for information when its value is understandable.
-- Reduce owner workload rather than creating new approval rituals.
-- Location data exists for an operational purpose, not for uncontrolled surveillance.
+- orders arrive by phone, WhatsApp, voice note, paper or in person;
+- item availability is checked informally;
+- addresses are repeatedly requested;
+- staff assignment is verbal;
+- customers call for status;
+- COD collection can be difficult to reconcile;
+- delivery proof and exceptions may be poorly recorded.
 
-A useful product formulation is:
-
-> Help existing customers order directly from their trusted local shop. Do not create a marketplace.
+Smart Business should reduce that coordination burden without taking ownership of the merchant's customer relationship.
 
 ---
 
-## 3. Explicit Non-goal — Not a Marketplace
+## 3. Lighthouse Principles
 
-Smart Order & Delivery Assistant must not evolve into a generic public marketplace by implementation convenience.
+The feature must protect:
 
-It is designed for a merchant's own approved customer relationships.
+- humans serving humans;
+- merchant/customer relationship ownership;
+- privacy by purpose;
+- no public marketplace drift;
+- minimal data collection;
+- explicit confirmation before consequential commitments;
+- dignified staff treatment;
+- no default continuous employee surveillance;
+- clear, recoverable exception handling;
+- channel independence.
 
-It must not automatically become:
+---
+
+## 4. Explicit Non-goal — Not a Marketplace
+
+Smart Order & Delivery must not become, by implementation convenience:
 
 - public merchant discovery;
 - cross-merchant product listing;
-- bidding between merchants;
-- marketplace commission engine;
-- open ordering from unrelated public users;
-- Swiggy/Zomato-style marketplace logic.
+- marketplace bidding;
+- marketplace commission logic;
+- an open ordering network for unrelated public users;
+- a Swiggy/Zomato-style marketplace.
 
-Future marketplace ideas, if ever considered, require a separate Founder product decision and likely a separate product classification.
+Any broader marketplace or wholesaler network requires a separate future Founder product decision.
 
 ---
 
-## 4. Users Involved
+## 5. Users and Permission Boundaries
 
 ### Owner
 
-Full feature authority within the business.
+The Owner may, within plan/feature availability:
 
-Can:
-
-- create customers;
-- import customers;
-- create orders;
-- review customer-created orders;
-- confirm/modify/reject orders;
-- assign delivery staff;
-- set COD amount;
-- view active deliveries;
-- view delivery history;
-- review exceptions;
-- manage customer relationship status;
-- add customer address/location when known;
-- control delivery permissions.
+- create/import customers;
+- create, review, confirm, modify or cancel orders;
+- assign permitted delivery staff;
+- set/confirm COD amounts;
+- view active and historical deliveries;
+- manage customer status and delivery permissions;
+- review exceptions and delivery evidence.
 
 ### Manager
 
-Delegated authority only.
-
-May perform operational order/delivery actions when explicitly permitted by Owner.
-
-Manager does not automatically inherit Owner financial intelligence or Ask CFO access.
+Manager authority is delegated by the Owner. Manager does not automatically inherit Owner financial intelligence or Ask CFO access.
 
 ### Employee / Staff
 
-Operational access only when permitted.
+A permitted employee may perform only approved operational actions, for example:
 
-May:
+- create an order draft;
+- review item availability;
+- prepare/pack an order;
+- update permitted order states;
+- assign delivery staff where explicitly allowed.
 
-- create an order for an approved customer;
-- review and modify order item availability;
-- confirm an approved order workflow;
-- assign delivery staff if permitted;
-- update approved operational order state.
-
-Must not automatically gain:
-
-- profit intelligence;
-- full analytics;
-- Ask CFO;
-- unrestricted customer export;
-- cross-business access.
+Employees must not gain unrestricted customer export, Owner profit, Ask CFO or full analytics merely because they participate in order fulfilment.
 
 ### Delivery Staff
 
-Can:
+Delivery staff receives only what is needed for the assigned delivery:
 
-- receive assigned delivery;
-- see only information needed for the assigned delivery;
-- open delivery location/map;
-- start delivery;
-- update delivery status;
-- share location during active delivery;
-- mark delivered;
-- mark unable to deliver;
-- upload approved proof;
-- record COD collected amount where required.
+- merchant identity;
+- customer name/contact where required;
+- order/item summary;
+- delivery address/location;
+- delivery timing/instructions;
+- COD amount where applicable;
+- permitted delivery actions.
 
-Cannot:
-
-- access owner financial intelligence;
-- access Ask CFO;
-- access unrestricted business analytics;
-- browse unrelated customers or deliveries without permission;
-- be continuously tracked outside active delivery work.
+Delivery staff must not receive Owner-wide business intelligence or browse unrelated customers/orders.
 
 ### Customer
 
-Can:
+A customer may:
 
 - be added to the merchant's approved customer network;
-- receive one welcome/awareness message;
-- unsubscribe/STOP;
-- place orders through approved channels;
-- provide order items and notes;
-- accept/modify/cancel proposed order changes;
-- share delivery location when needed;
-- receive order confirmation;
-- receive delivery assignment/status updates;
-- track delivery while active;
-- report delivery issues.
+- place an order through an approved channel;
+- accept/modify/cancel a proposed order change;
+- provide delivery address/location when needed;
+- receive confirmations/status updates;
+- report delivery issues;
+- unsubscribe from permitted messaging.
 
-Cannot:
-
-- access merchant dashboard;
-- access Ask CFO;
-- view business analytics;
-- view other customers;
-- access staff information beyond what is necessary for their delivery;
-- access merchant internal business intelligence.
+Customer access never includes merchant internal analytics or staff information beyond what is necessary for the delivery relationship.
 
 ---
 
-## 5. Private Customer Network
+## 6. Customer Identity and Private Customer Network
 
-The feature operates only within an approved merchant-customer relationship.
+Customer identity is merchant-scoped and should reuse shared identity foundations rather than create a duplicate customer record for each channel.
 
-Customer identities should be merchant-scoped and linked to the correct business.
+Supported creation/import paths may include:
 
-Supported customer creation methods:
+- manual workspace entry;
+- conversational quick-add;
+- Excel/CSV import through Universal Document Intelligence;
+- approved migration/import workflows.
 
-### A. Bulk customer import
+At minimum, an orderable customer generally needs a usable identity/contact path. Address/location may remain missing until delivery actually requires it.
 
-For larger existing customer lists.
-
-Expected supported inputs include:
-
-- Excel;
-- CSV;
-- other approved Universal Document Intelligence formats as implemented.
-
-### B. Manual dashboard entry
-
-For small numbers of customers.
-
-Minimum identity:
-
-- customer name;
-- phone number.
-
-Optional at initial creation:
-
-- address;
-- saved location;
-- notes;
-- customer type;
-- delivery preference.
-
-### C. WhatsApp quick add
-
-Example:
-
-> Add Bharath Hotel as a customer, number 98xxxxxx, location MG Road.
-
-Smart Business should interpret the instruction, show/confirm the created customer relationship where consequential, and preserve merchant ownership.
+The system must detect plausible duplicate customers rather than silently creating parallel identities.
 
 ---
 
-## 6. Customer Welcome + Consent / Unsubscribe
+## 7. Customer Awareness and Messaging Consent
 
-When a customer is newly added to the merchant's Order & Delivery network, Smart Business should send a **single** welcome/awareness message on behalf of that merchant.
+When a customer is newly enabled for the merchant's order/delivery communication, the product should clearly identify the merchant and explain the purpose of messages.
 
-The message should communicate, in the customer's language where available:
+Messaging must respect:
 
-- which merchant added them;
-- that they can place orders;
-- that they can receive order updates;
-- that they can track deliveries;
-- that they can report delivery issues;
-- how to unsubscribe.
-
-Example intent, not locked public copy:
-
-> ABC Supermarket has enabled its Smart Delivery Service for you. You can place orders, receive updates, and track deliveries here. If you do not wish to receive these updates, reply STOP.
-
-### Trust rules
-
-Smart Business must not:
-
-- repeatedly send welcome messages;
-- immediately demand address/location with no reason;
-- spam inactive customers;
-- send unrelated promotional messaging merely because the customer is in the delivery list;
-- ignore STOP/unsubscribe.
+- unsubscribe/STOP behavior where applicable;
+- approved templates/provider rules;
+- no repeated welcome spam;
+- no unrelated promotional abuse merely because a customer exists in the delivery network.
 
 ---
 
-## 7. Respectful Address / Location Collection
+## 8. Order Intake Channels
 
-Customer location/address may be missing after customer creation.
+The feature must support the same business workflow regardless of approved input channel.
 
-That is acceptable.
-
-The system should not repeatedly chase the customer for the missing field.
-
-### Ask only when the location has immediate value
-
-#### Customer creates first delivery order
-
-If location is missing:
-
-> To deliver your order correctly, please share your delivery location.
-
-#### Owner/Staff creates delivery
-
-If the customer location is missing, Smart Business should ask the Owner/Staff to choose:
-
-- add location themselves; or
-- request it from the customer in the context of the actual delivery.
-
-The customer request should make the purpose clear.
-
-### Founder rationale
-
-A Kerala customer may hesitate when an unfamiliar WhatsApp bot asks for address or live location without context.
-
-Trust improves when the reason is obvious.
-
----
-
-## 8. Order Creation Methods
-
-The feature must support more than customer-created orders.
-
-### 8.1 Customer-initiated order
-
-A registered customer sends an order through an approved channel.
-
-Example:
-
-> 2 bread, 1 milk, 1 kg apple.
-
-or natural Malayalam/Manglish/voice equivalent.
-
-Smart Business should convert the input to an **Order Draft**.
-
-Draft contains:
-
-- customer;
-- items;
-- quantities/units;
-- notes where relevant;
-- delivery location status;
-- order state.
-
-The system must not fabricate missing item details.
-
-### 8.2 Owner/Staff-initiated order
-
-A merchant may have received the order by phone, in person, notebook, or another existing workflow.
-
-Example:
-
-> Create order for Shahul: Banana 1 kg, Milk 2 packets, Biriyani Rice 2 kg, Chicken Masala 1 packet.
-
-Smart Business verifies the customer and creates a draft.
-
-### 8.3 Document/photo-created order
-
-Universal Document Intelligence should support a paper/photo/PDF order list where approved.
-
-Required pattern:
-
-**Document/photo → interpretation → draft/preview → user confirmation → order record.**
-
-Uncertain document interpretation must not silently create a finalized order.
-
-### 8.4 Voice-created order
-
-Owner/authorized Staff may create orders through natural voice input.
-
-The system should preserve the same confirmation rules as text.
-
----
-
-## 9. Order Draft, Availability and Negotiation
-
-A customer order request is not automatically final.
-
-Owner/authorized Staff must be able to review item availability.
-
-Example:
-
-- Bread — available;
-- Milk — available;
-- Apple — unavailable;
-- Orange — available as alternative.
-
-Smart Business may return a clear change proposal to the customer.
-
-Customer can:
-
-- accept changes;
-- modify order;
-- cancel.
-
-Only after the approved confirmation flow should the order become `Confirmed`.
-
-This protects both customer expectation and merchant inventory reality.
-
----
-
-## 10. Owner/Staff Confirmation Flow
-
-For Owner/Staff-created orders, Smart Business should show a clear human-readable draft.
-
-Example:
-
-**Mr. Shahul — Order Received**
-
-- Banana — 1 kg
-- Milk — 2 packets
-- Biriyani Rice — 2 kg
-- Chicken Masala — 1 packet
-
-Actions:
-
-- Confirm
-- Modify
-
-Only after confirmation should delivery assignment begin.
-
----
-
-## 11. Natural-language Delivery Assignment
-
-The feature should support conversational assignment.
+### Customer-initiated
 
 Examples:
 
-> Rahul, deliver 5 kg onion to Bharath Hotel by 5 PM.
+- text;
+- voice;
+- image/photo of a handwritten list;
+- supported document input.
 
-> Assign it to Rahul. Amount to collect ₹632.
+### Merchant-initiated
 
-Before assignment, Smart Business should verify:
+Owner/permitted staff may create an order from:
 
-- order is confirmed;
-- customer exists and belongs to this business;
-- delivery staff exists;
-- delivery staff has delivery permission;
-- expected collection amount is valid where applicable;
-- customer location is available or a resolution path exists.
+- phone-call information;
+- in-person request;
+- text/voice instruction;
+- handwritten/paper list;
+- imported order sheet.
 
-After successful assignment:
+### Document/photo intake
 
-### Delivery Staff receives
+Universal Document Intelligence must be reused:
 
-- merchant/business identity;
-- customer name;
-- ordered items;
-- quantity;
-- expected delivery time/deadline;
-- amount to collect where COD applies;
-- customer delivery location/map;
-- Start Delivery action.
+**input → interpretation → preview → clarify where needed → confirmation → order draft**.
 
-### Customer receives
-
-- order confirmed;
-- item summary;
-- expected amount where applicable;
-- delivery assignment/status;
-- notice that tracking becomes available after delivery starts.
-
-### Owner/authorized Staff receives
-
-- assignment confirmation;
-- delivery staff identity;
-- customer;
-- amount to collect where relevant;
-- current delivery status.
+Uncertain extraction must not silently create a confirmed order.
 
 ---
 
-## 12. Start Delivery and Live Tracking
+## 9. Order Draft and Clarification
 
-When Delivery Staff starts the delivery:
+Incoming order intent first becomes a draft where consequential facts can be reviewed.
 
-1. status becomes `Out for Delivery` or equivalent approved state;
-2. active location sharing/tracking begins only for the delivery purpose;
-3. customer receives tracking access/link through the approved channel;
-4. Owner/authorized operations view reflects the active state.
+A draft should preserve, as applicable:
 
-### Privacy rule
+- business/customer identity;
+- items;
+- quantities and units;
+- notes/substitution preferences;
+- delivery/pickup intent;
+- requested time;
+- address/location status;
+- payment/COD information;
+- source/channel;
+- creator/actor;
+- current order state.
 
-Tracking is active only for the delivery lifecycle.
+Clarify the smallest useful question when:
 
-It must stop when the delivery is completed, cancelled, or otherwise closed according to approved workflow.
+- product identity is ambiguous;
+- quantity/unit is unclear;
+- multiple customer identities match;
+- delivery location is missing when required;
+- payment/COD amount is inconsistent;
+- item interpretation from a document is uncertain.
 
-No permanent employee tracking.
-
----
-
-## 13. Delivery Completion
-
-Delivery Staff can mark:
-
-- Delivered;
-- Unable to Deliver / Delivery Issue.
-
-### Delivered
-
-When marked delivered, Smart Business should record appropriate completion evidence.
-
-Customer receives a polite completion message and an **issue reporting option**.
-
-### Customer silence
-
-No customer response is normal.
-
-It must **not** create a conflict by default.
-
-The system may close the delivery normally when no issue is reported and completion evidence is sufficient.
-
-### Customer reports issue
-
-Create a Delivery Exception / Customer Issue for Owner or authorized staff review.
-
-Do not accuse the Delivery Staff automatically.
-
-### Unable to Deliver
-
-Supported operational reasons may include:
-
-- customer unavailable;
-- address/location problem;
-- payment issue;
-- customer postponed;
-- customer refused;
-- other reason.
-
-Owner/authorized staff receives the exception and decides next action.
+Never guess a consequential order fact merely to progress the workflow.
 
 ---
 
-## 14. Smart Delivery Proof
+## 10. Availability, Substitution and Customer Confirmation
 
-Where technically and legally appropriate, `Mark Delivered` should automatically record useful operational proof such as:
+A requested order is not automatically final.
 
-- completion timestamp;
-- delivery staff identity;
-- order identity;
-- completion location;
-- distance from expected customer location where available;
-- delivery status history.
+Owner/authorized staff should be able to review stock/availability using current business data where available.
 
-### Optional supporting evidence
+If a requested item is unavailable, Smart Business may help propose:
 
-Delivery Staff may also attach:
+- quantity change;
+- replacement/substitute;
+- partial fulfilment;
+- removal;
+- later fulfilment where supported.
 
-- delivery photo;
-- customer note;
-- bill/photo proof;
-- COD collected confirmation.
+The customer or authorized merchant user must approve material changes before the order reaches the confirmed state.
 
-The system should prefer automatic evidence over forcing repetitive manual screenshots when reliable automatic capture is available.
+Smart Business must not promise inventory that the product cannot support with reliable data.
 
 ---
 
-## 15. COD Collection
+## 11. Order Lifecycle
 
-Where an order is Cash on Delivery:
+The mature lifecycle should support a clear progression such as:
 
-- Owner/Staff sets expected amount to collect;
-- Delivery Staff sees that amount;
-- Delivery Staff records actual amount collected;
-- system compares expected vs recorded amount;
-- match → normal completion;
-- mismatch → operational exception for review.
+**Draft → Confirmed → Preparing/Packing → Ready/Assigned → Out for Delivery → Delivered/Closed**
 
-Smart Business reports the mismatch without accusing the employee.
+with explicit exception/cancel states as needed.
 
----
+State names may evolve, but state transitions must be auditable and permission-scoped.
 
-## 16. Inventory / Stock Integration
-
-### Manager
-
-Manager already includes stock intelligence.
-
-Order & Delivery should be capable of using Manager stock foundations for:
-
-- availability checks;
-- stock-aware order review;
-- inventory movement after confirmed business events;
-- reorder intelligence where applicable.
-
-### Ledger
-
-Order & Delivery remains useful without stock automation.
-
-If Smart Stock Assistant is active, the add-on may use the shared stock foundation.
-
-If no stock capability is active, order handling must not fabricate inventory knowledge.
+A historical fixed status enum is implementation detail, not immutable Product Truth.
 
 ---
 
-## 17. Shared Foundations to Reuse
+## 12. Delivery Assignment
 
-The feature should reuse approved shared systems instead of creating duplicates.
+Before assignment, verify:
 
-Likely shared capability areas include:
+- the order is in an assignable state;
+- the customer belongs to the merchant;
+- the delivery person exists and has permission;
+- required address/location exists or has a resolution path;
+- COD amount is reviewed where applicable;
+- the assignment is not a duplicate/retry of an already completed action.
 
-- Identity / Business Contacts;
-- Permission Engine;
-- Human Language Layer;
-- WhatsApp/Conversation Engine;
-- Business Memory;
-- Universal Document Intelligence;
-- Notification/Message Engine;
-- Location Foundation;
-- Audit/history foundation;
-- Smart Reminder Engine where delivery follow-up reminders are needed;
-- Stock foundation where enabled.
-
-The EIS must inspect actual repository architecture before deciding exact schema or services.
+Natural-language assignment is supported, subject to the same validation.
 
 ---
 
-## 18. Business Memory / Data Requirements
+## 13. Delivery Staff Experience
 
-This feature requires durable records for concepts such as:
+The delivery workflow should be low-friction and need not require a heavy separate driver application.
 
-- merchant-scoped customer identity;
-- customer relationship status;
-- welcome status;
-- unsubscribe state;
-- address status;
-- location status;
-- order;
-- order items;
-- order status history;
-- delivery assignment;
-- delivery status history;
-- expected collection amount;
-- actual collection amount;
-- delivery proof;
-- customer issue/exception;
-- timestamps and actor identity.
+Delivery staff should receive only task-required information and permitted actions, such as:
 
-This file does **not** prescribe exact table names.
+- acknowledge assignment;
+- open address/map;
+- mark started/out-for-delivery;
+- record delivery proof;
+- record COD collected amount;
+- mark delivered;
+- report unable-to-deliver/exception.
 
-Claude Code / Supabase architecture should design the safest normalized model while preserving this behavior.
+The durable requirement is operational usefulness and bounded access, not a particular historic driver UI.
 
 ---
 
-## 19. AI Behavior
+## 14. Location and Tracking — Current Reconciled Rule
+
+Location is purpose-limited.
+
+Smart Business may use location for:
+
+- customer delivery destination;
+- point-in-time delivery verification;
+- proof/event context where appropriate;
+- a user-requested or explicitly authorized live-tracking experience if separately designed under current privacy/security rules.
+
+**Default continuous route GPS surveillance of delivery staff is not a required/current behavior.**
+
+The product must not continuously track an employee merely because a delivery assignment exists.
+
+Where location is captured:
+
+- collect only what is necessary;
+- make purpose understandable;
+- stop/expire access when the operational purpose ends;
+- prevent unrelated role access;
+- follow current retention policy.
+
+This rule supersedes older Founder-era/seed wording that implied continuous route tracking as the default delivery lifecycle.
+
+---
+
+## 15. Delivery Proof and Completion
+
+Completion must rely on configured positive proof/action rather than unsupported inference.
+
+Possible proof mechanisms may include, as appropriate:
+
+- delivery staff completion action;
+- recipient acknowledgement;
+- OTP/signature/photo or other approved proof;
+- point-in-time location evidence;
+- COD/payment evidence;
+- merchant confirmation.
+
+The product should select/allow suitable proof according to risk and merchant configuration without forcing unnecessary friction.
+
+### Customer silence rule
+
+Customer silence alone is **not** an automatic delivery failure or exception when sufficient configured proof exists.
+
+Absence of a reply must not automatically roll back an otherwise well-proven delivery.
+
+---
+
+## 16. COD and Payment Relationship
+
+Where COD applies:
+
+- expected collection amount must be explicit;
+- delivered/COD-collected are separate facts where needed;
+- discrepancies remain visible;
+- payment verification/reconciliation should reuse the shared financial-integrity foundation;
+- delivery completion must not silently duplicate Ledger income.
+
+The exact Ledger write/link must be idempotent and auditable.
+
+---
+
+## 17. Merchant, Customer and Staff Notifications
+
+Use the shared Notification foundation.
+
+Useful notifications may include:
+
+- order received/draft requiring action;
+- confirmation/change request;
+- assignment;
+- delivery started/status;
+- delivery completed;
+- payment/COD exception;
+- unable-to-deliver exception.
+
+Do not create a separate order-only notification infrastructure when shared foundations can serve the need.
+
+---
+
+## 18. WhatsApp Experience
+
+WhatsApp is an approved channel for:
+
+- customer order intake;
+- merchant/staff order creation;
+- clarification;
+- confirmations;
+- status communication;
+- approved delivery interactions.
+
+WhatsApp remains an adapter to shared order/customer/delivery truth, not a separate workflow engine.
+
+---
+
+## 19. Conversation Workspace Experience
+
+Authorized merchant users should be able to perform the corresponding order/delivery workflows in the Smart Business Conversation Workspace using:
+
+- text;
+- voice;
+- image/photo;
+- Excel/CSV/PDF where relevant.
+
+The same order record, permissions, identity, confirmations and audit trail must apply across channels.
+
+---
+
+## 20. Human Language
+
+Customer and merchant interactions should support English, Malayalam and Manglish through the shared Human Language Layer.
+
+The system should understand locally natural units/product expressions while clarifying ambiguous consequential details.
+
+---
+
+## 21. AI Behaviour and Authority
 
 AI may:
 
-- interpret natural order instructions;
-- structure item/quantity drafts;
-- identify customer and delivery staff candidates;
-- ask clarification;
-- suggest alternatives based on authorized data;
-- summarize order/delivery state;
-- assist assignment;
-- explain exceptions.
+- interpret order intent;
+- prepare drafts;
+- identify missing information;
+- suggest substitutions;
+- summarize state;
+- surface exceptions;
+- recommend follow-up.
 
 AI must not:
 
-- invent customer identity;
-- invent stock availability;
-- create a final order from ambiguous input without required confirmation;
-- assign an unauthorized employee;
-- expose Owner intelligence to customer/delivery staff;
-- treat a delivery issue as proof of wrongdoing;
-- continue location tracking outside the delivery purpose.
+- finalize uncertain orders by guessing;
+- expand staff permission;
+- mark delivery completed without configured proof;
+- create payment facts without evidence;
+- expose unrelated customer/Owner information;
+- create public marketplace relationships.
 
 ---
 
-## 20. Human Language Layer
+## 22. Business Memory and Data Requirements
 
-Customer, Owner, Staff, and Delivery Staff experiences should support the user's approved language preference:
+The feature should preserve durable relationships among:
 
-- English;
-- Malayalam;
-- Manglish.
+- merchant/business;
+- customer identity;
+- customer communication preferences;
+- order and order lines;
+- item/product identity where applicable;
+- order state history;
+- assignment actor;
+- delivery state/events;
+- delivery proof;
+- COD/payment evidence/link;
+- address/location with purpose/retention boundary;
+- exception history;
+- source channel;
+- confirmation/audit events.
 
-Messages should sound natural for Kerala users, not like literal machine translation.
-
----
-
-## 21. Performance Expectations
-
-Critical interactions should feel fast and dependable.
-
-Examples:
-
-- order draft creation;
-- confirmation;
-- assignment;
-- Start Delivery;
-- status update;
-- customer tracking notification.
-
-Performance must not weaken:
-
-- permission checks;
-- merchant isolation;
-- correctness;
-- idempotency;
-- financial integrity for COD;
-- privacy.
+Do not duplicate customer/product identities where shared foundations already exist.
 
 ---
 
-## 22. Failure / Exception Principles
+## 23. Shared Foundations to Reuse
 
-The system must handle at least:
+Reuse:
 
-- duplicate order submission;
-- customer unsubscribed;
-- unknown/unapproved customer;
-- ambiguous customer name;
-- ambiguous delivery staff name;
-- unavailable item;
-- missing location;
-- delivery staff unavailable;
-- tracking unavailable;
-- customer issue report;
-- failed delivery;
+- Permission Engine / business isolation;
+- shared identities;
+- Business Memory;
+- Human Language Layer;
+- Conversation Workspace / WhatsApp adapters;
+- Universal Document Intelligence;
+- inventory/catalog where available;
+- Notification foundation;
+- Reminder Engine;
+- point-in-time location primitive;
+- audit/history/idempotency;
+- Payment Verification / Ledger services where relevant.
+
+---
+
+## 24. Error and Exception Behaviour
+
+Handle at minimum:
+
+- unknown/duplicate customer;
+- ambiguous item/quantity;
+- out-of-stock/substitution;
+- missing address/location;
+- unavailable delivery staff;
+- revoked permission during workflow;
+- duplicate assignment/action retry;
+- customer modification/cancellation;
+- delivery delay;
+- unable-to-deliver;
+- proof failure;
 - COD mismatch;
-- location mismatch;
-- message-delivery failure;
-- retry/idempotency conditions.
+- channel delivery failure;
+- payment/linking failure.
 
-Failures must produce clear recoverable states rather than silent data corruption.
-
----
-
-## 23. Acceptance Scenarios
-
-At minimum, later Product Blueprint / acceptance work should verify:
-
-### Customer network
-
-- bulk customer import;
-- manual customer entry;
-- WhatsApp quick add;
-- one welcome message;
-- STOP/unsubscribe;
-- no repeated immediate location requests.
-
-### Ordering
-
-- customer-created order;
-- Owner-created order;
-- Staff-created order;
-- voice-created order;
-- document/photo-created order;
-- draft review;
-- unavailable-item modification;
-- customer acceptance/cancel;
-- Owner/Staff confirm/modify.
-
-### Assignment
-
-- natural-language assignment;
-- wrong/ambiguous staff identity;
-- delivery permission check;
-- COD amount assignment.
-
-### Delivery
-
-- Start Delivery;
-- customer tracking notification;
-- location active only during delivery;
-- Delivered;
-- Unable to Deliver;
-- automatic/approved proof capture;
-- customer issue reporting;
-- customer no-response normal completion;
-- tracking stops at completion.
-
-### Security
-
-- customer cannot access dashboard;
-- Delivery Staff cannot access Ask CFO;
-- Employee cannot access Owner analytics unless explicitly permitted;
-- no cross-business customer/order leakage;
-- private customer network boundary enforced.
-
-### Inventory
-
-- Manager stock-aware behavior;
-- Ledger + Smart Stock behavior;
-- Ledger without stock capability does not invent availability.
+A narrow failure must not freeze unrelated merchant operations.
 
 ---
 
-## 24. Historical Correction Record
+## 25. Privacy and Trust Boundaries
 
-### Superseded assistant classification
-
-Earlier planning assistant recommendation:
-
-> Build after core pilot.
-
-Founder correction:
-
-> **Build before first 10 pilot clients and include in pilot feedback.**
-
-The earlier `after pilot` recommendation is therefore historical only and must not be used as current Build Later authority.
+- Merchant owns the customer relationship.
+- Customer data is business-scoped.
+- Delivery staff sees only task-required information.
+- Location is purpose-limited.
+- No default continuous staff surveillance.
+- No staff access to Owner financial intelligence merely through delivery duties.
+- No public marketplace reuse of customer data.
+- Support/platform access follows separate purpose-limited governance.
 
 ---
 
-## 25. Provenance
+## 26. Acceptance Scenarios
 
-Primary detailed origin:
+A future Blueprint/EIS must verify at least:
 
-- `smart_business_planning_19.txt`
-
-Continuity:
-
-- `smart_business_planning_18.txt`
-- earlier planning-origin feature/product extractions where relevant.
-
-Current canonical echoes:
-
-- Source 11 — Smart Order & Delivery Assistant Add-on;
-- Source 12 — Smart Order and Delivery implementation/acceptance rules;
-- Source 09 — pilot-entry requirement for Smart Order & Delivery.
-
----
-
-## 26. Unresolved Engineering Questions
-
-The following are engineering/product-implementation questions for future Blueprint/EIS work, not reasons to demote the feature:
-
-- exact customer/relationship schema;
-- exact live-location provider and data-retention approach;
-- exact tracking-link UX;
-- delivery location tolerance/geofence rules;
-- delivery proof retention;
-- COD reconciliation integration with ledger/payment verification;
-- messaging-template requirements under Meta policies;
-- offline/poor-network delivery behavior;
-- mapping provider fallback;
-- idempotent order and status-event architecture;
-- exact owner/staff permission granularity.
-
-These questions must be resolved while preserving the feature promise above.
+1. Customer text order → accurate draft → merchant/customer confirmation.
+2. Voice order → clarification for ambiguity → confirmed draft.
+3. Handwritten/photo order → UDI preview → confirmation → draft.
+4. Merchant/staff phone-order capture through conversation.
+5. Out-of-stock item → respectful substitution flow.
+6. Missing delivery location requested only when operationally needed.
+7. Permission-scoped delivery assignment.
+8. Delivery staff receives only required information.
+9. Purpose-limited delivery proof/location without default continuous tracking.
+10. Customer silence does not fail an otherwise sufficiently proven delivery.
+11. COD discrepancy remains visible and does not duplicate Ledger revenue.
+12. WhatsApp and Conversation Workspace operate on the same order truth.
+13. Cross-business access is denied server-side.
+14. Duplicate/retry does not create duplicate order/payment events.
 
 ---
 
-## Final Product Principle
+## 27. Dependencies
 
-Smart Order & Delivery Assistant should make a local merchant's existing customer relationship feel more organized, trustworthy, and professional.
+Major dependencies include:
 
-It must not make the merchant become a marketplace operator.
+- Permissions / Business Isolation;
+- shared customer/product identity;
+- Human Language Layer;
+- Universal Document Intelligence;
+- Conversation Workspace / WhatsApp integration;
+- Notification foundation;
+- audit/idempotency;
+- Inventory/Catalog for availability-aware flows;
+- Payment Verification / Ledger for financial closure;
+- bounded location primitive.
 
-It must not make the customer feel surveilled or spammed.
+---
 
-It must not make Delivery Staff surrender privacy outside active delivery work.
+## 28. Historical Corrections / Superseded Behaviour
 
-It should simply help the business serve its own customers better.
+Preserve the original Founder intent for a professional private ordering/delivery capability.
+
+Superseded or historical-only:
+
+- public marketplace interpretation;
+- customer silence automatically becoming a failure/rollback;
+- default continuous route GPS tracking of delivery staff;
+- fixed universal delay thresholds such as 45 minutes;
+- mandatory heavy native driver app;
+- old implementation-specific transport/status constants where not reaffirmed.
+
+---
+
+## 29. Provenance and Hydration Coverage
+
+Reconciled from:
+
+- Founder-origin Section 5 / Order & Delivery recovery;
+- Section 7 cross-feature, confirmation, privacy and residual-completeness evidence;
+- Smart Business Planning 1–20 and project-room historical extraction;
+- current Founder corrections;
+- Final Feature Reconciliation Register §§20, 28–30;
+- Source 01 and Source 11 current Product Truth.
+
+**Hydration result:** all current `PRESERVE` / `PRESERVE + EVOLVE` behaviors assigned to this feature family have a destination in this contract or an explicitly referenced shared foundation.
+
+---
+
+## 30. Unresolved Founder Questions
+
+- Exact current Smart Order & Delivery add-on price remains unresolved.
+- Broader marketplace/wholesaler expansion remains a separate future Founder decision and is not part of this contract.
+
+---
+
+## 31. Completion Gate
+
+The feature is not complete because an order screen exists.
+
+Completion requires the full approved lifecycle across UI/channel, backend/data, permissions, confirmations, inventory relationship, delivery proof, payment/COD linkage, privacy, exceptions, runtime verification and acceptance evidence.
