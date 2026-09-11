@@ -3,7 +3,7 @@
 **Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
 **Build commitment:** **BUILD NOW — CROSS-PRODUCT ARCHITECTURE CONTRACT**  
 **Commercial availability:** Shared across Ledger, Manager and approved add-ons  
-**Authority boundary:** New features must reuse and extend shared foundations where appropriate. A narrow feature mission must not silently create duplicate truth, permissions, reminders, documents, identities or channel-specific business logic.
+**Authority boundary:** New features must reuse and extend shared foundations where appropriate. A narrow feature mission must not silently create duplicate truth, permissions, reminders, documents, identities, AI brains or channel-specific business logic.
 
 ---
 
@@ -17,6 +17,7 @@ These foundations exist to prevent each feature or channel from independently re
 - permissions;
 - identities;
 - conversation context;
+- AI orchestration/intelligence;
 - reminders;
 - notifications;
 - document interpretation;
@@ -35,6 +36,7 @@ The contract protects simplicity, consistency, security and long-term maintainab
 Smart Business evolved through many feature ideas. Without an explicit shared-foundation rule, future builders could create:
 
 - separate Ledgers for WhatsApp and web;
+- separate AI brains per feature/channel;
 - duplicate customer/supplier identities;
 - separate reminder tables per module;
 - feature-specific OCR pipelines;
@@ -134,6 +136,8 @@ Approved conversational channels should share:
 - audit/idempotency.
 
 WhatsApp and the native Conversation Workspace must not implement separate feature logic.
+
+This foundation is implemented in concert with the dedicated AI orchestration contract rather than by embedding independent LLM logic into each channel.
 
 ---
 
@@ -259,7 +263,9 @@ Shared patterns are required for actions vulnerable to retry/duplication, includ
 - automation triggers;
 - order creation/assignment;
 - Ledger writes;
-- notifications.
+- notifications;
+- AI/tool execution retries;
+- WhatsApp webhook retries.
 
 A retry must not create duplicate financial/business truth.
 
@@ -297,6 +303,7 @@ Use approved extension/adapter patterns for:
 - POS;
 - payment/bank providers;
 - WhatsApp;
+- OpenAI/model services;
 - billing providers;
 - storage/document services;
 - future external systems.
@@ -405,7 +412,7 @@ Green CI alone is not feature acceptance.
 
 Across all features, AI may:
 
-- remember;
+- remember through authorized Smart Business memory;
 - organize;
 - calculate;
 - interpret;
@@ -420,25 +427,76 @@ The Owner remains the final human decision-maker for consequential merchant deci
 
 ---
 
-## 25. Dependency Rule for Product Missions
+## 25. AI Orchestration / OpenAI Intelligence Foundation
+
+Smart Business requires one shared intelligence/orchestration layer connecting channels and feature domains.
+
+The dedicated mature contract is:
+
+`24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`
+
+OpenAI is the current approved intelligence provider supporting language understanding, intent classification, structured extraction, multimodal/document interpretation, Ask CFO reasoning, summarisation, recommendation and controlled function/tool calling.
+
+The orchestration foundation must connect:
+
+- WhatsApp and the Conversation Workspace;
+- text, voice, image and document inputs;
+- Human Language;
+- Universal Document Intelligence;
+- Ledger / Business Memory;
+- Ask CFO;
+- Reminder Engine;
+- stock/supplier/reorder;
+- orders/delivery;
+- HR;
+- support;
+- other approved feature domains.
+
+Core separation of responsibility:
+
+- **OpenAI / AI layer:** understand, reason, extract, summarize, suggest and prepare structured tool calls.
+- **Permission Engine:** decides what the actor is allowed to access/do.
+- **Business Memory / domain services:** own authoritative merchant data and deterministic business rules.
+- **Confirmation / delegated authority:** controls consequential execution.
+- **Human:** retains final decision ownership except where an explicit valid standing delegation already exists.
+
+No feature or channel should create a parallel AI brain merely because its interface or domain differs.
+
+---
+
+## 26. Dedicated Channel Adapter Contracts
+
+The native Conversation Workspace and WhatsApp are separate channel experiences over the same foundations.
+
+Dedicated WhatsApp behavior is defined in:
+
+`23_WhatsApp_Intelligence_and_Channel_Adapter.md`
+
+WhatsApp owns transport/provider concerns such as webhooks, templates, media transfer and delivery state. It does not own Business Memory, permissions or feature logic.
+
+---
+
+## 27. Dependency Rule for Product Missions
 
 Every future Product Mission/EIS must state:
 
 1. which mature feature(s) it advances;
 2. which shared foundations it reuses;
-3. what already exists and must not be duplicated;
-4. what remains committed but outside current mission;
-5. exact blockers/dependencies;
-6. required evidence for acceptance.
+3. whether it consumes AI orchestration and/or a channel adapter;
+4. what already exists and must not be duplicated;
+5. what remains committed but outside current mission;
+6. exact blockers/dependencies;
+7. required evidence for acceptance.
 
 A narrow mission cannot demote unimplemented feature scope to `Build Later` by convenience.
 
 ---
 
-## 26. Explicit Non-goals
+## 28. Explicit Non-goals
 
 - duplicate Business Memory by channel;
 - duplicate Permission Engine per feature;
+- duplicate AI brain/orchestrator per channel or feature;
 - duplicate reminder scheduler per feature;
 - duplicate OCR/document pipeline;
 - duplicate customer/supplier identity silos;
@@ -449,47 +507,50 @@ A narrow mission cannot demote unimplemented feature scope to `Build Later` by c
 
 ---
 
-## 27. Acceptance Scenarios
+## 29. Acceptance Scenarios
 
 Architecture/Product Mission verification should prove at least:
 
 1. WhatsApp and Conversation Workspace use one Business Memory/action truth.
-2. Cross-business access is blocked consistently across channels/services.
-3. Multiple features reuse one Reminder Engine.
-4. Multiple document types reuse one UDI pipeline with domain adapters.
-5. Customer/supplier identity is not duplicated solely by channel/feature.
-6. Consequential confirmation is exact and revalidated at execution.
-7. Duplicate external/retry events are idempotent.
-8. Attendance/delivery location uses purpose-limited shared primitive.
-9. Feature/provider failure is narrowly contained.
-10. Subscription changes do not dynamically destroy core schema/history.
-11. Audit retains raw evidence plus authorized human context where required.
-12. Future implementation documents identify reused foundations before introducing new subsystems.
+2. WhatsApp and Conversation Workspace share one permission-aware AI orchestration path rather than separate feature brains.
+3. Cross-business access is blocked consistently across channels/services/AI tools.
+4. Multiple features reuse one Reminder Engine.
+5. Multiple document types reuse one UDI pipeline with domain adapters.
+6. Customer/supplier identity is not duplicated solely by channel/feature.
+7. Consequential confirmation is exact and revalidated at execution.
+8. Duplicate external/retry events are idempotent.
+9. Attendance/delivery location uses purpose-limited shared primitive.
+10. Feature/provider failure is narrowly contained.
+11. Subscription changes do not dynamically destroy core schema/history.
+12. Audit retains raw evidence plus authorized human context where required.
+13. OpenAI/model outage does not corrupt authoritative business state.
+14. Future implementation documents identify reused foundations before introducing new subsystems.
 
 ---
 
-## 28. Historical Corrections / Superseded Behavior
+## 30. Historical Corrections / Superseded Behavior
 
 Superseded:
 
 - channel-specific Ledgers/permissions;
+- separate WhatsApp-only vs web-only AI/business engines;
 - dynamic schema create/drop by subscription state;
 - duplicate per-feature reminders/OCR without architectural reason;
 - continuous employee surveillance as shared location pattern;
 - custom client-specific core modifications.
 
-Historical provider/table/timing constants remain engineering provenance unless current architecture separately adopts them.
+Historical provider/model/table/timing constants remain engineering provenance unless current architecture separately adopts them.
 
 ---
 
-## 29. Provenance and Hydration Coverage
+## 31. Provenance and Hydration Coverage
 
-Reconciled primarily from Founder-origin Section 7 Q87–100, supported by Sections 1–6 cross-feature evidence; Smart Business Planning 1–20; project-room security/architecture lessons; Final Feature Reconciliation Register §§28–31; Source 01/02/05/11/12/17 as relevant.
+Reconciled primarily from Founder-origin Section 7 Q87–100, supported by Sections 1–6 cross-feature evidence; Smart Business Planning 1–20; Source 04 API/WhatsApp/OpenAI Framework; Source 05 AI Behaviour Framework; P00 OpenAI/WhatsApp Operational Profiles; project-room security/architecture lessons; Final Feature Reconciliation Register §§28–31; Source 01/02/11/12/17 as relevant.
 
-**Hydration result:** all current recovered anti-duplication, shared-foundation, failure-containment, confirmation, privacy and AI-authority behaviors have an explicit home in this contract or a named specialized feature contract.
+**Hydration result:** all current recovered anti-duplication, shared-foundation, AI orchestration, channel-adapter, failure-containment, confirmation, privacy and AI-authority behaviors have an explicit home in this contract or a named specialized feature contract.
 
 ---
 
-## 30. Completion Gate
+## 32. Completion Gate
 
-Shared Foundations are not a one-time implementation milestone. They are complete enough for a release only when the relevant foundation is proven and every feature mission demonstrably reuses/extends it without creating conflicting parallel truth.
+Shared Foundations are not a one-time implementation milestone. They are complete enough for a release only when the relevant foundation is proven and every feature mission demonstrably reuses/extends it without creating conflicting parallel truth, permissions or AI orchestration.
