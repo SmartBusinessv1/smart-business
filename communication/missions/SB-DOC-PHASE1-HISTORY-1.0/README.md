@@ -2,33 +2,25 @@
 
 ## Mission State
 
-**Status:** `ACTIVE — FOUNDER-ORIGIN RECOVERY COMPLETE THROUGH QUESTION 68; SECTION 6 NEXT`
+**Status:** `ACTIVE — FOUNDER-ORIGIN QUESTIONS 1–100 COMPLETE; DEDICATED FINAL FEATURE RECONCILIATION COMPLETE PENDING MERGE/VERIFICATION`
 
-**Authority:** Smart Business Mission Control / Founder-approved activation
+**Authority:** Founder / Smart Business Mission Control
 
-**Scope:** Smart Business inception through formal completion of `SB-P-1.11`, plus recovery of the original Founder feature vision needed to prevent future implementation drift.
-
-**Exact successor handover:**
-
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`
+**Scope:** Smart Business inception through formal completion of `SB-P-1.11`, plus Founder-origin product recovery and mature feature reconciliation required to prevent future implementation drift.
 
 ---
 
-## Objective
+# Objective
 
-Build a durable, evidence-backed institutional record of Smart Business Phase 1 and preserve enough Founder-origin product detail that future Product Missions can build the complete approved Smart Business without reconstructing old chats.
+Build a durable evidence-backed institutional record of Smart Business Phase 1 and preserve enough reconciled Founder-origin product detail that future Product Missions can build the complete approved Smart Business without reconstructing old chats.
 
-Locked historical Product Mission range:
-
-`SB-P-1.0` → `SB-P-1.11`
-
-The mission must preserve historical truth without inventing modern Source 18 lifecycle artifacts for early missions that predate Source 18.
+Historical evidence must remain historical. Current Founder direction and current canonical Product Truth control current product behaviour.
 
 ---
 
-## Evidence Rules
+# Evidence Rules
 
-Historical claims use evidence-appropriate language such as:
+Historical claims use evidence-appropriate language including:
 
 - `CONFIRMED`
 - `STRONGLY SUPPORTED`
@@ -36,38 +28,37 @@ Historical claims use evidence-appropriate language such as:
 - `CONTRADICTED`
 - `UNRESOLVED`
 
-Do not fabricate Product Blueprints, EIS records, contracts, stage gates, runtime verification, approval, acceptance or mission identity merely to make early history look complete.
+Historical Product Mission records must not fabricate modern Source 18 lifecycle artifacts for early missions that predate Source 18.
 
-Historical evidence does not override current Founder direction or current canonical Product Truth.
+Founder-origin feature reconciliation uses the five mandatory disposition buckets:
+
+- `PRESERVE — STILL CURRENT`
+- `PRESERVE + EVOLVE`
+- `HISTORICAL IMPLEMENTATION DETAIL`
+- `SUPERSEDED / REJECTED BEHAVIOUR`
+- `UNRESOLVED FOUNDER DECISION`
 
 ---
 
 # Phase A — Historical Evidence Intake
 
-**State:** `COMPLETE FOR ALL SUPPLIED SMART BUSINESS CHATGPT PROJECT ROOMS AND THE 20-PART SMART BUSINESS PLANNING ROOM`
+**State:** `COMPLETE`
 
-The mission has durably extracted/reconciled:
+Durable extraction/reconciliation covers:
 
-- Mission Control generations supplied through the historical extraction;
-- Infrastructure Operations;
-- Lovable Room and Lovable Lab;
-- Supabase Room and Supabase Lab;
-- ChatGPT Claude-oriented Room and Lab;
-- Founder Accountability;
-- Admin Lab;
-- AI & WhatsApp;
-- Security & Permissions Architecture;
-- Founder Room and supplied Founder reference materials;
-- relevant GitHub/repository/runtime evidence;
-- `smart_business_planning_1` through `smart_business_planning_20`.
-
-The ChatGPT Claude-oriented rooms are not Claude.ai / Claude Code execution evidence. Durable GitHub evidence remains primary where available.
+- Mission Control generations supplied through historical extraction;
+- specialist rooms;
+- Founder Room and Founder reference materials;
+- relevant GitHub/repository/runtime history;
+- complete `smart_business_planning_1` through `smart_business_planning_20` extraction.
 
 ---
 
-# Phase B — Reconciliation & Historical Synthesis
+# Phase B — Historical Synthesis
 
-The existing synthesis artifacts are maintained at:
+**State:** `COMPLETE ENOUGH FOR FINAL FOUNDER-ORIGIN RECONCILIATION; LATER CLOSEOUT REFRESH STILL REQUIRED`
+
+Historical synthesis artifacts:
 
 ```text
 communication/missions/SB-DOC-PHASE1-HISTORY-1.0/synthesis/
@@ -79,215 +70,219 @@ communication/missions/SB-DOC-PHASE1-HISTORY-1.0/synthesis/
 └── 06_Evidence_and_Open_Questions_Ledger.md
 ```
 
-These are historical synthesis artifacts, not Product Truth or governance.
+These remain institutional/historical evidence, not Product Truth.
 
-## Reconciled Product Mission identity
-
-The former unresolved state for `SB-P-1.0` has been superseded by later Founder clarification plus strong planning-era and Mission Control corroboration.
-
-Current historical judgement:
+Current historical judgement retains:
 
 `SB-P-1.0 — Command Foundation`
 
-Provenance boundary:
-
-This is a later Founder-clarified historical identity strongly corroborated by direct Phase 0 / Phase 1 transition evidence. Do not falsely claim that an original-era heading literally named `SB-P-1.0 — Command Foundation` unless such contemporaneous evidence is later recovered.
-
-`SB-INF-1.0 — Supabase Project Provisioning` remains a separate infrastructure mission.
+as Founder-clarified and strongly corroborated, without pretending a literal contemporaneous mission heading was recovered.
 
 ---
 
 # Phase C — Founder-Origin Feature Recovery
 
-**State:** `ACTIVE — QUESTIONS 1–68 COMPLETE; SECTIONS 6–7 PENDING`
+**State:** `COMPLETE — QUESTIONS 1–100`
 
-The Founder recovered two major evidence streams:
+Evidence streams:
 
-1. NotebookLM — later Smart Business V2.2/source-era product knowledge;
-2. Ground Zero Smart Business ideation chat — earliest known Founder product ideation evidence.
+1. NotebookLM later/source-era product history;
+2. Ground Zero earliest recovered Founder-origin ideation;
+3. current Founder clarifications layered above historical evidence.
 
-Temporary reconciliation workspace:
+Temporary evidence workspace:
 
 `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/ground-zero-reconciliation/`
 
-Current state:
+Completed:
 
-- Section 1 — COMPLETE — Questions 1–8
-- Section 2 — COMPLETE — Questions 9–18
-- Section 3 — COMPLETE — Questions 19–34
-- Section 4 — COMPLETE — Questions 35–51
-- Section 5 — COMPLETE — Questions 52–68 across two files
-- Section 6 — PENDING — Questions 69–86
-- Section 7 — PENDING — Questions 87–100
+- Section 1 — Q1–8
+- Section 2 — Q9–18
+- Section 3 — Q19–34
+- Section 4 — Q35–51
+- Section 5 — Q52–68 across two files
+- Section 6 — Q69–86
+- Section 7 — Q87–100
 
-A successor Mission Control must continue from **Section 6 / Question 69** and must not restart Questions 1–68.
-
-Question bank:
-
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
-
-Detailed continuation instructions:
-
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/successor-handover-section-6-onward.md`
+Questions 1–100 are durably extracted. Do not restart historical questioning merely because implementation work later exposes a product gap; use the mature feature library and only return to raw history for provenance when necessary.
 
 ---
 
-# Smart Business Feature Definition Library
+# Phase D — Dedicated Final Feature Reconciliation
 
-Durable feature contracts belong at:
+**State:** `COMPLETE PENDING PR MERGE/MAIN VERIFICATION`
+
+Controlling reconciliation register:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/01_Final_Feature_Reconciliation_Register.md`
+
+The register reconciles:
+
+- Sections 1–7 in order;
+- NotebookLM;
+- Ground Zero;
+- Smart Business Planning 1–20;
+- project-room historical extraction;
+- current Founder direction;
+- Source 01;
+- Source 11 Product Truth;
+- relevant current AI/support/security/execution governance.
+
+It prevents both anti-drift failures:
+
+1. losing an approved Founder feature because an old assistant called it future/later/MVP;
+2. reviving an unsafe old mechanism merely because it existed historically.
+
+Final rule:
+
+> **Preserve the approved feature. Preserve the Founder correction. Evolve the mechanism. Reject only superseded behaviour.**
+
+---
+
+# Mature Smart Business Feature Definition Library
+
+Location:
 
 `docs/phase-1-mission-blueprint/smart-business-features/`
 
-The feature library exists because high-level Product Truth can correctly state what a feature is while still omitting enough workflow depth for a builder to produce a materially incomplete implementation.
+The library now has a reconciled 22-family destination model covering:
 
-The final Founder-origin reconciliation must deepen/create complete feature files after all seven evidence sections are recovered.
+- Ledger / Business Memory;
+- Ask CFO;
+- Daily Intelligence;
+- Universal Document / Receipt Intelligence;
+- Staff / HR;
+- Stock / Supplier / Reorder;
+- Support Automation;
+- Human Language;
+- Smart Order & Delivery;
+- Conversation Workspace / Channel Independence;
+- Smart Reminder / Delegated Automation;
+- Basic Voice / Voice Plus;
+- POS / Counter Intelligence / Closing Cash;
+- Smart Credit Awareness;
+- Payment Verification / Bank Reconciliation;
+- Compliance Shield;
+- Operational Dashboard / Manager Workspace;
+- Subscription / Payment / Account Lifecycle;
+- Super Admin / Platform Stewardship;
+- Onboarding / First Experience;
+- Permissions / Business Isolation / Role Authority;
+- Shared Product Foundations.
 
-Founder build commitment rule:
+Feature-library index:
 
-- a Founder-invented capability that remains approved and aligned with current Smart Business is intended to be built;
-- `Add-on` is commercial packaging, not automatically `Build Later`;
-- technical dependencies may change sequence without changing product commitment;
-- security may block an unsafe implementation path, not silently erase approved Product Truth.
+`docs/phase-1-mission-blueprint/smart-business-features/README.md`
+
+Global completion view:
+
+`docs/phase-1-mission-blueprint/smart-business-features/00_Global_Product_Completion_View.md`
+
+The library is product-definition truth input. It does not by itself prove implementation, runtime verification, pilot readiness or release.
+
+---
+
+# Current Founder Decisions Explicitly Protected
+
+The reconciliation explicitly preserves at least these current decisions:
+
+- Smart Business remains conversation-first.
+- Approved current conversation channels include WhatsApp and the Smart Business Conversation Workspace.
+- Conversation Workspace is **BUILD NOW — CORE SHARED CONVERSATIONAL CHANNEL**, not merely a fallback.
+- Basic Voice is included in Ledger and Manager; Voice Plus is deeper premium voice interaction.
+- Daily Intelligence current schedule is **7:00 AM / 10:30 AM / 10:00 PM**.
+- Smart Stock is the Ledger add-on path; Manager includes Stock Intelligence.
+- Staff/HR is a Ledger + Manager add-on and employees remain permission-scoped.
+- Smart Order & Delivery is a Ledger + Manager add-on and must be validated before the first 10 pilot merchants.
+- Smart Order & Delivery is not a marketplace.
+- Customer silence alone is not a delivery exception when sufficient configured proof exists.
+- Smart Credit Awareness warns; Owner decides.
+- Reorder Intelligence asks confirmation by default; bounded Owner-delegated rules may authorize later execution.
+- Ask CFO remains read-only intelligence/clarity.
+- Standard POS bridge is allowed; custom client-specific POS modification inside core is rejected.
+- Risk/counter intelligence observes and reports; it does not accuse or punish.
+- Attendance/location is purpose-limited and dignity-preserving, not continuous surveillance.
+- Corrections preserve raw evidence plus authorized human context/auditability.
+- Support remains FAQ-first, multilingual and escalation-aware, with purpose-limited Team LIPS access.
+- `/survey` remains deprecated; use `/start`.
+
+---
+
+# Current Unresolved Founder Decisions
+
+The final feature reconciliation does **not** guess these:
+
+1. current free-trial policy;
+2. exact current price for Voice Plus;
+3. exact current price for Staff/HR;
+4. exact current price for Smart Stock Assistant;
+5. exact current price for Smart Order & Delivery;
+6. exact long-term retention/deletion duration after cancellation/non-payment;
+7. whether sensitive employee KYC/national-ID storage is a committed requirement and its legal/privacy basis;
+8. whether broader wholesaler/marketplace ecosystem expansion should become a separate future product/capability;
+9. whether third-party underwriting/lending/financial ecosystem products should ever be pursued separately.
+
+These are narrow open decisions. They do not block unrelated approved Build Now work.
 
 ---
 
 # Founder Anti-Drift Execution Guardrails
 
-Future Mission Control must preserve:
+Every SB-P mission must state which confirmed Smart Business features it advances.
 
-> **Every SB-P mission must state which confirmed Smart Business features it advances, and Mission Control must maintain the global product-completion view while the mission maintains its local scope.**
+Mission Control must maintain the global product-completion view while each Product Mission keeps its local scope.
 
 Every blocker must state:
 
-- **Blocked:** exact unsafe dependency
-- **Still allowed:** everything independent of that dependency
-- **Evidence required:** exact proof needed
+- **Blocked:** exact unsafe/dependent path
+- **Still allowed:** independent safe work
+- **Evidence required:** exact proof/correction
 - **Resume point:** exact checkpoint
 
-And:
-
-> **Local mission safety must never create global product incompleteness.**
-
-> **Build the complete approved feature vertically, secure it by design, prove it, then move forward.**
+Local mission safety must never create global product incompleteness.
 
 ---
 
-# Remaining Work Before Mission Closure
+# Remaining Work Before Historical Mission Closure
 
-## 1. Complete Section 6
+The Founder-origin evidence and final feature reconciliation are complete, but the historical continuity mission still has separate closure work:
 
-Questions 69–86:
-
-- Compliance Shield;
-- Support Automation / 100+ FAQ;
-- subscriptions/payments/lifecycle;
-- Super Admin / Platform Stewardship;
-- onboarding / first experience.
-
-## 2. Complete Section 7
-
-Questions 87–100:
-
-- cross-feature architecture;
-- shared foundations;
-- edge/failure states;
-- confirmation gates;
-- clarification rules;
-- privacy/dignity;
-- AI authority;
-- historical evolution;
-- Founder corrections;
-- contradictions;
-- residual completeness.
-
-## 3. Perform final seven-section feature reconciliation
-
-Deepen/create the mature Smart Business Feature Definition Library so future Product Blueprints and Claude Code EIS work can operate without reconstructing old chats.
-
-## 4. Create the global product-completion view
-
-Track every confirmed feature, build commitment, package, implementation state, advancing SB-P mission, dependency, blocker and next action.
-
-## 5. Prepare current-source conflict reconciliation
-
-Surface stale source conflicts discovered through recovery. Do not silently mutate canonical Product Truth/governance; route changes through proper Founder/Mission Control authority.
-
-## 6. Finalize historical synthesis
-
-Update chronology, mission register, capability evolution, tools/platform/resources, lessons learned and evidence/open questions with the final Founder-origin evidence.
-
-## 7. Create historical continuity records for `SB-P-1.0` through `SB-P-1.9`
-
-Required destination:
-
-`docs/phase-1-mission-blueprint/completed/`
-
-Current `main` contains formal `SB-P-1.10` and `SB-P-1.11` records, but the early continuity records still need to be created.
-
-Each early record must clearly state:
-
-`Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`
-
-Preserve `docs/implementation/SB-P-1.9/` as the existing implementation/evidence location.
-
-## 8. Create the deferred organizational philosophy synthesis
-
-Create:
-
-`Lighthouse_Team_LIPS_Organizational_Principles_Quotes_and_Founder_Reflections.md`
-
-using the planning-origin philosophy checkpoints and recovered Founder evidence. Separate direct Founder quotations from assistant-created historical formulations.
-
-## 9. Mission closeout verification
-
-Close only after:
-
-- Questions 1–100 are durably extracted;
-- feature library is mature and checked for omissions;
-- historical synthesis is current;
-- tools/resources/capability and lessons registers are current;
-- `SB-P-1.0` → `SB-P-1.11` continuity is complete;
-- contradictions are resolved or explicitly open;
-- product-completion view exists;
-- philosophy synthesis exists;
-- temporary Founder-origin workspace is no longer required for continuity.
-
-Only then may the temporary Ground Zero reconciliation workspace be deleted/archived through a normal repository change that preserves Git provenance.
+1. Refresh the historical synthesis registers with final Founder-origin conclusions where needed.
+2. Create historical continuity records for `SB-P-1.0` through `SB-P-1.9` under `docs/phase-1-mission-blueprint/completed/`, clearly marked `Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`.
+3. Preserve the existing authoritative `docs/implementation/SB-P-1.9/` evidence location.
+4. Create the deferred organizational philosophy synthesis: `Lighthouse_Team_LIPS_Organizational_Principles_Quotes_and_Founder_Reflections.md`.
+5. Verify the feature library/global completion view on merged `main`.
+6. Only after the above closure work and continuity verification may the temporary Ground Zero/NotebookLM extraction workspace be archived/deleted through normal Git history.
 
 ---
 
-# Post-History Follow-On Missions
+# Next Product-Execution Gate After This Reconciliation
 
-Two major follow-ons are already identified but are not silently authorized by historical-mission completion.
+Do **not** return to broad historical extraction.
 
-## Organizational Learning Engine
+Mission Control should next perform a **current implementation-vs-mature-product-contract audit** and sequence the remaining Build Now product work according to:
 
-Founder-directed requirement:
+- shared-foundation dependencies;
+- pilot necessity;
+- security/privacy/integrity;
+- current repository/runtime truth;
+- Product Mission lifecycle.
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/mission-control/post-history-organizational-learning-system-directive.md`
+Priority shared foundations include:
 
-Future architecture should maintain Resource Memory, Skill Memory, Capability Memory and Lessons-Learned Memory, with provenance/confidence/maturity and GitHub Action automation where safe.
+- Permissions / Business Isolation;
+- Conversation Workspace / channel-independent intent-action layer;
+- Reminder / Delegated Automation;
+- Universal Document Intelligence;
+- financial/payment integrity;
+- pilot-required Smart Order & Delivery.
 
-Automatic learning must not become autonomous governance or Product Truth mutation.
+Then execute through:
 
-## Accelerated secure product execution
-
-After feature recovery and required source reconciliation, remaining Product Missions should execute from:
-
-**Mature Feature File → Product Blueprint → EIS → complete vertical implementation → runtime verification → independent verification → acceptance.**
+**Mature Feature Contract → Product Blueprint → Founder Approval → EIS → Implementation → Runtime Verification → Independent Verification → Evidence → Mission Control Acceptance.**
 
 ---
 
-# Exact Next Gate
+## Final Principle
 
-**Successor Mission Control starts at Section 6 / Question 69.**
-
-Read in this order:
-
-1. `mission-control/successor-handover-section-6-onward.md`
-2. `founder/notebooklm/ground-zero-reconciliation/README.md`
-3. completed Section 1–5 temporary files in order
-4. `founder/notebooklm/NotebookLM_Extraction_Question_Bank_v1.md`
-5. `docs/phase-1-mission-blueprint/smart-business-features/README.md`
-
-Then collect paired NotebookLM + Ground Zero answers for Questions 69–86.
+**Historical extraction preserves provenance. Final reconciliation protects product truth. Product Missions prove implementation.**
