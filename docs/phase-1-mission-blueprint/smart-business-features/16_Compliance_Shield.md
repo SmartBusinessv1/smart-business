@@ -1,108 +1,344 @@
-# Compliance Shield
+# Smart Business Feature Definition — Compliance Shield
 
-## Feature Identity
+**Status:** MATURE RECONCILED CONTRACT — FULL HYDRATION PASS  
+**Build commitment:** **ADD-ON + BUILD NOW**  
+**Commercial availability:** Ledger + Manager add-on  
+**Authority boundary:** Compliance Shield remembers documents/deadlines and helps the merchant act in time. It is not a legal adviser, regulator or certification authority.
 
-**Product Type:** Add-on  
-**Availability:** Ledger + Manager  
-**Build Commitment:** **BUILD NOW**  
-**Shared Foundations:** Reminder Engine, Universal Document Intelligence, Notification, Business Memory and Permissions.
+---
 
-## Founder Problem Statement
+## 1. Feature Identity
 
-Licences, renewals and statutory/business deadlines often remain in paper files or the owner's memory. Missing a date can create avoidable stress, fines or disruption. Smart Business should help the merchant remember and organize those responsibilities without pretending to be a government authority or lawyer.
+Compliance Shield helps a merchant organize licences, certificates, renewals and recurring compliance dates, then receive timely reminders and retrieve the supporting documents when needed.
 
-## Supported Records
+It should reduce missed deadlines without making unsupported legal claims.
 
-Where relevant to the merchant, Compliance Shield may track:
+---
 
-- FSSAI dates;
-- Panchayat/Municipality trade-licence dates;
-- Fire Safety renewals;
-- commercial vehicle fitness/insurance renewals;
-- other approved business licences, certificates and deadlines;
-- associated uploaded documents and notes.
+## 2. Founder Problem Statement
 
-The set should remain extensible rather than hard-coded permanently to a historical enum.
+Small merchants may need to remember items such as:
 
-## Document Flow
+- FSSAI registrations/licences;
+- Panchayat/Municipal trade licences;
+- Fire Safety NOC/certificates where applicable;
+- business/vehicle/asset renewals;
+- other merchant-specific regulatory or operational documents.
 
-Compliance documents must reuse Universal Document Intelligence:
+These are often tracked in files, WhatsApp photos, calendars or memory. Missed dates create stress and avoidable disruption.
 
-**photo/PDF/document → interpret → show extracted dates/details → clarify uncertainty → user confirms → validated compliance record/reminder**.
+---
 
-A low-confidence OCR date must never silently become a trusted statutory deadline.
+## 3. Lighthouse Principles
 
-## Reminder Behaviour
+- Reduce mental load.
+- Tell the merchant what Smart Business knows and does not know.
+- Remind/organize; do not impersonate legal authority.
+- Reuse shared Document Intelligence and Reminder foundations.
+- Ask when document dates/identity are uncertain.
+- Do not silently trust low-confidence OCR.
+- Preserve privacy of licences/identity/business documents.
 
-Compliance Shield uses the shared Reminder Engine. It must not create a separate compliance scheduler.
+---
 
-The system may progressively increase visibility as a deadline approaches and provide actions such as done, snooze or reschedule according to the context.
+## 4. Supported Compliance Record
 
-Historical 60/30/7/1-day timing is useful provenance, not an immutable current cadence.
+A compliance/renewal record may preserve:
 
-## Users and Permissions
+- business scope;
+- compliance/document type;
+- document/licence identifier where relevant;
+- issuing authority/source where known;
+- issue/start date;
+- expiry/renewal/due date;
+- supporting document/file;
+- responsible Owner/authorized user;
+- reminder configuration;
+- status/history;
+- source/interpretation confidence;
+- human-confirmed corrections;
+- notes/context.
 
-Owner has full access. Manager may receive delegated compliance permissions. Employees should see or update only specific compliance tasks/documents where explicitly permitted and should not receive unrelated owner information.
+Exact fields depend on the document type; avoid a brittle one-size schema where flexibility is needed.
 
-## AI Behaviour
+---
+
+## 5. Document Intake
+
+A merchant may add a compliance document through approved channels using:
+
+- photo/image;
+- PDF;
+- supported file upload;
+- manual entry;
+- Conversation Workspace / WhatsApp where appropriate.
+
+Universal Document Intelligence must be reused:
+
+**upload → interpret → preview → clarify where needed → confirm → validated compliance record**.
+
+OCR output alone is not trusted compliance truth when key dates/identity are uncertain.
+
+---
+
+## 6. Date Extraction and Clarification
+
+The system should identify relevant dates when supported by the document, while distinguishing among:
+
+- issue date;
+- effective/start date;
+- expiry date;
+- renewal/due date;
+- inspection/other date.
+
+If multiple plausible dates exist or the document is unclear, ask the merchant to confirm the correct one.
+
+Do not silently choose a date just because OCR returned a value.
+
+---
+
+## 7. Reminder Behavior
+
+Compliance Shield must use the shared Reminder Engine.
+
+It may create progressive reminders before a deadline according to approved product/configuration behavior.
+
+Historical `60 / 30 / 7 / 1 day` cadence is useful provenance, not immutable Product Truth.
+
+Reminder behavior should support:
+
+- advance notice;
+- nearer-deadline escalation;
+- done/renewed acknowledgement;
+- snooze/reschedule where appropriate;
+- renewal-cycle continuation.
+
+---
+
+## 8. Renewal Flow
+
+A typical flow:
+
+1. Merchant has a confirmed compliance record/date.
+2. Shared Reminder Engine schedules notifications.
+3. Merchant receives timely reminder.
+4. Merchant opens/retrieves document/context.
+5. Merchant completes renewal outside or through any separately approved external workflow.
+6. Merchant uploads/records updated evidence.
+7. Smart Business interprets and previews new details.
+8. Merchant confirms.
+9. Current record/history is updated without erasing prior document history.
+10. Next reminder cycle is established where applicable.
+
+Smart Business must not mark a renewal complete simply because a reminder date passed.
+
+---
+
+## 9. Receipt / Document Cabinet Relationship
+
+Compliance documents should reuse the shared secure document-memory foundation rather than create isolated storage.
+
+The merchant should be able to retrieve approved records/documents conversationally or through the workspace, subject to permissions.
+
+---
+
+## 10. Users and Permissions
+
+### Owner
+
+Full compliance-record/reminder authority for the business.
+
+### Manager
+
+Only Owner-delegated compliance visibility/actions.
+
+### Employee
+
+No broad compliance-document access by default. A specific operational task may expose only what is required.
+
+### Support / Platform
+
+No routine document browsing. Purpose-limited support access follows current support/privacy governance.
+
+---
+
+## 11. WhatsApp and Conversation Workspace
+
+Approved users should be able to:
+
+- upload a licence/document;
+- ask what renewals are coming;
+- retrieve permitted documents;
+- confirm/correct dates;
+- mark/upload renewed evidence
+
+through the same shared compliance/document truth.
+
+Channels must not create duplicate reminders or document records.
+
+---
+
+## 12. Human Language
+
+English, Malayalam and Manglish are first-class for reminders/questions/explanations.
+
+Official document names may remain in their common/legal English form where that is clearer, while explanations should be natural for the merchant.
+
+---
+
+## 13. Ask CFO / Daily Intelligence Relationship
+
+Ask CFO may answer authorized questions such as:
+
+- `Which renewals are due soon?`
+- `Show my FSSAI document.`
+
+Daily Intelligence may surface a material near-term compliance reminder if useful, without turning routine compliance into fear-heavy messaging.
+
+Neither feature should make legal conclusions beyond supported facts.
+
+---
+
+## 14. Notification Behavior
+
+Use the shared Notification foundation.
+
+Notifications should state:
+
+- what record/deadline is involved;
+- when it is due/expiring;
+- what the merchant can do next;
+- uncertainty where the date is not fully confirmed.
+
+Avoid unsupported penalty claims or alarmist language.
+
+---
+
+## 15. AI Authority and Legal Boundary
 
 AI may:
 
-- extract recorded dates and document facts;
-- explain what the stored record says;
-- remind the merchant;
-- identify an approaching deadline;
-- retrieve the associated document;
-- suggest that the owner verify or act.
+- interpret documents;
+- identify candidate dates/fields;
+- organize records;
+- remind;
+- explain stored facts;
+- suggest that the merchant verify/renew.
 
 AI must not:
 
-- claim the business is officially compliant;
-- act as legal counsel;
-- certify documents;
-- invent statutory requirements or penalty figures;
-- file legal appeals or government submissions unless a future separately governed integration explicitly authorizes a bounded action.
+- certify legal compliance;
+- claim the merchant is legally compliant because a document is stored;
+- fabricate current law/penalty amounts;
+- file/renew with authorities unless a separately approved integration explicitly authorizes that workflow;
+- silently change confirmed dates based on later OCR.
 
-## Legal/Information Boundary
+---
 
-Any current legal requirement or penalty information shown to a merchant must be sourced/verified appropriately for the time and jurisdiction. Historical V2.2 penalty numbers are not permanent Product Truth.
-
-## Completion and History
-
-Marking a reminder `done` should preserve the historical reminder and, where appropriate, allow the merchant to attach/update evidence of renewal. Completion should not delete the prior document/date history needed for future understanding.
-
-## Error and Exception Behaviour
+## 16. Error and Exception Behavior
 
 Handle:
 
-- unreadable document;
-- conflicting dates;
-- expired document uploaded after the fact;
-- missing document;
+- unreadable/partial document;
+- multiple dates;
+- expired document discovered late;
+- duplicate upload;
+- renewal document superseding old record;
 - reminder delivery failure;
-- owner changes recorded deadline;
-- duplicated document/reminder;
-- permission denial;
-- external legal information unavailable/stale.
+- unsupported document type;
+- permission denied;
+- missing document but known deadline;
+- law/requirement outside current knowledge.
 
-The specific compliance item may be blocked for clarification while unrelated business operation continues.
+Uncertainty must be visible and narrowly contained.
 
-## Privacy
+---
 
-Compliance documents may contain sensitive business information. Access must remain business- and permission-scoped and use the common document-storage security model.
+## 17. Privacy and Trust
 
-## Explicit Non-goals
+Compliance documents may contain sensitive identity/business information.
 
-- government reporting platform;
-- legal certification;
-- guaranteed zero missed compliance;
-- duplicate OCR/scheduler/notification engines;
-- fear-heavy marketing based on unverified legal penalties.
+Requirements:
 
-## Historical Corrections
+- business isolation;
+- permission-scoped retrieval;
+- no unnecessary staff exposure;
+- purpose-limited support access;
+- current retention/deletion policy;
+- no use of compliance data for secret manipulation/upsell.
 
-Historical fixed cadence, exact statutory penalty amounts, old storage lifecycle and provider-specific cron mechanics are implementation/history evidence. The durable feature is compliant-document memory + verified dates + useful progressive reminders.
+---
 
-## Provenance
+## 18. Shared Foundations to Reuse
 
-Reconciled from Founder-origin Section 6 and Section 7, Source 01 reminder/human-assistant principles, Source 11 Compliance Shield, and current shared-foundation/anti-duplication rules.
+Reuse:
+
+- Universal Document Intelligence;
+- Receipt/Document Cabinet;
+- Reminder Engine;
+- Notification foundation;
+- Permission Engine;
+- Business Memory;
+- Human Language Layer;
+- Conversation channels;
+- audit/history.
+
+Do not create a compliance-only OCR pipeline, storage system or scheduler.
+
+---
+
+## 19. Explicit Non-goals
+
+- legal advice/certification;
+- immutable 60/30/7/1 cadence;
+- hardcoded penalty/legal claims without current verification;
+- OCR-to-trusted-date with no review when uncertain;
+- duplicate reminder/document architecture.
+
+---
+
+## 20. Acceptance Scenarios
+
+A future Blueprint/EIS must verify at least:
+
+1. Clear licence photo → interpreted fields/date → preview → Owner confirmation.
+2. Ambiguous date → clarification before record/reminder.
+3. Renewal reminder uses shared Reminder Engine.
+4. Expired/renewed document preserves historical record.
+5. Reminder due does not falsely mark renewal complete.
+6. Employee cannot access broad compliance documents by default.
+7. WhatsApp and Workspace retrieve the same confirmed record.
+8. Duplicate document/upload is handled safely.
+9. Ask CFO reports stored renewal facts without legal certification.
+10. Support cannot routinely browse documents without purpose/authorization.
+
+---
+
+## 21. Historical Corrections / Superseded Behavior
+
+Preserve compliance-memory/reminder intent.
+
+Historical-only:
+
+- exact 60/30/7/1 cadence;
+- fixed penalty claims;
+- provider-specific document/storage assumptions.
+
+Superseded:
+
+- treating OCR as unquestioned authority;
+- claiming Smart Business itself makes the merchant legally compliant.
+
+---
+
+## 22. Provenance and Hydration Coverage
+
+Reconciled from Founder-origin Section 6 and Section 7; planning/project-room compliance history; Final Feature Reconciliation Register §23 and §§28–30; Source 01/11 and current Document/Reminder/Support privacy governance.
+
+**Hydration result:** all current Compliance Shield behaviors, boundaries and shared-foundation rules recovered from Founder-origin evidence are represented here.
+
+---
+
+## 23. Completion Gate
+
+Complete only when document intake, confirmed compliance facts, retrieval, shared reminders/notifications, renewal history, permissions/privacy, failure handling, legal-boundary messaging and runtime acceptance are proven end-to-end.
