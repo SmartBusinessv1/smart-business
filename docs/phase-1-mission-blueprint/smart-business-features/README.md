@@ -40,7 +40,7 @@ Evidence reconciled includes:
 - current Founder direction;
 - Source 01;
 - Source 11 Product Truth;
-- relevant current AI, support, security, execution and authority governance.
+- relevant current AI, WhatsApp, support, security, execution and authority governance.
 
 The controlling disposition register is:
 
@@ -83,14 +83,6 @@ Technical dependencies may change build order without changing product commitmen
 
 Security/integrity/privacy findings may block an unsafe implementation path but must not be translated into an unapproved decision that the feature itself should not exist.
 
-Required blocker language:
-
-- Product commitment: approved / unchanged.
-- Blocked step: exact unsafe/dependent step.
-- Reason: exact evidence-backed dependency/risk.
-- Recovery: minimum safe correction.
-- Unrelated safe work: continue.
-
 ---
 
 # Feature File Standard
@@ -105,9 +97,9 @@ Every mature feature file should contain, where applicable:
 6. Users Involved
 7. Permission Boundaries
 8. Complete User Journeys
-9. WhatsApp Experience
+9. Channel Experience
 10. Conversation Workspace / App Experience
-11. AI Behaviour
+11. AI Behaviour / Orchestration Relationship
 12. Business Memory / Data Requirements
 13. Shared Foundations to Reuse
 14. Integrations
@@ -122,7 +114,7 @@ Every mature feature file should contain, where applicable:
 23. Provenance
 24. Unresolved Founder Questions, if any
 
-Feature files describe **product behaviour**, not prematurely fixed technology. Historical provider/model/table/timing assumptions belong in engineering provenance unless current architecture explicitly adopts them.
+Feature files describe **product behaviour and architecture obligations**, not prematurely fixed implementation details. Historical provider/model/table/timing assumptions belong in engineering provenance unless current architecture explicitly adopts them.
 
 ---
 
@@ -149,15 +141,15 @@ A mature feature contract does not prove implementation, runtime verification, p
 
 | # | Feature / Foundation | Current commercial position | Build commitment | Library state |
 |---|---|---|---|---|
-| 01 | Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot merchants** | Reconciled existing contract |
-| 02 | Ask CFO | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
-| 03 | Ledger / Business Memory | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
-| 04 | Daily Intelligence Rhythm | Ledger + Manager core | **BUILD NOW** | Reconciled existing contract |
-| 05 | Universal Document & Receipt Intelligence / Receipt Cabinet | Core cross-feature | **BUILD NOW** | Reconciled existing contract |
-| 06 | Staff / HR Assistant | Ledger + Manager add-on | **BUILD NOW + ADD-ON** | Reconciled existing contract |
-| 07 | Stock / Supplier / Reorder Intelligence | Manager core; Ledger Smart Stock path | **BUILD NOW** | Reconciled existing contract |
-| 08 | Support Automation / 100+ FAQ | Core support foundation | **BUILD NOW** | Reconciled existing contract |
-| 09 | Human Language Layer | Core cross-feature | **BUILD NOW** | Reconciled existing contract |
+| 01 | Smart Order & Delivery Assistant | Ledger + Manager add-on | **BUILD NOW — before first 10 pilot merchants** | Mature reconciled contract |
+| 02 | Ask CFO | Ledger + Manager core | **BUILD NOW** | Mature reconciled contract |
+| 03 | Ledger / Business Memory | Ledger + Manager core | **BUILD NOW** | Mature reconciled contract |
+| 04 | Daily Intelligence Rhythm | Ledger + Manager core | **BUILD NOW** | Mature reconciled contract |
+| 05 | Universal Document & Receipt Intelligence / Receipt Cabinet | Core cross-feature | **BUILD NOW** | Mature reconciled contract |
+| 06 | Staff / HR Assistant | Ledger + Manager add-on | **BUILD NOW + ADD-ON** | Mature reconciled contract |
+| 07 | Stock / Supplier / Reorder Intelligence | Manager core; Ledger Smart Stock path | **BUILD NOW** | Mature reconciled contract |
+| 08 | Support Automation / 100+ FAQ | Core support foundation | **BUILD NOW** | Mature reconciled contract |
+| 09 | Human Language Layer | Core cross-feature | **BUILD NOW** | Mature reconciled contract |
 | 10 | Conversation Workspace & Channel Independence | Core shared conversational channel | **BUILD NOW** | Mature reconciled contract |
 | 11 | Smart Reminder & Delegated Automation | Ledger + Manager core/shared foundation | **BUILD NOW** | Mature reconciled contract |
 | 12 | Basic Voice + Voice Plus | Core + add-on depth | **BUILD NOW** | Mature reconciled contract |
@@ -171,12 +163,18 @@ A mature feature contract does not prove implementation, runtime verification, p
 | 20 | Onboarding & First Experience | Core activation/conversion | **BUILD NOW** | Mature reconciled contract |
 | 21 | Permissions, Business Isolation & Role Authority | Core shared foundation | **BUILD NOW** | Mature reconciled contract |
 | 22 | Shared Product Foundations | Cross-product architecture contract | **BUILD NOW** | Mature reconciled contract |
+| 23 | WhatsApp Intelligence & Channel Adapter | Core primary conversational channel adapter | **BUILD NOW** | Mature reconciled contract |
+| 24 | AI Orchestration & OpenAI Intelligence Foundation | Core shared intelligence foundation | **BUILD NOW** | Mature reconciled contract |
 
 Receipt Cabinet remains explicitly named inside the Universal Document & Receipt Intelligence family rather than creating a duplicate storage/memory architecture.
 
 Payment Verification and Bank Email Sync remain separately named capabilities inside one connected financial-reconciliation family.
 
 Stock, Supplier and Reorder remain one connected operational-intelligence family with explicit sub-feature boundaries.
+
+WhatsApp is a dedicated channel-adapter contract because provider/webhook/media/template/retry behaviour must be durable without becoming a separate business engine.
+
+AI Orchestration/OpenAI is a dedicated shared-foundation contract because voice, language, Ask CFO, documents/OCR, reminders and other AI-enabled features must converge on one permission-aware intelligence layer rather than creating separate AI brains.
 
 ---
 
@@ -191,6 +189,8 @@ The mature library must never regress to these superseded states:
 - blind supplier procurement without valid Owner delegation;
 - Ask CFO as a write-capable business authority;
 - duplicate channel-specific Business Memory/permissions/AI logic;
+- duplicate feature-specific AI brains;
+- model conversation used as permanent Business Memory;
 - custom client-specific POS modification inside core;
 - subscription-driven destructive schema creation/deletion;
 - routine broad Super Admin access to merchant private data;
@@ -222,7 +222,7 @@ These unresolved questions do not block unrelated approved Build Now work.
 
 For a future feature mission, Product Definition input should be:
 
-**Source 11 + relevant mature feature file(s) + Shared Product Foundations + verified current repository/runtime state + only the unresolved Founder questions relevant to that mission.**
+**Source 11 + relevant mature feature file(s) + Shared Product Foundations + AI Orchestration/OpenAI foundation where AI is involved + relevant channel adapter(s) + verified current repository/runtime state + only the unresolved Founder questions relevant to that mission.**
 
 A Product Blueprint should state any intentional refinement/difference from the mature feature contract. Claude Code/EIS then converts locked product intent into engineering detail.
 
@@ -230,10 +230,12 @@ Before creating a new subsystem, builders must inspect existing:
 
 - Business Memory;
 - permissions/business isolation;
+- AI orchestration/OpenAI integration;
 - Human Language Layer;
 - Conversation/intent/action services;
 - Universal Document Intelligence;
 - Reminder/automation;
+- WhatsApp/channel adapters;
 - notifications;
 - identities;
 - audit/history;
@@ -255,7 +257,7 @@ A feature is complete only when required layers are accounted for and proven, in
 - UI;
 - backend/data;
 - permissions/RLS;
-- AI/intelligence;
+- AI/intelligence/orchestration;
 - channel behaviour;
 - scheduler/background jobs;
 - integrations;
@@ -286,4 +288,4 @@ If a behaviour is outside the current mission, record it as **still committed / 
 
 ## Final Principle
 
-**Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation.**
+**Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation. One business truth. One governed intelligence layer. Multiple safe channels.**
