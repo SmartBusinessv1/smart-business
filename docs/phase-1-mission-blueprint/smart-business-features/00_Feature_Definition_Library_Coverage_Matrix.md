@@ -2,7 +2,7 @@
 
 **Status:** FULL HYDRATION & COMPLETENESS PASS — COMPLETE PENDING PR MERGE / MAIN VERIFICATION  
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0`  
-**Scope:** All 24 Smart Business feature/foundation contracts  
+**Scope:** All 25 Smart Business feature/foundation contracts  
 **Purpose:** Prove that current `PRESERVE — STILL CURRENT` and `PRESERVE + EVOLVE` Founder-origin behaviors have a durable mature feature destination.
 
 ---
@@ -23,9 +23,10 @@ It verifies/materializes the current feature library using:
 - Source 04 API / WhatsApp / OpenAI Communication Framework;
 - Source 05 AI Behaviour Framework;
 - Source 11 Product Truth;
+- Smart Business Environment Activation Manual;
 - P00 Operational Profiles;
 - Final Feature Reconciliation Register;
-- relevant current permissions, AI, support, execution and architecture governance.
+- relevant current permissions, AI, storage, support, execution and architecture governance.
 
 The Final Feature Reconciliation Register controls the disposition of historical behavior. Raw historical evidence remains provenance.
 
@@ -45,7 +46,7 @@ A `PRESERVE` / `PRESERVE + EVOLVE` behavior with no current feature/foundation d
 
 ---
 
-## 3. Full 24-Contract Review
+## 3. Full 25-Contract Review
 
 | # | Feature / Foundation | Primary Founder-origin evidence | Final reconciliation destination | Hydration result in this pass | Current residual |
 |---|---|---|---|---|---|
@@ -73,6 +74,7 @@ A `PRESERVE` / `PRESERVE + EVOLVE` behavior with no current feature/foundation d
 | 22 | Shared Product Foundations | Section 7 Q87–100 + cross-feature Sections 1–6 | §§28–31 | **AMENDED — FULL HYDRATION.** Business Memory, identities, permissions, conversation, AI orchestration linkage, language, UDI, document memory, reminder/automation, notifications, confirmation, audit/context, idempotency, location, integration, schedulers, failure containment, stable schema, performance and AI authority are materialized. | None. |
 | 23 | WhatsApp Intelligence & Channel Adapter | Source 04 + P00 WhatsApp profile + Sections 1–7 / Q87–100 | §5 + shared §§28–31 | **ADDED — FULL HYDRATION.** Webhook/provider boundary, identity routing, entitlement/permission gate, text/voice/media/document intake, shared AI routing, Ask CFO/reminders, templates, outbound delivery, media security, retries/idempotency, outage continuity, cross-channel memory/action parity, audit and acceptance are materialized. | Provider implementation/version details remain downstream architecture. |
 | 24 | AI Orchestration & OpenAI Intelligence Foundation | Source 04 + Source 05 + P00 OpenAI profile + Q87–100 cross-feature flows | Shared §§28–31 + AI authority | **ADDED — FULL HYDRATION.** Central OpenAI-backed intelligence/orchestration, intent-first routing, multimodal convergence, permission-aware context, controlled tool calling, Ask CFO/Reminder/UDI/Voice/Daily Intelligence/Support integration, model routing, structured validation, failure recovery, privacy, cost and acceptance are materialized. | Exact model/service routing is downstream architecture and may evolve under governance. |
+| 25 | Document, Media Storage & Retention Foundation | Founder current storage rationale + Section 7 storage recovery + Environment Activation Manual + P00 R2 profile | Shared document/media memory + lifecycle + platform foundations | **ADDED — FULL HYDRATION.** Cloudflare R2 is the intended object-storage layer for unpredictable document/image/voice/media volume; Supabase remains authoritative for ownership, permissions, metadata, business linkage and retrieval authorization. Upload/retrieval flows, object identity, portability, failure/reconciliation, backup, audit, privacy, cost/capacity and acceptance are materialized. | Exact long-term retention/deletion duration remains unresolved; historical 60-day migration and 180-day purge timings are not automatically current. |
 
 ---
 
@@ -116,13 +118,14 @@ The following behaviors deliberately live in shared contracts rather than being 
 
 - permissions/business isolation → `21_Permissions_Business_Isolation_and_Role_Authority.md`;
 - Business Memory / identities / confirmation / audit / idempotency / notifications / bounded location / integration principles → `22_Shared_Product_Foundations.md`;
-- document interpretation/storage → `05_Universal_Document_and_Receipt_Intelligence.md`;
+- document interpretation → `05_Universal_Document_and_Receipt_Intelligence.md`;
 - reminder/standing automation → `11_Smart_Reminder_and_Delegated_Automation.md`;
 - language → `09_Human_Language_Layer.md`;
 - voice → `12_Voice_and_Voice_Plus.md`;
 - native conversation/channel continuity → `10_Conversation_Workspace_and_Channel_Independence.md`;
 - WhatsApp provider/channel transport → `23_WhatsApp_Intelligence_and_Channel_Adapter.md`;
-- central AI reasoning/orchestration/OpenAI integration → `24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`.
+- central AI reasoning/orchestration/OpenAI integration → `24_AI_Orchestration_and_OpenAI_Intelligence_Foundation.md`;
+- durable binary document/image/voice/media storage, Supabase control-plane metadata and R2 retrieval/lifecycle → `25_Document_Media_Storage_and_Retention_Foundation.md`.
 
 A specialized feature may reference these foundations instead of re-specifying their internal architecture.
 
@@ -130,7 +133,7 @@ A specialized feature may reference these foundations instead of re-specifying t
 
 ## 7. AI Brain Architecture Clarification
 
-The library now explicitly distinguishes four responsibilities:
+The library explicitly distinguishes four responsibilities:
 
 1. **OpenAI-backed AI orchestration** understands language/modalities, reasons, extracts, summarizes and prepares structured tool calls.
 2. **Permission/Business Isolation** determines what an actor may access or execute.
@@ -143,7 +146,20 @@ The intended product experience is one coherent AI assistant across WhatsApp, Co
 
 ---
 
-## 8. Definition vs Implementation Boundary
+## 8. Storage Architecture Clarification
+
+The library now explicitly separates structured authority from binary storage:
+
+1. **Supabase / Smart Business** controls merchant ownership, permissions, metadata, domain linkage, retrieval authorization and lifecycle state.
+2. **Cloudflare R2** stores eligible binary objects such as documents, images, receipts, voice/audio and other approved media.
+3. **Clients/channels** retrieve objects only through the governed Smart Business authorization path.
+4. **AI/UDI** may interpret authorized media but does not own storage permission or durable object identity.
+
+The product reason is capacity and cost sustainability: subscriber media volume is unpredictable and potentially large, so binary file growth should not unnecessarily overload or inflate primary-platform storage cost.
+
+---
+
+## 9. Definition vs Implementation Boundary
 
 This matrix proves that the **approved current product definition has durable feature destinations**.
 
@@ -153,6 +169,8 @@ It does not prove:
 - runtime behavior works;
 - OpenAI/model integration is implemented;
 - WhatsApp integration is implemented;
+- Cloudflare R2 integration is implemented;
+- storage migration/retrieval security is implemented;
 - security verification has passed;
 - pilot readiness;
 - production release.
@@ -161,7 +179,7 @@ Implementation state remains controlled by the Current Implementation vs Mature 
 
 ---
 
-## 9. Historical Workspace Retention Rule
+## 10. Historical Workspace Retention Rule
 
 Founder-origin extraction Sections 1–7 must remain preserved until this hydration PR is merged and verified on `main`.
 
@@ -171,4 +189,4 @@ After merge, they remain historical provenance and should not be deleted merely 
 
 ## Final Principle
 
-**Every approved behavior has a home. Shared behavior has one authoritative foundation. One governed intelligence layer connects the product. Channels adapt transport, not business truth. Unresolved decisions stay unresolved. Historical mechanisms do not regain authority by accident.**
+**Every approved behavior has a home. Shared behavior has one authoritative foundation. One governed intelligence layer connects the product. Channels adapt transport, not business truth. Large media lives in scalable object storage while Smart Business retains authoritative ownership and permissions. Unresolved decisions stay unresolved. Historical mechanisms do not regain authority by accident.**
