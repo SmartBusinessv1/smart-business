@@ -40,7 +40,7 @@ Evidence reconciled includes:
 - current Founder direction;
 - Source 01;
 - Source 11 Product Truth;
-- relevant current AI, WhatsApp, support, security, execution and authority governance.
+- relevant current AI, WhatsApp, storage, support, security, execution and authority governance.
 
 The controlling disposition register is:
 
@@ -165,6 +165,7 @@ A mature feature contract does not prove implementation, runtime verification, p
 | 22 | Shared Product Foundations | Cross-product architecture contract | **BUILD NOW** | Mature reconciled contract |
 | 23 | WhatsApp Intelligence & Channel Adapter | Core primary conversational channel adapter | **BUILD NOW** | Mature reconciled contract |
 | 24 | AI Orchestration & OpenAI Intelligence Foundation | Core shared intelligence foundation | **BUILD NOW** | Mature reconciled contract |
+| 25 | Document, Media Storage & Retention Foundation | Core shared storage/memory foundation | **BUILD NOW** | Mature reconciled contract |
 
 Receipt Cabinet remains explicitly named inside the Universal Document & Receipt Intelligence family rather than creating a duplicate storage/memory architecture.
 
@@ -175,6 +176,8 @@ Stock, Supplier and Reorder remain one connected operational-intelligence family
 WhatsApp is a dedicated channel-adapter contract because provider/webhook/media/template/retry behaviour must be durable without becoming a separate business engine.
 
 AI Orchestration/OpenAI is a dedicated shared-foundation contract because voice, language, Ask CFO, documents/OCR, reminders and other AI-enabled features must converge on one permission-aware intelligence layer rather than creating separate AI brains.
+
+Document/Media Storage is a dedicated shared-foundation contract because Smart Business cannot predict subscriber media volume. Eligible binary files are intentionally offloaded to Cloudflare R2 while Supabase remains authoritative for ownership, permissions, metadata, business linkage and retrieval authorization.
 
 ---
 
@@ -191,6 +194,8 @@ The mature library must never regress to these superseded states:
 - duplicate channel-specific Business Memory/permissions/AI logic;
 - duplicate feature-specific AI brains;
 - model conversation used as permanent Business Memory;
+- uncontrolled binary-media concentration in Supabase merely for convenience;
+- R2/provider URLs treated as permission authority or permanent business identity;
 - custom client-specific POS modification inside core;
 - subscription-driven destructive schema creation/deletion;
 - routine broad Super Admin access to merchant private data;
@@ -222,7 +227,7 @@ These unresolved questions do not block unrelated approved Build Now work.
 
 For a future feature mission, Product Definition input should be:
 
-**Source 11 + relevant mature feature file(s) + Shared Product Foundations + AI Orchestration/OpenAI foundation where AI is involved + relevant channel adapter(s) + verified current repository/runtime state + only the unresolved Founder questions relevant to that mission.**
+**Source 11 + relevant mature feature file(s) + Shared Product Foundations + AI Orchestration/OpenAI foundation where AI is involved + relevant channel adapter(s) + Document/Media Storage foundation where files/media are involved + verified current repository/runtime state + only the unresolved Founder questions relevant to that mission.**
 
 A Product Blueprint should state any intentional refinement/difference from the mature feature contract. Claude Code/EIS then converts locked product intent into engineering detail.
 
@@ -234,6 +239,7 @@ Before creating a new subsystem, builders must inspect existing:
 - Human Language Layer;
 - Conversation/intent/action services;
 - Universal Document Intelligence;
+- Document/Media Storage & Retention / R2 integration;
 - Reminder/automation;
 - WhatsApp/channel adapters;
 - notifications;
@@ -258,6 +264,7 @@ A feature is complete only when required layers are accounted for and proven, in
 - backend/data;
 - permissions/RLS;
 - AI/intelligence/orchestration;
+- object/media storage and retrieval;
 - channel behaviour;
 - scheduler/background jobs;
 - integrations;
@@ -288,4 +295,4 @@ If a behaviour is outside the current mission, record it as **still committed / 
 
 ## Final Principle
 
-**Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation. One business truth. One governed intelligence layer. Multiple safe channels.**
+**Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation. One business truth. One governed intelligence layer. Multiple safe channels. Scalable media memory without uncontrolled primary-platform storage growth.**
