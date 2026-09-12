@@ -44,8 +44,8 @@ None newly created. The existing Section 18 ledger (trial policy, add-on pricing
 ## 7. Repository Evidence
 
 - **Branch:** `mission/SB-DOC-PHASE1-HISTORY-1.0-claude-ux-anti-drift-analysis` (created from `origin/main @ 104c145`, which includes PR #545 the Founder Product Decision Record, PR #546 the Section 8A anti-drift layer, and PR #547 `instruction.3.md`)
-- **Commit:** `6caa4f7`
-- **PR:** to be recorded once opened (this report will be updated with the link before Mission Control review)
+- **Commits:** `6caa4f7` (UX anti-drift analysis), `30bd6dd` (this report, pre-PR-link revision)
+- **PR:** [#548](https://github.com/SmartBusinessv1/smart-business/pull/548)
 
 ## 8. Implementation Confirmation
 
