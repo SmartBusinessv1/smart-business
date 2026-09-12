@@ -120,27 +120,49 @@ Primary retrospective commit:
 
 `8b2ce1790db29bff3fe7b3b0ef17921bb787bfb8`
 
-Completion-report commit:
+Initial completion-report commit:
 
-`PENDING — this file is being committed as the second branch commit`
+`443e040205938153c80bfb0c55470edc45bd71e8`
 
-Final branch head:
+PR-open / first-CI checkpoint branch head:
 
-`PENDING`
+`443e040205938153c80bfb0c55470edc45bd71e8`
+
+This completion report is then metadata-finalized on the same branch to record PR/CI evidence. The final branch head is reported to Mission Control from GitHub after that metadata commit and its quality gate complete.
 
 ---
 
 ## 8. Pull request
 
-`PENDING — to be opened after exact-file self-review`
+PR: `#558`
 
-No self-merge is authorized.
+Title:
+
+`SB-DOC-PHASE1-HISTORY-1.0: add Supabase Backend Architecture retrospective`
+
+State at this report update:
+
+`OPEN — HUMAN REVIEW / MERGE REQUIRED`
+
+No self-merge is authorized or performed.
 
 ---
 
 ## 9. CI result
 
-`PENDING — Team LIPS Markdown Quality Gate will be checked after PR creation`
+Team LIPS Markdown Quality Gate:
+
+`PASS`
+
+Workflow run:
+
+`34715220297` / run number `1509`
+
+The successful run covered the retrospective and initial completion-report content at branch head:
+
+`443e040205938153c80bfb0c55470edc45bd71e8`
+
+The metadata-only PR/CI-recording update is expected to trigger the same quality gate again; final branch-head CI status is reported separately to Mission Control after that run completes.
 
 ---
 
@@ -170,6 +192,6 @@ Only non-mutating Supabase provider inspection was performed for current topolog
 
 ## Completion disposition
 
-`SUPABASE BACKEND ARCHITECTURE PHASE 1 INSTITUTIONAL RETROSPECTIVE — COMPLETE — PENDING PR / CI / HUMAN MERGE`
+`SUPABASE BACKEND ARCHITECTURE PHASE 1 INSTITUTIONAL RETROSPECTIVE — COMPLETE — PR #558 — PENDING HUMAN MERGE`
 
-This completion report will be metadata-updated on the same protected mission branch after PR creation and CI observation. No backend/runtime/Product Mission action is authorized by this documentation mission.
+No backend/runtime/Product Mission action is authorized by this documentation mission.
