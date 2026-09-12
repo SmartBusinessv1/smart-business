@@ -41,8 +41,8 @@ No UX verdicts, architecture, mission sequencing, dependency model, Founder deci
 ## 5. Repository Evidence
 
 - **Branch:** `mission/SB-DOC-PHASE1-HISTORY-1.0-claude-ux-terminology-reconciliation` (created from `origin/main @ bcc9ba9`, which includes PR #548 the UX anti-drift analysis and PR #549 `instruction.4.md`)
-- **Commit:** `2dc54e8`
-- **PR:** to be recorded once opened (this report will be updated with the link before Mission Control review)
+- **Commits:** `2dc54e8` (terminology correction), `8703a79` (this report, pre-PR-link revision)
+- **PR:** [#550](https://github.com/SmartBusinessv1/smart-business/pull/550)
 
 ## 6. Implementation Confirmation
 
