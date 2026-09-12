@@ -34,7 +34,7 @@ Do not:
 - create future `SB-P-*` mission implementation branches;
 - treat this instruction as Product Mission authorization.
 
-The historical mission remains open specifically so Mission Control can reconcile the product/build proposal with an independent repository-grounded Claude Code plan before future Product Missions are authorized.
+The historical mission remains open specifically so Mission Control can reconcile the Founder-accepted product/build proposal with an independent repository-grounded Claude Code plan before future Product Missions are authorized.
 
 ---
 
@@ -86,7 +86,7 @@ Act as the independent engineering counterweight to Mission Control's product/bu
 
 Your task is not to praise or rubber-stamp the proposal.
 
-Your task is to answer:
+Answer:
 
 > Given the current repository and architecture, what is the safest, fastest, most scalable and maintainable engineering path to fully implement the 25 mature Smart Business contracts while preserving valid existing work and correcting drift?
 
@@ -94,34 +94,19 @@ Challenge Mission Control wherever repository evidence supports a better approac
 
 ---
 
-## 5. Mandatory Questions
+## 5. Mandatory Review Areas
 
-Your response must answer all of the following.
+Your durable response must cover all of the following.
 
 ### A. Current architecture map
 
-Identify the exact current engineering state, including reusable:
-
-- routes;
-- components;
-- domain modules;
-- migrations;
-- tables;
-- views;
-- functions/RPCs;
-- RLS policies;
-- grants;
-- parsers;
-- import pipelines;
-- idempotency/lease/guard infrastructure;
-- tests;
-- deployment/integration assumptions.
+Identify the exact current engineering state, including reusable routes, components, domain modules, migrations, tables, views, functions/RPCs, RLS policies, grants, parsers, import pipelines, idempotency/lease/guard infrastructure, tests, and deployment/integration assumptions.
 
 Call out stale, duplicate, dangerous, tightly coupled, or dead-end structures.
 
 ### B. Catalog / Product & Price Master verdict
 
-Review the Founder/Mission Control conclusion that Catalog should not remain a competing top-level product identity, while its engineering should be preserved as a shared Product & Price Master.
+Review the Founder/Mission Control conclusion that Catalog should not remain a competing top-level product identity, while valid engineering should be preserved as a shared Product & Price Master.
 
 Determine:
 
@@ -169,164 +154,59 @@ Evaluate whether the proposed separation is technically clean:
 - `SB-P-1.13` owns native Conversation Workspace + Human Language + Basic Voice + AI orchestration + permission/action kernel;
 - `SB-P-1.20` later integrates WhatsApp as a thin adapter.
 
-You must explicitly answer:
+Explicitly answer:
 
 > Can Smart Business be designed so Meta/WhatsApp can be disconnected without disabling the core product, while later allowing WhatsApp to reuse exactly the same Business Memory, permissions, AI orchestration, UDI, confirmation and domain-command paths?
 
-If yes, define the boundary concretely.
-
-If no, explain what must change.
+If yes, define the boundary concretely. If no, explain what must change.
 
 ### E. Dependency graph
 
-Provide the actual engineering dependency graph across all 25 contracts.
-
-Identify:
-
-- hard dependencies;
-- soft dependencies;
-- parallelizable preparation;
-- sequencing constraints;
-- schema conflicts;
-- integration risks;
-- critical-path work.
+Provide the actual engineering dependency graph across all 25 contracts, identifying hard dependencies, soft dependencies, parallelizable preparation, sequencing constraints, schema conflicts, integration risks, and critical-path work.
 
 ### F. Schema/API/service delta by proposed mission
 
-For every proposed mission, identify likely:
-
-- tables/columns;
-- functions/RPCs;
-- service boundaries;
-- APIs;
-- UI surfaces;
-- background jobs;
-- storage objects/metadata;
-- external integrations;
-- migration needs.
+For every proposed mission, identify likely tables/columns, functions/RPCs, service boundaries, APIs, UI surfaces, background jobs, storage objects/metadata, external integrations, and migration needs.
 
 Do not fabricate exact implementation details where repository evidence is insufficient. Mark them as design work required.
 
 ### G. Security architecture
 
-Review:
+Review tenant isolation; Owner/Manager/Employee/external-role boundaries; RLS and grants; privileged functions; service-role boundaries; server-only operations; webhook validation; delegated authority; AI tool/action execution; document/media retrieval authorization; auditability; and rollback/security migration risks.
 
-- tenant isolation;
-- Owner/Manager/Employee/external-role boundaries;
-- RLS and grants;
-- privileged functions;
-- service-role boundaries;
-- server-only operations;
-- webhook validation;
-- delegated authority;
-- AI tool/action execution;
-- document/media retrieval authorization;
-- auditability;
-- rollback/security migration risks.
-
-Flag any current implementation that should block rapid expansion until corrected.
+Flag current implementation that should block rapid expansion until corrected.
 
 ### H. AI architecture
 
-Define the engineering boundary for:
-
-- model interpretation;
-- typed tool calls/action proposals;
-- Business Memory retrieval;
-- permission propagation;
-- confirmation;
-- deterministic writes;
-- conversation persistence;
-- voice;
-- documents;
-- evaluation;
-- observability;
-- provider/model portability.
+Define the engineering boundary for model interpretation, typed tool calls/action proposals, Business Memory retrieval, permission propagation, confirmation, deterministic writes, conversation persistence, voice, documents, evaluation, observability, and provider/model portability.
 
 AI must not become the authority layer.
 
 ### I. UDI / storage architecture
 
-Define how existing parser/import work should evolve into shared Universal Document Intelligence and durable media/document storage.
-
-Specifically review:
-
-- opening-stock import;
-- Catalog import;
-- receipt/document interpretation;
-- preview-confirm-update;
-- provenance;
-- binary object storage;
-- Supabase metadata/control plane;
-- Cloudflare R2 integration boundary;
-- retention/lifecycle uncertainty;
-- safe retrieval.
+Define how existing parser/import work should evolve into shared Universal Document Intelligence and durable media/document storage, including opening-stock import, Catalog import, receipt/document interpretation, preview-confirm-update, provenance, binary object storage, Supabase metadata/control plane, Cloudflare R2 boundary, retention/lifecycle uncertainty, and safe retrieval.
 
 ### J. Automation architecture
 
-Define a reusable scheduler/continuation/delegation architecture for:
-
-- reminders;
-- Daily Intelligence;
-- compliance;
-- credit follow-up;
-- reorder continuation;
-- Staff/HR;
-- orders/delivery;
-- other time-based workflows.
+Define a reusable scheduler/continuation/delegation architecture for reminders, Daily Intelligence, compliance, credit follow-up, reorder continuation, Staff/HR, orders/delivery, and other time-based workflows.
 
 Avoid feature-specific duplicate schedulers.
 
 ### K. Migration and rollback
 
-Explain how future missions can preserve current valid business data.
-
-Include:
-
-- forward-compatible migrations;
-- backfill expectations;
-- feature flags;
-- route compatibility;
-- rollback boundaries;
-- production-data safety;
-- builder/runtime sync risks.
+Explain how future missions can preserve current valid business data, including forward-compatible migrations, backfills, feature flags, route compatibility, rollback boundaries, production-data safety, and builder/runtime sync risks.
 
 ### L. Test and evidence architecture
 
-Recommend the acceptance evidence required across future missions:
-
-- unit tests;
-- database tests;
-- RLS allow/deny tests;
-- integration tests;
-- end-to-end tests;
-- AI evals;
-- multilingual evals;
-- load/performance tests;
-- webhook/idempotency tests;
-- failure/retry tests;
-- migration/rollback tests;
-- runtime evidence.
+Recommend acceptance evidence across unit, database, RLS allow/deny, integration, end-to-end, AI, multilingual, load/performance, webhook/idempotency, failure/retry, migration/rollback, and runtime verification.
 
 ### M. Observability and scalability
 
-Define how to measure:
-
-- latency;
-- error rates;
-- DB/query performance;
-- AI latency/cost/tokens;
-- document processing;
-- automation success/lateness;
-- storage growth/retrieval;
-- channel delivery/retries;
-- idempotency suppression;
-- permission denials;
-- feature adoption where privacy permits.
+Define measurements for latency, errors, DB/query performance, AI latency/cost/tokens, document processing, automation success/lateness, storage growth/retrieval, channel delivery/retries, idempotency suppression, permission denials, and privacy-respecting feature adoption.
 
 ### N. Reuse map
 
-Explicitly classify major current implementation areas as:
+Classify major current implementation areas as:
 
 - `PRESERVE`;
 - `PRESERVE + EVOLVE`;
@@ -343,9 +223,9 @@ Do not turn normal engineering design choices into Founder questions.
 
 ---
 
-## 6. Required Output Structure
+## 6. Required Durable Output
 
-Create exactly this durable response file:
+Create exactly this substantive response file:
 
 `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/build-proposal/02_Claude_Code_Independent_Build_Plan.md`
 
@@ -376,7 +256,7 @@ Cite concrete repository paths and evidence throughout.
 
 ---
 
-## 7. Communication Protocol
+## 7. Required Live Return Communication
 
 This is a deliberately authorized numbered compatibility sequence under the repository communication model.
 
@@ -384,26 +264,51 @@ Current instruction:
 
 `communication/live/instruction.1.md`
 
-Do **not** write the substantive build plan into `communication/live/report.1.md`.
+After creating and committing the durable response file above, Claude Code must create:
 
-The durable Claude response belongs only in:
+`communication/live/report.1.md`
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/build-proposal/02_Claude_Code_Independent_Build_Plan.md`
+`report.1.md` is **Claude Code's short return communication to Mission Control**. It is not the substantive engineering plan and it is not Mission Control acceptance.
 
-After you commit/push that response:
+Keep `report.1.md` concise. It must record at minimum:
 
-- report the branch/commit/PR/evidence as appropriate through the normal engineering workflow;
-- Mission Control will read the durable response;
-- if correction is required, Mission Control will issue `communication/live/instruction.2.md` or later;
-- only when Mission Control considers the engineering plan acceptable will Mission Control create the matching final numbered live report.
+- that `02_Claude_Code_Independent_Build_Plan.md` was created;
+- the branch and commit SHA containing the response;
+- PR number/link if a PR was opened;
+- a short engineering briefing of the major conclusions;
+- the Catalog / Product & Price Master verdict;
+- the Native Conversation / WhatsApp separation verdict;
+- whether the nine-mission sequence is confirmed, confirmed with changes, or materially challenged;
+- the most important blockers, technical-debt risks, security concerns, and Founder decisions requiring attention;
+- confirmation that no implementation was performed;
+- a clear return-to-Mission-Control status.
 
-Do not self-approve the plan.
+Do **not** duplicate the full durable build plan inside `report.1.md`.
+
+Mission Control will use `report.1.md` as the communication record and will independently read the durable plan.
+
+If Mission Control requires changes after review, it will issue:
+
+`communication/live/instruction.2.md`
+
+Claude Code should then respond through:
+
+`communication/live/report.2.md`
+
+and so on for later correction rounds.
+
+The numbered instruction/report pair is therefore the auditable communication channel; substantive planning artifacts remain durable under the historical mission folder.
+
+Claude Code must not self-approve its plan.
 
 ---
 
 ## 8. Stop Condition
 
-Stop after creating and committing the independent build-plan response.
+Stop only after:
+
+1. creating and committing `02_Claude_Code_Independent_Build_Plan.md`; and
+2. creating `communication/live/report.1.md` with the short completion/briefing record defined above.
 
 Do not implement the future build.
 
