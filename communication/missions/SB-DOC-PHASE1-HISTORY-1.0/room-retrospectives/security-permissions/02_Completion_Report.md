@@ -100,11 +100,26 @@ This is the commit that created `01_Retrospective.md`.
 
 ## 8. PR
 
-`PENDING — to be created after this completion-report commit under the required protected-main workflow.`
+PR `#560` — `Add Security & Permissions Phase 1 institutional retrospective`
+
+State at completion-report finalization:
+
+- open;
+- human review required;
+- not merged;
+- self-merge not performed.
 
 ## 9. CI result
 
-`PENDING — will be checked on the dedicated retrospective PR before final handoff to Mission Control.`
+`PASS — Team LIPS Markdown Quality Gate`
+
+Verified on PR #560 at branch head `9dae474f495ebdafba391549ca7f9f97c4d9e072` before this metadata-finalization commit:
+
+- workflow: `Team LIPS Markdown Quality Gate`;
+- run number: `1520`;
+- result: `success`.
+
+The metadata-finalization commit is documentation-only and remains subject to the same PR checks before human merge.
 
 ## 10. No implementation / mutation confirmation
 
@@ -131,4 +146,4 @@ Read-only current-state inspection was used only to prevent stale security findi
 
 ---
 
-**Completion status:** `RETROSPECTIVE CONTENT COMPLETE — PR / CI METADATA PENDING FINALIZATION`
+**Completion status:** `RETROSPECTIVE COMPLETE — SUBMITTED FOR MISSION CONTROL / HUMAN REVIEW`
