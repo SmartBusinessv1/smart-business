@@ -27,8 +27,8 @@ It passed the Markdown Quality Gate (`tools/markdown/quality_gate.py`) and the r
 ## 2. Repository Evidence
 
 - **Branch:** `mission/SB-DOC-PHASE1-HISTORY-1.0-build-plan-review` (created from `origin/main @ 0c83367`)
-- **Commit:** `644ce0c70e68f41f1c917dfeb47cc548a3bde4d6`
-- **PR:** to be recorded once opened (this report will be updated with the PR link before Mission Control review)
+- **Commits:** `644ce0c70e68f41f1c917dfeb47cc548a3bde4d6` (build plan), `f8798d26baf8964b29124a449bcc1c4cf66d8e9c` (this report, pre-PR-link revision)
+- **PR:** [#542](https://github.com/SmartBusinessv1/smart-business/pull/542)
 
 ## 3. Engineering Briefing
 
