@@ -1,8 +1,10 @@
 # SB-DOC-PHASE1-HISTORY-1.0 — SB-P Mission Register
 
-**Document status:** PHASE B — RECONCILIATION PASS 2 — PLANNING-ORIGIN RECONCILED DRAFT  
+**Document status:** FINAL HISTORICAL SYNTHESIS — FOUNDER-ORIGIN Q1–100 + RECONCILIATION CONSOLIDATED  
 **Mission range:** `SB-P-1.0` → `SB-P-1.11`  
-**Authority boundary:** Historical register only. This document does not create retroactive Product Blueprints, EIS records, acceptance gates, or implementation authority.
+**Authority boundary:** Historical register only. This document does not create retroactive Product Blueprints, EIS records, acceptance gates, implementation authority, or new Product Truth.
+
+---
 
 ## 1. Register rules
 
@@ -11,213 +13,156 @@ Each mission is evaluated using the strongest available combination of:
 - original-era room evidence;
 - repository artifacts;
 - implementation and verification records;
-- later dependency/continuity evidence;
-- Founder / Mission Control decisions;
-- runtime and platform evidence where relevant;
-- Founder planning-origin records, including the complete `smart_business_planning_1` through `smart_business_planning_20` source family.
+- runtime/platform evidence;
+- Founder/Mission Control decisions;
+- planning-origin records;
+- Founder-origin recovery Questions 1–100;
+- final reconciliation / implementation-baseline evidence.
 
-The register distinguishes mission identity confidence from lifecycle disposition. A mission can be `CONFIRMED` historically without claiming it followed the later Source 18 lifecycle.
+Mission identity confidence is separate from lifecycle disposition. Early missions are not retroactively forced through the later Source 18 lifecycle.
 
-## 2. Consolidated register
+---
 
-| Mission | Historical mission identity | Approximate period | Evidence classification | Historical disposition | Principal evidence / boundary |
-| --- | --- | --- | --- | --- | --- |
-| `SB-P-1.0` | **Command Foundation** | Before Phase 1.1 | `FOUNDER-CLARIFIED — STRONGLY CORROBORATED` | `COMPLETED — HISTORICALLY VERIFIED` | Founder clarification maps `SB-P-1.0` to Phase 0 Command Foundation. Planning Parts 12–14 directly establish the Project, Sources, specialist rooms, Source 09/Mission Control emergence and explicit Phase 0 completion. Part 20 shows the clean next transition into Phase 1.1. No claim is made that the literal contemporaneous string `SB-P-1.0 — Command Foundation` appeared in those chats. `SB-INF-1.0 — Supabase Project Provisioning` remains separate. |
-| `SB-P-1.1` | **Domain Verification** | ~21 Jun 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Direct Founder/Mission Control activation in planning Part 20 plus Infrastructure execution; verification-only domain/DNS-control proof; 1.2 begins after 1.1 acceptance. |
-| `SB-P-1.2` | **Smart Business Subdomain** | Late Jun 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Direct Infrastructure mission identity; preserve unrelated DNS; exact Lovable target required; planning Part 20 later records Phase 1.2 complete and 1.3 ready to resume. |
-| `SB-P-1.3` | **AI Development Environment & Public Website Foundation** | Late Jun–3 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Earlier narrower label `Lovable Public Website Foundation` preserved as naming evolution. Includes Lovable/public-site, repository/README/AGENTS, AI development environment and platform calibration. Planning Part 20 ends with this broader milestone ready to resume, corroborating specialist-room/repository evidence. |
-| `SB-P-1.4` | **Bootstrap Foundation** | 4–5 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Executed Product Mission family directly evidenced; `SB-P1.4D` completion report and implementation merge. Roadmap `Phase 1.4 Meta Business Verification` is separate numbering namespace. |
-| `SB-P-1.5` | **Application Access Foundation** | ~7 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Auth, protected dashboard, sessions, sign-out; earlier proposed label `Authentication Foundation` preserved as precursor. |
-| `SB-P-1.6` | **Business Identity Foundation** | 8–9 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Business identity/schema/onboarding, first substantial product business-data migration, acceptance/completion evidence. |
-| `SB-P-1.7` | **Business Workspace Foundation** | 9–10 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Authenticated workspace/dashboard, implementation and completion evidence, later error-masking security refinement. |
-| `SB-P-1.8` | **Business Operations Foundation** | 19 Jul–2 Aug 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Transactions/sale/purchase foundation, RLS, correction/re-review chain; Mission Control accepted and closed 2 Aug after runtime/isolation verification. |
-| `SB-P-1.9` | **Merchant Workflow Refinement** | 20–21 Jul 2026, later verification refinements | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Authoritative `docs/implementation/SB-P-1.9/`; timeline enhancement, correction/audit, password recovery; strong deployment/runtime/Founder evidence. |
-| `SB-P-1.10` | **Inventory Foundation** | 21–31 Jul 2026 | `CONFIRMED` | `COMPLETED — FORMALLY ACCEPTED` | Actual canonical Product Blueprint; completion report v1.7, Mission Control acceptance 31 Jul, 62 tests pass / 0 fail. |
-| `SB-P-1.11` | **Product Catalog & Pricing** | 4–29 Aug 2026 | `CONFIRMED` | `COMPLETED — FORMALLY ACCEPTED` | Actual canonical Product Blueprint and Source 18 lifecycle; Stage 23 `ACCEPTED WITH FOLLOW-UP`, Stage 24 `COMPLETED — FORMALLY ACCEPTED`. |
+## 2. Consolidated Product Mission register
 
-## 3. Mission-by-mission synthesis
+| Mission | Historical mission identity | Period | Evidence classification | Historical disposition | Principal contribution |
+|---|---|---|---|---|---|
+| `SB-P-1.0` | **Command Foundation** | Before Phase 1.1 | `FOUNDER-CLARIFIED — STRONGLY CORROBORATED` | `COMPLETED — HISTORICALLY VERIFIED` | Project HQ, source stack, specialist rooms, Mission Control, sequencing/handover foundation |
+| `SB-P-1.1` | **Domain Verification** | ~21 Jun 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Domain/DNS ownership and evidence-first infrastructure proof |
+| `SB-P-1.2` | **Smart Business Subdomain** | Late Jun 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Safe `smartbusiness.teamlips.com` establishment while preserving unrelated records |
+| `SB-P-1.3` | **AI Development Environment & Public Website Foundation** | Late Jun–3 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Lovable + GitHub + public website + AI-assisted development foundation |
+| `SB-P-1.4` | **Bootstrap Foundation** | 4–5 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Public/app shell and governed builder restraint |
+| `SB-P-1.5` | **Application Access Foundation** | ~7 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Auth, protected route, sessions, sign-out |
+| `SB-P-1.6` | **Business Identity Foundation** | 8–9 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Merchant/business identity and tenancy foundation |
+| `SB-P-1.7` | **Business Workspace Foundation** | 9–10 Jul 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Authenticated workspace/dashboard foundation |
+| `SB-P-1.8` | **Business Operations Foundation** | 19 Jul–2 Aug 2026 | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Owner-scoped sale/purchase transactions, RLS, business isolation |
+| `SB-P-1.9` | **Merchant Workflow Refinement** | 20–21 Jul 2026 + later verification | `CONFIRMED` | `COMPLETED — HISTORICALLY VERIFIED` | Transaction correction/audit, timeline refinement, password recovery |
+| `SB-P-1.10` | **Inventory Foundation** | 21–31 Jul 2026 | `CONFIRMED` | `COMPLETED — FORMALLY ACCEPTED` | Inventory movement truth, idempotency/concurrency, RLS, tests |
+| `SB-P-1.11` | **Product Catalog & Pricing** | 4–29 Aug 2026 | `CONFIRMED` | `COMPLETED — FORMALLY ACCEPTED` | Catalog/pricing domain, Product↔Inventory separation, parser/import/security/runtime maturity |
 
-### `SB-P-1.0 — Command Foundation`
+---
 
-**Identity:** Founder-clarified historical identity, strongly corroborated by planning-era evidence.
+## 3. Mission evolution and why the sequence mattered
 
-**What is known:**
+The sequence followed a dependency arc rather than a demo-first feature order:
 
-- The Founder identifies the early `SB-P-1.0 completed` references as the actual **Command Foundation**, not Supabase provisioning.
-- Planning Part 12 shows the first shared Project Knowledge stack, Sources `00–08`, completed and uploaded and the transition from philosophy-document creation toward execution/specialist-room design.
-- Planning Part 13 shows specialist rooms being created and calibrated against the initial source stack and the Founder identifying the need for a cross-room `play maker`.
-- Planning Part 14 shows Source 09 emerging specifically for Mission Control, Mission Control activation against Sources `00–09`, and Mission Control explicitly declaring `Phase 0 — Command Foundation` complete before Phase 1.1.
-- Planning Part 20 later shows the Founder formally authorizing Phase 1 execution and Mission Control activating Phase 1.1 as the first execution objective.
-- `SB-INF-1.0 — Supabase Project Provisioning` is separately evidenced as an infrastructure mission and remains distinct.
+`Command` → `Domain` → `Development Environment` → `Bootstrap` → `Access` → `Business Identity` → `Workspace` → `Business Operations` → `Workflow Refinement` → `Inventory` → `Catalog & Pricing`.
 
-**Provenance boundary:** no claim is made that the literal original-era heading `SB-P-1.0 — Command Foundation` has been recovered. The mapping is Founder historical clarification plus strong contemporaneous corroboration.
+This prevented later product capability from being built on missing identity, tenancy or data-integrity foundations.
 
-**Capability gained:** a functioning Smart Business command system — shared sources, specialist rooms, Mission Control, roadmap/state coordination, and Founder-governed handoff into execution.
+Early missions relied more heavily on human/runtime evidence and historical completion records. By `SB-P-1.10` and especially `SB-P-1.11`, the project had matured into stronger Blueprint, testing, security, evidence and acceptance discipline.
 
-**Lesson:** knowledge and specialist capability are insufficient without coordination, state awareness, authority boundaries, and handover.
+---
 
-### `SB-P-1.1 — Domain Verification`
+## 4. Mission-specific institutional lessons
 
-**Objective:** prove Team LIPS control of the corporate domain before making product-domain changes.
+### `SB-P-1.0`
 
-**Key boundaries:** verify only; do not change DNS/nameservers or create the subdomain yet.
+**What changed:** Smart Business moved from Founder+AI conversation to a coordinated operating system.
 
-**Capability gained:** evidence-first DNS/domain operations.
+**Lesson:** shared knowledge without command/state/handover becomes fragmented execution.
 
-**Lesson:** prove ownership and current state before changing infrastructure.
+### `SB-P-1.1` / `1.2`
 
-**Planning-origin corroboration:** Part 20 contains the Founder authorization for Phase 1 execution and Mission Control's explicit Phase 1.1 activation to `09_Infrastructure_Operations` with deliverables, evidence, completion criteria, and handover to 1.2.
+**What changed:** infrastructure work adopted prove-before-change discipline.
 
-### `SB-P-1.2 — Smart Business Subdomain`
+**Lesson:** missing provider data is an evidence gap, not permission to guess.
 
-**Objective:** establish `smartbusiness.teamlips.com` safely after domain-control proof.
+### `SB-P-1.3`
 
-**Key boundaries:** preserve MX/DKIM/TXT/Google records; use the exact Lovable target rather than guessing.
+**What changed:** the project gained a repository-backed AI development environment rather than relying on conversation alone.
 
-**Capability gained:** product-domain routing with preservation of existing corporate services.
+**Lesson:** public site, source control, AI context and deployment must be treated as coordinated but separate states.
 
-**Lesson:** unknown destination configuration is an evidence gap, not a reason to improvise.
+### `SB-P-1.4`
 
-**Planning-origin corroboration:** Part 20 later records Phase 1.2 complete and Phase 1.3 ready to resume.
+**What changed:** Lovable became a governed builder rather than an unconstrained generator.
 
-### `SB-P-1.3 — AI Development Environment & Public Website Foundation`
+**Lesson:** restraint is part of builder quality.
 
-**Objective:** create the public product foundation and establish a usable AI-assisted development environment.
+### `SB-P-1.5` / `1.6` / `1.7`
 
-**Key outputs:** public site, Lovable workspace/project, GitHub environment, README/AGENTS, publication/custom-domain/HTTPS work, platform calibration.
+**What changed:** authenticated users gained durable business identity and workspace.
 
-**Naming note:** `Lovable Public Website Foundation` is an earlier narrower label. The broader title is directly evidenced during execution and is also the current milestone named in the final planning-room Mission Control report.
+**Lesson:** access, business identity and workspace are separate foundations.
 
-**Capability gained:** repository-backed AI development and public deployment foundation.
+### `SB-P-1.8` / `1.9`
 
-### `SB-P-1.4 — Bootstrap Foundation`
+**What changed:** Smart Business gained real transaction operations plus correction/audit trust mechanisms.
 
-**Objective:** create the application shell without prematurely activating business capabilities.
+**Lesson:** merchant usefulness depends on correction, explanation and business isolation—not merely data entry.
 
-**Key outputs:** approved routes/layouts, dashboard foundation/placeholder, governed Lovable build methodology.
+### `SB-P-1.10`
 
-**Boundary:** placeholder/foundation UI must not simulate capabilities not yet implemented.
+**What changed:** inventory became an append-only movement system with tested idempotency/concurrency.
 
-**Lesson:** test an AI builder's restraint as well as its ability to build.
+**Failure learned from:** real RLS/idempotency interaction defect found by tests.
 
-### `SB-P-1.5 — Application Access Foundation`
+**Lesson:** database integrity must be verified under actual policy/query behavior.
 
-**Objective:** establish secure user access before business data/workspaces.
+### `SB-P-1.11`
 
-**Key outputs:** authentication, protected route, session persistence, sign-out, password access foundations.
+**What changed:** catalog/pricing introduced a mature lifecycle, stronger confirmation binding, specialist review, parser/runtime investigation and AWS/IAM capability.
 
-**Boundary:** no business identity or owner intelligence introduced here.
+**Failure learned from:** an evidence gap was initially mistaken as a question of compatibility until a narrow probe established actual incompatibility.
 
-**Lesson:** access should precede business identity and protected business functionality.
+**Lesson:** evidence state must be named precisely.
 
-### `SB-P-1.6 — Business Identity Foundation`
+---
 
-**Objective:** connect an authenticated owner to a durable Smart Business business identity.
+## 5. Mission numbering and naming reconciliations
 
-**Key outputs:** business schema, onboarding/business identity behavior, owner↔business relationship.
+- `SB-P-1.0 — Command Foundation` and `SB-INF-1.0 — Supabase Project Provisioning` are separate namespaces.
+- Roadmap `Phase 1.4 — Meta Business Verification` is not Product Mission `SB-P-1.4 — Bootstrap Foundation`.
+- `Lovable Public Website Foundation` is preserved as an earlier/narrower label within the broader executed `SB-P-1.3` identity.
+- `Authentication Foundation` is preserved as precursor wording; executed `SB-P-1.5` identity is `Application Access Foundation`.
 
-**Capability gained:** first durable business-data foundation.
+No numbering is rewritten merely to make history look cleaner.
 
-### `SB-P-1.7 — Business Workspace Foundation`
+---
 
-**Objective:** give the authenticated business owner a stable workspace after identity exists.
+## 6. Founder-origin feature recovery relationship
 
-**Key outputs:** dashboard/workspace shell linked to the preserved business identity.
+Questions 1–100 later recovered product depth that the early `SB-P-1.0`–`1.11` missions did not attempt to implement in full.
 
-**Correction history:** internal error information required masking/refinement.
+This matters because early mission completion must not be mistaken for mature-feature completion.
 
-**Lesson:** a successful happy path is not enough; failure states must preserve security and dignity.
+Examples:
 
-### `SB-P-1.8 — Business Operations Foundation`
+- transaction work advanced Ledger foundations but did not complete mature Ledger / Business Memory;
+- Inventory/Catalog advanced Stock foundations but did not complete Supplier/Reorder intelligence;
+- parser/import work advanced UDI foundations but did not complete mature Universal Document Intelligence;
+- early dashboard/workspace work did not complete the mature Manager Workspace;
+- no early mission completed the mature Conversation Workspace, WhatsApp Intelligence, AI Orchestration or R2 media-memory foundations.
 
-**Objective:** introduce owner-scoped transaction operations without jumping into broader finance/intelligence scope.
+The Global Product Completion Register now carries this distinction operationally.
 
-**Key outputs:** sale/purchase entry, transaction timeline, dashboard totals, transactions RLS/business isolation.
+---
 
-**Correction history:** four acceptance-blocking findings were later corrected. Founder-assisted deployed-runtime tests and cross-owner isolation evidence completed the acceptance chain.
+## 7. Continuity-record rule
 
-**Final historical state:** accepted and closed on 2 Aug 2026.
-
-### `SB-P-1.9 — Merchant Workflow Refinement`
-
-**Objective:** improve trust/usability around existing merchant workflows rather than introduce a new business domain.
-
-**Key outputs:**
-
-- transaction date/time timeline;
-- in-place correction preserving transaction ID;
-- audit event trail;
-- forgot-password/reset-password;
-- later confirmation-dialog safeguard.
-
-**Evidence:** strongest early mission package with deployment/runtime/Founder verification.
-
-**Repository rule:** preserve `docs/implementation/SB-P-1.9/` intact as implementation/evidence authority when the later continuity file is created.
-
-### `SB-P-1.10 — Inventory Foundation`
-
-**Objective:** create stock truth from immutable movements, business isolation and one governed write path.
-
-**Key outputs:** inventory items/movements, append-only protections, RLS, idempotency/concurrency safeguards, UI, automated test suite.
-
-**Important correction:** test execution discovered a real idempotency replay defect caused by the interaction of `SELECT ... FOR UPDATE` and RLS. The defect was corrected before final acceptance.
-
-**Final state:** formally accepted 31 Jul 2026.
-
-**Historical topology:** accepted against the Lovable-managed runtime; `gysgzasfcjvtrgaigfyn` was test-only at this checkpoint.
-
-### `SB-P-1.11 — Product Catalog & Pricing`
-
-**Objective:** introduce catalog identity and pricing while keeping Inventory the sole stock authority.
-
-**Key outputs:** catalog/pricing Product Truth implementation, Product↔Inventory governed link, security/confidentiality model, import/parser foundations, controlled migrations and evidence.
-
-**Capability jump:** mature Source 18 lifecycle, Security/Supabase specialist review, runtime compatibility verification, AWS/IAM/OIDC/Lambda/Roles Anywhere capability.
-
-**Final state:** Stage 23 `ACCEPTED WITH FOLLOW-UP`; Stage 24 `COMPLETED — FORMALLY ACCEPTED` on 29 Aug 2026.
-
-## 4. Reconciled naming and numbering conflicts
-
-### `SB-P-1.0` vs `SB-INF-1.0`
-
-- Product Mission historical identity: `SB-P-1.0 — Command Foundation`.
-- Separate infrastructure mission: `SB-INF-1.0 — Supabase Project Provisioning`.
-
-**Disposition:** separate namespaces and responsibilities. Do not substitute the infrastructure mission for the Product Mission.
-
-### Roadmap `Phase 1.4` vs Product Mission `SB-P-1.4`
-
-- Roadmap milestone: Meta Business Verification Submission.
-- Executed Product Mission: Bootstrap Foundation.
-
-**Disposition:** separate namespaces; no overwrite.
-
-### `SB-P-1.3` labels
-
-- earlier: `Lovable Public Website Foundation`;
-- broader executed mission: `AI Development Environment & Public Website Foundation`.
-
-**Disposition:** naming evolution, not contradiction.
-
-### `SB-P-1.5` labels
-
-- early recommendation: `Authentication Foundation`;
-- executed mission: `Application Access Foundation`.
-
-**Disposition:** precursor label vs final executed identity.
-
-## 5. Register gate before continuity-file creation
-
-The register now supports named historical continuity records for `SB-P-1.0` through `SB-P-1.9`.
-
-Every early record must prominently state:
+Historical continuity records for `SB-P-1.0` through `SB-P-1.9` may be created under:
 
 `Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`
 
-`SB-P-1.0` must additionally preserve its evidence provenance:
+For `SB-P-1.0`, preserve the provenance note that the identity is Founder-clarified and strongly corroborated; literal contemporaneous heading not claimed.
 
-**Founder-clarified historical identity, strongly corroborated by planning-era evidence; literal contemporaneous SB-P heading not claimed.**
+For `SB-P-1.9`, preserve `docs/implementation/SB-P-1.9/` as authoritative implementation/evidence history.
 
-No modern Source 18 lifecycle artifact should be fabricated retroactively for these early missions.
+Actual canonical Product Blueprints for `SB-P-1.10` and `SB-P-1.11` remain intact.
 
-The actual canonical Product Blueprints for `SB-P-1.10` and `SB-P-1.11` remain untouched.
+---
+
+## 8. Final register result
+
+The Product Mission chain is historically coherent and sufficiently evidenced for continuity purposes.
+
+It now also correctly distinguishes:
+
+- historical mission completion;
+- mature-feature completion;
+- later production synchronization;
+- current implementation state;
+- future Product Mission sequencing.
+
+**Historical mission-register status: FINAL for the recovered Phase 1 evidence currently in scope.**

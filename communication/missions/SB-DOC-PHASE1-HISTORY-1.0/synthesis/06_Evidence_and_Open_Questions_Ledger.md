@@ -1,267 +1,249 @@
 # SB-DOC-PHASE1-HISTORY-1.0 — Evidence & Open Questions Ledger
 
-**Document status:** PHASE B — RECONCILIATION PASS 2 — PLANNING-ORIGIN RECONCILED DRAFT  
-**Purpose:** Record remaining historical gaps after Mission Control archive extraction, specialist-room extraction, repository cross-questioning, Founder clarification, and complete `smart_business_planning_1–20` extraction.  
-**Boundary:** An unresolved question is not permission to invent an answer. This ledger also records resolved contradictions so they are not reopened unnecessarily.
+**Document status:** FINAL HISTORICAL SYNTHESIS — FOUNDER-ORIGIN Q1–100 + RECONCILIATION CONSOLIDATED  
+**Purpose:** Record which historical questions are resolved, which remain genuinely open, which contradictions were reconciled, and which unresolved Founder decisions must stay unresolved rather than being guessed.  
+**Boundary:** An unresolved question is not permission to invent an answer. This ledger is historical/evidentiary and does not itself change Product Truth.
+
+---
 
 ## 1. Evidence-state vocabulary
 
 - `CONFIRMED` — direct and/or strongly corroborated evidence supports the claim.
-- `FOUNDER-CLARIFIED — STRONGLY CORROBORATED` — Founder historical clarification resolves the identity and contemporaneous evidence strongly supports the mapping, while the literal original-era label may not be recovered.
-- `STRONGLY SUPPORTED` — multiple indicators support the claim but one material original-era proof is missing.
-- `CHAT-ONLY HISTORICAL` — source exists in historical conversation but lacks durable independent corroboration.
-- `CONTRADICTED` — stronger evidence shows the claim was wrong for the relevant time/state.
+- `FOUNDER-CLARIFIED — STRONGLY CORROBORATED` — Founder historical clarification plus strong contemporaneous support.
+- `STRONGLY SUPPORTED` — multiple indicators support the claim but one material primary proof is missing.
+- `CHAT-ONLY HISTORICAL` — historical conversation evidence without durable corroboration.
+- `CONTRADICTED` — stronger evidence shows the earlier claim was wrong for the relevant time/state.
 - `UNRESOLVED` — available evidence is insufficient to decide safely.
 
-## 2. Primary historical question — resolved
+---
+
+## 2. Resolved historical identity questions
 
 ### OQ-001 — What was `SB-P-1.0`?
 
 **Status:** `RESOLVED — FOUNDER-CLARIFIED / STRONGLY CORROBORATED`
 
-**Current historical judgement:**
+**Judgement:** `SB-P-1.0 — Command Foundation`.
 
-`SB-P-1.0 — Command Foundation`
+Planning Parts 12–14 and 20 strongly corroborate the Founder clarification. The literal contemporaneous heading is not claimed as recovered.
 
-**Resolution evidence:**
+`SB-INF-1.0 — Supabase Project Provisioning` remains a separate infrastructure mission.
 
-- The Founder clarified that early references to `SB-P-1.0 completed` meant the actual Phase 0 Command Foundation: creation of the Smart Business ChatGPT Project HQ, initial shared sources, specialist rooms, Source 09 / Mission Control command layer, and Mission Control activation.
-- Planning Part 12 directly shows the initial Source `00–08` Project Knowledge stack completed/uploaded and the shift toward execution/specialist-room creation.
-- Planning Part 13 shows specialist rooms created and calibrated against those sources and the Founder identifying the need for a cross-room `play maker`.
-- Planning Part 14 shows Source 09 emerging for Mission Control, Mission Control activation against Sources `00–09`, and Mission Control explicitly declaring `Phase 0 — Command Foundation` complete before Phase 1.1.
-- Planning Part 20 shows the clean next boundary: Founder formally authorizes Phase 1 execution and Mission Control activates Phase 1.1 Domain Verification as the first objective.
-
-**Provenance boundary:**
-
-No claim is made that a contemporaneous source literally contains the exact heading:
-
-`SB-P-1.0 — Command Foundation`.
-
-The mapping is a Founder historical clarification strongly corroborated by contemporaneous planning-era structure and Mission Control state evidence.
-
-**Namespace correction:**
-
-`SB-INF-1.0 — Supabase Project Provisioning` is a separately evidenced infrastructure mission and remains separate. It must not be substituted for `SB-P-1.0`.
-
-**Disposition:** closed. Do not reopen unless genuinely contradictory primary evidence appears.
-
----
-
-## 3. Secondary non-blocking questions
-
-### OQ-002 — Exact completion day for SB-P-1.1 / SB-P-1.2
-
-**Status:** `OPEN — NON-BLOCKING`
-
-The order is clear:
-
-`SB-P-1.1 accepted` → `SB-P-1.2` → `SB-P-1.3`.
-
-Planning Part 20 now additionally records:
-
-- Phase 1.1 activated directly by Mission Control after Founder authorization;
-- later Phase 1.1 complete;
-- Phase 1.2 complete;
-- Phase 1.3 ready to resume.
-
-The exact day-level closure timestamp for 1.1 and 1.2 remains less strongly preserved than their identity and ordering.
-
-**Effect:** does not block continuity records; use approximate chronology unless stronger provider/repository evidence emerges.
-
-### OQ-003 — Exact formal naming transition inside SB-P-1.3
+### OQ-002 — `SB-P-1.3` naming
 
 **Status:** `RESOLVED ENOUGH FOR SYNTHESIS`
 
-Evidence preserves both:
+Use `AI Development Environment & Public Website Foundation` as the broader executed identity. Preserve `Lovable Public Website Foundation` as earlier/narrower wording.
 
-- `Lovable Public Website Foundation`;
-- `AI Development Environment & Public Website Foundation`.
-
-The broader title is directly evidenced during execution, across specialist-room/repository records, and again in the final planning Part 20 Mission Control state report.
-
-**Disposition:** use the broader executed identity; preserve the narrower label as earlier/precursor wording rather than inventing a formal rename event.
-
-### OQ-004 — Roadmap Phase 1.4 vs Product Mission SB-P-1.4
+### OQ-003 — Roadmap Phase 1.4 vs Product Mission `SB-P-1.4`
 
 **Status:** `RESOLVED`
 
-- Roadmap `Phase 1.4`: Meta Business Verification Submission.
-- Executed Product Mission `SB-P-1.4`: Bootstrap Foundation.
+Roadmap Phase 1.4 = Meta Business Verification milestone. Executed Product Mission `SB-P-1.4` = Bootstrap Foundation. Separate namespaces.
 
-**Disposition:** separate namespaces. Do not renumber Product Missions to match roadmap milestones.
+### OQ-004 — `SB-P-1.5` Authentication vs Application Access
 
-### OQ-005 — Exact historical Meta Business Verification execution chronology
+**Status:** `RESOLVED`
 
-**Status:** `OPEN — NON-BLOCKING FOR SB-P REGISTER`
+`Authentication Foundation` is precursor wording; executed identity is `Application Access Foundation`.
 
-Meta verification appears as a roadmap milestone and external dependency, but this reconstruction mission is focused on the Product Mission chain `SB-P-1.0 → 1.11`.
+---
 
-**Effect:** preserve as non-SB-P roadmap/dependency history. Do not force it into `SB-P-1.4`.
+## 3. Historical topology questions that remain non-blocking
 
-### OQ-006 — Exact transition timing between external Supabase and Lovable Cloud backend
+### OQ-005 — Exact closure day for SB-P-1.1 / 1.2
+
+**Status:** `OPEN — NON-BLOCKING`
+
+Identity/order are secure; exact day-level close timestamps remain less strongly preserved.
+
+### OQ-006 — Exact early transition points between external Supabase and Lovable Cloud
 
 **Status:** `PARTIALLY RESOLVED — NON-BLOCKING`
 
-Known points:
-
-- external Supabase project provisioning occurred early;
-- Application Access later used Lovable Cloud-managed backend capability;
-- at SB-P-1.10 acceptance, Lovable Cloud `wwgqnshcgbukqczqblsm` was production runtime backend and `gysgzasfcjvtrgaigfyn` was test-only;
-- later migration/recovery made `gysgzasfcjvtrgaigfyn` current production.
-
-The exact switch points before SB-P-1.10 are not fully reconstructed day by day.
-
-**Effect:** continuity records should preserve only the topology state proven for each mission; do not invent a single continuous backend assumption.
+Known checkpoints are sufficient for continuity: Lovable Cloud was production at SB-P-1.10 acceptance while `gysgzasfcjvtrgaigfyn` was test-only; later migration/recovery made `gysgzasfcjvtrgaigfyn` production.
 
 ### OQ-007 — Earliest protected-main activation date
 
 **Status:** `OPEN — NON-BLOCKING`
 
-GitHub clearly matured into protected PR/evidence workflows, but the exact first activation date should not be backdated based on later governance.
+Protected PR/evidence workflows clearly matured during the engineering-system period. Exact first activation date is not required for current continuity.
 
-**Effect:** record the capability as maturing during the engineering-system period; exact date not required for Product Mission continuity.
-
-### OQ-008 — Does Claude Code local conversation history need additional extraction?
+### OQ-008 — Additional Claude Code transcript recovery
 
 **Status:** `DEFERRED — TARGETED ONLY`
 
-Later engineering missions are heavily recorded in GitHub through artifacts, reports, commits and verification evidence.
-
-**Default:** GitHub is primary durable evidence.
-
-**Trigger for targeted transcript recovery:** a synthesis question whose technical reasoning cannot be resolved from repository evidence, e.g. an unexplained architecture choice, rejected alternative or failure root cause.
-
-Mass-copying Claude Code chat into GitHub is not justified.
-
-### OQ-009 — Which Founder-invented features were compressed or omitted before current Product Truth?
-
-**Status:** `OPEN — NOTEBOOKLM EXTRACTION REQUIRED`
-
-The complete planning-origin extraction demonstrates that short source summaries can lose workflow depth. The Founder has identified preserved NotebookLM records as the earlier original feature-design layer.
-
-**Next evidence:** NotebookLM records/files.
-
-**Effect:** use NotebookLM to deepen the Smart Business Feature Definition Library and detect missing/compressed Founder intent. Do not revive obsolete technical assumptions automatically.
+Use repository evidence by default. Recover local conversation history only when a material technical reasoning gap cannot be resolved otherwise.
 
 ---
 
-## 4. Resolved historical contradictions / reconciliation decisions
+## 4. Founder-origin product-recovery question — resolved
+
+### OQ-009 — Which Founder-invented features were compressed or omitted?
+
+**Previous status:** NotebookLM extraction required.
+
+**Current status:** `RESOLVED THROUGH Q1–100 FOUNDER-ORIGIN RECOVERY + FINAL RECONCILIATION`
+
+The complete Founder-origin recovery was performed across seven sections covering Questions 1–100, then reconciled through:
+
+- `01_Final_Feature_Reconciliation_Register.md`;
+- Feature Library seed-to-mature normalization;
+- full Feature Library hydration/completeness pass;
+- `00_Feature_Definition_Library_Coverage_Matrix.md`.
+
+**Result:** 25 mature feature/foundation contracts with **ZERO UNEXPLAINED PRESERVE / PRESERVE + EVOLVE RESIDUALS**.
+
+This question must no longer be treated as an open NotebookLM task.
+
+---
+
+## 5. Resolved historical contradictions
 
 ### RC-001 — `SB-P-1.0` vs `SB-INF-1.0`
 
-**Old uncertainty:** earlier synthesis left `SB-P-1.0` unresolved and considered Supabase provisioning a strong lead.
+Resolved as separate Product Mission and infrastructure namespaces.
 
-**Later Founder clarification + planning evidence:** `SB-P-1.0` maps to **Command Foundation**; `SB-INF-1.0 — Supabase Project Provisioning` is separate.
+### RC-002 — Roadmap `Phase 1.4` vs Product Mission `SB-P-1.4`
 
-**Resolution:** preserve separate namespaces; mark the Product Mission identity Founder-clarified and strongly corroborated.
+Resolved as separate numbering systems.
 
-### RC-002 — `SB-P-1.4` identity conflict
+### RC-003 — `gysgzasfcjvtrgaigfyn` test vs production
 
-**Old appearance:** Roadmap suggests “Phase 1.4 Meta Business Verification”.
+Both states are true at different times; preserve time-specific topology.
 
-**Stronger execution evidence:** `SB-P1.4` Product Mission family is Bootstrap Foundation.
+### RC-004 — Lovable publication state vs production-domain state
 
-**Resolution:** roadmap milestone numbering and Product Mission numbering are separate.
+Separate facts; exact project/domain binding must be verified before claims.
 
-### RC-003 — `SB-P-1.5` Authentication vs Application Access
+### RC-005 — `EVIDENCE GAP` vs parser incompatibility
 
-**Old appearance:** early recommendation calls the next mission Authentication Foundation.
+Earlier evidence gap was correct at its time; later narrow probe established incompatibility.
 
-**Execution evidence:** governed mission artifacts call it Application Access Foundation.
+### RC-006 — Product Mission acceptance vs later production recovery
 
-**Resolution:** precursor label vs final executed identity.
+Mission acceptance and final production-delivery parity are separate workstreams.
 
-### RC-004 — `SB-P-1.3` website-only vs broader AI development environment
+### RC-007 — Builder-side opening-stock implementation vs canonical completion
 
-**Old appearance:** early next-mission label `Lovable Public Website Foundation`.
+Resolved through the canonical/Lovable reconciliation:
 
-**Execution evidence:** later direct label `AI Development Environment & Public Website Foundation` plus repository/platform work; final planning Part 20 again names the broader milestone.
-
-**Resolution:** use broader executed identity; preserve website-only wording as earlier label.
-
-### RC-005 — `gysgzasfcjvtrgaigfyn` test vs production
-
-**Old/current apparent conflict:** SB-P-1.10 completion report calls it test-only; current governance/runtime state calls it production.
-
-**Resolution:** both are correct for different times. Historical role at 31 July 2026 was test-only; later migration/recovery made it production.
-
-### RC-006 — Lovable publication state vs production-domain state
-
-**Apparent conflict:** a Lovable project may report unpublished while a production domain exists.
-
-**Resolution:** workspace/project publication state and production-domain deployment state are separate facts. Reconcile exact project/domain binding before conclusions.
-
-### RC-007 — `EVIDENCE GAP` vs parser incompatibility
-
-**Apparent conflict:** an initial verification stopped without proving compatibility; a later probe proved incompatibility.
-
-**Resolution:** the earlier evidence gap was correct at its time; later evidence superseded uncertainty without making the earlier report wrong.
-
-### RC-008 — Product Mission acceptance vs later production recovery
-
-**Apparent conflict:** SB-P-1.10/1.11 were accepted, yet `SB-OPS-PROD-SYNC-1.0` later had to repair production delivery/runtime.
-
-**Resolution:** Product Mission acceptance and final production-delivery parity are separate workstreams. Later recovery does not retroactively erase valid acceptance evidence.
+- feature remains Build Now;
+- Lovable implementation is reusable engineering evidence;
+- not canonical completion;
+- direct promotion as-is rejected;
+- future work requires rebase, exact confirmation binding, UDI reuse, permission alignment and current verification.
 
 ---
 
-## 5. Evidence coverage by Product Mission
+## 6. Product/source conflicts — resolved into controlled dispositions
 
-| Mission | Identity evidence | Implementation evidence | Runtime / acceptance evidence | Remaining gap |
-| --- | --- | --- | --- | --- |
-| `SB-P-1.0` | Founder-clarified + Parts 12–14/20 corroboration | Command-system setup evidence | Explicit Phase 0 completion / Phase 1 transition | Literal contemporaneous SB-P heading not recovered; not required for mapping |
-| `SB-P-1.1` | Direct planning + Infrastructure evidence | Infrastructure verification | Acceptance implied by 1.2 dependency; Part 20 later marks complete | Exact closure date only |
-| `SB-P-1.2` | Direct Infrastructure + planning state | DNS/subdomain evidence | Transition to 1.3; Part 20 marks complete | Exact closure date only |
-| `SB-P-1.3` | Direct broader identity | Lovable/repo/public-site/platform evidence | Publication/HTTPS/platform evidence; Part 20 ready-to-resume state | Exact formal rename event not needed |
-| `SB-P-1.4` | Direct | Repo/Lovable Bootstrap | Completion report | None material |
-| `SB-P-1.5` | Direct | Auth/protected-route implementation | Completion/runtime evidence | None material |
-| `SB-P-1.6` | Direct | business schema/onboarding/migration | acceptance/completion evidence | None material |
-| `SB-P-1.7` | Direct | workspace + security refinement | build/acceptance/completion reports | None material |
-| `SB-P-1.8` | Direct | transactions/RLS/business ops | MC accepted/closed 2 Aug | None material |
-| `SB-P-1.9` | Direct | authoritative implementation folder | deployment/runtime/Founder/MC evidence | Completed-folder continuity record still to create |
-| `SB-P-1.10` | Canonical Blueprint | extensive implementation/test evidence | formally accepted 31 Jul | Preserve historical topology metadata |
-| `SB-P-1.11` | Canonical Blueprint | full Source 18 lifecycle | accepted + formally closed 29 Aug | Follow-ups separately governed, not blockers to historical disposition |
+The Current-Source Reconciliation Ledger now records conflicts around:
 
----
+- Basic Voice vs Voice Plus packaging;
+- Daily Intelligence schedule/depth;
+- Staff/HR packaging and privacy;
+- Smart Stock packaging;
+- reminder/reorder automation authority;
+- Smart Credit warn-not-block behavior;
+- risk language;
+- Ask CFO authority;
+- UDI confirmation behavior;
+- storage/retention history;
+- POS boundaries;
+- Order & Delivery packaging/sequencing;
+- Support Automation;
+- Human Language;
+- Conversation Workspace/channel architecture;
+- Super Admin boundaries.
 
-## 6. Completed-folder readiness
+Most require `NO SOURCE CHANGE REQUIRED` because current Source 11 plus mature contracts already settle the behavior.
 
-The evidence is now sufficient to draft historical continuity records for:
-
-- `SB-P-1.0` through `SB-P-1.9`.
-
-Each early record must prominently state:
-
-`Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`
-
-### SB-P-1.0 provenance label
-
-The `SB-P-1.0.md` record must explicitly state:
-
-**Founder-clarified historical identity, strongly corroborated by planning-era evidence; literal contemporaneous `SB-P-1.0 — Command Foundation` heading not claimed.**
-
-### Special SB-P-1.9 rule
-
-The completed-folder continuity file must point to:
-
-`docs/implementation/SB-P-1.9/`
-
-and must not delete, flatten or relocate that authoritative evidence folder.
-
-### Preserve actual Blueprints
-
-`SB-P-1.10.md` and `SB-P-1.11.md` remain actual historical/canonical Product Blueprints and must stay intact except for separately authorized metadata reconciliation.
+The main present source-compression candidates are the Conversation Workspace's first-class channel status and full multimodal/shared-foundation depth. These are `SOURCE CLARIFICATION RECOMMENDED`, not silently amended.
 
 ---
 
-## 7. Current next evidence priority
+## 7. Current unresolved Founder decisions
 
-The broad planning-origin evidence-gathering problem is now closed.
+These remain genuine product/commercial/privacy decisions and must not be guessed:
 
-The major next Founder-origin evidence layer is:
+1. free-trial policy;
+2. exact Voice Plus price;
+3. exact Staff/HR price;
+4. exact Smart Stock price;
+5. exact Smart Order & Delivery price;
+6. long-term retention/deletion duration after cancellation/non-payment;
+7. employee KYC/national-ID necessity/legal/privacy basis;
+8. broader wholesaler/marketplace expansion;
+9. future underwriting/lending ecosystem.
 
-**NotebookLM original product records.**
+These are product-decision questions, not failures of historical reconstruction.
 
-That extraction should focus on feature depth and original Founder invention, then feed the Smart Business Feature Definition Library and final historical continuity package.
+---
 
-Remaining chronology/topology questions are non-blocking.
+## 8. Implementation evidence state after 25-contract refresh
+
+The implementation baseline now judges all 25 mature contracts.
+
+**Result:** no one mature contract is currently proven complete end-to-end.
+
+Strong canonical foundations include:
+
+- authentication/session protection;
+- business identity;
+- manual sale/purchase and correction audit;
+- inventory movement integrity;
+- catalog/pricing/tax;
+- parser/import infrastructure;
+- current owner-scoped RLS/business isolation;
+- audit/idempotency/error-handling patterns.
+
+Major missing shared foundations include mature Permissions/Role Authority, Conversation Workspace, WhatsApp Intelligence, Human Language, Basic Voice, AI Orchestration, mature UDI, R2 media memory, Reminder/Delegated Automation and lifecycle entitlements.
+
+This distinction is now maintained in the Global Product Completion Register.
+
+---
+
+## 9. Historical evidence coverage by Product Mission
+
+| Mission | Identity state | Historical disposition | Material remaining evidence gap |
+|---|---|---|---|
+| `SB-P-1.0` | Founder-clarified + strongly corroborated | completed historically | literal contemporaneous heading not recovered; non-blocking |
+| `SB-P-1.1` | confirmed | completed historically | exact closure date only |
+| `SB-P-1.2` | confirmed | completed historically | exact closure date only |
+| `SB-P-1.3` | confirmed | completed historically | exact formal rename event unnecessary |
+| `SB-P-1.4` | confirmed | completed historically | none material |
+| `SB-P-1.5` | confirmed | completed historically | none material |
+| `SB-P-1.6` | confirmed | completed historically | none material |
+| `SB-P-1.7` | confirmed | completed historically | none material |
+| `SB-P-1.8` | confirmed | completed historically | none material |
+| `SB-P-1.9` | confirmed | completed historically | historical continuity record still to create; implementation folder must remain intact |
+| `SB-P-1.10` | confirmed | formally accepted | preserve historical topology metadata |
+| `SB-P-1.11` | confirmed | formally accepted | follow-ups separately governed |
+
+---
+
+## 10. Remaining historical closeout work
+
+The broad Founder-origin evidence-gathering problem is now closed.
+
+Remaining historical-closeout tasks are administrative/continuity tasks, not product-definition recovery:
+
+- create historical continuity records for `SB-P-1.0` through `SB-P-1.9` under `docs/phase-1-mission-blueprint/completed/`, labeled `Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT`;
+- preserve `docs/implementation/SB-P-1.9/` intact;
+- create the organizational principles / Founder reflections record when authorized;
+- archive temporary extraction work only after continuity/provenance is safely preserved.
+
+---
+
+## 11. Final evidence-ledger result
+
+The major historical uncertainties that affected Product Mission identity and Founder-origin feature completeness are resolved.
+
+What remains open is either:
+
+- genuinely non-blocking historical precision;
+- a future product/commercial/privacy Founder decision;
+- or separately governed implementation work.
+
+**Evidence & Open Questions Ledger status: FINAL for the recovered Phase 1 evidence currently in scope.**
