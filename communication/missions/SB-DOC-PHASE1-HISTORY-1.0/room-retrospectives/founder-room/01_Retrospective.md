@@ -382,7 +382,9 @@ The strongest result is not archival volume. It is the ability to recover lost F
 
 # 3. Tools We Have
 
-## GitHub
+## 3A. Tools / Infrastructure We Actually Have or Have Proven Operationally
+
+### GitHub
 
 `CURRENT — STILL VALID`
 
@@ -398,7 +400,7 @@ Boundary:
 - merged code does not prove runtime deployment;
 - green CI does not equal Mission Control acceptance.
 
-## ChatGPT / Founder Room
+### ChatGPT / Founder Room
 
 `CURRENT — STILL VALID`
 
@@ -412,7 +414,7 @@ Boundary:
 - chat must not become the only durable source of material project truth;
 - Founder Room should not replace specialist evidence or runtime proof.
 
-## Claude Code
+### Claude Code
 
 `CURRENT — STILL VALID`
 
@@ -425,7 +427,7 @@ Role:
 Boundary:
 - engineering judgement does not create Founder/Product Truth authority.
 
-## Codex
+### Codex
 
 `CURRENT — STILL VALID`
 
@@ -439,12 +441,12 @@ Boundary:
 - tool capability is not governance authority;
 - must not silently redefine product scope.
 
-## Lovable
+### Lovable
 
 `CURRENT — STILL VALID`
 
 Role:
-- application builder/runtime/publishing surface.
+- application builder/runtime/publishing surface already used during the Smart Business journey.
 
 Boundary:
 - visual preview is not Product Truth;
@@ -452,7 +454,7 @@ Boundary:
 - builder output is not automatically canonical implementation;
 - legacy and current projects must not be confused.
 
-## Supabase / Postgres
+### Supabase / Postgres
 
 `CURRENT — STILL VALID`
 
@@ -468,50 +470,100 @@ Boundary:
 - project/environment identity must be verified before migration or query;
 - provider “healthy” status does not prove application security.
 
-## OpenAI
+### AWS / AWS Lambda
 
-`CURRENT — STILL VALID`
-
-Role:
-- approved shared AI intelligence/orchestration provider direction.
-
-Boundary:
-- AI may interpret, summarize, reason and prepare tools/actions;
-- permission, deterministic business rules and final authority remain outside the model.
-
-## Meta WhatsApp Cloud API
-
-`CURRENT — STILL VALID AS APPROVED FUTURE CHANNEL INTEGRATION`
+`CURRENT — EXISTING / PROVEN INFRASTRUCTURE CAPABILITY`
 
 Role:
-- first-class external conversational channel/adapter.
+- serverless infrastructure already provisioned and exercised during the Smart Business journey;
+- Lambda parser infrastructure and related operational work were deployed/proven in non-production during the `SB-P-1.11` stream;
+- Team LIPS has acquired practical AWS Lambda provisioning, configuration, verification and evidence-handling capability.
 
 Boundary:
-- WhatsApp must not own Business Memory, permissions or business logic;
-- current build plan places full channel integration at `SB-P-1.20`.
+- existing Lambda infrastructure does **not** mean the parser is fully wired into the current production Smart Business UDI/application flow;
+- prior review identified the parser as deployed/proven but requiring future narrow rebase/wiring through authorized lifecycle work;
+- AWS access or infrastructure availability does not itself authorize mutation, deployment or production change.
 
-## Cloudflare / R2
-
-`CURRENT — STILL VALID AS APPROVED ARCHITECTURAL DIRECTION`
-
-Role:
-- domain/infrastructure history;
-- durable binary/media storage direction via R2.
-
-Boundary:
-- exact runtime state must be verified when operationally relevant;
-- R2 is not the authority for merchant ownership/permissions.
-
-## NotebookLM and Ground Zero
+### NotebookLM
 
 `CAPABILITY PROVEN`
 
 Role:
-- historical evidence recovery and cross-checking.
+- historical evidence recovery and cross-checking;
+- structured extraction support during Founder-origin reconstruction.
 
 Boundary:
 - historical answers are evidence, not current Product Truth;
-- provenance and uncertainty must remain explicit.
+- generated synthesis must remain provenance-aware and be reconciled against stronger current authority.
+
+### Ground Zero
+
+`CAPABILITY PROVEN`
+
+Role:
+- Founder-origin historical recovery and corroboration;
+- recovery of reasoning and feature intent that had been compressed elsewhere.
+
+Boundary:
+- recovered history does not silently override current Product Truth;
+- source gaps and uncertainty must remain explicit.
+
+### Cloudflare infrastructure
+
+`CURRENT — EXISTING / PROVEN INFRASTRUCTURE CAPABILITY, CURRENT EXACT RUNTIME STATE REQUIRES REVERIFICATION`
+
+Role:
+- domain/DNS/infrastructure work has been exercised during the Smart Business journey;
+- Team LIPS has operational experience with Cloudflare-side configuration and evidence handling relevant to Smart Business infrastructure continuity.
+
+Boundary:
+- exact current DNS, proxy, TLS, routing or binding state must be directly reverified before a present-tense runtime claim;
+- existing Cloudflare infrastructure capability does not authorize DNS, routing, deployment or production changes;
+- Cloudflare infrastructure capability must be kept distinct from the separate future R2 storage direction below.
+
+## 3B. Approved / Planned Providers and Integrations — Not Yet Proven as Current Product Capability
+
+### OpenAI
+
+`CURRENT PRODUCT/ARCHITECTURE DIRECTION — IMPLEMENTATION NOT YET PROVEN COMPLETE`
+
+Role:
+- approved shared AI intelligence/orchestration provider direction;
+- intended to support the common Smart Business intelligence layer across channels and feature domains;
+- the mature shared AI foundation is part of future `SB-P-1.13`.
+
+Boundary:
+- approval of OpenAI does not prove the complete production AI orchestration layer already exists;
+- model/provider capability does not create permission, business authority or deterministic domain truth;
+- implementation requires the future authorized Product Mission lifecycle and runtime evidence.
+
+### Meta WhatsApp Cloud API
+
+`APPROVED FUTURE CHANNEL INTEGRATION — NOT CURRENTLY PROVEN COMPLETE`
+
+Role:
+- approved provider direction for the external WhatsApp channel;
+- full Smart Business WhatsApp integration belongs to `SB-P-1.20`;
+- WhatsApp is a channel adapter into the shared Smart Business core, not a separate AI/business engine.
+
+Boundary:
+- do not describe full WhatsApp integration as current implemented product capability without later runtime evidence;
+- Meta transport must not own Business Memory, permissions, AI authority or domain logic;
+- provider access does not itself authorize configuration or production activation.
+
+### Cloudflare R2
+
+`APPROVED FUTURE STORAGE DIRECTION — NOT CURRENTLY PROVEN COMPLETE`
+
+Role:
+- approved durable binary/media storage direction for documents, images, receipts, voice/audio and other eligible media;
+- mature integration belongs to Business Memory / documents / durable-media work, especially `SB-P-1.14`;
+- Smart Business/Supabase remains authoritative for merchant ownership, permissions, metadata, business linkage and retrieval authorization.
+
+Boundary:
+- R2 does not own merchant permissions or business truth;
+- do not imply production Receipt Cabinet/document-media storage is already running on R2 without direct runtime evidence;
+- storage activation and migration require separately authorized lifecycle work.
 
 ---
 
