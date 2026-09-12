@@ -516,7 +516,7 @@ Compact scenario sets per mission, per instruction §6. Each states actor, start
 **Scenario A — Bounded delegation works as intended**
 - Actor: Owner, then a newly delegated Manager.
 - Starting condition: Owner account exists with existing business data; no Manager account yet exists.
-- Action: Owner grants a Manager bounded catalog/inventory-view capability; Manager logs in.
+- Action: Owner grants a Manager a bounded contextual product-price-inventory view capability (access to the shared Product & Price Master, not a standalone Catalog); Manager logs in.
 - Expected experience: Manager sees only the delegated operational area, phrased in business terms, not a raw permission-flag list.
 - Protected/denied behavior: Manager's access to dashboard daily totals, transaction financial views, and any other protected-intelligence surface currently in the product is denied with a calm, non-accusatory message.
 - Evidence: screen capture of Manager's scoped view; a denied-access attempt with its response; RLS query log showing the denial occurred at the data layer, not only the UI.
@@ -524,7 +524,7 @@ Compact scenario sets per mission, per instruction §6. Each states actor, start
 
 **Scenario B — Revocation invalidates a pending action**
 - Actor: Owner, then a Manager mid-workflow.
-- Starting condition: Manager has started a consequential multi-step action (e.g., a Catalog import preview) that is not yet committed.
+- Starting condition: Manager has started a consequential multi-step action (e.g., a Product & Price Master bulk-import preview) that is not yet committed.
 - Action: Owner revokes the Manager's relevant permission before the Manager confirms/commits.
 - Expected experience: the Manager's attempted commit is blocked with a clear explanation, not silently allowed.
 - Protected/denied behavior: the system re-checks permission at execution time rather than trusting the state captured when the action was previewed.
