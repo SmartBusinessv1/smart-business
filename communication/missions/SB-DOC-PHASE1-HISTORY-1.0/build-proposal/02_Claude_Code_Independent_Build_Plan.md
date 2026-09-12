@@ -4,8 +4,16 @@
 **Artifact Type:** Independent engineering review and build-plan critique — **NOT IMPLEMENTATION**
 **Responds to:** `01_Mission_Control_Founder_Accepted_Build_Proposal.md` and `communication/live/instruction.1.md`
 **Author:** Claude Code
-**Status:** `INDEPENDENT REVIEW — RECONCILED PER INSTRUCTION 2 — FOR MISSION CONTROL FINAL REVIEW`
-**Date:** `2026-09-12` (original), reconciled `2026-09-12` per `communication/live/instruction.2.md`
+**Status:** `INDEPENDENT REVIEW — RECONCILED PER INSTRUCTION 2 — UX ANTI-DRIFT ANALYSIS ADDED PER INSTRUCTION 3 — FOR MISSION CONTROL FINAL REVIEW`
+**Date:** `2026-09-12` (original), reconciled `2026-09-12` per `communication/live/instruction.2.md`, UX anti-drift analysis added `2026-09-12` per `communication/live/instruction.3.md`
+
+---
+
+## UX Anti-Drift Analysis Note (Instruction 3)
+
+Per Mission Control's `communication/live/instruction.3.md`, this update independently analyzes the Founder-approved Section `8A — Founder Runtime User Experience Anchors — Anti-Drift Layer` (added to `01_Mission_Control_Founder_Accepted_Build_Proposal.md` by PR #546, following the Founder Product Decision Record on Product & Price Master, PR #545) against current Product Truth, the 25 mature contracts, historical reconciliation evidence, current repository reality, the reconciled nine-mission sequence, and Source 18. The full analysis is recorded in new **Section 21** below; existing Sections 1–20 are preserved unchanged except for one cross-referenced correction to Section 9's schema-evolution attribution (see Section 21.2.3, `SB-P-1.14`/`SB-P-1.16`).
+
+Summary: 7 of 9 missions' anchor sets are `CONFIRM` as written. Two (`SB-P-1.12`, `SB-P-1.14`) are `CONFIRM WITH CHANGE` for narrow, evidence-grounded sequencing corrections — in each case relocating *when* a claim becomes runtime-testable, not weakening the underlying Founder-approved experience. No anchor set is rejected. No new Founder decision is created beyond those already tracked in Section 18.
 
 ---
 
@@ -268,9 +276,9 @@ Marked `[design work required]` wherever repository evidence is insufficient to 
 
 - **`SB-P-1.12`:** new role/permission tables (Owner/Manager/Employee/Supplier/Customer/Delivery-staff — exact shape `[design work required]`, but should follow the Catalog executor-role precedent); RLS policy expansion across `businesses`, `transactions`, `inventory_items`/`inventory_movements`; `anon` grant remediation matching migration `21`'s pattern for the three unremediated tables; no new UI routes beyond nav restructuring.
 - **`SB-P-1.13`:** new tables for conversation sessions/messages and a typed tool-call/action-proposal log `[design work required — exact schema unspecified anywhere in current evidence]`; a governed tool-calling service that wraps existing `src/integrations/supabase/{catalog,inventory,transactions}.ts` functions (Section 11); new authenticated route(s) for the Conversation Workspace UI; a language-preference field, likely on `businesses`/a future per-user table.
-- **`SB-P-1.14`:** UDI document/interpretation-state tables generalizing `catalog_import_batches`/`catalog_import_rows`'s status-machine pattern; R2 client integration + Supabase-side object-metadata/ownership/lifecycle tables per Contract 25's storage-boundary rule; Receipt Cabinet UI surface `[design work required]`.
+- **`SB-P-1.14`:** UDI document/interpretation-state tables generalizing `catalog_import_batches`/`catalog_import_rows`'s status-machine pattern; R2 client integration + Supabase-side object-metadata/ownership/lifecycle tables per Contract 25's storage-boundary rule; Receipt Cabinet UI surface `[design work required]`. **Also add (corrected per Section 21.2.3): additive widening of the `transactions` type constraint/enum to support income/expense/credit/repayment, relocated here from `SB-P-1.16`.**
 - **`SB-P-1.15`:** a shared `scheduled_jobs`/reminder table (Source 02 §3 already names `scheduled_reminders` and `automation_rules` as approved foundation tables not yet built — reuse those names rather than inventing new ones); `pg_cron`-driven or equivalent scheduler wiring; Ask CFO as a read-only query service layered on the AI Orchestration tool-calling contract from `SB-P-1.13`'s AI Orchestration workstream, with the SELECT-only DB boundary enforced identically to Sources 02/04/05.
-- **`SB-P-1.16`:** additive widening of the `transactions` type constraint/enum; new `customer_credits`/repayment tables (Source 02 §3 already names `customer_credits` as an approved foundation table); payment-evidence/reconciliation-state tables `[design work required]`.
+- **`SB-P-1.16`:** new `customer_credits`/repayment tables (Source 02 §3 already names `customer_credits` as an approved foundation table); payment-evidence/reconciliation-state tables `[design work required]`. **(Corrected per Section 21.2.3: the `transactions` type-constraint/enum widening itself moves to `SB-P-1.14`; this mission builds the customer-credit-specific structures on top of the now-four-state ledger, not the basic type widening.)**
 - **`SB-P-1.17`:** `suppliers` table (already named in Source 02 §3, not yet built); reorder-rule tables extending the delegated-automation model from `1.15`; `pos_integrations` table (already named in Source 02 §3); no changes to existing Catalog/Inventory schema beyond additive links.
 - **`SB-P-1.18`:** per-workstream — Order & Delivery needs customer/order/delivery-assignment tables `[design work required]`; Staff/HR needs `employees`/`attendance_logs`/`attendance_correction_requests`/`payroll_reports` (all already named in Source 02 §3, none yet built); Compliance Shield needs compliance-record tables reusing UDI's document-interpretation pipeline from `1.14`.
 - **`SB-P-1.19`:** subscription/entitlement tables `[design work required]`; support-ticket schema for the escalation path beyond the FAQ-fortress (which should move to `1.13`, Section 7); Super Admin cockpit is presentation-layer over existing/new telemetry, not new domain schema.
@@ -414,4 +422,306 @@ No mission is added, removed, split, or renumbered from Mission Control's propos
 
 ---
 
-*This document does not authorize implementation. `SB-P-1.12` shall not begin until Mission Control has reviewed this response and the historical mission's closure/archival status has been separately resolved per `instruction.1.md` §16–17. `SB-P-1.12` cannot be accepted without proving the `anon`-privilege remediation and automated PR build/lint/test CI gates described in Section 1 and Section 7. This update was made per `communication/live/instruction.2.md`; no future `SB-P-*` mission has been authorized by this reconciliation.*
+## 21. UX Anti-Drift Analysis — Section 8A Founder Runtime Experience Anchors (Instruction 3)
+
+### 21.0 Method and Authority Boundary
+
+Per `instruction.3.md`, this analysis treats Section 8A's anchors as an approved anti-drift layer, not implementation prescription (8A.0's own stated boundary). Each mission's anchor set is checked against: current Product Truth (Sources 01/11), the applicable mature feature/foundation contracts, the Final Founder-Origin Feature Reconciliation Register and other final-reconciliation evidence, current repository architecture (Sections 2–3 above), the reconciled nine-mission sequence (Section 19), and Source 18's mission lifecycle. Corrections are proposed only where evidence shows a genuine sequencing, dependency, permission, or measurability defect — never for wording style alone.
+
+### 21.1 Sequencing Checks (instruction §5)
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Each mission has a coherent human outcome by completion | PASS for all nine — see 21.2 |
+| 2 | Earlier mission does not claim a later mission's capability complete | Two violations found and corrected — `SB-P-1.12`'s premature Ask CFO and cross-tenant conversation references (§21.2.1) |
+| 3 | Cumulative experience internally consistent 1.12→1.20 | PASS once §21.2's corrections are applied |
+| 4 | Same capability not described differently across UI/Conversation/WhatsApp absent genuine channel differences | PASS — `SB-P-1.20`'s anchors explicitly require cross-channel consistency (Contract 9, Contract 22 Single Implementation Rule) |
+| 5 | Owner/Manager/Employee/Customer/Supplier/Delivery Staff respect the same permission model | PASS — Contract 21 referenced consistently in every mission's anchor set |
+| 6 | Product & Price Master remains a shared foundation, not a competing Catalog identity | PASS — matches the Founder Product Decision Record and this plan's Section 4 throughout `SB-P-1.12` and `SB-P-1.17` |
+| 7 | `SB-P-1.13` remains genuinely useful without WhatsApp | PASS — the Meta-disconnection anchor is present and correctly scoped to "capabilities implemented so far" |
+| 8 | `SB-P-1.20` remains a thin adapter, not a second intelligence/business-logic stack | PASS — every `SB-P-1.20` anchor reiterates shared Business Memory/domain-service reuse |
+| 9 | Support Automation correctly represented as foundation in 1.13, completion in 1.19 | PASS — matches Reconciliation 3 (`instruction.2.md`) exactly |
+| 10 | The three `SB-P-1.18` workstreams remain individually verifiable under one Mission ID | PASS — 8A.7 already separates Order & Delivery / Staff & HR / Compliance Shield into distinct anchor sets; §21.3's scenarios preserve this separation |
+| 11 | Unresolved commercial/governance decisions are not accidentally hard-coded as UX truth | PASS — no pricing figures, retention durations, KYC requirements, marketplace, or lending/underwriting language appear anywhere in Section 8A; the trial/no-trial ambiguity is explicitly left open in `SB-P-1.19`'s own anchor text |
+
+### 21.2 Per-Mission Classification
+
+#### 21.2.1 `SB-P-1.12 — Authority, Identity & Product Surface Foundation` — `CONFIRM WITH CHANGE`
+
+Nearly all anchors are well-grounded and directly implement Contract 21 and the Founder Product Decision Record. Two anchors make claims that cannot actually be runtime-verified at the end of `SB-P-1.12`, because the capability they reference does not exist until a later mission:
+
+- **Affected anchor:** "...Owner-only profit, Ask CFO and protected financial intelligence remain unavailable unless explicitly delegated..."
+  **Why change:** Ask CFO (Contract 2) is not built until `SB-P-1.15` (8A.4). There is no Ask CFO surface to deny access to at the end of `SB-P-1.12`, so this claim is not measurable in Founder Runtime Verification as instruction §3 requires.
+  **Replacement wording:** "Owner-only profit and other protected financial intelligence surfaces that exist at this point (dashboard daily totals, transaction and inventory financial views) remain unavailable to a Manager unless explicitly delegated under approved Product Truth; the same permission model must be built extensibly enough to also gate Ask CFO once it is delivered in `SB-P-1.15`."
+  **Evidence:** Section 6 dependency graph (Contract 2 depends on Contract 21 and is not implemented until `SB-P-1.15`); current repository has no Ask CFO code (Section 3.6).
+
+- **Affected anchor:** "A user from one business cannot see, search, export, converse about or modify another business's protected data."
+  **Why change:** "Converse about" presumes the native Conversation Workspace (Contract 10), which does not exist until `SB-P-1.13` (Section 3.6 confirms zero conversation code today).
+  **Replacement wording:** "A user from one business cannot see, search, export, or modify another business's protected data. Once the native Conversation Workspace exists (`SB-P-1.13`), the same isolation must extend to conversational access, and `SB-P-1.13`'s own Founder Runtime Verification must test that a conversational query cannot surface another business's data (see §21.3.2)."
+  **Evidence:** Section 3.6 (no conversation code exists); Section 6 (Contract 10 not implemented until `SB-P-1.13`).
+
+Both corrections relocate *when* a claim is tested; neither removes or weakens the underlying guarantee, which is carried forward explicitly into `SB-P-1.13`'s own verification.
+
+#### 21.2.2 `SB-P-1.13 — Native Conversation & AI Intelligence Foundation` — `CONFIRM`
+
+Exceptionally well-bounded: every anchor is scoped to "an approved existing action" or "capabilities implemented so far," and the explicit boundary statement ("full UDI/document intelligence arrives in `SB-P-1.14`... without falsely claiming the mature document workflow complete") is exactly the anti-drift discipline instruction §5.2 asks to verify. No wording change required.
+
+One dependency note for Founder Runtime Verification (not a change to the anchor): Basic Voice requires a speech-to-text/text-to-speech provider integration that is genuinely new infrastructure — no voice SDK exists anywhere in the current codebase (Section 3.6). Voice-anchor verification should carry an explicit environment-activation dependency flag, the same discipline already applied to Cloudflare R2 in Section 12, rather than being assumed available by default.
+
+#### 21.2.3 `SB-P-1.14 — Business Memory, Documents & Durable Media` — `CONFIRM WITH CHANGE`
+
+Most anchors are strong and directly operationalize this plan's own findings — in particular, "a confirmed import/document update... does not silently resolve to a different live target after confirmation" is a direct, testable expression of the TOCTOU-prevention pattern this plan already identified as the correct generalization of the repository's proven `catalog-import.ts` binding (Section 3.4, Section 12).
+
+One anchor needs a scope clarification, and cross-checking this section's own prior analysis (Section 9) against 8A surfaced a genuine internal inconsistency that is corrected here rather than in the Founder-approved anchor:
+
+- **Self-correction to this plan's own Section 9 (not a change to Section 8A):** Section 9 originally attributed "additive widening of the `transactions` type constraint/enum" to `SB-P-1.16`. Cross-checking against 8A.3 — which correctly expects the merchant to record income/expense/credit/repayment by the end of `SB-P-1.14`, consistent with Contract 3's own four-state maturity requirement and the proposal's own mission table (which assigns "mature Ledger/Business Memory foundation" to `SB-P-1.14` and only "3 completion" — the customer-credit-specific financial-integrity layer — to `SB-P-1.16`) — shows the type-constraint widening more correctly belongs in `SB-P-1.14`. **Correction:** the widening moves to `SB-P-1.14` (Section 9 updated accordingly); `SB-P-1.16` instead builds the customer-credit-specific structures (`customer_credits`, ageing/balance tracking, payment-evidence/reconciliation tables) on top of the now-four-state ledger. This makes 8A.3's anchor, as written, correctly testable at `SB-P-1.14` — **the anchor itself is `CONFIRM`, unchanged.**
+
+- **Affected anchor:** "...the merchant can search Business Memory by useful human concepts such as period, party, purpose, customer, supplier or document..."
+  **Why change:** No structured Customer or Supplier identity table exists until `SB-P-1.17` (Supplier Management, Contract 7) and `SB-P-1.18` (Customer identity via Order & Delivery, Contract 1) — confirmed by Section 3.2's schema inventory. Contract 3 itself lists Customer/Supplier identity among its dependencies, so this is a genuine, not merely stylistic, sequencing question.
+  **Replacement wording:** "...the merchant can search Business Memory by useful human concepts such as period, party/counterparty reference, purpose, or document. Search indexed specifically by a structured Customer or Supplier directory matures once `SB-P-1.17` (Supplier Management) and `SB-P-1.18` (Customer identity) establish those identities; until then, party/counterparty search operates on the free-text or document-derived reference already captured on the underlying record."
+  **Evidence:** Section 3.2 (no `customers`/`suppliers` tables among the 24 current migrations); Contract 3's own dependency list; Section 6.
+
+Both corrections preserve the full underlying Founder-approved experience; neither removes a capability, and the first correction actually *advances* delivery of a capability (four-state ledger recording) rather than deferring it.
+
+#### 21.2.4 `SB-P-1.15 — Reminder, Daily Intelligence & Ask CFO` — `CONFIRM`
+
+Clean and well-grounded throughout. The Daily Intelligence anchor correctly uses the current 7:00 AM / 10:30 AM / 10:00 PM rhythm (not the stale Source 02 §7 schedule this plan already flagged in Section 7 as `SOURCE CLARIFICATION RECOMMENDED`), Ask CFO's read-only boundary is stated without exception, and the Manager/Employee permission boundary is correctly reapplied to conversational access. This is also the first mission where Ask CFO becomes genuinely testable, confirming the correction made in §21.2.1. No changes.
+
+#### 21.2.5 `SB-P-1.16 — Financial Integrity & Credit` — `CONFIRM`
+
+Clean. Correctly houses the customer-credit-specific maturity (ageing, balance, warn-not-block, reconciliation, idempotent linking) that §21.2.3 confirms does not belong in `SB-P-1.14`. No changes.
+
+#### 21.2.6 `SB-P-1.17 — Manager Operations` — `CONFIRM`
+
+Clean, and notably the anchor set already incorporates several of this plan's own Section 7 recommendations nearly verbatim (contextual product/price access rather than a top-level Catalog model; opening-stock reuse of UDI rather than a third import stack; standard-bridge-only POS; neutral, non-accusatory counter-review language). No changes.
+
+#### 21.2.7 `SB-P-1.18 — Controlled Business Add-ons` — `CONFIRM`
+
+All three workstreams (Order & Delivery, Staff/HR, Compliance Shield) correctly encode the historical Founder-origin corrections found in the final-reconciliation evidence: no default continuous delivery-staff GPS surveillance, customer silence alone does not invalidate a proven delivery, no automated wage punishment or misconduct verdicts, Compliance Shield explicitly disclaims legal authority, and the private-customer-network (not marketplace) boundary is stated directly. Dependencies on earlier missions (Stock/Supplier from `SB-P-1.17`, Reminder from `SB-P-1.15`, Financial Integrity from `SB-P-1.16`, UDI from `SB-P-1.14`) are all correctly sequenced. No changes.
+
+#### 21.2.8 `SB-P-1.19 — Activation, Lifecycle & Platform Stewardship` — `CONFIRM`
+
+Correctly completes Support Automation (matching Reconciliation 3 exactly), correctly sequences Voice Plus after `SB-P-1.13`'s Basic Voice, correctly treats the trial/no-trial decision as still open rather than hard-coding an assumption, and Super Admin's least-privilege boundary is stated without exception. No changes.
+
+#### 21.2.9 `SB-P-1.20 — WhatsApp Channel Integration` — `CONFIRM`
+
+Clean. Every anchor reinforces the thin-adapter/Single-Implementation-Rule boundary this plan already established in Section 5, including the confirmation-binding anchor ("consequential confirmations bind to the same exact actor/business/action/state and are revalidated before execution"), which correctly generalizes the TOCTOU-prevention lesson from Section 3.4/12 to the cross-channel case. The Meta-unavailability anchor is the direct mirror of `SB-P-1.13`'s own independence anchor and must be preserved as the Founder's core acceptance principle for this mission. No changes.
+
+### 21.3 Founder Runtime Experience Verification Scenarios
+
+Compact scenario sets per mission, per instruction §6. Each states actor, starting condition, action, expected experience, protected/denied behavior, evidence to capture, and dependency/feature-flag condition where applicable. Detailed execution steps belong in each mission's own Blueprint/EIS/Stage 17 verification package, not here.
+
+#### 21.3.1 `SB-P-1.12`
+
+**Scenario A — Bounded delegation works as intended**
+- Actor: Owner, then a newly delegated Manager.
+- Starting condition: Owner account exists with existing business data; no Manager account yet exists.
+- Action: Owner grants a Manager bounded catalog/inventory-view capability; Manager logs in.
+- Expected experience: Manager sees only the delegated operational area, phrased in business terms, not a raw permission-flag list.
+- Protected/denied behavior: Manager's access to dashboard daily totals, transaction financial views, and any other protected-intelligence surface currently in the product is denied with a calm, non-accusatory message.
+- Evidence: screen capture of Manager's scoped view; a denied-access attempt with its response; RLS query log showing the denial occurred at the data layer, not only the UI.
+- Dependency: requires the Owner/Manager/Employee role model workstream complete.
+
+**Scenario B — Revocation invalidates a pending action**
+- Actor: Owner, then a Manager mid-workflow.
+- Starting condition: Manager has started a consequential multi-step action (e.g., a Catalog import preview) that is not yet committed.
+- Action: Owner revokes the Manager's relevant permission before the Manager confirms/commits.
+- Expected experience: the Manager's attempted commit is blocked with a clear explanation, not silently allowed.
+- Protected/denied behavior: the system re-checks permission at execution time rather than trusting the state captured when the action was previewed.
+- Evidence: timestamped grant/revoke log; the blocked-commit response; confirmation the underlying record was not written.
+- Dependency: requires the same preview→commit pattern already proven in the existing Catalog import flow.
+
+#### 21.3.2 `SB-P-1.13`
+
+**Scenario A — Natural-language action through the Conversation Workspace**
+- Actor: an authorized Owner or permitted Employee.
+- Starting condition: Conversation Workspace available; user has permission to add a transaction.
+- Action: user types a transaction description in English, Malayalam, or Manglish.
+- Expected experience: the assistant asks for the smallest necessary clarification only if genuinely ambiguous, then shows the exact proposed action for confirmation, executes through the existing governed RPC, and confirms actual stored state.
+- Protected/denied behavior: an Employee asking for Owner-only profit information receives a bounded denial; a cross-tenant conversational query cannot surface another business's data (carrying forward the `SB-P-1.12` correction in §21.2.1).
+- Evidence: conversation transcript; the underlying RPC call and its result; a denial transcript for the out-of-scope request.
+- Dependency: AI Orchestration workstream (a) must precede this scenario.
+
+**Scenario B — WhatsApp-independence acceptance test**
+- Actor: an authorized Owner.
+- Starting condition: Meta/WhatsApp credentials or connectivity deliberately disabled/absent.
+- Action: Owner performs an approved workflow (e.g., adding a transaction, asking a supported question) entirely through the native Conversation Workspace.
+- Expected experience: full success, with no degraded behavior attributable to WhatsApp's absence.
+- Protected/denied behavior: n/a (this scenario proves availability, not denial).
+- Evidence: the completed workflow's result plus explicit confirmation that no WhatsApp/Meta network calls occurred.
+- Dependency: none beyond this mission's own workstreams — this is the point of the scenario.
+
+#### 21.3.3 `SB-P-1.14`
+
+**Scenario A — Document interpret → preview → confirm binding**
+- Actor: an authorized Owner or permitted Employee.
+- Starting condition: a receipt/invoice image or PDF ready to upload.
+- Action: user uploads the document, reviews the AI-interpreted preview, corrects one ambiguous field, and confirms.
+- Expected experience: the confirmed record reflects exactly the reviewed-and-corrected interpretation.
+- Protected/denied behavior: if the underlying resolvable target (e.g., a matched product/party) changes between preview and confirm, the commit must not silently retarget — it must re-prompt for confirmation instead.
+- Evidence: the persisted preview identity key; the commit request showing the same key reused; the original document retrievable afterward with provenance linkage.
+- Dependency: reuses the same preview-persists-a-key / commit-reuses-the-same-key pattern already proven in `catalog-import.ts` (Section 3.4), generalized for UDI.
+
+**Scenario B — Four-state Ledger recording**
+- Actor: an authorized Owner.
+- Starting condition: existing sale/purchase transaction history.
+- Action: Owner records an income, an expense, a credit, and a repayment event (per the Section 21.2.3 schema correction).
+- Expected experience: all four states are recorded, retrievable, and correctly categorized; existing sale/purchase history is preserved unchanged.
+- Protected/denied behavior: n/a for this scenario (functional, not permission-focused).
+- Evidence: the four recorded events and their retrieval; confirmation the `transactions` type constraint was widened additively, not destructively.
+- Dependency: the Section 9 schema correction (type-constraint widening moved to `SB-P-1.14`) must be implemented as part of this mission's Blueprint.
+
+#### 21.3.4 `SB-P-1.15`
+
+**Scenario A — Reminder creation and continuation**
+- Actor: an authorized Owner.
+- Starting condition: no relevant reminder exists.
+- Action: Owner says naturally, "Remind me Friday to pay this supplier."
+- Expected experience: a correctly-dated reminder is created, with clarification requested only if the timing was genuinely ambiguous.
+- Protected/denied behavior: when the reminder's due time arrives, if it could continue into a consequential payment action, the system asks for confirmation rather than treating the due time as proof the payment should happen — unless a valid bounded Owner delegation already exists.
+- Evidence: the reminder record; the due-time prompt or the delegation record that justified skipping it.
+- Dependency: none beyond this mission's own Reminder Engine.
+
+**Scenario B — Ask CFO read-only boundary**
+- Actor: Owner, then a Manager without delegated intelligence access.
+- Starting condition: sufficient Business Memory exists to answer a real question.
+- Action: Owner asks, "Who owes me money?"; separately, the Manager asks the same question.
+- Expected experience: Owner receives a contextual, fact-grounded answer that distinguishes known facts from estimates; the Manager receives only the permitted subset, not the full answer, regardless of phrasing.
+- Protected/denied behavior: Ask CFO never executes a write; a request phrased to imply a decision is redirected back to the Owner.
+- Evidence: both transcripts side by side; confirmation no write occurred from the Ask CFO path.
+- Dependency: requires `SB-P-1.13`'s AI Orchestration workstream.
+
+#### 21.3.5 `SB-P-1.16`
+
+**Scenario A — Credit, warning, and Owner override**
+- Actor: an authorized Owner.
+- Starting condition: a customer has an overdue credit balance.
+- Action: Owner attempts to record a new credit sale to that customer.
+- Expected experience: Smart Business surfaces the overdue/ageing warning clearly; the Owner can still proceed, override, or decline based on their own judgment.
+- Protected/denied behavior: the system never auto-blocks the sale or silently changes the customer relationship on the Owner's behalf.
+- Evidence: the warning shown; the Owner's recorded decision; the resulting transaction and updated balance.
+- Dependency: requires `SB-P-1.14`'s four-state Ledger foundation.
+
+**Scenario B — Ambiguous payment-evidence match**
+- Actor: an authorized Owner.
+- Starting condition: an uploaded bank/UPI evidence record plausibly matches more than one open transaction.
+- Action: Owner reviews the evidence.
+- Expected experience: a concise review/confirmation prompt listing the plausible matches, not a silent auto-link.
+- Protected/denied behavior: confirming the match links idempotently — retrying the same confirmation does not create a duplicate income/repayment entry.
+- Evidence: the candidate-match list; the confirmed link; a repeat-submission test showing no duplicate was created.
+- Dependency: reuses the idempotency-key pattern already proven in Inventory/Catalog (Section 3.3).
+
+#### 21.3.6 `SB-P-1.17`
+
+**Scenario A — Confirmation-gated reorder**
+- Actor: an authorized Owner or Manager.
+- Starting condition: an item is below its low-stock threshold and has supplier history.
+- Action: Smart Business surfaces a reorder suggestion.
+- Expected experience: the suggestion is clear and evidence-based (current stock, supplier history).
+- Protected/denied behavior: the reorder is not placed automatically unless a previously configured bounded delegation explicitly permits it; otherwise the Owner must confirm.
+- Evidence: the suggestion; the confirmation (or delegation record); the resulting stock movement tied to the shared Product & Price Master identity, not a duplicate item.
+- Dependency: reuses the Reminder/Automation foundation from `SB-P-1.15`.
+
+**Scenario B — Neutral POS counter review**
+- Actor: an authorized Owner or Manager.
+- Starting condition: a standard POS bridge has surfaced a counter anomaly (e.g., an unusual discount).
+- Action: Owner/Manager opens the counter review.
+- Expected experience: the anomaly is presented as something to review, in neutral language.
+- Protected/denied behavior: no accusatory language ("theft," "fraud") appears anywhere in the surfaced review.
+- Evidence: the exact copy shown; the review outcome the Owner/Manager records.
+- Dependency: requires a standard POS bridge connection; not testable without one.
+
+#### 21.3.7 `SB-P-1.18`
+
+**Scenario A — Order & Delivery: clarification over invention**
+- Actor: an authorized Owner or permitted staff member.
+- Starting condition: a customer sends an ambiguous order request (e.g., unclear quantity).
+- Action: staff captures the order into a draft.
+- Expected experience: the system asks the smallest useful clarification rather than inventing a confirmed order.
+- Protected/denied behavior: the order cannot become "confirmed" while material ambiguity remains unresolved.
+- Evidence: the draft state; the clarification prompt; the resolved, confirmed order.
+- Dependency: requires Stock/Supplier from `SB-P-1.17` for availability data.
+
+**Scenario B — Staff/HR: purpose-limited self-service**
+- Actor: a permitted Employee.
+- Starting condition: Employee has an attendance record needing correction.
+- Action: Employee requests a correction through self-service.
+- Expected experience: Employee sees only their own attendance/leave data and can request the correction.
+- Protected/denied behavior: Employee cannot view another staff member's attendance or any Owner financial intelligence from this surface.
+- Evidence: the Employee's scoped view; the correction request; the Owner/Manager approval action.
+- Dependency: requires the role model from `SB-P-1.12`.
+
+**Scenario C — Compliance Shield: reminder without legal overreach**
+- Actor: an authorized Owner.
+- Starting condition: a compliance document (e.g., a licence) with an approaching expiry has been uploaded.
+- Action: system surfaces the upcoming renewal.
+- Expected experience: a clear reminder with the supporting document retrievable.
+- Protected/denied behavior: the messaging never claims to make the merchant "legally compliant" or to replace professional/legal judgment.
+- Evidence: the reminder text; the retrieved document; a copy-review confirming no legal-authority claim is present.
+- Dependency: reuses UDI (`SB-P-1.14`) and the Reminder Engine (`SB-P-1.15`).
+
+#### 21.3.8 `SB-P-1.19`
+
+**Scenario A — First practical win during onboarding**
+- Actor: a new merchant.
+- Starting condition: merchant has just completed `/start` and basic business identity.
+- Action: merchant imports one real document or records one real transaction.
+- Expected experience: merchant reaches a genuine first win (a stored fact, an insight, or a reminder) quickly, not merely a completed registration form.
+- Protected/denied behavior: interrupting onboarding and returning later resumes without repeating completed safe steps.
+- Evidence: the onboarding session state before/after interruption; the first-win artifact itself.
+- Dependency: reuses UDI (`SB-P-1.14`) and the native Conversation Workspace (`SB-P-1.13`).
+
+**Scenario B — Support escalation without lost context**
+- Actor: a merchant with an unresolved question.
+- Starting condition: the FAQ-before-AI foundation (from `SB-P-1.13`) does not resolve the question.
+- Action: merchant's question escalates to a human support ticket.
+- Expected experience: the ticket carries the prior conversation context; the merchant is not asked to repeat themselves from scratch.
+- Protected/denied behavior: the support agent's access to the merchant's Business Memory is purpose-limited to what the ticket requires, not a general browse.
+- Evidence: the ticket record with linked context; an access log showing scope-limited retrieval.
+- Dependency: requires `SB-P-1.13`'s FAQ-before-AI foundation to exist first.
+
+#### 21.3.9 `SB-P-1.20`
+
+**Scenario A — Same record across channels**
+- Actor: an authorized Owner.
+- Starting condition: Owner has an active native Conversation Workspace session.
+- Action: Owner sends the same type of request over WhatsApp instead.
+- Expected experience: WhatsApp produces the same outcome, reaching the same Business Memory/domain service, not a WhatsApp-only duplicate record.
+- Protected/denied behavior: the confirmation step binds to the exact actor/business/action/state and is revalidated before execution, exactly as the native path already does.
+- Evidence: the WhatsApp transcript; the underlying RPC call; confirmation only one record exists, not two.
+- Dependency: requires the full kernel from `SB-P-1.13` through `SB-P-1.19`.
+
+**Scenario B — Meta outage degrades gracefully**
+- Actor: an authorized Owner.
+- Starting condition: Meta/WhatsApp deliberately made unavailable.
+- Action: Owner attempts a WhatsApp interaction, then switches to the native app.
+- Expected experience: WhatsApp reports channel degradation appropriately; the native app and background operations (reminders, Daily Intelligence, etc.) continue unaffected.
+- Protected/denied behavior: no consequential action is silently lost or duplicated when WhatsApp later reconnects.
+- Evidence: the degradation notice; confirmation background jobs kept running; a reconciliation check after reconnection showing no duplication.
+- Dependency: this is the direct mirror of `SB-P-1.13`'s own independence scenario (§21.3.2, Scenario B) and should reuse the same evidence discipline.
+
+### 21.4 Completion Report Experience Verification Matrix — Adopted
+
+Mission Control's proposed permanent rule (8A.10, instruction §7) is assessed as **sound** and is adopted into this build plan without modification. It is consistent with Source 12 Part 2's existing evidence-based acceptance philosophy (§28–29, which already rejects "visual resemblance," "absence of obvious errors," and "simulated success" as evidence) and with Source 18's Independent Verification and Completion Report stages (Section 5's classification discipline in this plan). It also directly operationalizes the cross-mission-advancement pattern this plan already established for Contract 8 (Reconciliation 3) and now extends, per §21.2.3, to Contract 3/14: a mission spanning a contract may show `DEFERRED BY APPROVED DEPENDENCY` for the portion owned by a later mission, without that later mission being able to claim the earlier portion again as its own new work.
+
+Every future `SB-P-*` Completion Report (`SB-P-1.12` through `SB-P-1.20`) must include an **Experience Verification Matrix**:
+
+| UX anchor / human outcome | Applicable actor/role | Founder Runtime Verification result | Evidence reference | Unresolved dependency / corrective action |
+|---|---|---|---|---|
+| *(one row per applicable Section 8A anchor for that mission, drawn from §21.3's scenario sets)* | | `PASS` / `FAIL` / `NOT APPLICABLE` / `DEFERRED BY APPROVED DEPENDENCY` | | |
+
+Rules carried forward from 8A.10, restated for this plan's own governance: a mission is not accepted merely because code, CI, database changes, or screens exist if its applicable anchors fail; a mission is not incorrectly failed for an anchor explicitly assigned to a later mission (per §21.2's per-mission scoping); `NOT APPLICABLE`/`DEFERRED` must be justified against the locked mission Blueprint scope, never used to quietly drop a feature; and where implementation evidence conflicts with an accepted anchor, the discrepancy returns to Mission Control/Founder rather than being silently resolved in the code's favor.
+
+### 21.5 Remaining Founder/Mission Control Items From This Analysis
+
+No new Founder decision is created by this UX analysis beyond what Section 18 already tracks. For historical-closeout purposes, this analysis surfaces:
+
+1. **Two narrow anchor corrections** (§21.2.1, `SB-P-1.12`) and **one schema-attribution self-correction plus one anchor clarification** (§21.2.3, `SB-P-1.14`/`SB-P-1.16`) for Mission Control to accept or challenge before the UX anti-drift layer is considered final.
+2. **The voice-provider environment-activation dependency** (§21.2.2) should be tracked alongside the existing R2 environment-activation item already in Section 12/18.
+3. All other Founder decisions remain exactly as recorded in Section 18 (trial policy, add-on pricing, retention duration, employee KYC, marketplace expansion, lending/underwriting, source packaging-drift cleanup, canonical/delivery-repo divergence).
+
+Subject to Mission Control's acceptance of the four corrections above, **the nine-mission UX sequence is clean enough to proceed to historical mission closeout** from an engineering-review standpoint; no anchor set is rejected, no Founder-approved human outcome is weakened, and every cross-mission capability split (Support Automation, Ledger/Credit) is now explicitly and consistently attributed.
+
+---
+
+*This document does not authorize implementation. `SB-P-1.12` shall not begin until Mission Control has reviewed this response and the historical mission's closure/archival status has been separately resolved per `instruction.1.md` §16–17. `SB-P-1.12` cannot be accepted without proving the `anon`-privilege remediation and automated PR build/lint/test CI gates described in Section 1 and Section 7. This document was updated per `communication/live/instruction.2.md` and, for the Section 21 UX anti-drift analysis, per `communication/live/instruction.3.md`; no future `SB-P-*` mission has been authorized by either update.*
