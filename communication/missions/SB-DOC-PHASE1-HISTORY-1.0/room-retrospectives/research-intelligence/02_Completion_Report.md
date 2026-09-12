@@ -118,27 +118,41 @@ Primary retrospective content commit:
 
 `ef7b4c7ae191595ea1a52c7dee384362a6ad7c3c`
 
-Completion-report commit: this report was added as a follow-up documentation commit on the same branch. The final branch head is represented by the pull request after this write.
+Initial completion-report commit:
+
+`1e98d2aabc4883dc9527a354df1e23069c634398`
+
+This completion-report update is a follow-up documentation commit on the same PR branch. The final branch head is represented by PR #555 after this write.
 
 ---
 
 ## 8. Pull Request
 
-Pull request: pending creation immediately after this completion-report commit.
+PR:
+
+`#555 — SB-DOC-PHASE1-HISTORY-1.0: add Research Intelligence retrospective`
 
 Target:
 
 `main`
 
-Self-merge is not authorized and will not be performed.
+The pull request changes only the two authorized Research & Intelligence retrospective files.
+
+Self-merge has not been performed and is not authorized.
 
 ---
 
 ## 9. CI Result
 
-CI result: pending pull-request execution of the Team LIPS Markdown Quality Gate.
+The Team LIPS Markdown Quality Gate passed on the pull-request head at:
 
-The mission will stop for Mission Control review after PR/CI status is recorded.
+`1e98d2aabc4883dc9527a354df1e23069c634398`
+
+Workflow:
+
+`Team LIPS Markdown Quality Gate` — run `1492` — `SUCCESS`
+
+This metadata-only completion-report update must also pass the same required gate before Mission Control merge review.
 
 ---
 
@@ -161,4 +175,4 @@ Confirmed:
 - no later Product Mission was started;
 - no self-merge was performed.
 
-This branch contains institutional-memory documentation only.
+This PR contains institutional-memory documentation only and stops for Mission Control review after final CI.
