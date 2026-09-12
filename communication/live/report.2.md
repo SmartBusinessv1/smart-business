@@ -27,8 +27,8 @@ All four points in `instruction.2.md` were reconciled. No new research was perfo
 ## 2. Repository Evidence
 
 - **Branch:** `mission/SB-DOC-PHASE1-HISTORY-1.0-claude-build-plan-reconciliation` (created from `origin/main @ dea7bf8`, which already includes PR #543 carrying `instruction.2.md`). A different branch, `mission/SB-DOC-PHASE1-HISTORY-1.0-build-plan-reconciliation`, already existed remotely under a similar name and was not touched.
-- **Commit:** `633536c`
-- **PR:** to be recorded once opened (this report will be updated with the link before Mission Control review)
+- **Commits:** `633536c` (build plan reconciliation), `dfcf7bd` (this report, pre-PR-link revision)
+- **PR:** [#544](https://github.com/SmartBusinessv1/smart-business/pull/544)
 
 ## 3. Nine-Mission Interpretation
 
