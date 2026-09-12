@@ -1,71 +1,68 @@
 # Smart Business — Global Product Completion Register
 
-**Operational role:** AUTHORITATIVE GLOBAL PRODUCT-COMPLETION CONTROL  
-**Feature model:** 25 mature feature/foundation contracts  
-**Current evidence baseline:** `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/07_Current_Implementation_Baseline_Refresh_25_Contract_Model.md`  
-**Canonical baseline for this normalization:** `main @ 8103ea46f5027905d2d93ca50d1853ff14ab5aaa`  
-**Authority boundary:** This register does not redefine Product Truth. It operationalizes current Product Truth, mature feature contracts, implementation evidence, governed mission history, blockers, and next authorized progress.
+## Status
 
----
+`ACTIVE PROGRAM-LEVEL ANTI-DRIFT CONTROL — 25-CONTRACT MODEL`
 
-# 1. Purpose
+## Purpose
 
-This file is Mission Control's durable global product-completion register for Smart Business.
+This file is the authoritative global product-completion control for Smart Business.
 
-It exists so Mission Control can answer, for every confirmed feature or shared foundation:
+It separates:
 
-- What is it?
-- Is it Core, Add-on, Separate Product, Build Later, or Reject?
-- Is it committed to build?
-- How much is actually implemented now?
-- What evidence supports that implementation state?
-- Which governed Product Mission most recently advanced it, where safely attributable?
-- What dependencies remain?
-- What exactly is blocked?
-- What remains allowed while the blocker exists?
-- What is not yet authorized?
-- What mission or mission-family should advance it next?
-- What is its current runtime/acceptance state?
-
-This register is not a substitute for the mature feature contracts, mission-local records, Product Blueprints, EIS documents, implementation evidence, or formal Mission Control acceptance.
+- confirmed product identity and packaging;
+- Build Now / Add-on / Separate Product / Reject position;
+- mature feature-definition authority;
+- current canonical implementation evidence;
+- governed mission lineage where safely attributable;
+- remaining dependencies;
+- exact blockers and unresolved decisions;
+- work that remains allowed while blocked;
+- work that is not authorized;
+- next controlled advancement;
+- mature-feature acceptance state.
 
 A feature listed as `BUILD NOW` is committed product scope. It is not automatically implemented, verified, pilot-ready, accepted, or released.
 
+A completed SB-P mission may advance one or more confirmed features without making the full mature feature complete.
+
 ---
 
-# 2. Permanent Mission-Control Rule
+# Permanent Mission-Control Rule
 
 > **Every SB-P mission must state which confirmed Smart Business features it advances, and Mission Control must maintain the Global Product Completion Register while the mission maintains its local scope and evidence.**
 
-Operational consequences:
+At mission initiation, Mission Control must name the feature/foundation rows advanced by the mission.
 
-1. Every new or amended `SB-P-*` mission shall name the affected feature/foundation contract numbers.
-2. A mission may advance one or more contracts, but it does not redefine unrelated contracts.
-3. Mission-local completion does not automatically equal feature-family completion.
-4. Mission Control updates this register only from verified evidence and accepted mission state.
-5. A later mission may advance the same feature again; the register records the latest verified advancing mission while preserving earlier important contributors where useful.
-6. If mission attribution is uncertain, the register must say so rather than invent lineage.
-7. Builder-only code, historical code, placeholders, green CI, deployment, or a merged PR do not independently prove mature feature completion.
+At material implementation progress, acceptance, and documentation closure, Mission Control must update the affected rows with evidence-backed state changes.
+
+Mission Control must never infer global feature completion merely because a local mission is complete.
 
 ---
 
-# 3. Relationship to Other Anti-Drift Controls
+# Current Evidence Baseline
 
-The current controls have different jobs:
+Current implementation state is controlled by:
 
-- **Feature Definition Library** — defines what each approved feature/foundation is.
-- **Feature Definition Library Coverage Matrix** — proves recovered Founder-origin behaviour has a durable destination and detects product-definition loss.
-- **Current Implementation Baseline** — records what canonical implementation evidence exists against the mature contracts.
-- **Global Product Completion Register** — tracks program-level progress, mission lineage, dependencies, blockers, allowed work, and next advancement across the whole product.
-- **Mission-local records** — contain the scope, evidence, lifecycle state, and acceptance history of one governed mission.
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/07_Current_Implementation_Baseline_Refresh_25_Contract_Model.md`
 
-No one artifact replaces the others.
+Current source-authority conflict handling is controlled by:
+
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/08_Current_Source_Reconciliation_Ledger.md`
+
+Feature-definition coverage is controlled by:
+
+`00_Feature_Definition_Library_Coverage_Matrix.md`
+
+Canonical baseline used for the current implementation refresh:
+
+`main @ 8103ea46f5027905d2d93ca50d1853ff14ab5aaa`
 
 ---
 
-# 4. Status Vocabulary
+# Status Vocabulary
 
-## 4.1 Product Classification
+## Product Classification
 
 - `CORE`
 - `ADD-ON`
@@ -73,9 +70,7 @@ No one artifact replaces the others.
 - `SEPARATE PRODUCT`
 - `REJECT`
 
-Some feature families contain both Core and Add-on packaging paths. Where so, the row states the exact commercial position rather than forcing one label.
-
-## 4.2 Build Commitment
+## Build Commitment
 
 - `BUILD NOW`
 - `ADD-ON + BUILD NOW`
@@ -83,15 +78,7 @@ Some feature families contain both Core and Add-on packaging paths. Where so, th
 - `SEPARATE PRODUCT`
 - `REJECT`
 
-## 4.3 Product Definition State
-
-All 25 active feature/foundation contracts are now:
-
-`MATURE CONTRACT — COMPLETE & HYDRATED`
-
-The former seed/deep-extraction state is closed.
-
-## 4.4 Implementation State
+## Implementation State
 
 - `IMPLEMENTED + SUFFICIENTLY ALIGNED`
 - `IMPLEMENTED BUT INCOMPLETE`
@@ -101,234 +88,143 @@ The former seed/deep-extraction state is closed.
 - `CANNOT CURRENTLY VERIFY`
 - `HISTORICAL / PLACEHOLDER ONLY`
 
-## 4.5 Acceptance State
+## Acceptance State
 
-Unless a mature feature family has completed the governed Product Mission lifecycle and Mission Control acceptance, the default is:
-
-`NOT YET ACCEPTED AS MATURE FEATURE`
-
-Existing accepted lower-level missions or implementation slices remain valid evidence; they do not automatically prove the full hydrated feature contract complete.
+- `NO DEDICATED MATURE-FEATURE MISSION YET`
+- `PARTIALLY ADVANCED BY EARLIER SB-P WORK`
+- `ACTIVE MISSION`
+- `VERIFICATION / ACCEPTANCE PENDING`
+- `MATURE FEATURE ACCEPTED`
 
 ---
 
-# 5. Global Product Completion Register
+# Global Product Completion Register
 
-| # | Feature / Foundation | Product classification / commercial position | Build commitment | Current implementation | Latest verified advancing SB-P mission | Dependencies remaining | Exact blocker / gap | Allowed now | Not authorized now | Next advancement | Acceptance state |
+| # | Feature / Foundation | Product classification | Build commitment | Current implementation state | Latest verified advancing SB-P mission | Remaining dependencies | Exact blocker / gap | Work allowed now | Work not authorized now | Next advancement | Mature-feature acceptance state |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Smart Order & Delivery Assistant | Add-on for Ledger + Manager | **ADD-ON + BUILD NOW — before first 10 pilot merchants** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Conversation/WhatsApp; AI; customer identity; Ledger; stock; notifications; delivery proof/location boundaries | No canonical order/delivery workflow or data model | Product Blueprint/discovery once prerequisites and sequencing authorize it | Marketplace expansion; continuous tracking; unconfirmed consequential execution | Dedicated Smart Order & Delivery Product Mission before first 10 pilots | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 2 | Ask CFO | Core — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Business Memory/Ledger; AI orchestration; Conversation channels; reliable query layer | No canonical Ask CFO reasoning/query workflow; dashboard card remains non-functional | Define read-only reasoning contract against authorized data after shared foundations | Autonomous financial decisions or write authority | Daily Intelligence + Ask CFO mission after core data/query/permission foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 3 | Ledger / Business Memory | Core — Ledger + Manager | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | `SB-P-1.9A` materially advanced transaction experience/integrity slice | Permissions; Conversation/WhatsApp; Human Language; Voice; UDI; AI; R2 media; payments/credit | Canonical implementation is mainly manual sale/purchase + correction audit; mature income/expense/credit/repayment and multimodal Business Memory are incomplete | Preserve transaction integrity and extend additively | Destructive rewrite of working transaction history merely to match new terminology | Mature Ledger / Business Memory expansion after shared conversation/document/reminder foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 4 | Daily Intelligence Rhythm | Core — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Ledger/Business Memory; AI; Reminder/Scheduler; permissions; notifications/channels | No canonical 07:00 / 10:30 / 22:00 intelligence workflow | Blueprint/query design using existing trustworthy business data | Fabricated insights, unsupported forecasts, duplicate vertical schedulers | Daily Intelligence + Ask CFO Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 5 | Universal Document & Receipt Intelligence / Receipt Cabinet | Core cross-feature foundation | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | `SB-P-1.11` advanced parser/import infrastructure; later GC work continues parser infrastructure but does not complete UDI | Permissions; AI orchestration; R2 storage; Business Memory; confirmation/action layer | Parser/import primitives exist, but no shared receipt/photo/PDF interpret → preview → clarify → confirm → update workflow or Receipt Cabinet | Reuse parser primitives; design common UDI pipeline; preserve opening-stock builder evidence as provenance | Separate vertical OCR/import brains; direct uncertain OCR writes; promotion of Lovable opening-stock code as-is | Universal Document Intelligence Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 6 | Staff / HR Assistant | Add-on — Ledger + Manager | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Mature role permissions; staff identity; point-in-time location/QR; Reminder Engine; documents; payroll boundaries | No employee/attendance/leave/payroll canonical workflow/data model | Product definition/EIS after permissions foundation; non-sensitive identity preparation | Continuous GPS surveillance; automatic wage punishment; unresolved KYC expansion | Staff/HR Product Mission after permissions and shared foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 7 | Stock / Supplier / Reorder Intelligence | Manager core; Smart Stock add-on path for Ledger | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | `SB-P-1.11` most recently advanced Catalog/Product/Pricing and Inventory linkage; `SB-P-1.10` is major Inventory foundation contributor | UDI; permissions; supplier identity; Reminder/Delegated Automation; AI; POS bridge; Ledger linkage | Strong Inventory + Catalog foundation exists; supplier memory, reorder intelligence/rules, expiry/slow-moving/wastage and mature import path remain incomplete | Extend existing inventory/catalog; preserve auditable movement engine | Rebuild duplicate inventory engine; blind auto-procurement; promote stale Lovable import unchanged | Manager/Stock mission after shared UDI + Reminder + permissions foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 8 | Support Automation / 100+ FAQ | Core support foundation | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Human Language; AI; permissions; support identity/escalation; notifications | Error capture exists but no merchant FAQ → AI → human support workflow | Build FAQ corpus and escalation architecture without accessing unnecessary merchant data | Treat technical error logging as customer support completion; broad support data access | Support Automation Product Mission after language/AI/permission foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 9 | Human Language Layer | Core shared foundation | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | AI orchestration; Conversation/WhatsApp; language preference/context | No first-class English/Malayalam/Manglish interpretation/clarification layer | Design shared language service used by all channels/features | Feature-specific duplicated language logic; guessing ambiguous meaning | Conversational Foundation Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 10 | Conversation Workspace & Channel Independence | Core shared channel | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; AI; Human Language; Voice; UDI; Business Memory; shared action/confirmation layer | No authenticated first-class conversation route/history/workflow | Build shared conversation model and channel-independent intent/action layer | Channel-specific business logic forks | Conversational Foundation Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 11 | Smart Reminder & Delegated Automation | Core shared foundation — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; notifications/channels; scheduling/idempotency; Business Memory | No canonical reminder/rule engine or delegated-authority data model | Design one reusable Reminder Engine for compliance, credit, stock, HR and personal business reminders | Independent reminder engines per feature; trigger treated as permission | Reminder + Delegated Automation Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 12 | Basic Voice Assistant | Core — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Conversation; Human Language; AI; permissions; media storage | No canonical voice input/transcription/short voice reply workflow | Build as modality of shared conversation architecture | Separate voice brain or bypassing permission/confirmation | Conversational Foundation Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 12A | Smart Voice Assistant Plus | Add-on — Ledger + Manager | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Basic Voice; AI; conversation memory; entitlements | Basic Voice foundation does not yet exist; exact price unresolved | Define capability boundary and entitlement model without blocking Basic Voice | Build premium duplicate architecture; lock unresolved price as Product Truth | Voice Plus follow-on after Basic Voice/shared conversation foundation | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 13 | POS Connection, Counter Intelligence & Closing Cash | Manager core / standard integration layer | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Ledger; Inventory; integration adapter; AI signals; dashboard | No canonical POS bridge/counter/closing-cash workflow | Define standard adapter interfaces and respectful review signals | Custom client-specific core POS modification; accusation/punishment | Manager/POS Product Mission after core operational foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 14 | Smart Credit Awareness | Core — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Customer identity; Ledger; payments; Reminder Engine; permissions; conversation | Payment method `credit` exists but no customer credit memory, ageing, limits, repayments or owner review | Model warn-not-block credit memory and repayment relationships | Hard automatic blocking by default; AI granting/denying credit authority | Payment Verification + Smart Credit Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 15 | Payment Verification & Bank Reconciliation | Core — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Ledger; UDI/evidence ingestion; permissions; idempotency; AI/clarification | No canonical evidence matching, verification-state or reconciliation workflow | Design deterministic/idempotent matching with ambiguity review | Treat unverified evidence as settled payment; AI guessing matches | Payment Verification + Smart Credit Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 16 | Compliance Shield | Add-on — Ledger + Manager | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Reminder Engine; UDI/R2; permissions; language/channels | No canonical compliance-record/renewal/reminder workflow | Prepare compliance domain using shared Reminder + Document foundations | Legal judgement; duplicated reminder/document engines | Compliance Product Mission after Reminder + UDI foundations | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 17 | Operational Dashboard & Manager Workspace | Manager core; role-appropriate Ledger surfaces | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | No single mature-feature mission attribution safely established; current dashboard is accumulated early foundation | Permissions; Stock/Supplier; POS; Daily Intelligence; Ask CFO; subscriptions/entitlements | Calm dashboard shell/totals exist; mature Manager operational intelligence and role surfaces do not | Preserve current workspace and expand only from accepted domain capabilities | Treat placeholder cards as implemented features; expose Owner intelligence to staff | Manager layer Product Mission after core domains/permissions mature | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 18 | Subscription, Payment & Account Lifecycle | Core platform commercial capability | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Entitlements; payment gateway; account states; export/retention policy; notifications | No canonical subscription/lifecycle model; trial and long-term retention duration partly unresolved | Build safe entitlement/lifecycle states that do not depend on unresolved exact trial/retention numbers | Destructive dynamic schema changes; irreversible deletion rules without Founder decision | Subscription / Account Lifecycle Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 19 | Super Admin & Platform Stewardship | Internal platform | **BUILD NOW within approved scope** | `HISTORICAL / PLACEHOLDER ONLY` | No dedicated mature-feature mission yet | Permissions/security; system errors; quarantine; backups; support; subscriptions; observability | `/super-admin` is reserved/placeholder; mature cockpit not implemented | Define privacy-bounded operational cockpit over system metadata/evidence | Routine broad access to merchant private business content; bypass keys as normal operation | Internal Platform / Super Admin Product Mission when dependencies permit | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 20 | Onboarding & First Experience | Core activation/conversion | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | No dedicated mature-feature mission yet; auth/business-identity foundation exists from earlier Phase 1 work | Auth; business identity; language; plan/entitlement context; support | `/start` remains a placeholder and dashboard setup is not the mature first-experience journey | Build `/start` activation and first-win flow on existing auth/business identity | Revive deprecated `/survey`; duplicate auth/business identity | Onboarding / First Experience Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 21 | Permissions, Business Isolation & Role Authority | Core shared foundation | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | `SB-P-1.11` most recently added domain-specific governed execution/isolation patterns; earlier missions established owner auth/RLS | Role identities; permission schema; execution-time revalidation across all future domains; audit | Current owner-scoped isolation is strong for implemented domains, but mature Owner/Manager/Employee/Supplier/Customer authority model is absent | Expand permission model first; preserve existing RLS/business isolation | Staff/customer/supplier workflows before permission boundaries; AI/tool bypass of permissions | **First governed build mission: Permissions / Role Authority expansion** | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 22 | Shared Product Foundations | Core cross-product architecture | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | `SB-P-1.11` is latest verified contributor to several canonical shared primitives; many earlier missions also contribute | Permissions; conversation; identities; reminders; notifications; AI; UDI; R2; location; entitlements | Auth/business identity/RLS/audit/idempotency/parser foundations exist, but many shared engines remain absent | Extend shared foundations once and require future missions to reuse them | Duplicate feature-specific engines or hidden parallel sources of truth | Dependency-led shared-foundation missions beginning with Permissions and Conversational Foundation | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 23 | WhatsApp Intelligence & Channel Adapter | Core shared channel adapter | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; AI; Human Language; Voice; UDI; Business Memory; Meta API/config; shared action layer | No canonical governed WhatsApp event/identity/media/action adapter | Design adapter over shared domain services; preserve `/api/whatsapp-webhook` route commitment | WhatsApp-specific duplicate business logic or AI brain | Conversational Foundation Product Mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 24 | AI Orchestration & OpenAI Intelligence Foundation | Core shared intelligence foundation | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Business Memory retrieval; tool schemas; conversation; UDI; language; observability/cost controls | No canonical shared orchestration/tool-routing layer proven across features | Define one permission-aware AI orchestration layer and provider abstraction | Model as database/authority; unrestricted tool access; duplicate feature-specific AI brains | Conversational Foundation Product Mission, then reused by later intelligence missions | `NOT YET ACCEPTED AS MATURE FEATURE` |
-| 25 | Document, Media Storage & Retention Foundation | Core shared storage foundation | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; UDI; R2 integration; Supabase metadata/control plane; lifecycle/export; backup/recovery | R2 is approved architecture direction, but no canonical governed R2-backed media-memory workflow is implemented; exact cancellation/non-payment retention duration remains unresolved | Implement provider adapter/control-plane design and non-destructive lifecycle pieces; use Supabase as authoritative metadata/permission layer | Revive historical 60-day/180-day timings as Product Truth; destructive purge without approved policy | UDI + R2 Storage Foundation implementation mission | `NOT YET ACCEPTED AS MATURE FEATURE` |
+| 1 | Smart Order & Delivery Assistant | `ADD-ON` — Ledger + Manager | **ADD-ON + BUILD NOW — before first 10 pilot merchants** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Conversation; UDI; Business Memory; customer/delivery identities; notifications | Mature customer-order/delivery/proof/COD/exceptions workflow absent | Blueprint/discovery after prerequisite sequencing; validate pilot workflow | Marketplace expansion; autonomous commitments; claiming pilot readiness | Dedicated governed Product Mission before first 10 pilots | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 2 | Ask CFO | `CORE` — Ledger + Manager | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; AI Orchestration; reliable Business Memory/query layer; Conversation | Read-only reasoning experience not implemented | Define controlled analytics/retrieval and conversation dependencies | Direct mutation/execution by Ask CFO; financial authority | Product Mission after core intelligence/query foundations | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 3 | Ledger / Business Memory | `CORE` | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | `SB-P-1.9A` materially advanced transaction experience/integrity; earlier foundation attribution is broader than one mature-feature mission | Permissions; Conversation; Human Language; Voice; UDI; storage; payment/credit integrations | Current canonical slice is manual sale/purchase + correction audit, not mature multimodal four-state Business Memory | Preserve transaction integrity; design additive evolution; reuse corrections/audit | Destructive rewrite solely to rename transaction types; calling current slice complete | Mature Ledger expansion mission after shared foundations | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 4 | Daily Intelligence Rhythm | `CORE` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Scheduler/Reminder; Business Memory; AI Orchestration; Permissions; notifications | 07:00 / 10:30 / 22:00 intelligence jobs and role-aware content absent | Define query/content/scheduling contracts after shared foundations | Revive older 06:00 / 09:15 schedules; fabricate missing sections | Product Mission after Reminder + intelligence foundations | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 5 | Universal Document & Receipt Intelligence / Receipt Cabinet | `CORE SHARED FOUNDATION` | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | `SB-P-1.10` / `SB-P-1.11` families materially advanced parser/import foundations; exact mature UDI attribution remains partial | Permissions; AI Orchestration; R2 storage; Conversation/WhatsApp media; confirmation/action layer | Common interpret → preview → clarify → confirm → update and Receipt Cabinet not implemented | Reuse parser/import primitives; design one cross-feature UDI service | Vertical parser silos as final architecture; uncertain direct write | Shared UDI Product Mission after foundational permissions/conversation/storage alignment | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 6 | Staff / HR Assistant | `ADD-ON` | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Mature permissions; identity; notification/reminder; point-in-time location; Conversation | Staff profiles/attendance/leave/payroll assistance absent | Blueprint role-scoped HR after permissions; preserve dignity/privacy constraints | Continuous GPS surveillance; automated wage punishment; unresolved KYC collection | Product Mission after Permissions/identity foundations | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 7 | Stock / Supplier / Reorder Intelligence | `CORE` in Manager; Smart Stock `ADD-ON` path for Ledger | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | Earlier inventory/catalog SB-P work materially advanced foundation; no single mature Stock/Supplier/Reorder mission safely attributable | Permissions; Supplier identity; Reminder/delegation; UDI; POS bridge; AI intelligence | Inventory/catalog strong; supplier/reorder/delegated procurement/intelligence missing | Extend existing inventory/catalog; preserve builder opening-stock code as evidence only | Rebuild inventory; promote Lovable opening-stock code as-is; blind auto-ordering | Governed Manager/Stock mission after shared foundations/UDI | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 8 | Support Automation / 100+ FAQ | `CORE SUPPORT FOUNDATION` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Human Language; AI Orchestration; support identity/ticket model; permissions | FAQ-first → AI → human escalation workflow absent | Curate/support knowledge architecture and escalation boundaries | Broad support access to merchant data; treating error logging as support automation | Product/support mission after language/intelligence foundations | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 9 | Human Language Layer | `CORE SHARED FOUNDATION` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Conversation/WhatsApp; AI Orchestration; profile preference | English/Malayalam/Manglish first-class understanding and clarification absent | Define shared language behavior and test corpus | Hard-coded confidence/accuracy guarantees; literal robotic translation | Part of early Conversation Foundation mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 10 | Conversation Workspace & Channel Independence | `CORE SHARED CHANNEL` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; AI Orchestration; Human Language; Voice; UDI/storage; shared actions | No authenticated first-class conversation route/history/action flow | Blueprint shared conversation architecture and cross-channel continuity | Separate Business Memory or business logic per channel | Early Conversation Foundation mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 11 | Smart Reminder & Delegated Automation | `CORE SHARED FOUNDATION` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; notifications; scheduler; domain action services | Shared reminder state, recurrence, snooze/completion and bounded delegation absent | Build reusable reminder/delegation foundation | Trigger = permission; duplicate feature-specific reminder engines | Shared Reminder/Delegated Automation mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 12 | Basic Voice Assistant | `CORE` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Conversation/WhatsApp; Human Language; AI Orchestration; media storage as needed | Shared voice input/reply workflow absent | Design voice once across channels | Treat all useful voice as premium-only; create channel-specific voice engines | Conversation Foundation mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 12A | Smart Voice Assistant Plus | `ADD-ON` | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Basic Voice; AI Orchestration; Conversation; entitlements | Deeper multi-turn premium voice experience absent; exact price unresolved | Define capability boundary after Basic Voice | Invent exact price; block Basic Voice behind add-on | Mission after Basic Voice/shared conversation foundation | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 13 | POS Connection, Counter Intelligence & Closing Cash | `CORE` Manager integration capability | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; standard integration layer; inventory/ledger; manager workspace | Standard POS bridge, signal review and closing-cash workflow absent | Define standard bridge and neutral signals | Client-specific core POS modifications; accusation/punishment | Manager-layer Product Mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 14 | Smart Credit Awareness | `CORE` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Customer identity; Ledger; Reminder; Permissions; notifications | Customer credit memory, balances, repayments, ageing/warnings absent | Design warn-not-block workflow and Owner override/audit | Hard default blocking of Owner decisions; underwriting | Payment/Credit Product Mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 15 | Payment Verification & Bank Reconciliation | `CORE` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Ledger; UDI/evidence; Permissions; idempotency; AI/controlled matching | Payment evidence ingestion/matching/review state absent | Define deterministic matching and ambiguity review | Unverified evidence silently treated as payment truth | Financial-integrity Product Mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 16 | Compliance Shield | `ADD-ON` | **ADD-ON + BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Reminder; UDI/storage; Permissions; Support language | Compliance document/date/reminder workflow absent | Define bounded reminder/document reuse | Legal authority claims; duplicate reminder/document engines | Compliance mission after Reminder + UDI | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 17 | Operational Dashboard & Manager Workspace | `CORE` role surface | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | Earlier dashboard/workspace SB-P work advanced foundation; no single mature Manager Workspace mission safely attributable | Permissions; Stock/Supplier/Reorder; POS; Daily Intelligence; Ask CFO | Current calm dashboard lacks mature Manager operational depth and role surfaces | Preserve current workspace; expand incrementally with permission-aware modules | Rebuild shell unnecessarily; expose Owner intelligence to staff by default | Manager-layer mission after role/shared foundations | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 18 | Subscription, Payment & Account Lifecycle | `CORE PLATFORM` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Entitlements; billing provider; export/retention policy; Super Admin/support | Subscription states, entitlements, past_due/pause/cancel/reactivation absent | Design safe lifecycle excluding unresolved policy decisions | Invent trial policy or destructive retention timer | Platform lifecycle mission when dependencies allow | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 19 | Super Admin & Platform Stewardship | `INTERNAL PLATFORM` | **BUILD NOW within approved scope** | `HISTORICAL / PLACEHOLDER ONLY` | Infrastructure/security SB-P/GC work advances platform foundations but no mature Super Admin feature mission is safely attributable | Permissions/IAM; audit; system health; support; subscription; privacy boundaries | `/super-admin` reserved; mature stewardship cockpit absent | Define least-privilege platform health/support surfaces | Broad routine merchant-data access; master bypass semantics | Internal platform Product Mission when dependencies allow | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 20 | Onboarding & First Experience | `CORE` | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | Earlier auth/business-identity work advanced foundation; no mature onboarding mission safely attributable | Auth; business identity; language; subscription/entitlement as needed; first-win workflow | `/start` placeholder; mature health-check/activation path absent | Build on existing auth/business identity; preserve `/start` | Revive `/survey`; invent new public route architecture | Onboarding/activation Product Mission | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 21 | Permissions, Business Isolation & Role Authority | `CORE SHARED FOUNDATION` | **BUILD NOW** | `FOUNDATION EXISTS — FEATURE WORKFLOW MISSING` | `SB-P-1.11` and current security/permissions GC work materially advance isolation/runtime boundaries; mature multi-role model not accepted | Identity model; permission matrix; execution-time revalidation across all future domains | Owner-scoped auth/RLS exists; Manager/Employee/Supplier/Customer mature authority absent | Expand permission model before dependent feature implementation | Assume role from UI; expose Owner intelligence by default; bypass RLS/service boundaries | **First governed Product Mission in remaining sequence** | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 22 | Shared Product Foundations | `CORE SHARED FOUNDATION` | **BUILD NOW** | `IMPLEMENTED BUT INCOMPLETE` | Multiple early SB-P missions advanced auth/business identity/audit/idempotency/parser foundations; no single mature umbrella mission safely attributable | Permissions; identities; notifications; Conversation; Reminder; Location; UDI; AI; storage | Several shared engines still missing or fragmented | Extend once and reuse across features | Duplicate foundation per vertical/channel | Advance through dependency-specific foundation missions, not one giant rewrite | `PARTIALLY ADVANCED BY EARLIER SB-P WORK` |
+| 23 | WhatsApp Intelligence & Channel Adapter | `CORE SHARED CHANNEL ADAPTER` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; AI Orchestration; Conversation action layer; UDI/storage; Meta Cloud API | Mature webhook/identity/media/retry/template/cross-channel adapter absent | Blueprint channel adapter around shared business services | Put business truth/permissions in Meta-specific code; duplicate WhatsApp business logic | Conversation Foundation / channel-adapter mission | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 24 | AI Orchestration & OpenAI Intelligence Foundation | `CORE SHARED INTELLIGENCE FOUNDATION` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions/context; Business Memory; domain tools; Conversation/WhatsApp; observability | Shared governed understanding/reasoning/tool-orchestration layer absent | Define model/provider abstraction and governed tool path | AI owns DB truth/permissions; unrestricted tool execution; provider-specific authority | Early shared intelligence mission with Conversation Foundation | `NO DEDICATED MATURE-FEATURE MISSION YET` |
+| 25 | Document, Media Storage & Retention Foundation | `CORE SHARED STORAGE FOUNDATION` | **BUILD NOW** | `NOT IMPLEMENTED` | No dedicated mature-feature mission yet | Permissions; Supabase metadata/control plane; Cloudflare R2; UDI; channel media; retention policy | R2-backed durable object memory + governed retrieval/reconciliation absent | Build object identity/metadata/retrieval foundation; use current R2 direction | Public permanent merchant URLs; R2 as authority; revive historical fixed purge timers | Storage foundation before/with UDI and media ingestion | `NO DEDICATED MATURE-FEATURE MISSION YET` |
 
 ---
 
-# 6. Current Program-Level Implementation Reading
+# Source-Reconciliation Control
 
-No one of the 25 mature contracts is currently proven complete end-to-end against its hydrated contract.
+Historical recovery exposed several places where older descriptions, mature feature depth, and current source wording differ.
 
-This does not mean Smart Business has no working product. It means implementation is concentrated in strong early foundations and selected operational slices.
+The controlling ledger is:
 
-## Strongest Current Canonical Foundations
+`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/08_Current_Source_Reconciliation_Ledger.md`
 
-- authentication/session protection;
-- business identity;
-- protected workspace shell;
-- manual sale/purchase transaction entry;
-- transaction correction audit;
-- dashboard daily totals/recent transactions;
-- inventory items and auditable movement ledger;
-- catalog/product identity;
-- pricing/reference-cost/tax foundations;
-- product↔inventory linkage;
-- catalog import and parser infrastructure;
-- owner-scoped business isolation/RLS for implemented domains;
-- audit/idempotency/error-handling patterns.
+Current result:
 
-These foundations are assets. Future missions should extend them rather than rebuild them.
+- material historical/current conflicts are documented;
+- Source 01/11 have **not** been silently rewritten;
+- most conflicts require no source change because current Source 11 already controls;
+- historical-only mechanisms remain provenance rather than Product Truth;
+- unresolved Founder decisions remain unresolved;
+- Conversation Workspace depth is recorded as a possible future source clarification, not an automatic amendment.
+
+Any actual Source 01/11 change requires a separate explicit Founder/Mission Control governance action.
 
 ---
 
-# 7. Mission Attribution Rules
+# Current Explicitly Rejected Directions
 
-`Latest verified advancing SB-P mission` means the latest Product Mission that has evidence of materially advancing the feature or a meaningful canonical slice of it.
-
-It does **not** mean:
-
-- the mature feature is complete;
-- that mission owned every capability in the hydrated contract;
-- later documentation/historical missions count as implementation advancement;
-- a GC correction automatically becomes a new Product Mission;
-- builder-only work becomes canonical advancement.
-
-Where attribution cannot be established safely from durable evidence, this register states that no dedicated mature-feature mission is yet attributable.
-
-Important known contributors currently preserved:
-
-- `SB-P-1.9A` — transaction experience/integrity contribution to Ledger/Business Memory;
-- `SB-P-1.10` — major Inventory Foundation contribution to Stock/Shared Foundations;
-- `SB-P-1.11` — Catalog/Product/Pricing, inventory linkage, parser/import and governed execution contributions affecting Stock, UDI, Permissions and Shared Foundations.
-
-Future Mission Control closure shall update the relevant rows after formal acceptance.
-
----
-
-# 8. Blocker Interpretation
-
-A blocker must be narrow.
-
-A blocker on one capability does not freeze unrelated approved work.
-
-Examples:
-
-- unresolved Voice Plus price does not block Basic Voice;
-- unresolved cancellation retention duration does not block non-destructive R2 adapter/control-plane work;
-- unresolved employee KYC scope does not block ordinary staff profile/attendance architecture that does not require sensitive national-ID collection;
-- Smart Order & Delivery price does not block definition of its operational workflow;
-- marketplace/wholesaler expansion does not block the approved local Smart Order & Delivery add-on.
-
-Mission Control should state both:
-
-- what is blocked;
-- what remains allowed.
-
----
-
-# 9. Current Explicit Reject / Separate-Product Boundaries
-
-These are not implementation gaps and must not be accidentally scheduled as missing core work:
+These are not implementation gaps:
 
 - automatic hard customer-credit blocking by default — `REJECT`;
 - AI accusation/punishment — `REJECT`;
 - continuous employee GPS surveillance — `REJECT`;
 - automatic wage docking/fines — `REJECT`;
 - blind supplier procurement without Owner-delegated authority — `REJECT`;
-- custom client-specific POS modifications inside core — `REJECT`; use standard integration/extension layers;
+- custom client-specific POS modifications inside core — `REJECT`;
 - dynamic CREATE/DROP core schema by subscription state — `REJECT`;
 - routine broad Super Admin access to merchant private business data — `REJECT`;
 - public marketplace behavior for current Smart Order & Delivery — `REJECT`;
-- embedded lending/underwriting inside current Smart Business core — `REJECT FOR CURRENT CORE`; any broader ecosystem is a separate Founder decision;
-- future wholesaler/marketplace expansion — not current core; requires separate Founder decision and classification.
+- embedded lending/underwriting inside current Smart Business core — `REJECT for current core`; future separate Founder decision required.
 
 ---
 
-# 10. Current Unresolved Founder Decisions
+# Current Unresolved Founder Decisions
 
 These remain narrow and must not block unrelated approved work:
 
 1. Free-trial policy.
-2. Exact Voice Plus price.
-3. Exact Staff/HR price.
-4. Exact Smart Stock Assistant price.
-5. Exact Smart Order & Delivery price.
+2. Exact current Voice Plus price.
+3. Exact current Staff/HR price.
+4. Exact current Smart Stock Assistant price.
+5. Exact current Smart Order & Delivery price.
 6. Exact long-term retention/deletion duration after cancellation/non-payment.
-7. Sensitive employee KYC/national-ID necessity, scope, legal basis and privacy boundary.
+7. Sensitive employee KYC/national-ID necessity, legal basis and retention.
 8. Any broader wholesaler/marketplace ecosystem direction.
 9. Any future underwriting/lending ecosystem direction.
 
-Each future mission shall identify whether any unresolved decision is actually in its critical path. If not, the mission must continue without manufacturing a blocker.
-
 ---
 
-# 11. Canonical / Lovable Opening-Stock Disposition
+# Register Update Protocol
 
-The former builder-drift ambiguity is closed by:
+For every future `SB-P-*` Product Mission:
 
-`communication/missions/SB-DOC-PHASE1-HISTORY-1.0/final-reconciliation/06_Canonical_Lovable_Opening_Stock_Inventory_Import_Reconciliation.md`
-
-Current durable disposition:
-
-- product capability: `PRESERVE — STILL CURRENT / BUILD NOW`;
-- Lovable code: reusable engineering evidence;
-- canonical implementation: not implemented canonically;
-- direct promotion: rejected;
-- future treatment: narrow rebase + architectural correction + current verification;
-- mature path: reuse UDI, bind confirmation to exact previewed target/state, align permissions, preserve inventory audit/idempotency.
-
-This is no longer an unresolved topology question.
-
----
-
-# 12. Register Update Protocol for Every Future SB-P Mission
-
-## At Mission Initiation
+## At mission initiation
 
 Mission Control shall record:
 
-- contract number(s) advanced;
-- current register state before mission;
-- intended delta;
-- dependencies;
-- blockers;
-- explicitly allowed work;
-- work not authorized.
+- exact feature/foundation rows advanced;
+- local mission objective;
+- dependencies being resolved;
+- blockers explicitly outside mission scope;
+- what is not yet authorized.
 
-## During Mission Execution
+## At implementation authorization
 
-The mission owns its local scope and evidence. The global register should not be prematurely upgraded because implementation was reported or CI passed.
+Mission Control shall confirm that the implementation package does not silently advance unrelated feature rows.
 
-## At Mission Acceptance
+## At acceptance
 
-Mission Control shall update the affected row(s) with:
+Mission Control shall update only the global states actually proven by evidence.
 
-- latest accepted advancing mission ID;
-- new implementation state;
-- new acceptance state where justified;
-- dependencies closed;
-- dependencies remaining;
-- blocker changes;
-- next controlled advancement.
+A local mission may be `COMPLETED — FORMALLY ACCEPTED` while the mature feature remains `IMPLEMENTED BUT INCOMPLETE`.
 
-## At Mission Closure
+## At documentation closure
 
-The feature-level status must be evaluated independently from mission-level completion.
-
-A mission can be formally completed while the larger feature remains `IMPLEMENTED BUT INCOMPLETE`.
+Mission Control shall record the latest verified advancing SB-P mission for every materially advanced feature row and preserve prior lineage where needed.
 
 ---
 
-# 13. Next Program Gate
+# Next Program Gate
 
-After this register normalization and the 25-contract implementation baseline are merged and verified on `main`, Mission Control may proceed to:
+After this register and the 25-contract implementation baseline are merged and independently verified on `main`, Mission Control may proceed to:
 
-`GOVERNED PRODUCT MISSION SEQUENCING AGAINST THE 25-CONTRACT IMPLEMENTATION BASELINE`
+**GOVERNED PRODUCT MISSION SEQUENCING AGAINST THE 25-CONTRACT IMPLEMENTATION BASELINE**
 
-Sequencing must be dependency-led rather than simply following feature numbers.
-
-The current dependency reading indicates the first build wave should begin with:
-
-1. Permissions / Role Authority expansion.
-2. Conversational Foundation, including Conversation Workspace, Human Language, Basic Voice, AI Orchestration/OpenAI Intelligence and WhatsApp Intelligence/Channel Adapter.
-3. Universal Document Intelligence + Document/Media Storage/R2 foundation.
-4. Reminder + Delegated Automation.
-
-Later feature missions consume those shared foundations rather than recreating them.
-
-Mission IDs shall be assigned by Mission Control under the approved lifecycle. This register does not invent future mission IDs.
+Sequencing must consume this register rather than treating the 25 contracts as 25 isolated builds.
 
 ---
 
-# 14. Final Principle
+## Final Principle
 
-**Feature Definition tells us what Smart Business must be. Evidence tells us what exists. Missions tell us what was advanced. This register keeps all three aligned so no feature disappears, no partial slice is mistaken for completion, and no blocker becomes an excuse to stop unrelated useful work.**
+**The Feature Definition Library says what Smart Business is. The Coverage Matrix prevents product truth from disappearing. The Current-Source Reconciliation Ledger protects constitutional authority from silent drift. The Global Product Completion Register says how far each confirmed feature has actually progressed and what may advance it next.**
