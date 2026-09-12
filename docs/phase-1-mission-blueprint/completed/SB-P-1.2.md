@@ -2,6 +2,8 @@
 
 > **Document Type: Historical Mission Continuity Record — NOT A RETROACTIVE PRODUCT BLUEPRINT**
 
+> **Implementation/evidence authority:** Where a dedicated `docs/implementation/<mission>/` package exists, that package remains the authoritative implementation and verification record. This continuity file is only the completed-folder historical index and must not be treated as a replacement completion report.
+
 ## Historical status
 
 `COMPLETED — HISTORICALLY VERIFIED`
