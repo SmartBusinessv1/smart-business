@@ -2,7 +2,7 @@
 
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Historical Continuity Reconstruction`  
 **Contributor:** Founder Room  
-**Status:** `COMPLETE — AWAITING MISSION CONTROL REVIEW / MERGE`  
+**Status:** `COMPLETE — AWAITING MISSION CONTROL RE-REVIEW / MERGE`  
 **Scope:** Documentation and institutional-memory capture only  
 **Date:** 2026-09-12
 
@@ -102,7 +102,34 @@ Also preserved as a governance clarification candidate, not an authorized amendm
 
 ---
 
-## 6. Branch
+## 6. Mission Control Narrow Tooling-Classification Correction
+
+Mission Control accepted the retrospective substantively and requested a narrow Section 3 classification correction.
+
+Applied correction:
+
+- separated **Tools / Infrastructure We Actually Have or Have Proven Operationally** from **Approved / Planned Providers and Integrations — Not Yet Proven as Current Product Capability**;
+- added **AWS / AWS Lambda** as an existing/proven infrastructure capability, while explicitly preserving that prior parser deployment/proof does not mean the parser is fully wired into the current production Smart Business UDI/application flow;
+- reclassified **OpenAI** as current product/architecture direction whose complete production orchestration implementation is not yet proven complete;
+- reclassified **Meta WhatsApp Cloud API** as the approved future channel integration for `SB-P-1.20`, not a currently proven complete Smart Business capability;
+- separated **Cloudflare infrastructure** from **Cloudflare R2**, with R2 classified as approved future durable-media storage direction associated especially with `SB-P-1.14`, not as proven current Receipt Cabinet/document-media runtime capability.
+
+This correction changes tooling/evidence classification only.
+
+It does **not** change:
+
+- Founder philosophy;
+- Product Truth;
+- the nine-mission sequence;
+- the 25-contract model;
+- Conversation Workspace / WhatsApp architecture;
+- Product & Price Master decision;
+- unresolved Founder decisions;
+- Product Mission or implementation authority.
+
+---
+
+## 7. Branch
 
 `mission/SB-DOC-PHASE1-HISTORY-1.0-founder-room-retrospective`
 
@@ -112,21 +139,25 @@ The branch was created from verified latest `main` at:
 
 ---
 
-## 7. Commit
+## 8. Commit
 
 Primary retrospective content commit:
 
 `83075e8aad09f12264cb732ff3af1b4fa6dac575`
 
-Commit message:
+Initial completion-report commit:
 
-`SB-DOC-PHASE1-HISTORY-1.0: add Founder Room retrospective`
+`d626e6296b571122e8031e66c8be4090a9d0f91b`
 
-This completion-report file is added as a follow-up documentation commit on the same PR branch. The final branch-head commit is therefore represented by the PR after this report write rather than self-referenced inside this file.
+Mission Control tooling-classification correction to the retrospective:
+
+`6ca7c62ec8baec19cbbe9db0c1d3f8b06457bb65`
+
+This completion-report update is a follow-up documentation commit on the same PR branch. The final branch head is represented by PR #554 after this write.
 
 ---
 
-## 8. Pull Request
+## 9. Pull Request
 
 PR:
 
@@ -136,25 +167,21 @@ Target:
 
 `main`
 
+No new PR was opened for the correction.
+
 Self-merge has **not** been performed and is **not authorized** by this retrospective.
 
 ---
 
-## 9. CI Result
+## 10. CI Result
 
-For retrospective content commit:
+The pre-correction Founder Room retrospective branch passed the Team LIPS Markdown Quality Gate.
 
-`83075e8aad09f12264cb732ff3af1b4fa6dac575`
-
-Team LIPS Markdown Quality Gate:
-
-`PASS — Markdown Quality Gate completed successfully`
-
-The follow-up completion-report commit must also pass the same PR quality gate before Mission Control should treat the PR as review-ready.
+The final corrected PR head must also pass the same Team LIPS Markdown Quality Gate before Mission Control re-review.
 
 ---
 
-## 10. Implementation Boundary Confirmation
+## 11. Implementation Boundary Confirmation
 
 Confirmed:
 
@@ -164,10 +191,11 @@ Confirmed:
 - no Supabase runtime mutation was performed;
 - no Lovable build/publish work was performed;
 - no AWS/Lambda/Cloudflare/DNS infrastructure work was performed;
+- no OpenAI or Meta runtime/configuration change was performed;
 - no deployment or production publication was performed;
 - no Product Truth/governance source was amended;
 - `SB-P-1.12` was **not started**;
 - no later Product Mission was started;
 - no self-merge was performed.
 
-This PR contains institutional-memory documentation only and now stops for Mission Control review.
+This PR contains institutional-memory documentation only and now stops for Mission Control re-review after final CI.
