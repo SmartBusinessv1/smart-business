@@ -3,7 +3,7 @@
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Historical Continuity Reconstruction`  
 **Contributor:** `10_FINANCE_PAYMENTS`  
 **Scope:** Documentation and institutional-memory capture only  
-**Status:** `READY FOR PR / FINAL-HEAD CI PENDING`
+**Status:** `PR OPEN — FINAL-HEAD CI PENDING`
 
 ---
 
@@ -23,11 +23,15 @@
 - **Base `main` SHA:** `9961500a72a8dbe38a90d2c769546acec6d7513c`
 - **Branch:** `docs/finance-payments-phase1-retrospective`
 - **Primary retrospective commit:** `3f9770b37a8eb4f71174a6e20349b16aedbc04bf`
-- **PR:** Pending creation at this report revision.
+- **PR:** `#565` — OPEN — not merged
+- **Changed-file count:** 2
+- **Changed files:**
+  - `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/finance-payments/01_Retrospective.md`
+  - `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/finance-payments/02_Completion_Report.md`
 - **CI workflow:** `Markdown Quality Gate`
-- **Final-head CI run/result:** Pending until PR exists and final branch head is known.
+- **Final-head CI run/result:** Pending for the final branch head created by this report update.
 
-This report must be updated after the PR and final-head CI complete. It must not retain stale `pending` wording once final-head CI is known.
+This report will be updated once final-head CI is known. That finalization update will itself become the branch head and must be checked so the report does not claim CI for an older head.
 
 ---
 
