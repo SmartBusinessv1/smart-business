@@ -66,11 +66,11 @@ Residual risks recorded:
 
 ## 6. Branch
 
-`docs/lovable-lab-phase1-retrospective-v2`
+`docs/lovable-lab-phase1-retrospective-final`
 
 Base: `main @ 038913d7ce7e96d306d2ac33875a8919fe1bda60`
 
-The initial working branch `docs/lovable-lab-phase1-retrospective` was superseded before PR creation; the PR branch above was recreated from the clean retrospective/report commit state so only the two assigned documentation artifacts are proposed.
+The final PR branch was recreated from the clean retrospective/report commit state so only the two assigned documentation artifacts are proposed.
 
 ## 7. Commit
 
@@ -82,9 +82,13 @@ Completion-report creation commit:
 
 `f17f335c53c663bca544057439dcfe6d86113a5b`
 
-Pre-PR completion-report refinement commit:
+Pre-PR report refinement commit:
 
 `017088912ec3555f8aaee7f84dbc420c731d14cc`
+
+Final branch metadata commit:
+
+`f13e606bb0bc6c8b38cf14ac3d644f6273ec9aef`
 
 ## 8. Pull Request
 
@@ -116,7 +120,7 @@ Confirmed:
 - no `SB-P-1.12` or later Product Mission started;
 - no self-merge.
 
-The PR branch changes only the two assigned Lovable Lab institutional-memory Markdown artifacts.
+The final PR branch changes only the two assigned Lovable Lab institutional-memory Markdown artifacts.
 
 ## Completion Status
 
