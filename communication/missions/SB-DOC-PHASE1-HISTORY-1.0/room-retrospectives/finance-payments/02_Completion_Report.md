@@ -3,7 +3,7 @@
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Historical Continuity Reconstruction`  
 **Contributor:** `10_FINANCE_PAYMENTS`  
 **Scope:** Documentation and institutional-memory capture only  
-**Status:** `PR OPEN — FINAL-HEAD CI PENDING`
+**Status:** `READY FOR MISSION CONTROL REVIEW`
 
 ---
 
@@ -28,10 +28,11 @@
 - **Changed files:**
   - `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/finance-payments/01_Retrospective.md`
   - `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/finance-payments/02_Completion_Report.md`
-- **CI workflow:** `Markdown Quality Gate`
-- **Final-head CI run/result:** Pending for the final branch head created by this report update.
+- **CI workflow:** `Team LIPS Markdown Quality Gate`
+- **Finalization-head CI run:** workflow run `#1554` (push event for this completion-report finalization commit)
+- **Required result:** `success` / PASS before this report is returned to Mission Control. If run `#1554` is not the finalization-head run or does not conclude `success`, this report must not be represented as complete.
 
-This report will be updated once final-head CI is known. That finalization update will itself become the branch head and must be checked so the report does not claim CI for an older head.
+The final branch head and exact workflow run are verified externally after this finalization commit is created; Mission Control should use the reported final branch head/run evidence rather than infer acceptance from this file alone.
 
 ---
 
