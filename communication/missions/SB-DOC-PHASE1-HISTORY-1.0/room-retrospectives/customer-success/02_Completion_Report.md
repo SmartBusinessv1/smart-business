@@ -173,7 +173,7 @@ Self-merge has **not** been performed and is **not authorized**.
 
 ## 9. CI Evidence
 
-Primary retrospective content head:
+Primary retrospective content head — historical / initial CI evidence:
 
 - Workflow: `Team LIPS Markdown Quality Gate`
 - Run number: `1558`
@@ -181,9 +181,16 @@ Primary retrospective content head:
 - Result: `SUCCESS`
 - Commit: `56f9cc7b279d7ffa619e664095d3897f00873aa8`
 
-Because this completion report itself creates a later documentation commit, the authoritative **final-head** CI evidence is the pull-request workflow run attached to the final branch head after this file is committed. Mission Control must use that immutable PR/head check as final-head evidence rather than treating the earlier content-head run as final-head proof.
+Authoritative final-head CI evidence before this narrow administrative correction:
 
-The contributor shall verify the final branch head and its PR-triggered Markdown Quality Gate before returning to Mission Control. No CI success is claimed for a commit before the corresponding workflow has completed.
+- Final head: `53d09b7e7af7f063c24703a23f467a519c098946`
+- Workflow: `Team LIPS Markdown Quality Gate`
+- Run number: `1560`
+- Run ID: `34760081372`
+- Result: `SUCCESS`
+- Mission Control independently verified final-head CI.
+
+This narrow administrative correction creates a new documentation-only head. The Markdown Quality Gate on that new head is the final CI evidence to return before Founder merge.
 
 ---
 
@@ -220,6 +227,4 @@ Customer Success institutional-memory authoring is complete.
 
 The branch contains only the two authorized retrospective artifacts.
 
-Next action is limited to final-head CI verification and Mission Control review.
-
-**Do not self-merge.**
+**Mission Control content review complete. Stop for Founder merge. Do not self-merge.**
