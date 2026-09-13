@@ -2,7 +2,7 @@
 
 **Mission:** `SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Historical Continuity Reconstruction`  
 **Contributor:** `14_FOUNDER_ACCOUNTABILITY`  
-**Status:** `RETROSPECTIVE AUTHORED — CI PENDING — MISSION CONTROL REVIEW PENDING`
+**Status:** `MISSION CONTROL CONTENT REVIEW COMPLETE — FOUNDER MERGE PENDING`
 
 ## 1. Retrospective file created
 
@@ -35,18 +35,25 @@ Carried forward without resolution: trial policy; exact Voice Plus price; Staff/
 - Verified base `main` SHA before authoring: `a2e0e99d8f62b01facbe7e9a3ba6685e28cdef7b`
 - Branch: `docs/founder-accountability-phase1-retrospective`
 - Primary retrospective commit: `fee6965489a60d108606600c648005bd400c6c2e`
-- Completion-report commit: verify externally from final branch head after this file is committed
-- PR: pending creation
-- Final-head CI: pending after PR creation
+- PR: `#567 — OPEN — not merged`
+- Mission Control-reviewed branch head before this administrative correction: `41addbe1969ee10c7823034c29f1a81f442d9dac`
+- Changed files: `2`
+- Workflow: `Team LIPS Markdown Quality Gate`
+- Reviewed run: `#1566`
+- Reviewed run ID: `34761483491`
+- Reviewed result: `SUCCESS`
+- Mission Control substantive content review: complete
 
-The final commit SHA is intentionally verified externally rather than embedded self-referentially in the commit that creates this file.
+The correction commit created from this file is verified externally after commit. Its SHA is not embedded self-referentially in this file. Final-head CI is likewise verified against that new branch head after this correction.
 
 ## 7. Changed files
 
-Expected contributor PR changed-file count: **2**
+Contributor PR changed-file count: **2**
 
 1. `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/founder-accountability/01_Retrospective.md`
 2. `communication/missions/SB-DOC-PHASE1-HISTORY-1.0/room-retrospectives/founder-accountability/02_Completion_Report.md`
+
+This administrative correction changes **only** `02_Completion_Report.md`. `01_Retrospective.md` is unchanged.
 
 ## 8. Non-mutation confirmation
 
@@ -54,4 +61,8 @@ Confirmed: no Product Truth change; no governance amendment; no Founder-authorit
 
 ## 9. Acceptance boundary
 
-This report does not claim Mission Control acceptance. Mission Control review remains required.
+Mission Control substantive content review is complete.
+
+Acceptance state: **not yet merged / final merge still Founder action**.
+
+Mission Control content review complete. Stop for Founder merge. Do not self-merge.
