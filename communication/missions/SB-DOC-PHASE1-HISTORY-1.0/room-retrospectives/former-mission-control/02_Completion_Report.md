@@ -32,7 +32,8 @@ Earlier MC archive bodies were not uniformly complete. The retrospective therefo
 - Branch: `docs/former-mission-control-phase1-retrospective`
 - Primary retrospective commit: `8081c5be730a8edf77921e3fd60e2ec65591de20`
 - PR: `#569 — OPEN — not merged`
-- Expected changed-file count after this report: `2`
+- Previously reviewed final head: `86aa3a7cbece902e7f990bca745db2263dc299f6`
+- Changed files: `2`
 
 The protected workflow used was:
 
@@ -143,27 +144,17 @@ Preserved as unresolved where not sufficiently proven at former-room transfer:
 
 These are not resolved by this retrospective.
 
-## 8. CI / completion-report self-reference boundary
+## 8. CI / completion-report review evidence
 
-Workflow required by repository protection:
+- Previously reviewed final head: `86aa3a7cbece902e7f990bca745db2263dc299f6`
+- Workflow: `Team LIPS Markdown Quality Gate`
+- Run: `#1579`
+- Run ID: `34764487416`
+- Result: `SUCCESS`
+- Mission Control substantive content review: **complete**
+- Acceptance: **not yet merged / final merge still Founder action**
 
-`Team LIPS Markdown Quality Gate` / required context `Markdown Quality Gate`.
-
-At the moment this completion report is committed, a new branch head is created. The CI run for that final head therefore necessarily occurs **after** this file exists.
-
-To avoid creating a false self-referential claim, this file does not invent a final-head run number, run ID or result before GitHub generates them.
-
-Required final-head CI fields are therefore:
-
-- Final branch head: **TO BE VERIFIED AFTER THIS COMMIT**
-- Workflow: `Team LIPS Markdown Quality Gate` / required check `Markdown Quality Gate`
-- Run number: **TO BE VERIFIED AFTER THIS COMMIT**
-- Run ID: **TO BE VERIFIED AFTER THIS COMMIT**
-- Result: **TO BE VERIFIED AFTER THIS COMMIT**
-
-Current Mission Control / Founder review must verify those immutable GitHub values against the final branch head before merge. If Mission Control requires the values embedded into this report, that must be handled as a narrow administrative correction with the known self-reference caveat; the correction itself will create a newer final head whose CI must again be checked externally.
-
-No CI result is claimed before it exists.
+This administrative correction records the already reviewed head and its successful quality-gate evidence. It does not alter the accepted retrospective content.
 
 ## 9. Explicit non-mutation confirmation
 
@@ -199,14 +190,12 @@ This PR is historical/institutional-memory work only.
 
 ## 10. Recommended current Mission Control action
 
-1. Review `01_Retrospective.md` for substantive accuracy and evidence boundaries.
-2. Verify PR #569 has exactly the two intended changed paths.
-3. Verify the final branch head after this report commit.
-4. Verify the final-head Markdown Quality Gate run directly in GitHub.
-5. If substantive content is accepted, stop for Founder/human merge.
-6. Do not self-merge.
-7. After all contributor retrospectives are complete, current Mission Control—not this former room—may perform the separately authorized final project-wide synthesis.
+1. Mission Control substantive content review: **complete**.
+2. Verify PR #569 still has exactly the two intended changed paths.
+3. Stop for Founder/human merge.
+4. Do not self-merge.
+5. After all contributor retrospectives are complete, current Mission Control—not this former room—may perform the separately authorized final project-wide synthesis.
 
-**Acceptance state:** `NOT YET MERGED — CURRENT MISSION CONTROL REVIEW / FOUNDER-HUMAN MERGE STILL REQUIRED`
+**Acceptance:** **not yet merged / final merge still Founder action**
 
-Former Mission Control retrospective contribution complete. Stop for current Mission Control review. Do not self-merge.
+Mission Control content review complete. Stop for Founder merge. Do not self-merge.
