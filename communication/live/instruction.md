@@ -3,20 +3,20 @@
 **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`  
 **Mission name:** Build Assurance & Automation Foundation  
 **Sender:** Smart Business Mission Control  
-**Recipient:** Claude Code  
-**Status:** `PENDING ACTIVATION MERGE`  
+**Recipient:** Codex  
+**Status:** `STAGE 2 ACTIVE — INDEPENDENT REVIEW`  
 **Date:** 2026-09-14
 
-The Founder has approved this non-Product assurance mission.
+Stage 1 is complete and has passed Mission Control review **for independent review only**. It is not accepted for merge or mission closure.
 
 The controlling mission record is:
 
 `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/`
 
-The Stage 1 instruction is:
+The Stage 2 instruction is:
 
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/01-activation-instruction.md`
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/04-stage2-codex-review-instruction.md`
 
-Claude Code shall act only after this activation package is present on canonical `main`, follow the approved repository communication protocol, remain inside the authorized Stage 1 paths and boundaries, and return its report through the mission communication record.
+Codex shall independently review PR `#575`, verify current repository and CI evidence, write the authorized Stage 2 review record, update only the permitted communication paths, and stop for Mission Control.
 
-`SB-P-1.12` is not activated by this instruction.
+Do not modify the Stage 1 workflow or evidence contract. Do not fix application debt, change external environment configuration, self-merge, or start `SB-P-1.12`.
