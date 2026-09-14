@@ -86,11 +86,16 @@ Suggested tools are explicitly advisory: contract-to-code mapping, builder-repor
 - **Repository:** `SmartBusinessv1/smart-business`
 - **Base main SHA:** `1196ead6c07256a8bf7f9607b2059294b71ca78b`
 - **Branch:** `docs/codex-phase1-retrospective`
-- **Primary retrospective commit:** To be recorded after the initial commit exists.
-- **Final branch head:** To be recorded after final-head CI completes.
-- **Pull request/state:** To be recorded after publication.
-- **Changed-file count:** 7 expected documentation files; final Git/PR evidence required.
-- **CI workflow/run number/run ID/result:** Not yet available; must not be fabricated.
+- **Primary retrospective commit:** `d51b2b3ac0c8772a637afed308bb52c1e139c5df`
+- **Reviewed content head:** `d51b2b3ac0c8772a637afed308bb52c1e139c5df`
+- **Final branch head:** The narrow report-evidence commit immediately following the primary commit; exact SHA and its final-head CI are returned to Mission Control after that commit exists.
+- **Pull request/state:** PR [#572](https://github.com/SmartBusinessv1/smart-business/pull/572), `OPEN`, `DRAFT`, `MERGEABLE` at evidence capture.
+- **Changed-file count:** 7, all new Markdown files under `room-retrospectives/codex/`.
+- **CI workflow:** `Team LIPS Markdown Quality Gate`
+- **Reviewed content run:** workflow run number `1593`, run ID `34821661932`, `SUCCESS`, head `d51b2b3ac0c8772a637afed308bb52c1e139c5df`.
+- **Push-triggered corroborating run:** workflow run number `1592`, run ID `34821635025`, `SUCCESS`, same head.
+
+This narrow administrative correction records the prior fully reviewed content head, as permitted by the mission's self-reference rule. It does not create an endless report/CI update cycle: the final report-only head and its CI result are reported directly to Mission Control after publication.
 
 ## Non-Mutation Confirmation
 
