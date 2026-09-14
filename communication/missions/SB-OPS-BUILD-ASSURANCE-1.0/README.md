@@ -5,192 +5,100 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 2 RE-VERIFICATION REPORTED — CORRECTION STILL REQUIRED — AWAITING MISSION CONTROL`
+- **Status:** `STAGE 3 — FOUNDER AUTHORITY-DEVIATION DECISION REQUIRED`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
-- **Authorized activation base:** `main @ 9b0b65b522fc370f8146186742479cb7c17409e5`
 - **Merged activation commit:** `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`
 - **Current mission branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
 - **Current pull request:** `#575`
 - **Date:** 2026-09-14
 
-## Why this mission exists
+## Mission boundary
 
-Phase 1 historical reconstruction and institutional-memory closeout exposed a recurring engineering risk: Smart Business currently has strong documentation and governance checks, but application-build assurance, negative-path automation, environment-drift detection, and specification-to-test traceability are not yet equally automated.
-
-This mission creates a small assurance foundation before the next Product Mission begins.
-
-It is intentionally **not** an `SB-P-*` Product Mission and does not use Source 18 as its Product Mission lifecycle. It remains subordinate to the same authority chain, repository communication protocol, security boundaries, and no-self-approval rules.
-
-## Founder-approved boundary
+This is a non-Product assurance mission. It does not activate or modify Product Truth, governance, roadmap, application features, UX, database/schema/RLS/grants/RPCs, deployment, provider configuration, branch protection, or `SB-P-1.12`.
 
 ### Build Now
 
-This mission is limited to a minimal repository-level assurance baseline:
+The approved baseline is limited to:
 
-1. **Application CI baseline**
-   - inspect the canonical repository's existing build, lint, typecheck, and test commands;
-   - add a GitHub Actions workflow that runs only checks already supported by the repository/toolchain;
-   - do not invent passing results or hide existing failures;
-   - do not auto-fix application code.
+1. a fail-closed GitHub Actions application-assurance workflow using existing repository-supported lint, typecheck, build and test commands;
+2. an evidence contract defining what each check proves and does not prove;
+3. independent Codex review;
+4. Mission Control acceptance;
+5. Founder/human merge.
 
-2. **Build-assurance evidence contract**
-   - document the exact checks, their scope, what each proves, and what each does not prove;
-   - define PASS / FAIL / FOLLOW-UP / NOT APPLICABLE reporting;
-   - make clear that green CI does not equal runtime, security, or Product acceptance.
+### Build Later
 
-3. **Independent review gate**
-   - Claude Code implements the assurance workflow under explicit mission authority;
-   - Codex performs independent review of the resulting workflow and evidence;
-   - Mission Control decides acceptance;
-   - Founder/human merge remains required.
+Deferred assurance candidates include cross-tenant/RLS denial automation, migration-currency checking, canonical/delivery drift detection, Product Truth-to-test traceability, idempotency/replay harnesses, privileged-function scanning, runtime/provider-state monitoring, and dependency-vulnerability gating.
 
-### Build Later — not authorized in this mission
+## Stage status
 
-The following are valuable but explicitly deferred from this small foundation mission:
+### Stage 0 — Activation
 
-- cross-tenant / RLS denial automation;
-- migration-ledger vs production-currency checker;
-- canonical-vs-delivery repository drift detector;
-- Product Truth → Blueprint/EIS → implementation → test traceability automation;
-- idempotency/replay harnesses;
-- privileged-function / `SECURITY DEFINER` scanners;
-- runtime/provider-state monitoring.
-
-These may become separate follow-up assurance missions after the baseline proves useful.
-
-## Explicit prohibitions
-
-This mission does **not** authorize:
-
-- Product Truth changes;
-- governance amendments;
-- roadmap changes;
-- `SB-P-1.12` activation;
-- application feature changes;
-- UX changes;
-- database/schema/RLS/grant/RPC mutations;
-- Supabase production changes;
-- Lovable changes or publishing;
-- AWS/Lambda changes;
-- Cloudflare changes;
-- Meta/WhatsApp changes;
-- OpenAI/model/prompt changes;
-- dependency upgrades merely to make CI pass;
-- production deployments;
-- runtime mutation;
-- branch-protection changes;
-- direct push to `main`;
-- self-approval or self-merge.
-
-If application checks expose pre-existing failures that require product/application changes, the actor must stop and report them as findings. This mission does not silently expand to repair those failures.
-
-## Authority inheritance
-
-This mission must follow, at minimum:
-
-- Source 00 — Lighthouse Constitution;
-- Phase 1 constitutional authority (Source 01 + Source 11 under SB-GOV-1.2);
-- Source 09 — Roadmap Command;
-- Source 12 — Product Execution & Release principles where relevant to evidence quality;
-- Source 15 — Mission Control Activation Template;
-- Source 17 — AI Operations Manual;
-- `communication/AI_Communication_and_Handover_Protocol.md`;
-- repository actor instructions and protected-main rules.
-
-Source 18 remains authoritative for `SB-P-*` Product Missions only; this mission must not be forced into Source 18 stages.
-
-## Stage plan
-
-### Stage 0 — Mission Control activation
-
-**Owner:** Mission Control  
-**Status:** COMPLETE — merged through PR #574
+**COMPLETE.** Merged through PR #574.
 
 ### Stage 1 — Claude Code assurance implementation
 
-**Owner:** Claude Code  
-**Status:** EVIDENCE CORRECTED (F-01/F-02/F-03) — awaiting Mission Control
+**COMPLETE, EVIDENCE CORRECTED.**
 
-Claude Code created:
+Created:
 
 - `.github/workflows/build-assurance.yml`;
 - `docs/engineering/assurance/Build_Assurance_Baseline.md`;
 - `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`.
 
-Stage 1 exposed two major real baseline findings without fixing them: pre-existing lint debt and a CI test-environment gap. Typecheck and build pass. The workflow is not configured as a required branch-protection check by this mission.
-
-Following Codex's Stage 2 review, Claude Code performed a narrow, Mission Control-authorized documentation-only correction (`mission-control/05-correction-authorization.md`) to the evidence contract and Stage 1 report addressing findings F-01 (local test run writes real state to the `SUPABASE_TEST_URL` target; the prior blanket non-mutation claim was withdrawn and replaced with a narrower, corrected one plus an explicit INSUFFICIENT EVIDENCE boundary), F-02 (corrected test-coverage description: 8 pure-logic files vs. 20 real-backend integration files including scoped RLS/Auth exercise; current CI executes zero tests, not a partial failure), and F-03 (CI enablement requires both an approved test-environment target and separate workflow wiring, not secret provisioning alone). The workflow file and Codex's review were not modified; no lint/application/dependency/config repair, no test rerun, no deploy, merge, or `SB-P-1.12` activation occurred.
+The workflow runs four real fail-closed jobs. Current known baseline: lint FAIL from pre-existing debt; typecheck PASS; build PASS; test FAIL before execution because required CI test-environment values are unavailable and the workflow has no authorized secret/environment bindings.
 
 ### Stage 2 — Codex independent review
 
-**Owner:** Codex  
-**Status:** RE-VERIFICATION REPORTED — CORRECTION STILL REQUIRED — AWAITING MISSION CONTROL
+**COMPLETE.**
 
-Controlling instruction:
+Codex initially identified F-01/F-02/F-03. Claude Code corrected the evidence records under explicit Mission Control authority. F-02 and F-03 were resolved in the first correction cycle. F-01 required one additional wording correction because the exact historical local test target and complete effects remain `INSUFFICIENT EVIDENCE`.
 
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/04-stage2-codex-review-instruction.md`
+Final Codex record:
 
-Codex reviews the exact Stage 1 scope, workflow semantics, evidence contract, CI evidence, authority boundaries, and whether current red checks are truthful baseline findings or implementation defects.
+`codex/04-stage2-final-f01-reverification.md`
 
-Codex does not modify Claude Code's implementation unless Mission Control separately authorizes correction.
+Disposition:
 
-### Stage 3 — Mission Control acceptance and closure
+`PASS — F-01 RESOLVED`
 
-**Owner:** Mission Control  
-**Status:** NOT STARTED
+### Stage 3 — Mission Control acceptance / Founder decision
 
-Mission Control will review Claude Code implementation evidence, Codex findings, final PR/CI state, product non-mutation, and whether the baseline creates meaningful protection without unnecessary ceremony. Founder/human merge is required for accepted repository changes.
+**ACTIVE — FOUNDER DECISION REQUIRED BEFORE MERGE.**
 
-## Acceptance criteria
+The implementation/evidence review is complete, but the corrected record establishes that Claude Code's historical local `npm run test` validation used real Supabase clients and wrote real Auth/database fixture state to the configured `SUPABASE_TEST_URL` target. The original Founder-approved boundary prohibited provider/runtime mutation.
 
-The mission may be accepted only if all of the following are true:
+The exact historical target identity and complete resulting external state remain `INSUFFICIENT EVIDENCE`; the record asserts neither production mutation nor absence of production mutation.
 
-- a real application-assurance workflow exists in the canonical repository;
-- the workflow executes repository-supported checks rather than placeholder commands;
-- check semantics and limitations are documented;
-- no Product Truth or product behaviour changed;
-- no application code was changed merely to manufacture a green check;
-- no production/runtime/provider mutation occurred;
-- independent Codex review is complete;
-- Mission Control review is complete;
-- required protected-branch checks pass;
-- Founder/human merge occurs through protected `main`.
+Mission Control therefore will not silently declare the original no-provider-mutation acceptance criterion satisfied.
 
-A red non-required assurance job may be accepted only if Mission Control determines, after independent review, that it truthfully exposes a pre-existing or environment gap and is not being used to conceal a Stage 1 implementation defect.
+Controlling gate:
 
-## Current owner and next authorized action
+`mission-control/09-stage3-founder-authority-deviation-gate.md`
 
-**Current owner:** Mission Control — review the narrow re-verification and determine correction authority for the remaining F-01 claim.
+Founder must choose:
 
-**Narrow re-verification:** `CORRECTION STILL REQUIRED`; see [Codex re-verification](codex/03-stage2-correction-reverification.md). The corrected Claude report Section 7 still asserts no production-data change despite the explicitly unverified local test target and complete effects. F-02 and F-03 satisfy the requested documentation corrections. Reviewed correction head: `76c6217fb0f9ceb2c99920499fd5134cdeea49bb`; current PR head at review: `91c67458b3fa330916d2ac1859f0bd11802ef577`.
+- **Option A:** accept the historical authority deviation explicitly, without treating it as precedent or retroactive authorization, and allow Mission Control to disposition the mission as `ACCEPTED WITH DOCUMENTED AUTHORITY DEVIATION AND FOLLOW-UP`; or
+- **Option B:** require a separately authorized read-only incident-scoping step before mission acceptance.
 
-**Correction performed:** Claude Code corrected `docs/engineering/assurance/Build_Assurance_Baseline.md` and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md` for Codex Stage 2 findings F-01, F-02, F-03 under `mission-control/05-correction-authorization.md`. Detail: [handover log H-006](handover-log.md#h-006--claude-code--mission-control-narrow-stage-1-evidence-correction).
+## Open follow-ups independent of the Founder gate
 
-**Current unresolved findings (evidence now corrected, not resolved):**
+1. Pre-existing lint debt: 152 errors / 7 warnings.
+2. CI test environment: approved target plus explicit workflow wiring are both still required before GitHub Actions can execute the suite.
+3. Dependency vulnerabilities: `npm audit` reported 10 known vulnerabilities (5 moderate, 5 high) at the locked dependency state.
+4. Future credential-backed integration-test execution requires explicit environment and mutation authority before execution.
 
-1. pre-existing lint debt makes the `lint` job red;
-2. the `test` job cannot run successfully in GitHub Actions until both an approved test-environment target and separate workflow wiring are authorized;
-3. dependency vulnerabilities reported by `npm audit` remain a future follow-up candidate;
-4. the local Stage 1 `npm run test` validation wrote real state to the `SUPABASE_TEST_URL` target; its exact identity and the complete resulting state remain **INSUFFICIENT EVIDENCE**, and whether that local execution stayed within mission authority is for Mission Control to determine.
-
-No decision is made by this correction to repair, investigate, or clean up any of those items.
-
-**Next authorized action:** Mission Control reviews the exact remaining F-01 sentence recorded by Codex and determines any further correction authority. Codex stops after publication. No external investigation, integration-test rerun, cleanup, provisioning, workflow change, merge, acceptance, closure or `SB-P-1.12` activation is authorized by this status update.
-
-## Material records
-
-- `mission-control/01-activation-instruction.md`
-- `mission-control/04-stage2-codex-review-instruction.md`
-- `decision-log.md`
-- `handover-log.md`
-- `claude-code/01-stage1-report.md`
-- `communication/live/instruction.md`
-- `communication/live/report.md`
-- `docs/engineering/assurance/Build_Assurance_Baseline.md`
-- `.github/workflows/build-assurance.yml`
+None of these are silently repaired or waived by this mission.
 
 ## Closure rule
 
-The mission is not complete when CI is added. It closes only after independent review, Mission Control acceptance, Founder/human merge, and post-merge verification of the accepted assurance state.
+This mission closes only after:
+
+- the Founder resolves the Stage 3 authority-deviation gate;
+- Mission Control records the acceptance disposition;
+- Founder/human merges the accepted PR through protected `main`;
+- Mission Control performs post-merge verification of the accepted state.
+
+`SB-P-1.12` remains not activated.
