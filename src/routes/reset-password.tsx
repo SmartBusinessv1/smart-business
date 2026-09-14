@@ -24,9 +24,10 @@ function ResetPasswordPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<
-    { kind: "error" | "info" | "success"; text: string } | null
-  >(null);
+  const [message, setMessage] = useState<{
+    kind: "error" | "info" | "success";
+    text: string;
+  } | null>(null);
 
   // SB-P-1.9: This page is the redirect target of the Supabase recovery link.
   // Supabase parses the recovery tokens from the URL fragment automatically
@@ -143,7 +144,10 @@ function ResetPasswordPage() {
                 />
               </div>
               <div>
-                <label htmlFor="confirm-password" className="block text-sm font-medium text-foreground">
+                <label
+                  htmlFor="confirm-password"
+                  className="block text-sm font-medium text-foreground"
+                >
                   Confirm new password
                 </label>
                 <input

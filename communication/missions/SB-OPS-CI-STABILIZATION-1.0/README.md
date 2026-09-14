@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 1A ACTIVE — CLAUDE CODE REPOSITORY STABILIZATION`
+- **Status:** `STAGE 1A COMPLETE — AWAITING MISSION CONTROL`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#577 — MERGED`
 - **Activation merge:** `705eaebb8e2fb01e8862666a258d3babff8bd694`
@@ -52,15 +52,15 @@ Prepare the minimum repository-side workflow binding required for the approved i
 
 ### Stage 1A — Claude Code repository stabilization
 
-**ACTIVE.** Controlling instruction:
+**COMPLETE — AWAITING MISSION CONTROL.** Controlling instruction:
 
 `mission-control/02-stage1a-claude-instruction.md`
 
-Claude Code is authorized only on:
+Report:
 
-`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+`claude-code/01-stage1a-report.md`
 
-Stage 1A stops after behavior-preserving lint stabilization and repository-side CI binding preparation. It does not authorize environment provisioning.
+Claude Code fixed all 152 pre-existing `prettier/prettier` lint errors across 27 files via `eslint --fix` (verified formatting-only, no semantic change); `npm run lint` now exits `0`. 7 pre-existing warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) remain and are reported, not fixed, since resolving them requires structural/semantic judgment outside this stage's formatting-only boundary. Typecheck and build remain green. `.github/workflows/build-assurance.yml`'s `test` job was given the minimum repository-side binding (`environment: smart-business-test`, `SUPABASE_TEST_*` secret-name-only `env:` references) for the later Stage 1B provisioning step; no secret or environment was provisioned, and the job continues to fail closed exactly as before.
 
 ### Stage 1B — Infrastructure Operations / Founder environment provisioning
 

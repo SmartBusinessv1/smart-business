@@ -1,10 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import {
-  ContentSection,
-  PageHeader,
-  Prose,
-} from "@/components/page-primitives";
+import { ContentSection, PageHeader, Prose } from "@/components/page-primitives";
 
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
@@ -37,12 +33,10 @@ function HowItWorks() {
       <ContentSection>
         <Prose>
           <p>
-            This page introduces the Smart Business experience. Product
-            capabilities will be added through future governed missions.
+            This page introduces the Smart Business experience. Product capabilities will be added
+            through future governed missions.
           </p>
-          <p>
-            Content here is intentionally minimal during project initialization.
-          </p>
+          <p>Content here is intentionally minimal during project initialization.</p>
         </Prose>
       </ContentSection>
     </SiteLayout>

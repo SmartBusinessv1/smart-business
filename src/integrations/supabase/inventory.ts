@@ -46,10 +46,9 @@ export async function listInventoryItems(
   if (error) throw error;
   if (!items || items.length === 0) return [];
 
-  const { data: stocks, error: stockErr } = await supabase.rpc(
-    "inventory_current_stock_batch",
-    { p_item_ids: items.map((i) => i.id) },
-  );
+  const { data: stocks, error: stockErr } = await supabase.rpc("inventory_current_stock_batch", {
+    p_item_ids: items.map((i) => i.id),
+  });
   if (stockErr) throw stockErr;
 
   const stockMap = new Map<string, number>(
@@ -113,10 +112,7 @@ export async function createInventoryItem(input: {
   return data;
 }
 
-export async function updateItemStatus(
-  itemId: string,
-  status: ItemStatus,
-): Promise<InventoryItem> {
+export async function updateItemStatus(itemId: string, status: ItemStatus): Promise<InventoryItem> {
   const { data, error } = await supabase
     .from("inventory_items")
     .update({ status })
@@ -140,9 +136,7 @@ export type CreateMovementInput = {
   allowNegativeStock?: boolean;
 };
 
-export async function createMovement(
-  input: CreateMovementInput,
-): Promise<InventoryMovement> {
+export async function createMovement(input: CreateMovementInput): Promise<InventoryMovement> {
   const { data, error } = await supabase.rpc("create_inventory_movement", {
     p_idempotency_key: input.idempotencyKey,
     p_operation: input.operation,
@@ -180,10 +174,9 @@ export async function previewMovement(
 }
 
 export async function remainingCompensable(movementId: string): Promise<number> {
-  const { data, error } = await supabase.rpc(
-    "inventory_movement_remaining_compensable",
-    { p_movement_id: movementId },
-  );
+  const { data, error } = await supabase.rpc("inventory_movement_remaining_compensable", {
+    p_movement_id: movementId,
+  });
   if (error) throw error;
   return Number(data ?? 0);
 }

@@ -36,7 +36,9 @@ if (!target || !TARGETS[target] || cliArgs.length === 0) {
 const { ref, name } = TARGETS[target];
 
 if (target === "production" && process.env.CONFIRM_PRODUCTION !== "yes") {
-  console.error(`Refusing to run against PRODUCTION (${name}, ref ${ref}) without explicit confirmation.`);
+  console.error(
+    `Refusing to run against PRODUCTION (${name}, ref ${ref}) without explicit confirmation.`,
+  );
   console.error(`If you are certain, re-run with CONFIRM_PRODUCTION=yes set in the environment.`);
   process.exit(1);
 }

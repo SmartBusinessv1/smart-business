@@ -67,3 +67,41 @@ Not yet authorized:
 - `SB-P-1.12` activation.
 
 Claude Code must stop for Mission Control after Stage 1A report and PR evidence are complete.
+
+## H-004 — Claude Code to Mission Control (Stage 1A complete)
+
+**Date:** 2026-09-15
+**From:** Claude Code
+**To:** Smart Business Mission Control
+**State:** COMPLETE -- AWAITING MISSION CONTROL
+
+### Work completed
+
+Full detail: [Stage 1A report](claude-code/01-stage1a-report.md).
+
+- **Workstream A (lint):** fixed all 152 pre-existing `prettier/prettier` formatting errors via `eslint . --fix` across 27 files; verified formatting-only (no semantic change) by manual diff review of every file. `npm run lint` now exits `0`. 7 pre-existing warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) remain, unresolved and reported per explicit instruction, since resolving them requires structural/semantic judgment, not formatting.
+- **Workstream B (CI binding):** added `environment: smart-business-test` and `secrets.SUPABASE_TEST_*`-name-only `env:` bindings to `.github/workflows/build-assurance.yml`'s `test` job only. No GitHub environment or secret was created; the job continues to fail closed exactly as before until Stage 1B provisions real values.
+
+### Validation
+
+`npm run lint` PASS (exit 0); `npx tsc --noEmit` PASS; `npm run build` PASS; changed-file scope verified exactly (27 formatting-only files + the one workflow file); Markdown Quality Gate PASS on all changed Markdown. `npm run test` was not run (explicitly not authorized this stage).
+
+### Repository references
+
+- Branch: `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+- Base: `705eaebb8e2fb01e8862666a258d3babff8bd694`
+- Commit SHA / CI run: recorded in the mission README once pushed (see there for the final values).
+- Pull request: [#578](https://github.com/SmartBusinessv1/smart-business/pull/578), updated, not approved or merged by Claude Code.
+
+### Not yet authorized
+
+- Stage 1B environment/secret provisioning;
+- any provider contact, credential-backed test run, or remote query/write;
+- product/application behavior change;
+- mission acceptance or closure;
+- Founder/human merge;
+- `SB-P-1.12` activation.
+
+### Next authorized action
+
+Mission Control reviews this Stage 1A report, including the 7 unresolved lint warnings, and decides whether to proceed to Stage 1B. Claude Code stops here.

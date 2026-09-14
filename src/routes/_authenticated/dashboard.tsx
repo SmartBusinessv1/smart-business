@@ -13,7 +13,6 @@ import {
 import { formatCurrencyINR } from "@/lib/utils";
 import { AuthedHeader } from "@/components/authed-header";
 
-
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
@@ -35,9 +34,6 @@ type Business = {
   category: string;
   locality: string;
 };
-
-
-
 
 function DashboardBoundary() {
   const navigate = useNavigate();
@@ -118,7 +114,9 @@ function ErrorState({ message, onRetry }: { message: string; onRetry: () => void
   return (
     <section className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
       <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-card-foreground">We couldn't load your workspace</h2>
+        <h2 className="text-lg font-semibold text-card-foreground">
+          We couldn't load your workspace
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">{message}</p>
         <button
           type="button"
@@ -192,7 +190,10 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
         keep the details short — this is just to identify your business.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 space-y-5 rounded-2xl border border-border/60 bg-card p-6 shadow-sm"
+      >
         <div className="space-y-2">
           <label htmlFor="business-name" className="block text-sm font-medium text-card-foreground">
             Business name
@@ -211,7 +212,10 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="business-category" className="block text-sm font-medium text-card-foreground">
+          <label
+            htmlFor="business-category"
+            className="block text-sm font-medium text-card-foreground"
+          >
             Business category
           </label>
           <input
@@ -224,13 +228,14 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
             className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-sm outline-none transition focus:ring-2 focus:ring-primary/40 disabled:opacity-60"
             placeholder="e.g. Grocery store, Bakery, Pharmacy"
           />
-          <p className="text-xs text-muted-foreground">
-            Describe your business in your own words.
-          </p>
+          <p className="text-xs text-muted-foreground">Describe your business in your own words.</p>
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="business-locality" className="block text-sm font-medium text-card-foreground">
+          <label
+            htmlFor="business-locality"
+            className="block text-sm font-medium text-card-foreground"
+          >
             Business location
           </label>
           <textarea
@@ -246,7 +251,10 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
         </div>
 
         {errorMsg ? (
-          <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+          <p
+            role="alert"
+            className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+          >
             {errorMsg}
           </p>
         ) : null}
@@ -264,7 +272,13 @@ function FirstTimeBusinessSetup({ userId }: { userId: string }) {
   );
 }
 
-function BusinessWorkspaceFoundation({ business, email }: { business: Business; email: string | null }) {
+function BusinessWorkspaceFoundation({
+  business,
+  email,
+}: {
+  business: Business;
+  email: string | null;
+}) {
   return (
     <section className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
       {/* Orientation / welcome */}
@@ -276,9 +290,9 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
           Welcome, {business.name}.
         </h1>
         <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-          Your account and your business identity have been successfully established.
-          This is your calm, protected workspace — a quiet foundation that will grow, step by step,
-          through approved future implementation phases.
+          Your account and your business identity have been successfully established. This is your
+          calm, protected workspace — a quiet foundation that will grow, step by step, through
+          approved future implementation phases.
         </p>
       </header>
 
@@ -308,7 +322,11 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
 
       {/* Forward-visibility of future governed capabilities (non-functional) */}
       <section aria-labelledby="whats-next-heading" className="mt-12">
-        <SectionHeading id="whats-next-heading" eyebrow="What's coming next" title="Future capabilities" />
+        <SectionHeading
+          id="whats-next-heading"
+          eyebrow="What's coming next"
+          title="Future capabilities"
+        />
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
           Smart Business will grow into a trusted assistant for your day-to-day work. These
           capabilities are on the way through approved future phases — nothing here is active yet.
@@ -337,8 +355,8 @@ function BusinessWorkspaceFoundation({ business, email }: { business: Business; 
             <GuidanceItem>Your business identity is established and safely stored.</GuidanceItem>
             <GuidanceItem>Your session is protected and will persist across visits.</GuidanceItem>
             <GuidanceItem>
-              Business capabilities will be introduced only through approved future phases —
-              you will always remain in control.
+              Business capabilities will be introduced only through approved future phases — you
+              will always remain in control.
             </GuidanceItem>
             <GuidanceItem>
               Smart Business is an assistant. You make the business decisions.

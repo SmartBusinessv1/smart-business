@@ -45,8 +45,8 @@ function Index() {
             Your AI Business Manager on WhatsApp.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Smart Business helps business owners gain greater clarity, control,
-            and peace of mind — without giving up ownership of their decisions.
+            Smart Business helps business owners gain greater clarity, control, and peace of mind —
+            without giving up ownership of their decisions.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -85,9 +85,7 @@ function Index() {
               key={card.title}
               className="rounded-xl border border-border/60 bg-card p-6 shadow-sm"
             >
-              <h2 className="text-base font-semibold text-card-foreground">
-                {card.title}
-              </h2>
+              <h2 className="text-base font-semibold text-card-foreground">{card.title}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{card.body}</p>
             </div>
           ))}

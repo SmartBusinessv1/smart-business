@@ -1,10 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import {
-  ContentSection,
-  PageHeader,
-  Prose,
-} from "@/components/page-primitives";
+import { ContentSection, PageHeader, Prose } from "@/components/page-primitives";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,8 +32,8 @@ function Contact() {
       <ContentSection>
         <Prose>
           <p>
-            Official contact channels will be published here through the
-            approved governed release process.
+            Official contact channels will be published here through the approved governed release
+            process.
           </p>
         </Prose>
       </ContentSection>

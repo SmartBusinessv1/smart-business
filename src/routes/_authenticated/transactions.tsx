@@ -88,9 +88,6 @@ function todayISO(): string {
   return format(new Date(), "yyyy-MM-dd");
 }
 
-
-
-
 function TransactionsBoundary() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -915,7 +912,9 @@ function TransactionCorrectionDialog({
                 Cancel
               </Button>
               <Button type="submit" disabled={submitting}>
-                {submitting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+                {submitting ? (
+                  <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" />
+                ) : null}
                 {submitting ? "Saving…" : "Save correction"}
               </Button>
             </DialogFooter>
@@ -933,7 +932,9 @@ function TransactionCorrectionDialog({
           <AlertDialogHeader>
             <AlertDialogTitle>Confirm Transaction Correction</AlertDialogTitle>
             <AlertDialogDescription className="whitespace-pre-line">
-              {"This correction will be recorded in the audit history.\n\nThe correction will also be reported to the business owner through the approved notification workflow.\n\nDo you want to continue?"}
+              {
+                "This correction will be recorded in the audit history.\n\nThe correction will also be reported to the business owner through the approved notification workflow.\n\nDo you want to continue?"
+              }
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -947,7 +948,9 @@ function TransactionCorrectionDialog({
                 handleConfirmSave();
               }}
             >
-              {submitting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+              {submitting ? (
+                <Loader2 className="mr-1 h-4 w-4 animate-spin" aria-hidden="true" />
+              ) : null}
               {submitting ? "Saving…" : "Yes, Save Correction"}
             </AlertDialogAction>
           </AlertDialogFooter>

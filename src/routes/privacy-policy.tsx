@@ -1,10 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import {
-  ContentSection,
-  PageHeader,
-  Prose,
-} from "@/components/page-primitives";
+import { ContentSection, PageHeader, Prose } from "@/components/page-primitives";
 
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
@@ -32,8 +28,8 @@ function PrivacyPolicy() {
       <ContentSection>
         <Prose>
           <p>
-            Smart Business is being prepared under a governed release process.
-            Formal privacy terms will be added here before any production use.
+            Smart Business is being prepared under a governed release process. Formal privacy terms
+            will be added here before any production use.
           </p>
         </Prose>
       </ContentSection>
