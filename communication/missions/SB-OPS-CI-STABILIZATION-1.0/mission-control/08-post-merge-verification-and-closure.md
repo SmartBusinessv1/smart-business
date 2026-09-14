@@ -44,7 +44,28 @@ The mission achieved its authorized purpose:
 
 The seven remaining lint warnings require semantic/structural judgment and remain deliberately outside this mission. Dependency-vulnerability remediation, routine fixture housekeeping automation, and broader Build Later assurance also remain separate work.
 
-## 4. Authority and product boundary
+## 4. Communication archive and live reset
+
+The final former `communication/live/` exchange was preserved under:
+
+`communication/archive/SB-OPS-CI-STABILIZATION-1.0/`
+
+Archive contents:
+
+- `communication.md` — readable chronology, source-integrity manifest, and Final Reconciled Closure;
+- `instruction.md` — byte-identical copy of former live instruction, source blob `b7196ce830b7127bb5d9a08c29998af113436fd2`, 1032 bytes;
+- `report.md` — byte-identical copy of former live report, source blob `6121d4202bfc7574ecee5c2e5d23d9504e17f956`, 3103 bytes.
+
+Mission Control verified the archived copies resolve to the same Git blob SHAs as the former live source files.
+
+After archive verification, the reusable base pair was restored:
+
+- `communication/live/instruction.md` — idle template blob `f596f80679d1106d38527d54e071d6e899b4b99f`;
+- `communication/live/report.md` — idle template blob `3f20a20ca3d3841a517d22fbff48eb9259ca9f86`.
+
+`communication/live/` therefore contains no active mission and is ready for the next separately authorized mission.
+
+## 5. Authority and product boundary
 
 This closure does not authorize additional engineering work under this mission.
 
@@ -52,10 +73,14 @@ No application, workflow, test, dependency, database/schema/RLS/grant/RPC, deplo
 
 `SB-P-1.12` remains **not activated** by this closure record.
 
-## 5. Final disposition
+## 6. Closeout publication
+
+Administrative closeout PR `#579` carries the durable closure status, archive package, and live-template reset. Founder/human merge is required after CI. Mission Control must not self-merge.
+
+## 7. Final disposition
 
 **`SB-OPS-CI-STABILIZATION-1.0 — CLOSED — ACCEPTED`**
 
 There is no active instruction under this mission.
 
-Any future work on the carried items requires separate authority.
+Any future work on carried items requires separate authority.
