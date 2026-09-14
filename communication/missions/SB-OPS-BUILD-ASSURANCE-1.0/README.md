@@ -5,7 +5,7 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `FOUNDER AUTHORIZED — REPOSITORY ACTIVATION PENDING`
+- **Status:** `STAGE 1 COMPLETE — AWAITING CODEX INDEPENDENT REVIEW AND MISSION CONTROL ACCEPTANCE`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
@@ -175,17 +175,24 @@ The mission may be accepted only if all of the following are true:
 
 ## Current owner and next authorized action
 
-**Current owner:** Mission Control until the activation package is merged.
+**Current owner:** Mission Control (Stage 2 activation pending).
 
-**Next authorized action:** Founder reviews and merges the activation PR. After merge, Mission Control will issue the exact Claude Code activation pointer from `communication/live/instruction.md`.
+**Blockers:** none for Stage 1. Pre-existing lint debt and dependency-vulnerability findings are reported, not blockers, per Claude Code's Stage 1 report.
+
+**Latest commit / pull request:** recorded in `handover-log.md` once the mission branch is pushed and the PR is opened.
+
+**Next authorized action:** Mission Control reviews Claude Code's Stage 1 report and separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself. Founder/human merge remains required and has not occurred; no self-approval or self-merge is authorized.
 
 ## Material records
 
 - `mission-control/01-activation-instruction.md`
 - `decision-log.md`
 - `handover-log.md`
+- `claude-code/01-stage1-report.md`
 - `communication/live/instruction.md`
 - `communication/live/report.md`
+- `docs/engineering/assurance/Build_Assurance_Baseline.md`
+- `.github/workflows/build-assurance.yml`
 
 ## Closure rule
 
