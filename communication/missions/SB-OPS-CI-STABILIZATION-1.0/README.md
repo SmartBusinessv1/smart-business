@@ -14,7 +14,8 @@
 - **Implementation PR:** `#578 — MERGED`
 - **Accepted implementation head:** `dad4e82111a94f01a66908e1cf0f1658e4ae9b2d`
 - **Implementation merge commit:** `6c71abe7a6647075190ea9a3cb4649eed3e7c8ca`
-- **Current owner:** None — mission closed
+- **Administrative closeout PR:** `#579 — OPEN — FOUNDER MERGE REQUIRED AFTER CI`
+- **Current owner:** None — mission closed; closeout publication pending Founder merge
 
 ## Purpose
 
@@ -72,6 +73,20 @@ Mission Control accepted the implementation and independent review. Founder/huma
 - Canonical `main` verified at the same merge commit.
 
 Post-merge Team LIPS Application Build Assurance run `#52` (`34879969511`) completed successfully on canonical `main`; lint, typecheck, build, and automated tests all passed.
+
+## Communication closure
+
+The completed former `communication/live/` exchange is archived at:
+
+`communication/archive/SB-OPS-CI-STABILIZATION-1.0/`
+
+The archive contains:
+
+- `communication.md` — chronology, source-integrity manifest, and Final Reconciled Closure;
+- `instruction.md` — byte-identical former live instruction;
+- `report.md` — byte-identical former live report.
+
+The reusable live pair has been restored to the standard idle templates, so `communication/live/` contains no active mission.
 
 Closure record:
 
