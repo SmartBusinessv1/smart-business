@@ -180,6 +180,7 @@ Codex may update only the Stage 2 communication paths authorized in the instruct
 - Base: `main @ 4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`.
 - Reviewed head: `eb27d3723b59e83e553ef43a07d3fa2a0a6399d1`; final Stage 1 head: `4766a76ba3d0c676af01ab70a4800588bf23bcf4`.
 - PR: [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), OPEN, not approved or merged by Codex.
+- Review commit: `978150698f3638d783b0d8a1ddf1cc5f49384b39` — `SB-OPS-BUILD-ASSURANCE-1.0: record Codex Stage 2 independent review`. This subsequent communication-only commit records that exact reference; both are intended for the existing PR branch.
 
 ### Findings and validation
 
@@ -187,7 +188,7 @@ Recommendation: **CORRECTION REQUIRED**. F-01 identifies the conflict between cr
 
 Original CI `34842467495` and current CI `34843465673` confirm typecheck/build PASS, lint FAIL with 152 pre-existing errors and 7 warnings, and test FAIL at missing-variable setup with 28 failed files and no executed tests. Current Markdown run `34843465658` passed. Git comparisons confirm six authorized Stage 1 paths, nine total PR paths after handoff, and unchanged application/toolchain inputs. Live protection requires only Markdown Quality Gate.
 
-Stage 2 writes comprise exactly the Codex review record, README status/next-action metadata, this appended handover and `communication/live/report.md`. Repository Markdown Quality Gate passed for all four files (check-only repair, lint and structural validation; zero warnings/failures). Internal file links and `git diff --check` passed. Manual Stage 1 patch inspection and a common credential-pattern scan found no introduced credential values; no approved automated secret scanner was found in inspected tooling. Publication remains pending until the authorized commits and push are verified.
+Stage 2 writes comprise exactly the Codex review record, README status/next-action metadata, this appended handover and `communication/live/report.md`. Repository Markdown Quality Gate and pre-commit gate passed for all four files (check-only repair, lint and structural validation; zero warnings/failures). Six internal file links passed. Exact staged-file verification, staged whitespace checks, unstaged-diff checks and staged credential-pattern inspection passed before the review commit; no credential-pattern matches were found. Manual Stage 1 patch inspection likewise found no introduced credential values; no approved automated secret scanner was found in inspected tooling. Push is pending at preparation of this publication-reference entry; final branch synchronization and CI must be checked after push. This provisional publication field does not assert mission closure.
 
 ### Authority and next action
 
