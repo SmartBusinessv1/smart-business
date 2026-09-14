@@ -5,7 +5,7 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 1 EVIDENCE CORRECTED (F-01/F-02/F-03) — AWAITING MISSION CONTROL`
+- **Status:** `STAGE 2 RE-VERIFICATION REPORTED — CORRECTION STILL REQUIRED — AWAITING MISSION CONTROL`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
@@ -126,7 +126,7 @@ Following Codex's Stage 2 review, Claude Code performed a narrow, Mission Contro
 ### Stage 2 — Codex independent review
 
 **Owner:** Codex  
-**Status:** REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL
+**Status:** RE-VERIFICATION REPORTED — CORRECTION STILL REQUIRED — AWAITING MISSION CONTROL
 
 Controlling instruction:
 
@@ -162,7 +162,9 @@ A red non-required assurance job may be accepted only if Mission Control determi
 
 ## Current owner and next authorized action
 
-**Current owner:** Mission Control — review the correction and decide acceptance, further correction, or closure.
+**Current owner:** Mission Control — review the narrow re-verification and determine correction authority for the remaining F-01 claim.
+
+**Narrow re-verification:** `CORRECTION STILL REQUIRED`; see [Codex re-verification](codex/03-stage2-correction-reverification.md). The corrected Claude report Section 7 still asserts no production-data change despite the explicitly unverified local test target and complete effects. F-02 and F-03 satisfy the requested documentation corrections. Reviewed correction head: `76c6217fb0f9ceb2c99920499fd5134cdeea49bb`; current PR head at review: `91c67458b3fa330916d2ac1859f0bd11802ef577`.
 
 **Correction performed:** Claude Code corrected `docs/engineering/assurance/Build_Assurance_Baseline.md` and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md` for Codex Stage 2 findings F-01, F-02, F-03 under `mission-control/05-correction-authorization.md`. Detail: [handover log H-006](handover-log.md#h-006--claude-code--mission-control-narrow-stage-1-evidence-correction).
 
@@ -175,7 +177,7 @@ A red non-required assurance job may be accepted only if Mission Control determi
 
 No decision is made by this correction to repair, investigate, or clean up any of those items.
 
-**Next authorized action:** Mission Control reviews the corrected Stage 1 evidence and decides acceptance, further correction, or closure. No environment provisioning, workflow-file change, merge, acceptance, closure, or `SB-P-1.12` activation is authorized by this status update.
+**Next authorized action:** Mission Control reviews the exact remaining F-01 sentence recorded by Codex and determines any further correction authority. Codex stops after publication. No external investigation, integration-test rerun, cleanup, provisioning, workflow change, merge, acceptance, closure or `SB-P-1.12` activation is authorized by this status update.
 
 ## Material records
 

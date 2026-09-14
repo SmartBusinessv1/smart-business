@@ -243,3 +243,25 @@ Mission Control reviews this correction and decides acceptance, further correcti
 - mission acceptance or closure;
 - Founder/human merge;
 - `SB-P-1.12` activation.
+
+## H-007 — Codex → Mission Control (narrow correction re-verification)
+
+**Date:** 2026-09-14
+**Disposition:** `CORRECTION STILL REQUIRED`
+**Status:** RE-VERIFICATION REPORTED — AWAITING MISSION CONTROL
+
+### Evidence and exact remaining defect
+
+[Codex re-verification record](codex/03-stage2-correction-reverification.md), under instruction 06 and correction authorization 05, reviews only F-01/F-02/F-03. F-01 remains unresolved solely because the corrected Claude report Section 7, line 95, retains an unqualified no-production-data-change claim while the corrected baseline Section 5 finding 4 and Section 7 mark the original local test target and complete effects `INSUFFICIENT EVIDENCE`. No production mutation is asserted by Codex. F-02 and F-03 satisfy the requested documentation corrections.
+
+- Repository: `SmartBusinessv1/smart-business`.
+- Branch: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`; PR [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), OPEN, targeting `main`.
+- Base: `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`.
+- Correction head: `76c6217fb0f9ceb2c99920499fd5134cdeea49bb`; reviewed current head: `91c67458b3fa330916d2ac1859f0bd11802ef577`.
+- Current-head application CI `34849173596`: lint/test fail, typecheck/build succeed; test log confirms missing-variable setup failure. Markdown CI `34849173640` succeeded.
+
+### Publication and boundary
+
+Authorized writes are the new re-verification record, README status/next-action metadata, this appended handover and live report. Repository Markdown Quality Gate passed for all four files; 11 internal file links resolved, and `git diff --check` passed. Publication reference will be recorded after commit. No corrected artifact, workflow, application, test, dependency, external system, branch protection, mission memory or live instruction was changed. No external integration tests were rerun; no remote inspection, cleanup, provisioning, merge or `SB-P-1.12` activation occurred.
+
+Mission Control is the next owner. The only requested correction is withdrawal or qualification of the unsupported production-data exclusion in the identified F-01 sentence. Codex stops after publishing; this report grants no correction, acceptance or merge authority.
