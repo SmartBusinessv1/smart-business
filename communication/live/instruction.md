@@ -1,30 +1,17 @@
-# SMART BUSINESS — LIVE INSTRUCTION
+# SMART BUSINESS — REPOSITORY COMMUNICATION
 
-**Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
-**Mission name:** CI Baseline Stabilization
-**Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK
-**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
-**Date:** 2026-09-14
+# Instruction — Awaiting Mission Activation
 
-Mission Control has accepted the implementation and independent review for PR `#578`.
+**Mission ID:** `NONE`
 
-Controlling acceptance record:
+**From:** Smart Business Mission Control
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
+**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
 
-Authorized branch:
+---
 
-`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+`communication/live/` is currently reset and contains no active mission.
 
-Pull request:
+When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
 
-`#578 — OPEN — READY FOR FOUNDER MERGE`
-
-Founder action: merge PR #578 through the repository's protected-main merge flow, then report completion to Mission Control.
-
-Do not perform additional code, test, workflow, dependency, provider, database, deployment, branch-protection, Product Truth, governance, or Product Mission changes under this instruction.
-
-Mission Control must not self-merge.
-
-`SB-P-1.12` remains not activated.
+Do not infer a mission from archived communication or prior chat history.

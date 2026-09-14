@@ -7,14 +7,15 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
+- **Status:** `CLOSED — ACCEPTED`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#577 — MERGED`
 - **Activation merge:** `705eaebb8e2fb01e8862666a258d3babff8bd694`
-- **Implementation PR:** `#578 — OPEN — READY FOR FOUNDER MERGE`
-- **Current implementation branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
-- **Current owner:** Founder Riyas PK for protected-main merge
-- **Stage 3 publication head verified by Mission Control:** `141bab92dac7d3051f138854534351fbc808c8fb`
+- **Implementation PR:** `#578 — MERGED`
+- **Accepted implementation head:** `dad4e82111a94f01a66908e1cf0f1658e4ae9b2d`
+- **Implementation merge commit:** `6c71abe7a6647075190ea9a3cb4649eed3e7c8ca`
+- **Administrative closeout PR:** `#579 — OPEN — FOUNDER MERGE REQUIRED AFTER CI`
+- **Current owner:** None — mission closed; closeout publication pending Founder merge
 
 ## Purpose
 
@@ -23,57 +24,33 @@ Resolve the two known red application-CI baseline conditions from the closed Bui
 1. pre-existing lint failure;
 2. GitHub Actions tests not yet executing against the approved isolated test environment.
 
-This mission does not reopen `SB-OPS-BUILD-ASSURANCE-1.0`.
+This mission did not reopen `SB-OPS-BUILD-ASSURANCE-1.0`.
 
-## Build Now
-
-### Workstream A — lint stabilization
-
-Correct only behavior-preserving formatting/style defects required for the real repository lint command to succeed. Any finding requiring semantic or product-behavior change must be reported rather than silently fixed. Typecheck and build must remain green.
-
-### Workstream B — CI integration-test execution
-
-Prepare and provision the minimum approved GitHub Actions binding required for the isolated `smart-business-test` environment. Sensitive values must remain outside repository content and logs.
-
-## Explicitly not authorized
-
-- Product Truth, governance, roadmap, feature or UX changes;
-- database/schema/RLS/grant/RPC changes;
-- production provider access or mutation;
-- dependency or lockfile changes merely to make CI green;
-- test weakening, skipping, artificial pass conditions or reduced coverage;
-- deployment/publishing;
-- branch-protection changes;
-- unrelated cleanup;
-- `SB-P-1.12` activation.
-
-## Stage status
+## Final outcome
 
 ### Stage 0 — Mission Control activation
 
-**COMPLETE.** PR `#577` merged to canonical `main` at `705eaebb8e2fb01e8862666a258d3babff8bd694`.
+**COMPLETE.** PR `#577` merged at `705eaebb8e2fb01e8862666a258d3babff8bd694`.
 
 ### Stage 1A — Claude Code repository stabilization
 
-**COMPLETE — ACCEPTED BY MISSION CONTROL.**
+**COMPLETE — ACCEPTED.**
 
-Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Seven pre-existing warnings remain reported and intentionally unresolved because they require structural/semantic judgment rather than formatting-only correction.
+Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Seven pre-existing warnings remain reported and intentionally unresolved because they require semantic/structural judgment.
 
-Accepted report: `claude-code/01-stage1a-report.md`
-
-Mission Control disposition: `mission-control/03-stage1a-review-and-stage1b-authorization.md`
+Report: `claude-code/01-stage1a-report.md`
 
 ### Stage 1B — Infrastructure Operations / Founder environment provisioning
 
-**COMPLETE.** Founder provisioned the existing GitHub Actions environment `smart-business-test` with the three required environment-scoped secret names. No secret value is recorded in mission artifacts.
+**COMPLETE.**
+
+Founder provisioned the existing GitHub Actions environment `smart-business-test` with the three required environment-scoped test secret names. No secret value is recorded in mission artifacts.
 
 ### Stage 2 — Claude Code CI verification
 
-**COMPLETE — ACCEPTED BY MISSION CONTROL.**
+**COMPLETE — ACCEPTED.**
 
-The `test` job genuinely executes against `smart-business-test`: **28/28 test files, 169/169 tests, 0 failures**. `lint`, `typecheck`, and `build` also pass. Available GitHub deployment evidence identifies `smart-business-test` and marks it non-production. No new genuine defect surfaced.
-
-Controlling authorization: `mission-control/04-stage1b-completion-and-stage2-authorization.md`
+The test job genuinely executes against `smart-business-test`: **28/28 test files, 169/169 tests, 0 failures**. Lint, typecheck, and build also pass.
 
 Report: `claude-code/02-stage2-ci-verification.md`
 
@@ -85,27 +62,35 @@ Codex independently verified behavior-preserving formatting scope, unchanged gat
 
 Review: `codex/01-stage3-independent-review.md`
 
-Publication authorization: `mission-control/06-stage3-publication-authorization.md`
-
 ### Stage 4 — Mission Control acceptance / Founder merge
 
-**MISSION CONTROL ACCEPTANCE COMPLETE — READY FOR FOUNDER MERGE.**
+**COMPLETE.**
 
-Mission Control independently verified the published Codex review, PR #578 state, and current-head CI before recording acceptance.
+Mission Control accepted the implementation and independent review. Founder/human merged PR `#578`.
 
-Acceptance and merge handoff:
+- Accepted PR head: `dad4e82111a94f01a66908e1cf0f1658e4ae9b2d`
+- Actual merge commit: `6c71abe7a6647075190ea9a3cb4649eed3e7c8ca`
+- Canonical `main` verified at the same merge commit.
 
-`mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
+Post-merge Team LIPS Application Build Assurance run `#52` (`34879969511`) completed successfully on canonical `main`; lint, typecheck, build, and automated tests all passed.
 
-Founder/human protected-main merge is the next action. Mission Control must not self-merge.
+## Communication closure
 
-After merge, Mission Control will independently verify the actual merge commit, canonical `main`, and post-merge CI before durable closure.
+The completed former `communication/live/` exchange is archived at:
 
-## Acceptance target
+`communication/archive/SB-OPS-CI-STABILIZATION-1.0/`
 
-Satisfied pre-merge: lint, typecheck, build, Markdown quality, and automated tests pass; automated tests genuinely execute against the approved isolated test environment; no test or quality gate was weakened; Codex independent review passed; and Mission Control acceptance is complete.
+The archive contains:
 
-Remaining closure action: Founder/human merge plus post-merge verification.
+- `communication.md` — chronology, source-integrity manifest, and Final Reconciled Closure;
+- `instruction.md` — byte-identical former live instruction;
+- `report.md` — byte-identical former live report.
+
+The reusable live pair has been restored to the standard idle templates, so `communication/live/` contains no active mission.
+
+Closure record:
+
+`mission-control/08-post-merge-verification-and-closure.md`
 
 ## Carried but not included
 
@@ -113,4 +98,10 @@ Dependency-vulnerability remediation, routine fixture-housekeeping automation, t
 
 ## Product Mission boundary
 
-`SB-P-1.12` remains **not activated**.
+`SB-P-1.12` remains **not activated** by this mission.
+
+## Final disposition
+
+**`SB-OPS-CI-STABILIZATION-1.0 — CLOSED — ACCEPTED`**
+
+There is no active instruction under this mission. Any future work requires separate authority.
