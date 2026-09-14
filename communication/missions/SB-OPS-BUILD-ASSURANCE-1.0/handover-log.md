@@ -69,24 +69,24 @@ Claude Code may begin Stage 1 only after:
 - Base branch: `main`
 - Base commit SHA: `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`
 - Mission branch: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
-- Commit SHA / pull request: recorded in this log once committed and pushed (see the follow-up entry or the mission README).
+- Commit SHA / pull request: recorded in the following handover entry.
 
 ### Current state
 
-Claude Code implemented the Stage 1 assurance baseline exactly within the authorized paths (`.github/workflows/`, `docs/engineering/assurance/`, `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/`, mission README/handover metadata, `communication/live/report.md`). No application code, dependency, Product Truth, governance, or provider/runtime/production state was changed. `SB-P-1.12` was not started. `mission/SB-ENG-BUILD-ASSURANCE-1.0-foundation` was not reused or merged.
+Claude Code implemented the Stage 1 assurance baseline exactly within the authorized paths. No application code, dependency, Product Truth, governance, or provider/runtime/production state was changed. `SB-P-1.12` was not started. `mission/SB-ENG-BUILD-ASSURANCE-1.0-foundation` was not reused or merged.
 
-Real, fail-closed validation was run locally (CI-representative: working tree normalized to the repository's stored line endings to remove a local Windows `core.autocrlf` checkout artifact — see Stage 1 report Section 6 for the exact reversible steps and restoration). Results: `npm ci` PASS, `npm run lint` FAIL (pre-existing, 152 errors / 7 warnings, none introduced by this mission), `npx tsc --noEmit` PASS, `npm run build` PASS, `npm run test` PASS (169/169).
+Local validation found the genuine baseline: dependency install PASS; lint FAIL with pre-existing debt; typecheck PASS; build PASS; tests PASS locally with the developer test environment available.
 
 ### Next authorized action
 
-Mission Control reviews this Stage 1 report, then separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself.
+Mission Control reviews this Stage 1 report, then separately activates Codex for Stage 2 independent review.
 
 ### Not yet authorized
 
-- Codex review activation (owned by Mission Control, not Claude Code);
+- Codex review activation until Mission Control review;
 - mission acceptance or closure;
 - Founder/human merge;
-- any fix to the pre-existing lint debt or dependency vulnerabilities reported as findings.
+- repair of reported application/dependency findings.
 
 ## H-003 — Claude Code: branch pushed, PR opened, CI evidence recorded
 
@@ -97,27 +97,70 @@ Mission Control reviews this Stage 1 report, then separately activates Codex for
 
 ### Repository references
 
-- Mission branch pushed: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline` (commit `8ed3183a2f87900170660c89f1a4eda3f5d61868`, plus this follow-up evidence-update commit)
-- Pull request: [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), targeting `main`
-- CI run (authoritative): [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495)
+- Mission branch: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
+- Stage 1 implementation commit: `8ed3183a2f87900170660c89f1a4eda3f5d61868`
+- Pull request: `#575`, targeting `main`
+- Initial authoritative application-assurance run: `34842467495`
+- Stage 1 head after evidence update: `4766a76ba3d0c676af01ab70a4800588bf23bcf4`
 
 ### Actual CI result
 
-`lint` FAIL (pre-existing, 152 errors/7 warnings — matches local LF-normalized prediction exactly), `typecheck` PASS, `build` PASS, `test` FAIL (missing `SUPABASE_TEST_URL`/`SUPABASE_TEST_ANON_KEY`/`SUPABASE_TEST_SERVICE_ROLE_KEY` GitHub Actions secrets — not provisioned by this mission; fails closed correctly).
-
-This is a genuine finding surfaced only by the real CI run, not visible from local validation alone (the developer's local `.env.test.local` supplies the missing credentials). It is now recorded as Finding 3 in the Stage 1 report and the baseline document, in addition to the previously reported pre-existing lint debt and dependency-vulnerability findings.
+`lint` FAIL (pre-existing 152 errors/7 warnings), `typecheck` PASS, `build` PASS, `test` FAIL because the CI environment lacks the required Supabase test variables. The job fails closed rather than skipping.
 
 ### Correction note
 
-This entry supplements H-002 rather than replacing it. `docs/engineering/assurance/Build_Assurance_Baseline.md`, `claude-code/01-stage1-report.md`, and `communication/live/report.md` were updated in place (same active Stage 1 cycle, not a closed/archived record) to add the real CI evidence and the `test`-job secret-provisioning finding once the PR's CI run completed; no prior content was removed or contradicted, only completed with post-push evidence that did not exist at H-002's commit time.
+This entry supplements H-002. The evidence contract, Claude Code report, and live report were completed with real CI evidence after the PR run existed.
 
 ### Next authorized action
 
-Mission Control reviews Stage 1 (including this CI evidence and Finding 3's open decision), then separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself.
+Mission Control reviews Stage 1 and decides whether to activate Codex.
 
 ### Not yet authorized
 
-- provisioning `SUPABASE_TEST_*` as a GitHub Actions secret (a Mission Control/Founder credential decision, not Claude Code's to make);
-- Codex review activation;
+- external environment credential provisioning;
 - mission acceptance or closure;
 - Founder/human merge.
+
+## H-004 — Mission Control → Codex (Stage 2 independent review)
+
+**Date:** 2026-09-14  
+**Status:** ACTIVE — CODEX INDEPENDENT REVIEW AUTHORIZED  
+**From:** Smart Business Mission Control  
+**To:** Codex
+
+### Mission Control review result
+
+Stage 1 is accepted **for independent review only**, not for merge or mission closure.
+
+Mission Control independently verified:
+
+- PR `#575` is open and mergeable;
+- the Stage 1 base is merged activation commit `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`;
+- the Stage 1 head before this handoff was `4766a76ba3d0c676af01ab70a4800588bf23bcf4`;
+- exactly six Stage 1 paths changed before Mission Control added Stage 2 communication records;
+- Markdown Quality Gate run `#1606` passed on that Stage 1 head;
+- Application Build Assurance remained fail-closed, with typecheck/build green and lint/test red for the reported reasons.
+
+The red application-assurance jobs are not silently accepted as healthy product state. They are unresolved findings to be independently classified by Codex.
+
+### Authoritative Stage 2 instruction
+
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/04-stage2-codex-review-instruction.md`
+
+### Next authorized action
+
+Codex shall independently review PR #575 and create:
+
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/codex/02-stage2-independent-review.md`
+
+Codex may update only the Stage 2 communication paths authorized in the instruction. It shall not modify the Stage 1 workflow or evidence contract.
+
+### Not yet authorized
+
+- merge of PR #575;
+- application lint repair;
+- dependency upgrades;
+- external environment credential provisioning;
+- branch-protection changes;
+- mission acceptance/closure;
+- `SB-P-1.12` activation.
