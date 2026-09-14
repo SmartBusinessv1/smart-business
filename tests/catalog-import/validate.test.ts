@@ -4,7 +4,13 @@ import { validateRow } from "@/lib/catalog-import/validate";
 import type { RawImportRow } from "@/lib/catalog-import/types";
 
 function row(fields: RawImportRow["fields"], overrides: Partial<RawImportRow> = {}): RawImportRow {
-  return { rowNumber: 1, fields, hasReferenceCostColumn: false, referenceCostRaw: undefined, ...overrides };
+  return {
+    rowNumber: 1,
+    fields,
+    hasReferenceCostColumn: false,
+    referenceCostRaw: undefined,
+    ...overrides,
+  };
 }
 
 describe("validateRow", () => {

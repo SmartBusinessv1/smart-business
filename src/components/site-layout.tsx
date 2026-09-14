@@ -14,11 +14,7 @@ const NAV = [
 
 function SmartBusinessMark() {
   return (
-    <Link
-      to="/"
-      className="flex items-center gap-2 group"
-      aria-label="Smart Business — home"
-    >
+    <Link to="/" className="flex items-center gap-2 group" aria-label="Smart Business — home">
       <span
         aria-hidden="true"
         className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-semibold shadow-sm transition-transform group-hover:scale-105"
@@ -26,9 +22,7 @@ function SmartBusinessMark() {
         SB
       </span>
       <span className="flex flex-col leading-tight">
-        <span className="text-sm font-semibold tracking-tight text-foreground">
-          Smart Business
-        </span>
+        <span className="text-sm font-semibold tracking-tight text-foreground">Smart Business</span>
         <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
           AI Business Manager
         </span>
@@ -37,13 +31,7 @@ function SmartBusinessMark() {
   );
 }
 
-function AuthAffordance({
-  compact,
-  onNavigate,
-}: {
-  compact?: boolean;
-  onNavigate?: () => void;
-}) {
+function AuthAffordance({ compact, onNavigate }: { compact?: boolean; onNavigate?: () => void }) {
   const { session, loading } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -207,14 +195,11 @@ function Footer() {
         <div className="max-w-sm">
           <SmartBusinessMark />
           <p className="mt-3 text-sm text-muted-foreground">
-            Smart Business is developed by Team LIPS, the technology unit of
-            Lighthouse Information Publishing Service.
+            Smart Business is developed by Team LIPS, the technology unit of Lighthouse Information
+            Publishing Service.
           </p>
         </div>
-        <nav
-          aria-label="Footer"
-          className="flex flex-wrap gap-x-6 gap-y-2 text-sm"
-        >
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <Link
             to="/privacy-policy"
             className="text-muted-foreground transition-colors hover:text-foreground"
@@ -237,8 +222,8 @@ function Footer() {
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto w-full max-w-6xl px-4 py-4 text-xs text-muted-foreground sm:px-6">
-          © {new Date().getFullYear()} Team LIPS · Lighthouse Information
-          Publishing Service. All rights reserved.
+          © {new Date().getFullYear()} Team LIPS · Lighthouse Information Publishing Service. All
+          rights reserved.
         </div>
       </div>
     </footer>

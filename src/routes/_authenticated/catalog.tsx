@@ -34,10 +34,7 @@ function CatalogLayout() {
 
   return (
     <div className="flex min-h-dvh flex-col bg-background text-foreground">
-      <AuthedHeader
-        email={user?.email ?? null}
-        onSignOut={() => void handleSignOut()}
-      />
+      <AuthedHeader email={user?.email ?? null} onSignOut={() => void handleSignOut()} />
       <main className="flex-1">
         <Outlet />
       </main>

@@ -18,9 +18,15 @@ describe("deriveFollowUpIdempotencyKey", () => {
   });
 
   it("derives a distinct key per operation for the same row", () => {
-    const price = deriveFollowUpIdempotencyKey("11111111-1111-1111-1111-111111111111", "selling_price");
+    const price = deriveFollowUpIdempotencyKey(
+      "11111111-1111-1111-1111-111111111111",
+      "selling_price",
+    );
     const tax = deriveFollowUpIdempotencyKey("11111111-1111-1111-1111-111111111111", "tax");
-    const cost = deriveFollowUpIdempotencyKey("11111111-1111-1111-1111-111111111111", "reference_cost");
+    const cost = deriveFollowUpIdempotencyKey(
+      "11111111-1111-1111-1111-111111111111",
+      "reference_cost",
+    );
     expect(new Set([price, tax, cost]).size).toBe(3);
   });
 

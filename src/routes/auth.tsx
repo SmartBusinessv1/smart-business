@@ -114,7 +114,10 @@ function AuthPage() {
         setMessage({ kind: "error", text: error.message || "Google sign-in failed." });
       }
     } catch (err) {
-      setMessage({ kind: "error", text: err instanceof Error ? err.message : "Google sign-in failed." });
+      setMessage({
+        kind: "error",
+        text: err instanceof Error ? err.message : "Google sign-in failed.",
+      });
     } finally {
       setBusy(false);
     }
@@ -151,14 +154,19 @@ function AuthPage() {
                 className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
               >
                 <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4">
-                  <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.9 2.3 2.8 6.4 2.8 11.5S6.9 20.7 12 20.7c6.9 0 9.5-4.8 9.5-8.8 0-.6-.1-1-.2-1.7H12z" />
+                  <path
+                    fill="#EA4335"
+                    d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.2.8 3.9 1.5l2.7-2.6C16.9 3.3 14.7 2.3 12 2.3 6.9 2.3 2.8 6.4 2.8 11.5S6.9 20.7 12 20.7c6.9 0 9.5-4.8 9.5-8.8 0-.6-.1-1-.2-1.7H12z"
+                  />
                 </svg>
                 Continue with Google
               </button>
 
               <div className="my-6 flex items-center gap-3">
                 <div className="h-px flex-1 bg-border" />
-                <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">or</span>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  or
+                </span>
                 <div className="h-px flex-1 bg-border" />
               </div>
             </>
@@ -258,7 +266,9 @@ function AuthPage() {
               </>
             ) : (
               <>
-                {mode === "forgot-password" ? "Remembered your password? " : "Already have access? "}
+                {mode === "forgot-password"
+                  ? "Remembered your password? "
+                  : "Already have access? "}
                 <button
                   type="button"
                   onClick={() => {

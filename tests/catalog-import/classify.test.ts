@@ -1,10 +1,18 @@
 // EIS §45.4 (duplicate detection) and §21 applied to import (archived-
 // category conflict). §32 items 4-6; §32A item 33.
 import { describe, it, expect, vi } from "vitest";
-import { classifyRows, resolveCategoryLabel, type CategoryLookupEntry } from "@/lib/catalog-import/classify";
+import {
+  classifyRows,
+  resolveCategoryLabel,
+  type CategoryLookupEntry,
+} from "@/lib/catalog-import/classify";
 import type { ValidatedRow } from "@/lib/catalog-import/types";
 
-function ready(rowNumber: number, name: string, extra: Partial<ValidatedRow["snapshot"]> = {}): ValidatedRow {
+function ready(
+  rowNumber: number,
+  name: string,
+  extra: Partial<ValidatedRow["snapshot"]> = {},
+): ValidatedRow {
   return { rowNumber, snapshot: { name, ...extra }, status: "READY", correctionReason: null };
 }
 
@@ -73,11 +81,7 @@ describe("classifyRows", () => {
 
   it("flags the second of two same-named rows in one batch as a duplicate, without calling search for it", async () => {
     const search = vi.fn().mockResolvedValue([]);
-    const result = await classifyRows(
-      [ready(1, "Rice 1kg"), ready(2, "rice 1kg  ")],
-      [],
-      search,
-    );
+    const result = await classifyRows([ready(1, "Rice 1kg"), ready(2, "rice 1kg  ")], [], search);
     expect(result[0].status).toBe("READY");
     expect(result[1].status).toBe("NEEDS_CORRECTION");
     expect(result[1].correctionReason).toBe("DUPLICATE_NAME");

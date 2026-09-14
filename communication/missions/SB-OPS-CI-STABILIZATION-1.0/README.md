@@ -7,99 +7,109 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `FOUNDER AUTHORIZED — ACTIVATION PR #577 PENDING MERGE`
+- **Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
-- **Activation base:** `main@00a7bc0f261c481a2d0f907f1d7c31f6adc3c6ec`
-- **Activation branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-activation`
-- **Activation PR:** `#577`
+- **Activation PR:** `#577 — MERGED`
+- **Activation merge:** `705eaebb8e2fb01e8862666a258d3babff8bd694`
+- **Implementation PR:** `#578 — OPEN — READY FOR FOUNDER MERGE`
+- **Current implementation branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+- **Current owner:** Founder Riyas PK for protected-main merge
+- **Stage 3 publication head verified by Mission Control:** `141bab92dac7d3051f138854534351fbc808c8fb`
 
 ## Purpose
 
-Convert the accepted CI baseline from `SB-OPS-BUILD-ASSURANCE-1.0` into a useful regression gate before the next Product Mission by resolving the two known red conditions without changing product behavior:
+Resolve the two known red application-CI baseline conditions from the closed Build Assurance mission without changing product behavior:
 
 1. pre-existing lint failure;
-2. GitHub Actions test job failing before test execution because the dedicated test environment is not yet safely bound to CI.
+2. GitHub Actions tests not yet executing against the approved isolated test environment.
 
-This mission does **not** reopen `SB-OPS-BUILD-ASSURANCE-1.0`.
+This mission does not reopen `SB-OPS-BUILD-ASSURANCE-1.0`.
 
 ## Build Now
 
 ### Workstream A — lint stabilization
 
-- inventory the current lint errors/warnings on canonical `main`;
-- correct only behavior-preserving formatting/style defects needed for `npm run lint` to exit successfully;
-- preserve application behavior, data behavior, routes, permissions, financial logic and UI semantics;
-- separately report any lint item that would require semantic/product behavior change rather than silently fixing it;
-- verify typecheck and build remain green.
+Correct only behavior-preserving formatting/style defects required for the real repository lint command to succeed. Any finding requiring semantic or product-behavior change must be reported rather than silently fixed. Typecheck and build must remain green.
 
 ### Workstream B — CI integration-test execution
 
-- wire `.github/workflows/build-assurance.yml` to an approved GitHub Actions test environment dedicated to `smart-business-test`;
-- use only the isolated Supabase test project already documented by `docs/migration/SB-MIG-1.2E/11-test-environment-isolation.md`;
-- ensure no production project reference or production credential is used;
-- keep sensitive values out of repository files, logs and mission records;
-- provision required GitHub environment configuration only through a separately authorized human/Infrastructure Operations step;
-- make the existing `npm run test` job genuinely execute in GitHub Actions;
-- verify the resulting CI signal truthfully.
+Prepare and provision the minimum approved GitHub Actions binding required for the isolated `smart-business-test` environment. Sensitive values must remain outside repository content and logs.
 
 ## Explicitly not authorized
 
 - Product Truth, governance, roadmap, feature or UX changes;
 - database/schema/RLS/grant/RPC changes;
-- production Supabase access or mutation;
-- dependency upgrades or package/lockfile changes merely to make CI green;
-- test weakening, skipping, `continue-on-error`, `|| true`, artificial pass conditions, or reduced coverage to manufacture green CI;
+- production provider access or mutation;
+- dependency or lockfile changes merely to make CI green;
+- test weakening, skipping, artificial pass conditions or reduced coverage;
 - deployment/publishing;
 - branch-protection changes;
 - unrelated cleanup;
 - `SB-P-1.12` activation.
 
-## Stage model
+## Stage status
 
 ### Stage 0 — Mission Control activation
 
-**ACTIVE — PR #577 awaiting Founder/human merge.**
-
-This is a communication/authority-only activation package. No implementation actor is active yet.
+**COMPLETE.** PR `#577` merged to canonical `main` at `705eaebb8e2fb01e8862666a258d3babff8bd694`.
 
 ### Stage 1A — Claude Code repository stabilization
 
-Claude Code audits and resolves behavior-preserving lint debt and prepares the minimal workflow binding needed for the approved CI test environment. It must not invent or expose credentials and must stop on any change requiring broader authority.
+**COMPLETE — ACCEPTED BY MISSION CONTROL.**
+
+Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Seven pre-existing warnings remain reported and intentionally unresolved because they require structural/semantic judgment rather than formatting-only correction.
+
+Accepted report: `claude-code/01-stage1a-report.md`
+
+Mission Control disposition: `mission-control/03-stage1a-review-and-stage1b-authorization.md`
 
 ### Stage 1B — Infrastructure Operations / Founder environment provisioning
 
-A separately activated Infrastructure Operations or Founder step configures the GitHub Actions test environment and required environment-scoped values for the dedicated `smart-business-test` project. No production environment values are authorized.
+**COMPLETE.** Founder provisioned the existing GitHub Actions environment `smart-business-test` with the three required environment-scoped secret names. No secret value is recorded in mission artifacts.
 
 ### Stage 2 — Claude Code CI verification
 
-After Stage 1B, Claude Code verifies the workflow on the mission branch and records actual GitHub Actions evidence. Target state is truthful execution of all four application-assurance jobs.
+**COMPLETE — ACCEPTED BY MISSION CONTROL.**
+
+The `test` job genuinely executes against `smart-business-test`: **28/28 test files, 169/169 tests, 0 failures**. `lint`, `typecheck`, and `build` also pass. Available GitHub deployment evidence identifies `smart-business-test` and marks it non-production. No new genuine defect surfaced.
+
+Controlling authorization: `mission-control/04-stage1b-completion-and-stage2-authorization.md`
+
+Report: `claude-code/02-stage2-ci-verification.md`
 
 ### Stage 3 — Codex independent review
 
-Codex independently verifies scope, behavior preservation, CI wiring, test-target isolation and actual CI evidence. Codex does not implement corrections unless separately authorized.
+**COMPLETE — PASS.**
+
+Codex independently verified behavior-preserving formatting scope, unchanged gate strength, intended CI environment binding, genuine passing test execution, secret non-disclosure, and absence of unauthorized Product Mission or infrastructure changes.
+
+Review: `codex/01-stage3-independent-review.md`
+
+Publication authorization: `mission-control/06-stage3-publication-authorization.md`
 
 ### Stage 4 — Mission Control acceptance / Founder merge
 
-Mission Control reviews the final head and evidence. Founder/human merge remains required. Post-merge verification is required before closure.
+**MISSION CONTROL ACCEPTANCE COMPLETE — READY FOR FOUNDER MERGE.**
+
+Mission Control independently verified the published Codex review, PR #578 state, and current-head CI before recording acceptance.
+
+Acceptance and merge handoff:
+
+`mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
+
+Founder/human protected-main merge is the next action. Mission Control must not self-merge.
+
+After merge, Mission Control will independently verify the actual merge commit, canonical `main`, and post-merge CI before durable closure.
 
 ## Acceptance target
 
-The mission may be accepted only when:
+Satisfied pre-merge: lint, typecheck, build, Markdown quality, and automated tests pass; automated tests genuinely execute against the approved isolated test environment; no test or quality gate was weakened; Codex independent review passed; and Mission Control acceptance is complete.
 
-- `npm run lint` succeeds on the accepted branch without product-behavior changes;
-- typecheck succeeds;
-- build succeeds;
-- GitHub Actions executes the existing automated test suite against the approved isolated test environment;
-- tests succeed, or any genuine product/test defect surfaced by real execution is separately classified and resolved under explicit authority before acceptance;
-- no production test target or production credential is used;
-- no test or quality gate is weakened to manufacture green;
-- Codex independent review is complete;
-- Mission Control substantive review is complete;
-- Founder/human merge and post-merge verification complete.
+Remaining closure action: Founder/human merge plus post-merge verification.
 
 ## Carried but not included
 
-Dependency-vulnerability remediation, routine fixture housekeeping automation and broader Build Later assurance capabilities remain separate future work unless separately activated.
+Dependency-vulnerability remediation, routine fixture-housekeeping automation, the seven semantic/structural lint warnings, and broader Build Later assurance capabilities remain separate work.
 
 ## Product Mission boundary
 

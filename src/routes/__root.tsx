@@ -91,8 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:description",
-        content:
-          "AI assists. The owner decides. A calm, WhatsApp-first business assistant.",
+        content: "AI assists. The owner decides. A calm, WhatsApp-first business assistant.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -102,8 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         name: "twitter:description",
-        content:
-          "AI assists. The owner decides. A calm, WhatsApp-first business assistant.",
+        content: "AI assists. The owner decides. A calm, WhatsApp-first business assistant.",
       },
     ],
     links: [
@@ -155,12 +153,7 @@ function RootComponent() {
       const { supabase } = await import("@/integrations/supabase/client");
       if (!mounted) return;
       const { data } = supabase.auth.onAuthStateChange((event) => {
-        if (
-          event !== "SIGNED_IN" &&
-          event !== "SIGNED_OUT" &&
-          event !== "USER_UPDATED"
-        )
-          return;
+        if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
         router.invalidate();
         if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
       });

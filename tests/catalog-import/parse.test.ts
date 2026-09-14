@@ -32,12 +32,16 @@ describe("parseCsv", () => {
 
   it("rejects a file with more data rows than the limit", async () => {
     const header = "Product Name\n";
-    const rows = Array.from({ length: IMPORT_LIMITS.maxRows + 1 }, (_, i) => `Item ${i}\n`).join("");
+    const rows = Array.from({ length: IMPORT_LIMITS.maxRows + 1 }, (_, i) => `Item ${i}\n`).join(
+      "",
+    );
     await expect(parseCsv(Buffer.from(header + rows, "utf-8"))).rejects.toThrow(ImportLimitError);
   });
 
   it("rejects a file with more columns than the limit", async () => {
-    const header = Array.from({ length: IMPORT_LIMITS.maxColumns + 1 }, (_, i) => `Col${i}`).join(",");
+    const header = Array.from({ length: IMPORT_LIMITS.maxColumns + 1 }, (_, i) => `Col${i}`).join(
+      ",",
+    );
     await expect(parseCsv(Buffer.from(`${header}\n`, "utf-8"))).rejects.toThrow(ImportLimitError);
   });
 

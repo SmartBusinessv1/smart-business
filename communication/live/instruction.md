@@ -3,22 +3,28 @@
 **Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
 **Mission name:** CI Baseline Stabilization
 **Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK / future assigned actors
-**Status:** `FOUNDER AUTHORIZED — ACTIVATION PENDING MERGE`
+**Recipient:** Founder Riyas PK
+**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
 **Date:** 2026-09-14
 
-Founder authorized the narrow non-Product mission `CI Baseline Stabilization`.
+Mission Control has accepted the implementation and independent review for PR `#578`.
 
-Controlling mission record:
+Controlling acceptance record:
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
 
-Activation instruction:
+Authorized branch:
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/01-activation-instruction.md`
+`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
 
-This activation package is communication/authority only. No implementation actor is active until Founder/human merge places this mission on canonical `main` and Mission Control issues the next explicit handoff.
+Pull request:
+
+`#578 — OPEN — READY FOR FOUNDER MERGE`
+
+Founder action: merge PR #578 through the repository's protected-main merge flow, then report completion to Mission Control.
+
+Do not perform additional code, test, workflow, dependency, provider, database, deployment, branch-protection, Product Truth, governance, or Product Mission changes under this instruction.
+
+Mission Control must not self-merge.
 
 `SB-P-1.12` remains not activated.
-
-Do not begin lint remediation, CI environment configuration or workflow implementation from this activation instruction alone.

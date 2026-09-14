@@ -1,10 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import {
-  ContentSection,
-  PageHeader,
-  Prose,
-} from "@/components/page-primitives";
+import { ContentSection, PageHeader, Prose } from "@/components/page-primitives";
 
 export const Route = createFileRoute("/start")({
   head: () => ({
@@ -44,8 +40,8 @@ function Start() {
       <ContentSection>
         <Prose>
           <p>
-            Smart Business is being rolled out under a governed release process
-            that preserves trust, simplicity, and human decision ownership.
+            Smart Business is being rolled out under a governed release process that preserves
+            trust, simplicity, and human decision ownership.
           </p>
         </Prose>
       </ContentSection>

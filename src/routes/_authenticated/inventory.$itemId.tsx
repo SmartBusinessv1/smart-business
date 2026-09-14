@@ -239,9 +239,7 @@ function ItemDetail({ item }: { item: InventoryItem }) {
               }
             >
               {formatQuantity(currentStock)}{" "}
-              <span className="text-base font-medium text-muted-foreground">
-                {item.base_unit}
-              </span>
+              <span className="text-base font-medium text-muted-foreground">{item.base_unit}</span>
             </p>
           )}
           <p className="mt-2 text-sm text-muted-foreground">
@@ -250,11 +248,7 @@ function ItemDetail({ item }: { item: InventoryItem }) {
 
           <div className="mt-6 flex flex-wrap gap-2">
             {!hasOpeningStock ? (
-              <Button
-                type="button"
-                onClick={() => setOpeningOpen(true)}
-                disabled={isArchived}
-              >
+              <Button type="button" onClick={() => setOpeningOpen(true)} disabled={isArchived}>
                 Record opening stock
               </Button>
             ) : null}
@@ -393,9 +387,7 @@ function MovementRow({
             {label}
           </Badge>
           {isCorrection ? (
-            <span className="text-xs text-muted-foreground">
-              corrects earlier movement
-            </span>
+            <span className="text-xs text-muted-foreground">corrects earlier movement</span>
           ) : null}
         </div>
         <span
@@ -409,9 +401,7 @@ function MovementRow({
           {formatQuantity(Number(movement.quantity))} {itemUnit}
         </span>
       </div>
-      <p className="mt-2 text-sm text-muted-foreground whitespace-pre-wrap">
-        {movement.reason}
-      </p>
+      <p className="mt-2 text-sm text-muted-foreground whitespace-pre-wrap">{movement.reason}</p>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-xs text-muted-foreground">
         <span>{occurred}</span>
         {canCorrect ? (
@@ -509,10 +499,7 @@ function OpeningStockDialog({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit((v) => mutation.mutate(v))}
-            className="space-y-4"
-          >
+          <form onSubmit={form.handleSubmit((v) => mutation.mutate(v))} className="space-y-4">
             <FormField
               control={form.control}
               name="quantity"
@@ -820,8 +807,8 @@ function AdjustmentDialog({
                 onChange={(e) => setAuthorizeNegative(e.target.checked)}
               />
               <span>
-                I authorize negative stock for this item and understand it will be clearly
-                flagged in the ledger.
+                I authorize negative stock for this item and understand it will be clearly flagged
+                in the ledger.
               </span>
             </label>
           ) : null}
@@ -968,16 +955,12 @@ function CorrectionDialog({
             </p>
             {remaining !== null ? (
               <p className="mt-1 text-xs text-muted-foreground">
-                Remaining to correct: <strong>{formatQuantity(remaining)}</strong>{" "}
-                {item.base_unit}.
+                Remaining to correct: <strong>{formatQuantity(remaining)}</strong> {item.base_unit}.
               </p>
             ) : null}
           </div>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit((v) => setPending(v))}
-              className="space-y-4"
-            >
+            <form onSubmit={form.handleSubmit((v) => setPending(v))} className="space-y-4">
               <FormField
                 control={form.control}
                 name="quantity"
@@ -1008,11 +991,7 @@ function CorrectionDialog({
                   <FormItem>
                     <FormLabel>Reason</FormLabel>
                     <FormControl>
-                      <Textarea
-                        rows={2}
-                        placeholder="e.g. Quantity was mistyped"
-                        {...field}
-                      />
+                      <Textarea rows={2} placeholder="e.g. Quantity was mistyped" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -1059,8 +1038,7 @@ function CorrectionDialog({
                 {correctionDirection === "increase" ? "+" : "−"}
                 {pending ? formatQuantity(Number(pending.quantity)) : ""} {item.base_unit}
               </strong>{" "}
-              linked to the earlier movement. The original stays untouched. Do you want to
-              continue?
+              linked to the earlier movement. The original stays untouched. Do you want to continue?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
