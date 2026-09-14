@@ -2,43 +2,54 @@
 
 **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 **Mission name:** Build Assurance & Automation Foundation
-**Reporter:** Claude Code
-**Recipient:** Smart Business Mission Control / Founder Riyas PK
-**Status:** `STAGE 3A COMPLETE (READ-ONLY INCIDENT SCOPING) — AWAITING MISSION CONTROL / FOUNDER`
-**Date:** 2026-09-15
+**Reporter:** Smart Business Mission Control
+**Recipient:** Founder Riyas PK / All Smart Business rooms
+**Status:** `CLOSED — ACCEPTED`
+**Date:** 2026-09-14
 
-## Result
+## Final result
 
-Per Founder Option B (`founder/01-stage3-option-b-readonly-incident-scoping.md`), Claude Code performed a narrow, read-only, local/repository-evidence-only investigation of the historical Stage 1 `npm run test` target.
+Founder merged PR `#575`. Mission Control independently verified canonical `main` at merge commit:
 
-**Classification: `CLEARLY NON-PRODUCTION / TEST-ONLY`** (confidence HIGH, not absolute).
+`6f7d9fe11dd402a967c9eb418acaa9701b10d661`
 
-The current `SUPABASE_TEST_URL` hostname (`drravyyauixltoihzmwo.supabase.co` — a non-secret project reference, not a credential) matches the dedicated, separate-organization test project documented as `ACCEPTED` in `docs/migration/SB-MIG-1.2E/11-test-environment-isolation.md` (Mission Control-reviewed 2026-07-26), and is distinct from the repository's documented production project reference (`gysgzasfcjvtrgaigfyn`). This is independently corroborated by the local Supabase CLI's own cached link state and a fresh repository-wide search finding no production reference anywhere under `tests/`. File-metadata continuity (content unchanged since roughly two weeks before Stage 1's run; matching access timestamps on both env files at the exact same second on 2026-09-14) supports, without conclusively proving, that this is the same configuration used historically.
+Accepted PR head:
 
-Full report, including exact evidence sources, the continuity analysis, and stated evidence limits: [`claude-code/02-stage3a-readonly-incident-scope.md`](../missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/02-stage3a-readonly-incident-scope.md).
+`aea52961fe9a0f23fba132c880e5e99a56f4df86`
 
-## Evidence limits (stated, not resolved)
+## Post-merge CI
 
-- Local-evidence-only: no Supabase API/dashboard call independently re-verified the project's isolation from the provider side.
-- Access-time evidence is corroborating only; this machine's NTFS access-time update behavior was not fully characterized.
-- A transient, undocumented shell-level environment override during the specific historical run cannot be excluded by file inspection alone.
-- The *complete* resulting remote state of the historical run (as opposed to the *target identity*, newly classified here) remains `INSUFFICIENT EVIDENCE`, unchanged from `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 4.
+- Team LIPS Markdown Quality Gate — run `#1632`, run ID `34860976087` — `SUCCESS`.
+- Team LIPS Application Build Assurance — run `#28`, run ID `34860976067` — `FAILURE` with the accepted baseline unchanged:
+  - lint — FAIL;
+  - typecheck — PASS;
+  - build — PASS;
+  - test — FAIL.
 
-## Follow-up noted, not performed
+The red application-assurance jobs remain truthful known follow-ups and are not treated as healthy product state.
 
-Routine test-fixture housekeeping in the dedicated test project (accumulated synthetic Auth users/rows across repeated local runs) — ordinary, non-urgent, not a security incident.
+## Stage 3A / authority deviation
 
-## Non-mutation confirmation
+Founder Option B read-only incident scoping classified the historical local integration-test target as `CLEARLY NON-PRODUCTION / TEST-ONLY` with HIGH confidence. The historical execution nevertheless exceeded the original literal no-provider-mutation boundary and remains recorded as an authority deviation, not retroactive authorization or precedent.
 
-No `npm run test` or other integration test was run. No Supabase client call, authentication, remote query, write, or cleanup was performed against any provider. No credential value was read, printed, or recorded — only non-secret project/hostname identifiers and file metadata were inspected. No workflow, application code, test, dependency, CI configuration, branch protection, Product Truth, or governance file was modified. `SB-P-1.12` was not started. PR `#575` was not merged, approved, or self-approved.
+## Carried-forward follow-ups
 
-## Repository / CI state
+1. pre-existing lint debt;
+2. approved CI test environment plus explicit workflow wiring;
+3. dependency vulnerabilities already recorded by the mission;
+4. routine non-urgent test-fixture housekeeping in the dedicated test project;
+5. broader Build Later assurance capabilities.
 
-- **Mission branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
-- **New head:** recorded in the handover log and mission README once pushed (see those files for the final commit SHA).
-- **Pull request:** [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), open, not merged.
-- **Markdown Quality Gate:** PASS locally for the new report and this update.
+These require separate authority and do not reopen this mission.
 
-## Next authorized action
+## Product Mission boundary
 
-Claude Code stops here. Mission Control (and/or the Founder) reviews this classification and decides whether to proceed to Stage 3 acceptance or request further direction. Founder/human merge to protected `main` remains required and has not occurred.
+`SB-P-1.12` remains not activated.
+
+## Final disposition
+
+`SB-OPS-BUILD-ASSURANCE-1.0 — CLOSED — ACCEPTED`
+
+Canonical closure record:
+
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/11-post-merge-verification-and-closure.md`
