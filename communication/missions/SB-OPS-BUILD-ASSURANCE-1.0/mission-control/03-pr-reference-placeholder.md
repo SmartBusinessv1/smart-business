@@ -1,5 +1,14 @@
-# PR Reference Record
+# Activation PR Reference
 
-This file exists only to preserve the activation-PR reference after the pull request is created.
+**Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`  
+**Pull request:** `#574`  
+**Target:** `main`  
+**Branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-activation`  
+**State at record creation:** OPEN — not merged  
+**Founder/human merge required:** Yes
 
-Mission Control will update or supersede this record through the communication workflow once the pull-request number and final activation-head evidence are known.
+This PR carries only the mission activation and repository communication package. It does not implement the assurance workflow itself.
+
+Claude Code Stage 1 begins only after PR #574 is merged to canonical `main` and Mission Control verifies the merged activation state.
+
+`SB-P-1.12` remains not started.
