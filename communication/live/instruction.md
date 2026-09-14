@@ -3,22 +3,24 @@
 **Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
 **Mission name:** CI Baseline Stabilization
 **Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK / future assigned actors
-**Status:** `FOUNDER AUTHORIZED — ACTIVATION PENDING MERGE`
+**Recipient:** Claude Code
+**Status:** `STAGE 1A ACTIVE — REPOSITORY STABILIZATION`
 **Date:** 2026-09-14
 
-Founder authorized the narrow non-Product mission `CI Baseline Stabilization`.
+PR `#577` is merged. Canonical activation merge:
+
+`705eaebb8e2fb01e8862666a258d3babff8bd694`
 
 Controlling mission record:
 
 `communication/missions/SB-OPS-CI-STABILIZATION-1.0/`
 
-Activation instruction:
+Stage 1A instruction:
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/01-activation-instruction.md`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/02-stage1a-claude-instruction.md`
 
-This activation package is communication/authority only. No implementation actor is active until Founder/human merge places this mission on canonical `main` and Mission Control issues the next explicit handoff.
+Authorized branch:
 
-`SB-P-1.12` remains not activated.
+`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
 
-Do not begin lint remediation, CI environment configuration or workflow implementation from this activation instruction alone.
+Execute Stage 1A only. Stage 1B environment provisioning is not authorized by this instruction. Do not self-merge. `SB-P-1.12` remains not activated.
