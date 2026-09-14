@@ -1,17 +1,14 @@
-# SMART BUSINESS — REPOSITORY COMMUNICATION
+# SMART BUSINESS — LIVE REPORT
 
-# Report — Awaiting Mission Activation
+**Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
+**Mission name:** Fast Gate + Full Assurance
+**Reporter:** Awaiting assigned specialist
+**Recipient:** Smart Business Mission Control
+**Status:** `AWAITING ACTIVATION MERGE — NO SPECIALIST EXECUTION YET`
+**Date:** 2026-09-15
 
-**Mission ID:** `NONE`
+No specialist execution has begun under this mission.
 
-**To:** Smart Business Mission Control
+The activation package is awaiting Founder/human merge. After merge, Mission Control will issue the first implementation/review instruction and this report will be reused for that authorized handoff.
 
-**Status:** `IDLE — NO ACTIVE SPECIALIST REPORT`
-
----
-
-`communication/live/` is currently reset and contains no active mission report.
-
-When Mission Control activates the next mission, replace this placeholder with the fresh report template paired to that instruction.
-
-Do not reuse a prior mission report or continue an archived instruction/report sequence.
+`SB-P-1.12` remains not activated.
