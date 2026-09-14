@@ -5,12 +5,14 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 1 COMPLETE — AWAITING CODEX INDEPENDENT REVIEW AND MISSION CONTROL ACCEPTANCE`
+- **Status:** `STAGE 2 ACTIVE — CODEX INDEPENDENT REVIEW`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
-- **Authorized base:** `main @ 9b0b65b522fc370f8146186742479cb7c17409e5`
-- **Activation branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-activation`
+- **Authorized activation base:** `main @ 9b0b65b522fc370f8146186742479cb7c17409e5`
+- **Merged activation commit:** `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`
+- **Current mission branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
+- **Current pull request:** `#575`
 - **Date:** 2026-09-14
 
 ## Why this mission exists
@@ -39,7 +41,7 @@ This mission is limited to a minimal repository-level assurance baseline:
    - make clear that green CI does not equal runtime, security, or Product acceptance.
 
 3. **Independent review gate**
-   - Claude Code may implement the assurance workflow under explicit mission authority;
+   - Claude Code implements the assurance workflow under explicit mission authority;
    - Codex performs independent review of the resulting workflow and evidence;
    - Mission Control decides acceptance;
    - Founder/human merge remains required.
@@ -103,60 +105,41 @@ Source 18 remains authoritative for `SB-P-*` Product Missions only; this mission
 
 ### Stage 0 — Mission Control activation
 
-**Owner:** Mission Control
-
-Deliverables:
-
-- mission README;
-- activation instruction;
-- decision log;
-- handover log;
-- current live instruction/report pair.
-
-Exit condition:
-
-- activation package merged to `main` through Founder/human merge.
+**Owner:** Mission Control  
+**Status:** COMPLETE — merged through PR #574
 
 ### Stage 1 — Claude Code assurance implementation
 
-**Owner:** Claude Code
+**Owner:** Claude Code  
+**Status:** COMPLETE — awaiting independent acceptance review
 
-Allowed scope after Stage 0 merge and explicit handoff:
+Claude Code created:
 
-- inspect current package scripts and existing workflows;
-- create/modify only repository assurance workflow/configuration/documentation paths explicitly named in the live instruction;
-- run local/static validation available to the actor;
-- submit completion evidence through the repository communication workflow.
+- `.github/workflows/build-assurance.yml`;
+- `docs/engineering/assurance/Build_Assurance_Baseline.md`;
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`.
 
-No application-code repair is authorized.
+Stage 1 exposed two major real baseline findings without fixing them: pre-existing lint debt and a CI test-environment gap. Typecheck and build pass. The workflow is not configured as a required branch-protection check by this mission.
 
 ### Stage 2 — Codex independent review
 
-**Owner:** Codex
+**Owner:** Codex  
+**Status:** ACTIVE
 
-Review:
+Controlling instruction:
 
-- exact changed-file scope;
-- whether the workflow runs real repository-supported commands;
-- whether checks are fail-closed and not decorative;
-- whether claims remain narrower than evidence;
-- whether product/runtime/security authority boundaries are preserved.
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/04-stage2-codex-review-instruction.md`
 
-Codex does not modify Claude Code's implementation unless separately authorized.
+Codex reviews the exact Stage 1 scope, workflow semantics, evidence contract, CI evidence, authority boundaries, and whether current red checks are truthful baseline findings or implementation defects.
+
+Codex does not modify Claude Code's implementation unless Mission Control separately authorizes correction.
 
 ### Stage 3 — Mission Control acceptance and closure
 
-**Owner:** Mission Control
+**Owner:** Mission Control  
+**Status:** NOT STARTED
 
-Mission Control will review:
-
-- Claude Code implementation evidence;
-- Codex independent findings;
-- final CI on the mission branch;
-- whether any application/product mutation occurred;
-- whether the assurance baseline creates meaningful protection without unnecessary ceremony.
-
-Founder/human merge is required for accepted repository changes.
+Mission Control will review Claude Code implementation evidence, Codex findings, final PR/CI state, product non-mutation, and whether the baseline creates meaningful protection without unnecessary ceremony. Founder/human merge is required for accepted repository changes.
 
 ## Acceptance criteria
 
@@ -170,22 +153,29 @@ The mission may be accepted only if all of the following are true:
 - no production/runtime/provider mutation occurred;
 - independent Codex review is complete;
 - Mission Control review is complete;
-- required branch checks pass;
+- required protected-branch checks pass;
 - Founder/human merge occurs through protected `main`.
+
+A red non-required assurance job may be accepted only if Mission Control determines, after independent review, that it truthfully exposes a pre-existing or environment gap and is not being used to conceal a Stage 1 implementation defect.
 
 ## Current owner and next authorized action
 
-**Current owner:** Mission Control (Stage 2 activation pending).
+**Current owner:** Codex — Stage 2 independent review.
 
-**Blockers:** none for Stage 1 completion itself. Two findings require a Mission Control/Founder decision before full acceptance: (1) pre-existing lint debt (152 errors/7 warnings) makes the new `lint` job fail on canonical `main` today; (2) the `test` job fails closed in real CI because `SUPABASE_TEST_*` credentials are not provisioned as GitHub Actions secrets, and this mission does not provision them. Neither was introduced by this mission.
+**Current unresolved findings:**
 
-**Latest commit / pull request:** commit `8ed3183a2f87900170660c89f1a4eda3f5d61868` (plus a follow-up evidence-update commit); pull request [#575](https://github.com/SmartBusinessv1/smart-business/pull/575); CI run [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495) (`lint` FAIL — pre-existing, `typecheck` PASS, `build` PASS, `test` FAIL — missing secrets).
+1. pre-existing lint debt makes the new lint job red;
+2. the test job cannot run successfully in GitHub Actions until the approved test environment is made available to CI;
+3. dependency vulnerabilities reported by `npm audit` remain a future follow-up candidate.
 
-**Next authorized action:** Mission Control reviews Claude Code's Stage 1 report and the two open findings above, then separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself. Founder/human merge remains required and has not occurred; no self-approval or self-merge is authorized.
+No decision is made in Stage 2 activation to repair those items.
+
+**Next authorized action:** Codex executes the independent review, writes the required review report, updates the authorized communication records, and stops for Mission Control.
 
 ## Material records
 
 - `mission-control/01-activation-instruction.md`
+- `mission-control/04-stage2-codex-review-instruction.md`
 - `decision-log.md`
 - `handover-log.md`
 - `claude-code/01-stage1-report.md`
