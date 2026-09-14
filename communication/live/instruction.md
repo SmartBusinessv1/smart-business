@@ -1,24 +1,24 @@
 # SMART BUSINESS — LIVE INSTRUCTION
 
-**Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
-**Mission name:** Build Assurance & Automation Foundation
+**Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
+**Mission name:** CI Baseline Stabilization
 **Sender:** Smart Business Mission Control
-**Recipient:** All Smart Business rooms
-**Status:** `CLOSED — ACCEPTED — NO ACTIVE INSTRUCTION`
+**Recipient:** Founder Riyas PK / future assigned actors
+**Status:** `FOUNDER AUTHORIZED — ACTIVATION PENDING MERGE`
 **Date:** 2026-09-14
 
-PR `#575` has been Founder-merged and independently verified on canonical `main`.
+Founder authorized the narrow non-Product mission `CI Baseline Stabilization`.
 
-Post-merge verification record:
+Controlling mission record:
 
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/11-post-merge-verification-and-closure.md`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/`
 
-Final mission state:
+Activation instruction:
 
-`SB-OPS-BUILD-ASSURANCE-1.0 — CLOSED — ACCEPTED`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/01-activation-instruction.md`
 
-The known lint debt, CI test-environment/workflow-wiring gap, dependency vulnerabilities, routine test-fixture housekeeping, and broader Build Later assurance capabilities remain separate future work. They do not reactivate this mission without new explicit authority.
+This activation package is communication/authority only. No implementation actor is active until Founder/human merge places this mission on canonical `main` and Mission Control issues the next explicit handoff.
 
 `SB-P-1.12` remains not activated.
 
-No action is authorized by this live instruction. Await a new explicit Mission Control / Founder instruction before starting further work.
+Do not begin lint remediation, CI environment configuration or workflow implementation from this activation instruction alone.
