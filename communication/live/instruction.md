@@ -1,22 +1,20 @@
 # SMART BUSINESS — LIVE INSTRUCTION
 
-**Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`  
-**Mission name:** Build Assurance & Automation Foundation  
-**Sender:** Smart Business Mission Control  
-**Recipient:** Codex  
-**Status:** `STAGE 2 ACTIVE — INDEPENDENT REVIEW`  
+**Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
+**Mission name:** Build Assurance & Automation Foundation
+**Sender:** Smart Business Mission Control
+**Recipient:** Codex
+**Status:** `STAGE 2 — NARROW CORRECTION RE-VERIFICATION ACTIVE`
 **Date:** 2026-09-14
 
-Stage 1 is complete and has passed Mission Control review **for independent review only**. It is not accepted for merge or mission closure.
+Claude Code completed the authorized evidence correction for findings F-01, F-02 and F-03 on PR `#575`.
 
-The controlling mission record is:
+Mission Control reviewed the correction as suitable for independent re-verification. The mission is not yet accepted for merge or closure.
 
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/`
+Read and execute:
 
-The Stage 2 instruction is:
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/06-stage2-codex-reverification-instruction.md`
 
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/04-stage2-codex-review-instruction.md`
+Re-verify F-01/F-02/F-03 only, write the authorized Codex re-verification record, update only permitted communication records, and stop for Mission Control.
 
-Codex shall independently review PR `#575`, verify current repository and CI evidence, write the authorized Stage 2 review record, update only the permitted communication paths, and stop for Mission Control.
-
-Do not modify the Stage 1 workflow or evidence contract. Do not fix application debt, change external environment configuration, self-merge, or start `SB-P-1.12`.
+Do not change the Stage 1 implementation or corrected evidence artifacts. Do not change external systems, merge PR #575, or start `SB-P-1.12`.
