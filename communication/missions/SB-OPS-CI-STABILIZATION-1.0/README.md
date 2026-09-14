@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 1B ACTIVE — TEST ENVIRONMENT PROVISIONING`
+- **Status:** `STAGE 2 ACTIVE — CI VERIFICATION`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#577 — MERGED`
 - **Activation merge:** `705eaebb8e2fb01e8862666a258d3babff8bd694`
@@ -55,7 +55,7 @@ Prepare and provision the minimum approved GitHub Actions binding required for t
 
 **COMPLETE — ACCEPTED BY MISSION CONTROL.**
 
-Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Authoritative CI on Stage 1A showed lint PASS, typecheck PASS, build PASS, and test FAIL only because the approved CI test environment is not yet provisioned.
+Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Authoritative CI showed lint PASS, typecheck PASS, build PASS, and test FAIL only because the approved CI test environment had not yet been provisioned.
 
 Seven pre-existing warnings remain reported and intentionally unresolved because they require structural/semantic judgment rather than formatting-only correction.
 
@@ -65,13 +65,13 @@ Mission Control disposition: `mission-control/03-stage1a-review-and-stage1b-auth
 
 ### Stage 1B — Infrastructure Operations / Founder environment provisioning
 
-**ACTIVE.** Configure only the GitHub Actions environment `smart-business-test` and the three approved environment-scoped test values already referenced by the workflow, using values from the approved isolated test project. Do not expose values in repository content, chat, screenshots, logs, or reports.
-
-No code change or local credential-backed test execution is authorized in Stage 1B.
+**COMPLETE.** Founder reported that the existing GitHub Actions environment `smart-business-test` now contains the three required environment-scoped secret names. No secret value is recorded in mission artifacts.
 
 ### Stage 2 — Claude Code CI verification
 
-**NOT YET AUTHORIZED.** After Stage 1B provisioning is reported complete, Mission Control will activate Claude Code to verify actual GitHub Actions test execution on PR `#578`.
+**ACTIVE.** Claude Code is authorized to verify actual GitHub Actions execution on PR `#578` against `smart-business-test`, record exact CI evidence, and stop. If genuine test execution surfaces a defect, it must be reported rather than repaired without separate authority.
+
+Controlling authorization: `mission-control/04-stage1b-completion-and-stage2-authorization.md`
 
 ### Stage 3 — Codex independent review
 
