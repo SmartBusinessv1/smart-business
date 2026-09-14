@@ -2,31 +2,43 @@
 
 **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 **Mission name:** Build Assurance & Automation Foundation
-**Reporter:** Codex
-**Recipient:** Smart Business Mission Control
-**Disposition:** `CORRECTION STILL REQUIRED`
-**Status:** RE-VERIFICATION REPORTED — AWAITING MISSION CONTROL
-**Date:** 2026-09-14
+**Reporter:** Claude Code
+**Recipient:** Smart Business Mission Control / Founder Riyas PK
+**Status:** `STAGE 3A COMPLETE (READ-ONLY INCIDENT SCOPING) — AWAITING MISSION CONTROL / FOUNDER`
+**Date:** 2026-09-15
 
-## Exact unresolved defect
+## Result
 
-F-01 remains unresolved in the corrected Claude report, Section 7, line 95: its final sentence still asserts no production-data change despite acknowledging real local Auth/database writes and an unverified target and complete effects. The corrected baseline Section 5 finding 4 (line 100) and Section 7 (line 115) expressly retain `INSUFFICIENT EVIDENCE` on those facts. The production-data exclusion therefore remains unsupported. No production mutation is asserted by Codex.
+Per Founder Option B (`founder/01-stage3-option-b-readonly-incident-scoping.md`), Claude Code performed a narrow, read-only, local/repository-evidence-only investigation of the historical Stage 1 `npm run test` target.
 
-The exact requested correction is to withdraw or qualify that exclusion consistently with the stated evidence limit. F-02 and F-03 satisfy the requested documentation corrections; no further defect is identified for them.
+**Classification: `CLEARLY NON-PRODUCTION / TEST-ONLY`** (confidence HIGH, not absolute).
 
-Full evidence: [Codex narrow re-verification](../missions/SB-OPS-BUILD-ASSURANCE-1.0/codex/03-stage2-correction-reverification.md). Claude's correction handoff remains preserved in [handover H-006](../missions/SB-OPS-BUILD-ASSURANCE-1.0/handover-log.md) and the corrected Stage 1 report.
+The current `SUPABASE_TEST_URL` hostname (`drravyyauixltoihzmwo.supabase.co` — a non-secret project reference, not a credential) matches the dedicated, separate-organization test project documented as `ACCEPTED` in `docs/migration/SB-MIG-1.2E/11-test-environment-isolation.md` (Mission Control-reviewed 2026-07-26), and is distinct from the repository's documented production project reference (`gysgzasfcjvtrgaigfyn`). This is independently corroborated by the local Supabase CLI's own cached link state and a fresh repository-wide search finding no production reference anywhere under `tests/`. File-metadata continuity (content unchanged since roughly two weeks before Stage 1's run; matching access timestamps on both env files at the exact same second on 2026-09-14) supports, without conclusively proving, that this is the same configuration used historically.
 
-## Reviewed references
+Full report, including exact evidence sources, the continuity analysis, and stated evidence limits: [`claude-code/02-stage3a-readonly-incident-scope.md`](../missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/02-stage3a-readonly-incident-scope.md).
 
-- Existing branch: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`; [PR #575](https://github.com/SmartBusinessv1/smart-business/pull/575) remains OPEN against `main`.
-- Base: `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`.
-- Correction head: `76c6217fb0f9ceb2c99920499fd5134cdeea49bb`; reviewed current head: `91c67458b3fa330916d2ac1859f0bd11802ef577`.
-- Current-head application CI `34849173596`: lint/test failed, typecheck/build succeeded; the existing test log confirms missing-variable setup failure. Markdown CI `34849173640` succeeded.
+## Evidence limits (stated, not resolved)
 
-## Handoff and non-mutation
+- Local-evidence-only: no Supabase API/dashboard call independently re-verified the project's isolation from the provider side.
+- Access-time evidence is corroborating only; this machine's NTFS access-time update behavior was not fully characterized.
+- A transient, undocumented shell-level environment override during the specific historical run cannot be excluded by file inspection alone.
+- The *complete* resulting remote state of the historical run (as opposed to the *target identity*, newly classified here) remains `INSUFFICIENT EVIDENCE`, unchanged from `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 4.
 
-Only the re-verification record, README status/next-action metadata, appended handover and this live report were changed. Documentation checks and publication evidence are recorded in the handover log.
+## Follow-up noted, not performed
 
-No corrected artifact, workflow, application, test, dependency, external system, branch protection, mission memory or live instruction was modified. No external integration tests, remote inspection, cleanup, provisioning, self-approval, merge or `SB-P-1.12` activation occurred.
+Routine test-fixture housekeeping in the dedicated test project (accumulated synthetic Auth users/rows across repeated local runs) — ordinary, non-urgent, not a security incident.
 
-Mission Control owns the next action: review the exact remaining F-01 sentence and decide correction authority. Codex stops after publication.
+## Non-mutation confirmation
+
+No `npm run test` or other integration test was run. No Supabase client call, authentication, remote query, write, or cleanup was performed against any provider. No credential value was read, printed, or recorded — only non-secret project/hostname identifiers and file metadata were inspected. No workflow, application code, test, dependency, CI configuration, branch protection, Product Truth, or governance file was modified. `SB-P-1.12` was not started. PR `#575` was not merged, approved, or self-approved.
+
+## Repository / CI state
+
+- **Mission branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
+- **New head:** recorded in the handover log and mission README once pushed (see those files for the final commit SHA).
+- **Pull request:** [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), open, not merged.
+- **Markdown Quality Gate:** PASS locally for the new report and this update.
+
+## Next authorized action
+
+Claude Code stops here. Mission Control (and/or the Founder) reviews this classification and decides whether to proceed to Stage 3 acceptance or request further direction. Founder/human merge to protected `main` remains required and has not occurred.

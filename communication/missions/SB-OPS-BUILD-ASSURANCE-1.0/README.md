@@ -5,7 +5,7 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 3 — FOUNDER AUTHORITY-DEVIATION DECISION REQUIRED`
+- **Status:** `STAGE 3A COMPLETE (READ-ONLY INCIDENT SCOPING) — AWAITING MISSION CONTROL / FOUNDER`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
@@ -66,22 +66,25 @@ Disposition:
 
 ### Stage 3 — Mission Control acceptance / Founder decision
 
-**ACTIVE — FOUNDER DECISION REQUIRED BEFORE MERGE.**
+**ACTIVE — STAGE 3A COMPLETE, AWAITING MISSION CONTROL / FOUNDER.**
 
-The implementation/evidence review is complete, but the corrected record establishes that Claude Code's historical local `npm run test` validation used real Supabase clients and wrote real Auth/database fixture state to the configured `SUPABASE_TEST_URL` target. The original Founder-approved boundary prohibited provider/runtime mutation.
-
-The exact historical target identity and complete resulting external state remain `INSUFFICIENT EVIDENCE`; the record asserts neither production mutation nor absence of production mutation.
-
-Mission Control therefore will not silently declare the original no-provider-mutation acceptance criterion satisfied.
+The implementation/evidence review is complete. The corrected record establishes that Claude Code's historical local `npm run test` validation used real Supabase clients and wrote real Auth/database fixture state to the configured `SUPABASE_TEST_URL` target. The original Founder-approved boundary prohibited provider/runtime mutation, so Mission Control opened a Stage 3 authority-deviation gate rather than silently declaring the original no-provider-mutation acceptance criterion satisfied.
 
 Controlling gate:
 
 `mission-control/09-stage3-founder-authority-deviation-gate.md`
 
-Founder must choose:
+The Founder chose **Option B**: require a separately authorized, read-only incident-scoping step before acceptance.
 
-- **Option A:** accept the historical authority deviation explicitly, without treating it as precedent or retroactive authorization, and allow Mission Control to disposition the mission as `ACCEPTED WITH DOCUMENTED AUTHORITY DEVIATION AND FOLLOW-UP`; or
-- **Option B:** require a separately authorized read-only incident-scoping step before mission acceptance.
+`founder/01-stage3-option-b-readonly-incident-scoping.md`
+
+Claude Code performed that scoping. Result:
+
+`claude-code/02-stage3a-readonly-incident-scope.md`
+
+**Classification: `CLEARLY NON-PRODUCTION / TEST-ONLY`** (confidence HIGH). The historical target's hostname matches the dedicated, separate-organization test project documented as `ACCEPTED` in `docs/migration/SB-MIG-1.2E/11-test-environment-isolation.md`, corroborated by the local Supabase CLI's cached link state and an independent repository-wide search finding no production reference under `tests/`. Exact evidence limits (access-time reliability, the irreducible possibility of an undocumented session-scoped override) are recorded in full in the report. No provider was contacted; no credential value was read or recorded.
+
+Mission Control (and/or the Founder) next decides whether this classification resolves the Stage 3 authority-deviation gate sufficiently to proceed to acceptance, or whether further direction is required.
 
 ## Open follow-ups independent of the Founder gate
 
@@ -89,6 +92,7 @@ Founder must choose:
 2. CI test environment: approved target plus explicit workflow wiring are both still required before GitHub Actions can execute the suite.
 3. Dependency vulnerabilities: `npm audit` reported 10 known vulnerabilities (5 moderate, 5 high) at the locked dependency state.
 4. Future credential-backed integration-test execution requires explicit environment and mutation authority before execution.
+5. Routine test-fixture housekeeping in the dedicated test project (accumulated synthetic Auth users/rows across repeated local runs) -- ordinary, non-urgent, not a security incident (Stage 3A report Section 10).
 
 None of these are silently repaired or waived by this mission.
 

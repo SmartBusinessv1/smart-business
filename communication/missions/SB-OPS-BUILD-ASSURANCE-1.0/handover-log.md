@@ -267,3 +267,44 @@ Authorized writes are the new re-verification record, README status/next-action 
 Re-verification commit: `028aaef4ee437606d63737c41b9e97b4e776208b` — `SB-OPS-BUILD-ASSURANCE-1.0: record narrow Codex correction re-verification`. This subsequent communication-only entry records the exact reference. Push is pending at preparation; both commits are to be published on the existing PR #575 branch and verified afterward. This is not mission acceptance or closure.
 
 Mission Control is the next owner. The only requested correction is withdrawal or qualification of the unsupported production-data exclusion in the identified F-01 sentence. Codex stops after publishing; this report grants no correction, acceptance or merge authority.
+
+## H-008 — Claude Code → Mission Control / Founder (Stage 3A read-only incident scoping)
+
+**Date:** 2026-09-15
+**Status:** STAGE 3A COMPLETE — AWAITING MISSION CONTROL / FOUNDER
+**From:** Claude Code
+**To:** Smart Business Mission Control / Founder Riyas PK
+
+### Authority
+
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/founder/01-stage3-option-b-readonly-incident-scoping.md` (Founder Option B, 2026-09-14). Fetched and fast-forwarded the mission branch before reading it.
+
+### Result
+
+[Stage 3A report](claude-code/02-stage3a-readonly-incident-scope.md): classification **`CLEARLY NON-PRODUCTION / TEST-ONLY`**, confidence HIGH. The current `SUPABASE_TEST_URL` hostname (`drravyyauixltoihzmwo.supabase.co`) matches the dedicated, separate-organization test project documented as `ACCEPTED` in `docs/migration/SB-MIG-1.2E/11-test-environment-isolation.md` (Mission Control-reviewed 2026-07-26), independently corroborated by the local Supabase CLI's own cached link state and a fresh repository-wide search finding no production reference under `tests/`. File-metadata continuity (`LastWriteTime` predating Stage 1 by ~2 weeks with no write since; matching `LastAccessTime` on both env files at the exact same second on 2026-09-14) supports, without conclusively proving, that this is the same configuration Stage 1's local run used. Exact evidence limits, including the irreducible possibility of an undocumented session-scoped shell override, are stated in full in the report (Section 8).
+
+### Evidence sources and non-mutation
+
+Only non-secret project/hostname identifiers and file metadata were inspected; no credential value was read, printed, or recorded. No `npm run test`, Supabase client call, authentication, remote query, write, or cleanup was performed. No workflow, application, test, dependency, CI configuration, branch protection, Product Truth, or governance file was changed. `SB-P-1.12` was not started; PR #575 was not merged, approved, or self-approved.
+
+### Files changed
+
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/02-stage3a-readonly-incident-scope.md` (new)
+- this appended handover-log entry
+- mission README status/next-action metadata
+- `communication/live/report.md`
+
+### Follow-up noted, not performed
+
+Routine test-fixture housekeeping in the dedicated test project (accumulated synthetic Auth users/rows across repeated local runs) is flagged as an ordinary, non-urgent item for Mission Control — not a security incident, and not addressed by this scoping.
+
+### Next authorized action
+
+Mission Control (and/or the Founder) reviews this classification and decides whether to proceed to Stage 3 acceptance or request further direction. Claude Code stops here.
+
+### Not yet authorized
+
+- any provider contact, query, write, or cleanup;
+- mission acceptance or closure;
+- Founder/human merge;
+- `SB-P-1.12` activation.
