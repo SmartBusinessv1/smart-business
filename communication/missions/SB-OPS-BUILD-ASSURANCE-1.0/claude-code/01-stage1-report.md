@@ -42,7 +42,9 @@ Created `docs/engineering/assurance/Build_Assurance_Baseline.md`, documenting ex
 
 ## 5. Validation performed
 
-All commands below were run locally, against the mission branch at base commit `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`, using Node `v24.18.0` / npm `11.16.0`, with the working tree normalized to the repository's stored (`LF`) line endings to obtain a CI-representative result. See Section 6 for why this normalization was necessary and how it was verified safe.
+### 5.1 Local pre-push evidence
+
+All commands below were run locally, against the mission branch at base commit `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`, using Node `v24.18.0` / npm `11.16.0`, with the working tree normalized to the repository's stored (`LF`) line endings to obtain a CI-representative result, and with a developer's local `.env.test.local` Supabase test credentials present. See Section 6 for why the line-ending normalization was necessary and how it was verified safe.
 
 | Check | Command | Result |
 |---|---|---|
@@ -50,11 +52,22 @@ All commands below were run locally, against the mission branch at base commit `
 | Lint | `npm run lint` | Exit `1`; 159 problems (152 errors, 7 warnings) -- **all pre-existing**, none introduced by this mission (Section 6) |
 | Typecheck | `npx tsc --noEmit` | Exit `0`; no errors |
 | Build | `npm run build` | Exit `0`; client + SSR bundle produced |
-| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed |
+| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed (local only -- required Supabase test credentials were present; see 5.2) |
+
+### 5.2 Actual GitHub Actions CI evidence (authoritative)
+
+Pull request [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), run [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495), `ubuntu-latest`, commit `8ed3183a2f87900170660c89f1a4eda3f5d61868`.
+
+| Job | CI result |
+|---|---|
+| `lint` | `FAIL` -- 159 problems (152 errors, 7 warnings); exact match to local LF-normalized result; pre-existing (Section 8, Finding 1) |
+| `typecheck` | `PASS` |
+| `build` | `PASS` |
+| `test` | `FAIL` -- fails at `tests/setup/load-env.ts:11`: missing `SUPABASE_TEST_URL`, `SUPABASE_TEST_ANON_KEY`, `SUPABASE_TEST_SERVICE_ROLE_KEY`. GitHub Actions has no such secret configured; this mission did not provision one. Fails closed correctly rather than skipping silently (Section 8, Finding 3). |
+
+The real CI run is the authoritative evidence and is what surfaced the `test` job's secret-provisioning gap -- a genuine local-vs-CI discrepancy the local-only run could not have shown, and exactly the kind of thing this assurance baseline exists to catch.
 
 Full detail, classification, and the "does not prove" boundary for each check are in `docs/engineering/assurance/Build_Assurance_Baseline.md` Sections 3-5.
-
-**CI run evidence:** the actual `ubuntu-latest` GitHub Actions run triggered by this mission's pull request is the authoritative result. Its run URL/status will be recorded in the pull-request handover once the branch is pushed and the PR is opened (see Section 9).
 
 ## 6. Local environment finding: Windows CRLF checkout artifact (diagnostic only, not a mission change)
 
@@ -85,18 +98,20 @@ This sequence touched only local Git configuration and the (untracked-by-diff) w
 
 ## 8. Unresolved gaps / findings for Mission Control
 
-1. **Pre-existing lint debt** -- 152 `prettier/prettier` formatting errors and 7 warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) exist on canonical `main` today, unrelated to this mission. Once `.github/workflows/build-assurance.yml` is active, its `lint` job will fail on ordinary pushes/PRs to `main` until this debt is addressed by a separately authorized change. This mission does not fix it (out of scope by explicit instruction).
+1. **Pre-existing lint debt** -- 152 `prettier/prettier` formatting errors and 7 warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) exist on canonical `main` today, unrelated to this mission. Confirmed in real CI (run `34842467495`). Once `.github/workflows/build-assurance.yml` is active, its `lint` job will fail on ordinary pushes/PRs to `main` until this debt is addressed by a separately authorized change. This mission does not fix it (out of scope by explicit instruction).
 2. **Dependency vulnerabilities** -- `npm audit` (via `npm ci`) reports 10 known vulnerabilities (5 moderate, 5 high) in third-party dependencies at currently locked versions. Not gated by this workflow; recorded as a `FOLLOW-UP` candidate for a future, separately authorized mission.
-3. **Deferred assurance capabilities** -- cross-tenant/RLS denial automation, migration-currency checking, canonical/delivery drift detection, Product Truth traceability automation, idempotency/replay harnesses, privileged-function scanning, and runtime/provider-state monitoring remain out of scope per the mission README's "Build Later" list.
+3. **`test` job fails closed in real CI -- missing Supabase test-environment secrets.** Confirmed in real CI (run `34842467495`): the job fails at `tests/setup/load-env.ts:11` because `SUPABASE_TEST_URL` / `SUPABASE_TEST_ANON_KEY` / `SUPABASE_TEST_SERVICE_ROLE_KEY` are not configured as GitHub Actions secrets. It passes locally only because a developer's gitignored `.env.test.local` supplies them. This mission does not provision CI secrets (credential/provider-access provisioning is outside "Build Now" scope). Mission Control/Founder decision needed: provision `SUPABASE_TEST_*` as a protected-environment secret (enabling real CI test execution) or accept this job as local-only evidence for now.
+4. **Deferred assurance capabilities** -- cross-tenant/RLS denial automation, migration-currency checking, canonical/delivery drift detection, Product Truth traceability automation, idempotency/replay harnesses, privileged-function scanning, runtime/provider-state monitoring, and dependency-vulnerability gating remain out of scope per the mission README's "Build Later" list.
 
-Recommended next step for Mission Control: decide whether pre-existing lint debt (Finding 1) warrants a follow-up mission before or independently of this baseline's acceptance, since merging this workflow as-is will show the `lint` job red on canonical `main` until that debt is resolved.
+Recommended next step for Mission Control: decide (a) whether pre-existing lint debt (Finding 1) warrants a follow-up mission before or independently of this baseline's acceptance, and (b) whether/how to provision Supabase test secrets to CI (Finding 3), since merging this workflow as-is will show both the `lint` and `test` jobs red on canonical `main` until those are resolved.
 
 ## 9. Repository references
 
 - **Branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
 - **Base:** `main @ 4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`
-- **Commit SHA:** recorded in the handover log and mission README once committed (see those files for the final value).
-- **Pull request:** recorded in the handover log and mission README once opened (see those files for the number/URL).
+- **Commit SHA:** `8ed3183a2f87900170660c89f1a4eda3f5d61868`
+- **Pull request:** [#575](https://github.com/SmartBusinessv1/smart-business/pull/575) (`mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline` → `main`)
+- **CI run:** [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495)
 
 ## 10. Next authorized action
 

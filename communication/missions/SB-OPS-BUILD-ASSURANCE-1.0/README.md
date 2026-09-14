@@ -177,11 +177,11 @@ The mission may be accepted only if all of the following are true:
 
 **Current owner:** Mission Control (Stage 2 activation pending).
 
-**Blockers:** none for Stage 1. Pre-existing lint debt and dependency-vulnerability findings are reported, not blockers, per Claude Code's Stage 1 report.
+**Blockers:** none for Stage 1 completion itself. Two findings require a Mission Control/Founder decision before full acceptance: (1) pre-existing lint debt (152 errors/7 warnings) makes the new `lint` job fail on canonical `main` today; (2) the `test` job fails closed in real CI because `SUPABASE_TEST_*` credentials are not provisioned as GitHub Actions secrets, and this mission does not provision them. Neither was introduced by this mission.
 
-**Latest commit / pull request:** recorded in `handover-log.md` once the mission branch is pushed and the PR is opened.
+**Latest commit / pull request:** commit `8ed3183a2f87900170660c89f1a4eda3f5d61868` (plus a follow-up evidence-update commit); pull request [#575](https://github.com/SmartBusinessv1/smart-business/pull/575); CI run [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495) (`lint` FAIL — pre-existing, `typecheck` PASS, `build` PASS, `test` FAIL — missing secrets).
 
-**Next authorized action:** Mission Control reviews Claude Code's Stage 1 report and separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself. Founder/human merge remains required and has not occurred; no self-approval or self-merge is authorized.
+**Next authorized action:** Mission Control reviews Claude Code's Stage 1 report and the two open findings above, then separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself. Founder/human merge remains required and has not occurred; no self-approval or self-merge is authorized.
 
 ## Material records
 

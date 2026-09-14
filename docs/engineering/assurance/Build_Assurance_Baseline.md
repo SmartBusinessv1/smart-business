@@ -53,13 +53,17 @@ This workflow is **not** a required branch-protection check unless Mission Contr
 
 ### `test` -- Vitest (`npm run test`)
 
-**Proves:** every test file under the repository's Vitest configuration passes at the commit checked out.
+**Proves:** every test file under the repository's Vitest configuration passes at the commit checked out, **when the required Supabase test-environment credentials are present**.
 
 **Does not prove:** completeness of test coverage. The current suite (28 files / 169 tests, see Section 4) targets catalog-import classification, idempotency, parsing, and validation logic specifically; large areas of the application (e.g. most UI routes, Supabase RLS/Auth behaviour, WhatsApp/OpenAI integration) have no automated test coverage today. Coverage-percentage measurement is out of scope for this mission.
 
+**CI-specific limitation (genuine finding, not fixed by this mission):** `tests/setup/load-env.ts` requires `SUPABASE_TEST_URL`, `SUPABASE_TEST_ANON_KEY`, and `SUPABASE_TEST_SERVICE_ROLE_KEY` and throws immediately if any are missing. These are populated locally from a developer's `.env.test`/`.env.test.local`, which are gitignored and were **not** provisioned as GitHub Actions secrets by this mission -- doing so would require Mission Control/Founder to decide whether and how to expose Supabase *test*-project credentials to CI (for example via a protected environment, similar to `aws-nonprod-parser` in `.github/workflows/aws-gc38r-parser-deploy.yml`), which is a credential-provisioning decision outside this mission's "Build Now" scope. As a direct result, the `test` job **fails closed in real CI** today (confirmed by the actual pull-request run, Section 4) with a clear, correctly-fail-closed error identifying exactly which variables are missing -- it does not hang, skip silently, or use fabricated/placeholder credentials. This is reported as a `FOLLOW-UP` finding for Mission Control, not repaired here.
+
 ## 4. Validation results (Stage 1, 2026-09-14)
 
-Run locally against mission branch `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline` at base commit `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`, Node `v24.18.0`, npm `11.16.0`, with the local working tree normalized to the repository's stored (`LF`) line endings to obtain a CI-representative result (see Section 3 caveat). The actual `ubuntu-latest` CI run triggered by this mission's pull request is the authoritative result and is linked from the Stage 1 report; this table is the pre-push local evidence used to design the workflow.
+### 4.1 Local pre-push evidence
+
+Run locally against mission branch `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline` at base commit `4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`, Node `v24.18.0`, npm `11.16.0`, with the local working tree normalized to the repository's stored (`LF`) line endings to obtain a CI-representative result (see Section 3 caveat), and with a developer's local `.env.test.local` Supabase test credentials present.
 
 | Check | Command | Local result | Classification |
 |---|---|---|---|
@@ -67,7 +71,20 @@ Run locally against mission branch `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseli
 | Lint | `npm run lint` | Exit `1`; 159 problems (152 errors, 7 warnings) | `FAIL -- PRE-EXISTING` (see Section 5) |
 | Typecheck | `npx tsc --noEmit` | Exit `0`; no output | `PASS` |
 | Build | `npm run build` | Exit `0`; client + SSR bundle produced in `.output/` | `PASS` |
-| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed (147.81s) | `PASS` |
+| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed (147.81s) | `PASS` (local only -- required Supabase test credentials were present) |
+
+### 4.2 Actual GitHub Actions CI evidence (authoritative)
+
+Pull request [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), run [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495), `ubuntu-latest`, commit `8ed3183a2f87900170660c89f1a4eda3f5d61868`. This is the authoritative result -- it runs on the actual CI platform with no local-environment artifacts and no pre-provisioned secrets.
+
+| Job | CI result | Notes |
+|---|---|---|
+| `lint` | `FAIL` | 159 problems (152 errors, 7 warnings) -- exact match to the local LF-normalized result. Pre-existing (Section 5). |
+| `typecheck` | `PASS` | No errors. |
+| `build` | `PASS` | Client + SSR bundle produced. |
+| `test` | `FAIL` | Fails immediately (~25s) at `tests/setup/load-env.ts:11` -- missing `SUPABASE_TEST_URL`, `SUPABASE_TEST_ANON_KEY`, `SUPABASE_TEST_SERVICE_ROLE_KEY`. Correctly fails closed rather than skipping; see Section 3's `test` job entry and Section 5, Finding 3. |
+
+The `lint` and `test` failures are genuine, pre-existing/structural findings reported to Mission Control (Section 5) -- not repaired by this mission.
 
 ## 5. Known pre-existing findings (not fixed by this mission)
 
@@ -75,8 +92,9 @@ This mission does not authorize application-code repair. The following are repor
 
 1. **Lint -- 152 pre-existing `prettier/prettier` formatting errors** across many `src/routes/**`, `tests/catalog-import/**`, and config files, plus **7 pre-existing warnings** (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps` at `src/routes/_authenticated/inventory.$itemId.tsx:1436`). None were introduced by this mission; none were modified. `npm run lint -- --fix` would mechanically resolve the 152 formatting errors, but running `--fix` against application source is application-code modification and is outside this mission's authorization.
 2. **Dependency vulnerabilities** -- `npm audit` reports 10 known vulnerabilities (5 moderate, 5 high) in third-party dependencies at the currently locked versions. Dependency upgrades are explicitly out of scope for this mission ("do not modify dependencies... merely to make CI pass"; also not "merely to make CI pass" since this workflow does not run `npm audit` as a gate). Recorded here as a `FOLLOW-UP` candidate for a future, separately authorized mission.
+3. **`test` job fails closed in real CI -- missing Supabase test-environment secrets.** `npm run test` passes locally (Section 4.1) because a developer's `.env.test.local` supplies `SUPABASE_TEST_URL` / `SUPABASE_TEST_ANON_KEY` / `SUPABASE_TEST_SERVICE_ROLE_KEY`. GitHub Actions has no equivalent secret configured, and this mission does not provision one (credential/provider-access provisioning is outside "Build Now" scope and outside Claude Code's authority and available credentials). The job therefore fails immediately and correctly, rather than skipping silently or using placeholder values. Recorded as a `FOLLOW-UP` requiring a Mission Control/Founder decision: whether to provision `SUPABASE_TEST_*` as a protected-environment GitHub Actions secret (enabling the `test` job to run for real in CI) or to accept that this job remains local-only evidence until that decision is made.
 
-Neither finding blocks Stage 1 completion: the mission's objective is to stand up real, fail-closed assurance automation and report exactly what it finds, not to reach a fully green baseline.
+None of these findings block Stage 1 completion: the mission's objective is to stand up real, fail-closed assurance automation and report exactly what it finds, not to reach a fully green baseline.
 
 ## 6. Reporting model
 

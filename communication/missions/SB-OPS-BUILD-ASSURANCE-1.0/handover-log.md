@@ -87,3 +87,37 @@ Mission Control reviews this Stage 1 report, then separately activates Codex for
 - mission acceptance or closure;
 - Founder/human merge;
 - any fix to the pre-existing lint debt or dependency vulnerabilities reported as findings.
+
+## H-003 — Claude Code: branch pushed, PR opened, CI evidence recorded
+
+**Date:** 2026-09-14
+**Status:** STAGE 1 COMPLETE — AWAITING CODEX INDEPENDENT REVIEW AND MISSION CONTROL ACCEPTANCE
+**From:** Claude Code
+**To:** Smart Business Mission Control
+
+### Repository references
+
+- Mission branch pushed: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline` (commit `8ed3183a2f87900170660c89f1a4eda3f5d61868`, plus this follow-up evidence-update commit)
+- Pull request: [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), targeting `main`
+- CI run (authoritative): [`34842467495`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34842467495)
+
+### Actual CI result
+
+`lint` FAIL (pre-existing, 152 errors/7 warnings — matches local LF-normalized prediction exactly), `typecheck` PASS, `build` PASS, `test` FAIL (missing `SUPABASE_TEST_URL`/`SUPABASE_TEST_ANON_KEY`/`SUPABASE_TEST_SERVICE_ROLE_KEY` GitHub Actions secrets — not provisioned by this mission; fails closed correctly).
+
+This is a genuine finding surfaced only by the real CI run, not visible from local validation alone (the developer's local `.env.test.local` supplies the missing credentials). It is now recorded as Finding 3 in the Stage 1 report and the baseline document, in addition to the previously reported pre-existing lint debt and dependency-vulnerability findings.
+
+### Correction note
+
+This entry supplements H-002 rather than replacing it. `docs/engineering/assurance/Build_Assurance_Baseline.md`, `claude-code/01-stage1-report.md`, and `communication/live/report.md` were updated in place (same active Stage 1 cycle, not a closed/archived record) to add the real CI evidence and the `test`-job secret-provisioning finding once the PR's CI run completed; no prior content was removed or contradicted, only completed with post-push evidence that did not exist at H-002's commit time.
+
+### Next authorized action
+
+Mission Control reviews Stage 1 (including this CI evidence and Finding 3's open decision), then separately activates Codex for Stage 2 independent review. Claude Code does not activate the reviewer itself.
+
+### Not yet authorized
+
+- provisioning `SUPABASE_TEST_*` as a GitHub Actions secret (a Mission Control/Founder credential decision, not Claude Code's to make);
+- Codex review activation;
+- mission acceptance or closure;
+- Founder/human merge.
