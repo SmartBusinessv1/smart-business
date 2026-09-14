@@ -3,28 +3,19 @@
 **Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
 **Mission name:** CI Baseline Stabilization
 **Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK
-**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
+**Status:** `CLOSED — ACCEPTED — NO ACTIVE INSTRUCTION`
 **Date:** 2026-09-14
 
-Mission Control has accepted the implementation and independent review for PR `#578`.
+PR `#578` is merged. Actual merge commit:
 
-Controlling acceptance record:
+`6c71abe7a6647075190ea9a3cb4649eed3e7c8ca`
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
+Post-merge Application Build Assurance run `#52` (`34879969511`) completed successfully on canonical `main`; lint, typecheck, build, and automated tests all passed.
 
-Authorized branch:
+Closure record:
 
-`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/08-post-merge-verification-and-closure.md`
 
-Pull request:
+There is no active instruction under this mission. Any future work requires new explicit authority.
 
-`#578 — OPEN — READY FOR FOUNDER MERGE`
-
-Founder action: merge PR #578 through the repository's protected-main merge flow, then report completion to Mission Control.
-
-Do not perform additional code, test, workflow, dependency, provider, database, deployment, branch-protection, Product Truth, governance, or Product Mission changes under this instruction.
-
-Mission Control must not self-merge.
-
-`SB-P-1.12` remains not activated.
+`SB-P-1.12` is not activated by this closure.
