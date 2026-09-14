@@ -7,15 +7,14 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 3 REVIEW PASS — PUBLICATION AUTHORIZED — AWAITING MISSION CONTROL`
+- **Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#577 — MERGED`
 - **Activation merge:** `705eaebb8e2fb01e8862666a258d3babff8bd694`
-- **Implementation PR:** `#578 — OPEN`
+- **Implementation PR:** `#578 — OPEN — READY FOR FOUNDER MERGE`
 - **Current implementation branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
-- **Current owner:** Mission Control
-- **Reviewed implementation head:** `43b95f12e909f2b6f7257354600c86853ba82cd3`
-- **Reconciled publication base:** `aaf4fa19ae9d85811110d5d9458fa78935d5b4d2`
+- **Current owner:** Founder Riyas PK for protected-main merge
+- **Stage 3 publication head verified by Mission Control:** `141bab92dac7d3051f138854534351fbc808c8fb`
 
 ## Purpose
 
@@ -58,9 +57,7 @@ Prepare and provision the minimum approved GitHub Actions binding required for t
 
 **COMPLETE — ACCEPTED BY MISSION CONTROL.**
 
-Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Authoritative CI showed lint PASS, typecheck PASS, build PASS, and test FAIL only because the approved CI test environment had not yet been provisioned.
-
-Seven pre-existing warnings remain reported and intentionally unresolved because they require structural/semantic judgment rather than formatting-only correction.
+Claude Code corrected all 152 prior `prettier/prettier` lint errors through formatting-only changes. Seven pre-existing warnings remain reported and intentionally unresolved because they require structural/semantic judgment rather than formatting-only correction.
 
 Accepted report: `claude-code/01-stage1a-report.md`
 
@@ -68,13 +65,13 @@ Mission Control disposition: `mission-control/03-stage1a-review-and-stage1b-auth
 
 ### Stage 1B — Infrastructure Operations / Founder environment provisioning
 
-**COMPLETE.** Founder reported that the existing GitHub Actions environment `smart-business-test` now contains the three required environment-scoped secret names. No secret value is recorded in mission artifacts.
+**COMPLETE.** Founder provisioned the existing GitHub Actions environment `smart-business-test` with the three required environment-scoped secret names. No secret value is recorded in mission artifacts.
 
 ### Stage 2 — Claude Code CI verification
 
-**COMPLETE — ACCEPTED BY MISSION CONTROL** under [instruction 05](mission-control/05-stage2-review-and-stage3-codex-authorization.md).
+**COMPLETE — ACCEPTED BY MISSION CONTROL.**
 
-The `test` job genuinely executes against `smart-business-test`: **28/28 test files, 169/169 tests, 0 failures**, real 208.77s full-duration execution, confirmed on the existing current-head CI run (no rerun needed). `lint`, `typecheck`, `build` remain PASS. Target isolation confirmed via GitHub's own deployment API (`environment: "smart-business-test"`, `production_environment: false`). No genuine defect surfaced.
+The `test` job genuinely executes against `smart-business-test`: **28/28 test files, 169/169 tests, 0 failures**. `lint`, `typecheck`, and `build` also pass. Available GitHub deployment evidence identifies `smart-business-test` and marks it non-production. No new genuine defect surfaced.
 
 Controlling authorization: `mission-control/04-stage1b-completion-and-stage2-authorization.md`
 
@@ -82,21 +79,37 @@ Report: `claude-code/02-stage2-ci-verification.md`
 
 ### Stage 3 — Codex independent review
 
-**REVIEW COMPLETE — PASS.** [Codex independent review](codex/01-stage3-independent-review.md) verifies the formatting-only implementation, unchanged gate strength, intended environment binding, current-head 28/28 files and 169/169 tests, and available target evidence. The report preserves the limits of environment metadata and the existing diagnostic finding.
+**COMPLETE — PASS.**
 
-Review handoff: [H-008](handover-log.md#h-008--codex-to-mission-control-stage-3); publication reconciliation: [H-009](handover-log.md#h-009--stage-3-publication-under-instruction-06). No implementation correction is required. [Instruction 06](mission-control/06-stage3-publication-authorization.md) authorizes publication of the completed review and its minimum communication records. Next action after publication: Mission Control independently verifies the published evidence and evaluates Stage 4 acceptance / Founder merge readiness; Codex stops. No merge or Product Mission activation is authorized by this review.
+Codex independently verified behavior-preserving formatting scope, unchanged gate strength, intended CI environment binding, genuine passing test execution, secret non-disclosure, and absence of unauthorized Product Mission or infrastructure changes.
+
+Review: `codex/01-stage3-independent-review.md`
+
+Publication authorization: `mission-control/06-stage3-publication-authorization.md`
 
 ### Stage 4 — Mission Control acceptance / Founder merge
 
-**NOT YET AUTHORIZED.** Founder/human merge and post-merge verification remain required for closure.
+**MISSION CONTROL ACCEPTANCE COMPLETE — READY FOR FOUNDER MERGE.**
+
+Mission Control independently verified the published Codex review, PR #578 state, and current-head CI before recording acceptance.
+
+Acceptance and merge handoff:
+
+`mission-control/07-stage4-acceptance-and-founder-merge-handoff.md`
+
+Founder/human protected-main merge is the next action. Mission Control must not self-merge.
+
+After merge, Mission Control will independently verify the actual merge commit, canonical `main`, and post-merge CI before durable closure.
 
 ## Acceptance target
 
-The mission may be accepted only when lint, typecheck and build succeed; GitHub Actions genuinely executes the existing automated tests against the approved isolated test environment; tests succeed or any genuine defect is separately classified and resolved under explicit authority; no production target is used; no test or quality gate is weakened; Codex review and Mission Control acceptance complete; and Founder/human merge plus post-merge verification complete.
+Satisfied pre-merge: lint, typecheck, build, Markdown quality, and automated tests pass; automated tests genuinely execute against the approved isolated test environment; no test or quality gate was weakened; Codex independent review passed; and Mission Control acceptance is complete.
+
+Remaining closure action: Founder/human merge plus post-merge verification.
 
 ## Carried but not included
 
-Dependency-vulnerability remediation, routine fixture-housekeeping automation and broader Build Later assurance capabilities remain separate work.
+Dependency-vulnerability remediation, routine fixture-housekeeping automation, the seven semantic/structural lint warnings, and broader Build Later assurance capabilities remain separate work.
 
 ## Product Mission boundary
 
