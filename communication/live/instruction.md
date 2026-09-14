@@ -3,24 +3,26 @@
 **Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
 **Mission name:** CI Baseline Stabilization
 **Sender:** Smart Business Mission Control
-**Recipient:** Claude Code
-**Status:** `STAGE 1A ACTIVE — REPOSITORY STABILIZATION`
+**Recipient:** Infrastructure Operations / Founder Riyas PK
+**Status:** `STAGE 1B ACTIVE — TEST ENVIRONMENT PROVISIONING`
 **Date:** 2026-09-14
 
-PR `#577` is merged. Canonical activation merge:
+Stage 1A is accepted.
 
-`705eaebb8e2fb01e8862666a258d3babff8bd694`
+Controlling authorization:
 
-Controlling mission record:
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/03-stage1a-review-and-stage1b-authorization.md`
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/`
+PR `#578` remains open and must not be merged yet.
 
-Stage 1A instruction:
+Stage 1B authorizes only the GitHub Actions environment `smart-business-test` and the three environment-scoped secret names required by the existing test job:
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/02-stage1a-claude-instruction.md`
+- `SUPABASE_TEST_URL`
+- `SUPABASE_TEST_ANON_KEY`
+- `SUPABASE_TEST_SERVICE_ROLE_KEY`
 
-Authorized branch:
+Use values only from the already approved isolated `smart-business-test` Supabase project. Do not disclose any secret value in chat, repository content, screenshots, logs, or reports.
 
-`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+Do not change application/workflow code, database/provider state, deployment, branch protection, dependencies, or Product Mission state. Do not run local credential-backed integration tests. `SB-P-1.12` remains not activated.
 
-Execute Stage 1A only. Stage 1B environment provisioning is not authorized by this instruction. Do not self-merge. `SB-P-1.12` remains not activated.
+After provisioning, report only that the GitHub environment exists and the three named secrets are configured. Stop for Mission Control before any further action.
