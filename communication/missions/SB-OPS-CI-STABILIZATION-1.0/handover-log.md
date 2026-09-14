@@ -90,7 +90,8 @@ Full detail: [Stage 1A report](claude-code/01-stage1a-report.md).
 
 - Branch: `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
 - Base: `705eaebb8e2fb01e8862666a258d3babff8bd694`
-- Commit SHA / CI run: recorded in the mission README once pushed (see there for the final values).
+- Commit SHA: `1a972ddbb0c70ebf16a4384101b37b1355dfa810`
+- CI run (authoritative): [`34867726039`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726039) -- `lint` PASS, `typecheck` PASS, `build` PASS, `test` FAIL (same pre-existing `load-env.ts:11` check as before; binding change confirmed not to alter failure behavior).
 - Pull request: [#578](https://github.com/SmartBusinessv1/smart-business/pull/578), updated, not approved or merged by Claude Code.
 
 ### Not yet authorized

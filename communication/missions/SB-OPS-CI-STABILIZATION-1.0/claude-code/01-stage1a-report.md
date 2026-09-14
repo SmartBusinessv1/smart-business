@@ -92,6 +92,8 @@ All commands run locally on the normalized (CI-representative) working tree desc
 
 **Not run, per explicit instruction:** `npm run test` / any credential-backed integration test. No Supabase client call, authentication, or remote query/write was made at any point during Stage 1A.
 
+**Actual GitHub Actions CI (authoritative, post-push):** run [`34867726039`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726039) confirms `lint` PASS, `typecheck` PASS, `build` PASS -- matching local results exactly. `test` FAIL, at the identical `tests/setup/load-env.ts:11` "missing required test environment variables" error as before this stage's change, confirming the new `environment`/`env:` binding correctly resolved to empty (no secret exists yet) and did not alter the job's failure mode.
+
 ## 5. Unresolved findings -- reported, not silently fixed
 
 Per the explicit instruction that any lint finding requiring a semantic change be reported and left unresolved rather than forcing green CI, the following 7 pre-existing warnings remain, unchanged by `eslint --fix` (ESLint itself does not offer an auto-fix for either rule):
@@ -141,9 +143,9 @@ for each file (content, headings, code_fences, tables, escaped_markdown all PASS
 
 - **Branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
 - **Base:** `main @ 705eaebb8e2fb01e8862666a258d3babff8bd694`
-- **Commit SHA:** recorded in the handover log and mission README once committed (see those files for the final value).
+- **Commit SHA:** `1a972ddbb0c70ebf16a4384101b37b1355dfa810`
 - **Pull request:** [#578](https://github.com/SmartBusinessv1/smart-business/pull/578) (updated, not merged, not approved by Claude Code).
-- **CI run:** recorded once available (see handover log).
+- **CI run (authoritative):** [`34867726039`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726039) -- `lint` PASS, `typecheck` PASS, `build` PASS, `test` FAIL (unchanged: fails at the same `tests/setup/load-env.ts:11` "missing required test environment variables" check, confirming the CI binding change did not alter failure behavior and that no secret value resolved). [Markdown run `34867726025`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726025) PASS.
 
 ## 10. Next authorized action
 

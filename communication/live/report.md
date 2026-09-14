@@ -26,7 +26,8 @@ No product behavior, route, permission, business/financial logic, test semantics
 ## Repository / CI state
 
 - **Branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
-- **New head:** recorded in the handover log and mission README once pushed (see those files for the final commit SHA).
+- **Commit SHA:** `1a972ddbb0c70ebf16a4384101b37b1355dfa810`
+- **CI run (authoritative):** [`34867726039`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726039) -- `lint` PASS, `typecheck` PASS, `build` PASS, `test` FAIL (same pre-existing check as before this stage; binding change confirmed not to alter failure behavior).
 - **Pull request:** [#578](https://github.com/SmartBusinessv1/smart-business/pull/578), open, not merged.
 
 ## Next authorized action
