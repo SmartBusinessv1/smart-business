@@ -1,21 +1,17 @@
-# SMART BUSINESS — LIVE INSTRUCTION
+# SMART BUSINESS — REPOSITORY COMMUNICATION
 
-**Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
-**Mission name:** CI Baseline Stabilization
-**Sender:** Smart Business Mission Control
-**Status:** `CLOSED — ACCEPTED — NO ACTIVE INSTRUCTION`
-**Date:** 2026-09-14
+# Instruction — Awaiting Mission Activation
 
-PR `#578` is merged. Actual merge commit:
+**Mission ID:** `NONE`
 
-`6c71abe7a6647075190ea9a3cb4649eed3e7c8ca`
+**From:** Smart Business Mission Control
 
-Post-merge Application Build Assurance run `#52` (`34879969511`) completed successfully on canonical `main`; lint, typecheck, build, and automated tests all passed.
+**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
 
-Closure record:
+---
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/08-post-merge-verification-and-closure.md`
+`communication/live/` is currently reset and contains no active mission.
 
-There is no active instruction under this mission. Any future work requires new explicit authority.
+When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
 
-`SB-P-1.12` is not activated by this closure.
+Do not infer a mission from archived communication or prior chat history.
