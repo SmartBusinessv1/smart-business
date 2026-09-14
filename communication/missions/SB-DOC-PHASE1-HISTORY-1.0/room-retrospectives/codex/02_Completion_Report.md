@@ -4,9 +4,9 @@
 
 - **Mission:** `SB-DOC-PHASE1-HISTORY-1.0 — Phase 1 Historical Continuity Reconstruction`
 - **Contributor:** Codex
-- **Result:** Historical evidence extraction and official Codex retrospective prepared for Mission Control review.
+- **Result:** Mission Control substantive content review complete; retrospective content accepted.
 - **Recovery boundary:** Maximum reasonably recoverable durable evidence available in the repository and accessible session context.
-- **Procedural disclosure:** Evidence extraction and final synthesis were performed in one contributor branch/PR because only one viable Codex session was available. No separate evidence-merge gate occurred. Mission Control must decide whether this proportional deviation is acceptable.
+- **Procedural disclosure:** Evidence extraction and final synthesis were performed in one contributor branch/PR because only one viable Codex session was available. No separate evidence-merge gate occurred. Mission Control accepted this procedural deviation as proportionate; no redo is required.
 
 ## Evidence Inventory
 
@@ -87,15 +87,19 @@ Suggested tools are explicitly advisory: contract-to-code mapping, builder-repor
 - **Base main SHA:** `1196ead6c07256a8bf7f9607b2059294b71ca78b`
 - **Branch:** `docs/codex-phase1-retrospective`
 - **Primary retrospective commit:** `d51b2b3ac0c8772a637afed308bb52c1e139c5df`
-- **Reviewed content head:** `d51b2b3ac0c8772a637afed308bb52c1e139c5df`
-- **Final branch head:** The narrow report-evidence commit immediately following the primary commit; exact SHA and its final-head CI are returned to Mission Control after that commit exists.
-- **Pull request/state:** PR [#572](https://github.com/SmartBusinessv1/smart-business/pull/572), `OPEN`, `DRAFT`, `MERGEABLE` at evidence capture.
-- **Changed-file count:** 7, all new Markdown files under `room-retrospectives/codex/`.
-- **CI workflow:** `Team LIPS Markdown Quality Gate`
-- **Reviewed content run:** workflow run number `1593`, run ID `34821661932`, `SUCCESS`, head `d51b2b3ac0c8772a637afed308bb52c1e139c5df`.
-- **Push-triggered corroborating run:** workflow run number `1592`, run ID `34821635025`, `SUCCESS`, same head.
+- **PR:** `#572 — OPEN — DRAFT — not merged` before this authorized correction and ready-for-review transition.
+- **Previously reviewed content head:** `d51b2b3ac0c8772a637afed308bb52c1e139c5df`.
+- **Current final-head evidence before correction:** `e4c7bc8c36a5e47d302d3e0e617437c9b34f97a4`.
+- **Changed files:** `7`.
+- **Evidence files:** `5`.
+- **Workflow:** `Team LIPS Markdown Quality Gate`.
+- **Final-head push run:** `#1594`, ID `34821778725`, `SUCCESS`.
+- **Final-head PR run:** `#1595`, ID `34821783499`, `SUCCESS`.
+- **Mission Control substantive review:** Complete.
+- **Procedural deviation:** Accepted as proportionate; no redo required.
+- **Acceptance:** **Not yet merged / Founder merge pending.**
 
-This narrow administrative correction records the prior fully reviewed content head, as permitted by the mission's self-reference rule. It does not create an endless report/CI update cycle: the final report-only head and its CI result are reported directly to Mission Control after publication.
+The new final head and its final-head CI evidence are returned directly to Mission Control after this single-file correction is committed and CI completes.
 
 ## Non-Mutation Confirmation
 
@@ -114,4 +118,4 @@ This narrow administrative correction records the prior fully reviewed content h
 
 ## Required Next Action
 
-Mission Control should independently review the seven-file Codex package, attribution boundaries, procedural deviation, final-head CI evidence, and changed-file scope. Codex must stop after publication and must not merge its own PR.
+Mission Control content review complete. Stop for Founder merge. Do not self-merge.
