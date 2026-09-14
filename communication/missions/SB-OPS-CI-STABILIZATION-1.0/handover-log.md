@@ -26,6 +26,12 @@ Base:
 
 `main@00a7bc0f261c481a2d0f907f1d7c31f6adc3c6ec`
 
+Activation pull request:
+
+`#577 — SB-OPS-CI-STABILIZATION-1.0: activate CI Baseline Stabilization`
+
+This PR is communication/authority only. It does not activate Stage 1A by itself.
+
 Next action after activation merge:
 
-Mission Control independently verifies canonical `main`, then explicitly activates Claude Code Stage 1A. No implementation actor is activated merely by this activation branch.
+Mission Control independently verifies canonical `main`, then explicitly activates Claude Code Stage 1A. No implementation actor is activated merely by the activation PR.
