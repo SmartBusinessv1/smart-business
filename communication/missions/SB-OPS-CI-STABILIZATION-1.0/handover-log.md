@@ -18,91 +18,52 @@ Mission Control assigned formal ID `SB-OPS-CI-STABILIZATION-1.0` and defined the
 **To:** Founder Riyas PK  
 **State:** COMPLETE
 
-Activation branch:
-
-`mission/SB-OPS-CI-STABILIZATION-1.0-activation`
-
-Base:
-
-`main@00a7bc0f261c481a2d0f907f1d7c31f6adc3c6ec`
-
-Activation pull request:
-
-`#577 — SB-OPS-CI-STABILIZATION-1.0: activate CI Baseline Stabilization`
-
-Founder/human merged PR `#577`. Canonical activation merge:
+Activation pull request `#577` was Founder/human merged. Canonical activation merge:
 
 `705eaebb8e2fb01e8862666a258d3babff8bd694`
-
-Mission Control independently verified canonical `main` and the expected post-merge CI baseline.
 
 ## H-003 — Mission Control to Claude Code Stage 1A
 
 **Date:** 2026-09-14  
 **From:** Smart Business Mission Control  
 **To:** Claude Code  
+**State:** COMPLETE
+
+Claude Code was authorized on `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a` for behavior-preserving lint stabilization and minimum repository-side CI binding preparation only.
+
+## H-004 — Claude Code to Mission Control Stage 1A
+
+**Date:** 2026-09-15  
+**From:** Claude Code  
+**To:** Smart Business Mission Control  
+**State:** COMPLETE — ACCEPTED
+
+Claude Code reported 152 formatting errors corrected, lint PASS, typecheck PASS, build PASS, seven semantic/structural warnings reported and left unresolved, and test still failing closed because the test environment was not yet provisioned.
+
+Report: `claude-code/01-stage1a-report.md`
+
+## H-005 — Mission Control to Infrastructure Operations / Founder Stage 1B
+
+**Date:** 2026-09-14  
+**From:** Smart Business Mission Control  
+**To:** Infrastructure Operations / Founder Riyas PK  
+**State:** COMPLETE
+
+Stage 1B authorized secure provisioning of the existing GitHub Actions environment `smart-business-test` with the three approved environment-scoped test secret names only.
+
+Founder reported provisioning complete. No secret value is recorded in repository content.
+
+## H-006 — Mission Control to Claude Code Stage 2
+
+**Date:** 2026-09-14  
+**From:** Smart Business Mission Control  
+**To:** Claude Code  
 **State:** ACTIVE
 
-Authorized branch:
+Controlling authorization:
 
-`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/04-stage1b-completion-and-stage2-authorization.md`
 
-Controlling instruction:
+Claude Code is authorized to verify the existing GitHub Actions workflow on PR `#578` against the provisioned `smart-business-test` environment, record exact CI evidence, update minimal mission status/handover records, and stop for Mission Control.
 
-`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/02-stage1a-claude-instruction.md`
-
-Authorized work:
-
-- behavior-preserving lint stabilization;
-- minimum repository-side CI workflow binding preparation for the later Stage 1B environment-provisioning step;
-- required validation and mission evidence reporting.
-
-Not yet authorized:
-
-- Stage 1B environment provisioning;
-- provider-side changes;
-- dependency changes;
-- semantic/product-behavior changes;
-- merge or self-approval;
-- `SB-P-1.12` activation.
-
-Claude Code must stop for Mission Control after Stage 1A report and PR evidence are complete.
-
-## H-004 — Claude Code to Mission Control (Stage 1A complete)
-
-**Date:** 2026-09-15
-**From:** Claude Code
-**To:** Smart Business Mission Control
-**State:** COMPLETE -- AWAITING MISSION CONTROL
-
-### Work completed
-
-Full detail: [Stage 1A report](claude-code/01-stage1a-report.md).
-
-- **Workstream A (lint):** fixed all 152 pre-existing `prettier/prettier` formatting errors via `eslint . --fix` across 27 files; verified formatting-only (no semantic change) by manual diff review of every file. `npm run lint` now exits `0`. 7 pre-existing warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) remain, unresolved and reported per explicit instruction, since resolving them requires structural/semantic judgment, not formatting.
-- **Workstream B (CI binding):** added `environment: smart-business-test` and `secrets.SUPABASE_TEST_*`-name-only `env:` bindings to `.github/workflows/build-assurance.yml`'s `test` job only. No GitHub environment or secret was created; the job continues to fail closed exactly as before until Stage 1B provisions real values.
-
-### Validation
-
-`npm run lint` PASS (exit 0); `npx tsc --noEmit` PASS; `npm run build` PASS; changed-file scope verified exactly (27 formatting-only files + the one workflow file); Markdown Quality Gate PASS on all changed Markdown. `npm run test` was not run (explicitly not authorized this stage).
-
-### Repository references
-
-- Branch: `mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
-- Base: `705eaebb8e2fb01e8862666a258d3babff8bd694`
-- Commit SHA: `1a972ddbb0c70ebf16a4384101b37b1355dfa810`
-- CI run (authoritative): [`34867726039`](https://github.com/SmartBusinessv1/smart-business/actions/runs/34867726039) -- `lint` PASS, `typecheck` PASS, `build` PASS, `test` FAIL (same pre-existing `load-env.ts:11` check as before; binding change confirmed not to alter failure behavior).
-- Pull request: [#578](https://github.com/SmartBusinessv1/smart-business/pull/578), updated, not approved or merged by Claude Code.
-
-### Not yet authorized
-
-- Stage 1B environment/secret provisioning;
-- any provider contact, credential-backed test run, or remote query/write;
-- product/application behavior change;
-- mission acceptance or closure;
-- Founder/human merge;
-- `SB-P-1.12` activation.
-
-### Next authorized action
-
-Mission Control reviews this Stage 1A report, including the 7 unresolved lint warnings, and decides whether to proceed to Stage 1B. Claude Code stops here.
+No product/test code repair, dependency change, workflow weakening, production access, deployment, branch-protection change, or `SB-P-1.12` activation is authorized.
