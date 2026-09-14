@@ -7,9 +7,11 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `FOUNDER AUTHORIZED — ACTIVATION PENDING MERGE`
+- **Status:** `FOUNDER AUTHORIZED — ACTIVATION PR #577 PENDING MERGE`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation base:** `main@00a7bc0f261c481a2d0f907f1d7c31f6adc3c6ec`
+- **Activation branch:** `mission/SB-OPS-CI-STABILIZATION-1.0-activation`
+- **Activation PR:** `#577`
 
 ## Purpose
 
@@ -56,7 +58,9 @@ This mission does **not** reopen `SB-OPS-BUILD-ASSURANCE-1.0`.
 
 ### Stage 0 — Mission Control activation
 
-Create and merge this communication-only activation package.
+**ACTIVE — PR #577 awaiting Founder/human merge.**
+
+This is a communication/authority-only activation package. No implementation actor is active yet.
 
 ### Stage 1A — Claude Code repository stabilization
 
