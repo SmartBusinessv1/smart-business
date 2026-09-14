@@ -16,7 +16,7 @@ Mission Control assigned formal ID `SB-OPS-CI-STABILIZATION-1.0` and defined the
 **Date:** 2026-09-14  
 **From:** Smart Business Mission Control  
 **To:** Founder Riyas PK  
-**State:** PENDING FOUNDER/HUMAN MERGE
+**State:** COMPLETE
 
 Activation branch:
 
@@ -30,8 +30,40 @@ Activation pull request:
 
 `#577 — SB-OPS-CI-STABILIZATION-1.0: activate CI Baseline Stabilization`
 
-This PR is communication/authority only. It does not activate Stage 1A by itself.
+Founder/human merged PR `#577`. Canonical activation merge:
 
-Next action after activation merge:
+`705eaebb8e2fb01e8862666a258d3babff8bd694`
 
-Mission Control independently verifies canonical `main`, then explicitly activates Claude Code Stage 1A. No implementation actor is activated merely by the activation PR.
+Mission Control independently verified canonical `main` and the expected post-merge CI baseline.
+
+## H-003 — Mission Control to Claude Code Stage 1A
+
+**Date:** 2026-09-14  
+**From:** Smart Business Mission Control  
+**To:** Claude Code  
+**State:** ACTIVE
+
+Authorized branch:
+
+`mission/SB-OPS-CI-STABILIZATION-1.0-stage1a`
+
+Controlling instruction:
+
+`communication/missions/SB-OPS-CI-STABILIZATION-1.0/mission-control/02-stage1a-claude-instruction.md`
+
+Authorized work:
+
+- behavior-preserving lint stabilization;
+- minimum repository-side CI workflow binding preparation for the later Stage 1B environment-provisioning step;
+- required validation and mission evidence reporting.
+
+Not yet authorized:
+
+- Stage 1B environment provisioning;
+- provider-side changes;
+- dependency changes;
+- semantic/product-behavior changes;
+- merge or self-approval;
+- `SB-P-1.12` activation.
+
+Claude Code must stop for Mission Control after Stage 1A report and PR evidence are complete.
