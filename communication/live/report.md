@@ -2,30 +2,47 @@
 
 **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 **Mission name:** Build Assurance & Automation Foundation
-**Reporter:** Codex
+**Reporter:** Claude Code
 **Recipient:** Smart Business Mission Control
-**Status:** `STAGE 2 REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL`
-**Date:** 2026-09-14
+**Status:** `STAGE 1 EVIDENCE CORRECTED (F-01/F-02/F-03) — AWAITING MISSION CONTROL`
+**Date:** 2026-09-15
 
-## Independent review result
+## Correction result
 
-**Recommendation: CORRECTION REQUIRED.** The [full Codex review](../missions/SB-OPS-BUILD-ASSURANCE-1.0/codex/02-stage2-independent-review.md) records evidence and precise correction requests. Claude Code's [Stage 1 report](../missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md) remains unchanged.
+Under `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/05-correction-authorization.md`, Claude Code performed a narrow, documentation-only correction of the Stage 1 evidence records, addressing exactly Codex's three Stage 2 blocking findings:
 
-1. Reported credential-backed local test PASS conflicts with blanket no-provider-mutation: existing integration tests create Auth users and write fixtures. Actual local target/effects and authority need reconciliation; Codex does not assert production mutation.
-2. The contract incorrectly describes existing coverage: 17 inventory, 9 catalog-import and 2 parser-lease files include scoped RLS/Auth exercise.
-3. Provisioning secrets alone cannot enable the current job, which lacks environment and secret-to-process-variable bindings. Future enablement and external test writes require separate authority.
+1. **F-01 (non-mutation claim):** withdrew the blanket "no Supabase/provider mutation" claim as applied to the local `npm run test` run. That run is real: it signs in real Supabase Auth users and writes real `businesses`/inventory/catalog-import fixture rows against the developer's local `SUPABASE_TEST_URL` target. Corrected records now state this plainly and mark the target's exact identity and complete resulting state as **INSUFFICIENT EVIDENCE**. The narrower claim — that repository/workflow authoring and `npm ci`/`lint`/`typecheck`/`build` mutate no provider — remains supported and is restated precisely.
+2. **F-02 (coverage description):** corrected to distinguish 8 pure-logic test files from 20 real-backend integration files (17 `tests/inventory/**`, 2 `tests/catalog-import/**`, 1 `tests/parser-lease/**`) that exercise real Auth and scoped RLS/ACL checks — the prior "no RLS/Auth coverage" claim was false. Also corrected: current GitHub Actions reaches **zero** successful test executions (28 failed files, 0 tests), because the global test-environment loader throws before any file — pure-logic or integration — runs.
+3. **F-03 (CI-enablement wording):** corrected to state that enabling the `test` job in CI requires **both** an approved Supabase test-environment target **and** a separately authorized workflow-file change binding the resulting secret(s) to a process variable — provisioning a GitHub Actions secret alone was inaccurately described as sufficient; the workflow currently has no such binding.
 
-## Verified evidence
+Full corrected text: `docs/engineering/assurance/Build_Assurance_Baseline.md` (Sections 3, 4, 5, 7) and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md` (Sections 5, 7, 8). Detail of exactly what changed: [handover log H-006](../missions/SB-OPS-BUILD-ASSURANCE-1.0/handover-log.md#h-006--claude-code--mission-control-narrow-stage-1-evidence-correction).
 
-- PR [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), OPEN, branch `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`, base `main @ 4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`, reviewed head `eb27d3723b59e83e553ef43a07d3fa2a0a6399d1`.
-- Six authorized Stage 1 paths; nine total PR paths after Mission Control handoff. Application source, tests, dependencies and toolchain configuration match the base.
-- Original CI `34842467495` and current CI `34843465673`: typecheck/build PASS; lint FAIL with 152 pre-existing errors and 7 warnings; test FAIL at setup, 28 failed files and no tests executed.
-- Markdown CI `34843465658` PASS. Live branch protection requires only Markdown Quality Gate. Red application checks remain truthful findings, separate from the evidence-contract blockers.
+## Files changed by this correction
 
-## Handoff and non-mutation
+- `docs/engineering/assurance/Build_Assurance_Baseline.md`
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/handover-log.md` (appended H-006)
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/README.md` (status/next-action metadata)
+- this file
 
-Only the four authorized Stage 2 communication paths changed: review record, README status/next-action metadata, handover log and this report. Publication evidence is recorded in the [handover log](../missions/SB-OPS-BUILD-ASSURANCE-1.0/handover-log.md).
+`.github/workflows/build-assurance.yml` and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/codex/02-stage2-independent-review.md` were **not** modified.
 
-Codex did not modify the workflow, baseline, Claude report, application/dependencies, Product Truth/governance, mission memory, infrastructure/authentication/database, deployment/configuration or external-provider state. No credential-backed tests, provisioning, fixture cleanup, self-approval, merge or `SB-P-1.12` activation occurred.
+## Remaining INSUFFICIENT EVIDENCE
 
-**Next owner/action:** Mission Control reviews the defects and decides whether to authorize Claude Code correction and evidence reconciliation. Codex stops after publishing this report; no implementation correction was performed.
+The exact identity of the Supabase project `SUPABASE_TEST_URL` designated during Claude Code's original local Stage 1 validation run, and the complete resulting remote state beyond the fixture-shaped writes identifiable from test source. No investigation, rerun, or cleanup was performed to resolve this.
+
+## Repository / CI state
+
+- **Mission branch:** `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`
+- **New head:** recorded in the handover log and mission README once pushed (see those files for the final commit SHA).
+- **Pull request:** [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), open, not merged.
+- **Markdown Quality Gate:** PASS for both corrected files and this update (5/5 checks each), plus the pre-commit markdown gate.
+- **Application Build Assurance:** unchanged by this correction (documentation-only) — `lint` FAIL (pre-existing), `typecheck`/`build` PASS, `test` FAIL (environment/wiring gap), per the last CI run on this branch.
+
+## Non-mutation confirmation
+
+No lint debt, application code, dependency, or external configuration was repaired. No integration test was rerun; no remote cleanup of the `SUPABASE_TEST_URL` target was performed. No deployment, merge, or `SB-P-1.12` activation occurred. No self-approval or self-merge occurred.
+
+## Next authorized action
+
+Claude Code stops here. Mission Control reviews this correction and decides acceptance, further correction, or closure. Founder/human merge to protected `main` remains required and has not occurred.

@@ -5,7 +5,7 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 2 REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL`
+- **Status:** `STAGE 1 EVIDENCE CORRECTED (F-01/F-02/F-03) — AWAITING MISSION CONTROL`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
@@ -111,7 +111,7 @@ Source 18 remains authoritative for `SB-P-*` Product Missions only; this mission
 ### Stage 1 — Claude Code assurance implementation
 
 **Owner:** Claude Code  
-**Status:** COMPLETE — awaiting independent acceptance review
+**Status:** EVIDENCE CORRECTED (F-01/F-02/F-03) — awaiting Mission Control
 
 Claude Code created:
 
@@ -120,6 +120,8 @@ Claude Code created:
 - `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`.
 
 Stage 1 exposed two major real baseline findings without fixing them: pre-existing lint debt and a CI test-environment gap. Typecheck and build pass. The workflow is not configured as a required branch-protection check by this mission.
+
+Following Codex's Stage 2 review, Claude Code performed a narrow, Mission Control-authorized documentation-only correction (`mission-control/05-correction-authorization.md`) to the evidence contract and Stage 1 report addressing findings F-01 (local test run writes real state to the `SUPABASE_TEST_URL` target; the prior blanket non-mutation claim was withdrawn and replaced with a narrower, corrected one plus an explicit INSUFFICIENT EVIDENCE boundary), F-02 (corrected test-coverage description: 8 pure-logic files vs. 20 real-backend integration files including scoped RLS/Auth exercise; current CI executes zero tests, not a partial failure), and F-03 (CI enablement requires both an approved test-environment target and separate workflow wiring, not secret provisioning alone). The workflow file and Codex's review were not modified; no lint/application/dependency/config repair, no test rerun, no deploy, merge, or `SB-P-1.12` activation occurred.
 
 ### Stage 2 — Codex independent review
 
@@ -160,21 +162,20 @@ A red non-required assurance job may be accepted only if Mission Control determi
 
 ## Current owner and next authorized action
 
-**Current owner:** Mission Control — review Codex findings and determine correction authority.
+**Current owner:** Mission Control — review the correction and decide acceptance, further correction, or closure.
 
-**Stage 2 recommendation:** `CORRECTION REQUIRED`; see [Codex independent review](codex/02-stage2-independent-review.md). Blockers concern the local-test/non-mutation contradiction, inaccurate coverage inventory, and the claim that provisioning secrets alone enables tests. The truthful red lint and test-setup checks are independently corroborated.
+**Correction performed:** Claude Code corrected `docs/engineering/assurance/Build_Assurance_Baseline.md` and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md` for Codex Stage 2 findings F-01, F-02, F-03 under `mission-control/05-correction-authorization.md`. Detail: [handover log H-006](handover-log.md#h-006--claude-code--mission-control-narrow-stage-1-evidence-correction).
 
-**Reviewed PR head:** `eb27d3723b59e83e553ef43a07d3fa2a0a6399d1`; PR `#575` remains open against `main`. Publication references are recorded in the handover log and review-file history.
+**Current unresolved findings (evidence now corrected, not resolved):**
 
-**Current unresolved findings:**
+1. pre-existing lint debt makes the `lint` job red;
+2. the `test` job cannot run successfully in GitHub Actions until both an approved test-environment target and separate workflow wiring are authorized;
+3. dependency vulnerabilities reported by `npm audit` remain a future follow-up candidate;
+4. the local Stage 1 `npm run test` validation wrote real state to the `SUPABASE_TEST_URL` target; its exact identity and the complete resulting state remain **INSUFFICIENT EVIDENCE**, and whether that local execution stayed within mission authority is for Mission Control to determine.
 
-1. pre-existing lint debt makes the new lint job red;
-2. the test job cannot run successfully in GitHub Actions until the approved test environment is made available to CI;
-3. dependency vulnerabilities reported by `npm audit` remain a future follow-up candidate.
+No decision is made by this correction to repair, investigate, or clean up any of those items.
 
-No decision is made in Stage 2 activation to repair those items.
-
-**Next authorized action:** Mission Control reviews the Stage 2 record and decides whether to authorize Claude Code correction and local-execution evidence reconciliation. Codex stops after review publication. No correction execution, environment provisioning, merge, acceptance, closure or `SB-P-1.12` activation is authorized by this status update.
+**Next authorized action:** Mission Control reviews the corrected Stage 1 evidence and decides acceptance, further correction, or closure. No environment provisioning, workflow-file change, merge, acceptance, closure, or `SB-P-1.12` activation is authorized by this status update.
 
 ## Material records
 

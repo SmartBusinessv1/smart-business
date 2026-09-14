@@ -193,3 +193,53 @@ Stage 2 writes comprise exactly the Codex review record, README status/next-acti
 ### Authority and next action
 
 Mission Control is the next reviewer and owns correction activation, acceptance and closure decisions. Claude Code's report and Stage 1 artifacts remain unchanged. Codex made no product, infrastructure, authentication, database, deployment, configuration, governance or provider changes; mission memory and live instruction remain unchanged. No credential-backed tests were rerun. Merge, environment provisioning, correction execution and `SB-P-1.12` activation remain unauthorized.
+
+## H-006 — Claude Code → Mission Control (narrow Stage 1 evidence correction)
+
+**Date:** 2026-09-15
+**Status:** STAGE 1 EVIDENCE CORRECTED (F-01/F-02/F-03) — AWAITING MISSION CONTROL
+**From:** Claude Code
+**To:** Smart Business Mission Control
+
+### Authority
+
+`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/05-correction-authorization.md`. Fetched and fast-forwarded the mission branch (`8af5e2a..a144d15`) before reading it, per the correction authorization and Codex's Stage 2 review.
+
+### Correction performed
+
+Narrow documentation-only correction of `docs/engineering/assurance/Build_Assurance_Baseline.md` and `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`, addressing exactly Codex Stage 2 review findings F-01, F-02, F-03:
+
+- **F-01:** withdrew the blanket "no Supabase/provider mutation" claim as applied to the local `npm run test` run; the local full-suite validation is real Supabase Auth/database writes (`tests/setup/test-clients.ts`'s `createTestOwner`, inventory RPC, catalog-import fixtures) against the developer's local `SUPABASE_TEST_URL` target. Marked **INSUFFICIENT EVIDENCE** for that target's exact identity and complete resulting state; the narrower claim (repository/workflow authoring and `npm ci`/`lint`/`typecheck`/`build` mutate no provider) is retained as supported.
+- **F-02:** corrected the test-coverage description to distinguish 8 pure-logic files from 20 real-backend integration files (17 `tests/inventory/**`, 2 `tests/catalog-import/**`, 1 `tests/parser-lease/**`) that exercise real Auth sign-in and scoped RLS/ACL checks (e.g. `rls-cross-business.test.ts`, `support-schema-rls.test.ts`) — the prior "no RLS/Auth coverage" claim was false. Also corrected: current GitHub Actions reaches **zero** successful test executions (28 failed files, 0 tests) because the global `tests/setup/load-env.ts` setup file throws before any file — pure-logic or integration — runs, not merely that integration tests fail.
+- **F-03:** corrected the CI-enablement wording to state that enabling the `test` job in CI requires **both** an approved/authorized Supabase test-environment target **and** a separately authorized `.github/workflows/build-assurance.yml` change binding the resulting secret(s) to a process variable — provisioning a GitHub Actions secret alone was inaccurately described as sufficient; it is not, since the workflow currently declares no `environment:` and no secret binding.
+
+### Files changed
+
+- `docs/engineering/assurance/Build_Assurance_Baseline.md`
+- `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/claude-code/01-stage1-report.md`
+- this appended handover-log entry
+- mission README status/next-action metadata
+- `communication/live/report.md`
+
+`.github/workflows/build-assurance.yml` was **not** modified. Codex's Stage 2 review (`codex/02-stage2-independent-review.md`) was **not** modified. No lint debt, application code, dependency, or external configuration was repaired. No integration test was rerun; no remote cleanup was performed. No deploy, merge, or `SB-P-1.12` activation occurred.
+
+### Validation performed
+
+Repository Markdown Quality Gate (`python tools/markdown/quality_gate.py`) passed for both corrected files (5/5 checks each: content, headings, code_fences, tables, escaped_markdown), plus the pre-commit markdown gate over all staged files. Staged-file scope, `git diff --cached --check`, and a staged-diff credential-pattern scan were run before commit; no unexpected paths and no credential values found.
+
+### Remaining INSUFFICIENT EVIDENCE
+
+Carried forward from the correction, unresolved by design (no rerun/investigation authorized): the exact identity of the Supabase project `SUPABASE_TEST_URL` designated during Claude Code's original local Stage 1 validation run, and the complete resulting remote state beyond the fixture-shaped writes identifiable from test source. See `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 4 and Section 7.
+
+### Next authorized action
+
+Mission Control reviews this correction and decides acceptance, further correction, or closure. Claude Code stops here.
+
+### Not yet authorized
+
+- provisioning `SUPABASE_TEST_*` as a GitHub Actions secret or any workflow-file wiring change;
+- any investigation, rerun, or cleanup of the `SUPABASE_TEST_URL` target;
+- application/lint repair;
+- mission acceptance or closure;
+- Founder/human merge;
+- `SB-P-1.12` activation.

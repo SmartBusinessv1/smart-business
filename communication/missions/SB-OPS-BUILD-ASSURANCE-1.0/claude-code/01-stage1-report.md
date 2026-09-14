@@ -4,8 +4,10 @@
 **Mission name:** Build Assurance & Automation Foundation
 **Stage:** Stage 1 -- Claude Code assurance implementation
 **Reporter:** Claude Code
-**Status:** `STAGE 1 COMPLETE -- AWAITING CODEX INDEPENDENT REVIEW AND MISSION CONTROL ACCEPTANCE`
-**Date:** 2026-09-14
+**Status:** `STAGE 1 EVIDENCE CORRECTED (F-01/F-02/F-03) -- AWAITING MISSION CONTROL`
+**Date:** 2026-09-14 (corrected 2026-09-15)
+
+**Correction record:** this report was corrected on 2026-09-15 under `communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/05-correction-authorization.md`, addressing findings F-01, F-02, and F-03 of the [Codex Stage 2 independent review](../codex/02-stage2-independent-review.md). Corrected passages are marked in place; no other content changed.
 
 ## 1. Objective
 
@@ -52,7 +54,7 @@ All commands below were run locally, against the mission branch at base commit `
 | Lint | `npm run lint` | Exit `1`; 159 problems (152 errors, 7 warnings) -- **all pre-existing**, none introduced by this mission (Section 6) |
 | Typecheck | `npx tsc --noEmit` | Exit `0`; no errors |
 | Build | `npm run build` | Exit `0`; client + SSR bundle produced |
-| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed (local only -- required Supabase test credentials were present; see 5.2) |
+| Test | `npm run test` | Exit `0`; 28 test files, 169 tests, all passed (local only -- required Supabase test credentials were present; see 5.2 -- **this run wrote real state to the `SUPABASE_TEST_URL` target, it was not side-effect-free; see Section 8, Finding 4**) |
 
 ### 5.2 Actual GitHub Actions CI evidence (authoritative)
 
@@ -63,9 +65,9 @@ Pull request [#575](https://github.com/SmartBusinessv1/smart-business/pull/575),
 | `lint` | `FAIL` -- 159 problems (152 errors, 7 warnings); exact match to local LF-normalized result; pre-existing (Section 8, Finding 1) |
 | `typecheck` | `PASS` |
 | `build` | `PASS` |
-| `test` | `FAIL` -- fails at `tests/setup/load-env.ts:11`: missing `SUPABASE_TEST_URL`, `SUPABASE_TEST_ANON_KEY`, `SUPABASE_TEST_SERVICE_ROLE_KEY`. GitHub Actions has no such secret configured; this mission did not provision one. Fails closed correctly rather than skipping silently (Section 8, Finding 3). |
+| `test` | `FAIL` -- fails at `tests/setup/load-env.ts:11` for all 28 files: missing `SUPABASE_TEST_URL`, `SUPABASE_TEST_ANON_KEY`, `SUPABASE_TEST_SERVICE_ROLE_KEY`. 28 failed files, 0 tests executed. GitHub Actions has no such secret configured, and even if it did, the workflow does not bind it to a process variable (see corrected Section 8, Finding 3). Fails closed correctly rather than skipping silently. |
 
-The real CI run is the authoritative evidence and is what surfaced the `test` job's secret-provisioning gap -- a genuine local-vs-CI discrepancy the local-only run could not have shown, and exactly the kind of thing this assurance baseline exists to catch.
+The real CI run is the authoritative evidence and is what surfaced the `test` job's environment-and-wiring gap (Section 8, Finding 3) -- a genuine local-vs-CI discrepancy the local-only run could not have shown, and exactly the kind of thing this assurance baseline exists to catch.
 
 Full detail, classification, and the "does not prove" boundary for each check are in `docs/engineering/assurance/Build_Assurance_Baseline.md` Sections 3-5.
 
@@ -90,7 +92,7 @@ This sequence touched only local Git configuration and the (untracked-by-diff) w
 - No dependency, `package.json`, or lockfile change was made.
 - No Product Truth, governance, roadmap, feature contract, route, permission, pricing, or UX change was made.
 - `SB-P-1.12` was not started and is not activated by this work.
-- No Supabase, schema, RLS, grant, RPC, production data, Lovable, AWS/Lambda, Cloudflare, Meta/WhatsApp, OpenAI, deployment, or runtime state was mutated.
+- **Corrected 2026-09-15 per Codex Stage 2 review Finding F-01:** the blanket claim originally here -- that no Supabase or other provider/runtime state was mutated -- was inaccurate. Authoring/committing this mission's file changes, and running `npm ci` / `npm run lint` / `npx tsc --noEmit` / `npm run build`, mutated no external provider. Running `npm run test` locally (Section 5.1) did write real Auth/database state to the `SUPABASE_TEST_URL` test-environment target -- see `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 4 and Section 7 for the full corrected statement, including the INSUFFICIENT EVIDENCE boundary on the exact target and complete effects. No GitHub Actions CI run executed any test, so CI caused no such writes. No schema, RLS, grant, RPC, production data, Lovable, AWS/Lambda, Cloudflare, Meta/WhatsApp, OpenAI, deployment, or branch-protection change was made.
 - No branch-protection change was made.
 - No failure was suppressed or replaced with a placeholder success. The pre-existing lint failure (Section 5/6) is reported, not hidden, and is not fixed by this mission.
 - No self-approval or self-merge occurred; this report stops for Codex independent review and Mission Control acceptance, with Founder/human merge required.
@@ -100,10 +102,11 @@ This sequence touched only local Git configuration and the (untracked-by-diff) w
 
 1. **Pre-existing lint debt** -- 152 `prettier/prettier` formatting errors and 7 warnings (6 `react-refresh/only-export-components`, 1 `react-hooks/exhaustive-deps`) exist on canonical `main` today, unrelated to this mission. Confirmed in real CI (run `34842467495`). Once `.github/workflows/build-assurance.yml` is active, its `lint` job will fail on ordinary pushes/PRs to `main` until this debt is addressed by a separately authorized change. This mission does not fix it (out of scope by explicit instruction).
 2. **Dependency vulnerabilities** -- `npm audit` (via `npm ci`) reports 10 known vulnerabilities (5 moderate, 5 high) in third-party dependencies at currently locked versions. Not gated by this workflow; recorded as a `FOLLOW-UP` candidate for a future, separately authorized mission.
-3. **`test` job fails closed in real CI -- missing Supabase test-environment secrets.** Confirmed in real CI (run `34842467495`): the job fails at `tests/setup/load-env.ts:11` because `SUPABASE_TEST_URL` / `SUPABASE_TEST_ANON_KEY` / `SUPABASE_TEST_SERVICE_ROLE_KEY` are not configured as GitHub Actions secrets. It passes locally only because a developer's gitignored `.env.test.local` supplies them. This mission does not provision CI secrets (credential/provider-access provisioning is outside "Build Now" scope). Mission Control/Founder decision needed: provision `SUPABASE_TEST_*` as a protected-environment secret (enabling real CI test execution) or accept this job as local-only evidence for now.
-4. **Deferred assurance capabilities** -- cross-tenant/RLS denial automation, migration-currency checking, canonical/delivery drift detection, Product Truth traceability automation, idempotency/replay harnesses, privileged-function scanning, runtime/provider-state monitoring, and dependency-vulnerability gating remain out of scope per the mission README's "Build Later" list.
+3. **`test` job cannot run in real CI today, and enabling it needs more than a secret -- corrected 2026-09-15 per Codex Stage 2 review Finding F-03.** Confirmed in real CI (run `34842467495`): the job fails at `tests/setup/load-env.ts:11` for all 28 files because `SUPABASE_TEST_URL` / `SUPABASE_TEST_ANON_KEY` / `SUPABASE_TEST_SERVICE_ROLE_KEY` are not configured as GitHub Actions secrets -- 28 failed files, 0 tests executed. It passes locally only because a developer's gitignored `.env.test.local` supplies them (and, per Finding 4 below, that local run itself writes real state to that target). This report previously said provisioning a GitHub Actions secret alone would enable the job; that was inaccurate -- `.github/workflows/build-assurance.yml` also binds no such secret to a process variable, so provisioning one would still not reach the test process without a separately authorized workflow-file change. Full corrected detail: `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 3.
+4. **Local full-suite validation wrote real state to the `SUPABASE_TEST_URL` target -- new finding, 2026-09-15, per Codex Stage 2 review Finding F-01.** The Section 5.1 local `PASS` was not side-effect-free: 20 of 28 test files are real Supabase Auth/database integration tests (`tests/setup/test-clients.ts`'s `createTestOwner`, inventory RPC writes, catalog-import fixture inserts), not mocks. Section 7's non-mutation bullet is corrected accordingly. Full corrected detail, including the INSUFFICIENT EVIDENCE boundary on the exact target and complete effects: `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, Finding 4 and Section 7.
+5. **Deferred assurance capabilities** -- cross-tenant/RLS denial automation, migration-currency checking, canonical/delivery drift detection, Product Truth traceability automation, idempotency/replay harnesses, privileged-function scanning, runtime/provider-state monitoring, and dependency-vulnerability gating remain out of scope per the mission README's "Build Later" list.
 
-Recommended next step for Mission Control: decide (a) whether pre-existing lint debt (Finding 1) warrants a follow-up mission before or independently of this baseline's acceptance, and (b) whether/how to provision Supabase test secrets to CI (Finding 3), since merging this workflow as-is will show both the `lint` and `test` jobs red on canonical `main` until those are resolved.
+Recommended next step for Mission Control: decide (a) whether pre-existing lint debt (Finding 1) warrants a follow-up mission before or independently of this baseline's acceptance; (b) whether the local integration-test execution described in Finding 4 stayed within this mission's authority, and whether any action is needed regarding the `SUPABASE_TEST_URL` target; and (c) whether/how to authorize a CI test-environment target and the separate workflow wiring described in Finding 3, since merging this workflow as-is will show both the `lint` and `test` jobs red on canonical `main` until those are resolved.
 
 ## 9. Repository references
 
