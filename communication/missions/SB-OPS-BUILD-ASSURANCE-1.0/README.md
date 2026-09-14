@@ -5,7 +5,7 @@
 - **Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
 - **Mission name:** Build Assurance & Automation Foundation
 - **Mission type:** Non-Product operational / engineering-assurance mission
-- **Status:** `STAGE 2 ACTIVE — CODEX INDEPENDENT REVIEW`
+- **Status:** `STAGE 2 REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL`
 - **Founder:** Riyas PK
 - **Mission Control:** Current Smart Business Mission Control
 - **Canonical repository:** `SmartBusinessv1/smart-business`
@@ -124,7 +124,7 @@ Stage 1 exposed two major real baseline findings without fixing them: pre-existi
 ### Stage 2 — Codex independent review
 
 **Owner:** Codex  
-**Status:** ACTIVE
+**Status:** REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL
 
 Controlling instruction:
 
@@ -160,7 +160,11 @@ A red non-required assurance job may be accepted only if Mission Control determi
 
 ## Current owner and next authorized action
 
-**Current owner:** Codex — Stage 2 independent review.
+**Current owner:** Mission Control — review Codex findings and determine correction authority.
+
+**Stage 2 recommendation:** `CORRECTION REQUIRED`; see [Codex independent review](codex/02-stage2-independent-review.md). Blockers concern the local-test/non-mutation contradiction, inaccurate coverage inventory, and the claim that provisioning secrets alone enables tests. The truthful red lint and test-setup checks are independently corroborated.
+
+**Reviewed PR head:** `eb27d3723b59e83e553ef43a07d3fa2a0a6399d1`; PR `#575` remains open against `main`. Publication references are recorded in the handover log and review-file history.
 
 **Current unresolved findings:**
 
@@ -170,7 +174,7 @@ A red non-required assurance job may be accepted only if Mission Control determi
 
 No decision is made in Stage 2 activation to repair those items.
 
-**Next authorized action:** Codex executes the independent review, writes the required review report, updates the authorized communication records, and stops for Mission Control.
+**Next authorized action:** Mission Control reviews the Stage 2 record and decides whether to authorize Claude Code correction and local-execution evidence reconciliation. Codex stops after review publication. No correction execution, environment provisioning, merge, acceptance, closure or `SB-P-1.12` activation is authorized by this status update.
 
 ## Material records
 

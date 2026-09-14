@@ -164,3 +164,31 @@ Codex may update only the Stage 2 communication paths authorized in the instruct
 - branch-protection changes;
 - mission acceptance/closure;
 - `SB-P-1.12` activation.
+
+## H-005 — Codex → Mission Control (Stage 2 independent review)
+
+**Date:** 2026-09-14
+**Status:** STAGE 2 REPORTED — CORRECTION REQUIRED — AWAITING MISSION CONTROL
+**From:** Codex
+**To:** Smart Business Mission Control
+
+### Review and repository references
+
+- Mission: `SB-OPS-BUILD-ASSURANCE-1.0`; repository: `SmartBusinessv1/smart-business`.
+- Record: [Codex independent review](codex/02-stage2-independent-review.md).
+- Branch: `mission/SB-OPS-BUILD-ASSURANCE-1.0-ci-baseline`.
+- Base: `main @ 4dcb272ebbf8c15410f5e206c71ebc0ec8cfe957`.
+- Reviewed head: `eb27d3723b59e83e553ef43a07d3fa2a0a6399d1`; final Stage 1 head: `4766a76ba3d0c676af01ab70a4800588bf23bcf4`.
+- PR: [#575](https://github.com/SmartBusinessv1/smart-business/pull/575), OPEN, not approved or merged by Codex.
+
+### Findings and validation
+
+Recommendation: **CORRECTION REQUIRED**. F-01 identifies the conflict between credential-backed local integration tests and the no-provider-mutation claim. F-02 identifies inaccurate reporting of existing RLS/Auth test exercise. F-03 identifies missing workflow wiring in the claimed provisioning-only remedy. Correction is reported, not performed; no application repair or green-check requirement is introduced.
+
+Original CI `34842467495` and current CI `34843465673` confirm typecheck/build PASS, lint FAIL with 152 pre-existing errors and 7 warnings, and test FAIL at missing-variable setup with 28 failed files and no executed tests. Current Markdown run `34843465658` passed. Git comparisons confirm six authorized Stage 1 paths, nine total PR paths after handoff, and unchanged application/toolchain inputs. Live protection requires only Markdown Quality Gate.
+
+Stage 2 writes comprise exactly the Codex review record, README status/next-action metadata, this appended handover and `communication/live/report.md`. Repository Markdown Quality Gate passed for all four files (check-only repair, lint and structural validation; zero warnings/failures). Internal file links and `git diff --check` passed. Manual Stage 1 patch inspection and a common credential-pattern scan found no introduced credential values; no approved automated secret scanner was found in inspected tooling. Publication remains pending until the authorized commits and push are verified.
+
+### Authority and next action
+
+Mission Control is the next reviewer and owns correction activation, acceptance and closure decisions. Claude Code's report and Stage 1 artifacts remain unchanged. Codex made no product, infrastructure, authentication, database, deployment, configuration, governance or provider changes; mission memory and live instruction remain unchanged. No credential-backed tests were rerun. Merge, environment provisioning, correction execution and `SB-P-1.12` activation remain unauthorized.
