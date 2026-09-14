@@ -1,55 +1,30 @@
 # SMART BUSINESS — LIVE REPORT
 
-**Mission ID:** `SB-OPS-BUILD-ASSURANCE-1.0`
-**Mission name:** Build Assurance & Automation Foundation
+**Mission ID:** `SB-OPS-CI-STABILIZATION-1.0`
+**Mission name:** CI Baseline Stabilization
 **Reporter:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK / All Smart Business rooms
-**Status:** `CLOSED — ACCEPTED`
+**Recipient:** Founder Riyas PK
+**Status:** `ACTIVATION PACKAGE PREPARED — AWAITING FOUNDER/HUMAN MERGE`
 **Date:** 2026-09-14
 
-## Final result
+## Activation result
 
-Founder merged PR `#575`. Mission Control independently verified canonical `main` at merge commit:
+Mission Control created the non-Product activation package for CI Baseline Stabilization from canonical `main@00a7bc0f261c481a2d0f907f1d7c31f6adc3c6ec`.
 
-`6f7d9fe11dd402a967c9eb418acaa9701b10d661`
+Build Now is limited to:
 
-Accepted PR head:
+1. behavior-preserving lint stabilization;
+2. minimal GitHub Actions binding to the approved isolated test environment;
+3. actual CI verification;
+4. independent Codex review;
+5. Mission Control acceptance and Founder/human merge.
 
-`aea52961fe9a0f23fba132c880e5e99a56f4df86`
+## Explicit boundary
 
-## Post-merge CI
+No Product feature work, dependency upgrades, production provider access, deployment, branch-protection change, test weakening, or `SB-P-1.12` activation is authorized.
 
-- Team LIPS Markdown Quality Gate — run `#1632`, run ID `34860976087` — `SUCCESS`.
-- Team LIPS Application Build Assurance — run `#28`, run ID `34860976067` — `FAILURE` with the accepted baseline unchanged:
-  - lint — FAIL;
-  - typecheck — PASS;
-  - build — PASS;
-  - test — FAIL.
+## Current action
 
-The red application-assurance jobs remain truthful known follow-ups and are not treated as healthy product state.
+Founder/human merges the activation PR after review. Mission Control then verifies canonical `main` and separately activates Stage 1A Claude Code repository stabilization.
 
-## Stage 3A / authority deviation
-
-Founder Option B read-only incident scoping classified the historical local integration-test target as `CLEARLY NON-PRODUCTION / TEST-ONLY` with HIGH confidence. The historical execution nevertheless exceeded the original literal no-provider-mutation boundary and remains recorded as an authority deviation, not retroactive authorization or precedent.
-
-## Carried-forward follow-ups
-
-1. pre-existing lint debt;
-2. approved CI test environment plus explicit workflow wiring;
-3. dependency vulnerabilities already recorded by the mission;
-4. routine non-urgent test-fixture housekeeping in the dedicated test project;
-5. broader Build Later assurance capabilities.
-
-These require separate authority and do not reopen this mission.
-
-## Product Mission boundary
-
-`SB-P-1.12` remains not activated.
-
-## Final disposition
-
-`SB-OPS-BUILD-ASSURANCE-1.0 — CLOSED — ACCEPTED`
-
-Canonical closure record:
-
-`communication/missions/SB-OPS-BUILD-ASSURANCE-1.0/mission-control/11-post-merge-verification-and-closure.md`
+No implementation work is active yet.
