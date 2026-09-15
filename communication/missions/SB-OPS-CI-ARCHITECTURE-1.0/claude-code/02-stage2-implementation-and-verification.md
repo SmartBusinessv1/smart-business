@@ -124,16 +124,35 @@ Run on the normalized (CI-representative `LF`) working tree, per the established
 
 ## 9. Full Assurance execution evidence on an applicable change (real CI)
 
-*(Completed after push -- see the follow-up handover entry / commit for the exact run reference, job result, and test counts once available. This PR's own changes touch `tests/**`, all three Vitest config files, `package.json`, and both workflow files, all on the approved trigger path list, so Full Assurance is expected to run on this PR.)*
+This PR's changes touch `tests/**`, all three Vitest config files, `package.json`, and both workflow files -- all on the approved trigger path list -- and Full Assurance correctly triggered on push, confirming the path filter works for a genuinely applicable change.
+
+**First run** ([`35010345588`](https://github.com/SmartBusinessv1/smart-business/actions/runs/35010345588), head `faae3b8d18f2b533d7c67605589dc6134f4f2221`, 3m44s): **1 test file failed, 19 passed (20); 1 test failed, 107 passed (108).** The single failure was `tests/catalog-import/real-http.test.ts > ... > a valid authenticated Owner request previews a real CSV over real HTTP` -- the file's first ("happy path") test, which this mission did **not** modify (`AssertionError: expected Error: Unauthorized: Invalid token to be null`, at a `getSession()`-obtained token immediately used in a real HTTP call). Both of *this mission's own* corrected tests in the same file and same run -- `"a missing Authorization header is rejected..."` and `"an invalid/garbage token is rejected..."` -- passed cleanly (834ms, 755ms).
+
+**Classification:** environment/infrastructure flakiness, not a defect introduced by this mission, and not repaired (per the authorization's explicit instruction to classify and report rather than fix). The failure mode -- a freshly-issued, just-signed-in JWT rejected as "Invalid token" by the server's independent verification call -- matches the transient GoTrue JWKS-lookup glitch already documented in `tests/setup/test-clients.ts` ("`invalid JWT: unrecognized JWT kid`... unrelated to anything under test"), for which `createTestOwner`'s own sign-in step already carries retry protection; this specific test's subsequent HTTP call has no equivalent retry and is not authorized to be given one in this stage. This is genuinely new information -- `real-http.test.ts` had never executed against real CI before this mission (every prior CI attempt failed instantly at the missing-environment-variable check), so no prior baseline exists to compare against.
+
+**Verification rerun** (diagnostic only -- no code changed; re-executes the already-authorized, already-pushed CI workflow to determine whether the first run's failure was transient or reproducible, per the authorization's "record exact pass/fail counts and any genuine failure details"): manually triggered via `workflow_dispatch` -- [`35010878815`](https://github.com/SmartBusinessv1/smart-business/actions/runs/35010878815), same commit, 3m39s. Result: **20 test files, 20 passed (20); 108 tests, 108 passed (108). Zero failures.** This confirms the first run's failure was transient, not a deterministic regression, and confirms `108` is the genuine, stable Full Assurance test count -- combined with Fast Gate's `61` (Section 6), the total is **169**, exactly matching the pre-split suite's known baseline (no test was added, removed, or had its outcome changed by this mission, only the two assertions described in Section 12).
+
+The same benign `"DISCOVERED DEFECT: direct INSERT into inventory_movements bypassed create_inventory_movement's negative-stock guard..."` console output appeared in both runs -- pre-existing, intentional test output from `tests/inventory/shared-write-path.test.ts` documenting an already-tracked `SB-P-1.10`-era characteristic (`docs/implementation/SB-P-1.10/evidence/tests/traceability-matrix.md`), not a new finding.
 
 ## 10. Fast Gate CI timing evidence
 
-*(Completed after push -- see the follow-up handover entry / commit for exact job-level timings from the real CI run on this PR's head.)*
+From the real CI run on this PR's head (`faae3b8`), all jobs run in parallel with no `needs:` dependency:
+
+| Job | Result | Duration |
+|---|---|---|
+| `lint` | PASS | 22s |
+| `typecheck` | PASS | 25s |
+| `build` | PASS | 24s |
+| `test-fast` | PASS | 28s |
+| Markdown Quality Gate (separate workflow) | PASS | 8s |
+
+Wall-clock PR feedback time is bounded by the slowest parallel job (28s), comfortably within the mission's 60-90s target -- confirming the Stage 1 report's timing prediction (Section 3) and directly attributable to `test-fast` no longer waiting on or executing the 108-test, ~3.5-minute Full Assurance suite.
 
 ## 11. Exact test counts and outcomes
 
-- **Fast (local, this stage):** 8 files, 61 tests, 0 failures.
-- **Full:** unchanged in file/test content from the pre-split suite except the two corrected assertions (Section 12) -- expected total suite count remains 169 tests across 28 files combined (61 fast + 108 full), to be confirmed against real CI in Section 9.
+- **Fast (local, this stage, and confirmed by real CI):** 8 files, 61 tests, 0 failures.
+- **Full (real CI, verification rerun):** 20 files, 108 tests, 0 failures. First run showed 1 transient, pre-existing, unrelated failure -- see Section 9 for full classification.
+- **Combined total:** 28 files, 169 tests -- exactly matching the pre-split suite's known baseline. No test was added, removed, or had its outcome changed by this mission beyond the two intentionally corrected assertions (Section 12).
 
 ## 12. `real-http.test.ts` correction -- evidence it no longer depends on a global table count
 
@@ -150,11 +169,12 @@ Full design rationale and the `sanitizeFilename` verification are in `docs/engin
 
 ## 14. Residual risks / follow-up recommendations
 
-- **Fast-tier parallelism (`fileParallelism: true` in `vitest.fast.config.ts`) is a genuine behavior change** from the pre-split suite's global `fileParallelism: false`. Local evidence (Section 8) shows all 61 fast tests passing under parallel execution with no observed instability, consistent with the Stage 1 finding that these 8 files share no external mutable state -- but Mission Control/Codex should treat this as worth independent re-confirmation given it is new behavior, not merely a config split.
+- **A transient, pre-existing Full Assurance test flake was newly surfaced (Section 9) -- reported, not repaired.** `tests/catalog-import/real-http.test.ts`'s unmodified "happy path" test failed once with `"Unauthorized: Invalid token"` on a token obtained moments earlier via a real sign-in, then passed cleanly on an immediate rerun with no code change. This matches the known transient GoTrue JWKS-lookup glitch class already documented in `tests/setup/test-clients.ts` for a different call site; this specific call site has no equivalent retry protection. This is newly observable only because Full Assurance is, as of this mission, the first time this file has ever executed against real CI. Recommend Mission Control decide whether to authorize a future, narrowly scoped follow-up (e.g. extending retry protection to this test's HTTP call, or accepting the residual flakiness) -- not authorized or performed in this stage.
+- **Fast-tier parallelism (`fileParallelism: true` in `vitest.fast.config.ts`) is a genuine behavior change** from the pre-split suite's global `fileParallelism: false`. Local and CI evidence (Sections 8, 10) show all 61 fast tests passing under parallel execution with no observed instability, consistent with the Stage 1 finding that these 8 files share no external mutable state -- but Mission Control/Codex should treat this as worth independent re-confirmation given it is new behavior, not merely a config split.
 - **`docs/engineering/assurance/Build_Assurance_Baseline.md` is now a large, multi-mission document** (three missions' historical and current content coexist). This was the explicit, deliberate choice under Decision 4 ("extend... do not create a competing document"), but its size and the density of "historical/corrected/resolved" annotations may eventually warrant a future housekeeping pass -- not proposed or needed now.
 - **Decisions 6 and 7 remain deliberately unresolved by design** (scheduled assurance deferred; no required-check promotion in Stage 2) -- carried forward, not overlooked.
-- No genuine application/test/environment defect was discovered during implementation; nothing required stopping and reporting under the authorization's "if implementation reveals a genuine defect... stop and report it" clause.
+- No defect attributable to this mission's own changes was discovered during implementation; the one genuine finding (the transient flake above) is pre-existing environment behavior, newly observed rather than newly introduced, and is reported per the authorization's "if implementation reveals a genuine defect... stop and report it" clause rather than repaired.
 
 ## 15. Next authorized action
 
-Claude Code stops after this Stage 2 report (to be finalized with Section 9/10 CI evidence via a documentation-only follow-up commit once available). Stage 3 (Codex independent review) is not authorized by this work and was not attempted. Mission Control reviews this implementation and evidence, then separately authorizes Stage 3 if it proceeds. PR `#581` remains open, unmerged, unapproved by Claude Code.
+Claude Code stops after this Stage 2 report, now finalized with real CI evidence including both the Fast Gate timings (Section 10) and Full Assurance's execution and rerun (Section 9). Stage 3 (Codex independent review) is not authorized by this work and was not attempted. Mission Control reviews this implementation and evidence -- including the transient-flake finding (Section 14) -- and then separately authorizes Stage 3 if it proceeds. PR `#581` remains open, unmerged, unapproved by Claude Code.

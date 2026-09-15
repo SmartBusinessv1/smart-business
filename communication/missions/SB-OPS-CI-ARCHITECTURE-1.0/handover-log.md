@@ -107,3 +107,36 @@ Mission Control reviews this Stage 2 implementation and evidence, then separatel
 - mission acceptance or closure;
 - Founder/human merge;
 - `SB-P-1.12` activation.
+
+## H-007 — Claude Code: Full Assurance CI evidence finalized, transient flake found and classified
+
+**Date:** 2026-09-16
+**From:** Claude Code
+**To:** Smart Business Mission Control
+**State:** COMPLETE -- AWAITING MISSION CONTROL
+
+### Result
+
+Real CI confirmed Fast Gate timing (`lint` 22s, `typecheck` 25s, `build` 24s, `test-fast` 28s, all parallel -- well within the 60-90s target) and exercised Full Assurance on this PR's own applicable changes, correctly triggered by the path filter.
+
+**First Full Assurance run** ([`35010345588`](https://github.com/SmartBusinessv1/smart-business/actions/runs/35010345588)) showed 1 of 108 tests failing: `tests/catalog-import/real-http.test.ts`'s unmodified "happy path" test, `"Unauthorized: Invalid token"` on a token from a just-completed real sign-in. **This mission's own two corrected assertions in the same file passed cleanly** (834ms, 755ms). A manually triggered, diagnostic-only rerun via `workflow_dispatch` (no code change -- [`35010878815`](https://github.com/SmartBusinessv1/smart-business/actions/runs/35010878815)) passed completely: **20 files, 108 tests, 0 failures.** Combined with Fast Gate's 61, the total is **169 tests across 28 files**, matching the pre-split baseline exactly.
+
+**Classification:** transient, pre-existing GoTrue JWKS-lookup-class Auth flakiness (already documented in `tests/setup/test-clients.ts` for a different call site), newly observable only because this is the first time `real-http.test.ts` has ever run against real CI. Not attributable to this mission's changes; not repaired (outside the narrowly approved test-code-change scope). Reported as a new `FOLLOW-UP` finding (Finding 5) in `docs/engineering/assurance/Build_Assurance_Baseline.md` Section 5, for Mission Control to decide whether to authorize a future fix.
+
+Full detail: Stage 2 report Sections 9-10 (now finalized) and Section 14 (residual risks).
+
+### Non-mutation confirmation
+
+Documentation-only follow-up commit: no application/test/workflow/config file changed beyond finalizing evidence text in the Stage 2 report and the assurance baseline document. The `workflow_dispatch` rerun executed already-pushed, already-authorized CI code with no modification -- a diagnostic action, not an implementation change. No secret value read, printed, or recorded.
+
+### Next authorized action
+
+Mission Control reviews the complete Stage 2 evidence, including the transient-flake finding, and decides whether to proceed to Stage 3. Claude Code stops here.
+
+### Not yet authorized
+
+- repairing the transient flake (Finding 5) or any other test/application code;
+- Stage 3 Codex review activation;
+- mission acceptance or closure;
+- Founder/human merge;
+- `SB-P-1.12` activation.

@@ -15,6 +15,10 @@ Implemented the approved Fast Gate + Full Assurance two-tier architecture exactl
 
 **Directly demonstrated, not merely asserted:** ran `npm run test:fast` locally with `SUPABASE_TEST_URL`/`SUPABASE_TEST_ANON_KEY`/`SUPABASE_TEST_SERVICE_ROLE_KEY` explicitly unset — **8 test files, 61 tests, all passed, 10.06s.**
 
+## Real CI evidence
+
+Fast Gate: `lint`/`typecheck`/`build`/`test-fast` all PASS, 22-28s each in parallel — well within the 60-90s target. Full Assurance correctly triggered on this PR's own applicable changes (`tests/**`, Vitest configs, `package.json`, both workflows): first run found 1 of 108 tests failing, in an **unmodified** file (`real-http.test.ts`'s "happy path" test) — classified as pre-existing, transient GoTrue JWKS-lookup-class Auth flakiness, **not** attributable to this mission (this mission's own two corrected assertions in the same file passed cleanly, 834ms/755ms). A diagnostic `workflow_dispatch` rerun (no code change) confirmed **20/20 files, 108/108 tests, 0 failures**. Combined total: **169 tests across 28 files**, exactly matching the pre-split baseline. Reported as a new `FOLLOW-UP` finding in the assurance baseline, not repaired (outside this mission's narrow scope).
+
 ## Non-mutation confirmation
 
 No dependency, `package-lock.json`, database/schema/RLS/grant/RPC, provider configuration, production state, deployment, or branch-protection change. No test or quality gate weakened, skipped, muted, or bypassed. No secret value read, printed, or recorded. `SB-P-1.12` was not started. No self-approval or self-merge occurred.
