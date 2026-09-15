@@ -3,26 +3,24 @@
 **Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
 **Mission name:** Fast Gate + Full Assurance
 **Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK
-**Status:** `ACTIVATION PROPOSED — AWAITING FOUNDER MERGE`
+**Recipient:** Claude Code
+**Status:** `STAGE 1 ACTIVE — CLASSIFICATION AND DESIGN`
 **Date:** 2026-09-15
 
-A new non-Product operational mission has been opened to graduate Smart Business CI from a one-speed "run everything everywhere" model into a Fast Gate + Full Assurance architecture.
+Activation PR `#580` is merged. Canonical `main` is:
 
-Durable mission record:
+`f92d2160cc820f24bd93af31187430622f45155f`
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/README.md`
+Work on:
 
-Controlling activation authority:
+`mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/01-activation.md`
+Read and execute:
 
-Activation branch:
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/02-stage1-classification-and-design-instruction.md`
 
-`mission/SB-OPS-CI-ARCHITECTURE-1.0-activation`
+Stage 1 is repository investigation and implementation design only. Classify the existing CI/test estate, design the Fast Gate + Full Assurance split, review the shared-state-sensitive test assertion, publish the Stage 1 report and minimum communication updates, then stop for Mission Control.
 
-No specialist implementation is authorized yet. Founder/human merge of the activation PR is required first.
-
-Do not modify application code, tests, CI workflows, dependencies, database/schema/RLS/grants/RPCs, provider configuration, deployment, branch protection, Product Truth, or Product Mission state under this activation instruction.
+Do not make implementation changes to application code, tests, workflow YAML, package scripts, dependencies, database/provider state, deployments or branch protection in Stage 1.
 
 `SB-P-1.12` remains not activated.
