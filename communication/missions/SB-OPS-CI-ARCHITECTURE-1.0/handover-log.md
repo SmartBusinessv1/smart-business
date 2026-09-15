@@ -72,3 +72,38 @@ Approved implementation includes:
 No branch-protection change, scheduled assurance, production/provider/database change, dependency change, Product Mission work or self-merge is authorized.
 
 PR `#581` remains open. `SB-P-1.12` remains not activated.
+
+## H-006 — Claude Code to Mission Control Stage 2
+
+**Date:** 2026-09-16
+**From:** Claude Code
+**To:** Smart Business Mission Control
+**State:** COMPLETE -- AWAITING MISSION CONTROL
+
+### Result
+
+Full detail: [Stage 2 report](claude-code/02-stage2-implementation-and-verification.md).
+
+Implemented all 7 approved decisions exactly. New: `vitest.shared.ts`, `vitest.fast.config.ts`, `vitest.full.config.ts`, `.github/workflows/full-assurance.yml`. Changed: `package.json` (2 new scripts only), `.github/workflows/build-assurance.yml` (`test`→`test-fast`, Supabase binding removed), `tests/catalog-import/real-http.test.ts` (unique-marker correction), `docs/engineering/assurance/Build_Assurance_Baseline.md` (extended). `vitest.config.ts` and `package-lock.json` untouched.
+
+Local evidence: `lint`/`typecheck`/`build` PASS; `test:fast` run with all `SUPABASE_TEST_*` explicitly unset -- **8 files, 61 tests, all passed, 10.06s** -- directly demonstrating (not merely asserting) that Fast Tests require no Supabase credentials. `test:full`/default `npm test` not run locally (requires provider credentials, not authorized locally this stage); Full Assurance CI evidence gathered from real GitHub Actions instead (see the report's Section 9, completed via a documentation-only follow-up once the CI run is available).
+
+### Non-mutation confirmation
+
+No dependency, lockfile, database/schema/RLS/grant/RPC, provider configuration, production state, deployment, or branch-protection change. No test or quality gate weakened, skipped, muted, or bypassed. No secret value read, printed, or recorded. `SB-P-1.12` not started. No self-approval or self-merge.
+
+### Repository references
+
+- Branch: `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
+- Pull request: [#581](https://github.com/SmartBusinessv1/smart-business/pull/581), OPEN, not approved or merged
+
+### Next authorized action
+
+Mission Control reviews this Stage 2 implementation and evidence, then separately authorizes Stage 3 (Codex independent review) if it proceeds. Claude Code stops here.
+
+### Not yet authorized
+
+- Stage 3 Codex review activation;
+- mission acceptance or closure;
+- Founder/human merge;
+- `SB-P-1.12` activation.

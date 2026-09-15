@@ -12,14 +12,15 @@ name: Team LIPS Application Build Assurance
 # runtime, or provider state, and is not itself a required branch-protection
 # check unless Mission Control/Founder separately configures it as one.
 #
-# SB-OPS-CI-STABILIZATION-1.0 Stage 1A -- the `test` job below references
-# the `smart-business-test` GitHub Actions environment and its three
-# SUPABASE_TEST_* secrets by name only (repository-side wiring). No secret
-# value is set, and no GitHub environment/secret is provisioned by this
-# change. Until Stage 1B (separately authorized Infrastructure Operations /
-# Founder work) creates that environment and its secrets, the referenced
-# secrets resolve empty and this job continues to fail closed exactly as it
-# does today, at the same tests/setup/load-env.ts check.
+# SB-OPS-CI-ARCHITECTURE-1.0 Stage 2 -- this is the always-running "Fast
+# Gate": lint, typecheck, build, and Fast Tests (the 8 environment-
+# independent files from vitest.fast.config.ts). No job here requires the
+# shared smart-business-test Supabase environment or any SUPABASE_TEST_*
+# secret -- that dependency moved to the separately triggered, path-
+# filtered .github/workflows/full-assurance.yml, which runs the remaining
+# 20 Supabase-dependent files via vitest.full.config.ts. See
+# docs/engineering/assurance/Build_Assurance_Baseline.md for the full
+# two-tier contract.
 
 on:
   push:
@@ -87,10 +88,9 @@ jobs:
       - name: Run Build
         run: npm run build
 
-  test:
-    name: Automated Tests (vitest)
+  test-fast:
+    name: Fast Tests (vitest)
     runs-on: ubuntu-latest
-    environment: smart-business-test
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -103,9 +103,5 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Tests
-        env:
-          SUPABASE_TEST_URL: ${{ secrets.SUPABASE_TEST_URL }}
-          SUPABASE_TEST_ANON_KEY: ${{ secrets.SUPABASE_TEST_ANON_KEY }}
-          SUPABASE_TEST_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_TEST_SERVICE_ROLE_KEY }}
-        run: npm run test
+      - name: Run Fast Tests
+        run: npm run test:fast

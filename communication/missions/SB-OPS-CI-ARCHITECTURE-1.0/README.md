@@ -7,13 +7,13 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 2 ACTIVE — IMPLEMENTATION`
+- **Status:** `STAGE 2 COMPLETE — AWAITING MISSION CONTROL`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#580 — MERGED`
 - **Activation merge:** `f92d2160cc820f24bd93af31187430622f45155f`
 - **Working branch:** `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
 - **Implementation PR:** `#581 — OPEN — DO NOT MERGE`
-- **Current owner:** Claude Code (Stage 2 implementation)
+- **Current owner:** Smart Business Mission Control (Stage 2 report awaiting review)
 
 ## Purpose
 
@@ -63,18 +63,15 @@ Mission Control review / Stage 2 authority:
 
 ## Stage 2 — Implementation
 
-**ACTIVE.**
+**COMPLETE — AWAITING MISSION CONTROL.**
 
-Authorized decisions:
+Implemented exactly the 7 approved decisions: `build-assurance.yml` kept and evolved into the Fast Gate (`lint`, `typecheck`, `build`, new `test-fast` running the 8 environment-independent files, no `SUPABASE_TEST_*` binding); new `full-assurance.yml` created for the path-filtered, selective Full Assurance tier (`test-full`, the 20 Supabase-dependent files, `smart-business-test` environment + the same three secret-name bindings already approved); explicit `vitest.fast.config.ts`/`vitest.full.config.ts` (plus a small `vitest.shared.ts` helper) added, `vitest.config.ts` untouched; `docs/engineering/assurance/Build_Assurance_Baseline.md` extended, not forked; the unique-marker existence-assertion correction implemented in `tests/catalog-import/real-http.test.ts`; scheduled assurance and branch-protection changes correctly left out of scope.
 
-- keep `.github/workflows/build-assurance.yml` as the existing Fast Gate workflow identity;
-- create `.github/workflows/full-assurance.yml` for selective Full Assurance;
-- use explicit fast/full Vitest config files rather than Vitest projects;
-- use conservative path filtering including `src/**`, `tests/**`, `supabase/**`, `lambda/**`, `scripts/**`, package/config files and both assurance workflows;
-- extend `docs/engineering/assurance/Build_Assurance_Baseline.md` rather than fork a competing assurance contract;
-- implement the unique-marker existence assertion in `tests/catalog-import/real-http.test.ts`;
-- keep scheduled regression assurance out of Stage 2;
-- make no branch-protection changes in Stage 2.
+Local evidence: `lint`/`typecheck`/`build` PASS; `test:fast` run with all `SUPABASE_TEST_*` vars explicitly unset -- 8 files, 61 tests, all passed, 10.06s, confirming no Supabase dependency.
+
+Report:
+
+`claude-code/02-stage2-implementation-and-verification.md`
 
 ## Explicit boundaries
 

@@ -11,6 +11,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
+    "test:fast": "vitest run -c vitest.fast.config.ts",
+    "test:full": "vitest run -c vitest.full.config.ts",
     "supabase:test": "node scripts/supabase-cli.mjs test",
     "supabase:production": "node scripts/supabase-cli.mjs production",
     "build:lambda": "node lambda/parser/build.mjs"
