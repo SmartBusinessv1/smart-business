@@ -7,12 +7,13 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 1 COMPLETE — AWAITING MISSION CONTROL`
+- **Status:** `STAGE 2 ACTIVE — IMPLEMENTATION`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#580 — MERGED`
 - **Activation merge:** `f92d2160cc820f24bd93af31187430622f45155f`
 - **Working branch:** `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
-- **Current owner:** Smart Business Mission Control (Stage 1 report awaiting review)
+- **Implementation PR:** `#581 — OPEN — DO NOT MERGE`
+- **Current owner:** Claude Code (Stage 2 implementation)
 
 ## Purpose
 
@@ -37,39 +38,52 @@ Graduate the current CI model from "run everything everywhere" into a two-speed 
 - Run when relevant application, database, security, integration or test paths change.
 - Run before final Product Mission acceptance where applicable.
 - Run on `main` after relevant implementation merges.
-- Remain manually triggerable; scheduled regression assurance may be added if justified.
+- Remain manually triggerable.
 
 ### Test isolation hardening
 
-- Identify shared-state-sensitive assertions such as global mutable row-count comparisons.
-- Prefer run-scoped/test-scoped identifiers and fixture ownership where practical.
-- Preserve security intent and fail-closed behavior.
+- Remove the identified shared-state-sensitive global-count assertion pattern in `tests/catalog-import/real-http.test.ts`.
+- Use request-specific unique markers and scoped existence assertions.
+- Preserve or strengthen the original security intent.
 - Do not weaken, skip, mute or bypass genuine defects.
 
 ## Stage 1 — Classification and design
 
-**COMPLETE — AWAITING MISSION CONTROL.**
+**COMPLETE — ACCEPTED.**
 
-All 28 test files classified (8 environment-independent, 20 Supabase-dependent; none uncertain). Fast Gate / Full Assurance split designed, path-trigger model proposed, and the flagged shared-state-sensitive assertion in `tests/catalog-import/real-http.test.ts` analyzed with a concrete fix design (unique-marker existence check replacing an unscoped global-count comparison).
-
-Controlling instruction:
-
-`mission-control/02-stage1-classification-and-design-instruction.md`
+All 28 test files were classified: 8 environment-independent and 20 Supabase-dependent, none uncertain. The global `setupFiles` coupling in `vitest.config.ts` was confirmed as the structural blocker preventing the pure test subset from running without Supabase credentials.
 
 Report:
 
 `claude-code/01-stage1-classification-and-design.md`
 
-Stage 1 is documentation-only. No CI/test implementation change is authorized until Mission Control reviews and accepts the design; several explicit decisions are needed first (report Section 9).
+Mission Control review / Stage 2 authority:
+
+`mission-control/03-stage1-review-and-stage2-authorization.md`
+
+## Stage 2 — Implementation
+
+**ACTIVE.**
+
+Authorized decisions:
+
+- keep `.github/workflows/build-assurance.yml` as the existing Fast Gate workflow identity;
+- create `.github/workflows/full-assurance.yml` for selective Full Assurance;
+- use explicit fast/full Vitest config files rather than Vitest projects;
+- use conservative path filtering including `src/**`, `tests/**`, `supabase/**`, `lambda/**`, `scripts/**`, package/config files and both assurance workflows;
+- extend `docs/engineering/assurance/Build_Assurance_Baseline.md` rather than fork a competing assurance contract;
+- implement the unique-marker existence assertion in `tests/catalog-import/real-http.test.ts`;
+- keep scheduled regression assurance out of Stage 2;
+- make no branch-protection changes in Stage 2.
 
 ## Explicit boundaries
 
 This mission does **not** activate `SB-P-1.12`.
 
-This mission does not authorize product features, UX changes, production deployment, production database access, schema/RLS/grant/RPC changes unless separately authorized, dependency upgrades, or unrelated cleanup.
+This mission does not authorize product features, UX changes, production deployment, production database access, schema/RLS/grant/RPC changes, dependency upgrades/additions, branch-protection changes, scheduled assurance setup, or unrelated cleanup.
 
 The closed `SB-OPS-CI-STABILIZATION-1.0` mission remains closed and archived.
 
-## Initial evidence
+## Current state
 
-The current application assurance workflow runs `npm run test` for every pull request and binds that job to `smart-business-test`. A recent documentation-only closeout PR therefore executed the full 169-test integration suite for about 3.5 minutes and exposed a shared-state-sensitive global-count assertion. That evidence motivates this architecture mission; it does not authorize bypassing relevant assurance.
+PR `#581` remains open and must not be merged until Stage 2 implementation, CI evidence, independent review, Mission Control acceptance and Founder merge authorization are complete.
