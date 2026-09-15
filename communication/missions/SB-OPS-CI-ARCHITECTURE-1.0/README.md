@@ -7,12 +7,12 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 1 ACTIVE — CLASSIFICATION AND DESIGN`
+- **Status:** `STAGE 1 COMPLETE — AWAITING MISSION CONTROL`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#580 — MERGED`
 - **Activation merge:** `f92d2160cc820f24bd93af31187430622f45155f`
 - **Working branch:** `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
-- **Current owner:** Claude Code
+- **Current owner:** Smart Business Mission Control (Stage 1 report awaiting review)
 
 ## Purpose
 
@@ -48,15 +48,19 @@ Graduate the current CI model from "run everything everywhere" into a two-speed 
 
 ## Stage 1 — Classification and design
 
-**ACTIVE.**
+**COMPLETE — AWAITING MISSION CONTROL.**
 
-Claude Code is assigned repository investigation, full test classification, Fast Gate / Full Assurance design, path-trigger design, and shared-state test-isolation analysis.
+All 28 test files classified (8 environment-independent, 20 Supabase-dependent; none uncertain). Fast Gate / Full Assurance split designed, path-trigger model proposed, and the flagged shared-state-sensitive assertion in `tests/catalog-import/real-http.test.ts` analyzed with a concrete fix design (unique-marker existence check replacing an unscoped global-count comparison).
 
 Controlling instruction:
 
 `mission-control/02-stage1-classification-and-design-instruction.md`
 
-Stage 1 is documentation-only. No CI/test implementation change is authorized until Mission Control reviews and accepts the design.
+Report:
+
+`claude-code/01-stage1-classification-and-design.md`
+
+Stage 1 is documentation-only. No CI/test implementation change is authorized until Mission Control reviews and accepts the design; several explicit decisions are needed first (report Section 9).
 
 ## Explicit boundaries
 
