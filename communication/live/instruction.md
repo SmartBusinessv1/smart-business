@@ -1,17 +1,28 @@
-# SMART BUSINESS — REPOSITORY COMMUNICATION
+# SMART BUSINESS — LIVE INSTRUCTION
 
-# Instruction — Awaiting Mission Activation
+**Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
+**Mission name:** Fast Gate + Full Assurance
+**Sender:** Smart Business Mission Control
+**Recipient:** Founder Riyas PK
+**Status:** `ACTIVATION PROPOSED — AWAITING FOUNDER MERGE`
+**Date:** 2026-09-15
 
-**Mission ID:** `NONE`
+A new non-Product operational mission has been opened to graduate Smart Business CI from a one-speed "run everything everywhere" model into a Fast Gate + Full Assurance architecture.
 
-**From:** Smart Business Mission Control
+Durable mission record:
 
-**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/README.md`
 
----
+Controlling activation authority:
 
-`communication/live/` is currently reset and contains no active mission.
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/01-activation.md`
 
-When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
+Activation branch:
 
-Do not infer a mission from archived communication or prior chat history.
+`mission/SB-OPS-CI-ARCHITECTURE-1.0-activation`
+
+No specialist implementation is authorized yet. Founder/human merge of the activation PR is required first.
+
+Do not modify application code, tests, CI workflows, dependencies, database/schema/RLS/grants/RPCs, provider configuration, deployment, branch protection, Product Truth, or Product Mission state under this activation instruction.
+
+`SB-P-1.12` remains not activated.
