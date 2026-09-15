@@ -2,32 +2,27 @@
 
 **Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
 **Mission name:** Fast Gate + Full Assurance
-**Reporter:** Claude Code
+**Reporter:** Awaiting Codex independent review
 **Recipient:** Smart Business Mission Control
-**Status:** `STAGE 2 COMPLETE — AWAITING MISSION CONTROL`
+**Status:** `STAGE 3 ACTIVE — REVIEW REPORT PENDING`
 **Date:** 2026-09-16
 
-## Result
+Stage 2 has been independently reviewed and accepted by Mission Control.
 
-Full detail: [`claude-code/02-stage2-implementation-and-verification.md`](../missions/SB-OPS-CI-ARCHITECTURE-1.0/claude-code/02-stage2-implementation-and-verification.md).
+Accepted implementation head:
 
-Implemented the approved Fast Gate + Full Assurance two-tier architecture exactly per Mission Control's 7 decisions: kept `.github/workflows/build-assurance.yml` as the Fast Gate (lint, typecheck, build, new `test-fast`, no Supabase binding); added `.github/workflows/full-assurance.yml` for the path-filtered, selective Full Assurance tier (`test-full`, `smart-business-test` environment, same secret-name bindings already approved); added explicit `vitest.fast.config.ts`/`vitest.full.config.ts` + a small `vitest.shared.ts` helper (`vitest.config.ts` untouched); extended `docs/engineering/assurance/Build_Assurance_Baseline.md`; implemented the approved unique-marker correction in `tests/catalog-import/real-http.test.ts`, replacing an unscoped global row-count comparison.
+`74455d538e984edd1a7fc3b2187d02029d490e84`
 
-**Directly demonstrated, not merely asserted:** ran `npm run test:fast` locally with `SUPABASE_TEST_URL`/`SUPABASE_TEST_ANON_KEY`/`SUPABASE_TEST_SERVICE_ROLE_KEY` explicitly unset — **8 test files, 61 tests, all passed, 10.06s.**
+Mission Control independently verified final-head Fast Gate, Full Assurance and Markdown checks as successful, with Fast Tests passing 8/8 files and 61/61 tests, Full Assurance passing 20/20 files and 108/108 tests, and the combined 169-test baseline preserved.
 
-## Real CI evidence
+Stage 3 is now assigned to Codex under:
 
-Fast Gate: `lint`/`typecheck`/`build`/`test-fast` all PASS, 22-28s each in parallel — well within the 60-90s target. Full Assurance correctly triggered on this PR's own applicable changes (`tests/**`, Vitest configs, `package.json`, both workflows): first run found 1 of 108 tests failing, in an **unmodified** file (`real-http.test.ts`'s "happy path" test) — classified as pre-existing, transient GoTrue JWKS-lookup-class Auth flakiness, **not** attributable to this mission (this mission's own two corrected assertions in the same file passed cleanly, 834ms/755ms). A diagnostic `workflow_dispatch` rerun (no code change) confirmed **20/20 files, 108/108 tests, 0 failures**. Combined total: **169 tests across 28 files**, exactly matching the pre-split baseline. Reported as a new `FOLLOW-UP` finding in the assurance baseline, not repaired (outside this mission's narrow scope).
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/04-stage2-review-and-stage3-authorization.md`
 
-## Non-mutation confirmation
+Expected report:
 
-No dependency, `package-lock.json`, database/schema/RLS/grant/RPC, provider configuration, production state, deployment, or branch-protection change. No test or quality gate weakened, skipped, muted, or bypassed. No secret value read, printed, or recorded. `SB-P-1.12` was not started. No self-approval or self-merge occurred.
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/codex/01-stage3-independent-review.md`
 
-## Repository state
+PR `#581` remains open and must not be merged during Stage 3.
 
-- **Branch:** `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
-- **Pull request:** [#581](https://github.com/SmartBusinessv1/smart-business/pull/581), open, not merged
-
-## Next authorized action
-
-Claude Code stops here. Mission Control reviews this Stage 2 implementation and evidence, then separately authorizes Stage 3 (Codex independent review) if it proceeds. Founder/human merge to protected `main` remains required and has not occurred.
+`SB-P-1.12` remains not activated.
