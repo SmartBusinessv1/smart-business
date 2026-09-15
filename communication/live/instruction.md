@@ -1,32 +1,17 @@
-# SMART BUSINESS — LIVE INSTRUCTION
+# SMART BUSINESS — REPOSITORY COMMUNICATION
 
-**Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
-**Mission name:** Fast Gate + Full Assurance
-**Sender:** Smart Business Mission Control
-**Recipient:** Founder Riyas PK
-**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
-**Date:** 2026-09-16
+# Instruction — Awaiting Mission Activation
 
-Stage 3 independent review is complete under Founder-authorized Mission Control substitution because Codex was unavailable.
+**Mission ID:** `NONE`
 
-Disposition:
+**From:** Smart Business Mission Control
 
-`PASS WITH NON-BLOCKING FINDINGS`
+**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
 
-Stage 4 Mission Control acceptance is complete.
+---
 
-Pull request:
+`communication/live/` is currently reset and contains no active mission.
 
-`#581 — OPEN — READY FOR FOUNDER MERGE`
+When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
 
-Acceptance record:
-
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md`
-
-Founder action: merge PR `#581` to protected `main`.
-
-Do not perform further implementation changes under this instruction unless Mission Control explicitly reopens the mission for a correction.
-
-After merge, Mission Control will verify canonical `main`, applicable post-merge Fast Gate / Full Assurance, archive the live instruction/report pair, restore reusable live defaults, and durably close this mission.
-
-`SB-P-1.12` remains not activated.
+Do not infer a mission from archived communication or prior chat history.
