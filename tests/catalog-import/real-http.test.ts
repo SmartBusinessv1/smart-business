@@ -14,6 +14,7 @@
 // of exercising the real dedicated test project rather than mocks.
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createClient } from "@supabase/supabase-js";
+import { randomUUID } from "node:crypto";
 import { adminClient, createTestOwner, type TestOwner } from "../setup/test-clients";
 import {
   callFormDataServerFn,
@@ -86,41 +87,47 @@ describe("catalog import -- real authenticated HTTP boundary (SEC-IMP-1)", () =>
   });
 
   it("a missing Authorization header is rejected before any privileged write occurs", async () => {
-    const before = await adminClient
-      .from("catalog_import_batches")
-      .select("id", { count: "exact", head: true });
+    // SB-OPS-CI-ARCHITECTURE-1.0 Stage 2: a unique per-attempt marker,
+    // rather than a global table-row-count comparison, so this assertion
+    // is immune to unrelated concurrent activity in the shared
+    // smart-business-test project (e.g. another PR's Full Assurance run)
+    // and proves the exact security property -- no privileged write
+    // attributable to *this* rejected attempt -- rather than an ambient
+    // aggregate that could coincidentally mask or fake a pass either way.
+    const marker = `unauth-missing-header-${randomUUID()}.csv`;
 
     const res = await callFormDataServerFn(
       server.baseUrl,
       "catalogImportPreview",
-      csvFormData("Product Name\nShould Not Be Created\n"),
+      csvFormData("Product Name\nShould Not Be Created\n", marker),
       {}, // no authorization header at all
     );
 
     expect(res.error).toBeTruthy();
     const after = await adminClient
       .from("catalog_import_batches")
-      .select("id", { count: "exact", head: true });
-    expect(after.count).toBe(before.count);
+      .select("id")
+      .eq("original_filename", marker);
+    expect(after.data).toEqual([]);
   });
 
   it("an invalid/garbage token is rejected before any privileged write occurs", async () => {
-    const before = await adminClient
-      .from("catalog_import_batches")
-      .select("id", { count: "exact", head: true });
+    // See the marker-based rationale on the previous test.
+    const marker = `unauth-invalid-token-${randomUUID()}.csv`;
 
     const res = await callFormDataServerFn(
       server.baseUrl,
       "catalogImportPreview",
-      csvFormData("Product Name\nShould Not Be Created\n"),
+      csvFormData("Product Name\nShould Not Be Created\n", marker),
       { authorization: "Bearer not-a-real-token-at-all" },
     );
 
     expect(res.error).toBeTruthy();
     const after = await adminClient
       .from("catalog_import_batches")
-      .select("id", { count: "exact", head: true });
-    expect(after.count).toBe(before.count);
+      .select("id")
+      .eq("original_filename", marker);
+    expect(after.data).toEqual([]);
   });
 
   it("a well-formed but foreign JWT (signed for a different, nonexistent session) is rejected", async () => {

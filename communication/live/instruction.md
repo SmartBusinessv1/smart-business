@@ -4,25 +4,29 @@
 **Mission name:** Fast Gate + Full Assurance
 **Sender:** Smart Business Mission Control
 **Recipient:** Founder Riyas PK
-**Status:** `ACTIVATION PROPOSED — AWAITING FOUNDER MERGE`
-**Date:** 2026-09-15
+**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
+**Date:** 2026-09-16
 
-A new non-Product operational mission has been opened to graduate Smart Business CI from a one-speed "run everything everywhere" model into a Fast Gate + Full Assurance architecture.
+Stage 3 independent review is complete under Founder-authorized Mission Control substitution because Codex was unavailable.
 
-Durable mission record:
+Disposition:
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/README.md`
+`PASS WITH NON-BLOCKING FINDINGS`
 
-Controlling activation authority:
+Stage 4 Mission Control acceptance is complete.
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/01-activation.md`
+Pull request:
 
-Activation branch:
+`#581 — OPEN — READY FOR FOUNDER MERGE`
 
-`mission/SB-OPS-CI-ARCHITECTURE-1.0-activation`
+Acceptance record:
 
-No specialist implementation is authorized yet. Founder/human merge of the activation PR is required first.
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md`
 
-Do not modify application code, tests, CI workflows, dependencies, database/schema/RLS/grants/RPCs, provider configuration, deployment, branch protection, Product Truth, or Product Mission state under this activation instruction.
+Founder action: merge PR `#581` to protected `main`.
+
+Do not perform further implementation changes under this instruction unless Mission Control explicitly reopens the mission for a correction.
+
+After merge, Mission Control will verify canonical `main`, applicable post-merge Fast Gate / Full Assurance, archive the live instruction/report pair, restore reusable live defaults, and durably close this mission.
 
 `SB-P-1.12` remains not activated.
