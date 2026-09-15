@@ -7,13 +7,14 @@
 - **Mission type:** Non-Product operational / engineering-assurance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 2 COMPLETE — AWAITING MISSION CONTROL`
+- **Status:** `STAGE 3 ACTIVE — INDEPENDENT REVIEW`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#580 — MERGED`
 - **Activation merge:** `f92d2160cc820f24bd93af31187430622f45155f`
 - **Working branch:** `mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
 - **Implementation PR:** `#581 — OPEN — DO NOT MERGE`
-- **Current owner:** Smart Business Mission Control (Stage 2 report awaiting review)
+- **Stage 2 accepted implementation head:** `74455d538e984edd1a7fc3b2187d02029d490e84`
+- **Current owner:** Codex (Stage 3 independent review)
 
 ## Purpose
 
@@ -63,17 +64,40 @@ Mission Control review / Stage 2 authority:
 
 ## Stage 2 — Implementation
 
-**COMPLETE — AWAITING MISSION CONTROL.**
+**COMPLETE — ACCEPTED.**
 
-Implemented exactly the 7 approved decisions: `build-assurance.yml` kept and evolved into the Fast Gate (`lint`, `typecheck`, `build`, new `test-fast` running the 8 environment-independent files, no `SUPABASE_TEST_*` binding); new `full-assurance.yml` created for the path-filtered, selective Full Assurance tier (`test-full`, the 20 Supabase-dependent files, `smart-business-test` environment + the same three secret-name bindings already approved); explicit `vitest.fast.config.ts`/`vitest.full.config.ts` (plus a small `vitest.shared.ts` helper) added, `vitest.config.ts` untouched; `docs/engineering/assurance/Build_Assurance_Baseline.md` extended, not forked; the unique-marker existence-assertion correction implemented in `tests/catalog-import/real-http.test.ts`; scheduled assurance and branch-protection changes correctly left out of scope.
+Implemented the approved two-tier architecture: `build-assurance.yml` now provides the always-running Fast Gate (`lint`, `typecheck`, `build`, `test-fast`); new `full-assurance.yml` provides path-filtered Full Assurance (`test-full`) against `smart-business-test`; explicit `vitest.fast.config.ts` / `vitest.full.config.ts` plus `vitest.shared.ts` separate the suites; `test:fast` / `test:full` scripts were added without dependency or lockfile changes; and the two shared-state-sensitive rejected-auth assertions now use request-specific marker existence checks.
 
-Local evidence: `lint`/`typecheck`/`build` PASS; `test:fast` run with all `SUPABASE_TEST_*` vars explicitly unset -- 8 files, 61 tests, all passed, 10.06s, confirming no Supabase dependency.
+Mission Control independently verified final Stage 2 head `74455d538e984edd1a7fc3b2187d02029d490e84`:
 
-Real CI evidence: Fast Gate all-parallel jobs 22-28s (well within the 60-90s target). Full Assurance correctly triggered on this PR's own applicable changes; first run found 1 of 108 tests failing in an *unmodified* file (`real-http.test.ts`'s "happy path" test) -- classified as pre-existing, transient GoTrue JWKS-lookup-class Auth flakiness, not attributable to this mission (this mission's own two corrected assertions in the same file passed cleanly); a diagnostic rerun confirmed 20/20 files, 108/108 tests, 0 failures. Combined total 169 tests across 28 files, matching the pre-split baseline. Reported as a new `FOLLOW-UP` finding, not repaired (outside this mission's narrow scope).
+- Markdown Quality Gate `#1676` / `35011698130` — SUCCESS;
+- Application Build Assurance `#72` / `35011698084` — SUCCESS;
+- Full Assurance `#3` / `35011698066` — SUCCESS;
+- Fast Tests — 8/8 files, 61/61 tests;
+- Full Assurance — 20/20 files, 108/108 tests;
+- combined baseline — 28 files, 169 tests.
+
+The earlier transient Auth/JWKS-class failure is retained as a follow-up finding, not silently repaired or dismissed.
 
 Report:
 
 `claude-code/02-stage2-implementation-and-verification.md`
+
+Mission Control Stage 2 acceptance / Stage 3 authority:
+
+`mission-control/04-stage2-review-and-stage3-authorization.md`
+
+## Stage 3 — Independent review
+
+**ACTIVE.**
+
+Codex is authorized to independently review scope integrity, Fast/Full tier correctness and completeness, path filtering, the marker-based security assertion, final-head CI evidence, assurance documentation, and the transient Auth flake classification.
+
+Required report:
+
+`codex/01-stage3-independent-review.md`
+
+No implementation changes or merge are authorized during Stage 3.
 
 ## Explicit boundaries
 
@@ -85,4 +109,4 @@ The closed `SB-OPS-CI-STABILIZATION-1.0` mission remains closed and archived.
 
 ## Current state
 
-PR `#581` remains open and must not be merged until Stage 2 implementation, CI evidence, independent review, Mission Control acceptance and Founder merge authorization are complete.
+PR `#581` remains open and must not be merged until Stage 3 independent review, Mission Control Stage 4 acceptance, and Founder merge authorization are complete.
