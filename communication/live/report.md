@@ -2,13 +2,17 @@
 
 **Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
 **Mission name:** Fast Gate + Full Assurance
-**Reporter:** Awaiting assigned specialist
+**Reporter:** Claude Code
 **Recipient:** Smart Business Mission Control
-**Status:** `AWAITING ACTIVATION MERGE — NO SPECIALIST EXECUTION YET`
+**Status:** `STAGE 1 ACTIVE — REPORT TO FOLLOW`
 **Date:** 2026-09-15
 
-No specialist execution has begun under this mission.
+Claude Code is assigned Stage 1 under:
 
-The activation package is awaiting Founder/human merge. After merge, Mission Control will issue the first implementation/review instruction and this report will be reused for that authorized handoff.
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/02-stage1-classification-and-design-instruction.md`
 
-`SB-P-1.12` remains not activated.
+Expected Stage 1 report:
+
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/claude-code/01-stage1-classification-and-design.md`
+
+Stage 2 has not been opened. `SB-P-1.12` remains not activated.
