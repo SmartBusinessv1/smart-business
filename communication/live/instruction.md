@@ -3,34 +3,30 @@
 **Mission ID:** `SB-OPS-CI-ARCHITECTURE-1.0`
 **Mission name:** Fast Gate + Full Assurance
 **Sender:** Smart Business Mission Control
-**Recipient:** Codex
-**Status:** `STAGE 3 ACTIVE — INDEPENDENT REVIEW`
+**Recipient:** Founder Riyas PK
+**Status:** `ACCEPTED — READY FOR FOUNDER MERGE`
 **Date:** 2026-09-16
 
-Stage 2 is accepted by Mission Control.
+Stage 3 independent review is complete under Founder-authorized Mission Control substitution because Codex was unavailable.
 
-Work on:
+Disposition:
 
-`mission/SB-OPS-CI-ARCHITECTURE-1.0-stage1`
+`PASS WITH NON-BLOCKING FINDINGS`
+
+Stage 4 Mission Control acceptance is complete.
 
 Pull request:
 
-`#581 — OPEN — DO NOT MERGE`
+`#581 — OPEN — READY FOR FOUNDER MERGE`
 
-Read and execute:
+Acceptance record:
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/04-stage2-review-and-stage3-authorization.md`
+`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md`
 
-Independently review the Fast Gate + Full Assurance implementation, final-head CI evidence, test split completeness, path-trigger behavior, marker-based shared-state correction, assurance documentation, and the reported transient Auth flake classification.
+Founder action: merge PR `#581` to protected `main`.
 
-Required deliverable:
+Do not perform further implementation changes under this instruction unless Mission Control explicitly reopens the mission for a correction.
 
-`communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/codex/01-stage3-independent-review.md`
-
-Return one of: `PASS`, `PASS WITH NON-BLOCKING FINDINGS`, or `FAIL — CORRECTION REQUIRED`.
-
-Do not modify implementation, fix findings, change tests/workflows/application/database/dependencies/provider/deployment/branch protection, self-approve, or merge PR `#581`.
-
-After publishing the independent review and minimum handoff records, stop for Mission Control.
+After merge, Mission Control will verify canonical `main`, applicable post-merge Fast Gate / Full Assurance, archive the live instruction/report pair, restore reusable live defaults, and durably close this mission.
 
 `SB-P-1.12` remains not activated.
