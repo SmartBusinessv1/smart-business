@@ -61,16 +61,21 @@ Active instruction:
 
 `communication/live/instruction.md`
 
-## Required verifier return
+## Codex independent re-verification
 
-Codex must independently re-verify F-01 and complete the assurance areas left incomplete by the prior blocker stop, then return `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED` and stop with:
+**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance.
+
+Durable report: [Stage 1 independent re-verification](../missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md).
+
+Reviewed SHA: `c2e147e97e994aa656060b1f8adaa337910e2521`. Independently executed OLE tests: 15 files, 176 tests passed. CI associated with that reviewed head completed successfully: Application Build Assurance (237 Fast Tests), Full Assurance and Markdown Quality Gate. These are historical reviewed-head facts, not publication-head CI claims.
+
+The original `../escaped` attack is contained in a fresh ordinary receipt tree, with diagnostic identity and retry semantics preserved. **F-01 remains unresolved:** a pre-existing directory junction redirects receipt lookup and write outside the configured directory. The reopened assurance checks also reproduced **F-02**, unsorted persisted manifests despite identical canonical fingerprints, and **F-03**, raw synthetic input echoed in malformed-JSON diagnostics.
+
+All reproductions used isolated temporary fixtures and were cleaned up. Previously incomplete assurance areas are addressed in the durable report; completion of those checks does not imply a passing result. No implementation correction was made. Mission Control must decide narrow correction authorization and subsequent verification.
+
+No Stage 1 self-acceptance, merge, Stage 2 activation, real proof processing, AI extraction, background automation or `SB-P-1.12` activation was performed.
 
 `STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
-
-Do not self-accept Stage 1.
-Do not merge.
-Do not begin Stage 2.
-Do not activate `SB-P-1.12`.
 
 ## Review chain
 
