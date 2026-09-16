@@ -9,7 +9,7 @@ import { mkdtempSync, rmSync, writeFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { runHarvest } from "../scripts/harvest.mjs";
-import { readReceiptIfExists } from "../lib/receipt-store.ts";
+import { readReceiptIfExists, computeMissionStorageKey } from "../lib/receipt-store.ts";
 import { createEphemeralGitRepo, type EphemeralGitRepo } from "./helpers/ephemeral-git-repo.ts";
 
 let repo: EphemeralGitRepo | null = null;
@@ -240,6 +240,53 @@ describe("runHarvest", () => {
     expect(receipt?.processing_state).toBe("VALIDATION_FAILED");
   });
 
+  it("F-01: an invalid envelope with a traversal mission_id cannot write its failure receipt outside the configured receipts directory", () => {
+    // Reproduces Codex's exact F-01 finding
+    // (communication/missions/SB-ORG-LEARNING-1.1/codex/
+    // 01-stage1-independent-verification.md): an envelope whose
+    // mission_id is "../escaped" is rejected before Git evidence
+    // resolution, but the resulting failure receipt must still land
+    // only inside the configured receipts directory, never in a
+    // sibling of it.
+    workDir = mkdtempSync(join(tmpdir(), "ole-harvest-cli-test-"));
+    const envelopePath = join(workDir, "envelope.json");
+    writeFileSync(
+      envelopePath,
+      JSON.stringify({ mission_id: "../escaped", closure_revision: "REV-CODEX-1" }),
+      "utf8",
+    );
+    repo = createEphemeralGitRepo();
+    repo.commitFile("a.md", "x\n");
+    const receiptsDir = receiptsDirFor();
+    const workDirSiblingsBefore = readdirSync(workDir);
+
+    const result = runHarvest([
+      "--envelope",
+      envelopePath,
+      "--repo-root",
+      repo.root,
+      "--receipts-dir",
+      receiptsDir,
+    ]);
+
+    expect(result.exitCode).toBe(1);
+
+    // No new sibling of the configured receipts directory appeared under
+    // workDir -- specifically, no "escaped" directory next to "receipts".
+    const workDirSiblingsAfter = readdirSync(workDir);
+    expect(workDirSiblingsAfter.sort()).toEqual(
+      [...new Set([...workDirSiblingsBefore, "receipts"])].sort(),
+    );
+    expect(workDirSiblingsAfter).not.toContain("escaped");
+
+    // The receipt was still written, safely, inside the configured
+    // directory, and truthfully preserves the malformed identifier.
+    const fingerprint = extractFingerprintFromReceiptsDir(receiptsDir, "../escaped");
+    const receipt = readReceiptIfExists(receiptsDir, "../escaped", fingerprint);
+    expect(receipt?.processing_state).toBe("VALIDATION_FAILED");
+    expect(receipt?.mission_id).toBe("../escaped");
+  });
+
   it("fails closed when source_snapshot_ref does not resolve to a real commit", () => {
     repo = createEphemeralGitRepo();
     repo.commitFile("communication/missions/SB-TEST-FIXTURE-1.0/README.md", "x\n");
@@ -278,8 +325,10 @@ function extractFingerprint(message: string, allowMissing = false): string {
 function extractFingerprintFromReceiptsDir(receiptsDir: string, missionId: string): string {
   // Best-effort helper for the schema-invalid case, where the message
   // does not carry a fingerprint: read the one receipt file that must
-  // have been written under this mission id.
-  const files = readdirSync(join(receiptsDir, missionId));
+  // have been written under this mission id's storage key (F-01
+  // correction -- receipts are keyed by a hash of mission_id, not the
+  // raw identifier; see lib/receipt-store.ts).
+  const files = readdirSync(join(receiptsDir, computeMissionStorageKey(missionId)));
   if (files.length !== 1)
     throw new Error(`expected exactly one receipt file, found ${files.length}`);
   return files[0].replace(/\.json$/, "");
