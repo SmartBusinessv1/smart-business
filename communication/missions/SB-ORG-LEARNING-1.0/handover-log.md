@@ -8,8 +8,6 @@
 - **Stage:** Engineering review and suggestions
 - **Status:** `COMPLETE — MISSION CONTROL REVIEWED`
 - **Branch:** `mission/SB-ORG-LEARNING-1.0-proposal`
-- **Primary input:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/01-research-and-build-plan-proposal.md`
-- **Instruction:** `communication/missions/SB-ORG-LEARNING-1.0/claude-code/00-review-instruction.md`
 - **Output:** `communication/missions/SB-ORG-LEARNING-1.0/claude-code/01-engineering-review-and-suggestions.md`
 - **Claude review head:** `8dbef2245094e6bbd321ba4dac6688844e942895`
 - **Mission Control reconciliation:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
@@ -24,33 +22,37 @@
 - **Sender:** Smart Business Mission Control
 - **Recipient:** Codex
 - **Stage:** Independent assurance/adversarial review and suggestions
-- **Status:** `AUTHORIZED — REVIEW ONLY — ACTIVE`
+- **Status:** `COMPLETE — MISSION CONTROL RECONCILED`
 - **Branch:** `mission/SB-ORG-LEARNING-1.0-proposal`
-- **Proposal PR:** `#583 — OPEN — DO NOT MERGE YET`
-- **Original proposal:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/01-research-and-build-plan-proposal.md`
-- **Claude review:** `communication/missions/SB-ORG-LEARNING-1.0/claude-code/01-engineering-review-and-suggestions.md`
-- **Controlling reconciliation:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
-- **Instruction:** `communication/missions/SB-ORG-LEARNING-1.0/codex/00-review-instruction.md`
-- **Required output:** `communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
-- **Shared status output:** update only the Codex section in `communication/live/report.md`
-- **Verification required:** independently inspect repository and challenge authority, provenance, security, eventing, automation target, idempotency, retrieval, and Claude/Mission-Control assumptions
-- **Special verification:** independently resolve the discrepancy between Claude's secret-leak characterization and merged PR #288's repository-hygiene evidence
-- **Not authorized:** implementation, merge, deployment, Product Truth/governance changes, Product Mission activation
-- **Next action after completion:** stop for Mission Control final reconciliation
+- **Proposal PR:** `#583`
+- **Output:** `communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
+- **Codex publication head:** `7e72aa7ff47ca84a3da0f0224cf76b921548b336`
+- **Codex disposition:** `CHANGES REQUIRED BEFORE BUILD-PLAN ACCEPTANCE`
+- **Mission Control result:** B1–B7 accepted as required design corrections and incorporated into the final plan.
+- **Implementation authority:** none
 
 ---
 
-## H-003 — Final review convergence
+## H-003 — Review convergence
 
-After H-002 is complete, ownership returns to Smart Business Mission Control for:
+- **Owner:** Smart Business Mission Control
+- **Status:** `COMPLETE`
+- **Final plan:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+- **Final disposition:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`
+- **Implementation authority:** none
 
-- independent verification of the Codex artifact and current branch head;
-- Claude/Codex comparison;
-- conflict resolution;
-- final proposal corrections;
-- Founder decisions where genuinely required;
-- final v1 build-plan scope classification;
-- final proposal acceptance/rejection;
-- Founder merge handoff for PR `#583` only if accepted.
+Mission Control reconciled Claude and Codex, corrected the plan, preserved the Founder's background-learning target, and locked the authority/provenance/security/recovery boundaries before build-plan acceptance.
 
-Implementation remains a separate future authorization.
+---
+
+## H-004 — Mission Control → Founder
+
+- **Mission:** `SB-ORG-LEARNING-1.0`
+- **Sender:** Smart Business Mission Control
+- **Recipient:** Founder Riyas PK
+- **Stage:** Protected-main merge of the accepted build plan
+- **Status:** `AUTHORIZED AFTER FINAL-HEAD CI IS GREEN`
+- **PR:** `#583`
+- **Required action:** Founder merges PR `#583`; do not interpret merge as implementation authorization.
+- **After merge:** Mission Control verifies canonical `main`, checks post-merge assurance, archives/resets `communication/live`, and durably closes this research/design mission.
+- **Not authorized by merge:** engine implementation, new integrations, dependencies, write-capable automation, deployment, production access, governance/Product Truth changes, or `SB-P-1.12` activation.
