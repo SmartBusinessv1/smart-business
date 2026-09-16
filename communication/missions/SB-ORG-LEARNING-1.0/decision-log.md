@@ -82,10 +82,9 @@ No AI may self-promote a lesson into institutional authority.
 
 ## D-009 — Review structure
 
-**Decision:** Require two independent review perspectives before implementation authorization is considered:
+**Decision:** Require two independent review perspectives before implementation authorization is considered.
 
-- Claude Code — engineering/repository review;
-- Codex — independent assurance/adversarial review.
+**Sequence:** Claude Code first → Mission Control reconciliation → Codex independent review → Mission Control final reconciliation → Founder merge only if accepted.
 
 Each reviewer creates its own durable report and updates only its section of `communication/live/report.md`.
 
@@ -96,3 +95,70 @@ Each reviewer creates its own durable report and updates only its section of `co
 **Decision:** This mission does not activate `SB-P-1.12` or any other Product Mission.
 
 Any later Product Mission activation requires separate explicit Mission Control authority.
+
+---
+
+## D-011 — Claude review disposition
+
+**Decision:** Accept Claude Code's engineering review as repository-grounded and useful, with Mission Control qualifications recorded in:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
+
+**Effect:** Codex reviews the original proposal together with the reconciled v1 direction rather than assuming the original architecture is unchanged.
+
+---
+
+## D-012 — First implementation slice
+
+**Decision:** The first implementation slice, if later authorized, should begin with a narrow repository-native core:
+
+- Zod/runtime TypeScript schemas;
+- explicit durable-source allowlist;
+- lessons and risks registries only;
+- simplified mission-learning report;
+- processing receipts;
+- deterministic Node.js ESM harvester/validator;
+- provenance/idempotency/security checks;
+- Fast Gate tests;
+- proof against one real closed mission before broader automation.
+
+Dedicated resources/skills/capabilities/tools/decisions registries remain deferred, not rejected. Their observations may still be captured as candidate lesson categories.
+
+---
+
+## D-013 — Background automation remains a target requirement
+
+**Decision:** Manual `workflow_dispatch` or supervised extraction may be used for proof-stage validation, but neither is accepted as the permanent end-state.
+
+**Reason:** Founder intent requires the mature engine to produce post-mission learning automatically in the background after authoritative mission closure.
+
+**Effect:** Codex must review the migration path from proof-stage manual/supervised processing to governed automatic candidate learning.
+
+---
+
+## D-014 — Live communication excluded from authoritative harvesting
+
+**Decision:** `communication/live/**` is excluded from the initial authoritative source allowlist.
+
+**Reason:** It is transient and may be incomplete or pre-reconciliation. Durable mission records and reconciled archives are the correct evidence surface.
+
+---
+
+## D-015 — Secret-leak evidence wording
+
+**Decision:** Do not restate Claude's `report1.57.md` finding as a confirmed credential-grade secret leak based on the evidence reviewed so far.
+
+Merged PR #288 reports current-tree and full-history gitleaks findings as non-credential-grade and reports no service-role key, private API key, password, or private key found.
+
+**Safe conclusion:** learning ingestion must screen secret-like/sensitive-looking content before reuse. Codex must independently reconcile the evidence discrepancy.
+
+---
+
+## D-016 — Learning promotion authority
+
+**Decision for v1 design:**
+
+- AI may draft `CANDIDATE` items.
+- Mission Control may mark items `CORROBORATED` or `VALIDATED` when evidence and scope are clear.
+- `INSTITUTIONALISED` requires explicit human approval; for v1, Founder approval is required before representing an item as an organization-wide enduring practice or governance-promotion basis.
+- Governance change always remains a separately authorized Founder-approved action.
