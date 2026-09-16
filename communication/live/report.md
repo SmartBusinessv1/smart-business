@@ -102,6 +102,16 @@ Proof-stage manual/supervised processing is allowed only as an intermediate vali
 
 ---
 
+## Final proposal branch state
+
+Current accepted-plan branch head after Mission Control reconciliation:
+
+`0be24db0ebdfc1fae35f9a967c361c01b940b131`
+
+This SHA is recorded as the proposal head observed before this live-report reconciliation commit. The actual PR head may advance by this administrative report commit; Founder merge must use the later exact final head only after Mission Control verifies CI on that exact head.
+
+---
+
 ## Final disposition
 
 `SB-ORG-LEARNING-1.0 — BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE — IMPLEMENTATION NOT AUTHORIZED`
@@ -118,7 +128,7 @@ It does not implement the engine and does not activate `SB-P-1.12`.
 
 ## Next action
 
-1. Mission Control verifies CI on the final proposal head.
+1. Mission Control verifies CI on the exact final proposal head.
 2. If green, Founder merges PR `#583`.
 3. Mission Control verifies canonical `main` and post-merge checks.
 4. Mission Control performs durable communication archive/reset.
