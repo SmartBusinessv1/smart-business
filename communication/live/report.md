@@ -68,26 +68,29 @@ Key decisions now controlling the review stage:
 
 ## Codex review status
 
-**Status:** `AUTHORIZED — PENDING COMPLETION`
+**Status:** `REVIEW COMPLETE — PUBLICATION PENDING — MISSION CONTROL RECONCILIATION REQUIRED`
 
-Expected durable review:
+**Durable review path:**
 
 `communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
 
-Codex shall follow current `communication/live/instruction.md` and independently inspect the proposal, Claude review, Mission Control reconciliation, and repository reality.
+**Reviewed head:** `af1b81941fefe9d98477eaeca1d8217243a20ebc` on `mission/SB-ORG-LEARNING-1.0-proposal`; PR `#583` independently observed OPEN, targeting `main` at `b60741cce544adb713f7c384bbed09a05e23247e`.
 
-When complete, Codex shall replace only this section's status/details with:
+**Publication:** Commit SHA and push are provisional until this report is committed and published. Protocol section 27 permits this active-cycle state; Mission Control must reconcile the resulting branch/PR head before closure. No self-referential commit SHA is claimed.
 
-- review status;
-- exact durable review path;
-- review commit SHA or protocol-compliant provisional publication state;
-- concise disposition;
-- blocking findings;
-- non-blocking findings;
-- recommended corrections;
-- recommended next action.
+**Disposition:** `CHANGES REQUIRED BEFORE BUILD-PLAN ACCEPTANCE`. The reduced repository-native proof stage is proportionate, including Zod, lessons and risks, and supervised extraction. The target can support automatic candidate learning after authoritative closure, but the plan must specify enforceable authority/provenance boundaries, revision-aware recovery, and safe publication before acceptance. Manual triggering is a proof method, not the permanent operational design. This is an independent review recommendation, not final acceptance or implementation authority.
 
-Do not modify the Claude Code or Mission Control sections except to preserve them.
+**Blocking findings:** B1 candidate/promotion separation; B2 claim-level provenance and evidence reach; B3 closure-linked source selection versus broad path trust; B4 freshness, supersession, and known-contradiction retrieval; B5 screening and isolated extraction/publication; B6 authoritative closure and recurring reconciliation; B7 source/processing identities, atomic publication, concurrency, and recovery. Correct these design contracts before plan acceptance; prove each control before its related capability is enabled.
+
+**Non-blocking findings:** retain tool/resource/capability observations as lesson categories; keep portable versioned records without introducing dual schema authorities; defer ranking, extra registries, broad backfill, dashboards, and general scanner-CI work. Existing workflows have read-only repository contents permissions but some also hold cloud identity/execution capabilities.
+
+**Evidence discrepancy:** PR #288 is verified merged at `759ad3d91b926112efb94943ac7fec02ed54ae3b`; GC-30 and GC-31 support the non-credential-grade classification. The local `gitleaks-report.json` is ignored and untracked. Its selective metadata confirms historical scanner matches, not a confirmed credential-grade leak. No raw values were reproduced and no full-history security audit was rerun.
+
+**Recommended corrections:** incorporate B1–B7, lock proof/automation gates and acceptance criteria, correct the overstated historical-secret and workflow-permission claims in reconciliation, and retain original reviews as historical evidence. The durable review includes component classifications, all 20 assurance answers, and 28 proposed adversarial tests.
+
+**Verification:** Repository Markdown Quality Gate passed for both authorized files with zero issues/warnings/failures. All 24 relative links in the review resolve. Report content outside the Codex section matches the original Git bytes. Exact staged scope contains only this report and the new Codex review; staged whitespace check passed. Gitleaks staged-change scan with full redaction found no leaks. Remote URL, mission branch, unchanged remote head, and `main` base SHA were verified before publication. GitHub CI on the resulting publication head remains pending for Mission Control verification; no engine tests or production verification claimed.
+
+**Recommended next action:** Mission Control verifies the pushed review head, performs final reconciliation, corrects the proposal, resolves authority/provider/publisher decisions, and issues the build-plan disposition. Founder merge of PR #583 remains gated; implementation requires separate authorization. Codex stops after publishing these two authorized files. `SB-P-1.12` remains not activated.
 
 ---
 
