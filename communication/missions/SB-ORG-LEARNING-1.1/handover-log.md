@@ -40,3 +40,20 @@
 - **Stage 1 execution:** deliberately not started by outgoing Mission Control
 - **Successor first execution action:** verify current `main`, open fresh Stage 1 branch/live communication, and issue the exact Claude Code instruction in Section 11 of the successor handover
 - **SB-P-1.12:** remains blocked / not activated until OLE implementation is accepted
+
+## H-004 — Successor Mission Control opens Stage 1
+
+- **Date:** 2026-09-16
+- **From:** Successor Smart Business Mission Control
+- **To:** Claude Code
+- **Pre-action verification:** PR `#586` merged; protected canonical `main` verified at `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
+- **Calibration:** successor reconstructed the current mission, six-stage lifecycle, controlling plan, scope, exclusions and first action before mutation
+- **Stage 1 branch:** `mission/SB-ORG-LEARNING-1.1-stage1`
+- **Branch base:** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
+- **Durable authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/03-stage1-claude-code-authorization.md`
+- **Live instruction:** replaced with exact Stage 1 Claude Code execution boundary derived from successor handover Section 11
+- **Live report:** fresh Stage 1 report template opened; Claude Code may update only its assigned section
+- **Current owner:** Claude Code, Stage 1 builder
+- **Review chain after builder stop:** Mission Control substantive review → Codex independent verification → narrow correction if required → Stage 1 acceptance → explicit Stage 2 authorization
+- **Stage 2:** not authorized
+- **SB-P-1.12:** not activated
