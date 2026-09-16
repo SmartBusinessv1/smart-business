@@ -1,14 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Corrective Handoff
+# SB-ORG-LEARNING-1.1 — Stage 1 Codex Re-Verification Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Current actor:** Claude Code
+**Current actor:** Codex
 
-**Status:** `STAGE 1 NARROW CORRECTION AUTHORIZED — F-01 / F-02 / F-03`
+**Status:** `MISSION CONTROL RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
@@ -18,79 +18,84 @@
 
 ---
 
-## Codex independent re-verification
+## Prior independent findings
 
-Disposition:
+Codex's second independent re-verification returned `FAIL` on:
 
-`FAIL`
+- **F-01 residual:** pre-existing filesystem indirection could redirect receipt lookup/write outside the configured physical receipt boundary;
+- **F-02:** persisted receipt manifests were not consistently canonical/sorted even though fingerprinting sorted its own copy;
+- **F-03:** malformed JSON parser diagnostics could echo raw input bytes.
 
 Durable verifier report:
 
 `communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`
 
-Verifier publication commit:
+---
 
-`ef2a4c8d6e48a8288411a00875d703a560609aa8`
+## Builder correction checkpoint
 
-Confirmed blockers:
+Claude Code applied only the authorized F-01/F-02/F-03 correction.
 
-- **F-01 residual:** pre-existing filesystem indirection can redirect receipt lookup/write outside the configured physical receipt boundary;
-- **F-02:** persisted receipt manifests are not consistently canonical/sorted even though fingerprinting sorts its own copy;
-- **F-03:** malformed JSON parse diagnostics can echo raw input bytes.
+Reviewed implementation checkpoint:
 
-Existing passing tests and CI do not close these findings.
+`23266d4bc49a7821ec4af1503f997dcbb28cb967`
+
+At that exact checkpoint, Mission Control verified successful:
+
+- Team LIPS Application Build Assurance `#129`;
+- Team LIPS Full Assurance `#30`;
+- Team LIPS Markdown Quality Gate `#1733`.
+
+These are immutable checkpoint facts. PR `#588` and GitHub Actions remain the live exact-head source of truth after communication commits.
+
+The correction preserves Stage 1 boundaries and introduces no dependency or lockfile change.
 
 ---
 
-## Mission Control decision
+## Mission Control re-review
 
-`NARROW CORRECTION REQUIRED — F-01 / F-02 / F-03 ONLY`
+Disposition:
 
-Controlling authorization:
+`MISSION CONTROL RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`
+Controlling record:
 
-Active builder instruction:
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/09-stage1-f01-f02-f03-rereview-and-codex-reauthorization.md`
+
+Mission Control found the correction materially aligned with the authorized scope:
+
+- F-01 now adds physical containment via real filesystem resolution before receipt lookup/write while retaining hashed placement and truthful diagnostic identity;
+- F-02 now reuses one canonical sorted manifest for fingerprinting and every persisted receipt path, including partial/failure receipts;
+- F-03 now uses fixed safe malformed-JSON diagnostics in both harvester and validator rather than interpolating raw parser errors.
+
+This is a re-review pass for independent verification, not Stage 1 acceptance.
+
+---
+
+## Codex required action
+
+Execute the current:
 
 `communication/live/instruction.md`
 
-Claude Code must apply only the three authorized corrections, run applicable validation and CI, update the existing durable builder report plus the minimum builder section here, and stop with:
+Independently re-test F-01/F-02/F-03 and assess the whole Stage 1 evidence boundary required for acceptance.
 
-`STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+Codex must not modify implementation code, merge, begin Stage 2, process the real proof target, or activate `SB-P-1.12`.
 
-Do not self-approve.
-Do not merge.
-Do not begin Stage 2.
-Do not activate `SB-P-1.12`.
+Required final disposition:
 
----
+`PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
 
-## Builder F-01/F-02/F-03 correction report
+Required stop line:
 
-**Status:** `STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
-
-**Durable report (revised):** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`, new Section 23.
-
-**F-01 (physical containment):** `organizational-learning/lib/receipt-store.ts` gained a third layer, `assertPhysicallyContained`, which walks to the deepest existing path component and resolves it with `fs.realpathSync` (which follows symlinks/junctions, unlike `path.resolve`/`path.relative`), throwing if the real location escapes the configured directory. Verified empirically against a real Windows directory junction before and after the fix (created via `fs.symlinkSync(target, path, "junction")`); both `writeReceipt` and `readReceiptIfExists` now fail closed through it, while an ordinary fresh write — including to a receipts directory that does not exist yet — is unaffected.
-
-**F-02 (canonical manifests):** `organizational-learning/scripts/harvest.mjs` now calls the pre-existing, already-exported `sortManifest` exactly once per run and reuses that one canonical manifest for the fingerprint, the `HARVESTED` receipt, the `SCREENED`/`VALIDATION_FAILED` receipt, and the partial manifest in an ineligible-reference failure receipt. No hash-algorithm change, no new dependency.
-
-**F-03 (safe diagnostics):** both `runHarvest` and `runValidate` now separate file-read failure from JSON-parse failure into two fixed, safe messages, neither of which interpolates the raw parser error text that could echo input bytes. A read failure may still safely echo the caller-supplied path.
-
-**Regression proof, isolated temp directories/repositories only, no real closed mission processed:** `receipt-store.test.ts` 24 → 29 tests (new physical-containment sub-suite: fails closed on write and lookup through a real pre-planted junction/symlink, unaffected by an ordinary or not-yet-existing tree, original `../escaped` case still contained). `harvest-cli.test.ts` 10 → 13 tests (Codex's exact `z.md`/`a.md` reversed-order case proven to persist identical canonical manifests; a partial-manifest failure case also canonically sorted; a malformed-JSON canary case proven not echoed). `validate-cli.test.ts` 5 → 7 tests (parse-failure/read-failure cases split apart; a canary case proven not echoed).
-
-**Scope discipline:** exactly 6 files touched (`lib/receipt-store.ts`, `scripts/harvest.mjs`, `scripts/validate.mjs`, and their three test files), 0 new files, 0 dependencies added, `package-lock.json` unchanged.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **247/247 passing** across 23 files (up from 237/23 — 10 new tests, 0 new files); `npm run build` succeeds; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
-
-**CI on this correction's pushed head:** see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab for the live, current-head result — not restated here as a fixed claim, per the standing anti-recursion rule.
-
-**Scope confirmation:** only the three authorized findings were corrected. No AI/semantic extraction, no processing of `SB-OPS-CI-ARCHITECTURE-1.0`, no background automation, no provider/network writes, no promotion execution, no Stage 2 activation, no `SB-P-1.12` activation, no self-approval, no merge. Codex was not authorized by this builder — the prior `FAIL` dispositions stand until Codex re-verifies again.
+`STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
 
 ---
 
 ## Review chain
 
 **Claude Code correction → Mission Control re-review → Codex independent re-verification → narrow correction if still required → Mission Control Stage 1 acceptance → human/Founder merge → explicit Stage 2 authorization.**
+
+A Codex `PASS` is evidence for Mission Control acceptance; it is not self-acceptance.
 
 Stage 1 acceptance is not OLE mission completion.
