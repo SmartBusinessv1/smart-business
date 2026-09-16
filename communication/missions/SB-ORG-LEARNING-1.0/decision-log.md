@@ -12,21 +12,17 @@
 
 ## D-002 — Current stage
 
-**Decision:** Open only a research/design proposal review stage.
+**Decision:** Research/design proposal review only.
 
-**Status:** `EXTERNAL REVIEW PENDING`
+**Final review-stage status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`
 
 **Implementation:** `NOT AUTHORIZED`
 
 ---
 
-## D-003 — Initial architecture direction
+## D-003 — Architecture direction
 
-**Decision:** Propose a repository-native, deterministic-first v1 before considering databases, vector stores, autonomous agents, or new production services.
-
-**Reason:** The canonical repository is already the durable operational record. The smallest safe architecture should be proven before infrastructure expansion.
-
-**Status:** Proposal only; Claude Code and Codex must challenge it.
+**Decision:** Repository-native, deterministic-first v1 before databases, vector stores, autonomous agents, or new production services.
 
 ---
 
@@ -34,59 +30,39 @@
 
 **Decision:** Learning artifacts provide context and institutional memory but do not create authority.
 
-The engine may not automatically:
-
-- change Product Truth;
-- change governance;
-- alter roadmap sequence;
-- interpret Founder decisions as new authority;
-- activate missions;
-- accept implementation;
-- merge pull requests;
-- deploy;
-- alter production.
+The engine may not automatically change Product Truth, governance, roadmap, Founder authority, mission authority, implementation acceptance, merge state, deployment, or production state.
 
 ---
 
 ## D-005 — Learning dimensions
 
-**Decision:** Evidence strength, confidence, maturity, and status must remain separate dimensions.
-
-**Reason:** A historically strong fact can be operationally superseded; a high-confidence observation can remain only a candidate organizational lesson.
+**Decision:** Evidence strength, confidence, maturity, status, freshness, and temporal applicability remain distinct dimensions.
 
 ---
 
 ## D-006 — Provenance requirement
 
-**Decision:** Durable learning must be traceable to durable evidence.
-
-Candidate provenance classes include Founder decision, Mission Control disposition, specialist review, independent verification, builder report, CI evidence, runtime evidence, operator attestation, historical record, and assistant synthesis.
+**Decision:** Durable learning must be traceable to durable claim-level evidence, not merely a source-file path.
 
 ---
 
 ## D-007 — Historical/current separation
 
-**Decision:** Historical institutional memory must not be silently promoted into current state or governance.
-
-Superseded learning remains preserved with chronology and replacement references.
+**Decision:** Historical institutional memory must not be silently promoted into current state or governance. Superseded learning remains preserved with chronology and replacement references.
 
 ---
 
 ## D-008 — Human promotion gate
 
-**Decision:** AI may extract and propose candidate lessons. Human/Mission Control review controls durable promotion. Governance promotion remains separately governed.
-
-No AI may self-promote a lesson into institutional authority.
+**Decision:** AI may draft only `CANDIDATE` learning. Mission Control may record `CORROBORATED` or `VALIDATED` when justified. Organization-wide `INSTITUTIONALISED` status requires Founder approval for v1. Governance change remains separately authorized.
 
 ---
 
 ## D-009 — Review structure
 
-**Decision:** Require two independent review perspectives before implementation authorization is considered.
+**Decision:** Sequential review: Claude Code → Mission Control → Codex → Mission Control → Founder merge if accepted.
 
-**Sequence:** Claude Code first → Mission Control reconciliation → Codex independent review → Mission Control final reconciliation → Founder merge only if accepted.
-
-Each reviewer creates its own durable report and updates only its section of `communication/live/report.md`.
+**Status:** completed through final Mission Control reconciliation.
 
 ---
 
@@ -94,45 +70,29 @@ Each reviewer creates its own durable report and updates only its section of `co
 
 **Decision:** This mission does not activate `SB-P-1.12` or any other Product Mission.
 
-Any later Product Mission activation requires separate explicit Mission Control authority.
-
 ---
 
 ## D-011 — Claude review disposition
 
-**Decision:** Accept Claude Code's engineering review as repository-grounded and useful, with Mission Control qualifications recorded in:
+**Decision:** Claude Code review accepted with Mission Control qualifications.
+
+Record:
 
 `communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
-
-**Effect:** Codex reviews the original proposal together with the reconciled v1 direction rather than assuming the original architecture is unchanged.
 
 ---
 
 ## D-012 — First implementation slice
 
-**Decision:** The first implementation slice, if later authorized, should begin with a narrow repository-native core:
+**Decision:** If later authorized, first slice includes repository-native Zod/runtime contracts, closure envelope, candidate-vs-promotion separation, explicit durable-source allowlist, lessons + risks registries, claim-level provenance, deterministic Node.js ESM harvester/validator, receipts/idempotency, screening boundaries, Fast Gate tests, and proof against one real closed mission.
 
-- Zod/runtime TypeScript schemas;
-- explicit durable-source allowlist;
-- lessons and risks registries only;
-- simplified mission-learning report;
-- processing receipts;
-- deterministic Node.js ESM harvester/validator;
-- provenance/idempotency/security checks;
-- Fast Gate tests;
-- proof against one real closed mission before broader automation.
-
-Dedicated resources/skills/capabilities/tools/decisions registries remain deferred, not rejected. Their observations may still be captured as candidate lesson categories.
+Dedicated resources/skills/capabilities/tools/decisions registries are deferred, not rejected.
 
 ---
 
-## D-013 — Background automation remains a target requirement
+## D-013 — Background automation remains required
 
-**Decision:** Manual `workflow_dispatch` or supervised extraction may be used for proof-stage validation, but neither is accepted as the permanent end-state.
-
-**Reason:** Founder intent requires the mature engine to produce post-mission learning automatically in the background after authoritative mission closure.
-
-**Effect:** Codex must review the migration path from proof-stage manual/supervised processing to governed automatic candidate learning.
+**Decision:** Manual/supervised processing is acceptable for proof only. The mature target remains governed automatic background candidate learning after authoritative mission closure.
 
 ---
 
@@ -140,25 +100,66 @@ Dedicated resources/skills/capabilities/tools/decisions registries remain deferr
 
 **Decision:** `communication/live/**` is excluded from the initial authoritative source allowlist.
 
-**Reason:** It is transient and may be incomplete or pre-reconciliation. Durable mission records and reconciled archives are the correct evidence surface.
+Archived historical copies may be used only through approved closure-linked references and remain historical evidence.
 
 ---
 
-## D-015 — Secret-leak evidence wording
+## D-015 — Historical scanner wording
 
-**Decision:** Do not restate Claude's `report1.57.md` finding as a confirmed credential-grade secret leak based on the evidence reviewed so far.
+**Decision:** Do not describe the reviewed historical scanner evidence as a confirmed credential-grade leak. Merged hygiene evidence classified the reviewed findings as non-credential-grade.
 
-Merged PR #288 reports current-tree and full-history gitleaks findings as non-credential-grade and reports no service-role key, private API key, password, or private key found.
-
-**Safe conclusion:** learning ingestion must screen secret-like/sensitive-looking content before reuse. Codex must independently reconcile the evidence discrepancy.
+**Safe rule:** secret/sensitive-data screening remains mandatory for all eligible learning inputs and outputs.
 
 ---
 
 ## D-016 — Learning promotion authority
 
-**Decision for v1 design:**
+**Decision:** Candidate generation and promotion are separate contracts and separate authority paths. Promotion binds to an exact item revision and approval evidence. Material content changes invalidate prior approval of that revision.
 
-- AI may draft `CANDIDATE` items.
-- Mission Control may mark items `CORROBORATED` or `VALIDATED` when evidence and scope are clear.
-- `INSTITUTIONALISED` requires explicit human approval; for v1, Founder approval is required before representing an item as an organization-wide enduring practice or governance-promotion basis.
-- Governance change always remains a separately authorized Founder-approved action.
+---
+
+## D-017 — Codex disposition
+
+**Decision:** Accept Codex disposition `CHANGES REQUIRED BEFORE BUILD-PLAN ACCEPTANCE` as substantively correct.
+
+**Effect:** B1–B7 are incorporated into the final reconciled build plan rather than treated as implementation-time details.
+
+Codex review:
+
+`communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
+
+---
+
+## D-018 — Closure envelope
+
+**Decision:** Automatic learning eligibility must be based on a versioned, approved closure envelope or explicit legacy mapping. Merge, label, README text, or a processed marker alone does not establish authoritative closure.
+
+---
+
+## D-019 — Source eligibility versus authority
+
+**Decision:** Path allowlisting establishes eligibility to inspect only. Authority/evidence role comes from the closure-linked manifest and current governance context.
+
+---
+
+## D-020 — Retrieval safety
+
+**Decision:** Reusable mission-start context must account for reviewed maturity, scope, freshness, supersession, contradictions, unresolved risks, and authority compatibility before ranking or truncation.
+
+---
+
+## D-021 — Processing identity and recovery
+
+**Decision:** Source snapshot, processing run, candidate artifact, human review/promotion, and publication identities remain separate. Publication must be atomic and retries must resume from verified durable state.
+
+---
+
+## D-022 — Final build-plan acceptance
+
+**Decision:** Accept the final reconciled plan at:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+
+**Status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`
+
+**Implementation authority:** none.
