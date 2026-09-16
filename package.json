@@ -15,7 +15,9 @@
     "test:full": "vitest run -c vitest.full.config.ts",
     "supabase:test": "node scripts/supabase-cli.mjs test",
     "supabase:production": "node scripts/supabase-cli.mjs production",
-    "build:lambda": "node lambda/parser/build.mjs"
+    "build:lambda": "node lambda/parser/build.mjs",
+    "ole:harvest": "node organizational-learning/scripts/harvest.mjs",
+    "ole:validate": "node organizational-learning/scripts/validate.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.899.0",

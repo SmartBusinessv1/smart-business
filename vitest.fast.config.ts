@@ -26,6 +26,24 @@ export default defineConfig({
       "tests/catalog-import/parse.test.ts",
       "tests/catalog-import/validate.test.ts",
       "tests/parser-lease/roles-anywhere-decimal-serial.test.ts",
+      // SB-ORG-LEARNING-1.1 Stage 1 -- repository-native, no Supabase
+      // dependency: schema/security/idempotency contracts plus a
+      // harvester CLI that only ever touches isolated ephemeral git
+      // repositories and temp directories it creates itself.
+      "organizational-learning/tests/path-safety.test.ts",
+      "organizational-learning/tests/allowlist.test.ts",
+      "organizational-learning/tests/fingerprint.test.ts",
+      "organizational-learning/tests/revision-hash.test.ts",
+      "organizational-learning/tests/provenance.schema.test.ts",
+      "organizational-learning/tests/closure-envelope.schema.test.ts",
+      "organizational-learning/tests/candidate-learning-item.schema.test.ts",
+      "organizational-learning/tests/promotion-review.schema.test.ts",
+      "organizational-learning/tests/receipt.schema.test.ts",
+      "organizational-learning/tests/screening.test.ts",
+      "organizational-learning/tests/git-object-reader.test.ts",
+      "organizational-learning/tests/receipt-store.test.ts",
+      "organizational-learning/tests/harvest-cli.test.ts",
+      "organizational-learning/tests/validate-cli.test.ts",
     ],
     ...sharedTestTimeouts,
     // Safe to parallelize, unlike Full Assurance: these files share no
