@@ -26,11 +26,11 @@
 
 **Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
 
-**Branch head:** `7198ee6a68373a2ff8080e021fb8871583b012ac` on `mission/SB-ORG-LEARNING-1.1-stage1-successor`
+**Branch head:** `6ccedcdd0fe4a48507a85d755e124067bf98187a` on `mission/SB-ORG-LEARNING-1.1-stage1-successor` (implementation commit `7198ee6a68373a2ff8080e021fb8871583b012ac` plus this durable-report commit; both verified independently on real CI, see below).
 
 **Pull request:** [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) — open, targeting `main`, not self-approved, not merged.
 
-**CI (real, on the pushed head):** Lint, Typecheck, Build, Fast Tests, Full Assurance Tests, and Markdown Quality Gate all **pass**. 211/211 tests pass locally (`npm run test:fast`), including 150 new Stage 1 tests across 14 files.
+**CI (real, on the final pushed head `6ccedcd`):** Lint, Typecheck, Build, Fast Tests, Full Assurance Tests, and Markdown Quality Gate all **pass**. 211/211 tests pass locally (`npm run test:fast`), including 150 new Stage 1 tests across 14 files.
 
 **Scope:** Phase A contracts (candidate, promotion/review, closure-envelope, receipt, provenance schemas; source allowlist; path-safety; committed-Git-object reader; fail-closed screening contract) and Phase B (deterministic Node ESM harvester CLI) only. No AI call, no promotion, no background automation, no dependency/lockfile change, no processing of the real `SB-OPS-CI-ARCHITECTURE-1.0` proof target. Full detail, architecture proof, interpretive decisions, and risks are in the durable report above.
 
