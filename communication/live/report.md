@@ -72,21 +72,19 @@ This is a re-review pass for independent verification, not Stage 1 acceptance.
 
 ---
 
-## Codex required action
+## Codex independent re-verification
 
-Execute the current:
+**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance.
 
-`communication/live/instruction.md`
+Durable report: [Stage 1 independent re-verification, round 3](../missions/SB-ORG-LEARNING-1.1/codex/03-stage1-independent-reverification.md).
 
-Independently re-test F-01/F-02/F-03 and assess the whole Stage 1 evidence boundary required for acceptance.
+Reviewed SHA: `857c2cbefdadae155cedfd497b53f8c9803040c9`. Independently executed OLE tests: 15 files, 186 tests passed. Reviewed-head CI completed successfully: Application Build Assurance (247 Fast Tests), Full Assurance and Markdown Quality Gate. These are historical reviewed-head facts, not publication-head CI claims.
 
-Codex must not modify implementation code, merge, begin Stage 2, process the real proof target, or activate `SB-P-1.12`.
+**F-01/F-02/F-03 are resolved within the report's stated evidence boundaries.** Independent checks confirmed physical receipt containment against the reproduced junction, canonical persisted success/failure manifests, and safe malformed-JSON diagnostics through both runtime functions.
 
-Required final disposition:
+**New blocker F-04:** actual `harvest.mjs` and `validate.mjs` Node processes on Windows returned status 0 with empty stdout/stderr for malformed input because main-module detection skipped execution. Imported-function tests do not cover this command-level false-success behavior. The whole Stage 1 evidence boundary is assessed in the durable report; Mission Control must decide narrow entry-point correction authorization and subsequent verification.
 
-`PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
-
-Required stop line:
+No implementation, builder report or prior Codex review was modified. Reproductions used isolated temporary fixtures and were cleaned up. No self-acceptance, merge, Stage 2 activation, real proof processing, AI extraction, background automation or `SB-P-1.12` activation was performed.
 
 `STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
 
