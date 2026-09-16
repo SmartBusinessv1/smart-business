@@ -1,18 +1,18 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 1 F-01 NARROW CORRECTION
+# SB-ORG-LEARNING-1.1 — STAGE 1 CODEX INDEPENDENT RE-VERIFICATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Finding:** `F-01 — rejected mission identifier escapes receipt storage`
-
-**Builder:** Claude Code
+**Verifier:** Codex
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-**PR:** `#588`
+**PR:** `#588 — OPEN — NOT MERGED`
+
+**Mission Control disposition:** `F-01 CORRECTION RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
@@ -22,66 +22,63 @@
 
 1. `communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`
 2. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-authorization.md`
-3. `organizational-learning/lib/receipt-store.ts`
-4. relevant receipt-store and harvester tests.
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/07-stage1-f01-rereview-and-codex-reverification-authorization.md`
+4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
+5. current Stage 1 implementation/tests on this branch.
 
-Do not broaden scope beyond F-01.
-
----
-
-## Required correction
-
-The receipt payload may preserve a malformed/raw `mission_id` for truthful diagnostics, but that value must not control filesystem placement.
-
-Implement a deterministic filesystem-safe storage key for receipt placement and explicitly enforce that every receipt lookup/write destination remains inside the configured receipts directory.
-
-The same safe derivation must be used by lookup and write, and repeated identical input must remain deterministic/idempotent.
-
-A repository-native cryptographic digest of `mission_id` is acceptable if no dependency is added.
+Do not rely on builder or Mission Control conclusions as independent proof.
 
 ---
 
-## Required regression proof
+## Required independent re-verification
 
-Add environment-independent tests proving normal identifiers and malicious/traversal/absolute/Windows/UNC/path-separator forms cannot escape the configured receipt directory; failure receipts preserve the original malformed `mission_id` payload; lookup and write use the same deterministic location; repeated identical malformed inputs remain deterministic; and the `runHarvest` invalid-envelope failure flow cannot write outside the configured receipts directory.
+Independently verify the corrected Stage 1 implementation.
 
-Use isolated temporary directories only.
+At minimum:
 
----
+1. Reproduce the original F-01 attack using an invalid envelope with `mission_id: "../escaped"` against isolated temporary directories and confirm no lookup/write escapes the configured receipts directory.
+2. Inspect and test the separation between raw diagnostic `mission_id` and filesystem storage identity.
+3. Verify both lookup and write use the same safe contained path derivation.
+4. Verify truthful malformed identifier preservation in the receipt payload remains intact.
+5. Verify deterministic/idempotent repeated handling of the same malformed identifier.
+6. Independently run the relevant OLE Fast Tests and inspect current exact-head GitHub Actions evidence.
+7. Revisit the assurance areas that the prior verification explicitly left incomplete after stopping on F-01, including persisted manifest ordering, secret-echo boundaries, receipt-state truthfulness, autonomous-write/background-work boundaries, and the evidence reach needed for Stage 1 acceptance.
+8. Verify the previously accepted Stage 1 boundaries remain intact: no AI/provider call, semantic extraction, promotion execution, background automation, real closed-mission proof-target processing, provider mutation, dependency addition, governance/Product Truth change, Stage 2 activation, or `SB-P-1.12` activation.
 
-## Still prohibited
-
-Do not:
-
-- redesign OLE;
-- alter candidate/promotion authority;
-- alter provenance architecture beyond F-01;
-- change source allowlisting;
-- change receipt-state vocabulary;
-- reverse truthful malformed-ID payload preservation;
-- expand the scanner;
-- perform AI extraction;
-- process a real proof target;
-- implement background automation;
-- add provider/network writes;
-- activate Stage 2;
-- activate `SB-P-1.12`;
-- add dependencies or modify `package-lock.json` without separate Mission Control authorization;
-- self-approve;
-- merge.
+Do not process the real `SB-OPS-CI-ARCHITECTURE-1.0` proof target.
+Do not modify implementation code.
+Do not merge.
 
 ---
 
-## Validation and handoff
+## Required durable output
 
-Run focused regression tests plus complete Fast Gate and applicable lint/typecheck/build/Markdown checks. Push to the existing branch and wait for applicable CI.
+Create/update a durable verifier report under:
 
-Update the durable Claude Code report with the F-01 correction evidence and update only the builder section of `communication/live/report.md`.
+`communication/missions/SB-ORG-LEARNING-1.1/codex/`
 
-Do not create another metadata-only commit solely to embed a supposedly final branch SHA. Use PR `#588` / GitHub Actions as current exact-head CI truth.
+Record:
 
-Then STOP and return:
+- reviewed branch and exact reviewed SHA;
+- PR state;
+- independent tests/reproductions performed;
+- exact CI evidence inspected;
+- F-01 disposition;
+- completion of previously incomplete assurance areas;
+- any new blocking or non-blocking findings;
+- final disposition: `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
 
-`STAGE 1 F-01 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+Update only the minimum verifier section of `communication/live/report.md` needed for handoff.
 
-Do not authorize Codex yourself.
+---
+
+## Stop condition
+
+After independent re-verification and durable reporting, stop and state:
+
+`STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+
+Do not self-accept Stage 1.
+Do not merge.
+Do not begin Stage 2.
+Do not activate `SB-P-1.12`.
