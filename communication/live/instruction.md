@@ -1,17 +1,33 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# Instruction — Awaiting Mission Activation
+# SB-ORG-LEARNING-1.1 — Organizational Learning Engine Implementation
 
-**Mission ID:** `NONE`
+**Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **From:** Smart Business Mission Control
 
-**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
+**To:** Founder Riyas PK
+
+**Status:** `ACTIVATION OPEN — AWAITING FOUNDER MERGE — NO SPECIALIST EXECUTION YET`
 
 ---
 
-`communication/live/` is currently reset and contains no active mission.
+The approved Organizational Learning Engine build plan is now being activated for implementation before `SB-P-1.12`.
 
-When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
+Controlling implementation boundary:
 
-Do not infer a mission from archived communication or prior chat history.
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
+
+Parent accepted build plan:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+
+Current action:
+
+Founder reviews and merges the activation PR.
+
+Do **not** begin Claude Code implementation from this activation-state instruction.
+
+After Founder merge, Mission Control will verify canonical `main`, replace this file with the Stage 1 Claude Code execution instruction, and begin implementation.
+
+`SB-P-1.12` remains not activated.
