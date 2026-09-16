@@ -1,33 +1,44 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Organizational Learning Engine Implementation
+# SB-ORG-LEARNING-1.1 — Successor Mission Control Handover
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**From:** Smart Business Mission Control
+**From:** Outgoing Smart Business Mission Control
 
-**To:** Founder Riyas PK
+**To:** Successor Smart Business Mission Control
 
-**Status:** `ACTIVATION OPEN — AWAITING FOUNDER MERGE — NO SPECIALIST EXECUTION YET`
+**Status:** `HANDOVER ACTIVE — STAGE 1 NOT YET OPENED`
 
 ---
 
-The approved Organizational Learning Engine build plan is now being activated for implementation before `SB-P-1.12`.
+Founder merge of implementation activation PR `#585` is complete.
 
-Controlling implementation boundary:
+Verified activation merge commit at handover preparation:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
+`e1806c0e2e1f56102e03daf6639363ddd34c3ede`
 
-Parent accepted build plan:
+The outgoing Mission Control has intentionally **not** opened specialist implementation.
 
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+Before doing anything else, the successor Mission Control must read:
 
-Current action:
+1. `mission-control/mission-control-22-24.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/README.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
+4. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+5. `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+6. current active governance and current repository state.
 
-Founder reviews and merges the activation PR.
+After successor hydration/acceptance and current-state verification, the first execution action is:
 
-Do **not** begin Claude Code implementation from this activation-state instruction.
+> **Open Stage 1 for Claude Code using the exact instruction in Section 11 of `02-successor-mission-control-handover.md`.**
 
-After Founder merge, Mission Control will verify canonical `main`, replace this file with the Stage 1 Claude Code execution instruction, and begin implementation.
+The successor should create a fresh Stage 1 branch from then-current protected `main` and replace this handover-state live instruction/report pair with the Stage 1 execution communication.
 
-`SB-P-1.12` remains not activated.
+Do not start Stage 2.
+
+Do not start AI extraction.
+
+Do not start background automation.
+
+Do not activate `SB-P-1.12`.
