@@ -7,9 +7,10 @@
 - **Mission type:** Non-Product organizational / institutional capability mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `RESEARCH & DESIGN — EXTERNAL REVIEW PENDING`
+- **Status:** `STAGE 2 ACTIVE — CODEX INDEPENDENT REVIEW`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Working branch:** `mission/SB-ORG-LEARNING-1.0-proposal`
+- **Proposal PR:** `#583 — OPEN — DO NOT MERGE YET`
 - **Implementation:** `NOT AUTHORIZED`
 - **Production impact:** None
 - **Product Mission activation:** None; `SB-P-1.12` remains not activated.
@@ -20,54 +21,59 @@ Design a governed, repository-native Organizational Learning Engine that convert
 
 ## Current stage
 
-**Stage:** Proposal review.
+Review is sequential.
 
-Mission Control has published the detailed build proposal and activated parallel review by:
+### Stage 1 — Claude Code engineering review
 
-- Claude Code — engineering/repository review;
-- Codex — independent assurance/adversarial review.
+**Status:** `COMPLETE — MISSION CONTROL REVIEWED`
 
-Neither reviewer is authorized to implement the proposal.
-
-## Authoritative proposal
-
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/01-research-and-build-plan-proposal.md`
-
-## Review instructions
-
-- `communication/missions/SB-ORG-LEARNING-1.0/claude-code/00-review-instruction.md`
-- `communication/missions/SB-ORG-LEARNING-1.0/codex/00-review-instruction.md`
-
-## Required review outputs
-
-Claude Code:
+Claude output:
 
 `communication/missions/SB-ORG-LEARNING-1.0/claude-code/01-engineering-review-and-suggestions.md`
 
-Codex:
+Mission Control reconciliation:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
+
+Disposition:
+
+`CLAUDE REVIEW ACCEPTED WITH MISSION CONTROL QUALIFICATIONS`
+
+### Stage 2 — Codex independent review
+
+**Status:** `ACTIVE — REVIEW ONLY`
+
+Codex instruction:
+
+`communication/missions/SB-ORG-LEARNING-1.0/codex/00-review-instruction.md`
+
+Required output:
 
 `communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
 
-Both reviewers shall also append/update their concise status in:
+Codex must also update only its own section in:
 
 `communication/live/report.md`
 
-without erasing the other reviewer's section.
+## Proposal and current controlling interpretation
 
-## Last completed action
+Original detailed proposal:
 
-Mission Control created the proposal branch and published the detailed proposal package.
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/01-research-and-build-plan-proposal.md`
+
+Current Mission Control reconciliation / narrowed v1 direction:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
+
+Where the second file narrows or qualifies the first, Codex shall review the reconciled direction while preserving the original proposal as historical design evidence.
 
 ## Current owner
 
-Parallel external review:
-
-- Claude Code for engineering review;
-- Codex for independent assurance review.
+Codex — independent assurance/adversarial review only.
 
 ## Next authorized action
 
-Each reviewer shall inspect the actual repository, read the proposal and governing sources, then create only its assigned review and suggestions artifact plus its live-report status section.
+Codex shall inspect actual repository state and independently review the proposal, Claude findings, and Mission Control reconciliation. It shall create only its assigned durable review artifact plus its own live-report section, then stop for Mission Control.
 
 ## Not authorized
 
@@ -84,8 +90,18 @@ Each reviewer shall inspect the actual repository, read the proposal and governi
 - automatic tool adoption;
 - self-approval;
 - self-merge;
+- merge of PR `#583`;
 - activation of `SB-P-1.12` or any adjacent mission.
 
-## Completion condition for this stage
+## Next gate after Codex
 
-This review stage remains open until both durable review artifacts are present and Mission Control reconciles the findings.
+Mission Control will:
+
+1. independently inspect the Codex review and branch head;
+2. compare Claude and Codex findings;
+3. apply any required proposal corrections;
+4. resolve or escalate Founder decisions;
+5. issue the final build-plan disposition;
+6. only then hand PR `#583` to the Founder for merge as an approved build plan if accepted.
+
+Implementation requires separate authorization after build-plan acceptance.
