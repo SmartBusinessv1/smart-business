@@ -50,17 +50,19 @@ Active verifier instruction:
 
 `communication/live/instruction.md`
 
-## Codex required return
+## Codex independent verification
 
-Codex must independently inspect the complete Stage 1 implementation and correction, create:
+**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`
+Durable report: [Stage 1 independent verification](../missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md).
 
-and stop with:
+Codex reviewed PR `#588` at `d2ca1638abb4985669cbe43074b9adec3e9f3bb3`. Exact reviewed-head CI succeeded. Independently reproduced OLE tests passed: 15 files, 159 tests, including all nine dangling-provenance correction cases.
+
+Blocking finding **F-01**: an invalid envelope with `mission_id: "../escaped"` returns `VALIDATION_FAILED` but writes its failure receipt outside the configured receipt directory. The reproduction used and cleaned an isolated temporary root. Passing existing tests do not establish this write boundary.
+
+Implementation review stopped on the confirmed blocker. No correction was implemented. Mission Control must decide on narrow receipt-storage correction authorization and subsequent verification. No Stage 1 acceptance, merge, Stage 2, real proof-target processing, AI extraction, background automation or `SB-P-1.12` activation is authorized by this report.
 
 `STAGE 1 INDEPENDENT VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
-
-Codex must not merge, self-accept Stage 1, begin Stage 2, process the real proof target, begin AI extraction/background automation, or activate `SB-P-1.12`.
 
 ## Review chain
 
