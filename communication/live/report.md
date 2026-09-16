@@ -3,7 +3,7 @@
 **Mission ID:** `SB-ORG-LEARNING-1.0`  
 **Mission name:** Smart Business Organizational Learning Engine  
 **To:** Founder Riyas PK  
-**Status:** `BUILD PLAN ACCEPTED — FINAL CI VERIFICATION PENDING`  
+**Status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`  
 **Date:** 2026-09-16
 
 ---
@@ -42,16 +42,6 @@ Implementation remains **NOT AUTHORIZED**.
 
 Mission Control accepted the repository-grounded simplification direction with qualifications.
 
-Key retained recommendations:
-
-- repository-native first slice;
-- Zod/runtime TypeScript contracts;
-- Node.js ESM deterministic tooling;
-- lessons + risks first;
-- explicit durable-source allowlist;
-- provenance/idempotency/security tests;
-- proof against a real closed mission before broad automation.
-
 ---
 
 ## Codex independent review
@@ -62,27 +52,13 @@ Key retained recommendations:
 
 **Codex disposition:** `CHANGES REQUIRED BEFORE BUILD-PLAN ACCEPTANCE`
 
-Mission Control accepts the substantive B1–B7 design corrections:
-
-1. generated candidate content is structurally separated from promotion authority;
-2. provenance is claim-level and evidence reach is preserved;
-3. allowlisted source paths are eligible evidence, not automatic authority;
-4. retrieval accounts for freshness, contradictions, supersession, risks, and reviewed maturity;
-5. screening, extraction, and publication are isolated and fail closed;
-6. automatic learning eligibility uses a versioned authoritative closure envelope;
-7. source/process/candidate/review/publication identities, idempotency, atomic publication, concurrency, and recovery are explicitly separated.
-
-Codex independently supported Mission Control's qualification of the historical scanner evidence: reviewed repository-hygiene records classify the examined findings as non-credential-grade. Screening remains mandatory; no claim of credential-grade leakage is carried into the final plan.
+Mission Control incorporated the substantive B1–B7 design corrections into the final controlling plan.
 
 ---
 
 ## Final Mission Control reconciliation
 
 **Status:** `COMPLETE — BUILD PLAN ACCEPTED`
-
-Mission Control incorporated the required corrections into:
-
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
 
 The final plan preserves the Founder's central requirement:
 
@@ -93,7 +69,12 @@ while preserving:
 - human promotion authority;
 - Product Truth/governance separation;
 - current-vs-historical separation;
-- evidence/provenance limits;
+- claim-level evidence/provenance limits;
+- safe source selection;
+- freshness/contradiction/supersession handling;
+- fail-closed screening and isolated publication;
+- closure-envelope eligibility;
+- idempotency, atomic publication, concurrency, and recovery controls;
 - no self-approval/self-merge;
 - no production authority;
 - no automatic tool adoption.
@@ -102,13 +83,24 @@ Proof-stage manual/supervised processing is allowed only as an intermediate vali
 
 ---
 
+## CI verification
+
+Mission Control verified both required PR checks green on the accepted proposal state before issuing Founder merge authority:
+
+- Team LIPS Markdown Quality Gate — SUCCESS;
+- Team LIPS Application Build Assurance — SUCCESS.
+
+Any later unexpected head movement before Founder merge requires re-verification.
+
+---
+
 ## Final disposition
 
-`SB-ORG-LEARNING-1.0 — BUILD PLAN ACCEPTED — IMPLEMENTATION NOT AUTHORIZED`
+`SB-ORG-LEARNING-1.0 — BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE — IMPLEMENTATION NOT AUTHORIZED`
 
 PR:
 
-`#583`
+`#583 — OPEN — READY FOR FOUNDER MERGE`
 
 Founder merge of PR `#583` approves the build plan only.
 
@@ -118,10 +110,9 @@ It does not implement the engine and does not activate `SB-P-1.12`.
 
 ## Next action
 
-1. Mission Control verifies CI on the exact final proposal head.
-2. If green, Founder merges PR `#583`.
-3. Mission Control verifies canonical `main` and post-merge checks.
-4. Mission Control performs durable communication archive/reset.
-5. Any Organizational Learning Engine implementation requires a separate explicit mission.
+1. Founder merges PR `#583`.
+2. Mission Control verifies canonical `main` and post-merge checks.
+3. Mission Control performs durable communication archive/reset.
+4. Any Organizational Learning Engine implementation requires a separate explicit mission.
 
 `SB-P-1.12` remains not activated.
