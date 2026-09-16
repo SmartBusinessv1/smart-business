@@ -22,13 +22,19 @@
 
 ## Builder completion section
 
-Claude Code shall update this report only as instructed by the active Stage 1 instruction and must also create the durable report:
+**Status:** `STAGE 1 IMPLEMENTATION REPORTED — MISSION CONTROL SUBSTANTIVE REVIEW REQUIRED`
 
-`communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
 
-Until Claude Code completes implementation, validation, push, CI evidence and durable reporting, this report remains:
+**Branch head:** `7198ee6a68373a2ff8080e021fb8871583b012ac` on `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-`STAGE 1 IMPLEMENTATION IN PROGRESS — MISSION CONTROL REVIEW PENDING`
+**Pull request:** [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) — open, targeting `main`, not self-approved, not merged.
+
+**CI (real, on the pushed head):** Lint, Typecheck, Build, Fast Tests, Full Assurance Tests, and Markdown Quality Gate all **pass**. 211/211 tests pass locally (`npm run test:fast`), including 150 new Stage 1 tests across 14 files.
+
+**Scope:** Phase A contracts (candidate, promotion/review, closure-envelope, receipt, provenance schemas; source allowlist; path-safety; committed-Git-object reader; fail-closed screening contract) and Phase B (deterministic Node ESM harvester CLI) only. No AI call, no promotion, no background automation, no dependency/lockfile change, no processing of the real `SB-OPS-CI-ARCHITECTURE-1.0` proof target. Full detail, architecture proof, interpretive decisions, and risks are in the durable report above.
+
+**Next action:** Mission Control substantive review, then Codex independent verification, per the required review chain. Do not self-approve. Do not merge. Do not begin Stage 2.
 
 ## Required stop
 
