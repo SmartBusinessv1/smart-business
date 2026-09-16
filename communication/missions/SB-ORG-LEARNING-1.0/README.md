@@ -7,10 +7,10 @@
 - **Mission type:** Non-Product organizational / institutional capability mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `STAGE 2 ACTIVE — CODEX INDEPENDENT REVIEW`
+- **Status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Working branch:** `mission/SB-ORG-LEARNING-1.0-proposal`
-- **Proposal PR:** `#583 — OPEN — DO NOT MERGE YET`
+- **Proposal PR:** `#583 — OPEN — READY FOR FOUNDER MERGE AFTER FINAL CI`
 - **Implementation:** `NOT AUTHORIZED`
 - **Production impact:** None
 - **Product Mission activation:** None; `SB-P-1.12` remains not activated.
@@ -19,9 +19,7 @@
 
 Design a governed, repository-native Organizational Learning Engine that converts authoritative mission closure evidence into reusable institutional learning while preserving provenance, uncertainty, current-state separation, human authority, and existing Smart Business governance.
 
-## Current stage
-
-Review is sequential.
+## Review sequence
 
 ### Stage 1 — Claude Code engineering review
 
@@ -41,67 +39,56 @@ Disposition:
 
 ### Stage 2 — Codex independent review
 
-**Status:** `ACTIVE — REVIEW ONLY`
+**Status:** `COMPLETE — MISSION CONTROL RECONCILED`
 
-Codex instruction:
-
-`communication/missions/SB-ORG-LEARNING-1.0/codex/00-review-instruction.md`
-
-Required output:
+Codex output:
 
 `communication/missions/SB-ORG-LEARNING-1.0/codex/01-independent-review-and-suggestions.md`
 
-Codex must also update only its own section in:
+Codex disposition:
 
-`communication/live/report.md`
+`CHANGES REQUIRED BEFORE BUILD-PLAN ACCEPTANCE`
 
-## Proposal and current controlling interpretation
+Mission Control accepted the substantive B1–B7 corrections and incorporated them into the final plan.
 
-Original detailed proposal:
+### Stage 3 — Final Mission Control reconciliation
 
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/01-research-and-build-plan-proposal.md`
+**Status:** `COMPLETE — BUILD PLAN ACCEPTED`
 
-Current Mission Control reconciliation / narrowed v1 direction:
+Final controlling plan:
 
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/02-claude-review-reconciliation-and-codex-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
 
-Where the second file narrows or qualifies the first, Codex shall review the reconciled direction while preserving the original proposal as historical design evidence.
+Where the final plan narrows, corrects, or supersedes the original proposal, the final plan controls.
 
 ## Current owner
 
-Codex — independent assurance/adversarial review only.
+Founder Riyas PK for protected-main merge of PR `#583` after final-head CI is verified green.
 
-## Next authorized action
+## What merge means
 
-Codex shall inspect actual repository state and independently review the proposal, Claude findings, and Mission Control reconciliation. It shall create only its assigned durable review artifact plus its own live-report section, then stop for Mission Control.
+Founder merge of PR `#583` approves the Organizational Learning Engine **build plan only**.
 
-## Not authorized
+It does not authorize:
 
-- implementation;
-- product/UX changes;
-- schema/database migrations;
-- RLS/authentication/permission changes;
-- production writes or deployment;
+- engine implementation;
 - dependency additions/upgrades;
 - new external integrations;
+- new write-capable automation;
+- database/schema migrations;
+- RLS/authentication/permission changes;
+- production writes or deployment;
 - Product Truth or roadmap changes;
 - governance rewriting;
-- branch-protection changes;
 - automatic tool adoption;
-- self-approval;
-- self-merge;
-- merge of PR `#583`;
 - activation of `SB-P-1.12` or any adjacent mission.
 
-## Next gate after Codex
+## Next gate
 
-Mission Control will:
+1. Final proposal-head CI must be green.
+2. Founder merges PR `#583`.
+3. Mission Control verifies canonical `main` and post-merge checks.
+4. Mission Control archives/resets live communication and closes this research/design mission.
+5. Any OLE implementation requires a separate explicit implementation mission.
 
-1. independently inspect the Codex review and branch head;
-2. compare Claude and Codex findings;
-3. apply any required proposal corrections;
-4. resolve or escalate Founder decisions;
-5. issue the final build-plan disposition;
-6. only then hand PR `#583` to the Founder for merge as an approved build plan if accepted.
-
-Implementation requires separate authorization after build-plan acceptance.
+`SB-P-1.12` remains not activated.
