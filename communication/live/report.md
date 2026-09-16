@@ -1,6 +1,6 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Corrective Handoff
+# SB-ORG-LEARNING-1.1 — Stage 1 Residual F-04 Corrective Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
@@ -8,7 +8,7 @@
 
 **Current actor:** Claude Code
 
-**Status:** `STAGE 1 NARROW CORRECTION AUTHORIZED — F-04 ONLY`
+**Status:** `STAGE 1 RESIDUAL F-04 IMPORT-SAFETY CORRECTION AUTHORIZED — CLAUDE CODE ACTION PENDING`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
@@ -16,73 +16,47 @@
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
----
+## Latest independent disposition
 
-## Latest Codex disposition
+Codex final independent re-verification returned `FAIL`.
 
-**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance review.
+Durable verifier report:
 
-Current durable report: [Stage 1 independent final re-verification](../missions/SB-ORG-LEARNING-1.1/codex/04-stage1-independent-final-reverification.md). The prior reports remain historical evidence.
+`communication/missions/SB-ORG-LEARNING-1.1/codex/04-stage1-independent-final-reverification.md`
 
-Reviewed head: `7d5e46f85868f948d0fb307da90523c89cffc655`. Independent OLE suite: 16 files, 194 tests passed, including all eight process-level tests. All applicable reviewed-head CI completed successfully, including 255 Fast Tests and the repaired Markdown gate. These are reviewed-checkpoint facts, not publication-head CI claims.
+Codex independently confirmed:
 
-The original F-04 Windows direct-execution defect is corrected: actual malformed/missing CLI input fails, valid synthetic input executes, and file-based imports are safe. **F-04 retains an import-safety regression:** Node `--eval` has no `process.argv[1]`, and importing either module throws `ERR_INVALID_ARG_TYPE` because main-module detection passes that absent value to `pathToFileURL`. The report records the exact reproduction and narrow guard/test correction scope.
+- F-01 remains resolved within the tested boundary;
+- F-02 remains resolved;
+- F-03 remains resolved;
+- the original F-04 Windows direct-CLI silent-success defect is resolved;
+- residual F-04 import safety remains incomplete because `process.argv[1]` can be absent in Node module-eval contexts and is currently passed unconditionally to `pathToFileURL`.
 
-**F-01/F-02/F-03 remain resolved within the tested boundaries**, including actual CLI no-echo behavior. The whole Stage 1 evidence assessment is in the durable report. Reproductions used isolated temporary fixtures and were cleaned up; no implementation or historical actor record was corrected by Codex.
-
-Mission Control must decide the narrow F-04 follow-up and subsequent verification. No approval, merge, Stage 2 activation, real proof processing, AI extraction or `SB-P-1.12` activation was performed.
-
-`STAGE 1 INDEPENDENT FINAL RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
-
----
+Stage 1 is not ready for acceptance.
 
 ## Mission Control decision
 
-`NARROW CORRECTION REQUIRED — F-04 ONLY`
+`NARROW CORRECTION REQUIRED — RESIDUAL F-04 IMPORT SAFETY ONLY`
 
 Controlling authorization:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/10-stage1-f04-correction-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/11-stage1-f04-import-safety-correction-authorization.md`
 
 Active builder instruction:
 
 `communication/live/instruction.md`
 
-Claude Code must correct only the cross-platform CLI main-module detection, add genuine child-process regressions, run applicable validation/CI, update the existing durable builder report plus the minimum builder section here, and stop with:
+Claude Code must correct only the residual F-04 import-safety boundary, add genuine eval-mode child-process import regressions, preserve the already-correct direct CLI behavior, run applicable local validation and real CI, update the existing durable builder report plus the minimum builder section here, and stop with:
 
-`STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+`STAGE 1 RESIDUAL F-04 IMPORT-SAFETY CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 
 Do not self-approve.
 Do not merge.
 Do not begin Stage 2.
 Do not activate `SB-P-1.12`.
 
----
-
-## Builder F-04 correction report
-
-**Status:** `STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
-
-**Durable report (revised):** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`, new Section 24.
-
-**Fix, one line changed per script, no dependency:** `organizational-learning/scripts/harvest.mjs` and `organizational-learning/scripts/validate.mjs` both replaced the naive `file://` string-prefix comparison of `import.meta.url` against `process.argv[1]` with `import.meta.url === pathToFileURL(process.argv[1]).href` (Node's own standard, platform-correct idiom; `pathToFileURL` is a `node:url` built-in). Verified empirically on this exact Windows environment before writing the fix: the old comparison is `false` for direct execution, the new one is `true`, and the new one correctly stays `false` when the module is only imported.
-
-**Regression proof, genuine process-level tests (the first in this mission):** new file `organizational-learning/tests/cli-process.test.ts`, 8 tests, spawns the actual `node harvest.mjs` / `node validate.mjs` processes via `spawnSync` (matching Codex's own reproduction method) rather than importing functions. Covers: malformed JSON on the real process (nonzero, safe diagnostic, no canary echo, both scripts); missing required input (nonzero, both scripts); valid synthetic input actually executing and returning genuine success (the exact case that was silently false before); and importing either script from a separate spawned process producing no output/no auto-run. **The suite was proven genuine**: the fix was temporarily reverted and the suite re-run — 6 of 8 tests failed exactly as expected against the old code, then the fix was restored and the full suite re-verified green.
-
-**Scope discipline:** exactly 3 files touched (`harvest.mjs`, `validate.mjs`, `vitest.fast.config.ts`) plus 1 new test file, 0 dependencies added, `package-lock.json` unchanged. F-01/F-02/F-03 designs were not reopened.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **255/255 passing** across 24 files (up from 247/23 — 8 new tests, 1 new file); `npm run build` succeeds; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
-
-**CI on this correction's pushed head:** Lint, Typecheck, Build, Fast Tests, and Full Assurance Tests all **pass**. The **Markdown Quality Gate fails** — see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab for the live result.
-
-**That Markdown Quality Gate failure is pre-existing and out of this correction's scope to fix.** The gate re-validates the PR's entire base-to-head Markdown diff on every run, not just the latest commit. The specific failing file is `communication/live/instruction.md` (line 36: an inline-code span with backslash-escaped backticks nested inside single backticks — invalid Markdown, not this correction's F-04 comparison code), introduced by Mission Control's own commit `393af1057f04f2e49ffe447ae3df7c5257768b65` ("authorize narrow Stage 1 F-04 correction"). That commit is confirmed (`git merge-base --is-ancestor`) to be an ancestor of this correction's commit, and the Markdown Quality Gate run immediately after that Mission Control commit — before this correction began — already showed the same failure. This correction does not edit `communication/live/instruction.md`; that file is Mission Control's own authorization document and fixing it is not one of the three things this correction is authorized to change. All 6 files this correction touched were individually validated against the same tool locally and passed. Flagged here for Mission Control to fix.
-
-**Scope confirmation:** only the F-04 finding was corrected. No AI/semantic extraction, no processing of `SB-OPS-CI-ARCHITECTURE-1.0`, no background automation, no provider/network writes, no promotion execution, no Stage 2 activation, no `SB-P-1.12` activation, no self-approval, no merge. Codex was not authorized by this builder — the prior `FAIL` disposition stands until Codex re-verifies again.
-
----
-
 ## Review chain
 
-**Claude Code F-04 correction → Mission Control re-review → Codex independent re-verification → narrow correction if still required → Mission Control Stage 1 acceptance → human/Founder merge → explicit Stage 2 authorization.**
+Claude Code residual F-04 correction → Mission Control re-review → Codex independent final re-verification → Mission Control Stage 1 acceptance decision if PASS → human/Founder merge → explicit Stage 2 authorization.
 
 Stage 1 acceptance is not OLE mission completion.
