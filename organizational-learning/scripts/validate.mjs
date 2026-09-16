@@ -11,6 +11,7 @@
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
 import { CandidateLearningItemSchema } from "../schemas/candidate-learning-item.schema.ts";
 import { PromotionReviewSchema } from "../schemas/promotion-review.schema.ts";
@@ -68,8 +69,13 @@ export function runValidate(argv) {
   };
 }
 
+// F-04 correction: see harvest.mjs's equivalent fix for the full
+// rationale -- the previous naive `file://${process.argv[1]}` prefix
+// never equals `import.meta.url`'s canonical file URL form on Windows,
+// so this CLI's guarded block silently never ran there. `pathToFileURL`
+// is Node's standard, platform-correct conversion.
 function isMainModule() {
-  return import.meta.url === `file://${process.argv[1]}`;
+  return import.meta.url === pathToFileURL(process.argv[1]).href;
 }
 
 if (isMainModule()) {

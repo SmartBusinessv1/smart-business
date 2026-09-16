@@ -63,6 +63,26 @@ Do not activate `SB-P-1.12`.
 
 ---
 
+## Builder F-04 correction report
+
+**Status:** `STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report (revised):** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`, new Section 24.
+
+**Fix, one line changed per script, no dependency:** `organizational-learning/scripts/harvest.mjs` and `organizational-learning/scripts/validate.mjs` both replaced the naive `file://` string-prefix comparison of `import.meta.url` against `process.argv[1]` with `import.meta.url === pathToFileURL(process.argv[1]).href` (Node's own standard, platform-correct idiom; `pathToFileURL` is a `node:url` built-in). Verified empirically on this exact Windows environment before writing the fix: the old comparison is `false` for direct execution, the new one is `true`, and the new one correctly stays `false` when the module is only imported.
+
+**Regression proof, genuine process-level tests (the first in this mission):** new file `organizational-learning/tests/cli-process.test.ts`, 8 tests, spawns the actual `node harvest.mjs` / `node validate.mjs` processes via `spawnSync` (matching Codex's own reproduction method) rather than importing functions. Covers: malformed JSON on the real process (nonzero, safe diagnostic, no canary echo, both scripts); missing required input (nonzero, both scripts); valid synthetic input actually executing and returning genuine success (the exact case that was silently false before); and importing either script from a separate spawned process producing no output/no auto-run. **The suite was proven genuine**: the fix was temporarily reverted and the suite re-run — 6 of 8 tests failed exactly as expected against the old code, then the fix was restored and the full suite re-verified green.
+
+**Scope discipline:** exactly 3 files touched (`harvest.mjs`, `validate.mjs`, `vitest.fast.config.ts`) plus 1 new test file, 0 dependencies added, `package-lock.json` unchanged. F-01/F-02/F-03 designs were not reopened.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **255/255 passing** across 24 files (up from 247/23 — 8 new tests, 1 new file); `npm run build` succeeds; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**CI on this correction's pushed head:** see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab for the live, current-head result — not restated here as a fixed claim, per the standing anti-recursion rule.
+
+**Scope confirmation:** only the F-04 finding was corrected. No AI/semantic extraction, no processing of `SB-OPS-CI-ARCHITECTURE-1.0`, no background automation, no provider/network writes, no promotion execution, no Stage 2 activation, no `SB-P-1.12` activation, no self-approval, no merge. Codex was not authorized by this builder — the prior `FAIL` disposition stands until Codex re-verifies again.
+
+---
+
 ## Review chain
 
 **Claude Code F-04 correction → Mission Control re-review → Codex independent re-verification → narrow correction if still required → Mission Control Stage 1 acceptance → human/Founder merge → explicit Stage 2 authorization.**

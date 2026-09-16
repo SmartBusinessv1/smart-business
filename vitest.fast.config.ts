@@ -45,6 +45,7 @@ export default defineConfig({
       "organizational-learning/tests/receipt-store.test.ts",
       "organizational-learning/tests/harvest-cli.test.ts",
       "organizational-learning/tests/validate-cli.test.ts",
+      "organizational-learning/tests/cli-process.test.ts",
     ],
     ...sharedTestTimeouts,
     // Safe to parallelize, unlike Full Assurance: these files share no

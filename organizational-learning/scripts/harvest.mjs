@@ -23,6 +23,7 @@
 import { readFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { execFileSync } from "node:child_process";
+import { pathToFileURL } from "node:url";
 
 import { ClosureEnvelopeSchema, envelopeEvidenceRefs } from "../schemas/closure-envelope.schema.ts";
 import { RECEIPT_SCHEMA_VERSION } from "../schemas/receipt.schema.ts";
@@ -305,8 +306,24 @@ export function runHarvest(argv) {
   };
 }
 
+// F-04 correction (communication/missions/SB-ORG-LEARNING-1.1/
+// mission-control/10-stage1-f04-correction-authorization.md): the
+// previous comparison built a file URL by string-prefixing
+// `process.argv[1]` with "file://". On Windows, `process.argv[1]` is a
+// native path (backslashes, no leading slash, e.g.
+// "C:\path\harvest.mjs"), which does not equal `import.meta.url`'s
+// canonical file URL form (e.g. "file:///C:/path/harvest.mjs") under
+// that naive prefixing -- so the comparison was always false on
+// Windows, and the guarded CLI block below silently never ran, leaving
+// Node's default exit status 0 even for invalid input. `pathToFileURL`
+// is Node's standard, platform-correct way to turn an argv path into
+// the same canonical file URL form `import.meta.url` already uses;
+// verified empirically on this exact Windows environment (both that
+// the old comparison is false and the new one is true for direct
+// execution, and that it correctly stays false when the module is only
+// imported) before being written into the fix.
 function isMainModule() {
-  return import.meta.url === `file://${process.argv[1]}`;
+  return import.meta.url === pathToFileURL(process.argv[1]).href;
 }
 
 if (isMainModule()) {
