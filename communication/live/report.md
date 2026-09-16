@@ -20,23 +20,19 @@
 
 ## Latest Codex disposition
 
-`FAIL`
+**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance review.
 
-Durable verifier report:
+Current durable report: [Stage 1 independent final re-verification](../missions/SB-ORG-LEARNING-1.1/codex/04-stage1-independent-final-reverification.md). The prior reports remain historical evidence.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/03-stage1-independent-reverification.md`
+Reviewed head: `7d5e46f85868f948d0fb307da90523c89cffc655`. Independent OLE suite: 16 files, 194 tests passed, including all eight process-level tests. All applicable reviewed-head CI completed successfully, including 255 Fast Tests and the repaired Markdown gate. These are reviewed-checkpoint facts, not publication-head CI claims.
 
-Verifier publication commit:
+The original F-04 Windows direct-execution defect is corrected: actual malformed/missing CLI input fails, valid synthetic input executes, and file-based imports are safe. **F-04 retains an import-safety regression:** Node `--eval` has no `process.argv[1]`, and importing either module throws `ERR_INVALID_ARG_TYPE` because main-module detection passes that absent value to `pathToFileURL`. The report records the exact reproduction and narrow guard/test correction scope.
 
-`890059588fd29b76e1baf8bd929f08acb27e45d0`
+**F-01/F-02/F-03 remain resolved within the tested boundaries**, including actual CLI no-echo behavior. The whole Stage 1 evidence assessment is in the durable report. Reproductions used isolated temporary fixtures and were cleaned up; no implementation or historical actor record was corrected by Codex.
 
-Codex independently confirmed **F-01, F-02 and F-03 resolved** within the stated evidence reach.
+Mission Control must decide the narrow F-04 follow-up and subsequent verification. No approval, merge, Stage 2 activation, real proof processing, AI extraction or `SB-P-1.12` activation was performed.
 
-New blocking finding:
-
-- **F-04:** actual `harvest.mjs` and `validate.mjs` CLI processes on Windows can silently skip their execution path because main-module detection compares `import.meta.url` to a raw `file://${process.argv[1]}` string. Invalid input can therefore yield process status 0 with no output even though the imported runtime function would reject it.
-
-Existing green tests/CI do not close this command-level defect because the prior tests exercised imported functions rather than the actual Node CLI process.
+`STAGE 1 INDEPENDENT FINAL RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
 
 ---
 
