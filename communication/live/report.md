@@ -1,14 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Independent Re-Verification
+# SB-ORG-LEARNING-1.1 — Stage 1 Corrective Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Current verifier:** Codex
+**Current actor:** Claude Code
 
-**Status:** `F-01 CORRECTION RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
+**Status:** `STAGE 1 NARROW CORRECTION AUTHORIZED — F-01 / F-02 / F-03`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
@@ -18,64 +18,52 @@
 
 ---
 
-## Prior independent verification
+## Codex independent re-verification
 
-Codex previously returned `FAIL` on blocking finding F-01: a rejected envelope's malformed `mission_id` could escape the configured receipt directory during failure-receipt lookup/write.
+Disposition:
 
-Durable report:
+`FAIL`
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`
+Durable verifier report:
 
-## F-01 correction
+`communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`
 
-Claude Code applied only the authorized F-01 correction.
+Verifier publication commit:
 
-Mission Control re-reviewed correction commit:
+`ef2a4c8d6e48a8288411a00875d703a560609aa8`
 
-`56ebdcf99b6f3cc1c1ad4230de2a1749bf08283f`
+Confirmed blockers:
 
-The corrected receipt store now:
+- **F-01 residual:** pre-existing filesystem indirection can redirect receipt lookup/write outside the configured physical receipt boundary;
+- **F-02:** persisted receipt manifests are not consistently canonical/sorted even though fingerprinting sorts its own copy;
+- **F-03:** malformed JSON parse diagnostics can echo raw input bytes.
 
-- preserves raw `mission_id` for truthful receipt diagnostics;
-- hashes `mission_id` to a deterministic sha256 filesystem storage key;
-- independently enforces containment under the configured receipts directory;
-- uses the same safe derivation for read and write.
+Existing passing tests and CI do not close these findings.
 
-Regression tests include Codex's exact `../escaped` scenario through `runHarvest` plus malicious identifier families and deterministic repeated handling.
+---
 
-At the Mission Control re-review checkpoint, that exact correction commit had successful:
+## Mission Control decision
 
-- Application Build Assurance `#125`;
-- Full Assurance `#26`;
-- Markdown Quality Gate `#1729`.
+`NARROW CORRECTION REQUIRED — F-01 / F-02 / F-03 ONLY`
 
-## Mission Control disposition
+Controlling authorization:
 
-`F-01 CORRECTION RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`
 
-Controlling record:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/07-stage1-f01-rereview-and-codex-reverification-authorization.md`
-
-Active instruction:
+Active builder instruction:
 
 `communication/live/instruction.md`
 
-## Codex independent re-verification
+Claude Code must apply only the three authorized corrections, run applicable validation and CI, update the existing durable builder report plus the minimum builder section here, and stop with:
 
-**Disposition:** `FAIL` — Stage 1 is not ready for Mission Control acceptance.
+`STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 
-Durable report: [Stage 1 independent re-verification](../missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md).
+Do not self-approve.
+Do not merge.
+Do not begin Stage 2.
+Do not activate `SB-P-1.12`.
 
-Reviewed SHA: `c2e147e97e994aa656060b1f8adaa337910e2521`. Independently executed OLE tests: 15 files, 176 tests passed. CI associated with that reviewed head completed successfully: Application Build Assurance (237 Fast Tests), Full Assurance and Markdown Quality Gate. These are historical reviewed-head facts, not publication-head CI claims.
-
-The original `../escaped` attack is contained in a fresh ordinary receipt tree, with diagnostic identity and retry semantics preserved. **F-01 remains unresolved:** a pre-existing directory junction redirects receipt lookup and write outside the configured directory. The reopened assurance checks also reproduced **F-02**, unsorted persisted manifests despite identical canonical fingerprints, and **F-03**, raw synthetic input echoed in malformed-JSON diagnostics.
-
-All reproductions used isolated temporary fixtures and were cleaned up. Previously incomplete assurance areas are addressed in the durable report; completion of those checks does not imply a passing result. No implementation correction was made. Mission Control must decide narrow correction authorization and subsequent verification.
-
-No Stage 1 self-acceptance, merge, Stage 2 activation, real proof processing, AI extraction, background automation or `SB-P-1.12` activation was performed.
-
-`STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+---
 
 ## Review chain
 

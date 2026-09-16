@@ -1,18 +1,18 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 1 CODEX INDEPENDENT RE-VERIFICATION
+# SB-ORG-LEARNING-1.1 — STAGE 1 NARROW CORRECTION F-01 / F-02 / F-03
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Verifier:** Codex
+**Builder:** Claude Code
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
 **PR:** `#588 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `F-01 CORRECTION RE-REVIEW PASS — CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
+**Mission Control disposition:** `NARROW CORRECTION REQUIRED — F-01 / F-02 / F-03 ONLY`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
@@ -20,65 +20,90 @@
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-authorization.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/07-stage1-f01-rereview-and-codex-reverification-authorization.md`
-4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
-5. current Stage 1 implementation/tests on this branch.
+1. `communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
+4. current Stage 1 implementation and tests on this branch.
 
-Do not rely on builder or Mission Control conclusions as independent proof.
-
----
-
-## Required independent re-verification
-
-Independently verify the corrected Stage 1 implementation.
-
-At minimum:
-
-1. Reproduce the original F-01 attack using an invalid envelope with `mission_id: "../escaped"` against isolated temporary directories and confirm no lookup/write escapes the configured receipts directory.
-2. Inspect and test the separation between raw diagnostic `mission_id` and filesystem storage identity.
-3. Verify both lookup and write use the same safe contained path derivation.
-4. Verify truthful malformed identifier preservation in the receipt payload remains intact.
-5. Verify deterministic/idempotent repeated handling of the same malformed identifier.
-6. Independently run the relevant OLE Fast Tests and inspect current exact-head GitHub Actions evidence.
-7. Revisit the assurance areas that the prior verification explicitly left incomplete after stopping on F-01, including persisted manifest ordering, secret-echo boundaries, receipt-state truthfulness, autonomous-write/background-work boundaries, and the evidence reach needed for Stage 1 acceptance.
-8. Verify the previously accepted Stage 1 boundaries remain intact: no AI/provider call, semantic extraction, promotion execution, background automation, real closed-mission proof-target processing, provider mutation, dependency addition, governance/Product Truth change, Stage 2 activation, or `SB-P-1.12` activation.
-
-Do not process the real `SB-OPS-CI-ARCHITECTURE-1.0` proof target.
-Do not modify implementation code.
-Do not merge.
+Apply only the three authorized corrections below.
 
 ---
 
-## Required durable output
+## F-01 — physical receipt containment
 
-Create/update a durable verifier report under:
+The hashed storage key fixes raw path traversal but not pre-existing filesystem indirection.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/`
+Correct the receipt store so both lookup and write fail closed if an existing symlink, directory junction, reparse point, or equivalent filesystem indirection beneath the configured receipts trust root resolves outside that physical root.
 
-Record:
+Preserve raw `mission_id` in diagnostic payloads, hashed storage identity, deterministic retry identity, and atomic writes.
 
-- reviewed branch and exact reviewed SHA;
-- PR state;
-- independent tests/reproductions performed;
-- exact CI evidence inspected;
-- F-01 disposition;
-- completion of previously incomplete assurance areas;
-- any new blocking or non-blocking findings;
-- final disposition: `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
+Do not rely only on lexical `resolve` / `relative` checks.
 
-Update only the minimum verifier section of `communication/live/report.md` needed for handoff.
+Add isolated temp-directory regressions for both read and write using a platform-appropriate link/junction mechanism, including Codex's reproduced redirected mission-storage-directory case.
 
 ---
 
-## Stop condition
+## F-02 — canonical persisted manifests
 
-After independent re-verification and durable reporting, stop and state:
+Reuse the existing canonical manifest sorter.
 
-`STAGE 1 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+Ensure the same sorted manifest representation is used for fingerprint input and every persisted receipt manifest, including successful, harvested, screened, and failure/partial-manifest cases.
 
-Do not self-accept Stage 1.
-Do not merge.
-Do not begin Stage 2.
-Do not activate `SB-P-1.12`.
+Add regressions proving reversed/mixed reference order yields the same fingerprint and the same persisted `source_manifest` order for success and failure cases.
+
+Do not change the hash algorithm.
+
+---
+
+## F-03 — safe malformed-JSON diagnostics
+
+In both `runHarvest` and `runValidate`, stop returning/interpolating raw JSON parser error messages that may contain input bytes.
+
+Use safe fixed read/parse diagnostics or safe metadata that cannot include file contents. Preserve truthful failure status and normal post-parse schema validation details.
+
+Add synthetic secret-like canary tests proving malformed JSON input is rejected without the canary appearing in returned diagnostics and, where CLI-main output is tested, without echo to stdout/stderr.
+
+Do not alter truthful malformed `mission_id` receipt payload behavior.
+
+---
+
+## Still prohibited
+
+Do not:
+
+- broaden scanner policy;
+- process a real closed mission;
+- perform AI/semantic extraction;
+- implement promotion execution;
+- implement background automation;
+- add provider/network writes;
+- add autonomous repository-write automation;
+- modify governance/Product Truth;
+- activate Stage 2;
+- activate `SB-P-1.12`;
+- merge;
+- self-approve.
+
+Do not add dependencies or modify `package-lock.json` without separate Mission Control authorization.
+
+---
+
+## Verification and durable return
+
+Run applicable local tests, lint, typecheck, build, Markdown checks, Fast Gate, and applicable real CI.
+
+Update:
+
+`communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
+
+and only the minimum builder section of:
+
+`communication/live/report.md`
+
+Do not make a metadata-only commit solely to embed the new head SHA. PR #588 / GitHub Actions are the live current-head CI source of truth.
+
+Then stop with:
+
+`STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+Do not authorize Codex yourself.
