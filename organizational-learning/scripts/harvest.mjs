@@ -32,7 +32,7 @@ import {
   readBlobContent,
   verifyCommitExists,
 } from "../lib/git-object-reader.ts";
-import { computeSourceFingerprint } from "../lib/fingerprint.ts";
+import { computeSourceFingerprint, sortManifest } from "../lib/fingerprint.ts";
 import { runHeuristicScan, runScreeningSafely } from "../lib/screening.ts";
 import {
   computeReceiptId,
@@ -108,13 +108,32 @@ export function runHarvest(argv) {
   const repoRoot = args.repoRoot ?? discoverRepoRoot();
   const receiptsDir = args.receiptsDir ?? join(repoRoot, "organizational-learning", "receipts");
 
-  let rawEnvelope;
+  // F-03 correction: read and parse are two separate failure modes with
+  // two separate safe, fixed diagnostics. A read failure (e.g. ENOENT)
+  // may safely echo the path the caller supplied -- that is the
+  // caller's own input, not file content. A JSON parse failure must
+  // never interpolate the raw parser error message: V8's JSON.parse
+  // error text can include a verbatim snippet of the offending input
+  // bytes, which would defeat the screening boundary before it even
+  // runs. See lib/screening.ts for the equivalent no-raw-content
+  // principle applied to scanned evidence.
+  let envelopeText;
   try {
-    rawEnvelope = JSON.parse(readFileSync(resolve(args.envelope), "utf8"));
-  } catch (error) {
+    envelopeText = readFileSync(resolve(args.envelope), "utf8");
+  } catch {
     return {
       exitCode: 1,
-      message: `harvest: could not read/parse envelope file: ${error.message}`,
+      message: `harvest: could not read envelope file: ${args.envelope}`,
+    };
+  }
+
+  let rawEnvelope;
+  try {
+    rawEnvelope = JSON.parse(envelopeText);
+  } catch {
+    return {
+      exitCode: 1,
+      message: "harvest: envelope file is not valid JSON",
     };
   }
 
@@ -187,10 +206,19 @@ export function runHarvest(argv) {
     manifest.push({ path: ref, blobSha: resolved.entry.blobSha });
   }
 
+  // F-02 correction: one canonical sorted manifest, reused for both the
+  // fingerprint input and every persisted receipt (HARVESTED, SCREENED,
+  // and VALIDATION_FAILED with a partial/resolved manifest) -- not a
+  // second, separately-sorted copy only computed inside
+  // computeSourceFingerprint. Equivalent evidence supplied in a
+  // different acceptance/closure reference order must persist
+  // identically, not merely hash identically.
+  const canonicalManifest = sortManifest(manifest);
+
   const fingerprint = computeSourceFingerprint({
     schemaVersion: envelope.schemaVersion,
     closureRevision: envelope.closure_revision,
-    manifest,
+    manifest: canonicalManifest,
   });
 
   if (rejectedRefs.length > 0) {
@@ -199,7 +227,7 @@ export function runHarvest(argv) {
       missionId: envelope.mission_id,
       closureRevision: envelope.closure_revision,
       sourceFingerprint: fingerprint,
-      manifest,
+      manifest: canonicalManifest,
       failureReason: `${rejectedRefs.length} evidence reference(s) were ineligible: ${rejectedRefs.join(", ")}`,
     });
     return {
@@ -228,7 +256,10 @@ export function runHarvest(argv) {
     closure_revision: envelope.closure_revision,
     run_id: runId,
     source_fingerprint: fingerprint,
-    source_manifest: manifest.map((entry) => ({ path: entry.path, blob_sha: entry.blobSha })),
+    source_manifest: canonicalManifest.map((entry) => ({
+      path: entry.path,
+      blob_sha: entry.blobSha,
+    })),
     processing_state: "HARVESTED",
     screening_result: null,
     failure_reason: null,
@@ -236,7 +267,7 @@ export function runHarvest(argv) {
     updated_at: startTimestamp,
   });
 
-  const files = manifest.map((entry) => ({
+  const files = canonicalManifest.map((entry) => ({
     path: entry.path,
     content: readBlobContent(repoRoot, entry.blobSha),
   }));
@@ -250,7 +281,10 @@ export function runHarvest(argv) {
     closure_revision: envelope.closure_revision,
     run_id: runId,
     source_fingerprint: fingerprint,
-    source_manifest: manifest.map((entry) => ({ path: entry.path, blob_sha: entry.blobSha })),
+    source_manifest: canonicalManifest.map((entry) => ({
+      path: entry.path,
+      blob_sha: entry.blobSha,
+    })),
     processing_state: isClean ? "SCREENED" : "VALIDATION_FAILED",
     screening_result: screeningResult,
     failure_reason: isClean ? null : describeScreeningFailure(screeningResult),
@@ -267,7 +301,7 @@ export function runHarvest(argv) {
 
   return {
     exitCode: 0,
-    message: `harvest: SCREENED -- mission=${envelope.mission_id} fingerprint=${fingerprint} evidence=${manifest.length} receipt=${receiptFilePath(receiptsDir, envelope.mission_id, fingerprint)}`,
+    message: `harvest: SCREENED -- mission=${envelope.mission_id} fingerprint=${fingerprint} evidence=${canonicalManifest.length} receipt=${receiptFilePath(receiptsDir, envelope.mission_id, fingerprint)}`,
   };
 }
 

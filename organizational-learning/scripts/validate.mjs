@@ -36,11 +36,23 @@ export function runValidate(argv) {
     return { exitCode: 1, message: "validate: <path.json> is required" };
   }
 
+  // F-03 correction: see harvest.mjs's equivalent fix for the full
+  // rationale -- a JSON parse failure must never interpolate the raw
+  // parser error message, since it can include a verbatim snippet of
+  // the offending input bytes. A read failure may safely echo the
+  // caller-supplied path.
+  let fileText;
+  try {
+    fileText = readFileSync(resolve(filePath), "utf8");
+  } catch {
+    return { exitCode: 1, message: `validate: could not read file: ${filePath}` };
+  }
+
   let raw;
   try {
-    raw = JSON.parse(readFileSync(resolve(filePath), "utf8"));
-  } catch (error) {
-    return { exitCode: 1, message: `validate: could not read/parse file: ${error.message}` };
+    raw = JSON.parse(fileText);
+  } catch {
+    return { exitCode: 1, message: `validate: ${filePath} is not valid JSON` };
   }
 
   const result = SCHEMAS[schemaName].safeParse(raw);

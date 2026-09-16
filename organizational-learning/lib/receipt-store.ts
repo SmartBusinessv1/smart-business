@@ -49,9 +49,44 @@
 //      a defense-in-depth invariant so a future edit that weakens or
 //      bypasses the hashing step fails loudly instead of silently
 //      reopening F-01.
+//
+// Second F-01 correction (communication/missions/SB-ORG-LEARNING-1.1/
+// mission-control/08-stage1-f01-f02-f03-correction-authorization.md):
+// Codex independent re-verification found that layers 1-2 above are
+// purely lexical -- `path.resolve`/`path.relative` never touch the
+// filesystem, so they cannot see that a path component that already
+// exists on disk is a symlink, Windows directory junction, or other
+// reparse point whose real target lies outside the configured receipts
+// directory. A pre-planted junction at the derived mission-storage
+// directory could silently redirect both lookup and write to an
+// attacker-chosen sibling location, even though every path *string*
+// involved still looked contained.
+//
+//   3. `assertPhysicallyContained` walks up from the target path to the
+//      deepest component that currently exists, resolves *that*
+//      component with `fs.realpathSync` (which does follow symlinks/
+//      junctions, unlike `resolve`/`relative`), and throws if the real,
+//      physical location falls outside the base directory's own real
+//      location. When nothing below the base directory exists yet (the
+//      normal first-write case), the deepest existing ancestor is the
+//      base directory itself, which is trivially contained -- so this
+//      never blocks an ordinary fresh write, only a pre-existing
+//      indirection. Verified empirically against a real Windows
+//      directory junction while writing this fix: `fs.existsSync`
+//      follows a junction (reporting the target's existence),
+//      `fs.lstatSync(...).isSymbolicLink()` is true for it, and
+//      `fs.realpathSync` correctly resolves it to its real target --
+//      exactly the primitives this layer relies on.
 
 import { createHash, randomUUID } from "node:crypto";
-import { mkdirSync, readFileSync, renameSync, writeFileSync, existsSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  realpathSync,
+  renameSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { ReceiptSchema, type Receipt } from "../schemas/receipt.schema.ts";
 
@@ -109,6 +144,57 @@ export function receiptFilePath(
   );
 }
 
+/**
+ * Walks up from `targetPath` to the deepest path component that
+ * currently exists on disk. May return `targetPath` itself, an
+ * intermediate directory (including one that turns out to be a
+ * symlink/junction), or an ancestor above `baseDir` if nothing under
+ * `baseDir` -- or `baseDir` itself -- exists yet.
+ */
+function deepestExistingAncestor(targetPath: string): string {
+  let current = resolve(targetPath);
+  while (!existsSync(current)) {
+    const parent = dirname(current);
+    if (parent === current) {
+      // Reached the filesystem root without finding anything that
+      // exists -- practically unreachable (the OS temp/working
+      // directory tree always exists), but fail closed rather than loop.
+      throw new Error(`could not locate an existing ancestor of ${targetPath}`);
+    }
+    current = parent;
+  }
+  return current;
+}
+
+/**
+ * Throws if any existing filesystem component between `baseDir` and
+ * `targetPath` is a symlink, junction, or other reparse point whose real
+ * (`fs.realpathSync`-resolved) location falls outside `baseDir`'s own
+ * real location. See the file header ("Second F-01 correction") for why
+ * this check exists in addition to the purely lexical
+ * `resolveContainedPath`, and why it never blocks an ordinary write to a
+ * base directory nothing has been written into yet.
+ */
+function assertPhysicallyContained(baseDir: string, targetPath: string): void {
+  const resolvedBase = resolve(baseDir);
+  if (!existsSync(resolvedBase)) {
+    // Nothing has been created under this trust root yet -- there is no
+    // existing indirection to detect, and the caller's own mkdir/write
+    // will create a fresh, ordinary (safe) physical tree.
+    return;
+  }
+  const physicalBase = realpathSync(resolvedBase);
+  const existingAncestor = deepestExistingAncestor(targetPath);
+  const physicalAncestor = realpathSync(existingAncestor);
+  const relativePath = relative(physicalBase, physicalAncestor);
+  const escapesBase = relativePath.startsWith("..") || isAbsolute(relativePath);
+  if (escapesBase) {
+    throw new Error(
+      `refusing to follow filesystem indirection outside the configured receipts directory: base=${physicalBase} resolved=${physicalAncestor}`,
+    );
+  }
+}
+
 export function newRunId(): string {
   return randomUUID();
 }
@@ -120,6 +206,7 @@ export function readReceiptIfExists(
   sourceFingerprint: string,
 ): Receipt | null {
   const filePath = receiptFilePath(baseDir, missionId, sourceFingerprint);
+  assertPhysicallyContained(baseDir, filePath);
   if (!existsSync(filePath)) return null;
   const raw = JSON.parse(readFileSync(filePath, "utf8"));
   return ReceiptSchema.parse(raw);
@@ -136,6 +223,7 @@ export function isAlreadyProcessed(receipt: Receipt): boolean {
 export function writeReceipt(baseDir: string, receipt: Receipt): void {
   const validated = ReceiptSchema.parse(receipt);
   const filePath = receiptFilePath(baseDir, validated.mission_id, validated.source_fingerprint);
+  assertPhysicallyContained(baseDir, filePath);
   mkdirSync(dirname(filePath), { recursive: true });
   const tempPath = `${filePath}.${randomUUID()}.tmp`;
   writeFileSync(tempPath, `${JSON.stringify(validated, null, 2)}\n`, "utf8");

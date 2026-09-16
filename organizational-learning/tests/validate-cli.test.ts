@@ -59,12 +59,34 @@ describe("runValidate", () => {
     expect(result.message).toContain("FAIL");
   });
 
-  it("reports a clear error for an unreadable/unparseable file", () => {
+  it("reports a clear error for malformed JSON, distinct from a read failure", () => {
     workDir = mkdtempSync(join(tmpdir(), "ole-validate-cli-test-"));
     const filePath = join(workDir, "bad.json");
     writeFileSync(filePath, "{ not valid json", "utf8");
     const result = runValidate(["receipt", filePath]);
     expect(result.exitCode).toBe(1);
-    expect(result.message).toContain("could not read/parse");
+    expect(result.message).toContain("not valid JSON");
+  });
+
+  it("reports a clear error for a file that cannot be read at all", () => {
+    workDir = mkdtempSync(join(tmpdir(), "ole-validate-cli-test-"));
+    const filePath = join(workDir, "does-not-exist.json");
+    const result = runValidate(["receipt", filePath]);
+    expect(result.exitCode).toBe(1);
+    expect(result.message).toContain("could not read file");
+  });
+
+  it("F-03: never echoes a secret-like canary from malformed JSON into the returned diagnostic", () => {
+    workDir = mkdtempSync(join(tmpdir(), "ole-validate-cli-test-"));
+    const filePath = join(workDir, "malformed-with-canary.json");
+    const canary = "AKIA0000000000000000";
+    // Deliberately malformed (unterminated), containing only a synthetic,
+    // obviously-fake AWS-access-key-shaped canary -- never a real secret.
+    writeFileSync(filePath, `{"leaked": "${canary}"`, "utf8");
+
+    const result = runValidate(["receipt", filePath]);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.message).not.toContain(canary);
   });
 });

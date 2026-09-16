@@ -1,17 +1,34 @@
 // SB-ORG-LEARNING-1.1 Stage 1 -- receipt persistence and idempotency tests.
 //
-// Includes the F-01 correction regression suite (communication/missions/
-// SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-
-// authorization.md): Codex independent verification found that a
-// rejected envelope's raw mission_id (e.g. "../escaped") escaped the
-// configured receipts directory because it was joined directly into the
-// receipt file path. Every case below uses only isolated OS temp
-// directories, created and removed per test -- no real closed mission is
-// processed.
+// Includes two rounds of the F-01 correction regression suite:
+//
+// Round 1 (communication/missions/SB-ORG-LEARNING-1.1/mission-control/
+// 06-stage1-f01-correction-authorization.md): Codex independent
+// verification found that a rejected envelope's raw mission_id (e.g.
+// "../escaped") escaped the configured receipts directory because it
+// was joined directly into the receipt file path.
+//
+// Round 2 (communication/missions/SB-ORG-LEARNING-1.1/mission-control/
+// 08-stage1-f01-f02-f03-correction-authorization.md): Codex independent
+// re-verification found that round 1's fix is purely lexical and does
+// not detect a *pre-existing* filesystem symlink/junction/reparse point
+// at the derived mission storage directory redirecting reads/writes to
+// a physically different location.
+//
+// Every case below uses only isolated OS temp directories, created and
+// removed per test -- no real closed mission is processed.
 import { describe, it, expect, afterEach } from "vitest";
-import { mkdtempSync, rmSync, readFileSync, readdirSync, existsSync } from "node:fs";
+import {
+  mkdtempSync,
+  mkdirSync,
+  rmSync,
+  readFileSync,
+  readdirSync,
+  existsSync,
+  symlinkSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join, resolve, dirname } from "node:path";
 import {
   computeReceiptId,
   computeMissionStorageKey,
@@ -23,6 +40,19 @@ import {
   newRunId,
 } from "../lib/receipt-store.ts";
 import type { Receipt } from "../schemas/receipt.schema.ts";
+
+/** Windows uses directory junctions; POSIX platforms use a directory
+ * symlink -- both are reparse-point-style indirection Node's fs module
+ * follows transparently unless explicitly guarded against, which is
+ * exactly the property this suite exercises. Creates both the link's
+ * parent directory and the (real) target directory first -- a Windows
+ * junction is validated against an existing target at creation time,
+ * unlike a POSIX symlink, which may dangle. */
+function plantDirectoryIndirection(linkPath: string, target: string): void {
+  mkdirSync(dirname(linkPath), { recursive: true });
+  mkdirSync(target, { recursive: true });
+  symlinkSync(target, linkPath, process.platform === "win32" ? "junction" : "dir");
+}
 
 let baseDir: string | null = null;
 
@@ -262,6 +292,97 @@ describe("F-01 correction -- receipt storage cannot escape the configured direct
     } finally {
       rmSync(tempRoot, { recursive: true, force: true });
     }
+  });
+
+  describe("round 2 -- physical containment against pre-existing filesystem indirection", () => {
+    it("fails closed on write when the derived mission storage directory is a pre-existing junction/symlink escaping the configured directory", () => {
+      const tempRoot = mkdtempSync(join(tmpdir(), "ole-f01-physical-test-"));
+      const receiptsDir = join(tempRoot, "linked-receipts");
+      const redirectedTarget = join(tempRoot, "redirected");
+      try {
+        const missionId = "../escaped";
+        const key = computeMissionStorageKey(missionId);
+        // Plant the indirection BEFORE any write -- exactly Codex's
+        // reproduction: an ordinary sibling directory exists, and the
+        // *derived* mission storage directory is itself a link to it.
+        plantDirectoryIndirection(join(receiptsDir, key), redirectedTarget);
+
+        expect(() => writeReceipt(receiptsDir, failedReceipt(missionId))).toThrow(
+          /filesystem indirection/,
+        );
+
+        // Nothing was actually written into the redirected sibling --
+        // the escaping write never happened, it was refused before the
+        // filesystem operation.
+        expect(topLevelEntries(redirectedTarget)).toEqual([]);
+      } finally {
+        rmSync(tempRoot, { recursive: true, force: true });
+      }
+    });
+
+    it("fails closed on lookup through the same pre-existing indirection", () => {
+      const tempRoot = mkdtempSync(join(tmpdir(), "ole-f01-physical-test-"));
+      const receiptsDir = join(tempRoot, "linked-receipts");
+      const redirectedTarget = join(tempRoot, "redirected");
+      try {
+        const missionId = "../escaped";
+        const key = computeMissionStorageKey(missionId);
+        plantDirectoryIndirection(join(receiptsDir, key), redirectedTarget);
+
+        // Even if a receipt were physically present at the redirected
+        // location (e.g. planted directly, bypassing writeReceipt
+        // entirely), lookup through the link must still fail closed
+        // rather than transparently read through it.
+        expect(() => readReceiptIfExists(receiptsDir, missionId, "a".repeat(64))).toThrow(
+          /filesystem indirection/,
+        );
+      } finally {
+        rmSync(tempRoot, { recursive: true, force: true });
+      }
+    });
+
+    it("does not block an ordinary write to a fresh receipts tree with no pre-existing indirection", () => {
+      const tempRoot = mkdtempSync(join(tmpdir(), "ole-f01-physical-test-"));
+      const receiptsDir = join(tempRoot, "receipts");
+      try {
+        // No junction/symlink anywhere -- the trust root and everything
+        // under it (if anything) are ordinary directories/files. This is
+        // the overwhelmingly common case and must remain unaffected.
+        writeReceipt(receiptsDir, screenedReceipt());
+        const read = readReceiptIfExists(receiptsDir, "SB-OPS-CI-ARCHITECTURE-1.0", "a".repeat(64));
+        expect(read?.processing_state).toBe("SCREENED");
+      } finally {
+        rmSync(tempRoot, { recursive: true, force: true });
+      }
+    });
+
+    it("does not block a write when the receipts directory itself does not exist yet", () => {
+      const tempRoot = mkdtempSync(join(tmpdir(), "ole-f01-physical-test-"));
+      // Deliberately do not create receiptsDir at all beforehand -- the
+      // very first write for any mission must still work.
+      const receiptsDir = join(tempRoot, "brand-new-receipts");
+      try {
+        writeReceipt(receiptsDir, screenedReceipt());
+        const read = readReceiptIfExists(receiptsDir, "SB-OPS-CI-ARCHITECTURE-1.0", "a".repeat(64));
+        expect(read?.processing_state).toBe("SCREENED");
+      } finally {
+        rmSync(tempRoot, { recursive: true, force: true });
+      }
+    });
+
+    it("still preserves the original ../escaped case as contained once the physical layer is active", () => {
+      const tempRoot = mkdtempSync(join(tmpdir(), "ole-f01-physical-test-"));
+      const receiptsDir = join(tempRoot, "receipts");
+      try {
+        const missionId = "../escaped";
+        writeReceipt(receiptsDir, failedReceipt(missionId));
+        expect(topLevelEntries(tempRoot)).toEqual(["receipts"]);
+        const read = readReceiptIfExists(receiptsDir, missionId, "a".repeat(64));
+        expect(read?.mission_id).toBe(missionId);
+      } finally {
+        rmSync(tempRoot, { recursive: true, force: true });
+      }
+    });
   });
 });
 

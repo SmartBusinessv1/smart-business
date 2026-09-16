@@ -311,6 +311,140 @@ describe("runHarvest", () => {
     expect(result.exitCode).toBe(1);
     expect(result.message).toContain("--envelope");
   });
+
+  it("F-02: reversed/mixed evidence reference order persists the same canonical manifest and fingerprint", () => {
+    repo = createEphemeralGitRepo();
+    repo.commitFile("communication/missions/SB-TEST-FIXTURE-1.0/z.md", "z content\n");
+    const commit = repo.commitFile(
+      "communication/missions/SB-TEST-FIXTURE-1.0/a.md",
+      "a content\n",
+    );
+
+    const forwardEnvelope = writeEnvelope(
+      baseEnvelope(commit, {
+        acceptance_refs: ["communication/missions/SB-TEST-FIXTURE-1.0/z.md"],
+        closure_refs: ["communication/missions/SB-TEST-FIXTURE-1.0/a.md"],
+      }),
+    );
+    const forwardReceiptsDir = join(workDir!, "receipts-forward");
+    const forwardResult = runHarvest([
+      "--envelope",
+      forwardEnvelope,
+      "--repo-root",
+      repo.root,
+      "--receipts-dir",
+      forwardReceiptsDir,
+    ]);
+    expect(forwardResult.exitCode).toBe(0);
+
+    const reversedEnvelopePath = join(workDir!, "envelope-reversed.json");
+    writeFileSync(
+      reversedEnvelopePath,
+      JSON.stringify(
+        baseEnvelope(commit, {
+          acceptance_refs: ["communication/missions/SB-TEST-FIXTURE-1.0/a.md"],
+          closure_refs: ["communication/missions/SB-TEST-FIXTURE-1.0/z.md"],
+        }),
+      ),
+      "utf8",
+    );
+    const reversedReceiptsDir = join(workDir!, "receipts-reversed");
+    const reversedResult = runHarvest([
+      "--envelope",
+      reversedEnvelopePath,
+      "--repo-root",
+      repo.root,
+      "--receipts-dir",
+      reversedReceiptsDir,
+    ]);
+    expect(reversedResult.exitCode).toBe(0);
+
+    const forwardFingerprint = extractFingerprint(forwardResult.message);
+    const reversedFingerprint = extractFingerprint(reversedResult.message);
+    expect(forwardFingerprint).toBe(reversedFingerprint);
+
+    const forwardReceipt = readReceiptIfExists(
+      forwardReceiptsDir,
+      "SB-TEST-FIXTURE-1.0",
+      forwardFingerprint,
+    );
+    const reversedReceipt = readReceiptIfExists(
+      reversedReceiptsDir,
+      "SB-TEST-FIXTURE-1.0",
+      reversedFingerprint,
+    );
+    const expectedOrder = [
+      "communication/missions/SB-TEST-FIXTURE-1.0/a.md",
+      "communication/missions/SB-TEST-FIXTURE-1.0/z.md",
+    ];
+    expect(forwardReceipt?.source_manifest.map((entry) => entry.path)).toEqual(expectedOrder);
+    expect(reversedReceipt?.source_manifest.map((entry) => entry.path)).toEqual(expectedOrder);
+  });
+
+  it("F-02: a failure receipt's partial/resolved manifest is also canonically sorted", () => {
+    repo = createEphemeralGitRepo();
+    repo.commitFile("communication/missions/SB-TEST-FIXTURE-1.0/z.md", "z content\n");
+    const commit = repo.commitFile(
+      "communication/missions/SB-TEST-FIXTURE-1.0/a.md",
+      "a content\n",
+    );
+    // z.md and a.md resolve; the third reference does not -- exercising
+    // the partial-manifest failure path with unsorted input order.
+    const envelopePath = writeEnvelope(
+      baseEnvelope(commit, {
+        acceptance_refs: [
+          "communication/missions/SB-TEST-FIXTURE-1.0/z.md",
+          "communication/missions/SB-TEST-FIXTURE-1.0/a.md",
+        ],
+        closure_refs: ["communication/missions/SB-TEST-FIXTURE-1.0/does-not-exist.md"],
+      }),
+    );
+    const receiptsDir = receiptsDirFor();
+
+    const result = runHarvest([
+      "--envelope",
+      envelopePath,
+      "--repo-root",
+      repo.root,
+      "--receipts-dir",
+      receiptsDir,
+    ]);
+    expect(result.exitCode).toBe(1);
+
+    const fingerprint = extractFingerprintFromReceiptsDir(receiptsDir, "SB-TEST-FIXTURE-1.0");
+    const receipt = readReceiptIfExists(receiptsDir, "SB-TEST-FIXTURE-1.0", fingerprint);
+    expect(receipt?.processing_state).toBe("VALIDATION_FAILED");
+    expect(receipt?.source_manifest.map((entry) => entry.path)).toEqual([
+      "communication/missions/SB-TEST-FIXTURE-1.0/a.md",
+      "communication/missions/SB-TEST-FIXTURE-1.0/z.md",
+    ]);
+  });
+
+  it("F-03: never echoes a secret-like canary from malformed envelope JSON into the returned diagnostic", () => {
+    workDir = mkdtempSync(join(tmpdir(), "ole-harvest-cli-test-"));
+    const envelopePath = join(workDir, "malformed-with-canary.json");
+    const canary = "AKIA0000000000000000";
+    // Deliberately malformed (unterminated), containing only a
+    // synthetic, obviously-fake AWS-access-key-shaped canary -- never a
+    // real secret.
+    writeFileSync(envelopePath, `{"mission_id": "${canary}"`, "utf8");
+    repo = createEphemeralGitRepo();
+    repo.commitFile("a.md", "x\n");
+    const receiptsDir = receiptsDirFor();
+
+    const result = runHarvest([
+      "--envelope",
+      envelopePath,
+      "--repo-root",
+      repo.root,
+      "--receipts-dir",
+      receiptsDir,
+    ]);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.message).not.toContain(canary);
+    expect(result.message).toContain("not valid JSON");
+  });
 });
 
 function extractFingerprint(message: string, allowMissing = false): string {

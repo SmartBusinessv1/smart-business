@@ -5,8 +5,8 @@
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 **Builder:** Claude Code
-**Status:** `STAGE 1 F-01 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
-**Date:** 2026-09-16 (original implementation, correction round, and F-01 correction round all recorded the same day)
+**Status:** `STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+**Date:** 2026-09-16 (implementation and every correction round to date recorded the same day)
 **Repository:** `SmartBusinessv1/smart-business`
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 **Base main at Stage 1 opening (verified):** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
@@ -17,16 +17,23 @@
 - `7198ee6a68373a2ff8080e021fb8871583b012ac` — Phase A + Phase B implementation.
 - `6ccedcdd0fe4a48507a85d755e124067bf98187a` — added the original durable report.
 - `2c15e2d309e13c16f37066cb25feb1f924d5750e` — a since-abandoned attempt to keep a "final head" pointer current; superseded by the next commit, which removes that pattern instead of continuing it.
-- `b4cb3b803e2e2de40fff963e2b951bf2fb63f7e1` — the dangling-provenance validator (Section 21) and the reporting-semantics correction. Independently verified by Codex (see below).
-- This F-01 correction's own commit(s) — see Section 22. Consistent with Correction 2 (Section 21) and Mission Control's F-01 authorization, this report again does not assert its own commit SHA as a "final" fact.
+- `b4cb3b803e2e2de40fff963e2b951bf2fb63f7e1` — the dangling-provenance validator (Section 21) and the reporting-semantics correction. Independently verified by Codex, disposition `FAIL` on one residual/new-finding set (see below).
+- `56ebdcf99b6f3cc1c1ad4230de2a1749bf08283f` — the first F-01 correction (lexical hashing + containment, Section 22). Independently re-verified by Codex, disposition `FAIL` on a residual physical-containment gap plus two newly reopened findings (see below).
+- This F-01/F-02/F-03 correction's own commit(s) — see Section 23. Consistent with the standing anti-recursion rule (Section 21), this report again does not assert its own commit SHA as a "final" fact.
 
-**Independent verification:** Codex reviewed PR #588 at `d2ca1638abb4985669cbe43074b9adec3e9f3bb3`, independently reproduced all 159 OLE tests then in place, and returned disposition **`FAIL`** on one blocking finding, **F-01 — rejected mission identifier escapes receipt storage** (`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`). Mission Control accepted F-01 and authorized this narrow correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-authorization.md`). This report's Section 22 documents the fix. **The prior Codex FAIL is not converted to a PASS by this report** — Stage 1 remains unaccepted until Codex re-verifies and Mission Control explicitly accepts it.
+**Independent verification history:**
+
+1. Codex reviewed PR #588 at `d2ca1638abb4985669cbe43074b9adec3e9f3bb3`, reproduced all 159 OLE tests then in place, and returned **`FAIL`** on **F-01 — rejected mission identifier escapes receipt storage** (`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`). Corrected in Section 22.
+2. Codex re-reviewed PR #588 at `c2e147e97e994aa656060b1f8adaa337910e2521`, independently reproduced all 176 OLE tests then in place, credited the F-01 lexical fix for an ordinary tree, but returned **`FAIL`** again: **F-01 residual** (a pre-existing filesystem symlink/junction/reparse point at the derived mission storage directory still bypasses the purely lexical check), **F-02 — new finding** (persisted receipt manifests are not canonically sorted, only the fingerprint input is), and **F-03 — new finding** (malformed-JSON parse diagnostics in `runHarvest`/`runValidate` can echo raw input bytes) (`communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`). Mission Control accepted all three and authorized this correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`). Section 23 documents the fix.
+
+**The prior Codex `FAIL` dispositions are not converted to a `PASS` by this report** — Stage 1 remains unaccepted until Codex re-verifies again and Mission Control explicitly accepts it.
 
 **Current exact-head CI source of truth:** pull request [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) and its GitHub Actions checks tab. This report intentionally does not try to name a single "final branch-head commit" — see Section 21.
 
 **Controlling build plan:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
 **Mission Control substantive review:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/04-stage1-substantive-review.md`
 **Mission Control F-01 correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-authorization.md`
+**Mission Control F-01/F-02/F-03 correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED` (unaffected by this stage)
 
 ---
@@ -202,7 +209,7 @@ Findings never carry matched text, only `{ path, rule_id }` — `ScreeningFindin
 
 `lib/receipt-store.ts` derives `receipt_id` from `(mission_id, source_fingerprint)` only — never from `run_id` — so re-running the harvester against an unchanged closure envelope always resolves to the same receipt file and updates it atomically in place (write-to-temp-then-rename) rather than accumulating duplicate receipts. `run_id` (a fresh UUID) is the separate "processing-run identity" B7 requires to vary across retries even when the source fingerprint does not. `isAlreadyProcessed` is `true` only for `processing_state === "SCREENED"` — a prior `VALIDATION_FAILED` receipt remains retryable, never treated as done.
 
-**Filesystem placement was corrected under F-01** (Section 22): the receipt *file path* is no longer derived from the raw `mission_id` — it now uses a sha256-hashed storage key with an independent containment check, while `computeReceiptId` (the diagnostic identity shown in a receipt's payload) still uses the raw, possibly-malformed `mission_id` verbatim, exactly as the accepted truthful-diagnostics rule requires. 24 tests, `receipt-store.test.ts` (up from 8), including atomic-write behavior, same-identity update-in-place behavior, and the full F-01 regression suite — see Section 22.
+**Filesystem placement was corrected under F-01** (Sections 22–23, two rounds): the receipt *file path* is no longer derived from the raw `mission_id` — it now uses a sha256-hashed storage key, a lexical containment check, and (round 2) an independent *physical* containment check that follows symlinks/junctions via `fs.realpathSync` rather than trusting path strings alone. `computeReceiptId` (the diagnostic identity shown in a receipt's payload) still uses the raw, possibly-malformed `mission_id` verbatim throughout, exactly as the accepted truthful-diagnostics rule requires. 29 tests, `receipt-store.test.ts` (up from 8 originally), including atomic-write behavior, same-identity update-in-place behavior, and both F-01 regression suites — see Sections 22–23.
 
 `harvest-cli.test.ts` proves this end-to-end: running the same envelope twice against the same ephemeral repo yields exit code 0 with an "already processed" message on the second run, with no second receipt file created.
 
@@ -214,9 +221,9 @@ Findings never carry matched text, only `{ path, rule_id }` — `ScreeningFindin
 
 `scripts/harvest.mjs`'s `runHarvest(argv)` is exported (not only invoked as `node harvest.mjs`) specifically so tests can call it directly and assert on both its return value and the receipt file it wrote, without spawning a subprocess per test case. Evidence resolution is all-or-nothing by design: if *any* referenced path is not allowlisted or does not resolve to a regular file at the pinned commit, the whole run fails closed (`VALIDATION_FAILED`) rather than silently proceeding on partial evidence — documented in-file as a deliberate, conservative choice, not an oversight.
 
-`harvest-cli.test.ts` (10 tests, up from 9) exercises the full pipeline end-to-end against isolated ephemeral repositories and temp directories only, covering: clean success; idempotent no-op on re-run; a `communication/live/**` reference (rejected); a nonexistent path (rejected); a symlink reference (rejected); a quarantined secret in evidence content (rejected, and the receipt/message are asserted not to contain the raw secret text anywhere); a schema-invalid envelope (rejected, with a best-effort receipt still written under the envelope's claimed `mission_id` when parseable); **F-01's exact reproduction case reproduced and proven fixed through the real `runHarvest` failure flow (Section 22)**; a nonexistent `source_snapshot_ref` commit (rejected); and the missing-argument case.
+`harvest-cli.test.ts` (13 tests, up from 9 originally) exercises the full pipeline end-to-end against isolated ephemeral repositories and temp directories only, covering: clean success; idempotent no-op on re-run; a `communication/live/**` reference (rejected); a nonexistent path (rejected); a symlink reference (rejected); a quarantined secret in evidence content (rejected, and the receipt/message are asserted not to contain the raw secret text anywhere); a schema-invalid envelope (rejected, with a best-effort receipt still written under the envelope's claimed `mission_id` when parseable); **F-01's exact reproduction case reproduced and proven fixed through the real `runHarvest` failure flow (Section 22)**; a nonexistent `source_snapshot_ref` commit (rejected); the missing-argument case; **F-02's reversed/mixed reference order and partial-manifest cases (Section 23)**; and **F-03's malformed-JSON canary case (Section 23)**.
 
-`scripts/validate.mjs` is a small, independent CLI for checking an arbitrary JSON file against any of the four schemas; 5 tests, `validate-cli.test.ts`.
+`scripts/validate.mjs` is a small, independent CLI for checking an arbitrary JSON file against any of the four schemas; 7 tests, `validate-cli.test.ts` (up from 5 originally; F-03 cases added, Section 23).
 
 ---
 
@@ -238,10 +245,10 @@ Counts below are exact, taken from `npx vitest run -c vitest.fast.config.ts --re
 | `receipt.schema.test.ts` | 12 |
 | `screening.test.ts` | 12 |
 | `git-object-reader.test.ts` | 13 |
-| `receipt-store.test.ts` (F-01 regression suite added, Section 22) | 24 |
-| `harvest-cli.test.ts` (F-01 real-flow case added, Section 22) | 10 |
-| `validate-cli.test.ts` | 5 |
-| **Total** | **176 across 15 files** in `organizational-learning/tests/`, plus the 8 pre-existing Fast Gate files unchanged (total Fast Gate: **237 tests, 23 files**) |
+| `receipt-store.test.ts` (F-01 round 1 + round 2 physical-containment suites, Sections 22–23) | 29 |
+| `harvest-cli.test.ts` (F-01 real-flow + F-02 + F-03 cases, Sections 22–23) | 13 |
+| `validate-cli.test.ts` (F-03 cases added, Section 23) | 7 |
+| **Total** | **186 across 15 files** in `organizational-learning/tests/`, plus the 8 pre-existing Fast Gate files unchanged (total Fast Gate: **247 tests, 23 files**) |
 
 All Stage 1 tests are environment-independent: no Supabase client, no network call, no dependency on real repository content staying byte-identical over time (git-plumbing tests use isolated ephemeral repositories; schema/logic tests use inline fixtures).
 
@@ -435,8 +442,54 @@ The atomic-write temp path (`${filePath}.${randomUUID()}.tmp`) is a string suffi
 
 ---
 
+## 23. Stage 1 F-01 (round 2) / F-02 / F-03 correction (Codex independent re-verification findings)
+
+Codex's independent re-verification (`communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`) independently reproduced all 176 OLE tests then in place, credited the round-1 F-01 fix for an ordinary receipt tree, and returned disposition **`FAIL`** again on three findings. Mission Control accepted all three and authorized this correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`). Only these three corrections are applied here; nothing else was changed.
+
+### F-01 (round 2) — physical receipt containment
+
+**Codex's exact reproduction:** inside a checked temporary root, create ordinary sibling directories `linked-receipts` and `redirected`, then create a Windows directory junction at `linked-receipts/<sha256("../escaped")>` pointing at `redirected`. Invoking `runHarvest` with the same `../escaped` envelope against `--receipts-dir linked-receipts` wrote the fingerprint-named receipt into `redirected` — the junction target — even though `receiptFilePath`'s lexical `resolve`/`relative` check reported the nominal path as contained. A subsequent `readReceiptIfExists` read the same receipt back through the junction. Round 1's hashing and lexical check are real, correct defenses against raw-string traversal, but neither one inspects the filesystem, so neither can see that an *existing* path component is a symlink/junction/reparse point.
+
+**Fix, a third independent layer added to `lib/receipt-store.ts`, on top of round 1's two:** `assertPhysicallyContained(baseDir, targetPath)` walks up from the target path to the deepest component that currently exists on disk (`deepestExistingAncestor`), resolves *that* component with `fs.realpathSync` — which, unlike `path.resolve`/`path.relative`, does follow symlinks/junctions/reparse points — and throws if the real, physical location falls outside the base directory's own real location. When nothing under the base directory exists yet (the ordinary first-write case), the deepest existing ancestor is the base directory itself, which is trivially contained, so this can never block a normal write; it only fires when something already on disk is indirection. This was verified empirically against a real Windows directory junction before being written into the fix: `fs.existsSync` follows a junction, `fs.lstatSync(...).isSymbolicLink()` reports `true` for it, and `fs.realpathSync` correctly resolves it to its real target — exactly the primitives the new layer relies on. Both `readReceiptIfExists` and `writeReceipt` call `assertPhysicallyContained` immediately after computing the file path, before any filesystem read/write/mkdir operation.
+
+**Regression tests** (`receipt-store.test.ts`, new `"round 2 -- physical containment against pre-existing filesystem indirection"` sub-suite, 5 tests): a pre-planted junction/symlink (a real one, created via `fs.symlinkSync(target, path, "junction")` on Windows or `"dir"` on POSIX — platform-appropriate, per the authorization) fails closed on write, with nothing written into the redirected sibling; the same indirection fails closed on lookup; an ordinary fresh receipts tree with no indirection is unaffected; a receipts directory that does not exist yet at all is unaffected (the critical non-regression case, since a naive "does baseDir contain this" check could easily break the first-ever write); and the original `../escaped` case remains contained with the physical layer active. No dependency was added — `fs.realpathSync`/`fs.symlinkSync`/`fs.lstatSync` are Node built-ins.
+
+### F-02 — canonical persisted manifests
+
+**Codex's exact reproduction:** commit two files, `z.md` and `a.md`, under an isolated fixture mission path. Run a valid envelope with `acceptance_refs: [z.md], closure_refs: [a.md]` into one fresh receipts directory, then the reversed `acceptance_refs: [a.md], closure_refs: [z.md]` into another, same commit and closure revision. Both fingerprints matched (expected — `computeSourceFingerprint` already sorted its own internal copy), but the two receipts' *persisted* `source_manifest` arrays retained their respective input orders (`[z.md, a.md]` vs `[a.md, z.md]`) instead of matching. `lib/fingerprint.ts`'s own `sortManifest` doc comment already claimed the sorted manifest "is itself persisted in the receipt" — `scripts/harvest.mjs` simply never called it for that purpose.
+
+**Fix, `scripts/harvest.mjs` only, no hash-algorithm change, no new dependency:** immediately after resolving evidence references into a manifest, harvest.mjs now calls the existing, already-exported `sortManifest` (from `lib/fingerprint.ts`) exactly once, producing one `canonicalManifest`. That single canonical value is then used everywhere a manifest is needed: the fingerprint input, the `HARVESTED` receipt, the `SCREENED`/`VALIDATION_FAILED` receipt, the partial manifest persisted in an ineligible-reference failure receipt, and the file list read for screening. There is no longer a second, separately-ordered manifest anywhere in the harvester.
+
+**Regression tests** (`harvest-cli.test.ts`, 2 new tests): reproduces Codex's exact `z.md`/`a.md` reversed-order scenario end-to-end through two real `runHarvest` invocations against two isolated ephemeral git repositories, asserting both runs produce the same fingerprint *and* the same persisted `source_manifest` path order; and a second test exercising the partial-manifest failure path (two resolvable references supplied out of order plus one unresolvable reference), asserting the `VALIDATION_FAILED` receipt's partial manifest is also canonically sorted.
+
+### F-03 — safe malformed-JSON diagnostics
+
+**Codex's exact reproduction:** a malformed JSON file containing only a synthetic canary (`"AKIA"` followed by sixteen zeros, an obviously-fake AWS-access-key shape, never a real credential) caused both `runHarvest` and `runValidate` to return a diagnostic string containing the *entire canary*, because both caught the `JSON.parse` exception and interpolated `error.message` directly — and V8's JSON parser error text can include a verbatim snippet of the offending input. This bypasses the content-screening boundary entirely, since it happens before any evidence is ever read into the scanner.
+
+**Fix, `scripts/harvest.mjs` and `scripts/validate.mjs`, both entry points:** the single `try { JSON.parse(readFileSync(...)) } catch (error) { …\${error.message} }` block in each file is split into two separate, sequential try/catches. A **read failure** (e.g. the file does not exist) returns a fixed message that echoes only the caller-supplied *path* — safe, since that is the caller's own input, not file content. A **JSON parse failure** returns one fixed, generic string (`"...envelope file is not valid JSON"` / `"...is not valid JSON"`) with no interpolation of the parser's error text at all, so no input byte can ever reach it. Normal post-parse Zod schema-validation error detail is unchanged — this only touches the read/parse boundary that runs *before* schema validation and content screening.
+
+**Regression tests** (`validate-cli.test.ts`, 3 tests; `harvest-cli.test.ts`, 1 test): the pre-existing "unreadable/unparseable file" test was split into a genuine parse-failure case and a genuine read-failure case (it previously conflated the two, matching exactly the ambiguity F-03 identified); a new canary test writes malformed JSON containing the synthetic AWS-key-shaped canary and asserts the returned diagnostic never contains it, for both `runValidate` and `runHarvest`.
+
+### Scope discipline
+
+Exactly 6 files touched: `organizational-learning/lib/receipt-store.ts`, `organizational-learning/scripts/harvest.mjs`, `organizational-learning/scripts/validate.mjs`, `organizational-learning/tests/receipt-store.test.ts`, `organizational-learning/tests/harvest-cli.test.ts`, `organizational-learning/tests/validate-cli.test.ts`. 0 new files, 0 dependencies added, `package-lock.json` unchanged (confirmed). No change to candidate/promotion authority, provenance architecture beyond the already-existing dangling-reference validator, source allowlisting, receipt-state vocabulary, the truthful-malformed-`mission_id`-payload rule, or scanner policy/pattern set. No real closed mission processed. No AI extraction, background automation, provider/network writes, Stage 2, or `SB-P-1.12` activation.
+
+**Local verification for this correction round:**
+
+- `npx tsc --noEmit` — clean.
+- `npx eslint organizational-learning/` — clean.
+- `npm run test:fast` — **247/247 passing**, 23 files (186 across 15 `organizational-learning/tests/` files, up from 176; the 8 pre-existing files and their 61 tests unchanged).
+- `npm run build` — succeeds.
+- Markdown Quality Gate on both revised report files — PASS.
+- `package-lock.json` — confirmed unchanged.
+- Empirical pre-implementation verification: a real Windows directory junction was created and probed with `fs.existsSync`/`fs.lstatSync`/`fs.realpathSync` (see Section 7's established convention of verifying git-plumbing behavior empirically before relying on it) to confirm the exact primitives `assertPhysicallyContained` relies on, and the fix was independently exercised against that exact junction shape (write and lookup both threw, nothing was written into the redirected target) before the formal test suite was written.
+
+**CI on this correction's pushed head:** per the standing anti-recursion rule (Section 21), see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab and the live builder section of `communication/live/report.md` for the workflow run results on the exact current head, rather than a SHA restated here.
+
+---
+
 ## Stop statement
 
-**STAGE 1 F-01 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
+**STAGE 1 F-01/F-02/F-03 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
 
-Only the single authorized F-01 correction was applied; no scope was broadened. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Candidate/promotion authority, provenance architecture, source allowlisting, receipt-state vocabulary, and the scanner were not changed beyond F-01. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report — the prior Codex `FAIL` disposition stands until Codex re-verifies.
+Only the three authorized corrections (F-01 physical containment, F-02 canonical manifest persistence, F-03 safe parse diagnostics) were applied; no scope was broadened. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Candidate/promotion authority, provenance architecture, source allowlisting, receipt-state vocabulary, and scanner policy were not changed beyond these three findings. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report — the prior Codex `FAIL` dispositions stand until Codex re-verifies again.
