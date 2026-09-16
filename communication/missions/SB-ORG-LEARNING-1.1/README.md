@@ -7,13 +7,16 @@
 - **Mission type:** Non-Product organizational / institutional capability implementation
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `ACTIVE — SUCCESSOR MISSION CONTROL HANDOVER — STAGE 1 NOT YET OPENED`
+- **Status:** `ACTIVE — STAGE 1 CLAUDE CODE IMPLEMENTATION AUTHORIZED`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#585 — MERGED`
-- **Activation merge commit:** `e1806c0e2e1f56102e03daf6639363ddd34c3ede`
+- **Successor handover PR:** `#586 — MERGED`
+- **Current Stage 1 branch:** `mission/SB-ORG-LEARNING-1.1-stage1`
+- **Stage 1 base commit:** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
 - **Parent approved design mission:** `SB-ORG-LEARNING-1.0`
 - **Controlling build plan:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
 - **Successor handover:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+- **Stage 1 authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/03-stage1-claude-code-authorization.md`
 - **Product Mission activation:** None. `SB-P-1.12` remains not activated.
 
 ## Objective
@@ -30,32 +33,24 @@ This mission is complete only after the accepted implementation provides a gover
 
 ## Stage model
 
-1. **Stage 1 — Contracts, security boundaries, deterministic harvester foundation**
-2. **Stage 2 — Closed-mission proof and supervised candidate extraction**
-3. **Stage 3 — Human review/promotion and mission-start context-pack proof**
-4. **Stage 4 — Background automation / reconciliation implementation**
-5. **Stage 5 — Independent verification and failure-path assurance**
-6. **Stage 6 — Mission Control acceptance, Founder merge, communication closeout**
+1. **Stage 1 — Contracts, security boundaries, deterministic harvester foundation** — `ACTIVE`
+2. **Stage 2 — Closed-mission proof and supervised candidate extraction** — `NOT AUTHORIZED`
+3. **Stage 3 — Human review/promotion and mission-start context-pack proof** — `NOT AUTHORIZED`
+4. **Stage 4 — Background automation / reconciliation implementation** — `NOT AUTHORIZED`
+5. **Stage 5 — Independent verification and failure-path assurance** — `NOT AUTHORIZED`
+6. **Stage 6 — Mission Control acceptance, Founder merge, communication closeout** — `NOT AUTHORIZED`
 
 Mission Control authorizes one stage at a time. Passing one stage does not authorize the next.
 
 ## Current authorization
 
-The Founder has merged the implementation activation PR.
+Stage 1 is now explicitly authorized for Claude Code on:
 
-The implementation mission is active, but **Stage 1 specialist execution has intentionally not been opened by the outgoing Mission Control** because the Founder requested a controlled Mission Control handover first.
+`mission/SB-ORG-LEARNING-1.1-stage1`
 
-The successor Mission Control must:
+The active instruction is:
 
-1. complete/confirm its own hydration and Founder acceptance;
-2. verify current canonical `main`;
-3. read the controlling build plan and successor handover;
-4. create a fresh Stage 1 branch/live communication;
-5. issue the exact Stage 1 Claude Code instruction contained in the successor handover.
-
-## Stage 1 builder
-
-Claude Code.
+`communication/live/instruction.md`
 
 Stage 1 is limited to:
 
@@ -67,7 +62,7 @@ Stage 1 excludes AI extraction, autonomous repository writes, background learnin
 
 ## Review chain
 
-`Claude Code implementation → Mission Control review → Codex independent verification → narrow correction if required → Stage 1 acceptance → explicit next-stage authorization`
+`Claude Code implementation → Mission Control substantive review → Codex independent verification → narrow correction if required → Stage 1 acceptance → explicit next-stage authorization`
 
 No builder may approve its own work.
 
@@ -85,12 +80,10 @@ This mission may not:
 
 ## Current owner
 
-**Successor Smart Business Mission Control**, after the handover artifact is Founder-merged and the successor accepts the transfer.
+**Claude Code — Stage 1 builder**, under the exact active Mission Control instruction.
 
 ## Immediate next action
 
-Open **Stage 1 for Claude Code** using Section 11 of:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+Claude Code implements Stage 1, creates the durable Stage 1 implementation/verification report, updates only its assigned section of `communication/live/report.md`, pushes, and stops for Mission Control.
 
 `SB-P-1.12` remains not activated.
