@@ -1,20 +1,20 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Claude Code Report
+# SB-ORG-LEARNING-1.1 — Stage 1 Independent Verification
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Builder:** Claude Code
+**Current verifier:** Codex
 
-**Status:** `STAGE 1 CORRECTION REQUIRED — CLAUDE CODE ACTION PENDING`
+**Status:** `MISSION CONTROL RE-REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-**Base main at Stage 1 opening:** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
-
 **Pull request:** `#588 — OPEN — NOT MERGED`
+
+**Base main at Stage 1 opening:** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
 
 **Retired/outgoing MC error PR:** `#587 — CLOSED WITHOUT MERGE — NOT AUTHORITY / NOT EXECUTION HISTORY`
 
@@ -22,50 +22,48 @@
 
 ---
 
-## Mission Control substantive review
+## Builder status
 
-Disposition:
+Claude Code completed the authorized Stage 1 implementation and the narrow Mission Control correction.
 
-`CORRECTION REQUIRED BEFORE CODEX INDEPENDENT VERIFICATION`
+The correction added runtime dangling-provenance validation and removed recursive/stale `final branch head` reporting semantics.
 
-Controlling review:
+Mission Control re-reviewed the correction against PR `#588` at commit `b4cb3b803e2e2de40fff963e2b951bf2fb63f7e1` and found both required corrections satisfied.
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/04-stage1-substantive-review.md`
+At that re-review checkpoint, the exact commit had successful:
 
-Active correction instruction:
+- Team LIPS Application Build Assurance run `#121`;
+- Team LIPS Full Assurance run `#22`;
+- Team LIPS Markdown Quality Gate run `#1725`.
+
+These named commit/run facts are historical evidence. For the current branch head after Mission Control publishes this authorization, PR `#588` and GitHub Actions are the live exact-head source of truth.
+
+## Mission Control disposition
+
+`MISSION CONTROL RE-REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
+
+Controlling re-review record:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/05-stage1-correction-rereview-and-codex-authorization.md`
+
+Active verifier instruction:
 
 `communication/live/instruction.md`
 
-Required corrections:
+## Codex required return
 
-1. implement and test runtime dangling-provenance validation against pinned committed Git objects;
-2. remove recursive/stale "final branch head" reporting semantics and use PR/GitHub Actions as the exact-head CI source of truth.
+Codex must independently inspect the complete Stage 1 implementation and correction, create:
 
-The substantive architecture is otherwise materially aligned with the authorized Stage 1 boundary. Mission Control has accepted the Stage 1 interpretations concerning evidence allowlist scope, all-or-nothing evidence resolution, receipt failure recording, and the minimal scanner as a Stage 1 proof only.
+`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`
 
-## Builder return required
+and stop with:
 
-After the narrow correction, applicable local validation, push, and applicable CI, Claude Code shall update the durable report and this builder report section truthfully, then stop with:
+`STAGE 1 INDEPENDENT VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
 
-`STAGE 1 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+Codex must not merge, self-accept Stage 1, begin Stage 2, process the real proof target, begin AI extraction/background automation, or activate `SB-P-1.12`.
 
-Do not self-approve.
-Do not merge.
-Do not begin Stage 2.
-Do not activate `SB-P-1.12`.
+## Review chain
 
-## Builder correction report
+**Claude Code implementation → Mission Control substantive review → Codex independent verification → narrow correction if required → Mission Control Stage 1 acceptance → human/Founder merge → explicit Stage 2 authorization.**
 
-**Status:** `STAGE 1 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
-
-**Durable report (revised):** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`, new Section 21.
-
-**Correction 1 — dangling-provenance validation:** implemented (`organizational-learning/lib/provenance-validator.ts`, new), composing the existing committed-Git-object reader into the required five-way distinction (valid; commit not found; path not found at commit; non-regular object; blob SHA mismatch). 9 new tests (`organizational-learning/tests/provenance-validator.test.ts`), all against isolated ephemeral git repositories only — no real repository content, no real closed mission processed.
-
-**Correction 2 — evidence/reporting semantics:** the durable report and this live report no longer assert a single "final branch-head commit." Both now list historically-tested commits as immutable facts and point to PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) and its GitHub Actions checks tab as the one live source of truth for current exact-head CI status — see that PR directly rather than a SHA restated here. This correction's own commit is deliberately not named as a "final" head anywhere in either report, to stop the recursive pattern rather than continue it.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **220/220 passing** across 23 files (up from 211/22 — 9 new tests, 1 new file); `npm run build` succeeds; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged; no dependency added.
-
-**CI on this correction's pushed head:** see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab for the live, current-head result — not restated here as a fixed claim, per Correction 2.
-
-**Scope discipline:** only the two authorized corrections were applied. No AI/semantic extraction, no processing of `SB-OPS-CI-ARCHITECTURE-1.0`, no background automation, no provider/network writes, no promotion execution, no Stage 2 activation, no `SB-P-1.12` activation, no self-approval, no merge, and Codex was not authorized by this builder.
+Stage 1 completion is not OLE mission completion.
