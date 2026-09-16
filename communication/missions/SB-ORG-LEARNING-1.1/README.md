@@ -7,11 +7,13 @@
 - **Mission type:** Non-Product organizational / institutional capability implementation
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `ACTIVE — STAGE 1 AUTHORIZATION PENDING FOUNDER MERGE`
+- **Status:** `ACTIVE — SUCCESSOR MISSION CONTROL HANDOVER — STAGE 1 NOT YET OPENED`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
-- **Implementation branch:** `mission/SB-ORG-LEARNING-1.1-implementation`
+- **Activation PR:** `#585 — MERGED`
+- **Activation merge commit:** `e1806c0e2e1f56102e03daf6639363ddd34c3ede`
 - **Parent approved design mission:** `SB-ORG-LEARNING-1.0`
 - **Controlling build plan:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+- **Successor handover:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
 - **Product Mission activation:** None. `SB-P-1.12` remains not activated.
 
 ## Objective
@@ -35,11 +37,39 @@ This mission is complete only after the accepted implementation provides a gover
 5. **Stage 5 — Independent verification and failure-path assurance**
 6. **Stage 6 — Mission Control acceptance, Founder merge, communication closeout**
 
-Mission Control will authorize one stage at a time. Passing one stage does not authorize the next.
+Mission Control authorizes one stage at a time. Passing one stage does not authorize the next.
 
 ## Current authorization
 
-Only the activation records are being published now. No engine implementation is authorized until this activation PR is Founder-merged and Mission Control issues the Stage 1 specialist instruction.
+The Founder has merged the implementation activation PR.
+
+The implementation mission is active, but **Stage 1 specialist execution has intentionally not been opened by the outgoing Mission Control** because the Founder requested a controlled Mission Control handover first.
+
+The successor Mission Control must:
+
+1. complete/confirm its own hydration and Founder acceptance;
+2. verify current canonical `main`;
+3. read the controlling build plan and successor handover;
+4. create a fresh Stage 1 branch/live communication;
+5. issue the exact Stage 1 Claude Code instruction contained in the successor handover.
+
+## Stage 1 builder
+
+Claude Code.
+
+Stage 1 is limited to:
+
+- contracts/security boundaries;
+- deterministic committed-evidence harvester foundation;
+- environment-independent tests and Fast Gate integration.
+
+Stage 1 excludes AI extraction, autonomous repository writes, background learning workflows, proof-target execution, provider mutations and Product Mission work.
+
+## Review chain
+
+`Claude Code implementation → Mission Control review → Codex independent verification → narrow correction if required → Stage 1 acceptance → explicit next-stage authorization`
+
+No builder may approve its own work.
 
 ## Hard boundaries
 
@@ -55,4 +85,12 @@ This mission may not:
 
 ## Current owner
 
-Mission Control until Founder merge of the activation PR.
+**Successor Smart Business Mission Control**, after the handover artifact is Founder-merged and the successor accepts the transfer.
+
+## Immediate next action
+
+Open **Stage 1 for Claude Code** using Section 11 of:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+
+`SB-P-1.12` remains not activated.
