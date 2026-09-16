@@ -10,10 +10,11 @@
 // repository/commit/path/blob/locator and a real relationship. It
 // deliberately does NOT verify that the referenced blob actually exists
 // at that path in that commit -- that requires I/O against the pinned
-// commit and belongs to lib/git-object-reader.ts. A reference that is
-// well-shaped but points at nothing real is "dangling"; detecting that
-// is a runtime check layered on top of this schema, not a Zod refinement
-// (Zod validates the value given to it; it cannot reach into git).
+// commit and is implemented in lib/provenance-validator.ts, layered on
+// top of this schema and lib/git-object-reader.ts (a Zod refinement
+// validates the value given to it; it cannot reach into git). A
+// reference that is well-shaped but points at nothing real is
+// "dangling" -- see `validateProvenanceReference` there.
 //
 // Note what is deliberately absent: nothing here records *who committed*
 // the referenced file. B2: "git authorship does not prove decision

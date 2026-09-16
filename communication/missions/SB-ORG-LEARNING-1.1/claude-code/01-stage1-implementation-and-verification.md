@@ -5,15 +5,24 @@
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 **Builder:** Claude Code
-**Status:** `STAGE 1 IMPLEMENTATION REPORTED — MISSION CONTROL SUBSTANTIVE REVIEW REQUIRED`
-**Date:** 2026-09-16
+**Status:** `STAGE 1 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+**Date:** 2026-09-16 (original implementation); correction round recorded the same day
 **Repository:** `SmartBusinessv1/smart-business`
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 **Base main at Stage 1 opening (verified):** `15a2e4919dff1b02b52e61427729c5fe8b3b5f92`
 **Stage-opening Mission Control commit (verified):** `f04756c7ec04929151dc54573e4235299dc6cd78`
-**Final branch-head commit:** `7198ee6a68373a2ff8080e021fb8871583b012ac`
-**Pull request:** [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) (open, targeting `main`, not merged, not self-approved)
+
+**Implementation commits actually tested (historical, immutable — each was verified individually; see Section 13 for exact per-commit CI evidence):**
+
+- `7198ee6a68373a2ff8080e021fb8871583b012ac` — Phase A + Phase B implementation.
+- `6ccedcdd0fe4a48507a85d755e124067bf98187a` — added the original durable report.
+- `2c15e2d309e13c16f37066cb25feb1f924d5750e` — a since-abandoned attempt to keep a "final head" pointer current; superseded by this correction, which removes that pattern instead of continuing it (see Section 21).
+- This correction's own commit(s) — the dangling-provenance validator and this report revision. Consistent with Correction 2 below, this report does not assert its own commit SHA as a "final" fact, since doing so inside the very file being committed is self-invalidating the moment it is committed.
+
+**Current exact-head CI source of truth:** pull request [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) and its GitHub Actions checks tab. This report intentionally stops trying to name a single "final branch-head commit" — see Section 21.
+
 **Controlling build plan:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+**Mission Control substantive review:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/04-stage1-substantive-review.md`
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED` (unaffected by this stage)
 
 ---
@@ -96,6 +105,8 @@ organizational-learning/
 
 No file was created or modified under `src/`, `supabase/`, `lambda/`, `.github/workflows/`, `docs/`, `merge/`, or any governance path.
 
+This section describes the original implementation commit `7198ee6`. The correction applied in Section 21 adds 2 further files and 2 minimal edits; see that section for the exact list.
+
 ---
 
 ## 4. Architecture summary
@@ -151,11 +162,13 @@ Mode/type handling was empirically verified against a real git 2.55 repository b
 
 ## 8. Provenance contract behavior (B2)
 
-`schemas/provenance.schema.ts`'s `EvidenceReferenceSchema` validates shape only: `repository` (locked to the literal `SmartBusinessv1/smart-business` — a reference cannot silently point elsewhere), `commit_sha`/`blob_sha` (40-hex), `path` (structurally safe, via the shared path-safety refinement), `locator`, `actor_class`, `scope`, and `relationship` (`SUPPORTS | CONTRADICTS | LIMITS`). It deliberately does **not** verify that the reference actually resolves to a real object at that path/commit — that requires I/O against the pinned commit and is a distinct, explicit `DanglingCheckResult` type this file declares for a later stage to implement against the git-object reader, rather than something a pure Zod refinement can decide. `isSameUnderlyingSource` identifies when two references point at the same exact evidence, which is what a later stage's "citing the same source twice is not independent corroboration" logic would key off of — the detection *logic* itself is out of Stage 1 scope (see Section 12).
+`schemas/provenance.schema.ts`'s `EvidenceReferenceSchema` validates shape only: `repository` (locked to the literal `SmartBusinessv1/smart-business` — a reference cannot silently point elsewhere), `commit_sha`/`blob_sha` (40-hex), `path` (structurally safe, via the shared path-safety refinement), `locator`, `actor_class`, `scope`, and `relationship` (`SUPPORTS | CONTRADICTS | LIMITS`). It deliberately does **not** verify that the reference actually resolves to a real object at that path/commit — that requires I/O against the pinned commit and cannot be a pure Zod refinement (Zod validates the value given to it; it cannot reach into git). `isSameUnderlyingSource` identifies when two references point at the same exact evidence, which is what a later stage's "citing the same source twice is not independent corroboration" logic would key off of — the detection *logic* itself is out of Stage 1 scope (see Section 12).
+
+**Runtime dangling-provenance resolution is now implemented** (Correction 1, Section 21): `lib/provenance-validator.ts`'s `validateProvenanceReference` composes the existing `resolveBlobAtPath` (Section 7) into the `DanglingCheckResult` this file declares, distinguishing a valid exact reference from commit-not-found, path-not-found-at-commit, a non-regular object, and a blob-SHA mismatch. It was not implemented in the original Stage 1 submission; Mission Control's substantive review identified this gap and it is corrected here — see Section 21 for the full account and test evidence.
 
 Provenance is modeled **per-claim**, not per-item: `CandidateClaimSchema` requires `evidence: z.array(EvidenceReferenceSchema).min(1)` — an unsupported claim cannot validate. Nothing in this schema records git-committer identity as an authority signal (B2: "git authorship does not prove decision authority") — there is no field for it.
 
-10 tests in `provenance.schema.test.ts`.
+10 tests in `provenance.schema.test.ts` (shape validation); 9 further tests in `provenance-validator.test.ts` (runtime resolution) — see Section 21.
 
 ---
 
@@ -212,6 +225,7 @@ Counts below are exact, taken from `npx vitest run -c vitest.fast.config.ts --re
 | `fingerprint.test.ts` | 8 |
 | `revision-hash.test.ts` | 5 |
 | `provenance.schema.test.ts` | 10 |
+| `provenance-validator.test.ts` (added in this correction, Section 21) | 9 |
 | `closure-envelope.schema.test.ts` | 11 |
 | `candidate-learning-item.schema.test.ts` | 21 |
 | `promotion-review.schema.test.ts` | 10 |
@@ -221,7 +235,7 @@ Counts below are exact, taken from `npx vitest run -c vitest.fast.config.ts --re
 | `receipt-store.test.ts` | 8 |
 | `harvest-cli.test.ts` | 9 |
 | `validate-cli.test.ts` | 5 |
-| **Total** | **150 across 14 files** in `organizational-learning/tests/`, plus the 8 pre-existing Fast Gate files unchanged (total Fast Gate: **211 tests, 22 files**) |
+| **Total** | **159 across 15 files** in `organizational-learning/tests/`, plus the 8 pre-existing Fast Gate files unchanged (total Fast Gate: **220 tests, 23 files**) |
 
 All Stage 1 tests are environment-independent: no Supabase client, no network call, no dependency on real repository content staying byte-identical over time (git-plumbing tests use isolated ephemeral repositories; schema/logic tests use inline fixtures).
 
@@ -240,7 +254,9 @@ All Stage 1 tests are environment-independent: no Supabase client, no network ca
 - Staged-diff secret scan — no real secret matched; the only "secret-like" text in the diff is deliberate, clearly-fake test fixtures used to prove the screening patterns work (a public jwt.io example token, an obviously-fake `AKIA...` string, and a truncated placeholder PEM block) — never real credentials.
 - `package-lock.json` — confirmed **unchanged** (`git diff --stat package-lock.json` empty, `git status --short package-lock.json` empty).
 
-**Real CI, PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588), commit `7198ee6a68373a2ff8080e021fb8871583b012ac`:**
+**Real CI, PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) — historical evidence, by commit tested:**
+
+Commit `7198ee6a68373a2ff8080e021fb8871583b012ac` (Phase A/B implementation):
 
 | Check | Result | Duration |
 |---|---|---|
@@ -251,9 +267,11 @@ All Stage 1 tests are environment-independent: no Supabase client, no network ca
 | Full Assurance Tests (vitest) | **pass** | 4m3s |
 | Markdown Quality Gate | **pass** | 6s |
 
-All six required/applicable repository checks passed on the exact pushed branch head. Full Assurance ran because this stage's `package.json`/`vitest.fast.config.ts` edits matched its path filter; no Supabase-dependent code was touched by Stage 1, and its pass is unsurprising but is included here as real, not assumed, evidence.
+Commit `6ccedcdd0fe4a48507a85d755e124067bf98187a` (added the original durable report): the same six checks were re-verified and passed again (documentation-only change; Full Assurance re-ran because `package.json`/`vitest.fast.config.ts` still matched its path filter from the base of the diff).
 
-A pull request (`#588`, targeting `main`) was opened only so these workflows — which trigger on push-to-`main` or pull-request-to-`main`, not on a bare feature-branch push — would actually run against this exact head, per the Stage 1 instruction's "push to the authorized Stage 1 branch and allow real CI to verify the exact head." The PR is open, unreviewed, and not self-approved or self-merged.
+These are historical facts about specific, named, immutable commits and remain true regardless of what the branch head is by the time this is read. **They are not a claim about the current branch head.** For the exact-head CI status as of *now*, see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab directly — that is the one live source of truth this report defers to, per Correction 2 (Section 21).
+
+A pull request (`#588`, targeting `main`) was opened only so these workflows — which trigger on push-to-`main` or pull-request-to-`main`, not on a bare feature-branch push — would actually run at all, per the Stage 1 instruction's "push to the authorized Stage 1 branch and allow real CI to verify the exact head." The PR is open, unreviewed, and not self-approved or self-merged.
 
 ---
 
@@ -284,19 +302,19 @@ Also intentionally not built yet, per Section 13 of the successor handover (not 
 
 ## 16. Interpretive decisions made where the controlling documents left a gap
 
-These are reasonable readings, not authoritative ones — flagged explicitly for Mission Control to confirm or correct before Stage 2:
+**Mission Control's substantive review (`mission-control/04-stage1-substantive-review.md`, Section 4) has confirmed all four of these for Stage 1.** They are recorded below as originally reasoned, with Mission Control's disposition noted on each — they are no longer open questions for this stage, though Mission Control retains authority to revisit them for Stage 2 and beyond.
 
-1. **`merge/active/**` excluded from the evidence allowlist.** The final build plan's evidence order (B3) lists current governance as authority *context*, distinct from evidence to extract lessons from. Stage 1 reads this as: the harvester's evidence allowlist should not include it, since a future semantic-extraction stage loading governance for interpretation is a different concern from what counts as harvestable evidence bytes. If Mission Control intends `merge/active/**` to be harvestable evidence too, `sources/allowlist.ts` needs one line changed and the corresponding allowlist test updated.
-2. **All-or-nothing evidence resolution.** If any envelope-referenced path is ineligible or unresolvable, the entire harvest run fails closed rather than proceeding on the resolvable subset. An alternative design (partial harvest with the ineligible refs reported as a warning) was considered and rejected as inconsistent with "source eligibility is not authority" applied to the envelope itself — an authoritative closure record naming evidence the harvester cannot actually read is a discrepancy worth surfacing, not silently working around.
-3. **Receipt `mission_id` uses a plain string, not the strict `SB-*` pattern the closure envelope enforces.** A receipt must remain writable to truthfully record a validation failure even when the envelope's own `mission_id` was itself malformed — the envelope schema is where mission-ID validity is actually enforced; the receipt schema's job is to record what happened, including malformed input.
-4. **`VALIDATION_FAILED` is the one Stage-1-reachable state for every kind of harvest failure** (envelope-invalid, unresolvable-commit, ineligible-reference, and not-clean-screening all map to it), since Stage 1 has no `EXTRACTION_ATTEMPTED`/`CANDIDATE_READY`/etc. to distinguish among — those only become reachable once later stages exist to produce them.
+1. **`merge/active/**` excluded from the evidence allowlist.** The final build plan's evidence order (B3) lists current governance as authority *context*, distinct from evidence to extract lessons from. Stage 1 reads this as: the harvester's evidence allowlist should not include it, since a future semantic-extraction stage loading governance for interpretation is a different concern from what counts as harvestable evidence bytes. **Mission Control disposition: accepted for Stage 1** — "current governance is authority context, not candidate-learning evidence by default."
+2. **All-or-nothing evidence resolution.** If any envelope-referenced path is ineligible or unresolvable, the entire harvest run fails closed rather than proceeding on the resolvable subset. An alternative design (partial harvest with the ineligible refs reported as a warning) was considered and rejected as inconsistent with "source eligibility is not authority" applied to the envelope itself. **Mission Control disposition: accepted for Stage 1** — "partial silent harvesting would weaken provenance integrity."
+3. **Receipt `mission_id` uses a plain string, not the strict `SB-*` pattern the closure envelope enforces.** A receipt must remain writable to truthfully record a validation failure even when the envelope's own `mission_id` was itself malformed. **Mission Control disposition: accepted for Stage 1.**
+4. **`VALIDATION_FAILED` is the one Stage-1-reachable state for every kind of harvest failure**, since Stage 1 has no `EXTRACTION_ATTEMPTED`/`CANDIDATE_READY`/etc. to distinguish among. **Mission Control disposition: accepted for Stage 1.**
 
 ---
 
 ## 17. Unresolved risks
 
-- The Stage 1 heuristic scanner (`DEFAULT_SECRET_PATTERNS`) is intentionally minimal (JWT, PEM header, AWS access-key ID) and is explicitly documented as not a production secret-scanning replacement. Before Stage 2 processes any real evidence, Mission Control should decide whether to expand this pattern set or wire in a stronger scanner (e.g. `gitleaks`, already present in this repository per the SB-ORG-LEARNING-1.0 reviews).
-- No cycle/dangling-reference detection exists yet for `supersedes`/`superseded_by` beyond the one structural check already in place (a promotion record cannot supersede or be superseded by itself). Full graph-level detection needs a populated registry to check against, which does not exist until a later stage.
+- The Stage 1 heuristic scanner (`DEFAULT_SECRET_PATTERNS`) is intentionally minimal (JWT, PEM header, AWS access-key ID) and is explicitly documented as not a production secret-scanning replacement. Mission Control has explicitly retained this as a **Stage 2-entry gate decision**: "Before Stage 2 processes real repository evidence, Mission Control must explicitly decide whether a stronger scanner is required" (`04-stage1-substantive-review.md`, Section 4).
+- **Individual-reference dangling detection is now implemented** (Correction 1, Section 21): `validateProvenanceReference` proves a single claimed `commit_sha + path + blob_sha` either resolves or does not. What remains genuinely unimplemented is graph-level cycle/dangling detection across `supersedes`/`superseded_by` *edges* in a populated registry (beyond the one structural self-reference check already in place) — that still needs a populated registry to check against, which does not exist until a later stage.
 - `harvest.mjs`'s `discoverRepoRoot()` (used only when `--repo-root` is not explicitly passed) shells out to `git rev-parse --show-toplevel` with inherited stderr — this is fine for the intended human-CLI use case but was not exercised by any test (every test passes `--repo-root` explicitly against an ephemeral repository).
 
 ## 18. Assumptions
@@ -306,15 +324,15 @@ These are reasonable readings, not authoritative ones — flagged explicitly for
 
 ## 19. Follow-ups (for Mission Control, not self-authorized)
 
-- Confirm or correct the two interpretive decisions in Section 16 (allowlist scope, all-or-nothing resolution) before Stage 2 design is finalized.
-- Decide the Stage 1 heuristic-scanner risk in Section 17.
+- The four interpretive decisions in Section 16 are now confirmed accepted for Stage 1 by Mission Control (`04-stage1-substantive-review.md`, Section 4) — no further action needed on those before Stage 2 design, though Mission Control may revisit them at that gate.
+- Decide the Stage 1 heuristic-scanner risk in Section 17 before Stage 2 processes real repository evidence — explicitly retained by Mission Control as a Stage 2-entry gate decision, not resolved here.
 - When Stage 2 is authorized, the recommended proof target remains `SB-OPS-CI-ARCHITECTURE-1.0` per the controlling build plan — not executed here.
 
 ---
 
 ## 20. Recommended Stage 2 handoff (not an activation)
 
-Stage 1's contracts and deterministic harvester foundation are in place and verified against both local checks and real CI on the pushed head. A credible Stage 2 would:
+Stage 1's contracts and deterministic harvester foundation, including the Section 21 correction, are in place and verified against both local checks and real CI (see Section 13 for the per-commit evidence, and PR #588 for current status). A credible Stage 2 would:
 
 1. Author one real closure envelope for `SB-OPS-CI-ARCHITECTURE-1.0` (or another already-closed mission Mission Control designates) by hand, referencing its actual durable acceptance/closure records.
 2. Run `node organizational-learning/scripts/harvest.mjs --envelope <that envelope>` manually against the real repository for the first time, and review the resulting receipt.
@@ -324,8 +342,54 @@ This report does not activate Stage 2. Stage 1 completion is not `SB-ORG-LEARNIN
 
 ---
 
+## 21. Stage 1 correction (Mission Control substantive review round)
+
+Mission Control's substantive review (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/04-stage1-substantive-review.md`) found the original Stage 1 submission materially aligned with the authorized boundary but required two corrections before Codex independent verification. Both are applied here; nothing beyond them was changed (per the active instruction's "do not broaden scope beyond the two corrections below").
+
+### Correction 1 — dangling-provenance runtime validation
+
+**Finding:** the original submission validated provenance *shape* (`EvidenceReferenceSchema`) and declared a `DanglingCheckResult` type, but never implemented the runtime check that a claimed `commit_sha + path + blob_sha` actually resolves to a real committed object. B2 requires fabricated or unresolved evidence references to fail validation; a schema-only check cannot do that, since Zod validates the value it is given and cannot reach into git.
+
+**Fix:** `organizational-learning/lib/provenance-validator.ts` (new), exporting `validateProvenanceReference(repoRoot, reference)`. It composes the existing, already-verified `resolveBlobAtPath` (Section 7) — no new git-shelling logic was written — into the five-way distinction the review required:
+
+- `{ status: "VALID" }` — the reference resolves exactly as claimed;
+- `{ status: "DANGLING", reason: "COMMIT_NOT_FOUND" }`;
+- `{ status: "DANGLING", reason: "PATH_NOT_FOUND_AT_COMMIT" }`;
+- `{ status: "DANGLING", reason: "NOT_A_REGULAR_FILE", actualMode }` — directory, symlink, or submodule/gitlink at that path;
+- `{ status: "DANGLING", reason: "BLOB_SHA_MISMATCH", actualBlobSha }` — the path resolves, but not to the blob the reference claims.
+
+**Tests:** `organizational-learning/tests/provenance-validator.test.ts` (new), 9 tests, run only against isolated ephemeral git repositories created and torn down per test — no real repository content, no real closed mission. Covers all five states above individually, plus: a reference claiming one real file's path while citing a *different* real file's blob (a fabricated-corroboration shape, correctly DANGLING rather than coincidentally matching); and a reference pinned to an earlier commit's blob remaining `VALID` at that commit while the identical blob SHA becomes `BLOB_SHA_MISMATCH` once cited against a later commit where the file changed — proving the check is commit-exact, not merely path-exact.
+
+**Scope discipline:** no real closed mission was processed (all fixtures are synthetic, created and destroyed within each test). No dependency was added. `package-lock.json` is unchanged. `scripts/harvest.mjs` was not modified — the correction adds the standalone primitive the review asked for; wiring it into the harvester's own evidence-resolution path (which already independently resolves paths via `resolveBlobAtPath` for a different purpose — building the manifest, not validating a claim object) was not requested and would have broadened scope beyond the two corrections.
+
+### Correction 2 — stop recursive "final branch head" reporting
+
+**Finding:** the original report and live-report builder section recorded a specific commit as the "final branch-head commit" with "all CI passed on the exact pushed head." Because updating the report at all requires a new commit, and that new commit is a newer head than the one just asserted "final," each correction immediately made its own predecessor's claim stale — a self-invalidating pattern that repeated once before this review caught it.
+
+**Fix, applied throughout this document (see the header and Section 13):**
+
+- The header no longer names a single "final branch-head commit." It instead lists every implementation commit actually tested, as historical, immutable facts (a statement "commit X passed check Y" remains true forever once verified, regardless of what happens to the branch afterward) — and separately names PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) and its GitHub Actions checks tab as the one live pointer for "what is the exact current head, and did it pass," which this document defers to rather than duplicating.
+- Section 13's CI table is now explicitly scoped per named commit ("historical evidence, by commit tested"), not asserted as "the exact pushed branch head."
+- This correction's own commit is deliberately **not** asserted to be a/the final head anywhere in this file, breaking the loop instead of continuing it.
+
+**After this correction is pushed:** applicable CI was awaited on the resulting head and its result is reported by workflow/run below. No further commit was made solely to re-embed that head's SHA into this file — that would reproduce exactly the pattern being corrected.
+
+**CI on the correction commit:** see the live builder section of `communication/live/report.md` and PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588) for the workflow run results, recorded there rather than duplicated here as a second copy that could itself go stale.
+
+**Local verification for this correction round** (`organizational-learning/lib/provenance-validator.ts`, `organizational-learning/tests/provenance-validator.test.ts`, plus this report and the live report):
+
+- `npx tsc --noEmit` — clean.
+- `npx eslint organizational-learning/` — clean.
+- `npm run test:fast` — **220/220 passing**, 23 files (150 → 159 tests across 14 → 15 files under `organizational-learning/tests/`; the 8 pre-existing files and their 61 tests unchanged).
+- `npm run build` — succeeds.
+- Markdown Quality Gate on both revised report files — PASS.
+- `package-lock.json` — confirmed unchanged.
+- Staged-diff scope for this correction: 2 new files (`lib/provenance-validator.ts`, `tests/provenance-validator.test.ts`), 2 minimal edits (`schemas/provenance.schema.ts` comment only, `vitest.fast.config.ts` one new `include` entry), plus the two report files. No file outside this list was touched.
+
+---
+
 ## Stop statement
 
-**STAGE 1 IMPLEMENTATION REPORTED — MISSION CONTROL SUBSTANTIVE REVIEW REQUIRED**
+**STAGE 1 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
 
-Not self-approved. Not merged. The real closed-mission proof was not begun. AI extraction was not begun. Background automation was not begun. Stage 2 was not activated. `SB-P-1.12` was not activated.
+Only the two authorized corrections were applied; no scope was broadened. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report.

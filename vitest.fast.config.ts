@@ -35,6 +35,7 @@ export default defineConfig({
       "organizational-learning/tests/fingerprint.test.ts",
       "organizational-learning/tests/revision-hash.test.ts",
       "organizational-learning/tests/provenance.schema.test.ts",
+      "organizational-learning/tests/provenance-validator.test.ts",
       "organizational-learning/tests/closure-envelope.schema.test.ts",
       "organizational-learning/tests/candidate-learning-item.schema.test.ts",
       "organizational-learning/tests/promotion-review.schema.test.ts",
