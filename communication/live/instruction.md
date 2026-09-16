@@ -33,7 +33,7 @@ Apply only the F-04 correction below.
 
 Codex independently verified that the imported `runHarvest` and `runValidate` functions behave correctly, but the actual CLI processes can silently skip execution on Windows because both scripts currently compare:
 
-`import.meta.url === \`file://${process.argv[1]}\``
+`` import.meta.url === `file://${process.argv[1]}` ``
 
 That raw string construction is not a platform-correct file URL comparison on Windows.
 
