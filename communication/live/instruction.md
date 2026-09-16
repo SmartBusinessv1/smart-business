@@ -1,17 +1,49 @@
-# SMART BUSINESS — REPOSITORY COMMUNICATION
+# SMART BUSINESS — LIVE INSTRUCTION
 
-# Instruction — Awaiting Mission Activation
-
-**Mission ID:** `NONE`
-
-**From:** Smart Business Mission Control
-
-**Status:** `IDLE — READY FOR NEXT AUTHORIZED MISSION`
+**Mission ID:** `SB-ORG-LEARNING-1.0`  
+**Mission name:** Smart Business Organizational Learning Engine  
+**Sender:** Smart Business Mission Control  
+**Recipient:** Founder Riyas PK  
+**Status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE`  
+**Date:** 2026-09-16
 
 ---
 
-`communication/live/` is currently reset and contains no active mission.
+Claude Code engineering review and Codex independent review are complete.
 
-When Mission Control authorizes the next mission, replace this placeholder with the new active instruction before specialist execution begins.
+Mission Control completed final reconciliation and incorporated the required design corrections.
 
-Do not infer a mission from archived communication or prior chat history.
+Final controlling plan:
+
+`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+
+Final disposition:
+
+`BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE — IMPLEMENTATION NOT AUTHORIZED`
+
+PR:
+
+`#583 — OPEN — READY FOR FOUNDER MERGE`
+
+Mission Control verified the exact accepted proposal head through both required PR checks before issuing this handoff.
+
+Founder action:
+
+**Merge PR #583 to protected `main`.**
+
+The merge approves the Organizational Learning Engine build plan only.
+
+It does **not** authorize:
+
+- engine implementation;
+- dependencies or lockfile changes;
+- new external integrations;
+- write-capable automation;
+- database/schema/RLS/auth changes;
+- deployment or production access;
+- Product Truth/governance/roadmap changes;
+- `SB-P-1.12` activation.
+
+After merge, Mission Control will verify canonical `main`, applicable post-merge checks, archive/reset `communication/live`, and close this research/design mission.
+
+Do not perform implementation work under this instruction.
