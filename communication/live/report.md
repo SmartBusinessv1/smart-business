@@ -3,7 +3,7 @@
 **Mission ID:** `SB-ORG-LEARNING-1.0`  
 **Mission name:** Smart Business Organizational Learning Engine  
 **To:** Founder Riyas PK  
-**Status:** `BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE AFTER FINAL CI`  
+**Status:** `BUILD PLAN ACCEPTED — FINAL CI VERIFICATION PENDING`  
 **Date:** 2026-09-16
 
 ---
@@ -72,7 +72,7 @@ Mission Control accepts the substantive B1–B7 design corrections:
 6. automatic learning eligibility uses a versioned authoritative closure envelope;
 7. source/process/candidate/review/publication identities, idempotency, atomic publication, concurrency, and recovery are explicitly separated.
 
-Codex also independently supported Mission Control's qualification of the historical scanner evidence: reviewed repository-hygiene records classify the examined findings as non-credential-grade. Screening remains mandatory; no claim of credential-grade leakage is carried into the final plan.
+Codex independently supported Mission Control's qualification of the historical scanner evidence: reviewed repository-hygiene records classify the examined findings as non-credential-grade. Screening remains mandatory; no claim of credential-grade leakage is carried into the final plan.
 
 ---
 
@@ -102,19 +102,9 @@ Proof-stage manual/supervised processing is allowed only as an intermediate vali
 
 ---
 
-## Final proposal branch state
-
-Current accepted-plan branch head after Mission Control reconciliation:
-
-`0be24db0ebdfc1fae35f9a967c361c01b940b131`
-
-This SHA is recorded as the proposal head observed before this live-report reconciliation commit. The actual PR head may advance by this administrative report commit; Founder merge must use the later exact final head only after Mission Control verifies CI on that exact head.
-
----
-
 ## Final disposition
 
-`SB-ORG-LEARNING-1.0 — BUILD PLAN ACCEPTED — READY FOR FOUNDER MERGE — IMPLEMENTATION NOT AUTHORIZED`
+`SB-ORG-LEARNING-1.0 — BUILD PLAN ACCEPTED — IMPLEMENTATION NOT AUTHORIZED`
 
 PR:
 
