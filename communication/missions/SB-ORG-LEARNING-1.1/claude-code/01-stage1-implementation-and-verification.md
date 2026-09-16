@@ -527,6 +527,16 @@ Codex's third independent re-verification (`communication/missions/SB-ORG-LEARNI
 
 **CI on this correction's pushed head:** per the standing anti-recursion rule (Section 21), see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab and the live builder section of `communication/live/report.md` for the workflow run results on the exact current head, rather than a SHA restated here.
 
+### Real CI result and one pre-existing, out-of-scope finding
+
+Real CI on this correction's pushed head: **Lint, Typecheck, Build, Fast Tests, and Full Assurance Tests all pass. The Markdown Quality Gate check fails.**
+
+The failure is **not** caused by this correction and is **not** in a file this correction touched. The gate re-validates every changed Markdown file across the PR's *entire* base-to-head diff on every run, not only the files in the latest commit. Independently confirmed: the specific failing file is `communication/live/instruction.md`, line 36 — an inline-code span containing the old, buggy main-module comparison, written with backslash-escaped backticks nested inside single backticks (a Markdown syntax error, not valid inline code), inside Mission Control's own F-04 correction instruction text, introduced by Mission Control's commit `393af1057f04f2e49ffe447ae3df7c5257768b65` ("authorize narrow Stage 1 F-04 correction"). `git merge-base --is-ancestor 393af1057f04f2e49ffe447ae3df7c5257768b65 <this correction's commit>` confirms that commit is an ancestor of, and therefore strictly predates, this correction. The Markdown Quality Gate run immediately after Mission Control's commit (`393af10`), before any Claude Code action in this round, independently shows the same failure.
+
+This report does not modify `communication/live/instruction.md` to fix this. That file is Mission Control's own authorization document, editing it is not one of the three things this F-04 correction is authorized to change, and doing so unprompted would itself be a scope violation. This is reported as a **blocker for Mission Control**, not corrected by the builder: Mission Control owns that file and the fix (removing the stray backslash-escaped backticks around the inline code span) is a one-line documentation edit, not an implementation change.
+
+All six files this correction actually touched were individually validated against the same Markdown Quality Gate tool locally before commit and passed cleanly (Section 24's "Local verification" above) — the two revised report files in this correction are not the cause.
+
 ---
 
 ## Stop statement
@@ -534,3 +544,5 @@ Codex's third independent re-verification (`communication/missions/SB-ORG-LEARNI
 **STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
 
 Only the single authorized F-04 correction (platform-correct CLI main-module detection in `harvest.mjs` and `validate.mjs`, plus genuine process-level regression tests) was applied; no scope was broadened. F-01, F-02, and F-03 designs were not reopened or redesigned. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Candidate/promotion authority, provenance architecture, source allowlisting, receipt-state vocabulary, manifest ordering, and scanner policy were not changed. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report — the prior Codex `FAIL` disposition stands until Codex re-verifies again.
+
+**One outstanding item for Mission Control, outside this correction's authority to fix:** real PR CI currently shows the Markdown Quality Gate failing on `communication/live/instruction.md` (line 36, a malformed escaped-backtick span), a pre-existing issue in Mission Control's own commit `393af1057f04f2e49ffe447ae3df7c5257768b65` that predates this correction. Lint, Typecheck, Build, Fast Tests, and Full Assurance all pass. This is reported, not corrected, per this correction's scope boundary.
