@@ -1,57 +1,64 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Successor Handover Report
+# SB-ORG-LEARNING-1.1 — Stage 1 Implementation Report
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**To:** Successor Smart Business Mission Control / Founder Riyas PK
+**Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Status:** `HANDOVER READY — NO SPECIALIST IMPLEMENTATION STARTED`
+**To:** Smart Business Mission Control
+
+**Builder:** Claude Code
+
+**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1`
+
+**Status:** `ACTIVE — AWAITING CLAUDE CODE STAGE 1 REPORT`
 
 ---
 
-## Verified current state at handover preparation
+## Stage 1 authority
 
-- PR `#585` — `MERGED`.
-- Activation merge commit: `e1806c0e2e1f56102e03daf6639363ddd34c3ede`.
-- Post-merge Markdown Quality Gate `#1715` — `SUCCESS`.
-- Post-merge Application Build Assurance `#111` — `SUCCESS`.
-- `SB-ORG-LEARNING-1.0` — closed, accepted, build plan approved and archived.
-- `SB-ORG-LEARNING-1.1` — active implementation mission.
-- Engine implementation — **not started**.
-- Stage 1 Claude Code execution — **not yet opened**.
-- `SB-P-1.12` — **not activated**.
+Durable authorization:
 
-## Durable handover artifacts
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/03-stage1-claude-code-authorization.md`
 
-Institutional memory extraction:
+Active execution instruction:
 
-`mission-control/mission-control-22-24.md`
-
-Detailed active-mission handover:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+`communication/live/instruction.md`
 
 Controlling build plan:
 
 `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
 
-Stage 1 boundary:
+## Claude Code report section
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
+**State:** `PENDING`
 
-## Successor first execution action
+Claude Code shall replace only this section with:
 
-After successor hydration/Founder acceptance and a fresh verification of canonical `main`:
+- durable report path;
+- exact implementation commit/head SHA;
+- files changed;
+- tests and CI evidence;
+- dependency/lockfile confirmation;
+- Stage 1 exclusions confirmation;
+- unresolved risks/follow-ups;
+- recommended next action.
 
-1. create a fresh Stage 1 branch from current protected `main`;
-2. publish a fresh Stage 1 `communication/live/instruction.md` and paired report template;
-3. assign Claude Code using the exact instruction in Section 11 of the successor handover;
-4. stop after Claude Code returns its durable Stage 1 implementation report;
-5. perform Mission Control substantive review before Codex independent verification.
+Do not mark Mission Control review, Codex verification, Stage 1 acceptance or Stage 2 authorization from this builder section.
 
-## Boundaries
+## Mission Control section
 
-No AI extraction, real proof-target processing, background learning workflow, autonomous repository write, provider mutation or Product Mission activation has been performed by the outgoing Mission Control.
+**State:** `NOT STARTED — WAITS FOR CLAUDE STOP CONDITION`
 
-`SB-P-1.12` remains blocked until the Organizational Learning Engine implementation mission is accepted.
+Mission Control will perform substantive review only after Claude Code pushes its durable Stage 1 implementation report and stops.
+
+## Codex independent verification
+
+**State:** `NOT AUTHORIZED YET`
+
+Codex will be activated only after Mission Control completes the substantive Stage 1 review.
+
+## Product Mission state
+
+`SB-P-1.12 — NOT ACTIVATED`
