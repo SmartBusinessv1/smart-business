@@ -1,6 +1,6 @@
-### SMART BUSINESS MISSION CONTROL
+# SMART BUSINESS MISSION CONTROL
 
-### SB-ORG-LEARNING-1.1 — STAGE 1 CLAUDE CODE IMPLEMENTATION
+# SB-ORG-LEARNING-1.1 — STAGE 1 NARROW CORRECTION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
@@ -8,148 +8,99 @@
 
 **Builder:** Claude Code
 
-**Repository:** `SmartBusinessv1/smart-business`
+**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-**Product Mission state:** `SB-P-1.12 NOT ACTIVATED`
+**PR:** `#588`
 
-#### Objective
+**Mission Control disposition:** `CORRECTION REQUIRED BEFORE CODEX INDEPENDENT VERIFICATION`
 
-Implement only the approved Stage 1 foundation of the Organizational Learning Engine.
+**Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-This stage must create the deterministic contracts, source-safety boundaries and local harvester foundation needed for later supervised learning, without introducing AI calls, background automation, autonomous repository writes, provider mutations or promotion behavior.
+---
 
-#### Mandatory reading
+## Read first
 
-Read before implementation:
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/04-stage1-substantive-review.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
+3. existing Stage 1 implementation and tests on this branch.
 
-1. `communication/live/instruction.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/README.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
-4. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
-5. `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
-6. relevant active governance, especially Source 17 / AI Operations Manual and repository communication protocol;
-7. current repository conventions, package scripts, Fast Gate tests, Git utilities and existing Zod usage.
+Do not broaden scope beyond the two corrections below.
 
-Do not implement from chat memory or from the original pre-reconciliation proposal when it differs from the final controlling build plan.
+---
 
-#### Authorized implementation — Phase A
+## Correction 1 — implement dangling provenance validation
 
-Build the approved repository-native contracts/security foundation:
+The Stage 1 authorization required tests for invalid/dangling provenance.
 
-- candidate learning schema;
-- promotion/review schema;
-- closure-envelope schema;
-- processing receipt schema;
-- claim-level provenance contract;
-- source allowlist;
-- safe path-normalization / path-validation logic;
-- committed-Git-object reader;
-- screening/quarantine contract;
-- tests for prohibited candidate authority fields;
-- tests for unsafe/absolute/traversal/ambiguous paths;
-- tests for invalid/dangling provenance;
-- tests proving scanner failure/unknown scanner state fails closed.
+Current implementation validates provenance shape and defines `DanglingCheckResult`, but it does not yet implement the runtime committed-object check that proves the claimed `commit_sha + path + blob_sha` actually resolves.
 
-#### Authorized implementation — Phase B deterministic foundation
+Implement a narrow repository-native provenance-resolution validator using the existing committed-Git-object reader.
 
-Build a Node.js ESM deterministic harvester CLI that:
+It must distinguish at minimum:
 
-- accepts an explicitly supplied approved closure envelope;
-- verifies pinned committed source state;
-- reads only eligible committed Git objects;
-- enumerates only closure-linked approved evidence;
-- computes deterministic sorted `path@blobSHA` manifest identity;
-- computes source fingerprint/idempotency identity from closure revision + schema version + sorted source identity;
-- produces a deterministic evidence manifest / receipt skeleton;
-- reports failure states truthfully;
-- performs no semantic extraction;
-- performs no promotion;
-- performs no autonomous repository write;
-- performs no background workflow processing.
+- exact valid reference;
+- commit not found;
+- path not found at commit;
+- non-regular object;
+- blob SHA mismatch.
 
-#### Required architecture rules
+Add environment-independent tests using isolated ephemeral Git repositories only.
 
-- Use repository-native implementation.
-- Use existing Zod/runtime TypeScript conventions; do not add a new validation framework.
-- Use Node.js ESM for deterministic scripts.
-- Candidate and promotion contracts must remain structurally separate.
-- Candidate objects must reject trusted approval/promotion fields rather than silently accept/discard them.
-- Source eligibility must not be represented as source authority.
-- Claim provenance must bind exact claims to exact evidence reach.
-- `communication/live/**` must not be eligible authoritative harvest input.
-- Source reads must be from pinned committed Git objects, not dirty worktree state.
-- Unexpected symlink/submodule/non-regular-object/path-traversal cases must fail safely.
-- Scanner missing/failing/unknown must fail closed.
-- Do not echo potential secret values in logs, reports or fixtures.
-- No generated learning artifact may become primary evidence for itself.
+Do not process any real closed-mission proof target.
+Do not add dependencies.
+Do not modify `package-lock.json`.
 
-#### Explicitly not authorized in Stage 1
+---
 
-Do **not**:
+## Correction 2 — fix evidence/reporting semantics
 
-- call OpenAI or any AI provider;
-- perform semantic candidate extraction;
-- implement automatic learning promotion;
-- implement background GitHub Actions learning orchestration;
-- implement automatic PR creation or repository write automation;
-- process the real `SB-OPS-CI-ARCHITECTURE-1.0` proof target yet;
-- add external credentials;
-- modify Supabase/database/schema/RLS/auth;
-- access production or test provider state;
-- modify application Product Truth, roadmap, governance, pricing, permissions or Founder decisions;
+Do not keep editing a tracked report merely to make a recorded "final branch head" equal the new head created by that edit.
+
+Revise the durable Claude Code report and the builder section of `communication/live/report.md` so they distinguish:
+
+- implementation commit(s) that were actually tested;
+- PR #588 / GitHub Actions as the current exact-head CI source of truth;
+- workflow/run evidence where known;
+- no claim that the report contains its own immutable final branch SHA.
+
+Remove or replace stale "final branch head" wording that becomes false when the report itself is committed.
+
+After the technical correction is pushed, wait for applicable CI on the new head. Report the CI result without making another metadata-only commit solely to embed that head SHA.
+
+---
+
+## Accepted Stage 1 interpretations
+
+Mission Control confirms for Stage 1:
+
+- `merge/active/**` remains authority context and is not harvestable candidate-learning evidence by default;
+- all-or-nothing evidence resolution is accepted;
+- receipt `mission_id` may preserve malformed input for failure reporting;
+- Stage-1 failures may map to `VALIDATION_FAILED`;
+- the current heuristic scanner is accepted only as a Stage 1 fail-closed proof, with stronger-scanner disposition retained for the Stage 2 entry gate.
+
+---
+
+## Still prohibited
+
+Do not:
+
+- perform AI/semantic extraction;
+- process `SB-OPS-CI-ARCHITECTURE-1.0`;
+- implement background automation;
+- add provider/network writes;
+- implement promotion execution;
+- activate Stage 2;
 - activate `SB-P-1.12`;
-- add dependencies or modify `package-lock.json` unless Mission Control separately authorizes it after evidence that the existing repository cannot satisfy the requirement;
-- self-approve or self-merge.
+- self-approve;
+- merge.
 
-#### Testing and CI
+---
 
-- Add Stage 1 tests to the Fast Gate when environment-independent.
-- Do not create a Supabase dependency for Stage 1 tests.
-- Run the applicable local tests/lint/typecheck/build/Markdown checks.
-- Push to the authorized Stage 1 branch and allow real CI to verify the exact head.
-- Report test membership/counts/results and exact CI evidence.
+## Required return
 
-#### Required durable output
+Apply only these corrections, run applicable local checks, push to the existing authorized branch, wait for applicable CI, update the durable report and live builder section truthfully, then stop and state:
 
-Create:
+`STAGE 1 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 
-`communication/missions/SB-ORG-LEARNING-1.1/claude-code/01-stage1-implementation-and-verification.md`
-
-The report must include:
-
-- exact files changed;
-- architecture summary;
-- candidate/promotion separation proof;
-- source-allowlist and path-safety behavior;
-- provenance contract behavior;
-- screening/quarantine behavior;
-- deterministic source fingerprint/idempotency design;
-- receipt-state model;
-- test inventory and results;
-- Fast Gate integration evidence;
-- dependency/lockfile confirmation;
-- explicit list of Stage 1 exclusions that remain unimplemented;
-- unresolved risks / assumptions / follow-ups;
-- recommended Stage 2 handoff, without activating Stage 2.
-
-Update only the minimum mission communication records needed for handoff, including your section of `communication/live/report.md` if instructed by the active live template.
-
-#### Stop condition
-
-After implementation, validation, push and durable report:
-
-**STOP FOR MISSION CONTROL.**
-
-Do not self-approve.
-
-Do not merge.
-
-Do not begin the real closed-mission proof.
-
-Do not begin AI extraction.
-
-Do not begin background automation.
-
-Do not activate Stage 2.
-
-Do not activate `SB-P-1.12`.
+Do not authorize Codex yourself.
