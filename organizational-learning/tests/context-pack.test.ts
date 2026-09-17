@@ -1,15 +1,34 @@
 // SB-ORG-LEARNING-1.1 Stage 3B -- deterministic mission-start context-pack
 // proof tests.
 //
-// These tests exercise the real Stage 3A promotion/candidate artifacts
-// (read-only) for the positive eligibility proof, and isolated in-memory
-// clones for every negative proof (candidate-only exclusion, stale
-// revision, scope exclusion, supersession) -- the real promotion/candidate
-// files under organizational-learning/promotions and
-// organizational-learning/candidates are never written to by any test
-// here. Each negative test that clones a real record explicitly re-reads
-// the real file afterward to confirm it is unchanged.
-import { describe, it, expect } from "vitest";
+// Tests that need a promotion's evidence to resolve VALID against real
+// committed git objects use an isolated ephemeral git repository (see
+// organizational-learning/tests/helpers/ephemeral-git-repo.ts), never the
+// real Smart Business repository's own deep history -- exactly the
+// Stage 1 convention this mission has followed throughout. This matters
+// specifically here because GitHub Actions' checkout defaults to a
+// shallow clone (fetch-depth 1): the real Stage 2A pinned commit
+// (b60741cce...) is not present in that shallow history, so any test
+// that asked `validateProvenanceReference` to resolve it against the
+// real, shared `REPO_ROOT` would correctly (and safely) report every
+// reference as unresolvable there -- fail-closed behavior that is
+// CORRECT for the actual context-pack logic, but which the test
+// environment cannot satisfy without full history. Building a small
+// throwaway repo containing the exact same evidence file contents (read
+// from the real, currently-checked-out working tree, which is always
+// present regardless of clone depth) and re-pointing a deep-cloned
+// promotion's evidence at that repo's own fresh commit/blob SHAs proves
+// the identical retrieval logic without depending on the ambient
+// checkout's history depth.
+//
+// The real, committed candidate/promotion JSON files are still read
+// directly (no git plumbing needed for that -- plain file reads), and
+// candidate revision-hash staleness checks work identically regardless
+// of repo history depth (computeRevisionHash never touches git). Every
+// negative proof that clones a real record explicitly re-reads the real
+// file afterward to confirm it is unchanged; no real candidate or
+// promotion file is ever written to by any test here.
+import { describe, it, expect, afterEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync, readFileSync, writeFileSync } from "node:fs";
@@ -21,6 +40,7 @@ import {
   loadPromotions,
   loadCandidatesById,
 } from "../scripts/context-pack.mjs";
+import { createEphemeralGitRepo, type EphemeralGitRepo } from "./helpers/ephemeral-git-repo.ts";
 
 const REPO_ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const PROMOTIONS_DIR = join(REPO_ROOT, "organizational-learning", "promotions");
@@ -48,7 +68,79 @@ function realPromotionPath(name: string) {
   return join(PROMOTIONS_DIR, "SB-OPS-CI-ARCHITECTURE-1.0", name);
 }
 
-describe("Stage 3B: real-fixture eligibility proof", () => {
+/**
+ * Recreates the exact three pinned Stage 2A evidence files (by content,
+ * read from the real, currently-checked-out working tree) inside a fresh
+ * ephemeral repo, and returns the resulting commit SHA plus each path's
+ * new blob SHA -- everything a remapped promotion's evidence needs to
+ * resolve VALID against `ephemeralRepo.root`, independent of the ambient
+ * checkout's history depth.
+ */
+function buildEphemeralEvidenceRepo(): {
+  repo: EphemeralGitRepo;
+  headCommitSha: string;
+  blobShaByPath: Map<string, string>;
+} {
+  const repo = createEphemeralGitRepo();
+  const evidencePaths = [
+    "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+    "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+    "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+  ];
+  let headCommitSha = "";
+  for (const relativePath of evidencePaths) {
+    const content = readFileSync(join(REPO_ROOT, relativePath), "utf8");
+    headCommitSha = repo.commitFile(relativePath, content);
+  }
+  const blobShaByPath = new Map<string, string>();
+  for (const relativePath of evidencePaths) {
+    const lsTree = repo.git(["ls-tree", "-z", "HEAD", "--", relativePath]);
+    const [entry] = lsTree.split("\0").filter(Boolean);
+    const tabIndex = entry.indexOf("\t");
+    const [, , blobSha] = entry.slice(0, tabIndex).split(" ").filter(Boolean);
+    blobShaByPath.set(relativePath, blobSha);
+  }
+  return { repo, headCommitSha, blobShaByPath };
+}
+
+interface EvidenceReferenceLike {
+  path: string;
+  commit_sha: string;
+  blob_sha: string;
+  [key: string]: unknown;
+}
+
+interface PromotionLike {
+  promotion_id: string;
+  candidate_id: string;
+  evidence: EvidenceReferenceLike[];
+  [key: string]: unknown;
+}
+
+/** Deep-clones `promotion` with every evidence reference repointed at the ephemeral repo's own fresh commit/blob SHAs for the same path. */
+function remapToEphemeralRepo(
+  promotion: PromotionLike,
+  headCommitSha: string,
+  blobShaByPath: Map<string, string>,
+) {
+  return {
+    ...promotion,
+    evidence: promotion.evidence.map((ref: EvidenceReferenceLike) => ({
+      ...ref,
+      commit_sha: headCommitSha,
+      blob_sha: blobShaByPath.get(ref.path) ?? ref.blob_sha,
+    })),
+  };
+}
+
+describe("Stage 3B: real-fixture eligibility proof (evidence re-pointed at an ephemeral repo)", () => {
+  let ephemeral: ReturnType<typeof buildEphemeralEvidenceRepo> | null = null;
+
+  afterEach(() => {
+    ephemeral?.repo.cleanup();
+    ephemeral = null;
+  });
+
   it("loads exactly the four current promotion records", () => {
     const { promotions } = loadRealFixtures();
     expect(promotions).toHaveLength(4);
@@ -56,10 +148,14 @@ describe("Stage 3B: real-fixture eligibility proof", () => {
 
   it("all four current mission-scoped VALIDATED promotions are eligible under the authorized synthetic profile", () => {
     const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
     const pack = buildContextPack({
-      repoRoot: REPO_ROOT,
+      repoRoot: ephemeral.repo.root,
       profile: AUTHORIZED_PROFILE,
-      promotions,
+      promotions: remapped,
       candidatesById,
     });
     expect(pack.reusable_learning).toHaveLength(4);
@@ -77,22 +173,31 @@ describe("Stage 3B: real-fixture eligibility proof", () => {
 
   it("orders reusable learning deterministically by promotion_id, not by any ranking", () => {
     const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
     const pack = buildContextPack({
-      repoRoot: REPO_ROOT,
+      repoRoot: ephemeral.repo.root,
       profile: AUTHORIZED_PROFILE,
-      promotions,
+      promotions: remapped,
       candidatesById,
     });
+    expect(pack.reusable_learning).toHaveLength(4);
     const ids = pack.reusable_learning.map((e) => e.promotion_id);
     expect(ids).toEqual([...ids].sort());
   });
 
   it("surfaces Candidate 3's LIMITS relationship and MEDIUM confidence without resolving the omission", () => {
     const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
     const pack = buildContextPack({
-      repoRoot: REPO_ROOT,
+      repoRoot: ephemeral.repo.root,
       profile: AUTHORIZED_PROFILE,
-      promotions,
+      promotions: remapped,
       candidatesById,
     });
     const c3 = pack.reusable_learning.find((e) => e.candidate_id.includes("candidate-03"));
@@ -112,6 +217,177 @@ describe("Stage 3B: real-fixture eligibility proof", () => {
     expect(c3.approved_scope).toContain("five items named at pre-merge acceptance");
     expect(c3.approved_scope).toContain("four at final post-merge closure");
     expect(c3.approved_scope).toContain("not any conclusion");
+  });
+
+  it("honors the current empty supersession arrays for all real promotions", () => {
+    const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
+    const pack = buildContextPack({
+      repoRoot: ephemeral.repo.root,
+      profile: AUTHORIZED_PROFILE,
+      promotions: remapped,
+      candidatesById,
+    });
+    expect(pack.reusable_learning).toHaveLength(4);
+    for (const item of pack.reusable_learning) {
+      if (!item.supersession)
+        throw new Error("reusable_learning entry unexpectedly has no supersession field");
+      expect(item.supersession.supersedes).toEqual([]);
+      expect(item.supersession.superseded_by).toEqual([]);
+    }
+  });
+
+  it("never upgrades VALIDATED/MISSION_SCOPED output beyond what each record itself states", () => {
+    const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
+    const pack = buildContextPack({
+      repoRoot: ephemeral.repo.root,
+      profile: AUTHORIZED_PROFILE,
+      promotions: remapped,
+      candidatesById,
+    });
+    expect(pack.reusable_learning).toHaveLength(4);
+    const rendered = JSON.stringify(pack);
+    expect(rendered).not.toContain("INSTITUTIONALISED");
+    expect(rendered).not.toContain("ORGANIZATION_WIDE");
+    for (const item of pack.reusable_learning) {
+      expect(item.approving_authority.actor_class).toBe("mission-control");
+    }
+  });
+
+  it("produces byte-identical JSON across repeated in-process builds of identical input", () => {
+    const { promotions, candidatesById } = loadRealFixtures();
+    ephemeral = buildEphemeralEvidenceRepo();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
+    const pack1 = buildContextPack({
+      repoRoot: ephemeral.repo.root,
+      profile: AUTHORIZED_PROFILE,
+      promotions: remapped,
+      candidatesById,
+    });
+    const pack2 = buildContextPack({
+      repoRoot: ephemeral.repo.root,
+      profile: AUTHORIZED_PROFILE,
+      promotions: remapped,
+      candidatesById,
+    });
+    expect(pack1.reusable_learning).toHaveLength(4);
+    expect(JSON.stringify(pack1)).toBe(JSON.stringify(pack2));
+  });
+
+  it("produces byte-identical output across two separate real CLI process invocations", () => {
+    ephemeral = buildEphemeralEvidenceRepo();
+    const { promotions } = loadRealFixtures();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
+    const tempPromotionsDir = mkdtempSync(join(tmpdir(), "ole-context-pack-promotions-"));
+    for (const promotion of remapped) {
+      writeFileSync(
+        join(tempPromotionsDir, `${promotion.promotion_id}.json`),
+        JSON.stringify(promotion),
+        "utf8",
+      );
+    }
+    const dir1 = mkdtempSync(join(tmpdir(), "ole-context-pack-run1-"));
+    const dir2 = mkdtempSync(join(tmpdir(), "ole-context-pack-run2-"));
+    try {
+      const baseArgs = [
+        SCRIPT_PATH,
+        "--mission-class",
+        "operational",
+        "--system",
+        "github-actions",
+        "--system",
+        "ci",
+        "--environment",
+        "ci",
+        "--related-mission",
+        "SB-OPS-CI-ARCHITECTURE-1.0",
+        "--repo-root",
+        ephemeral.repo.root,
+        "--promotions-dir",
+        tempPromotionsDir,
+        "--candidates-dir",
+        CANDIDATES_DIR,
+      ];
+      const run1 = spawnSync(process.execPath, [...baseArgs, "--out-dir", dir1], {
+        encoding: "utf8",
+      });
+      const run2 = spawnSync(process.execPath, [...baseArgs, "--out-dir", dir2], {
+        encoding: "utf8",
+      });
+      expect(run1.status).toBe(0);
+      expect(run1.stdout).toContain("eligible=4");
+      expect(run2.status).toBe(0);
+      const content1 = readFileSync(join(dir1, "context-pack.json"), "utf8");
+      const content2 = readFileSync(join(dir2, "context-pack.json"), "utf8");
+      expect(content1).toBe(content2);
+    } finally {
+      rmSync(dir1, { recursive: true, force: true });
+      rmSync(dir2, { recursive: true, force: true });
+      rmSync(tempPromotionsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("the real CLI run screens CLEAN and writes output", () => {
+    ephemeral = buildEphemeralEvidenceRepo();
+    const { promotions } = loadRealFixtures();
+    const remapped = promotions.map((p) =>
+      remapToEphemeralRepo(p, ephemeral!.headCommitSha, ephemeral!.blobShaByPath),
+    );
+    const tempPromotionsDir = mkdtempSync(join(tmpdir(), "ole-context-pack-promotions-"));
+    for (const promotion of remapped) {
+      writeFileSync(
+        join(tempPromotionsDir, `${promotion.promotion_id}.json`),
+        JSON.stringify(promotion),
+        "utf8",
+      );
+    }
+    const dir = mkdtempSync(join(tmpdir(), "ole-context-pack-screen-"));
+    try {
+      const result = spawnSync(
+        process.execPath,
+        [
+          SCRIPT_PATH,
+          "--mission-class",
+          "operational",
+          "--system",
+          "github-actions",
+          "--system",
+          "ci",
+          "--environment",
+          "ci",
+          "--related-mission",
+          "SB-OPS-CI-ARCHITECTURE-1.0",
+          "--repo-root",
+          ephemeral.repo.root,
+          "--promotions-dir",
+          tempPromotionsDir,
+          "--candidates-dir",
+          CANDIDATES_DIR,
+          "--out-dir",
+          dir,
+        ],
+        { encoding: "utf8" },
+      );
+      expect(result.status).toBe(0);
+      expect(result.stdout).toContain("eligible=4");
+      const written = readFileSync(join(dir, "context-pack.json"), "utf8");
+      expect(written.length).toBeGreaterThan(0);
+      expect(written).toContain("context, not authority");
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+      rmSync(tempPromotionsDir, { recursive: true, force: true });
+    }
   });
 });
 
@@ -144,13 +420,16 @@ describe("Stage 3B: negative proof -- stale revision rejection", () => {
     mutatedCandidate.summary = `${mutatedCandidate.summary} (mutated for test)`;
     mutatedCandidatesById.set(original.candidate_id, mutatedCandidate);
 
+    // repoRoot correctness does not matter here: staleness is computed
+    // independently of provenance, and is asserted directly below rather
+    // than through overall `eligible` (which also depends on provenance).
     const result = evaluateEligibility(original, {
       repoRoot: REPO_ROOT,
       profile: AUTHORIZED_PROFILE,
       candidatesById: mutatedCandidatesById,
     });
-    expect(result.eligible).toBe(false);
     expect(result.stale).toBe(true);
+    expect(result.eligible).toBe(false);
     expect(result.reasons.some((r: string) => r.includes("stale"))).toBe(true);
 
     const stillOriginal = JSON.parse(
@@ -170,8 +449,8 @@ describe("Stage 3B: negative proof -- stale revision rejection", () => {
       profile: AUTHORIZED_PROFILE,
       candidatesById,
     });
-    expect(result.eligible).toBe(false);
     expect(result.stale).toBe(true);
+    expect(result.eligible).toBe(false);
 
     const stillReal = JSON.parse(
       readFileSync(realPromotionPath("promotion-02-exact-run-level-closure-evidence.json"), "utf8"),
@@ -189,6 +468,8 @@ describe("Stage 3B: negative proof -- scope exclusion", () => {
       environments: ["production"],
       relatedMissions: ["SB-SOME-UNRELATED-MISSION"],
     };
+    // repoRoot is irrelevant here: scope mismatch alone already forces
+    // every item to be excluded regardless of provenance outcome.
     const pack = buildContextPack({
       repoRoot: REPO_ROOT,
       profile: nonMatchingProfile,
@@ -206,22 +487,6 @@ describe("Stage 3B: negative proof -- scope exclusion", () => {
 });
 
 describe("Stage 3B: negative proof -- no invented institutionalization", () => {
-  it("never upgrades VALIDATED/MISSION_SCOPED output beyond what each record itself states", () => {
-    const { promotions, candidatesById } = loadRealFixtures();
-    const pack = buildContextPack({
-      repoRoot: REPO_ROOT,
-      profile: AUTHORIZED_PROFILE,
-      promotions,
-      candidatesById,
-    });
-    const rendered = JSON.stringify(pack);
-    expect(rendered).not.toContain("INSTITUTIONALISED");
-    expect(rendered).not.toContain("ORGANIZATION_WIDE");
-    for (const item of pack.reusable_learning) {
-      expect(item.approving_authority.actor_class).toBe("mission-control");
-    }
-  });
-
   it("rejects an organization-wide INSTITUTIONALISED record lacking Founder approval at the schema gate", () => {
     const { promotions, candidatesById } = loadRealFixtures();
     const base = promotions[0];
@@ -244,34 +509,20 @@ describe("Stage 3B: negative proof -- no invented institutionalization", () => {
   });
 });
 
-describe("Stage 3B: supersession handling", () => {
-  it("honors the current empty supersession arrays for all real promotions", () => {
-    const { promotions, candidatesById } = loadRealFixtures();
-    const pack = buildContextPack({
-      repoRoot: REPO_ROOT,
-      profile: AUTHORIZED_PROFILE,
-      promotions,
-      candidatesById,
-    });
-    for (const item of pack.reusable_learning) {
-      if (!item.supersession)
-        throw new Error("reusable_learning entry unexpectedly has no supersession field");
-      expect(item.supersession.supersedes).toEqual([]);
-      expect(item.supersession.superseded_by).toEqual([]);
-    }
-  });
-
+describe("Stage 3B: supersession handling -- synthetic negative case", () => {
   it("excludes a promotion synthetically marked superseded_by another, without touching the real record", () => {
     const { promotions, candidatesById } = loadRealFixtures();
     const original = promotions.find((p) => p.candidate_id.includes("candidate-04"));
+    if (!original)
+      throw new Error("candidate 4's promotion record was not found in the real fixtures");
     const supersededClone = { ...original, superseded_by: ["some-future-promotion-id"] };
     const result = evaluateEligibility(supersededClone, {
       repoRoot: REPO_ROOT,
       profile: AUTHORIZED_PROFILE,
       candidatesById,
     });
-    expect(result.eligible).toBe(false);
     expect(result.supersededByOthers).toBe(true);
+    expect(result.eligible).toBe(false);
 
     const stillReal = JSON.parse(
       readFileSync(realPromotionPath("promotion-04-explicit-closure-scope-boundary.json"), "utf8"),
@@ -280,96 +531,7 @@ describe("Stage 3B: supersession handling", () => {
   });
 });
 
-describe("Stage 3B: determinism", () => {
-  it("produces byte-identical JSON across repeated in-process builds of identical input", () => {
-    const { promotions, candidatesById } = loadRealFixtures();
-    const pack1 = buildContextPack({
-      repoRoot: REPO_ROOT,
-      profile: AUTHORIZED_PROFILE,
-      promotions,
-      candidatesById,
-    });
-    const pack2 = buildContextPack({
-      repoRoot: REPO_ROOT,
-      profile: AUTHORIZED_PROFILE,
-      promotions,
-      candidatesById,
-    });
-    expect(JSON.stringify(pack1)).toBe(JSON.stringify(pack2));
-  });
-
-  it("produces byte-identical output across two separate real CLI process invocations", () => {
-    const dir1 = mkdtempSync(join(tmpdir(), "ole-context-pack-run1-"));
-    const dir2 = mkdtempSync(join(tmpdir(), "ole-context-pack-run2-"));
-    try {
-      const baseArgs = [
-        SCRIPT_PATH,
-        "--mission-class",
-        "operational",
-        "--system",
-        "github-actions",
-        "--system",
-        "ci",
-        "--environment",
-        "ci",
-        "--related-mission",
-        "SB-OPS-CI-ARCHITECTURE-1.0",
-        "--repo-root",
-        REPO_ROOT,
-      ];
-      const run1 = spawnSync(process.execPath, [...baseArgs, "--out-dir", dir1], {
-        encoding: "utf8",
-      });
-      const run2 = spawnSync(process.execPath, [...baseArgs, "--out-dir", dir2], {
-        encoding: "utf8",
-      });
-      expect(run1.status).toBe(0);
-      expect(run2.status).toBe(0);
-      const content1 = readFileSync(join(dir1, "context-pack.json"), "utf8");
-      const content2 = readFileSync(join(dir2, "context-pack.json"), "utf8");
-      expect(content1).toBe(content2);
-    } finally {
-      rmSync(dir1, { recursive: true, force: true });
-      rmSync(dir2, { recursive: true, force: true });
-    }
-  });
-});
-
-describe("Stage 3B: real CLI process -- screening and argument validation", () => {
-  it("the real CLI run screens CLEAN and writes output", () => {
-    const dir = mkdtempSync(join(tmpdir(), "ole-context-pack-screen-"));
-    try {
-      const result = spawnSync(
-        process.execPath,
-        [
-          SCRIPT_PATH,
-          "--mission-class",
-          "operational",
-          "--system",
-          "github-actions",
-          "--system",
-          "ci",
-          "--environment",
-          "ci",
-          "--related-mission",
-          "SB-OPS-CI-ARCHITECTURE-1.0",
-          "--repo-root",
-          REPO_ROOT,
-          "--out-dir",
-          dir,
-        ],
-        { encoding: "utf8" },
-      );
-      expect(result.status).toBe(0);
-      expect(result.stdout).toContain("eligible=4");
-      const written = readFileSync(join(dir, "context-pack.json"), "utf8");
-      expect(written.length).toBeGreaterThan(0);
-      expect(written).toContain("context, not authority");
-    } finally {
-      rmSync(dir, { recursive: true, force: true });
-    }
-  });
-
+describe("Stage 3B: CLI argument validation", () => {
   it("returns nonzero when required profile arguments are missing", () => {
     const result = spawnSync(process.execPath, [SCRIPT_PATH, "--repo-root", REPO_ROOT], {
       encoding: "utf8",
