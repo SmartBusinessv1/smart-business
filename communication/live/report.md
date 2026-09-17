@@ -1,16 +1,16 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 2 Completion / Stage 3A Handoff
+# SB-ORG-LEARNING-1.1 — Stage 3A Acceptance / Stage 3B Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Current stage:** `3 — Human review/promotion and context-pack proof`
 
-**Current sub-gate:** `3A — Human review/promotion proof`
+**Current sub-gate:** `3B — Deterministic mission-start context-pack proof`
 
-**Current actor:** Claude Code — authorized promotion-proof builder
+**Current actor:** Claude Code — authorized context-pack proof builder
 
-**Status:** `STAGE 2 ACCEPTED — STAGE 3A AUTHORIZED`
+**Status:** `STAGE 3A ACCEPTED — STAGE 3B AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -32,95 +32,95 @@ Verifier publication commit:
 
 `154c58e1b9d1faa04a328aa1bf9c8916d36f245a`
 
-Publication-head CI:
-
-- Team LIPS Application Build Assurance #170 — SUCCESS;
-- Team LIPS Markdown Quality Gate #1774 — SUCCESS;
-- Full Assurance — not applicable under the selective path filter.
-
 Mission Control disposition:
 
 `STAGE 2 — ACCEPTED`
 
-Durable decision and Stage 3A authorization:
+Durable Stage 2 decision / Stage 3A authorization:
 
 `communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
 
-## Stage 3A human review decision
+## Stage 3A human review / promotion proof
 
-Mission Control has reviewed the exact current revisions of the four Stage 2B candidates and approves those revisions for a mission-scoped `VALIDATED` promotion proof.
+Mission Control approved the exact current revisions of four Stage 2B candidates for a mission-scoped `VALIDATED` promotion proof only.
 
-The four candidate IDs are:
+Claude Code materialized four promotion-review artifacts under:
 
-1. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture`
-2. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence`
-3. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention`
-4. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary`
+`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
 
-Authorized promotion state:
+Durable builder report:
+
+`communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
+
+The four promotion records bind exact candidate revision hashes and use:
 
 - `resulting_maturity: VALIDATED`;
 - `promotion_scope: MISSION_SCOPED`;
 - `approving_authority.actor_class: mission-control`;
-- `approving_authority.name_or_role: Smart Business Mission Control`.
+- `approving_authority.name_or_role: Smart Business Mission Control`;
+- decision reference to Mission Control record 19;
+- empty supersession edges.
 
-The decision is revision-bound to the exact candidate content represented at repository state `154c58e1b9d1faa04a328aa1bf9c8916d36f245a`. Material candidate change invalidates the decision.
+All four promotion records validated against the existing promotion schema. All reused evidence references remained within the approved Stage 2 evidence boundary and resolved valid. Screening was CLEAN. Revision-binding was demonstrated using the accepted hash helper without mutating the actual candidate files.
 
-Candidate 3 remains a validated observation of an unresolved documentary inconsistency. `MEDIUM` confidence, `LIMITS`, and no-resolution wording remain required.
+Candidate 3 remains a validated observation of an unresolved documentary inconsistency. Its five-vs-four follow-up discrepancy, unexplained branch-protection-item omission, `LIMITS` relationship, `MEDIUM` confidence, and no-resolution boundary remain intact.
 
-## Current action
+No `INSTITUTIONALISED`, `ORGANIZATION_WIDE`, or Founder-approval claim was created.
 
-Claude Code may materialize four separate promotion-review artifacts under:
+Mission Control independently reviewed the promotion artifacts and the builder report. Current-head applicable CI at that review was green:
 
-`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
+- Team LIPS Application Build Assurance #175 — SUCCESS;
+- Team LIPS Markdown Quality Gate #1779 — SUCCESS;
+- Full Assurance — not applicable under the selective path filter for the promotion/document-only delta.
 
-using the existing accepted promotion schema and revision-hash machinery, then prove schema validity, exact revision binding, Mission Control decision binding, provenance validity, CLEAN screening and revision invalidation behavior.
+Mission Control disposition:
 
-Candidate files must not receive promotion fields.
+`STAGE 3A — ACCEPTED`
+
+Durable Stage 3A acceptance / Stage 3B authorization:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/20-stage3a-acceptance-and-stage3b-context-pack-proof-authorization.md`
+
+## Stage 3B authorization
+
+Stage 3B is a deterministic mission-start context-pack proof only.
+
+Authorized synthetic profile:
+
+- mission class: `operational`;
+- systems: `github-actions`, `ci`;
+- environment: `ci`;
+- related mission: `SB-OPS-CI-ARCHITECTURE-1.0`.
+
+This profile is synthetic and does not activate a real Product Mission.
+
+Only the four current mission-scoped `VALIDATED` promotion records are eligible reusable learning for the proof.
+
+The proof must use deterministic filtering, not semantic ranking, and must demonstrate reviewed-item eligibility, candidate-only exclusion, stale-revision rejection, scope filtering, supersession behavior, deterministic ordering/repeat output, provenance/freshness presentation, and preservation of Candidate 3's unresolved limitation.
+
+Every proof pack must state:
+
+`context, not authority`
+
+Generated context packs are outputs, not authority sources and not evidence for their own truth.
 
 ## Boundaries
 
-`STAGE 3B — NOT AUTHORIZED`
+`STAGE 4 — NOT AUTHORIZED`
 
 No `INSTITUTIONALISED` status.
-No `ORGANIZATION_WIDE` scope.
+No `ORGANIZATION_WIDE` promotion.
 No Founder approval claim.
-No context pack.
+No semantic ranking.
+No real mission activation.
 No background automation.
-No autonomous merge.
+No autonomous repository writer.
+No dependency/lockfile change.
+No merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
-No PR merge.
 No `SB-P-1.12` activation.
 
 ## Required stop
 
-`STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
----
-
-## Builder Stage 3A promotion proof report
-
-**Status:** `STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
-**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
-
-**Promotion artifacts (4):** `organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/promotion-01-two-tier-ci-architecture.json`, `promotion-02-exact-run-level-closure-evidence.json`, `promotion-03-explicit-followup-retention.json`, `promotion-04-explicit-closure-scope-boundary.json`, plus `organizational-learning/promotions/README.md`.
-
-**Candidate revision hashes (sha256, via the existing unmodified `computeRevisionHash`):** full hashes for all four candidates are recorded exactly in the durable report Section 4; all four independently confirmed to match the current candidate content.
-
-**Every record uses:** `resulting_maturity: VALIDATED`; `promotion_scope: MISSION_SCOPED`; `approving_authority: {actor_class: mission-control, name_or_role: Smart Business Mission Control}`; `decision_ref` pointing to Mission Control record 19; empty `supersedes`/`superseded_by`.
-
-**Schema/provenance/screening:** all 4 promotion records `PASS` (`validate.mjs promotion`); all 14 evidence references (reused verbatim from the candidates, `actor_class: synthesis` per the same S2B-F-02 principle) independently `VALID` via `validateProvenanceReference`; rendered content screened `CLEAN`, 0 findings.
-
-**Revision-binding proof:** all 4 bindings confirmed exact-match against current candidates; an isolated in-memory mutation (single trailing space on candidate 1's summary) produced a different hash, proving the binding is content-sensitive; the real candidate file was never touched (`git status` confirmed empty before and after).
-
-**Candidate 3 preservation:** five-vs-four follow-up discrepancy, unexplained branch-protection-item omission, `LIMITS` relationship, and `MEDIUM` confidence all intact and unmodified; the promotion's `approved_scope` explicitly states no resolution is concluded.
-
-**Candidate content:** unmodified — `git status` on `organizational-learning/candidates/` is empty. No promotion field was added to any candidate JSON.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
-
-**Applicable CI:** on PR #589 head `f18f5fa` (this round's commit): Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (changed paths outside its selective filter).
-
-**Scope confirmation:** no `INSTITUTIONALISED`, no `ORGANIZATION_WIDE`, no Founder-approval claim, no candidate/schema/provenance/revision-hash change, no supersession edge, no context pack, no Stage 3B work, no registry/background automation, no autonomous writer. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+`STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
