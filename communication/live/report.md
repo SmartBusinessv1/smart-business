@@ -1,14 +1,16 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 2B Codex Re-verification Handoff
+# SB-ORG-LEARNING-1.1 — Stage 2 Completion / Stage 3A Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**Stage:** `2 — Closed-mission proof and supervised candidate extraction`
+**Current stage:** `3 — Human review/promotion and context-pack proof`
 
-**Current actor:** Codex — independent verifier
+**Current sub-gate:** `3A — Human review/promotion proof`
 
-**Status:** `S2B-F-01/F-02 CORRECTION RE-REVIEW PASS — CODEX RE-VERIFICATION AUTHORIZED`
+**Current actor:** Claude Code — authorized promotion-proof builder
+
+**Status:** `STAGE 2 ACCEPTED — STAGE 3A AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -16,102 +18,81 @@
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-## Stage 2A
+## Stage 2 completion
 
-Stage 2A deterministic proof is accepted.
+Stage 2A deterministic proof was accepted against `SB-OPS-CI-ARCHITECTURE-1.0` using the pinned source snapshot and screened receipt.
 
-Proof target: `SB-OPS-CI-ARCHITECTURE-1.0`.
+Stage 2B produced four candidate-only learning items. Codex independently identified `S2B-F-01` and `S2B-F-02`; Mission Control authorized a narrow correction; Claude Code corrected only those findings; Mission Control re-reviewed; Codex independently re-verified and returned `PASS`.
 
-Pinned source snapshot: `b60741cce544adb713f7c384bbed09a05e23247e`.
+Final Stage 2 verifier report:
 
-Source fingerprint: `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
-
-Receipt: `SCREENED` / `CLEAN` / 3 evidence entries / 0 findings.
-
-## Stage 2B original verification
-
-Codex independently verified the first candidate set and returned `FAIL` with two findings:
-
-- `S2B-F-01`: Candidate 2 overstated exact Fast Test-count evidence for the later pre-review head;
-- `S2B-F-02`: all 14 references misidentified the synthesis observation actor as `mission-control`.
-
-Durable verifier report:
-
-`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
+`communication/missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md`
 
 Verifier publication commit:
 
-`850e3ecfe021a742255eb6c0db37043210a00b34`
+`154c58e1b9d1faa04a328aa1bf9c8916d36f245a`
 
-## Narrow correction
+Publication-head CI:
 
-Mission Control authorized only S2B-F-01 and S2B-F-02 correction in:
+- Team LIPS Application Build Assurance #170 — SUCCESS;
+- Team LIPS Markdown Quality Gate #1774 — SUCCESS;
+- Full Assurance — not applicable under the selective path filter.
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`
+Mission Control disposition:
 
-Claude Code reported:
+`STAGE 2 — ACCEPTED`
 
-- Candidate 2 now records exact Fast counts only for implementation head `74455d5...` and exact Full Assurance counts for both heads;
-- all 14 evidence references now use `actor_class: synthesis`;
-- Candidate 3 changed only its five observer fields and preserves the discrepancy, `LIMITS` relationship and `MEDIUM` confidence;
-- all 4 candidate schemas PASS;
-- all 14 provenance references VALID;
-- candidate screening CLEAN, 0 findings;
-- Fast Gate 257/257 PASS;
-- no implementation/schema/dependency/promotion/Stage 3 change.
+Durable decision and Stage 3A authorization:
 
-Correction implementation checkpoint: `054f474...`.
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
 
-A later reporting-only commit `43cd4e15864cafd03ee9aa4e82f5b36df8f35ce0` recorded real CI evidence without changing candidate content.
+## Stage 3A human review decision
 
-## Mission Control re-review
+Mission Control has reviewed the exact current revisions of the four Stage 2B candidates and approves those revisions for a mission-scoped `VALIDATED` promotion proof.
 
-Mission Control independently reviewed Candidate 2's corrected content and the accepted provenance semantics and finds the narrow correction satisfactory.
+The four candidate IDs are:
 
-Durable re-review and Codex re-verification authorization:
+1. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture`
+2. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence`
+3. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention`
+4. `SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary`
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/18-stage2b-f01-f02-rereview-and-codex-reauthorization.md`
+Authorized promotion state:
 
-Disposition:
+- `resulting_maturity: VALIDATED`;
+- `promotion_scope: MISSION_SCOPED`;
+- `approving_authority.actor_class: mission-control`;
+- `approving_authority.name_or_role: Smart Business Mission Control`.
 
-`S2B-F-01/F-02 CORRECTION RE-REVIEW PASS — CODEX RE-VERIFICATION AUTHORIZED`
+The decision is revision-bound to the exact candidate content represented at repository state `154c58e1b9d1faa04a328aa1bf9c8916d36f245a`. Material candidate change invalidates the decision.
 
-Current-head applicable CI at the re-review checkpoint:
+Candidate 3 remains a validated observation of an unresolved documentary inconsistency. `MEDIUM` confidence, `LIMITS`, and no-resolution wording remain required.
 
-- Team LIPS Application Build Assurance #166 — SUCCESS;
-- Team LIPS Markdown Quality Gate #1770 — SUCCESS.
+## Current action
 
-Full Assurance remains non-applicable under the selective path filter for this candidate/communication-only delta.
+Claude Code may materialize four separate promotion-review artifacts under:
 
-## Codex independent re-verification
+`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
 
-**Disposition:** `PASS`.
+using the existing accepted promotion schema and revision-hash machinery, then prove schema validity, exact revision binding, Mission Control decision binding, provenance validity, CLEAN screening and revision invalidation behavior.
 
-Reviewed head: `2ec73ce24674d294694861d8d39cc60b96190f01`.
-
-Durable report: [07-stage2b-f01-f02-independent-reverification.md](../missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md).
-
-Codex independently confirmed S2B-F-01 and S2B-F-02 resolved. Candidate 2 now distinguishes exact counts by historical head; all 14 reference observers are synthesis. All four schemas passed, all 14 references resolved VALID to the unchanged pinned regular blobs, and screening returned CLEAN with zero findings.
-
-Candidate 3 changed only its five observer fields; its five-to-four discrepancy, LIMITS relationship, MEDIUM confidence and unresolved-item boundary remain intact.
-
-Current-head Application Build Assurance #169 and Markdown Quality Gate #1773 succeeded; the Fast Tests log records 24 files / 257 tests passed. Full Assurance is outside the selective path filter.
-
-No independently reproduced Stage 2B blocker remains within the authorized verification boundary. Stage 2 is ready for Mission Control completion review. This report does not accept Stage 2, promote candidates or authorize Stage 3.
+Candidate files must not receive promotion fields.
 
 ## Boundaries
 
-`STAGE 3 — NOT AUTHORIZED`
+`STAGE 3B — NOT AUTHORIZED`
 
-No promotion.
-No `CORROBORATED`, `VALIDATED`, or `INSTITUTIONALISED` state.
+No `INSTITUTIONALISED` status.
+No `ORGANIZATION_WIDE` scope.
+No Founder approval claim.
 No context pack.
 No background automation.
-No merge.
+No autonomous merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
+No PR merge.
 No `SB-P-1.12` activation.
 
 ## Required stop
 
-`STAGE 2B F-01/F-02 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+`STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
