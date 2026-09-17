@@ -193,7 +193,18 @@ This proves the exact same retrieval logic, with the exact same real evidence te
 
 ## 11. Applicable CI
 
-This round modifies `vitest.fast.config.ts` (adding the new test file to its explicit include list), which is itself named in `full-assurance.yml`'s selective path filter. Per the authorization's explicit instruction ("do not suppress a required workflow"), Full Assurance is therefore expected to actually trigger this round, unlike the candidate/promotion/document-only rounds in Stage 2B/3A. The exact-head result (Lint, Typecheck, Build, Fast Tests, Markdown Quality Gate, and Full Assurance) on the corrected, re-pushed commit will be confirmed once the real GitHub Actions runs actually complete, and is not claimed here before that.
+This round modifies `vitest.fast.config.ts` (adding the new test file to its explicit include list), which is itself named in `full-assurance.yml`'s selective path filter. Per the authorization's explicit instruction ("do not suppress a required workflow"), Full Assurance was therefore expected to actually trigger this round, unlike the candidate/promotion/document-only rounds in Stage 2B/3A — and it did.
+
+On PR #589 head `f74d3ad` (the corrected, re-pushed commit):
+
+- Lint (ESLint + Prettier) — `SUCCESS`.
+- Typecheck (tsc --noEmit) — `SUCCESS`.
+- Build (vite build) — `SUCCESS`.
+- Fast Tests (vitest) — `SUCCESS` (this is the exact check that genuinely failed on the prior head `f012271`; it now passes on the corrected head).
+- Markdown Quality Gate — `SUCCESS`.
+- Full Assurance Tests (vitest) — `SUCCESS`, real run, not suppressed.
+
+All six applicable workflows passed on this head. GitHub Actions on PR #589 remains the live exact-head source of truth for any commit after this one.
 
 ---
 
@@ -211,7 +222,7 @@ This round modifies `vitest.fast.config.ts` (adding the new test file to its exp
 - **Freshness/provenance result:** freshness limited to `promoted_at`/`evidence_date` already on the record, no invented verification date; all evidence independently provenance-`VALID`.
 - **Screening result:** `CLEAN`; fail-closed behavior is structural (built into `runContextPack` itself).
 - **Local verification:** typecheck/lint/Fast Gate (274/274)/build/Prettier/Markdown Quality Gate all pass.
-- **Real CI:** to be confirmed on the pushed head, including a real Full Assurance run (not suppressed); not claimed as already complete in this report.
+- **Real CI:** all six applicable workflows `SUCCESS` on PR #589 head `f74d3ad` — Lint, Typecheck, Build, Fast Tests, Markdown Quality Gate, and a real (not suppressed) Full Assurance run.
 - **Scope confirmation:** no candidate or promotion record was modified; no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`/Founder-approval claim; no semantic ranking; no real mission activation; no Stage 4 work; no background automation or autonomous writer; no dependency/lockfile change; PR #589 not merged; `SB-P-1.12` not activated.
 
 ---
