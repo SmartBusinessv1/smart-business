@@ -174,7 +174,16 @@ Plus the minimum builder section of `communication/live/report.md`.
 
 ## 12. Applicable CI
 
-This round adds only data files (candidates, a README) and documentation; no implementation file changed. Applicable CI will be confirmed on PR #589's head via GitHub Actions after this round's commit is pushed — the report will be updated with the exact-head result once it actually completes, per the standing anti-recursion rule; CI is not claimed as complete before it has run.
+This round adds only data files (candidates, a README) and documentation; no implementation file changed. On PR #589's head `376ed57` (this round's commit):
+
+- Lint (ESLint + Prettier) — `SUCCESS`.
+- Typecheck (tsc --noEmit) — `SUCCESS`.
+- Build (vite build) — `SUCCESS`.
+- Fast Tests (vitest) — `SUCCESS`.
+- Markdown Quality Gate — `SUCCESS`.
+- Full Assurance Tests — did not trigger, as expected: this round's changes are entirely under `communication/**` and `organizational-learning/candidates/**`, neither of which is in `full-assurance.yml`'s path filter.
+
+GitHub Actions on PR #589 remains the live exact-head source of truth for any commit after this one.
 
 ---
 
@@ -187,7 +196,7 @@ This round adds only data files (candidates, a README) and documentation; no imp
 - **Rejected candidates:** none.
 - **Blocker/architectural gap:** none. No missing implementation primitive was encountered; the existing Stage 1 schema/validation/screening/provenance machinery was sufficient as-is.
 - **Local verification:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257, identical to the Stage 1/2A baseline.
-- **Real CI:** to be confirmed on PR #589's pushed head; not claimed as already complete in this report.
+- **Real CI:** Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS` on PR #589 head `376ed57`; Full Assurance correctly did not trigger (path filter excludes this round's changed paths).
 - **Confirmation:** candidate extraction was supervised and every candidate remains unreviewed; every candidate has `authority_effect: NONE` and `maturity: CANDIDATE`; no promotion occurred; no mission-start context pack was generated; no Stage 3 work was begun; no `SB-P-1.12` activation occurred; PR #589 was not merged.
 
 ---

@@ -100,6 +100,6 @@ Stage 2B supervised candidate extraction → Mission Control substantive review 
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
 
-**Applicable CI:** to be confirmed on PR #589's pushed head; not asserted as already complete here.
+**Applicable CI:** on PR #589 head `376ed57`: Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (path filter excludes `communication/**` and `organizational-learning/candidates/**`).
 
 **Scope confirmation:** candidates remain unreviewed. Not self-approved. PR #589 not merged. Stage 3 not begun.
