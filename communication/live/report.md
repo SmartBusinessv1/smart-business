@@ -1,16 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 2B Supervised Candidate Extraction Handoff
+# SB-ORG-LEARNING-1.1 — Stage 2B Independent Candidate Verification Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 
-**Current sub-gate:** `2B — Supervised semantic candidate extraction`
+**Current actor:** Codex — independent verifier
 
-**Current actor:** Claude Code / authorized AI synthesis session
-
-**Status:** `STAGE 2A ACCEPTED — STAGE 2B AUTHORIZED`
+**Status:** `STAGE 2B SUBSTANTIVE REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -18,88 +16,87 @@
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-## Stage 2A accepted evidence
+## Stage 2A
 
-Mission Control reviewed the deterministic proof for `SB-OPS-CI-ARCHITECTURE-1.0` and accepted Stage 2A.
+Stage 2A deterministic proof is accepted.
 
-Durable proof report:
+Proof target: `SB-OPS-CI-ARCHITECTURE-1.0`.
 
-`communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-deterministic-closed-mission-proof.md`
+Pinned source snapshot: `b60741cce544adb713f7c384bbed09a05e23247e`.
 
-Closure envelope:
+Source fingerprint: `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 
-`communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-closure-envelope-sb-ops-ci-architecture-1.0.json`
+Receipt: `SCREENED` / `CLEAN` / 3 evidence entries / 0 findings.
 
-Pinned source snapshot:
+## Stage 2B builder return
 
-`b60741cce544adb713f7c384bbed09a05e23247e`
+Claude Code produced four candidate-only learning items under:
 
-Source fingerprint:
+`organizational-learning/candidates/SB-OPS-CI-ARCHITECTURE-1.0/`
 
-`c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`
+All are reported as:
 
-Receipt state:
+- `maturity: CANDIDATE`;
+- `authority_effect: NONE`;
+- `generated_by.actor_class: synthesis`;
+- schema-valid;
+- claim-level-provenanced to the Stage 2A screened source set;
+- screened `CLEAN`.
 
-`SCREENED` / `CLEAN` / 3 evidence entries / 0 findings.
+Durable builder report:
 
-Mission Control confirmed PR #589 is based on the accepted Stage 1 merge, no Stage 1 implementation change was required for the proof, and the exact-head Application Build Assurance and Markdown Quality Gate succeeded. Full Assurance did not trigger under its selective path filter for the communication/receipt-only delta.
+`communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
 
-## Stage 2B authorization
+Candidate themes:
+
+1. two-tier CI architecture;
+2. exact run-level closure evidence;
+3. explicit follow-up retention, including the acceptance-vs-closure follow-up-list inconsistency;
+4. explicit closure-scope boundary.
+
+## Mission Control substantive review
+
+Mission Control reviewed all four candidate artifacts directly.
+
+Disposition:
+
+`STAGE 2B SUBSTANTIVE REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
 
 Controlling record:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/15-stage2a-acceptance-and-stage2b-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/16-stage2b-substantive-review-and-codex-authorization.md`
 
-Stage 2B may draft candidate learning only from the screened committed evidence represented by the Stage 2A receipt.
+Mission Control found no substantive candidate-authority or evidence-reach blocker in its review. Repeated source records were not misclassified as independent corroboration. Candidate 3 preserves the cross-document inconsistency using a `LIMITS` relationship and lower confidence rather than converting uncertainty into a resolved statement.
 
-All generated items must remain candidate-only, authority-free, claim-level-provenanced, schema-valid and screened before Mission Control review.
+The current Stage 2B reporting head's applicable Application Build Assurance and Markdown Quality Gate are successful. Full Assurance is not expected under the selective workflow path filter for this candidate/document-only delta.
+
+## Current gate
+
+Codex must independently verify the four candidates and their exact source evidence before Stage 2 can be completed or Stage 3 can be considered.
+
+Required verifier report:
+
+`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
+
+Codex must return:
+
+- `PASS`
+- `FAIL`
+- `FOLLOW-UP REQUIRED`
 
 ## Boundaries
 
+`STAGE 3 — NOT AUTHORIZED`
+
 No promotion.
-No CORROBORATED/VALIDATED/INSTITUTIONALISED state.
-No Founder/Mission Control approval claim inside candidate artifacts.
-No second mission.
-No mission-start context pack yet.
+No `CORROBORATED`, `VALIDATED`, or `INSTITUTIONALISED` state.
+No context pack.
 No background automation.
-No autonomous merge.
+No merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
-No Stage 3.
 No `SB-P-1.12` activation.
-
-## Review chain
-
-Stage 2B supervised candidate extraction → Mission Control substantive review → independent verification/correction if required → Stage 2 completion decision → later Stage 3 authorization only if explicitly issued.
 
 ## Required stop
 
-`STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
----
-
-## Builder Stage 2B extraction report
-
-**Status:** `STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
-**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
-
-**Source boundary:** exactly the 3 already-screened Stage 2A evidence objects for `SB-OPS-CI-ARCHITECTURE-1.0` (pinned commit `b60741cce544adb713f7c384bbed09a05e23247e`, closure revision `07-post-merge-verification-and-closure`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`). No second mission, no `communication/live/**`, no generated artifact cited as evidence for itself.
-
-**Candidate storage:** new `organizational-learning/candidates/` (mirrors the existing `receipts/` convention; own `README.md` states candidate-only, unreviewed, no-authority status). No registry/promotion architecture was created.
-
-**Candidates produced:** 4, all `maturity: CANDIDATE` / `authority_effect: NONE` / `generated_by.actor_class: synthesis`, all bound to the mission ID/closure revision/source fingerprint above — two-tier CI architecture; exact run-level closure evidence; explicit follow-up retention (including an honestly-surfaced acceptance-vs-closure follow-up-list inconsistency); explicit closure scope boundary disclaiming production/deployment/database/provider authority.
-
-**Validation:** all 4 schema-valid (`validate.mjs candidate` → PASS); all 14 evidence references independently provenance-valid via `validateProvenanceReference` (zero dangling); sensitive-content screening `CLEAN`, 0 findings, via the existing `runHeuristicScan`/`runScreeningSafely`. Zero candidates rejected.
-
-**Evidence strength/confidence:** all `DIRECT` (repeated-source documents were not treated as `CORROBORATED`, per instruction); confidence `HIGH` for 3 candidates, `MEDIUM` for the follow-up-retention candidate due to its internal cross-document inconsistency finding.
-
-**Implementation change required:** none. Only the existing Stage 1 schema/validation/screening/provenance machinery was used, unmodified.
-
-**Scope discipline:** 6 new files (README, 4 candidates, this durable report), 0 modified, 0 dependencies added, `package-lock.json` unchanged. No promotion, no `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, no approval claim, no context pack, no Stage 3, no background automation, no governance/Product Truth/provider/production/customer-data mutation, no `SB-P-1.12` activation.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
-
-**Applicable CI:** on PR #589 head `376ed57`: Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (path filter excludes `communication/**` and `organizational-learning/candidates/**`).
-
-**Scope confirmation:** candidates remain unreviewed. Not self-approved. PR #589 not merged. Stage 3 not begun.
+`STAGE 2B INDEPENDENT CANDIDATE VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
