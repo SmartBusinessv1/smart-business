@@ -98,6 +98,6 @@ Claude Code Stage 2A deterministic proof → Mission Control substantive review 
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** across 24 files (identical to the accepted Stage 1 baseline); `npm run build` succeeds; Prettier clean on both new JSON files; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
 
-**Applicable CI:** to be confirmed on the pushed head via PR/GitHub Actions once available — not asserted as already complete here.
+**Applicable CI:** [PR #589](https://github.com/SmartBusinessv1/smart-business/pull/589) opened (no PR previously existed for this branch) to obtain real CI. On head `90f0dba`: Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger — its path filter excludes the only paths this round changed (`communication/**`, `organizational-learning/receipts/**`).
 
 **Scope confirmation:** Stage 2B was not begun. No semantic extraction, promotion, registry write, background automation, or `SB-P-1.12` activation occurred. Not self-approved. Not merged.

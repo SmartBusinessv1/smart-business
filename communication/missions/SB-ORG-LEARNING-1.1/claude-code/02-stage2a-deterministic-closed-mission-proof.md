@@ -226,7 +226,18 @@ No AI/provider semantic extraction, candidate lesson drafting, candidate registr
 
 ## 14. Applicable CI
 
-This round adds only data files (a receipt and a closure envelope) and documentation; no implementation file changed. Applicable CI (Lint, Typecheck, Build, Fast Tests, Full Assurance, Markdown Quality Gate) will be confirmed on the pushed head via PR/GitHub Actions once this branch's PR is opened or updated — GitHub Actions remains the live exact-head source of truth, per the standing anti-recursion rule established across Stage 1. This report does not claim CI that has not actually completed at the time of writing.
+This round adds only data files (a receipt and a closure envelope) and documentation; no implementation file changed. No open pull request existed yet for `mission/SB-ORG-LEARNING-1.1-stage2`, so [PR #589](https://github.com/SmartBusinessv1/smart-business/pull/589) (`mission/SB-ORG-LEARNING-1.1-stage2` → `main`) was opened to obtain real CI — opening a PR is within the standing Git authority for this authorized branch (never merging, never self-approving).
+
+On PR #589's head `90f0dba` (this round's proof commit):
+
+- Lint (ESLint + Prettier) — `SUCCESS`.
+- Typecheck (tsc --noEmit) — `SUCCESS`.
+- Build (vite build) — `SUCCESS`.
+- Fast Tests (vitest) — `SUCCESS`.
+- Markdown Quality Gate — `SUCCESS`.
+- Full Assurance Tests — did not trigger. `full-assurance.yml`'s path filter (`src/**`, `tests/**`, `supabase/**`, `lambda/**`, `scripts/**`, `package.json`, config files) does not include `communication/**` or `organizational-learning/receipts/**`; this round changed only those paths, so Full Assurance correctly did not run. This is expected, not a missing or failed check.
+
+GitHub Actions on PR #589 remains the live exact-head source of truth for any commit after this one, per the standing anti-recursion rule established across Stage 1.
 
 ---
 
@@ -245,7 +256,7 @@ Both this durable report and the revised `communication/live/report.md` were run
 - **Idempotency result:** repeat run returned `already processed`, exit `0`, byte-identical receipt, no duplicate artifact.
 - **Implementation changes required:** none. The accepted Stage 1 harvester executed this proof correctly as-is.
 - **Local verification:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257, identical to the accepted Stage 1 baseline.
-- **Applicable CI:** to be confirmed on the pushed head via PR/GitHub Actions; not asserted as already complete in this report.
+- **Applicable CI:** [PR #589](https://github.com/SmartBusinessv1/smart-business/pull/589) opened for this branch; Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS` on head `90f0dba`. Full Assurance correctly did not trigger (path filter excludes the only paths this round changed).
 - **Blockers/limitations:** none. The real evidence set screened clean; no quarantine path was exercised against real evidence, and that boundary's coverage remains Stage 1's own unmodified, previously-verified test suite.
 - **Confirmation:** no Stage 2B work, no semantic/AI extraction, no candidate drafting, no promotion, no registry write, no background automation, no autonomous Git publication beyond this authorized branch commit, no governance/Product Truth mutation, no provider/production/customer-data mutation, and no `SB-P-1.12` activation occurred.
 
