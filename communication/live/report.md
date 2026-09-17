@@ -70,19 +70,19 @@ Mission Control found no substantive candidate-authority or evidence-reach block
 
 The current Stage 2B reporting head's applicable Application Build Assurance and Markdown Quality Gate are successful. Full Assurance is not expected under the selective workflow path filter for this candidate/document-only delta.
 
-## Current gate
+## Codex independent verification
 
-Codex must independently verify the four candidates and their exact source evidence before Stage 2 can be completed or Stage 3 can be considered.
+**Disposition:** `FAIL`.
 
-Required verifier report:
+Reviewed head: `7f4543d682f18d7e345a4e34b37404f9a292430c`.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
+Durable report: [06-stage2b-independent-candidate-verification.md](../missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md).
 
-Codex must return:
+All four candidate schemas passed; all 14 references resolved to the exact screened regular Git blobs. Candidate screening returned CLEAN with zero findings. Applicable reviewed-head CI passed; Full Assurance was outside the selective path filter.
 
-- `PASS`
-- `FAIL`
-- `FOLLOW-UP REQUIRED`
+Two corrections require Mission Control: S2B-F-01, candidate 2 overstates exact Fast Test counts recorded for the later pre-review head; S2B-F-02, all 14 references label the synthesis observation actor as mission-control despite the accepted observer-field definition. Candidate 3 correctly preserves the five-to-four follow-up discrepancy with LIMITS and MEDIUM confidence.
+
+Stage 2 is not ready for a passing completion review. Codex changed no candidate or implementation and made no promotion or Stage 3 decision.
 
 ## Boundaries
 
