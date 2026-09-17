@@ -1,82 +1,77 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Acceptance Handoff
+# SB-ORG-LEARNING-1.1 — Stage 2A Deterministic Proof Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
+**Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 
-**Current actor:** Founder / human authorized operator
+**Sub-gate:** `2A — Deterministic closed-mission proof`
 
-**Status:** `STAGE 1 ACCEPTED — FOUNDER/HUMAN MERGE REQUIRED`
+**Current actor:** Claude Code
 
-**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
+**Status:** `STAGE 2A AUTHORIZED — DETERMINISTIC PROOF ONLY`
 
-**Pull request:** `#588 — OPEN — NOT MERGED`
+**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
+
+**Stage 1 merge commit on main:** `4247cebc9eb6a09ab9549f641247a012b6c9d383`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-## Final independent verification
+## Stage 1 closure state
 
-Codex final disposition: `PASS`.
+PR #588 is merged.
 
-Durable report:
+Mission Control independently verified:
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md`
+- PR #588 is closed and merged;
+- merge commit is `4247cebc9eb6a09ab9549f641247a012b6c9d383`;
+- `main` points to that same merge commit;
+- Stage 1 had already been formally accepted before merge.
 
-Codex reviewed head:
+Stage 1 remains accepted and is now merged into canonical `main`.
 
-`f2523f3c18e173187aa4de013049713ef67cf0a0`
+## Stage 2 opening
 
-Independent OLE result:
+Mission Control has explicitly opened only Stage 2A.
 
-- 16 OLE test files passed
-- 196 OLE tests passed
-- 10 process-level CLI tests included
-- residual F-04 resolved
-- F-01/F-02/F-03 showed no regression
-- no independently reproduced Stage 1 blocker remained within the authorized boundary
+Controlling authorization:
 
-Codex publication commit:
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/14-stage2a-deterministic-proof-authorization.md`
 
-`00e304ddd933f3f45513108221161cbd967f44eb`
+Approved real proof target:
 
-Mission Control independently confirmed that publication commit changed only the durable verifier report and minimum live verifier handoff. Applicable publication-head workflows completed successfully:
+`SB-OPS-CI-ARCHITECTURE-1.0`
 
-- Application Build Assurance #146 — SUCCESS
-- Markdown Quality Gate #1750 — SUCCESS
-- Full Assurance #47 — SUCCESS
+The target may be processed only through the accepted deterministic harvester path using an explicit truthful closure envelope and pinned source snapshot.
 
-## Mission Control acceptance
+## Current objective
 
-Mission Control disposition:
+Prove the Stage 1 deterministic harvester against the real already-closed mission before any supervised semantic extraction is attempted.
 
-`STAGE 1 — ACCEPTED`
+The proof must demonstrate authoritative closure binding, allowlisted closure-linked evidence enumeration, canonical manifest/fingerprint generation, fail-closed screening, truthful receipt/idempotency behavior, and preservation of all Stage 1 authority/safety boundaries.
 
-Durable acceptance record:
+If the accepted Stage 1 implementation already supports this proof, no implementation change is preferred.
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/13-stage1-acceptance-and-founder-merge-gate.md`
+## Boundaries
 
-Stage 1 acceptance confirms the authorized Stage 1 implementation and evidence satisfy the Stage 1 boundary.
+`STAGE 2B — NOT AUTHORIZED`
 
-It does not complete the OLE mission and does not authorize Stage 2.
+No AI/provider semantic extraction.
+No candidate lesson drafting.
+No promotion or registry publication.
+No mission-start context-pack generation.
+No background automation.
+No autonomous Git publication/merge.
+No governance/Product Truth mutation.
+No provider/production/customer-data mutation.
+No Stage 3.
+No `SB-P-1.12` activation.
 
-## Current gate
+## Review chain
 
-Founder/human authorized operator must merge PR #588 only after confirming its current required checks are green.
+Claude Code Stage 2A deterministic proof → Mission Control substantive review → independent verification if required → Stage 2B supervised candidate-extraction authorization only if Stage 2A is accepted.
 
-No implementation work should be added to PR #588 after this acceptance.
+## Required stop
 
-After merge, Mission Control must independently verify the merge and resulting `main` state before any Stage 2 authorization decision.
-
-## Boundaries retained
-
-`STAGE 2 — NOT AUTHORIZED`
-
-`SB-P-1.12 — NOT ACTIVATED`
-
-No real proof-target processing, AI/semantic extraction, promotion execution, or background automation is authorized by this acceptance.
-
-## Stop
-
-`STAGE 1 ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE`
+`STAGE 2A DETERMINISTIC CLOSED-MISSION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
