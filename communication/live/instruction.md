@@ -1,57 +1,67 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 2B F-01/F-02 CORRECTION
+# SB-ORG-LEARNING-1.1 — STAGE 2B CODEX RE-VERIFICATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 
-**Current actor:** Claude Code — authorized correction builder
+**Current actor:** Codex — independent verifier
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `NARROW CORRECTION REQUIRED — S2B-F-01 AND S2B-F-02 ONLY`
+**Mission Control disposition:** `S2B-F-01/F-02 CORRECTION RE-REVIEW PASS — CODEX RE-VERIFICATION AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/18-stage2b-f01-f02-rereview-and-codex-reauthorization.md`
 2. `communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
-4. the four candidate artifacts under `organizational-learning/candidates/SB-OPS-CI-ARCHITECTURE-1.0/`;
-5. the accepted provenance contract and pinned three-object Stage 2A evidence set.
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`
+4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
+5. all four corrected candidate artifacts;
+6. the accepted provenance contract and pinned three-object Stage 2A evidence set.
 
-## Authorized correction
+## Authorized action
 
-Correct only:
+Independently re-verify the corrected Stage 2B candidates.
 
-- `S2B-F-01`: Candidate 2 must distinguish exact test-count evidence actually recorded for the implementation head from the later pre-review communication head; do not claim exact Fast counts where the source does not record them.
-- `S2B-F-02`: all 14 existing evidence-reference `actor_class` values must truthfully identify the synthesis observer, because the provenance contract defines this field as the actor making the observation rather than the author/authority of the source file.
+Confirm S2B-F-01 and S2B-F-02 are actually resolved, not merely reported resolved. Re-check schema validity, provenance identity and semantic evidence reach, observation-actor correctness, Candidate 3 preservation, screening, scope boundaries and applicable current CI.
 
-Preserve source authority through pinned paths, commits, blob SHAs and locators. Do not change historical evidence.
+Return `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
 
-Candidate 3's discrepancy analysis, `LIMITS` relationship and `MEDIUM` confidence are not a correction target.
+## No editing
 
-## Verification
+Do not modify candidates, implementation, schema, tests, dependencies, governance or Product Truth.
 
-Revalidate all four candidate schemas, all 14 provenance references, all 14 observer classifications, Candidate 2 evidence reach, and candidate screening. Run applicable local and real CI checks.
+If any blocker remains, document it and stop for Mission Control.
 
 ## Boundaries
 
+`STAGE 3 — NOT AUTHORIZED`
+
 No promotion.
-No schema or Stage 1 implementation change.
+No `CORROBORATED`, `VALIDATED`, or `INSTITUTIONALISED` state.
 No context pack.
 No background automation.
 No merge.
 No governance/Product Truth mutation.
+No provider/production/customer-data mutation.
+No `SB-P-1.12` activation.
 
-`STAGE 3 — NOT AUTHORIZED`
+## Required report
 
-`SB-P-1.12 — NOT ACTIVATED`
+Create the next Codex re-verification report under:
+
+`communication/missions/SB-ORG-LEARNING-1.1/codex/`
+
+Recommended filename:
+
+`07-stage2b-f01-f02-independent-reverification.md`
 
 ## Stop
 
-`STAGE 2B F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+`STAGE 2B F-01/F-02 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
