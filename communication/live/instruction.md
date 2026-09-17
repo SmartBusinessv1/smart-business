@@ -1,67 +1,78 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 2B CODEX RE-VERIFICATION
+# SB-ORG-LEARNING-1.1 — STAGE 3A HUMAN PROMOTION PROOF
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Stage:** `2 — Closed-mission proof and supervised candidate extraction`
+**Current stage:** `3 — Human review/promotion and context-pack proof`
 
-**Current actor:** Codex — independent verifier
+**Current sub-gate:** `3A — Human review/promotion proof`
+
+**Current actor:** Claude Code — authorized promotion-proof builder
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `S2B-F-01/F-02 CORRECTION RE-REVIEW PASS — CODEX RE-VERIFICATION AUTHORIZED`
+**Mission Control disposition:** `STAGE 2 ACCEPTED — STAGE 3A AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/18-stage2b-f01-f02-rereview-and-codex-reauthorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
 4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
-5. all four corrected candidate artifacts;
-6. the accepted provenance contract and pinned three-object Stage 2A evidence set.
+5. all four current candidate artifacts;
+6. `organizational-learning/schemas/promotion-review.schema.ts`;
+7. the accepted candidate revision-hash helper, provenance validator and screening machinery.
+
+## Human review decision already made
+
+Mission Control approves the exact current revisions of all four Stage 2B candidates for:
+
+- `resulting_maturity: VALIDATED`;
+- `promotion_scope: MISSION_SCOPED`;
+- approving authority `mission-control / Smart Business Mission Control`.
+
+The decision reference is:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
+
+The approval is revision-bound. Any material candidate-content change invalidates it.
 
 ## Authorized action
 
-Independently re-verify the corrected Stage 2B candidates.
+Create and prove four separate promotion-review artifacts using the existing accepted promotion contract under:
 
-Confirm S2B-F-01 and S2B-F-02 are actually resolved, not merely reported resolved. Re-check schema validity, provenance identity and semantic evidence reach, observation-actor correctness, Candidate 3 preservation, screening, scope boundaries and applicable current CI.
+`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
 
-Return `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
+Do not add promotion fields to candidate objects.
 
-## No editing
+Candidate 3 must retain its documentary inconsistency, `LIMITS` relationship, `MEDIUM` confidence and unresolved-item boundary.
 
-Do not modify candidates, implementation, schema, tests, dependencies, governance or Product Truth.
+## Required proof
 
-If any blocker remains, document it and stop for Mission Control.
+Verify exact candidate revision hashes, promotion schema validity, decision binding, Mission Control authority, mission-scoped VALIDATED maturity, provenance validity, CLEAN screening, and revision invalidation behavior.
+
+Run applicable local checks and real CI.
 
 ## Boundaries
 
-`STAGE 3 — NOT AUTHORIZED`
+`STAGE 3B — NOT AUTHORIZED`
 
-No promotion.
-No `CORROBORATED`, `VALIDATED`, or `INSTITUTIONALISED` state.
+No `INSTITUTIONALISED` status.
+No `ORGANIZATION_WIDE` promotion.
+No Founder approval claim.
 No context pack.
 No background automation.
-No merge.
+No autonomous merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
+No PR merge.
 No `SB-P-1.12` activation.
-
-## Required report
-
-Create the next Codex re-verification report under:
-
-`communication/missions/SB-ORG-LEARNING-1.1/codex/`
-
-Recommended filename:
-
-`07-stage2b-f01-f02-independent-reverification.md`
 
 ## Stop
 
-`STAGE 2B F-01/F-02 INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+`STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
