@@ -149,6 +149,6 @@ PR #589 remains open and unmerged.
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **306/306 passing**, 27 files (up from 274/25); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
 
-**Applicable CI:** this round again modifies `vitest.fast.config.ts`, which is in `full-assurance.yml`'s path filter — a real Full Assurance run is expected and will not be suppressed. Exact-head CI to be confirmed; not asserted as already complete here.
+**Applicable CI:** all six applicable workflows `SUCCESS` on PR #589 head `5e54168` (this round's commit): Lint, Typecheck, Build, Fast Tests (306/306, including all 32 new Stage 4A tests), Markdown Quality Gate, and a real (not suppressed) Full Assurance run.
 
 **Scope confirmation:** no candidate/promotion/receipt file modified; no automated extraction, publisher, provider/network call, scheduler, or autonomous commit/merge; no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`/Founder-approval claim; no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

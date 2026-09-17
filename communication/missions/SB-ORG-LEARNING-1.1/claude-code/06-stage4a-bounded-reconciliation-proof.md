@@ -173,7 +173,18 @@ While building the real-data proof (Section 6.B), the first attempt read evidenc
 
 ## 12. Applicable CI
 
-This round modifies `vitest.fast.config.ts` (registering two new test files), which is itself named in `full-assurance.yml`'s selective path filter — Full Assurance is therefore expected to trigger again, and will not be suppressed. Exact-head results (Lint, Typecheck, Build, Fast Tests, Markdown Quality Gate, and Full Assurance) will be confirmed once the pushed commit's real GitHub Actions runs actually complete, and are not claimed here before that.
+This round modifies `vitest.fast.config.ts` (registering two new test files), which is itself named in `full-assurance.yml`'s selective path filter — Full Assurance was therefore expected to trigger again, and it did.
+
+On PR #589 head `5e54168` (this round's commit):
+
+- Lint (ESLint + Prettier) — `SUCCESS`.
+- Typecheck (tsc --noEmit) — `SUCCESS`.
+- Build (vite build) — `SUCCESS`.
+- Fast Tests (vitest) — `SUCCESS` (306/306, including all 32 new Stage 4A tests).
+- Markdown Quality Gate — `SUCCESS`.
+- Full Assurance Tests (vitest) — `SUCCESS`, real run, not suppressed.
+
+All six applicable workflows passed on this head.
 
 ---
 
@@ -192,7 +203,7 @@ This round modifies `vitest.fast.config.ts` (registering two new test files), wh
 - **Malformed-input/safe-diagnostic result:** unparseable JSON, schema-invalid JSON, and an unresolvable commit all fail closed with zero work items and no raw-value echo.
 - **Deterministic result:** stable `mission_id::closure_revision` ordering regardless of input order; two independently-proven regressions confirm the tests are not passing by construction.
 - **Local checks:** typecheck/lint/Fast Gate (306/306)/build/Prettier/Markdown Quality Gate all pass.
-- **Real CI:** to be confirmed on the pushed head, including Full Assurance (not suppressed); not claimed as already complete in this report.
+- **Real CI:** all six applicable workflows `SUCCESS` on PR #589 head `5e54168` — Lint, Typecheck, Build, Fast Tests (306/306), Markdown Quality Gate, and a real (not suppressed) Full Assurance run.
 - **Scope confirmation:** no automated extraction, no publisher, no provider/network call, no scheduler/cron/queue, no autonomous commit/merge, no promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no governance/Product Truth/production/customer mutation, no `SB-P-1.12` activation.
 
 ---
