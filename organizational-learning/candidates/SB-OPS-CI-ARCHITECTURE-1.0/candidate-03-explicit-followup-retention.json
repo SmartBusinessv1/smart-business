@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention",
+  "canonical_title": "Mission closure explicitly retains known non-blocking follow-ups instead of treating acceptance as resolving them",
+  "summary": "Despite reaching disposition CLOSED — ACCEPTED, SB-OPS-CI-ARCHITECTURE-1.0's closure records explicitly list non-blocking follow-up items and state they are not represented as resolved by the closure. The exact follow-up list was not perfectly stable between the pre-merge acceptance record and the final post-merge closure record, which is itself a limitation worth surfacing rather than eliding.",
+  "category": ["operations", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+    "systems": ["github-actions", "ci"],
+    "environments": ["ci"]
+  },
+  "claims": [
+    {
+      "claim_id": "followups-named-at-acceptance",
+      "text": "At pre-merge acceptance, Mission Control listed five non-blocking findings carried forward as follow-up items outside the mission, explicitly stating 'None is silently resolved by this acceptance.'",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 4. Non-blocking findings carried forward: five-item list plus 'None is silently resolved by this acceptance.'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "followups-named-at-closure",
+      "text": "At final post-merge closure, Mission Control again explicitly listed four carried follow-ups (transient Auth/JWKS-class flakiness; GitHub Actions runtime deprecation warning; existing dependency vulnerability backlog; pre-existing inventory shared-write-path diagnostic) and stated they 'remain outside this mission's closure and are not represented as resolved.'",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Carried follow-ups: four-item list plus 'remain outside this mission's closure and are not represented as resolved'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+          "blob_sha": "8054ef3156a92a5da43ad4818d46077a1a8b08f6",
+          "locator": "## Final Reconciled Closure, follow-up sentence naming the same four items as unresolved and non-blocking",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "followup-list-narrowed-at-final-closure",
+      "text": "The pre-merge acceptance record's five-item follow-up list included a future branch-protection policy decision for Fast Gate; the final post-merge closure record and the archive manifest both name only four items and do not mention the branch-protection item, without stating whether it was resolved, superseded, or simply dropped. This inconsistency is itself a genuine limitation of the closure evidence, not a resolved fact.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 4. Non-blocking findings carried forward, fifth bullet: 'future branch-protection policy decision for Fast Gate, if Founder/Mission Control later chooses to require it'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Carried follow-ups: four-item list with no branch-protection item and no statement addressing its omission",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "LIMITS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-stage2b:2026-09-17",
+    "generated_at": "2026-09-17T10:29:29Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+    "closure_revision": "07-post-merge-verification-and-closure",
+    "source_fingerprint": "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475"
+  },
+  "conditions": [
+    "Applies to any mission closure that carries forward known non-blocking issues rather than requiring full resolution before acceptance."
+  ],
+  "anti_patterns": [
+    "Treating a CLOSED / ACCEPTED disposition as an implicit signal that all previously identified issues are resolved.",
+    "Narrowing a follow-up list between successive closure records without an explicit note explaining why an item was dropped."
+  ]
+}

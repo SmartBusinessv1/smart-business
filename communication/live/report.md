@@ -75,3 +75,31 @@ Stage 2B supervised candidate extraction → Mission Control substantive review 
 ## Required stop
 
 `STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+---
+
+## Builder Stage 2B extraction report
+
+**Status:** `STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
+
+**Source boundary:** exactly the 3 already-screened Stage 2A evidence objects for `SB-OPS-CI-ARCHITECTURE-1.0` (pinned commit `b60741cce544adb713f7c384bbed09a05e23247e`, closure revision `07-post-merge-verification-and-closure`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`). No second mission, no `communication/live/**`, no generated artifact cited as evidence for itself.
+
+**Candidate storage:** new `organizational-learning/candidates/` (mirrors the existing `receipts/` convention; own `README.md` states candidate-only, unreviewed, no-authority status). No registry/promotion architecture was created.
+
+**Candidates produced:** 4, all `maturity: CANDIDATE` / `authority_effect: NONE` / `generated_by.actor_class: synthesis`, all bound to the mission ID/closure revision/source fingerprint above — two-tier CI architecture; exact run-level closure evidence; explicit follow-up retention (including an honestly-surfaced acceptance-vs-closure follow-up-list inconsistency); explicit closure scope boundary disclaiming production/deployment/database/provider authority.
+
+**Validation:** all 4 schema-valid (`validate.mjs candidate` → PASS); all 14 evidence references independently provenance-valid via `validateProvenanceReference` (zero dangling); sensitive-content screening `CLEAN`, 0 findings, via the existing `runHeuristicScan`/`runScreeningSafely`. Zero candidates rejected.
+
+**Evidence strength/confidence:** all `DIRECT` (repeated-source documents were not treated as `CORROBORATED`, per instruction); confidence `HIGH` for 3 candidates, `MEDIUM` for the follow-up-retention candidate due to its internal cross-document inconsistency finding.
+
+**Implementation change required:** none. Only the existing Stage 1 schema/validation/screening/provenance machinery was used, unmodified.
+
+**Scope discipline:** 6 new files (README, 4 candidates, this durable report), 0 modified, 0 dependencies added, `package-lock.json` unchanged. No promotion, no `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, no approval claim, no context pack, no Stage 3, no background automation, no governance/Product Truth/provider/production/customer-data mutation, no `SB-P-1.12` activation.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**Applicable CI:** to be confirmed on PR #589's pushed head; not asserted as already complete here.
+
+**Scope confirmation:** candidates remain unreviewed. Not self-approved. PR #589 not merged. Stage 3 not begun.

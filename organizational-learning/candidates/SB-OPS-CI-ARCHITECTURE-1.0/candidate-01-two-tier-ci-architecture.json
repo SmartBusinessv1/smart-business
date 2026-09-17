@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture",
+  "canonical_title": "Two-tier CI: always-run deterministic Fast Gate plus selective environment-dependent Full Assurance",
+  "summary": "SB-OPS-CI-ARCHITECTURE-1.0 separated CI into an always-running, environment-independent Fast Gate (lint, typecheck, build, Fast Tests) executed on every PR/push, and a selective Full Assurance suite (Supabase-dependent tests) triggered only for relevant code/config/test paths plus manual dispatch, so documentation/communication-only changes do not require the slower Supabase-dependent suite.",
+  "category": ["engineering", "operations"],
+  "scope": {
+    "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+    "systems": ["github-actions", "ci"],
+    "environments": ["ci"]
+  },
+  "claims": [
+    {
+      "claim_id": "fast-gate-always-runs",
+      "text": "Fast Gate (lint, typecheck, build, and 8 environment-independent Fast Test files / 61 tests) runs on every PR/push with no Supabase test-environment dependency.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 2. Accepted implementation, first accepted-architecture bullet: 'Fast Gate on every PR/push to main: lint, typecheck, build, 8 environment-independent Fast Tests with no Supabase test-environment binding'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Mission outcome, first two bullets: 'every PR/push receives the always-running Fast Gate; Fast Tests are separated from the Supabase-dependent integration suite'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "full-assurance-selective",
+      "text": "Full Assurance (20 Supabase-dependent test files / 108 tests) is not run on every change; it triggers only for relevant code/config/test paths plus manual dispatch, so documentation/communication-only changes do not require the Supabase-dependent suite.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Mission outcome, third/fourth bullets: 'Full Assurance remains available on relevant code/config/test paths and manual dispatch; documentation/communication-only changes no longer need the approximately 3.5-minute Supabase suite'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 2. Accepted implementation, second accepted-architecture bullet: 'selective Full Assurance for relevant repository changes: 20 Supabase-dependent tests against smart-business-test, with manual dispatch retained'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-stage2b:2026-09-17",
+    "generated_at": "2026-09-17T10:29:29Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+    "closure_revision": "07-post-merge-verification-and-closure",
+    "source_fingerprint": "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475"
+  },
+  "conditions": [
+    "Applies where there is a genuine split between environment-independent unit/lint/build checks and environment-dependent integration suites.",
+    "The path filter determining when the selective suite triggers must be kept in sync with actual test/config dependencies, or relevant changes could silently skip a needed run."
+  ],
+  "anti_patterns": [
+    "Running the full environment-dependent suite unconditionally on every change regardless of relevance, incurring unnecessary latency and cost."
+  ]
+}

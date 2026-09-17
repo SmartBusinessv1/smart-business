@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary",
+  "canonical_title": "CI/tooling mission closure explicitly disclaims production, deployment, database, and provider authority",
+  "summary": "SB-OPS-CI-ARCHITECTURE-1.0's closure record explicitly states that its CLOSED — ACCEPTED disposition does not authorize any product feature, production deployment, database/schema/RLS/grant/RPC, dependency, provider, or branch-protection change, keeping the accepted CI-architecture scope from being read as broader operational or governance authority.",
+  "category": ["governance", "engineering", "operations"],
+  "scope": {
+    "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+    "systems": ["github-actions", "ci"],
+    "environments": ["ci"]
+  },
+  "claims": [
+    {
+      "claim_id": "closure-disclaims-production-authority",
+      "text": "The post-merge closure record states that no product feature, production deployment, database/schema/RLS/grant/RPC, dependency, provider, or branch-protection change is authorized by the closure, and separately confirms the related Product Mission (SB-P-1.12) remains not activated.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Carried follow-ups, closing lines: 'No product feature, production deployment, database/schema/RLS/grant/RPC, dependency, provider, or branch-protection change is authorized by this closure.' and 'SB-P-1.12 remains not activated.'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "acceptance-scoped-to-implemented-architecture-only",
+      "text": "The pre-merge acceptance record similarly scoped the accepted architecture to CI/test changes only, stating 'no dependency/lockfile, database/provider, production, deployment or branch-protection change,' reinforcing the same boundary before merge.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 2. Accepted implementation, last bullet: 'no dependency/lockfile, database/provider, production, deployment or branch-protection change'",
+          "actor_class": "mission-control",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-stage2b:2026-09-17",
+    "generated_at": "2026-09-17T10:29:29Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+    "closure_revision": "07-post-merge-verification-and-closure",
+    "source_fingerprint": "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475"
+  },
+  "conditions": [
+    "Applies to narrowly-scoped operational/tooling missions whose closure could otherwise be misread as broader authority."
+  ],
+  "anti_patterns": [
+    "Treating a narrowly-scoped operational or CI mission's acceptance as implicit authorization for unrelated production, database, provider, or governance changes."
+  ]
+}
