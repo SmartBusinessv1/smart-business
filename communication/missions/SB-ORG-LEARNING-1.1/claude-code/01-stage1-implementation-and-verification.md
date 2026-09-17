@@ -5,7 +5,7 @@
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 **Builder:** Claude Code
-**Status:** `STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+**Status:** `STAGE 1 RESIDUAL F-04 IMPORT-SAFETY CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 **Date:** 2026-09-16 (implementation and every correction round to date recorded the same day)
 **Repository:** `SmartBusinessv1/smart-business`
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
@@ -20,13 +20,16 @@
 - `b4cb3b803e2e2de40fff963e2b951bf2fb63f7e1` — the dangling-provenance validator (Section 21) and the reporting-semantics correction. Independently verified by Codex, disposition `FAIL` on one residual/new-finding set.
 - `56ebdcf99b6f3cc1c1ad4230de2a1749bf08283f` — the first F-01 correction (lexical hashing + containment, Section 22). Independently re-verified by Codex, disposition `FAIL` on a residual physical-containment gap plus two newly reopened findings.
 - `23266d4bc49a7821ec4af1503f997dcbb28cb967` — the F-01 (round 2) / F-02 / F-03 correction (Section 23). Independently re-verified by Codex, which confirmed **all three resolved**, but reproduced a new, fourth finding purely in the CLI entry points (see below).
-- This F-04 correction's own commit(s) — see Section 24. Consistent with the standing anti-recursion rule (Section 21), this report again does not assert its own commit SHA as a "final" fact.
+- `0d269e38b3955db0db53ce801bf7db55fb108d89` — the F-04 correction (Section 24): platform-correct CLI main-module detection via `pathToFileURL(process.argv[1]).href`.
+- `8427cb3` — a non-recursive documentation commit recording the pre-existing, out-of-scope Markdown Quality Gate finding in Mission Control's own `communication/live/instruction.md` (Section 24), not a metadata-only SHA-embedding commit.
+- This residual F-04 import-safety correction's own commit(s) — see Section 25. Consistent with the standing anti-recursion rule (Section 21), this report again does not assert its own commit SHA as a "final" fact.
 
 **Independent verification history:**
 
 1. Codex reviewed PR #588 at `d2ca1638abb4985669cbe43074b9adec3e9f3bb3`, reproduced all 159 OLE tests then in place, and returned **`FAIL`** on **F-01 — rejected mission identifier escapes receipt storage** (`communication/missions/SB-ORG-LEARNING-1.1/codex/01-stage1-independent-verification.md`). Corrected in Section 22.
 2. Codex re-reviewed PR #588 at `c2e147e97e994aa656060b1f8adaa337910e2521`, independently reproduced all 176 OLE tests then in place, credited the F-01 lexical fix for an ordinary tree, but returned **`FAIL`** again: **F-01 residual**, **F-02 — new finding** (unsorted persisted manifests), and **F-03 — new finding** (malformed-JSON parse diagnostics could echo raw input bytes) (`communication/missions/SB-ORG-LEARNING-1.1/codex/02-stage1-independent-reverification.md`). Corrected in Section 23.
 3. Codex re-reviewed PR #588 at `857c2cbefdadae155cedfd497b53f8c9803040c9`, independently reproduced all 186 OLE tests then in place, and confirmed **F-01, F-02, and F-03 resolved** within its stated evidence reach — but reproduced a new, fourth blocker: **F-04 — Windows CLI commands silently skip execution** (`communication/missions/SB-ORG-LEARNING-1.1/codex/03-stage1-independent-reverification.md`). Both `harvest.mjs` and `validate.mjs` compared `import.meta.url` to a naive `file://${process.argv[1]}` string; on Windows this is never equal to the canonical file URL form, so the guarded CLI-invocation block silently never ran, and Node exited with its default status 0 even for malformed/invalid input — while the *imported* `runHarvest`/`runValidate` functions (and every prior test, which only ever imported them) behaved correctly. Mission Control accepted this and authorized this correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/10-stage1-f04-correction-authorization.md`). Section 24 documents the fix.
+4. Codex's final independent re-verification reviewed PR #588 at `7d5e46f85868f948d0fb307da90523c89cffc655`, confirmed **F-01, F-02, and F-03 remain resolved** and confirmed **the original F-04 Windows direct-CLI defect is resolved**, but found one new residual defect: **F-04 residual — import-safety in Node module-eval contexts** (`communication/missions/SB-ORG-LEARNING-1.1/codex/04-stage1-independent-final-reverification.md`). Both scripts' `isMainModule()` unconditionally passed `process.argv[1]` to `pathToFileURL` even during ordinary module import; in `node --input-type=module --eval` contexts `process.argv[1]` is `undefined`, so merely importing either module threw `ERR_INVALID_ARG_TYPE` before the caller could use `runHarvest`/`runValidate`. Mission Control accepted this and authorized this correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/11-stage1-f04-import-safety-correction-authorization.md`). Section 25 documents the fix.
 
 **The prior Codex `FAIL` dispositions are not converted to a `PASS` by this report** — Stage 1 remains unaccepted until Codex re-verifies again and Mission Control explicitly accepts it.
 
@@ -37,6 +40,7 @@
 **Mission Control F-01 correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/06-stage1-f01-correction-authorization.md`
 **Mission Control F-01/F-02/F-03 correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/08-stage1-f01-f02-f03-correction-authorization.md`
 **Mission Control F-04 correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/10-stage1-f04-correction-authorization.md`
+**Mission Control residual F-04 import-safety correction authorization:** `communication/missions/SB-ORG-LEARNING-1.1/mission-control/11-stage1-f04-import-safety-correction-authorization.md`
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED` (unaffected by this stage)
 
 ---
@@ -539,10 +543,55 @@ All six files this correction actually touched were individually validated again
 
 ---
 
+## 25. Stage 1 residual F-04 import-safety correction (Codex final independent re-verification)
+
+Codex's final independent re-verification (`communication/missions/SB-ORG-LEARNING-1.1/codex/04-stage1-independent-final-reverification.md`) reviewed PR #588 at `7d5e46f85868f948d0fb307da90523c89cffc655`, independently confirmed **F-01, F-02, and F-03 remain resolved** and confirmed **the original F-04 Windows direct-CLI silent-success defect is resolved** (its own CI evidence table showed correct nonzero/zero exit codes and receipts across malformed, missing, and valid direct-CLI input, plus safe file-based imports, on Application Build Assurance run #137 and Full Assurance run #38, both `completed`/`success`, and confirmed Markdown Quality Gate run #1741 also `completed`/`success` — Mission Control's Markdown repair from the prior round held). It then found one new, narrower residual defect purely in main-module detection's *import-time* behavior. Mission Control accepted it and authorized this correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/11-stage1-f04-import-safety-correction-authorization.md`). Only this one correction is applied here; nothing else was changed.
+
+### F-04 residual — import safety when no entry-point filename exists
+
+**Codex's exact reproduction:** `node --input-type=module --eval "await import('<file:// URL of harvest.mjs>'); process.stdout.write('IMPORT_OK')"` — a Node module-eval context with no script-file argument at all. In this context `process.argv[1]` is genuinely `undefined` (not merely unused), so `isMainModule()`'s unconditional `pathToFileURL(process.argv[1])` call threw `TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined` — at import time, before the importer could reach any code of its own, let alone call `runHarvest`/`runValidate`. Codex cited the exact lines: `organizational-learning/scripts/harvest.mjs:326` and `organizational-learning/scripts/validate.mjs:78`. The original F-04 fix (Section 24) had correctly replaced a naive string comparison with `pathToFileURL(process.argv[1]).href`, but that fix still assumed `process.argv[1]` is always a string — true for every direct-CLI and file-based-import case exercised before, but not true in a module-eval context that supplies no entry-point filename at all.
+
+**Root cause confirmed empirically before writing the fix, per this mission's established discipline:** `node --input-type=module --eval "console.log(typeof process.argv[1], process.argv[1])"` printed `undefined undefined` on this exact Windows environment, and a second throwaway check confirmed `pathToFileURL(undefined)` does throw `ERR_INVALID_ARG_TYPE` here, exactly matching Codex's reported reproduction.
+
+**Fix, one guard clause added per script, no dependency, no second execution path:**
+
+```js
+function isMainModule() {
+  const entryPoint = process.argv[1];
+  if (typeof entryPoint !== "string" || entryPoint.length === 0) {
+    return false;
+  }
+  return import.meta.url === pathToFileURL(entryPoint).href;
+}
+```
+
+Absent or non-string entry-point metadata now resolves to `false` ("not main") before `pathToFileURL` is ever called, exactly matching the authorization's required behavior and its own suggested minimal shape. `pathToFileURL` is only reached once `entryPoint` is already known to be a non-empty string, so it can never again receive `undefined`. `runHarvest`/`runValidate` remain the single authoritative runtime functions, called from exactly the same guarded block as before; no second execution path was created. This was verified empirically before being written into the fix: a throwaway probe script confirmed the guarded function still returns `true` under direct execution (preserving the already-correct Windows direct-CLI behavior from Section 24) and, once the guard was added, confirmed a real `node --input-type=module --eval` import of the guarded module completes without throwing and reaches an explicit `IMPORT_OK` completion marker — the same failure mode Codex reported, now absent.
+
+**Regression tests** (`organizational-learning/tests/cli-process.test.ts`, extended with a new `"F-04 residual: eval-mode import safety when no entry-point filename exists"` sub-suite, 2 new tests — bringing the file to 10 tests total): each test spawns a real, separate Node process via `spawnSync(process.execPath, ["--input-type=module", "--eval", code], ...)` — matching Codex's own reproduction method exactly, never a script-file argument — that `await import()`s the real `harvest.mjs` / `validate.mjs` file by its `file://` URL and then writes `IMPORT_OK` to stdout. Both assert the process's stderr never contains `ERR_INVALID_ARG_TYPE`, exit status is `0`, and stdout contains `IMPORT_OK` — directly proving requirements 1 through 3 of the authorization's required regression proof (eval-mode import of each script succeeds with no CLI auto-run, and both importers reach an explicit completion marker). Requirements 4 through 7 (malformed/missing/valid direct-CLI cases; file-based imports; F-03 canary no-echo) are proven by the 8 pre-existing tests in the same file, which were re-run unmodified against the fixed code and continue to pass. Requirement 8 (no dependency/`package-lock.json` change) is confirmed below.
+
+**The two new tests were proven genuine, not just passing by construction:** before finalizing, the residual guard fix was temporarily reverted in both scripts (`git stash push -- organizational-learning/scripts/harvest.mjs organizational-learning/scripts/validate.mjs`) and the full `cli-process.test.ts` suite was re-run against the unfixed (Section-24-only) code. Exactly the 2 new eval-mode-import tests failed, each with the exact `ERR_INVALID_ARG_TYPE` stack trace Codex reported; the other 8 pre-existing tests continued to pass unaffected, confirming this residual defect is narrowly additive to, not a regression of, the original F-04 fix. The guard fix was then restored (`git stash pop`) and the full suite re-verified green (10/10). This before/after check is not itself part of the committed test suite — it is recorded here as evidence the added tests would have caught this exact residual defect, not merely evidence that they pass now.
+
+### Scope discipline
+
+Exactly 3 files touched: `organizational-learning/scripts/harvest.mjs`, `organizational-learning/scripts/validate.mjs`, `organizational-learning/tests/cli-process.test.ts` (extended, not replaced), plus this durable report and the minimum builder section of `communication/live/report.md`. 0 new files, 0 dependencies added, `package-lock.json` unchanged (confirmed). F-01, F-02, and F-03 were not reopened or redesigned — none of their implementation files (`lib/receipt-store.ts`, `lib/fingerprint.ts`, `lib/screening.ts`, the schema files, or the allowlist) were touched, and their existing regression suites (`receipt-store.test.ts`, `harvest-cli.test.ts`, `validate-cli.test.ts`) were re-run unmodified and continue to pass. Receipt/path containment design, manifest ordering/fingerprinting semantics, scanner policy, and malformed-JSON diagnostic content were not altered. No AI/semantic extraction, real closed-mission processing, promotion execution, background automation, provider/network writes, autonomous repository-write automation, governance/Product Truth modification, Stage 2 activation, or `SB-P-1.12` activation was performed.
+
+**Local verification for this correction round:**
+
+- `npx tsc --noEmit` — clean.
+- `npx eslint organizational-learning/scripts/harvest.mjs organizational-learning/scripts/validate.mjs organizational-learning/tests/cli-process.test.ts` — clean.
+- `npm run test:fast` (full Fast Gate, via `vitest.fast.config.ts`) — **257/257 passing**, 24 files (196 across 16 `organizational-learning/tests/` files, up from 194; the other 8 pre-existing OLE test files and their 61 tests, plus all non-OLE fast tests, unchanged).
+- `npm run build` — succeeds.
+- Markdown Quality Gate on both revised report files — PASS (the escaped-backtick pitfall from prior rounds was avoided by describing the guard clause in a fenced code block rather than nesting escaped backticks in an inline span).
+- `package-lock.json` — confirmed unchanged.
+- Empirical pre-implementation and post-implementation verification, per this mission's established discipline of confirming Windows/Node-specific behavior with throwaway probe scripts before and after relying on it in the actual fix: confirmed `process.argv[1]` is genuinely `undefined` in a `node --input-type=module --eval` context on this environment; confirmed the unguarded call throws exactly Codex's reported error; confirmed the guarded function still returns `true` under direct execution; confirmed the guarded module's eval-mode import completes and reaches `IMPORT_OK` with no throw.
+- Repository housekeeping note: an unrelated, transient Windows-filesystem contention during one Fast Gate run produced a stale local `commit-graph` performance-cache artifact (a `git` object write was transiently denied, most likely due to concurrent access from this session's own ephemeral-git-repo tests or background file-locking software). This was diagnosed with `git fsck` and `git merge-base`-style ancestry checks before taking any action, confirmed to be a local, non-authoritative acceleration cache only (branch history and `git status` were unaffected throughout), and resolved by regenerating it (`git commit-graph write --reachable --changed-paths`) — a non-destructive, local-only operation that touches no tracked file, commit, or ref.
+
+**CI on this correction's pushed head:** per the standing anti-recursion rule (Section 21), see PR [`#588`](https://github.com/SmartBusinessv1/smart-business/pull/588)'s checks tab and the live builder section of `communication/live/report.md` for the workflow run results on the exact current head, rather than a SHA restated here.
+
+---
+
 ## Stop statement
 
-**STAGE 1 F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
+**STAGE 1 RESIDUAL F-04 IMPORT-SAFETY CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
 
-Only the single authorized F-04 correction (platform-correct CLI main-module detection in `harvest.mjs` and `validate.mjs`, plus genuine process-level regression tests) was applied; no scope was broadened. F-01, F-02, and F-03 designs were not reopened or redesigned. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Candidate/promotion authority, provenance architecture, source allowlisting, receipt-state vocabulary, manifest ordering, and scanner policy were not changed. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report — the prior Codex `FAIL` disposition stands until Codex re-verifies again.
-
-**One outstanding item for Mission Control, outside this correction's authority to fix:** real PR CI currently shows the Markdown Quality Gate failing on `communication/live/instruction.md` (line 36, a malformed escaped-backtick span), a pre-existing issue in Mission Control's own commit `393af1057f04f2e49ffe447ae3df7c5257768b65` that predates this correction. Lint, Typecheck, Build, Fast Tests, and Full Assurance all pass. This is reported, not corrected, per this correction's scope boundary.
+Only the single authorized residual F-04 import-safety correction (guarding `process.argv[1]` before calling `pathToFileURL` in `harvest.mjs` and `validate.mjs`'s `isMainModule()`, plus genuine eval-mode-import process-level regression tests) was applied; no scope was broadened. F-01, F-02, and F-03 designs were not reopened or redesigned, and the original F-04 direct-CLI fix (Section 24) was preserved, not replaced. Not self-approved. Not merged. The real closed-mission proof was not begun. AI/semantic extraction was not begun. Background automation was not begun. Promotion execution was not implemented. Candidate/promotion authority, provenance architecture, source allowlisting, receipt-state vocabulary, manifest ordering, receipt/path containment design, and scanner policy were not changed. No dependency or `package-lock.json` change was introduced. Stage 2 was not activated. `SB-P-1.12` was not activated. Codex was not authorized by this report — Mission Control re-review is required before any further independent verification round.

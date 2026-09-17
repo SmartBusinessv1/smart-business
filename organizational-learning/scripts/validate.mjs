@@ -75,7 +75,11 @@ export function runValidate(argv) {
 // so this CLI's guarded block silently never ran there. `pathToFileURL`
 // is Node's standard, platform-correct conversion.
 function isMainModule() {
-  return import.meta.url === pathToFileURL(process.argv[1]).href;
+  const entryPoint = process.argv[1];
+  if (typeof entryPoint !== "string" || entryPoint.length === 0) {
+    return false;
+  }
+  return import.meta.url === pathToFileURL(entryPoint).href;
 }
 
 if (isMainModule()) {

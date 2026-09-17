@@ -227,3 +227,45 @@ describe("F-04: importing either module never auto-runs the CLI path", () => {
     expect(stderr).toBe("");
   });
 });
+
+describe("F-04 residual: eval-mode import safety when no entry-point filename exists", () => {
+  // Codex's final independent re-verification found that both scripts'
+  // isMainModule() unconditionally passed `process.argv[1]` to
+  // `pathToFileURL`. In `node --input-type=module --eval` contexts there
+  // is no script-file argv entry at all -- `process.argv[1]` is
+  // `undefined` -- so `pathToFileURL(undefined)` throws
+  // `ERR_INVALID_ARG_TYPE` merely from importing the module, before the
+  // caller can use `runHarvest`/`runValidate`. This reproduces Codex's
+  // exact repro shape: a real, separate Node process started with
+  // `--input-type=module --eval`, never a script file path, so
+  // `process.argv[1]` is genuinely absent rather than merely unused.
+  function runEvalImport(scriptUrl: string, cwd: string) {
+    const code = `await import(${JSON.stringify(scriptUrl)});\nprocess.stdout.write("IMPORT_OK\\n");\n`;
+    const result = spawnSync(process.execPath, ["--input-type=module", "--eval", code], {
+      cwd,
+      encoding: "utf8",
+    });
+    if (result.error) {
+      throw new Error(`failed to spawn node process: ${result.error.message}`);
+    }
+    return { status: result.status, stdout: result.stdout, stderr: result.stderr };
+  }
+
+  it("importing harvest.mjs with no entry-point filename does not throw and reaches completion", () => {
+    workDir = mkdtempSync(join(tmpdir(), "ole-cli-process-test-"));
+    const { status, stdout, stderr } = runEvalImport(HARVEST_SCRIPT_URL.href, workDir);
+
+    expect(stderr).not.toContain("ERR_INVALID_ARG_TYPE");
+    expect(status).toBe(0);
+    expect(stdout).toContain("IMPORT_OK");
+  });
+
+  it("importing validate.mjs with no entry-point filename does not throw and reaches completion", () => {
+    workDir = mkdtempSync(join(tmpdir(), "ole-cli-process-test-"));
+    const { status, stdout, stderr } = runEvalImport(VALIDATE_SCRIPT_URL.href, workDir);
+
+    expect(stderr).not.toContain("ERR_INVALID_ARG_TYPE");
+    expect(status).toBe(0);
+    expect(stdout).toContain("IMPORT_OK");
+  });
+});

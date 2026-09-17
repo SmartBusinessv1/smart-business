@@ -323,7 +323,11 @@ export function runHarvest(argv) {
 // execution, and that it correctly stays false when the module is only
 // imported) before being written into the fix.
 function isMainModule() {
-  return import.meta.url === pathToFileURL(process.argv[1]).href;
+  const entryPoint = process.argv[1];
+  if (typeof entryPoint !== "string" || entryPoint.length === 0) {
+    return false;
+  }
+  return import.meta.url === pathToFileURL(entryPoint).href;
 }
 
 if (isMainModule()) {
