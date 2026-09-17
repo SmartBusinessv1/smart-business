@@ -121,6 +121,6 @@ No `SB-P-1.12` activation.
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
 
-**Applicable CI:** to be confirmed on PR #589's pushed head; not asserted as already complete here. Full Assurance expected non-applicable (changed paths outside its selective filter).
+**Applicable CI:** on PR #589 head `f18f5fa` (this round's commit): Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (changed paths outside its selective filter).
 
 **Scope confirmation:** no `INSTITUTIONALISED`, no `ORGANIZATION_WIDE`, no Founder-approval claim, no candidate/schema/provenance/revision-hash change, no supersession edge, no context pack, no Stage 3B work, no registry/background automation, no autonomous writer. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

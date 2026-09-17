@@ -191,7 +191,16 @@ No candidate file was modified. No `INSTITUTIONALISED` status or `ORGANIZATION_W
 
 ## 13. Applicable CI
 
-This round adds only data files (promotion records, a README) and documentation; no implementation file changed. On PR #589's pushed head (this round's commit): applicable CI (Lint, Typecheck, Build, Fast Tests, Markdown Quality Gate) will be confirmed via GitHub Actions once actually complete — not claimed here before it runs. Full Assurance is expected to remain non-applicable: this round's changes are entirely under `organizational-learning/promotions/**` and `communication/**`, neither of which is in `full-assurance.yml`'s selective path filter.
+This round adds only data files (promotion records, a README) and documentation; no implementation file changed. On PR #589 head `f18f5fa` (this round's commit):
+
+- Lint (ESLint + Prettier) — `SUCCESS`.
+- Typecheck (tsc --noEmit) — `SUCCESS`.
+- Build (vite build) — `SUCCESS`.
+- Fast Tests (vitest) — `SUCCESS`.
+- Markdown Quality Gate — `SUCCESS`.
+- Full Assurance Tests — did not trigger, as expected: this round's changes are entirely under `organizational-learning/promotions/**` and `communication/**`, neither of which is in `full-assurance.yml`'s selective path filter.
+
+GitHub Actions on PR #589 remains the live exact-head source of truth for any commit after this one.
 
 ---
 
@@ -206,7 +215,7 @@ This round adds only data files (promotion records, a README) and documentation;
 - **Screening result:** `CLEAN`, 0 findings, across all 4 promotion artifacts.
 - **Candidate 3 preservation result:** five-vs-four follow-up discrepancy, unexplained omission, `LIMITS` relationship, and `MEDIUM` confidence all intact; promotion explicitly does not claim resolution.
 - **Local checks:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257.
-- **Real CI:** to be confirmed on PR #589's pushed head; not claimed as already complete in this report.
+- **Real CI:** Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS` on PR #589 head `f18f5fa`; Full Assurance correctly did not trigger (path filter excludes this round's changed paths).
 - **Scope confirmation:** no `INSTITUTIONALISED` status, no `ORGANIZATION_WIDE` scope, no Founder-approval claim, no candidate content change, no promotion-schema/provenance-schema/revision-hash-semantics change, no supersession edge, no mission-start context pack, no Stage 3B work, no registry automation, no background automation, no autonomous repository writer, no PR merge, no governance/Product Truth/production/provider/customer-data mutation, no `SB-P-1.12` activation.
 
 ---
