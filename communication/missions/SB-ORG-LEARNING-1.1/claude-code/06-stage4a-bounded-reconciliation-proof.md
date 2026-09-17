@@ -260,7 +260,13 @@ No dependency was added. `package-lock.json` confirmed unchanged. No candidate, 
 
 ### 13.6 Real CI (S4A-F-01/F-02 correction)
 
-Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes.
+On PR #589 head `0a3f9f812c84f96c414a2f01aa03987128711046` (this correction's commit):
+
+- Team LIPS Application Build Assurance `#190` — `SUCCESS` (Lint, Typecheck, Build, Fast Tests all `SUCCESS`).
+- Team LIPS Markdown Quality Gate `#1794` — `SUCCESS`.
+- Team LIPS Full Assurance `#63` — `SUCCESS`, real run, not suppressed.
+
+All six applicable workflows passed on this head.
 
 ---
 
@@ -301,7 +307,7 @@ Only the authorized bounded deterministic reconciliation wrapper was implemented
 - **Concurrency/recovery regression result:** unchanged and still passing — one atomic owner/one busy result at both function and real two-process CLI level; `HARVESTED` resume and `VALIDATION_FAILED`/`FAILED_RETRYABLE` distinction both intact (Section 13.3).
 - **Safe-diagnostic result:** neither correction ever echoes raw envelope/receipt content, a parser error string, or a secret-shaped canary; both report only fixed condition labels and safe paths (storage-key hash + filename for receipts, caller-supplied path for envelopes).
 - **Local checks:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **322/322 passing** (28 files, +16 new tests, 0 regressions); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS; `package-lock.json` unchanged (Section 13.5).
-- **Real CI:** see Section 13.6.
+- **Real CI:** all three applicable workflows `SUCCESS` on PR #589 head `0a3f9f8` — Application Build Assurance #190 (Lint, Typecheck, Build, Fast Tests), Markdown Quality Gate #1794, and a real (not suppressed) Full Assurance #63 run (Section 13.6).
 - **Scope confirmation:** no Stage 4B, no automated extraction, no provider/model/API integration, no scheduler/background workflow, no publisher/PR writer, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---

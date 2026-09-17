@@ -103,6 +103,6 @@ No dependency/lockfile/workflow change.
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **322/322 passing**, 28 files (+16 new, 0 regressions); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS; `package-lock.json` unchanged.
 
-**Applicable CI:** see the durable report, Section 13.6, once confirmed.
+**Applicable CI:** all three applicable workflows `SUCCESS` on PR #589 head `0a3f9f812c84f96c414a2f01aa03987128711046` (this correction's commit): Team LIPS Application Build Assurance #190 (Lint, Typecheck, Build, Fast Tests), Team LIPS Markdown Quality Gate #1794, and a real (not suppressed) Team LIPS Full Assurance #63 run.
 
 **Scope confirmation:** no Stage 4B, no automated extraction, no provider/scheduler/publisher, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
