@@ -83,17 +83,21 @@ Current-head applicable CI at the re-review checkpoint:
 
 Full Assurance remains non-applicable under the selective path filter for this candidate/communication-only delta.
 
-## Current gate
+## Codex independent re-verification
 
-Codex must independently re-verify that S2B-F-01 and S2B-F-02 are resolved and that no Stage 2B blocker remains.
+**Disposition:** `PASS`.
 
-Recommended durable report:
+Reviewed head: `2ec73ce24674d294694861d8d39cc60b96190f01`.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md`
+Durable report: [07-stage2b-f01-f02-independent-reverification.md](../missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md).
 
-Return `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
+Codex independently confirmed S2B-F-01 and S2B-F-02 resolved. Candidate 2 now distinguishes exact counts by historical head; all 14 reference observers are synthesis. All four schemas passed, all 14 references resolved VALID to the unchanged pinned regular blobs, and screening returned CLEAN with zero findings.
 
-A PASS does not promote any candidate and does not authorize Stage 3 by itself.
+Candidate 3 changed only its five observer fields; its five-to-four discrepancy, LIMITS relationship, MEDIUM confidence and unresolved-item boundary remain intact.
+
+Current-head Application Build Assurance #169 and Markdown Quality Gate #1773 succeeded; the Fast Tests log records 24 files / 257 tests passed. Full Assurance is outside the selective path filter.
+
+No independently reproduced Stage 2B blocker remains within the authorized verification boundary. Stage 2 is ready for Mission Control completion review. This report does not accept Stage 2, promote candidates or authorize Stage 3.
 
 ## Boundaries
 
