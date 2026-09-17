@@ -1,44 +1,47 @@
-# SMART BUSINESS — REPOSITORY COMMUNICATION
+# SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — Successor Mission Control Handover
+# SB-ORG-LEARNING-1.1 — STAGE 1 ACCEPTED — FOUNDER/HUMAN MERGE GATE
 
-**Mission ID:** `SB-ORG-LEARNING-1.1`
+**Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**From:** Outgoing Smart Business Mission Control
+**Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**To:** Successor Smart Business Mission Control
+**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-**Status:** `HANDOVER ACTIVE — STAGE 1 NOT YET OPENED`
+**PR:** `#588 — OPEN — NOT MERGED`
 
----
+**Mission Control disposition:** `STAGE 1 ACCEPTED — FOUNDER/HUMAN MERGE REQUIRED`
 
-Founder merge of implementation activation PR `#585` is complete.
+**Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-Verified activation merge commit at handover preparation:
+## Controlling acceptance record
 
-`e1806c0e2e1f56102e03daf6639363ddd34c3ede`
+Read:
 
-The outgoing Mission Control has intentionally **not** opened specialist implementation.
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/13-stage1-acceptance-and-founder-merge-gate.md`
 
-Before doing anything else, the successor Mission Control must read:
+Final independent verifier report:
 
-1. `mission-control/mission-control-22-24.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/README.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
-4. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
-5. `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
-6. current active governance and current repository state.
+`communication/missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md`
 
-After successor hydration/acceptance and current-state verification, the first execution action is:
+## Current action
 
-> **Open Stage 1 for Claude Code using the exact instruction in Section 11 of `02-successor-mission-control-handover.md`.**
+Founder/human authorized operator must merge PR #588 only after confirming the current required checks are green.
 
-The successor should create a fresh Stage 1 branch from then-current protected `main` and replace this handover-state live instruction/report pair with the Stage 1 execution communication.
+Do not add implementation work to PR #588 after Stage 1 acceptance.
 
-Do not start Stage 2.
+Do not self-merge from Claude Code, Codex, or Mission Control.
 
-Do not start AI extraction.
+After merge, return to Mission Control with the merge confirmation. Mission Control will independently verify the merged PR and resulting `main` state before deciding whether Stage 2 may be authorized.
 
-Do not start background automation.
+## Boundaries retained
 
-Do not activate `SB-P-1.12`.
+`STAGE 2 — NOT AUTHORIZED`
+
+`SB-P-1.12 — NOT ACTIVATED`
+
+Stage 1 acceptance is not OLE mission completion.
+
+## Stop
+
+`STAGE 1 ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE`

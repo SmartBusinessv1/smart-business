@@ -1,5 +1,11 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts", "eslint.config.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vite.config.ts",
+    "eslint.config.js",
+    "organizational-learning/**/*.ts"
+  ],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
@@ -12,6 +18,12 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,
+    // Lets test files infer types from the plain-JS Node ESM CLI scripts
+    // under organizational-learning/scripts/*.mjs (SB-ORG-LEARNING-1.1
+    // Stage 1) without hand-written .d.ts files. checkJs stays off by
+    // default, so this only affects import resolution, not full
+    // typechecking of the .mjs files themselves.
+    "allowJs": true,
 
     /* Linting */
     "skipLibCheck": true,

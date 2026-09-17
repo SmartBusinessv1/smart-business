@@ -1,57 +1,82 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Successor Handover Report
+# SB-ORG-LEARNING-1.1 — Stage 1 Acceptance Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**To:** Successor Smart Business Mission Control / Founder Riyas PK
+**Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Status:** `HANDOVER READY — NO SPECIALIST IMPLEMENTATION STARTED`
+**Current actor:** Founder / human authorized operator
 
----
+**Status:** `STAGE 1 ACCEPTED — FOUNDER/HUMAN MERGE REQUIRED`
 
-## Verified current state at handover preparation
+**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
-- PR `#585` — `MERGED`.
-- Activation merge commit: `e1806c0e2e1f56102e03daf6639363ddd34c3ede`.
-- Post-merge Markdown Quality Gate `#1715` — `SUCCESS`.
-- Post-merge Application Build Assurance `#111` — `SUCCESS`.
-- `SB-ORG-LEARNING-1.0` — closed, accepted, build plan approved and archived.
-- `SB-ORG-LEARNING-1.1` — active implementation mission.
-- Engine implementation — **not started**.
-- Stage 1 Claude Code execution — **not yet opened**.
-- `SB-P-1.12` — **not activated**.
+**Pull request:** `#588 — OPEN — NOT MERGED`
 
-## Durable handover artifacts
+**Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-Institutional memory extraction:
+## Final independent verification
 
-`mission-control/mission-control-22-24.md`
+Codex final disposition: `PASS`.
 
-Detailed active-mission handover:
+Durable report:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+`communication/missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md`
 
-Controlling build plan:
+Codex reviewed head:
 
-`communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+`f2523f3c18e173187aa4de013049713ef67cf0a0`
 
-Stage 1 boundary:
+Independent OLE result:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/01-activation-and-stage1-boundary.md`
+- 16 OLE test files passed
+- 196 OLE tests passed
+- 10 process-level CLI tests included
+- residual F-04 resolved
+- F-01/F-02/F-03 showed no regression
+- no independently reproduced Stage 1 blocker remained within the authorized boundary
 
-## Successor first execution action
+Codex publication commit:
 
-After successor hydration/Founder acceptance and a fresh verification of canonical `main`:
+`00e304ddd933f3f45513108221161cbd967f44eb`
 
-1. create a fresh Stage 1 branch from current protected `main`;
-2. publish a fresh Stage 1 `communication/live/instruction.md` and paired report template;
-3. assign Claude Code using the exact instruction in Section 11 of the successor handover;
-4. stop after Claude Code returns its durable Stage 1 implementation report;
-5. perform Mission Control substantive review before Codex independent verification.
+Mission Control independently confirmed that publication commit changed only the durable verifier report and minimum live verifier handoff. Applicable publication-head workflows completed successfully:
 
-## Boundaries
+- Application Build Assurance #146 — SUCCESS
+- Markdown Quality Gate #1750 — SUCCESS
+- Full Assurance #47 — SUCCESS
 
-No AI extraction, real proof-target processing, background learning workflow, autonomous repository write, provider mutation or Product Mission activation has been performed by the outgoing Mission Control.
+## Mission Control acceptance
 
-`SB-P-1.12` remains blocked until the Organizational Learning Engine implementation mission is accepted.
+Mission Control disposition:
+
+`STAGE 1 — ACCEPTED`
+
+Durable acceptance record:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/13-stage1-acceptance-and-founder-merge-gate.md`
+
+Stage 1 acceptance confirms the authorized Stage 1 implementation and evidence satisfy the Stage 1 boundary.
+
+It does not complete the OLE mission and does not authorize Stage 2.
+
+## Current gate
+
+Founder/human authorized operator must merge PR #588 only after confirming its current required checks are green.
+
+No implementation work should be added to PR #588 after this acceptance.
+
+After merge, Mission Control must independently verify the merge and resulting `main` state before any Stage 2 authorization decision.
+
+## Boundaries retained
+
+`STAGE 2 — NOT AUTHORIZED`
+
+`SB-P-1.12 — NOT ACTIVATED`
+
+No real proof-target processing, AI/semantic extraction, promotion execution, or background automation is authorized by this acceptance.
+
+## Stop
+
+`STAGE 1 ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE`
