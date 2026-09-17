@@ -139,7 +139,13 @@ Both new conditions (`DANGLING_OR_UNRESOLVED_ENTRY`, `ENTRY_METADATA_UNAVAILABLE
 
 ## 13. Real CI
 
-Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes.
+On PR #589 head `2b6cf519fbddc7396c0a0cc02c5e562500705701` (this correction's commit):
+
+- Team LIPS Application Build Assurance `#211` — `SUCCESS` (Lint, Typecheck, Build, Fast Tests all `SUCCESS`).
+- Team LIPS Markdown Quality Gate `#1815` — `SUCCESS`.
+- Team LIPS Full Assurance `#84` — `SUCCESS`, real run, not suppressed.
+
+All three applicable workflows passed on this head.
 
 ---
 
@@ -153,7 +159,7 @@ Pending at the time this commit was authored. Recorded in a follow-up, documenta
 - **S5-F-03/F-04 regression result:** neither file was touched this round; their full, unmodified test suites passed unchanged.
 - **Stage 2A regression result:** unchanged — `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 - **Local verification:** typecheck/lint/Fast Gate (346/346)/build/Prettier all pass; deliberate break/restore proof confirms genuine, precisely-scoped regression detection.
-- **Real CI:** see Section 13; not yet confirmed at time of writing, will be recorded in a documentation-only follow-up commit.
+- **Real CI:** all three applicable workflows `SUCCESS` on PR #589 head `2b6cf51` — Application Build Assurance #211 (Lint, Typecheck, Build, Fast Tests), Markdown Quality Gate #1815, and a real (not suppressed) Full Assurance #84 run (Section 13).
 - **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched, `assertPhysicallyContained` unmodified. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---
