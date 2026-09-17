@@ -121,6 +121,6 @@ No `SB-P-1.12` activation.
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
 
-**Applicable CI:** see PR [`#589`](https://github.com/SmartBusinessv1/smart-business/pull/589)'s checks tab for this correction's exact pushed head — not restated here as a fixed claim, per the standing anti-recursion rule. Full Assurance is expected to remain non-applicable (this correction touches only candidate JSON and communication paths).
+**Applicable CI:** on PR [`#589`](https://github.com/SmartBusinessv1/smart-business/pull/589) head `054f474` (this correction's commit): Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (this correction touches only candidate JSON and communication paths, both outside its selective path filter).
 
 **Scope confirmation:** no Stage 1 implementation, schema, provenance validator, screening implementation, closure envelope, Stage 2A receipt, CI workflow, or dependency change occurred. No second mission processed, no additional candidate created, no promotion, no `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, no context pack, no Stage 3 work. `SB-P-1.12` remains not activated. Not self-approved. PR #589 not merged. Codex not authorized by this builder.

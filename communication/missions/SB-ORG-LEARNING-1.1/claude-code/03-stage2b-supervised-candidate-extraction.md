@@ -185,6 +185,8 @@ This round adds only data files (candidates, a README) and documentation; no imp
 
 GitHub Actions on PR #589 remains the live exact-head source of truth for any commit after this one.
 
+On the S2B-F-01/F-02 correction's own pushed head `054f474`: Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`; Full Assurance correctly did not trigger (this correction touched only candidate JSON and communication paths, both outside its selective path filter).
+
 ---
 
 ## 13. Stage 2B narrow correction: S2B-F-01 and S2B-F-02
@@ -234,7 +236,7 @@ Exactly 4 files modified (the four candidate JSON files), 0 files added, 0 files
 - **Evidence-strength/confidence summary:** unchanged by this correction — all `DIRECT`; confidence `HIGH` for candidates 1/2/4, `MEDIUM` for candidate 3.
 - **Rejected candidates:** none.
 - **Local verification:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257, identical to the Stage 1/2A/2B baseline.
-- **Real CI:** see Section 13/live report for the exact-head result on this correction's pushed commit; PR #589 / GitHub Actions remains the live source of truth.
+- **Real CI:** on PR #589 head `054f474` (this correction's commit): Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS`. Full Assurance correctly did not trigger (path filter excludes this correction's changed paths). PR #589 / GitHub Actions remains the live source of truth for any commit after this one.
 - **Confirmation:** no Stage 1 implementation, schema, provenance validator, screening implementation, closure envelope, Stage 2A receipt, CI workflow, or dependency change occurred; no promotion, `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, context pack, second mission, additional candidate, background automation, or Stage 3 work occurred; `SB-P-1.12` remains not activated; PR #589 was not merged.
 
 ---
