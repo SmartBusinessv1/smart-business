@@ -1,14 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 1 Final Verification Handoff
+# SB-ORG-LEARNING-1.1 — Stage 1 Acceptance Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `1 — Contracts, Security Boundaries & Deterministic Harvester Foundation`
 
-**Current actor:** Codex
+**Current actor:** Founder / human authorized operator
 
-**Status:** `RESIDUAL F-04 RE-REVIEW PASS — FINAL CODEX INDEPENDENT RE-VERIFICATION AUTHORIZED`
+**Status:** `STAGE 1 ACCEPTED — FOUNDER/HUMAN MERGE REQUIRED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage1-successor`
 
@@ -16,58 +16,67 @@
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-## Latest builder correction
+## Final independent verification
 
-Claude Code reported:
+Codex final disposition: `PASS`.
 
-`STAGE 1 RESIDUAL F-04 IMPORT-SAFETY CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+Durable report:
 
-Correction checkpoint:
+`communication/missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md`
 
-`2b97509dbc11c901b989827b40748a7f6a4bf96f`
+Codex reviewed head:
 
-The correction adds a guard in both CLI wrappers so absent or non-string `process.argv[1]` returns `not main` before `pathToFileURL` conversion. The process-level suite adds genuine eval-mode imports for `harvest.mjs` and `validate.mjs` while preserving the existing direct-CLI and file-based-import regressions.
+`f2523f3c18e173187aa4de013049713ef67cf0a0`
 
-F-01, F-02 and F-03 were not reopened by the correction.
+Independent OLE result:
 
-## Mission Control re-review
+- 16 OLE test files passed
+- 196 OLE tests passed
+- 10 process-level CLI tests included
+- residual F-04 resolved
+- F-01/F-02/F-03 showed no regression
+- no independently reproduced Stage 1 blocker remained within the authorized boundary
 
-**Disposition:** `PASS`
+Codex publication commit:
 
-Durable Mission Control record:
+`00e304ddd933f3f45513108221161cbd967f44eb`
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/12-stage1-residual-f04-rereview-and-final-codex-authorization.md`
+Mission Control independently confirmed that publication commit changed only the durable verifier report and minimum live verifier handoff. Applicable publication-head workflows completed successfully:
 
-Mission Control independently inspected the correction implementation and regressions and verified exact correction-checkpoint CI:
+- Application Build Assurance #146 — SUCCESS
+- Markdown Quality Gate #1750 — SUCCESS
+- Full Assurance #47 — SUCCESS
 
-- Application Build Assurance #142 — SUCCESS
-  - Typecheck — SUCCESS
-  - Lint — SUCCESS
-  - Build — SUCCESS
-  - Fast Tests — SUCCESS
-- Markdown Quality Gate #1746 — SUCCESS
-- Full Assurance #43 — SUCCESS
+## Mission Control acceptance
 
-These are facts about correction checkpoint `2b97509dbc11c901b989827b40748a7f6a4bf96f`. They do not automatically describe later communication/verifier commits.
+Mission Control disposition:
 
-## Codex final independent verification
+`STAGE 1 — ACCEPTED`
 
-**Disposition:** `PASS` — no independently reproduced Stage 1 blocker remains within the authorized verification boundary. Stage 1 is ready for Mission Control acceptance review; this is not Stage 1 acceptance.
+Durable acceptance record:
 
-Durable report: [Stage 1 independent final re-verification](../missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md).
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/13-stage1-acceptance-and-founder-merge-gate.md`
 
-Reviewed head: `f2523f3c18e173187aa4de013049713ef67cf0a0`. Independent OLE suite: 16 files, 196 tests passed, including all ten process-level tests. All applicable reviewed-head CI completed successfully: Application Build Assurance #145 (257 Fast Tests), Full Assurance #46 and Markdown Quality Gate #1749. These are reviewed-checkpoint facts, not publication-head CI claims.
+Stage 1 acceptance confirms the authorized Stage 1 implementation and evidence satisfy the Stage 1 boundary.
 
-Residual F-04 is resolved: both real eval-mode imports confirmed absent entry-point metadata, reached exact completion markers and produced no CLI output or exit-code mutation. Null, numeric, object and empty-string metadata also imported safely. Direct Windows malformed/missing/valid invocations and file-based imports remained correct.
+It does not complete the OLE mission and does not authorize Stage 2.
 
-F-01/F-02/F-03 showed no regression in independent temporary-fixture checks. The durable report assesses the whole Stage 1 boundary and preserves scanner, physical-containment and later-stage evidence limitations.
+## Current gate
 
-Implementation and historical actor records were not changed. No approval, merge, Stage 2 authorization, real proof processing, AI extraction, governance/Product Truth modification or `SB-P-1.12` activation was performed. Mission Control must now make the Stage 1 acceptance decision.
+Founder/human authorized operator must merge PR #588 only after confirming its current required checks are green.
 
-`STAGE 1 INDEPENDENT FINAL RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+No implementation work should be added to PR #588 after this acceptance.
 
-## Review chain
+After merge, Mission Control must independently verify the merge and resulting `main` state before any Stage 2 authorization decision.
 
-Codex final independent re-verification → Mission Control Stage 1 acceptance decision if PASS → human/Founder merge → explicit Stage 2 authorization.
+## Boundaries retained
 
-Stage 1 acceptance is not OLE mission completion.
+`STAGE 2 — NOT AUTHORIZED`
+
+`SB-P-1.12 — NOT ACTIVATED`
+
+No real proof-target processing, AI/semantic extraction, promotion execution, or background automation is authorized by this acceptance.
+
+## Stop
+
+`STAGE 1 ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE`
