@@ -107,6 +107,26 @@ Required verifier report:
 
 `communication/missions/SB-ORG-LEARNING-1.1/codex/09-stage5-independent-corrective-reverification.md`
 
+## Codex corrective re-verification result
+
+**Verifier:** Codex.
+
+**Reviewed head:** `0c550155348611919baa1698530f783146eb364e`.
+
+**Disposition:** `FAIL`.
+
+**New finding S5-F-05:** a present dangling filesystem indirection at the derived mission receipt-directory path makes `existsSync` return false. Receipt discovery returns an empty, issue-free store before containment/enumeration checks, and reconciliation incorrectly returns `ELIGIBLE_UNPROCESSED`. Collected metadata confirmed the directory entry still existed. Expected behavior is fail-closed ambiguity handling, with genuine absence preserved as a separate case.
+
+Original S5-F-01 live-target cases, S5-F-03 envelope-location cases and S5-F-04 duplicate/conflict cases passed re-verification. S5-F-02's original enumeration/non-file cases now block work, but its complete absence-versus-ambiguity requirement remains incomplete due to S5-F-05. Original findings and correction history are preserved.
+
+The genuine Stage 2A no-op/fingerprint, reconciliation recovery/order/ownership, and Stage 2/3/context-pack regressions passed. Independent Fast Tests passed 336/336; typecheck, build and OLE Prettier passed. Repository-wide local ESLint failed only on verified checkout CRLF differences; current-head CI checks all passed, including Full Assurance 108/108. No further filesystem-indirection experiments were performed after the user's restriction.
+
+Durable report:
+
+`communication/missions/SB-ORG-LEARNING-1.1/codex/09-stage5-independent-corrective-reverification.md`
+
+Stage 5 is not ready for Mission Control completion review. No implementation was modified. Mission Control record 27 explicitly authorizes publication of the already-completed report and minimum verifier handoff only. The reviewed head, FAIL finding and positive results remain unchanged; the CI results above describe that reviewed state. Mission Control must decide corrective handling of S5-F-05.
+
 ## Boundaries
 
 `STAGE 6 — NOT AUTHORIZED`
