@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "pack_kind": "mission-start-context-pack-proof",
+  "authority_statement": "context, not authority",
+  "profile": {
+    "missionClass": "operational",
+    "systems": ["github-actions", "ci"],
+    "environments": ["ci"],
+    "relatedMissions": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+    "limitations": [
+      "mission_class is accepted for context only; the current evidence-scope contract (EvidenceScopeSchema) has no mission_class field to match against"
+    ]
+  },
+  "reusable_learning": [
+    {
+      "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture-promotion-01",
+      "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture",
+      "resulting_maturity": "VALIDATED",
+      "promotion_scope": "MISSION_SCOPED",
+      "approving_authority": {
+        "actor_class": "mission-control",
+        "name_or_role": "Smart Business Mission Control"
+      },
+      "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+      "approved_scope": "Approved as a mission-scoped validated observation of SB-OPS-CI-ARCHITECTURE-1.0's two-tier CI architecture (always-running Fast Gate; selective, path-filtered Full Assurance). Scoped to this mission's own CI/test architecture; not generalized to other missions, production behavior, or security posture.",
+      "provenance": [
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        }
+      ],
+      "freshness": {
+        "promoted_at": "2026-09-17T12:17:00Z",
+        "evidence_dates": ["2026-09-16T00:00:00Z"],
+        "note": "freshness reflects only the promoted_at/evidence_date fields already present on the approved promotion record; no independent re-verification-as-of-today is claimed"
+      },
+      "supersession": {
+        "supersedes": [],
+        "superseded_by": []
+      },
+      "contradiction": {
+        "status": "NONE_RECORDED"
+      },
+      "candidate_reference": {
+        "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture",
+        "candidate_revision_hash": "eb13d7f7ebf15b0d6e1759ba5a7498a82a1aae365d24d627c342b741fa33055e",
+        "current_hash_matches": true,
+        "evidence_strength": "DIRECT",
+        "confidence": "HIGH",
+        "note": "candidate-only fields shown for transparency; the candidate object itself is not independently reviewed and is not reusable authority on its own"
+      }
+    },
+    {
+      "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence-promotion-02",
+      "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence",
+      "resulting_maturity": "VALIDATED",
+      "promotion_scope": "MISSION_SCOPED",
+      "approving_authority": {
+        "actor_class": "mission-control",
+        "name_or_role": "Smart Business Mission Control"
+      },
+      "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+      "approved_scope": "Approved as a mission-scoped validated observation that SB-OPS-CI-ARCHITECTURE-1.0's acceptance and post-merge closure records cite exact CI run numbers/IDs for each verification pass, with exact test/file counts recorded where actually present (exact Fast Test counts for the implementation head only; exact Full Assurance counts for both the implementation head and the later pre-review head, and again at the merge commit). Scoped to this mission's own closure evidence; not generalized to other missions.",
+      "provenance": [
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+          "status": "VALID"
+        }
+      ],
+      "freshness": {
+        "promoted_at": "2026-09-17T12:17:00Z",
+        "evidence_dates": ["2026-09-16T00:00:00Z"],
+        "note": "freshness reflects only the promoted_at/evidence_date fields already present on the approved promotion record; no independent re-verification-as-of-today is claimed"
+      },
+      "supersession": {
+        "supersedes": [],
+        "superseded_by": []
+      },
+      "contradiction": {
+        "status": "NONE_RECORDED"
+      },
+      "candidate_reference": {
+        "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence",
+        "candidate_revision_hash": "3fcc61bac434b6ef651b378290b3453fc1b14e7d3f6d3e36df6b05542d0d14a4",
+        "current_hash_matches": true,
+        "evidence_strength": "DIRECT",
+        "confidence": "HIGH",
+        "note": "candidate-only fields shown for transparency; the candidate object itself is not independently reviewed and is not reusable authority on its own"
+      }
+    },
+    {
+      "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention-promotion-03",
+      "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention",
+      "resulting_maturity": "VALIDATED",
+      "promotion_scope": "MISSION_SCOPED",
+      "approving_authority": {
+        "actor_class": "mission-control",
+        "name_or_role": "Smart Business Mission Control"
+      },
+      "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+      "approved_scope": "Approved as a mission-scoped validated observation of an unresolved documentary inconsistency in SB-OPS-CI-ARCHITECTURE-1.0's follow-up list: five items named at pre-merge acceptance, four at final post-merge closure, with the branch-protection-policy item's omission from the closure list left unexplained. This approval validates the observation itself, not any conclusion that the omitted item was resolved, superseded, or intentionally dropped. The candidate's MEDIUM confidence and LIMITS evidence relationship remain in force and are not converted into certainty by this promotion.",
+      "provenance": [
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        }
+      ],
+      "freshness": {
+        "promoted_at": "2026-09-17T12:17:00Z",
+        "evidence_dates": ["2026-09-16T00:00:00Z"],
+        "note": "freshness reflects only the promoted_at/evidence_date fields already present on the approved promotion record; no independent re-verification-as-of-today is claimed"
+      },
+      "supersession": {
+        "supersedes": [],
+        "superseded_by": []
+      },
+      "contradiction": {
+        "status": "LIMITS_OR_CONTRADICTS_PRESENT",
+        "references": [
+          {
+            "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+            "relationship": "LIMITS",
+            "locator": "## Carried follow-ups: four-item list with no branch-protection item and no statement addressing its omission"
+          }
+        ]
+      },
+      "candidate_reference": {
+        "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention",
+        "candidate_revision_hash": "b5ee757cb6bddbbfd9237b0e0d2fcf412e341e59394106399d9baf15be6f8e88",
+        "current_hash_matches": true,
+        "evidence_strength": "DIRECT",
+        "confidence": "MEDIUM",
+        "note": "candidate-only fields shown for transparency; the candidate object itself is not independently reviewed and is not reusable authority on its own"
+      }
+    },
+    {
+      "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary-promotion-04",
+      "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary",
+      "resulting_maturity": "VALIDATED",
+      "promotion_scope": "MISSION_SCOPED",
+      "approving_authority": {
+        "actor_class": "mission-control",
+        "name_or_role": "Smart Business Mission Control"
+      },
+      "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+      "approved_scope": "Approved as a mission-scoped validated observation that SB-OPS-CI-ARCHITECTURE-1.0's closure record explicitly disclaims authority over production, deployment, database/schema/RLS/grant/RPC, dependency, provider, and branch-protection changes. Scoped to this mission's own closure boundary; not asserted as a general governance rule applicable beyond this mission.",
+      "provenance": [
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "status": "VALID"
+        },
+        {
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "status": "VALID"
+        }
+      ],
+      "freshness": {
+        "promoted_at": "2026-09-17T12:17:00Z",
+        "evidence_dates": ["2026-09-16T00:00:00Z"],
+        "note": "freshness reflects only the promoted_at/evidence_date fields already present on the approved promotion record; no independent re-verification-as-of-today is claimed"
+      },
+      "supersession": {
+        "supersedes": [],
+        "superseded_by": []
+      },
+      "contradiction": {
+        "status": "NONE_RECORDED"
+      },
+      "candidate_reference": {
+        "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-04-explicit-closure-scope-boundary",
+        "candidate_revision_hash": "ede1835962e1c7d8939bd92f760b0957a3aefd755236f03feb02ede04055ff59",
+        "current_hash_matches": true,
+        "evidence_strength": "DIRECT",
+        "confidence": "HIGH",
+        "note": "candidate-only fields shown for transparency; the candidate object itself is not independently reviewed and is not reusable authority on its own"
+      }
+    }
+  ],
+  "excluded": []
+}

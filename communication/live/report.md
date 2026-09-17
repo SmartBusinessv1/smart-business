@@ -124,3 +124,39 @@ No `SB-P-1.12` activation.
 ## Required stop
 
 `STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+---
+
+## Builder Stage 3B context-pack proof report
+
+**Status:** `STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/05-stage3b-deterministic-context-pack-proof.md`
+
+**Implementation:** new minimal deterministic helper `organizational-learning/scripts/context-pack.mjs` (eligibility evaluator + pure pack builder + CLI, reusing the existing `PromotionReviewSchema`, `computeRevisionHash`, `validateProvenanceReference`, and screening machinery unmodified); 17 new focused tests in `organizational-learning/tests/context-pack.test.ts`; proof output at `organizational-learning/context-packs/SB-OPS-CI-ARCHITECTURE-1.0/mission-start-profile-operational-ci.json`; `vitest.fast.config.ts` updated to include the new test file. No dependency added; `package-lock.json` unchanged.
+
+**Real-profile result:** all 4 current mission-scoped `VALIDATED` promotions eligible, 0 excluded, ordered deterministically by `promotion_id`. Every item's provenance independently `VALID`.
+
+**Candidate-only exclusion:** a raw `maturity: CANDIDATE` object is rejected at the existing `PromotionReviewSchema` gate itself.
+
+**Stale-revision rejection:** two isolated in-memory mismatch cases (mutated candidate content; tampered hash field) both correctly excluded/flagged stale; real files re-verified unchanged afterward.
+
+**Scope exclusion:** a non-matching synthetic profile deterministically excludes all 4 real promotions.
+
+**No invented institutionalization:** neither `INSTITUTIONALISED` nor `ORGANIZATION_WIDE` appears anywhere in the real-profile output; a synthetic org-wide-INSTITUTIONALISED-without-Founder record is rejected at the schema gate.
+
+**Candidate 3:** `LIMITS`, `MEDIUM` confidence, and the five-vs-four unresolved follow-up omission are all surfaced verbatim and unconditionally in its pack entry — no resolution is claimed.
+
+**Supersession:** real empty arrays honored and displayed explicitly; a synthetic non-empty `superseded_by` clone correctly excludes without touching the real record.
+
+**Determinism:** byte-identical in-process double-build and real two-process CLI runs (confirmed by test and independently by `sha256sum`). Two deliberate regressions (disabling the stale check; disabling the scope check) were each proven to be caught by exactly the expected tests before being restored.
+
+**Freshness/provenance:** freshness limited to the record's own `promoted_at`/`evidence_date` fields, no invented "verified as of today" claim; all evidence provenance-`VALID`.
+
+**Screening:** the generator fails closed on any non-`CLEAN` result; the real run screened `CLEAN`.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **274/274 passing**, 25 files (up from 257/24); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**Applicable CI:** this round modifies `vitest.fast.config.ts`, which is in `full-assurance.yml`'s path filter — a real Full Assurance run is therefore expected and will not be suppressed. Exact-head CI (including Full Assurance) to be confirmed on the pushed head; not asserted as already complete here.
+
+**Scope confirmation:** no candidate/promotion record modified; no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`/Founder-approval claim; no semantic ranking; no real mission activation; no Stage 4 work; no background automation/autonomous writer; no dependency/lockfile change. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
