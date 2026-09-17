@@ -1,64 +1,77 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 2B SUPERVISED CANDIDATE EXTRACTION
+# SB-ORG-LEARNING-1.1 — STAGE 2B INDEPENDENT CANDIDATE VERIFICATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 
-**Sub-gate:** `2B — Supervised semantic candidate extraction`
-
-**Current actor:** Claude Code / authorized AI synthesis session
+**Current actor:** Codex — independent verifier
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 2A ACCEPTED — STAGE 2B AUTHORIZED`
+**Mission Control disposition:** `STAGE 2B SUBSTANTIVE REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/15-stage2a-acceptance-and-stage2b-authorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-deterministic-closed-mission-proof.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-closure-envelope-sb-ops-ci-architecture-1.0.json`
-4. the Stage 2A committed receipt for source fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`;
-5. `organizational-learning/schemas/candidate-learning-item.schema.ts` and `provenance.schema.ts`;
-6. the exact three screened committed evidence objects referenced by the Stage 2A receipt.
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/16-stage2b-substantive-review-and-codex-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/15-stage2a-acceptance-and-stage2b-authorization.md`
+4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-deterministic-closed-mission-proof.md`
+5. the Stage 2A closure envelope and committed receipt;
+6. all four candidate artifacts under `organizational-learning/candidates/SB-OPS-CI-ARCHITECTURE-1.0/`;
+7. the exact three screened source objects at pinned commit `b60741cce544adb713f7c384bbed09a05e23247e`;
+8. candidate/provenance schemas and provenance validator.
 
 ## Authorized action
 
-Draft candidate learning only from the already-screened Stage 2A evidence boundary for `SB-OPS-CI-ARCHITECTURE-1.0`.
+Independently verify the Stage 2B semantic candidate set.
 
-Every candidate must validate against the existing candidate schema and remain:
+Do not trust builder conclusions as substitutes for your own source comparison and validation.
 
-- `maturity: CANDIDATE`;
-- `authority_effect: NONE`;
-- `generated_by.actor_class: synthesis`.
+Verify claim-by-claim evidence reach, provenance identity, authority boundaries, evidence-strength/confidence assignments, screening, scope discipline, and exact-current-head repository/CI state.
 
-Every claim requires exact claim-level provenance to the pinned committed evidence supporting, limiting, or contradicting it.
+Pay particular attention to candidate 3's acceptance-vs-closure follow-up-list inconsistency and its `LIMITS` relationship.
 
-Preserve the source mission's retained follow-ups and evidence reach. Do not turn a CI-architecture result into broader security, production, deployment, or governance claims.
+## No implementation or candidate editing
 
-Screen and validate generated output before reporting it.
+Do not modify candidate content, implementation, tests, dependencies, governance or Product Truth.
 
-## Not authorized
+If a blocker exists, document it and stop for Mission Control.
 
-No promotion, CORROBORATED/VALIDATED/INSTITUTIONALISED state, Founder/Mission Control approval claim, second mission, context-pack generation, background automation, autonomous merge, governance/Product Truth mutation, provider/production/customer-data mutation, Stage 3, PR merge, or `SB-P-1.12` activation.
+## Required durable report
 
-Generated candidates may not cite themselves as evidence.
+Create:
 
-## Return
+`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
 
-Create candidate-only artifact(s) in the approved repository learning area and a durable Stage 2B Claude Code report.
+Return one of:
 
-Update only the minimum builder section of `communication/live/report.md`.
+- `PASS`
+- `FAIL`
+- `FOLLOW-UP REQUIRED`
 
-Run applicable validation, screening, local checks and real CI.
+If PASS, state only that no independently reproduced Stage 2B blocker remains within the authorized verification boundary and Stage 2 may proceed to Mission Control completion/Stage 3 decision.
 
-Then stop with:
+Do not promote any candidate.
 
-`STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
+## Boundaries
 
-Do not authorize Stage 3 yourself.
+`STAGE 3 — NOT AUTHORIZED`
+
+No promotion.
+No CORROBORATED/VALIDATED/INSTITUTIONALISED state.
+No context pack.
+No background automation.
+No merge.
+No `SB-P-1.12` activation.
+
+## Stop
+
+End with:
+
+`STAGE 2B INDEPENDENT CANDIDATE VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
