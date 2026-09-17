@@ -152,7 +152,13 @@ Every new diagnostic path follows the existing, unmodified F-03 no-raw-content p
 
 ## 12. Real CI
 
-Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes. `vitest.fast.config.ts` was not modified this round, so `full-assurance.yml`'s selective path filter is not expected to trigger from that file; whether Full Assurance runs at all depends on its filter against the actual changed file set, and the real result will be recorded here regardless.
+On PR #589 head `2bb8ece7434df9c5f4fd4d5c93122939fff8152b` (this correction's commit):
+
+- Team LIPS Application Build Assurance `#201` — `SUCCESS` (Lint, Typecheck, Build, Fast Tests all `SUCCESS`).
+- Team LIPS Markdown Quality Gate `#1805` — `SUCCESS`.
+- Team LIPS Full Assurance `#74` — `SUCCESS`, real run, not suppressed (triggered despite `vitest.fast.config.ts` not being modified this round -- its path filter evidently matched other changed files in this commit).
+
+All three applicable workflows passed on this head.
 
 ---
 
@@ -168,7 +174,7 @@ Pending at the time this commit was authored. Recorded in a follow-up, documenta
 - **Stage 2A regression result:** unchanged — `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 - **Concurrency/recovery regression result:** unchanged and still passing (Cases H, I, J).
 - **Local verification:** typecheck/lint/Fast Gate (336/336)/build/Prettier all pass; deliberate break/restore proof confirms genuine regression detection with no collateral damage.
-- **Real GitHub CI:** see Section 12; not yet confirmed at time of writing, will be recorded in a documentation-only follow-up commit.
+- **Real GitHub CI:** all three applicable workflows `SUCCESS` on PR #589 head `2bb8ece` — Application Build Assurance #201 (Lint, Typecheck, Build, Fast Tests), Markdown Quality Gate #1805, and a real (not suppressed) Full Assurance #74 run (Section 12).
 - **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---
