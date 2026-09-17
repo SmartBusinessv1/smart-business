@@ -1,77 +1,65 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF
+# SB-ORG-LEARNING-1.1 — STAGE 4A BOUNDED DETERMINISTIC RECONCILIATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current stage:** `3 — Human review/promotion and context-pack proof`
+**Current stage:** `4 — Background automation / reconciliation implementation`
 
-**Current sub-gate:** `3B — Deterministic mission-start context-pack proof`
+**Current sub-gate:** `4A — Bounded deterministic reconciliation wrapper`
 
-**Current actor:** Claude Code — authorized context-pack proof builder
+**Current actor:** Claude Code — authorized Stage 4A builder
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 3A ACCEPTED — STAGE 3B AUTHORIZED`
+**Mission Control disposition:** `STAGE 3 ACCEPTED — STAGE 4A AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/20-stage3a-acceptance-and-stage3b-context-pack-proof-authorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
-4. all four promotion-review artifacts under `organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`;
-5. their four exact candidate revisions;
-6. the final reconciled build plan Sections 8, 13, and 14.
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/21-stage3-acceptance-and-stage4a-bounded-reconciliation-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/05-stage3b-deterministic-context-pack-proof.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/20-stage3a-acceptance-and-stage3b-context-pack-proof-authorization.md`
+4. final reconciled build plan Sections 11, 15, 17, 18 and 20;
+5. accepted closure-envelope, receipt, path/screening/provenance/revision machinery.
 
 ## Authorized action
 
-Prove deterministic mission-start context-pack construction from the four mission-scoped `VALIDATED` promotion records only.
+Implement and prove only the bounded deterministic reconciliation wrapper described in Mission Control record 21.
 
-Use the synthetic profile defined in Mission Control record 20:
+The wrapper may discover explicit structured closure-envelope inputs, reconcile them against durable processing state/receipts, classify no-op/new revision/reopened/superseded/invalid work, prove deterministic idempotency/concurrency/recovery behavior, and emit a bounded reconciliation plan/report.
 
-- class `operational`;
-- systems `github-actions`, `ci`;
-- environment `ci`;
-- related mission `SB-OPS-CI-ARCHITECTURE-1.0`.
+It is not authorized to run model extraction or publish learning automatically.
 
-This synthetic profile does not activate a real mission.
+## Required proof
 
-Use deterministic filtering, not semantic ranking.
-
-Create only the smallest repository-native helper/tests/proof output needed if existing machinery cannot perform the proof.
-
-## Required behavior
-
-Prove reviewed-item eligibility, candidate-only exclusion, stale-revision rejection, scope filtering, supersession handling, deterministic ordering/repeat output, provenance/freshness presentation, and preservation of Candidate 3's unresolved `LIMITS`/MEDIUM inconsistency.
-
-Every proof pack must say:
-
-`context, not authority`
-
-Generated packs are outputs, not authority or evidence for their own claims.
+Prove structured-source discovery, deterministic work identity, unchanged-input no-op, new closure revision, reopened/superseded reconciliation, replay/idempotency, same-revision concurrency, failure-state distinction, safe retry/recovery, fail-closed malformed input, deterministic output, and no authority side effects.
 
 ## Boundaries
 
+No external AI/provider call.
+No credential or network integration.
+No automated candidate extraction.
+No publisher/PR writer.
+No autonomous commit/merge.
+No automatic promotion.
 No `INSTITUTIONALISED`.
 No `ORGANIZATION_WIDE` promotion.
-No Founder approval claim.
-No semantic ranking.
-No real mission activation.
-No background automation.
-No autonomous writer.
+No real scheduled/background execution.
+No workflow change unless separately authorized.
 No dependency/lockfile change.
-No merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
 
-`STAGE 4 — NOT AUTHORIZED`
+`STAGE 4B — NOT AUTHORIZED`
+
+`STAGE 5 — NOT AUTHORIZED`
 
 `SB-P-1.12 — NOT ACTIVATED`
 
 ## Stop
 
-`STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+`STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
