@@ -123,3 +123,29 @@ No production/customer mutation.
 ## Required stop
 
 `STAGE 5 F-01/F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+---
+
+## Builder Stage 5 F-01/F-04 correction report
+
+**Status:** `STAGE 5 F-01/F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md`
+
+**S5-F-01:** reconciliation receipt discovery/read now reuses the exact, unmodified Stage 1 `assertPhysicallyContained` primitive (exported from `receipt-store.ts`, not reimplemented), checked on the mission directory and on every candidate receipt file. An outside-root receipt junction has zero influence on classification in every tested outside-content state (empty, `SCREENED`, `VALIDATION_FAILED`); a synthetic canary in outside content never echoes.
+
+**S5-F-02:** `listReceiptsForMission` now distinguishes genuine absence, physical-indirection failure, `ENOTDIR`/enumeration failure, and a receipt-shaped non-file entry (e.g. a directory named `blocked.json`) -- only genuine absence still means no receipts; every other case fails closed to `INVALID_OR_UNSAFE` before any work-producing branch.
+
+**S5-F-03:** approved envelope-location checking now requires physical containment in addition to the existing lexical check (two independent layers, confirmed independent by a deliberate break/restore proof), and directory discovery (`collectJsonFiles`) refuses to recursively traverse indirection escaping its own starting point. Both `--envelope` and `--envelopes-dir` junction bypasses are closed; nested-junction recursive discovery cannot escape the approved root.
+
+**S5-F-04:** `planReconciliation` groups valid envelopes by `mission_id::closure_revision` and deduplicates/conflict-detects before classification, comparing full validated envelope content via `computeRevisionHash` (Stage 2/3's existing canonical-JSON hash, reused unmodified) rather than classification output alone -- equivalent envelopes produce exactly one deterministic work item; materially conflicting envelopes (including a difference in a field classification itself does not consume) produce zero work items and one safe conflict entry.
+
+**Regression confirmation:** the real Stage 2A `ALREADY_PROCESSED` proof (fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`), `NEW_CLOSURE_REVISION`, reopen/supersede, `FAILED_RETRYABLE`, intermediate recovery, and atomic lock ownership all remain unchanged and passing. No candidate, promotion, receipt, or context-pack file was touched.
+
+**Regression genuineness:** three deliberate, temporary regressions (disabling each of the S5-F-01/F-03/F-04 checks in turn) were independently proven to break exactly the expected tests with no collateral damage, then restored and reconfirmed clean.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **336/336 passing**, 28 files (+14 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
+
+**Applicable CI:** see the durable report, Section 12, once confirmed.
+
+**Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

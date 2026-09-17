@@ -20,9 +20,9 @@
 import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
 import { spawnSync, execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, readFileSync, writeFileSync, symlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 import {
   classifyEnvelope,
   planReconciliation,
@@ -32,7 +32,11 @@ import {
   isLocked,
   readAndValidateReceiptFile,
 } from "../scripts/reconcile.mjs";
-import { writeReceipt, computeMissionStorageKey } from "../lib/receipt-store.ts";
+import {
+  writeReceipt,
+  computeMissionStorageKey,
+  assertPhysicallyContained,
+} from "../lib/receipt-store.ts";
 import { computeSourceFingerprint, sortManifest } from "../lib/fingerprint.ts";
 import { createEphemeralGitRepo, type EphemeralGitRepo } from "./helpers/ephemeral-git-repo.ts";
 import type { Receipt } from "../schemas/receipt.schema.ts";
@@ -47,6 +51,16 @@ const REAL_RECEIPTS_DIR = join(REPO_ROOT, "organizational-learning/receipts");
 
 function tempDir(prefix: string): string {
   return mkdtempSync(join(tmpdir(), prefix));
+}
+
+/** Windows uses directory junctions; POSIX platforms use a directory
+ * symlink -- the exact same helper pattern as receipt-store.test.ts's
+ * proven Stage 1 physical-containment fixture, reused here for the
+ * S5-F-01/S5-F-03 corrections' identical class of indirection. */
+function plantDirectoryIndirection(linkPath: string, target: string): void {
+  mkdirSync(dirname(linkPath), { recursive: true });
+  mkdirSync(target, { recursive: true });
+  symlinkSync(target, linkPath, process.platform === "win32" ? "junction" : "dir");
 }
 
 function blobShaFor(repo: EphemeralGitRepo, path: string): string {
@@ -1062,6 +1076,431 @@ describe("Stage 4A F-02 correction -- malformed durable receipt fails closed", (
       expect(result.reconciliation_state).not.toBe("SUPERSEDED_OR_REOPENED");
     } finally {
       fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-01 correction -- receipt physical-indirection boundary", () => {
+  it("an outside-root receipt junction has zero influence on reconciliation, regardless of its content", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F01-JUNCTION";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f01phys-receipts-");
+    const outsideDir = tempDir("ole-reconcile-f01phys-outside-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDirectoryIndirection(join(receiptsDir, key), outsideDir);
+
+      // Case 1: outside directory empty -- Codex's exact reproduction
+      // showed this incorrectly produced ELIGIBLE_UNPROCESSED before the
+      // correction; it must now fail closed instead.
+      const emptyResult = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f01phys-locks-empty-"),
+      });
+      expect(emptyResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(emptyResult.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+      expect(emptyResult.retry_eligible).toBe(true);
+
+      // Case 2: outside directory has a valid SCREENED receipt matching
+      // this exact fingerprint -- must NOT be trusted as ALREADY_PROCESSED.
+      const canary = "AKIA5555555555555555";
+      const outsideScreened = makeReceipt({
+        receipt_id: `${canary}:${fixture.fingerprint}`,
+        mission_id: canary,
+        closure_revision: "rev-1",
+        source_fingerprint: fixture.fingerprint,
+        source_manifest: [{ path: fixture.evidencePath, blob_sha: fixture.blobSha }],
+        processing_state: "SCREENED",
+      });
+      writeFileSync(
+        join(outsideDir, `${fixture.fingerprint}.json`),
+        JSON.stringify(outsideScreened),
+        "utf8",
+      );
+      const screenedResult = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f01phys-locks-screened-"),
+      });
+      expect(screenedResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(screenedResult.reconciliation_state).not.toBe("ALREADY_PROCESSED");
+      expect(JSON.stringify(screenedResult)).not.toContain(canary);
+
+      // Case 3: outside content changed to VALIDATION_FAILED -- must not
+      // flip to FAILED_RETRYABLE either; outside state is categorically inert.
+      const outsideFailed = makeReceipt({
+        receipt_id: `${canary}:${fixture.fingerprint}`,
+        mission_id: canary,
+        closure_revision: "rev-1",
+        source_fingerprint: fixture.fingerprint,
+        source_manifest: [{ path: fixture.evidencePath, blob_sha: fixture.blobSha }],
+        processing_state: "VALIDATION_FAILED",
+        screening_result: null,
+        failure_reason: "synthetic outside-root failure",
+      });
+      writeFileSync(
+        join(outsideDir, `${fixture.fingerprint}.json`),
+        JSON.stringify(outsideFailed),
+        "utf8",
+      );
+      const failedResult = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f01phys-locks-failed-"),
+      });
+      expect(failedResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(failedResult.reconciliation_state).not.toBe("FAILED_RETRYABLE");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it("preserves the exact, unmodified Stage 1 physical-containment primitive via the shared export", () => {
+    // Direct confirmation the S5-F-01 fix reuses the accepted Stage 1
+    // helper rather than a forked parallel algorithm: it is now exported
+    // from receipt-store.ts and importable/callable directly.
+    const tempRoot = tempDir("ole-reconcile-f01phys-shared-helper-");
+    const receiptsDir = join(tempRoot, "receipts");
+    const redirectedTarget = join(tempRoot, "redirected");
+    try {
+      plantDirectoryIndirection(join(receiptsDir, "somekey"), redirectedTarget);
+      expect(() => assertPhysicallyContained(receiptsDir, join(receiptsDir, "somekey"))).toThrow(
+        /filesystem indirection/,
+      );
+    } finally {
+      rmSync(tempRoot, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-02 correction -- receipt-directory failure must not mean no receipts", () => {
+  it("a genuinely absent receipt directory still means no receipts (control case)", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F02-ABSENT", "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02disc-receipts-absent-");
+    try {
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        // Deliberately never created -- the very first reconciliation for
+        // a mission must still work.
+        receiptsDir: join(receiptsDir, "never-created"),
+        locksDir: tempDir("ole-reconcile-f02disc-locks-absent-"),
+      });
+      expect(result.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("ENOTDIR (an ordinary file at the hashed mission-directory path) blocks work", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F02-ENOTDIR";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02disc-receipts-enotdir-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      mkdirSync(receiptsDir, { recursive: true });
+      // An ordinary file where a directory is expected.
+      writeFileSync(join(receiptsDir, key), "not a directory", "utf8");
+
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02disc-locks-enotdir-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+      expect(result.retry_eligible).toBe(true);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("a receipt-shaped non-file entry (a directory literally named *.json) blocks work", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F02-NONFILE";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02disc-receipts-nonfile-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      // Exactly Codex's reproduction: a directory named "blocked.json".
+      mkdirSync(join(receiptsDir, key, "blocked.json"), { recursive: true });
+
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02disc-locks-nonfile-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-03 correction -- envelope physical-indirection boundary", () => {
+  it("rejects a direct --envelope path reached through an approved-prefix junction to an outside target", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F03-DIRECT", "rev-1");
+    const outsideDir = tempDir("ole-reconcile-f03-outside-direct-");
+    const linkPath = join(fixture.repo.root, "communication", "missions", "linked-direct");
+    const receiptsDir = tempDir("ole-reconcile-f03-receipts-direct-");
+    try {
+      plantDirectoryIndirection(linkPath, outsideDir);
+      const canary = "AKIA6666666666666666";
+      const envelopeWithCanary = { ...fixture.envelope, mission_id: canary };
+      writeFileSync(join(outsideDir, "envelope.json"), JSON.stringify(envelopeWithCanary), "utf8");
+
+      const plan = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f03-locks-direct-"),
+        envelopePaths: [join(linkPath, "envelope.json")],
+      });
+      expect(plan.work_items).toHaveLength(0);
+      expect(plan.rejected_inputs).toHaveLength(1);
+      expect(plan.rejected_inputs[0].reason).toBe(
+        "envelope location is not an approved closure-envelope location",
+      );
+      expect(JSON.stringify(plan)).not.toContain(canary);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(outsideDir, { recursive: true, force: true });
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects an --envelopes-dir pointed directly at an approved-prefix junction to an outside target", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F03-DIR", "rev-1");
+    const outsideDir = tempDir("ole-reconcile-f03-outside-dir-");
+    const linkPath = join(fixture.repo.root, "communication", "missions", "linked-dir");
+    const receiptsDir = tempDir("ole-reconcile-f03-receipts-dir-");
+    const outDir = tempDir("ole-reconcile-f03-out-dir-");
+    try {
+      plantDirectoryIndirection(linkPath, outsideDir);
+      writeFileSync(join(outsideDir, "envelope.json"), JSON.stringify(fixture.envelope), "utf8");
+
+      const result = runReconcile([
+        "--envelopes-dir",
+        linkPath,
+        "--repo-root",
+        fixture.repo.root,
+        "--receipts-dir",
+        receiptsDir,
+        "--locks-dir",
+        tempDir("ole-reconcile-f03-locks-dir-"),
+        "--out-dir",
+        outDir,
+      ]);
+      expect(result.exitCode).toBe(0);
+      const plan = JSON.parse(readFileSync(join(outDir, "reconciliation-plan.json"), "utf8"));
+      expect(plan.work_items).toHaveLength(0);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(outsideDir, { recursive: true, force: true });
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+
+  it("a nested junction encountered during recursive discovery cannot escape the approved root", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F03-NESTED", "rev-1");
+    const outsideDir = tempDir("ole-reconcile-f03-outside-nested-");
+    const missionsDir = join(fixture.repo.root, "communication", "missions");
+    const linkPath = join(missionsDir, "linked-nested");
+    const receiptsDir = tempDir("ole-reconcile-f03-receipts-nested-");
+    const outDir = tempDir("ole-reconcile-f03-out-nested-");
+    try {
+      mkdirSync(missionsDir, { recursive: true });
+      plantDirectoryIndirection(linkPath, outsideDir);
+      const canary = "AKIA7777777777777777";
+      writeFileSync(
+        join(outsideDir, "outside-envelope.json"),
+        JSON.stringify({ ...fixture.envelope, mission_id: canary }),
+        "utf8",
+      );
+
+      // --envelopes-dir points at the PARENT (communication/missions),
+      // not the junction itself -- the nested junction must be
+      // recursively traversed to reach the outside envelope at all.
+      const result = runReconcile([
+        "--envelopes-dir",
+        missionsDir,
+        "--repo-root",
+        fixture.repo.root,
+        "--receipts-dir",
+        receiptsDir,
+        "--locks-dir",
+        tempDir("ole-reconcile-f03-locks-nested-"),
+        "--out-dir",
+        outDir,
+      ]);
+      expect(result.exitCode).toBe(0);
+      const plan = JSON.parse(readFileSync(join(outDir, "reconciliation-plan.json"), "utf8"));
+      expect(plan.work_items).toHaveLength(0);
+      // Never even discovered -- collectJsonFiles refuses to recurse
+      // into the escaping junction, so there is no rejected_inputs entry
+      // for it either.
+      expect(plan.rejected_inputs).toHaveLength(0);
+      expect(JSON.stringify(plan)).not.toContain(canary);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(outsideDir, { recursive: true, force: true });
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-04 correction -- duplicate/conflicting envelope processing intent", () => {
+  it("two equivalent (content-identical) envelope files produce exactly one deterministic work item", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F04-DUP", "rev-1");
+    const envelopeDir = join(fixture.repo.root, "communication", "missions", "dup-fixture");
+    mkdirSync(envelopeDir, { recursive: true });
+    const receiptsDir = tempDir("ole-reconcile-f04-receipts-dup-");
+    try {
+      const pathA = join(envelopeDir, "a.json");
+      const pathB = join(envelopeDir, "b.json");
+      writeFileSync(pathA, JSON.stringify(fixture.envelope), "utf8");
+      writeFileSync(pathB, JSON.stringify(fixture.envelope), "utf8");
+
+      const plan = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f04-locks-dup-"),
+        envelopePaths: [pathA, pathB],
+      });
+      expect(plan.work_items).toHaveLength(1);
+      expect(plan.work_items[0].mission_id).toBe("SB-TEST-FIXTURE-5-F04-DUP");
+      expect(plan.rejected_inputs).toHaveLength(0);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("is byte-stable across reversed input order and replay", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F04-ORDER", "rev-1");
+    const envelopeDir = join(fixture.repo.root, "communication", "missions", "dup-order-fixture");
+    mkdirSync(envelopeDir, { recursive: true });
+    const receiptsDir = tempDir("ole-reconcile-f04-receipts-order-");
+    try {
+      const pathA = join(envelopeDir, "a.json");
+      const pathB = join(envelopeDir, "b.json");
+      writeFileSync(pathA, JSON.stringify(fixture.envelope), "utf8");
+      writeFileSync(pathB, JSON.stringify(fixture.envelope), "utf8");
+
+      const locksDir = tempDir("ole-reconcile-f04-locks-order-");
+      const planForward = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir,
+        envelopePaths: [pathA, pathB],
+      });
+      const planReversed = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir,
+        envelopePaths: [pathB, pathA],
+      });
+      expect(JSON.stringify(planForward)).toBe(JSON.stringify(planReversed));
+      expect(planForward.work_items).toHaveLength(1);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("conflicting envelopes for the same mission + closure revision produce zero work intent and a safe conflict result", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F04-CONFLICT";
+    const fixtureA = buildFixture(missionId, "rev-1");
+    // A materially different envelope (different source_snapshot_ref /
+    // evidence) claiming the exact same mission_id + closure_revision.
+    const otherRepo = createEphemeralGitRepo();
+    const evidencePathB = `communication/missions/${missionId}/README.md`;
+    const commitShaB = otherRepo.commitFile(evidencePathB, `${missionId} CONFLICTING evidence\n`);
+    const envelopeB = makeEnvelope({
+      mission_id: missionId,
+      closure_revision: "rev-1",
+      closure_refs: [evidencePathB],
+      source_snapshot_ref: commitShaB,
+    });
+
+    const envelopeDir = join(fixtureA.repo.root, "communication", "missions", "conflict-fixture");
+    mkdirSync(envelopeDir, { recursive: true });
+    const receiptsDir = tempDir("ole-reconcile-f04-receipts-conflict-");
+    try {
+      const pathA = join(envelopeDir, "a.json");
+      const pathB = join(envelopeDir, "b.json");
+      writeFileSync(pathA, JSON.stringify(fixtureA.envelope), "utf8");
+      writeFileSync(pathB, JSON.stringify(envelopeB), "utf8");
+
+      const plan = planReconciliation({
+        repoRoot: fixtureA.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f04-locks-conflict-"),
+        envelopePaths: [pathA, pathB],
+      });
+      expect(plan.work_items).toHaveLength(0);
+      expect(plan.rejected_inputs).toHaveLength(1);
+      expect(plan.rejected_inputs[0].source).toBe(`${missionId}::rev-1`);
+      expect(plan.rejected_inputs[0].reason).toContain("conflicting");
+      // Safe: names only the identity, never raw envelope content.
+      expect(plan.rejected_inputs[0].reason).not.toContain(commitShaB);
+    } finally {
+      fixtureA.repo.cleanup();
+      otherRepo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("conflicting result is deterministic across replay, even when the only difference is a field classification itself does not consume", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F04-CONFLICT-REPLAY";
+    const fixtureA = buildFixture(missionId, "rev-1");
+    // Differs ONLY in accepted_scope -- a field the fingerprint/
+    // classification algorithm does not itself read -- proving conflict
+    // detection compares full validated envelope content, not merely
+    // classification output.
+    const envelopeB = {
+      ...fixtureA.envelope,
+      accepted_scope: "a materially different accepted scope",
+    };
+    const envelopeDir = join(
+      fixtureA.repo.root,
+      "communication",
+      "missions",
+      "conflict-replay-fixture",
+    );
+    mkdirSync(envelopeDir, { recursive: true });
+    const receiptsDir = tempDir("ole-reconcile-f04-receipts-conflict-replay-");
+    try {
+      const pathA = join(envelopeDir, "a.json");
+      const pathB = join(envelopeDir, "b.json");
+      writeFileSync(pathA, JSON.stringify(fixtureA.envelope), "utf8");
+      writeFileSync(pathB, JSON.stringify(envelopeB), "utf8");
+
+      const locksDir = tempDir("ole-reconcile-f04-locks-conflict-replay-");
+      const plan1 = planReconciliation({
+        repoRoot: fixtureA.repo.root,
+        receiptsDir,
+        locksDir,
+        envelopePaths: [pathA, pathB],
+      });
+      const plan2 = planReconciliation({
+        repoRoot: fixtureA.repo.root,
+        receiptsDir,
+        locksDir,
+        envelopePaths: [pathB, pathA],
+      });
+      expect(plan1.work_items).toHaveLength(0);
+      expect(plan1.rejected_inputs).toHaveLength(1);
+      expect(JSON.stringify(plan1)).toBe(JSON.stringify(plan2));
+    } finally {
+      fixtureA.repo.cleanup();
       rmSync(receiptsDir, { recursive: true, force: true });
     }
   });

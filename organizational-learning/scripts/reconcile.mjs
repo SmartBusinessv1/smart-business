@@ -28,10 +28,16 @@
 //   - sortManifest / computeSourceFingerprint (identical fingerprint
 //     algorithm, so a reconciled fingerprint always matches what
 //     harvest.mjs would actually produce for the same envelope);
-//   - computeMissionStorageKey / resolveContainedPath / isAlreadyProcessed
-//     / newRunId (the existing receipt-store identity/containment
-//     primitives, reused to read -- never rewrite -- durable processing
-//     state).
+//   - computeMissionStorageKey / resolveContainedPath /
+//     assertPhysicallyContained / isAlreadyProcessed / newRunId (the
+//     existing receipt-store identity/containment primitives, reused to
+//     read -- never rewrite -- durable processing state; S5-F-01
+//     correction reuses the exact, unmodified physical-containment guard
+//     rather than a weaker parallel algorithm);
+//   - computeRevisionHash (Stage 2/3's canonical-JSON revision-identity
+//     hash, reused unmodified by the S5-F-04 correction to decide
+//     whether two valid envelopes claiming the same mission_id +
+//     closure_revision are equivalent or materially conflicting).
 //
 // Discovery is structural only: every input is an explicit --envelope
 // path or a --envelopes-dir directory this wrapper is explicitly told to
@@ -54,8 +60,9 @@ import {
   mkdirSync,
   existsSync,
   unlinkSync,
+  realpathSync,
 } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, relative, isAbsolute } from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
@@ -67,9 +74,11 @@ import { isAllowlistedSourcePath } from "../sources/allowlist.ts";
 import { isApprovedClosureEnvelopeLocation } from "../sources/envelope-location.ts";
 import { resolveBlobAtPath, verifyCommitExists } from "../lib/git-object-reader.ts";
 import { computeSourceFingerprint, sortManifest } from "../lib/fingerprint.ts";
+import { computeRevisionHash } from "../lib/revision-hash.ts";
 import {
   computeMissionStorageKey,
   resolveContainedPath,
+  assertPhysicallyContained,
   isAlreadyProcessed,
   newRunId,
 } from "../lib/receipt-store.ts";
@@ -85,7 +94,30 @@ function sortByStableKey(items, keyFn) {
   });
 }
 
+/**
+ * Recursively collects `.json` file paths under `dir`, never following a
+ * nested directory entry whose physical (symlink/junction-resolved)
+ * location escapes wherever the walk itself started (S5-F-03 correction:
+ * "directory discovery must not recursively traverse a junction/symlink/
+ * reparse point whose real target escapes the approved root"). This is a
+ * general recursion-containment invariant, independent of
+ * `communication/missions/` specifically -- every discovered path is
+ * still independently re-checked against the actual approved envelope
+ * root by `isApprovedClosureEnvelopeLocation` in `planReconciliation`
+ * regardless of how it was discovered; this is defense-in-depth at the
+ * discovery layer itself, not a substitute for that check.
+ */
 function collectJsonFiles(dir) {
+  let anchorRealPath;
+  try {
+    anchorRealPath = realpathSync(dir);
+  } catch {
+    return [];
+  }
+  return collectJsonFilesWithinAnchor(dir, anchorRealPath);
+}
+
+function collectJsonFilesWithinAnchor(dir, anchorRealPath) {
   const results = [];
   let entries;
   try {
@@ -97,7 +129,16 @@ function collectJsonFiles(dir) {
   for (const entry of sorted) {
     const fullPath = join(dir, entry.name);
     if (entry.isDirectory()) {
-      results.push(...collectJsonFiles(fullPath));
+      let entryRealPath;
+      try {
+        entryRealPath = realpathSync(fullPath);
+      } catch {
+        continue;
+      }
+      const relativeToAnchor = relative(anchorRealPath, entryRealPath);
+      const escapesAnchor = relativeToAnchor.startsWith("..") || isAbsolute(relativeToAnchor);
+      if (escapesAnchor) continue;
+      results.push(...collectJsonFilesWithinAnchor(fullPath, anchorRealPath));
     } else if (entry.isFile() && entry.name.endsWith(".json")) {
       results.push(fullPath);
     }
@@ -138,27 +179,93 @@ export function readAndValidateReceiptFile(filePath) {
 /**
  * Reads every receipt already on file for `missionId`, returning both the
  * schema-valid receipts AND any read/parse/validation issues found along
- * the way. A missing mission directory is not an issue -- it truthfully
- * means no receipt has ever been written for this mission. A file that
- * exists but is unreadable, malformed, or schema-invalid IS an issue
- * (S4A-F-02 correction): the caller must treat that as blocking ambiguous
- * durable state, never as if the receipt were simply absent.
+ * the way.
+ *
+ * S5-F-01/S5-F-02 correction (communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/25-stage5-f01-f04-correction-authorization.md):
+ * independent verification found two defects in the prior version of
+ * this function. First (S5-F-01), it enumerated/read through
+ * `readdirSync`/`readFileSync` directly, which transparently follow a
+ * symlink/junction -- unlike Stage 1's own receipt reader
+ * (`readReceiptIfExists`), which calls `assertPhysicallyContained`
+ * first. A pre-planted junction at the derived mission storage directory
+ * could silently redirect reconciliation to attacker-controlled outside-
+ * root receipt state even though every path *string* still looked
+ * contained. Second (S5-F-02), every enumeration failure (a missing
+ * directory, `ENOTDIR` from an ordinary file at that path, a permission/
+ * I/O error) collapsed to the same `{receipts: [], issues: []}` result,
+ * making an unsafe/ambiguous durable store indistinguishable from
+ * genuine absence and able to produce new work-producing classification.
+ *
+ * The fix distinguishes, in order:
+ *   1. genuine absence (`!existsSync(missionDir)`) -- the only case that
+ *      may truthfully mean no receipts, with zero issues;
+ *   2. physical-indirection failure (reusing the exact, unmodified
+ *      Stage 1 `assertPhysicallyContained` primitive on the mission
+ *      directory itself) -- an issue, zero receipts;
+ *   3. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
+ *      issue, zero receipts;
+ *   4. per entry: physical-indirection failure on that specific file (a
+ *      nested symlink even inside an otherwise-legitimate directory) --
+ *      an issue for that entry, not merely for the directory as a whole;
+ *   5. per entry: a receipt-shaped (`.json`) entry that is not a regular
+ *      file (e.g. a directory literally named `blocked.json`) -- an
+ *      issue, not silently skipped the way a non-`.json` entry is;
+ *   6. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
+ *      unchanged) -- an issue.
+ *
+ * `classifyEnvelope` still treats *any* non-empty `issues` array as
+ * blocking (see below) -- this function's job is only to classify each
+ * problem accurately and safely, never to decide reconciliation policy.
  */
 function listReceiptsForMission(receiptsDir, missionId) {
   const key = computeMissionStorageKey(missionId);
   const missionDir = resolveContainedPath(receiptsDir, key);
+
+  if (!existsSync(missionDir)) {
+    // Genuinely absent -- truthfully means no receipt has ever been
+    // written for this mission. Never reached for a path that exists but
+    // is the wrong type (e.g. an ordinary file, which readdir below
+    // handles instead) or is a dangling/unreadable indirection.
+    return { receipts: [], issues: [] };
+  }
+
+  try {
+    assertPhysicallyContained(receiptsDir, missionDir);
+  } catch {
+    return { receipts: [], issues: [{ path: key, condition: "PHYSICAL_CONTAINMENT_VIOLATION" }] };
+  }
+
   let entries;
   try {
     entries = readdirSync(missionDir, { withFileTypes: true });
   } catch {
-    return { receipts: [], issues: [] };
+    // Present but cannot be enumerated as a directory (ENOTDIR from an
+    // ordinary file at this path, permission denial, I/O error) -- never
+    // silently treated as absence.
+    return { receipts: [], issues: [{ path: key, condition: "ENUMERATION_FAILED" }] };
   }
+
   const receipts = [];
   const issues = [];
   const sorted = [...entries].sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   for (const entry of sorted) {
-    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
-    const result = readAndValidateReceiptFile(join(missionDir, entry.name));
+    if (!entry.name.endsWith(".json")) continue;
+    const entryPath = join(missionDir, entry.name);
+
+    try {
+      assertPhysicallyContained(receiptsDir, entryPath);
+    } catch {
+      issues.push({ path: `${key}/${entry.name}`, condition: "PHYSICAL_CONTAINMENT_VIOLATION" });
+      continue;
+    }
+
+    if (!entry.isFile()) {
+      issues.push({ path: `${key}/${entry.name}`, condition: "UNEXPECTED_NON_FILE_ENTRY" });
+      continue;
+    }
+
+    const result = readAndValidateReceiptFile(entryPath);
     if (result.ok) {
       receipts.push(result.receipt);
     } else {
@@ -425,6 +532,67 @@ export function classifyEnvelope(envelope, { repoRoot, receiptsDir, locksDir }) 
   });
 }
 
+function processingIdentityKey(item) {
+  return `${item.mission_id}::${item.closure_revision}`;
+}
+
+/**
+ * S5-F-04 correction (communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/25-stage5-f01-f04-correction-authorization.md):
+ * independent verification found that two distinct valid envelope files
+ * claiming the same mission_id + closure_revision each produced their
+ * own ELIGIBLE_UNPROCESSED work item -- path-string `Set` deduplication
+ * in the CLI removes only identical path strings, not duplicate
+ * processing identity, and the planner itself must not emit duplicate
+ * harvest intent.
+ *
+ * Grouping and equivalence are decided over the already schema-valid
+ * PARSED ENVELOPES themselves, before classification -- not over the
+ * classification output -- by reusing `computeRevisionHash` (the exact
+ * accepted key-sorted-canonical-JSON sha256 hash Stage 2/3 already use
+ * for candidate/promotion revision binding, lib/revision-hash.ts). This
+ * is deliberate: the classification/fingerprint algorithm only consumes
+ * a subset of an envelope's fields (schemaVersion, closure_revision,
+ * evidence manifest), so comparing classification output alone would
+ * miss a material difference in a field classification does not itself
+ * consume (e.g. `accepted_scope`, `final_disposition`) -- exactly the
+ * "other validated closure semantics" Mission Control's finding names.
+ * Comparing the full validated envelope content is the only way to
+ * truthfully honor "material conflict... including... accepted scope...
+ * or other validated closure semantics."
+ *
+ * For a group of one or more schema-valid envelopes sharing a
+ * mission_id + closure_revision:
+ *   - all identical canonical content hash -> classify and emit exactly
+ *     one work item (input order cannot matter -- every member is
+ *     content-indistinguishable from every other);
+ *   - not all identical -> classify none of them and record one safe,
+ *     deterministic conflict entry naming only the identity, never raw
+ *     envelope content.
+ */
+function resolveEnvelopeIdentityGroups(parsedEnvelopes, classify) {
+  const groups = new Map();
+  for (const envelope of parsedEnvelopes) {
+    const key = processingIdentityKey(envelope);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(envelope);
+  }
+  const workItems = [];
+  const conflicts = [];
+  for (const [key, envelopes] of groups) {
+    const distinctHashes = new Set(envelopes.map((envelope) => computeRevisionHash(envelope)));
+    if (distinctHashes.size === 1) {
+      workItems.push(classify(envelopes[0]));
+    } else {
+      conflicts.push({
+        source: key,
+        reason: `${envelopes.length} valid envelope(s) claim mission_id + closure_revision "${key}" with materially conflicting validated closure semantics; failing closed rather than silently choosing one`,
+      });
+    }
+  }
+  return { workItems, conflicts };
+}
+
 /**
  * Pure aside from its filesystem/git reads: given the same envelope
  * files, receipts, and locks on disk, always produces the same ordered
@@ -433,7 +601,7 @@ export function classifyEnvelope(envelope, { repoRoot, receiptsDir, locksDir }) 
  * directly under an explicit --envelopes-dir.
  */
 export function planReconciliation({ repoRoot, receiptsDir, locksDir, envelopePaths }) {
-  const workItems = [];
+  const parsedEnvelopes = [];
   const rejectedInputs = [];
 
   for (const filePath of envelopePaths) {
@@ -471,14 +639,18 @@ export function planReconciliation({ repoRoot, receiptsDir, locksDir, envelopePa
       rejectedInputs.push({ source: filePath, reason: "envelope failed schema validation" });
       continue;
     }
-    workItems.push(classifyEnvelope(parsedEnvelope.data, { repoRoot, receiptsDir, locksDir }));
+    parsedEnvelopes.push(parsedEnvelope.data);
   }
 
-  const orderedWorkItems = sortByStableKey(
-    workItems,
-    (item) => `${item.mission_id}::${item.closure_revision}`,
+  // S5-F-04 correction: group and dedupe/conflict-check BEFORE
+  // classification -- classification only ever runs for the single
+  // representative of an equivalent group, never once per duplicate file.
+  const { workItems, conflicts } = resolveEnvelopeIdentityGroups(parsedEnvelopes, (envelope) =>
+    classifyEnvelope(envelope, { repoRoot, receiptsDir, locksDir }),
   );
-  const orderedRejected = sortByStableKey(rejectedInputs, (item) => item.source);
+
+  const orderedWorkItems = sortByStableKey(workItems, processingIdentityKey);
+  const orderedRejected = sortByStableKey([...rejectedInputs, ...conflicts], (item) => item.source);
 
   return {
     schemaVersion: RECONCILIATION_SCHEMA_VERSION,

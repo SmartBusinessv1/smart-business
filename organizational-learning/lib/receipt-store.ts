@@ -174,8 +174,16 @@ function deepestExistingAncestor(targetPath: string): string {
  * this check exists in addition to the purely lexical
  * `resolveContainedPath`, and why it never blocks an ordinary write to a
  * base directory nothing has been written into yet.
+ *
+ * Exported (S5-F-01/S5-F-03 correction, communication/missions/
+ * SB-ORG-LEARNING-1.1/mission-control/25-stage5-f01-f04-correction-
+ * authorization.md): reconciliation receipt discovery
+ * (scripts/reconcile.mjs) and approved envelope-location checking
+ * (sources/envelope-location.ts) each need this exact physical-
+ * containment behavior and must not fork a weaker parallel
+ * implementation. Behavior is unchanged; only visibility changed.
  */
-function assertPhysicallyContained(baseDir: string, targetPath: string): void {
+export function assertPhysicallyContained(baseDir: string, targetPath: string): void {
   const resolvedBase = resolve(baseDir);
   if (!existsSync(resolvedBase)) {
     // Nothing has been created under this trust root yet -- there is no
