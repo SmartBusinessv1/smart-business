@@ -1,78 +1,77 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 3A HUMAN PROMOTION PROOF
+# SB-ORG-LEARNING-1.1 — STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Current stage:** `3 — Human review/promotion and context-pack proof`
 
-**Current sub-gate:** `3A — Human review/promotion proof`
+**Current sub-gate:** `3B — Deterministic mission-start context-pack proof`
 
-**Current actor:** Claude Code — authorized promotion-proof builder
+**Current actor:** Claude Code — authorized context-pack proof builder
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 2 ACCEPTED — STAGE 3A AUTHORIZED`
+**Mission Control disposition:** `STAGE 3A ACCEPTED — STAGE 3B AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
-4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
-5. all four current candidate artifacts;
-6. `organizational-learning/schemas/promotion-review.schema.ts`;
-7. the accepted candidate revision-hash helper, provenance validator and screening machinery.
-
-## Human review decision already made
-
-Mission Control approves the exact current revisions of all four Stage 2B candidates for:
-
-- `resulting_maturity: VALIDATED`;
-- `promotion_scope: MISSION_SCOPED`;
-- approving authority `mission-control / Smart Business Mission Control`.
-
-The decision reference is:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
-
-The approval is revision-bound. Any material candidate-content change invalidates it.
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/20-stage3a-acceptance-and-stage3b-context-pack-proof-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
+4. all four promotion-review artifacts under `organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`;
+5. their four exact candidate revisions;
+6. the final reconciled build plan Sections 8, 13, and 14.
 
 ## Authorized action
 
-Create and prove four separate promotion-review artifacts using the existing accepted promotion contract under:
+Prove deterministic mission-start context-pack construction from the four mission-scoped `VALIDATED` promotion records only.
 
-`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
+Use the synthetic profile defined in Mission Control record 20:
 
-Do not add promotion fields to candidate objects.
+- class `operational`;
+- systems `github-actions`, `ci`;
+- environment `ci`;
+- related mission `SB-OPS-CI-ARCHITECTURE-1.0`.
 
-Candidate 3 must retain its documentary inconsistency, `LIMITS` relationship, `MEDIUM` confidence and unresolved-item boundary.
+This synthetic profile does not activate a real mission.
 
-## Required proof
+Use deterministic filtering, not semantic ranking.
 
-Verify exact candidate revision hashes, promotion schema validity, decision binding, Mission Control authority, mission-scoped VALIDATED maturity, provenance validity, CLEAN screening, and revision invalidation behavior.
+Create only the smallest repository-native helper/tests/proof output needed if existing machinery cannot perform the proof.
 
-Run applicable local checks and real CI.
+## Required behavior
+
+Prove reviewed-item eligibility, candidate-only exclusion, stale-revision rejection, scope filtering, supersession handling, deterministic ordering/repeat output, provenance/freshness presentation, and preservation of Candidate 3's unresolved `LIMITS`/MEDIUM inconsistency.
+
+Every proof pack must say:
+
+`context, not authority`
+
+Generated packs are outputs, not authority or evidence for their own claims.
 
 ## Boundaries
 
-`STAGE 3B — NOT AUTHORIZED`
-
-No `INSTITUTIONALISED` status.
+No `INSTITUTIONALISED`.
 No `ORGANIZATION_WIDE` promotion.
 No Founder approval claim.
-No context pack.
+No semantic ranking.
+No real mission activation.
 No background automation.
-No autonomous merge.
+No autonomous writer.
+No dependency/lockfile change.
+No merge.
 No governance/Product Truth mutation.
 No provider/production/customer-data mutation.
-No PR merge.
-No `SB-P-1.12` activation.
+
+`STAGE 4 — NOT AUTHORIZED`
+
+`SB-P-1.12 — NOT ACTIVATED`
 
 ## Stop
 
-`STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+`STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
