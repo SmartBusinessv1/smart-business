@@ -75,3 +75,29 @@ Claude Code Stage 2A deterministic proof → Mission Control substantive review 
 ## Required stop
 
 `STAGE 2A DETERMINISTIC CLOSED-MISSION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+---
+
+## Builder Stage 2A proof report
+
+**Status:** `STAGE 2A DETERMINISTIC CLOSED-MISSION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-deterministic-closed-mission-proof.md`
+
+**Closure evidence located, not inferred:** `communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md` (Mission Control acceptance), `07-post-merge-verification-and-closure.md` (Mission Control post-merge closure, `CLOSED — ACCEPTED`), and the archive manifest `communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md` — all pinned at commit `b60741cce544adb713f7c384bbed09a05e23247e`. No evidence gap; nothing was inferred from a merge, label, or README phrase.
+
+**Implementation change required:** none. The accepted Stage 1 harvester, unmodified since merge, ran this proof correctly as-is.
+
+**Real proof result:** `harvest: SCREENED` — exit `0`, 3 evidence entries, screening `CLEAN`, 0 findings. Fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`, independently cross-checked by hand before the run and matched exactly. Receipt schema-validated (`validate.mjs receipt` → PASS) at `organizational-learning/receipts/3f8f4a6eff8829b3ad11357702b50e9d826838f62a1a99e9aea78a02bf5a11e7/c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475.json`.
+
+**Committed-object-read proof against the real target:** a reversible experiment dirtied one evidence file's working-tree copy, re-ran the harvester against an isolated temp receipts directory, and confirmed the identical fingerprint/outcome — proving the pinned commit's Git object, not the dirty file, was read. The working tree was restored immediately after.
+
+**Idempotency:** repeat run returned `already processed`, exit `0`, byte-identical receipt (checksum matched before/after), no duplicate artifact created.
+
+**Scope discipline:** exactly 2 new files added (the real receipt; the committed closure envelope at `communication/missions/SB-ORG-LEARNING-1.1/claude-code/02-stage2a-closure-envelope-sb-ops-ci-architecture-1.0.json`), 0 files modified, 0 dependencies added, `package-lock.json` unchanged. F-01/F-02/F-03/F-04 were exercised unmodified, not reopened or redesigned. No AI/semantic extraction, candidate drafting, promotion, registry publication, background automation, autonomous Git publication beyond this branch, governance/Product Truth mutation, provider/production/customer-data mutation, Stage 2B, Stage 3, or `SB-P-1.12` activation.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** across 24 files (identical to the accepted Stage 1 baseline); `npm run build` succeeds; Prettier clean on both new JSON files; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**Applicable CI:** to be confirmed on the pushed head via PR/GitHub Actions once available — not asserted as already complete here.
+
+**Scope confirmation:** Stage 2B was not begun. No semantic extraction, promotion, registry write, background automation, or `SB-P-1.12` activation occurred. Not self-approved. Not merged.
