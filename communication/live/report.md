@@ -145,3 +145,33 @@ No production/customer mutation.
 ## Required stop
 
 `STAGE 5 INDEPENDENT CORRECTIVE RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+
+---
+
+## Builder Stage 5 F-05 correction report
+
+**Status:** `STAGE 5 F-05 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/08-stage5-f05-correction.md`
+
+**Root cause:** `listReceiptsForMission`'s absence check (`!existsSync(missionDir)`) followed symlinks/junctions and could not distinguish "no filesystem entry at all" from "an entry exists here, but it is a dangling symlink/junction whose target is missing" -- exactly the ambiguity Codex's collected metadata (`existsSync: false`, `lstatSync(...).isSymbolicLink(): true`) proved.
+
+**S5-F-05 correction:** absence detection now uses non-following `lstatSync` metadata via two small, exported, directly-testable pure functions (`isGenuineAbsenceError`, `classifyMissionDirectoryPresence`) instead of `existsSync` alone. A dangling/unresolved entry is now classified present-but-unsafe and fails closed through the existing, unmodified `INVALID_OR_UNSAFE` path -- never treated as absence. No new reconciliation state was introduced; `assertPhysicallyContained` was not modified.
+
+**Genuine-absence result:** unaffected -- a truly never-created receipts directory still classifies `ELIGIBLE_UNPROCESSED`.
+
+**Dangling-entry result:** a real planted-then-target-removed Windows junction (Codex's exact reproduction shape) now classifies `INVALID_OR_UNSAFE`, `retry_eligible: true`, never `ELIGIBLE_UNPROCESSED`.
+
+**Prior S5-F-01/F-02 regression:** `ENOTDIR`, receipt-shaped non-file entries, malformed/schema-invalid receipts, and the S5-F-01 outside-root live-junction case all remain unchanged and fail closed.
+
+**S5-F-03/F-04 regression:** neither `envelope-location.ts` nor the duplicate/conflict logic was touched this round; their full, unmodified test suites passed unchanged.
+
+**Stage 2A regression:** unchanged -- `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
+
+**Regression genuineness:** the fix was temporarily reverted in place and the full `reconcile.test.ts` suite re-run -- exactly the 2 expected tests failed, with zero collateral damage to the other 47.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **346/346 passing**, 28 files (+10 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
+
+**Applicable CI:** see the durable report, Section 13, once confirmed.
+
+**Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

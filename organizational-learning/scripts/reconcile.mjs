@@ -61,6 +61,7 @@ import {
   existsSync,
   unlinkSync,
   realpathSync,
+  lstatSync,
 } from "node:fs";
 import { join, dirname, relative, isAbsolute } from "node:path";
 import { execFileSync } from "node:child_process";
@@ -197,37 +198,148 @@ export function readAndValidateReceiptFile(filePath) {
  * making an unsafe/ambiguous durable store indistinguishable from
  * genuine absence and able to produce new work-producing classification.
  *
+ * S5-F-05 correction (communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/28-stage5-f05-correction-authorization.md): independent
+ * corrective re-verification found the S5-F-02 fix's own absence check,
+ * `!existsSync(missionDir)`, is itself unsafe. `existsSync` follows
+ * symlinks/junctions and reports `false` when the *target* cannot be
+ * resolved -- it does not prove the directory *entry* is absent. A
+ * dangling junction/symlink planted at the mission storage path (target
+ * removed or never created) makes `existsSync` return `false` while the
+ * entry itself still exists, so the old code took the "genuine absence"
+ * branch and reconciliation incorrectly reached `ELIGIBLE_UNPROCESSED`
+ * instead of failing closed -- exactly reversing the S5-F-02 guarantee
+ * for this one case. `lstatSync` (unlike `existsSync`/`statSync`) never
+ * follows the final path component: it throws `ENOENT` only when no
+ * entry exists there at all, and succeeds for a symlink/junction entry
+ * regardless of whether its target resolves. That is the correct, non-
+ * following existence check absence detection must use.
+ *
  * The fix distinguishes, in order:
- *   1. genuine absence (`!existsSync(missionDir)`) -- the only case that
- *      may truthfully mean no receipts, with zero issues;
- *   2. physical-indirection failure (reusing the exact, unmodified
+ *   1. genuine absence (`lstatSync` throws `ENOENT`) -- the only case
+ *      that may truthfully mean no receipts, with zero issues;
+ *   2. an `lstatSync`-visible entry that `existsSync` cannot resolve --
+ *      a dangling/unresolved symlink or junction -- an issue, zero
+ *      receipts, never treated as absence;
+ *   3. any other `lstatSync` failure (permission/I/O, an unreadable
+ *      parent path component) -- an issue, zero receipts, never treated
+ *      as absence;
+ *   4. physical-indirection failure (reusing the exact, unmodified
  *      Stage 1 `assertPhysicallyContained` primitive on the mission
  *      directory itself) -- an issue, zero receipts;
- *   3. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
+ *   5. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
  *      issue, zero receipts;
- *   4. per entry: physical-indirection failure on that specific file (a
+ *   6. per entry: physical-indirection failure on that specific file (a
  *      nested symlink even inside an otherwise-legitimate directory) --
  *      an issue for that entry, not merely for the directory as a whole;
- *   5. per entry: a receipt-shaped (`.json`) entry that is not a regular
+ *   7. per entry: a receipt-shaped (`.json`) entry that is not a regular
  *      file (e.g. a directory literally named `blocked.json`) -- an
  *      issue, not silently skipped the way a non-`.json` entry is;
- *   6. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
+ *   8. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
  *      unchanged) -- an issue.
  *
  * `classifyEnvelope` still treats *any* non-empty `issues` array as
  * blocking (see below) -- this function's job is only to classify each
  * problem accurately and safely, never to decide reconciliation policy.
  */
+
+/**
+ * True only for the one error `lstatSync` raises when no filesystem
+ * entry exists at all at a path -- `ENOENT`. Isolated as its own pure
+ * function (S5-F-05) so the "is this genuine absence" decision is
+ * directly unit-testable with a synthetic error object, since reliably
+ * forcing a real, *non*-`ENOENT` `lstatSync` failure (permission denial,
+ * an unreadable parent path component) is not portably constructible on
+ * Windows/CI -- confirmed empirically while writing this fix: even a
+ * parent path component that is itself an ordinary file, or itself a
+ * dangling link, both still surface as `ENOENT` on this platform, not a
+ * distinct code.
+ */
+export function isGenuineAbsenceError(error) {
+  return Boolean(error && error.code === "ENOENT");
+}
+
+/**
+ * Classifies the mission storage directory's filesystem-entry presence
+ * using non-following `lstatSync` metadata, never `existsSync` alone
+ * (S5-F-05 correction, communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/28-stage5-f05-correction-authorization.md):
+ * independent corrective re-verification found the prior `!existsSync`
+ * absence check is itself unsafe. `existsSync` follows symlinks/
+ * junctions and reports `false` when the *target* cannot be resolved --
+ * it does not prove the directory *entry* is absent. A dangling
+ * junction/symlink planted at the mission storage path (target removed
+ * or never created) made `existsSync` return `false` while the entry
+ * itself still existed, so the prior code took the "genuine absence"
+ * branch and reconciliation incorrectly reached `ELIGIBLE_UNPROCESSED`
+ * instead of failing closed. `lstatSync` never follows the final path
+ * component: it throws `ENOENT` only when no entry exists there at all,
+ * and succeeds for a symlink/junction entry regardless of whether its
+ * target resolves -- the correct, non-following existence check.
+ *
+ * Exported for direct testing (dangling-entry construction is real and
+ * platform-supported here; see reconcile.test.ts).
+ */
+export function classifyMissionDirectoryPresence(missionDir) {
+  try {
+    lstatSync(missionDir);
+  } catch (error) {
+    if (isGenuineAbsenceError(error)) {
+      // No filesystem entry at all at this path, not even a dangling
+      // link -- genuinely absent. Truthfully means no receipt has ever
+      // been written for this mission.
+      return { status: "ABSENT" };
+    }
+    // Some other metadata failure (permission denial, an unreadable
+    // parent path component, I/O error) -- ambiguous, never absence.
+    return { status: "METADATA_UNAVAILABLE" };
+  }
+  if (!existsSync(missionDir)) {
+    // An entry exists at this exact path (the lstat above succeeded),
+    // but the entry does not resolve through symlink/junction following
+    // -- a dangling or otherwise unresolved indirection. Present, but
+    // unsafe: must never be treated as absence.
+    return { status: "DANGLING_OR_UNRESOLVED" };
+  }
+  return { status: "PRESENT" };
+}
+
+/**
+ * The fix distinguishes, in order:
+ *   1. genuine absence (`classifyMissionDirectoryPresence` -> `ABSENT`)
+ *      -- the only case that may truthfully mean no receipts, with zero
+ *      issues;
+ *   2. a dangling/unresolved symlink or junction (-> `DANGLING_OR_
+ *      UNRESOLVED`) -- an issue, zero receipts, never treated as absence;
+ *   3. any other lstat metadata failure (-> `METADATA_UNAVAILABLE`) --
+ *      an issue, zero receipts, never treated as absence;
+ *   4. physical-indirection failure (reusing the exact, unmodified
+ *      Stage 1 `assertPhysicallyContained` primitive on the mission
+ *      directory itself) -- an issue, zero receipts;
+ *   5. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
+ *      issue, zero receipts;
+ *   6. per entry: physical-indirection failure on that specific file (a
+ *      nested symlink even inside an otherwise-legitimate directory) --
+ *      an issue for that entry, not merely for the directory as a whole;
+ *   7. per entry: a receipt-shaped (`.json`) entry that is not a regular
+ *      file (e.g. a directory literally named `blocked.json`) -- an
+ *      issue, not silently skipped the way a non-`.json` entry is;
+ *   8. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
+ *      unchanged) -- an issue.
+ */
 function listReceiptsForMission(receiptsDir, missionId) {
   const key = computeMissionStorageKey(missionId);
   const missionDir = resolveContainedPath(receiptsDir, key);
 
-  if (!existsSync(missionDir)) {
-    // Genuinely absent -- truthfully means no receipt has ever been
-    // written for this mission. Never reached for a path that exists but
-    // is the wrong type (e.g. an ordinary file, which readdir below
-    // handles instead) or is a dangling/unreadable indirection.
+  const presence = classifyMissionDirectoryPresence(missionDir);
+  if (presence.status === "ABSENT") {
     return { receipts: [], issues: [] };
+  }
+  if (presence.status === "DANGLING_OR_UNRESOLVED") {
+    return { receipts: [], issues: [{ path: key, condition: "DANGLING_OR_UNRESOLVED_ENTRY" }] };
+  }
+  if (presence.status === "METADATA_UNAVAILABLE") {
+    return { receipts: [], issues: [{ path: key, condition: "ENTRY_METADATA_UNAVAILABLE" }] };
   }
 
   try {

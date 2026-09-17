@@ -20,7 +20,15 @@
 import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
 import { spawnSync, execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, readFileSync, writeFileSync, symlinkSync } from "node:fs";
+import {
+  mkdtempSync,
+  mkdirSync,
+  rmSync,
+  readFileSync,
+  writeFileSync,
+  symlinkSync,
+  existsSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import {
@@ -31,6 +39,8 @@ import {
   releaseReconciliationOwnership,
   isLocked,
   readAndValidateReceiptFile,
+  classifyMissionDirectoryPresence,
+  isGenuineAbsenceError,
 } from "../scripts/reconcile.mjs";
 import {
   writeReceipt,
@@ -61,6 +71,17 @@ function plantDirectoryIndirection(linkPath: string, target: string): void {
   mkdirSync(dirname(linkPath), { recursive: true });
   mkdirSync(target, { recursive: true });
   symlinkSync(target, linkPath, process.platform === "win32" ? "junction" : "dir");
+}
+
+/** Plants a real symlink/junction, then removes its target, leaving the
+ * link entry itself dangling -- the exact S5-F-05 fixture shape. Verified
+ * empirically on this Windows environment: `existsSync` on the resulting
+ * path is `false` (it follows the link to a now-missing target) while
+ * `lstatSync` still succeeds (the link entry itself is present). */
+function plantDanglingDirectoryIndirection(linkPath: string): void {
+  const target = `${linkPath}-dangling-target`;
+  plantDirectoryIndirection(linkPath, target);
+  rmSync(target, { recursive: true, force: true });
 }
 
 function blobShaFor(repo: EphemeralGitRepo, path: string): string {
@@ -1502,6 +1523,247 @@ describe("Stage 5 S5-F-04 correction -- duplicate/conflicting envelope processin
     } finally {
       fixtureA.repo.cleanup();
       rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-05 correction -- dangling receipt-directory indirection is not genuine absence", () => {
+  it("classifyMissionDirectoryPresence: a genuinely absent path is ABSENT", () => {
+    const receiptsDir = tempDir("ole-reconcile-f05-presence-absent-");
+    const missionDir = join(receiptsDir, "never-created-key");
+    try {
+      expect(classifyMissionDirectoryPresence(missionDir).status).toBe("ABSENT");
+    } finally {
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("classifyMissionDirectoryPresence: a real dangling junction is DANGLING_OR_UNRESOLVED, never ABSENT", () => {
+    const receiptsDir = tempDir("ole-reconcile-f05-presence-dangling-");
+    const missionDir = join(receiptsDir, "danglingkey");
+    try {
+      plantDanglingDirectoryIndirection(missionDir);
+      // Confirm the exact ambiguity this correction addresses: existsSync
+      // reports false (it follows the link to a missing target), while
+      // the corrected presence classifier still correctly reports the
+      // entry as present-but-unresolved, not absent.
+      expect(existsSync(missionDir)).toBe(false);
+      expect(classifyMissionDirectoryPresence(missionDir).status).toBe("DANGLING_OR_UNRESOLVED");
+    } finally {
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("classifyMissionDirectoryPresence: an ordinary present directory is PRESENT", () => {
+    const receiptsDir = tempDir("ole-reconcile-f05-presence-ordinary-");
+    const missionDir = join(receiptsDir, "ordinarykey");
+    try {
+      mkdirSync(missionDir, { recursive: true });
+      expect(classifyMissionDirectoryPresence(missionDir).status).toBe("PRESENT");
+    } finally {
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("isGenuineAbsenceError: true only for ENOENT, proving the non-ENOENT branch never means absence", () => {
+    // Forcing a real, non-ENOENT lstatSync failure is not portably
+    // constructible on Windows/CI (confirmed empirically while writing
+    // this fix -- see the code comment in reconcile.mjs): an ordinary
+    // file or a dangling link as a PARENT path component both still
+    // surface ENOENT on this platform, not a distinct code. This directly
+    // tests the actual decision function production code calls, with
+    // synthetic error objects, rather than weakening or mocking the real
+    // filesystem call.
+    expect(isGenuineAbsenceError({ code: "ENOENT" })).toBe(true);
+    expect(isGenuineAbsenceError({ code: "EACCES" })).toBe(false);
+    expect(isGenuineAbsenceError({ code: "EIO" })).toBe(false);
+    expect(isGenuineAbsenceError({ code: "ENOTDIR" })).toBe(false);
+    expect(isGenuineAbsenceError(new Error("no code property"))).toBe(false);
+    expect(isGenuineAbsenceError(null)).toBe(false);
+  });
+
+  it("a dangling mission-directory junction fails closed to INVALID_OR_UNSAFE, never ELIGIBLE_UNPROCESSED -- Codex's exact S5-F-05 reproduction", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F05-DANGLING";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f05-receipts-dangling-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDanglingDirectoryIndirection(join(receiptsDir, key));
+
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f05-locks-dangling-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+      expect(result.retry_eligible).toBe(true);
+      expect(result.needs_human_reconciliation).toBe(true);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("a genuinely absent mission receipt directory still allows normal first-processing behavior", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F05-ABSENT-CONTROL", "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f05-receipts-absent-control-");
+    try {
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: join(receiptsDir, "never-created"),
+        locksDir: tempDir("ole-reconcile-f05-locks-absent-control-"),
+      });
+      expect(result.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: prior S5-F-02 ENOTDIR and receipt-shaped non-file cases remain fail closed", () => {
+    const enotdirMissionId = "SB-TEST-FIXTURE-5-F05-REGRESSION-ENOTDIR";
+    const nonFileMissionId = "SB-TEST-FIXTURE-5-F05-REGRESSION-NONFILE";
+    const fixtureEnotdir = buildFixture(enotdirMissionId, "rev-1");
+    const fixtureNonFile = buildFixture(nonFileMissionId, "rev-1");
+    const receiptsDirEnotdir = tempDir("ole-reconcile-f05-receipts-enotdir-");
+    const receiptsDirNonFile = tempDir("ole-reconcile-f05-receipts-nonfile-");
+    try {
+      mkdirSync(receiptsDirEnotdir, { recursive: true });
+      writeFileSync(
+        join(receiptsDirEnotdir, computeMissionStorageKey(enotdirMissionId)),
+        "not a directory",
+        "utf8",
+      );
+      const enotdirResult = classifyEnvelope(fixtureEnotdir.envelope, {
+        repoRoot: fixtureEnotdir.repo.root,
+        receiptsDir: receiptsDirEnotdir,
+        locksDir: tempDir("ole-reconcile-f05-locks-enotdir-"),
+      });
+      expect(enotdirResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(enotdirResult.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+
+      mkdirSync(
+        join(receiptsDirNonFile, computeMissionStorageKey(nonFileMissionId), "blocked.json"),
+        { recursive: true },
+      );
+      const nonFileResult = classifyEnvelope(fixtureNonFile.envelope, {
+        repoRoot: fixtureNonFile.repo.root,
+        receiptsDir: receiptsDirNonFile,
+        locksDir: tempDir("ole-reconcile-f05-locks-nonfile-"),
+      });
+      expect(nonFileResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(nonFileResult.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixtureEnotdir.repo.cleanup();
+      fixtureNonFile.repo.cleanup();
+      rmSync(receiptsDirEnotdir, { recursive: true, force: true });
+      rmSync(receiptsDirNonFile, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: malformed-JSON and schema-invalid receipt cases remain fail closed without echoing a canary", () => {
+    const malformedMissionId = "SB-TEST-FIXTURE-5-F05-REGRESSION-MALFORMED";
+    const schemaInvalidMissionId = "SB-TEST-FIXTURE-5-F05-REGRESSION-SCHEMA-INVALID";
+    const fixtureMalformed = buildFixture(malformedMissionId, "rev-1");
+    const fixtureSchemaInvalid = buildFixture(schemaInvalidMissionId, "rev-1");
+    const receiptsDirMalformed = tempDir("ole-reconcile-f05-receipts-malformed-");
+    const receiptsDirSchemaInvalid = tempDir("ole-reconcile-f05-receipts-schema-invalid-");
+    try {
+      const malformedMissionDir = join(
+        receiptsDirMalformed,
+        computeMissionStorageKey(malformedMissionId),
+      );
+      mkdirSync(malformedMissionDir, { recursive: true });
+      const canary = "AKIA8888888888888888";
+      writeFileSync(join(malformedMissionDir, "corrupt.json"), `{"secret": "${canary}",`, "utf8");
+      const malformedResult = classifyEnvelope(fixtureMalformed.envelope, {
+        repoRoot: fixtureMalformed.repo.root,
+        receiptsDir: receiptsDirMalformed,
+        locksDir: tempDir("ole-reconcile-f05-locks-malformed-"),
+      });
+      expect(malformedResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(JSON.stringify(malformedResult)).not.toContain(canary);
+
+      const schemaInvalidMissionDir = join(
+        receiptsDirSchemaInvalid,
+        computeMissionStorageKey(schemaInvalidMissionId),
+      );
+      mkdirSync(schemaInvalidMissionDir, { recursive: true });
+      writeFileSync(
+        join(schemaInvalidMissionDir, "not-a-receipt.json"),
+        JSON.stringify({ not: "a valid receipt" }),
+        "utf8",
+      );
+      const schemaInvalidResult = classifyEnvelope(fixtureSchemaInvalid.envelope, {
+        repoRoot: fixtureSchemaInvalid.repo.root,
+        receiptsDir: receiptsDirSchemaInvalid,
+        locksDir: tempDir("ole-reconcile-f05-locks-schema-invalid-"),
+      });
+      expect(schemaInvalidResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+    } finally {
+      fixtureMalformed.repo.cleanup();
+      fixtureSchemaInvalid.repo.cleanup();
+      rmSync(receiptsDirMalformed, { recursive: true, force: true });
+      rmSync(receiptsDirSchemaInvalid, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-01 outside-root live-junction case remains fail closed", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F05-REGRESSION-S5F01";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f05-receipts-s5f01-");
+    const outsideDir = tempDir("ole-reconcile-f05-outside-s5f01-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDirectoryIndirection(join(receiptsDir, key), outsideDir);
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f05-locks-s5f01-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: genuine Stage 2A real data remains ALREADY_PROCESSED with the exact genuine fingerprint", () => {
+    const repo = createEphemeralGitRepo();
+    try {
+      const realEnvelope = JSON.parse(readFileSync(REAL_ENVELOPE_PATH, "utf8"));
+      const evidencePaths: string[] = [
+        ...realEnvelope.acceptance_refs,
+        ...realEnvelope.closure_refs,
+      ];
+      let commitSha = "";
+      for (const relativePath of evidencePaths) {
+        const blobShaAtHead = execFileSync("git", ["rev-parse", `HEAD:${relativePath}`], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        }).trim();
+        const content = execFileSync("git", ["cat-file", "-p", blobShaAtHead], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        });
+        commitSha = repo.commitFile(relativePath, content);
+      }
+      const remappedEnvelope = { ...realEnvelope, source_snapshot_ref: commitSha };
+
+      const result = classifyEnvelope(remappedEnvelope, {
+        repoRoot: repo.root,
+        receiptsDir: REAL_RECEIPTS_DIR,
+        locksDir: tempDir("ole-reconcile-f05-locks-stage2a-"),
+      });
+      expect(result.reconciliation_state).toBe("ALREADY_PROCESSED");
+      expect(result.source_fingerprint).toBe(
+        "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475",
+      );
+    } finally {
+      repo.cleanup();
     }
   });
 });
