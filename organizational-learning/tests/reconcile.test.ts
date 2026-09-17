@@ -20,7 +20,7 @@
 import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
 import { spawnSync, execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
@@ -30,6 +30,7 @@ import {
   attemptReconciliationOwnership,
   releaseReconciliationOwnership,
   isLocked,
+  readAndValidateReceiptFile,
 } from "../scripts/reconcile.mjs";
 import { writeReceipt, computeMissionStorageKey } from "../lib/receipt-store.ts";
 import { computeSourceFingerprint, sortManifest } from "../lib/fingerprint.ts";
@@ -112,7 +113,12 @@ function buildFixture(missionId: string, closureRevision: string) {
 describe("Stage 4A: mandatory case A -- structured discovery only", () => {
   it("enumerates only .json files under --envelopes-dir; a prose file that claims closure creates no work", () => {
     const fixture = buildFixture("SB-TEST-FIXTURE-4A-DISCOVERY", "rev-1");
-    const envelopesDir = tempDir("ole-reconcile-discovery-");
+    // Nested under the ephemeral repo's own communication/missions/ tree
+    // -- S4A-F-01 now requires the envelope FILE itself, not just its
+    // referenced evidence, to sit at an approved location relative to
+    // repoRoot.
+    const envelopesDir = join(fixture.repo.root, "communication", "missions", "discovery-fixture");
+    mkdirSync(envelopesDir, { recursive: true });
     const receiptsDir = tempDir("ole-reconcile-receipts-");
     const locksDir = tempDir("ole-reconcile-locks-");
     const outDir = tempDir("ole-reconcile-out-");
@@ -384,7 +390,9 @@ describe("Stage 4A: mandatory case G -- replay/idempotency", () => {
   it("produces byte-identical plans across repeated planReconciliation calls with identical input", () => {
     const fixture = buildFixture("SB-TEST-FIXTURE-4A-REPLAY", "rev-1");
     const receiptsDir = tempDir("ole-reconcile-receipts-g-");
-    const envelopePath = join(tempDir("ole-reconcile-envelopes-g-"), "envelope.json");
+    const envelopeDirG = join(fixture.repo.root, "communication", "missions", "replay-fixture");
+    mkdirSync(envelopeDirG, { recursive: true });
+    const envelopePath = join(envelopeDirG, "envelope.json");
     try {
       writeFileSync(envelopePath, JSON.stringify(fixture.envelope), "utf8");
       const locksDir = tempDir("ole-reconcile-locks-g-");
@@ -467,7 +475,8 @@ describe("Stage 4A: mandatory case H -- concurrency (safe local proof mechanism)
     const fixture = buildFixture("SB-TEST-FIXTURE-4A-LOCK-CLI", "rev-1");
     const receiptsDir = tempDir("ole-reconcile-receipts-hcli-");
     const locksDir = tempDir("ole-reconcile-locks-hcli-");
-    const envelopeDir = tempDir("ole-reconcile-envelopes-hcli-");
+    const envelopeDir = join(fixture.repo.root, "communication", "missions", "lock-cli-fixture");
+    mkdirSync(envelopeDir, { recursive: true });
     const out1 = tempDir("ole-reconcile-out-hcli1-");
     const out2 = tempDir("ole-reconcile-out-hcli2-");
     try {
@@ -581,7 +590,15 @@ describe("Stage 4A: mandatory case J -- recovery from intermediate durable state
 
 describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", () => {
   it("rejects unparseable JSON without echoing a synthetic secret-shaped canary, and creates no work item", () => {
-    const envelopeDir = tempDir("ole-reconcile-envelopes-k-");
+    // A plain (non-git) fake repo root, never the real checkout -- these
+    // two malformed-input fixtures never reach a git operation, and
+    // placing the fixture under a fake repoRoot's own communication/
+    // missions/ tree (instead of the real tracked repository) is what
+    // lets the fixture satisfy the S4A-F-01 approved-location check
+    // without ever writing a stray file into the real repo.
+    const fakeRepoRoot = tempDir("ole-reconcile-reporoot-k-");
+    const envelopeDir = join(fakeRepoRoot, "communication", "missions");
+    mkdirSync(envelopeDir, { recursive: true });
     const receiptsDir = tempDir("ole-reconcile-receipts-k-");
     const locksDir = tempDir("ole-reconcile-locks-k-");
     try {
@@ -590,7 +607,7 @@ describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", ()
       writeFileSync(malformedPath, `{"mission_id": "${canary}"`, "utf8");
 
       const plan = planReconciliation({
-        repoRoot: REPO_ROOT,
+        repoRoot: fakeRepoRoot,
         receiptsDir,
         locksDir,
         envelopePaths: [malformedPath],
@@ -600,14 +617,16 @@ describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", ()
       expect(plan.rejected_inputs[0].reason).toBe("envelope file is not valid JSON");
       expect(JSON.stringify(plan)).not.toContain(canary);
     } finally {
-      rmSync(envelopeDir, { recursive: true, force: true });
+      rmSync(fakeRepoRoot, { recursive: true, force: true });
       rmSync(receiptsDir, { recursive: true, force: true });
       rmSync(locksDir, { recursive: true, force: true });
     }
   });
 
   it("rejects a syntactically valid but schema-invalid envelope, creating no work item", () => {
-    const envelopeDir = tempDir("ole-reconcile-envelopes-k2-");
+    const fakeRepoRoot = tempDir("ole-reconcile-reporoot-k2-");
+    const envelopeDir = join(fakeRepoRoot, "communication", "missions");
+    mkdirSync(envelopeDir, { recursive: true });
     const receiptsDir = tempDir("ole-reconcile-receipts-k2-");
     const locksDir = tempDir("ole-reconcile-locks-k2-");
     try {
@@ -615,7 +634,7 @@ describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", ()
       writeFileSync(invalidPath, JSON.stringify({ mission_id: "not-a-valid-id" }), "utf8");
 
       const plan = planReconciliation({
-        repoRoot: REPO_ROOT,
+        repoRoot: fakeRepoRoot,
         receiptsDir,
         locksDir,
         envelopePaths: [invalidPath],
@@ -624,7 +643,7 @@ describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", ()
       expect(plan.rejected_inputs).toHaveLength(1);
       expect(plan.rejected_inputs[0].reason).toBe("envelope failed schema validation");
     } finally {
-      rmSync(envelopeDir, { recursive: true, force: true });
+      rmSync(fakeRepoRoot, { recursive: true, force: true });
       rmSync(receiptsDir, { recursive: true, force: true });
       rmSync(locksDir, { recursive: true, force: true });
     }
@@ -643,6 +662,121 @@ describe("Stage 4A: mandatory case K -- malformed/unsafe input fails closed", ()
       expect(result.retry_eligible).toBe(true);
       expect(result.source_fingerprint).toBeNull();
     } finally {
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 4A F-01 correction -- approved closure-envelope location boundary", () => {
+  it("rejects a schema-valid envelope passed directly via --envelope when its location is unapproved, without bypass", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-4A-F01-DIRECT", "rev-1");
+    // Deliberately NOT under <repo.root>/communication/missions/ -- an
+    // ordinary sibling directory of the repo root.
+    const unapprovedDir = tempDir("ole-reconcile-f01-unapproved-direct-");
+    const receiptsDir = tempDir("ole-reconcile-f01-receipts-direct-");
+    try {
+      const canary = "AKIA1111111111111111";
+      const envelopeWithCanary = { ...fixture.envelope, mission_id: canary };
+      const unapprovedPath = join(unapprovedDir, "envelope.json");
+      writeFileSync(unapprovedPath, JSON.stringify(envelopeWithCanary), "utf8");
+
+      const plan = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f01-locks-direct-"),
+        envelopePaths: [unapprovedPath],
+      });
+      expect(plan.work_items).toHaveLength(0);
+      expect(plan.rejected_inputs).toHaveLength(1);
+      expect(plan.rejected_inputs[0].reason).toBe(
+        "envelope location is not an approved closure-envelope location",
+      );
+      // Caller knowledge of the exact --envelope path is not a bypass:
+      // the same schema-valid content at an unapproved location is
+      // rejected regardless of whether it was discovered via
+      // --envelopes-dir or supplied directly via --envelope.
+      expect(JSON.stringify(plan)).not.toContain(canary);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(unapprovedDir, { recursive: true, force: true });
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects an unapproved --envelopes-dir directory even though it contains one otherwise-valid envelope", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-4A-F01-DIR", "rev-1");
+    const unapprovedDir = tempDir("ole-reconcile-f01-unapproved-dir-");
+    const receiptsDir = tempDir("ole-reconcile-f01-receipts-dir-");
+    const locksDir = tempDir("ole-reconcile-f01-locks-dir-");
+    const outDir = tempDir("ole-reconcile-f01-out-dir-");
+    try {
+      writeFileSync(join(unapprovedDir, "envelope.json"), JSON.stringify(fixture.envelope), "utf8");
+
+      const result = runReconcile([
+        "--envelopes-dir",
+        unapprovedDir,
+        "--repo-root",
+        fixture.repo.root,
+        "--receipts-dir",
+        receiptsDir,
+        "--locks-dir",
+        locksDir,
+        "--out-dir",
+        outDir,
+      ]);
+      expect(result.exitCode).toBe(0);
+      const plan = JSON.parse(readFileSync(join(outDir, "reconciliation-plan.json"), "utf8"));
+      expect(plan.work_items).toHaveLength(0);
+      expect(plan.rejected_inputs).toHaveLength(1);
+      expect(plan.rejected_inputs[0].reason).toBe(
+        "envelope location is not an approved closure-envelope location",
+      );
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(unapprovedDir, { recursive: true, force: true });
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(locksDir, { recursive: true, force: true });
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+
+  it("accepts an approved-location envelope and rejects an unapproved one in the same run, independently", () => {
+    const fixtureApproved = buildFixture("SB-TEST-FIXTURE-4A-F01-MIXED-OK", "rev-1");
+    const approvedDir = join(
+      fixtureApproved.repo.root,
+      "communication",
+      "missions",
+      "mixed-fixture",
+    );
+    mkdirSync(approvedDir, { recursive: true });
+    const unapprovedDir = tempDir("ole-reconcile-f01-unapproved-mixed-");
+    const receiptsDir = tempDir("ole-reconcile-f01-receipts-mixed-");
+    try {
+      const approvedPath = join(approvedDir, "envelope.json");
+      writeFileSync(approvedPath, JSON.stringify(fixtureApproved.envelope), "utf8");
+      const unapprovedPath = join(unapprovedDir, "envelope.json");
+      writeFileSync(
+        unapprovedPath,
+        JSON.stringify({
+          ...fixtureApproved.envelope,
+          mission_id: "SB-TEST-FIXTURE-4A-F01-MIXED-BAD",
+        }),
+        "utf8",
+      );
+
+      const plan = planReconciliation({
+        repoRoot: fixtureApproved.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f01-locks-mixed-"),
+        envelopePaths: [approvedPath, unapprovedPath],
+      });
+      expect(plan.work_items).toHaveLength(1);
+      expect(plan.work_items[0].mission_id).toBe("SB-TEST-FIXTURE-4A-F01-MIXED-OK");
+      expect(plan.rejected_inputs).toHaveLength(1);
+      expect(plan.rejected_inputs[0].source).toBe(unapprovedPath);
+    } finally {
+      fixtureApproved.repo.cleanup();
+      rmSync(unapprovedDir, { recursive: true, force: true });
       rmSync(receiptsDir, { recursive: true, force: true });
     }
   });
@@ -697,7 +831,8 @@ describe("Stage 4A: mandatory case L -- deterministic ordering", () => {
   it("keeps work_items in mission_id::closure_revision order when discovered together via one repo", () => {
     const repo = createEphemeralGitRepo();
     const receiptsDir = tempDir("ole-reconcile-receipts-l2-");
-    const envelopeDir = tempDir("ole-reconcile-envelopes-l2-");
+    const envelopeDir = join(repo.root, "communication", "missions", "order-fixture");
+    mkdirSync(envelopeDir, { recursive: true });
     try {
       const missionIds = [
         "SB-TEST-FIXTURE-4A-ORDER-Z",
@@ -801,5 +936,133 @@ describe("Stage 4A: mandatory case M -- no authority effect", () => {
     });
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain("--envelope");
+  });
+});
+
+describe("Stage 4A F-02 correction -- malformed durable receipt fails closed", () => {
+  it("blocks work when a malformed-JSON receipt exists for this mission, without echoing its canary bytes", () => {
+    const missionId = "SB-TEST-FIXTURE-4A-F02-MALFORMED-JSON";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02-receipts-json-");
+    const missionDir = join(receiptsDir, computeMissionStorageKey(missionId));
+    try {
+      mkdirSync(missionDir, { recursive: true });
+      const canary = "AKIA3333333333333333";
+      writeFileSync(join(missionDir, "corrupt.json"), `{"secret": "${canary}", "broken":`, "utf8");
+
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02-locks-json-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.retry_eligible).toBe(true);
+      expect(result.needs_human_reconciliation).toBe(true);
+      expect(result.reason).toContain("ambiguous");
+      expect(JSON.stringify(result)).not.toContain(canary);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks work when a schema-invalid receipt exists for this mission -- never ELIGIBLE_UNPROCESSED, never ALREADY_PROCESSED", () => {
+    const missionId = "SB-TEST-FIXTURE-4A-F02-SCHEMA-INVALID";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02-receipts-schema-");
+    const missionDir = join(receiptsDir, computeMissionStorageKey(missionId));
+    try {
+      mkdirSync(missionDir, { recursive: true });
+      writeFileSync(
+        join(missionDir, "not-a-receipt.json"),
+        JSON.stringify({ this_is: "not a valid receipt shape" }),
+        "utf8",
+      );
+
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02-locks-schema-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+      expect(result.reconciliation_state).not.toBe("ALREADY_PROCESSED");
+      expect(result.retry_eligible).toBe(true);
+      expect(result.needs_human_reconciliation).toBe(true);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("proves the equivalent read-failure branch directly -- forcing a genuinely permission-denied file is not portable across Windows/CI", () => {
+    // A directory path reaches the exact same readFileSync catch block an
+    // unreadable regular file (permission-denied, I/O error) would --
+    // this exercises the identical UNREADABLE branch listReceiptsForMission
+    // relies on, without depending on platform-specific file permissions.
+    const dir = tempDir("ole-reconcile-f02-unreadable-");
+    try {
+      const result = readAndValidateReceiptFile(dir);
+      expect(result.ok).toBe(false);
+      expect(result.condition).toBe("UNREADABLE");
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("is deterministic across replay, and normal classification resumes once the malformed receipt is repaired/removed", () => {
+    const missionId = "SB-TEST-FIXTURE-4A-F02-REPAIR";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02-receipts-repair-");
+    const missionDir = join(receiptsDir, computeMissionStorageKey(missionId));
+    const corruptPath = join(missionDir, "corrupt.json");
+    try {
+      mkdirSync(missionDir, { recursive: true });
+      writeFileSync(corruptPath, "{not valid json", "utf8");
+
+      const classifyArgs = {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02-locks-repair-"),
+      };
+      const first = classifyEnvelope(fixture.envelope, classifyArgs);
+      const second = classifyEnvelope(fixture.envelope, classifyArgs);
+      expect(first.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(JSON.stringify(second)).toBe(JSON.stringify(first));
+
+      rmSync(corruptPath);
+      const afterRepair = classifyEnvelope(fixture.envelope, classifyArgs);
+      expect(afterRepair.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks even a reopening closure -- ambiguous durable state is checked before reopen/supersede classification", () => {
+    const missionId = "SB-TEST-FIXTURE-4A-F02-REOPEN-BLOCKED";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f02-receipts-reopen-");
+    const missionDir = join(receiptsDir, computeMissionStorageKey(missionId));
+    try {
+      mkdirSync(missionDir, { recursive: true });
+      writeFileSync(join(missionDir, "corrupt.json"), "{not valid json", "utf8");
+
+      const reopeningEnvelope = {
+        ...fixture.envelope,
+        closure_revision: "rev-2",
+        reopens: "rev-1",
+      };
+      const result = classifyEnvelope(reopeningEnvelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f02-locks-reopen-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("SUPERSEDED_OR_REOPENED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
   });
 });

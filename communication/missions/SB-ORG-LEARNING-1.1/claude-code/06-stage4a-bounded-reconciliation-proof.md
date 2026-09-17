@@ -6,7 +6,7 @@
 **Stage:** `4 — Background automation / reconciliation implementation`
 **Sub-gate:** `4A — Bounded deterministic reconciliation wrapper`
 **Actor:** Claude Code — authorized Stage 4A builder
-**Status:** `STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+**Status:** `STAGE 4A F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 **Date:** 2026-09-17
 **Repository:** `SmartBusinessv1/smart-business`
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
@@ -188,7 +188,83 @@ All six applicable workflows passed on this head.
 
 ---
 
-## Required return summary
+## 13. Mission Control narrow correction — S4A-F-01 / S4A-F-02
+
+Mission Control's substantive review (`mission-control/21-...`/`22-stage4a-f01-f02-correction-authorization.md`) accepted the implementation above as substantially satisfactory but found two narrow blockers before Stage 4A could be accepted. This section records only the correction; Sections 1-12 above remain the unaltered original proof record.
+
+### 13.1 S4A-F-01 — approved closure-envelope location boundary
+
+**Finding:** the wrapper structurally filtered for `.json` files but never checked that the envelope FILE's own repository location was itself an approved place for closure envelopes to live. A schema-valid envelope at an arbitrary path, or an arbitrary `--envelopes-dir`, could enter classification merely because the caller supplied that path.
+
+**Correction:** a new, deliberately independent module, `organizational-learning/sources/envelope-location.ts` (`isApprovedClosureEnvelopeLocation`, `APPROVED_CLOSURE_ENVELOPE_ROOTS = ["communication/missions/"]`). It imports nothing from `sources/allowlist.ts` and is never derived from it, so a future change to evidence allowlisting can never silently widen envelope-location approval or vice versa. It never reads file content — location is a pure path-string decision relative to `repoRoot`, reusing `isSafeRelativePath` for traversal safety, computed identically whether `repoRoot` is the real checkout or an isolated ephemeral test repository.
+
+`planReconciliation` now checks this **first**, before a candidate envelope file is ever opened: an unapproved path is pushed to `rejected_inputs` with the fixed, safe reason `"envelope location is not an approved closure-envelope location"` and its content is never read.
+
+**Proof:**
+
+- Mandatory proof 1 (real envelope's location approved): a pure, git-free unit test asserts `isApprovedClosureEnvelopeLocation(REPO_ROOT, REAL_ENVELOPE_PATH)` is `true` for the actual Stage 2A envelope's actual repository path — no shallow-clone dependency, since this never touches git.
+- Mandatory proof 2 (unapproved copy rejected): the identical check against the same file content at an unapproved path returns `false`; a full integration test writes byte-identical schema-valid content into an unapproved directory and confirms `planReconciliation` produces zero work items.
+- Mandatory proof 3 (no bypass via `--envelope`): an unapproved file supplied directly via `--envelope` (not merely discovered under `--envelopes-dir`) is rejected identically — a synthetic secret-shaped canary embedded in its `mission_id` never appears anywhere in the rendered plan.
+- Mandatory proof 4 (unapproved directory via `--envelopes-dir`): a real `runReconcile` CLI invocation against an unapproved `--envelopes-dir` containing one otherwise-valid envelope produces `work_items: []` and one safe `rejected_inputs` entry.
+- Mandatory proof 5 (no raw echo): confirmed by the canary assertion above; the location check never opens the file, so there is no content to echo in the first place.
+- Additional proof: an approved-location envelope and an unapproved one submitted in the same run are classified independently — the approved one still produces a normal work item while the unapproved one is rejected, proving the boundary does not over-reject.
+- 7 additional unit tests in `organizational-learning/tests/envelope-location.test.ts` cover prefix look-alikes, case-sensitivity, extension-only inference, and non-existent-but-approved paths (the check is structural, never dependent on the file actually existing).
+
+### 13.2 S4A-F-02 — malformed durable receipt fails closed
+
+**Finding:** `listReceiptsForMission` silently skipped any receipt file that was unreadable, not valid JSON, or failed `ReceiptSchema` — an ambiguous/corrupt durable receipt for the mission being reconciled could be indistinguishable from no receipt at all, potentially yielding `ELIGIBLE_UNPROCESSED` or `NEW_CLOSURE_REVISION` when the true state was unknown.
+
+**Correction:** `listReceiptsForMission` now returns `{ receipts, issues }` instead of a bare array. Each candidate file is read through a single new chokepoint, `readAndValidateReceiptFile` (exported for direct testing), which reports exactly one of `UNREADABLE`, `INVALID_JSON`, or `SCHEMA_INVALID` instead of silently skipping. `classifyEnvelope` now checks `issues.length > 0` immediately after computing the fingerprint — **before** the reopen/supersede branch and every other receipt-dependent branch — and unconditionally returns `INVALID_OR_UNSAFE` with `retry_eligible: true`, `needs_human_reconciliation: true`, naming only the receipt-store storage key + filename + condition (never raw file content or a parser error string).
+
+**Proof:**
+
+- Mandatory proof 1/2 (malformed JSON / schema-invalid receipt blocks work): two isolated-fixture tests each place one corrupt receipt file in a fresh mission's receipt directory; classification of an otherwise-eligible envelope for that mission returns `INVALID_OR_UNSAFE`, explicitly asserted `not.toBe("ELIGIBLE_UNPROCESSED")` and `not.toBe("ALREADY_PROCESSED")`.
+- Mandatory proof 3 (unreadable, portable): forcing a genuinely permission-denied file read is not reliably portable across Windows/CI (verified empirically on this exact Windows environment that ordinary file-attribute changes do not reliably block Node's own read as the file owner). Per the correction authorization's own explicit allowance, the equivalent failure branch is proven directly: `readAndValidateReceiptFile(<a directory path>)` reaches the identical `readFileSync` `catch` block a genuinely unreadable file would (empirically confirmed `EISDIR` is thrown consistently by this Node/Windows combination) and returns `{ok: false, condition: "UNREADABLE"}`.
+- Mandatory proof 4/8 (deterministic, safe to retry after repair): one test classifies twice against the same corrupt fixture (byte-identical `INVALID_OR_UNSAFE` result both times), then removes the corrupt file and reclassifies, confirming normal `ELIGIBLE_UNPROCESSED` classification resumes.
+- Mandatory proof 5 (no canary echo): a synthetic secret-shaped canary embedded in the corrupt (unparseable) receipt bytes never appears anywhere in the classification result.
+- Mandatory proof 6 (repaired fixture resumes normally): covered by the same repair test above.
+- Additional proof: a *reopening* envelope for a mission with a malformed receipt still returns `INVALID_OR_UNSAFE`, not `SUPERSEDED_OR_REOPENED` — confirming the check runs before every receipt-dependent branch, not only the two explicitly named in the finding.
+- The real Stage 2A receipt was never modified by this correction — no test in this correction ever writes to `organizational-learning/receipts/`; Section 6.B's real `ALREADY_PROCESSED` proof (Section 13.3 below) continues to pass unchanged against it.
+
+### 13.3 Regression confirmation — accepted Stage 4A behavior preserved
+
+- **Real Stage 2A no-op:** re-run of the exact same test as Section 6.B — still `ALREADY_PROCESSED`, fingerprint still `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`, byte-identical replay.
+- **New-revision / reopen / supersede:** Sections 6.D/E/F tests unchanged and still passing — `NEW_CLOSURE_REVISION`, `SUPERSEDED_OR_REOPENED` (both reopen and supersede) all classify identically to before.
+- **Concurrency:** Section 6.H's function-level and real two-process CLI tests unchanged and still passing.
+- **Recovery/retry:** Section 6.J's `HARVESTED`-resume test and Section 6.I's `FAILED_RETRYABLE`/"no material learning" test unchanged and still passing.
+- **Deterministic ordering / no-authority output:** Sections 6.L/M unchanged and still passing.
+- **CRLF methodology correction:** untouched; Section 6.B's ephemeral-repo/git-blob-read technique is reused verbatim.
+
+### 13.4 Files changed in this correction
+
+| Path                                                             | Change   | Purpose                                                                                       |
+| ----------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `organizational-learning/sources/envelope-location.ts`             | new      | S4A-F-01: the independent approved closure-envelope location boundary.                        |
+| `organizational-learning/tests/envelope-location.test.ts`          | new      | 8 focused unit tests for the location boundary, matching the one-module-one-test-file convention. |
+| `organizational-learning/scripts/reconcile.mjs`                    | modified | Wires the F-01 location check into `planReconciliation`; replaces `listReceiptsForMission`'s silent-skip with fail-closed `{receipts, issues}` (F-02) and a new exported `readAndValidateReceiptFile`. |
+| `organizational-learning/tests/reconcile.test.ts`                  | modified | Nests existing synthetic fixtures under an approved location (relative to each test's own `repoRoot`) so F-01 does not regress prior coverage; adds 3 new F-01 integration tests and 5 new F-02 tests. |
+| `organizational-learning/reconciliation/README.md`                 | modified | Documents the approved-location boundary as part of the discovery description.                |
+| `vitest.fast.config.ts`                                            | modified | Registers `envelope-location.test.ts` in the Fast Gate.                                       |
+
+No dependency was added. `package-lock.json` confirmed unchanged. No candidate, promotion, receipt, or the real Stage 2A envelope/receipt file was modified.
+
+### 13.5 Local verification (post-correction)
+
+- `npx tsc --noEmit` — clean.
+- `npx eslint organizational-learning/` — clean (two Prettier formatting issues auto-fixed with `--fix` before commit).
+- `npm run test:fast` — **322/322 passing**, 28 files (up from 306/27 — 16 new tests: 8 in `envelope-location.test.ts`, 3 new F-01 integration tests and 5 new F-02 tests in `reconcile.test.ts`; all 306 pre-existing tests unchanged).
+- `npm run build` — succeeds.
+- `npx prettier --check` — pass.
+- Markdown Quality Gate on this report and `communication/live/report.md` — PASS.
+- `package-lock.json` — confirmed unchanged.
+
+### 13.6 Real CI (S4A-F-01/F-02 correction)
+
+Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes.
+
+---
+
+## Required return summary (original Stage 4A proof, historical)
 
 - **Proof result:** all thirteen mandatory Stage 4A proof cases (Section 6, A-M) demonstrated successfully.
 - **Files changed:** 6 new files, 1 modified file (Section 3); 0 dependencies added; `package-lock.json` unchanged.
@@ -208,8 +284,30 @@ All six applicable workflows passed on this head.
 
 ---
 
-## Stop statement
+## Stop statement (original Stage 4A proof, historical)
 
 **STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED**
 
 Only the authorized bounded deterministic reconciliation wrapper was implemented and proved: structured discovery, deterministic work-item identity, all six required reconciliation states, idempotency, new-revision handling, reopen/supersession flagging, a safe local concurrency primitive, recovery/retry reasoning, fail-closed malformed-input handling, and deterministic output — composing only the already-accepted Stage 1-3 contracts and lib functions, with one narrow, strict, runtime-validated new schema. No semantic extraction, no candidate generation, no promotion, no publication, no provider/network call, no scheduler, and no authority effect occurred. Stage 4B is not authorized by this report.
+
+---
+
+## Required return summary — S4A-F-01/F-02 correction
+
+- **Files changed:** 2 new files, 4 modified files (Section 13.4); 0 dependencies added; `package-lock.json` unchanged.
+- **S4A-F-01 mechanism and proof:** new independent module `organizational-learning/sources/envelope-location.ts` (`isApprovedClosureEnvelopeLocation`, root `communication/missions/`), checked in `planReconciliation` before any envelope file is opened. Proven: real envelope's location approved (pure, git-free); byte-identical copy at an unapproved path rejected; no bypass via direct `--envelope`; unapproved `--envelopes-dir` produces zero work items; no raw-content echo; approved and unapproved envelopes classified independently in the same run (Section 13.1).
+- **S4A-F-02 mechanism and proof:** `listReceiptsForMission` now returns `{receipts, issues}`; any unreadable/malformed/schema-invalid receipt for the mission being reconciled unconditionally returns `INVALID_OR_UNSAFE` (`retry_eligible: true`, `needs_human_reconciliation: true`) before any other receipt-dependent branch runs. Proven: malformed-JSON and schema-invalid receipts both block work and are never `ELIGIBLE_UNPROCESSED`/`ALREADY_PROCESSED`; the equivalent unreadable-file branch proven directly and portably; deterministic across replay; normal classification resumes after repair; no canary echo; even a reopening envelope is blocked, not merely the two branches named in the finding (Section 13.2).
+- **Real Stage 2A no-op confirmation:** unchanged — still `ALREADY_PROCESSED`, fingerprint still `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`, byte-identical replay (Section 13.3).
+- **Concurrency/recovery regression result:** unchanged and still passing — one atomic owner/one busy result at both function and real two-process CLI level; `HARVESTED` resume and `VALIDATION_FAILED`/`FAILED_RETRYABLE` distinction both intact (Section 13.3).
+- **Safe-diagnostic result:** neither correction ever echoes raw envelope/receipt content, a parser error string, or a secret-shaped canary; both report only fixed condition labels and safe paths (storage-key hash + filename for receipts, caller-supplied path for envelopes).
+- **Local checks:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **322/322 passing** (28 files, +16 new tests, 0 regressions); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS; `package-lock.json` unchanged (Section 13.5).
+- **Real CI:** see Section 13.6.
+- **Scope confirmation:** no Stage 4B, no automated extraction, no provider/model/API integration, no scheduler/background workflow, no publisher/PR writer, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+
+---
+
+## Stop statement — S4A-F-01/F-02 correction
+
+**STAGE 4A F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
+
+Only the two authorized narrow corrections (S4A-F-01 approved closure-envelope location boundary; S4A-F-02 fail-closed malformed-receipt handling) were implemented and proved, on top of the already-accepted Stage 4A implementation, which remains otherwise unchanged. No Stage 4B work, no automated extraction, no provider/scheduler/publisher, no promotion, no governance/Product Truth/production mutation, and no authority effect occurred. Stage 4B is not authorized by this report. Stage 5 is not authorized. `SB-P-1.12` remains not activated.

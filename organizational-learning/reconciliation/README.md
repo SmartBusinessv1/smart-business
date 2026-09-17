@@ -27,10 +27,15 @@ A plan is never itself:
 
 Discovery is structural only: the wrapper enumerates exactly the
 explicit `--envelope` path(s) or `.json` files directly under an
-explicit `--envelopes-dir`, and validates every one against the
-accepted `ClosureEnvelopeSchema` before it can ever become a work item.
-An arbitrary prose file merely asserting a mission is closed is never
-opened for that purpose and can never create work.
+explicit `--envelopes-dir`, checks each one against the explicit
+approved closure-envelope location boundary
+(`organizational-learning/sources/envelope-location.ts` -- currently
+`communication/missions/**`, independent of evidence allowlisting), and
+only then validates it against the accepted `ClosureEnvelopeSchema`
+before it can ever become a work item. A schema-valid envelope outside
+that approved location, and an arbitrary prose file merely asserting a
+mission is closed, are both rejected without their contents ever being
+read for that purpose, and neither can create work.
 
 ## `locks/`
 

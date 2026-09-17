@@ -17,6 +17,11 @@
 // the safe next deterministic action is, by composing the already
 // accepted Stage 1-3 contracts and lib functions:
 //   - ClosureEnvelopeSchema / envelopeEvidenceRefs (envelope shape);
+//   - isApprovedClosureEnvelopeLocation (S4A-F-01 correction: an explicit,
+//     independent approved-location boundary for the envelope FILE itself,
+//     checked before the file is ever opened -- distinct from evidence
+//     allowlisting, which governs referenced evidence paths, not where the
+//     envelope lives);
 //   - isAllowlistedSourcePath, resolveBlobAtPath, verifyCommitExists
 //     (the identical evidence-resolution path harvest.mjs uses, reused
 //     read-only here -- no screening, no receipt write, no extraction);
@@ -59,6 +64,7 @@ import { ClosureEnvelopeSchema, envelopeEvidenceRefs } from "../schemas/closure-
 import { ReceiptSchema } from "../schemas/receipt.schema.ts";
 import { ReconciliationPlanSchema } from "../schemas/reconciliation.schema.ts";
 import { isAllowlistedSourcePath } from "../sources/allowlist.ts";
+import { isApprovedClosureEnvelopeLocation } from "../sources/envelope-location.ts";
 import { resolveBlobAtPath, verifyCommitExists } from "../lib/git-object-reader.ts";
 import { computeSourceFingerprint, sortManifest } from "../lib/fingerprint.ts";
 import {
@@ -100,10 +106,43 @@ function collectJsonFiles(dir) {
 }
 
 /**
- * Reads every schema-valid receipt already on file for `missionId`,
- * skipping (never throwing on) a missing mission directory or a corrupt
- * individual receipt file -- reconciliation must stay deterministic and
- * available even if one unrelated receipt file is damaged.
+ * Reads and schema-validates exactly one candidate receipt file, never
+ * throwing. This is the single chokepoint `listReceiptsForMission` uses
+ * for every file it considers, so "unreadable", "not valid JSON", and
+ * "schema-invalid" are all produced here (S4A-F-02 correction) -- and are
+ * directly testable in isolation, since reliably forcing a genuinely
+ * permission-denied file read is not portable across Windows/CI, but any
+ * path `readFileSync` cannot read (a permission-denied file, a directory
+ * passed by mistake, an I/O error) reaches the same UNREADABLE branch.
+ */
+export function readAndValidateReceiptFile(filePath) {
+  let raw;
+  try {
+    raw = readFileSync(filePath, "utf8");
+  } catch {
+    return { ok: false, condition: "UNREADABLE" };
+  }
+  let parsedJson;
+  try {
+    parsedJson = JSON.parse(raw);
+  } catch {
+    return { ok: false, condition: "INVALID_JSON" };
+  }
+  const parsed = ReceiptSchema.safeParse(parsedJson);
+  if (!parsed.success) {
+    return { ok: false, condition: "SCHEMA_INVALID" };
+  }
+  return { ok: true, receipt: parsed.data };
+}
+
+/**
+ * Reads every receipt already on file for `missionId`, returning both the
+ * schema-valid receipts AND any read/parse/validation issues found along
+ * the way. A missing mission directory is not an issue -- it truthfully
+ * means no receipt has ever been written for this mission. A file that
+ * exists but is unreadable, malformed, or schema-invalid IS an issue
+ * (S4A-F-02 correction): the caller must treat that as blocking ambiguous
+ * durable state, never as if the receipt were simply absent.
  */
 function listReceiptsForMission(receiptsDir, missionId) {
   const key = computeMissionStorageKey(missionId);
@@ -112,22 +151,26 @@ function listReceiptsForMission(receiptsDir, missionId) {
   try {
     entries = readdirSync(missionDir, { withFileTypes: true });
   } catch {
-    return [];
+    return { receipts: [], issues: [] };
   }
   const receipts = [];
+  const issues = [];
   const sorted = [...entries].sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   for (const entry of sorted) {
     if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
-    let raw;
-    try {
-      raw = JSON.parse(readFileSync(join(missionDir, entry.name), "utf8"));
-    } catch {
-      continue;
+    const result = readAndValidateReceiptFile(join(missionDir, entry.name));
+    if (result.ok) {
+      receipts.push(result.receipt);
+    } else {
+      // Safe diagnostic only: the receipt-store storage key (a sha256
+      // hash, never the raw mission_id) plus the filename already on
+      // disk, and a fixed condition label -- never raw file content or a
+      // parser error message (F-03's no-raw-content principle applied
+      // here).
+      issues.push({ path: `${key}/${entry.name}`, condition: result.condition });
     }
-    const parsed = ReceiptSchema.safeParse(raw);
-    if (parsed.success) receipts.push(parsed.data);
   }
-  return receipts;
+  return { receipts, issues };
 }
 
 /** Reuses the identical allowlist + committed-object-read + canonical-sort + fingerprint sequence harvest.mjs uses, purely read-only (no screening, no receipt write). */
@@ -269,7 +312,34 @@ export function classifyEnvelope(envelope, { repoRoot, receiptsDir, locksDir }) 
     });
   }
 
-  const existingForMission = listReceiptsForMission(receiptsDir, envelope.mission_id);
+  const { receipts: existingForMission, issues: receiptIssues } = listReceiptsForMission(
+    receiptsDir,
+    envelope.mission_id,
+  );
+
+  // S4A-F-02 correction: an unreadable, malformed, or schema-invalid
+  // receipt for this mission must never be silently treated as if no
+  // receipt existed. It must block every work-producing classification
+  // below (ELIGIBLE_UNPROCESSED, NEW_CLOSURE_REVISION, and also the
+  // reopen/supersede and already-processed/failed branches, all of which
+  // reason from `existingForMission`) until the ambiguity is resolved.
+  if (receiptIssues.length > 0) {
+    const describedIssues = receiptIssues
+      .map((issue) => `${issue.path} (${issue.condition})`)
+      .join(", ");
+    return baseWorkItem(envelope, locksDir, {
+      source_snapshot_ref: envelope.source_snapshot_ref,
+      source_fingerprint: fingerprint,
+      reconciliation_state: "INVALID_OR_UNSAFE",
+      reason: `durable receipt state for this mission is ambiguous -- ${receiptIssues.length} receipt file(s) are unreadable, malformed, or schema-invalid: ${describedIssues}`,
+      existing_receipt_processing_state: null,
+      next_safe_action:
+        "repair or remove the flagged receipt file(s) in this mission's receipt directory, then retry reconciliation",
+      retry_eligible: true,
+      needs_human_reconciliation: true,
+    });
+  }
+
   const matchingReceipt =
     existingForMission.find((r) => r.source_fingerprint === fingerprint) ?? null;
 
@@ -367,6 +437,19 @@ export function planReconciliation({ repoRoot, receiptsDir, locksDir, envelopePa
   const rejectedInputs = [];
 
   for (const filePath of envelopePaths) {
+    // S4A-F-01 correction: location approval is checked first, before the
+    // file is ever opened. Schema validity and evidence allowlisting are
+    // downstream questions this gate does not depend on and cannot be
+    // bypassed by -- a schema-valid envelope outside the approved
+    // closure-envelope location set is rejected here, unconditionally,
+    // without its contents ever being read.
+    if (!isApprovedClosureEnvelopeLocation(repoRoot, filePath)) {
+      rejectedInputs.push({
+        source: filePath,
+        reason: "envelope location is not an approved closure-envelope location",
+      });
+      continue;
+    }
     let raw;
     try {
       raw = readFileSync(filePath, "utf8");

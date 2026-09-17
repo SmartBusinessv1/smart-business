@@ -86,3 +86,23 @@ No dependency/lockfile/workflow change.
 ## Required stop
 
 `STAGE 4A F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+---
+
+## Builder Stage 4A F-01/F-02 correction report
+
+**Status:** `STAGE 4A F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/06-stage4a-bounded-reconciliation-proof.md` (Section 13; original Stage 4A proof preserved unchanged in Sections 1-12).
+
+**S4A-F-01:** new, independent module `organizational-learning/sources/envelope-location.ts` (`isApprovedClosureEnvelopeLocation`, approved root `communication/missions/`), checked in `planReconciliation` before any envelope file is opened — never derived from evidence allowlisting. Proven: the real Stage 2A envelope's location is approved; a byte-identical copy at an unapproved path, and an unapproved `--envelopes-dir`, are both rejected with zero work items and no content echo; no bypass via direct `--envelope`; approved and unapproved envelopes in the same run are classified independently.
+
+**S4A-F-02:** `listReceiptsForMission` now returns `{receipts, issues}` instead of silently skipping unreadable/malformed/schema-invalid receipt files; `classifyEnvelope` unconditionally returns `INVALID_OR_UNSAFE` (`retry_eligible: true`, `needs_human_reconciliation: true`) whenever any receipt issue exists for the mission being reconciled, before every other receipt-dependent branch. Proven: malformed-JSON and schema-invalid receipts both block work and are never `ELIGIBLE_UNPROCESSED`/`ALREADY_PROCESSED`; the equivalent unreadable-file branch proven directly and portably (`EISDIR` on a directory path, verified empirically); deterministic across replay; normal classification resumes once the fixture is repaired; no canary echo; a reopening envelope with a malformed receipt is also blocked.
+
+**Regression confirmation:** the real Stage 2A `ALREADY_PROCESSED` proof, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`, new-revision/reopen/supersede classification, concurrency (function-level and real two-process CLI), recovery/retry distinction, deterministic ordering, and no-authority output all remain unchanged and passing.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **322/322 passing**, 28 files (+16 new, 0 regressions); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS; `package-lock.json` unchanged.
+
+**Applicable CI:** see the durable report, Section 13.6, once confirmed.
+
+**Scope confirmation:** no Stage 4B, no automated extraction, no provider/scheduler/publisher, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
