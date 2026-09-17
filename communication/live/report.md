@@ -50,27 +50,21 @@ Mission Control independently inspected the correction implementation and regres
 
 These are facts about correction checkpoint `2b97509dbc11c901b989827b40748a7f6a4bf96f`. They do not automatically describe later communication/verifier commits.
 
-## Current gate
+## Codex final independent verification
 
-Codex is authorized to perform final independent Stage 1 re-verification only.
+**Disposition:** `PASS` — no independently reproduced Stage 1 blocker remains within the authorized verification boundary. Stage 1 is ready for Mission Control acceptance review; this is not Stage 1 acceptance.
 
-Active instruction:
+Durable report: [Stage 1 independent final re-verification](../missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md).
 
-`communication/live/instruction.md`
+Reviewed head: `f2523f3c18e173187aa4de013049713ef67cf0a0`. Independent OLE suite: 16 files, 196 tests passed, including all ten process-level tests. All applicable reviewed-head CI completed successfully: Application Build Assurance #145 (257 Fast Tests), Full Assurance #46 and Markdown Quality Gate #1749. These are reviewed-checkpoint facts, not publication-head CI claims.
 
-Required durable verifier report:
+Residual F-04 is resolved: both real eval-mode imports confirmed absent entry-point metadata, reached exact completion markers and produced no CLI output or exit-code mutation. Null, numeric, object and empty-string metadata also imported safely. Direct Windows malformed/missing/valid invocations and file-based imports remained correct.
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/05-stage1-independent-final-reverification.md`
+F-01/F-02/F-03 showed no regression in independent temporary-fixture checks. The durable report assesses the whole Stage 1 boundary and preserves scanner, physical-containment and later-stage evidence limitations.
 
-Codex must return one of:
+Implementation and historical actor records were not changed. No approval, merge, Stage 2 authorization, real proof processing, AI extraction, governance/Product Truth modification or `SB-P-1.12` activation was performed. Mission Control must now make the Stage 1 acceptance decision.
 
-- `PASS`
-- `FAIL`
-- `FOLLOW-UP REQUIRED`
-
-If `PASS`, Stage 1 may proceed to Mission Control acceptance review. PASS does not itself accept Stage 1.
-
-Codex must not modify implementation, merge, activate Stage 2, process the real proof target, perform AI/semantic extraction, modify governance/Product Truth, or activate `SB-P-1.12`.
+`STAGE 1 INDEPENDENT FINAL RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
 
 ## Review chain
 
