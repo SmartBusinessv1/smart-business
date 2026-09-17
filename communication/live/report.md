@@ -1,14 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 4 Acceptance / Stage 5 Handoff
+# SB-ORG-LEARNING-1.1 — Stage 5 Failure-Path Correction Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**Current stage:** `5 — Independent verification / failure-path assurance`
+**Current stage:** `5 — Independent verification / failure-path assurance correction`
 
-**Current actor:** Codex — independent verifier
+**Current actor:** Claude Code — authorized narrow correction builder
 
-**Status:** `STAGE 4 ACCEPTED — STAGE 5 AUTHORIZED`
+**Status:** `STAGE 5 FAIL ACCEPTED — S5-F-01 THROUGH S5-F-04 NARROW CORRECTION AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -76,13 +76,39 @@ Durable verifier report:
 
 `communication/missions/SB-ORG-LEARNING-1.1/codex/08-stage5-independent-failure-path-assurance.md`
 
-Stage 6 acceptance review is not ready. No implementation correction was performed. Mission Control record 24 explicitly authorizes publication of this already-completed FAIL report and minimum verifier handoff only. The reviewed head and conclusions remain unchanged; the CI results above belong to that reviewed head. Mission Control correction authorization is required.
+Verifier publication commit:
+
+`9a15466624dfb93b3878c74cd7f569890032e4c6`
+
+The publication commit contains only the durable verifier report and minimum live verifier handoff. Application Build Assurance #197 and Markdown Quality Gate #1801 are successful at the publication head; publication-only Full Assurance #70 was still running when Mission Control opened the corrective gate.
+
+## Mission Control correction decision
+
+Mission Control accepts all four Stage 5 findings as actionable.
+
+Disposition:
+
+`STAGE 5 FAIL ACCEPTED — S5-F-01 THROUGH S5-F-04 NARROW CORRECTION AUTHORIZED`
+
+Durable correction authorization:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/25-stage5-f01-f04-correction-authorization.md`
+
+Correction is limited to:
+
+- preserving the Stage 1 physical-containment trust boundary during receipt discovery/read;
+- distinguishing genuine receipt-directory absence from unsafe enumeration failure / unexpected receipt-shaped entries;
+- enforcing physical as well as lexical containment for approved envelope files and directory discovery;
+- deduplicating equivalent envelope inputs by processing identity and failing closed on conflicting envelopes claiming the same mission + closure revision.
+
+Stage 2, Stage 3, candidate/promotion semantics, context-pack authority boundaries and all broader automation boundaries remain unchanged.
 
 ## Boundaries
 
+`STAGE 5 — CORRECTION IN PROGRESS`
+
 `STAGE 6 — NOT AUTHORIZED`
 
-No implementation correction unless separately authorized after a verifier finding.
 No automated extraction/provider/scheduler/publisher.
 No automatic promotion.
 No `INSTITUTIONALISED` / `ORGANIZATION_WIDE` authority.
@@ -90,10 +116,10 @@ No merge.
 No governance/Product Truth mutation.
 No production/customer mutation.
 
-`SB-P-1.12 — NOT ACTIVATED`
+`PR #589 — NOT READY TO MERGE`
 
-PR #589 remains open and unmerged.
+`SB-P-1.12 — NOT ACTIVATED`
 
 ## Required stop
 
-`STAGE 5 INDEPENDENT FAILURE-PATH ASSURANCE REPORTED — MISSION CONTROL DECISION REQUIRED`
+`STAGE 5 F-01/F-04 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
