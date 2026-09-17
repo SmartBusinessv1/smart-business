@@ -20,7 +20,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
           "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
           "locator": "## Carried follow-ups, closing lines: 'No product feature, production deployment, database/schema/RLS/grant/RPC, dependency, provider, or branch-protection change is authorized by this closure.' and 'SB-P-1.12 remains not activated.'",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {
@@ -42,7 +42,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
           "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
           "locator": "## 2. Accepted implementation, last bullet: 'no dependency/lockfile, database/provider, production, deployment or branch-protection change'",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {

@@ -20,7 +20,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
           "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
           "locator": "## 4. Non-blocking findings carried forward: five-item list plus 'None is silently resolved by this acceptance.'",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {
@@ -42,7 +42,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
           "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
           "locator": "## Carried follow-ups: four-item list plus 'remain outside this mission's closure and are not represented as resolved'",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {
@@ -58,7 +58,7 @@
           "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
           "blob_sha": "8054ef3156a92a5da43ad4818d46077a1a8b08f6",
           "locator": "## Final Reconciled Closure, follow-up sentence naming the same four items as unresolved and non-blocking",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {
@@ -80,7 +80,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
           "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
           "locator": "## 4. Non-blocking findings carried forward, fifth bullet: 'future branch-protection policy decision for Fast Gate, if Founder/Mission Control later chooses to require it'",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {
@@ -96,7 +96,7 @@
           "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
           "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
           "locator": "## Carried follow-ups: four-item list with no branch-protection item and no statement addressing its omission",
-          "actor_class": "mission-control",
+          "actor_class": "synthesis",
           "observation_date": "2026-09-17T10:29:29Z",
           "evidence_date": "2026-09-16T00:00:00Z",
           "scope": {

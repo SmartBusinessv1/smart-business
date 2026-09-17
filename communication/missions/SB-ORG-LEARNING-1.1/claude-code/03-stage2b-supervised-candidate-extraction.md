@@ -6,7 +6,7 @@
 **Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 **Sub-gate:** `2B — Supervised semantic candidate extraction`
 **Actor:** Claude Code / authorized AI synthesis session
-**Status:** `STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED`
+**Status:** `STAGE 2B F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 **Date:** 2026-09-17
 **Repository:** `SmartBusinessv1/smart-business`
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
@@ -74,7 +74,7 @@ Fast Gate (lint, typecheck, build, 8 Fast Test files / 61 tests) runs on every P
 
 ### Candidate 2 — Exact run-level closure evidence
 
-Both the acceptance record and the post-merge closure record cite exact CI run numbers/IDs and exact test counts, rather than narrative "tests passed" language, across two implementation heads and the final merge commit.
+Both the acceptance record and the post-merge closure record cite exact CI run numbers/IDs for each verification pass, rather than narrative "tests passed" language. Exact Fast Test counts are recorded only for the accepted implementation head; exact Full Assurance counts are recorded for both the implementation head and the later pre-review communication head, and again at the final merge commit. (Corrected by S2B-F-01 — see Section 13; the original wording overstated that exact Fast counts were recorded for every head.)
 
 ### Candidate 3 — Explicit follow-up retention (with an honestly-surfaced limitation)
 
@@ -187,22 +187,60 @@ GitHub Actions on PR #589 remains the live exact-head source of truth for any co
 
 ---
 
+## 13. Stage 2B narrow correction: S2B-F-01 and S2B-F-02
+
+Codex's independent verification (`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`) returned `FAIL` with two narrow findings. Mission Control accepted both and authorized this narrow correction (`communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`). Only these two findings are corrected here; nothing else was changed.
+
+### S2B-F-01 — Candidate 2 evidence overstatement, corrected
+
+Candidate 2's summary and its `acceptance-head-run-evidence` claim (and its evidence reference's `locator`) stated that exact Fast/Full test counts were recorded "for each" of the implementation head and the later pre-review communication head. The pinned source (`06-stage4-acceptance-and-founder-merge-handoff.md`, Section 3) records exact Fast Test counts (`8/8 files, 61/61 tests`) only for the implementation head `74455d5...`; the later pre-review head `6a3ea8f...` only has exact Full Assurance counts (`20/20 files, 108/108 tests`) recorded, with no exact Fast Test count for that head.
+
+**Fix:** the summary, claim text, and locator in `candidate-02-exact-run-level-closure-evidence.json` were rewritten to state precisely that exact Fast Test counts are recorded only for the implementation head, while exact Full Assurance counts are recorded for both heads. The supported lesson (closure records cite exact workflow/run evidence and exact counts where actually recorded) is preserved, not weakened. No evidence reference, path, commit, or blob SHA was added, removed, or changed — only the claim/summary/locator prose. This durable report's own Section 5 "Candidate 2" description was reconciled to match.
+
+### S2B-F-02 — Observation actor misattribution, corrected
+
+All 14 evidence references, across all four candidates, used `actor_class: "mission-control"`. The accepted provenance contract (`provenance.schema.ts`) defines `actor_class` as the actor making _this observation_, not the author/authority of the underlying source file — the observations were made by this Stage 2B synthesis session, not by Mission Control.
+
+**Fix:** all 14 evidence-reference `actor_class` values, across all four candidate files, were changed from `"mission-control"` to `"synthesis"`. No other field was touched by this fix — `repository`, `commit_sha`, `path`, `blob_sha`, `locator`, `observation_date`, `evidence_date`, `scope`, and `relationship` are all unchanged, so Mission Control's source authority remains fully evidenced through the pinned path/commit/blob/locator, exactly as the authorization required. The provenance contract itself, the runtime validator, and the historical source documents were not touched.
+
+### Candidate 3 — confirmed unchanged except S2B-F-02
+
+Candidate 3's five evidence references had their `actor_class` corrected identically. A file-level diff against the pre-correction committed version confirms these are the _only_ five changed lines in the file: the five-vs-four follow-up discrepancy, the `LIMITS` relationship on its third claim's second reference, its `MEDIUM` confidence, and every claim's text are byte-identical to the version Codex reviewed and found sound.
+
+### Revalidation performed after correction
+
+- **Schema:** all 4 candidates re-validated with `node organizational-learning/scripts/validate.mjs candidate <path>` — all 4 `PASS`.
+- **Provenance:** all 14 evidence references re-resolved with the existing, unmodified `validateProvenanceReference` against the real repository and the pinned commit — all 14 `VALID`, zero dangling.
+- **Observer actor_class:** an automated check confirmed zero remaining `"actor_class": "mission-control"` occurrences and exactly 18 `"actor_class": "synthesis"` occurrences (14 evidence references + 4 `generated_by` blocks, which were already correct and untouched) across the four files.
+- **Screening:** rendered JSON content of all 4 corrected files re-screened with `runHeuristicScan`/`runScreeningSafely` — `CLEAN`, 0 findings, 4 scanned paths.
+- **Prohibited fields:** a defensive `grep` for every named prohibited field across all four files found zero matches, consistent with the schema's own `.strict()` guarantee.
+- **Candidate 2 evidence reach:** manually re-compared, line by line, against the pinned source's Section 3 — the corrected wording no longer attributes exact Fast counts to the later pre-review head, and correctly states Full Assurance counts are recorded for both heads.
+
+### Scope discipline for this correction
+
+Exactly 4 files modified (the four candidate JSON files), 0 files added, 0 files deleted, 0 dependencies added, `package-lock.json` unchanged, plus this durable report and the minimum builder section of `communication/live/report.md`. No Stage 1 implementation, harvester, receipt store, provenance schema, provenance validator, screening implementation, closure envelope, Stage 2A receipt, CI workflow, dependency file, governance, or Product Truth was touched. No second mission was processed. No additional candidate was created. No promotion, `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, context pack, background automation, or Stage 3 work occurred. `SB-P-1.12` remains not activated. PR #589 was not merged.
+
+---
+
 ## Required return summary
 
-- **Candidate count:** 4.
+- **Candidate count:** 4 (unchanged; no candidate added or removed by this correction).
 - **Candidate artifact paths:** listed in Section 5 / Section 10.
-- **Schema/provenance/screening result:** all 4 candidates schema-valid; all 14 evidence references independently provenance-valid (non-dangling); sensitive-content screening `CLEAN` with 0 findings across all 4 files.
-- **Evidence-strength/confidence summary:** all `DIRECT` (no false `CORROBORATED` claim from repeated-source documents); confidence `HIGH` for candidates 1/2/4, `MEDIUM` for candidate 3 (an honestly-surfaced cross-document inconsistency).
+- **Files modified by the S2B-F-01/F-02 correction:** the four candidate JSON files (Section 13), this durable report, and the minimum builder section of `communication/live/report.md`. No other file.
+- **Candidate 2 wording correction (S2B-F-01):** summary, `acceptance-head-run-evidence` claim text, and its evidence reference's locator now state precisely that exact Fast Test counts (`8/8 files, 61/61 tests`) are recorded only for the implementation head, while exact Full Assurance counts (`20/20 files, 108/108 tests`) are recorded for both the implementation head and the later pre-review head. See Section 13.
+- **Observation actor correction (S2B-F-02):** all 14 evidence references, across all four candidates, now use `actor_class: "synthesis"` (previously `"mission-control"`); confirmed zero remaining `"mission-control"` occurrences and exactly 18 `"synthesis"` occurrences (14 references + 4 `generated_by` blocks). See Section 13.
+- **Schema/provenance/screening result (post-correction):** all 4 candidates re-validated `PASS`; all 14 evidence references re-validated `VALID` (zero dangling); rendered content re-screened `CLEAN`, 0 findings.
+- **Candidate 3 preservation:** confirmed unchanged except its five `actor_class` fields — five-vs-four follow-up discrepancy, `LIMITS` relationship, `MEDIUM` confidence, and all claim text are byte-identical to the version Codex reviewed.
+- **Evidence-strength/confidence summary:** unchanged by this correction — all `DIRECT`; confidence `HIGH` for candidates 1/2/4, `MEDIUM` for candidate 3.
 - **Rejected candidates:** none.
-- **Blocker/architectural gap:** none. No missing implementation primitive was encountered; the existing Stage 1 schema/validation/screening/provenance machinery was sufficient as-is.
-- **Local verification:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257, identical to the Stage 1/2A baseline.
-- **Real CI:** Lint, Typecheck, Build, Fast Tests, and Markdown Quality Gate all `SUCCESS` on PR #589 head `376ed57`; Full Assurance correctly did not trigger (path filter excludes this round's changed paths).
-- **Confirmation:** candidate extraction was supervised and every candidate remains unreviewed; every candidate has `authority_effect: NONE` and `maturity: CANDIDATE`; no promotion occurred; no mission-start context pack was generated; no Stage 3 work was begun; no `SB-P-1.12` activation occurred; PR #589 was not merged.
+- **Local verification:** typecheck/lint/Fast Gate/build/Prettier/Markdown Quality Gate all pass; Fast Gate remains 257/257, identical to the Stage 1/2A/2B baseline.
+- **Real CI:** see Section 13/live report for the exact-head result on this correction's pushed commit; PR #589 / GitHub Actions remains the live source of truth.
+- **Confirmation:** no Stage 1 implementation, schema, provenance validator, screening implementation, closure envelope, Stage 2A receipt, CI workflow, or dependency change occurred; no promotion, `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, context pack, second mission, additional candidate, background automation, or Stage 3 work occurred; `SB-P-1.12` remains not activated; PR #589 was not merged.
 
 ---
 
 ## Stop statement
 
-**STAGE 2B SUPERVISED CANDIDATE EXTRACTION REPORTED — MISSION CONTROL REVIEW REQUIRED**
+**STAGE 2B F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED**
 
-Only the authorized Stage 2B supervised semantic candidate extraction was performed, drawing exclusively from the already-screened Stage 2A evidence boundary for `SB-OPS-CI-ARCHITECTURE-1.0`. No implementation change was required or made. No promotion, `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, Founder/Mission Control approval claim, second mission, context-pack generation, background automation, autonomous repository writer, merge, Stage 3, governance/Product Truth mutation, provider/production/customer-data mutation, or `SB-P-1.12` activation occurred. Stage 3 is not authorized by this report.
+Only the two authorized narrow findings, S2B-F-01 (Candidate 2 evidence overstatement) and S2B-F-02 (observation actor misattribution across all 14 evidence references), were corrected. Candidate 3's substantive discrepancy analysis, `LIMITS` relationship, and `MEDIUM` confidence were preserved unchanged. No Stage 1 implementation, schema, provenance validator, screening implementation, closure envelope, Stage 2A receipt, CI workflow, dependency, governance, or Product Truth was modified. No second mission was processed. No additional candidate was created. No promotion, `CORROBORATED`/`VALIDATED`/`INSTITUTIONALISED` state, context-pack generation, background automation, autonomous repository writer, merge, or Stage 3 work occurred. `SB-P-1.12` was not activated. Codex was not authorized by this report.
