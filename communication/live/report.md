@@ -120,3 +120,35 @@ PR #589 remains open and unmerged.
 ## Required stop
 
 `STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+---
+
+## Builder Stage 4A reconciliation proof report
+
+**Status:** `STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/06-stage4a-bounded-reconciliation-proof.md`
+
+**Implementation:** new narrow, strict schema `organizational-learning/schemas/reconciliation.schema.ts` and wrapper `organizational-learning/scripts/reconcile.mjs`, composing only the existing, unmodified `ClosureEnvelopeSchema`, `ReceiptSchema`/`PROCESSING_STATES`, allowlist, git-object-reader, fingerprint, receipt-store, and screening machinery. 32 new focused tests (19 wrapper + 13 schema). Real committed proof output at `organizational-learning/reconciliation/plans/SB-OPS-CI-ARCHITECTURE-1.0/`. No dependency added; `package-lock.json` unchanged.
+
+**State model:** `ALREADY_PROCESSED`, `ELIGIBLE_UNPROCESSED`, `NEW_CLOSURE_REVISION`, `SUPERSEDED_OR_REOPENED` (reusing the existing receipt contract's exact term, not a new parallel spelling), `INVALID_OR_UNSAFE`, `FAILED_RETRYABLE`, with schema-level invariants preventing misclassification (e.g. `FAILED_RETRYABLE` always `retry_eligible: true`).
+
+**Already-processed / idempotency:** the real Stage 2A envelope and receipt classify `ALREADY_PROCESSED` with the exact genuine fingerprint; repeat runs are byte-identical.
+
+**Changed revision / reopen / supersede:** a newer closure revision for the same mission classifies `NEW_CLOSURE_REVISION`; `reopens`/`supersedes_closure` both classify `SUPERSEDED_OR_REOPENED` with `needs_human_reconciliation: true`, naming the flagged prior receipt without mutating it. The wrapper never references `organizational-learning/promotions/` at all, so real Stage 3 promotions cannot be touched by this code path.
+
+**Concurrency:** an atomic exclusive-create lock file gives exactly one owner per mission + closure revision; proven at both the function level and via two real, separately spawned CLI processes.
+
+**Recovery/retry/failure:** a `HARVESTED` receipt resumes correctly; `VALIDATION_FAILED` classifies `FAILED_RETRYABLE` and is never described as "no material learning."
+
+**Malformed input:** unparseable JSON (with a synthetic secret-shaped canary, never echoed), schema-invalid JSON, and an unresolvable commit all fail closed with zero work items.
+
+**Determinism:** stable `mission_id::closure_revision` ordering regardless of input order. Two deliberate regressions (disabling the already-processed check; disabling the reopen/supersede check) were independently proven to break exactly the expected tests before being restored.
+
+**A CRLF/content-addressing methodology note:** the real-data proof initially failed locally because a working-tree read (CRLF, due to this Windows machine's `core.autocrlf=true`) produced a different blob SHA than the actual committed (LF) git blob; root-caused and fixed by reading via `git cat-file -p` instead — no wrapper logic was weakened. Full detail in the durable report, Section 11.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **306/306 passing**, 27 files (up from 274/25); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**Applicable CI:** this round again modifies `vitest.fast.config.ts`, which is in `full-assurance.yml`'s path filter — a real Full Assurance run is expected and will not be suppressed. Exact-head CI to be confirmed; not asserted as already complete here.
+
+**Scope confirmation:** no candidate/promotion/receipt file modified; no automated extraction, publisher, provider/network call, scheduler, or autonomous commit/merge; no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`/Founder-approval claim; no governance/Product Truth/production/customer mutation. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

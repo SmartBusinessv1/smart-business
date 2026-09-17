@@ -47,6 +47,8 @@ export default defineConfig({
       "organizational-learning/tests/validate-cli.test.ts",
       "organizational-learning/tests/cli-process.test.ts",
       "organizational-learning/tests/context-pack.test.ts",
+      "organizational-learning/tests/reconciliation.schema.test.ts",
+      "organizational-learning/tests/reconcile.test.ts",
     ],
     ...sharedTestTimeouts,
     // Safe to parallelize, unlike Full Assurance: these files share no
