@@ -1,14 +1,14 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 2B Independent Candidate Verification Handoff
+# SB-ORG-LEARNING-1.1 — Stage 2B Correction Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
 **Stage:** `2 — Closed-mission proof and supervised candidate extraction`
 
-**Current actor:** Codex — independent verifier
+**Current actor:** Claude Code — authorized correction builder
 
-**Status:** `STAGE 2B SUBSTANTIVE REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
+**Status:** `NARROW CORRECTION REQUIRED — S2B-F-01 AND S2B-F-02 ONLY`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -30,45 +30,19 @@ Receipt: `SCREENED` / `CLEAN` / 3 evidence entries / 0 findings.
 
 ## Stage 2B builder return
 
-Claude Code produced four candidate-only learning items under:
-
-`organizational-learning/candidates/SB-OPS-CI-ARCHITECTURE-1.0/`
-
-All are reported as:
-
-- `maturity: CANDIDATE`;
-- `authority_effect: NONE`;
-- `generated_by.actor_class: synthesis`;
-- schema-valid;
-- claim-level-provenanced to the Stage 2A screened source set;
-- screened `CLEAN`.
+Claude Code produced four candidate-only learning items under `organizational-learning/candidates/SB-OPS-CI-ARCHITECTURE-1.0/` and reported all four schema-valid, all 14 evidence references provenance-resolved, and screening CLEAN.
 
 Durable builder report:
 
 `communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md`
 
-Candidate themes:
-
-1. two-tier CI architecture;
-2. exact run-level closure evidence;
-3. explicit follow-up retention, including the acceptance-vs-closure follow-up-list inconsistency;
-4. explicit closure-scope boundary.
-
 ## Mission Control substantive review
 
-Mission Control reviewed all four candidate artifacts directly.
-
-Disposition:
-
-`STAGE 2B SUBSTANTIVE REVIEW PASS — CODEX INDEPENDENT VERIFICATION AUTHORIZED`
+Mission Control's initial substantive review passed the candidate set for independent verification and authorized Codex.
 
 Controlling record:
 
 `communication/missions/SB-ORG-LEARNING-1.1/mission-control/16-stage2b-substantive-review-and-codex-authorization.md`
-
-Mission Control found no substantive candidate-authority or evidence-reach blocker in its review. Repeated source records were not misclassified as independent corroboration. Candidate 3 preserves the cross-document inconsistency using a `LIMITS` relationship and lower confidence rather than converting uncertainty into a resolved statement.
-
-The current Stage 2B reporting head's applicable Application Build Assurance and Markdown Quality Gate are successful. Full Assurance is not expected under the selective workflow path filter for this candidate/document-only delta.
 
 ## Codex independent verification
 
@@ -76,13 +50,39 @@ The current Stage 2B reporting head's applicable Application Build Assurance and
 
 Reviewed head: `7f4543d682f18d7e345a4e34b37404f9a292430c`.
 
-Durable report: [06-stage2b-independent-candidate-verification.md](../missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md).
+Publication commit: `850e3ecfe021a742255eb6c0db37043210a00b34`.
 
-All four candidate schemas passed; all 14 references resolved to the exact screened regular Git blobs. Candidate screening returned CLEAN with zero findings. Applicable reviewed-head CI passed; Full Assurance was outside the selective path filter.
+Durable verifier report:
 
-Two corrections require Mission Control: S2B-F-01, candidate 2 overstates exact Fast Test counts recorded for the later pre-review head; S2B-F-02, all 14 references label the synthesis observation actor as mission-control despite the accepted observer-field definition. Candidate 3 correctly preserves the five-to-four follow-up discrepancy with LIMITS and MEDIUM confidence.
+`communication/missions/SB-ORG-LEARNING-1.1/codex/06-stage2b-independent-candidate-verification.md`
 
-Stage 2 is not ready for a passing completion review. Codex changed no candidate or implementation and made no promotion or Stage 3 decision.
+Confirmed unaffected evidence:
+
+- candidate schemas: 4/4 PASS;
+- Git provenance identity: 14/14 VALID;
+- candidate screening: CLEAN;
+- Candidate 3 follow-up discrepancy, `LIMITS` relationship and MEDIUM confidence: supported;
+- applicable reviewed/publication CI passed; Full Assurance remained outside the selective path filter.
+
+Verifier findings accepted by Mission Control:
+
+### S2B-F-01
+
+Candidate 2 overstates exact Fast Test-count evidence for the later pre-review communication head. The pinned acceptance source records exact Fast and Full counts for the implementation head, but only exact Full Assurance counts for the later pre-review head.
+
+### S2B-F-02
+
+All 14 evidence references use `actor_class: mission-control`, but the accepted provenance contract defines `actor_class` as the actor making the observation, not the author/authority of the underlying source. These observations were created by the synthesis session.
+
+## Current correction authority
+
+Controlling record:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/17-stage2b-f01-f02-correction-authorization.md`
+
+Claude Code is authorized to correct only S2B-F-01 and S2B-F-02, then revalidate candidate schema, provenance, observer metadata, evidence reach and screening and return for Mission Control re-review.
+
+Candidate 3's accepted discrepancy analysis is not to be rewritten absent a direct regression need.
 
 ## Boundaries
 
@@ -99,4 +99,4 @@ No `SB-P-1.12` activation.
 
 ## Required stop
 
-`STAGE 2B INDEPENDENT CANDIDATE VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+`STAGE 2B F-01/F-02 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
