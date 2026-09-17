@@ -1,16 +1,16 @@
 # SMART BUSINESS — REPOSITORY COMMUNICATION
 
-# SB-ORG-LEARNING-1.1 — Stage 3A Acceptance / Stage 3B Handoff
+# SB-ORG-LEARNING-1.1 — Stage 3 Acceptance / Stage 4A Handoff
 
 **Mission ID:** `SB-ORG-LEARNING-1.1`
 
-**Current stage:** `3 — Human review/promotion and context-pack proof`
+**Current stage:** `4 — Background automation / reconciliation implementation`
 
-**Current sub-gate:** `3B — Deterministic mission-start context-pack proof`
+**Current sub-gate:** `4A — Bounded deterministic reconciliation wrapper`
 
-**Current actor:** Claude Code — authorized context-pack proof builder
+**Current actor:** Claude Code — authorized Stage 4A builder
 
-**Status:** `STAGE 3A ACCEPTED — STAGE 3B AUTHORIZED`
+**Status:** `STAGE 3 ACCEPTED — STAGE 4A AUTHORIZED`
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
@@ -18,147 +18,105 @@
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
-## Stage 2 completion
+## Stage 3 completion
 
-Stage 2A deterministic proof was accepted against `SB-OPS-CI-ARCHITECTURE-1.0` using the pinned source snapshot and screened receipt.
+Stage 3A human review/promotion proof is accepted.
 
-Stage 2B produced four candidate-only learning items. Codex independently identified `S2B-F-01` and `S2B-F-02`; Mission Control authorized a narrow correction; Claude Code corrected only those findings; Mission Control re-reviewed; Codex independently re-verified and returned `PASS`.
-
-Final Stage 2 verifier report:
-
-`communication/missions/SB-ORG-LEARNING-1.1/codex/07-stage2b-f01-f02-independent-reverification.md`
-
-Verifier publication commit:
-
-`154c58e1b9d1faa04a328aa1bf9c8916d36f245a`
-
-Mission Control disposition:
-
-`STAGE 2 — ACCEPTED`
-
-Durable Stage 2 decision / Stage 3A authorization:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md`
-
-## Stage 3A human review / promotion proof
-
-Mission Control approved the exact current revisions of four Stage 2B candidates for a mission-scoped `VALIDATED` promotion proof only.
-
-Claude Code materialized four promotion-review artifacts under:
-
-`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
-
-Durable builder report:
-
-`communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
-
-The four promotion records bind exact candidate revision hashes and use:
+Four exact candidate revisions were materialized as separate promotion-review records using:
 
 - `resulting_maturity: VALIDATED`;
 - `promotion_scope: MISSION_SCOPED`;
-- `approving_authority.actor_class: mission-control`;
-- `approving_authority.name_or_role: Smart Business Mission Control`;
-- decision reference to Mission Control record 19;
-- empty supersession edges.
-
-All four promotion records validated against the existing promotion schema. All reused evidence references remained within the approved Stage 2 evidence boundary and resolved valid. Screening was CLEAN. Revision-binding was demonstrated using the accepted hash helper without mutating the actual candidate files.
-
-Candidate 3 remains a validated observation of an unresolved documentary inconsistency. Its five-vs-four follow-up discrepancy, unexplained branch-protection-item omission, `LIMITS` relationship, `MEDIUM` confidence, and no-resolution boundary remain intact.
+- Mission Control approving authority;
+- revision-bound candidate hashes;
+- exact decision reference to Mission Control record 19.
 
 No `INSTITUTIONALISED`, `ORGANIZATION_WIDE`, or Founder-approval claim was created.
 
-Mission Control independently reviewed the promotion artifacts and the builder report. Current-head applicable CI at that review was green:
+Stage 3B deterministic mission-start context-pack proof is accepted.
 
-- Team LIPS Application Build Assurance #175 — SUCCESS;
-- Team LIPS Markdown Quality Gate #1779 — SUCCESS;
-- Full Assurance — not applicable under the selective path filter for the promotion/document-only delta.
+The proof introduced the minimum repository-native context-pack helper/tests/output and demonstrated:
+
+- deterministic reviewed-item filtering with no semantic ranking;
+- candidate-only exclusion;
+- stale revision rejection;
+- mission/system/environment scope filtering;
+- supersession handling;
+- contradiction / `LIMITS` surfacing;
+- Candidate 3's unresolved five-vs-four follow-up discrepancy preserved with `MEDIUM` confidence;
+- bounded freshness/provenance presentation;
+- byte-stable deterministic output;
+- fail-closed screening;
+- explicit `context, not authority` output.
+
+The evidence-scope contract has no `mission_class` field; the proof surfaces that limitation rather than inventing a match field.
+
+## Stage 3B CI defect and correction
+
+The first Stage 3B push exposed a real test-suite assumption: the ambient GitHub Actions checkout is shallow and therefore cannot resolve the historical pinned Stage 2A commit used by the real promotion provenance.
+
+The context-pack logic correctly failed closed. The defect was confined to tests that assumed deep history.
+
+The correction changed those tests to use an isolated ephemeral Git repository containing the same evidence content and fresh commit/blob identities, preserving the exact provenance-resolution behavior without weakening validation or modifying workflow fetch depth.
+
+Corrected technical checkpoint:
+
+`f74d3ad4fc99bbf9115537e2e5d566b1931aa469`
+
+Exact-head CI on that checkpoint:
+
+- Team LIPS Application Build Assurance #180 — SUCCESS;
+  - Lint — SUCCESS;
+  - Typecheck — SUCCESS;
+  - Build — SUCCESS;
+  - Fast Tests — SUCCESS;
+- Team LIPS Markdown Quality Gate #1784 — SUCCESS;
+- Team LIPS Full Assurance #53 — SUCCESS.
+
+A later documentation-only commit `555c04efd9368e64ff1e448264f1179b618ee425` records those results and does not modify Stage 3B implementation/tests. Its redundant Full Assurance rerun does not change the accepted technical checkpoint under the standing anti-recursion rule. The branch's applicable checks must still be green at any later merge gate.
 
 Mission Control disposition:
 
-`STAGE 3A — ACCEPTED`
+`STAGE 3 — ACCEPTED`
 
-Durable Stage 3A acceptance / Stage 3B authorization:
+Durable decision:
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/20-stage3a-acceptance-and-stage3b-context-pack-proof-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/21-stage3-acceptance-and-stage4a-bounded-reconciliation-authorization.md`
 
-## Stage 3B authorization
+## Stage 4 governance reconciliation
 
-Stage 3B is a deterministic mission-start context-pack proof only.
+The final reconciled build plan permits automation wrappers only after proof Phases A–E are accepted. It classifies automatic background closure detection/reconciliation, automated model extraction, and trusted publisher/PR creation as later capabilities, and requires separate authority for external AI integrations, credentials, or write-capable automation.
 
-Authorized synthetic profile:
+Stage 4 therefore does not create blanket automation authority.
 
-- mission class: `operational`;
-- systems: `github-actions`, `ci`;
-- environment: `ci`;
-- related mission: `SB-OPS-CI-ARCHITECTURE-1.0`.
+## Stage 4A authorization
 
-This profile is synthetic and does not activate a real Product Mission.
+Mission Control authorizes only a bounded deterministic reconciliation wrapper.
 
-Only the four current mission-scoped `VALIDATED` promotion records are eligible reusable learning for the proof.
+Stage 4A may:
 
-The proof must use deterministic filtering, not semantic ranking, and must demonstrate reviewed-item eligibility, candidate-only exclusion, stale-revision rejection, scope filtering, supersession behavior, deterministic ordering/repeat output, provenance/freshness presentation, and preservation of Candidate 3's unresolved limitation.
+- enumerate explicit approved closure-envelope locations;
+- validate structured closure envelopes;
+- reconcile mission + closure revision against durable processing state/receipts;
+- classify no-op, eligible-unprocessed, changed-revision, reopened/superseded, invalid/unsafe states;
+- prove deterministic idempotency, same-revision concurrency, retry/recovery and failure-state behavior;
+- emit a deterministic reconciliation plan/report.
 
-Every proof pack must state:
+Stage 4A may not automatically perform semantic extraction, promotion, publication, commits, PR creation, merge, provider calls, scheduled execution, governance change, Product Truth change, or production/customer mutation.
 
-`context, not authority`
-
-Generated context packs are outputs, not authority sources and not evidence for their own truth.
+No dependency or lockfile change is authorized.
 
 ## Boundaries
 
-`STAGE 4 — NOT AUTHORIZED`
+`STAGE 4B — NOT AUTHORIZED`
 
-No `INSTITUTIONALISED` status.
-No `ORGANIZATION_WIDE` promotion.
-No Founder approval claim.
-No semantic ranking.
-No real mission activation.
-No background automation.
-No autonomous repository writer.
-No dependency/lockfile change.
-No merge.
-No governance/Product Truth mutation.
-No provider/production/customer-data mutation.
-No `SB-P-1.12` activation.
+`STAGE 5 — NOT AUTHORIZED`
+
+`INSTITUTIONALISED — NOT AUTHORIZED`
+
+`SB-P-1.12 — NOT ACTIVATED`
+
+PR #589 remains open and unmerged.
 
 ## Required stop
 
-`STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
----
-
-## Builder Stage 3B context-pack proof report
-
-**Status:** `STAGE 3B DETERMINISTIC CONTEXT-PACK PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
-
-**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/05-stage3b-deterministic-context-pack-proof.md`
-
-**Implementation:** new minimal deterministic helper `organizational-learning/scripts/context-pack.mjs` (eligibility evaluator + pure pack builder + CLI, reusing the existing `PromotionReviewSchema`, `computeRevisionHash`, `validateProvenanceReference`, and screening machinery unmodified); 17 new focused tests in `organizational-learning/tests/context-pack.test.ts`; proof output at `organizational-learning/context-packs/SB-OPS-CI-ARCHITECTURE-1.0/mission-start-profile-operational-ci.json`; `vitest.fast.config.ts` updated to include the new test file. No dependency added; `package-lock.json` unchanged.
-
-**Real-profile result:** all 4 current mission-scoped `VALIDATED` promotions eligible, 0 excluded, ordered deterministically by `promotion_id`. Every item's provenance independently `VALID`.
-
-**Candidate-only exclusion:** a raw `maturity: CANDIDATE` object is rejected at the existing `PromotionReviewSchema` gate itself.
-
-**Stale-revision rejection:** two isolated in-memory mismatch cases (mutated candidate content; tampered hash field) both correctly excluded/flagged stale; real files re-verified unchanged afterward.
-
-**Scope exclusion:** a non-matching synthetic profile deterministically excludes all 4 real promotions.
-
-**No invented institutionalization:** neither `INSTITUTIONALISED` nor `ORGANIZATION_WIDE` appears anywhere in the real-profile output; a synthetic org-wide-INSTITUTIONALISED-without-Founder record is rejected at the schema gate.
-
-**Candidate 3:** `LIMITS`, `MEDIUM` confidence, and the five-vs-four unresolved follow-up omission are all surfaced verbatim and unconditionally in its pack entry — no resolution is claimed.
-
-**Supersession:** real empty arrays honored and displayed explicitly; a synthetic non-empty `superseded_by` clone correctly excludes without touching the real record.
-
-**Determinism:** byte-identical in-process double-build and real two-process CLI runs (confirmed by test and independently by `sha256sum`). Two deliberate regressions (disabling the stale check; disabling the scope check) were each proven to be caught by exactly the expected tests before being restored.
-
-**Freshness/provenance:** freshness limited to the record's own `promoted_at`/`evidence_date` fields, no invented "verified as of today" claim; all evidence provenance-`VALID`.
-
-**Screening:** the generator fails closed on any non-`CLEAN` result; the real run screened `CLEAN`.
-
-**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **274/274 passing**, 25 files (up from 257/24); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
-
-**Real CI defect found and fixed:** the first pushed commit's real Fast Tests check genuinely failed (3/274), showing `eligible=0` where the local run showed `eligible=4`. Root cause: `actions/checkout`'s default shallow clone (`fetch-depth: 1`) does not include the pinned Stage 2A historical commit the real promotion records' evidence points at, so `validateProvenanceReference` correctly, safely reported it unresolvable there — the actual retrieval logic's fail-closed behavior is correct; the defect was the test suite's assumption that deep git history is always available. Confirmed by reproducing a genuinely shallow local clone and confirming the same commit is unresolvable there. Fixed by rewriting the affected tests to use an isolated ephemeral git repository (this repository's own established Stage 1 testing convention) containing the same real evidence content, re-pointed at fresh commit/blob SHAs — no CI workflow file was modified. Full detail in the durable report, Section 10.
-
-**Applicable CI:** all six applicable workflows `SUCCESS` on PR #589 head `f74d3ad` (the corrected, re-pushed commit): Lint, Typecheck, Build, Fast Tests, Markdown Quality Gate, and a real (not suppressed) Full Assurance run. Fast Tests is the exact check that genuinely failed on the prior head `f012271`; it now passes.
-
-**Scope confirmation:** no candidate/promotion record modified; no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`/Founder-approval claim; no semantic ranking; no real mission activation; no Stage 4 work; no background automation/autonomous writer; no dependency/lockfile change. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+`STAGE 4A BOUNDED RECONCILIATION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
