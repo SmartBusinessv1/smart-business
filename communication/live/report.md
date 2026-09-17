@@ -96,3 +96,31 @@ No `SB-P-1.12` activation.
 ## Required stop
 
 `STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+---
+
+## Builder Stage 3A promotion proof report
+
+**Status:** `STAGE 3A HUMAN PROMOTION PROOF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md`
+
+**Promotion artifacts (4):** `organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/promotion-01-two-tier-ci-architecture.json`, `promotion-02-exact-run-level-closure-evidence.json`, `promotion-03-explicit-followup-retention.json`, `promotion-04-explicit-closure-scope-boundary.json`, plus `organizational-learning/promotions/README.md`.
+
+**Candidate revision hashes (sha256, via the existing unmodified `computeRevisionHash`):** full hashes for all four candidates are recorded exactly in the durable report Section 4; all four independently confirmed to match the current candidate content.
+
+**Every record uses:** `resulting_maturity: VALIDATED`; `promotion_scope: MISSION_SCOPED`; `approving_authority: {actor_class: mission-control, name_or_role: Smart Business Mission Control}`; `decision_ref` pointing to Mission Control record 19; empty `supersedes`/`superseded_by`.
+
+**Schema/provenance/screening:** all 4 promotion records `PASS` (`validate.mjs promotion`); all 14 evidence references (reused verbatim from the candidates, `actor_class: synthesis` per the same S2B-F-02 principle) independently `VALID` via `validateProvenanceReference`; rendered content screened `CLEAN`, 0 findings.
+
+**Revision-binding proof:** all 4 bindings confirmed exact-match against current candidates; an isolated in-memory mutation (single trailing space on candidate 1's summary) produced a different hash, proving the binding is content-sensitive; the real candidate file was never touched (`git status` confirmed empty before and after).
+
+**Candidate 3 preservation:** five-vs-four follow-up discrepancy, unexplained branch-protection-item omission, `LIMITS` relationship, and `MEDIUM` confidence all intact and unmodified; the promotion's `approved_scope` explicitly states no resolution is concluded.
+
+**Candidate content:** unmodified — `git status` on `organizational-learning/candidates/` is empty. No promotion field was added to any candidate JSON.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **257/257 passing** (unchanged baseline); `npm run build` succeeds; Prettier clean; Markdown Quality Gate PASS on both revised report files; `package-lock.json` unchanged.
+
+**Applicable CI:** to be confirmed on PR #589's pushed head; not asserted as already complete here. Full Assurance expected non-applicable (changed paths outside its selective filter).
+
+**Scope confirmation:** no `INSTITUTIONALISED`, no `ORGANIZATION_WIDE`, no Founder-approval claim, no candidate/schema/provenance/revision-hash change, no supersession edge, no context pack, no Stage 3B work, no registry/background automation, no autonomous writer. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
