@@ -1,75 +1,65 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 3B REAL-FIXTURE SCOPING CORRECTION
+# SB-ORG-LEARNING-1.1 — FOUNDER MERGE GATE FOR OLE LEARNING PACKAGE
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current actor:** Claude Code — narrow test-fixture correction only
+**Current actor:** Founder / human authorized operator
 
 **Branch:** `mission/SB-ORG-LEARNING-1.1-learning`
 
 **PR:** `#593 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `PROMOTION MATERIALIZATION CONTENT ACCEPTABLE — CI BLOCKED BY STALE STAGE 3B FIXTURE SCOPE`
+**Mission Control disposition:** `OLE LEARNING HANDOFF ACCEPTED — 8/8 PROMOTIONS VERIFIED — FOUNDER/HUMAN MERGE AUTHORIZED AFTER CURRENT CHECKS GREEN`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/43-promotion-ci-review-and-stage3b-fixture-scoping-correction-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/44-final-ole-learning-acceptance-and-founder-merge-gate.md`
 
-## Authorized correction only
+## Authorized action
 
-Modify:
+Founder/human authorized operator may merge PR #593 only after confirming:
 
-`organizational-learning/tests/context-pack.test.ts`
+1. PR remains open and unmerged;
+2. no unexpected substantive change has been added after the merge gate;
+3. all currently required checks on the current PR head are green.
 
-plus the minimum `communication/live/report.md` update needed to report the correction.
+Use the normal protected-branch merge path.
 
-The affected Stage 3B real-fixture proof is for:
+Do not add implementation or learning-content expansion before merge.
 
-`SB-OPS-CI-ARCHITECTURE-1.0`
+Do not self-merge from Claude Code, Codex or Mission Control.
 
-Scope its real promotions fixture loader to:
+## After merge
 
-`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
+Return to Mission Control.
 
-Do not change expected repository-wide counts from 4 to 12.
+Mission Control will independently verify:
 
-The invariant under test is the original mission-specific four-promotion fixture set, not the total number of promotions in the repository.
+- PR #593 merged state;
+- exact merge commit;
+- resulting main head;
+- current-main/post-merge checks;
+- merged learning/promotion artifacts;
+- communication closeout.
 
-## Preserve
+Only after that may the mission be recorded:
 
-Do not modify:
+`SB-ORG-LEARNING-1.1 — COMPLETED — FORMALLY ACCEPTED`
 
-- context-pack implementation;
-- candidates;
-- promotion records;
-- closure envelope;
-- receipt;
-- source fingerprint;
-- schemas;
-- application code;
-- issue #590;
-- governance/Product Truth.
+## Boundaries
 
-## Required validation
+No Stage 4B.
+No automatic OLE runtime.
+No provider/scheduler/publisher expansion.
+No automatic promotion.
+No organization-wide institutionalization.
+No governance/Product Truth mutation.
+No production/customer mutation.
+No `SB-P-1.12` activation.
 
-Prove:
+## Stop
 
-- Stage 3B fixture loader sees exactly 4 SB-OPS promotions;
-- authorized SB-OPS profile => 4 reusable, 0 excluded within that mission fixture set;
-- non-matching profile => 0 reusable, 4 excluded;
-- all 8 SB-ORG-LEARNING-1.1 promotions remain present and unchanged;
-- full Fast Tests PASS;
-- typecheck PASS;
-- lint PASS;
-- build PASS;
-- Markdown Quality Gate PASS;
-- report any applicable Full Assurance honestly.
-
-No self-merge.
-
-End exactly:
-
-`STAGE 3B FIXTURE-SCOPING CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+`OLE LEARNING ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE OF PR #593 — DO NOT SELF-MERGE`
