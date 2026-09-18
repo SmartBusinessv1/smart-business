@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product organizational / institutional capability implementation
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `IMPLEMENTATION MERGED — POST-MERGE VERIFIED — OLE LEARNING HANDOFF INITIATED — FORMAL CLOSEOUT PENDING`
+- **Status:** `COMPLETED — FORMALLY ACCEPTED`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#585 — MERGED`
 - **Activation merge commit:** `e1806c0e2e1f56102e03daf6639363ddd34c3ede`
@@ -41,13 +41,23 @@ Mission Control authorizes one stage at a time. Passing one stage does not autho
 
 ## Current authorization
 
-Stages 1 through 5 are accepted. Stage 6 pre-merge review passed, PR #589 was Founder/human merged, and Mission Control independently verified canonical `main` at merge commit `85e917b4256edb01c77a2be0f909512b32be4cef`.
+The implementation mission is complete.
 
-The standing OLE closure rule now applies to this mission itself. Mission Control has initiated the manual OLE learning handoff under:
+PR #589 merged the accepted OLE implementation. PR #592 merged post-merge verification and the mandatory OLE learning handoff activation. PR #593 merged the reviewed learning package, eight `VALIDATED / MISSION_SCOPED` promotion records, and the accepted Stage 3B fixture-scoping correction.
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md`
+Mission Control independently verified canonical `main` after PR #593 at:
 
-Formal communication closeout remains pending until that learning handoff returns and Mission Control records the resulting learning disposition.
+`2fe7dc44200541c60efefd02b05bb203bac7004d`
+
+Final acceptance is recorded under:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md`
+
+The standing manual OLE closure handoff rule remains active until Stage 4B is separately implemented and accepted.
+
+Stage 4B remains tracked in GitHub issue #590 and is not authorized.
+
+`SB-P-1.12` remains not activated.
 
 ## Stage 1 builder
 
@@ -81,12 +91,12 @@ This mission may not:
 
 ## Current owner
 
-**Smart Business Mission Control**, for post-merge OLE learning handoff and final communication closeout.
+**Mission closed.** No active implementation owner.
 
 ## Immediate next action
 
-Execute the manual OLE learning handoff against the canonical merged mission evidence, using the accepted OLE v1 contracts. Generated learning remains candidate/context only until human review.
+None inside this mission.
 
-Canonical Stage 4B tracker: GitHub issue #590.
+Any follow-on work, including Stage 4B or `SB-P-1.12`, requires separate Mission Control activation.
 
-`SB-P-1.12` remains not activated.
+`SB-ORG-LEARNING-1.1 — COMPLETED — FORMALLY ACCEPTED`
