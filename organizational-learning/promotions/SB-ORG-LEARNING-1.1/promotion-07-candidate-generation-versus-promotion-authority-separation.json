@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-07-candidate-generation-versus-promotion-authority-separation-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-07-candidate-generation-versus-promotion-authority-separation",
+  "candidate_revision_hash": "ad6b99ed9929202e10c591f5d6cda6dca3c2790ba26e82cffc3e47c4f953dff9",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: candidate-learning generation and human/Mission-Control promotion decisions are structurally separate contracts in the OLE v1 implementation, proven across the Stage 2B candidate-extraction and Stage 3A promotion-proof cycle. Scoped to this mission's own OLE contract design; this very promotion record is itself an instance of that same separation (materializing, not making, the promotion decision).",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md",
+      "blob_sha": "08f3a68410241b54768e78d463e6f17d7cce7b39",
+      "locator": "Line 118: 'No prohibited field (reviewed_by, founder_approval, founder_approved, institutional_approval, institutionalised_by, institutionalized_by, supersedes, superseded_by, risk_resolution, status, promotion_scope, approving_authority, or any other unrecognized key) appears in any candidate -- confirmed both by the schema's own .strict() rejection... and by an independent defensive grep across all four files, which matched nothing.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["organizational-learning-engine"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md",
+      "blob_sha": "27bc7ddaae52913969ce4115f7819278876f3ed7",
+      "locator": "Line 21: 'Materialize and prove Mission Control's already-made human review/promotion decision... This is proof of an already-made decision, not a new independent promotion judgment -- the builder has no promotion authority.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md",
+      "blob_sha": "27bc7ddaae52913969ce4115f7819278876f3ed7",
+      "locator": "Line 176: 'No INSTITUTIONALISED status or ORGANIZATION_WIDE scope was used. No Founder approval was claimed (approving authority is mission-control throughout, matching the actual decision)... these are static, human-decision-materializing data files, written and committed by the authorized builder, not by an autonomous writer.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

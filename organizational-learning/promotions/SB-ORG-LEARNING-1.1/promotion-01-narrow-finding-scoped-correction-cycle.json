@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-01-narrow-finding-scoped-correction-cycle-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-01-narrow-finding-scoped-correction-cycle",
+  "candidate_revision_hash": "a29aad2ba02408e913e0aa393bbdf5b18ec59e14ca356845f0c4918542c829aa",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: Stage 5 of SB-ORG-LEARNING-1.1 resolved seven findings (S5-F-01 through S5-F-07) through four narrow, explicitly-bounded correction rounds (S5-F-01 through S5-F-04 corrected together, then S5-F-05, then S5-F-06, then S5-F-07), each independently re-verified before the next round was opened. Scoped to this mission's own Stage 5 correction history; not generalized to every possible correction or review workflow.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/25-stage5-f01-f04-correction-authorization.md",
+      "blob_sha": "17789c697277810f6452f8434721e4fd8b8c843a",
+      "locator": "Section 3, 'Correction authority': 'Claude Code is authorized to correct only the four findings above... This is a correction inside the existing bounded reconciliation architecture.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+      "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+      "locator": "Section 1, 'Decision and authority': 'S5-F-07 is independently resolved... S5-F-01 through S5-F-06 remain resolved within the verified boundary; no regression blocker remains within the authorized Stage 5 scope.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+      "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+      "locator": "Section 4, 'Null-ancestor correction': 'One-line, smallest-possible change... reusing the exact same status/condition/fail-closed path the S5-F-06 found-but-invalid-ancestor branch already uses. No new reconciliation state.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

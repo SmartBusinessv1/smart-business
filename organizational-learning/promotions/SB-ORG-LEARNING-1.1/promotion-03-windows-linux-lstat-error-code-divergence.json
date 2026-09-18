@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-03-windows-linux-lstat-error-code-divergence-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-03-windows-linux-lstat-error-code-divergence",
+  "candidate_revision_hash": "f660c1c6301f0502c01c6a113a24ea7cb7f8b51f4a46a869e683bc09cb275cea",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: Windows and Linux lstat report different error codes (ENOENT vs ENOTDIR) for the same 'path component is a file, not a directory' condition, discovered via a genuine Linux CI failure during the S5-F-06 correction. Scoped to this mission's own cross-platform CI observation; not generalized into a universal claim about all Node.js filesystem APIs or all environments.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+      "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+      "locator": "Section 10, 'Root cause of the CI failure': 'On this Windows machine, an ordinary file occupying an ancestor position empirically produces ENOENT... On Linux (the actual GitHub Actions runner), the POSIX-correct behavior for the identical fixture is ENOTDIR... Confirmed by reading the actual Linux CI job logs (gh run view --job <id> --log), not assumed.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+      "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+      "locator": "Section 10: 'This was not a safety regression: METADATA_UNAVAILABLE still maps to the same INVALID_OR_UNSAFE fail-closed reconciliation result; only the specific diagnostic label and one test's exact-substring assertion were affected.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety"],
+        "environments": ["ci", "development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+      "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+      "locator": "Section 10, 'Correction': 'introduced a second, narrower helper, isUnresolvedPathError (ENOENT or ENOTDIR), used only by the walk-up loop's retry decision. isGenuineAbsenceError (the S5-F-05 function, ENOENT-only) is completely unchanged in meaning and in every other call site.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

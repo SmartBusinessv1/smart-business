@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-05-duplicate-envelope-identity-belongs-in-planner-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-05-duplicate-envelope-identity-belongs-in-planner",
+  "candidate_revision_hash": "12f1d2bd04a08ac1e442e09c41f5766910a7720734115f20943581d0a5d3ee22",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: duplicate/conflicting processing-intent detection belongs in the planning step itself, keyed on full validated content rather than path strings or classifier-visible fields alone, as proven by the S5-F-04 correction. Scoped to this mission's own reconciliation planner; not generalized to every planning or scheduling system in the repository.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+      "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+      "locator": "Section 7, 'Finding': 'Two distinct valid envelope files claiming the same mission_id + closure_revision each produced their own ELIGIBLE_UNPROCESSED work item; the CLI's path-string Set only removes identical path strings, not duplicate processing identity.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+      "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+      "locator": "Section 7, 'Correction': 'comparing classification output alone would miss a material difference in a field classification does not itself read (e.g. accepted_scope). A group with one distinct hash classifies its single representative once; a group with more than one distinct hash emits zero work items and one safe, deterministic conflict entry.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+      "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+      "locator": "Section 7, 'Proof', third bullet: 'Two envelopes differing only in accepted_scope (a field classification does not consume) are still correctly detected as conflicting and produce zero work items, deterministically, across reversed replay -- directly validating that conflict detection compares full envelope content, not merely classification output.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+      "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+      "locator": "Section 7, 'Proof', second bullet: 'Two envelopes for the same mission/revision with a genuinely different pinned source_snapshot_ref/evidence produce zero work items and one conflict entry whose reason names the identity and contains \"conflicting\", with the commit SHA never echoed.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation", "filesystem-safety"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

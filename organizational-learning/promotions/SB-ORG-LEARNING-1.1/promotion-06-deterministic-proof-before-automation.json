@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-06-deterministic-proof-before-automation-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-06-deterministic-proof-before-automation",
+  "candidate_revision_hash": "21f8b4042635eeb5fc44eb0729c3c76f0343aad928deba3ee280b407634b61a9",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: SB-ORG-LEARNING-1.1 accepted a bounded, deterministic, manually-triggered Stage 4 reconciliation slice while explicitly deferring Stage 4B background automation and naming it in a separate tracked issue (#590). Scoped to this mission's own Stage 4/4B boundary; does not authorize or imply automatic acceptance of any future automation proposal.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md",
+      "blob_sha": "dc65acb54c94fb06b4c48d1e17b763f13a3c71b2",
+      "locator": "Section 'Stage 4 — ACCEPTED, bounded': lists the accepted deterministic results, then: 'Stage 4B mature automation was explicitly not required for this mission and remains deferred/not authorized.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md",
+      "blob_sha": "dc65acb54c94fb06b4c48d1e17b763f13a3c71b2",
+      "locator": "Section 9, 'Founder merge authorization': 'This authorization is for merge of the accepted mission only. It does not authorize: Stage 4B; mature automation; provider/model integration; automatic promotion; governance/Product Truth mutation; production/customer mutation; SB-P-1.12.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+      "blob_sha": "f203656f81f7c23dd03df78b06df7dbf40a8bd40",
+      "locator": "'Stage 4B tracking issue: #590 — OLE Stage 4B — Background Automation & Candidate Learning Runtime'; line 112: 'GitHub issue #590 tracks the deferred Stage 4B capability whose purpose is to remove this manual initiation dependency.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}
