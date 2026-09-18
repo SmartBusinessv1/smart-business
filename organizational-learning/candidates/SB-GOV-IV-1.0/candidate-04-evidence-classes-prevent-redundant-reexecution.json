@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-IV-1.0-candidate-04-evidence-classes-prevent-redundant-reexecution",
+  "canonical_title": "Classifying evidence by method (exercised, inspected-automated, static) lets a verifier reuse CI results without duplicating deterministic work",
+  "summary": "The protocol defines three evidence classes -- A (independently exercise a meaningful challenge), B (inspect authoritative automated evidence such as CI), and C (static inspection of diff/config) -- and directs the verifier not to use Class A where B or C is sufficient. It simultaneously forbids the inverse shortcut: re-running all deterministic checks locally merely to relabel Class B evidence as Class A, and requires independent execution specifically where automated coverage has a known gap (e.g. Windows-specific behavior a Linux-only CI run cannot discharge).",
+  "category": ["governance", "engineering", "operations"],
+  "scope": {
+    "mission_ids": ["SB-GOV-IV-1.0"],
+    "systems": ["independent-verification", "ci"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "three-class-model-with-a-preference-order",
+      "text": "The protocol defines Class A (independently exercise), Class B (inspect authoritative automated evidence such as full suites, typecheck, build, lint, Markdown gate, Full Assurance), and Class C (static inspection of dependency/workflow/provider/scope diffs), and states the verifier should not use Class A execution where Class B or C is sufficient.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/01-activation-and-founder-design-basis.md",
+          "blob_sha": "26067b5ba7e2189292a823abe9a6a6195763cf8a",
+          "locator": "Section 6, 'Evidence classes': defines Class A/B/C with examples, then: 'The verifier should not use Class A execution where Class B or C is sufficient.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "forbids-relabeling-b-as-a-by-redundant-local-reexecution",
+      "text": "The active protocol explicitly forbids the inverse shortcut of re-running all deterministic checks locally merely to convert Class B evidence into Class A, while requiring genuine independent challenge of coverage assumptions, test weakening, and known gaps -- and explicitly states that Linux CI skipping Windows cases does not discharge Windows-specific Class A obligations.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+          "locator": "Section 6: 'Do not rerun all deterministic checks locally merely to rename Class B as Class A. Independently challenge coverage assumptions, test weakening and known gaps. Linux CI that skips Windows cases does not discharge Windows-specific Class A obligations.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["independent-verification", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "class-b-requires-checking-what-ci-actually-proved",
+      "text": "Class B evidence is not satisfied by a green badge alone: the protocol requires confirming the correct repository/workflow/event, run attempt, tested tree, job completion, test selection and skips, and distinguishes the run head from a synthetic merge-test checkout -- explicitly stating a skipped, cancelled, queued, unavailable or still-running job is not PASS.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+          "locator": "Section 6: 'For Class B, confirm the correct repository/workflow/event, run attempt, tested tree, job completion, test selection and skips. Distinguish run head from a synthetic merge-test checkout... A job skipped, cancelled, queued, unavailable or still running is not PASS.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["ci", "independent-verification"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-IV-1.0-learning:2026-09-18",
+    "generated_at": "2026-09-18T18:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-IV-1.0",
+    "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+    "source_fingerprint": "d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396"
+  },
+  "conditions": [
+    "Applies to any verification workflow that has access to authoritative, already-executed automated evidence (CI) and wants to avoid scarce independent-verifier time re-proving what deterministic tooling already proved.",
+    "Requires both directions of the discipline to hold simultaneously: not re-executing what CI already proved (Class A misuse), and not treating an inspected CI result as sufficient when it has a known coverage gap relative to the actual risk (Class B misuse) -- a system that only enforces one direction degrades into either wasted effort or false assurance."
+  ],
+  "anti_patterns": [
+    "Independently re-running an entire deterministic suite locally as a substitute for genuinely inspecting what the authoritative CI run already proved, which wastes scarce verifier capacity without adding real information.",
+    "Accepting a green CI badge as Class B proof without checking which workflow, event, run attempt, and exact tested tree it actually covered -- a synthetic merge-test checkout, a skipped job, or a platform gap can all hide behind an apparently passing summary."
+  ]
+}

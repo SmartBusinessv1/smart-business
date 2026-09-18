@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-IV-1.0-candidate-06-governance-activation-sequencing-before-product-acceleration",
+  "canonical_title": "Risk: gating Product Mission acceleration on a governance mission's own closure is deliberate, but it depends on the same still-manual OLE trigger already flagged as a gap",
+  "summary": "SB-P-1.12 is explicitly held not-activated until SB-GOV-IV-1.0 satisfies the standing OLE learning handoff or an explicit no-material-learning disposition, and communication is closed/archived -- a deliberate sequencing control so the verification-governance capability is proven and reflected on before the product program that will depend on it accelerates. This sequencing control itself depends on a human or builder manually initiating the OLE learning handoff, the same manual-trigger dependency already identified as an unresolved risk in SB-ORG-LEARNING-1.1 (Stage 4B, GitHub Issue #590) and not yet removed.",
+  "category": ["governance", "operations"],
+  "scope": {
+    "mission_ids": ["SB-GOV-IV-1.0"],
+    "systems": ["mission-governance", "organizational-learning-engine"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "sb-p-1-12-explicitly-gated-on-this-missions-own-closure",
+      "text": "The activation record explicitly states that before SB-P-1.12 may start: this activation record must be merged and verified on canonical main; SB-GOV-IV-1.0 must satisfy the standing OLE learning handoff or explicit evidence-based no-reusable-learning rule; communication must be closed/archived according to protocol; and Mission Control must then separately activate SB-P-1.12.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md",
+          "blob_sha": "9225f0ead17cc6c1a8935fd127306098d753a55b",
+          "locator": "Section 5, 'Product Mission boundary': 'This activation does not activate SB-P-1.12. Before SB-P-1.12 may start: 1. this activation record must be merged and verified on canonical main; 2. SB-GOV-IV-1.0 must satisfy the standing OLE learning handoff or explicit evidence-based no-reusable-learning rule; 3. communication must be closed/archived according to protocol; 4. Mission Control must then separately activate SB-P-1.12.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "learning-cycle-again-required-a-manual-trigger",
+      "text": "Mission Control's own post-activation verification record explicitly frames this handoff as manual specifically because Stage 4B background automation remains deferred, and directs the learning operator to work only from canonical merged evidence -- the same human-initiation dependency previously observed and retained as an unresolved risk in SB-ORG-LEARNING-1.1's own learning cycle recurred here, in the very next mission to close.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/05-postactivation-verification-and-ole-learning-handoff.md",
+          "blob_sha": "8441dfd035d8ec4c1a9e5d072ca379488d750525",
+          "locator": "Section 3, 'Manual OLE handoff scope': 'Stage 4B remains deferred, so this learning cycle is manual. The learning operator shall work only from canonical merged evidence and the accepted OLE v1 contracts.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["organizational-learning-engine"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "standing-closure-rule-applied-outside-its-originating-mission",
+      "text": "The standing Mission Control closure rule (requiring an OLE learning handoff or an explicit no-material-reusable-learning disposition before a mission is considered closed) was applied to SB-GOV-IV-1.0 exactly as written, confirming the rule generalized beyond the organizational-learning mission that first established it rather than being scoped only to its own closure.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/05-postactivation-verification-and-ole-learning-handoff.md",
+          "blob_sha": "8441dfd035d8ec4c1a9e5d072ca379488d750525",
+          "locator": "Section 2, 'Standing OLE closure rule': 'The standing Mission Control closure rule requires every mission to complete either: 1. an OLE learning handoff; or 2. an explicit evidence-based NO MATERIAL REUSABLE LEARNING disposition.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-IV-1.0-learning:2026-09-18",
+    "generated_at": "2026-09-18T18:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-IV-1.0",
+    "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+    "source_fingerprint": "d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396"
+  },
+  "conditions": [
+    "Applies when a governance- or capability-building mission's completion is a prerequisite for accelerating a larger program, and the organization wants that prerequisite genuinely proven and reflected on, not merely declared done.",
+    "The manual-trigger observation applies specifically while Stage 4B (or equivalent background automation) remains unimplemented; every mission closure in that state will keep depending on a human or builder remembering to initiate the learning cycle."
+  ],
+  "anti_patterns": [
+    "Treating a governance/verification-capability mission's activation as equivalent to its closure, and starting dependent product work before the standing closure rule (learning handoff or explicit no-learning disposition) is actually satisfied.",
+    "Assuming the standing closure rule's manual-trigger dependency was a one-off characteristic of the mission that first defined it, rather than a still-open, generally-applicable gap that will recur at every mission closure until Stage 4B automation exists."
+  ]
+}

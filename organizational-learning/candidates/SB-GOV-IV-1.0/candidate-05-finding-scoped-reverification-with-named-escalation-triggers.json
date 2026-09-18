@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-IV-1.0-candidate-05-finding-scoped-reverification-with-named-escalation-triggers",
+  "canonical_title": "A default of finding-scoped re-verification is safe only when paired with explicit, named triggers for escalating back to full re-verification",
+  "summary": "The protocol makes 'correction scope determines re-verification scope' the default sequence (finding, narrow correction, full applicable deterministic CI, Mission Control correction review, finding-specific independent re-verification, bounded result), but does not treat this as an unconditional shortcut: it names exact conditions that force broader re-verification (shared infrastructure touched, another contract materially changed, prior assurance boundary shown incomplete, or explicit Mission Control broadening) and requires prior findings to be carried forward only after an explicit impact check, never merely relabeled as still valid. The design explicitly grounds this pattern in a real prior mission's independently re-verified narrow-correction cycle, treated as historical evidence, not as a fresh claim invented for this mission.",
+  "category": ["governance", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-GOV-IV-1.0"],
+    "systems": ["independent-verification", "mission-governance"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "default-sequence-and-named-broadening-triggers",
+      "text": "The default correction/re-verification rule is finding -> narrow correction -> full deterministic CI -> Mission Control correction review -> finding-specific independent re-verification -> PASS/FAIL, and the protocol explicitly lists the conditions under which the entire original verification must restart instead: the correction touches shared infrastructure, materially changes another contract, new evidence shows the original assurance boundary was incomplete, or Mission Control explicitly broadens scope.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/01-activation-and-founder-design-basis.md",
+          "blob_sha": "26067b5ba7e2189292a823abe9a6a6195763cf8a",
+          "locator": "Section 7, 'Correction and re-verification rule': gives the default sequence, then: 'Do not restart the entire original verification unless: the correction touches shared infrastructure; the correction materially changes another contract; new evidence shows the original assurance boundary was incomplete; Mission Control explicitly broadens the verification scope.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "carry-forward-requires-explicit-impact-check-not-relabeling",
+      "text": "The active protocol requires that a prior resolved finding is carried forward only after an impact check shows its implementation, dependencies, test/configuration assumptions and relevant environment remain unchanged, and that each carried-forward result must be recorded with its original evidence and justification -- never relabeled as newly executed.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+          "locator": "Section 9: 'Carry forward prior resolved findings only after an impact check shows their implementation, dependencies, test/configuration assumptions and relevant environment remain unchanged. Record each carried-forward result with its original evidence and justification; do not relabel it as newly executed.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "design-explicitly-grounded-in-a-prior-real-mission",
+      "text": "The protocol's own evidence-basis section explicitly cites a prior mission's finding-scoped correction and re-verification cycle (Windows-specific independent probes, CI-head-versus-checkout-SHA distinction, capacity resumption, bounded PASS) as historical observations informing this design, and separately cites that prior mission's own mission-scoped VALIDATED promotion of the same narrow-correction pattern, while explicitly noting it does not institutionalize a universal workflow.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+          "locator": "Section 15, 'Evidence basis and risks': cites the Stage 5 final re-verification record and the accepted narrow-correction promotion, then: 'These are historical observations inspected in this checkout, not fresh executions in this mission... it does not institutionalize a universal workflow.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0", "SB-ORG-LEARNING-1.1"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-IV-1.0-learning:2026-09-18",
+    "generated_at": "2026-09-18T18:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-IV-1.0",
+    "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+    "source_fingerprint": "d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396"
+  },
+  "conditions": [
+    "Applies to any review or verification workflow that wants to avoid re-litigating an entire prior review after each small correction, without silently letting scope creep past what the original review actually covered.",
+    "Requires the escalation triggers to be named in advance (shared infrastructure, another contract, incomplete prior boundary, explicit broadening) rather than left to case-by-case judgment after the fact, and requires carry-forward to be an explicit, checked decision rather than a default assumption."
+  ],
+  "anti_patterns": [
+    "Treating 'finding-scoped by default' as license to never re-open a broader review, even when a correction turns out to touch shared infrastructure or another contract.",
+    "Carrying forward a prior finding's PASS status without an explicit impact check, which silently converts 'this was true before' into 'this is still true now' without re-examining the assumption."
+  ]
+}
