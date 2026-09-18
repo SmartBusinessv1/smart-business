@@ -2,89 +2,68 @@
 
 # Report
 
-**Mission ID:**
+**Mission ID:** `SB-GOV-IV-1.0`
 
-**Mission Name:**
+**Mission Name:** Codex / Independent Verification Efficiency Protocol
 
-**From:**
+**From:** Codex
 
 **To:** Mission Control
 
-**Status:**
+**Status:** `AWAITING EXECUTION`
 
-**Date:**
+**Date:** 2026-09-18
 
 ---
 
 # Executive Summary
 
-Summarize the outcome, current state, and whether the mission is complete, blocked, or awaiting review.
+Awaiting Codex protocol design and governance reconciliation.
 
 ---
 
 # Work Performed
 
-Describe only the work completed within the approved scope.
+Not yet reported.
 
 ---
 
 # Findings
 
-Record verified findings, evidence, and important observations.
-
-Clearly distinguish:
-
-- Confirmed facts
-- Inferences
-- Recommendations
-- Unknowns
+Not yet reported.
 
 ---
 
 # Changes Made
 
-List every repository, configuration, deployment, data, or documentation change made.
-
-If none were made, state:
-
-```text
-No changes made.
-```
+No specialist changes reported yet.
 
 ---
 
 # Verification
 
-Document tests, checks, screenshots, commands, or runtime validation completed.
-
-Do not include secrets, access tokens, personal account information, or sensitive identifiers.
+Pending.
 
 ---
 
 # Risks and Limitations
 
-Record unresolved risks, external dependencies, platform limitations, or assumptions requiring Founder awareness.
+Current governing sources remain controlling until Mission Control review and any required Founder-approved amendment.
 
 ---
 
 # Founder or Mission Control Action Required
 
-State any required decision or action.
-
-If none is required, state:
-
-```text
-None.
-```
+Await Codex report.
 
 ---
 
 # Recommended Next Step
 
-Provide one clear next operational step without expanding the authorized mission scope.
+Codex should read and execute `communication/live/instruction.md`.
 
 ---
 
 # Completion Status
 
-Conclude with the exact status required by the instruction.
+`AWAITING CODEX EXECUTION`
