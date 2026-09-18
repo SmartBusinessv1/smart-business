@@ -2,17 +2,17 @@
 
 - **Source:** 18
 - **Version:** 1.1
-- **Status:** FOUNDER APPROVED — ACTIVATION PENDING
+- **Status:** ACTIVE
 - **Authority:** FOUNDER APPROVED — AUTHORITATIVE
 - **Approved By:** Founder — Riyas PK
 - **Approval Date:** 2026-09-18
-- **Activated By:** PENDING — Mission Control post-merge activation
-- **Activation Date:** PENDING
-- **Repository publication:** v1.0 publication complete at historical commit `bd9b362`; v1.1 Founder-approved amendment publication pending
+- **Activated By:** Smart Business Mission Control
+- **Activation Date:** 2026-09-18
+- **Repository publication:** v1.0 publication complete at historical commit `bd9b362`; v1.1 amendment/publication merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`
 - **Scope:** Every Smart Business Product Mission (`SB-P-*`)
 - **Created under:** `SB-GOV-LIFECYCLE-1.0`; amended under `SB-GOV-IV-1.0`
 
-> **Authority notice:** This v1.1 amendment is Founder approved but not active until Mission Control completes post-merge activation under `SB-GOV-IV-1.0`. Until then, no Product Mission may rely on the amended actor-flexibility clauses. On activation, Source 18 v1.1 becomes authoritative for all `SB-P-*` mission lifecycle and delivery work, subordinate to the Lighthouse Constitution, Smart Business constitutional authority, and the approved governance order.
+> **Authority notice:** Source 18 v1.1 is active and authoritative for all `SB-P-*` mission lifecycle and delivery work. It remains subordinate to the Lighthouse Constitution, Smart Business constitutional authority, and the approved governance order. The v1.1 actor-flexibility amendment was Founder approved under `SB-GOV-IV-1.0` and merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`.
 
 ---
 
