@@ -1,57 +1,55 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 5 FINAL INDEPENDENT RE-VERIFICATION
+# SB-ORG-LEARNING-1.1 — STAGE 5 S5-F-06 VERIFIER PUBLICATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Current stage:** `5 — Independent verification / failure-path assurance`
 
-**Current actor:** Codex — independent verifier
+**Current actor:** Codex — verifier publication only
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 5 F-05 CORRECTION RE-REVIEW PASS — FINAL CODEX RE-VERIFICATION AUTHORIZED`
+**Mission Control disposition:** `STAGE 5 FINAL RE-VERIFICATION — FAIL — S5-F-06 PUBLICATION AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/29-stage5-f05-rereview-and-final-codex-reauthorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/08-stage5-f05-correction.md`
-3. `communication/missions/SB-ORG-LEARNING-1.1/codex/09-stage5-independent-corrective-reverification.md`
-4. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md`
-5. current reconciliation implementation/tests.
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/30-stage5-f06-verifier-publication-authorization.md`
+2. locally completed `communication/missions/SB-ORG-LEARNING-1.1/codex/10-stage5-final-independent-reverification.md`
+3. current `communication/live/report.md`
 
 ## Authorized action
 
-Perform final independent Stage 5 re-verification only.
+Publish only the already-completed final Stage 5 verifier evidence:
 
-Mandatory focus:
+- `communication/missions/SB-ORG-LEARNING-1.1/codex/10-stage5-final-independent-reverification.md`
+- the minimum already-prepared verifier update to `communication/live/report.md`
 
-- `S5-F-05` genuine absence vs dangling/unresolved/ambiguous receipt-directory entry;
-- regression of corrected `S5-F-01` through `S5-F-04`;
-- genuine Stage 2A no-op and exact fingerprint;
-- Stage 2 / Stage 3 / context-pack / authority regressions;
-- dependency/workflow/governance/Product Truth/production drift.
+Preserve reviewed head:
 
-Return exactly `PASS`, `FAIL`, or `FOLLOW-UP REQUIRED`.
+`018be1b3830f62f7d3d4c30470a8cc9384a1161f`
 
-Do not correct implementation during this pass.
+Preserve disposition:
 
-Recommended durable report:
+`FAIL`
 
-`communication/missions/SB-ORG-LEARNING-1.1/codex/10-stage5-final-independent-reverification.md`
+Preserve new finding:
+
+`S5-F-06 — invalid receipt-directory ancestry is misclassified as genuine absence`
+
+Preserve that S5-F-05 itself is resolved and that S5-F-01 through S5-F-04 regression cases passed.
 
 ## Boundaries
 
-`STAGE 6 — NOT AUTHORIZED`
-
+No implementation correction in this publication step.
+No Stage 6.
 No merge.
-No automated extraction/provider/scheduler/publisher.
+No provider/scheduler/publisher expansion.
 No automatic promotion.
-No `INSTITUTIONALISED` / `ORGANIZATION_WIDE` authority.
 No governance/Product Truth mutation.
 No production/customer mutation.
 
@@ -61,4 +59,4 @@ No production/customer mutation.
 
 ## Stop
 
-`STAGE 5 FINAL INDEPENDENT RE-VERIFICATION REPORTED — MISSION CONTROL DECISION REQUIRED`
+`STAGE 5 S5-F-06 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
