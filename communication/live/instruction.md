@@ -1,55 +1,63 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 6 PRE-MERGE MISSION CONTROL REVIEW
+# SB-ORG-LEARNING-1.1 — STAGE 6 FOUNDER MERGE GATE
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
 **Current stage:** `6 — Mission Control acceptance / Founder merge / communication closeout`
 
-**Current actor:** Smart Business Mission Control
+**Current actor:** Founder / human authorized operator
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 5 — ACCEPTED; STAGE 6 PRE-MERGE REVIEW AUTHORIZED`
+**Mission Control disposition:** `STAGE 6 PRE-MERGE REVIEW — PASS; FOUNDER/HUMAN MERGE AUTHORIZED AFTER CURRENT CHECKS GREEN`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/37-stage5-acceptance-and-stage6-premerge-review-authorization.md`
-2. `communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md`
-3. prior Stage 1–5 acceptance / verification records
-4. controlling final reconciled OLE build plan
-5. current PR #589 state and CI.
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md`
 
 ## Authorized action
 
-Mission Control shall perform the whole-mission Stage 6 pre-merge review only.
+Founder/human authorized operator may merge PR #589 only after confirming:
 
-Review:
+1. PR remains open and unmerged;
+2. current head contains no unexpected substantive change after the gate;
+3. all currently required checks on the current PR head are green.
 
-- accepted evidence for Stages 1 through 5;
-- authorized OLE v1 scope versus actual PR contents;
-- deferred Build Later capabilities remain absent;
-- current CI and PR integrity;
-- authority separation and no self-approval;
-- whether a Founder merge gate may be issued.
+Use the normal protected-branch merge path.
+
+Do not add implementation work before merge.
+
+Do not self-merge from Claude Code, Codex or Mission Control.
+
+## After merge
+
+Return to Mission Control with the merge confirmation.
+
+Mission Control will independently verify:
+
+- PR merged state;
+- exact merge commit / resulting main head;
+- applicable post-merge/current-main checks;
+- no unauthorized intervening change;
+- communication closeout.
+
+Only then may the OLE mission be marked formally completed.
 
 ## Boundaries
 
-No merge.
-No self-merge.
-No SB-P-1.12 activation.
-No Stage 4B mature automation.
+No Stage 4B.
+No mature background automation.
 No provider/scheduler/publisher expansion.
 No automatic promotion.
 No governance/Product Truth mutation.
 No production/customer mutation.
-
-`PR #589 — NOT READY TO MERGE UNTIL A SEPARATE FOUNDER MERGE GATE IS ISSUED`
+No `SB-P-1.12` activation.
 
 ## Stop
 
-`STAGE 6 PRE-MERGE REVIEW ACTIVE — FOUNDER MERGE NOT YET AUTHORIZED`
+`STAGE 6 PRE-MERGE REVIEW PASS — STOP FOR FOUNDER/HUMAN MERGE — DO NOT SELF-MERGE`
