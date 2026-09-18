@@ -1,93 +1,75 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — OLE LEARNING PROMOTION MATERIALIZATION
+# SB-ORG-LEARNING-1.1 — STAGE 3B REAL-FIXTURE SCOPING CORRECTION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current actor:** Claude Code — promotion materialization only
+**Current actor:** Claude Code — narrow test-fixture correction only
 
 **Branch:** `mission/SB-ORG-LEARNING-1.1-learning`
 
 **PR:** `#593 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `OLE LEARNING REVIEW — PASS; 8/8 CANDIDATES APPROVED FOR VALIDATED / MISSION_SCOPED PROMOTION`
+**Mission Control disposition:** `PROMOTION MATERIALIZATION CONTENT ACCEPTABLE — CI BLOCKED BY STALE STAGE 3B FIXTURE SCOPE`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/43-promotion-ci-review-and-stage3b-fixture-scoping-correction-authorization.md`
 
-## Authorized action
+## Authorized correction only
 
-Materialize the already-made Mission Control promotion decision only.
+Modify:
 
-Create one promotion-review record per current candidate under:
+`organizational-learning/tests/context-pack.test.ts`
 
-`organizational-learning/promotions/SB-ORG-LEARNING-1.1/`
+plus the minimum `communication/live/report.md` update needed to report the correction.
 
-For all eight records:
+The affected Stage 3B real-fixture proof is for:
 
-- compute the exact current candidate revision hash with the existing `computeRevisionHash`;
-- use the existing `PromotionReviewSchema` unchanged;
-- set `resulting_maturity: VALIDATED`;
-- set `promotion_scope: MISSION_SCOPED`;
-- approving authority:
-  - `actor_class: mission-control`
-  - `name_or_role: Smart Business Mission Control`;
-- use record 42 as `decision_ref`;
-- preserve evidence sufficient for the promotion contract;
-- `supersedes: []`;
-- `superseded_by: []`;
-- do not claim Founder approval.
+`SB-OPS-CI-ARCHITECTURE-1.0`
 
-Candidate 04 remains MEDIUM confidence.
-Candidate 08 remains a risk/dependency item and does not authorize Stage 4B.
+Scope its real promotions fixture loader to:
 
-## Do not change
+`organizational-learning/promotions/SB-OPS-CI-ARCHITECTURE-1.0/`
 
-- any candidate content;
+Do not change expected repository-wide counts from 4 to 12.
+
+The invariant under test is the original mission-specific four-promotion fixture set, not the total number of promotions in the repository.
+
+## Preserve
+
+Do not modify:
+
+- context-pack implementation;
+- candidates;
+- promotion records;
 - closure envelope;
 - receipt;
 - source fingerprint;
 - schemas;
-- scripts;
-- tests;
 - application code;
-- governance/Product Truth;
-- issue #590 state.
-
-No new harvest.
-No new receipt.
-No new candidate generation.
+- issue #590;
+- governance/Product Truth.
 
 ## Required validation
 
-- 8/8 PromotionReviewSchema PASS;
-- 8/8 candidate revision hashes exact;
-- all promotion provenance VALID;
-- no INSTITUTIONALISED;
-- no ORGANIZATION_WIDE;
-- no Founder approval claim;
-- formatting / Markdown PASS;
-- applicable CI green.
+Prove:
 
-## Required return
+- Stage 3B fixture loader sees exactly 4 SB-OPS promotions;
+- authorized SB-OPS profile => 4 reusable, 0 excluded within that mission fixture set;
+- non-matching profile => 0 reusable, 4 excluded;
+- all 8 SB-ORG-LEARNING-1.1 promotions remain present and unchanged;
+- full Fast Tests PASS;
+- typecheck PASS;
+- lint PASS;
+- build PASS;
+- Markdown Quality Gate PASS;
+- report any applicable Full Assurance honestly.
 
-Report:
-
-- promotion files created;
-- candidate revision hashes;
-- schema validation;
-- provenance validation;
-- screening/formatting;
-- exact files changed;
-- current branch head;
-- PR #593 state;
-- applicable CI.
-
-Do not self-merge.
+No self-merge.
 
 End exactly:
 
-`OLE LEARNING PROMOTION MATERIALIZATION REPORTED — MISSION CONTROL VERIFICATION REQUIRED`
+`STAGE 3B FIXTURE-SCOPING CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
