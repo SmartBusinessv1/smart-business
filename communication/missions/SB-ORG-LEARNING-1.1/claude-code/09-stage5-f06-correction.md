@@ -108,20 +108,32 @@ The new `INVALID_RECEIPT_ROOT_ANCESTRY` condition follows the exact existing dia
 
 ---
 
-## 10. Local verification
+## 10. A methodology note: cross-platform `lstatSync` error codes (`ENOENT` vs. `ENOTDIR`)
+
+The first push of this correction (commit `edd4da9`) passed every local check on this Windows development machine (typecheck, lint, build, Prettier, and 361/361 Fast Tests) but genuinely **failed** real GitHub Actions CI: the Linux `Fast Tests` job reported 3 failures in `reconcile.test.ts`, all in the new S5-F-06 tests. This is reported transparently rather than silently re-pushed as if it had not happened.
+
+**Root cause of the CI failure:** `findDeepestExistingAncestorByLstat`'s walk-up loop treated any `lstatSync` failure other than `ENOENT` as an unrecoverable ambiguity (`{ambiguous: true}`), stopping the walk immediately. On this Windows machine, an ordinary file occupying an ancestor position empirically produces `ENOENT` when a path attempts to resolve *through* it — confirmed directly before writing the original fix. On Linux (the actual GitHub Actions runner), the POSIX-correct behavior for the identical fixture is `ENOTDIR` (a path component exists but is not a directory), a distinct error code the original walk condition did not recognize. The walk therefore stopped one level too early on Linux, before ever reaching and examining the actual invalid ancestor, and reported the less specific (but still fail-closed) `METADATA_UNAVAILABLE` instead of `INVALID_ANCESTRY` -- failing the tests' exact-status assertions. **This was not a safety regression**: `METADATA_UNAVAILABLE` still maps to the same `INVALID_OR_UNSAFE` fail-closed reconciliation result; only the specific diagnostic label and one test's exact-substring assertion were affected. Confirmed by reading the actual Linux CI job logs (`gh run view --job <id> --log`), not assumed.
+
+**Correction:** introduced a second, narrower helper, `isUnresolvedPathError` (`ENOENT` **or** `ENOTDIR`), used only by the walk-up loop's retry decision. `isGenuineAbsenceError` (the S5-F-05 function, `ENOENT`-only) is completely unchanged in meaning and in every other call site -- this is strictly an addition to the walk's "should I try the parent" condition, not a change to what counts as genuine absence at any single level. The correction was verified against the exact same Windows fixtures used originally (identical results, confirming no Windows regression) before being committed; the actual Linux behavior can only be confirmed by real CI, which this section's own commit records.
+
+---
+
+## 11. Local verification
 
 - `npx tsc --noEmit` — clean.
 - `npx eslint organizational-learning/` — clean (no issues on first run this round).
-- `npm run test:fast` — **361/361 passing**, 28 files (up from 346/28 — 15 new tests in `reconcile.test.ts`; all 346 pre-existing tests unchanged).
+- `npm run test:fast` — **361/361 passing**, 28 files (up from 346/28 — 15 new tests in `reconcile.test.ts`; all 346 pre-existing tests unchanged). Re-confirmed after the Section 10 correction.
 - `npm run build` — succeeds.
 - `npx prettier --check organizational-learning/` — pass.
 - `package-lock.json` — confirmed unchanged (`git status --short package-lock.json package.json` empty).
 
 ---
 
-## 11. Real CI
+## 12. Real CI
 
-Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes.
+First push, commit `edd4da9077318186c5e6c05158b2fd34432db069`: Application Build Assurance **FAILED** (`Fast Tests` job, 3 failures -- see Section 10). Markdown Quality Gate and Full Assurance both `SUCCESS` on that same head (neither depends on the Fast Tests job). This genuine failure is recorded here rather than omitted.
+
+Second push (the Section 10 correction): pending at the time this section was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on the corrected head, per the standing rule not to claim CI success before it actually completes.
 
 ---
 
@@ -137,7 +149,7 @@ Pending at the time this commit was authored. Recorded in a follow-up, documenta
 - **Stage 2A regression:** unchanged — `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 - **Broader reconciliation result:** `NEW_CLOSURE_REVISION`, `SUPERSEDED_OR_REOPENED`, `FAILED_RETRYABLE`, intermediate recovery, deterministic replay, and bounded lock ownership all remain unchanged and passing.
 - **Local verification:** typecheck/lint/Fast Gate (361/361)/build/Prettier all pass; deliberate break/restore proof confirms genuine, precisely-scoped regression detection (exactly 8 of 64 tests affected).
-- **Real CI:** see Section 11; not yet confirmed at time of writing, will be recorded in a documentation-only follow-up commit.
+- **Real CI:** the first push genuinely **failed** real Linux CI (3 Fast Test failures, still fail-closed in effect, not a safety regression -- Section 10); corrected and re-verified locally. See Section 12 for the corrected head's result, recorded once confirmed.
 - **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched, `assertPhysicallyContained` unmodified. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---

@@ -249,15 +249,41 @@ export function readAndValidateReceiptFile(filePath) {
  * entry exists at all at a path -- `ENOENT`. Isolated as its own pure
  * function (S5-F-05) so the "is this genuine absence" decision is
  * directly unit-testable with a synthetic error object, since reliably
- * forcing a real, *non*-`ENOENT` `lstatSync` failure (permission denial,
- * an unreadable parent path component) is not portably constructible on
- * Windows/CI -- confirmed empirically while writing this fix: even a
- * parent path component that is itself an ordinary file, or itself a
- * dangling link, both still surface as `ENOENT` on this platform, not a
- * distinct code.
+ * forcing a real, *non*-`ENOENT` `lstatSync` failure (permission denial)
+ * is not portably constructible on Windows/CI. Deliberately narrower
+ * than `isUnresolvedPathError` below -- see that function for why an
+ * invalid *ancestor* component does not always surface as `ENOENT`.
  */
 export function isGenuineAbsenceError(error) {
   return Boolean(error && error.code === "ENOENT");
+}
+
+/**
+ * True for the two errors that mean "this exact path cannot be resolved
+ * as constructed" -- `ENOENT` (nothing exists at this exact path) or
+ * `ENOTDIR` (some *ancestor* component in this path exists but is not a
+ * directory, so nothing below it can be resolved either way). Used only
+ * by the walk-up in `findDeepestExistingAncestorByLstat`, where either
+ * condition means "try the parent," never "prove absence" by itself.
+ *
+ * S5-F-06 correction, second pass: `lstatSync` failures for an invalid
+ * ancestor component are platform-dependent. On this Windows development
+ * environment, both a file occupying an ancestor position and a
+ * dangling-link ancestor consistently surfaced as `ENOENT` (confirmed
+ * empirically while writing the original fix). On Linux (the actual CI
+ * runner), independent verification found the identical ordinary-file-
+ * ancestor fixture instead surfaces the POSIX-correct `ENOTDIR` -- a
+ * platform difference the original fix's `isGenuineAbsenceError`-only
+ * walk condition did not anticipate, which made the walk stop early and
+ * report `METADATA_UNAVAILABLE` (still fail-closed, but not the specific
+ * `INVALID_ANCESTRY` diagnosis) instead of continuing up to find and
+ * correctly classify the actual invalid ancestor. Widening the walk's
+ * retry condition to include `ENOTDIR` closes that platform gap without
+ * changing `isGenuineAbsenceError`'s own, narrower, already-accepted
+ * meaning.
+ */
+function isUnresolvedPathError(error) {
+  return Boolean(error && (error.code === "ENOENT" || error.code === "ENOTDIR"));
 }
 
 /**
@@ -265,14 +291,16 @@ export function isGenuineAbsenceError(error) {
  * `lstatSync` metadata to find the deepest ancestor that has an actual
  * filesystem entry -- which may be a directory, an ordinary file, or a
  * dangling symlink/junction. Never follows the final component of any
- * path it inspects (S5-F-05's lesson, generalized): an `ENOENT` at one
- * level only means "try the parent," never "prove absence" by itself.
+ * path it inspects (S5-F-05's lesson, generalized): an unresolved path
+ * at one level only means "try the parent," never "prove absence" by
+ * itself -- the eventual existing ancestor this function finds is what
+ * `classifyMissionDirectoryPresence` actually validates.
  *
  * Returns `{ ancestorPath }` once an existing entry is found,
  * `{ ambiguous: true }` if an `lstatSync` call partway up fails for a
- * reason other than absence (permission denial, I/O error), or
- * `{ ancestorPath: null }` if nothing exists anywhere in the chain up to
- * the filesystem root (practically unreachable -- the OS temp/working
+ * reason other than an unresolved path (permission denial, I/O error),
+ * or `{ ancestorPath: null }` if nothing exists anywhere in the chain up
+ * to the filesystem root (practically unreachable -- the OS temp/working
  * directory tree always exists).
  */
 function findDeepestExistingAncestorByLstat(targetPath) {
@@ -282,7 +310,7 @@ function findDeepestExistingAncestorByLstat(targetPath) {
       lstatSync(current);
       return { ancestorPath: current };
     } catch (error) {
-      if (!isGenuineAbsenceError(error)) {
+      if (!isUnresolvedPathError(error)) {
         return { ambiguous: true };
       }
       const parent = dirname(current);

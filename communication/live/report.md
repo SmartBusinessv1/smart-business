@@ -229,6 +229,8 @@ Stage 5 is **not ready for Mission Control completion review**. No implementatio
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **361/361 passing**, 28 files (+15 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
 
-**Applicable CI:** see the durable report, Section 11, once confirmed.
+**Methodology note (reported transparently):** the first push of this correction passed every local Windows check but genuinely failed real Linux CI (3 Fast Test failures) -- the walk-up ancestry check's retry condition recognized only `ENOENT`, but an invalid ancestor on Linux correctly surfaces `ENOTDIR` instead (a real platform difference, not anticipated by Windows-only empirical testing during the original fix). This was not a safety regression: the fail-closed result was unaffected, only a more specific diagnostic label and one exact-substring test assertion. Corrected by widening the walk's retry condition to accept both codes, verified not to change any Windows result, and re-pushed. Full detail in the durable report, Section 10.
+
+**Applicable CI:** see the durable report, Section 12, once the corrected head's CI is confirmed.
 
 **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
