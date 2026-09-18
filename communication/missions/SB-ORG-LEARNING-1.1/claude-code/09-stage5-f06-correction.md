@@ -131,9 +131,15 @@ The first push of this correction (commit `edd4da9`) passed every local check on
 
 ## 12. Real CI
 
-First push, commit `edd4da9077318186c5e6c05158b2fd34432db069`: Application Build Assurance **FAILED** (`Fast Tests` job, 3 failures -- see Section 10). Markdown Quality Gate and Full Assurance both `SUCCESS` on that same head (neither depends on the Fast Tests job). This genuine failure is recorded here rather than omitted.
+First push, commit `edd4da9077318186c5e6c05158b2fd34432db069`: Application Build Assurance `#220` **FAILED** (`Fast Tests` job, 3 failures -- see Section 10). Markdown Quality Gate `#1824` and Full Assurance `#93` both `SUCCESS` on that same head (neither depends on the Fast Tests job). This genuine failure is recorded here rather than omitted.
 
-Second push (the Section 10 correction): pending at the time this section was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on the corrected head, per the standing rule not to claim CI success before it actually completes.
+Second push (the Section 10 correction), commit `289e22a6863b2f70abc5508e8347da1893776d6e`: all three applicable workflows `SUCCESS`, independently confirmed via `gh api ... --jq .conclusion` (not merely a watch-command exit code, after the first push's discrepancy) --
+
+- Team LIPS Application Build Assurance `#221` — `SUCCESS`, including the `Fast Tests (vitest)` job specifically.
+- Team LIPS Markdown Quality Gate `#1825` — `SUCCESS`.
+- Team LIPS Full Assurance `#94` — `SUCCESS`, real run, not suppressed.
+
+All three applicable workflows passed on the corrected head.
 
 ---
 
@@ -149,7 +155,7 @@ Second push (the Section 10 correction): pending at the time this section was au
 - **Stage 2A regression:** unchanged — `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 - **Broader reconciliation result:** `NEW_CLOSURE_REVISION`, `SUPERSEDED_OR_REOPENED`, `FAILED_RETRYABLE`, intermediate recovery, deterministic replay, and bounded lock ownership all remain unchanged and passing.
 - **Local verification:** typecheck/lint/Fast Gate (361/361)/build/Prettier all pass; deliberate break/restore proof confirms genuine, precisely-scoped regression detection (exactly 8 of 64 tests affected).
-- **Real CI:** the first push genuinely **failed** real Linux CI (3 Fast Test failures, still fail-closed in effect, not a safety regression -- Section 10); corrected and re-verified locally. See Section 12 for the corrected head's result, recorded once confirmed.
+- **Real CI:** the first push (`edd4da9`) genuinely **failed** real Linux CI (`Application Build Assurance #220`, 3 Fast Test failures, still fail-closed in effect, not a safety regression -- Section 10). Corrected, re-verified locally, and re-pushed (`289e22a`); all three applicable workflows `SUCCESS` on the corrected head, independently confirmed via direct API query -- `Application Build Assurance #221` (including `Fast Tests` specifically), `Markdown Quality Gate #1825`, `Full Assurance #94` (Section 12).
 - **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched, `assertPhysicallyContained` unmodified. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---
