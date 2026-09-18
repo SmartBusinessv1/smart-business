@@ -1,16 +1,16 @@
 # Smart Business SB-P Mission Lifecycle and Delivery Framework
 
 - **Source:** 18
-- **Version:** 1.0
-- **Status:** ACTIVE
+- **Version:** 1.1
+- **Status:** FOUNDER APPROVED — ACTIVATION PENDING
 - **Authority:** FOUNDER APPROVED — AUTHORITATIVE
 - **Approved By:** Founder — Riyas PK
-- **Approval Date:** 2026-08-01
-- **Activated By:** Mission Control
-- **Activation Date:** 2026-08-01
+- **Approval Date:** 2026-09-18
+- **Activated By:** PENDING — Mission Control post-merge activation
+- **Activation Date:** PENDING
 - **Repository publication:** COMPLETE — commit `bd9b362`; historical publication evidence
 - **Scope:** Every Smart Business Product Mission (`SB-P-*`)
-- **Created under:** `SB-GOV-LIFECYCLE-1.0`
+- **Created under:** `SB-GOV-LIFECYCLE-1.0`; amended under `SB-GOV-IV-1.0`
 
 > **Authority notice:** Source 18 is active and authoritative for all `SB-P-*` mission lifecycle and delivery work. It remains subordinate to the Lighthouse Constitution, Smart Business constitutional authority, and the approved governance order.
 
@@ -74,11 +74,11 @@ Where runtime verification is delegated, Mission Control shall name the authoriz
 
 Codex owns Founder-led discovery, Product Truth extraction, the Founder Product Decision Record, Product Blueprint Metadata, Mission Snapshot, Sections 1–19, authorized governance maintenance, repository documentation, stage reports, and Founder Briefs.
 
-Codex shall not invent Product Truth, author canonical Sections 20–21, create an EIS before Blueprint lock, implement code without a separate engineering authorization, or accept its own work.
+Codex shall not invent Product Truth, author canonical Sections 20–21, create an EIS before Blueprint lock, implement code without a separate engineering authorization, or accept its own work. Codex may perform Stage 19 only when Mission Control appoints it under Section 4.9; its other stage responsibilities remain unchanged.
 
 ### 4.4 Claude Code
 
-Claude Code owns Builder Review, Engineering Review, Product Blueprint Sections 20–21, the post-lock EIS, the initial implementation package, independent post-build verification, the Evidence Package, the formal Completion Report, repository verification, stage reports, and Founder Briefs assigned to its stages.
+Claude Code owns Builder Review, Engineering Review, Product Blueprint Sections 20–21, the post-lock EIS, the initial implementation package, the Evidence Package, the formal Completion Report, repository verification, stage reports, and Founder Briefs assigned to its stages. Claude Code may own independent post-build verification only when appointed under Section 4.9 and independent of the implementation and corrections being verified.
 
 Claude Code shall preserve approved Sections 1–19, apply architecture, security, RLS, integrity, audit, migration, testing, performance, and observability analysis, and classify verification items as `PASS`, `FAIL`, `FOLLOW-UP`, or `NOT APPLICABLE`.
 
@@ -101,6 +101,16 @@ When requested, this specialist reviews assistant-not-authority behaviour, inter
 ### 4.8 Other Specialists
 
 Research, Brand, Customer Success, Legal, Finance, Security, and other specialists review only their assigned operational domain. They may identify risks, recommend refinements, classify findings, and create repository reports. They may not redefine approved Product Truth, authorize implementation, approve the whole mission, bypass Mission Control, or create competing instructions. Mission Control decides when specialist review is required.
+
+### 4.9 Independent Verification Actor
+
+Mission Control shall appoint a capable Independent Verification Actor for Stage 19 and record the actor, scope, environment, affected artifacts, prior contributions and independence assessment in the mission record. Codex is preferred for the highest-risk cases where eligible and available; Claude Code or another approved actor may be appointed when the same independence and capability conditions are satisfied.
+
+The actor shall not independently verify implementation or corrections it authored, approve its own report, accept the mission or merge its own work. A new session, model or role label alone does not establish independence. A same-provider appointment requires a distinct actor and a documented Mission Control assessment of contribution separation and correlated-assumption risk.
+
+When the appointed actor is unavailable, Mission Control may appoint an eligible replacement under these conditions, recording authority, capability, preserved evidence and remaining obligations before resumption. If none is available, the gate remains pending. No builder self-verification or silent substitution is permitted.
+
+This appointment changes only independent-verification ownership. Discovery, engineering/package ownership, human runtime verification, Evidence Package and formal Completion Report ownership, mandatory stage order, Mission Control acceptance and Founder authority remain unchanged.
 
 ## 5. Lifecycle Artifact Roots
 
@@ -276,15 +286,17 @@ Implementation shall not begin until this record exists.
 - **Inputs:** Builder Completion Report, Founder findings, communication record, unresolved issues.
 - **Output:** Runtime-review disposition and independent-verification authorization or correction request.
 - **Approval:** Mission Control.
-- **Handover:** Complete verified input pack goes to Claude Code.
+- **Handover:** Complete verified input pack goes to the Mission Control-appointed Independent Verification Actor.
 
-### Stage 19 — Claude Code Independent Verification
+### Stage 19 — Independent Verification
 
-- **Owner:** Claude Code
-- **Inputs:** Locked Blueprint, locked EIS, package, Builder report, Founder findings, repository, tests, and accessible deployment state.
-- **Output:** Independent verification report classifying every item `PASS`, `FAIL`, `FOLLOW-UP`, or `NOT APPLICABLE`.
-- **Approval:** Mission Control reviews; Claude Code cannot approve itself.
+- **Owner:** Independent Verification Actor appointed by Mission Control under Section 4.9.
+- **Inputs:** Locked Blueprint, locked EIS, package, Builder report and Verification Packet, Founder findings, Mission Control runtime review, repository, tests, and accessible deployment state.
+- **Output:** Independent verification report classifying every item `PASS`, `FAIL`, `FOLLOW-UP`, or `NOT APPLICABLE`, with evidence provenance, methods and limitations.
+- **Approval:** Mission Control reviews; the verifier cannot approve itself or accept the mission.
 - **Handover:** Material failures go to correction. Results with no material blocking failure go to Mission Control for authorization of the Evidence Package and formal Completion Report.
+
+Every Product Mission retains this gate. Risk classification determines verification method and effort, not whether Stage 19 exists. The verifier shall independently exercise material risk boundaries and may inspect authoritative automated evidence or perform static inspection where those methods sufficiently support the obligation. Missing mandatory evidence keeps verification incomplete.
 
 ### Stage 20 — Corrective Mission
 
@@ -307,7 +319,7 @@ Corrective cycles shall preserve prior reports and evidence. Updated artifacts s
 ### Stage 22 — Formal Completion Report
 
 - **Owner:** Claude Code
-- **Inputs:** Builder Completion Report, Founder runtime evidence, Mission Control runtime review, Claude Code independent-verification results, and all available verified evidence.
+- **Inputs:** Builder Completion Report, Founder runtime evidence, Mission Control runtime review, the appointed actor's independent-verification results, and all available verified evidence.
 - **Output:** `completion-report.md`, status `VERIFICATION COMPLETE — MISSION CONTROL ACCEPTANCE PENDING`.
 - **Approval:** Mission Control; report creation is not acceptance.
 - **Handover:** Formal report and evidence go to acceptance.
@@ -444,7 +456,7 @@ Each handover shall record date, mission, sender, recipient, completed stage, wo
 
 A mission is not complete merely because code exists, Lovable reports completion, deployment succeeds, one workflow works, tests pass, or Claude Code creates a report.
 
-Formal completion requires an approved Product Blueprint, locked EIS, approved implementation package, authorized implementation, Builder Completion Report, Founder runtime verification, Mission Control runtime review, Claude Code independent verification, Evidence Package, formal Completion Report, Mission Control acceptance, repository synchronization, and documentation closure.
+Formal completion requires an approved Product Blueprint, locked EIS, approved implementation package, authorized implementation, Builder Completion Report, Founder runtime verification, Mission Control runtime review, independent verification by the Mission Control-appointed actor, Evidence Package, formal Completion Report, Mission Control acceptance, repository synchronization, and documentation closure.
 
 ## Appendix A — AI Responsibility Matrix
 
@@ -459,7 +471,7 @@ Formal completion requires an approved Product Blueprint, locked EIS, approved i
 | Package | Approves | Not authorized | Owns | Not authorized | Advises | Receives brief | Three locked documents | Mission Control |
 | Build | Governs | Not authorized | Supports only if assigned | Owns | Reviews if asked | Initiates approved prompt | Implementation/report | Mission Control review |
 | Runtime | Reviews | Not authorized | Awaits authorization | Supplies report | Advises | Owns observations | Runtime findings | Mission Control |
-| Independent verification | Reviews | Not verifier | Owns | Cannot verify itself | Supplies findings | Supplies evidence | Verification report | Mission Control |
+| Independent verification | Appoints and reviews | Owns only if appointed and independent | Owns only if appointed and independent | Cannot verify itself | Supplies findings; may own only if appointed and independent | Supplies evidence | Verification report | Mission Control |
 | Evidence/report | Reviews | Supports if assigned | Owns | Not authorized | Supplies evidence | Informed | Evidence and report | Mission Control |
 | Acceptance/closure | Owns | Updates if assigned | Updates if assigned | Not authorized | Not authorized | Final authority | Disposition/closure | Mission Control |
 
@@ -479,7 +491,7 @@ Formal completion requires an approved Product Blueprint, locked EIS, approved i
 | Implementation Authorization | Mission Control | After implementation-package approval and before implementation | Mission Control |
 | Builder Completion Report | Lovable | After implementation | Mission Control reviews |
 | Founder runtime findings | Founder | After Builder report | Mission Control reviews |
-| Independent verification report | Claude Code | After runtime review | Mission Control reviews |
+| Independent verification report | Mission Control-appointed Independent Verification Actor | After runtime review | Mission Control reviews |
 | Evidence Package | Claude Code | After verification | Mission Control |
 | Formal Completion Report | Claude Code | After independent verification | Mission Control |
 | Acceptance and closure | Mission Control/assigned recorder | Final stages | Mission Control |
