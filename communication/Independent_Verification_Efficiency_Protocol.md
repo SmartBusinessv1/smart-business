@@ -7,9 +7,10 @@
 - **Approved By:** Founder — Riyas PK
 - **Approval Date:** 2026-09-18
 - **Approval:** `FOUNDER APPROVED`
-- **Status:** `FOUNDER APPROVED — ACTIVATION PENDING — NOT ACTIVE`
+- **Status:** `ACTIVE`
 - **Activation Authority:** Smart Business Mission Control
-- **Activation Date:** PENDING
+- **Activation Date:** 2026-09-18
+- **Activation Basis:** PR #598 merge commit `4ddbb647cfb413e43af38a7e362130c5fd16133c`
 - **Repository:** `SmartBusinessv1/smart-business`
 - **Authority:** [Founder approval](missions/SB-GOV-IV-1.0/founder/01-founder-approval.md); [Mission Control decision gate](missions/SB-GOV-IV-1.0/mission-control/02-draft-review-and-founder-governance-decision-gate.md).
 - **Governing relationship:** Operational protocol subordinate to active Source 18; it defines verification method and efficiency, not Product Mission acceptance authority.
@@ -18,7 +19,7 @@
 
 Use independent verification for risks that benefit from an independent challenge. Builders own implementation and initial tests; GitHub CI supplies repeatable deterministic assurance; the verifier exercises selected risk boundaries and reports what the evidence supports. Avoid repeated full local suites, repeated repository discovery, and substantive re-verification triggered solely by report publication.
 
-This Founder-approved document defines the operational protocol to be activated only after the approved governance amendments are merged and Mission Control records activation. Until then it remains non-operative and does not authorize execution or accept any mission. The [reconciliation report](missions/SB-GOV-IV-1.0/codex/02-current-governance-reconciliation-report.md) separates compatible techniques from amendments. The [activation plan](missions/SB-GOV-IV-1.0/codex/03-activation-plan.md) defines the decision and publication gate. `SB-P-1.12` remains `NOT ACTIVATED`.
+This Founder-approved document is the active operational protocol for independent-verification method and efficiency under Source 18 v1.1. It remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority. The [reconciliation report](missions/SB-GOV-IV-1.0/codex/02-current-governance-reconciliation-report.md) separates compatible techniques from amendments. The [activation plan](missions/SB-GOV-IV-1.0/codex/03-activation-plan.md) defines the decision and publication gate. `SB-P-1.12` remains `NOT ACTIVATED`.
 
 “Codex is a scarce verifier, not a builder” describes the independent-verification assignment. It does not remove Codex's existing discovery, Blueprint, documentation or separately authorized engineering responsibilities.
 
@@ -142,7 +143,7 @@ If the report changes a claim, inspect its support. If it changes a contract, co
 
 ## 12. Provider unavailability and resumption
 
-Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Before activation, the currently active Source 18 remains controlling and no verifier substitution is permitted by this protocol. After activation of Source 18 v1.1, Mission Control may appoint another eligible Independent Verification Actor under the approved actor-separation and capability rules.
+Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Source 18 v1.1 is controlling. Mission Control may appoint an eligible Independent Verification Actor under the approved actor-separation and capability rules. If no eligible verifier is available, Stage 19 remains pending.
 
 Under the proposed amended model, Mission Control records replacement identity, capability, prior contribution assessment, scope, evidence inheritance and authorization before resumption. Recheck evidence freshness and resume only remaining or invalidated obligations. A builder switching accounts or starting a fresh session cannot independently verify its own implementation. If no eligible verifier is available, keep the gate pending.
 
@@ -173,7 +174,7 @@ The verifier returns a result matrix, findings, carried-forward evidence, limita
 
 The [Stage 5 final re-verification](missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md) records both valuable Windows-specific independent probes and broad deterministic execution. It distinguishes CI head from checkout SHA, Windows/Linux test selection, capacity resumption and bounded PASS. These are historical observations inspected in this checkout, not fresh executions in this mission.
 
-The [accepted narrow-correction promotion](../organizational-learning/promotions/SB-ORG-LEARNING-1.1/promotion-01-narrow-finding-scoped-correction-cycle.json) is explicitly `MISSION_SCOPED` and `VALIDATED`; it does not institutionalize a universal workflow. The [final Mission Control acceptance](missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md) preserves deferred work and limitations. These broader rules derive from the Founder-approved design basis and become operative only after Mission Control records activation.
+The [accepted narrow-correction promotion](../organizational-learning/promotions/SB-ORG-LEARNING-1.1/promotion-01-narrow-finding-scoped-correction-cycle.json) is explicitly `MISSION_SCOPED` and `VALIDATED`; it does not institutionalize a universal workflow. The [final Mission Control acceptance](missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md) preserves deferred work and limitations. These broader rules derive from the Founder-approved design basis and are operative under this active protocol.
 
 | Risk | Control |
 | --- | --- |
@@ -188,4 +189,4 @@ The [accepted narrow-correction promotion](../organizational-learning/promotions
 
 ## 16. Stop condition
 
-Until Mission Control records activation, stop at publication and post-merge verification. This document does not by itself activate verifier substitution, alter CI, accept a Product Mission, or activate `SB-P-1.12`. After activation, it governs independent-verification method subject to Source 18 and higher authority.
+This protocol governs independent-verification method subject to Source 18 and higher authority. It does not alter CI by itself, accept a Product Mission, authorize self-verification, or activate `SB-P-1.12`.
