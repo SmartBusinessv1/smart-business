@@ -1,98 +1,63 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — OLE PROMOTION MATERIALIZATION
+# SB-GOV-IV-1.0 — FOUNDER MERGE GATE FOR OLE LEARNING PACKAGE
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
 **From:** Mission Control
 
-**To:** Claude Code — supervised OLE learning operator
+**To:** Founder / human authorized operator
 
-**Status:** `ACTIVE — FIVE PROMOTION RECORDS AUTHORIZED`
+**Status:** `FINAL OLE PRE-MERGE ACCEPTANCE COMPLETE — MERGE PENDING`
 
 **Date:** 2026-09-19
 
 ---
 
-# Read First
+# Accepted package
 
-`communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md`
+Mission Control has accepted:
 
----
-
-# Authorized Work
-
-Create exactly five promotion records for Candidates 01–05 under:
-
-`organizational-learning/promotions/SB-GOV-IV-1.0/`
-
-Use the accepted OLE promotion schema/tooling.
-
-Each record must:
-
-- use the exact current candidate revision hash;
-- set `resulting_maturity: VALIDATED`;
-- set `promotion_scope: MISSION_SCOPED`;
-- set approving authority to Smart Business Mission Control;
-- set `decision_ref` to:
-  `communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md`;
-- preserve the approved scope exactly;
-- use empty supersession fields unless the schema requires equivalent values.
-
-Do not create a promotion for Candidate 06.
-
----
-
-# Candidate 06
-
-Retain:
-
-`organizational-learning/candidates/SB-GOV-IV-1.0/candidate-06-governance-activation-sequencing-before-product-acceleration.json`
-
-as candidate/corroborating evidence only.
-
-Do not promote it.
-
-Do not change Issue #590.
-
----
-
-# Permitted Additional Updates
-
-You may update only:
-
-- `communication/live/report.md`;
-- `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` if needed to truthfully reflect promotion state.
-
-Do not modify:
-
-- Candidates 01–06;
 - closure envelope;
-- receipt;
-- source fingerprint;
-- Source 18;
-- SB-IV-1.0;
-- schemas/scripts/tests;
-- Product Truth;
-- application code.
+- mission-learning report;
+- Candidates 01–06;
+- Promotions 01–05 as `VALIDATED / MISSION_SCOPED`;
+- Candidate 06 retained as corroborating evidence without duplicate promotion;
+- deterministic receipt / provenance / screening / idempotency evidence.
+
+Read:
+
+`communication/missions/SB-GOV-IV-1.0/mission-control/08-final-ole-premerge-acceptance-and-founder-merge-gate.md`
 
 ---
 
-# Required Verification
+# Authorized action
 
-Return:
+Merge PR #601 only after:
 
-- promotion file paths;
-- exact candidate revision hashes;
-- schema validation for all five promotions;
-- candidate/promotion reference validation;
-- confirmation Candidate 06 has no promotion;
-- exact changed files;
-- CI results;
-- PR #601 current head/state.
+1. PR remains open and unmerged;
+2. no unexpected substantive change is added;
+3. required checks for the **current head** are green.
 
 Do not self-merge.
 
-End exactly:
+---
 
-`FIVE MISSION-SCOPED PROMOTIONS MATERIALIZED — MISSION CONTROL FINAL PRE-MERGE REVIEW REQUIRED`
+# After merge
+
+Return to Mission Control.
+
+Mission Control will perform:
+
+1. canonical-main post-merge verification;
+2. formal `SB-GOV-IV-1.0` closure;
+3. communication archive/reset;
+4. archive/reset verification.
+
+`SB-P-1.12` remains NOT ACTIVATED until closure is clean.
+
+---
+
+# Stop
+
+`OLE LEARNING PACKAGE ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE OF PR #601 AFTER CURRENT CHECKS GREEN`
