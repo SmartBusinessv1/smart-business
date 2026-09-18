@@ -1,63 +1,63 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — FOUNDER MERGE GATE FOR OLE LEARNING PACKAGE
+# Instruction
 
-**Mission ID:** `SB-GOV-IV-1.0`
+**Mission ID:**
+
+**Mission Name:**
 
 **From:** Mission Control
 
-**To:** Founder / human authorized operator
+**To:**
 
-**Status:** `FINAL OLE PRE-MERGE ACCEPTANCE COMPLETE — MERGE PENDING`
+**Status:**
 
-**Date:** 2026-09-19
-
----
-
-# Accepted package
-
-Mission Control has accepted:
-
-- closure envelope;
-- mission-learning report;
-- Candidates 01–06;
-- Promotions 01–05 as `VALIDATED / MISSION_SCOPED`;
-- Candidate 06 retained as corroborating evidence without duplicate promotion;
-- deterministic receipt / provenance / screening / idempotency evidence.
-
-Read:
-
-`communication/missions/SB-GOV-IV-1.0/mission-control/08-final-ole-premerge-acceptance-and-founder-merge-gate.md`
+**Date:**
 
 ---
 
-# Authorized action
+# Mission Objective
 
-Merge PR #601 only after:
-
-1. PR remains open and unmerged;
-2. no unexpected substantive change is added;
-3. required checks for the **current head** are green.
-
-Do not self-merge.
+State the objective of this mission in one or two sentences. Be explicit about what is and is not authorized.
 
 ---
 
-# After merge
+# Context
 
-Return to Mission Control.
-
-Mission Control will perform:
-
-1. canonical-main post-merge verification;
-2. formal `SB-GOV-IV-1.0` closure;
-3. communication archive/reset;
-4. archive/reset verification.
-
-`SB-P-1.12` remains NOT ACTIVATED until closure is clean.
+Provide the background needed to act on this instruction without requiring the specialist AI to reconstruct history from chat.
 
 ---
 
-# Stop
+# Execute According To
 
-`OLE LEARNING PACKAGE ACCEPTED — STOP FOR FOUNDER/HUMAN MERGE OF PR #601 AFTER CURRENT CHECKS GREEN`
+List the governing documents, prior mission findings, or standing frameworks this instruction must be executed under.
+
+---
+
+# Scope
+
+List exactly what the specialist AI is authorized to do.
+
+---
+
+# Required Work
+
+Break the work into steps. For each step, state what must be read, verified, produced, or reported.
+
+---
+
+# Constraints
+
+List explicit prohibitions — what must not be modified, created, deployed, or assumed.
+
+---
+
+# Deliverables
+
+List the concrete outputs expected (files, commits, reports, confirmations).
+
+---
+
+# Completion Status
+
+State the exact status string the report must conclude with, and any condition that must hold before the mission is considered complete.

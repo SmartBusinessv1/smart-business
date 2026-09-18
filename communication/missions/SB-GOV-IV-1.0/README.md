@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product operating-framework / verification-governance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `PROTOCOL ACTIVATED — OLE LEARNING HANDOFF IN PROGRESS — FORMAL CLOSEOUT PENDING`
+- **Status:** `COMPLETED — FORMALLY ACCEPTED`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
@@ -73,9 +73,9 @@ Founder approval is now recorded. Exact Package A + B amendment/publication work
 
 ## Current actor
 
-Claude Code — supervised manual OLE learning operator.
+Mission Control — mission closed; no active specialist owner.
 
 ## Immediate next action
 
-Source 18 v1.1 and SB-IV-1.0 are active on canonical `main` after verified PR #599 merge. Execute the mandatory manual OLE learning handoff under Mission Control record 05. After Mission Control accepts the learning disposition, complete communication closeout/archive. `SB-P-1.12` remains inactive until this governance mission closes cleanly.
+Mission formally accepted under Mission Control record 09 after merged/verified PR #601. OLE learning handoff is complete and accepted; Promotions 01–05 are `VALIDATED / MISSION_SCOPED`; Candidate 06 is retained without duplicate promotion. Communication archive/reset is the terminal administrative step. `SB-P-1.12` remains not activated and requires a separate Mission Control activation.
 
