@@ -108,7 +108,13 @@ The `INVALID_ANCESTRY` status for the null-ancestor case reuses the exact existi
 
 ## 11. Real CI
 
-Pending at the time this commit was authored. Recorded in a follow-up, documentation-only commit once the real GitHub Actions checks complete on this correction's head, per the standing rule not to claim CI success before it actually completes. Following the S5-F-06 round's lesson, the actual CI conclusion will be independently confirmed via direct `gh api ... --jq .conclusion` queries per job, not merely a watch-command exit code.
+On PR #589 head `e0dd7d95949ac30c2b7b907adc7fb8d67b42a76a` (this correction's commit), independently confirmed via direct `gh api ... --jq .conclusion` queries per job (not merely a watch-command exit code, per the S5-F-06 round's lesson):
+
+- Team LIPS Application Build Assurance `#230` — `SUCCESS`, all four jobs individually confirmed `success` (`Fast Tests (vitest)`, `Typecheck (tsc --noEmit)`, `Lint (ESLint + Prettier)`, `Build (vite build)`).
+- Team LIPS Markdown Quality Gate `#1834` — `SUCCESS`.
+- Team LIPS Full Assurance `#103` — `SUCCESS`, `Full Assurance Tests (vitest)` job individually confirmed `success`.
+
+All three applicable workflows passed on this head.
 
 ---
 
@@ -124,7 +130,7 @@ Pending at the time this commit was authored. Recorded in a follow-up, documenta
 - **Stage 2A regression:** unchanged — `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
 - **Broader reconciliation result:** `NEW_CLOSURE_REVISION`, `SUPERSEDED_OR_REOPENED`, `FAILED_RETRYABLE`, intermediate recovery, deterministic replay, stable ordering, and bounded lock ownership all remain unchanged and passing.
 - **Local verification:** typecheck/lint/Fast Gate (371/371)/build/Prettier all pass; deliberate break/restore proof confirms genuine, precisely-scoped regression detection (exactly 4 of 74 tests affected).
-- **Real CI:** see Section 11; not yet confirmed at time of writing, will be recorded in a documentation-only follow-up commit, independently verified via direct API queries.
+- **Real CI:** all three applicable workflows `SUCCESS` on PR #589 head `e0dd7d9` — Application Build Assurance #230 (all four jobs individually confirmed), Markdown Quality Gate #1834, and a real (not suppressed) Full Assurance #103 run, independently verified via direct API queries (Section 11).
 - **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched, `assertPhysicallyContained` unmodified. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
 
 ---

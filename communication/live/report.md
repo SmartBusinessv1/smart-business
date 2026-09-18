@@ -284,6 +284,6 @@ Stage 5 is **not ready for Mission Control completion review**. Mission Control 
 
 **Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **371/371 passing**, 28 files (+10 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
 
-**Applicable CI:** see the durable report, Section 11, once confirmed (independently verified via direct API query per the S5-F-06 round's lesson).
+**Applicable CI:** all three applicable workflows `SUCCESS` on PR #589 head `e0dd7d95949ac30c2b7b907adc7fb8d67b42a76a` (this correction's commit), independently confirmed via direct API queries: Team LIPS Application Build Assurance #230 (all four jobs individually confirmed, including `Fast Tests`), Team LIPS Markdown Quality Gate #1834, and a real (not suppressed) Team LIPS Full Assurance #103 run.
 
 **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
