@@ -175,3 +175,28 @@ No production/customer mutation.
 **Applicable CI:** all three applicable workflows `SUCCESS` on PR #589 head `2b6cf519fbddc7396c0a0cc02c5e562500705701` (this correction's commit): Team LIPS Application Build Assurance #211 (Lint, Typecheck, Build, Fast Tests), Team LIPS Markdown Quality Gate #1815, and a real (not suppressed) Team LIPS Full Assurance #84 run.
 
 **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+
+
+---
+
+## Codex final Stage 5 re-verification result
+
+**Disposition:** `FAIL`
+
+**Reviewed head:** `018be1b3830f62f7d3d4c30470a8cc9384a1161f`
+
+**Technical correction:** `2b6cf519fbddc7396c0a0cc02c5e562500705701`; subsequent commits contain communication changes only.
+
+The exact S5-F-05 dangling final-entry case is corrected. **New finding S5-F-06:** on Windows, an ordinary file at the configured receipt-directory parent makes `lstatSync` of the derived mission path throw `ENOENT`. Current presence logic calls that `ABSENT`; receipt discovery returns no issues and reconciliation produces `ELIGIBLE_UNPROCESSED`, one eligible work item and zero rejections. An independent ordinary-file temporary fixture reproduced this without new junction/symlink construction. Invalid ancestry must fail closed; genuine first-processing absence must remain distinct.
+
+S5-F-01, S5-F-03 and S5-F-04 original cases remain corrected. Original S5-F-02 enumeration/non-file/invalid-content cases pass, but its broader genuine-absence boundary remains incomplete due to S5-F-06. Historical reports 08/09 and all correction history are preserved.
+
+The genuine Stage 2A result remains `ALREADY_PROCESSED` with fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`. Recovery, ordering and bounded ownership regressions passed. Candidates are 4/4 valid, provenance 14/14 valid; promotion revision bindings and context exclusions passed; Candidate 3 retains MEDIUM/LIMITS. Authority and dependency/workflow boundaries remain unchanged.
+
+Independent Fast Tests passed 346/346 across 28 files; typecheck, OLE Prettier and build passed. Local repository-wide lint failed on 5,429 verified CRLF-only errors with seven warnings, without normalization; OLE has zero errors. All six current CI checks passed at the reviewed head, including Fast Tests 346/346 and Full Assurance 108/108. No external integration suite was run locally.
+
+Durable report: `communication/missions/SB-ORG-LEARNING-1.1/codex/10-stage5-final-independent-reverification.md`.
+
+Stage 5 is **not ready for Mission Control completion review**. No implementation was changed. Mission Control record 30 authorizes publication of these two prepared verifier communication files only. The reviewed head, FAIL result, finding and positive evidence remain unchanged; no new verification pass was performed. Mission Control must decide corrective handling of S5-F-06. Stage 6 remains **NOT AUTHORIZED**; PR #589 remains **OPEN — NOT MERGED**; `SB-P-1.12` remains **NOT ACTIVATED**.
+
+`STAGE 5 S5-F-06 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
