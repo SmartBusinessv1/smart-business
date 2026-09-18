@@ -234,3 +234,28 @@ Stage 5 is **not ready for Mission Control completion review**. No implementatio
 **Applicable CI:** first push (`edd4da9`) genuinely failed real Linux CI (`Application Build Assurance #220`, 3 Fast Test failures -- see Section 10 above). Corrected, re-pushed (`289e22a`); all three applicable workflows `SUCCESS` on the corrected head, independently confirmed via direct API query: Team LIPS Application Build Assurance #221 (including `Fast Tests` specifically), Team LIPS Markdown Quality Gate #1825, and a real (not suppressed) Team LIPS Full Assurance #94 run.
 
 **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+
+
+---
+
+## Codex final S5-F-06 independent re-verification result
+
+**Disposition:** `FAIL`
+
+**Reviewed head:** `32591ee7a65852cbffe5712260c40ef2356234c9`
+
+**Technical correction:** `289e22a6863b2f70abc5508e8347da1893776d6e`; later commits are communication/reporting only.
+
+Original S5-F-06 ordinary-file and dangling-ancestor cases are corrected. Windows ENOENT handling passes independent direct checks; corrected Ubuntu CI passes the same ancestry fixtures with the ENOTDIR walk correction. `isGenuineAbsenceError` remains ENOENT-only. The first correction push's real Linux failure (Application #220, three diagnostic assertion failures) remains preserved.
+
+**New finding S5-F-07: null-ancestor branch treats unresolvable filesystem roots as genuine absence.** When the upward walk reaches a root with no existing ancestor, it returns a null ancestor; the presence classifier returns ABSENT without validating a directory. A read-only check against an absent Windows drive reproduced `ELIGIBLE_UNPROCESSED` and one eligible planner item. No drive, junction or symlink was created. This branch must fail closed; valid-directory ancestry with genuinely absent descendants must remain allowed.
+
+S5-F-05 and original S5-F-01 through S5-F-04 cases pass. The genuine Stage 2A result remains `ALREADY_PROCESSED` with fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`. Reconciliation lifecycle/ordering/ownership tests passed. Four candidates and promotions, 14/14 provenance references in each set, revision binding, MEDIUM/LIMITS retention and context/authority controls passed. No dependency/workflow or other unauthorized drift was found.
+
+Local Fast Tests initially returned 359 passed / two execution failures (temporary Git-object permission failure and context-test timeout). All 64 reconciliation tests passed. A targeted retry of the two failed files, sequentially with unchanged assertions/timeouts, passed 26/26. Typecheck, OLE Prettier and build passed. Repository lint retained 5,429 verified CRLF-only errors and seven warnings; no normalization. All six current CI checks passed, including Fast Tests 361/361 and Full Assurance 108/108. No local external integration run was started.
+
+Durable report: `communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md`.
+
+Stage 5 is **not ready for Mission Control completion review**. Mission Control record 33 authorizes publication of this prepared report and verifier handoff only. The reviewed head, FAIL finding, positive results and local-test nuance remain unchanged; no implementation change or additional verification pass was performed. Prior findings and other actor sections are preserved. Stage 6 remains **NOT AUTHORIZED**; PR #589 remains **OPEN — NOT MERGED**; `SB-P-1.12` remains **NOT ACTIVATED**.
+
+`STAGE 5 S5-F-07 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
