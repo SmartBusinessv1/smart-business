@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product operating-framework / verification-governance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `FOUNDER APPROVED — AMENDMENT / PROTOCOL PUBLICATION IN PROGRESS`
+- **Status:** `PROTOCOL ACTIVATED — FORMAL MISSION CLOSEOUT PENDING`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
@@ -73,9 +73,9 @@ Founder approval is now recorded. Exact Package A + B amendment/publication work
 
 ## Current actor
 
-Mission Control — amendment/publication execution and verification.
+Mission Control — activation verification and formal closeout.
 
 ## Immediate next action
 
-Execute the Founder-approved Package A + B amendment and final protocol publication on `mission/SB-GOV-IV-1.0-amendment`. After merge, Mission Control must verify canonical `main` and separately activate the amended framework/protocol. `SB-P-1.12` remains inactive until activation is complete.
+Source 18 v1.1 and SB-IV-1.0 are activated on the activation branch after verified PR #598 merge. After this activation record is merged and verified on canonical `main`, perform the standing OLE learning handoff / no-reusable-learning decision and communication closeout. `SB-P-1.12` remains inactive until this governance mission closes cleanly.
 
