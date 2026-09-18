@@ -121,9 +121,10 @@ The Founder-approved Smart Business independent-verification operating protocol 
 Current publication state during `SB-GOV-IV-1.0`:
 
 - Founder approved;
-- Source 18 v1.1 / template alignment approved;
-- activation pending post-merge Mission Control verification;
-- `SB-P-1.12` remains inactive until activation.
+- Source 18 v1.1 / template alignment merged in PR #598;
+- protocol status: ACTIVE;
+- Source 18 v1.1 status: ACTIVE;
+- `SB-P-1.12` remains inactive until `SB-GOV-IV-1.0` closes cleanly.
 
 The protocol is subordinate to Source 18 and higher authority. It does not remove mandatory Stage 19 independent verification.
 
