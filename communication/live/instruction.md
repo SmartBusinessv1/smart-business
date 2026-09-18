@@ -18,7 +18,12 @@
 
 ## Read first
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md`
+
+Stage 4B follow-on tracking:
+
+`GitHub issue #590 — OLE Stage 4B — Background Automation & Candidate Learning Runtime`
 
 ## Authorized action
 
@@ -48,9 +53,18 @@ Mission Control will independently verify:
 
 Only then may the OLE mission be marked formally completed.
 
+## Standing closure rule now active
+
+Until Stage 4B is implemented and accepted, no future mission closeout is complete without either:
+
+- an explicit OLE learning handoff; or
+- `NO MATERIAL REUSABLE LEARNING` with a short evidence-based reason.
+
+This standing rule does not reopen the accepted OLE implementation or change the current merge gate.
+
 ## Boundaries
 
-No Stage 4B.
+No Stage 4B implementation is authorized by this merge gate.
 No mature background automation.
 No provider/scheduler/publisher expansion.
 No automatic promotion.
