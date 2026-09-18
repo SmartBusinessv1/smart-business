@@ -75,3 +75,27 @@ No `SB-P-1.12` activation.
 ## Stop
 
 `STAGE 6 PRE-MERGE REVIEW PASS — STOP FOR FOUNDER/HUMAN MERGE — DO NOT SELF-MERGE`
+
+
+## Standing OLE closure rule now active
+
+Before final communication closeout of any future mission, Mission Control must durably record either:
+
+- an OLE learning handoff initiated from the authoritative mission closure; or
+- an explicit `no reusable learning` disposition with supporting evidence.
+
+Repository rule:
+
+`communication/README.md — Mandatory OLE Learning Handoff Before Mission Closure`
+
+Durable Founder-direction record:
+
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-ole-closure-rule-and-stage4b-tracking.md`
+
+Deferred automation tracking:
+
+`GitHub Issue #591 — OLE Stage 4B — Background Automation & Candidate Learning Runtime`
+
+Issue #591 is tracking only. Stage 4B remains deferred / not authorized.
+
+The Founder merge gate for PR #589 remains valid, subject to all required checks being green on the current head immediately before merge.
