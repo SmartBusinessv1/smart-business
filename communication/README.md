@@ -112,6 +112,40 @@ No active instruction or report may be silently overwritten to conceal an earlie
 
 ---
 
+## Mandatory OLE Learning Handoff Before Mission Closure
+
+Until OLE Stage 4B background automation is implemented and separately accepted, Mission Control must explicitly initiate the Organizational Learning Engine handoff for every formally closed mission.
+
+A mission may not be treated as fully closed for communication-closeout purposes until one of these two states is durably recorded:
+
+1. **OLE learning handoff initiated** — the mission's authoritative closure is handed to the accepted OLE process for evidence harvesting, candidate learning, provenance validation, review/promotion where justified, and reusable-context refresh; or
+2. **No reusable learning** — Mission Control explicitly records that the closed mission produced no material reusable organizational learning, with enough evidence to support that conclusion.
+
+This is a standing Mission Control operating rule. It does not authorize autonomous background learning, automatic promotion, automatic merge, governance change, Product Truth change, or production/customer mutation.
+
+The manual requirement remains in force until a separately authorized and accepted Stage 4B capability replaces the human-trigger step.
+
+Tracking issue for the deferred automation:
+
+- GitHub Issue #591 — `OLE Stage 4B — Background Automation & Candidate Learning Runtime`
+
+Mission closure sequence while Stage 4B is absent:
+
+```text
+mission accepted
+      ↓
+merge / post-merge verification as applicable
+      ↓
+OLE learning handoff OR explicit no-reusable-learning record
+      ↓
+communication archive / closeout
+      ↓
+COMPLETED — FORMALLY ACCEPTED
+```
+
+
+---
+
 ## Archive Rules
 
 When communication is complete and the mission has been accepted, postponed, cancelled, or otherwise closed, the assigned closure AI archives the completed `communication/live/` exchange — not the durable `communication/missions/<MISSION-ID>/` record, which stays where it is with its README status updated in place.
