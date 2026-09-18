@@ -1,6 +1,6 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — FOUNDER MERGE GATE FOR APPROVED AMENDMENT PACKAGE
+# SB-GOV-IV-1.0 — ACTIVATION PUBLICATION MERGE GATE
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
@@ -10,49 +10,40 @@
 
 **To:** Founder / human authorized operator
 
-**Status:** `FOUNDER-APPROVED AMENDMENT / PROTOCOL PUBLICATION READY`
+**Status:** `ACTIVATION RECORDED — MERGE PENDING`
 
 **Date:** 2026-09-18
 
 ---
 
-# Authorized action
+# Current state
 
-Merge the amendment/publication pull request only after:
+PR #598 is merged and verified at:
 
-1. PR remains open and unmerged;
-2. no unexpected substantive change is added;
-3. current-head required checks are green.
+`4ddbb647cfb413e43af38a7e362130c5fd16133c`
 
-This package contains:
+This activation publication marks:
 
-- Source 18 v1.1 Founder-approved actor-flexible Stage 19 amendments;
-- Product Feature template v1.3 alignment;
-- Implementation and Evidence template v1.1 alignment;
-- final Founder-approved `communication/Independent_Verification_Efficiency_Protocol.md`;
-- minimum communication/mission status records.
+- Source 18 v1.1 — ACTIVE;
+- SB-IV-1.0 — ACTIVE;
+- actor-flexible mandatory Stage 19 — ACTIVE.
 
-Package C remains in the operational protocol only.
+`SB-P-1.12` remains not activated.
 
 ---
 
-# Activation boundary
+# Authorized action
 
-Merging the amendment PR does not itself complete activation.
+Merge the activation pull request only after:
 
-After merge, return to Mission Control.
+1. it remains open and unmerged;
+2. no unexpected substantive change has been added;
+3. current-head required checks are green.
 
-Mission Control must verify canonical `main` and then separately publish the final activation metadata:
-
-- Source 18 v1.1 → ACTIVE;
-- protocol SB-IV-1.0 → ACTIVE;
-- activation date / merge commit recorded;
-- mission status reconciled.
-
-`SB-P-1.12` remains inactive until that step is complete.
+After merge, return to Mission Control for canonical-main verification, OLE learning handoff / no-reusable-learning disposition, and communication closeout.
 
 ---
 
 # Stop
 
-`APPROVED AMENDMENT PACKAGE READY — STOP FOR FOUNDER/HUMAN MERGE AFTER CURRENT CHECKS GREEN`
+`ACTIVATION PUBLICATION READY — STOP FOR FOUNDER/HUMAN MERGE AFTER CURRENT CHECKS GREEN`
