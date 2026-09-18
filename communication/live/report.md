@@ -287,3 +287,28 @@ Stage 5 is **not ready for Mission Control completion review**. Mission Control 
 **Applicable CI:** all three applicable workflows `SUCCESS` on PR #589 head `e0dd7d95949ac30c2b7b907adc7fb8d67b42a76a` (this correction's commit), independently confirmed via direct API queries: Team LIPS Application Build Assurance #230 (all four jobs individually confirmed, including `Fast Tests`), Team LIPS Markdown Quality Gate #1834, and a real (not suppressed) Team LIPS Full Assurance #103 run.
 
 **Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.
+
+
+---
+
+## Codex final S5-F-07 independent re-verification result
+
+**Disposition:** `PASS`
+
+**Reviewed head:** `25ac06c5384842f7a50b531f6262d9b278080b63`
+
+**Technical correction:** `e0dd7d95949ac30c2b7b907adc7fb8d67b42a76a`; subsequent commits are communication/reporting only. The local and remote reviewed heads were reconfirmed on resumption.
+
+S5-F-07 is independently resolved: the read-only absent-Windows-drive reproduction now returns `INVALID_ANCESTRY`, reaches `INVALID_OR_UNSAFE` and produces zero eligible new-work items. Both valid-directory genuine-absence controls still allow first processing. S5-F-06 ENOENT/ENOTDIR handling and S5-F-01 through S5-F-05 regressions remain passing.
+
+The genuine Stage 2A result remains `ALREADY_PROCESSED` with fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475` and identical replay. Lifecycle, ordering and bounded ownership checks passed. Candidates are 4/4 valid with 14/14 valid provenance references; four promotions remain revision-bound and VALIDATED/MISSION_SCOPED. MEDIUM/LIMITS, context exclusions and authority boundaries remain intact. No unauthorized dependency/workflow or other implementation drift was found.
+
+Local Fast Tests passed **371/371**, 28 files, including all four Windows absent-drive cases. The local typecheck initially did not execute because execution capacity was exhausted; after the authorized resumption, `npx.cmd tsc --noEmit` actually ran and exited 0. The already-started build completed successfully; OLE Prettier passed. Repository-wide lint retained 5,429 verified CRLF-only errors and seven warnings; OLE errors were zero. No results were inferred from CI or rewritten from the prior report's separate local failures/retry history.
+
+All six current CI checks are SUCCESS. Actual Linux Fast Test logs show **368 passed / four Windows-only skips (372 registered)**, with an additional platform-limitation test; Full Assurance executed 108/108 successfully. Linux does not provide execution coverage of the absent-drive branch; the Windows tests and independent direct reproduction do. Completed valid evidence was reused after interruption.
+
+Durable report: `communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md`.
+
+Stage 5 is **ready for Mission Control completion review only**, not accepted. Mission Control record 36 authorizes publication of these two prepared verifier files only. The reviewed head and all PASS evidence remain unchanged; no implementation modification or additional verification pass was performed. CI results above describe the reviewed state. Historical FAIL reports and finding/correction history remain preserved. `STAGE 6 — NOT AUTHORIZED`; `PR #589 — NOT MERGED`; `SB-P-1.12 — NOT ACTIVATED`.
+
+`STAGE 5 FINAL PASS VERIFICATION PUBLISHED — MISSION CONTROL COMPLETION REVIEW REQUIRED`
