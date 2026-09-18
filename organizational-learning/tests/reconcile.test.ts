@@ -1767,3 +1767,365 @@ describe("Stage 5 S5-F-05 correction -- dangling receipt-directory indirection i
     }
   });
 });
+
+describe("Stage 5 S5-F-06 correction -- invalid receipt-directory ancestry is not genuine absence", () => {
+  it("classifyMissionDirectoryPresence: an ordinary file as receiptsDir is INVALID_ANCESTRY, never ABSENT -- Codex's exact S5-F-06 reproduction", () => {
+    const root = tempDir("ole-reconcile-f06-presence-file-root-");
+    const receiptsDirAsFile = join(root, "file-receipts");
+    try {
+      writeFileSync(receiptsDirAsFile, "harmless fixture text", "utf8");
+      const missionDir = join(receiptsDirAsFile, "somekey");
+      const presence = classifyMissionDirectoryPresence(missionDir);
+      expect(presence.status).toBe("INVALID_ANCESTRY");
+      expect(presence.status).not.toBe("ABSENT");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("an ordinary file as receiptsDir fails closed to INVALID_OR_UNSAFE, never ELIGIBLE_UNPROCESSED", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-FILE-ROOT";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f06-receipts-file-root-");
+    const receiptsDirAsFile = join(root, "file-receipts");
+    try {
+      writeFileSync(receiptsDirAsFile, "harmless fixture text", "utf8");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: receiptsDirAsFile,
+        locksDir: tempDir("ole-reconcile-f06-locks-file-root-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+      expect(result.retry_eligible).toBe(true);
+      expect(result.needs_human_reconciliation).toBe(true);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("planReconciliation produces zero eligible new-work intent when receiptsDir is an ordinary file", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-FILE-ROOT-PLAN";
+    const fixture = buildFixture(missionId, "rev-1");
+    const envelopeDir = join(
+      fixture.repo.root,
+      "communication",
+      "missions",
+      "f06-file-root-fixture",
+    );
+    mkdirSync(envelopeDir, { recursive: true });
+    const root = tempDir("ole-reconcile-f06-receipts-file-root-plan-");
+    const receiptsDirAsFile = join(root, "file-receipts");
+    try {
+      writeFileSync(receiptsDirAsFile, "harmless fixture text", "utf8");
+      const envelopePath = join(envelopeDir, "envelope.json");
+      writeFileSync(envelopePath, JSON.stringify(fixture.envelope), "utf8");
+      const plan = planReconciliation({
+        repoRoot: fixture.repo.root,
+        receiptsDir: receiptsDirAsFile,
+        locksDir: tempDir("ole-reconcile-f06-locks-file-root-plan-"),
+        envelopePaths: [envelopePath],
+      });
+      expect(plan.work_items).toHaveLength(1);
+      expect(plan.work_items[0].reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      const eligible = plan.work_items.filter(
+        (item) => item.reconciliation_state === "ELIGIBLE_UNPROCESSED",
+      );
+      expect(eligible).toHaveLength(0);
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("a genuinely absent receiptsDir under valid directory ancestry still allows normal first-processing behavior", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F06-ABSENT-VALID-ANCESTRY", "rev-1");
+    const root = tempDir("ole-reconcile-f06-receipts-absent-valid-");
+    try {
+      // root itself is a real, valid directory (tempDir creates it); the
+      // receipts subdirectory nested inside it is never created.
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: join(root, "never-created-receipts"),
+        locksDir: tempDir("ole-reconcile-f06-locks-absent-valid-"),
+      });
+      expect(result.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("an existing valid receiptsDir directory with an absent mission child remains normal first-processing behavior", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F06-VALID-DIR-ABSENT-CHILD", "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f06-receipts-valid-dir-");
+    try {
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f06-locks-valid-dir-"),
+      });
+      expect(result.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("classifyMissionDirectoryPresence: a non-directory ancestor above receiptsDir is INVALID_ANCESTRY, never ABSENT", () => {
+    const root = tempDir("ole-reconcile-f06-presence-above-parent-");
+    const parentFile = join(root, "parentfile");
+    try {
+      writeFileSync(parentFile, "harmless fixture text", "utf8");
+      const missionDir = join(parentFile, "receipts", "somekey");
+      expect(classifyMissionDirectoryPresence(missionDir).status).toBe("INVALID_ANCESTRY");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("an ordinary file above the configured receiptsDir fails closed end-to-end, never ELIGIBLE_UNPROCESSED", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-ABOVE-PARENT";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f06-receipts-above-parent-");
+    const parentFile = join(root, "parentfile");
+    try {
+      writeFileSync(parentFile, "harmless fixture text", "utf8");
+      const receiptsDir = join(parentFile, "receipts");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f06-locks-above-parent-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("classifyMissionDirectoryPresence: a dangling ancestor above receiptsDir is INVALID_ANCESTRY, never ABSENT", () => {
+    const root = tempDir("ole-reconcile-f06-presence-dangling-above-");
+    const danglingParent = join(root, "danglingparent");
+    try {
+      plantDanglingDirectoryIndirection(danglingParent);
+      const missionDir = join(danglingParent, "receipts", "somekey");
+      expect(classifyMissionDirectoryPresence(missionDir).status).toBe("INVALID_ANCESTRY");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("a dangling receiptsDir ancestor fails closed end-to-end, never ELIGIBLE_UNPROCESSED", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-DANGLING-ANCESTOR";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f06-receipts-dangling-ancestor-");
+    const danglingParent = join(root, "danglingparent");
+    try {
+      plantDanglingDirectoryIndirection(danglingParent);
+      const receiptsDir = join(danglingParent, "receipts");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f06-locks-dangling-ancestor-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-05 exact dangling final mission-entry case remains INVALID_OR_UNSAFE, never regresses", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-S5F05";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f06-receipts-s5f05-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDanglingDirectoryIndirection(join(receiptsDir, key));
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f06-locks-s5f05-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-01 outside-root live receipt indirection remains blocked", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-S5F01";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f06-receipts-s5f01-");
+    const outsideDir = tempDir("ole-reconcile-f06-outside-s5f01-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDirectoryIndirection(join(receiptsDir, key), outsideDir);
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f06-locks-s5f01-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: original S5-F-02 ENOTDIR and receipt-shaped non-file cases remain fail closed", () => {
+    const enotdirMissionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-ENOTDIR";
+    const nonFileMissionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-NONFILE";
+    const fixtureEnotdir = buildFixture(enotdirMissionId, "rev-1");
+    const fixtureNonFile = buildFixture(nonFileMissionId, "rev-1");
+    const receiptsDirEnotdir = tempDir("ole-reconcile-f06-receipts-enotdir-");
+    const receiptsDirNonFile = tempDir("ole-reconcile-f06-receipts-nonfile-");
+    try {
+      mkdirSync(receiptsDirEnotdir, { recursive: true });
+      writeFileSync(
+        join(receiptsDirEnotdir, computeMissionStorageKey(enotdirMissionId)),
+        "not a directory",
+        "utf8",
+      );
+      const enotdirResult = classifyEnvelope(fixtureEnotdir.envelope, {
+        repoRoot: fixtureEnotdir.repo.root,
+        receiptsDir: receiptsDirEnotdir,
+        locksDir: tempDir("ole-reconcile-f06-locks-enotdir-"),
+      });
+      expect(enotdirResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(enotdirResult.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+
+      mkdirSync(
+        join(receiptsDirNonFile, computeMissionStorageKey(nonFileMissionId), "blocked.json"),
+        { recursive: true },
+      );
+      const nonFileResult = classifyEnvelope(fixtureNonFile.envelope, {
+        repoRoot: fixtureNonFile.repo.root,
+        receiptsDir: receiptsDirNonFile,
+        locksDir: tempDir("ole-reconcile-f06-locks-nonfile-"),
+      });
+      expect(nonFileResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(nonFileResult.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixtureEnotdir.repo.cleanup();
+      fixtureNonFile.repo.cleanup();
+      rmSync(receiptsDirEnotdir, { recursive: true, force: true });
+      rmSync(receiptsDirNonFile, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: malformed-JSON and schema-invalid receipt cases remain fail closed without echoing a canary", () => {
+    const malformedMissionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-MALFORMED";
+    const schemaInvalidMissionId = "SB-TEST-FIXTURE-5-F06-REGRESSION-SCHEMA-INVALID";
+    const fixtureMalformed = buildFixture(malformedMissionId, "rev-1");
+    const fixtureSchemaInvalid = buildFixture(schemaInvalidMissionId, "rev-1");
+    const receiptsDirMalformed = tempDir("ole-reconcile-f06-receipts-malformed-");
+    const receiptsDirSchemaInvalid = tempDir("ole-reconcile-f06-receipts-schema-invalid-");
+    try {
+      const malformedMissionDir = join(
+        receiptsDirMalformed,
+        computeMissionStorageKey(malformedMissionId),
+      );
+      mkdirSync(malformedMissionDir, { recursive: true });
+      const canary = "AKIA9999999999999999";
+      writeFileSync(join(malformedMissionDir, "corrupt.json"), `{"secret": "${canary}",`, "utf8");
+      const malformedResult = classifyEnvelope(fixtureMalformed.envelope, {
+        repoRoot: fixtureMalformed.repo.root,
+        receiptsDir: receiptsDirMalformed,
+        locksDir: tempDir("ole-reconcile-f06-locks-malformed-"),
+      });
+      expect(malformedResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(JSON.stringify(malformedResult)).not.toContain(canary);
+
+      const schemaInvalidMissionDir = join(
+        receiptsDirSchemaInvalid,
+        computeMissionStorageKey(schemaInvalidMissionId),
+      );
+      mkdirSync(schemaInvalidMissionDir, { recursive: true });
+      writeFileSync(
+        join(schemaInvalidMissionDir, "not-a-receipt.json"),
+        JSON.stringify({ not: "a valid receipt" }),
+        "utf8",
+      );
+      const schemaInvalidResult = classifyEnvelope(fixtureSchemaInvalid.envelope, {
+        repoRoot: fixtureSchemaInvalid.repo.root,
+        receiptsDir: receiptsDirSchemaInvalid,
+        locksDir: tempDir("ole-reconcile-f06-locks-schema-invalid-"),
+      });
+      expect(schemaInvalidResult.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+    } finally {
+      fixtureMalformed.repo.cleanup();
+      fixtureSchemaInvalid.repo.cleanup();
+      rmSync(receiptsDirMalformed, { recursive: true, force: true });
+      rmSync(receiptsDirSchemaInvalid, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: genuine Stage 2A real data remains ALREADY_PROCESSED with the exact genuine fingerprint", () => {
+    const repo = createEphemeralGitRepo();
+    try {
+      const realEnvelope = JSON.parse(readFileSync(REAL_ENVELOPE_PATH, "utf8"));
+      const evidencePaths: string[] = [
+        ...realEnvelope.acceptance_refs,
+        ...realEnvelope.closure_refs,
+      ];
+      let commitSha = "";
+      for (const relativePath of evidencePaths) {
+        const blobShaAtHead = execFileSync("git", ["rev-parse", `HEAD:${relativePath}`], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        }).trim();
+        const content = execFileSync("git", ["cat-file", "-p", blobShaAtHead], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        });
+        commitSha = repo.commitFile(relativePath, content);
+      }
+      const remappedEnvelope = { ...realEnvelope, source_snapshot_ref: commitSha };
+
+      const result = classifyEnvelope(remappedEnvelope, {
+        repoRoot: repo.root,
+        receiptsDir: REAL_RECEIPTS_DIR,
+        locksDir: tempDir("ole-reconcile-f06-locks-stage2a-"),
+      });
+      expect(result.reconciliation_state).toBe("ALREADY_PROCESSED");
+      expect(result.source_fingerprint).toBe(
+        "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475",
+      );
+    } finally {
+      repo.cleanup();
+    }
+  });
+
+  it("safe diagnostics: INVALID_ANCESTRY reason names only the storage key and fixed condition, never raw content", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F06-SAFE-DIAGNOSTICS";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f06-receipts-safe-diag-");
+    const receiptsDirAsFile = join(root, "file-receipts");
+    try {
+      const canary = "AKIA2222222222222222";
+      writeFileSync(receiptsDirAsFile, `secret marker ${canary}`, "utf8");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: receiptsDirAsFile,
+        locksDir: tempDir("ole-reconcile-f06-locks-safe-diag-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reason).toContain(computeMissionStorageKey(missionId));
+      expect(result.reason).toContain("INVALID_RECEIPT_ROOT_ANCESTRY");
+      expect(JSON.stringify(result)).not.toContain(canary);
+      expect(JSON.stringify(result)).not.toContain("harmless fixture text");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});

@@ -200,3 +200,35 @@ Durable report: `communication/missions/SB-ORG-LEARNING-1.1/codex/10-stage5-fina
 Stage 5 is **not ready for Mission Control completion review**. No implementation was changed. Mission Control record 30 authorizes publication of these two prepared verifier communication files only. The reviewed head, FAIL result, finding and positive evidence remain unchanged; no new verification pass was performed. Mission Control must decide corrective handling of S5-F-06. Stage 6 remains **NOT AUTHORIZED**; PR #589 remains **OPEN — NOT MERGED**; `SB-P-1.12` remains **NOT ACTIVATED**.
 
 `STAGE 5 S5-F-06 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
+
+---
+
+## Builder Stage 5 F-06 correction report
+
+**Status:** `STAGE 5 F-06 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md`
+
+**Root cause:** `classifyMissionDirectoryPresence` treated a bare `lstatSync(missionDir)` `ENOENT` as unconditional proof of genuine absence, without validating that the configured receipt-store ancestry above it is itself a valid, traversable directory hierarchy -- Codex's exact reproduction: an ordinary file occupying `receiptsDir` makes `lstatSync(receiptsDir/<key>)` throw `ENOENT` on Windows, indistinguishable by error code alone from genuine absence.
+
+**S5-F-06 correction:** `classifyMissionDirectoryPresence` now walks upward from the mission directory path (a new small helper, `findDeepestExistingAncestorByLstat`) to find the deepest ancestor that actually exists, then validates that ancestor is a real, resolvable directory (via following `statSync`) before trusting anything below it as absent. A general fix, not a special case for one filename -- it also correctly handles a non-directory or dangling ancestor located *above* `receiptsDir`. A new `INVALID_ANCESTRY` status maps to the existing, unmodified `INVALID_OR_UNSAFE` fail-closed path.
+
+**Ordinary-file receipt-root result:** now `INVALID_ANCESTRY` / `INVALID_OR_UNSAFE`, never `ABSENT` / `ELIGIBLE_UNPROCESSED` -- Codex's exact reproduction is resolved.
+
+**Genuine-absence result:** unaffected -- a truly absent receipts directory (or mission subdirectory) beneath valid ancestry still classifies `ELIGIBLE_UNPROCESSED`.
+
+**Invalid-ancestry result:** both a non-directory ancestor and a dangling/unresolved ancestor above `receiptsDir` fail closed via the same general algorithm.
+
+**S5-F-05/F-01/F-02 regression:** all unchanged and fail closed -- the dangling-final-entry, outside-root live-junction, `ENOTDIR`, receipt-shaped non-file, malformed-JSON and schema-invalid cases all re-verified via dedicated regression tests.
+
+**S5-F-03/F-04 regression:** neither file was touched this round; both full, unmodified test suites passed unchanged.
+
+**Stage 2A regression:** unchanged -- `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
+
+**Regression genuineness:** the fix was temporarily reverted in place and the full `reconcile.test.ts` suite re-run -- exactly the 8 expected tests failed, with zero collateral damage to the other 56.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **361/361 passing**, 28 files (+15 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
+
+**Applicable CI:** see the durable report, Section 11, once confirmed.
+
+**Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

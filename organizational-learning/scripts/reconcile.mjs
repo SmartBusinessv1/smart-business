@@ -62,8 +62,9 @@ import {
   unlinkSync,
   realpathSync,
   lstatSync,
+  statSync,
 } from "node:fs";
-import { join, dirname, relative, isAbsolute } from "node:path";
+import { join, dirname, relative, isAbsolute, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
@@ -260,6 +261,40 @@ export function isGenuineAbsenceError(error) {
 }
 
 /**
+ * Walks upward from `targetPath` (via `dirname`) using non-following
+ * `lstatSync` metadata to find the deepest ancestor that has an actual
+ * filesystem entry -- which may be a directory, an ordinary file, or a
+ * dangling symlink/junction. Never follows the final component of any
+ * path it inspects (S5-F-05's lesson, generalized): an `ENOENT` at one
+ * level only means "try the parent," never "prove absence" by itself.
+ *
+ * Returns `{ ancestorPath }` once an existing entry is found,
+ * `{ ambiguous: true }` if an `lstatSync` call partway up fails for a
+ * reason other than absence (permission denial, I/O error), or
+ * `{ ancestorPath: null }` if nothing exists anywhere in the chain up to
+ * the filesystem root (practically unreachable -- the OS temp/working
+ * directory tree always exists).
+ */
+function findDeepestExistingAncestorByLstat(targetPath) {
+  let current = resolve(targetPath);
+  while (true) {
+    try {
+      lstatSync(current);
+      return { ancestorPath: current };
+    } catch (error) {
+      if (!isGenuineAbsenceError(error)) {
+        return { ambiguous: true };
+      }
+      const parent = dirname(current);
+      if (parent === current) {
+        return { ancestorPath: null };
+      }
+      current = parent;
+    }
+  }
+}
+
+/**
  * Classifies the mission storage directory's filesystem-entry presence
  * using non-following `lstatSync` metadata, never `existsSync` alone
  * (S5-F-05 correction, communication/missions/SB-ORG-LEARNING-1.1/
@@ -277,24 +312,81 @@ export function isGenuineAbsenceError(error) {
  * and succeeds for a symlink/junction entry regardless of whether its
  * target resolves -- the correct, non-following existence check.
  *
- * Exported for direct testing (dangling-entry construction is real and
- * platform-supported here; see reconcile.test.ts).
+ * S5-F-06 correction (communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/31-stage5-f06-correction-authorization.md): independent
+ * re-verification found that a bare `lstatSync(missionDir)` `ENOENT` is
+ * *still* not sufficient proof of genuine absence -- it only proves
+ * `missionDir` itself cannot be resolved, not that the *configured
+ * ancestry above it* is a valid, traversable directory hierarchy. On
+ * Windows, an ordinary file occupying the configured `receiptsDir` path
+ * makes `lstatSync(receiptsDir/<key>)` throw `ENOENT` exactly like
+ * genuine absence would, even though the receipts root is actively
+ * invalid, not empty. This is not a single-filename/single-error-string
+ * special case: any invalid, non-directory, dangling, or metadata-
+ * ambiguous ancestor anywhere between `missionDir` and the filesystem
+ * root creates the identical ambiguity.
+ *
+ * The fix walks up from `missionDir` (`findDeepestExistingAncestorByLstat`,
+ * above) to find the deepest ancestor that actually has an entry, then
+ * validates that specific ancestor:
+ *   - if the entry found *is* `missionDir` itself, nothing changes from
+ *     the S5-F-05 behavior (dangling vs. present, decided exactly as
+ *     before);
+ *   - if the deepest existing entry is some ancestor *above* `missionDir`
+ *     (i.e. `missionDir` and everything below that ancestor is genuinely
+ *     unwritten), absence is trustworthy only if that ancestor resolves
+ *     (following any symlink chain) to an actual directory -- `statSync`
+ *     is used deliberately here (unlike the non-following `lstatSync`
+ *     used for `missionDir` itself) because a *valid* symlinked ancestor
+ *     pointing at a real directory is legitimate ancestry, while a file,
+ *     a dangling link, or an unresolvable ancestor is not;
+ *   - if no entry exists anywhere in the chain, or an `lstatSync` call
+ *     partway up is itself ambiguous, absence is never assumed.
+ *
+ * Exported for direct testing (dangling-entry and invalid-ancestor
+ * construction are real and platform-supported here; see
+ * reconcile.test.ts).
  */
 export function classifyMissionDirectoryPresence(missionDir) {
-  try {
-    lstatSync(missionDir);
-  } catch (error) {
-    if (isGenuineAbsenceError(error)) {
-      // No filesystem entry at all at this path, not even a dangling
-      // link -- genuinely absent. Truthfully means no receipt has ever
-      // been written for this mission.
-      return { status: "ABSENT" };
-    }
-    // Some other metadata failure (permission denial, an unreadable
-    // parent path component, I/O error) -- ambiguous, never absence.
+  const resolvedMissionDir = resolve(missionDir);
+  const ancestor = findDeepestExistingAncestorByLstat(resolvedMissionDir);
+
+  if (ancestor.ambiguous) {
     return { status: "METADATA_UNAVAILABLE" };
   }
-  if (!existsSync(missionDir)) {
+  if (ancestor.ancestorPath === null) {
+    // Nothing exists anywhere in the chain up to the filesystem root --
+    // practically unreachable, but the only honest reading is absence.
+    return { status: "ABSENT" };
+  }
+
+  if (ancestor.ancestorPath !== resolvedMissionDir) {
+    // missionDir itself does not exist, and neither does everything
+    // between it and this ancestor -- absence is trustworthy only if
+    // this existing ancestor is actually a valid, resolvable directory.
+    let ancestorStat;
+    try {
+      ancestorStat = statSync(ancestor.ancestorPath);
+    } catch {
+      // The existing ancestor's entry cannot be resolved through
+      // symlink/junction following -- a dangling or otherwise
+      // unresolved ancestor. Invalid ancestry, never absence.
+      return { status: "INVALID_ANCESTRY" };
+    }
+    if (!ancestorStat.isDirectory()) {
+      // An existing ancestor (which may be the configured receiptsDir
+      // itself, or something above it) is an ordinary file or other
+      // non-directory object -- exactly the S5-F-06 reproduction.
+      // Invalid ancestry, never absence.
+      return { status: "INVALID_ANCESTRY" };
+    }
+    return { status: "ABSENT" };
+  }
+
+  // The deepest existing entry IS missionDir itself -- proceed exactly
+  // as the S5-F-05 correction did: distinguish dangling/unresolved from
+  // genuinely present.
+  if (!existsSync(resolvedMissionDir)) {
     // An entry exists at this exact path (the lstat above succeeded),
     // but the entry does not resolve through symlink/junction following
     // -- a dangling or otherwise unresolved indirection. Present, but
@@ -309,22 +401,27 @@ export function classifyMissionDirectoryPresence(missionDir) {
  *   1. genuine absence (`classifyMissionDirectoryPresence` -> `ABSENT`)
  *      -- the only case that may truthfully mean no receipts, with zero
  *      issues;
- *   2. a dangling/unresolved symlink or junction (-> `DANGLING_OR_
- *      UNRESOLVED`) -- an issue, zero receipts, never treated as absence;
- *   3. any other lstat metadata failure (-> `METADATA_UNAVAILABLE`) --
+ *   2. invalid receipt-root ancestry (-> `INVALID_ANCESTRY`, S5-F-06) --
+ *      an existing ancestor above the mission directory (which may be
+ *      the configured `receiptsDir` itself) is not a valid, resolvable
+ *      directory -- an issue, zero receipts, never treated as absence;
+ *   3. a dangling/unresolved symlink or junction at the mission
+ *      directory itself (-> `DANGLING_OR_UNRESOLVED`, S5-F-05) -- an
+ *      issue, zero receipts, never treated as absence;
+ *   4. any other lstat metadata failure (-> `METADATA_UNAVAILABLE`) --
  *      an issue, zero receipts, never treated as absence;
- *   4. physical-indirection failure (reusing the exact, unmodified
+ *   5. physical-indirection failure (reusing the exact, unmodified
  *      Stage 1 `assertPhysicallyContained` primitive on the mission
  *      directory itself) -- an issue, zero receipts;
- *   5. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
+ *   6. any other enumeration failure (`ENOTDIR`, permission/I/O) -- an
  *      issue, zero receipts;
- *   6. per entry: physical-indirection failure on that specific file (a
+ *   7. per entry: physical-indirection failure on that specific file (a
  *      nested symlink even inside an otherwise-legitimate directory) --
  *      an issue for that entry, not merely for the directory as a whole;
- *   7. per entry: a receipt-shaped (`.json`) entry that is not a regular
+ *   8. per entry: a receipt-shaped (`.json`) entry that is not a regular
  *      file (e.g. a directory literally named `blocked.json`) -- an
  *      issue, not silently skipped the way a non-`.json` entry is;
- *   8. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
+ *   9. per entry: unreadable / malformed / schema-invalid (S4A-F-02,
  *      unchanged) -- an issue.
  */
 function listReceiptsForMission(receiptsDir, missionId) {
@@ -334,6 +431,9 @@ function listReceiptsForMission(receiptsDir, missionId) {
   const presence = classifyMissionDirectoryPresence(missionDir);
   if (presence.status === "ABSENT") {
     return { receipts: [], issues: [] };
+  }
+  if (presence.status === "INVALID_ANCESTRY") {
+    return { receipts: [], issues: [{ path: key, condition: "INVALID_RECEIPT_ROOT_ANCESTRY" }] };
   }
   if (presence.status === "DANGLING_OR_UNRESOLVED") {
     return { receipts: [], issues: [{ path: key, condition: "DANGLING_OR_UNRESOLVED_ENTRY" }] };
