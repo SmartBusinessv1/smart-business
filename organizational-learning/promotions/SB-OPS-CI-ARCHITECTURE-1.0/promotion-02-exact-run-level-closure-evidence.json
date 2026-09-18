@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence-promotion-02",
+  "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence",
+  "candidate_revision_hash": "3fcc61bac434b6ef651b378290b3453fc1b14e7d3f6d3e36df6b05542d0d14a4",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+  "approved_scope": "Approved as a mission-scoped validated observation that SB-OPS-CI-ARCHITECTURE-1.0's acceptance and post-merge closure records cite exact CI run numbers/IDs for each verification pass, with exact test/file counts recorded where actually present (exact Fast Test counts for the implementation head only; exact Full Assurance counts for both the implementation head and the later pre-review head, and again at the merge commit). Scoped to this mission's own closure evidence; not generalized to other missions.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+      "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+      "locator": "## 3. Verified evidence: exact run numbers/IDs for both heads (implementation head 74455d5... and pre-review head 6a3ea8f...); exact Fast Test counts (8/8 files, 61/61 tests) recorded only for the implementation head; exact Full Assurance counts (20/20 files, 108/108 tests) recorded for both heads",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+      "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+      "locator": "## Post-merge assurance: run numbers/IDs for all three workflows, and the '20/20 test files, 108/108 tests, 0 failures' breakdown",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+      "blob_sha": "8054ef3156a92a5da43ad4818d46077a1a8b08f6",
+      "locator": "## Chronology, last two bullets: same three run numbers/IDs and the 20/20 files, 108/108 tests result, restated in the archive manifest",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-17T12:17:00Z"
+}

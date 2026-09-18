@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-02-exact-run-level-closure-evidence",
+  "canonical_title": "Mission closure records cite exact CI run numbers and test counts, not narrative claims alone",
+  "summary": "SB-OPS-CI-ARCHITECTURE-1.0's acceptance and post-merge closure records cite exact workflow run numbers/IDs for each verification pass, and exact test/file counts wherever those counts are actually recorded, rather than asserting success only in general terms.",
+  "category": ["engineering", "operations"],
+  "scope": {
+    "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+    "systems": ["github-actions", "ci"],
+    "environments": ["ci"]
+  },
+  "claims": [
+    {
+      "claim_id": "acceptance-head-run-evidence",
+      "text": "Mission Control recorded exact run numbers and run IDs for Markdown Quality Gate, Application Build Assurance, and Full Assurance on both the accepted implementation head and a later pre-review communication head. Exact Fast Test file/test counts (8/8 files, 61/61 tests) are recorded only for the implementation head; exact Full Assurance file/test counts (20/20 files, 108/108 tests) are recorded for both heads.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+          "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+          "locator": "## 3. Verified evidence: exact run numbers/IDs for both heads (implementation head 74455d5... and pre-review head 6a3ea8f...); exact Fast Test counts (8/8 files, 61/61 tests) recorded only for the implementation head; exact Full Assurance counts (20/20 files, 108/108 tests) recorded for both heads",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "post-merge-run-evidence",
+      "text": "Post-merge closure recorded exact run numbers/IDs for Application Build Assurance, Markdown Quality Gate, and Full Assurance against the actual merge commit, plus exact Full Assurance results (20/20 files, 108/108 tests, 0 failures).",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+          "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+          "locator": "## Post-merge assurance: run numbers/IDs for all three workflows, and the '20/20 test files, 108/108 tests, 0 failures' breakdown",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+          "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+          "blob_sha": "8054ef3156a92a5da43ad4818d46077a1a8b08f6",
+          "locator": "## Chronology, last two bullets: same three run numbers/IDs and the 20/20 files, 108/108 tests result, restated in the archive manifest",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-17T10:29:29Z",
+          "evidence_date": "2026-09-16T00:00:00Z",
+          "scope": {
+            "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+            "systems": ["github-actions", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-stage2b:2026-09-17",
+    "generated_at": "2026-09-17T10:29:29Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+    "closure_revision": "07-post-merge-verification-and-closure",
+    "source_fingerprint": "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475"
+  },
+  "conditions": [
+    "Requires the CI platform to expose stable, citable run numbers/IDs that remain resolvable after the fact."
+  ],
+  "anti_patterns": [
+    "Closing a mission with only a general 'CI passed' statement, without recording which exact run, on which exact commit, verified which exact test count -- an unfalsifiable and unauditable closure claim."
+  ]
+}

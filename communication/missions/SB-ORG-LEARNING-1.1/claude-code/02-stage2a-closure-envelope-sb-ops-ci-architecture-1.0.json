@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+  "mission_class": "operational",
+  "closure_revision": "07-post-merge-verification-and-closure",
+  "final_disposition": "CLOSED — ACCEPTED",
+  "accepted_scope": "Fast Gate + Full Assurance CI architecture: always-running Fast Gate (lint, typecheck, build, 8 environment-independent Fast Test files / 61 tests) on every PR/push to main; selective Full Assurance (20 Supabase-dependent files / 108 tests) for relevant repository changes and manual dispatch; combined automated baseline 28 files / 169 tests; no dependency/lockfile, database/provider, production, deployment, or branch-protection change.",
+  "acceptance_refs": [
+    "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md"
+  ],
+  "closure_refs": [
+    "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+    "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md"
+  ],
+  "retained_followups": [
+    "transient Auth/JWKS-class flakiness",
+    "GitHub Actions runtime deprecation warning",
+    "existing dependency vulnerability backlog",
+    "pre-existing inventory shared-write-path diagnostic"
+  ],
+  "source_snapshot_ref": "b60741cce544adb713f7c384bbed09a05e23247e",
+  "reopens": null,
+  "supersedes_closure": null
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture-promotion-01",
+  "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-01-two-tier-ci-architecture",
+  "candidate_revision_hash": "eb13d7f7ebf15b0d6e1759ba5a7498a82a1aae365d24d627c342b741fa33055e",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+  "approved_scope": "Approved as a mission-scoped validated observation of SB-OPS-CI-ARCHITECTURE-1.0's two-tier CI architecture (always-running Fast Gate; selective, path-filtered Full Assurance). Scoped to this mission's own CI/test architecture; not generalized to other missions, production behavior, or security posture.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+      "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+      "locator": "## 2. Accepted implementation, first accepted-architecture bullet: 'Fast Gate on every PR/push to main: lint, typecheck, build, 8 environment-independent Fast Tests with no Supabase test-environment binding'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+      "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+      "locator": "## Mission outcome, first two bullets: 'every PR/push receives the always-running Fast Gate; Fast Tests are separated from the Supabase-dependent integration suite'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+      "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+      "locator": "## Mission outcome, third/fourth bullets: 'Full Assurance remains available on relevant code/config/test paths and manual dispatch; documentation/communication-only changes no longer need the approximately 3.5-minute Supabase suite'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+      "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+      "locator": "## 2. Accepted implementation, second accepted-architecture bullet: 'selective Full Assurance for relevant repository changes: 20 Supabase-dependent tests against smart-business-test, with manual dispatch retained'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-17T12:17:00Z"
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "authority_statement": "reconciliation plan, not execution authority",
+  "work_items": [
+    {
+      "schemaVersion": 1,
+      "mission_id": "SB-OPS-CI-ARCHITECTURE-1.0",
+      "closure_revision": "07-post-merge-verification-and-closure",
+      "source_snapshot_ref": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "source_fingerprint": "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475",
+      "reconciliation_state": "ALREADY_PROCESSED",
+      "reason": "receipt SB-OPS-CI-ARCHITECTURE-1.0:c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475 already reached SCREENED for this exact fingerprint",
+      "existing_receipt_processing_state": "SCREENED",
+      "next_safe_action": "no-op: rerunning this exact closure revision would be a deterministic no-op",
+      "retry_eligible": false,
+      "needs_human_reconciliation": false,
+      "active_ownership": {
+        "locked": false,
+        "owner_run_id": null
+      }
+    }
+  ],
+  "rejected_inputs": []
+}

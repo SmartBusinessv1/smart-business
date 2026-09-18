@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention-promotion-03",
+  "candidate_id": "SB-OPS-CI-ARCHITECTURE-1.0-candidate-03-explicit-followup-retention",
+  "candidate_revision_hash": "b5ee757cb6bddbbfd9237b0e0d2fcf412e341e59394106399d9baf15be6f8e88",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/19-stage2-acceptance-and-stage3a-human-promotion-proof-authorization.md",
+  "approved_scope": "Approved as a mission-scoped validated observation of an unresolved documentary inconsistency in SB-OPS-CI-ARCHITECTURE-1.0's follow-up list: five items named at pre-merge acceptance, four at final post-merge closure, with the branch-protection-policy item's omission from the closure list left unexplained. This approval validates the observation itself, not any conclusion that the omitted item was resolved, superseded, or intentionally dropped. The candidate's MEDIUM confidence and LIMITS evidence relationship remain in force and are not converted into certainty by this promotion.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+      "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+      "locator": "## 4. Non-blocking findings carried forward: five-item list plus 'None is silently resolved by this acceptance.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+      "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+      "locator": "## Carried follow-ups: four-item list plus 'remain outside this mission's closure and are not represented as resolved'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/archive/SB-OPS-CI-ARCHITECTURE-1.0/communication.md",
+      "blob_sha": "8054ef3156a92a5da43ad4818d46077a1a8b08f6",
+      "locator": "## Final Reconciled Closure, follow-up sentence naming the same four items as unresolved and non-blocking",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/06-stage4-acceptance-and-founder-merge-handoff.md",
+      "blob_sha": "58ab6cf861050749a54a5b80309e00f34234b029",
+      "locator": "## 4. Non-blocking findings carried forward, fifth bullet: 'future branch-protection policy decision for Fast Gate, if Founder/Mission Control later chooses to require it'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "b60741cce544adb713f7c384bbed09a05e23247e",
+      "path": "communication/missions/SB-OPS-CI-ARCHITECTURE-1.0/mission-control/07-post-merge-verification-and-closure.md",
+      "blob_sha": "b05640a4044471e858cb48c53180afe78fa27175",
+      "locator": "## Carried follow-ups: four-item list with no branch-protection item and no statement addressing its omission",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-17T10:29:29Z",
+      "evidence_date": "2026-09-16T00:00:00Z",
+      "scope": {
+        "mission_ids": ["SB-OPS-CI-ARCHITECTURE-1.0"],
+        "systems": ["github-actions", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "LIMITS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-17T12:17:00Z"
+}
