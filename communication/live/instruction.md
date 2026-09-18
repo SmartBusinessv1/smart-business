@@ -1,122 +1,90 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — MANUAL OLE LEARNING HANDOFF
+# SB-GOV-IV-1.0 — OLE CANDIDATE 02 NARROW PROVENANCE CORRECTION
 
 **Mission ID:** `SB-GOV-IV-1.0`
-
-**Mission Name:** Codex / Independent Verification Efficiency Protocol
 
 **From:** Mission Control
 
 **To:** Claude Code — supervised OLE learning operator
 
-**Status:** `ACTIVE — MANUAL OLE LEARNING HANDOFF`
+**Status:** `BLOCKED UNTIL PR #602 MERGED — THEN NARROW CORRECTION AUTHORIZED`
 
-**Date:** 2026-09-18
-
----
-
-# Mission Objective
-
-Execute the standing manual OLE learning handoff for the now-activated verification-governance mission.
-
-Work only from canonical merged evidence.
-
-Do not modify active governance, Product Truth, application code, CI workflows, infrastructure, credentials or production state.
+**Date:** 2026-09-19
 
 ---
 
 # Read First
 
-1. `communication/missions/SB-GOV-IV-1.0/mission-control/05-postactivation-verification-and-ole-learning-handoff.md`
-2. `communication/missions/SB-GOV-IV-1.0/README.md`
-3. `communication/Independent_Verification_Efficiency_Protocol.md`
-4. active `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`
-5. accepted OLE v1 contracts, schemas, harvester/reconciliation tooling and existing candidate/promotion conventions.
+`communication/missions/SB-GOV-IV-1.0/mission-control/06-ole-learning-review-and-narrow-correction-authorization.md`
 
 ---
 
-# Required Work
+# Blocker
 
-Using the accepted OLE v1 deterministic contracts:
+Do not execute the candidate correction until Founder/human merge of:
 
-1. prepare a truthful closure envelope for `SB-GOV-IV-1.0`;
-2. harvest only approved canonical evidence;
-3. generate candidate lessons / risks with claim-level provenance;
-4. screen and validate candidate records;
-5. prepare a mission-learning report;
-6. identify retained limitations / follow-ups;
-7. identify context-refresh recommendations where justified;
-8. prove idempotency / reconciliation using the existing OLE tooling;
-9. update `communication/live/report.md` with the exact result.
+`PR #602 — SB-GOV-IV-1.0: align active SB-IV-1.0 with Source 18 v1.1`
 
-All generated learning remains:
-
-`CANDIDATE / authority_effect: NONE`
-
-until Mission Control review.
-
-Do not create promotion records.
+and Mission Control confirms the corrected protocol is canonical on `main`.
 
 ---
 
-# Expected Artifact Locations
+# Authorized correction after blocker clears
 
-Use the existing OLE conventions.
+Modify only:
 
-Mission-specific evidence/report artifacts may be placed under:
+1. `organizational-learning/candidates/SB-GOV-IV-1.0/candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate.json`
+2. `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` only if required to keep the report truthful
+3. `communication/live/report.md`
 
-`communication/missions/SB-GOV-IV-1.0/claude-code/`
+Preferred correction:
 
-Candidate records:
+Keep the existing source snapshot/fingerprint and replace Candidate 02 Claim 3's stale protocol evidence with active Source 18 v1.1 Section 4.9 evidence at snapshot:
 
-`organizational-learning/candidates/SB-GOV-IV-1.0/`
+`9595356fba67a5cfce9a66ca9f2272761adb669e`
 
-Receipt:
+Source 18 Section 4.9 directly states:
 
-`organizational-learning/receipts/[fingerprint]/[source-fingerprint].json`
+- Mission Control appoints the Independent Verification Actor;
+- Codex is preferred for highest-risk cases where eligible and available;
+- Claude Code or another approved actor may be appointed under the same capability/independence conditions;
+- no builder self-verification or silent substitution is allowed.
 
-Use the actual deterministic paths produced by the accepted tooling.
+Do not change the lesson's meaning.
 
----
-
-# Constraints
-
-Do not:
-
-- modify Source 18;
-- modify SB-IV-1.0;
-- modify Product Truth;
-- modify schemas or OLE runtime code;
-- implement Stage 4B;
-- create provider integrations;
-- create schedulers/background workers;
-- promote any lesson;
-- mark anything `VALIDATED`, `INSTITUTIONALISED` or `ORGANIZATION_WIDE`;
-- activate `SB-P-1.12`;
-- self-merge.
-
-If the current mission evidence does not satisfy the OLE closure-envelope contract, report the exact blocker rather than weakening the contract.
+Do not create a new receipt or re-harvest unless the accepted OLE tooling proves that the provenance change requires it.
 
 ---
 
-# Required Return
+# Do Not Modify
 
-Report:
+- closure envelope;
+- existing receipt;
+- source fingerprint unless tooling requires a refresh;
+- Candidates 01, 03, 04, 05, 06;
+- Source 18;
+- SB-IV-1.0;
+- schemas/scripts/tests;
+- promotion records.
 
-- branch and full head SHA;
-- closure envelope path;
-- source snapshot / fingerprint;
-- receipt path and screening result;
-- candidate count and titles;
-- provenance validation;
-- mission-learning report path;
-- retained limitations;
-- reconciliation/idempotency result;
+---
+
+# Required Verification
+
+Return:
+
+- corrected branch/head;
 - exact changed files;
-- CI / validation results;
-- PR state.
+- Candidate 02 schema result;
+- Candidate 02 provenance validation;
+- screening result;
+- source fingerprint status;
+- CI results;
+- PR #601 state.
+
+Do not self-merge.
 
 End exactly:
 
-`OLE LEARNING HANDOFF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+`CANDIDATE 02 PROVENANCE CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
