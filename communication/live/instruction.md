@@ -1,57 +1,93 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — OLE LEARNING CANDIDATE-01 PRECISION CORRECTION
+# SB-ORG-LEARNING-1.1 — OLE LEARNING PROMOTION MATERIALIZATION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current actor:** Claude Code — narrow learning-package correction
+**Current actor:** Claude Code — promotion materialization only
 
 **Branch:** `mission/SB-ORG-LEARNING-1.1-learning`
 
 **PR:** `#593 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `OLE LEARNING HANDOFF SUBSTANTIVELY ACCEPTABLE — NARROW CANDIDATE-01 PRECISION CORRECTION REQUIRED`
+**Mission Control disposition:** `OLE LEARNING REVIEW — PASS; 8/8 CANDIDATES APPROVED FOR VALIDATED / MISSION_SCOPED PROMOTION`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/41-ole-learning-review-and-candidate01-correction-authorization.md`
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md`
 
-## Authorized correction only
+## Authorized action
 
-Correct the factual count in:
+Materialize the already-made Mission Control promotion decision only.
 
-1. `organizational-learning/candidates/SB-ORG-LEARNING-1.1/candidate-01-narrow-finding-scoped-correction-cycle.json`
-2. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/12-mission-learning-report.md`
+Create one promotion-review record per current candidate under:
 
-Minimum `communication/live/report.md` update is allowed only to report the correction.
+`organizational-learning/promotions/SB-ORG-LEARNING-1.1/`
 
-Accurate history:
+For all eight records:
 
-- seven findings: `S5-F-01` through `S5-F-07`;
-- four correction rounds:
-  1. F01–F04 together;
-  2. F05;
-  3. F06;
-  4. F07.
+- compute the exact current candidate revision hash with the existing `computeRevisionHash`;
+- use the existing `PromotionReviewSchema` unchanged;
+- set `resulting_maturity: VALIDATED`;
+- set `promotion_scope: MISSION_SCOPED`;
+- approving authority:
+  - `actor_class: mission-control`
+  - `name_or_role: Smart Business Mission Control`;
+- use record 42 as `decision_ref`;
+- preserve evidence sufficient for the promotion contract;
+- `supersedes: []`;
+- `superseded_by: []`;
+- do not claim Founder approval.
 
-Preserve the reusable lesson and all unaffected evidence/limitations.
+Candidate 04 remains MEDIUM confidence.
+Candidate 08 remains a risk/dependency item and does not authorize Stage 4B.
 
-Do not change the closure envelope, receipt, source fingerprint, candidates 02–08, schemas, scripts, tests, application code or any authority boundary.
+## Do not change
+
+- any candidate content;
+- closure envelope;
+- receipt;
+- source fingerprint;
+- schemas;
+- scripts;
+- tests;
+- application code;
+- governance/Product Truth;
+- issue #590 state.
+
+No new harvest.
+No new receipt.
+No new candidate generation.
 
 ## Required validation
 
-- candidate 01 schema PASS;
-- candidate 01 provenance VALID;
-- candidate 01 screening CLEAN;
-- report formatting / Markdown PASS;
+- 8/8 PromotionReviewSchema PASS;
+- 8/8 candidate revision hashes exact;
+- all promotion provenance VALID;
+- no INSTITUTIONALISED;
+- no ORGANIZATION_WIDE;
+- no Founder approval claim;
+- formatting / Markdown PASS;
 - applicable CI green.
 
-No new harvest or receipt required.
+## Required return
 
-No promotion yet.
+Report:
 
-## Stop
+- promotion files created;
+- candidate revision hashes;
+- schema validation;
+- provenance validation;
+- screening/formatting;
+- exact files changed;
+- current branch head;
+- PR #593 state;
+- applicable CI.
 
-`OLE LEARNING CANDIDATE-01 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+Do not self-merge.
+
+End exactly:
+
+`OLE LEARNING PROMOTION MATERIALIZATION REPORTED — MISSION CONTROL VERIFICATION REQUIRED`
