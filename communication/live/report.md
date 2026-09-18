@@ -1,6 +1,6 @@
 # SMART BUSINESS SPECIALIST REPORT
 
-# SB-GOV-IV-1.0 — OLE Learning Handoff Report
+# SB-GOV-IV-1.0 — Candidate 02 Narrow Provenance Correction Report
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
@@ -8,93 +8,88 @@
 
 **To:** Mission Control
 
-**Status:** `OLE LEARNING HANDOFF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+**Status:** `CANDIDATE 02 PROVENANCE CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
 
-**Date:** 2026-09-18
+**Date:** 2026-09-19
 
-**Branch / head SHA:** `mission/SB-GOV-IV-1.0-learning` (created from canonical `main` at `9595356fba67a5cfce9a66ca9f2272761adb669e`; exact commit SHA recorded once pushed, see PR link below)
+**Authority basis:** `communication/live/instruction.md` ("OLE CANDIDATE 02 NARROW PROVENANCE CORRECTION") and `communication/missions/SB-GOV-IV-1.0/mission-control/06-ole-learning-review-and-narrow-correction-authorization.md`.
 
 ---
 
 # Executive Summary
 
-Executed the manual OLE learning handoff for `SB-GOV-IV-1.0` per `communication/live/instruction.md` and `mission-control/05-postactivation-verification-and-ole-learning-handoff.md`. Prepared a truthful closure envelope, ran the real deterministic harvester against canonical merged evidence, drafted 6 candidate learning items with claim-level provenance, produced a mission-learning report, and proved idempotency. No Source 18, SB-IV-1.0, Product Truth, schema, OLE runtime code, or Stage 4B change was made.
+Applied only the authorized Candidate 02 provenance correction. PR #602 (canonical protocol alignment) was already merged and verified per the instruction's blocker-status section (canonical `main` `e190245e9689e9c425b8aba4782d6af7b89623b5`); no further action was required from this actor regarding that PR. Candidate 02's Claim 3 evidence, which previously cited a stale pre-activation paragraph in `communication/Independent_Verification_Efficiency_Protocol.md` Section 2, was replaced with active Source 18 v1.1 Section 4.9 evidence at the existing, unchanged source snapshot (`9595356fba67a5cfce9a66ca9f2272761adb669e`). The claim's meaning is unchanged. No re-harvest was needed or performed.
 
 ---
 
 # Work Performed
 
-1. Pulled canonical `main` (advanced to `9595356fba67a5cfce9a66ca9f2272761adb669e`); preserved (via `git stash -u`, not discarded) unrelated uncommitted local changes found on `main` from a prior Codex session.
-2. Created branch `mission/SB-GOV-IV-1.0-learning` from that canonical `main`.
-3. Read all required background: `mission-control/05`, `mission-control/01`, `mission-control/02`, `mission-control/03`, `mission-control/04`, `founder/01-founder-approval.md`, mission `README.md`, the active `communication/Independent_Verification_Efficiency_Protocol.md`.
-4. Built and validated a closure envelope for `SB-GOV-IV-1.0`: `communication/missions/SB-GOV-IV-1.0/claude-code/01-ole-learning-handoff-closure-envelope.json` — `validate: PASS`.
-5. Ran the real harvester (`organizational-learning/scripts/harvest.mjs`) against it: `SCREENED`, fingerprint `d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396`, 3/3 evidence files resolved, screening `CLEAN`.
-6. Ran `reconcile.mjs` against the same envelope to prove idempotency: `ALREADY_PROCESSED`.
-7. Drafted 6 candidate learning items under `organizational-learning/candidates/SB-GOV-IV-1.0/`, each schema-valid, each with claim-level provenance citing exact `commit_sha`/`blob_sha`/`locator`.
-8. Independently re-validated all 19 evidence references across the 6 candidates as `VALID` (0 dangling) via `lib/provenance-validator.ts`, and screened all 6 files `CLEAN` via `lib/screening.ts`.
-9. Wrote the Mission Learning Report: `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md`, following the approved 8-section v1 contract.
-10. Ran local validation: `tsc --noEmit` clean; Prettier clean (after one formatting pass); Markdown Quality Gate `PASS` on both new `.md` files.
+1. Pulled the latest `mission/SB-GOV-IV-1.0-learning` branch (fast-forwarded through mission-control's review and blocker-clearance commits).
+2. Read `communication/live/instruction.md` and `mission-control/06-ole-learning-review-and-narrow-correction-authorization.md` in full.
+3. Confirmed `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` is byte-identical (same blob SHA `93ae934bcaafdff3589336f04f53a4b0ef34359d`) between the original harvest snapshot (`9595356fba67a5cfce9a66ca9f2272761adb669e`) and the current branch head, confirming Source 18 itself was never stale and the existing source snapshot could be reused safely.
+4. Edited `organizational-learning/candidates/SB-GOV-IV-1.0/candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate.json`: Claim 3's evidence entry now cites `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` Section 4.9 instead of the stale `Independent_Verification_Efficiency_Protocol.md` Section 2 paragraph; claim text lightly reworded to reference the corrected source; commit_sha/source_fingerprint/closure_revision unchanged.
+5. Updated `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` in two places only, to keep it truthful: the evidence-manifest description (Section 2) and a new correction entry in Section 4 ("What failed / near-misses / corrections").
+6. Re-validated: Candidate 02 schema `PASS`; all 3 of its evidence references independently re-resolved `VALID`; screening `CLEAN`; full 6-candidate sweep still 19/19 `VALID` and 6/6 `CLEAN`.
+7. Confirmed via `git diff` that the closure envelope, receipt, and Candidates 01/03/04/05/06 are byte-identical to the prior head — untouched.
+8. Ran `tsc --noEmit` (clean), Prettier (clean on first check), and the Markdown Quality Gate (`PASS`) on the modified report.
 
 ---
 
 # Findings
 
-- Source snapshot: `9595356fba67a5cfce9a66ca9f2272761adb669e`. Source fingerprint: `d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396`.
-- Candidate titles: (01) lean lifecycle source / subordinate operating protocol; (02) actor-flexible verifier without weakening the mandatory gate; (03) risk-triggered, not surface-triggered, verification-budget classification; (04) evidence classes prevent redundant re-execution and false assurance; (05) finding-scoped re-verification requires named escalation triggers; (06, risk-shaped) governance-activation sequencing before Product Mission acceleration still depends on the same manual OLE trigger already flagged as a gap for `SB-ORG-LEARNING-1.1`.
-- Retained limitations (unchanged, not resolved by this cycle): `SB-P-1.12` remains not activated; the actor-flexible Independent Verification Actor role is activated but not yet operationally exercised in a live mission; Package C intentionally remains outside Source 18; the manual OLE-trigger dependency (Stage 4B, GitHub Issue #590) recurred at this mission's own closure exactly as it did at `SB-ORG-LEARNING-1.1`'s.
-- Notable cross-mission continuity: the active `Independent_Verification_Efficiency_Protocol.md` itself already cites `SB-ORG-LEARNING-1.1`'s promoted `promotion-01-narrow-finding-scoped-correction-cycle` as design precedent — a real instance of previously promoted organizational learning being read and reused by a later mission's Founder-approved governance design.
+- Root cause (per mission-control/06): the active `Independent_Verification_Efficiency_Protocol.md` still contained a stale pre-activation Section 2 paragraph describing Source 18's pre-amendment hard-coded Stage 19 ownership ("Claude Code" / "Codex is Not verifier"). Mission Control corrected that document separately via PR #602. Candidate 02's Claim 3 had cited exactly that stale paragraph.
+- Correction: Claim 3 now cites active Source 18 v1.1 Section 4.9 ("Codex is preferred for the highest-risk cases where eligible and available; Claude Code or another approved actor may be appointed when the same independence and capability conditions are satisfied"), which directly and more authoritatively supports the same claim (preference without architectural dependency).
+- The existing source snapshot (`9595356fba67a5cfce9a66ca9f2272761adb669e`) and source fingerprint (`d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396`) were reusable because Source 18 itself was never changed by PR #602 — confirmed by exact blob-SHA comparison, not assumed.
 
 ---
 
 # Changes Made
 
-Exactly 3 new paths, no existing file modified:
+Exactly 2 files modified, nothing else:
 
-- `communication/missions/SB-GOV-IV-1.0/claude-code/01-ole-learning-handoff-closure-envelope.json`
-- `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md`
-- `organizational-learning/candidates/SB-GOV-IV-1.0/` (6 files: `candidate-01` through `candidate-06`)
-- `organizational-learning/receipts/e45bafa9b33985174737bca9abf48813056233ef4ef8ed499bbe241a31f5ea69/d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396.json` (auto-generated by the real harvester)
+- `organizational-learning/candidates/SB-GOV-IV-1.0/candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate.json` (Claim 3 evidence + text only)
+- `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` (two truthfulness updates only)
 - This file (`communication/live/report.md`)
 
-No Source 18, SB-IV-1.0, Product Truth, schema, script, test, application code, or Stage 4B file was touched. No promotion record was created. No candidate was marked `VALIDATED`, `INSTITUTIONALISED`, or `ORGANIZATION_WIDE`.
+Not modified: closure envelope, receipt, source fingerprint, Candidates 01/03/04/05/06, Source 18, SB-IV-1.0, schemas, scripts, tests, promotion records — confirmed via `git diff --stat` showing zero changes to any of those paths.
 
 ---
 
 # Verification
 
-| Check                                     | Result                                                                                                       |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Closure envelope schema                   | PASS                                                                                                         |
-| Candidate schema (6/6)                    | PASS                                                                                                         |
-| Candidate revision content                | 6/6 candidates, evidence-strength DIRECT, confidence HIGH                                                    |
-| Claim-level provenance (19 references)    | 19/19 VALID, 0 dangling                                                                                      |
-| Screening (6 candidate files)             | 6/6 CLEAN                                                                                                    |
-| Reconciliation / idempotency              | `ALREADY_PROCESSED` on replay                                                                                |
-| Typecheck (`tsc --noEmit`)                | PASS                                                                                                         |
-| Prettier                                  | PASS (after one formatting pass; content re-verified unchanged)                                              |
-| Markdown Quality Gate (2 new `.md` files) | PASS                                                                                                         |
-| GitHub CI                                 | pending push — will be confirmed via direct per-job `gh api` query and reported in the publication follow-up |
+| Check                                    | Result                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| Candidate 02 schema                      | PASS                                                               |
+| Candidate 02 provenance (3 references)   | 3/3 VALID, 0 dangling                                              |
+| Candidate 02 screening                   | CLEAN                                                              |
+| Full 6-candidate sweep (sanity re-check) | 19/19 VALID, 6/6 CLEAN                                             |
+| Closure envelope / receipt / fingerprint | Unchanged (byte-identical, confirmed via `git diff`)               |
+| Candidates 01, 03, 04, 05, 06            | Unchanged (byte-identical, confirmed via `git diff`)               |
+| Typecheck (`tsc --noEmit`)               | PASS                                                               |
+| Prettier                                 | PASS                                                               |
+| Markdown Quality Gate                    | PASS                                                               |
+| GitHub CI                                | pending push — will be confirmed via direct per-job `gh api` query |
 
 ---
 
 # Risks and Limitations
 
-Stage 4B remains deferred; this handoff was manually triggered, recurring the same dependency already retained as an unresolved risk for `SB-ORG-LEARNING-1.1` (GitHub Issue #590) — now explicitly captured as Candidate 06 for this mission too. All generated learning remains `CANDIDATE` / `authority_effect: NONE` until Mission Control review. No candidate was promoted.
+No new risks introduced. Candidate 06 remains a candidate/corroborating-evidence item per mission-control/06 (not promoted, to avoid a duplicate promotion record for the same organizational risk already captured in `organizational-learning/promotions/SB-ORG-LEARNING-1.1/promotion-08-manual-ole-trigger-dependency-risk.json`). No promotion records were created or modified in this round.
 
 ---
 
 # Founder or Mission Control Action Required
 
-Review the closure envelope, the 6 candidates, and the mission-learning report; decide promotion disposition (if any) and PR readiness, exactly as done for `SB-ORG-LEARNING-1.1`.
+Re-review the corrected PR #601 head. If acceptable, proceed to final promotion materialization per mission-control/06 Section 6 (steps 4-5).
 
 ---
 
 # Recommended Next Step
 
-Mission Control review and re-verification, per the required stop line below. No self-merge performed or requested.
+Mission Control re-review of the corrected learning head. No self-merge performed or requested.
 
 ---
 
 # Completion Status
 
-`OLE LEARNING HANDOFF REPORTED — MISSION CONTROL REVIEW REQUIRED`
+`CANDIDATE 02 PROVENANCE CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`

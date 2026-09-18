@@ -56,20 +56,20 @@
     },
     {
       "claim_id": "provider-preference-retained-without-becoming-dependency",
-      "text": "Codex remains the preferred independent verifier for the highest-risk cases under the active protocol, but the protocol's own text states this preference explicitly alongside the statement that no provider becomes an architectural single point of failure -- preference and structural dependency were kept as two different things, not treated as the same claim.",
+      "text": "Codex remains the preferred independent verifier for the highest-risk cases under active Source 18 v1.1 Section 4.9, which itself states this preference explicitly alongside allowing Claude Code or another approved actor to be appointed under the same independence and capability conditions -- preference and structural dependency were kept as two different things, not treated as the same claim.",
       "evidence": [
         {
           "repository": "SmartBusinessv1/smart-business",
           "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
-          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
-          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
-          "locator": "Section 2: 'Current Source 18 assigns Stage 19 to Claude Code and its Appendix A says Codex is Not verifier. All SB-P-* missions retain that assignment and mandatory gate until a Founder-approved amendment is activated. A Codex budget is neither Stage 19 authorization nor permission to omit Stage 19.'",
+          "path": "merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md",
+          "blob_sha": "93ae934bcaafdff3589336f04f53a4b0ef34359d",
+          "locator": "Section 4.9, 'Independent Verification Actor': 'Codex is preferred for the highest-risk cases where eligible and available; Claude Code or another approved actor may be appointed when the same independence and capability conditions are satisfied.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-18T18:30:00Z",
+          "observation_date": "2026-09-19T00:00:00Z",
           "evidence_date": "2026-09-18T18:15:50Z",
           "scope": {
             "mission_ids": ["SB-GOV-IV-1.0"],
-            "systems": ["independent-verification"],
+            "systems": ["independent-verification", "mission-governance"],
             "environments": ["development"]
           },
           "relationship": "SUPPORTS"
