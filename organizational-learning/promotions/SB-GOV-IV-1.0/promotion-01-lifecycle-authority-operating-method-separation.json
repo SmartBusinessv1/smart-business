@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-GOV-IV-1.0-candidate-01-lifecycle-authority-operating-method-separation-promotion-01",
+  "candidate_id": "SB-GOV-IV-1.0-candidate-01-lifecycle-authority-operating-method-separation",
+  "candidate_revision_hash": "0ee1d2eb22d0791e61d01b2210086ab5d4f3a0bdebdb7f36e596516de24dcbaf",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "A governing lifecycle/authority source can remain lean by placing detailed operating-method mechanics in a clearly subordinate protocol, provided the subordination and authority boundaries are explicit in the recommendation, approval, and operating document.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/02-draft-review-and-founder-governance-decision-gate.md",
+      "blob_sha": "c5f0c8ea2686426d75842dd0234222b5734e6119",
+      "locator": "Section 3, 'Recommended Package C — DO NOT ADD TO SOURCE 18': 'Source 18 should remain the lifecycle/authority framework... This avoids duplicating operational detail in the lifecycle source while preserving all mandatory gates.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/founder/01-founder-approval.md",
+      "blob_sha": "f28585ada34119aa2d4d411768ab70be00824e80",
+      "locator": "'Approved package disposition': 'Package C: OPERATIONAL PROTOCOL ONLY — DO NOT ADD TO SOURCE 18 AT THIS STAGE'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md",
+      "blob_sha": "9225f0ead17cc6c1a8935fd127306098d753a55b",
+      "locator": "Section 4, 'Package disposition': 'Package C — ACTIVE only as operational method inside SB-IV-1.0; not inserted into Source 18.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 1: 'This Founder-approved document is the active operational protocol for independent-verification method and efficiency under Source 18 v1.1. It remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-19T12:00:00Z"
+}

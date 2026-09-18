@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-GOV-IV-1.0-candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate-promotion-01",
+  "candidate_id": "SB-GOV-IV-1.0-candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate",
+  "candidate_revision_hash": "7e453a400bf9f0e46c2fae84b4e0abd25c315a74b7a4c52015b7f97c485080ff",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Removing a hard-coded provider dependency from a mandatory verification gate is distinct from weakening or removing the gate. The flexible role must preserve actor separation, capability fit, mandatory verification, human/runtime gates, Mission Control acceptance and Founder authority.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/founder/01-founder-approval.md",
+      "blob_sha": "f28585ada34119aa2d4d411768ab70be00824e80",
+      "locator": "'Approved architecture': 'The lifecycle role becomes: Mission Control-appointed Independent Verification Actor subject to: no self-verification; actual contribution separation; capability fit; explicit Mission Control appointment; preserved human runtime verification; preserved Mission Control runtime review; preserved Stage 19; ... preserved Mission Control acceptance; preserved Founder authority.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md",
+      "blob_sha": "9225f0ead17cc6c1a8935fd127306098d753a55b",
+      "locator": "Section 2, 'Source 18 v1.1': 'Stage 19 remains mandatory and is owned by: Mission Control-appointed Independent Verification Actor subject to actual contribution separation, capability fit, explicit appointment, no self-verification, no self-approval and preserved higher-authority gates.' Section 3, 'Critical interpretation: Codex Not Required != Independent Verification Not Required'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["mission-governance", "independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md",
+      "blob_sha": "93ae934bcaafdff3589336f04f53a4b0ef34359d",
+      "locator": "Section 4.9, 'Independent Verification Actor': 'Codex is preferred for the highest-risk cases where eligible and available; Claude Code or another approved actor may be appointed when the same independence and capability conditions are satisfied.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-19T00:00:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification", "mission-governance"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-19T12:00:00Z"
+}

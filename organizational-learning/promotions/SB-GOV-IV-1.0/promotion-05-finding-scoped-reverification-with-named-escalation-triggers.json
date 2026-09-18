@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-GOV-IV-1.0-candidate-05-finding-scoped-reverification-with-named-escalation-triggers-promotion-01",
+  "candidate_id": "SB-GOV-IV-1.0-candidate-05-finding-scoped-reverification-with-named-escalation-triggers",
+  "candidate_revision_hash": "c8c11e339350f95f79a6712c10c5f17305987fa5ea03de7c8383f3c5acf5e1b1",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Finding-scoped re-verification is the default after a narrow correction only when paired with explicit impact assessment, evidence carry-forward justification, fresh applicable deterministic CI, and named escalation triggers for shared infrastructure, cross-contract change, invalidated assurance assumptions or explicit Mission Control broadening.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/01-activation-and-founder-design-basis.md",
+      "blob_sha": "26067b5ba7e2189292a823abe9a6a6195763cf8a",
+      "locator": "Section 7, 'Correction and re-verification rule': gives the default sequence, then: 'Do not restart the entire original verification unless: the correction touches shared infrastructure; the correction materially changes another contract; new evidence shows the original assurance boundary was incomplete; Mission Control explicitly broadens the verification scope.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 9: 'Carry forward prior resolved findings only after an impact check shows their implementation, dependencies, test/configuration assumptions and relevant environment remain unchanged. Record each carried-forward result with its original evidence and justification; do not relabel it as newly executed.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 15, 'Evidence basis and risks': cites the Stage 5 final re-verification record and the accepted narrow-correction promotion, then: 'These are historical observations inspected in this checkout, not fresh executions in this mission... it does not institutionalize a universal workflow.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0", "SB-ORG-LEARNING-1.1"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-19T12:00:00Z"
+}
