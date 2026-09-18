@@ -1,6 +1,6 @@
 # SMART BUSINESS SPECIALIST REPORT
 
-# SB-GOV-IV-1.0 — Amendment / Protocol Publication Report
+# SB-GOV-IV-1.0 — Activation Report
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
@@ -8,7 +8,7 @@
 
 **To:** Founder
 
-**Status:** `FOUNDER-APPROVED AMENDMENT PACKAGE PREPARED — MERGE PENDING`
+**Status:** `ACTIVATION RECORDED — MERGE PENDING`
 
 **Date:** 2026-09-18
 
@@ -16,40 +16,31 @@
 
 # Executive Summary
 
-Founder-approved Package A and Package B have been applied on the amendment branch.
+PR #598 merged cleanly at `4ddbb647cfb413e43af38a7e362130c5fd16133c`.
 
-The final independent-verification protocol has been published with `FOUNDER APPROVED` metadata and `NOT ACTIVE` status pending post-merge activation.
+Mission Control has recorded activation of:
 
-Package C remains in the operational protocol only.
+- Source 18 v1.1;
+- SB-IV-1.0;
+- actor-flexible mandatory Stage 19.
 
----
-
-# Files in the publication package
-
-- `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`
-- `docs/phase-1-mission-blueprint/templates/SB-P-Product-Feature-Elaboration-Workflow-Template.md`
-- `docs/implementation/templates/SB-P-Implementation-and-Evidence-Workflow-Template.md`
-- `communication/Independent_Verification_Efficiency_Protocol.md`
-- `communication/README.md`
-- `communication/missions/SB-GOV-IV-1.0/README.md`
-- `communication/missions/SB-GOV-IV-1.0/mission-control/03-founder-approved-amendment-and-protocol-publication-package.md`
-- `communication/live/instruction.md`
-- `communication/live/report.md`
-
-No Product Truth, application, CI workflow, infrastructure, authentication, database, deployment or credential change is included.
+This activation publication must still merge and be verified on canonical `main`.
 
 ---
 
-# Governance state
+# Product Mission boundary
 
-- Source 18 v1.1: Founder approved / activation pending
-- Protocol SB-IV-1.0: Founder approved / activation pending / not active
-- Mandatory Product Mission Stage 19: retained
-- Actor-flexible Stage 19: approved, not active until post-merge activation
-- `SB-P-1.12`: not activated
+`SB-P-1.12` remains not activated.
+
+The next steps after activation merge are:
+
+1. post-merge verification;
+2. OLE learning handoff or explicit no-reusable-learning disposition;
+3. communication archive/reset;
+4. separate `SB-P-1.12` activation.
 
 ---
 
 # Completion Status
 
-`AMENDMENT / PROTOCOL PUBLICATION PREPARED — FOUNDER MERGE AND MISSION CONTROL ACTIVATION VERIFICATION REQUIRED`
+`VERIFICATION GOVERNANCE ACTIVATION RECORDED — HUMAN MERGE AND POST-MERGE CLOSEOUT REQUIRED`
