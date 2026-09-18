@@ -112,6 +112,23 @@ No active instruction or report may be silently overwritten to conceal an earlie
 
 ---
 
+## Independent Verification Efficiency Protocol
+
+The Founder-approved Smart Business independent-verification operating protocol is:
+
+`communication/Independent_Verification_Efficiency_Protocol.md`
+
+Current publication state during `SB-GOV-IV-1.0`:
+
+- Founder approved;
+- Source 18 v1.1 / template alignment approved;
+- activation pending post-merge Mission Control verification;
+- `SB-P-1.12` remains inactive until activation.
+
+The protocol is subordinate to Source 18 and higher authority. It does not remove mandatory Stage 19 independent verification.
+
+---
+
 ## Mandatory OLE Learning Handoff Before Mission Closure
 
 Until OLE Stage 4B background automation is implemented and separately accepted, Mission Control must explicitly initiate the Organizational Learning Engine handoff for every formally closed mission.

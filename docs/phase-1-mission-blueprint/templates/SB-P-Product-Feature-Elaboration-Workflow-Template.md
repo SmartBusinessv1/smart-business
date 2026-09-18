@@ -2,7 +2,7 @@
 
 # SB-P — PRODUCT FEATURE ELABORATION WORKFLOW TEMPLATE
 
-**Template ID:** SB-P-PFEW-1.2
+**Template ID:** SB-P-PFEW-1.3
 
 **Template Name:** Product Feature Elaboration Workflow
 
@@ -647,7 +647,7 @@ only after ALL of the following have been completed:
 2. Lovable Builder Completion Report;
 3. Founder runtime verification;
 4. Mission Control review of runtime findings;
-5. Claude Code independent verification.
+5. Independent verification by the Mission Control-appointed Independent Verification Actor under Source 18.
 
 The Completion Report summarizes:
 
@@ -707,7 +707,7 @@ Founder runtime verification
 ↓
 Mission Control runtime review
 ↓
-Claude Code independent verification
+Independent verification by the Mission Control-appointed actor under Source 18
 ↓
 Claude creates:
 • Evidence Package
