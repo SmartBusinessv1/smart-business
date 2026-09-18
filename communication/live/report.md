@@ -1,14 +1,14 @@
 # SMART BUSINESS SPECIALIST REPORT
 
-# SB-GOV-IV-1.0 — Activation Report
+# SB-GOV-IV-1.0 — OLE Learning Handoff Report
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
-**From:** Mission Control
+**From:** Claude Code
 
-**To:** Founder
+**To:** Mission Control
 
-**Status:** `ACTIVATION RECORDED — MERGE PENDING`
+**Status:** `AWAITING OLE EXECUTION`
 
 **Date:** 2026-09-18
 
@@ -16,31 +16,52 @@
 
 # Executive Summary
 
-PR #598 merged cleanly at `4ddbb647cfb413e43af38a7e362130c5fd16133c`.
-
-Mission Control has recorded activation of:
-
-- Source 18 v1.1;
-- SB-IV-1.0;
-- actor-flexible mandatory Stage 19.
-
-This activation publication must still merge and be verified on canonical `main`.
+Awaiting supervised manual OLE learning handoff.
 
 ---
 
-# Product Mission boundary
+# Work Performed
 
-`SB-P-1.12` remains not activated.
+Not yet reported.
 
-The next steps after activation merge are:
+---
 
-1. post-merge verification;
-2. OLE learning handoff or explicit no-reusable-learning disposition;
-3. communication archive/reset;
-4. separate `SB-P-1.12` activation.
+# Findings
+
+Not yet reported.
+
+---
+
+# Changes Made
+
+No learning artifacts reported yet.
+
+---
+
+# Verification
+
+Pending.
+
+---
+
+# Risks and Limitations
+
+Stage 4B remains deferred. All generated learning must remain candidate/no-authority until Mission Control review.
+
+---
+
+# Founder or Mission Control Action Required
+
+Await Claude Code OLE handoff report.
+
+---
+
+# Recommended Next Step
+
+Claude Code should execute `communication/live/instruction.md` using the accepted OLE v1 contracts.
 
 ---
 
 # Completion Status
 
-`VERIFICATION GOVERNANCE ACTIVATION RECORDED — HUMAN MERGE AND POST-MERGE CLOSEOUT REQUIRED`
+`AWAITING OLE EXECUTION`
