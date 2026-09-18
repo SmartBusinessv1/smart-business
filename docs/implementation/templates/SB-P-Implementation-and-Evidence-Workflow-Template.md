@@ -2,7 +2,7 @@
 
 # SB-P — IMPLEMENTATION, VERIFICATION, EVIDENCE & COMPLETION WORKFLOW TEMPLATE
 
-**Template ID:** SB-P-IVEW-1.0
+**Template ID:** SB-P-IVEW-1.1
 
 **Template Name:** Implementation, Verification, Evidence & Completion Workflow
 
@@ -31,7 +31,7 @@ Only the following mission-specific values shall change:
 - Repository paths and commit references
 - Mission-specific evidence and corrective missions
 
-The workflow, authority boundaries, authorship responsibilities, evidence provenance requirements, review sequence, correction gates, and acceptance rules remain unchanged.
+The workflow, authority boundaries, authorship responsibilities, evidence provenance requirements, review sequence, correction gates, and acceptance rules remain unchanged. This template is subordinate to active Source 18. Its Phase labels organize instructions and do not create an alternative lifecycle sequence. The mandatory order is Builder Completion Report, Founder or authorized human runtime verification, Mission Control runtime review, Stage 19 independent verification by the actor designated under Source 18, then the Evidence Package and formal Completion Report, Mission Control acceptance and documentation closure. Builder checklist execution is initial evidence, not independent verification. A Verification Packet links existing evidence and does not constitute the formal Evidence Package. No template label or builder declaration may waive these gates.
 
 ---
 
@@ -113,7 +113,7 @@ The builder shall:
 - create required migrations, backend, frontend, tests, and runtime changes only as authorized;
 - capture implementation, repository, runtime, and database evidence within its access;
 - execute the Verification Checklist where authorized;
-- update the Completion Report with factual implementation results;
+- create or update the Builder Completion Report with factual implementation results and a linked Verification Packet; do not author the formal Completion Report or claim independent verification;
 - pause and escalate on ambiguity or conflict;
 - never modify locked governance documents.
 
@@ -254,7 +254,7 @@ The template shall remain preserved after lock. Execution results shall be recor
 
 # 9. Phase D — Completion Report Template
 
-Claude Code shall create:
+This section defines the required report structure and does not authorize an early mission-specific Completion Report. Only after Source 18 independent verification and Mission Control authorization, Claude Code shall create the formal Completion Report at:
 
 ```text
 [COMPLETION REPORT PATH]
@@ -317,7 +317,7 @@ The builder shall:
 - preserve append-only and audit guarantees;
 - add automated tests where authorized;
 - record commit and deployment provenance;
-- create the evidence directory structure.
+- capture and reference initial evidence with provenance in the authorized mission record; Claude Code assembles the formal Evidence Package only after independent verification and Mission Control authorization under Source 18;
 
 The builder shall not:
 
@@ -409,7 +409,7 @@ Repository evidence shall include:
 
 - commit range;
 - head commit;
-- branch or direct-main delivery mode;
+- authorized branch and pull-request reference; AI-authored changes use the protected-main pull-request workflow;
 - diff-stat;
 - relevant files changed;
 - confirmation that locked documents remained unchanged.
@@ -455,7 +455,7 @@ Rules:
 
 # 15. Phase H — Completion Report Update
 
-The builder shall update the Completion Report with factual results only.
+The builder shall update its Builder Completion Report with factual results only. After Source 18 independent verification and Mission Control authorization, Claude Code shall create or update the formal Completion Report from verified evidence, distinguishing builder statements, independent findings, human runtime observations and Mission Control decisions.
 
 The report shall identify who authored or updated each version.
 
@@ -519,11 +519,13 @@ The original defect evidence must be preserved.
 
 After correction:
 
-- rerun the relevant tests;
-- rerun affected checklist items;
-- record the new commit or migration;
-- update evidence and Completion Report;
-- return to Mission Control review.
+- rerun relevant focused tests and affected checklist items; provide full applicable deterministic CI;
+- record the correction checkpoint and changed scope;
+- update the Builder Completion Report and Verification Packet, preserving prior evidence;
+- perform Founder retest and Mission Control runtime review under Source 18 Stage 20;
+- obtain Mission Control correction review and finding-scoped independent re-verification, escalating where the correction invalidates a broader assurance boundary;
+- after independent verification and Mission Control authorization, update the formal Evidence Package and Completion Report;
+- return to Mission Control for acceptance disposition.
 
 ---
 
@@ -546,7 +548,7 @@ A test-only mission shall not silently patch production defects unless separatel
 
 # 19. Phase L — Founder Runtime Observation
 
-Founder runtime observation is required where merchant-facing behaviour cannot be fully established by static repository, database, or automated-test evidence.
+Founder runtime verification, or authorized human runtime verification confirmed by the Founder, and Mission Control runtime review are mandatory before independent verification under Source 18. Mission Control defines the affected runtime scope and reviews its evidence. Static repository, database and automated-test evidence do not replace this gate.
 
 Examples:
 
