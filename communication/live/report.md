@@ -259,3 +259,31 @@ Durable report: `communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f
 Stage 5 is **not ready for Mission Control completion review**. Mission Control record 33 authorizes publication of this prepared report and verifier handoff only. The reviewed head, FAIL finding, positive results and local-test nuance remain unchanged; no implementation change or additional verification pass was performed. Prior findings and other actor sections are preserved. Stage 6 remains **NOT AUTHORIZED**; PR #589 remains **OPEN — NOT MERGED**; `SB-P-1.12` remains **NOT ACTIVATED**.
 
 `STAGE 5 S5-F-07 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
+
+---
+
+## Builder Stage 5 F-07 correction report
+
+**Status:** `STAGE 5 F-07 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+
+**Durable report:** `communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md`
+
+**Root cause:** `findDeepestExistingAncestorByLstat`'s walk-up loop returns `{ancestorPath: null}` when it reaches the filesystem root without ever finding an existing entry. `classifyMissionDirectoryPresence` mapped that exact result to `ABSENT`, on the theory (stated in the code's own prior comment) that this branch was "practically unreachable" -- disproved by Codex's read-only reproduction against a genuinely absent Windows drive letter, which has no fallback parent at all and hits this branch on the first walk iteration.
+
+**S5-F-07 correction:** the `ancestorPath === null` branch now returns `INVALID_ANCESTRY` -- the exact same status/condition/fail-closed path the S5-F-06 found-but-invalid-ancestor branch already uses. A one-line, smallest-possible change; no new reconciliation state, no new diagnostic label.
+
+**Null-ancestor result:** a genuinely absent Windows drive (Codex's exact reproduction, read-only, no filesystem creation) now classifies `INVALID_OR_UNSAFE`, never `ELIGIBLE_UNPROCESSED`, with zero eligible work items in the planner.
+
+**Valid genuine-absence result:** unaffected -- a never-created `receiptsDir` beneath valid directory ancestry still classifies `ELIGIBLE_UNPROCESSED`.
+
+**S5-F-06/F-05/F-01 through F-04 regression:** all unaffected -- ordinary-file and invalid-ancestor cases, the dangling-final-entry case, and the outside-root live-junction case re-verified via dedicated regression tests; S5-F-02/F-03/F-04 confirmed via their full, untouched test suites; `ENOENT`/`ENOTDIR` walk semantics unchanged.
+
+**Stage 2A regression:** unchanged -- `ALREADY_PROCESSED`, fingerprint `c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475`.
+
+**Regression genuineness:** the fix was temporarily reverted in place and the full `reconcile.test.ts` suite re-run -- exactly the 4 expected tests failed, with zero collateral damage to the other 70.
+
+**Local verification:** `npx tsc --noEmit` clean; `npx eslint organizational-learning/` clean; `npm run test:fast` **371/371 passing**, 28 files (+10 new, 0 regressions); `npm run build` succeeds; Prettier clean; `package-lock.json` unchanged.
+
+**Applicable CI:** see the durable report, Section 11, once confirmed (independently verified via direct API query per the S5-F-06 round's lesson).
+
+**Scope confirmation:** no Stage 6, no automated extraction, no provider/scheduler/publisher, no autonomous commit/merge, no automatic promotion, no `INSTITUTIONALISED`/`ORGANIZATION_WIDE`, no dependency/lockfile/workflow change, no governance/Product Truth/production/customer mutation, no candidate/promotion/receipt/closure-evidence/context-pack file touched. Not self-approved. PR #589 not merged. `SB-P-1.12` not activated.

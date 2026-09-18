@@ -28,6 +28,7 @@ import {
   writeFileSync,
   symlinkSync,
   existsSync,
+  lstatSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
@@ -82,6 +83,30 @@ function plantDanglingDirectoryIndirection(linkPath: string): void {
   const target = `${linkPath}-dangling-target`;
   plantDirectoryIndirection(linkPath, target);
   rmSync(target, { recursive: true, force: true });
+}
+
+/**
+ * Finds a genuinely absent Windows drive letter, read-only -- never
+ * creates, mounts, or otherwise touches a drive. Returns `null` on any
+ * non-Windows platform, or if every checked letter happens to be in use
+ * (never observed in practice; CI/dev machines here only ever mount `C:`).
+ * This is the S5-F-07 fixture shape Codex's independent reproduction
+ * used: the ancestry walk can only reach `ancestorPath: null` when *no*
+ * existing entry is found anywhere in the chain, which requires a path
+ * with no fallback parent at all -- true only for an absent drive letter
+ * on Windows (POSIX paths always bottom out at `/`, which always exists).
+ */
+function findAbsentWindowsDrive(): string | null {
+  if (process.platform !== "win32") return null;
+  for (const letter of "ZYXWVUTSRQPONMLKJIHGFEDCBA") {
+    const drive = `${letter}:\\`;
+    try {
+      lstatSync(drive);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException)?.code === "ENOENT") return drive;
+    }
+  }
+  return null;
 }
 
 function blobShaFor(repo: EphemeralGitRepo, path: string): string {
@@ -2126,6 +2151,250 @@ describe("Stage 5 S5-F-06 correction -- invalid receipt-directory ancestry is no
     } finally {
       fixture.repo.cleanup();
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("Stage 5 S5-F-07 correction -- null-ancestor (no existing filesystem entry at all) is not genuine absence", () => {
+  const absentDrive = findAbsentWindowsDrive();
+  const itIfAbsentDriveAvailable = absentDrive ? it : it.skip;
+
+  itIfAbsentDriveAvailable(
+    "classifyMissionDirectoryPresence: an absent Windows drive (no existing ancestor anywhere) is INVALID_ANCESTRY, never ABSENT -- Codex's exact S5-F-07 reproduction",
+    () => {
+      // Read-only: never creates, mounts, or otherwise touches a drive.
+      const missionDir = join(absentDrive!, "ole-verifier-nonexistent-root", "receipts", "somekey");
+      const presence = classifyMissionDirectoryPresence(missionDir);
+      expect(presence.status).toBe("INVALID_ANCESTRY");
+      expect(presence.status).not.toBe("ABSENT");
+    },
+  );
+
+  itIfAbsentDriveAvailable(
+    "an absent Windows drive fails closed end-to-end with zero eligible work, never ELIGIBLE_UNPROCESSED",
+    () => {
+      const missionId = "SB-TEST-FIXTURE-5-F07-ABSENT-DRIVE";
+      const fixture = buildFixture(missionId, "rev-1");
+      try {
+        const receiptsDir = join(absentDrive!, "ole-verifier-nonexistent-root", "receipts");
+        const result = classifyEnvelope(fixture.envelope, {
+          repoRoot: fixture.repo.root,
+          receiptsDir,
+          locksDir: tempDir("ole-reconcile-f07-locks-absent-drive-"),
+        });
+        expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+        expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+        expect(result.retry_eligible).toBe(true);
+        expect(result.needs_human_reconciliation).toBe(true);
+      } finally {
+        fixture.repo.cleanup();
+      }
+    },
+  );
+
+  itIfAbsentDriveAvailable(
+    "planReconciliation produces zero eligible new-work intent when receiptsDir is beneath an absent drive",
+    () => {
+      const missionId = "SB-TEST-FIXTURE-5-F07-ABSENT-DRIVE-PLAN";
+      const fixture = buildFixture(missionId, "rev-1");
+      const envelopeDir = join(
+        fixture.repo.root,
+        "communication",
+        "missions",
+        "f07-absent-drive-fixture",
+      );
+      mkdirSync(envelopeDir, { recursive: true });
+      try {
+        const envelopePath = join(envelopeDir, "envelope.json");
+        writeFileSync(envelopePath, JSON.stringify(fixture.envelope), "utf8");
+        const plan = planReconciliation({
+          repoRoot: fixture.repo.root,
+          receiptsDir: join(absentDrive!, "ole-verifier-nonexistent-root", "receipts"),
+          locksDir: tempDir("ole-reconcile-f07-locks-absent-drive-plan-"),
+          envelopePaths: [envelopePath],
+        });
+        expect(plan.work_items).toHaveLength(1);
+        expect(plan.work_items[0].reconciliation_state).toBe("INVALID_OR_UNSAFE");
+        const eligible = plan.work_items.filter(
+          (item) => item.reconciliation_state === "ELIGIBLE_UNPROCESSED",
+        );
+        expect(eligible).toHaveLength(0);
+      } finally {
+        fixture.repo.cleanup();
+      }
+    },
+  );
+
+  itIfAbsentDriveAvailable(
+    "safe diagnostics: the absent-drive reason never echoes the raw drive path or raw OS error text",
+    () => {
+      const missionId = "SB-TEST-FIXTURE-5-F07-SAFE-DIAGNOSTICS";
+      const fixture = buildFixture(missionId, "rev-1");
+      try {
+        const receiptsDir = join(absentDrive!, "ole-verifier-nonexistent-root", "receipts");
+        const result = classifyEnvelope(fixture.envelope, {
+          repoRoot: fixture.repo.root,
+          receiptsDir,
+          locksDir: tempDir("ole-reconcile-f07-locks-safe-diag-"),
+        });
+        expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+        expect(result.reason).toContain(computeMissionStorageKey(missionId));
+        expect(result.reason).toContain("INVALID_RECEIPT_ROOT_ANCESTRY");
+        expect(JSON.stringify(result)).not.toContain(absentDrive);
+        expect(JSON.stringify(result)).not.toContain("ole-verifier-nonexistent-root");
+      } finally {
+        fixture.repo.cleanup();
+      }
+    },
+  );
+
+  if (!absentDrive) {
+    it("platform limitation: no absent Windows drive available to construct the exact S5-F-07 null-ancestor fixture on this platform/run", () => {
+      // On POSIX, the ancestry walk always bottoms out at "/", which
+      // always exists -- ancestorPath: null is genuinely unreachable
+      // there by construction, not merely untested. The corrected
+      // branch (INVALID_ANCESTRY instead of ABSENT) is still exercised
+      // indirectly: it is the exact same code path already proven
+      // correct by the S5-F-06 "invalid ancestor" tests above, which
+      // share this function's found-but-invalid-ancestor logic. This
+      // test documents the platform limitation rather than silently
+      // omitting coverage or weakening the production branch.
+      expect(process.platform === "win32" ? findAbsentWindowsDrive() : null).toBeFalsy();
+    });
+  }
+
+  it("a genuinely absent receiptsDir beneath valid directory ancestry still allows normal first-processing behavior (control case)", () => {
+    const fixture = buildFixture("SB-TEST-FIXTURE-5-F07-VALID-ANCESTRY-CONTROL", "rev-1");
+    const root = tempDir("ole-reconcile-f07-receipts-valid-ancestry-");
+    try {
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: join(root, "never-created-receipts"),
+        locksDir: tempDir("ole-reconcile-f07-locks-valid-ancestry-"),
+      });
+      expect(result.reconciliation_state).toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-06 ordinary file as receiptsDir remains blocked", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F07-REGRESSION-S5F06-FILE";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f07-receipts-s5f06-file-");
+    const receiptsDirAsFile = join(root, "file-receipts");
+    try {
+      writeFileSync(receiptsDirAsFile, "harmless fixture text", "utf8");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir: receiptsDirAsFile,
+        locksDir: tempDir("ole-reconcile-f07-locks-s5f06-file-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-06 non-directory ancestor above receiptsDir remains blocked", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F07-REGRESSION-S5F06-ABOVE";
+    const fixture = buildFixture(missionId, "rev-1");
+    const root = tempDir("ole-reconcile-f07-receipts-s5f06-above-");
+    const parentFile = join(root, "parentfile");
+    try {
+      writeFileSync(parentFile, "harmless fixture text", "utf8");
+      const receiptsDir = join(parentFile, "receipts");
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f07-locks-s5f06-above-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-05 exact dangling final mission-entry case remains INVALID_OR_UNSAFE", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F07-REGRESSION-S5F05";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f07-receipts-s5f05-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDanglingDirectoryIndirection(join(receiptsDir, key));
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f07-locks-s5f05-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: S5-F-01 outside-root live receipt indirection remains blocked", () => {
+    const missionId = "SB-TEST-FIXTURE-5-F07-REGRESSION-S5F01";
+    const fixture = buildFixture(missionId, "rev-1");
+    const receiptsDir = tempDir("ole-reconcile-f07-receipts-s5f01-");
+    const outsideDir = tempDir("ole-reconcile-f07-outside-s5f01-");
+    const key = computeMissionStorageKey(missionId);
+    try {
+      plantDirectoryIndirection(join(receiptsDir, key), outsideDir);
+      const result = classifyEnvelope(fixture.envelope, {
+        repoRoot: fixture.repo.root,
+        receiptsDir,
+        locksDir: tempDir("ole-reconcile-f07-locks-s5f01-"),
+      });
+      expect(result.reconciliation_state).toBe("INVALID_OR_UNSAFE");
+      expect(result.reconciliation_state).not.toBe("ELIGIBLE_UNPROCESSED");
+    } finally {
+      fixture.repo.cleanup();
+      rmSync(receiptsDir, { recursive: true, force: true });
+      rmSync(outsideDir, { recursive: true, force: true });
+    }
+  });
+
+  it("regression: genuine Stage 2A real data remains ALREADY_PROCESSED with the exact genuine fingerprint", () => {
+    const repo = createEphemeralGitRepo();
+    try {
+      const realEnvelope = JSON.parse(readFileSync(REAL_ENVELOPE_PATH, "utf8"));
+      const evidencePaths: string[] = [
+        ...realEnvelope.acceptance_refs,
+        ...realEnvelope.closure_refs,
+      ];
+      let commitSha = "";
+      for (const relativePath of evidencePaths) {
+        const blobShaAtHead = execFileSync("git", ["rev-parse", `HEAD:${relativePath}`], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        }).trim();
+        const content = execFileSync("git", ["cat-file", "-p", blobShaAtHead], {
+          cwd: REPO_ROOT,
+          encoding: "utf8",
+        });
+        commitSha = repo.commitFile(relativePath, content);
+      }
+      const remappedEnvelope = { ...realEnvelope, source_snapshot_ref: commitSha };
+
+      const result = classifyEnvelope(remappedEnvelope, {
+        repoRoot: repo.root,
+        receiptsDir: REAL_RECEIPTS_DIR,
+        locksDir: tempDir("ole-reconcile-f07-locks-stage2a-"),
+      });
+      expect(result.reconciliation_state).toBe("ALREADY_PROCESSED");
+      expect(result.source_fingerprint).toBe(
+        "c9a23fb318bcbb1e9f58e5117c98950ff25a7a3d5a14303e4916008099af9475",
+      );
+    } finally {
+      repo.cleanup();
     }
   });
 });

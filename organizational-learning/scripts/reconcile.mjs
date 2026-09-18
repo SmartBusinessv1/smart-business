@@ -300,8 +300,13 @@ function isUnresolvedPathError(error) {
  * `{ ambiguous: true }` if an `lstatSync` call partway up fails for a
  * reason other than an unresolved path (permission denial, I/O error),
  * or `{ ancestorPath: null }` if nothing exists anywhere in the chain up
- * to the filesystem root (practically unreachable -- the OS temp/working
- * directory tree always exists).
+ * to the filesystem root. Not merely a theoretical case: S5-F-07's
+ * independent reproduction reached this exact branch read-only against
+ * an absent Windows drive letter (e.g. `Z:\`), with no existing entry
+ * found at any level. The caller (`classifyMissionDirectoryPresence`)
+ * must never treat this as proof of absence -- no ancestor was ever
+ * found or validated here, the opposite of the guarantee absence
+ * requires.
  */
 function findDeepestExistingAncestorByLstat(targetPath) {
   let current = resolve(targetPath);
@@ -371,6 +376,17 @@ function findDeepestExistingAncestorByLstat(targetPath) {
  *   - if no entry exists anywhere in the chain, or an `lstatSync` call
  *     partway up is itself ambiguous, absence is never assumed.
  *
+ * S5-F-07 correction (communication/missions/SB-ORG-LEARNING-1.1/
+ * mission-control/34-stage5-f07-correction-authorization.md): the bullet
+ * above ("no entry exists anywhere in the chain... absence is never
+ * assumed") was, until this correction, contradicted by the actual
+ * `ancestorPath === null` branch below, which mapped that exact case to
+ * `ABSENT`. Independent re-verification reproduced this read-only
+ * against an absent Windows drive letter, with no filesystem creation.
+ * That branch now returns `INVALID_ANCESTRY` like every other case where
+ * no valid directory ancestry was established, making this docstring's
+ * claim actually true.
+ *
  * Exported for direct testing (dangling-entry and invalid-ancestor
  * construction are real and platform-supported here; see
  * reconcile.test.ts).
@@ -383,9 +399,21 @@ export function classifyMissionDirectoryPresence(missionDir) {
     return { status: "METADATA_UNAVAILABLE" };
   }
   if (ancestor.ancestorPath === null) {
-    // Nothing exists anywhere in the chain up to the filesystem root --
-    // practically unreachable, but the only honest reading is absence.
-    return { status: "ABSENT" };
+    // S5-F-07 correction (communication/missions/SB-ORG-LEARNING-1.1/
+    // mission-control/34-stage5-f07-correction-authorization.md):
+    // independent re-verification found that reaching the filesystem
+    // root without ever finding an existing entry (e.g. an absent
+    // Windows drive letter) was previously mapped to ABSENT. That is
+    // wrong: genuine absence may be trusted only beneath a *validated
+    // existing directory ancestry*, and this branch, by construction,
+    // never found or validated any ancestor at all -- the opposite of
+    // that guarantee, not a degenerate case of it. Reuses the exact
+    // existing INVALID_ANCESTRY status (no new status/condition label):
+    // "no existing ancestor could be found anywhere in the chain" is
+    // definitionally a form of "no valid ancestry could be established,"
+    // the same category the found-but-invalid-ancestor branch below
+    // already represents.
+    return { status: "INVALID_ANCESTRY" };
   }
 
   if (ancestor.ancestorPath !== resolvedMissionDir) {
