@@ -1,6 +1,6 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — OLE CANDIDATE 02 NARROW PROVENANCE CORRECTION
+# SB-GOV-IV-1.0 — OLE PROMOTION MATERIALIZATION
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
@@ -8,7 +8,7 @@
 
 **To:** Claude Code — supervised OLE learning operator
 
-**Status:** `ACTIVE — NARROW CANDIDATE 02 PROVENANCE CORRECTION AUTHORIZED`
+**Status:** `ACTIVE — FIVE PROMOTION RECORDS AUTHORIZED`
 
 **Date:** 2026-09-19
 
@@ -16,61 +16,65 @@
 
 # Read First
 
-`communication/missions/SB-GOV-IV-1.0/mission-control/06-ole-learning-review-and-narrow-correction-authorization.md`
+`communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md`
 
 ---
 
-# Blocker status
+# Authorized Work
 
-PR #602 is merged and verified.
+Create exactly five promotion records for Candidates 01–05 under:
 
-Canonical `main`:
+`organizational-learning/promotions/SB-GOV-IV-1.0/`
 
-`e190245e9689e9c425b8aba4782d6af7b89623b5`
+Use the accepted OLE promotion schema/tooling.
 
-The active protocol alignment is canonical.
+Each record must:
 
-No blocker remains.
+- use the exact current candidate revision hash;
+- set `resulting_maturity: VALIDATED`;
+- set `promotion_scope: MISSION_SCOPED`;
+- set approving authority to Smart Business Mission Control;
+- set `decision_ref` to:
+  `communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md`;
+- preserve the approved scope exactly;
+- use empty supersession fields unless the schema requires equivalent values.
 
----
-
-# Authorized correction
-
-Modify only:
-
-1. `organizational-learning/candidates/SB-GOV-IV-1.0/candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate.json`
-2. `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` only if required to keep the report truthful
-3. `communication/live/report.md`
-
-Preferred correction:
-
-Keep the existing source snapshot/fingerprint and replace Candidate 02 Claim 3's stale protocol evidence with active Source 18 v1.1 Section 4.9 evidence at snapshot:
-
-`9595356fba67a5cfce9a66ca9f2272761adb669e`
-
-Source 18 Section 4.9 directly states:
-
-- Mission Control appoints the Independent Verification Actor;
-- Codex is preferred for highest-risk cases where eligible and available;
-- Claude Code or another approved actor may be appointed under the same capability/independence conditions;
-- no builder self-verification or silent substitution is allowed.
-
-Do not change the lesson's meaning.
-
-Do not create a new receipt or re-harvest unless the accepted OLE tooling proves that the provenance change requires it.
+Do not create a promotion for Candidate 06.
 
 ---
 
-# Do Not Modify
+# Candidate 06
 
+Retain:
+
+`organizational-learning/candidates/SB-GOV-IV-1.0/candidate-06-governance-activation-sequencing-before-product-acceleration.json`
+
+as candidate/corroborating evidence only.
+
+Do not promote it.
+
+Do not change Issue #590.
+
+---
+
+# Permitted Additional Updates
+
+You may update only:
+
+- `communication/live/report.md`;
+- `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` if needed to truthfully reflect promotion state.
+
+Do not modify:
+
+- Candidates 01–06;
 - closure envelope;
-- existing receipt;
-- source fingerprint unless tooling requires a refresh;
-- Candidates 01, 03, 04, 05, 06;
+- receipt;
+- source fingerprint;
 - Source 18;
 - SB-IV-1.0;
 - schemas/scripts/tests;
-- promotion records.
+- Product Truth;
+- application code.
 
 ---
 
@@ -78,17 +82,17 @@ Do not create a new receipt or re-harvest unless the accepted OLE tooling proves
 
 Return:
 
-- corrected branch/head;
+- promotion file paths;
+- exact candidate revision hashes;
+- schema validation for all five promotions;
+- candidate/promotion reference validation;
+- confirmation Candidate 06 has no promotion;
 - exact changed files;
-- Candidate 02 schema result;
-- Candidate 02 provenance validation;
-- screening result;
-- source fingerprint status;
 - CI results;
-- PR #601 state.
+- PR #601 current head/state.
 
 Do not self-merge.
 
 End exactly:
 
-`CANDIDATE 02 PROVENANCE CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
+`FIVE MISSION-SCOPED PROMOTIONS MATERIALIZED — MISSION CONTROL FINAL PRE-MERGE REVIEW REQUIRED`
