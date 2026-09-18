@@ -57,9 +57,9 @@ Mission Control records the classification, rationale, governing gate, named act
 | **Codex Spot Check** | Ordinary implementation with strong deterministic coverage and no Required trigger | Packet/diff inspection, selected high-information probes, authoritative CI inspection, bounded result |
 | **Codex Not Required** | Routine copy, formatting, evidence/status recording, metadata and straightforward UI polish with no substantive risk change | Builder/CI/Mission Control checks; no extra Codex invocation |
 
-Apply the highest relevant risk. “UI polish” changing permission visibility or confirmation behaviour is not automatically Not Required. A governance draft such as this one is not routine documentation just because it is Markdown. Documentation that changes locked criteria, authority, operating commands, deployment instructions or executable configuration is assessed for substantive risk.
+Apply the highest relevant risk. “UI polish” changing permission visibility or confirmation behaviour is not automatically Not Required. A governance or operating-protocol change is not routine documentation merely because it is Markdown. Documentation that changes locked criteria, authority, operating commands, deployment instructions or executable configuration is assessed for substantive risk.
 
-For present `SB-P-*` governance, these labels classify additional Codex involvement only; Claude Code Stage 19 remains mandatory. The proposed amended model can use Codex as the named Stage 19 verifier after approval. “Not Required” then still means no Codex invocation, not no independent Stage 19 gate. This draft does not propose abolishing Stage 19 for low-risk Product Missions.
+Under the Founder-approved model, these labels classify Codex involvement only; Stage 19 remains mandatory for every Product Mission. “Codex Not Required” means no Codex invocation, not no independent Stage 19 gate. The Mission Control-appointed Independent Verification Actor governs Stage 19 only after Source 18 v1.1 and this protocol are formally activated.
 
 When capacity is exhausted, preserve results and return the remaining obligations and resumption boundary. Resume from valid evidence, not from a complete rerun; there is no automatic PASS or authority expansion.
 
@@ -142,7 +142,7 @@ If the report changes a claim, inspect its support. If it changes a contract, co
 
 ## 12. Provider unavailability and resumption
 
-Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Mission Control may wait, sequence other authorized work, or appoint another independent actor only where current governance permits it. For the current Source 18 named gate, substitution requires the approved amendment first. This draft grants no provider substitution authority.
+Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Before activation, the currently active Source 18 remains controlling and no verifier substitution is permitted by this protocol. After activation of Source 18 v1.1, Mission Control may appoint another eligible Independent Verification Actor under the approved actor-separation and capability rules.
 
 Under the proposed amended model, Mission Control records replacement identity, capability, prior contribution assessment, scope, evidence inheritance and authorization before resumption. Recheck evidence freshness and resume only remaining or invalidated obligations. A builder switching accounts or starting a fresh session cannot independently verify its own implementation. If no eligible verifier is available, keep the gate pending.
 
@@ -173,7 +173,7 @@ The verifier returns a result matrix, findings, carried-forward evidence, limita
 
 The [Stage 5 final re-verification](missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md) records both valuable Windows-specific independent probes and broad deterministic execution. It distinguishes CI head from checkout SHA, Windows/Linux test selection, capacity resumption and bounded PASS. These are historical observations inspected in this checkout, not fresh executions in this mission.
 
-The [accepted narrow-correction promotion](../organizational-learning/promotions/SB-ORG-LEARNING-1.1/promotion-01-narrow-finding-scoped-correction-cycle.json) is explicitly `MISSION_SCOPED` and `VALIDATED`; it does not institutionalize a universal workflow. The [final Mission Control acceptance](missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md) preserves deferred work and limitations. This draft's broader rules derive from the present Founder design basis and still need review.
+The [accepted narrow-correction promotion](../organizational-learning/promotions/SB-ORG-LEARNING-1.1/promotion-01-narrow-finding-scoped-correction-cycle.json) is explicitly `MISSION_SCOPED` and `VALIDATED`; it does not institutionalize a universal workflow. The [final Mission Control acceptance](missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md) preserves deferred work and limitations. These broader rules derive from the Founder-approved design basis and become operative only after Mission Control records activation.
 
 | Risk | Control |
 | --- | --- |
@@ -182,10 +182,10 @@ The [accepted narrow-correction promotion](../organizational-learning/promotions
 | Narrow correction misses adjacent impact | Explicit impact map, carry-forward rationale and escalation triggers |
 | Capacity budget becomes weaker assurance | Report remaining blockers; budget exhaustion cannot grant PASS |
 | Same actor presented as independent | Contribution disclosure and Mission Control separation assessment |
-| Draft/accepted lesson treated as governance | Clear inactive status, source precedence and explicit activation decision |
+| Historical lesson or inactive protocol treated as active governance | Clear status, source precedence and explicit activation decision |
 | Documentation label conceals semantic change | Inspect content and executable/authority effects, not filename alone |
 | CI evidence substituted for human runtime | Preserve Source 18 Stages 17–18 and deployed revision provenance |
 
 ## 16. Stop condition
 
-Stop at the draft package and Mission Control review. No governance amendment, provider substitution, CI modification, acceptance, merge or `SB-P-1.12` activation is authorized by this document.
+Until Mission Control records activation, stop at publication and post-merge verification. This document does not by itself activate verifier substitution, alter CI, accept a Product Mission, or activate `SB-P-1.12`. After activation, it governs independent-verification method subject to Source 18 and higher authority.
