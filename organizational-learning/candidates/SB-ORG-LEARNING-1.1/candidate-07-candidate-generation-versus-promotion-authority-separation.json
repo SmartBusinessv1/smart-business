@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-07-candidate-generation-versus-promotion-authority-separation",
+  "canonical_title": "Candidate learning generation and human promotion decisions are structurally separate contracts; the builder proves promotion without holding promotion authority",
+  "summary": "Stage 2B generated four candidate learning items as maturity CANDIDATE / authority_effect NONE / generated_by.actor_class synthesis, with the schema's own .strict() validation structurally rejecting any promotion-shaped field (reviewed_by, founder_approval, institutional_approval, status, promotion_scope, approving_authority). Stage 3A then materialized Mission Control's already-made promotion decision into separate PromotionReviewSchema records referencing that decision by decision_ref, explicitly stating the builder has no promotion authority and is only proving a decision that was made elsewhere. The two stages together demonstrate the candidate/promotion boundary holding in practice across a real generate-then-promote cycle, not merely as an untested schema constraint.",
+  "category": ["governance", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["organizational-learning-engine", "mission-governance"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "candidate-schema-structurally-forbids-promotion-shaped-fields",
+      "text": "None of the four Stage 2B candidates contained any prohibited promotion-shaped field, confirmed independently both by the schema's own .strict() validation (which would fail if any such field were present) and by a separate defensive grep across all four files that matched nothing -- the separation is enforced structurally, not only by convention.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/03-stage2b-supervised-candidate-extraction.md",
+          "blob_sha": "08f3a68410241b54768e78d463e6f17d7cce7b39",
+          "locator": "Line 118: 'No prohibited field (reviewed_by, founder_approval, founder_approved, institutional_approval, institutionalised_by, institutionalized_by, supersedes, superseded_by, risk_resolution, status, promotion_scope, approving_authority, or any other unrecognized key) appears in any candidate -- confirmed both by the schema's own .strict() rejection... and by an independent defensive grep across all four files, which matched nothing.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["organizational-learning-engine"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "builder-proves-not-makes-the-promotion-decision",
+      "text": "Stage 3A explicitly frames its own work as materializing and proving a promotion decision Mission Control had already made, not as a new independent judgment, and explicitly states the builder holds no promotion authority -- the promotion record references the controlling human decision by decision_ref rather than asserting the builder's own approval.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md",
+          "blob_sha": "27bc7ddaae52913969ce4115f7819278876f3ed7",
+          "locator": "Line 21: 'Materialize and prove Mission Control's already-made human review/promotion decision... This is proof of an already-made decision, not a new independent promotion judgment -- the builder has no promotion authority.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "highest-authority-states-never-used-in-this-mission",
+      "text": "Across both stages, no candidate or promotion record in this mission ever used INSTITUTIONALISED maturity, ORGANIZATION_WIDE scope, or a claimed Founder approval -- promotion approving authority is recorded as mission-control throughout, matching the actual decision, and no supersession edge or registry-publication automation was created by the builder.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/04-stage3a-human-promotion-proof.md",
+          "blob_sha": "27bc7ddaae52913969ce4115f7819278876f3ed7",
+          "locator": "Line 176: 'No INSTITUTIONALISED status or ORGANIZATION_WIDE scope was used. No Founder approval was claimed (approving authority is mission-control throughout, matching the actual decision)... these are static, human-decision-materializing data files, written and committed by the authorized builder, not by an autonomous writer.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies to any AI-generated content whose downstream consequence (here, organizational authority/institutional weight) must remain strictly separated from the act of generating it.",
+    "Requires both a structural enforcement mechanism (a strict schema that rejects authority-shaped fields on the generation side) and a procedural one (an explicit decision_ref back to the actual human/governance decision on the promotion side) -- this mission proved both together, not just one."
+  ],
+  "anti_patterns": [
+    "Allowing a single contract or schema to represent both an AI-generated draft and its eventual approved/institutional state, which makes it structurally possible for generation to silently imply authority it never earned.",
+    "Having the same actor generate a candidate and then also record its own promotion, even if the fields are technically separate -- this mission kept the promotion step tied to a separate, named, already-made Mission Control decision (decision_ref) rather than the builder's own judgment at promotion time."
+  ]
+}

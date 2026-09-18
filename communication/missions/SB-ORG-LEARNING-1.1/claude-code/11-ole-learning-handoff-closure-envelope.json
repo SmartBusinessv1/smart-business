@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "SB-ORG-LEARNING-1.1",
+  "mission_class": "organizational-institutional-capability",
+  "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+  "final_disposition": "IMPLEMENTATION MERGED — POST-MERGE VERIFICATION PASS — OLE LEARNING HANDOFF INITIATED",
+  "accepted_scope": "Organizational Learning Engine v1 implementation: Stage 1 repository-native contracts/security boundaries/deterministic harvester foundation; Stage 2 real closed-mission proof and supervised candidate extraction; Stage 3 human promotion proof and deterministic mission-start context-pack proof; Stage 4 bounded deterministic reconciliation (no background automation); Stage 5 independent failure-path assurance through seven narrow-correction/re-verification rounds (S5-F-01 through S5-F-07) ending in an independent PASS; Stage 6 whole-mission pre-merge acceptance and Founder/human merge of PR #589. Stage 4B mature background automation remains explicitly deferred and not authorized.",
+  "acceptance_refs": [
+    "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md"
+  ],
+  "closure_refs": [
+    "communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md",
+    "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+    "communication/missions/SB-ORG-LEARNING-1.1/README.md"
+  ],
+  "retained_followups": [
+    "GitHub Issue #590 — OLE Stage 4B — Background Automation & Candidate Learning Runtime remains deferred and not authorized; this manual learning handoff is itself evidence of the human-initiation gap Stage 4B must remove",
+    "pre-existing Full Assurance inventory shared-write-path diagnostic, repeatedly observed as unresolved across Stage 5 independent verifier reports and not claimed resolved by any passing test run",
+    "Candidate 3 (SB-OPS-CI-ARCHITECTURE-1.0, explicit-followup-retention) retains an unresolved five-versus-four follow-up-count discrepancy between its acceptance and closure source documents, at MEDIUM confidence with an explicit LIMITS relationship; no resolution has been inferred by any stage",
+    "distributed production-grade lease/locking, broader filesystem race conditions, and privileged trust-root replacement scenarios were never independently exercised and are retained as explicit out-of-scope limitations, not solved problems",
+    "repository-wide local ESLint on Windows checkouts fails solely on core.autocrlf-introduced CRLF differences against committed LF blobs; this is a verified checkout artifact, not an implementation defect, but remains a recurring local-verification friction point across every Stage 4-5 round"
+  ],
+  "source_snapshot_ref": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+  "reopens": null,
+  "supersedes_closure": null
+}

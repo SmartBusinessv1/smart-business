@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-03-windows-linux-lstat-error-code-divergence",
+  "canonical_title": "Windows and Linux disagree on the lstat error code for 'path component is a file, not a directory' -- single-platform local empirical testing cannot substitute for real cross-platform CI",
+  "summary": "During the S5-F-06 correction, a fail-closed ancestry-walk fix passed every local check on the Windows development machine (typecheck, lint, build, Prettier, 361/361 Fast Tests) but genuinely failed real GitHub Actions Linux CI (3 Fast Test failures). Empirical testing on Windows had shown that attempting to resolve a path through an ordinary file returns ENOENT; the same operation on Linux returns the POSIX-correct ENOTDIR. Both are fail-closed in effect (mapping to the same INVALID_OR_UNSAFE result), so this was a diagnostic-label and test-assertion defect, not a safety regression -- but it still could only be discovered by real Linux CI, not by more Windows testing.",
+  "category": ["engineering", "operations"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["filesystem-safety", "ci"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "windows-linux-errno-divergence-confirmed",
+      "text": "For the identical fixture (an ordinary file occupying a path position the code expects to be a directory), lstatSync on Windows empirically produced ENOENT while the same operation on the real Linux GitHub Actions runner produced ENOTDIR -- confirmed by reading the actual failing Linux CI job logs via `gh run view --job <id> --log`, not assumed from documentation.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+          "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+          "locator": "Section 10, 'Root cause of the CI failure': 'On this Windows machine, an ordinary file occupying an ancestor position empirically produces ENOENT... On Linux (the actual GitHub Actions runner), the POSIX-correct behavior for the identical fixture is ENOTDIR... Confirmed by reading the actual Linux CI job logs (gh run view --job <id> --log), not assumed.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety", "ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "divergence-was-diagnostic-not-safety-defect",
+      "text": "The Linux-only failure was a narrower walk-up stopping one level too early and reporting the less specific METADATA_UNAVAILABLE status instead of INVALID_ANCESTRY, failing an exact-status test assertion -- both statuses fail-closed to the same INVALID_OR_UNSAFE reconciliation result, so no unsafe reconciliation outcome ever occurred on either platform.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+          "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+          "locator": "Section 10: 'This was not a safety regression: METADATA_UNAVAILABLE still maps to the same INVALID_OR_UNSAFE fail-closed reconciliation result; only the specific diagnostic label and one test's exact-substring assertion were affected.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety"],
+            "environments": ["ci", "development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "fix-widened-only-the-retry-condition-not-the-absence-definition",
+      "text": "The correction introduced a second, narrower helper (accepting both ENOENT and ENOTDIR) used only by the ancestry walk's own retry-up-one-level decision, while the pre-existing genuine-absence check at any single level remained ENOENT-only and completely unchanged in meaning -- deliberately avoiding a broad, unscoped redefinition of what counts as 'absent' anywhere in the system.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+          "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+          "locator": "Section 10, 'Correction': 'introduced a second, narrower helper, isUnresolvedPathError (ENOENT or ENOTDIR), used only by the walk-up loop's retry decision. isGenuineAbsenceError (the S5-F-05 function, ENOENT-only) is completely unchanged in meaning and in every other call site.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies to any filesystem-boundary logic (existence checks, ancestry walks, permission probes) developed and empirically tested on one OS but deployed to or gated on another.",
+    "Most relevant when errno-level behavior differs across platforms in ways that are individually fail-closed-safe but not diagnostically equivalent, so tests asserting exact status/error strings can fail even though no unsafe outcome occurred."
+  ],
+  "anti_patterns": [
+    "Treating a green local test run on one development platform as sufficient proof a filesystem-error-handling change is correct, without a real run on every platform the CI matrix and production target actually use.",
+    "Widening a narrowly-scoped error-code check (like a retry-vs-stop decision) into a broad redefinition of a differently-scoped check (like genuine-absence detection) just because both involve the same error code family -- the two concerns were kept deliberately separate here."
+  ]
+}

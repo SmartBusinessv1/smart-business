@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-05-duplicate-envelope-identity-belongs-in-planner",
+  "canonical_title": "Duplicate/conflicting processing-intent detection belongs in the planning step itself, keyed on full validated content, not on path strings or on classification-output alone",
+  "summary": "S5-F-04 found that two distinct closure-envelope files claiming the same mission_id plus closure_revision each produced their own separate eligible work item, because the reconciliation CLI only deduplicated identical file-path strings, not duplicate processing identity. The fix moved identity grouping into planReconciliation itself, keyed on mission_id::closure_revision, and compared group members by a full-content hash (not just the narrower fingerprint/classification-relevant fields) -- so a difference in a field the classifier never reads is still correctly detected as a material conflict, not silently ignored.",
+  "category": ["engineering", "security"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["reconciliation"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "path-string-deduplication-is-insufficient-for-processing-identity",
+      "text": "The reconciliation CLI's path-string Set only removed identical file-path strings; it did not recognize that two different files could both legitimately claim the same mission_id plus closure_revision processing identity, so each independently produced its own ELIGIBLE_UNPROCESSED work item.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+          "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+          "locator": "Section 7, 'Finding': 'Two distinct valid envelope files claiming the same mission_id + closure_revision each produced their own ELIGIBLE_UNPROCESSED work item; the CLI's path-string Set only removes identical path strings, not duplicate processing identity.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "conflict-detection-must-compare-full-content-not-classification-subset",
+      "text": "The fix deliberately compares each identity group's members by a hash of the full validated envelope object rather than only the subset of fields the classification algorithm reads, because two envelopes could differ only in a field classification never consumes (such as accepted_scope) and still represent a materially different processing intent that must be treated as an unsafe conflict, not silently deduplicated.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+          "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+          "locator": "Section 7, 'Correction': 'comparing classification output alone would miss a material difference in a field classification does not itself read (e.g. accepted_scope). A group with one distinct hash classifies its single representative once; a group with more than one distinct hash emits zero work items and one safe, deterministic conflict entry.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+          "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+          "locator": "Section 7, 'Proof', third bullet: 'Two envelopes differing only in accepted_scope (a field classification does not consume) are still correctly detected as conflicting and produce zero work items, deterministically, across reversed replay -- directly validating that conflict detection compares full envelope content, not merely classification output.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "conflict-fails-closed-without-leaking-content",
+      "text": "Materially conflicting envelopes under the same identity produce zero work items plus a single safe conflict entry that names only the mission_id::closure_revision identity and never echoes raw envelope content such as the commit SHA -- a fail-closed outcome that also avoids leaking potentially sensitive disputed-content details into a diagnostic message.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/07-stage5-f01-f04-correction.md",
+          "blob_sha": "e1f6d8cb1cfd1eccf13db9f81be7a3d2bd5cd6f2",
+          "locator": "Section 7, 'Proof', second bullet: 'Two envelopes for the same mission/revision with a genuinely different pinned source_snapshot_ref/evidence produce zero work items and one conflict entry whose reason names the identity and contains \"conflicting\", with the commit SHA never echoed.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation", "filesystem-safety"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies to any system that plans or schedules work from a set of discovered input files/records where more than one input could legitimately or accidentally claim the same logical processing identity.",
+    "Requires the identity key to be a stable, meaningful domain concept (here, mission_id::closure_revision), and requires comparing candidates for that identity by their full validated content, not merely by the narrower subset of fields any single downstream consumer happens to read."
+  ],
+  "anti_patterns": [
+    "Deduplicating discovered work items by file path or filename alone, which only catches literally identical inputs and misses distinct files that represent the same underlying duplicate or conflicting processing intent.",
+    "Comparing candidate duplicates only by the fields a specific downstream algorithm consumes, which can silently miss a materially different input that happens to differ only in a field that algorithm ignores -- exactly the accepted_scope case this correction proved against."
+  ]
+}

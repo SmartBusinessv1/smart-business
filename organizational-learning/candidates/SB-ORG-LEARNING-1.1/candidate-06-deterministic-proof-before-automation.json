@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-06-deterministic-proof-before-automation",
+  "canonical_title": "Accept a bounded, deterministic, manually-triggered slice before authorizing background automation over the same capability",
+  "summary": "Stage 4 of SB-ORG-LEARNING-1.1 was accepted as a bounded deterministic reconciliation wrapper -- closure/receipt matching, processed/no-op/unprocessed/reopened/conflict classification, deterministic replay, bounded local lock ownership -- with no background scheduler, no automatic trigger, and no authority effect. Stage 4B (background automation that would trigger this reconciliation and downstream candidate-learning generation without a human manually running it) was explicitly scoped out of this mission, left deferred and not authorized, and tracked as a separate GitHub issue rather than folded into this mission's acceptance.",
+  "category": ["governance", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["mission-governance", "reconciliation"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "stage4-accepted-bounded-no-automation",
+      "text": "Stage 4 was durably accepted for its bounded, deterministic reconciliation results (processed/no-op, unprocessed, new revision, reopened/superseded, invalid/unsafe, retryable handling, deterministic replay/order, bounded local ownership/recovery, no-authority output) while Stage 4B mature background automation was explicitly recorded as not required for this mission and left deferred/not authorized.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md",
+          "blob_sha": "dc65acb54c94fb06b4c48d1e17b763f13a3c71b2",
+          "locator": "Section 'Stage 4 — ACCEPTED, bounded': lists the accepted deterministic results, then: 'Stage 4B mature automation was explicitly not required for this mission and remains deferred/not authorized.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "merge-authorization-explicitly-excludes-automation",
+      "text": "The Founder/human merge authorization for the whole mission explicitly enumerates what it does not authorize, including Stage 4B, mature automation, provider/model integration, automatic promotion, governance/Product Truth mutation, production/customer mutation, and SB-P-1.12 activation -- keeping the boundary between what was proven deterministic and what remains an unproven automation surface explicit at the point of merge, not just in an earlier design document.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md",
+          "blob_sha": "dc65acb54c94fb06b4c48d1e17b763f13a3c71b2",
+          "locator": "Section 9, 'Founder merge authorization': 'This authorization is for merge of the accepted mission only. It does not authorize: Stage 4B; mature automation; provider/model integration; automatic promotion; governance/Product Truth mutation; production/customer mutation; SB-P-1.12.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "deferral-tracked-as-separate-issue-not-folded-into-acceptance",
+      "text": "Stage 4B was not left as an implicit gap or a note in a closing paragraph -- it was given its own canonical GitHub tracking issue (#590, 'OLE Stage 4B — Background Automation & Candidate Learning Runtime'), explicitly referenced by both post-merge governance records as the deferred capability whose purpose is to remove the manual-initiation dependency this very learning handoff had to satisfy by hand.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+          "blob_sha": "f203656f81f7c23dd03df78b06df7dbf40a8bd40",
+          "locator": "'Stage 4B tracking issue: #590 — OLE Stage 4B — Background Automation & Candidate Learning Runtime'; line 112: 'GitHub issue #590 tracks the deferred Stage 4B capability whose purpose is to remove this manual initiation dependency.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies when a new capability could plausibly be built either as a bounded, manually-triggered, deterministic slice or as an unbounded background-automated system, and the two can be genuinely separated so the first can be proven and accepted without committing to the second.",
+    "Requires the deferred automation scope to be named and tracked as a distinct, discoverable follow-up (an issue, a numbered future stage) rather than left as an unstated assumption that the manual slice is 'basically done'."
+  ],
+  "anti_patterns": [
+    "Accepting a manually-triggered proof-of-concept as if it already implied the unattended background version was safe, without a separate authorization step for the automation itself.",
+    "Letting deferred automation scope live only in a design document's aspirational section, disconnected from a trackable follow-up that later governance and learning cycles (like this one) can actually surface and act on."
+  ]
+}

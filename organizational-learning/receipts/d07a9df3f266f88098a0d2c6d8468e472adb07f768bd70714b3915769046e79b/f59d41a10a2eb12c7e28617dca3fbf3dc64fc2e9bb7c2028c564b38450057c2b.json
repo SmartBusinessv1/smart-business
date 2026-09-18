@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "receipt_id": "SB-ORG-LEARNING-1.1:f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b",
+  "mission_id": "SB-ORG-LEARNING-1.1",
+  "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+  "run_id": "53909190-0a42-45ab-97dd-115849339a26",
+  "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b",
+  "source_manifest": [
+    {
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/README.md",
+      "blob_sha": "32b2869e1266970755b11a7e28902f916a401f62"
+    },
+    {
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md",
+      "blob_sha": "dc65acb54c94fb06b4c48d1e17b763f13a3c71b2"
+    },
+    {
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+      "blob_sha": "f203656f81f7c23dd03df78b06df7dbf40a8bd40"
+    },
+    {
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md",
+      "blob_sha": "8c8c3d9b4bc25c9f53e09d40c1e94a305ad14c80"
+    }
+  ],
+  "processing_state": "SCREENED",
+  "screening_result": {
+    "status": "CLEAN",
+    "findings": [],
+    "scanned_path_count": 4
+  },
+  "failure_reason": null,
+  "created_at": "2026-09-18T14:45:01.539Z",
+  "updated_at": "2026-09-18T14:45:02.152Z"
+}
