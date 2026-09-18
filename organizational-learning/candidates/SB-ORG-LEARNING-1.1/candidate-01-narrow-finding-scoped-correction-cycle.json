@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "SB-ORG-LEARNING-1.1-candidate-01-narrow-finding-scoped-correction-cycle",
-  "canonical_title": "Narrow, single-finding correction scope with finding-scoped independent re-verification resolves complex failure chains without re-litigating settled work",
-  "summary": "Stage 5 of SB-ORG-LEARNING-1.1 needed seven sequential correction rounds (S5-F-01 through S5-F-07) before an independent PASS. Each round authorized correction of exactly one newly-discovered finding, preserved all previously resolved findings unchanged, and required the independent verifier to re-check only the new finding plus a fixed regression set -- never a full re-litigation of already-passed work. This pattern let a genuinely hard, multi-layered filesystem-safety defect (unsafe absence detection) be resolved incrementally and verifiably instead of through one large, harder-to-verify rewrite.",
+  "canonical_title": "Narrow, explicitly-bounded correction scope per round, with finding-scoped independent re-verification, resolves complex failure chains without re-litigating settled work",
+  "summary": "Stage 5 of SB-ORG-LEARNING-1.1 resolved seven findings (S5-F-01 through S5-F-07) through four correction rounds before an independent PASS: the first round corrected S5-F-01 through S5-F-04 together, and each of the remaining three rounds (S5-F-05, then S5-F-06, then S5-F-07) corrected exactly one newly-discovered finding. Every round preserved all previously resolved findings unchanged, and required the independent verifier to re-check only the finding(s) newly in scope plus a fixed regression set -- never a full re-litigation of already-passed work. This pattern let a genuinely hard, multi-layered filesystem-safety defect (unsafe absence detection) be resolved incrementally and verifiably instead of through one large, harder-to-verify rewrite.",
   "category": ["governance", "engineering"],
   "scope": {
     "mission_ids": ["SB-ORG-LEARNING-1.1"],
@@ -11,8 +11,8 @@
   },
   "claims": [
     {
-      "claim_id": "seven-round-narrow-correction-chain",
-      "text": "Stage 5 required seven distinct narrow-correction authorizations (S5-F-01/F-02 combined, then F-05, F-06, F-07 each separately), each one explicitly scoped to correct only the newly reproduced finding while explicitly preserving all prior corrections, ending in an independent PASS disposition.",
+      "claim_id": "four-round-seven-finding-correction-chain",
+      "text": "Stage 5 resolved seven findings (S5-F-01 through S5-F-07) through four distinct narrow-correction authorizations: the first covered S5-F-01 through S5-F-04 together, and three more each covered exactly one newly reproduced finding (S5-F-05, then S5-F-06, then S5-F-07) -- each authorization explicitly scoped to its named finding(s) while explicitly preserving all prior corrections, ending in an independent PASS disposition.",
       "evidence": [
         {
           "repository": "SmartBusinessv1/smart-business",
@@ -86,8 +86,8 @@
     "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
   },
   "conditions": [
-    "Applies when an independent verifier can cheaply re-check a fixed regression set plus one new finding, rather than needing to re-run an expensive full review every round.",
-    "Requires the correction authority (Mission Control) to explicitly name the single finding in scope and explicitly list what must remain unchanged, so the builder cannot silently widen scope."
+    "Applies when an independent verifier can cheaply re-check a fixed regression set plus the finding(s) newly in scope, rather than needing to re-run an expensive full review every round.",
+    "Requires the correction authority (Mission Control) to explicitly name the exact finding(s) in scope for that round -- whether one finding or a named group, as with S5-F-01 through S5-F-04 together -- and explicitly list what must remain unchanged, so the builder cannot silently widen scope."
   ],
   "anti_patterns": [
     "Bundling multiple unrelated findings into one large correction pass, which forces the independent verifier to re-derive the entire failure surface from scratch and makes it harder to isolate which specific change fixed which specific defect.",
