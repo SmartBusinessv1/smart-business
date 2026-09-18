@@ -45,7 +45,7 @@ Applied only the authorized Candidate 02 provenance correction. PR #602 (canonic
 
 # Changes Made
 
-Exactly 2 files modified, nothing else:
+Exactly 3 files modified, nothing else:
 
 - `organizational-learning/candidates/SB-GOV-IV-1.0/candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate.json` (Claim 3 evidence + text only)
 - `communication/missions/SB-GOV-IV-1.0/claude-code/02-mission-learning-report.md` (two truthfulness updates only)
