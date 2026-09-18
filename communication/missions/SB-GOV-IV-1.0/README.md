@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product operating-framework / verification-governance mission
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `ACTIVE — PROTOCOL DESIGN / RECONCILIATION`
+- **Status:** `FOUNDER APPROVED — GOVERNANCE AMENDMENT / ACTIVATION PENDING`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
@@ -69,17 +69,13 @@ Protocol research, drafting, repository reconciliation, and recommendation only.
 
 No current Product Mission is activated.
 
-No governing source amendment is authorized until Mission Control review and explicit Founder approval.
+Founder approval is now recorded. Exact Package A + B amendment/publication work still requires a separately scoped implementation gate before any governing source is changed.
 
 ## Current actor
 
-Codex — protocol analysis / drafting specialist.
+Mission Control — amendment/publication gate preparation.
 
 ## Immediate next action
 
-Read and execute:
-
-`communication/live/instruction.md`
-
-Return a draft protocol and reconciliation report for Mission Control review.
+Merge the approved draft record, then execute the separately scoped Package A + B amendment/publication gate. `SB-P-1.12` remains inactive until activation is complete.
 
