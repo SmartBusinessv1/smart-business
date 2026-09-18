@@ -8,7 +8,7 @@
 - **Archive authority:** Founder explicit archive/reset instruction, executed by Smart Business Mission Control under `communication/AI_Communication_and_Handover_Protocol.md` Sections 26–27
 - **Final disposition:** `COMPLETED — FORMALLY ACCEPTED`
 - **Durable canonical mission record:** `communication/missions/SB-ORG-LEARNING-1.1/`
-- **Archive status:** `ARCHIVING IN PROGRESS — SOURCE EXCHANGE PRESERVED / LIVE TEMPLATES RESTORED IN SAME ATOMIC COMMIT`
+- **Archive status:** `ARCHIVED — SOURCE EXCHANGE PRESERVED / LIVE TEMPLATES RESTORED`
 - **Historical status:** Non-governing frozen communication evidence. Do not execute or reactivate without Mission Control authorization.
 
 ---
@@ -92,6 +92,6 @@ These remain explicit follow-ups/limitations and do not reactivate this mission.
 - **Open follow-up missions:** None activated. GitHub Issue #590 tracks deferred Stage 4B only.
 - **Live files archived:** `instruction.md`, `report.md`
 - **Validation performed:** former live directory contained exactly two files; source blob SHAs and byte sizes recorded; archived copies must match; approved live templates restored; no numbered live files remain
-- **Archive creation commit SHA:** `PENDING — TO BE RECONCILED IN THE NEXT METADATA-ONLY COMMIT AFTER THIS ATOMIC ARCHIVE/RESET COMMIT EXISTS`
-- **Repository synchronization:** archive/reset branch prepared for protected-branch PR publication
+- **Archive creation commit SHA:** `1b9da66dc5f5169abcd2364e207d9d316cea48d1`
+- **Repository synchronization:** archive/reset commit created and verified on `mission/SB-ORG-LEARNING-1.1-archive`; protected-branch PR publication follows
 - **Reactivation prohibited without Mission Control authorization:** YES
