@@ -1,101 +1,99 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 6 FOUNDER MERGE GATE
+# SB-ORG-LEARNING-1.1 — POST-MERGE OLE LEARNING HANDOFF
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current stage:** `6 — Mission Control acceptance / Founder merge / communication closeout`
+**Current state:** `IMPLEMENTATION MERGED — POST-MERGE VERIFIED — OLE LEARNING HANDOFF INITIATED`
 
-**Current actor:** Founder / human authorized operator
+**Current actor:** Claude Code — supervised OLE learning operator
 
-**Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
-
-**PR:** `#589 — OPEN — NOT MERGED`
-
-**Mission Control disposition:** `STAGE 6 PRE-MERGE REVIEW — PASS; FOUNDER/HUMAN MERGE AUTHORIZED AFTER CURRENT CHECKS GREEN`
+**Canonical main merge commit:** `85e917b4256edb01c77a2be0f909512b32be4cef`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
+## Activation condition
+
+Execute this handoff only after the closeout PR containing this instruction and Mission Control record 40 is merged to `main`.
+
+Then fetch/pull canonical `main` and create a fresh mission-learning branch from that exact current main state.
+
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/38-stage6-whole-mission-premerge-acceptance-and-founder-merge-gate.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md`
 2. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md`
+3. `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`
+4. accepted OLE schemas, harvester, reconciliation, promotion and context-pack contracts
+5. accepted Stage 1–5 evidence for this mission.
 
-Stage 4B follow-on tracking:
+## Objective
 
-`GitHub issue #590 — OLE Stage 4B — Background Automation & Candidate Learning Runtime`
+Run the accepted manual OLE learning lifecycle against the now-closed `SB-ORG-LEARNING-1.1` mission.
 
-## Authorized action
+Required work:
 
-Founder/human authorized operator may merge PR #589 only after confirming:
+- establish a truthful closure envelope for the merged mission;
+- harvest only approved canonical evidence;
+- prepare candidate lessons and risks;
+- preserve claim-level provenance;
+- retain limitations, corrections, failed attempts and platform-specific observations;
+- keep generated learning at candidate / no-authority state;
+- prepare a mission-learning report;
+- identify reusable context recommendations;
+- surface unresolved follow-ups, including canonical Stage 4B tracker issue #590.
 
-1. PR remains open and unmerged;
-2. current head contains no unexpected substantive change after the gate;
-3. all currently required checks on the current PR head are green.
+## High-value themes to examine
 
-Use the normal protected-branch merge path.
+Include but do not pre-judge:
 
-Do not add implementation work before merge.
-
-Do not self-merge from Claude Code, Codex or Mission Control.
-
-## After merge
-
-Return to Mission Control with the merge confirmation.
-
-Mission Control will independently verify:
-
-- PR merged state;
-- exact merge commit / resulting main head;
-- applicable post-merge/current-main checks;
-- no unauthorized intervening change;
-- communication closeout.
-
-Only then may the OLE mission be marked formally completed.
-
-## Standing closure rule now active
-
-Until Stage 4B is implemented and accepted, no future mission closeout is complete without either:
-
-- an explicit OLE learning handoff; or
-- `NO MATERIAL REUSABLE LEARNING` with a short evidence-based reason.
-
-This standing rule does not reopen the accepted OLE implementation or change the current merge gate.
+- deterministic proof before automation;
+- candidate versus promotion authority;
+- exact evidence reach and provenance;
+- shallow-clone CI lessons;
+- Windows/Linux filesystem differences;
+- fail-closed ancestry and indirection handling;
+- duplicate/conflicting envelope behavior;
+- builder evidence versus independent verification;
+- narrow corrections and finding-scoped re-verification;
+- direct CI API confirmation;
+- technical checkpoints versus reporting commits;
+- avoiding verification recursion;
+- verifier-capacity / rate-limit efficiency;
+- the manual closure-trigger gap that Stage 4B must later remove.
 
 ## Boundaries
 
-No Stage 4B implementation is authorized by this merge gate.
-No mature background automation.
-No provider/scheduler/publisher expansion.
+No Stage 4B implementation.
+No provider/model runtime integration.
+No credentials.
+No scheduler/background worker.
+No trusted publisher automation.
 No automatic promotion.
+No `INSTITUTIONALISED` / `ORGANIZATION_WIDE` authority.
+No automatic merge.
 No governance/Product Truth mutation.
 No production/customer mutation.
 No `SB-P-1.12` activation.
 
-## Stop
+Do not treat generated OLE artifacts as primary evidence for themselves.
 
-`STAGE 6 PRE-MERGE REVIEW PASS — STOP FOR FOUNDER/HUMAN MERGE — DO NOT SELF-MERGE`
+## Required return
 
+Provide:
 
-## Standing OLE closure rule now active
+- learning branch and head SHA;
+- closure envelope path;
+- source fingerprint;
+- mission-learning report path;
+- candidate learning items and risk items created;
+- provenance validation result;
+- screening result;
+- unresolved contradictions / limitations;
+- context refresh recommendations;
+- exact files changed;
+- test/validation results;
+- PR state if opened.
 
-Before final communication closeout of any future mission, Mission Control must durably record either:
+Stop with:
 
-- an OLE learning handoff initiated from the authoritative mission closure; or
-- an explicit `no reusable learning` disposition with supporting evidence.
-
-Repository rule:
-
-`communication/README.md — Mandatory OLE Learning Handoff Before Mission Closure`
-
-Durable Founder-direction record:
-
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-ole-closure-rule-and-stage4b-tracking.md`
-
-Deferred automation tracking:
-
-`GitHub Issue #591 — OLE Stage 4B — Background Automation & Candidate Learning Runtime`
-
-Issue #591 is tracking only. Stage 4B remains deferred / not authorized.
-
-The Founder merge gate for PR #589 remains valid, subject to all required checks being green on the current head immediately before merge.
+`OLE LEARNING HANDOFF REPORTED — MISSION CONTROL REVIEW REQUIRED`

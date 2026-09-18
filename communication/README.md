@@ -127,7 +127,7 @@ The manual requirement remains in force until a separately authorized and accept
 
 Tracking issue for the deferred automation:
 
-- GitHub Issue #591 — `OLE Stage 4B — Background Automation & Candidate Learning Runtime`
+- GitHub Issue #590 — `OLE Stage 4B — Background Automation & Candidate Learning Runtime`
 
 Mission closure sequence while Stage 4B is absent:
 
