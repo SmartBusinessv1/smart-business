@@ -1,31 +1,63 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — MISSION CLOSED
+# Instruction
 
-**Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
+**Mission ID:**
 
-**Status:** `COMPLETED — FORMALLY ACCEPTED`
+**Mission Name:**
 
-**Canonical verified main commit:** `2fe7dc44200541c60efefd02b05bb203bac7004d`
+**From:** Mission Control
 
-**Final Mission Control acceptance:**
+**To:**
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/45-final-postmerge-verification-and-formal-acceptance.md`
+**Status:**
 
-**Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
+**Date:**
 
-## Current instruction
+---
 
-No further implementation is authorized under `SB-ORG-LEARNING-1.1`.
+# Mission Objective
 
-The mission is closed.
+State the objective of this mission in one or two sentences. Be explicit about what is and is not authorized.
 
-Stage 4B remains deferred and tracked in GitHub issue #590.
+---
 
-The standing manual OLE learning handoff rule remains active until Stage 4B is separately implemented, independently verified and formally accepted.
+# Context
 
-Any follow-on mission requires separate Mission Control activation.
+Provide the background needed to act on this instruction without requiring the specialist AI to reconstruct history from chat.
 
-## Stop
+---
 
-`SB-ORG-LEARNING-1.1 FORMALLY ACCEPTED — MISSION CLOSED — NO FURTHER IMPLEMENTATION AUTHORITY`
+# Execute According To
+
+List the governing documents, prior mission findings, or standing frameworks this instruction must be executed under.
+
+---
+
+# Scope
+
+List exactly what the specialist AI is authorized to do.
+
+---
+
+# Required Work
+
+Break the work into steps. For each step, state what must be read, verified, produced, or reported.
+
+---
+
+# Constraints
+
+List explicit prohibitions — what must not be modified, created, deployed, or assumed.
+
+---
+
+# Deliverables
+
+List the concrete outputs expected (files, commits, reports, confirmations).
+
+---
+
+# Completion Status
+
+State the exact status string the report must conclude with, and any condition that must hold before the mission is considered complete.
