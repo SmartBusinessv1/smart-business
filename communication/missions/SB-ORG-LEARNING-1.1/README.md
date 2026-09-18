@@ -7,7 +7,7 @@
 - **Mission type:** Non-Product organizational / institutional capability implementation
 - **Founder:** Riyas PK
 - **Mission Control:** Smart Business Mission Control
-- **Status:** `ACTIVE — SUCCESSOR MISSION CONTROL HANDOVER — STAGE 1 NOT YET OPENED`
+- **Status:** `IMPLEMENTATION MERGED — POST-MERGE VERIFIED — OLE LEARNING HANDOFF INITIATED — FORMAL CLOSEOUT PENDING`
 - **Canonical repository:** `SmartBusinessv1/smart-business`
 - **Activation PR:** `#585 — MERGED`
 - **Activation merge commit:** `e1806c0e2e1f56102e03daf6639363ddd34c3ede`
@@ -41,17 +41,13 @@ Mission Control authorizes one stage at a time. Passing one stage does not autho
 
 ## Current authorization
 
-The Founder has merged the implementation activation PR.
+Stages 1 through 5 are accepted. Stage 6 pre-merge review passed, PR #589 was Founder/human merged, and Mission Control independently verified canonical `main` at merge commit `85e917b4256edb01c77a2be0f909512b32be4cef`.
 
-The implementation mission is active, but **Stage 1 specialist execution has intentionally not been opened by the outgoing Mission Control** because the Founder requested a controlled Mission Control handover first.
+The standing OLE closure rule now applies to this mission itself. Mission Control has initiated the manual OLE learning handoff under:
 
-The successor Mission Control must:
+`communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md`
 
-1. complete/confirm its own hydration and Founder acceptance;
-2. verify current canonical `main`;
-3. read the controlling build plan and successor handover;
-4. create a fresh Stage 1 branch/live communication;
-5. issue the exact Stage 1 Claude Code instruction contained in the successor handover.
+Formal communication closeout remains pending until that learning handoff returns and Mission Control records the resulting learning disposition.
 
 ## Stage 1 builder
 
@@ -85,12 +81,12 @@ This mission may not:
 
 ## Current owner
 
-**Successor Smart Business Mission Control**, after the handover artifact is Founder-merged and the successor accepts the transfer.
+**Smart Business Mission Control**, for post-merge OLE learning handoff and final communication closeout.
 
 ## Immediate next action
 
-Open **Stage 1 for Claude Code** using Section 11 of:
+Execute the manual OLE learning handoff against the canonical merged mission evidence, using the accepted OLE v1 contracts. Generated learning remains candidate/context only until human review.
 
-`communication/missions/SB-ORG-LEARNING-1.1/mission-control/02-successor-mission-control-handover.md`
+Canonical Stage 4B tracker: GitHub issue #590.
 
 `SB-P-1.12` remains not activated.
