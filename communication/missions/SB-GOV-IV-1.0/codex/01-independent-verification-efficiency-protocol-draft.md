@@ -3,10 +3,11 @@
 - **Mission:** `SB-GOV-IV-1.0`
 - **Author:** Codex
 - **Date:** 2026-09-18
-- **Status:** `DRAFT — MISSION CONTROL REVIEW REQUIRED — NOT ACTIVE`
+- **Approval:** `FOUNDER APPROVED`
+- **Status:** `FOUNDER APPROVED DESIGN — GOVERNANCE AMENDMENT / ACTIVATION PENDING — NOT ACTIVE`
 - **Inspected repository:** `SmartBusinessv1/smart-business`
 - **Baseline:** `72f4e7d2e947b58b4d796ef2144c8bdd389de1a4`
-- **Authority:** [activation and Founder design basis](../mission-control/01-activation-and-founder-design-basis.md).
+- **Authority:** [activation and Founder design basis](../mission-control/01-activation-and-founder-design-basis.md); [Founder approval](../founder/01-founder-approval.md).
 
 ## 1. Purpose and applicability
 
