@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-04-direct-api-ci-confirmation-and-capacity-resumption-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-04-direct-api-ci-confirmation-and-capacity-resumption",
+  "candidate_revision_hash": "d7d3c00c4900133491ca9d5ad0c2e6afcaab3757cdaaeef4786d79f5cb4cfbaf",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson, retained at the candidate's own MEDIUM confidence rating: CI conclusions should be confirmed via direct per-job API query rather than a workflow watch-command exit code, and a genuine independent-verifier execution-capacity interruption should be safely resumed rather than restarted or fabricated. Scoped to this mission's own two observed incidents; not generalized into a universal CI-tooling or verifier-capacity policy beyond the conditions stated in the candidate.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+      "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+      "locator": "Section 12: 'all three applicable workflows SUCCESS, independently confirmed via gh api ... --jq .conclusion (not merely a watch-command exit code, after the first push's discrepancy)'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+      "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+      "locator": "'independently confirmed via direct gh api ... --jq .conclusion queries per job (not merely a watch-command exit code, per the S5-F-06 round's lesson)'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+      "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+      "locator": "Line 25: 'The interruption due to execution capacity did not start a new review or change the reviewed head. Previously completed evidence was retained; the missing local typecheck was actually executed after capacity was restored.'; line 150: 'No local result was manufactured from CI... expensive successful checks were not restarted.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

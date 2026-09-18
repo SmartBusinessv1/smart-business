@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-01-narrow-finding-scoped-correction-cycle",
+  "canonical_title": "Narrow, explicitly-bounded correction scope per round, with finding-scoped independent re-verification, resolves complex failure chains without re-litigating settled work",
+  "summary": "Stage 5 of SB-ORG-LEARNING-1.1 resolved seven findings (S5-F-01 through S5-F-07) through four correction rounds before an independent PASS: the first round corrected S5-F-01 through S5-F-04 together, and each of the remaining three rounds (S5-F-05, then S5-F-06, then S5-F-07) corrected exactly one newly-discovered finding. Every round preserved all previously resolved findings unchanged, and required the independent verifier to re-check only the finding(s) newly in scope plus a fixed regression set -- never a full re-litigation of already-passed work. This pattern let a genuinely hard, multi-layered filesystem-safety defect (unsafe absence detection) be resolved incrementally and verifiably instead of through one large, harder-to-verify rewrite.",
+  "category": ["governance", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["mission-governance", "independent-verification"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "four-round-seven-finding-correction-chain",
+      "text": "Stage 5 resolved seven findings (S5-F-01 through S5-F-07) through four distinct narrow-correction authorizations: the first covered S5-F-01 through S5-F-04 together, and three more each covered exactly one newly reproduced finding (S5-F-05, then S5-F-06, then S5-F-07) -- each authorization explicitly scoped to its named finding(s) while explicitly preserving all prior corrections, ending in an independent PASS disposition.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/25-stage5-f01-f04-correction-authorization.md",
+          "blob_sha": "17789c697277810f6452f8434721e4fd8b8c843a",
+          "locator": "Section 3, 'Correction authority': 'Claude Code is authorized to correct only the four findings above... This is a correction inside the existing bounded reconciliation architecture.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+          "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+          "locator": "Section 1, 'Decision and authority': 'S5-F-07 is independently resolved... S5-F-01 through S5-F-06 remain resolved within the verified boundary; no regression blocker remains within the authorized Stage 5 scope.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "each-round-fixed-narrower-root-cause",
+      "text": "Each Stage 5 correction round found and fixed a narrower, more specific defect than the previous round believed it had fully closed: S5-F-05 fixed a dangling-final-entry absence check, S5-F-06 found that fix still trusted an unvalidated ancestor, and S5-F-07 found that even the S5-F-06 fix still trusted a null-ancestor result as absence -- each correction was a small, targeted addition to the prior one, never a rewrite.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+          "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+          "locator": "Section 4, 'Null-ancestor correction': 'One-line, smallest-possible change... reusing the exact same status/condition/fail-closed path the S5-F-06 found-but-invalid-ancestor branch already uses. No new reconciliation state.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies when an independent verifier can cheaply re-check a fixed regression set plus the finding(s) newly in scope, rather than needing to re-run an expensive full review every round.",
+    "Requires the correction authority (Mission Control) to explicitly name the exact finding(s) in scope for that round -- whether one finding or a named group, as with S5-F-01 through S5-F-04 together -- and explicitly list what must remain unchanged, so the builder cannot silently widen scope."
+  ],
+  "anti_patterns": [
+    "Bundling multiple unrelated findings into one large correction pass, which forces the independent verifier to re-derive the entire failure surface from scratch and makes it harder to isolate which specific change fixed which specific defect.",
+    "Treating a corrected finding as fully closed without an independent re-verification pass scoped to that exact finding -- three of the seven S5 findings (F-05, F-06, F-07) were each discovered only because the prior 'complete' fix was independently re-examined rather than accepted on the builder's own claim."
+  ]
+}

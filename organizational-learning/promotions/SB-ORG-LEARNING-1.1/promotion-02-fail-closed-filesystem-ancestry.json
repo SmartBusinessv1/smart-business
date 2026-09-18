@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-ORG-LEARNING-1.1-candidate-02-fail-closed-filesystem-ancestry-promotion-01",
+  "candidate_id": "SB-ORG-LEARNING-1.1-candidate-02-fail-closed-filesystem-ancestry",
+  "candidate_revision_hash": "be3d2fcb55f645b696e80813d1e0d938303f70faf1e9419a84dd58fce4da6a60",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/42-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Approved as a mission-scoped VALIDATED lesson: genuine filesystem absence is trustworthy only beneath a validated, existing directory ancestry, as demonstrated across the S5-F-01/F-05/F-06/F-07 defect chain in SB-ORG-LEARNING-1.1's reconciliation code. Scoped to this mission's own filesystem-safety implementation; not generalized to every filesystem-boundary check in the repository.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/09-stage5-independent-corrective-reverification.md",
+      "blob_sha": "968e5411856ce33d77999c114ecc065a3e405fd4",
+      "locator": "Section 3, 'S5-F-05': collected metadata table showing 'existsSync(missionDir): false' and 'lstatSync(missionDir).isSymbolicLink(): true' for the same real dangling-junction fixture, with classification incorrectly 'ELIGIBLE_UNPROCESSED'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md",
+      "blob_sha": "bca53023697a2442567688304e4fa259dd8c26f9",
+      "locator": "Section 4, 'Collected evidence': read-only Windows metadata table showing an ordinary file at the receipts-root path producing leaf ENOENT, classified ABSENT, then ELIGIBLE_UNPROCESSED with one eligible planner item and zero rejections.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+      "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+      "locator": "Section 3 collected-evidence table: an absent 'Z:' drive read-only reproduction, 'Derived-path lstat: ENOENT', corrected classification 'INVALID_ANCESTRY, never ABSENT', 'Eligible planner items: 0'.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["filesystem-safety"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+      "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+      "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+      "locator": "Section 4, 'Null-ancestor correction': '...no existing ancestor could be found anywhere in the chain is definitionally a form of no valid ancestry could be established, the same category the found-but-invalid-ancestor branch already represents.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T15:00:00Z",
+      "evidence_date": "2026-09-18T14:38:17Z",
+      "scope": {
+        "mission_ids": ["SB-ORG-LEARNING-1.1"],
+        "systems": ["reconciliation"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-18T16:00:00Z"
+}

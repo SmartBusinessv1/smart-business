@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-04-direct-api-ci-confirmation-and-capacity-resumption",
+  "canonical_title": "CI conclusions must be confirmed by direct per-job API query, not a watch-command exit code; a genuine verifier capacity interruption is resumed, never restarted or fabricated",
+  "summary": "After a watch-command-based CI check proved discrepant during the S5-F-06 round, every subsequent Stage 5 round confirmed CI conclusions via direct `gh api ... --jq .conclusion` queries per job rather than trusting a wrapper command's own exit status. Separately, Codex's final S5-F-07 independent re-verification genuinely hit an execution-capacity interruption mid-review; it was resumed from exactly where it stopped -- reusing already-valid evidence and completing only the missing check -- rather than restarted from scratch or reported as complete without the missing check actually running.",
+  "category": ["engineering", "operations", "governance"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["ci", "independent-verification"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "watch-command-exit-code-was-discrepant-at-least-once",
+      "text": "Following the S5-F-06 round's first push, subsequent CI confirmation was explicitly performed via direct `gh api ... --jq .conclusion` queries per job specifically because a prior watch-command exit code had already proven discrepant with the real per-job outcome, and this became the standing verification method for the rest of Stage 5.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md",
+          "blob_sha": "3c172235ac52faf30413e4105f5a6971709e8b24",
+          "locator": "Section 12: 'all three applicable workflows SUCCESS, independently confirmed via gh api ... --jq .conclusion (not merely a watch-command exit code, after the first push's discrepancy)'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+          "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+          "locator": "'independently confirmed via direct gh api ... --jq .conclusion queries per job (not merely a watch-command exit code, per the S5-F-06 round's lesson)'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["ci"],
+            "environments": ["ci"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "capacity-interruption-was-safely-resumed-not-fabricated",
+      "text": "Codex's final independent S5-F-07 re-verification pass genuinely hit an automatic-approval-review usage-limit interruption mid-run; the interruption did not start a new review or change the reviewed head, previously completed evidence was retained, and the one missing local check (typecheck) was actually executed after capacity was restored rather than assumed or backfilled from CI.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+          "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+          "locator": "Line 25: 'The interruption due to execution capacity did not start a new review or change the reviewed head. Previously completed evidence was retained; the missing local typecheck was actually executed after capacity was restored.'; line 150: 'No local result was manufactured from CI... expensive successful checks were not restarted.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies whenever a wrapper command (a watch/poll helper, a CI summary badge, a dashboard aggregate) sits between the builder or verifier and the authoritative per-job API result -- the wrapper's own exit status or summary is not itself the source of truth.",
+    "Applies to any independent verification pass that spans a long enough wall-clock duration to risk an execution-capacity limit; the resumption discipline (retain valid completed evidence, execute only what is actually missing, never assume a skipped check passed) is the relevant transferable behavior, not the specific capacity-limit mechanism."
+  ],
+  "anti_patterns": [
+    "Treating a watch/poll command's own successful exit as proof the underlying CI job succeeded, without a direct per-job API query -- this mission observed at least one real discrepancy between the two.",
+    "Restarting an entire independent verification pass from zero after a capacity interruption, which would discard genuinely completed evidence and waste verifier capacity that is explicitly called out elsewhere in this mission's evidence as a limited, rate-constrained resource."
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-02-fail-closed-filesystem-ancestry",
+  "canonical_title": "Genuine absence is trustworthy only beneath a validated, existing directory ancestry -- a chain of four related defects shows how easy this is to get subtly wrong",
+  "summary": "Across S5-F-01 (outside-root receipt indirection), S5-F-05 (dangling final entry), S5-F-06 (invalid existing ancestor), and S5-F-07 (no existing ancestor at all / null-ancestor), every defect shared the same underlying mistake: treating a filesystem lookup failure (existsSync false, or a particular lstat error code) as proof of genuine absence without first establishing that the path's ancestry was a real, resolvable, physically-contained directory. Each fix narrowed the gap further; only the fourth iteration (S5-F-07) closed it completely, reusing the exact same fail-closed status and diagnostic path rather than inventing a new one each time.",
+  "category": ["engineering", "security"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["reconciliation", "filesystem-safety"],
+    "environments": ["ci", "development"]
+  },
+  "claims": [
+    {
+      "claim_id": "existsSync-alone-is-unsafe-absence-proof",
+      "text": "existsSync following symlinks/junctions and returning false when only the target is unresolvable (not the entry itself) is not proof of absence -- a dangling junction at the exact receipt-directory path made existsSync report false while the entry itself still existed, and the prior code took the absence branch.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/09-stage5-independent-corrective-reverification.md",
+          "blob_sha": "968e5411856ce33d77999c114ecc065a3e405fd4",
+          "locator": "Section 3, 'S5-F-05': collected metadata table showing 'existsSync(missionDir): false' and 'lstatSync(missionDir).isSymbolicLink(): true' for the same real dangling-junction fixture, with classification incorrectly 'ELIGIBLE_UNPROCESSED'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "leaf-error-code-alone-is-unsafe-absence-proof",
+      "text": "Even after switching to non-following lstat metadata, a bare leaf-level ENOENT was still not sufficient proof of absence: an ordinary file occupying the configured receipts-directory path made a child lookup return ENOENT exactly like genuine absence would (S5-F-06), and reaching the filesystem root with no existing ancestor found at all (an absent Windows drive letter) also returned the same ENOENT-driven false-absence result one layer further out (S5-F-07).",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md",
+          "blob_sha": "bca53023697a2442567688304e4fa259dd8c26f9",
+          "locator": "Section 4, 'Collected evidence': read-only Windows metadata table showing an ordinary file at the receipts-root path producing leaf ENOENT, classified ABSENT, then ELIGIBLE_UNPROCESSED with one eligible planner item and zero rejections.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md",
+          "blob_sha": "461cce4b849b302124c278da48faa94173e752ec",
+          "locator": "Section 3 collected-evidence table: an absent 'Z:' drive read-only reproduction, 'Derived-path lstat: ENOENT', corrected classification 'INVALID_ANCESTRY, never ABSENT', 'Eligible planner items: 0'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["filesystem-safety"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "converged-fix-reused-existing-fail-closed-path",
+      "text": "The final S5-F-07 fix deliberately reused the exact same INVALID_ANCESTRY status and INVALID_RECEIPT_ROOT_ANCESTRY diagnostic condition the S5-F-06 fix already introduced, rather than adding a new parallel status, on the reasoning that 'no existing ancestor found anywhere' is definitionally the same category of problem as 'a found ancestor is invalid'.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md",
+          "blob_sha": "a2ab21c5824fa7784face0de1d1f2dc2547cadde",
+          "locator": "Section 4, 'Null-ancestor correction': '...no existing ancestor could be found anywhere in the chain is definitionally a form of no valid ancestry could be established, the same category the found-but-invalid-ancestor branch already represents.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["reconciliation"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies to any code that must distinguish 'this path genuinely does not exist yet' from 'this path cannot currently be resolved for some other reason' before treating absence as safe to act on.",
+    "Requires a non-following existence check (lstat, not a following stat/existsSync) plus an explicit walk that validates the nearest *actually found* ancestor is a real, resolvable directory before trusting anything below it as absent."
+  ],
+  "anti_patterns": [
+    "Treating any single filesystem lookup failure (existsSync false, or one specific errno) as unconditional proof of absence, rather than as one signal that must be combined with ancestor validation.",
+    "Fixing the exact reproduced case (e.g. one Windows error string, one fixture shape) instead of the general principle -- three of the four related findings in this mission were only discovered because a prior fix had solved the literal reproduced case without solving the general rule."
+  ]
+}

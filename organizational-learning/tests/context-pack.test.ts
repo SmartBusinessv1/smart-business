@@ -44,6 +44,18 @@ import { createEphemeralGitRepo, type EphemeralGitRepo } from "./helpers/ephemer
 
 const REPO_ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const PROMOTIONS_DIR = join(REPO_ROOT, "organizational-learning", "promotions");
+// This Stage 3B suite proves real-fixture behavior specifically for
+// SB-OPS-CI-ARCHITECTURE-1.0's original four-promotion set, not the
+// repository-wide promotion inventory. `loadPromotions` walks
+// subdirectories, so pointing it at the shared parent `PROMOTIONS_DIR`
+// picks up every mission's promotions (it silently did, once a second
+// mission's promotions directory -- SB-ORG-LEARNING-1.1 -- was added,
+// which is exactly what broke this suite's hardcoded fixture-count
+// assertions). Scoping the loader to this mission's own promotions
+// directory keeps the invariant under test -- "this mission's real
+// fixture set" -- stable regardless of how many other missions add
+// their own promotions later.
+const SB_OPS_PROMOTIONS_DIR = join(PROMOTIONS_DIR, "SB-OPS-CI-ARCHITECTURE-1.0");
 const CANDIDATES_DIR = join(REPO_ROOT, "organizational-learning", "candidates");
 const SCRIPT_PATH = fileURLToPath(new URL("../scripts/context-pack.mjs", import.meta.url));
 
@@ -55,7 +67,7 @@ const AUTHORIZED_PROFILE = {
 };
 
 function loadRealFixtures() {
-  const promotions = loadPromotions(PROMOTIONS_DIR);
+  const promotions = loadPromotions(SB_OPS_PROMOTIONS_DIR);
   const candidatesById = loadCandidatesById(CANDIDATES_DIR);
   return { promotions, candidatesById };
 }

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-ORG-LEARNING-1.1-candidate-08-manual-ole-trigger-dependency-risk",
+  "canonical_title": "Risk: the Organizational Learning Engine still depends on a human or builder remembering to initiate it -- a standing rule compensates, but does not remove, this gap",
+  "summary": "The accepted OLE v1 foundation can structure, validate, reconcile, and reuse organizational learning once given a closure envelope, but it does not yet automatically notice an authoritative mission closure and initiate candidate-learning generation in the background -- that capability is Stage 4B, explicitly deferred and tracked separately as GitHub issue #590. Mission Control's standing closure rule (requiring every future mission closeout to either initiate OLE learning handoff or explicitly state no material reusable learning) is a procedural compensating control for this gap, not a removal of it. This very handoff -- a manually triggered, explicitly instructed learning cycle for SB-ORG-LEARNING-1.1's own completed implementation -- is itself direct, first-hand evidence of the dependency it describes.",
+  "category": ["governance", "operations", "tool-resource"],
+  "scope": {
+    "mission_ids": ["SB-ORG-LEARNING-1.1"],
+    "systems": ["organizational-learning-engine", "mission-governance"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "ole-v1-cannot-self-initiate",
+      "text": "The accepted OLE v1 foundation explicitly does not yet automatically notice every authoritative mission closure and initiate the full candidate-learning flow in the background -- this is the stated reason the standing closure rule was created, and the missing capability is named Stage 4B.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+          "blob_sha": "f203656f81f7c23dd03df78b06df7dbf40a8bd40",
+          "locator": "Section 1, 'Purpose': 'Until the deferred Stage 4B background automation is implemented and formally accepted, Smart Business must not rely on memory or informal habit to initiate Organizational Learning Engine processing... it does not yet automatically notice every authoritative mission closure and initiate the full candidate-learning flow in the background.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["organizational-learning-engine"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "standing-rule-is-compensating-not-removing",
+      "text": "The standing closure rule requires a durably recorded OLE learning handoff initiation or an explicit no-material-reusable-learning statement before any future mission is considered fully closed -- a procedural safeguard against the gap, layered on top of the still-unimplemented automation that would remove the gap at its source.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/39-standing-mission-closure-ole-learning-handoff-rule.md",
+          "blob_sha": "f203656f81f7c23dd03df78b06df7dbf40a8bd40",
+          "locator": "Section 2, 'Standing rule': 'A future Smart Business mission must not be considered fully closed by Mission Control until one of the following is durably recorded...'; line 112: 'GitHub issue #590 tracks the deferred Stage 4B capability whose purpose is to remove this manual initiation dependency.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "this-handoff-is-direct-evidence-of-the-dependency",
+      "text": "This mission's own post-merge learning handoff required an explicit human-issued instruction naming the repository, mission, and canonical commit before any harvesting, candidate extraction, or screening began -- directly demonstrating, first-hand and in the same mission whose engine is being evaluated, that OLE processing does not begin on its own.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "96f875927b2d4808a95e5c89de6c4a216817e0da",
+          "path": "communication/missions/SB-ORG-LEARNING-1.1/mission-control/40-postmerge-verification-and-ole-learning-handoff.md",
+          "blob_sha": "8c8c3d9b4bc25c9f53e09d40c1e94a305ad14c80",
+          "locator": "Document records that OLE learning handoff for this mission's own completed implementation was recorded as 'INITIATED' by Mission Control specifically because the standing rule required a durable, explicit trigger -- not because the engine detected the closure on its own.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T15:00:00Z",
+          "evidence_date": "2026-09-18T14:38:17Z",
+          "scope": {
+            "mission_ids": ["SB-ORG-LEARNING-1.1"],
+            "systems": ["organizational-learning-engine", "mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-ORG-LEARNING-1.1-learning:2026-09-18",
+    "generated_at": "2026-09-18T15:00:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-ORG-LEARNING-1.1",
+    "closure_revision": "40-postmerge-verification-and-ole-learning-handoff",
+    "source_fingerprint": "f59d41a10a2eb12c7e28617dca3fbf3dc64fc2e9bb7c2028c564b38450057c2b"
+  },
+  "conditions": [
+    "Applies to any institutional-memory or learning system whose activation currently depends on a human or an AI builder remembering to invoke it, rather than on the system observing its own trigger condition.",
+    "The risk is most acute at the exact moment procedural discipline is weakest -- mission closeout, when attention has already shifted to the next mission -- which is precisely why Mission Control layered a standing rule requirement onto this gap rather than leaving it informal."
+  ],
+  "anti_patterns": [
+    "Treating a standing procedural rule that compensates for a missing capability as equivalent to having built the capability -- the rule reduces the chance of a missed handoff, it does not make one impossible.",
+    "Building Stage 4B automation before this manual path has been exercised end-to-end at least once against a real, completed mission -- this handoff is that first real exercise, and its own friction points (the need for an explicit, detailed instruction) are exactly the requirements Stage 4B's design should be validated against."
+  ]
+}
