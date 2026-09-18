@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-IV-1.0-candidate-01-lifecycle-authority-operating-method-separation",
+  "canonical_title": "Keep a governing lifecycle source lean by publishing operating-method detail as a subordinate protocol instead of inserting it into the lifecycle source itself",
+  "summary": "Mission Control explicitly recommended, and the Founder explicitly approved, keeping the new protocol's operating-method detail (finding-scoped re-verification mechanics, evidence carry-forward rules, A/B/C evidence methods, escalation heuristics -- 'Package C') out of Source 18 entirely, publishing it instead as a separate, formally subordinate document (SB-IV-1.0) that governs verification method and efficiency while Source 18 remains the lifecycle/authority framework. This kept the amendment to the governing source itself minimal (Package A/B only) while still delivering the full operating protocol.",
+  "category": ["governance"],
+  "scope": {
+    "mission_ids": ["SB-GOV-IV-1.0"],
+    "systems": ["mission-governance"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "package-c-deliberately-excluded-from-source-18",
+      "text": "Mission Control's draft review explicitly recommended DO NOT ADD Package C to Source 18, reasoning that Source 18 should remain the lifecycle/authority framework while the protocol carries finding-scoped mechanics, evidence carry-forward, report-only publication rules, A/B/C methods, and escalation heuristics -- avoiding duplicating operational detail in the lifecycle source while preserving all mandatory gates.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/02-draft-review-and-founder-governance-decision-gate.md",
+          "blob_sha": "c5f0c8ea2686426d75842dd0234222b5734e6119",
+          "locator": "Section 3, 'Recommended Package C — DO NOT ADD TO SOURCE 18': 'Source 18 should remain the lifecycle/authority framework... This avoids duplicating operational detail in the lifecycle source while preserving all mandatory gates.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "founder-approved-and-activated-the-same-separation",
+      "text": "The Founder explicitly approved keeping Package C in the operational protocol rather than adding it to Source 18, and Mission Control's activation record confirms Package C is ACTIVE only as operational method inside SB-IV-1.0, not inserted into Source 18 -- the separation held from recommendation through Founder decision through actual activation, not merely as a stated intention.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/founder/01-founder-approval.md",
+          "blob_sha": "f28585ada34119aa2d4d411768ab70be00824e80",
+          "locator": "'Approved package disposition': 'Package C: OPERATIONAL PROTOCOL ONLY — DO NOT ADD TO SOURCE 18 AT THIS STAGE'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md",
+          "blob_sha": "9225f0ead17cc6c1a8935fd127306098d753a55b",
+          "locator": "Section 4, 'Package disposition': 'Package C — ACTIVE only as operational method inside SB-IV-1.0; not inserted into Source 18.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "subordinate-protocol-explicitly-disclaims-higher-authority",
+      "text": "The published protocol's own text explicitly states it remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority -- the subordination is stated directly in the operating document itself, not only in the governance records that authorized it.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+          "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+          "locator": "Section 1: 'This Founder-approved document is the active operational protocol for independent-verification method and efficiency under Source 18 v1.1. It remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-IV-1.0-learning:2026-09-18",
+    "generated_at": "2026-09-18T18:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-IV-1.0",
+    "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+    "source_fingerprint": "d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396"
+  },
+  "conditions": [
+    "Applies when new operating-method detail would materially lengthen or complicate an existing lifecycle/authority governing source, and that detail can be made genuinely subordinate (no authority transfer, no Product Mission acceptance, explicit deference) in a separate document.",
+    "Requires the subordination to be stated in at least three places -- the recommending review, the approving decision, and the operating document's own text -- so no single record's omission can later be read as ambiguity about which source controls."
+  ],
+  "anti_patterns": [
+    "Folding new operating-method mechanics directly into a lifecycle/authority source merely because they are related, which risks blurring what is mandatory lifecycle gate versus what is optional operating technique.",
+    "Publishing a subordinate operating protocol without the protocol's own text explicitly disclaiming higher authority, leaving room for the protocol to later be misread as a second, competing governance source."
+  ]
+}

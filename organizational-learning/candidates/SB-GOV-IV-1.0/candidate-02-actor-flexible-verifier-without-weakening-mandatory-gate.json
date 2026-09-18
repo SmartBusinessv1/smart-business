@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-IV-1.0-candidate-02-actor-flexible-verifier-without-weakening-mandatory-gate",
+  "canonical_title": "Removing a named-provider single point of failure from a mandatory verification gate is a distinct move from weakening the gate itself -- both must be proven separately",
+  "summary": "Source 18 previously hard-coded Claude Code as Stage 19 owner and explicitly marked Codex 'Not verifier'. SB-GOV-IV-1.0 replaced that hard-coded ownership with a 'Mission Control-appointed Independent Verification Actor' role, removing the single-provider dependency, while simultaneously and explicitly preserving Stage 19 as mandatory, preserving actor separation, preserving human runtime verification, and preserving Mission Control acceptance authority. The distinction 'Codex Not Required != Independent Verification Not Required' was written into the approved design, the amendment, and the activation record to prevent the two changes from being conflated.",
+  "category": ["governance", "engineering"],
+  "scope": {
+    "mission_ids": ["SB-GOV-IV-1.0"],
+    "systems": ["mission-governance", "independent-verification"],
+    "environments": ["development"]
+  },
+  "claims": [
+    {
+      "claim_id": "actor-flexibility-approved-with-explicit-preserved-list",
+      "text": "The Founder-approved architecture explicitly lists what actor-flexibility must preserve alongside the new appointed-actor role: no self-verification, actual contribution separation, capability fit, explicit Mission Control appointment, preserved human runtime verification, preserved Mission Control runtime review, preserved Stage 19, preserved Evidence Package/Completion Report ownership, preserved Mission Control acceptance, and preserved Founder authority.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/founder/01-founder-approval.md",
+          "blob_sha": "f28585ada34119aa2d4d411768ab70be00824e80",
+          "locator": "'Approved architecture': 'The lifecycle role becomes: Mission Control-appointed Independent Verification Actor subject to: no self-verification; actual contribution separation; capability fit; explicit Mission Control appointment; preserved human runtime verification; preserved Mission Control runtime review; preserved Stage 19; ... preserved Mission Control acceptance; preserved Founder authority.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "critical-distinction-carried-through-to-activation",
+      "text": "The distinction between Codex's own utilization classification and the mandatory Stage 19 lifecycle gate was stated as a 'critical interpretation' at activation, not merely as a drafting note: 'Codex Not Required != Independent Verification Not Required', with Stage 19 confirmed as remaining mandatory and owned by the Mission Control-appointed Independent Verification Actor, subject to actual contribution separation, capability fit, explicit appointment, no self-verification, no self-approval and preserved higher-authority gates.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md",
+          "blob_sha": "9225f0ead17cc6c1a8935fd127306098d753a55b",
+          "locator": "Section 2, 'Source 18 v1.1': 'Stage 19 remains mandatory and is owned by: Mission Control-appointed Independent Verification Actor subject to actual contribution separation, capability fit, explicit appointment, no self-verification, no self-approval and preserved higher-authority gates.' Section 3, 'Critical interpretation: Codex Not Required != Independent Verification Not Required'.",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-18T18:30:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["mission-governance", "independent-verification"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "provider-preference-retained-without-becoming-dependency",
+      "text": "Codex remains the preferred independent verifier for the highest-risk cases under active Source 18 v1.1 Section 4.9, which itself states this preference explicitly alongside allowing Claude Code or another approved actor to be appointed under the same independence and capability conditions -- preference and structural dependency were kept as two different things, not treated as the same claim.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+          "path": "merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md",
+          "blob_sha": "93ae934bcaafdff3589336f04f53a4b0ef34359d",
+          "locator": "Section 4.9, 'Independent Verification Actor': 'Codex is preferred for the highest-risk cases where eligible and available; Claude Code or another approved actor may be appointed when the same independence and capability conditions are satisfied.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-19T00:00:00Z",
+          "evidence_date": "2026-09-18T18:15:50Z",
+          "scope": {
+            "mission_ids": ["SB-GOV-IV-1.0"],
+            "systems": ["independent-verification", "mission-governance"],
+            "environments": ["development"]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "HIGH",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-IV-1.0-learning:2026-09-18",
+    "generated_at": "2026-09-18T18:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-IV-1.0",
+    "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+    "source_fingerprint": "d3cf76543ba2bcdf4ffd16f2b0579d8827648ff6c82d9715eda8beedb0d97396"
+  },
+  "conditions": [
+    "Applies when replacing a hard-coded single-provider dependency in a mandatory gate with an appointable/flexible role, where the goal is resilience against provider unavailability, not a reduction in verification rigor.",
+    "Requires the preserved-invariant list (mandatory gate, actor separation, human runtime review, acceptance authority) to be stated explicitly at every stage of the change -- design recommendation, Founder approval, and activation -- so flexibility cannot later be misread as having also relaxed the gate."
+  ],
+  "anti_patterns": [
+    "Treating 'this provider is not strictly required' as equivalent to 'this verification step is not required' -- the two are easy to conflate once a named-provider requirement becomes a flexible role, and this mission's records deliberately wrote the distinction down at each stage to prevent that conflation.",
+    "Removing a named-provider dependency without an explicit, Founder-level decision when the provider was originally named by governance -- an ad hoc or silent substitution would have bypassed the actor-separation and capability-fit review this mission's design explicitly required."
+  ]
+}

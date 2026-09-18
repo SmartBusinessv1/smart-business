@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-GOV-IV-1.0-candidate-04-evidence-classes-prevent-redundant-reexecution-promotion-01",
+  "candidate_id": "SB-GOV-IV-1.0-candidate-04-evidence-classes-prevent-redundant-reexecution",
+  "candidate_revision_hash": "516633ddd5998a2f03850cecad0f0a9ae051fd11b63ef182ba4af60fc509143d",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Evidence Classes A/B/C provide a proportional verification model: independently exercise meaningful risk boundaries, inspect authoritative deterministic evidence where appropriate, and use static inspection for structural claims. Do not duplicate deterministic execution merely to relabel evidence, and do not treat green CI as proof beyond its actual coverage.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/01-activation-and-founder-design-basis.md",
+      "blob_sha": "26067b5ba7e2189292a823abe9a6a6195763cf8a",
+      "locator": "Section 6, 'Evidence classes': defines Class A/B/C with examples, then: 'The verifier should not use Class A execution where Class B or C is sufficient.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 6: 'Do not rerun all deterministic checks locally merely to rename Class B as Class A. Independently challenge coverage assumptions, test weakening and known gaps. Linux CI that skips Windows cases does not discharge Windows-specific Class A obligations.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification", "ci"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 6: 'For Class B, confirm the correct repository/workflow/event, run attempt, tested tree, job completion, test selection and skips. Distinguish run head from a synthetic merge-test checkout... A job skipped, cancelled, queued, unavailable or still running is not PASS.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["ci", "independent-verification"],
+        "environments": ["ci"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-19T12:00:00Z"
+}

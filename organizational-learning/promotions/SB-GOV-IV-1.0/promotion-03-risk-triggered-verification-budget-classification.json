@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "promotion_id": "SB-GOV-IV-1.0-candidate-03-risk-triggered-verification-budget-classification-promotion-01",
+  "candidate_id": "SB-GOV-IV-1.0-candidate-03-risk-triggered-verification-budget-classification",
+  "candidate_revision_hash": "3e4b8dccd48a0e47ec485c8cfc168f2c95201f3c277405223c29d6a7f7c4a914",
+  "resulting_maturity": "VALIDATED",
+  "promotion_scope": "MISSION_SCOPED",
+  "approving_authority": {
+    "actor_class": "mission-control",
+    "name_or_role": "Smart Business Mission Control"
+  },
+  "decision_ref": "communication/missions/SB-GOV-IV-1.0/mission-control/07-final-ole-learning-review-and-mission-scoped-promotion-decision.md",
+  "approved_scope": "Allocate scarce verifier effort using explicit substantive-risk triggers rather than file type, change size or “routine-looking” surface signals. A budget classification controls planned effort, not the truth status of missing evidence.",
+  "evidence": [
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/missions/SB-GOV-IV-1.0/mission-control/01-activation-and-founder-design-basis.md",
+      "blob_sha": "26067b5ba7e2189292a823abe9a6a6195763cf8a",
+      "locator": "Section 4, 'Codex Required': lists authority boundaries; financial integrity; permissions/isolation; security-sensitive paths; irreversible behavior; complex failure modes; final independent verification where governing mission risk warrants it.",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 4: 'Apply the highest relevant risk. \"UI polish\" changing permission visibility or confirmation behaviour is not automatically Not Required. A governance or operating-protocol change is not routine documentation merely because it is Markdown. Documentation that changes locked criteria, authority, operating commands, deployment instructions or executable configuration is assessed for substantive risk.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    },
+    {
+      "repository": "SmartBusinessv1/smart-business",
+      "commit_sha": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+      "path": "communication/Independent_Verification_Efficiency_Protocol.md",
+      "blob_sha": "f75236fc4d6542a08337e22fcda71af0b29033ae",
+      "locator": "Section 4: 'Use one initial review and one finding-specific review for each authorized correction by default. These are planning defaults, not limits that convert missing evidence into PASS. No universal token or minute quota is imposed.'",
+      "actor_class": "synthesis",
+      "observation_date": "2026-09-18T18:30:00Z",
+      "evidence_date": "2026-09-18T18:15:50Z",
+      "scope": {
+        "mission_ids": ["SB-GOV-IV-1.0"],
+        "systems": ["independent-verification"],
+        "environments": ["development"]
+      },
+      "relationship": "SUPPORTS"
+    }
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "promoted_at": "2026-09-19T12:00:00Z"
+}

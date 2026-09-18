@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "SB-GOV-IV-1.0",
+  "mission_class": "non-product-operating-framework-verification-governance",
+  "closure_revision": "05-postactivation-verification-and-ole-learning-handoff",
+  "final_disposition": "PROTOCOL ACTIVATED — SOURCE 18 v1.1 ACTIVE — SB-IV-1.0 ACTIVE — OLE LEARNING HANDOFF INITIATED",
+  "accepted_scope": "Codex / Independent Verification Efficiency Protocol: Founder-directed activation basis and design principles; Codex-drafted protocol, governance reconciliation, and activation plan; Mission Control draft review and Founder governance decision gate recommending the actor-flexible Stage 19 model (Package A + B approved, Package C kept operational-protocol-only); Founder approval of the actor-flexible Independent Verification Actor architecture; Founder-approved amendment package applying Package A/B to Source 18 v1.1, the Product Feature Elaboration template, and the Implementation and Evidence template, plus publication of communication/Independent_Verification_Efficiency_Protocol.md (SB-IV-1.0); post-merge verification and activation of Source 18 v1.1 and SB-IV-1.0 on canonical main. SB-P-1.12 remains explicitly not activated throughout.",
+  "acceptance_refs": [
+    "communication/missions/SB-GOV-IV-1.0/mission-control/04-postmerge-verification-and-protocol-activation.md"
+  ],
+  "closure_refs": [
+    "communication/missions/SB-GOV-IV-1.0/mission-control/05-postactivation-verification-and-ole-learning-handoff.md",
+    "communication/missions/SB-GOV-IV-1.0/README.md"
+  ],
+  "retained_followups": [
+    "SB-P-1.12 remains explicitly NOT ACTIVATED; activation is gated behind this mission's own OLE learning handoff plus formal communication closeout, per mission-control/04 Section 5",
+    "the actor-flexible Independent Verification Actor role is architecturally approved and active in Source 18 v1.1, but no actor other than the Mission Control-appointed one has yet been exercised in a real mission under this new model -- the model is activated, not yet operationally proven end-to-end",
+    "Package C (finding-scoped re-verification mechanics, evidence carry-forward rules, A/B/C methods) was deliberately kept out of Source 18 and lives only in the subordinate SB-IV-1.0 protocol; mission-control/02 Section 5 notes a future short cross-reference from Source 18 could be considered separately but was not made part of this activation",
+    "this handoff itself required an explicit, detailed human-issued instruction to begin, the same manual-trigger dependency already retained as an unresolved risk for SB-ORG-LEARNING-1.1 (GitHub Issue #590, Stage 4B) -- Stage 4B background automation remains deferred and unimplemented, so this recurrence is expected, not new"
+  ],
+  "source_snapshot_ref": "9595356fba67a5cfce9a66ca9f2272761adb669e",
+  "reopens": null,
+  "supersedes_closure": null
+}
