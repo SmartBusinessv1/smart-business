@@ -1,58 +1,55 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 5 FINAL PASS VERIFIER PUBLICATION
+# SB-ORG-LEARNING-1.1 — STAGE 6 PRE-MERGE MISSION CONTROL REVIEW
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current stage:** `5 — Independent verification / failure-path assurance`
+**Current stage:** `6 — Mission Control acceptance / Founder merge / communication closeout`
 
-**Current actor:** Codex — verifier publication only
+**Current actor:** Smart Business Mission Control
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 5 FINAL INDEPENDENT RE-VERIFICATION — PASS REPORTED — PUBLICATION AUTHORIZED`
+**Mission Control disposition:** `STAGE 5 — ACCEPTED; STAGE 6 PRE-MERGE REVIEW AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/36-stage5-final-pass-verifier-publication-authorization.md`
-2. locally completed `communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md`
-3. current `communication/live/report.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/37-stage5-acceptance-and-stage6-premerge-review-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md`
+3. prior Stage 1–5 acceptance / verification records
+4. controlling final reconciled OLE build plan
+5. current PR #589 state and CI.
 
 ## Authorized action
 
-Publish only the already-completed final Stage 5 PASS evidence:
+Mission Control shall perform the whole-mission Stage 6 pre-merge review only.
 
-- `communication/missions/SB-ORG-LEARNING-1.1/codex/12-stage5-s5-f07-final-independent-reverification.md`
-- the minimum already-prepared verifier update to `communication/live/report.md`
+Review:
 
-Preserve reviewed head:
-
-`25ac06c5384842f7a50b531f6262d9b278080b63`
-
-Preserve disposition:
-
-`PASS`
-
-Preserve that Stage 5 is ready for Mission Control completion review only.
+- accepted evidence for Stages 1 through 5;
+- authorized OLE v1 scope versus actual PR contents;
+- deferred Build Later capabilities remain absent;
+- current CI and PR integrity;
+- authority separation and no self-approval;
+- whether a Founder merge gate may be issued.
 
 ## Boundaries
 
-No implementation correction.
-No Stage 6.
 No merge.
+No self-merge.
+No SB-P-1.12 activation.
+No Stage 4B mature automation.
 No provider/scheduler/publisher expansion.
 No automatic promotion.
 No governance/Product Truth mutation.
 No production/customer mutation.
 
-`PR #589 — NOT READY TO MERGE`
-
-`SB-P-1.12 — NOT ACTIVATED`
+`PR #589 — NOT READY TO MERGE UNTIL A SEPARATE FOUNDER MERGE GATE IS ISSUED`
 
 ## Stop
 
-`STAGE 5 FINAL PASS VERIFICATION PUBLISHED — MISSION CONTROL COMPLETION REVIEW REQUIRED`
+`STAGE 6 PRE-MERGE REVIEW ACTIVE — FOUNDER MERGE NOT YET AUTHORIZED`
