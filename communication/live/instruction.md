@@ -1,57 +1,56 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-ORG-LEARNING-1.1 — STAGE 5 S5-F-07 VERIFIER PUBLICATION
+# SB-ORG-LEARNING-1.1 — STAGE 5 S5-F-07 NARROW CORRECTION
 
 **Mission:** `SB-ORG-LEARNING-1.1 — Smart Business Organizational Learning Engine — Implementation`
 
-**Current stage:** `5 — Independent verification / failure-path assurance`
+**Current stage:** `5 — Independent verification / failure-path assurance correction`
 
-**Current actor:** Codex — verifier publication only
+**Current actor:** Claude Code — authorized narrow correction builder
 
 **Authorized branch:** `mission/SB-ORG-LEARNING-1.1-stage2`
 
 **PR:** `#589 — OPEN — NOT MERGED`
 
-**Mission Control disposition:** `STAGE 5 FINAL RE-VERIFICATION — FAIL — S5-F-07 PUBLICATION AUTHORIZED`
+**Mission Control disposition:** `STAGE 5 FAIL — S5-F-07 NARROW CORRECTION AUTHORIZED`
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
 
 ## Read first
 
-1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/33-stage5-f07-verifier-publication-authorization.md`
-2. locally completed `communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md`
-3. current `communication/live/report.md`
+1. `communication/missions/SB-ORG-LEARNING-1.1/mission-control/34-stage5-f07-correction-authorization.md`
+2. `communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md`
+3. `communication/missions/SB-ORG-LEARNING-1.1/claude-code/09-stage5-f06-correction.md`
+4. current reconciliation implementation/tests.
 
 ## Authorized action
 
-Publish only the already-completed verifier evidence:
-
-- `communication/missions/SB-ORG-LEARNING-1.1/codex/11-stage5-s5-f06-final-independent-reverification.md`
-- the minimum already-prepared verifier update to `communication/live/report.md`
-
-Preserve reviewed head:
-
-`32591ee7a65852cbffe5712260c40ef2356234c9`
-
-Preserve disposition:
-
-`FAIL`
-
-Preserve new finding:
+Correct exactly:
 
 `S5-F-07 — null-ancestor branch treats unresolvable filesystem roots as genuine absence`
 
-Preserve that S5-F-06 is corrected and S5-F-01 through S5-F-05 regression cases passed.
+When the ancestry walk cannot establish any existing filesystem ancestor, that result is ambiguous / unsafe and must fail closed. It must not be mapped to genuine absence.
 
-Preserve the local-test nuance: initial Fast Test run had 359 passes with two execution failures; targeted retry passed 26/26. Do not rewrite this as an unqualified local 361/361 pass.
+Preserve:
+
+- S5-F-06 corrected ancestry behavior;
+- S5-F-05 corrected dangling-final-entry behavior;
+- S5-F-01 through S5-F-04 corrections;
+- genuine Stage 2A no-op/fingerprint;
+- all Stage 2/3/provenance/context/authority boundaries.
+
+## Required report
+
+`communication/missions/SB-ORG-LEARNING-1.1/claude-code/10-stage5-f07-correction.md`
 
 ## Boundaries
 
-No implementation correction in this publication step.
 No Stage 6.
 No merge.
 No provider/scheduler/publisher expansion.
 No automatic promotion.
+No `INSTITUTIONALISED` / `ORGANIZATION_WIDE` authority.
+No dependency/lockfile/workflow change.
 No governance/Product Truth mutation.
 No production/customer mutation.
 
@@ -61,4 +60,4 @@ No production/customer mutation.
 
 ## Stop
 
-`STAGE 5 S5-F-07 VERIFICATION PUBLISHED — MISSION CONTROL CORRECTION AUTHORIZATION REQUIRED`
+`STAGE 5 F-07 CORRECTION REPORTED — MISSION CONTROL RE-REVIEW REQUIRED`
