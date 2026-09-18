@@ -1,6 +1,6 @@
 # SMART BUSINESS MISSION CONTROL
 
-# SB-GOV-IV-1.0 — FOUNDER MERGE GATE FOR APPROVED DESIGN RECORD
+# SB-GOV-IV-1.0 — FOUNDER MERGE GATE FOR APPROVED AMENDMENT PACKAGE
 
 **Mission ID:** `SB-GOV-IV-1.0`
 
@@ -10,65 +10,49 @@
 
 **To:** Founder / human authorized operator
 
-**Status:** `FOUNDER APPROVED DESIGN — DRAFT RECORD READY FOR MERGE`
+**Status:** `FOUNDER-APPROVED AMENDMENT / PROTOCOL PUBLICATION READY`
 
 **Date:** 2026-09-18
 
 ---
 
-# Current Decision
+# Authorized action
 
-Founder approval is recorded for:
+Merge the amendment/publication pull request only after:
 
-- actor-flexible Stage 19;
-- Package A;
-- Package B;
-- Package C retained in the operational protocol only;
-- `communication/Independent_Verification_Efficiency_Protocol.md` as the durable operational destination;
-- mandatory independent verification retained;
-- `SB-P-1.12` held inactive until activation is complete.
+1. PR remains open and unmerged;
+2. no unexpected substantive change is added;
+3. current-head required checks are green.
 
-The protocol design metadata now records:
+This package contains:
 
-`FOUNDER APPROVED`
+- Source 18 v1.1 Founder-approved actor-flexible Stage 19 amendments;
+- Product Feature template v1.3 alignment;
+- Implementation and Evidence template v1.1 alignment;
+- final Founder-approved `communication/Independent_Verification_Efficiency_Protocol.md`;
+- minimum communication/mission status records.
 
-The protocol is still:
-
-`NOT ACTIVE`
-
-until approved amendments and final protocol publication are merged and Mission Control activates them.
+Package C remains in the operational protocol only.
 
 ---
 
-# Authorized Action
+# Activation boundary
 
-Founder/human authorized operator may merge PR #597 after confirming the current-head required checks are green.
+Merging the amendment PR does not itself complete activation.
 
-PR #597 is a design/reconciliation/approval record only.
+After merge, return to Mission Control.
 
-It does not itself mutate Source 18 or activate the protocol.
+Mission Control must verify canonical `main` and then separately publish the final activation metadata:
 
-Do not add Package A/B governance amendments to PR #597.
+- Source 18 v1.1 → ACTIVE;
+- protocol SB-IV-1.0 → ACTIVE;
+- activation date / merge commit recorded;
+- mission status reconciled.
 
----
-
-# After Merge
-
-Return to Mission Control.
-
-Mission Control will open a fresh amendment/publication branch from canonical `main` and authorize only:
-
-1. approved Package A changes;
-2. approved Package B changes;
-3. final Founder-approved operational protocol publication;
-4. minimum mission/status/index metadata required for activation.
-
-Package C shall not be added to Source 18.
-
-`SB-P-1.12` remains inactive.
+`SB-P-1.12` remains inactive until that step is complete.
 
 ---
 
 # Stop
 
-`FOUNDER APPROVAL RECORDED — STOP FOR HUMAN MERGE OF PR #597 AFTER CURRENT CHECKS GREEN`
+`APPROVED AMENDMENT PACKAGE READY — STOP FOR FOUNDER/HUMAN MERGE AFTER CURRENT CHECKS GREEN`
