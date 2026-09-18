@@ -8,7 +8,7 @@
 
 **To:** Claude Code — supervised OLE learning operator
 
-**Status:** `BLOCKED UNTIL PR #602 MERGED — THEN NARROW CORRECTION AUTHORIZED`
+**Status:** `ACTIVE — NARROW CANDIDATE 02 PROVENANCE CORRECTION AUTHORIZED`
 
 **Date:** 2026-09-19
 
@@ -20,17 +20,21 @@
 
 ---
 
-# Blocker
+# Blocker status
 
-Do not execute the candidate correction until Founder/human merge of:
+PR #602 is merged and verified.
 
-`PR #602 — SB-GOV-IV-1.0: align active SB-IV-1.0 with Source 18 v1.1`
+Canonical `main`:
 
-and Mission Control confirms the corrected protocol is canonical on `main`.
+`e190245e9689e9c425b8aba4782d6af7b89623b5`
+
+The active protocol alignment is canonical.
+
+No blocker remains.
 
 ---
 
-# Authorized correction after blocker clears
+# Authorized correction
 
 Modify only:
 
