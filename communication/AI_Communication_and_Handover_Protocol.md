@@ -2,9 +2,9 @@
 
 - **Mission:** SB-GOV-COMMS-1.2 (Version 1.0); SB-GOV-PRODUCT-EXEC-1.0 (Version 1.1 amendment)
 - **Version:** 1.1
-- **Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.0, as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`, remains the operative text until Version 1.1 is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header)
+- **Status:** AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. Version 1.0, as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`, remains the operative text until Mission Control records the Activation Confirmation (the post-merge activation step defined in the Source 18 header and recorded in the [activation record](missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md)). Version 1.1 has been independently verified and merged by a human
 - **Authority:** Founder through Mission Control
-- **Approved By:** Founder (Version 1.0). Version 1.1: PENDING
+- **Approved By:** Founder (Version 1.0). Version 1.1: Founder — Riyas PK, by the decisions recorded on PR #605 and the human merge of PR #606 (evidence: activation record, Section 3)
 - **Activated By:** Mission Control (Version 1.0). Version 1.1: PENDING
 - **Activation Date:** 2026-08-01 (Version 1.0). Version 1.1: PENDING
 - **Activation Commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e` (Version 1.0). Version 1.1: PENDING
@@ -688,10 +688,12 @@ The Stage A activation mission shall set:
 | Draft 1.3 | SB-GOV-COMMS-1.2 | Added recurring live instruction/report numbering, exact pair matching, closure consolidation, archive outputs, live-template restoration, and Founder-chat Git command visibility | DRAFT |
 | Draft 1.4 | SB-GOV-COMMS-1.2 | Added provisional live-report status, closure-state reconciliation, chronological transcript preservation, numbered exchange lifecycle, archive consolidation, live-template restoration, and Founder-chat pull/push command visibility | DRAFT |
 | 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, communication housekeeping, closure reconciliation, and archival governance using a temporary Phase 1 compensating control | ACTIVE |
-| 1.1 | SB-GOV-PRODUCT-EXEC-1.0 | Bounded work-package Git authorization (Section 16.1) and the commit-message and attribution-trailer rule (Sections 11 and 16), with the matching expiry events (Section 21); Product Mission intake record (Section 5), Stage Ledger and handover timing (Section 7), and closure order (Section 26). Canonical human-merge authority, exact-file staging, no self-approval and no self-merge are unchanged | AMENDMENT PROPOSED — ACTIVATION PENDING |
+| 1.1 | SB-GOV-PRODUCT-EXEC-1.0 | Bounded work-package Git authorization (Section 16.1) and the commit-message and attribution-trailer rule (Sections 11 and 16), with the matching expiry events (Section 21); Product Mission intake record (Section 5), Stage Ledger and handover timing (Section 7), and closure order (Section 26). Canonical human-merge authority, exact-file staging, no self-approval and no self-merge are unchanged. Independently verified and merged in PR #606 at publication commit `b3cd5f439e8795855d6ef0f527d7ccea18c48080` (publication commit, not an activation commit) | AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. No activation date, activation commit or activation merge commit is recorded here |
 
 Future updates must append rather than overwrite this history.
 
+**Interpretation note (activation-record reconciliation, `SB-GOV-PRODUCT-EXEC-1.0`).** The Status of row 1.1 and the header Status previously read "AMENDMENT PROPOSED — ACTIVATION PENDING". They now record that PR #606 was independently verified and merged and that activation is still pending. The header Approved By for Version 1.1, previously "PENDING", now cites the Founder decisions on PR #605 and the Founder human merge of PR #606. No activation date, activation commit or activation merge commit is recorded, and the status of rows 1.0 and earlier is unchanged.
+
 ---
 
-**Activation control:** Version 1.1 is an amendment proposed under `SB-GOV-PRODUCT-EXEC-1.0` and is not active until independently verified, human-merged and activated by Mission Control; Version 1.0 remains operative until then. Stage A and Stage B are active under independently verified technical branch protection. The temporary Phase 1 compensating control was retired on 2026-08-02. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.
+**Activation control:** Version 1.1 is an amendment under `SB-GOV-PRODUCT-EXEC-1.0`. It has been independently verified and human-merged (PR #606) and is not active until Mission Control records the Activation Confirmation; Version 1.0 remains operative until then. Stage A and Stage B are active under independently verified technical branch protection. The temporary Phase 1 compensating control was retired on 2026-08-02. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.
