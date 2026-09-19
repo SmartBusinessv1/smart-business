@@ -204,7 +204,16 @@ AI assistants shall not:
 - alter branch protection;
 - expose credentials or secrets.
 
-Authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification. Once Communication and Handover Protocol Version 1.1 is active, work-package authority also expires when its named end event occurs or its end date passes, and a change of the authorized attribution-trailer rule ends the authority.
+Until Communication and Handover Protocol Version 1.1 is active, authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
+
+**Taking effect on activation of Communication and Handover Protocol Version 1.1.** Once that version is active, expiry depends on the type of grant, consistently with Protocol Sections 16.1 and 21:
+
+- An ordinary **stage-scoped grant** expires when its authorized stage is completed.
+- A **bounded work-package grant** expires when its named end event occurs or its end date passes, whichever comes first. Completing an intermediate authorized stage of the work package does not, by itself, expire it.
+- **Both types also expire immediately** on every stop condition of Protocol Section 21: Mission Control revocation; the mission being paused, closed, superseded or rejected; a change of the authorized branch or scope; a material change of a Mission Control-locked branch name or locked commit message; a change of, or inability to follow, the authorized commit-message or attribution-trailer rule; unrelated working-tree changes; validation failure; a merge or rebase conflict; a pull that cannot fast-forward; and a change of repository or authentication state.
+- Resumption after any expiry requires renewed authorization and confirmation of authority and repository state.
+
+Neither grant type broadens the permitted Git operations, paths or approval authority.
 
 When Founder action is required, exact Git commands and expected evidence shall be shown directly in chat.
 

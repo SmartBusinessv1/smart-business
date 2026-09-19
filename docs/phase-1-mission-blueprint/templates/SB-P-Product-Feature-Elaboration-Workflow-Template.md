@@ -812,7 +812,7 @@ Mission Control runtime review
 ↓
 Independent verification by the Mission Control-appointed actor under Source 18
 ↓
-Claude creates:
+Separately appointed Evidence and Completion compiler prepares, after independent verification:
 • Evidence Package
 • Completion Report
 ↓
