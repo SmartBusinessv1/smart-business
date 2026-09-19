@@ -12,11 +12,15 @@
 
 **Date:** 2026-09-19
 
+**Revision:** base draft published as PR #605 (head `194b9a4b9dfd2ece65a419501fc29b90f8bd85ac`); this revision adds the design addendum in §18 with conforming edits to §2, §3.3, §5, §6.1, §10.2, §12, §14, §15 and §16, and is published to PR #605 under Mission Control's Git authorization for this revision.
+
 > Nothing in this document changes any governing source. It is a design for review. Evidence and bottleneck analysis: [01](./01-current-state-and-bottleneck-analysis.md). Exact file-by-file changes: [03](./03-governance-amendment-map.md). `SB-P-1.12` remains `NOT ACTIVATED`.
 >
 > **Founder decision gates — NOT APPROVED.** Two proposals in this draft are open Founder decisions and must not be read as approved: **DG-1**, the branch-effective (Class 2) authority-record model and the five-gate merge model that depends on it (§3); and **DG-2**, work-package-scoped Git authority (§3.4). The Git authority used to publish this draft is a separate, narrow grant for four files and is not evidence for either. The Product Truth coverage controls in §16 operate identically whether or not either gate is approved.
 >
 > **Founder addendum incorporated:** a mandatory Feature Coverage and Product Truth Traceability Matrix (**FCTM**) now runs from intake to completion accounting (§16). The dual-intake rule is unchanged (§4).
+>
+> **Mission Control review of PR #605 addressed** by the narrow design addendum in §18 (2026-09-19 review comment). That review is design review, not governance approval, a Founder decision or merge authorization. The addendum removes Codex as the mandatory default Stage 2 and Stage 4 actor (§18.2), keeps DG-1 and DG-2 unapproved and adds a fail-closed model (§18.4), refines the FCTM vocabulary and efficiency rules (§18.5), separates accepted mission progress from complete feature demonstration (§18.6), presents the exact live protection state (§18.7), restates the production migration default-deny boundary (§18.8) and records a Git authority-precision finding (§18.9).
 
 ---
 
@@ -49,9 +53,9 @@ Change classes: `KEEP`, `REFRAME` (same purpose, new input/output), `CONDITIONAL
 | Stage | Proposed name | Class | Owner | Principal record |
 |---|---|---|---|---|
 | 1 | Mission Initiation and Intake Pack | REFRAME | Mission Control | Intake Pack (§5.1); FCTM opened |
-| 2 | Mission Truth and Delta Reconciliation | REFRAME | Codex (Claude Code may submit a repository/runtime baseline input) | Mission Truth Pack: **FCTM populated**, Delta, Institutional Learning Intake Record |
-| 3 | Founder Decision Gate | CONDITIONAL | Codex with Founder | Gate Record: `TRIGGERED` or `NOT TRIGGERED`; reopened by any Product Truth conflict or proposed change |
-| 4 | Blueprint Assembly, Sections 1–19 | REFRAME | Codex | Blueprint assembled by reference; every FCTM row mapped |
+| 2 | Mission Truth and Delta Reconciliation | REFRAME | **Definition Actor** appointed by Mission Control (§18.2); Codex is not the default | Mission Truth Pack: **FCTM populated**, Delta, Institutional Learning Intake Record |
+| 3 | Founder Decision Gate | CONDITIONAL | Definition Actor prepares; Founder decides genuine open decisions only | Gate Record: `TRIGGERED` or `NOT TRIGGERED`; reopened by any Product Truth conflict or proposed change |
+| 4 | Blueprint Assembly, Sections 1–19 | REFRAME | **Definition Actor** appointed by Mission Control (§18.2) | Blueprint assembled by reference; every FCTM row mapped |
 | 5 | Mission Control Product Review | KEEP | Mission Control | Approval of Sections 1–19 |
 | 6 and 7 | Integrated Builder and Engineering Review | COMBINE, PARALLEL | Claude Code; specialists in parallel | Builder Review findings; Sections 20–21 |
 | 8 | Founder Approval and Blueprint Lock | KEEP | Mission Control with Founder | Lock record — **gate G1** |
@@ -103,7 +107,7 @@ No actor may waive a gate governing its own work.
 
 ## 3. Mechanics: Stage Ledger, work packages, checkpoints and PR rules
 
-> **Status of this section: PROPOSAL. DG-1 (§3.1 to §3.3) and DG-2 (§3.4) are open Founder decision gates, not approved.** Nothing here is in force. **Fallback if either is not approved:** the 24 stages, the conditional and combined stages, the FCTM and every control in §16 still apply; each stage boundary then keeps its own Mission Control authorization and pull request as today, and the merge-count reduction is simply not obtained. The Stage Ledger (§3.2) is useful under either outcome.
+> **Status of this section: PROPOSAL. DG-1 (§3.1 to §3.3) and DG-2 (§3.4) are open Founder decision gates, not approved.** Nothing here is in force. **Fallback if either is not approved:** the 24 stages, the conditional and combined stages, the FCTM and every control in §16 still apply; the fail-closed operating model in §18.4 applies. It still lets adjacent documentary steps be prepared together and gives roughly one canonical human-merged crossing per gate (about ten to thirteen, a design estimate) without any branch-effective authority; the larger reduction to five gates is what DG-1 would add. The Stage Ledger (§3.2) is useful under either outcome.
 
 ### 3.1 Rules (DG-1)
 
@@ -125,14 +129,16 @@ Dispositions: `COMPLETE`, `NOT TRIGGERED`, `NOT APPLICABLE — JUSTIFIED`, `COMB
 
 ### 3.3 Two classes of authority record (DG-1: branch-effective authority — NOT APPROVED)
 
-The Class 2 row below means an authority-bearing decision would take effect when committed to a branch, not when a human merges it. That is a change to the approved authority model and needs an explicit Founder decision.
+A committed branch record is not approved canonical execution authority. Under DG-1 as proposed, a Class 2 record would do one narrow thing: **permit the next documentary preparation step to begin**. It would confer no authority to lock, authorize, execute, accept or close. Even that is a change to the approved authority model and needs an explicit Founder decision. If it is declined, §18.4 is the fail-closed operating model.
 
-| Class | Examples | Effective when |
+| Class | Examples | What it does |
 |---|---|---|
-| **Class 1** | Blueprint lock, which locks the FCTM dispositions and classifications (G1); Implementation Authorization, which includes the package lock, the pre-appointed verifier and every production or migration flag (G2); any migration or production authorization; Stage 23 acceptance (G4); Stage 24 closure (G5) | Merged to `main` by a human |
-| **Class 2** | Stage approvals and returns for refinement, EIS review disposition and EIS lock, Stage 18 runtime-review disposition, correction reviews, replacement-verifier decisions | Committed to the mission branch with provenance; ratified by the human merge of the next gate |
+| **Class 1** | Blueprint lock, which locks the FCTM dispositions and classifications (G1); Implementation Authorization, which includes the package lock, the pre-appointed verifier and every production or migration flag (G2); any migration or production authorization; Stage 23 acceptance (G4); Stage 24 closure (G5) | **Canonical authority; effective only when a human merges it to `main`** |
+| **Class 2** (DG-1, not approved) | Stage approvals and returns for refinement, EIS review disposition and provisional EIS lock, Stage 18 runtime-review disposition, correction reviews, replacement-verifier decisions | **Sequencing only:** recorded on the mission branch with provenance so the next documentary step may be prepared; becomes canonical only through the human merge of the next gate, and is void if that merge does not happen |
 
-The EIS lock is Class 2 because Stage 12 must be able to rely on it before G2; it is ratified at G2, and the package it enables cannot take effect until then. The Blueprint lock is Class 1 because it fixes product authority and every later stage depends on it being canonical.
+The provisional EIS lock is Class 2 because Stage 12 preparation must be able to start before G2; the package it enables cannot take effect until the human merge at G2. The Blueprint lock is Class 1 because it fixes product authority and every later stage depends on it being canonical.
+
+**Never branch-effective under any model,** whether or not DG-1 is approved: production or migration authority, a Founder Product Truth decision or classification change, the Blueprint lock, build authorization (the Implementation Authorization), acceptance, and closure. Each is Class 1 and effective only when a human merges it to `main`.
 
 Class 2 records are valid only if they name (a) the Mission Control instruction that authorized the phase, (b) the exact artifact SHA reviewed, and (c) the decision. The actor that authored an artifact may transcribe but never originate the decision about it. Each gate PR carries a **Decision Provenance** table so the human merger can confirm every Class 2 record matches a decision Mission Control actually made.
 
@@ -195,7 +201,7 @@ Mission Control records, in addition to today's outputs:
 
 ### 5.2 Stage 2 — Mission Truth and Delta Reconciliation
 
-Codex remains the owner. Stage 2 stops being "extract truth" and becomes "consume approved truth, account for all of it, and find what changed". The Truth Pack has five parts:
+The **Definition Actor** appointed by Mission Control owns Stage 2 (§18.2); Codex is not the default owner. Stage 2 stops being "extract truth" and becomes "consume approved truth, account for all of it, and find what changed". The Truth Pack has five parts:
 
 1. **FCTM, populated** (§16). Every applicable approved requirement, each with exactly one disposition. It replaces the former free-form Truth Table for requirement-bearing truth, so approved requirements are enumerated rather than summarized.
 2. **Derived constraints.** Interpretations that follow from approved truth but are not stated in it, each flagged as requiring confirmation when it could materially affect behaviour. A derived constraint is never an approved requirement and never fills an `UNRESOLVED` row.
@@ -203,7 +209,7 @@ Codex remains the owner. Stage 2 stops being "extract truth" and becomes "consum
 4. **Unresolved and conflicts.** Extracted from `UNRESOLVED FOUNDER DECISION` and `ESCALATED` FCTM rows, plus any Build Plan §15 or Phase 1 guide §17 item this mission's scope actually needs. A claim with no citation is `UNRESOLVED` by definition.
 5. **Institutional Learning Intake Record** (§4).
 
-Claude Code may submit a repository and runtime baseline as a finding; it does not become owner, and Source 18 §3 ("only the current stage owner modifies the deliverable") is unchanged.
+Where another actor is better placed to establish repository and runtime facts, Mission Control may direct it to submit a baseline finding; it does not become owner, and Source 18 §3 ("only the current stage owner modifies the deliverable") is unchanged.
 
 ### 5.3 Stage 3 — Founder Decision Gate (conditional)
 
@@ -218,7 +224,7 @@ Founder Discovery is an exception gate. It is `TRIGGERED` by any of:
 - **T7** a **proposed omission, deferral, pull-forward, simplification or reclassification** of any approved requirement, including any change of its build commitment, commercial classification or mission assignment (§16.5);
 - **T8** a **Product Truth conflict or infeasibility found at any later stage**: between a contract, the Build Plan, Source 11, the Blueprint, the EIS, the implementation or a security or integrity finding (§16.8).
 
-When triggered, the existing Founder-led dialogue and Founder Product Decision Record run for **only** the triggering items. When none applies, Mission Control records `Founder Decision Gate — NOT TRIGGERED`, listing each trigger checked with its evidence. **A not-triggered record is permitted only if the FCTM has no `UNRESOLVED FOUNDER DECISION` row on this mission's critical path and no `ESCALATED` row.** A one-page Founder Brief summarizes the FCTM and the not-triggered determination. The Founder's objection at any point reopens the gate, and Stage 8 approval remains the backstop over the whole Blueprint. T7 and T8 can arise after Stage 3; when they do, the gate reopens at that point and the affected row blocks every lock, authorization and acceptance that relies on it until the Founder decides.
+When triggered, the existing Founder-led dialogue and Founder Product Decision Record run for **only** the triggering items, conducted by the actor Mission Control designates (the Definition Actor or Mission Control itself). Codex is not the default interviewer, and no Founder-question sequence runs by default. When none applies, Mission Control records `Founder Decision Gate — NOT TRIGGERED`, listing each trigger checked with its evidence. **A not-triggered record is permitted only if the FCTM has no `UNRESOLVED FOUNDER DECISION` row on this mission's critical path and no `ESCALATED` row.** A one-page Founder Brief summarizes the FCTM and the not-triggered determination. The Founder's objection at any point reopens the gate, and Stage 8 approval remains the backstop over the whole Blueprint. T7 and T8 can arise after Stage 3; when they do, the gate reopens at that point and the affected row blocks every lock, authorization and acceptance that relies on it until the Founder decides.
 
 ## 6. Stages 4 to 8 — Blueprint, integrated review, lock
 
@@ -231,7 +237,7 @@ When triggered, the existing Founder-led dialogue and Founder Product Decision R
 - A Section-to-source traceability table is added to Section 19 (Governance History). It is **keyed by FCTM row ID**: each row maps to the Blueprint section that carries it (scope in Section 8, rules in Section 10, dependencies in Section 12, acceptance scenarios and experience anchors in Section 15).
 - **Section 11 (Out of Scope) lists every `ASSIGNED TO LATER MISSION`, `DELEGATED` and `OUT OF BUILD SCOPE` row** as "still committed / not in this mission" (the contracts' own Anti-Drift Rule wording), with the owning mission or the preserved classification. Out of scope never means dropped.
 - **No orphan content.** Blueprint content that maps to no FCTM row is either a recorded mission-specific refinement or a scope expansion. A refinement that changes approved truth triggers T3; the mature contract already requires a Blueprint to state any intentional refinement or difference.
-- Codex does not omit, defer, simplify, reclassify or expand an approved requirement to fit a narrower draft.
+- The Definition Actor does not omit, defer, simplify, reclassify or expand an approved requirement to fit a narrower draft.
 
 ### 6.2 Stages 6 and 7 — Integrated Builder and Engineering Review
 
@@ -268,7 +274,7 @@ The Founder approves Sections 1–21, confirms the FCTM and Truth Pack summary, 
 
 The three documents (Engineering Contract, Builder Prompt(s), Verification Checklist) are authored together and reviewed as a set in one Mission Control review. The template rule that the contract must be locked before the prompt (Implementation template line 197) is removed; cross-references are validated in the single review. "No package may exist before both locks" is unchanged.
 
-**Row mapping in the package.** The Engineering Contract maps every `IN SCOPE` row to at least one obligation. The Verification Checklist maps every `IN SCOPE` row to at least one checklist item with a planned evidence class (A, B or C), including named negative-path items for permission, isolation and denial rows and a named runtime scenario for every experience row. `ALREADY DEMONSTRATED` rows map to a regression or no-change item or a justified `NOT APPLICABLE`. The Builder Prompt lists the rows each workstream builds and forbids building behaviour outside them. Mission Control confirms completeness in the single package review; **an `IN SCOPE` row with no obligation or checklist item blocks the Implementation Authorization** (gate 5).
+**Row mapping in the package.** The Engineering Contract maps every `IN SCOPE` row to at least one obligation. The Verification Checklist maps every `IN SCOPE` row to at least one checklist item with a planned evidence class (A, B or C), including named negative-path items for permission, isolation and denial rows and a named runtime scenario for every experience row. `ALREADY DEMONSTRATED` rows map to a regression or no-change item or a justified `NOT APPLICABLE`, carry their traceable evidence, and are never assumed to pass (§18.5, E-3). The Builder Prompt lists the rows each workstream builds and forbids building behaviour outside them. Mission Control confirms completeness in the single package review; **an `IN SCOPE` row with no obligation or checklist item blocks the Implementation Authorization** (gate 5).
 
 ### 7.3 Package Lock and Implementation Authorization (Stage 13)
 
@@ -360,7 +366,7 @@ Unchanged authority. Additions: the disposition states explicitly what it does n
 
 Acceptance is recorded against the Contract Reconciliation. An `IN SCOPE` row that is not `DEMONSTRATED` is **not** an ordinary follow-up: accepting it is a scope deviation and needs a recorded Founder decision (Source 18 Stage 23 already requires Founder approval for a scope deviation or a material unresolved follow-up). Acceptance never states contract-level completion.
 
-**The Global Product Completion View is updated here**, in the same change as the acceptance record, because its own protocol updates affected rows "at Mission Acceptance" (View §12), and only from the accepted Contract Reconciliation (§16.10). The builder does not edit the view; Mission Control applies or approves the change. Class 1; effective at **G4**.
+**The Global Product Completion View is updated here**, in the same change as the acceptance record, because its own protocol updates affected rows "at Mission Acceptance" (View §12), and only from the accepted Contract Reconciliation (§16.10). The builder does not edit the view; Mission Control applies or approves the change. **Accepted mission progress is not complete feature demonstration, and no status upgrade follows from a partial mission (§18.6).** Class 1; effective at **G4**, or on the human merge of the acceptance record if DG-1 is not approved.
 
 ### 10.3 Stage 24 — Closure Package
 
@@ -415,7 +421,8 @@ Canonical repository → production delivery repository → Lovable publication 
 |---|---|---|---|
 | Founder final product authority | Source 18 §4.2, §2 | Stage 8 approval and lock; Stage 3 gate; Founder-reserved runtime scenarios | No |
 | Mission Control acceptance | Stage 23 | Stage 23, Class 1, G4 | No |
-| No self-approval or self-verification | Source 18 §3, §4.9 | Independence matrix (§8.2); Class 2 transcription rule (§3.3) | Strengthened |
+| No self-approval or self-verification | Source 18 §3, §4.9 | Independence matrix (§8.2); Class 2 transcription rule (§3.3); Definition Actor role-separation rule (§18.2) | Strengthened |
+| Separation of product definition and engineering challenge | Source 18 §3 ("separate product definition, engineering specification, implementation, verification, and acceptance") | Definition Actor may not be the only challenge to its own definition on a material-risk mission (§18.2) | Preserved when actor allocation becomes flexible |
 | Mandatory Stage 19 | Stage 19 | Stage 19, restated | No |
 | Human merge; protected `main` | Protocol §13, §22 | PR-4; five human gates | No (fewer, larger events) |
 | Server/database-side authorization, isolation, revalidation, negative paths | Phase 1 guide §9; Build Plan §13 | Specialist review mandatory on risk trigger (§6.2); Class A negative-path probes; Experience Verification Matrix | No |
@@ -470,6 +477,10 @@ Status of every row is `OPEN — NOT APPROVED`. The recommendation column is adv
 | D-10 | Promote Fast Gate to a required check and address 0 required reviews | Out of scope here; consider a separate branch-protection mission |
 | **D-11** | Adopt the mandatory FCTM and its rules (§16), including the row-granularity rule, the classification lock and the T7 and T8 triggers. **Implements the Founder addendum.** Independent of D-01, D-02a, D-02b | Founder-required; the open questions are only granularity and tooling |
 | **D-12** | Narrow amendment of the Global Product Completion View (03 `RG-01`, `RG-02`; `RG-03` optional) so the view enforces demonstrated-only updates | Consider with D-11; the view otherwise keeps a looser standard than Source 18 |
+| **D-13** | **Definition Actor.** Stage 2 and Stage 4 owned by a qualified actor appointed by Mission Control in the Stage 1 record (Claude Code or another authorized actor where fit); Codex not mandatory; role-separation rule (§18.2). Replaces the current Source 18 §4.3 allocation | Consider; changes actor allocation, so it needs the Founder |
+| **D-14** | **Fail-closed operating model** (§18.4): preparation is not authority; bundled preparation of adjacent documentary steps; one canonical crossing per gate. Independent of DG-1 and DG-2, and the fallback if DG-1 is declined | Consider; it works within current gates and needs no branch-effective authority |
+| **D-15** | Whether a partial mission may change a contract's non-terminal implementation state. Default until decided: **no status upgrade from a partial mission**; progress is recorded in fact fields only (§18.6) | Keep the strict default unless the Founder wants otherwise |
+| **D-16** | Disposition of the Git authority-precision finding (§18.9): ratify as a narrow administrative finding, not precedent for DG-2; require commit-message authorization in future grants | Mission Control and Founder to dispose; no history rewrite |
 
 ## 15. Non-activating applicability check for SB-P-1.12
 
@@ -477,10 +488,10 @@ Preliminary, non-binding and not pre-work. It only tests whether the design beha
 
 - Stage 2 delta would already know: Build Plan §5.2 is stale (CI exists), §5.1 `anon` exposure is still open in the repository (O-03), and the topology is as in 01 §3.5.
 - Founder Runtime scenarios A (bounded delegation) and B (revocation invalidates a stale action) already exist in Build Plan §10.1 and would be seeded and locked.
-- The Build Plan §15 unresolved decisions (pricing, retention, KYC, marketplace, underwriting) appear unrelated to an authority model, so Stage 3 would likely be `NOT TRIGGERED`, subject to Codex's Stage 2 work.
+- The Build Plan §15 unresolved decisions (pricing, retention, KYC, marketplace, underwriting) appear unrelated to an authority model, so Stage 3 would likely be `NOT TRIGGERED`, subject to the Definition Actor's Stage 2 work.
 - Authority, RLS and grants trigger mandatory parallel security and Supabase review and likely a Codex Required classification.
 - Remediating grants probably needs a migration, so the scope flag and a pre-flight package would appear at Stage 1 and Stage 7, not at Stage 19.
-- **FCTM illustration `[R]`.** Build Plan §9 maps `SB-P-1.12` to contracts 21, 22, 20 and 17 plus the Product & Price Master reconciliation. Contract 21 alone has 27 sections and 12 numbered acceptance scenarios, including support access (§14), entitlements (§16), delegated automation (§12) and supplier, customer and delivery participation (§13). Build Plan §10.1 lists a summary of required work areas and two Founder runtime scenarios; scenario B (revocation invalidates a stale action) corresponds to contract 21 acceptance scenario 8. Without a matrix, a mission could satisfy the Build Plan summary and never account for the rest of the contract. The FCTM would force each of those sections to carry an explicit disposition: in scope here, already demonstrated, assigned to a named later mission by an approved source, delegated, not applicable, or escalated. Which disposition each takes is Codex's Stage 2 work and, where it needs a decision, the Founder's; nothing here decides it.
+- **FCTM illustration `[R]`.** Build Plan §9 maps `SB-P-1.12` to contracts 21, 22, 20 and 17 plus the Product & Price Master reconciliation. Contract 21 alone has 27 sections and 12 numbered acceptance scenarios, including support access (§14), entitlements (§16), delegated automation (§12) and supplier, customer and delivery participation (§13). Build Plan §10.1 lists a summary of required work areas and two Founder runtime scenarios; scenario B (revocation invalidates a stale action) corresponds to contract 21 acceptance scenario 8. Without a matrix, a mission could satisfy the Build Plan summary and never account for the rest of the contract. The FCTM would force each of those sections to carry an explicit disposition: in scope here, already demonstrated, assigned to a named later mission by an approved source, delegated, not applicable, or escalated. Which disposition each takes is the Definition Actor's Stage 2 work and, where it needs a decision, the Founder's; nothing here decides it.
 
 ## 16. Product Truth coverage and traceability (Founder addendum)
 
@@ -520,7 +531,7 @@ Downstream stages add their own mapping keyed by row ID (§16.6). The Stage 2 ow
 
 **Scope:** every contract the mission advances (Build Plan §9), every contract those delegate to where the mission touches the delegated behaviour (Coverage Matrix §6), the Build Plan §10 section for the mission, §11 and §12 (cross-mission dependencies and the support split), §16 (explicit rejections), and View §9 (reject and separate-product boundaries).
 
-**Rule:** every section of every in-scope contract appears in at least one row. Applicable sections expand into obligation-level rows covering all of: merchant experience and user journeys; workflows; permission and role boundaries and confirmation rules; business rules and data requirements; error, exception and denial behaviour; privacy and dignity; performance expectations; dependencies and shared foundations; **each numbered acceptance scenario as its own row**; the contract's completion gate; every classification and sub-capability; explicit non-goals and superseded behaviours as "must not regress" rows; and in-scope unresolved Founder questions. A wholly inapplicable section may be a single row with its reason. Grouping applicable obligations into one row is allowed only if each obligation is enumerated inside it; "etc." is not permitted.
+**Rule:** every section of every in-scope contract appears in at least one row. **Granularity is refined in §18.5:** sections that are in scope, partially delivered or mixed are enumerated at obligation level; a section may be a single row only when the whole section has one non-`IN SCOPE` disposition and one citation. Applicable sections expand into obligation-level rows covering all of: merchant experience and user journeys; workflows; permission and role boundaries and confirmation rules; business rules and data requirements; error, exception and denial behaviour; privacy and dignity; performance expectations; dependencies and shared foundations; **each numbered acceptance scenario as its own row**; the contract's completion gate; every classification and sub-capability; explicit non-goals and superseded behaviours as "must not regress" rows; and in-scope unresolved Founder questions. A wholly inapplicable section may be a single row with its reason. Grouping applicable obligations into one row is allowed only if each obligation is enumerated inside it; "etc." is not permitted.
 
 ### 16.4 Dispositions and the completeness test
 
@@ -529,11 +540,11 @@ Every row has exactly one disposition, with a citation:
 | Disposition | Meaning | Requires |
 |---|---|---|
 | `IN SCOPE` | Build Now in this mission and to be demonstrated here | Assignment to this mission by an approved source |
-| `ALREADY DEMONSTRATED` | Shown by an earlier accepted mission | Mission and evidence cited; rechecked only if the Delta shows change |
-| `ASSIGNED TO LATER MISSION` | Still committed, not in this mission | An approved assignment source (Build Plan §9 to §12 or the contract's own dependency), naming the mission. No citation means the disposition is unavailable and T7 applies |
+| `ALREADY DEMONSTRATED` | Shown by an earlier accepted mission. **Not assumed to pass** (§18.5, E-3) | The earlier mission's verified evidence cited by path and commit or run identity, plus a Delta impact check showing it is still valid. Without traceable evidence the disposition is unavailable and the row is `IN SCOPE` |
+| `ASSIGNED TO LATER MISSION` | A **`BUILD NOW`** requirement scheduled to another mission. It stays `BUILD NOW`; it is scheduling, not a build-commitment change (§18.5, E-4) | An approved assignment source (Build Plan §9 to §12 or the contract's own dependency), naming the mission. No citation means the disposition is unavailable and T7 applies |
 | `DELEGATED` | Owned by another contract | The delegation map entry and the mission that owns it |
 | `NOT APPLICABLE` | Does not concern this mission | Specific reason |
-| `OUT OF BUILD SCOPE` | Approved `BUILD LATER`, `SEPARATE PRODUCT` or `REJECT` | Classification preserved verbatim. `REJECT` rows are "must not appear" checks |
+| `OUT OF BUILD SCOPE` | The approved **commitment** is `BUILD LATER`, `SEPARATE PRODUCT` or `REJECT`. `BUILD LATER` is a product commitment, not a mission schedule (§18.5, E-4) | Classification preserved verbatim. `REJECT` rows are "must not appear" checks |
 | `UNRESOLVED FOUNDER DECISION` | On the approved unresolved list | Whether it is on this mission's critical path (View §8 and §10); if not, work continues |
 | `ESCALATED` | Conflict or proposed change awaiting the Founder | Blocks every lock, authorization and acceptance that relies on the row |
 
@@ -553,7 +564,7 @@ Three dimensions are locked for every approved requirement: **build commitment**
 - using an unresolved Founder decision as a blocker beyond its critical path;
 - describing a partial implementation as complete.
 
-Permitted without a Founder decision: ordering work inside the mission's assigned scope, and workstream splits (they never change mission assignment, §8.1). Technical dependencies may change build order but not product commitment. `ACCEPTED WITH FOLLOW-UP` cannot carry an `IN SCOPE` row (§10.2).
+Permitted without a Founder decision: ordering work inside the mission's assigned scope, and workstream splits (they never change mission assignment, §8.1). Technical dependencies may change build order but not product commitment. `ACCEPTED WITH FOLLOW-UP` cannot carry an `IN SCOPE` row (§10.2). **Technical incompleteness is never a right to reclassify or defer** (§18.5, E-6).
 
 ### 16.6 Traceability chain and carry-forward
 
@@ -600,7 +611,7 @@ Triggers T7 and T8 (§5.3) apply at every stage. Procedure:
 
 The Completion Report carries a **Contract Reconciliation** for every contract advanced, one line per FCTM row, using this status vocabulary:
 
-`DEMONSTRATED` (evidence class and path, verifier result, runtime evidence where applicable); `IMPLEMENTED — NOT DEMONSTRATED`; `PARTIALLY DEMONSTRATED — <what remains>`; `NOT IMPLEMENTED`; `ASSIGNED TO LATER MISSION`; `DELEGATED`; `OUT OF BUILD SCOPE`; `NOT APPLICABLE`; `DEFERRED WITH FOUNDER DECISION <ID>`.
+`DEMONSTRATED` (evidence class and path, verifier result, runtime evidence where applicable); `DEMONSTRATED — CARRIED FORWARD (<original evidence>)` for an inherited row whose earlier evidence was re-checked against the Delta and is not treated as newly executed (§18.5, E-3); `IMPLEMENTED — NOT DEMONSTRATED`; `PARTIALLY DEMONSTRATED — <what remains>`; `NOT IMPLEMENTED`; `ASSIGNED TO LATER MISSION`; `DELEGATED`; `OUT OF BUILD SCOPE`; `NOT APPLICABLE`; `DEFERRED WITH FOUNDER DECISION <ID>`.
 
 It states, per contract, the count and list of Build Now requirements not demonstrated by this mission, and separately keeps apart the states the Phase 1 guide §4 distinguishes: committed, implemented, merged, migrated or configured, deployed, runtime-verified, independently verified, accepted, globally complete. The Experience Verification Matrix is the experience subset and cites the same row IDs. Mission Control reviews the reconciliation at Stage 23.
 
@@ -613,7 +624,8 @@ The view is `00_Global_Product_Completion_View.md`; it is titled "Global Product
 - **(c)** "Exact blocker / gap", "Dependencies remaining", "Not authorized now" and "Next advancement" are derived from rows that are not `DEMONSTRATED` plus `ASSIGNED TO LATER MISSION` rows, and point to the mission's Contract Reconciliation, so no residual disappears into prose;
 - **(d)** no upgrade from a builder report, merged PR, green CI, deployment, or acceptance-with-follow-up on a non-demonstrated row;
 - **(e)** a downgrade is recorded when later drift is found;
-- **(f)** timing follows View §12 ("At Mission Acceptance"), which conflicts with the sentence at View §7 that closure updates rows; the amendment reconciles them, and closure evaluates the feature-level status.
+- **(f)** timing follows View §12 ("At Mission Acceptance"), which conflicts with the sentence at View §7 that closure updates rows; the amendment reconciles them, and closure evaluates the feature-level status;
+- **(g)** **no status upgrade from a partial mission.** A mission that demonstrates some rows records progress in the fact fields only (latest verified advancing mission, dependencies closed and remaining, residual requirements, blockers, next advancement). It cannot set `IMPLEMENTED + SUFFICIENTLY ALIGNED` or move the acceptance state off its default (§18.6).
 
 ### 16.11 Keeping the burden proportionate
 
@@ -660,3 +672,167 @@ Rows are references to source text, mapping is keyed by ID, wholly inapplicable 
 Mandatory requirements: dual intake preserved verbatim (§4); backfill not claimed complete and not blocking (§4); Stage 19 preserved (§9.3); production default-deny (§11); Founder decision ownership (§5.3, §6.3, §9.1); human merge (§3.1 PR-4).
 
 Hard boundaries from the mission README are untouched by design: no activation of `SB-P-1.12`, no Product Truth change, nine-mission sequence unchanged, no removal of Stage 19, branch protection and human merge unchanged, production controls unweakened, human runtime verification kept, specialist review kept where risk requires, no application code, no Stage 4B, no claim of backfill completion, no automatic institutionalization of OLE candidates, no self-merge.
+
+## 18. Design addendum — Mission Control review of PR #605 (2026-09-19)
+
+### 18.1 Status and scope
+
+This addendum answers the Mission Control review comment on PR #605. That review is design review, not governance approval, a Founder decision or merge authorization. The addendum is narrow: it corrects or clarifies the draft, edits no governing source, does not activate `SB-P-1.12`, and does not itself approve any decision gate.
+
+Mission Control accepted for further design, and this addendum leaves unchanged: the dual historical-memory and applicable mission-scoped validated OLE intake (§4, verbatim); the Founder no-silent-omission and no-deferral rule; FCTM source-to-implementation-to-verification traceability; independent source-contract coverage review; the narrow View update protocol and status criteria (`RG-01`, `RG-02`); and the `IVP-01` coverage method. The nine-mission direction and the 25 contracts are preserved. **Only contract 21 was opened; the other 24 contracts have not been audited**, and nothing here claims otherwise.
+
+| Mission Control finding | Where addressed |
+|---|---|
+| 1 Stage 2 and Stage 4 actor drift (Codex default) | §18.2 |
+| 2 Authority-speed proposals stay unapproved; fail-closed fallback | §18.3, §18.4 |
+| 3 FCTM efficiency and vocabulary | §18.5 |
+| 4 Stage 23 and the View; progress versus demonstration | §18.6 |
+| 5 Security and CI as a separate decision; exact live state | §18.7; 01 §3.4 |
+| 6 Migration reconciliation; default-deny preserved | §18.8; 01 §3.7; 03 `MG-03` |
+| Publication issue (commit-message authorization) | §18.9 |
+
+### 18.2 Definition Actor: Codex is not the default (Finding 1)
+
+Stage 2 (Mission Truth and Delta Reconciliation), the preparation of Stage 3, and Stage 4 (Blueprint Assembly) are owned by a **Definition Actor**: a qualified actor appointed by Mission Control in the Stage 1 record. Claude Code or another authorized actor may be appointed where fit. **Codex is not the mandatory or default owner.** The default Codex-led rediscovery and Founder-question sequence is removed. Codex remains available for separately appointed review or research, and for independent Stage 19 verification when selected under Source 18 §4.9.
+
+**Stage 1 appointment record:** the actor, why it is fit for this mission's contract areas, its prior contributions, the separation assessment below, and named alternates.
+
+**The conditional Founder Decision Gate is preserved unchanged** (§5.3, T1 to T8). The Founder is asked only about genuine open decisions, conflicts or proposed changes. Where the gate is triggered, Mission Control designates who conducts the dialogue, for the triggering items only.
+
+**Role separation.** Making the definition role actor-flexible concentrates roles unless separation is stated. Source 18 §3 requires product definition, engineering specification, implementation, verification and acceptance to be separate. The rule is by role, not by provider:
+
+| Role | Stages | Held by | Constraint |
+|---|---|---|---|
+| Definition Actor | 1 (appointment), 2, 3 (preparation), 4 | Mission Control-appointed qualified actor | Cannot approve its own Sections 1–19; Mission Control approves at Stage 5 |
+| Engineering Review and EIS | 6 to 7, 9 | Mission Control-appointed (Claude Code under Source 18 §4.4 today) | If the same actor is also the Definition Actor, Mission Control records a separation assessment at Stage 1 **and**, on a material-risk mission (§6.2), a parallel specialist who did not author Sections 1–19 reviews the feasibility and risk findings |
+| Builder | 15 to 16 | Authorized builder per workstream | Where the Definition Actor is also a workstream's builder, Mission Control records the assessment and prefers different actors where one is available |
+| Independent verifier | 19 | Appointed under §4.9 (Codex when selected) | Not the implementer, corrector or transferer; checks coverage against the source contracts, and records a separation assessment if it authored the FCTM (§16.7) |
+| Acceptance | 23 | Mission Control, with the Founder where required | Unchanged |
+
+Unchanged: Stage 5 approval before Builder Review, no self-approval, Founder approval at Stage 8, and the verifier's Codex utilization classification.
+
+### 18.3 Decision gates remain unapproved
+
+The following are open Founder decisions and are not approved by this draft, by the Mission Control review, or by the Git grant used to publish the draft: **DG-1** (branch-effective Class 2 records and the five-gate merge model), **DG-2** (work-package-scoped Git authority), the **G3 verified-code-only merge rule** (D-03), and the **rewording of mandatory gate 2** (03 `S18-09`).
+
+**A committed branch record is not approved canonical execution authority.** No text in this draft relies on a branch record for production or migration authority, a Founder Product Truth decision or classification change, the Blueprint lock, build authorization, acceptance or closure. Those are Class 1 under every model (§3.3).
+
+### 18.4 Fail-closed operating model if the Founder declines branch-effective authority (Finding 2)
+
+This is the operating model that applies today, because nothing is approved, and permanently if DG-1 is declined. It works within the current gates and the current canonical activation rule, which treats an authority-bearing record as effective only when a human merges it to `main`. It is not conditional on DG-1 or DG-2.
+
+**Principles**
+
+- **FC-1 Preparation is not authority.** A commit or pull request head is preparation. Nothing on an unmerged branch is relied on as an approval, lock, authorization, acceptance or closure.
+- **FC-2 Bundled preparation.** One canonical Mission Control instruction may authorize the preparation of several adjacent documentary artifacts, each marked `DRAFT — NOT AUTHORIZED`, provided none needs an authority that has not yet been merged. The instruction lists the artifacts, the order and the stop conditions. Preparation is at risk: if an earlier artifact is returned, dependent drafts are reworked.
+- **FC-3 One canonical crossing per gate.** Each gate crossing is one pull request containing the artifact and Mission Control's decision record, which names the exact reviewed SHA. The human merge is the ratification. A refinement round is a review comment and a new commit on the same pull request, not a new authorization pull request.
+- **FC-4 Founder decisions are recorded after they are given.** A Founder decision or approval record is written only once the Founder has given it, and is effective on merge.
+- **FC-5 Stop on any trigger.** If T1 to T8 fires, preparation of dependent artifacts stops until the Founder decides.
+- **FC-6 Never branch-effective:** the six items listed in §18.3.
+
+**What may be prepared together, and what may not**
+
+| Prepared together, at risk, under one bundled instruction | Must wait for the earlier canonical record |
+|---|---|
+| FCTM, Delta, Institutional Learning Intake Record, Gate Record and the Blueprint 1–19 draft, when no T-trigger has fired (one Stage 5 record covers all) | Builder Review before Engineering Review, under **current** gate 2 (overlap only if `S18-09` is approved) |
+| Parallel specialist reviews (read-only findings, not authority) | EIS creation before the canonical Blueprint lock (gate 3) |
+| EIS review disposition and lock as one record when there is no refinement | Implementation package before the canonical EIS lock (gate 4) |
+| Engineering Contract, Builder Prompt and Verification Checklist authored and reviewed as a set | Any implementation before the canonical Implementation Authorization (gate 5) |
+| Package lock and Implementation Authorization as one record | Evidence Package and Completion Report before Stage 19 (gate 8) |
+| Evidence Package and Completion Report as a set after Stage 19 | Closure before canonical acceptance |
+| Closure items after canonical acceptance | **Any production or migration act, ever, without its own Class 1 authorization** |
+
+**Canonical crossings for a typical mission** (design estimate, not measured; excludes implementation code pull requests and corrections)
+
+| # | Crossing | Contents |
+|---|---|---|
+| 1 | Initiation | Intake Pack, appointments and the bundled preparation instruction (as today) |
+| 2 | Founder decisions | Only if Stage 3 is triggered; recorded after the Founder decides |
+| 3 | Stages 2 to 5 | FCTM, Delta, Intake Record, Gate Record, Blueprint 1–19 and Mission Control's Stage 5 approval |
+| 4 | Stage 6 | Builder Review and its approval (merged with crossing 5 only if `S18-09` is approved) |
+| 5 | Stages 7 and 8 | Sections 20–21, specialist findings, Mission Control review, the Founder's recorded approval and the Blueprint lock |
+| 6 | Stages 9 to 11 | EIS, parallel specialist confirmations, one disposition and the EIS lock |
+| 7 | Stages 12 and 13 | Package as a set, package lock and Implementation Authorization |
+| 8 | Stages 15 to 18 | Implementation pull requests as the authorization permits (the verified-code-only rule is not adopted), builder report, runtime findings and Mission Control's runtime review |
+| 9 | Stage 19 | Verification report and Mission Control's review |
+| 10 | Stage 20 | Corrections, if any, finding by finding |
+| 11 | Stages 21 and 22 | Evidence and Completion package |
+| 12 | Stage 23 | Acceptance and the View update |
+| 13 | Stage 24 | Closure package |
+
+That is roughly ten to thirteen human merges before implementation code and corrections, against 266 pull requests for SB-P-1.11. Under DG-1 as proposed it would be five. The fail-closed model gives fewer, larger canonical records; it does not give fewer authority checks. Every crossing remains a human decision.
+
+### 18.5 FCTM efficiency and vocabulary (Finding 3)
+
+- **E-1 One matrix, referenced not copied.** Requirement text lives only in the source contracts. The FCTM stores row IDs, pointers, dispositions and citations. Downstream artifacts carry compact ID-keyed mapping tables that are checked by set difference against the FCTM and never restate requirement text. The Contract Reconciliation is the final-status column of the same FCTM, and the Experience Verification Matrix is a filtered view of the same rows. Nothing is typed twice.
+- **E-2 Granularity.** Obligation-level rows are required for `IN SCOPE` rows, partially delivered sections and mixed sections. A section may be a single row only when the **whole** section has one non-`IN SCOPE` disposition and one citation (`NOT APPLICABLE`, `DELEGATED`, `OUT OF BUILD SCOPE`, `ASSIGNED TO LATER MISSION` for a wholly later section, or `ALREADY DEMONSTRATED` for a wholly demonstrated section with evidence). A section-level row expands to obligation level when a mission takes any part of it in scope, and it is carried forward until then, so it cannot be lost. The verifier's section-inventory check (§16.7) confirms no section is absent. Completeness of the obligations inside an assigned-later section is therefore deferred to the mission that takes it, not skipped.
+- **E-3 `ALREADY DEMONSTRATED` is not `PASS`.** The disposition needs (a) the earlier mission's verified evidence cited by path and commit or run identity, (b) a Delta impact check showing code, permissions, configuration and environment relevant to it are unchanged (the `SB-IV-1.0` §9 carry-forward test), and (c) it is reported as `DEMONSTRATED — CARRIED FORWARD (<original evidence>)`, never relabelled as newly executed. With no traceable evidence, or a Delta finding that invalidates it, the row is `IN SCOPE`. No contract is currently proven complete (View §6), so most inherited rows will be foundation slices.
+- **E-4 Vocabulary.** Two different things are kept apart.
+
+  | Term | Dimension | Meaning |
+  |---|---|---|
+  | `BUILD LATER` | **Build commitment** (View §4.2), a product commitment | The Founder-approved position that the capability is committed but is not part of the Build Now set |
+  | `ASSIGNED TO LATER MISSION` | **Mission assignment**, scheduling (Build Plan §9 to §12) | A `BUILD NOW` requirement scheduled to a mission other than this one by an approved source |
+
+  A `BUILD NOW` requirement assigned to a later mission stays `BUILD NOW` and never becomes `BUILD LATER`. Only a Founder decision changes a commitment; moving an assignment beyond the approved sources also needs one. `OUT OF BUILD SCOPE` means the approved **commitment** is `BUILD LATER`, `SEPARATE PRODUCT` or `REJECT`.
+- **E-5 Residual Build Now beside an accepted partial workstream.** An accepted partial foundational workstream marks the rows it delivered `DEMONSTRATED`. Every remaining Build Now obligation of the same section or contract is recorded as `ASSIGNED TO LATER MISSION` (with the owning mission and source) or `IN SCOPE — NOT DEMONSTRATED`. Acceptance of the workstream never closes the residual.
+- **E-6 Technical incompleteness gives no right to reclassify.** Difficulty, a partial foundation, a missing dependency, an incomplete implementation, cross-layer complexity, add-on status or an older label never authorizes a change of commitment or assignment. The row stays `IN SCOPE` (marked partial or blocked, with the reason) and the Founder decides through T7 or T8.
+- **E-7 Row volume is unknown.** No per-contract row count has been measured, and only contract 21 was inspected. On `SB-P-1.12` the Stage 2 record states the row count and effort per contract, and Mission Control reports them. Any tuning that would loosen a rule needs Founder approval. No effort saving is claimed.
+
+### 18.6 Accepted mission progress versus complete feature demonstration (Finding 4)
+
+Four levels are kept apart:
+
+| Level | Question | Where recorded | Can be reached by a partial mission |
+|---|---|---|---|
+| Mission acceptance | Was this mission's authorized scope verified and accepted? | Stage 23: `ACCEPTED` or `ACCEPTED WITH FOLLOW-UP` | Yes |
+| Requirement demonstration | Is this requirement demonstrated with evidence? | FCTM final status, Contract Reconciliation | Yes, per row |
+| Contract completion | Are all applicable Build Now requirements of the contract demonstrated, meeting its completion gate? | Contract Reconciliation totals; the contract's own completion gate | No, unless all rows across missions are demonstrated |
+| Feature status | What state is the feature in program-wide? | The View | Only by the rule below |
+
+**Bounded follow-up** means an evidence gap that is outside every `IN SCOPE` row, or a non-blocking issue that maps to no `IN SCOPE` row, with an owner and the mission or gate that will verify it (for example release verification, as in SB-P-1.11 `F23-04`). It never covers a non-demonstrated `IN SCOPE` row: that is a scope deviation needing a recorded Founder decision.
+
+**View update.** At Mission Control acceptance, update the View from the accepted Contract Reconciliation. At closure, verify the resulting state. **No status upgrade from a partial mission:** progress is recorded in the fact fields only (latest verified advancing mission, dependencies closed and remaining, residual requirements, blockers, next advancement). `IMPLEMENTED + SUFFICIENTLY ALIGNED` and any move of the acceptance state off `NOT YET ACCEPTED AS MATURE FEATURE` require every applicable Build Now requirement demonstrated across the advancing missions and the contract's completion gate met. Whether a partial mission may move a feature between the non-terminal implementation values is left open as **D-15**; until it is decided the strict default applies. A closure record states plainly that `COMPLETED — FORMALLY ACCEPTED` does not mean the feature is complete.
+
+### 18.7 Exact live protection state, and a separate decision (Finding 5)
+
+Read-only `GET` calls against `SmartBusinessv1/smart-business` at **2026-09-19T08:55:38Z**. No write call was made and nothing was tested by attempting a merge.
+
+| Item | State |
+|---|---|
+| Classic protection on `main` | Present |
+| Required status checks | One: `Markdown Quality Gate` (GitHub Actions app), `strict: true`. **The Fast Gate jobs (Lint, Typecheck, Build, Fast Tests) are not required** |
+| Pull request required | Yes; `required_approving_review_count: 0`; dismiss stale reviews `true`; code-owner review `false`; last-push approval `false` |
+| Bypass pull-request allowances | None configured (`null`) |
+| Administrator enforcement | `true` |
+| Push restrictions | None (`null`) |
+| Force push, deletion | Both `false` |
+| Conversation resolution | `true` |
+| Linear history, signed commits, branch lock | All `false` |
+| Repository rulesets | None (`[]`); effective rules for `main`: none (`[]`); organization rulesets not applicable (the owner is a user account, the API returned 404) |
+| CODEOWNERS | None in `CODEOWNERS`, `.github/CODEOWNERS` or `docs/CODEOWNERS` |
+| This session's credential | `admin`, `maintain`, `push` all `true`. Merge capability was not tested |
+| Merge methods | Merge commit, squash and rebase allowed; auto-merge disabled |
+
+**Reading it.** A green Fast Gate does not block a merge. Human merge is enforced by policy and credential separation, not by review rules: a pull request needs no approving review, and there is no bypass actor, but a credential with administrator permission can merge once `Markdown Quality Gate` passes.
+
+**Options for a separate, separately authorized decision, not recommended here beyond presenting them:** (a) keep the status quo; (b) require the Fast Gate jobs, which improves quality gating and adds no human-approval separation; (c) require at least one approving review from an identity other than the author, which works only if a second GitHub identity exists (unknown); (d) code-owner review on governance paths, with the same identity dependency; (e) reduce the AI credential's privileges so it cannot merge or change protection, which addresses AI self-merge directly and matches least privilege (Source 17 §A5: "AI permissions shall follow least privilege"). **No documentation package in this mission mutates branch protection or any repository setting.**
+
+### 18.8 Production migration default-deny is preserved (Finding 6)
+
+Nothing in this addendum, the fail-closed model, DG-1, DG-2, the Definition Actor, the FCTM, a View update, acceptance or a merge creates production or migration authority. A Migration Execution Authorization remains a Class 1 record, is never branch-effective, and never becomes Class 2 under any model. An `IN SCOPE` FCTM row that involves a database change authorizes **preparation**, not execution. A ledger match is evidence of state, not permission to execute.
+
+**Reconciliation is evidence-based.** The 2026-08-06 to 2026-08-30 migration family is reconciled in 01 §3.7 and 03 `MG-03` against the actual GC-40 and Stage 19 records. In short: files 13 to 16 are evidenced by two independent point-in-time ledger observations (the GC-39 readiness report of 2026-08-28 and Stage 19), and file 15 also by an execution record; files 17 to 20 are the GC-40 four-migration package with a final independent read-only reconciliation; **file 21 has no production-application record in anything reviewed, and its own header describes preparation and test validation only, so its production status stays unverified.** No migration is marked production-applied by inference. The evidence is point-in-time; a current read-only ledger comparison needs its own authorization and has not been performed.
+
+### 18.9 Publication authority-precision finding
+
+**Finding AP-1.** The four-file Git grant used to publish PR #605 stated the AI, mission, repository, locked branch, base and scope, but **not commit-message authorization**. Protocol §16 and `AGENTS.md` require either permission to use mission-scoped descriptive commit messages or a specifically locked message. Commit `194b9a4b9dfd2ece65a419501fc29b90f8bd85ac` used a mission-scoped descriptive message, and that was disclosed in the report and the pull request.
+
+- The history is not rewritten and nothing is force-pushed.
+- It is recorded as a narrow administrative authorization-precision finding for Mission Control and Founder disposition (**D-16**). It is **not** precedent for DG-2 or for any broadening of Git authority.
+- Future grants should state the commit-message clause in the Protocol §16 form, for example "using mission-scoped descriptive commit messages".
+- **This revision was first prepared without Git authority and left uncommitted,** because the instruction for it granted none. Mission Control then issued a complete grant for publishing it: AI, mission, repository, locked branch, expected SHAs, exactly four files, and an approved mission-scoped descriptive commit message. That grant is limited to this four-file revision. It does not dispose of AP-1 (D-16), which remains open, and it is not precedent for DG-2.
+
+### 18.10 What the addendum does not change
+
+The dual-intake rule (verbatim); the conditional Founder Decision Gate and its eight triggers; the mandatory Stage 19; human merge; production default-deny; the nine-mission sequence; the 25 contracts; Product Truth; and every governing source.
