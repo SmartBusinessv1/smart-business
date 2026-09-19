@@ -1,16 +1,16 @@
 # Smart Business Independent Verification Efficiency Protocol
 
-- **Protocol ID:** SB-IV-1.0
-- **Mission:** `SB-GOV-IV-1.0`
-- **Version:** 1.0
-- **Authoring specialist:** Codex
-- **Approved By:** Founder — Riyas PK
-- **Approval Date:** 2026-09-18
-- **Approval:** `FOUNDER APPROVED`
-- **Status:** `ACTIVE`
+- **Protocol ID:** SB-IV-1.0 (a stable identifier, not the document version)
+- **Mission:** `SB-GOV-IV-1.0` (Version 1.0); `SB-GOV-PRODUCT-EXEC-1.0` (Version 1.1 amendment)
+- **Version:** 1.1
+- **Authoring specialist:** Codex (Version 1.0); Claude Code (Version 1.1 amendment)
+- **Approved By:** Founder — Riyas PK (Version 1.0)
+- **Approval Date:** 2026-09-18 (Version 1.0)
+- **Approval:** `FOUNDER APPROVED` (Version 1.0). Version 1.1: the Founder approved the scope of the amendment on 2026-09-19 (PR #605 comment `5742411779`); approval of the amended text is PENDING
+- **Status:** `ACTIVE` (Version 1.0). Version 1.1: `AMENDMENT PROPOSED — ACTIVATION PENDING`. Version 1.0 remains the operative text until Version 1.1 is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header)
 - **Activation Authority:** Smart Business Mission Control
-- **Activation Date:** 2026-09-18
-- **Activation Basis:** PR #598 merge commit `4ddbb647cfb413e43af38a7e362130c5fd16133c`
+- **Activation Date:** 2026-09-18 (Version 1.0). Version 1.1: PENDING
+- **Activation Basis:** PR #598 merge commit `4ddbb647cfb413e43af38a7e362130c5fd16133c` (Version 1.0), activated in PR #599. Version 1.1: PENDING
 - **Repository:** `SmartBusinessv1/smart-business`
 - **Authority:** [Founder approval](missions/SB-GOV-IV-1.0/founder/01-founder-approval.md); [Mission Control decision gate](missions/SB-GOV-IV-1.0/mission-control/02-draft-review-and-founder-governance-decision-gate.md).
 - **Governing relationship:** Operational protocol subordinate to active Source 18; it defines verification method and efficiency, not Product Mission acceptance authority.
@@ -19,7 +19,7 @@
 
 Use independent verification for risks that benefit from an independent challenge. Builders own implementation and initial tests; GitHub CI supplies repeatable deterministic assurance; the verifier exercises selected risk boundaries and reports what the evidence supports. Avoid repeated full local suites, repeated repository discovery, and substantive re-verification triggered solely by report publication.
 
-This Founder-approved document is the active operational protocol for independent-verification method and efficiency under Source 18 v1.1. It remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority. The [reconciliation report](missions/SB-GOV-IV-1.0/codex/02-current-governance-reconciliation-report.md) separates compatible techniques from amendments. The [activation plan](missions/SB-GOV-IV-1.0/codex/03-activation-plan.md) defines the decision and publication gate. `SB-P-1.12` remains `NOT ACTIVATED`.
+This Founder-approved document is the active operational protocol for independent-verification method and efficiency under Source 18. Version 1.1 conforms to Source 18 Version 1.2. It is not operative until it is independently verified, merged by a human and separately activated by Mission Control, and not before Source 18 Version 1.2 is itself active; until then Version 1.0 and Source 18 Version 1.1 apply. It remains subordinate to Source 18 and higher authority, does not accept any Product Mission, and does not transfer Mission Control or Founder authority. The [reconciliation report](missions/SB-GOV-IV-1.0/codex/02-current-governance-reconciliation-report.md) separates compatible techniques from amendments. The [activation plan](missions/SB-GOV-IV-1.0/codex/03-activation-plan.md) defines the decision and publication gate. `SB-P-1.12` remains `NOT ACTIVATED`.
 
 “Codex is a scarce verifier, not a builder” describes the independent-verification assignment. It does not remove Codex's existing discovery, Blueprint, documentation or separately authorized engineering responsibilities.
 
@@ -27,7 +27,7 @@ This Founder-approved document is the active operational protocol for independen
 
 Apply Source 17's authority order: Founder; Lighthouse Constitution; Phase 1 constitutional authority (Sources 01 and 11); approved governance; Mission Control; authorized specialists; repository/platform/mission instructions. Preserve Product Truth, merchant ownership, permission boundaries and the approved branch-protection process.
 
-Active [Source 18 v1.1](../merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md) assigns Stage 19 to a **Mission Control-appointed Independent Verification Actor**. Stage 19 remains mandatory for every `SB-P-*` mission. Codex is preferred for the highest-risk cases where eligible and available, but Codex utilization classification does not create, remove, or waive the Stage 19 gate. Mission Control must explicitly appoint the verifier and record capability and independence.
+[Source 18](../merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md) (Version 1.1 is active; Version 1.2 is pending activation) assigns Stage 19 to a **Mission Control-appointed Independent Verification Actor**. Stage 19 remains mandatory for every `SB-P-*` mission. Codex is preferred for the highest-risk cases where eligible and available, but Codex utilization classification does not create, remove, or waive the Stage 19 gate. Mission Control must explicitly appoint the verifier and record capability and independence.
 
 Mission Control names the builder, verifier, affected artifacts, evidence requirements, environments and acceptance criteria before execution. The verifier may report findings and propose corrections but shall not implement the changes it is assigned to verify, approve itself, accept the mission or merge its work. If it writes a correction, independent assurance of that correction must transfer to another authorized actor; where governing ownership prevents that transfer, stop for governance reconciliation.
 
@@ -42,6 +42,7 @@ A new chat, model instance, role label or provider alone does not prove independ
 | Lint, typecheck, build, Fast Tests | GitHub CI; builder supplies evidence | Inspect applicable completed results |
 | Full Assurance | GitHub Actions in the authorized test environment | Inspect when applicable; do not duplicate externally mutating tests by default |
 | Scope and readiness review | Mission Control | Verifier confirms packet identity and affected scope once at intake |
+| Product Truth coverage (FCTM) | Stage 2 owner and Mission Control own the matrix; each stage owner owns its own mapping | Coverage and movement checks (Class C) for every mission; drift probes on material rows (Class A) |
 | Adversarial boundaries | Named independent verifier; specialists as assigned | Targeted independent execution |
 | Human runtime verification | Founder or authorized human under Source 18 | Inspect runtime evidence and remaining gaps; do not replace it with CI |
 | Final independent gate | Actor named by current governance | Every obligation classified; execution selected by risk |
@@ -60,7 +61,7 @@ Mission Control records the classification, rationale, governing gate, named act
 
 Apply the highest relevant risk. “UI polish” changing permission visibility or confirmation behaviour is not automatically Not Required. A governance or operating-protocol change is not routine documentation merely because it is Markdown. Documentation that changes locked criteria, authority, operating commands, deployment instructions or executable configuration is assessed for substantive risk.
 
-Under the Founder-approved model, these labels classify Codex involvement only; Stage 19 remains mandatory for every Product Mission. “Codex Not Required” means no Codex invocation, not no independent Stage 19 gate. The Mission Control-appointed Independent Verification Actor governs Stage 19 only after Source 18 v1.1 and this protocol are formally activated.
+Under the Founder-approved model, these labels classify Codex involvement only; Stage 19 remains mandatory for every Product Mission. “Codex Not Required” means no Codex invocation, not no independent Stage 19 gate. The Class C coverage baseline of Section 6 is performed for every Product Mission whatever the classification; the classification governs only the extent of Class A drift effort. The Mission Control-appointed Independent Verification Actor governs Stage 19 only after Source 18 and this protocol are formally activated.
 
 When capacity is exhausted, preserve results and return the remaining obligations and resumption boundary. Resume from valid evidence, not from a complete rerun; there is no automatic PASS or authority expansion.
 
@@ -80,7 +81,8 @@ Prepare a section in the existing Builder Completion Report or a linked mission 
 | Platforms | OS/runtime versions, environment identity, known Windows/Linux differences, skipped cases, coverage limitations and local-versus-CI differences |
 | Runtime | Deployment identity linked to implementation, Founder/authorized human observations, Mission Control runtime-review decision and unresolved discrepancies |
 | Risk plan | Suggested attack surfaces, negative cases, expected invariants, known defects, residual risks and evidence-to-checklist mapping |
-| Correction packet | Finding IDs, old/new checkpoint, root cause, correction diff, adjacent contracts, prior evidence proposed for carry-forward and why it remains valid |
+| Coverage | The locked FCTM path and baseline commit; the builder's status for every assigned row (`IMPLEMENTED`, `PARTIALLY IMPLEMENTED` or `NOT IMPLEMENTED`), recorded in the Builder Completion Report as draft row statuses; and every change of a row's disposition, classification or mission assignment since lock, with its Founder Decision ID |
+| Correction packet | Finding IDs and the affected FCTM rows, old/new checkpoint, root cause, correction diff, adjacent contracts, prior evidence proposed for carry-forward and why it remains valid |
 
 Keep secrets and personal data out of packets and logs. Reference authorized environment names and evidence locations without copying credentials. A packet is builder testimony until its claims are checked against source artifacts.
 
@@ -100,30 +102,45 @@ For Class B, confirm the correct repository/workflow/event, run attempt, tested 
 
 Do not rerun all deterministic checks locally merely to rename Class B as Class A. Independently challenge coverage assumptions, test weakening and known gaps. Linux CI that skips Windows cases does not discharge Windows-specific Class A obligations.
 
+**Product Truth coverage and drift.** For every Product Mission, whatever the Codex classification, the verifier performs the following against the source contracts and not only against the matrix, so that a matrix that was incomplete from the start is detected:
+
+1. **Coverage completeness (Class C).** Independently take an **obligation inventory from the source text** of each in-scope contract at the intake baseline: its numbered sections, the applicable, separately verifiable obligations inside each section, and every numbered acceptance scenario. Do not rely on the Definition Actor's inventory or on the matrix. Compare the inventory with the FCTM by set difference, then run the completeness test of Source 18 Section 3.2, including its section, obligation and acceptance-scenario checks, across the Blueprint, EIS, contract, checklist and Builder Completion Report. **A missing obligation or acceptance scenario is a coverage failure (`SILENT OMISSION`) even when every retained row has a valid disposition and a consistent downstream mapping.** For example, a contract whose acceptance-scenario section is represented by a row for one scenario, while a separate scenario in the same section has no row, fails although the section is represented and every retained row maps downstream. The inventory is a list of pointers kept in the verification record; it is not a second matrix and restates no requirement.
+2. **Movement integrity (Class C).** Compare each row's disposition, build commitment, commercial classification and mission assignment in the locked FCTM at Stage 8, in the Stage 13 mappings and in the builder's draft row statuses with the source text and the Founder Decision IDs. An unexplained change is a finding.
+3. **Drift (Class A on material rows; Class B or C otherwise).** Compare implemented behaviour with the approved expected experience, permissions, denial behaviour and business rules. Material rows are those involving authority, permissions or isolation, financial integrity, irreversible actions, experience anchors and Founder-reserved scenarios, dependencies that a later mission relies on, and every `REJECT` row for the mission's domain. Every `IN SCOPE` row is accounted for, and materiality selects only the evidence class.
+
+A row without evidence is not demonstrated, and absence of failure is not `PASS`. The verifier reports Product Truth conflicts and does not decide them. If the only eligible verifier authored the FCTM, Mission Control records a separation assessment and the check is made against the source contracts. **What Stage 19 verifies.** The verifier works only from evidence that exists at Stage 19: the source contracts, the locked FCTM, the Stage 13 mappings, the Builder Completion Report and Verification Packet with the builder's draft row statuses, the human runtime findings, the repository and the tests. It does not review or certify the Stage 22 Contract Reconciliation, which does not yet exist. That reconciliation is checked afterwards by the Reconciliation Integrity Check of Source 18 Stage 22. Mission Control performs that check, and refers a narrow, finding-scoped question to the verifier only where the reconciliation shows a substantive change since Stage 19 or a new risk. The later check never waives, replaces or shortens Stage 19, and a referral never reopens it.
+
+This section adds verification obligations and gives the verifier no additional authority.
+
 ## 7. Verification-ready entry gate
 
 Before substantive verification, Mission Control confirms implementation and focused tests complete; Fast Tests, typecheck, lint and build green; Full Assurance green where applicable; stable CI; scope diff reviewed; complete Verification Packet; and valid execution authority. Applicable Markdown and other required checks remain required. “Stable” means required jobs completed against identified applicable state, with failures, reruns and exclusions explained; no arbitrary waiting period is needed.
 
-For Product Missions also require locked inputs, Builder Completion Report, Founder/authorized human runtime findings and Mission Control runtime review in the Source 18 order. The verifier performs a lightweight entry check. Missing evidence returns `NOT READY` with exact deficiencies rather than consuming a full review budget. `NOT READY` is an entry disposition, not a new lifecycle status or an acceptance decision.
+For Product Missions also require locked inputs, Builder Completion Report, Founder/authorized human runtime findings and Mission Control runtime review in the Source 18 order. The locked FCTM and the builder's status for every assigned row must also be present. The verifier performs a lightweight entry check. Missing evidence returns `NOT READY` with exact deficiencies rather than consuming a full review budget. `NOT READY` is an entry disposition, not a new lifecycle status or an acceptance decision.
 
 Mission Control may authorize an explicitly limited investigative exception, recording the missing prerequisite, reason, allowed probes and blocking outcome. It cannot waive a higher-authority gate, silently change actor ownership, or declare a missing mandatory result PASS. No production access, migration execution or credential-backed integration execution is implied by readiness or tool availability.
 
 ## 8. Targeted independent verification
 
 1. Confirm packet identity, actor separation and the checkpoint being judged.
-2. Inspect diff and affected contracts; map every locked checklist obligation to A, B or C with a rationale.
+2. Inspect diff and affected contracts; map every locked checklist obligation and every FCTM row to A, B or C with a rationale.
 3. Prioritize denial/failure behaviour, independent expectations and boundaries where builder assumptions could be wrong. Reusing a focused test is allowed; review its assertion and add a different probe where that increases information.
 4. Inspect existing CI once for deterministic evidence. Execute authorized Class A probes and minimal adjacent checks. A whole local suite requires a stated reason.
 5. Report findings with reproducible input, expected/actual result, affected scope, severity/blocking effect, evidence and correction acceptance condition.
-6. Classify every obligation, list untested limits, stop at the authorized report and hand off to Mission Control.
+6. Run the coverage and drift checks of Section 6.
+7. Classify every obligation and every FCTM row, list untested limits, stop at the authorized report and hand off to Mission Control.
 
 Do not convert a successful representative probe into a claim that all runtime/security behaviour is proven. Proposed corrective code stays advice unless separately assigned to a builder.
 
 ## 9. Finding-scoped re-verification
 
-Default sequence: **finding → authorized narrow correction → full applicable deterministic CI → Mission Control correction review → finding-specific independent re-verification → bounded result**. “Full applicable” means the complete existing Fast Gate and applicable Full Assurance/other mandatory checks, not forcing every workflow for every change.
+Default sequence: **finding → authorized narrow correction → full applicable deterministic CI → human runtime retest → Mission Control correction review → finding-specific independent re-verification → bounded result**. “Full applicable” means the complete existing Fast Gate and applicable Full Assurance/other mandatory checks, not forcing every workflow for every change.
 
-Under current Source 18 Stage 20, preserve updated Builder report, Founder retest, Mission Control runtime review and reverification. Scope human retest to affected behaviour under Mission Control's direction; this protocol cannot silently remove it.
+Under Source 18 Stage 20, preserve the updated Builder report, the human retest, Mission Control runtime review and re-verification.
+
+**A human runtime retest is required after every correction**, before correction acceptance and before re-verification closes. Its scope may be specific to the finding and is not automatically the whole mission: it covers the affected behaviour and its regression surface, as Mission Control determines. Each retest records the actor, the target, the scenarios, the expected and actual results, and the evidence. **No automated-only waiver exists**: CI, tests and static review never replace it, and this protocol cannot remove it. Founder-reserved scenarios remain with the Founder or a confirmed delegate. There is no exemption status.
+
+A correction never resolves a coverage finding by removing or deferring an FCTM row. It restores the approved behaviour or removes the unauthorized behaviour, and if that is impossible or unsafe the row goes to the Founder through Mission Control.
 
 The correction packet identifies old/new SHAs and findings. The verifier checks the correction diff, original reproduction, new regression assertion, affected adjacent invariant and renewed applicable CI. Carry forward prior resolved findings only after an impact check shows their implementation, dependencies, test/configuration assumptions and relevant environment remain unchanged. Record each carried-forward result with its original evidence and justification; do not relabel it as newly executed.
 
@@ -143,7 +160,7 @@ If the report changes a claim, inspect its support. If it changes a contract, co
 
 ## 12. Provider unavailability and resumption
 
-Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Source 18 v1.1 is controlling. Mission Control may appoint an eligible Independent Verification Actor under the approved actor-separation and capability rules. If no eligible verifier is available, Stage 19 remains pending.
+Record unavailable actor/provider, last valid evidence, remaining obligations, capacity/access limitation and next responsible owner in the repository. Source 18 is controlling. Mission Control may appoint an eligible Independent Verification Actor under the approved actor-separation and capability rules. If no eligible verifier is available, Stage 19 remains pending.
 
 Under the active actor-flexible model, Mission Control records replacement identity, capability, prior contribution assessment, scope, evidence inheritance and authorization before resumption. Recheck evidence freshness and resume only remaining or invalidated obligations. A builder switching accounts or starting a fresh session cannot independently verify its own implementation. If no eligible verifier is available, keep the gate pending.
 
@@ -155,6 +172,8 @@ Under the active actor-flexible model, Mission Control records replacement ident
 | `FAIL` | Observed non-compliance with a required invariant | Material failures block acceptance; authorized correction required |
 | `FOLLOW-UP` | Recorded non-blocking out-of-scope issue with owner, scope and next action | Mission Control decides disposition; never conceal missing mandatory evidence here |
 | `N/A` / `NOT APPLICABLE` | Obligation does not apply, with specific scope/trigger rationale | Mission Control reviews rationale; inability to test is not N/A |
+
+The coverage findings `SILENT OMISSION`, `UNAUTHORIZED DEFERRAL`, `UNAUTHORIZED PULL-FORWARD`, `MISCLASSIFIED`, `DRIFT` and `ORPHAN` map onto these results. A material coverage or drift `FAIL` is a material blocking failure. The Contract Reconciliation statuses of Source 18 Section 3.2 are requirement statuses and are kept separate from these evidence results.
 
 Use Source 18's spelling `NOT APPLICABLE` in its formal reports. Missing mandatory evidence means verification remains incomplete/blocked; it is neither PASS nor a casual FOLLOW-UP. Keep lifecycle status, evidence result and Mission Control acceptance separate. Existing accepted follow-ups are not closed just because CI passed.
 
@@ -186,7 +205,18 @@ The [accepted narrow-correction promotion](../organizational-learning/promotions
 | Historical lesson or inactive protocol treated as active governance | Clear status, source precedence and explicit activation decision |
 | Documentation label conceals semantic change | Inspect content and executable/authority effects, not filename alone |
 | CI evidence substituted for human runtime | Preserve Source 18 Stages 17–18 and deployed revision provenance |
+| The FCTM is authored by the verifier | The verifier checks against the source contracts, and Mission Control records a separation assessment |
+| A correction hides a coverage finding by dropping a row | Mandatory human retest; a correction restores or removes behaviour and never removes or defers a row |
 
 ## 16. Stop condition
 
-This protocol governs independent-verification method subject to Source 18 and higher authority. It does not alter CI by itself, accept a Product Mission, authorize self-verification, or activate `SB-P-1.12`.
+This protocol governs independent-verification method subject to Source 18 and higher authority. It does not alter CI by itself, accept a Product Mission, authorize self-verification, grant the verifier any additional authority, or activate `SB-P-1.12`.
+
+## 17. Version History
+
+| Version | Date | Change | Authority | Status |
+|---|---|---|---|---|
+| 1.0 | 2026-09-18 | Initial Founder-approved protocol under `SB-GOV-IV-1.0`, merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c` and activated in PR #599 | Founder — Riyas PK; Mission Control activation | ACTIVE |
+| 1.1 | 2026-09-19 | Amendment under `SB-GOV-PRODUCT-EXEC-1.0`, limited to: FCTM and source-contract completeness, classification and mission-assignment integrity, and material drift verification (Sections 3 to 8 and 13); a mandatory human retest after every correction (Section 9); this version history; and conforming references to Source 18 Version 1.2. The Protocol ID `SB-IV-1.0` is unchanged. No new verifier authority | Founder scope approval, PR #605 comment `5742411779` | AMENDMENT PROPOSED — ACTIVATION PENDING. No activation date or merge commit is recorded here; the distinct post-merge activation step records them |
+
+The original Version 1.0 approval and activation records in the header are preserved. Future updates append to this history.

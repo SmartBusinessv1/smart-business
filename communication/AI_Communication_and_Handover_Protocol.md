@@ -1,13 +1,13 @@
 # AI Communication and Handover Protocol
 
-- **Mission:** SB-GOV-COMMS-1.2
-- **Version:** 1.0
-- **Status:** ACTIVE
+- **Mission:** SB-GOV-COMMS-1.2 (Version 1.0); SB-GOV-PRODUCT-EXEC-1.0 (Version 1.1 amendment)
+- **Version:** 1.1
+- **Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.0, as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`, remains the operative text until Version 1.1 is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header)
 - **Authority:** Founder through Mission Control
-- **Approved By:** Founder
-- **Activated By:** Mission Control
-- **Activation Date:** 2026-08-01
-- **Activation Commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e`
+- **Approved By:** Founder (Version 1.0). Version 1.1: PENDING
+- **Activated By:** Mission Control (Version 1.0). Version 1.1: PENDING
+- **Activation Date:** 2026-08-01 (Version 1.0). Version 1.1: PENDING
+- **Activation Commit:** `6971a661c5b43858f424804af3f1c8e23c1eae7e` (Version 1.0). Version 1.1: PENDING
 - **Stage A Status:** ACTIVE
 - **Stage B Status:** ACTIVE — commit `9c5baf1ed9355d9c3933cb1f7dafb467ee289b14`
 - **Branch Protection Status:** CONFIGURED AND INDEPENDENTLY VERIFIED — COMPENSATING CONTROL RETIRED
@@ -79,6 +79,7 @@ Before each stage, the assigned AI shall read:
 5. The latest report from the preceding actor.
 6. Every authoritative artifact named in the handover.
 7. Relevant workflow, quality-gate, and branch rules.
+8. For a Product Mission, the Institutional Learning Intake Record required by Source 18 Section 3.1.
 
 The AI shall confirm that it is the current stage owner. Chat history is not a substitute for repository intake.
 
@@ -111,11 +112,14 @@ Before handover, the current owner shall:
 - record material decisions in `decision-log.md`;
 - append the handover to `handover-log.md`;
 - update the mission README with stage, owner, blockers, latest commit, pull request, and next authorized action;
+- for a Product Mission, update the Stage Ledger row for the completed stage (Source 18 Section 10);
 - identify exact authoritative inputs for the next actor;
 - state what is not yet authorized;
 - create a Founder Brief when Founder action is required.
 
 Prior records shall not be silently overwritten. Corrections shall preserve history through append-only entries, versioning, or an explicit correction note.
+
+For a Product Mission, a handover record is required when ownership actually changes and at each canonical gate crossing (Source 18 Section 12), and it is not repeated where the merged pull request and the Stage Ledger already record the same facts. A refinement request or Mission Control review comment may be a comment on the open pull request that carries the artifact, with corrections as new commits on that pull request, and the merged pull request is the record. During a Product Mission, `communication/live/` remains a transient pointer and substantive stage reports live in `communication/missions/[MISSION-ID]/`.
 
 ## 8. Proposed Mission-Branch Model
 
@@ -221,7 +225,7 @@ Unexpected staged files, deletions, or renames require a stop report.
 
 Before commit, the AI shall run the repository's approved secret-detection or security check where available. If no approved automated check exists, the AI shall inspect staged changes for credentials, tokens, keys, passwords, and environment values and record that limitation in the handover.
 
-The commit message shall be mission-authorized: a locked commit message where Mission Control locked one, otherwise a mission-scoped descriptive commit message. A commit does not approve the work.
+The commit message shall be mission-authorized: a locked commit message where Mission Control locked one, otherwise a mission-scoped descriptive commit message. The attribution-trailer rule of the authorization applies: the standard `Co-Authored-By` trailer is added when it is required, may be added when it is permitted, and is not added when it is excluded. A trailer shall be truthful and attributes work only to an actor that contributed. A commit does not approve the work.
 
 ## 12. Push and Pull-Request Rules
 
@@ -271,15 +275,25 @@ When Founder action is required, exact PowerShell commands shall be shown direct
 
 The following wording, with every bracketed value resolved, is required for mission-scoped authorization:
 
-> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY], using [the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` | locked branch [LOCKED BRANCH NAME]], limited to [AUTHORIZED PATHS OR SCOPE], using [mission-scoped descriptive commit messages | the locked commit message [LOCKED COMMIT MESSAGE]], and to fetch, pull fast-forward only, stage exact authorized files, commit, push the authorized mission branch, and open or update the pull request.
+> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY], using [the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` | locked branch [LOCKED BRANCH NAME]], limited to [AUTHORIZED PATHS OR SCOPE], using [mission-scoped descriptive commit messages | the locked commit message [LOCKED COMMIT MESSAGE]], with the standard `Co-Authored-By` attribution trailer [required | permitted | excluded], and to fetch, pull fast-forward only, stage exact authorized files, commit, push the authorized mission branch, and open or update the pull request.
 
-Mandatory values are: AI name, Mission ID, repository, the branch authorization (either the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, and the commit-message authorization (either permission to use mission-scoped descriptive commit messages or a specifically locked commit message).
+Mandatory values are: AI name, Mission ID, repository, the branch authorization (either the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, the commit-message authorization (either permission to use mission-scoped descriptive commit messages or a specifically locked commit message), and the attribution-trailer rule (the standard `Co-Authored-By` trailer is required, permitted or excluded).
 
 Per the Founder Git-authorization decision, Mission Control may explicitly authorize the standard mission-branch convention and mission-scoped descriptive commit messages. Exact branch text and exact commit text are required only when Mission Control specifically locks them. This changes only the authorization form; every scope, staging, review, protected-branch, no-self-merge, and validation control in this protocol remains in force.
 
 If any mandatory value is missing or ambiguous, the AI shall stop and request clarification.
 
 Without explicit authority, the AI shall prepare commands but shall not execute commit or push.
+
+### 16.1 Work-Package Authorization
+
+Mission Control may instead authorize a **work package**: an ordered set of stages or steps under one grant, in the following form, with every bracketed value resolved:
+
+> Founder/Mission Control authorizes [AI NAME] for mission [MISSION-ID] to operate on repository [OWNER/REPOSITORY] under work package [WP-ID] covering [ORDERED STAGES OR STEPS], using [the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` | locked branch [LOCKED BRANCH NAME]], limited to [EXACT PATHS], permitted only to [LISTED GIT OPERATIONS], using [mission-scoped descriptive commit messages | the locked commit message [LOCKED COMMIT MESSAGE]], with the standard `Co-Authored-By` attribution trailer [required | permitted | excluded], until [END EVENT] or [END DATE], whichever comes first, stopping on any event in Section 21 or on revocation. This grants Git permission only. It grants no authority to approve, lock, authorize, execute, accept, close or merge.
+
+Mandatory values for a work package are: AI name, Mission ID, repository, work package ID, the ordered stages or steps covered, the branch authorization, exact paths, the listed Git operations, the commit-message authorization, the attribution-trailer rule, and both an end event and an end date. A missing or ambiguous value stops the AI. Unlisted operations are not permitted, there is no blanket scope, and `git add .` is not permitted. **A work package may not include a step whose authority has not yet been merged to `main`.**
+
+A work-package authorization grants Git permission only. It never creates authority to approve, lock, authorize, execute, accept, close or merge, and it never permits a production or migration act. No AI approves or merges its own work, and a work package changes no branch-protection setting. Every scope, staging, review, protected-branch, no-self-merge, and validation control in this protocol applies to a work package, and every event in Section 21 applies to it.
 
 ## 17. Actions Proposed for Controlled Automation
 
@@ -337,11 +351,12 @@ When remote changes are completed without updating the local clone, the Founder 
 
 Mission-scoped Git authority expires when:
 
-- the authorized stage is completed;
+- the authorized stage is completed or, for a work package, its named end event occurs or its end date passes;
 - Mission Control revokes authority;
 - the mission is paused, closed, superseded, or rejected;
 - the authorized branch or scope changes;
 - a Mission Control-locked branch name or locked commit message changes materially;
+- the authorized commit-message or attribution-trailer rule changes or cannot be followed;
 - unrelated working-tree changes appear;
 - validation fails;
 - a merge or rebase conflict occurs;
@@ -429,6 +444,8 @@ Stage B shall verify that no remaining statement says Codex or Claude Code can n
 
 The transient live exchange shall not remain indefinitely in `communication/live/` after the communication cycle or mission is complete. The durable mission record is a separate thing and is treated differently, as set out below.
 
+For a Product Mission, Source 18 Stage 24 owns the closure gate and its order: (1) the acceptance record is merged and canonical `main` is verified; (2) a draft closure record, marked `DRAFT — NOT EFFECTIVE`, may be prepared at any time after acceptance; (3) the OLE disposition is recorded; (4) the feature-level completion evaluation and (5) the residual carry-forward are recorded; (6) a human-merged canonical closure decision makes `COMPLETED — FORMALLY ACCEPTED` effective, and never before items (3) to (5) are recorded; and (7) the communication archive and live reset follow, and may be carried in the same pull request as the closure decision, verified before that pull request is merged. The mission README status of Archive Action step 1 takes the value `COMPLETED — FORMALLY ACCEPTED` only under that human-merged closure decision. The Global Product Completion View is updated at Stage 23 acceptance under its own Update Protocol, and not by this closure.
+
 ### Three Communication Locations
 
 - **Transient current handoff — `communication/live/`.** Holds only the current active instruction and current reply. Archived at closure. Answers: *what needs attention now?*
@@ -458,7 +475,8 @@ Before archiving, the assigned AI shall verify:
 - unresolved follow-ups are named;
 - authoritative artifacts remain outside the communication archive where required;
 - no active actor still requires the live exchange;
-- Founder or Mission Control has explicitly confirmed closure.
+- Founder or Mission Control has explicitly confirmed closure;
+- for a Product Mission, the OLE disposition, the feature-level completion evaluation and the residual carry-forward are recorded (Source 18 Stage 24);
 - every associated pull request is merged, closed, or explicitly accepted by Mission Control as an open follow-up reference.
 
 Any open follow-up pull request shall be recorded in the archived README.
@@ -490,7 +508,7 @@ Archived records must not be silently deleted or rewritten, treated as active in
 
 ### No Premature Archive
 
-Communication shall not be archived while a stage, Founder action, Mission Control review, corrective mission, required handover, required pull-request review, or blocking issue remains open.
+Communication shall not be archived while a stage, Founder action, Mission Control review, Corrective Authorization, required handover, required pull-request review, or blocking issue remains open.
 
 ### Closure and Archive Responsibility
 
@@ -670,9 +688,10 @@ The Stage A activation mission shall set:
 | Draft 1.3 | SB-GOV-COMMS-1.2 | Added recurring live instruction/report numbering, exact pair matching, closure consolidation, archive outputs, live-template restoration, and Founder-chat Git command visibility | DRAFT |
 | Draft 1.4 | SB-GOV-COMMS-1.2 | Added provisional live-report status, closure-state reconciliation, chronological transcript preservation, numbered exchange lifecycle, archive consolidation, live-template restoration, and Founder-chat pull/push command visibility | DRAFT |
 | 1.0 | SB-GOV-COMMS-ACT-1.0 | Founder-approved activation of AI communication, controlled Git authority, communication housekeeping, closure reconciliation, and archival governance using a temporary Phase 1 compensating control | ACTIVE |
+| 1.1 | SB-GOV-PRODUCT-EXEC-1.0 | Bounded work-package Git authorization (Section 16.1) and the commit-message and attribution-trailer rule (Sections 11 and 16), with the matching expiry events (Section 21); Product Mission intake record (Section 5), Stage Ledger and handover timing (Section 7), and closure order (Section 26). Canonical human-merge authority, exact-file staging, no self-approval and no self-merge are unchanged | AMENDMENT PROPOSED — ACTIVATION PENDING |
 
 Future updates must append rather than overwrite this history.
 
 ---
 
-**Activation control:** Stage A and Stage B are active under independently verified technical branch protection. The temporary Phase 1 compensating control was retired on 2026-08-02. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.
+**Activation control:** Version 1.1 is an amendment proposed under `SB-GOV-PRODUCT-EXEC-1.0` and is not active until independently verified, human-merged and activated by Mission Control; Version 1.0 remains operative until then. Stage A and Stage B are active under independently verified technical branch protection. The temporary Phase 1 compensating control was retired on 2026-08-02. Communication-governance activation completed and its communication record was authorized for closure and archive on 2026-08-01.

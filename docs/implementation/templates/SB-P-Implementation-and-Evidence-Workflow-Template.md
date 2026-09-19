@@ -2,7 +2,7 @@
 
 # SB-P — IMPLEMENTATION, VERIFICATION, EVIDENCE & COMPLETION WORKFLOW TEMPLATE
 
-**Template ID:** SB-P-IVEW-1.1
+**Template ID:** SB-P-IVEW-1.2
 
 **Template Name:** Implementation, Verification, Evidence & Completion Workflow
 
@@ -10,7 +10,7 @@
 
 **Authorized By:** Mission Control
 
-**Status:** ACTIVE TEMPLATE
+**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.1 is the operative template until this version is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). This version takes effect only after Source 18 Version 1.2 is itself active.
 
 ---
 
@@ -29,9 +29,9 @@ Only the following mission-specific values shall change:
 - Authorized implementation scope
 - Builder/runtime environment
 - Repository paths and commit references
-- Mission-specific evidence and corrective missions
+- Mission-specific evidence and Corrective Authorizations
 
-The workflow, authority boundaries, authorship responsibilities, evidence provenance requirements, review sequence, correction gates, and acceptance rules remain unchanged. This template is subordinate to active Source 18. Its Phase labels organize instructions and do not create an alternative lifecycle sequence. The mandatory order is Builder Completion Report, Founder or authorized human runtime verification, Mission Control runtime review, Stage 19 independent verification by the actor designated under Source 18, then the Evidence Package and formal Completion Report, Mission Control acceptance and documentation closure. Builder checklist execution is initial evidence, not independent verification. A Verification Packet links existing evidence and does not constitute the formal Evidence Package. No template label or builder declaration may waive these gates.
+The workflow, authority boundaries, authorship responsibilities, evidence provenance requirements, review sequence, correction gates, and acceptance rules remain unchanged. This template is subordinate to active Source 18. Its Phase labels organize instructions and do not create an alternative lifecycle sequence. The mandatory order is Builder Completion Report, Founder or authorized human runtime verification, Mission Control runtime review, Stage 19 independent verification by the actor designated under Source 18, then the Evidence Package and formal Completion Report, Mission Control acceptance and documentation closure. Builder checklist execution is initial evidence, not independent verification. A Verification Packet links existing evidence and does not constitute the formal Evidence Package. No template label or builder declaration may waive these gates. Source 18 Version 1.2 additionally requires the Feature Coverage and Product Truth Traceability Matrix (FCTM), mapped through every document of this template, and a mandatory human runtime retest after every correction.
 
 ---
 
@@ -52,8 +52,16 @@ Replace the placeholders below before starting a mission.
 | Verification Checklist | `docs/implementation/[MISSION-ID]/verification-checklist.md` |
 | Completion Report | `docs/implementation/[MISSION-ID]/completion-report.md` |
 | Evidence Root | `docs/implementation/[MISSION-ID]/evidence/` |
-| Builder | `[LOVABLE OR APPROVED IMPLEMENTATION BUILDER]` |
+| Authorized Builder (per workstream) | `[LOVABLE OR APPROVED IMPLEMENTATION BUILDER]` |
+| Workstream Register | `[WORKSTREAMS: SCOPE, AUTHORIZED BUILDER, PATHS, CONTRACTS ADVANCED, RISK CLASS]` |
+| Locked FCTM | `[FCTM PATH, BASELINE COMMIT, AND THE ROWS ASSIGNED TO EACH WORKSTREAM]` |
 | Runtime Environment | `[AUTHORIZED RUNTIME / DEPLOYMENT ENVIRONMENT]` |
+| Test and Verification Environments | `[TEST PROJECT IDENTITY AND RUNTIME-VERIFICATION ENVIRONMENT]` |
+| Production, Migration and Delivery Scope Flags | `production mutation: NOT AUTHORIZED; migration execution: NOT AUTHORIZED; delivery sync and publication: NOT AUTHORIZED` |
+| Continuous-Integration Baseline | `[FAST GATE RESULTS REQUIRED AT EACH CHECKPOINT; FULL ASSURANCE APPLICABILITY BY TRIGGER PATH]` |
+| Verification Plan | `[APPOINTED VERIFIER AND ALTERNATES, INDEPENDENCE ASSESSMENT, CODEX UTILIZATION CLASSIFICATION, CLASS A BOUNDARIES]` |
+| Runtime Verification Plan | `[FOUNDER-RESERVED SCENARIOS AND ANY DELEGATED HUMAN VERIFIER BY NAME]` |
+| Checkpoint Plan | `[CHECKPOINT COMMITS AND THEIR REQUIRED CHECKS]` |
 | Related Completed Missions | `[LIST RELEVANT COMPLETED MISSIONS]` |
 | Dependencies | `[LIST DEPENDENCIES]` |
 
@@ -69,6 +77,7 @@ The Founder shall:
 
 - approve material product and implementation boundaries through Mission Control;
 - provide or capture runtime screenshots and observations where required;
+- perform or confirm the Founder-reserved runtime scenarios, and confirm the findings of any delegated human verifier;
 - confirm merchant-facing behaviour that cannot be established from repository or database evidence alone;
 - retain final acceptance authority together with Mission Control.
 
@@ -82,7 +91,8 @@ Mission Control shall:
 - ensure locked documents remain unchanged;
 - approve the Engineering Contract, Builder Prompt, Verification Checklist, and Completion Report structure;
 - review evidence provenance and completeness;
-- authorize corrective missions where defects are found;
+- issue a numbered Corrective Authorization for each correction where defects are found;
+- run the FCTM completeness test and withhold the Implementation Authorization while an `IN SCOPE` row is unmapped;
 - prevent implementation scope expansion;
 - withhold acceptance until all release-blocking obligations pass;
 - record the final mission disposition.
@@ -96,7 +106,9 @@ Claude Code shall:
 - author the Engineering Contract from the locked Product Blueprint and locked EIS;
 - author the Builder Prompt;
 - author the locked Verification Checklist template;
-- author the Completion Report template;
+- author the Completion Report template, including the Contract Reconciliation;
+- act as an authorized builder for a workstream only where the Implementation Authorization names it, subject to the independence rules of Source 18 Section 4.9; as a builder it cannot verify, approve or accept its own work;
+- act as the Evidence and Completion compiler only under the separate appointment of Source 18 Section 4.3, made after independent verification. That is a role separate from any builder role. As compiler it records independent findings by reference and never edits, summarizes away or suppresses them, and where it built a workstream Mission Control appoints a different compiler for that workstream's reconciliation lines or, if none is eligible, escalates the conflict to the Founder;
 - create or refine automated tests when separately authorized;
 - diagnose defects discovered through testing;
 - implement narrowly scoped corrective engineering only under explicit Mission Control authorization;
@@ -114,6 +126,8 @@ The builder shall:
 - capture implementation, repository, runtime, and database evidence within its access;
 - execute the Verification Checklist where authorized;
 - create or update the Builder Completion Report with factual implementation results and a linked Verification Packet; do not author the formal Completion Report or claim independent verification;
+- state its actual identity truthfully in every artifact, at the existing artifact path (Source 18 Section 4.5);
+- report a status for every FCTM row assigned to it, and never omit, defer, simplify or reclassify an authorized row or implement behaviour that maps to no authorized row;
 - pause and escalate on ambiguity or conflict;
 - never modify locked governance documents.
 
@@ -133,6 +147,8 @@ Every evidence artifact must name or infer a clear capturer category:
 - Mission Control
 
 No artifact may be presented as evidence without identifiable provenance.
+
+**Independence.** The verifier of a workstream did not implement, correct or transfer it. The actor that transfers code between repositories is not that workstream's verifier. A builder never approves its own work.
 
 ---
 
@@ -167,9 +183,14 @@ Part Two shall not begin until:
 - the Product Blueprint is locked;
 - the EIS is authored, reviewed, refined, and locked;
 - architecture/security review findings are resolved or explicitly accepted;
+- the FCTM is locked;
 - Mission Control authorizes creation of the implementation package.
 
-Implementation itself shall not begin merely because the package exists. A separate explicit Mission Control implementation authorization is required.
+No package may exist before both the Blueprint lock and the EIS lock are canonical.
+
+The Engineering Contract, Builder Prompt and Verification Checklist are authored and reviewed as one set, and every `IN SCOPE` FCTM row is mapped to an Engineering Contract obligation and to a Verification Checklist item.
+
+Implementation itself shall not begin merely because the package exists. A separate explicit Mission Control implementation authorization is required, and it is not recorded while an `IN SCOPE` row is unmapped or an obligation is an orphan.
 
 ---
 
@@ -190,11 +211,13 @@ The Engineering Contract shall:
 - preserve human decision ownership;
 - preserve the single authorized write path for sensitive business events;
 - state that package approval is not implementation authorization;
-- prohibit changes to locked documents.
+- prohibit changes to locked documents;
+- map every `IN SCOPE` FCTM row to at least one obligation, keyed by row ID and without restating requirement text;
+- state what is out of scope as "still committed / not in this mission", with the owning mission or the preserved classification.
 
 Mission Control shall review line by line and may return required refinements.
 
-The Engineering Contract shall be locked before the Builder Prompt is locked.
+The Engineering Contract, Builder Prompt and Verification Checklist are reviewed together in one Mission Control review, and cross-references are validated in that review.
 
 ---
 
@@ -216,9 +239,10 @@ The Builder Prompt shall:
 - require repository-first development;
 - prohibit redesign, unrelated refactoring, duplicate code, dead code, workarounds, placeholders, bypasses, and undocumented assumptions;
 - require tests, evidence, checklist execution, and Completion Report updates;
+- list the FCTM rows that each workstream builds and prohibit behaviour outside them;
 - include a pause-and-escalate rule.
 
-Mission Control shall review and lock the Builder Prompt.
+Mission Control shall review and lock the Builder Prompt with the package.
 
 ---
 
@@ -244,7 +268,10 @@ The locked checklist template shall include, where applicable:
 10. Automated testing verification
 11. Evidence verification
 12. Completion verification
-13. Final acceptance statement
+13. Product Truth coverage and drift verification
+14. Final acceptance statement
+
+Section 13 verifies, by FCTM row ID: that every `IN SCOPE` row has an Engineering Contract obligation and a checklist item; that each row's classification and mission assignment equal the locked FCTM; that there is no orphan obligation; that permission, isolation and denial rows have named negative-path items; and that an obligation inventory taken from the source text (each contract's numbered sections, applicable obligations and numbered acceptance scenarios) has no obligation or acceptance scenario without a row. A missing obligation or acceptance scenario is a coverage failure even where every retained row maps consistently. Every item carries its row ID and a planned evidence class. `ALREADY DEMONSTRATED` rows map to a regression or no-change item that cites the earlier evidence and the Delta impact check, and are never assumed to pass.
 
 Every checklist item shall be objective, traceable, and evidence-backed.
 
@@ -254,7 +281,7 @@ The template shall remain preserved after lock. Execution results shall be recor
 
 # 9. Phase D — Completion Report Template
 
-This section defines the required report structure and does not authorize an early mission-specific Completion Report. Only after Source 18 independent verification and Mission Control authorization, Claude Code shall create the formal Completion Report at:
+This section defines the required report structure and does not authorize an early mission-specific Completion Report. Only after Source 18 independent verification and Mission Control authorization, the Evidence and Completion compiler (Claude Code unless Mission Control appoints another actor) shall create the formal Completion Report at:
 
 ```text
 [COMPLETION REPORT PATH]
@@ -268,11 +295,13 @@ The template shall include:
 - checklist summary;
 - testing summary;
 - evidence summary;
-- defects and corrective missions;
+- defects and Corrective Authorizations;
 - follow-up items;
 - outstanding risks;
 - repository and deployment status;
 - builder declaration;
+- the Experience Verification Matrix;
+- the **Contract Reconciliation**: for every contract advanced, one line per FCTM row with the status `DEMONSTRATED` (evidence class and path, verifier result, runtime evidence), `DEMONSTRATED — CARRIED FORWARD` (with the original evidence), `IMPLEMENTED — NOT DEMONSTRATED`, `PARTIALLY DEMONSTRATED` (stating what remains), `NOT IMPLEMENTED`, `ASSIGNED TO LATER MISSION`, `DELEGATED`, `OUT OF BUILD SCOPE`, `NOT APPLICABLE` or `DEFERRED WITH FOUNDER DECISION <ID>`, and per contract the count and list of `BUILD NOW` requirements not demonstrated by this mission;
 - Mission Control review and acceptance section.
 
 The template must distinguish:
@@ -282,7 +311,11 @@ The template must distinguish:
 - evidence complete;
 - accepted by Mission Control;
 - follow-up items that are non-blocking;
-- unresolved release-blocking defects.
+- unresolved release-blocking defects;
+- requirement demonstrated;
+- requirement not demonstrated.
+
+The report also keeps apart the states committed, implemented, merged, migrated or configured, deployed, runtime-verified, independently verified, accepted and globally complete.
 
 ---
 
@@ -299,8 +332,14 @@ Mission Control shall issue a separate explicit implementation authorization nam
 - verification obligations
 - reporting room
 - pause-and-escalate conditions
+- the workstream register, with each workstream's scope, authorized builder, paths, contracts advanced and risk class
+- the environments, with production, migration and delivery each stated `NOT AUTHORIZED`
+- the continuous-integration baseline
+- the verification plan, including the appointed verifier and alternates
+- the runtime verification plan, including the Founder-reserved scenarios
+- the FCTM reference: the locked path and baseline commit, the rows assigned to each workstream, and Mission Control's statement that the mapping completeness test passed
 
-No implementation shall start without this authorization.
+The authorization records no Git authority, which is granted separately under the AI Communication and Handover Protocol, and it authorizes no production, migration or delivery action. It may be recorded after package approval and lock as a separately identified disposition. No implementation shall start without this authorization.
 
 ---
 
@@ -316,8 +355,9 @@ The builder shall:
 - preserve tenant/business isolation;
 - preserve append-only and audit guarantees;
 - add automated tests where authorized;
-- record commit and deployment provenance;
-- capture and reference initial evidence with provenance in the authorized mission record; Claude Code assembles the formal Evidence Package only after independent verification and Mission Control authorization under Source 18;
+- commit checkpoints, each with a green Fast Gate and, where triggered, Full Assurance, and record commit and deployment provenance;
+- where the builder works outside the canonical repository, record the canonical transfer, which is mechanical, scope-preserving and manifest-checked and never counts as verification;
+- capture and reference initial evidence with provenance in the authorized mission record; the Evidence and Completion compiler assembles the formal Evidence Package only after independent verification and Mission Control authorization under Source 18;
 
 The builder shall not:
 
@@ -328,6 +368,7 @@ The builder shall not:
 - redesign the architecture;
 - introduce a second write path;
 - allow AI or automation to take owner decisions;
+- omit, defer, simplify or reclassify an authorized FCTM row, or implement behaviour that maps to no authorized row, and instead raise the matter with Mission Control for a Founder decision;
 - hide failures or unresolved assumptions.
 
 ---
@@ -360,12 +401,14 @@ The evidence index shall identify:
 
 - artifact name;
 - artifact description;
-- mission or corrective mission that captured it;
+- mission or Corrective Authorization that captured it;
 - capturer;
 - environment;
 - date;
-- checklist obligation supported;
+- checklist obligation and FCTM row supported;
 - limitations.
+
+The evidence index is a manifest: it links continuous-integration run identities and other durable records and stores only artifacts that are not otherwise durable.
 
 ---
 
@@ -423,13 +466,13 @@ Automated test evidence shall include:
 - test project separation from production where applicable;
 - total passed, failed, skipped;
 - traceability matrix;
-- raw output;
+- raw output, or the continuous-integration run identity and checkout commit where the Independent Verification Efficiency Protocol accepts that evidence;
 - known limitations;
 - author/capturer.
 
 ## Corrective Evidence
 
-Evidence from a corrective mission shall preserve the original defect record and append the resolution and re-verification. Historical failure evidence shall not be deleted merely because the defect was fixed.
+Evidence from a Corrective Authorization shall preserve the original defect record and append the resolution and re-verification. Historical failure evidence shall not be deleted merely because the defect was fixed.
 
 ---
 
@@ -446,16 +489,16 @@ Every item shall be marked:
 
 Rules:
 
-- `FAIL` means non-compliance and blocks acceptance unless explicitly superseded by a corrective mission.
-- `FOLLOW-UP` is allowed only for non-blocking evidence or capability gaps that are genuinely outside the authorized mission scope.
-- A missing release-blocking test, RLS check, migration check, or business-isolation check cannot be downgraded to Follow-up without Mission Control approval.
-- Evidence references must accompany every result.
+- `FAIL` means non-compliance and blocks acceptance unless explicitly superseded by a Corrective Authorization.
+- `FOLLOW-UP` is allowed only for non-blocking evidence or capability gaps that are genuinely outside the authorized mission scope. It never covers a non-demonstrated `IN SCOPE` row.
+- A missing release-blocking test, RLS check, migration check, or business-isolation check cannot be downgraded to Follow-up without Mission Control approval, and a non-demonstrated `IN SCOPE` row cannot be downgraded without a recorded Founder decision.
+- Evidence references must accompany every result, and results are recorded per FCTM row.
 
 ---
 
 # 15. Phase H — Completion Report Update
 
-The builder shall update its Builder Completion Report with factual results only. After Source 18 independent verification and Mission Control authorization, Claude Code shall create or update the formal Completion Report from verified evidence, distinguishing builder statements, independent findings, human runtime observations and Mission Control decisions.
+The builder shall update its Builder Completion Report with factual results only. After Source 18 independent verification and Mission Control authorization, the Evidence and Completion compiler shall create or update the formal Completion Report from verified evidence, distinguishing builder statements, independent findings, human runtime observations and Mission Control decisions.
 
 The report shall identify who authored or updated each version.
 
@@ -463,7 +506,7 @@ At minimum, metadata shall record:
 
 - `Created By`
 - `Updated By`
-- mission or corrective mission IDs
+- mission IDs and Corrective Authorization numbers
 - `Reviewed By`
 - status
 - approval date or pending status
@@ -484,32 +527,36 @@ Mission Control shall review:
 - runtime behaviour;
 - security/RLS and business isolation;
 - automated test coverage;
-- defects, risks, and Follow-up items.
+- defects, risks, and Follow-up items;
+- requirement coverage and the Contract Reconciliation, including the Reconciliation Integrity Check of Source 18 Stage 22, which Mission Control performs after the Completion Report and before acceptance, separately from independent verification and without waiving it.
 
 Possible outcomes:
 
 - `ACCEPTED`
 - `ACCEPTED WITH NON-BLOCKING FOLLOW-UP`
-- `CORRECTIVE MISSION REQUIRED`
+- `CORRECTION REQUIRED`
 - `EVIDENCE INCOMPLETE`
 - `IMPLEMENTATION REJECTED`
+
+`ACCEPTED WITH NON-BLOCKING FOLLOW-UP` cannot cover a non-demonstrated `IN SCOPE` row without a recorded Founder decision.
 
 No builder may self-accept a mission.
 
 ---
 
-# 17. Phase J — Corrective Missions
+# 17. Phase J — Corrective Cycle
 
-When a defect is discovered, Mission Control shall authorize a narrowly scoped corrective mission.
+When a defect is discovered, Mission Control shall issue a narrowly scoped, numbered Corrective Authorization. It is a record within the existing mission and never a new Product Mission ID.
 
-A corrective mission shall define:
+A Corrective Authorization shall define:
 
 - defect ID and evidence reference;
 - root-cause scope;
 - files or functions authorized for modification;
+- the builder, who is never the verifier;
 - prohibited changes;
 - required regression tests;
-- required re-verification;
+- required re-verification, including the human retest;
 - report and evidence updates;
 - completion gate.
 
@@ -517,15 +564,19 @@ Corrective work shall not be used as permission for unrelated refactoring or pro
 
 The original defect evidence must be preserved.
 
+A correction never resolves a coverage finding by removing or deferring an FCTM row. It restores the approved behaviour or removes the unauthorized behaviour, and if that is impossible or unsafe the row goes to the Founder through Mission Control.
+
 After correction:
 
 - rerun relevant focused tests and affected checklist items; provide full applicable deterministic CI;
-- record the correction checkpoint and changed scope;
+- record the correction checkpoint and changed scope, listing the affected FCTM rows;
 - update the Builder Completion Report and Verification Packet, preserving prior evidence;
-- perform Founder retest and Mission Control runtime review under Source 18 Stage 20;
+- perform the **human runtime retest** described below, and Mission Control runtime review under Source 18 Stage 20;
 - obtain Mission Control correction review and finding-scoped independent re-verification, escalating where the correction invalidates a broader assurance boundary;
 - after independent verification and Mission Control authorization, update the formal Evidence Package and Completion Report;
 - return to Mission Control for acceptance disposition.
+
+**Human retest after every correction.** A human runtime retest is required after every correction, before correction acceptance and before re-verification closes. Its scope may be specific to the finding and is not automatically the whole mission: it covers the affected behaviour and its regression surface, as Mission Control determines. Each retest records the actor, the target, the scenarios, the expected and actual results, and the evidence. No automated-only waiver exists: continuous integration, tests and static review never replace it. Founder-reserved scenarios remain with the Founder or a confirmed delegate.
 
 ---
 
@@ -549,6 +600,8 @@ A test-only mission shall not silently patch production defects unless separatel
 # 19. Phase L — Founder Runtime Observation
 
 Founder runtime verification, or authorized human runtime verification confirmed by the Founder, and Mission Control runtime review are mandatory before independent verification under Source 18. Mission Control defines the affected runtime scope and reviews its evidence. Static repository, database and automated-test evidence do not replace this gate.
+
+The Founder-reserved scenarios (the Build Plan Founder Runtime Verification scenarios for the mission, and any anchor Mission Control designates) are performed by the Founder or a delegate the Founder confirms. Delegable mechanical checks, such as role and permission behaviour, negative paths and data visibility, are performed by a named authorized human verifier against the Verification Checklist. The Founder confirms all submitted findings. Runtime evidence names the environment, commit and deployment identity, actor, role, route, expected and actual result, and the FCTM row IDs exercised.
 
 Examples:
 
@@ -576,11 +629,16 @@ A mission may be accepted only when:
 - required migrations are applied and verified;
 - required automated tests pass;
 - evidence is complete and provenance is clear;
-- corrective missions are closed;
-- Completion Report is accurate;
+- Corrective Authorizations are closed, each with its human retest recorded;
+- the Experience Verification Matrix and the Contract Reconciliation are accurate, and the Reconciliation Integrity Check found no unresolved discrepancy;
+- every `IN SCOPE` FCTM row is `DEMONSTRATED` or covered by a recorded Founder decision;
+- the Completion Report is accurate;
+- the Global Product Completion View is updated from the accepted Contract Reconciliation and only from demonstrated evidence;
 - no unresolved implementation defect is hidden;
 - Mission Control records acceptance;
 - Founder approval is recorded where required.
+
+Acceptance is not release, deployment or migration authority.
 
 ---
 
@@ -626,7 +684,9 @@ No Part Two workflow may:
 - treat successful deployment as proof of correctness;
 - hide defects after correction;
 - mark Follow-up items as Pass without evidence;
-- let a builder approve its own work.
+- let a builder approve its own work;
+- silently omit, defer, simplify, reclassify or expand an approved requirement;
+- treat a Git authorization as authority to approve, lock, authorize, execute, accept, close or merge.
 
 ---
 
@@ -645,7 +705,8 @@ Mission Context: [MISSION CONTEXT]
 Locked Product Blueprint: [PATH AND VERSION]
 Locked EIS: [PATH AND VERSION]
 Implementation Package Root: [PATH]
-Builder: [BUILDER]
+Authorized Builder(s): [BUILDER PER WORKSTREAM]
+Locked FCTM: [PATH AND BASELINE COMMIT]
 Relevant Sources: [SOURCE PATHS]
 Dependencies: [DEPENDENCIES]
 
@@ -666,15 +727,32 @@ Before using this workflow for implementation, Mission Control shall confirm:
 - [ ] Mission variables are complete.
 - [ ] Product Blueprint is locked.
 - [ ] EIS is locked.
-- [ ] Engineering Contract is approved and locked.
-- [ ] Builder Prompt is approved and locked.
-- [ ] Verification Checklist is approved and locked.
+- [ ] The FCTM is locked.
+- [ ] Engineering Contract, Builder Prompt and Verification Checklist are approved and locked as one package.
+- [ ] Every `IN SCOPE` row is mapped to an obligation and a checklist item.
+- [ ] No orphan obligation exists.
 - [ ] Completion Report template exists.
 - [ ] Evidence folder exists.
-- [ ] Implementation authorization is explicit.
+- [ ] Implementation authorization is explicit and states production, migration and delivery as not authorized.
+- [ ] The verification plan and runtime verification plan are recorded.
 - [ ] Builder and reporting room are identified.
 - [ ] Evidence provenance rules are acknowledged.
-- [ ] Corrective-mission authority remains with Mission Control.
+- [ ] Corrective Authorization authority remains with Mission Control.
 - [ ] Final acceptance remains with Mission Control and Founder.
 
 Until these checks pass, implementation shall not begin.
+
+---
+
+# 25. Template Change Log
+
+| Version | Change | Status |
+|---|---|---|
+| 1.0 | Initial reusable Implementation, Verification, Evidence & Completion Workflow for all Smart Business Product Missions | SUPERSEDED |
+| 1.1 | Aligned the template with Source 18 Version 1.1: subordination to Source 18, Builder Completion Report versus formal Completion Report, Verification Packet, independent verification and finding-scoped correction sequence, protected-main pull-request workflow (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This log and this row were added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and are reconstructed from that pull request (correction of an omitted log) | ACTIVE |
+| 1.2 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: FCTM mapped through the Engineering Contract, Builder Prompt, Verification Checklist and Completion Report; Contract Reconciliation; expanded Implementation Authorization fields; per-row builder reporting; numbered Corrective Authorization with mandatory human retest; Founder-reserved and delegable runtime checks; existing Lovable-specific artifact names retained. Subordinate to Source 18 Version 1.2 | AMENDMENT PROPOSED — ACTIVATION PENDING |
+
+**Correction and interpretation notes (append-only, added under `SB-GOV-PRODUCT-EXEC-1.0`).**
+
+1. **Correction — omitted log.** This template had no change log before this amendment. Rows 1.0 and 1.1 are reconstructed from the template's history and from PR #598, and are added retroactively.
+2. **Interpretation — status of row 1.0.** Row 1.0 is shown as `SUPERSEDED` because Version 1.1 was merged in PR #598 on 2026-09-18. No earlier recorded status is altered, because none existed.
