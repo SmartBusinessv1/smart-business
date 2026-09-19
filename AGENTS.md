@@ -8,6 +8,8 @@
 > Organization: Lighthouse Information Publishing Service (LIPS)
 > Technology Unit: Team LIPS
 
+> **Pending amendment (`SB-GOV-PRODUCT-EXEC-1.0`).** Provisions below that are marked as taking effect on activation are not operative until the amendment is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). Until then the operative rules are those of this file as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`. The pending provisions are the Product Mission intake pointer, the attribution-trailer rule, the work-package authorization and the work-package expiry.
+
 ---
 
 # Purpose
@@ -24,7 +26,7 @@ Its purpose is to ensure that every AI assistant produces engineering work that 
 
 This file supplements the Engineering Operating System (EOS). It does not replace or modify approved governance.
 
-Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
+Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md). When Source 18 Version 1.2 is active, for a Product Mission also follow the Source 18 lifecycle (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`): complete the Institutional Learning Intake Record (Section 3.1, covering both the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix (Section 3.2).
 
 For any migration-related work, read [`docs/migration/README.md`](docs/migration/README.md) first. Migration artifacts and SQL under `supabase/migrations/**` are non-executable by default; execution requires a new explicit mission naming the exact package, environment, actor, scope, safeguards, and reporting workflow. Ambiguity requires a stop report.
 
@@ -179,6 +181,8 @@ Codex and Claude Code may perform automatic Git operations only when an active F
 
 Per the Founder Git-authorization decision, Mission Control may explicitly authorize the standard mission-branch convention and mission-scoped descriptive commit messages. Exact branch text and exact commit text are required only when Mission Control specifically locks them. This changes only the authorization form; it does not weaken explicit mission authority, named repository, authorized scope, the protected-`main` pull-request workflow, exact staged-file verification, required quality and security checks, no self-approval, no self-merge, Mission Control review, or human merge authority.
 
+**Taking effect on activation of Communication and Handover Protocol Version 1.1.** Once that version is active, an authorization also identifies the attribution-trailer rule: the standard `Co-Authored-By` trailer is required, permitted or excluded. A Mission Control work-package authorization additionally identifies the work package, the ordered stages or steps it covers, the listed Git operations it permits (and under a work package the AI may perform only those operations), and an end event and an end date, and is otherwise bound by every rule in this section. It grants Git permission only and never authority to approve, lock, authorize, execute, accept, close or merge.
+
 Mission authority grants governance permission only. It does not create shell, filesystem, Git, GitHub, connector, credential, authentication, or repository capability.
 
 Before an authorized commit or push, the AI shall verify the configured remote, current branch, authorized base branch and SHA, clean tree or authorized changes, exact staged paths using `git diff --cached --name-status`, applicable quality gates, `git diff --cached --check`, and staged content for secrets or credentials.
@@ -200,7 +204,16 @@ AI assistants shall not:
 - alter branch protection;
 - expose credentials or secrets.
 
-Authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
+Until Communication and Handover Protocol Version 1.1 is active, authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
+
+**Taking effect on activation of Communication and Handover Protocol Version 1.1.** Once that version is active, expiry depends on the type of grant, consistently with Protocol Sections 16.1 and 21:
+
+- An ordinary **stage-scoped grant** expires when its authorized stage is completed.
+- A **bounded work-package grant** expires when its named end event occurs or its end date passes, whichever comes first. Completing an intermediate authorized stage of the work package does not, by itself, expire it.
+- **Both types also expire immediately** on every stop condition of Protocol Section 21: Mission Control revocation; the mission being paused, closed, superseded or rejected; a change of the authorized branch or scope; a material change of a Mission Control-locked branch name or locked commit message; a change of, or inability to follow, the authorized commit-message or attribution-trailer rule; unrelated working-tree changes; validation failure; a merge or rebase conflict; a pull that cannot fast-forward; and a change of repository or authentication state.
+- Resumption after any expiry requires renewed authorization and confirmation of authority and repository state.
+
+Neither grant type broadens the permitted Git operations, paths or approval authority.
 
 When Founder action is required, exact Git commands and expected evidence shall be shown directly in chat.
 
