@@ -10,7 +10,7 @@
 
 **Authorized By:** Mission Control
 
-**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.3 is the operative template until Mission Control activates this version. This version takes effect only when Source 18 Version 1.2 is active.
+**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.3 is the operative template until this version is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). This version takes effect only after Source 18 Version 1.2 is itself active.
 
 ---
 
@@ -268,7 +268,7 @@ The FCTM is the mission's requirement-level accounting of approved truth, define
 
 **Classification lock.** The build commitment, commercial classification and mission assignment of an approved requirement change only by a recorded Founder decision cited in the row. Technical difficulty, a partial foundation, a missing dependency or an older label never authorizes a change.
 
-**Completeness test.** Every section has a row; every row has one cited disposition; at lock there is no `ESCALATED` row and no critical-path `UNRESOLVED FOUNDER DECISION` row; each row's classification and assignment equal the source; and downstream mappings have no unmapped `IN SCOPE` row and no orphan.
+**Completeness test.** The test compares the matrix with the source text and not only with itself: (a) every numbered section of every in-scope contract is represented by at least one row; (b) every applicable, separately verifiable obligation inside an in-scope, partially delivered or mixed section is represented by its own row, and inside a wholly non-`IN SCOPE` section by the single section-level row that the row rule permits; (c) every numbered acceptance scenario is individually represented by its own row; (d) every row has exactly one cited disposition, at lock there is no `ESCALATED` row and no critical-path `UNRESOLVED FOUNDER DECISION` row, and each row's classification and assignment equal the source; and (e) downstream mappings have no unmapped `IN SCOPE` row and no orphan. Checks (a) to (c) are made against an obligation inventory taken from the source text: a list of pointers to the numbered sections, obligations and acceptance scenarios of each in-scope contract, kept in the verification record. It is not a second matrix and restates no requirement. **A missing obligation or acceptance scenario fails the test even when every retained row has a valid disposition and a consistent downstream mapping.**
 
 **Escalation.** A proposed omission, deferral, pull-forward, simplification or reclassification, and any Product Truth conflict or infeasibility found at any later stage, stops dependent work, marks the row `ESCALATED`, and goes to the Founder through Mission Control.
 
@@ -725,7 +725,7 @@ It does not replace the formal Completion Report.
 
 ## Formal Completion Report
 
-Claude Code shall create:
+The Evidence and Completion compiler shall create the formal Completion Report. The compiler is Claude Code unless Mission Control appoints another actor, under a separate appointment made after independent verification (Source 18 Section 4.3). It is a role separate from any builder role. The compiler records the independent findings by reference and never edits, summarizes away or suppresses them. It shall create:
 
 `docs/implementation/[MISSION-ID]/completion-report.md`
 
@@ -747,7 +747,7 @@ The Completion Report summarizes:
 - follow-up items;
 - implementation status;
 - the Experience Verification Matrix;
-- the Contract Reconciliation, with one line for every FCTM row of every contract advanced and the count and list of `BUILD NOW` requirements not demonstrated by the mission.
+- the Contract Reconciliation, with one line for every FCTM row of every contract advanced and the count and list of `BUILD NOW` requirements not demonstrated by the mission. Mission Control checks it before acceptance in the Reconciliation Integrity Check of Source 18 Stage 22, which is separate from independent verification and never waives it.
 
 The Completion Report is not an implementation document.
 
@@ -755,7 +755,7 @@ It is a post-verification governance record.
 
 ## Evidence Package
 
-Claude Code shall create the Evidence Package only after independent verification.
+The Evidence and Completion compiler shall create the Evidence Package only after independent verification.
 
 The Evidence Package is manifest-first: an index linking continuous-integration run identities, the verification report, runtime evidence and provenance, storing only artifacts that are not otherwise durable.
 
@@ -774,6 +774,12 @@ Evidence shall preserve provenance.
 Evidence shall not replace verification.
 
 After independent verification, Mission Control may authorize the combined preparation and review of the Evidence Package and the Completion Report. The Stage 21 and Stage 22 dispositions are recorded separately.
+
+## Corrections and Human Retest
+
+A material `FAIL` after independent verification is corrected through a numbered Corrective Authorization within the existing mission (Source 18 Stage 20), and never through a new Product Mission ID.
+
+**A human runtime retest is required after every correction**, before correction acceptance and before re-verification closes. Its scope may be specific to the finding and is not automatically the whole mission: it covers the affected behaviour and its regression surface, as Mission Control determines. Each retest records the actor, the target, the scenarios, the expected and actual results, and the evidence. **No automated-only waiver exists**: continuous integration, tests and static review never replace it. Founder-reserved scenarios remain with the Founder or a confirmed delegate. A correction never removes or defers an FCTM row.
 
 ## Approved Implementation Lifecycle
 
@@ -814,6 +820,8 @@ Mission Control final acceptance
 ↓
 Documentation closure
 ```
+
+Corrections return to the applicable build and verification stages through the Corrective Cycle described above, with a human retest after every correction.
 
 Neither the Builder Completion Report nor implementation itself constitutes mission completion.
 
@@ -880,6 +888,11 @@ For each new Product Mission:
 |---|---|---|
 | 1.0 | Initial reusable Product Feature Elaboration Workflow for all Smart Business Product Missions | SUPERSEDED |
 | 1.1 | Added complete Product Blueprint structural parity with SB-P-1.10, explicit post–Section 19 section list, authorship boundaries, complete Blueprint lock gate, and EIS entry gate | SUPERSEDED |
-| 1.2 | Refined implementation package lifecycle by introducing Builder Completion Report, post-verification Completion Report, Evidence Package gate, and independent verification sequence | SUPERSEDED |
-| 1.3 | Aligned independent-verification wording with Source 18 Version 1.1, replacing "Claude Code independent verification" with independent verification by the Mission Control-appointed Independent Verification Actor (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This row was added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and is reconstructed from that pull request | ACTIVE |
+| 1.2 | Refined implementation package lifecycle by introducing Builder Completion Report, post-verification Completion Report, Evidence Package gate, and independent verification sequence | ACTIVE |
+| 1.3 | Aligned independent-verification wording with Source 18 Version 1.1, replacing "Claude Code independent verification" with independent verification by the Mission Control-appointed Independent Verification Actor (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This row was added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and is reconstructed from that pull request (correction of an omitted entry; see the notes below) | ACTIVE |
 | 1.4 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: Definition Actor; mandatory FCTM (Section 7.4); Institutional Learning Intake Record; conditional Founder Decision Gate; assembly by reference; per-row feasibility findings; implementation package authored and reviewed as one set after both locks; mandatory Contract Reconciliation; existing Lovable-specific artifact names retained; Gate 2 order unchanged. Subordinate to Source 18 Version 1.2 | AMENDMENT PROPOSED — ACTIVATION PENDING |
+
+**Correction and interpretation notes (append-only, added under `SB-GOV-PRODUCT-EXEC-1.0`).** The rows above that pre-date this amendment are not rewritten.
+
+1. **Correction — omitted entry.** The Version 1.3 change merged in PR #598 had no row in this log. Row 1.3 is added retroactively and is reconstructed from that pull request.
+2. **Interpretation — status of row 1.2.** The Status of row 1.2 remains as originally logged (`ACTIVE`). Version 1.2 was superseded by Version 1.3 when PR #598 was merged on 2026-09-18.

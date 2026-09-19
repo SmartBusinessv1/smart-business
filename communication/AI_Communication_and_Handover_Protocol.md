@@ -2,7 +2,7 @@
 
 - **Mission:** SB-GOV-COMMS-1.2 (Version 1.0); SB-GOV-PRODUCT-EXEC-1.0 (Version 1.1 amendment)
 - **Version:** 1.1
-- **Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.0 remains the operative text until Mission Control activates Version 1.1
+- **Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.0, as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`, remains the operative text until Version 1.1 is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header)
 - **Authority:** Founder through Mission Control
 - **Approved By:** Founder (Version 1.0). Version 1.1: PENDING
 - **Activated By:** Mission Control (Version 1.0). Version 1.1: PENDING
@@ -444,7 +444,7 @@ Stage B shall verify that no remaining statement says Codex or Claude Code can n
 
 The transient live exchange shall not remain indefinitely in `communication/live/` after the communication cycle or mission is complete. The durable mission record is a separate thing and is treated differently, as set out below.
 
-For a Product Mission, Source 18 Stage 24 owns the closure gate and its order: the acceptance record is merged and canonical `main` is verified; the closure record is written; the OLE disposition is recorded; the feature-level completion evaluation and the residual carry-forward are recorded; and only then is the communication archived. The Global Product Completion View is updated at Stage 23 acceptance under its own Update Protocol, and not by this closure.
+For a Product Mission, Source 18 Stage 24 owns the closure gate and its order: (1) the acceptance record is merged and canonical `main` is verified; (2) a draft closure record, marked `DRAFT — NOT EFFECTIVE`, may be prepared at any time after acceptance; (3) the OLE disposition is recorded; (4) the feature-level completion evaluation and (5) the residual carry-forward are recorded; (6) a human-merged canonical closure decision makes `COMPLETED — FORMALLY ACCEPTED` effective, and never before items (3) to (5) are recorded; and (7) the communication archive and live reset follow, and may be carried in the same pull request as the closure decision, verified before that pull request is merged. The mission README status of Archive Action step 1 takes the value `COMPLETED — FORMALLY ACCEPTED` only under that human-merged closure decision. The Global Product Completion View is updated at Stage 23 acceptance under its own Update Protocol, and not by this closure.
 
 ### Three Communication Locations
 

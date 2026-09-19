@@ -10,7 +10,7 @@
 
 **Authorized By:** Mission Control
 
-**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.1 is the operative template until Mission Control activates this version. This version takes effect only when Source 18 Version 1.2 is active.
+**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.1 is the operative template until this version is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). This version takes effect only after Source 18 Version 1.2 is itself active.
 
 ---
 
@@ -107,7 +107,8 @@ Claude Code shall:
 - author the Builder Prompt;
 - author the locked Verification Checklist template;
 - author the Completion Report template, including the Contract Reconciliation;
-- act as an authorized builder for a workstream only where the Implementation Authorization names it, subject to the independence rules of Source 18 Section 4.9;
+- act as an authorized builder for a workstream only where the Implementation Authorization names it, subject to the independence rules of Source 18 Section 4.9; as a builder it cannot verify, approve or accept its own work;
+- act as the Evidence and Completion compiler only under the separate appointment of Source 18 Section 4.3, made after independent verification. That is a role separate from any builder role. As compiler it records independent findings by reference and never edits, summarizes away or suppresses them, and where it built a workstream Mission Control appoints a different compiler for that workstream's reconciliation lines or, if none is eligible, escalates the conflict to the Founder;
 - create or refine automated tests when separately authorized;
 - diagnose defects discovered through testing;
 - implement narrowly scoped corrective engineering only under explicit Mission Control authorization;
@@ -270,7 +271,7 @@ The locked checklist template shall include, where applicable:
 13. Product Truth coverage and drift verification
 14. Final acceptance statement
 
-Section 13 verifies, by FCTM row ID: that every `IN SCOPE` row has an Engineering Contract obligation and a checklist item; that each row's classification and mission assignment equal the locked FCTM; that there is no orphan obligation; and that permission, isolation and denial rows have named negative-path items. Every item carries its row ID and a planned evidence class. `ALREADY DEMONSTRATED` rows map to a regression or no-change item that cites the earlier evidence and the Delta impact check, and are never assumed to pass.
+Section 13 verifies, by FCTM row ID: that every `IN SCOPE` row has an Engineering Contract obligation and a checklist item; that each row's classification and mission assignment equal the locked FCTM; that there is no orphan obligation; that permission, isolation and denial rows have named negative-path items; and that an obligation inventory taken from the source text (each contract's numbered sections, applicable obligations and numbered acceptance scenarios) has no obligation or acceptance scenario without a row. A missing obligation or acceptance scenario is a coverage failure even where every retained row maps consistently. Every item carries its row ID and a planned evidence class. `ALREADY DEMONSTRATED` rows map to a regression or no-change item that cites the earlier evidence and the Delta impact check, and are never assumed to pass.
 
 Every checklist item shall be objective, traceable, and evidence-backed.
 
@@ -280,7 +281,7 @@ The template shall remain preserved after lock. Execution results shall be recor
 
 # 9. Phase D — Completion Report Template
 
-This section defines the required report structure and does not authorize an early mission-specific Completion Report. Only after Source 18 independent verification and Mission Control authorization, Claude Code shall create the formal Completion Report at:
+This section defines the required report structure and does not authorize an early mission-specific Completion Report. Only after Source 18 independent verification and Mission Control authorization, the Evidence and Completion compiler (Claude Code unless Mission Control appoints another actor) shall create the formal Completion Report at:
 
 ```text
 [COMPLETION REPORT PATH]
@@ -356,7 +357,7 @@ The builder shall:
 - add automated tests where authorized;
 - commit checkpoints, each with a green Fast Gate and, where triggered, Full Assurance, and record commit and deployment provenance;
 - where the builder works outside the canonical repository, record the canonical transfer, which is mechanical, scope-preserving and manifest-checked and never counts as verification;
-- capture and reference initial evidence with provenance in the authorized mission record; Claude Code assembles the formal Evidence Package only after independent verification and Mission Control authorization under Source 18;
+- capture and reference initial evidence with provenance in the authorized mission record; the Evidence and Completion compiler assembles the formal Evidence Package only after independent verification and Mission Control authorization under Source 18;
 
 The builder shall not:
 
@@ -497,7 +498,7 @@ Rules:
 
 # 15. Phase H — Completion Report Update
 
-The builder shall update its Builder Completion Report with factual results only. After Source 18 independent verification and Mission Control authorization, Claude Code shall create or update the formal Completion Report from verified evidence, distinguishing builder statements, independent findings, human runtime observations and Mission Control decisions.
+The builder shall update its Builder Completion Report with factual results only. After Source 18 independent verification and Mission Control authorization, the Evidence and Completion compiler shall create or update the formal Completion Report from verified evidence, distinguishing builder statements, independent findings, human runtime observations and Mission Control decisions.
 
 The report shall identify who authored or updated each version.
 
@@ -527,7 +528,7 @@ Mission Control shall review:
 - security/RLS and business isolation;
 - automated test coverage;
 - defects, risks, and Follow-up items;
-- requirement coverage and the Contract Reconciliation.
+- requirement coverage and the Contract Reconciliation, including the Reconciliation Integrity Check of Source 18 Stage 22, which Mission Control performs after the Completion Report and before acceptance, separately from independent verification and without waiving it.
 
 Possible outcomes:
 
@@ -629,7 +630,7 @@ A mission may be accepted only when:
 - required automated tests pass;
 - evidence is complete and provenance is clear;
 - Corrective Authorizations are closed, each with its human retest recorded;
-- the Experience Verification Matrix and the Contract Reconciliation are accurate;
+- the Experience Verification Matrix and the Contract Reconciliation are accurate, and the Reconciliation Integrity Check found no unresolved discrepancy;
 - every `IN SCOPE` FCTM row is `DEMONSTRATED` or covered by a recorded Founder decision;
 - the Completion Report is accurate;
 - the Global Product Completion View is updated from the accepted Contract Reconciliation and only from demonstrated evidence;
@@ -748,5 +749,10 @@ Until these checks pass, implementation shall not begin.
 | Version | Change | Status |
 |---|---|---|
 | 1.0 | Initial reusable Implementation, Verification, Evidence & Completion Workflow for all Smart Business Product Missions | SUPERSEDED |
-| 1.1 | Aligned the template with Source 18 Version 1.1: subordination to Source 18, Builder Completion Report versus formal Completion Report, Verification Packet, independent verification and finding-scoped correction sequence, protected-main pull-request workflow (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This log and this row were added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and are reconstructed from that pull request | ACTIVE |
+| 1.1 | Aligned the template with Source 18 Version 1.1: subordination to Source 18, Builder Completion Report versus formal Completion Report, Verification Packet, independent verification and finding-scoped correction sequence, protected-main pull-request workflow (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This log and this row were added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and are reconstructed from that pull request (correction of an omitted log) | ACTIVE |
 | 1.2 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: FCTM mapped through the Engineering Contract, Builder Prompt, Verification Checklist and Completion Report; Contract Reconciliation; expanded Implementation Authorization fields; per-row builder reporting; numbered Corrective Authorization with mandatory human retest; Founder-reserved and delegable runtime checks; existing Lovable-specific artifact names retained. Subordinate to Source 18 Version 1.2 | AMENDMENT PROPOSED — ACTIVATION PENDING |
+
+**Correction and interpretation notes (append-only, added under `SB-GOV-PRODUCT-EXEC-1.0`).**
+
+1. **Correction — omitted log.** This template had no change log before this amendment. Rows 1.0 and 1.1 are reconstructed from the template's history and from PR #598, and are added retroactively.
+2. **Interpretation — status of row 1.0.** Row 1.0 is shown as `SUPERSEDED` because Version 1.1 was merged in PR #598 on 2026-09-18. No earlier recorded status is altered, because none existed.

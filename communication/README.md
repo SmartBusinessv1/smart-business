@@ -108,7 +108,7 @@ Each instruction and report must clearly identify:
 
 Do not place unrelated missions in the same instruction or report file.
 
-During a Product Mission, the live pair points to the mission record, where the substantive stage reports live under `communication/missions/<MISSION-ID>/`.
+Once Source 18 Version 1.2 is active, during a Product Mission the live pair points to the mission record, where the substantive stage reports live under `communication/missions/<MISSION-ID>/`.
 
 No active instruction or report may be silently overwritten to conceal an earlier exchange. Base templates are restored only after explicit closure, reconciliation of provisional fields, archive creation, and archive verification.
 
@@ -145,7 +145,7 @@ A mission may not be treated as fully closed for communication-closeout purposes
 
 This is a standing Mission Control operating rule. It does not authorize autonomous background learning, automatic promotion, automatic merge, governance change, Product Truth change, or production/customer mutation.
 
-For a Product Mission, Source 18 Stage 24 and Gate 11 govern this handoff: the OLE disposition is recorded before `COMPLETED — FORMALLY ACCEPTED`. Promotion review proceeds inside OLE and does not block closure or the activation of the next mission.
+Once Source 18 Version 1.2 is active, for a Product Mission Stage 24 and Gate 11 govern this handoff: the OLE disposition and the residual carry-forward are recorded before `COMPLETED — FORMALLY ACCEPTED` becomes effective, which it does only when a human merges the closure decision. Promotion review proceeds inside OLE and does not block closure or the activation of the next mission.
 
 The manual requirement remains in force until a separately authorized and accepted Stage 4B capability replaces the human-trigger step.
 
@@ -163,9 +163,10 @@ merge / post-merge verification as applicable
 OLE learning handoff OR explicit no-reusable-learning record
       ↓
 feature-level completion evaluation and residual carry-forward
-(Product Missions, Source 18 Stage 24)
+(Product Missions, once Source 18 Version 1.2 is active)
       ↓
-communication archive / closeout
+canonical closure decision (human merge) and communication archive / closeout
+(one pull request, or the archive follows the merged closure decision)
       ↓
 COMPLETED — FORMALLY ACCEPTED
 ```
@@ -289,7 +290,7 @@ Rules:
 
 Codex and Claude Code may perform Git operations only under complete explicit mission authority defined by `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
 
-Authorization must identify AI, mission, repository, the branch authorization (the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, the commit-message authorization (permission to use mission-scoped descriptive commit messages or a specifically locked commit message), and the attribution-trailer rule (the standard `Co-Authored-By` trailer is required, permitted or excluded). Exact branch text and exact commit text are required only when Mission Control specifically locks them. A work-package authorization additionally identifies the work package, the ordered stages or steps, the listed Git operations, and an end event and an end date, and grants Git permission only. Permission does not create capability.
+Authorization must identify AI, mission, repository, the branch authorization (the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, and the commit-message authorization (permission to use mission-scoped descriptive commit messages or a specifically locked commit message). Exact branch text and exact commit text are required only when Mission Control specifically locks them. Permission does not create capability. Once Communication and Handover Protocol Version 1.1 is active, an authorization also states the attribution-trailer rule (the standard `Co-Authored-By` trailer is required, permitted or excluded), and a work-package authorization additionally identifies the work package, the ordered stages or steps, the listed Git operations, and an end event and an end date, and grants Git permission only.
 
 Before commit or push, verify remote identity, base branch and SHA, current branch, authorized working-tree state, exact staged names and statuses, quality gates, whitespace checks, and secret or credential safety. Authority expires on any governing state change.
 

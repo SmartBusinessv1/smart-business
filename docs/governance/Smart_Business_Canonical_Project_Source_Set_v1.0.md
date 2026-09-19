@@ -36,7 +36,7 @@
 | 15 | `merge/active/15_Governance_Mission_Control_Activation_Template.md` | Governance Mission Control Activation Template | Source 15 | Standard mission authorization, scope, evidence, risk, handover, and completion structure | Version 2.1; Founder approved | 4234 | `075f82184c3bb393dd3b55659df95559d5291629c984ce943511b4d6c4cb55eb` |
 | 16 | `merge/active/16A_Smart_Business_Constitution_Design_Principles.md` | Smart Business Constitution Design Principles | Source 16A | Future constitutional design, enduring-truth tests, continuity, and evolution | Version 1.0; Founder approved | 5452 | `cb47ec3415b4ec80484375c9b454730c63995f529bf81b91a1f0c3a693f62ffa` |
 | 17 | `merge/active/17_AI_Operations_Manual.md` | AI Operations Manual | Source 17 | Canonical precedence and AI capability, tool, repository, continuity, and recovery governance | Version 1.0; Founder approved — active governance | 34369 | `1807be9d4160dbf027135dfb2415b8cc176fbb89b68aa3811e553b0b36b0439e` |
-| 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Smart Business SB-P Mission Lifecycle and Delivery Framework | Source 18 | Authoritative lifecycle and delivery framework for every `SB-P-*` mission | Version 1.2 — amendment proposed, activation pending (Version 1.1 is the active version until Mission Control activates Version 1.2); Founder approved — authoritative (Version 1.1) | 79001 | `5127306de188a77b52f2bed2230c676e7e4e0a065a0bad4724e41153b7c06279` |
+| 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Smart Business SB-P Mission Lifecycle and Delivery Framework | Source 18 | Authoritative lifecycle and delivery framework for every `SB-P-*` mission | Version 1.2 — amendment proposed, activation pending (Version 1.1 is the active version until Mission Control activates Version 1.2); Founder approved — authoritative (Version 1.1) | 89443 | `03135f1b76ace4147600cb1b7030ad9d08a0f27651e2e282e460cd4ae9fcf345` |
 | 19 | `merge/active/P00_Operational_Profiles.md` | Operational Profiles | P00 | Binding consolidated platform operational responsibilities and boundaries | Founder approved — active governance | 22612 | `95f968b2b714354bf02a1b13b90e1c4beb336df8ee66f16a32f7bb43432c29bc` |
 | 20 | `merge/active/SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md` | Constitutional Authority Interpretation (Phase 1) | Founder decision SB-GOV-1.2 | Binds Source 01 and Source 11 jointly as Phase 1 constitutional authority | Founder approved — active governance | 3769 | `bbf05b5849b8c860292056a3883544cdfa26e204547caeb8fe162781acef0ec7` |
 
@@ -73,13 +73,15 @@ Any addition, removal, rename, reclassification, authority change, or substantiv
 
 These mandatory operational controls and intake records support execution but are not counted among the 20 canonical project-source files.
 
+Entries that the `SB-GOV-PRODUCT-EXEC-1.0` amendment introduces or marks as taking effect on activation are operative only after that amendment is independently verified, merged by a human and separately activated by Mission Control. Until then the operative baseline is this Source Set as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`.
+
 | Classification | Operational sources |
 |---|---|
 | Repository identity and universal AI instructions | `README.md`, `AGENTS.md` |
 | Actor-specific instructions | `CHATGPT.md`, `CLAUDE.md` |
 | Communication and handover protocol | `communication/AI_Communication_and_Handover_Protocol.md`, `communication/README.md` |
 | Independent verification method and efficiency | `communication/Independent_Verification_Efficiency_Protocol.md` |
-| Product Mission institutional intake (dual intake) | The canonical Phase 1 institutional-memory guide, `docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md`, and the OLE promotion records under `organizational-learning/promotions/**`. The dual-intake rule, verbatim: "Every Product Mission intake must consume both current validated OLE learning and the canonical Phase 1 institutional-memory guide until Mission Control verifies that the historical OLE backfill is complete." |
+| Product Mission institutional intake (dual intake); operative when Source 18 Version 1.2 is active | The canonical Phase 1 institutional-memory guide, `docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md`, and the OLE promotion records under `organizational-learning/promotions/**`. The dual-intake rule, verbatim: "Every Product Mission intake must consume both current validated OLE learning and the canonical Phase 1 institutional-memory guide until Mission Control verifies that the historical OLE backfill is complete." |
 | Current operational state | `mission-control/mission_memory.md` |
 | Branch-protection or compensating-control state | `communication/governance/branch-protection-verification.md` |
 | Actor-specific EOS workflows | `docs/engineering/eos/ChatGPT_GitHub_Engineering_Artifact_Workflow_v1.0.md`, `docs/engineering/eos/Claude_GitHub_Engineering_Artifact_Workflow_v1.0.md` |
@@ -96,7 +98,7 @@ Mission Control must identify the applicable canonical-source inheritance in eve
 4. Read the active communication protocol and `communication/README.md`.
 5. Read the active mission package, decision log, handover log, current instruction, and preceding report.
 6. Read relevant code, implementation documents, and the ChatGPT EOS workflow.
-7. For a Product Mission, also follow the current Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
+7. When Source 18 Version 1.2 is active, for a Product Mission also follow the Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
 
 ### Claude Code Intake
 
@@ -106,7 +108,7 @@ Mission Control must identify the applicable canonical-source inheritance in eve
 4. Read the active communication protocol and `communication/README.md`.
 5. Read the active mission package, decision log, handover log, current instruction, and preceding report.
 6. Read relevant code, implementation documents, and the Claude EOS workflow.
-7. For a Product Mission, also follow the current Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
+7. When Source 18 Version 1.2 is active, for a Product Mission also follow the Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
 
 ### Other Specialist AI Intake
 
