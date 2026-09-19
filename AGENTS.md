@@ -24,7 +24,7 @@ Its purpose is to ensure that every AI assistant produces engineering work that 
 
 This file supplements the Engineering Operating System (EOS). It does not replace or modify approved governance.
 
-Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md).
+Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md). For a Product Mission, also follow the current Source 18 lifecycle (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`): complete the Institutional Learning Intake Record (Section 3.1, covering both the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix (Section 3.2).
 
 For any migration-related work, read [`docs/migration/README.md`](docs/migration/README.md) first. Migration artifacts and SQL under `supabase/migrations/**` are non-executable by default; execution requires a new explicit mission naming the exact package, environment, actor, scope, safeguards, and reporting workflow. Ambiguity requires a stop report.
 
@@ -175,15 +175,18 @@ Codex and Claude Code may perform automatic Git operations only when an active F
 - repository;
 - the branch authorization: either the repository's standard mission-branch convention `mission/[MISSION-ID]-[SHORT-SLUG]` or a specifically locked branch name;
 - authorized file paths or scope;
-- the commit-message authorization: either permission to use mission-scoped descriptive commit messages or a specifically locked commit message.
+- the commit-message authorization: either permission to use mission-scoped descriptive commit messages or a specifically locked commit message;
+- the attribution-trailer rule: the standard `Co-Authored-By` trailer is required, permitted or excluded.
 
 Per the Founder Git-authorization decision, Mission Control may explicitly authorize the standard mission-branch convention and mission-scoped descriptive commit messages. Exact branch text and exact commit text are required only when Mission Control specifically locks them. This changes only the authorization form; it does not weaken explicit mission authority, named repository, authorized scope, the protected-`main` pull-request workflow, exact staged-file verification, required quality and security checks, no self-approval, no self-merge, Mission Control review, or human merge authority.
+
+A Mission Control work-package authorization additionally identifies the work package, the ordered stages or steps it covers, the listed Git operations it permits, and an end event and an end date, and is otherwise bound by every rule in this section. It grants Git permission only and never authority to approve, lock, authorize, execute, accept, close or merge.
 
 Mission authority grants governance permission only. It does not create shell, filesystem, Git, GitHub, connector, credential, authentication, or repository capability.
 
 Before an authorized commit or push, the AI shall verify the configured remote, current branch, authorized base branch and SHA, clean tree or authorized changes, exact staged paths using `git diff --cached --name-status`, applicable quality gates, `git diff --cached --check`, and staged content for secrets or credentials.
 
-The AI may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact files, commit with the authorized commit message, push the authorized branch, open or update a pull request, and record repository references.
+The AI may fetch, pull fast-forward only, create or use the authorized mission branch, stage exact files, commit with the authorized commit message, push the authorized branch, open or update a pull request, and record repository references. Under a work package, the AI may perform only the operations the authorization lists.
 
 AI-authored implementation work normally uses `mission/[MISSION-ID]-[SHORT-SLUG]`.
 
@@ -200,7 +203,7 @@ AI assistants shall not:
 - alter branch protection;
 - expose credentials or secrets.
 
-Authority expires when the authorized stage completes or mission, branch, scope, commit message, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
+Authority expires when the authorized stage completes or, for a work package, its named end event occurs or its end date passes, or when mission, branch, scope, commit message, attribution trailer, repository, authentication, validation, conflict, fast-forward, or working-tree state changes. Resumption requires renewed authorization and state verification.
 
 When Founder action is required, exact Git commands and expected evidence shall be shown directly in chat.
 

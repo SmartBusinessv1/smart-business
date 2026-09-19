@@ -36,11 +36,13 @@
 | 15 | `merge/active/15_Governance_Mission_Control_Activation_Template.md` | Governance Mission Control Activation Template | Source 15 | Standard mission authorization, scope, evidence, risk, handover, and completion structure | Version 2.1; Founder approved | 4234 | `075f82184c3bb393dd3b55659df95559d5291629c984ce943511b4d6c4cb55eb` |
 | 16 | `merge/active/16A_Smart_Business_Constitution_Design_Principles.md` | Smart Business Constitution Design Principles | Source 16A | Future constitutional design, enduring-truth tests, continuity, and evolution | Version 1.0; Founder approved | 5452 | `cb47ec3415b4ec80484375c9b454730c63995f529bf81b91a1f0c3a693f62ffa` |
 | 17 | `merge/active/17_AI_Operations_Manual.md` | AI Operations Manual | Source 17 | Canonical precedence and AI capability, tool, repository, continuity, and recovery governance | Version 1.0; Founder approved — active governance | 34369 | `1807be9d4160dbf027135dfb2415b8cc176fbb89b68aa3811e553b0b36b0439e` |
-| 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Smart Business SB-P Mission Lifecycle and Delivery Framework | Source 18 | Authoritative lifecycle and delivery framework for every `SB-P-*` mission | Version 1.0; active; Founder approved — authoritative | 31683 | `8d0865391d4709bf8602d943939aade7b3d8f267e7cd5d60966122f07bb8b4c8` |
+| 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Smart Business SB-P Mission Lifecycle and Delivery Framework | Source 18 | Authoritative lifecycle and delivery framework for every `SB-P-*` mission | Version 1.2 — amendment proposed, activation pending (Version 1.1 is the active version until Mission Control activates Version 1.2); Founder approved — authoritative (Version 1.1) | 79001 | `5127306de188a77b52f2bed2230c676e7e4e0a065a0bad4724e41153b7c06279` |
 | 19 | `merge/active/P00_Operational_Profiles.md` | Operational Profiles | P00 | Binding consolidated platform operational responsibilities and boundaries | Founder approved — active governance | 22612 | `95f968b2b714354bf02a1b13b90e1c4beb336df8ee66f16a32f7bb43432c29bc` |
 | 20 | `merge/active/SB-GOV-1.2_Constitutional_Authority_Interpretation_Phase_1.md` | Constitutional Authority Interpretation (Phase 1) | Founder decision SB-GOV-1.2 | Binds Source 01 and Source 11 jointly as Phase 1 constitutional authority | Founder approved — active governance | 3769 | `bbf05b5849b8c860292056a3883544cdfa26e204547caeb8fe162781acef0ec7` |
 
 Hashes and byte sizes describe the formalization working state derived from the baseline commit above; the 19 authoritative document bodies are unchanged and the index hash includes this mission's classification block. The containing publication commit becomes the synchronized repository evidence for this manifest. A later approved change must refresh this register and identify its new Git baseline.
+
+**Register refresh note (`SB-GOV-PRODUCT-EXEC-1.0`).** Row 18 was already stale before this amendment: it recorded Version 1.0 (31683 bytes, SHA-256 `8d0865391d4709bf8602d943939aade7b3d8f267e7cd5d60966122f07bb8b4c8`), while the file on `main` at `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b` was Version 1.1 (34986 bytes, SHA-256 `fafc2f96bbaa40c4c91b55ffa261adaa12a5597679ee6d90b5ef3aa86800961f`). Row 18 is refreshed here from the actual bytes of the reviewed pull-request file as stored in Git (LF line endings). The baseline commit above is unchanged and does not describe row 18, and no merge commit is asserted. The row 18 values must be re-verified against `main` after the pull request is merged, and corrected if they differ. Every other row is unchanged.
 
 ## Team LIPS Smart Business Project HQ Synchronization Specification
 
@@ -54,6 +56,8 @@ Smart Business Project HQ/
 GitHub remains the version-controlled operational source of truth. The Project HQ package is a synchronized governance and reference copy, not an independently edited authority. Every HQ refresh must record the source Git commit and synchronization date. Changes must originate through approved GitHub governance and then be synchronized to HQ. Any GitHub/HQ mismatch requires Mission Control reconciliation; no participant may silently choose between versions. `Project Source File Archive/` is excluded from the active HQ package.
 
 This specification prepares synchronization but does not claim that an external upload or HQ synchronization occurred.
+
+**Project HQ synchronization status: `UNVERIFIED — PENDING RECONCILIATION`.** The last HQ synchronization acceptance recorded in the repository is `SB-GOV-HOUSEKEEPING-1.5` on 2026-08-02 (`mission-control/mission_memory.md`), which predates the Source 18 Version 1.1 amendment of 2026-09-18. Whether the external HQ package matches the repository, including the Source 18 change under `SB-GOV-PRODUCT-EXEC-1.0`, cannot be verified from the repository. A separately evidenced HQ synchronization, recording the source Git commit and the synchronization date, is to be scheduled by Mission Control after the canonical merge. No document claims that it has occurred.
 
 ## Change Control
 
@@ -74,6 +78,8 @@ These mandatory operational controls and intake records support execution but ar
 | Repository identity and universal AI instructions | `README.md`, `AGENTS.md` |
 | Actor-specific instructions | `CHATGPT.md`, `CLAUDE.md` |
 | Communication and handover protocol | `communication/AI_Communication_and_Handover_Protocol.md`, `communication/README.md` |
+| Independent verification method and efficiency | `communication/Independent_Verification_Efficiency_Protocol.md` |
+| Product Mission institutional intake (dual intake) | The canonical Phase 1 institutional-memory guide, `docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md`, and the OLE promotion records under `organizational-learning/promotions/**`. The dual-intake rule, verbatim: "Every Product Mission intake must consume both current validated OLE learning and the canonical Phase 1 institutional-memory guide until Mission Control verifies that the historical OLE backfill is complete." |
 | Current operational state | `mission-control/mission_memory.md` |
 | Branch-protection or compensating-control state | `communication/governance/branch-protection-verification.md` |
 | Actor-specific EOS workflows | `docs/engineering/eos/ChatGPT_GitHub_Engineering_Artifact_Workflow_v1.0.md`, `docs/engineering/eos/Claude_GitHub_Engineering_Artifact_Workflow_v1.0.md` |
@@ -90,6 +96,7 @@ Mission Control must identify the applicable canonical-source inheritance in eve
 4. Read the active communication protocol and `communication/README.md`.
 5. Read the active mission package, decision log, handover log, current instruction, and preceding report.
 6. Read relevant code, implementation documents, and the ChatGPT EOS workflow.
+7. For a Product Mission, also follow the current Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
 
 ### Claude Code Intake
 
@@ -99,6 +106,7 @@ Mission Control must identify the applicable canonical-source inheritance in eve
 4. Read the active communication protocol and `communication/README.md`.
 5. Read the active mission package, decision log, handover log, current instruction, and preceding report.
 6. Read relevant code, implementation documents, and the Claude EOS workflow.
+7. For a Product Mission, also follow the current Source 18 lifecycle: complete the Institutional Learning Intake Record (dual intake of the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix.
 
 ### Other Specialist AI Intake
 

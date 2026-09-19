@@ -11,6 +11,8 @@
 **Authority Type:** Durable pre-execution build-plan handoff  
 **Important:** **NOT A FEATURE CONTRACT — NOT A 26TH FEATURE — NOT IMPLEMENTATION AUTHORIZATION**
 
+**Operational baseline revision:** amendment proposed on 2026-09-19 under `SB-GOV-PRODUCT-EXEC-1.0`, activation pending. The build direction, the nine-mission sequence, the product outcomes, the Founder runtime scenarios and the unresolved Founder decisions are unchanged. Only the operational baseline and the mission-level coverage rules below are revised.
+
 ---
 
 # 1. Purpose
@@ -58,6 +60,8 @@ Permanent anti-drift rule:
 And for implementation:
 
 > **Protect the feature. Gate the implementation. Preserve the human. Reuse the foundation. One business truth. One governed intelligence layer. Multiple safe channels.**
+
+The mission-level Feature Coverage and Product Truth Traceability Matrix (FCTM, Source 18 Section 3.2) is the operational enforcement of this anti-drift rule. No relevant requirement of the mature feature contracts or of this plan may be silently omitted, silently deferred, moved between Build Now, Build Later, Add-on, Separate Product or Reject, simplified, or allowed to drift.
 
 ---
 
@@ -158,11 +162,11 @@ This is a **mandatory early gate inside `SB-P-1.12`**.
 
 It is not authorized by this planning artifact.
 
-## 5.2 `SB-P-1.12` engineering-quality gate — missing automatic build/lint/test CI
+## 5.2 `SB-P-1.12` engineering-quality gate — continuous-integration baseline
 
-The repository has meaningful Vitest coverage, but the automatic pull-request workflow historically runs the Markdown Quality Gate rather than a full application build/lint/test gate.
+The repository already runs an automatic engineering gate. As recorded in `docs/engineering/assurance/Build_Assurance_Baseline.md` and verified on 2026-09-19, the Fast Gate (lint, typecheck, build and fast tests) runs on every pull request targeting `main` and every push to `main`, and Full Assurance runs when a change touches an approved path. On 2026-09-19 the only status check that protected `main` required was the Markdown Quality Gate, so a green Fast Gate is a governance requirement at each checkpoint and is not a branch-protection block. Hardening that protection has been deferred by the Founder, and this plan does not describe it as remediated.
 
-Before major schema/security expansion proceeds, `SB-P-1.12` must establish an automatic engineering CI gate covering the locked project commands for build, lint, and relevant tests.
+`SB-P-1.12` shall keep the Fast Gate green at every checkpoint, run Full Assurance where a path triggers it, extend the tests for its own authority and isolation obligations, and surface for a Founder decision, and not decide, whether the Fast Gate becomes a required check.
 
 This is a mission acceptance condition, not historical-mission implementation authority.
 
@@ -179,6 +183,8 @@ Future Product Missions must explicitly account for:
 - production verification after synchronization.
 
 A canonical GitHub merge alone must never be treated as proof that production contains the accepted application.
+
+The delivery chain, as recorded in `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` and `mission-control/mission_memory.md`, runs from the canonical repository to the production delivery repository, to Lovable publication, and to production Supabase and the production domain, with a separate isolated test Supabase project. External facts are volatile and shall be freshly verified before any external action. Delivery synchronization, publication and production migrations are release actions that need separate authorization, and a mission declares its need for them at Stage 1 and in the early delivery plan of Sections 20–21.
 
 ## 5.4 New infrastructure activation gates
 
@@ -377,9 +383,15 @@ They do **not** silently create additional Product Mission IDs.
 
 Source 18 requires stage separation and independent verification; it does not impose one-contract-per-Mission-ID.
 
+**Assignment lock.** The mission assignment of a `BUILD NOW` requirement in this table, in Sections 11 and 12, and in the contracts' own dependencies is locked. Changing it needs a recorded Founder decision. Internal workstreams remain free and do not change assignment.
+
+**Vocabulary.** The nine-mission table is mission *scheduling*: which mission builds a `BUILD NOW` requirement. `BUILD LATER` is a product *commitment*, the build-commitment value of the Global Product Completion View. A `BUILD NOW` requirement assigned to a later mission stays `BUILD NOW` and never becomes `BUILD LATER`. Technical incompleteness never authorizes changing either.
+
 ---
 
 # 10. Mission-by-Mission Build and User Experience Plan
+
+Each subsection below summarizes a mission's product outcome, required work areas and Founder-approved experience. **The summaries are not exhaustive.** The complete requirement set of a mission is its FCTM, built from the full text of the mature contracts it advances (Source 18 Section 3.2), and material that a summary does not name is not thereby out of scope.
 
 ## 10.1 `SB-P-1.12 — Authority, Identity & Product Surface Foundation`
 
@@ -397,7 +409,7 @@ Make all later work safe by establishing durable authority, identity, isolation,
 - business isolation / cross-tenant denial;
 - RLS/grants/function-security review;
 - residual `anon` privilege remediation;
-- automatic build/lint/test CI gate;
+- continuous-integration baseline maintained and extended for this mission's authority and isolation obligations (Section 5.2);
 - entitlement primitives where needed;
 - Product & Price Master reclassification;
 - safe contextualization/demotion plan for `/catalog`;
@@ -841,6 +853,8 @@ Cross-mission feature advancement must remain visible in the Global Product Comp
 
 A later mission may complete a contract partly advanced earlier, but it must not claim earlier work as newly created.
 
+The approved sources for assigning a `BUILD NOW` requirement to a later mission (the `ASSIGNED TO LATER MISSION` disposition of the FCTM) are Sections 9, 10, 11 and 12 of this plan and the contract's own stated dependencies. Without one of them the disposition is unavailable and the change goes to the Founder.
+
 ---
 
 # 12. Support Automation Split — One Contract, Two Missions
@@ -853,6 +867,8 @@ Contract 8 is intentionally cross-mission:
 This must remain **one support system**.
 
 Do not create one support implementation for Conversation and another for lifecycle/support operations.
+
+This split is an approved assignment source for the FCTM.
 
 ---
 
@@ -877,6 +893,11 @@ Rules:
 7. `DEFERRED` is allowed only when the dependency is explicitly approved and owned by a later mission.
 8. A later mission cannot use that deferral to erase accountability for the earlier portion.
 
+Additional rules:
+
+9. The matrix is seeded at Stage 4 from the Founder-approved experience and scenarios of Section 10. The Founder-reserved scenarios are the Section 10 Founder Runtime Verification scenarios plus any anchor Mission Control designates, and they are locked at Stage 8.
+10. The matrix is the experience subset of the mission's Contract Reconciliation, which covers every FCTM row of every contract the mission advances. Both cite the FCTM row IDs.
+
 This rule is accepted as technically and governance-sound.
 
 ---
@@ -885,25 +906,15 @@ This rule is accepted as technically and governance-sound.
 
 This build plan does not bypass the Product Mission lifecycle.
 
-Each mission must still proceed through the applicable Source 18 stages, including:
+Each mission must proceed through the lifecycle of the current active Source 18, and this plan does not restate its stages. In particular:
 
-- explicit Mission Control initiation/authorization;
-- Product Truth extraction;
-- discovery/current-state verification;
-- Product Blueprint;
-- specialist/engineering review as needed;
-- Founder approval/lock;
-- Engineering Implementation Specification;
-- implementation package;
-- implementation authorization;
-- implementation;
-- Founder Runtime Verification;
-- independent Mission Control/engineering verification;
-- corrections where needed;
-- evidence package;
-- Completion Report;
-- Mission Control acceptance;
-- repository/documentation closure.
+- a mission consumes approved truth and does not rediscover it;
+- every mission keeps Product Truth complete through its FCTM, with no silent omission, deferral, simplification or reclassification;
+- Stage 19 independent verification is mandatory for every mission.
+
+The dual-intake rule, preserved verbatim:
+
+> Every Product Mission intake must consume both current validated OLE learning and the canonical Phase 1 institutional-memory guide until Mission Control verifies that the historical OLE backfill is complete.
 
 No actor may approve its own work.
 
@@ -929,7 +940,7 @@ These remain intentionally unresolved and must be addressed only when relevant t
 8. broader wholesaler/marketplace expansion;
 9. third-party underwriting/lending ecosystem.
 
-These do **not** block unrelated Build Now work.
+These do **not** block unrelated Build Now work. An unresolved decision affects only the FCTM rows on its critical path (Global Product Completion View Sections 8 and 10).
 
 Do not guess them in implementation.
 
@@ -960,6 +971,8 @@ Future missions must not silently revive:
 - old Daily Intelligence timing that conflicts with the approved 7:00 AM / 10:30 AM / 10:00 PM rhythm;
 - independent Catalog product expansion.
 
+Each explicit rejection is an FCTM `OUT OF BUILD SCOPE` row that the mission checks as "must not appear".
+
 ---
 
 # 17. What This File Replaces and What It Does Not Replace
@@ -989,6 +1002,8 @@ A future Product Mission should use:
 
 **current Product Truth + this consolidated build plan + relevant mature feature contracts + verified current repository/runtime state + only the unresolved Founder decisions relevant to that mission.**
 
+That formula is made verifiable by the mission's inputs: current validated OLE learning and the canonical Phase 1 institutional-memory guide (dual intake); the Global Product Completion Register; the mission's Feature Coverage and Product Truth Traceability Matrix, built from the full text of the relevant contracts; and freshly verified delivery topology.
+
 ---
 
 # 18. Final Planning Disposition
@@ -1011,6 +1026,20 @@ The accepted build direction is:
 The historical reconstruction mission may use this artifact as the durable build-plan handoff during closeout.
 
 No future `SB-P-*` mission is authorized merely because this file exists.
+
+---
+
+# 19. Operational Baseline (dated 2026-09-19)
+
+This section records verified operational facts as of 2026-09-19. It authorizes nothing, and later fresh verification supersedes it.
+
+- **Continuous integration.** See Section 5.2. The Fast Gate runs on every pull request and push to `main`; Full Assurance runs on approved paths; the only status check required on `main` was the Markdown Quality Gate. Protection hardening is deferred and not represented as remediated.
+- **Delivery topology.** See Section 5.3. It is volatile and shall be freshly verified before any external action.
+- **Verification protocol.** The Independent Verification Efficiency Protocol (`SB-IV-1.0`) is active at Version 1.0; a Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` is pending activation.
+- **Institutional learning.** Seventeen OLE promotion records exist under `organizational-learning/promotions/`, each `VALIDATED` and `MISSION_SCOPED`. The historical OLE backfill is `NOT VERIFIED COMPLETE`. Dual intake applies.
+- **Migration authority.** `docs/migration/README.md` default-deny applies: execution requires a new, current, explicit Founder- or Mission Control-authorized migration mission.
+- **Global Product Completion Register.** No one of the 25 mature contracts is currently proven complete end-to-end against its hydrated contract (Register Section 6).
+- **Early gates.** Section 5.1 (residual `anon` privilege on `businesses`, `transactions` and `transaction_correction_events`) remains open in the repository: no migration in `supabase/migrations/` revokes `anon` on those tables. Live grant state was not verified by the reconciliation mission. Section 5.2 is restated above.
 
 ---
 

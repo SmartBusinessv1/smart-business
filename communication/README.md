@@ -80,7 +80,7 @@ The repository is the official operational record for AI-to-AI communication. Ch
 
 Mission packages under `communication/missions/` may include preserved historical work and must not be assumed active from location alone.
 
-`SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` are contained, non-governing, non-executable proposal packages. Their binding containment index is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`. Current communication authority is the active `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0 and the approved SB-GOV-COMMS-1.2 archive record.
+`SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` are contained, non-governing, non-executable proposal packages. Their binding containment index is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`. Current communication authority is the active `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0 and the approved SB-GOV-COMMS-1.2 archive record. A Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` is pending activation and becomes the current authority only when independently verified, merged and activated by Mission Control.
 
 ---
 
@@ -108,6 +108,8 @@ Each instruction and report must clearly identify:
 
 Do not place unrelated missions in the same instruction or report file.
 
+During a Product Mission, the live pair points to the mission record, where the substantive stage reports live under `communication/missions/<MISSION-ID>/`.
+
 No active instruction or report may be silently overwritten to conceal an earlier exchange. Base templates are restored only after explicit closure, reconciliation of provisional fields, archive creation, and archive verification.
 
 ---
@@ -122,9 +124,11 @@ Current publication state during `SB-GOV-IV-1.0`:
 
 - Founder approved;
 - Source 18 v1.1 / template alignment merged in PR #598;
-- protocol status: ACTIVE;
+- protocol status: ACTIVE (Version 1.0);
 - Source 18 v1.1 status: ACTIVE;
-- `SB-P-1.12` remains inactive until `SB-GOV-IV-1.0` closes cleanly.
+- `SB-GOV-IV-1.0` closed via PR #603 (`f3d4869`);
+- `SB-P-1.12` remains not activated and needs its own separate Mission Control activation;
+- an amendment of the protocol to Version 1.1 and of Source 18 to Version 1.2 under `SB-GOV-PRODUCT-EXEC-1.0` is pending independent verification, human merge and activation.
 
 The protocol is subordinate to Source 18 and higher authority. It does not remove mandatory Stage 19 independent verification.
 
@@ -141,6 +145,8 @@ A mission may not be treated as fully closed for communication-closeout purposes
 
 This is a standing Mission Control operating rule. It does not authorize autonomous background learning, automatic promotion, automatic merge, governance change, Product Truth change, or production/customer mutation.
 
+For a Product Mission, Source 18 Stage 24 and Gate 11 govern this handoff: the OLE disposition is recorded before `COMPLETED — FORMALLY ACCEPTED`. Promotion review proceeds inside OLE and does not block closure or the activation of the next mission.
+
 The manual requirement remains in force until a separately authorized and accepted Stage 4B capability replaces the human-trigger step.
 
 Tracking issue for the deferred automation:
@@ -155,6 +161,9 @@ mission accepted
 merge / post-merge verification as applicable
       ↓
 OLE learning handoff OR explicit no-reusable-learning record
+      ↓
+feature-level completion evaluation and residual carry-forward
+(Product Missions, Source 18 Stage 24)
       ↓
 communication archive / closeout
       ↓
@@ -280,7 +289,7 @@ Rules:
 
 Codex and Claude Code may perform Git operations only under complete explicit mission authority defined by `AGENTS.md` and `communication/AI_Communication_and_Handover_Protocol.md`.
 
-Authorization must identify AI, mission, repository, the branch authorization (the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, and the commit-message authorization (permission to use mission-scoped descriptive commit messages or a specifically locked commit message). Exact branch text and exact commit text are required only when Mission Control specifically locks them. Permission does not create capability.
+Authorization must identify AI, mission, repository, the branch authorization (the standard mission-branch convention or a specifically locked branch name), authorized paths or scope, the commit-message authorization (permission to use mission-scoped descriptive commit messages or a specifically locked commit message), and the attribution-trailer rule (the standard `Co-Authored-By` trailer is required, permitted or excluded). Exact branch text and exact commit text are required only when Mission Control specifically locks them. A work-package authorization additionally identifies the work package, the ordered stages or steps, the listed Git operations, and an end event and an end date, and grants Git permission only. Permission does not create capability.
 
 Before commit or push, verify remote identity, base branch and SHA, current branch, authorized working-tree state, exact staged names and statuses, quality gates, whitespace checks, and secret or credential safety. Authority expires on any governing state change.
 
