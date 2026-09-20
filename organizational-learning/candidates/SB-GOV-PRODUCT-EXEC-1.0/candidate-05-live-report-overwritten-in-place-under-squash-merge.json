@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-PRODUCT-EXEC-1.0-candidate-05-live-report-overwritten-in-place-under-squash-merge",
+  "canonical_title": "Near-miss: overwriting the live base report in place across several revisions inside one squash-merged pull request leaves the earlier states only on a retained branch",
+  "summary": "This mission's live report was overwritten in place: a placeholder, then two revisions inside one pull request, then the final version. The squash merge left the two intermediate revisions only on the retained pull-request branch and not in main's history. A precedent mission's archive states that earlier transient live states remain available through Git history, and that assumption does not hold for revisions squashed into one commit. The remedy belongs to the archive step, which has not yet occurred, so this records the near-miss and not a validated fix.",
+  "category": [
+    "operations",
+    "governance"
+  ],
+  "scope": {
+    "mission_ids": [
+      "SB-GOV-PRODUCT-EXEC-1.0"
+    ],
+    "systems": [
+      "mission-governance",
+      "live-communication"
+    ],
+    "environments": [
+      "development"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "report-overwritten-in-place-several-times",
+      "text": "The bridge records that the live report was overwritten in place, with a placeholder and two intermediate pull-request revisions preceding the final version, and gives their commit SHAs, sizes and blob SHAs.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 8.2, second bullet: 'The report was overwritten in place.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:54:55.375Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "live-communication"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 8.2, second bullet: 'then PR #605 revision `194b9a4b9dfd2ece65a419501fc29b90f8bd85ac` (13,643 bytes, blob `a8227bdefb660501d12d3b0eea57702741bcf6eb`)'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:54:55.683Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "live-communication"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "intermediate-states-only-on-a-retained-branch",
+      "text": "The bridge records that the squash merge left the intermediate commits only on the retained branch mission/SB-GOV-PRODUCT-EXEC-1.0-reconciliation-draft.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 8.2, second bullet: 'The squash merge left these commits only on the retained branch `mission/SB-GOV-PRODUCT-EXEC-1.0-reconciliation-draft`.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:54:56.019Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "live-communication"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "precedent-assumes-git-history-retains-earlier-states",
+      "text": "The archive of the precedent mission SB-GOV-IV-1.0 states that earlier transient live states remain available through Git history and the durable mission records. That assumption does not cover revisions squashed into a single commit on main.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/archive/SB-GOV-IV-1.0/communication.md",
+          "blob_sha": "1d9514d761d12ba5821373bdca4de3a3d37dafd0",
+          "locator": "Readable Chronology, closing sentence: 'Earlier transient live states remain available through Git history and the durable mission records.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:54:56.286Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "live-communication"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "LIMITS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction",
+    "generated_at": "2026-09-20T16:54:56.286Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
+    "closure_revision": "05-postactivation-closure-readiness-and-ole-handoff",
+    "source_fingerprint": "c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2"
+  },
+  "conditions": [
+    "Applies to a live communication file that is reused in place while its earlier content is preserved only in pull-request history.",
+    "The remedy (recording the intermediate SHAs in the archive chronology, or preserving each revision) is decided at the archive step, which has not occurred, so this is a recorded near-miss and not a validated remedy."
+  ],
+  "anti_patterns": [
+    "Overwriting the live base pair several times inside one squash-merged pull request and relying on Git history for the earlier states.",
+    "Assuming an earlier live state survives on main after a squash merge."
+  ]
+}
