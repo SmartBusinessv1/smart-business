@@ -134,9 +134,9 @@
 
 Sources 02 through 08 still display the historical header `Smart Business V2.2`. Source 07 also retains “Survey” in its document title even though `/survey` is deprecated and `/start` is the approved route.
 
-This is a non-blocking editorial and metadata issue only. It does not create a current authority, Product Truth, route, implementation, or operational-development conflict. The canonical source bodies and Project HQ package remain approved and synchronized.
+This is a non-blocking editorial and metadata issue only. It does not create a current authority, Product Truth, route, implementation, or operational-development conflict. The canonical source bodies remain approved. Historical Project HQ acceptance is preserved below; it is not a current Google Drive synchronization assertion.
 
-Any correction must be performed through a controlled metadata-normalization mission. That mission must preserve substantive governance meaning, update the canonical manifest and hashes, verify all affected source references, and resynchronize the approved 20-file Project HQ package.
+Any correction must be performed through a controlled metadata-normalization mission. That mission must preserve substantive governance meaning, update the canonical manifest and hashes, and verify all affected source references. A retired Google Drive package refresh is not required.
 
 ### Repository Visibility Decision
 
@@ -171,6 +171,12 @@ The current `merge/active/` package is formally classified through `SB-GOV-HOUSE
 ### Project HQ Synchronization Acceptance
 
 Mission Control accepted `SB-GOV-HOUSEKEEPING-1.5` on 2026-08-02: the Project HQ canonical package contains 20 of 20 files with byte-for-byte identity, while GitHub remains the operational source of truth.
+
+### Founder Direction — Google Drive Retirement and Interim Historical Learning
+
+On 2026-09-21 IST, the Founder retired Google Drive as an active synchronization destination and an active part of the Smart Business operating workflow ([PR #612 comment 5752013706](https://github.com/SmartBusinessv1/smart-business/pull/612#issuecomment-5752013706)). Early Google Drive Project HQ material remains legacy historical storage; no refresh, verification, re-upload, 20-file comparison, or deletion is directed. The dated 2026-08-02 Project HQ acceptance above is preserved without reinterpreting its environment. GitHub remains the version-controlled operational source of truth; Smart Business ChatGPT Project Sources remain a distinct active reference environment.
+
+The Founder directs that historical OLE backfill remain manual for now. The Smart Business journey recap, once researched and completed, may be used as a historical orientation and discovery aid while that work proceeds; it does not replace primary repository evidence, current governance, Product Truth, or the approved Product Mission dual intake of the canonical Phase 1 institutional-memory guide plus current validated OLE learning. Stage 4B is not activated by this decision; no historical-backfill completion or candidate promotion is asserted. Historical backfill is not an additional prerequisite to SB-P-1.12 activation.
 
 ### Migration Authority Containment
 
