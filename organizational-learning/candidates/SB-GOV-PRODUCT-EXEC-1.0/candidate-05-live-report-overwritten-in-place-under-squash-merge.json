@@ -31,7 +31,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 8.2, second bullet: 'The report was overwritten in place.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:55.375Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -54,7 +54,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 8.2, second bullet: 'then PR #605 revision `194b9a4b9dfd2ece65a419501fc29b90f8bd85ac` (13,643 bytes, blob `a8227bdefb660501d12d3b0eea57702741bcf6eb`)'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:55.683Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -83,7 +83,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 8.2, second bullet: 'The squash merge left these commits only on the retained branch `mission/SB-GOV-PRODUCT-EXEC-1.0-reconciliation-draft`.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:56.019Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -112,7 +112,7 @@
           "blob_sha": "1d9514d761d12ba5821373bdca4de3a3d37dafd0",
           "locator": "Readable Chronology, closing sentence: 'Earlier transient live states remain available through Git history and the durable mission records.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:56.286Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -137,8 +137,8 @@
   "authority_effect": "NONE",
   "generated_by": {
     "actor_class": "synthesis",
-    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
-    "generated_at": "2026-09-20T16:30:00Z"
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction",
+    "generated_at": "2026-09-20T16:54:56.286Z"
   },
   "source_reference": {
     "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",

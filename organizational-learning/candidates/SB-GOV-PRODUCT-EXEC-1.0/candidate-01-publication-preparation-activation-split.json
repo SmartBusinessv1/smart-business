@@ -30,7 +30,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 5, closing paragraph: 'The PR #606 publication commit and the PR #607 preparation merge commit must never be substituted for the finalization pull request merge commit.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:48.225Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -53,7 +53,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 3.1, opening: 'The four PRs from #606 onward have distinct roles, and no commit is to be substituted for another.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:48.520Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -82,7 +82,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 8, Mechanism: 'The human merge is the activation event, and the effective instant is the actual `merged_at` UTC timestamp that GitHub records for it. A dated GitHub comment does not activate anything.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:48.793Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -105,7 +105,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 6.2, last bullet: 'a dated GitHub comment; Mission Control's verification and report of the merge; the factual reconciliation; any statement of intent.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:49.090Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -134,7 +134,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 8, Outcome: 'The five instruments have been operative together from that instant.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:49.386Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -157,7 +157,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 6, Evidence reconciliation: 'It is not a second activation event and it did not change the effective instant.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:49.652Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -182,8 +182,8 @@
   "authority_effect": "NONE",
   "generated_by": {
     "actor_class": "synthesis",
-    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
-    "generated_at": "2026-09-20T16:30:00Z"
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction",
+    "generated_at": "2026-09-20T16:54:49.652Z"
   },
   "source_reference": {
     "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",

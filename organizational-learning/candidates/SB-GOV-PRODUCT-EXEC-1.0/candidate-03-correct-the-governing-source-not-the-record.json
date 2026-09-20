@@ -30,7 +30,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 13, third revision row: 'the Option B distinction between the finalization merge and the later timestamp and commit evidence was not expressly permitted by the six-step wording of the Source 18 header, and Source 18 did not unambiguously distinguish the PR #607 preparation merge from the finalization merge.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:51.840Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -53,7 +53,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 5.3: 'Exact verifier wording, and any verbatim quotation of a finding, cannot be supported from GitHub or the repository.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:52.128Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -82,7 +82,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 13, third revision row: 'The Source 18 header now defines both pull requests, the single activation event at `merged_at`, what is complete before it, and the mandatory post-merge evidence that is not a second gate.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:52.418Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -105,7 +105,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 6.2, third bullet: 'Where they differ, Source 18 governs.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:52.725Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -134,7 +134,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 13, first two revision rows: 'The initial text made the activation effective when Section 8 was populated on canonical `main` through a follow-up that a human merges'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:52.993Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -157,7 +157,7 @@
           "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
           "locator": "Section 13, second revision row: 'It now follows the Founder Option B decision (PR #607 comment `5745151886`): the human merge of a later finalization pull request is the activation event, effective at GitHub's `merged_at` instant.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:53.277Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -182,8 +182,8 @@
   "authority_effect": "NONE",
   "generated_by": {
     "actor_class": "synthesis",
-    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
-    "generated_at": "2026-09-20T16:30:00Z"
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction",
+    "generated_at": "2026-09-20T16:54:53.277Z"
   },
   "source_reference": {
     "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",

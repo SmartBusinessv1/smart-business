@@ -10,6 +10,8 @@
 
 **Authority basis:** Mission Control's PR-2 grant, PR #610 comment `5750845076`, issued after the human merge of PR #610 at `main@9e98c4f364d9b7852eaa2b496b65b479d0328874`. The grant expires at draft-PR publication.
 
+**Correction:** Revised under Mission Control's finding-scoped grant, PR #611 comment `5751194581`, for finding F-01 (timestamp provenance) only. Section 2.3 explains it and Section 4 records it. The correction commit is identified in the PR history, because a file cannot name its own commit.
+
 **Contract followed:** `communication/missions/SB-ORG-LEARNING-1.0/mission-control/03-final-reconciled-build-plan-and-acceptance.md`, Section 12, with the eight required sections in order.
 
 **Pinned snapshot:** `9e98c4f364d9b7852eaa2b496b65b479d0328874`. Every citation below and in the candidates resolves at that commit.
@@ -73,7 +75,29 @@ The harvester read an envelope that was not yet committed and resolved its evide
 - Records 04 and the bridge were prepared by Claude Code and accepted by Mission Control. The candidates are Claude Code's synthesis of them. The chain shows what the committed record says. It is not an independent check that the record's account is right, and it does not extend to anything the records attribute to a source that is not committed.
 - The bridge transcribes GitHub comments. A GitHub comment is not direct harvester provenance, so no candidate cites one. Where a claim rests on a comment, it rests on the bridge's transcription and is marked attested.
 - The independent verifiers' report text is not preserved in the repository or in GitHub, and no verifier identity is established. Candidates 03 and 04 rest on Mission Control's accepted findings and are qualified accordingly. The grant's alternative, obtaining the verbatim reports through the Founder, was not needed for the claims kept, because each was narrowed to what the committed material states.
-- `generated_at` and `observation_date` in the candidates carry one declared generation time, `2026-09-20T16:30:00Z`, chosen by the preparer and not read from a clock. `evidence_date` is `2026-09-20T15:46:16Z`, the `merged_at` of PR #610, the commit that contains the cited bridge.
+
+#### Timestamp provenance (finding F-01 and its correction)
+
+**What was wrong.** The first commit of this PR (`31f46c35cd7aabfdd2d1b4b3a1e3d48f35e980cf`) put the single value `2026-09-20T16:30:00Z` in `observation_date` on all 28 evidence references and in `generated_by.generated_at` on all 5 candidates. That value was chosen by the preparer. It was not read from a clock, so it is not evidence of when any observation or generation occurred. The earlier wording of this section disclosed that, but a disclosed invented instant is still an invented event time. Mission Control's review made it finding F-01.
+
+**What the schema allows.** `provenance.schema.ts` makes `observation_date` and `evidence_date` optional ISO date-times. `candidate-learning-item.schema.ts` makes `generated_by.generated_at` a required date-time and `generated_by.session_ref` a free string of at most 200 characters. No field distinguishes an original event from a later one. The label for a later event therefore has to sit in `session_ref`.
+
+**The original event instants are not recovered.** No committed file, receipt or candidate records when the original observations and generation happened, so this report does not assert them. They can only be bounded:
+
+- Generation was after the receipt was created, because every candidate carries the receipt's fingerprint. The receipt's `created_at`, taken by the harvester, is `2026-09-20T16:24:07.180Z`.
+- Generation was before commit `31f46c3`, whose committer date is `2026-09-20T22:12:10+05:30`, which is `2026-09-20T16:42:10Z`.
+- Uncommitted file-system metadata on the preparer's workstation put the last write of the five candidate files at about `2026-09-20T16:28:29.8Z`. That is non-authoritative and is not used in any field. It does show that the chosen `16:30:00Z` was roughly ninety seconds after the last write.
+- When each of the 28 references was first read is not recoverable at all. The evidence was read across the session, partly before the harvester ran, and no times were kept.
+
+**What the correction did.** After the correction was authorized, a script re-observed every reference and regenerated every candidate, taking real clock readings as it went:
+
+- For each of the 28 references it resolved the pinned blob through `validateProvenanceReference` against the real repository, required `VALID`, and required the locator's quoted excerpt to appear verbatim in the pinned blob. Immediately after each reference passed, it set `observation_date` to the current UTC time. The 28 readings run from `2026-09-20T16:54:48.225Z` to `2026-09-20T16:54:56.286Z`.
+- For each candidate it set `generated_at` to the current UTC time at the moment that file was regenerated: `16:54:49.652Z`, `16:54:51.544Z`, `16:54:53.277Z`, `16:54:55.074Z` and `16:54:56.286Z` for candidates 01 to 05, all on `2026-09-20`. Each is not earlier than that candidate's own last observation.
+- It set `session_ref` to `claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction`. The suffix marks `observation_date` and `generated_at` in that candidate as the times of the later correction-stage re-observation and regeneration. They are not the original events and are not backdated to them.
+
+**Clock method.** Each value is `new Date().toISOString()` in Node on the preparer's workstation, at millisecond precision, in UTC. The workstation clock was compared with GitHub's server clock through the `Date` header of the GitHub API, in two sets of three samples, one before the run and one after. GitHub minus the local midpoint ranged from -0.49 s to +0.40 s, which is agreement within the header's whole-second resolution. GitHub's clock is the only external reference used. It confirms the local clock and does not itself supply the values.
+
+**What did not change.** `evidence_date` stays `2026-09-20T15:46:16Z` on all 28 references. It is the `merged_at` of PR #610, the commit that contains the cited bridge, and it is the date of the source evidence, not an observation. The candidate identifiers, claim text, locators, blob SHAs, pinned snapshot, evidence relationships, confidence, strength, `authority_effect: NONE`, the source fingerprint, the envelope, the receipt and the readiness record `06` were not changed. In this report only the header note, this subsection (which replaces the earlier one-line bullet) and the Section 4 entry were changed. The correction changed 38 values in the five candidate files: 28 `observation_date`, 5 `generated_at` and 5 `session_ref`. The receipt lists no candidate, so it is unaffected.
 
 ### 2.4 Screening against existing promotions, candidates and the institutional-memory guide
 
@@ -110,6 +134,7 @@ The dual-intake rule for the Phase 1 guide and validated OLE learning is already
 - **A malformed identifier in a cited source.** One Mission Control comment quotes PR #608's head with 32 hexadecimal characters. The bridge used the GitHub-verified 40-character head and documented the discrepancy (candidate 04).
 - **Overstatements by the preparer during PR #610 drafting, corrected before that PR was published.** Three draft statements went beyond the evidence: that the author had "read each cited comment", that a later PR #607 verification round was by the "same verifier", and that the precedent "closed without" certain items. Each was narrowed to what was verified. They are recorded because they are the kind of drift the bridge's own source classes exist to catch.
 - **Slips caught during this PR-2 preparation.** A candidate title of 204 characters failed the 200-character schema limit and was shortened. A local timestamp printed in IST was read as UTC and was corrected to GitHub's `merged_at` `2026-09-20T15:46:16Z` before any file was written.
+- **Timestamps were chosen, not measured (finding F-01, corrected).** The first commit of PR #611 recorded one invented instant, `2026-09-20T16:30:00Z`, as the observation and generation time of every candidate. The report disclosed that it was chosen, but Mission Control rightly held that a disclosed invented event time is still not a factual one. The correction re-observed all 28 references and regenerated the candidates with real clock readings, labelled them as later events, and kept the unrecoverable original instants unasserted. Section 2.3, subsection "Timestamp provenance", has the detail. The preparer should have read the clock, or left the optional `observation_date` out, rather than pick a round value. It was an avoidable slip, and the schema check could not have caught it because the value was well formed.
 
 ## 5. Candidate lessons and anti-patterns
 

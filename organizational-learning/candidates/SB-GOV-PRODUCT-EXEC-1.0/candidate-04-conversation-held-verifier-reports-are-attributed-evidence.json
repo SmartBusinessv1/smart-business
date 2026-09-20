@@ -30,7 +30,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 5.1, opening: 'No verifier report is stored in this repository or in GitHub.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:53.575Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -53,7 +53,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 5.1, opening: 'No GitHub review object exists on any of these pull requests. No verifier's personal identity is established in the repository.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:53.874Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -82,7 +82,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 1: 'The account does not distinguish authors, so the authorship of each comment rests on what the comment itself states.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:54.176Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -111,7 +111,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 4, closing note: 'which has 32 hexadecimal characters and is malformed. The actual head, read from GitHub, is `4419927682d0ebb63da05156ba1e5ba08e1f5da7`. This record uses the verified value.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:54.456Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -140,7 +140,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 5.3: 'Exact verifier wording, and any verbatim quotation of a finding, cannot be supported from GitHub or the repository.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:54.741Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -163,7 +163,7 @@
           "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
           "locator": "Section 5.3: 'any later claim built on this section can rest only on Mission Control's recorded dispositions, and its evidence strength must say so.'",
           "actor_class": "synthesis",
-          "observation_date": "2026-09-20T16:30:00Z",
+          "observation_date": "2026-09-20T16:54:55.074Z",
           "evidence_date": "2026-09-20T15:46:16Z",
           "scope": {
             "mission_ids": [
@@ -188,8 +188,8 @@
   "authority_effect": "NONE",
   "generated_by": {
     "actor_class": "synthesis",
-    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
-    "generated_at": "2026-09-20T16:30:00Z"
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20:pr611-f01-correction",
+    "generated_at": "2026-09-20T16:54:55.074Z"
   },
   "source_reference": {
     "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
