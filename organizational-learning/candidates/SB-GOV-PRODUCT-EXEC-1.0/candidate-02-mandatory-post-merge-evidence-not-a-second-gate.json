@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-PRODUCT-EXEC-1.0-candidate-02-mandatory-post-merge-evidence-not-a-second-gate",
+  "canonical_title": "A pull request cannot record its own merge facts: reserve them as mandatory post-merge evidence that is not a second gate, and recompute any register hash after the final edit",
+  "summary": "The commit and time of the pull request that activates a governance change cannot be known before it merges. The activation record reserves them as mandatory, append-only factual evidence recorded afterward, states that this is neither a prerequisite of the decision nor a second activation event, and forbids writing them in advance. Fields that await those facts stay marked PENDING without delaying or conditioning the effect. A register hash is valid only for the final version of the file it describes: Source 18's byte count changed at each metadata stage, so the record makes the rehash a mandatory step.",
+  "category": [
+    "governance",
+    "operations"
+  ],
+  "scope": {
+    "mission_ids": [
+      "SB-GOV-PRODUCT-EXEC-1.0"
+    ],
+    "systems": [
+      "mission-governance",
+      "governance-activation"
+    ],
+    "environments": [
+      "development"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "merge-facts-exist-only-after-merge-and-are-mandatory-evidence",
+      "text": "The activation record states that the merge commit and exact time exist only after the merge, that they are recorded afterward as mandatory, append-only factual evidence, that this is not a prerequisite of the decision and not a second activation event or gate, that it never changes the effective instant, and that no post-merge value may be written in advance.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 8, second paragraph: 'The merge commit and the exact time are facts that exist only after the merge. They are recorded afterward, in Section 8.2 and in the Section 9 fields, as mandatory, append-only factual evidence.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 8, second paragraph: 'It is not a prerequisite of the decision, it is not a second activation event or gate, and it never changes the effective instant.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 8, second paragraph: 'no Section 8.2 value may be written in advance.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "pending-field-does-not-condition-the-effect",
+      "text": "Until the post-merge reconciliation was complete, a field that still showed PENDING did not delay or condition the effect. The record classifies the reconciliation as audited completion evidence, not an optional step, not a pre-existing fact and not a second gate.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 6.2, 'Facts that follow the merge': 'Until step J is complete, a field that still shows `PENDING` does not delay or condition the effect.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "register-hash-valid-only-for-the-final-blob",
+      "text": "Source 18's byte count passed through 89,443, 92,433, 96,713 and 98,728 bytes before the final 100,512 as its metadata changed, so a register hash is valid only for the final blob. The record makes the recomputation and re-verification against main a mandatory step of the post-merge reconciliation.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 6, last paragraph: 'the earlier values that Source 18 passed through as its metadata changed: 89,443, 92,433, 96,713 and 98,728 bytes.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 6.1, step J: 'with Source 18's byte count and SHA-256 recomputed in Source Set row 18 and re-verified against `main`'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
+    "generated_at": "2026-09-20T16:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
+    "closure_revision": "05-postactivation-closure-readiness-and-ole-handoff",
+    "source_fingerprint": "c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2"
+  },
+  "conditions": [
+    "Applies when a status or register entry depends on a fact that only the merge of the same pull request can produce.",
+    "Requires the follow-up evidence step to be named, mandatory and audited, so that leaving it out is a visible gap and not a silent one.",
+    "Requires status wording that stays true both before and after the merge until the evidence is recorded."
+  ],
+  "anti_patterns": [
+    "Writing a future merge commit, merge time or pull request number into the pull request that will produce it.",
+    "Treating the mandatory post-merge evidence as optional, or as a second gate that delays the effect.",
+    "Reusing a register hash after the file it describes was edited."
+  ]
+}

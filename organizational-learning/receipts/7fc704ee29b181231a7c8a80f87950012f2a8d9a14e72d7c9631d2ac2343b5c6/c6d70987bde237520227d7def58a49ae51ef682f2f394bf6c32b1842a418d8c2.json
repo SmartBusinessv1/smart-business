@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "receipt_id": "SB-GOV-PRODUCT-EXEC-1.0:c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2",
+  "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
+  "closure_revision": "05-postactivation-closure-readiness-and-ole-handoff",
+  "run_id": "845a69d8-0d32-40c5-a75f-3cc3ee6fffab",
+  "source_fingerprint": "c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2",
+  "source_manifest": [
+    {
+      "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/README.md",
+      "blob_sha": "579f32a35ec9a87d6da254e06d2e55f048b6e8ed"
+    },
+    {
+      "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+      "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a"
+    },
+    {
+      "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+      "blob_sha": "b47399206100c9f915e935244af4556fc5a57602"
+    }
+  ],
+  "processing_state": "SCREENED",
+  "screening_result": {
+    "status": "CLEAN",
+    "findings": [],
+    "scanned_path_count": 3
+  },
+  "failure_reason": null,
+  "created_at": "2026-09-20T16:24:07.180Z",
+  "updated_at": "2026-09-20T16:24:07.460Z"
+}

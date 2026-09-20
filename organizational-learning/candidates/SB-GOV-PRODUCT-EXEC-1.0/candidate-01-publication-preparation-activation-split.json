@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-PRODUCT-EXEC-1.0-candidate-01-publication-preparation-activation-split",
+  "canonical_title": "Split a governance amendment into publication, preparation and activation, with activation as the human merge of one self-describing finalization pull request",
+  "summary": "Merging the amended governing text (PR #606) did not activate it. The mission used a preparation pull request (PR #607) that activated nothing, and a separate finalization pull request (PR #608) that carried Mission Control's conditional decision. Under the Founder's Option B decision, the human merge of PR #608 was the single activation event, effective at GitHub's actual merged_at instant. The activation record names the publication, preparation and activation commits separately, says they must never be substituted for one another, and lists what is not the activation event (an earlier merge, a review, a dated comment, a verification report, the factual reconciliation, a statement of intent).",
+  "category": [
+    "governance"
+  ],
+  "scope": {
+    "mission_ids": [
+      "SB-GOV-PRODUCT-EXEC-1.0"
+    ],
+    "systems": [
+      "mission-governance",
+      "governance-activation"
+    ],
+    "environments": [
+      "development"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "three-commits-named-and-never-substituted",
+      "text": "The activation record lists PR #606's merge commit as a publication commit, PR #607's merge commit as a preparation commit, and PR #608's merge commit as the activation merge commit, and states that the publication and preparation commits must never be substituted for the finalization merge commit. The three roles are also tabulated in the closeout evidence bridge.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 5, closing paragraph: 'The PR #606 publication commit and the PR #607 preparation merge commit must never be substituted for the finalization pull request merge commit.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 3.1, opening: 'The four PRs from #606 onward have distinct roles, and no commit is to be substituted for another.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "single-activation-event-is-the-human-merge-at-merged-at",
+      "text": "Under the Founder's Option B decision as recorded in the activation record, the human merge of the finalization pull request is the activation event and the effective instant is the actual merged_at UTC timestamp that GitHub records. The record states that a dated GitHub comment does not activate anything, and it enumerates events that are not the activation event.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 8, Mechanism: 'The human merge is the activation event, and the effective instant is the actual `merged_at` UTC timestamp that GitHub records for it. A dated GitHub comment does not activate anything.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 6.2, last bullet: 'a dated GitHub comment; Mission Control's verification and report of the merge; the factual reconciliation; any statement of intent.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "mechanism-operated-with-one-effective-instant",
+      "text": "The mechanism operated as designed: PR #608 was merged by a human, the activation record states that the five instruments have been operative together from that instant, and the later evidence pull request (PR #609) is recorded as not a second activation event and as not changing the effective instant.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md",
+          "blob_sha": "2c89af23a62b3ab78aae6619c18f439505f8712a",
+          "locator": "Section 8, Outcome: 'The five instruments have been operative together from that instant.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 6, Evidence reconciliation: 'It is not a second activation event and it did not change the effective instant.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "mission-governance",
+              "governance-activation"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "DIRECT",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
+    "generated_at": "2026-09-20T16:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
+    "closure_revision": "05-postactivation-closure-readiness-and-ole-handoff",
+    "source_fingerprint": "c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2"
+  },
+  "conditions": [
+    "Applies to a governance amendment whose text is authoritative only after a distinct activation, where a merge could otherwise be read as activation.",
+    "Requires the mechanism, the single effective instant and the list of non-activating events to be stated in the governing source itself and not only in a subordinate record (see candidate 03).",
+    "The mechanism adds review round trips, so it fits amendments that change operating authority and not routine wording corrections."
+  ],
+  "anti_patterns": [
+    "Treating the merge of an amendment's text as its activation.",
+    "Treating a dated comment, an approval or the merge of a preparation pull request as the effective instant.",
+    "Substituting a publication or preparation commit for the activation commit in a status record."
+  ]
+}

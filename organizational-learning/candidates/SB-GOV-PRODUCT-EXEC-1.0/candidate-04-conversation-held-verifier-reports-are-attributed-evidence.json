@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "id": "SB-GOV-PRODUCT-EXEC-1.0-candidate-04-conversation-held-verifier-reports-are-attributed-evidence",
+  "canonical_title": "Treat a verifier report held only in the project conversation as attributed, qualified evidence, not a GitHub review: transcribe the disposition, state the limits, never infer the verifier",
+  "summary": "Across the four governance pull requests from #606 to #609 no verifier report is stored in the repository or in GitHub, no verifier identity is established, and no GitHub review object exists. The reports reached Mission Control through the Founder or the project conversation, and Mission Control recorded its own dispositions in GitHub comments. The closeout evidence bridge therefore attributes each disposition, classifies the evidence, states that every comment was posted through one GitHub account so authorship rests on the comment text, requests source copies instead of reconstructing verbatim findings, and documents a malformed head SHA in a cited comment instead of copying it.",
+  "category": [
+    "governance"
+  ],
+  "scope": {
+    "mission_ids": [
+      "SB-GOV-PRODUCT-EXEC-1.0"
+    ],
+    "systems": [
+      "independent-verification",
+      "mission-governance"
+    ],
+    "environments": [
+      "development"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "no-report-no-identity-no-review-object",
+      "text": "The bridge records that no verifier report is stored in the repository or in GitHub, that the reports reached Mission Control through the Founder or the project conversation while Mission Control's dispositions are in GitHub comments, that no GitHub review object exists on the pull requests, and that no verifier's personal identity is established in the repository.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 5.1, opening: 'No verifier report is stored in this repository or in GitHub.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 5.1, opening: 'No GitHub review object exists on any of these pull requests. No verifier's personal identity is established in the repository.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "single-account-authorship-rests-on-comment-text",
+      "text": "Every cited pull-request comment was posted through one GitHub account, including comments that state they convey the Founder's authority, so the authorship of each comment rests on what the comment itself states.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 1: 'The account does not distinguish authors, so the authorship of each comment rests on what the comment itself states.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "cited-source-discrepancy-documented-not-copied",
+      "text": "A Mission Control comment quoted the head of pull request #608 with 32 hexadecimal characters. The bridge checked it against GitHub, used the verified 40-character head, and documented the discrepancy.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 4, closing note: 'which has 32 hexadecimal characters and is malformed. The actual head, read from GitHub, is `4419927682d0ebb63da05156ba1e5ba08e1f5da7`. This record uses the verified value.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        }
+      ]
+    },
+    {
+      "claim_id": "source-copies-requested-and-strength-limited",
+      "text": "The bridge states that verbatim verifier wording cannot be supported from GitHub or the repository, requests source copies, and states that without them any later claim can rest only on Mission Control's recorded dispositions and its evidence strength must say so.",
+      "evidence": [
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 5.3: 'Exact verifier wording, and any verbatim quotation of a finding, cannot be supported from GitHub or the repository.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "SUPPORTS"
+        },
+        {
+          "repository": "SmartBusinessv1/smart-business",
+          "commit_sha": "9e98c4f364d9b7852eaa2b496b65b479d0328874",
+          "path": "communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/05-postactivation-closure-readiness-and-ole-handoff.md",
+          "blob_sha": "b47399206100c9f915e935244af4556fc5a57602",
+          "locator": "Section 5.3: 'any later claim built on this section can rest only on Mission Control's recorded dispositions, and its evidence strength must say so.'",
+          "actor_class": "synthesis",
+          "observation_date": "2026-09-20T16:30:00Z",
+          "evidence_date": "2026-09-20T15:46:16Z",
+          "scope": {
+            "mission_ids": [
+              "SB-GOV-PRODUCT-EXEC-1.0"
+            ],
+            "systems": [
+              "independent-verification",
+              "mission-governance"
+            ],
+            "environments": [
+              "development"
+            ]
+          },
+          "relationship": "LIMITS"
+        }
+      ]
+    }
+  ],
+  "evidence_strength": "ATTESTED",
+  "confidence": "MEDIUM",
+  "maturity": "CANDIDATE",
+  "authority_effect": "NONE",
+  "generated_by": {
+    "actor_class": "synthesis",
+    "session_ref": "claude-code:SB-GOV-PRODUCT-EXEC-1.0-manual-ole-handoff:2026-09-20",
+    "generated_at": "2026-09-20T16:30:00Z"
+  },
+  "source_reference": {
+    "mission_id": "SB-GOV-PRODUCT-EXEC-1.0",
+    "closure_revision": "05-postactivation-closure-readiness-and-ole-handoff",
+    "source_fingerprint": "c6d70987bde237520227d7def58a49ae51ef682f2f394bf6c32b1842a418d8c2"
+  },
+  "conditions": [
+    "Applies when independent verification reaches Mission Control outside GitHub, for example when a provider-capacity interruption forces a replacement verifier.",
+    "Builds on the already promoted actor-flexible verifier lessons and does not restate them. It partly overlaps the Phase 1 guide's rule that a verifier report is itself evidence and its rule to preserve correction trails. The added content is the handling of conversation-held reports and single-account attribution.",
+    "The strength is attested because the reports themselves are not available, only Mission Control's dispositions."
+  ],
+  "anti_patterns": [
+    "Naming a verifier, or implying a submitted GitHub review, that the evidence does not establish.",
+    "Presenting Mission Control's summary of a report as the report's own verbatim text.",
+    "Copying an identifier quoted in a comment without checking it against the source system."
+  ]
+}
