@@ -4,7 +4,7 @@
 
 **Mission type:** Governance / Product Mission execution-framework reconciliation
 
-**Status:** `ACTIVE — DESIGN / RECONCILIATION`
+**Status:** `GOVERNANCE ACTIVATED — POST-ACTIVATION EVIDENCE RECONCILED — OLE DISPOSITION / FORMAL CLOSURE / ARCHIVE PENDING`
 
 **Founder:** Riyas PK
 
@@ -19,6 +19,21 @@
 **Date activated:** 2026-09-19
 
 **Product Mission state:** `SB-P-1.12 — NOT ACTIVATED`
+
+---
+
+## Current status (post-activation)
+
+Governance activation is complete. Mission closure is not. The original mission record below is preserved as written.
+
+- **Governance activation:** the human merge of PR #608 (merge commit `abc458dff590accbc9454367728978553bd3a25b`) at `2026-09-20T11:34:43Z` is the single activation event. Source 18 v1.2, the Product Feature Elaboration Workflow Template v1.4, the Implementation, Verification, Evidence and Completion Workflow Template v1.2, the AI Communication and Handover Protocol v1.1 and the Independent Verification Efficiency Protocol v1.1 (stable ID `SB-IV-1.0`) are operative together from that instant. The activation record is [`mission-control/04_activation_decision_and_metadata_reconciliation.md`](./mission-control/04_activation_decision_and_metadata_reconciliation.md).
+- **Post-activation evidence:** PR #609 (merge commit `63187bc6c2793323b087c68ea3a2050e0ef85b91`) recorded the mandatory factual evidence. It is not a second activation event.
+- **Closeout evidence bridge:** [`mission-control/05-postactivation-closure-readiness-and-ole-handoff.md`](./mission-control/05-postactivation-closure-readiness-and-ole-handoff.md), status `PREPARED FOR MISSION CONTROL REVIEW — CLOSURE NOT EFFECTIVE`. It holds the pull-request chronology, the Founder decision and Mission Control authorization index, the attributed verification sources and their limits, the open closure steps and the proposed OLE themes. It is not an accepted OLE result, an acceptance or an archive.
+- **Still open** (completion conditions 7 to 9): the Organizational Learning Engine (OLE) disposition, the formal acceptance and closure decision, and the communication archive and live-channel reset. Each needs its own authorization, and none has occurred.
+- **Stage, owner and next action:** post-activation closeout. Mission Control reviews the evidence bridge. Later steps follow the sequence in the bridge, Section 8, and need separate authority. No blocker is identified.
+- **Baseline for this status:** canonical `main@63187bc6c2793323b087c68ea3a2050e0ef85b91`.
+- **Retained follow-ups** (owners and detail in the bridge, Section 11): the external Project HQ package stays `UNVERIFIED — PENDING RECONCILIATION`; the historical OLE backfill is `NOT VERIFIED COMPLETE` and dual intake remains in force; OLE Stage 4B automation is deferred (GitHub Issue #590); `SB-P-1.12` needs its own activation after a clean closeout; the D-03 proposal and D-10 hardening decisions remain open or deferred.
+- **Historical records:** `claude-code/01`, `02` and `03` are the PR #605 design and amendment-map records. Their status headers describe the drafts as they stood when written, and the merged instruments are the governing sources.
 
 ---
 
