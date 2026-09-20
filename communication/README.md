@@ -80,7 +80,7 @@ The repository is the official operational record for AI-to-AI communication. Ch
 
 Mission packages under `communication/missions/` may include preserved historical work and must not be assumed active from location alone.
 
-`SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` are contained, non-governing, non-executable proposal packages. Their binding containment index is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`. Current communication authority is the active `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0 and the approved SB-GOV-COMMS-1.2 archive record. A Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` is pending activation and becomes the current authority only when independently verified, merged and activated by Mission Control.
+`SB-GOV-COMMS-1.0` and `SB-GOV-COMMS-1.1` are contained, non-governing, non-executable proposal packages. Their binding containment index is `communication/missions/SB-GOV-COMMS-SUPERSEDED-PROPOSALS.md`. Current communication authority is the active `communication/AI_Communication_and_Handover_Protocol.md` Version 1.0 and the approved SB-GOV-COMMS-1.2 archive record. A Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` was independently verified and merged (PR #606). It becomes the current authority only when Mission Control records the Activation Confirmation in the [activation record](missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md); until then Version 1.0 is the current authority.
 
 ---
 
@@ -128,7 +128,7 @@ Current publication state during `SB-GOV-IV-1.0`:
 - Source 18 v1.1 status: ACTIVE;
 - `SB-GOV-IV-1.0` closed via PR #603 (`f3d4869`);
 - `SB-P-1.12` remains not activated and needs its own separate Mission Control activation;
-- an amendment of the protocol to Version 1.1 and of Source 18 to Version 1.2 under `SB-GOV-PRODUCT-EXEC-1.0` is pending independent verification, human merge and activation.
+- an amendment of the protocol to Version 1.1 and of Source 18 to Version 1.2 under `SB-GOV-PRODUCT-EXEC-1.0` was independently verified and merged (PR #606) and is operative only from the Mission Control Activation Confirmation; until then protocol Version 1.0 and Source 18 Version 1.1 are operative.
 
 The protocol is subordinate to Source 18 and higher authority. It does not remove mandatory Stage 19 independent verification.
 

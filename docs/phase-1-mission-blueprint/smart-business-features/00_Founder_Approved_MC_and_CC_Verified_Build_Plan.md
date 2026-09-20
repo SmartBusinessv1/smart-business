@@ -11,7 +11,7 @@
 **Authority Type:** Durable pre-execution build-plan handoff  
 **Important:** **NOT A FEATURE CONTRACT — NOT A 26TH FEATURE — NOT IMPLEMENTATION AUTHORIZATION**
 
-**Operational baseline revision:** amendment proposed on 2026-09-19 under `SB-GOV-PRODUCT-EXEC-1.0`, activation pending. The build direction, the nine-mission sequence, the product outcomes, the Founder runtime scenarios and the unresolved Founder decisions are unchanged. Only the operational baseline and the mission-level coverage rules below are revised.
+**Operational baseline revision:** amendment proposed on 2026-09-19 under `SB-GOV-PRODUCT-EXEC-1.0`, independently verified and merged in PR #606 (publication commit `b3cd5f439e8795855d6ef0f527d7ccea18c48080`). It is operative only when Mission Control records the Activation Confirmation in the [activation record](../../../communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md); until then the operational baseline is this plan as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`. The build direction, the nine-mission sequence, the product outcomes, the Founder runtime scenarios and the unresolved Founder decisions are unchanged. Only the operational baseline and the mission-level coverage rules below are revised.
 
 ---
 
@@ -1035,7 +1035,7 @@ This section records verified operational facts as of 2026-09-19. It authorizes 
 
 - **Continuous integration.** See Section 5.2. The Fast Gate runs on every pull request and push to `main`; Full Assurance runs on approved paths; the only status check required on `main` was the Markdown Quality Gate. Protection hardening is deferred and not represented as remediated.
 - **Delivery topology.** See Section 5.3. It is volatile and shall be freshly verified before any external action.
-- **Verification protocol.** The Independent Verification Efficiency Protocol (`SB-IV-1.0`) is active at Version 1.0; a Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` is pending activation.
+- **Verification protocol.** The Independent Verification Efficiency Protocol (`SB-IV-1.0`) is active at Version 1.0. A Version 1.1 amendment under `SB-GOV-PRODUCT-EXEC-1.0` was independently verified and merged in PR #606 and is operative only from the Mission Control Activation Confirmation.
 - **Institutional learning.** Seventeen OLE promotion records exist under `organizational-learning/promotions/`, each `VALIDATED` and `MISSION_SCOPED`. The historical OLE backfill is `NOT VERIFIED COMPLETE`. Dual intake applies.
 - **Migration authority.** `docs/migration/README.md` default-deny applies: execution requires a new, current, explicit Founder- or Mission Control-authorized migration mission.
 - **Global Product Completion Register.** No one of the 25 mature contracts is currently proven complete end-to-end against its hydrated contract (Register Section 6).

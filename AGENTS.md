@@ -8,7 +8,7 @@
 > Organization: Lighthouse Information Publishing Service (LIPS)
 > Technology Unit: Team LIPS
 
-> **Pending amendment (`SB-GOV-PRODUCT-EXEC-1.0`).** Provisions below that are marked as taking effect on activation are not operative until the amendment is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). Until then the operative rules are those of this file as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`. The pending provisions are the Product Mission intake pointer, the attribution-trailer rule, the work-package authorization and the work-package expiry.
+> **Amendment awaiting activation (`SB-GOV-PRODUCT-EXEC-1.0`).** The amendment was independently verified and merged by a human in PR #606. Provisions below that are marked as taking effect on activation are not operative until Mission Control records the Activation Confirmation in the [activation record](communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md) (the post-merge activation step defined in the Source 18 header). Until then the operative rules are those of this file as it stood at commit `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b`. The provisions awaiting activation are the Product Mission intake pointer, the attribution-trailer rule, the work-package authorization and the work-package expiry.
 
 ---
 

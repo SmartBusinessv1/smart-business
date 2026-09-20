@@ -10,7 +10,7 @@
 
 **Authorized By:** Mission Control
 
-**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.1 is the operative template until this version is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). This version takes effect only after Source 18 Version 1.2 is itself active.
+**Status:** AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. Version 1.1 is the operative template until Mission Control records the Activation Confirmation (the post-merge activation step defined in the Source 18 header and recorded in the [activation record](../../../communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md)). This version has been independently verified and merged by a human, and it takes effect only with Source 18 Version 1.2, never before it.
 
 ---
 
@@ -750,9 +750,10 @@ Until these checks pass, implementation shall not begin.
 |---|---|---|
 | 1.0 | Initial reusable Implementation, Verification, Evidence & Completion Workflow for all Smart Business Product Missions | SUPERSEDED |
 | 1.1 | Aligned the template with Source 18 Version 1.1: subordination to Source 18, Builder Completion Report versus formal Completion Report, Verification Packet, independent verification and finding-scoped correction sequence, protected-main pull-request workflow (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This log and this row were added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and are reconstructed from that pull request (correction of an omitted log) | ACTIVE |
-| 1.2 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: FCTM mapped through the Engineering Contract, Builder Prompt, Verification Checklist and Completion Report; Contract Reconciliation; expanded Implementation Authorization fields; per-row builder reporting; numbered Corrective Authorization with mandatory human retest; Founder-reserved and delegable runtime checks; existing Lovable-specific artifact names retained. Subordinate to Source 18 Version 1.2 | AMENDMENT PROPOSED — ACTIVATION PENDING |
+| 1.2 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: FCTM mapped through the Engineering Contract, Builder Prompt, Verification Checklist and Completion Report; Contract Reconciliation; expanded Implementation Authorization fields; per-row builder reporting; numbered Corrective Authorization with mandatory human retest; Founder-reserved and delegable runtime checks; existing Lovable-specific artifact names retained. Subordinate to Source 18 Version 1.2. Independently verified and merged in PR #606 at publication commit `b3cd5f439e8795855d6ef0f527d7ccea18c48080` (publication commit, not an activation commit) | AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. No activation date or activation merge commit is recorded here |
 
 **Correction and interpretation notes (append-only, added under `SB-GOV-PRODUCT-EXEC-1.0`).**
 
 1. **Correction — omitted log.** This template had no change log before this amendment. Rows 1.0 and 1.1 are reconstructed from the template's history and from PR #598, and are added retroactively.
 2. **Interpretation — status of row 1.0.** Row 1.0 is shown as `SUPERSEDED` because Version 1.1 was merged in PR #598 on 2026-09-18. No earlier recorded status is altered, because none existed.
+3. **Interpretation — activation-record reconciliation.** The Status of row 1.2 and the header Status previously read "AMENDMENT PROPOSED — ACTIVATION PENDING". They now record that PR #606 was independently verified and merged and that activation is still pending. No activation date or activation merge commit is recorded, and the status of rows 1.0 and 1.1 is unchanged.

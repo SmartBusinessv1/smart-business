@@ -10,7 +10,7 @@
 
 **Authorized By:** Mission Control
 
-**Status:** AMENDMENT PROPOSED — ACTIVATION PENDING. Version 1.3 is the operative template until this version is independently verified, merged by a human and separately activated by Mission Control (the post-merge activation and metadata-reconciliation step defined in the Source 18 header). This version takes effect only after Source 18 Version 1.2 is itself active.
+**Status:** AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. Version 1.3 is the operative template until Mission Control records the Activation Confirmation (the post-merge activation step defined in the Source 18 header and recorded in the [activation record](../../../communication/missions/SB-GOV-PRODUCT-EXEC-1.0/mission-control/04_activation_decision_and_metadata_reconciliation.md)). This version has been independently verified and merged by a human, and it takes effect only with Source 18 Version 1.2, never before it.
 
 ---
 
@@ -890,9 +890,10 @@ For each new Product Mission:
 | 1.1 | Added complete Product Blueprint structural parity with SB-P-1.10, explicit post–Section 19 section list, authorship boundaries, complete Blueprint lock gate, and EIS entry gate | SUPERSEDED |
 | 1.2 | Refined implementation package lifecycle by introducing Builder Completion Report, post-verification Completion Report, Evidence Package gate, and independent verification sequence | ACTIVE |
 | 1.3 | Aligned independent-verification wording with Source 18 Version 1.1, replacing "Claude Code independent verification" with independent verification by the Mission Control-appointed Independent Verification Actor (merged in PR #598 at `4ddbb647cfb413e43af38a7e362130c5fd16133c`). This row was added retroactively under `SB-GOV-PRODUCT-EXEC-1.0` and is reconstructed from that pull request (correction of an omitted entry; see the notes below) | ACTIVE |
-| 1.4 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: Definition Actor; mandatory FCTM (Section 7.4); Institutional Learning Intake Record; conditional Founder Decision Gate; assembly by reference; per-row feasibility findings; implementation package authored and reviewed as one set after both locks; mandatory Contract Reconciliation; existing Lovable-specific artifact names retained; Gate 2 order unchanged. Subordinate to Source 18 Version 1.2 | AMENDMENT PROPOSED — ACTIVATION PENDING |
+| 1.4 | Product Mission execution reconciliation under `SB-GOV-PRODUCT-EXEC-1.0`: Definition Actor; mandatory FCTM (Section 7.4); Institutional Learning Intake Record; conditional Founder Decision Gate; assembly by reference; per-row feasibility findings; implementation package authored and reviewed as one set after both locks; mandatory Contract Reconciliation; existing Lovable-specific artifact names retained; Gate 2 order unchanged. Subordinate to Source 18 Version 1.2. Independently verified and merged in PR #606 at publication commit `b3cd5f439e8795855d6ef0f527d7ccea18c48080` (publication commit, not an activation commit) | AMENDMENT MERGED (PR #606) — MISSION CONTROL ACTIVATION CONFIRMATION PENDING. No activation date or activation merge commit is recorded here |
 
 **Correction and interpretation notes (append-only, added under `SB-GOV-PRODUCT-EXEC-1.0`).** The rows above that pre-date this amendment are not rewritten.
 
 1. **Correction — omitted entry.** The Version 1.3 change merged in PR #598 had no row in this log. Row 1.3 is added retroactively and is reconstructed from that pull request.
 2. **Interpretation — status of row 1.2.** The Status of row 1.2 remains as originally logged (`ACTIVE`). Version 1.2 was superseded by Version 1.3 when PR #598 was merged on 2026-09-18.
+3. **Interpretation — activation-record reconciliation.** The Status of row 1.4 and the header Status previously read "AMENDMENT PROPOSED — ACTIVATION PENDING". They now record that PR #606 was independently verified and merged and that activation is still pending. No activation date or activation merge commit is recorded, and the status of rows 1.0 to 1.3 is unchanged.
