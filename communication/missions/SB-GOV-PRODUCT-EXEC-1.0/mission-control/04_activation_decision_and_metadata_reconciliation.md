@@ -32,9 +32,9 @@ It does three things:
 
 1. It records the approval, verification and merge evidence for the amendment.
 2. It makes the effect of every amended instrument expressly conditional on one future event, the Activation Confirmation of Section 8.
-3. It lists the exact fields that only the Activation Confirmation can set.
+3. It lists the exact fields left for the finalization pull request and for the factual reconciliation that follows the merge.
 
-It does not activate anything. Sections 1 to 7 and 9 to 12 record facts and preparation. Section 8 is the only place where an activation can be recorded, and it is empty.
+It does not activate anything. Sections 1 to 7 and 9 to 13 record facts and preparation. Section 8 is the only place where an activation can be recorded, and it is empty. The activation event is the human merge of a later, separately reviewed finalization pull request that completes Section 8. This pull request, PR #607, prepares the record and activates nothing, whether it is published or merged.
 
 ## 2. Mission and activation purpose
 
@@ -88,41 +88,50 @@ Four further files carry operational references to these versions and are reconc
 | Operative-text baseline before PR #606 | `c3ef55fe0cf94f4491cb2ae257b084f90b49b40b` | Exists. Merge commit of PR #605 |
 | PR #606 final reviewed head | `7e47118ccf039210803d22646843dd16088aa190` | Exists |
 | PR #606 publication commit | `b3cd5f439e8795855d6ef0f527d7ccea18c48080` | Exists. A publication commit and never an activation commit |
-| Activation-record pull request | Draft pull request from branch `mission/SB-GOV-PRODUCT-EXEC-1.0-activation-record` | Number is not written here, so that this record is complete at first publication |
-| Activation-record pull request merge commit | Not yet in existence | `NOT YET RECORDED`. Set only in Section 8 |
-| Activation date and effective date | Not yet in existence | `NOT YET RECORDED`. Set only in Section 8 |
+| Activation-record pull request | Draft PR #607 from branch `mission/SB-GOV-PRODUCT-EXEC-1.0-activation-record` | Exists. Draft and unmerged. It prepares this record and activates nothing |
+| Activation-record pull request (PR #607) merge commit | Not yet in existence | `NOT YET RECORDED`. Set only in Section 8.1, after that merge |
+| Finalization pull request | Not yet in existence | `NOT YET RECORDED`. A separate, later pull request that completes Section 8. Its number is not written here |
+| Finalization pull request merge commit and GitHub `merged_at` instant | Not yet in existence | `NOT YET RECORDED`. The `merged_at` instant is the effective instant. Both are recorded only afterward, in Section 8.2, as factual evidence, because neither can be known before the merge |
 
-The PR #606 publication commit must never be substituted for the activation-record pull request merge commit, and no date or commit is to be back-filled.
+The PR #606 publication commit must never be substituted for the merge commit of PR #607 or of the finalization pull request. No commit or time may be written before it exists, and none may be backdated. Facts that exist only after the finalization merge are recorded afterward as evidence and do not move the effective instant.
 
 ## 6. Activation sequence and effective-authority boundary
 
 ### 6.1 Sequence
 
+Two separate pull requests are involved. This pull request (PR #607) prepares the record and activates nothing. A later, separately reviewed finalization pull request carries Mission Control's completed Section 8 decision, and its human merge is the activation event.
+
 | Step | Description | State |
 |---|---|---|
-| A | Prepare the activation record and metadata changes | This pull request |
-| B | Publish one draft activation pull request. A draft is not activation | On publication of this pull request |
-| C | Independent verification by a non-author of the exact metadata, version references, historical approvals, Source 18 register hash and effective-state boundaries | Not started |
-| D | Mission Control final review of the independent findings | Not started |
-| E | Founder human merge of the reviewed pull request | Not started |
-| F | Distinct Mission Control Activation Confirmation, after Mission Control verifies the actual merge and canonical `main` | Not started. Recorded only in Section 8 |
+| A | Prepare the activation record and metadata changes | PR #607 |
+| B | Publish one draft activation pull request. A draft is not activation | PR #607 is published as a draft |
+| C | Independent verification of PR #607 by a non-author of the exact metadata, version references, historical approvals, Source 18 register hash and effective-state boundaries | Not started |
+| D | Mission Control final review of the independent findings on PR #607 | Not started |
+| E | Founder human merge of PR #607. This merge does not activate anything | Not started |
+| F | Mission Control verifies the actual merged `main`, then authors the completed Section 8 decision in a separate finalization pull request. The decision is conditional until that pull request is merged | Not started |
+| G | Independent verification of the finalization pull request by a non-author, then Mission Control final review | Not started |
+| H | Founder human merge of the finalization pull request into canonical `main`. **This merge is the activation event.** The versions take effect at the actual GitHub `merged_at` instant | Not started |
+| I | Mission Control verifies that merge and reports the observed instant and merge commit. This is evidence and is not a second activation switch | Not started |
+| J | Append-only factual reconciliation of the merge commit and `merged_at` instant into the Section 8.2 fields and the fields listed in Section 9. It never changes the established effective instant | Not started |
 
 ### 6.2 Boundary
 
-- **Now, and until the Activation Confirmation:** the operative texts are the versions in the last column of Section 4. Every amended file says so and none states that its amended version is already active.
-- **From the Activation Confirmation:** the amended versions in Section 4 are operative, together.
-- **The Activation Confirmation is effective only when Section 8 of this record is populated on canonical `main`.** Mission Control comment `5744765937` records that the previous versions remain in force until the step "is canonically recorded and human-merged", and comment `5744791390` requires "an explicit, dated Mission Control confirmation after human merge of the activation record".
-- **None of the following activates any clause:** the merge of PR #606; opening, verifying, reviewing or merging this pull request; this record; any independent verification; any Mission Control review; any statement of intent.
+- **Now, and until the activation event:** the operative texts are the versions in the last column of Section 4. Every amended file says so and none states that its amended version is already active.
+- **From the activation event:** the amended versions in Section 4 are operative, together, from the actual GitHub `merged_at` UTC instant of the finalization pull request. That instant is not the creation, authoring, approval, verification or review of the finalization pull request, and it is not a time written in advance.
+- **The Activation Confirmation is Mission Control's completed Section 8 decision. It is conditional until a human merges the finalization pull request, and it is on canonical `main` from that merge.** The Founder decision recorded in PR #607 comment `5745151886` (2026-09-19T20:42:21Z, which is 2026-09-20 02:12:21 IST) selects this mechanism, Option B, and rejects a dated GitHub comment as the activation switch. It is consistent with Mission Control comment `5744765937`, which records that the previous versions remain in force until the step "is canonically recorded and human-merged". It refines comment `5744791390`: the "explicit, dated Mission Control confirmation after human merge of the activation record" is realised as the completed Section 8 in the finalization pull request, and not as a comment.
+- **Terms in the nine files.** In the Source 18 header, "the activation-record pull request" is PR #607, and "after Mission Control has verified the actual merged `main`" refers to Mission Control's verification after PR #607 merges and before it authors the finalization pull request. Mission Control's verification of the finalization merge (step I) is evidence and is never a prerequisite of the effect.
+- **Facts that follow the merge.** The nine files describe the Activation Date, Activation Commit and Activation Basis as `PENDING`, "set only by" the Activation Confirmation, and say that the Activation Confirmation "records" the activation date and merge commit. Those facts exist only after the merge, so step J records the instant and commit that the Activation Confirmation established. Until step J, a field that still shows `PENDING` does not delay or condition the effect.
+- **None of the following is the activation event:** the merge of PR #606; opening, verifying, reviewing or merging PR #607; this record; the opening, authoring, approval, independent verification or review of the finalization pull request before it is merged; a dated GitHub comment; Mission Control's verification and report of the merge; the factual reconciliation; any statement of intent.
 
 ### 6.3 The six activation steps of the Source 18 header
 
-| Step | Source 18 header requirement | Done in this pull request | Left to the Activation Confirmation |
+| Step | Source 18 header requirement | Done in this pull request | Left for the finalization pull request (F) and the factual reconciliation (J) |
 |---|---|---|---|
-| 1 | Record the activation authority | Records Mission Control's preparation authority (comment `5744791390`) | Record the activation authority itself in Section 8 |
-| 2 | Set Status, Approved By, Approval Date, Activated By, Activation Date and merge commit in the header and change log | Status now "merged, confirmation pending". Approved By and Approval Date record events that have already occurred | Activated By, Activation Date, activation merge commit and final Status |
-| 3 | Apply the same reconciliation to the other amended files that carry a pending status | Status wording of the four files updated to "merged, confirmation pending" | Their activation fields and final Status |
-| 4 | Convert pending and conditional wording in `AGENTS.md`, `communication/README.md` and the Source Set into unconditional text | Pending wording replaced by wording conditional on the Activation Confirmation. Unconditional text would assert a future event | Conversion to unconditional text |
-| 5 | Re-verify the Source Set register row for Source 18 against `main` | Row refreshed from the staged Source 18 blob (procedure in Section 12) | Re-verify against `main` after the merge and again after the header update of step 2 |
+| 1 | Record the activation authority | Records Mission Control's preparation authority (comment `5744791390`) | Record the activation authority itself in Section 8.1, in the finalization pull request |
+| 2 | Set Status, Approved By, Approval Date, Activated By, Activation Date and merge commit in the header and change log | Status now "merged, confirmation pending". Approved By and Approval Date record events that have already occurred | Activated By and final Status, in the finalization pull request. Activation Date and the finalization merge commit, afterward as factual evidence |
+| 3 | Apply the same reconciliation to the other amended files that carry a pending status | Status wording of the four files updated to "merged, confirmation pending" | Their final Status, in the finalization pull request. Their activation date and commit fields, afterward as factual evidence |
+| 4 | Convert pending and conditional wording in `AGENTS.md`, `communication/README.md` and the Source Set into unconditional text | Pending wording replaced by wording conditional on the Activation Confirmation. Unconditional text would assert a future event | Conversion to unconditional text, in the finalization pull request, effective on its merge |
+| 5 | Re-verify the Source Set register row for Source 18 against `main` | Row refreshed from the staged Source 18 blob (procedure in Section 12) | Re-verify against `main` after PR #607 merges. Recompute for the Source 18 of the finalization pull request. Re-verify again after the finalization merge and after any factual-evidence edit to Source 18 |
 | 6 | Record the Project HQ synchronization status | Recorded in Section 10, unchanged | None unless separate evidence exists |
 
 ## 7. Metadata reconciliation performed in this pull request
@@ -147,37 +156,55 @@ Historical Version 1.0 and Version 1.1 records and the independent-verification 
 
 **Status:** `NOT YET RECORDED`
 
-This section is the only place where activation is recorded. It is populated by Mission Control alone, after the actual merge of the activation-record pull request and Mission Control's verification of canonical `main`, through a separately authorized and narrowly scoped follow-up that a human merges. The effective date shall not precede the merge of the activation-record pull request. No value below may be written in advance.
+**Mechanism (Founder decision, Option B).** Section 8 is completed only in a later finalization pull request. That pull request is separate from PR #607 and is separately authorized and separately reviewed. The completed Section 8 is Mission Control's activation decision, and it is conditional until a human merges that pull request into canonical `main`. The human merge is the activation event, and the effective instant is the actual `merged_at` UTC timestamp that GitHub records for it. A dated GitHub comment does not activate anything.
+
+The merge commit and the exact time are facts that exist only after the merge. They are recorded afterward as factual evidence in Section 8.2, they are not prerequisites of the decision, and they never change the effective instant. Mission Control's own verification of the merge is evidence and reporting, and it is not a second activation switch. No value below may be written in advance. Until the merge, the versions in the last column of Section 4 remain operative.
+
+### 8.1 Decision fields
+
+Mission Control completes these in the finalization pull request. They take effect only on its human merge.
 
 | Field | Value |
 |---|---|
 | Confirming actor | `NOT YET RECORDED` |
-| Confirmation decision date and time (UTC) | `NOT YET RECORDED` |
-| Effective date and time (UTC) | `NOT YET RECORDED` |
-| Activation-record pull request number | `NOT YET RECORDED` |
-| Activation-record pull request merge commit on `main` | `NOT YET RECORDED` |
-| Founder human-merge evidence | `NOT YET RECORDED` |
-| Independent verifier of the activation-record pull request | `NOT YET RECORDED` |
-| Source Set row 18 re-verified against the `main` blob (bytes and SHA-256) | `NOT YET RECORDED` |
+| Activation authority and conditions | `NOT YET RECORDED` |
 | Instruments activated (all five of Section 4, together) | `NOT YET RECORDED` |
-| Project HQ synchronization status at confirmation | `NOT YET RECORDED` |
+| Finalization pull request number | `NOT YET RECORDED` |
+| Activation-record pull request (PR #607) merge commit on `main`, as verified by Mission Control | `NOT YET RECORDED` |
+| Founder human-merge evidence for PR #607 | `NOT YET RECORDED` |
+| Independent verifier of PR #607 | `NOT YET RECORDED` |
+| Independent verifier of the finalization pull request | `NOT YET RECORDED` |
+| Source Set row 18 re-verified against the `main` blob (bytes and SHA-256) | `NOT YET RECORDED` |
+| Project HQ synchronization status at the decision | `NOT YET RECORDED` |
 
-## 9. Fields left for the separately authorized follow-up
+### 8.2 Evidence fields
 
-These are the exact fields the Activation Confirmation must set. Earlier rows and notes are not rewritten. Corrections follow the append-only pattern the files already use.
+These are recorded afterward, in an append-only reconciliation, from what GitHub records for the finalization merge.
 
-| File | Fields |
+| Field | Value |
 |---|---|
-| This record | Section 8 (all fields); Status line |
-| Source 18 | Status; Authority; Activated By; Activation Date; Repository publication (activation merge commit); Change Log row 1.2 Status and a note; the authority-notice, activation-boundary and closing "Active control" wording (tense) |
-| Elaboration template | Header Status; Change Log row 1.4 Status and a note |
-| Implementation and Evidence template | Header Status; Change Log row 1.2 Status and a note |
-| Communication and Handover Protocol | Header Status, Activated By, Activation Date and Activation Commit; Change Log row 1.1 Status; the activation-control line |
-| Independent Verification Efficiency Protocol | Header Status, Activation Date and Activation Basis; Section 1 and Section 2 wording; Version History row 1.1 Status |
-| Build Plan | Operational baseline revision line; verification-protocol bullet of Section 19 |
-| `AGENTS.md` | Amendment banner, and conversion of the "taking effect on activation" wording to unconditional text |
-| `communication/README.md` | The two paragraphs reconciled here, and the "once active" wording |
-| Canonical Source Set | Row 18 version cell, bytes and SHA-256 (recomputed from the final Source 18 blob); activation banner; a register refresh note |
+| Finalization pull request merge commit on `main` | `NOT YET RECORDED` |
+| Effective instant: GitHub `merged_at` (UTC) | `NOT YET RECORDED` |
+| Mission Control verification of the merge and of the observed instant | `NOT YET RECORDED` |
+
+## 9. Post-merge factual-finalization checklist
+
+These are the exact fields still to be set. Earlier rows and notes are not rewritten. Corrections follow the append-only pattern the files already use.
+
+The fields are split by when each can truthfully be written. The first column holds fields that Mission Control can write in the finalization pull request, conditional until its human merge. The second column holds fields that depend on the actual finalization merge, so they are recorded afterward as factual evidence and never change the effective instant.
+
+| File | Set in the finalization pull request (conditional until its human merge) | Recorded afterward as factual evidence |
+|---|---|---|
+| This record | The top-level `Activation Confirmation: NOT YET RECORDED` field (labelled `Activation Confirmation (Section 8)` in the header); Section 8.1 (all fields); Status line | Section 8.2 (all fields) |
+| Source 18 | Status; Authority; Activated By; the PR #607 merge commit in Repository publication; Change Log row 1.2 Status and a note; the authority-notice, activation-boundary and closing "Active control" wording (tense) | Activation Date; the finalization merge commit in Repository publication and Change Log row 1.2 |
+| Elaboration template | Header Status; Change Log row 1.4 Status and a note | Any activation date or merge commit that the final wording records |
+| Implementation and Evidence template | Header Status; Change Log row 1.2 Status and a note | Any activation date or merge commit that the final wording records |
+| Communication and Handover Protocol | Header Status and Activated By; Change Log row 1.1 Status; the activation-control line | Activation Date; Activation Commit |
+| Independent Verification Efficiency Protocol | Header Status; Section 1 and Section 2 wording; Version History row 1.1 Status | Activation Date; Activation Basis |
+| Build Plan | Operational baseline revision line; verification-protocol bullet of Section 19 | None |
+| `AGENTS.md` | Amendment banner, and conversion of the "taking effect on activation" wording to unconditional text | None |
+| `communication/README.md` | The two paragraphs reconciled here, and the "once active" wording | None |
+| Canonical Source Set | Row 18 version cell, bytes and SHA-256 (recomputed from the final Source 18 blob); activation banner; a register refresh note | Row 18 bytes and SHA-256, recomputed after any factual-evidence edit to Source 18 |
 
 ## 10. External Project HQ synchronization
 
@@ -206,12 +233,21 @@ The verifier must not be the author of this record, which is Claude Code.
 
    Count the bytes and compute the SHA-256 of that output. Line endings are LF.
 3. **Diff limits.** The Source 18 diff touches only the header block, the Change Log, note 5 and the closing line. Each other file's diff touches only the fields in Section 7.
-4. **No fabricated future facts.** No activation date, activation merge commit or claim that any amended version is active appears in any of the ten files. Version 1.0 and 1.1 approvals and activation records are unchanged.
+4. **No fabricated future facts.** No activation date, no activation or finalization merge commit, no finalization pull request number, no `merged_at` time and no claim that any amended version is active appears in any of the ten files. Version 1.0 and 1.1 approvals and activation records are unchanged.
 5. **Coherence.** No file states an amended version as active while another states it as pending. Each amended file names the same event, the Activation Confirmation, and points here.
 6. **Boundaries.** Project HQ status is unchanged and unverified. `SB-P-1.12` is not activated.
+7. **Option B.** Sections 6, 8 and 9 separate PR #607 from the finalization pull request. They make the human merge of the finalization pull request the activation event at GitHub's `merged_at` instant, treat the merge commit and that time as evidence recorded afterward, reject a dated comment as a switch, and keep Section 8 `NOT YET RECORDED`. Section 9 lists the top-level `Activation Confirmation` field.
 
 ### Interpretive choices for the verifier and Mission Control
 
-- **Trigger.** The switch is the canonical Section 8 record, following comments `5744765937` and `5744791390`. If Mission Control intends a dated pull-request comment alone to be the switch, the conditional wording in the nine files must be revised.
+- **Trigger.** The Founder's Option B decision (PR #607 comment `5745151886`) makes the human merge of the finalization pull request the activation event. None of the nine files names a comment, the merge of PR #607 or a date as the switch. Each says the amended version is operative when Mission Control records the Activation Confirmation on canonical `main`, and that holds at the finalization merge.
+- **Two readings in the nine files.** Section 6.2 settles two points by definition, because this correction may edit only this record. First, the Source 18 header phrase "after that record's pull request has been … merged … and after Mission Control has verified the actual merged `main`" is read as PR #607, so that Mission Control's verification of the finalization merge cannot become a second switch. Second, "set only by the Activation Confirmation" and "the Activation Confirmation records them" are read as satisfied by the step J reconciliation. If the verifier finds either reading material, tightening the wording of those files is a separately authorized edit outside this correction.
 - **Approved By and Approval Date.** The Source 18 header lists them among the fields set at activation. They are written here as facts of events that have already occurred (the PR #605 decisions and the PR #606 merge). Activated By and Activation Date stay `PENDING`. If Mission Control prefers to hold the approval fields for the Activation Confirmation, only those header fields change.
-- **Step 4 timing.** The conversion of conditional wording to unconditional text is left to the Activation Confirmation, because doing it earlier would assert a future event.
+- **Step 4 timing.** The conversion of conditional wording to unconditional text is left to the finalization pull request, effective only on its merge, because doing it in PR #607 would assert a future event.
+
+## 13. Revision history
+
+| Revision | State | Change |
+|---|---|---|
+| Initial publication | Commit `a960f6c38d366e6d5ac100cdf41f683b4a9cee52` on PR #607 | First version of this record |
+| Option B correction (F-08 and F-09) | The next commit on the PR #607 branch | Replaced the trigger wording. The initial text made the activation effective when Section 8 was populated on canonical `main` through a follow-up that a human merges, said that the effective date shall not precede the merge of PR #607, and carried separate decision-date and effective-date fields in Section 8. It now follows the Founder Option B decision (PR #607 comment `5745151886`): the human merge of a later finalization pull request is the activation event, effective at GitHub's `merged_at` instant. Section 8 is split into decision fields and evidence fields, Section 9 is split by when each field can truthfully be written, and the top-level `Activation Confirmation` field is added to the Section 9 checklist. Section 8 remains `NOT YET RECORDED` |
