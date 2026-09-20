@@ -52,18 +52,16 @@ Hashes and byte sizes describe the formalization working state derived from the 
 
 ## Team LIPS Smart Business Project HQ Synchronization Specification
 
-The exact 20-file package is synchronization-ready for this external reference layout:
+**Historical specification — retired as an active destination.** The external Google Drive source-folder layout below records an earlier planned reference workflow. On 2026-09-21 IST, the Founder retired Google Drive as an active Smart Business synchronization destination and operating-workflow component ([Founder direction, PR #612 comment 5752013706](https://github.com/SmartBusinessv1/smart-business/pull/612#issuecomment-5752013706)). This section is retained for historical provenance, not as an executable instruction or an outstanding reconciliation task.
 
 ```text
 Smart Business Project HQ/
 └── 01_Canonical_Project_Source_Set_v1.0/
 ```
 
-GitHub remains the version-controlled operational source of truth. The Project HQ package is a synchronized governance and reference copy, not an independently edited authority. Every HQ refresh must record the source Git commit and synchronization date. Changes must originate through approved GitHub governance and then be synchronized to HQ. Any GitHub/HQ mismatch requires Mission Control reconciliation; no participant may silently choose between versions. `Project Source File Archive/` is excluded from the active HQ package.
+The former specification contemplated a reference copy refreshed from approved GitHub governance, with source-commit/date records and Mission Control reconciliation of mismatches. It did not itself establish that an external Google Drive upload occurred. The 2026-08-02 `SB-GOV-HOUSEKEEPING-1.5` Project HQ acceptance remains a dated historical record; this note does not reinterpret which environment that acceptance evidenced or assert that any Google Drive files match current GitHub.
 
-This specification prepares synchronization but does not claim that an external upload or HQ synchronization occurred.
-
-**Project HQ synchronization status: `UNVERIFIED — PENDING RECONCILIATION`.** The last HQ synchronization acceptance recorded in the repository is `SB-GOV-HOUSEKEEPING-1.5` on 2026-08-02 (`mission-control/mission_memory.md`), which predates the Source 18 Version 1.1 amendment of 2026-09-18. Whether the external HQ package matches the repository, including the Source 18 change under `SB-GOV-PRODUCT-EXEC-1.0`, cannot be verified from the repository. A separately evidenced HQ synchronization, recording the source Git commit and the synchronization date, is to be scheduled by Mission Control after the canonical merge. No document claims that it has occurred.
+**Current disposition: `LEGACY HISTORICAL STORAGE — RETIRED AS AN ACTIVE SYNCHRONIZATION DESTINATION`.** No Google Drive verification, refresh, re-upload, or 20-file comparison is required for ongoing Smart Business missions. Retirement does not direct deletion of historical files. GitHub `SmartBusinessv1/smart-business` (`merge/active/` for canonical project sources) remains the version-controlled operational source of truth. Smart Business ChatGPT Project Sources are a distinct active reference environment; this retirement does not make them independently authoritative or claim that every Project Source is synchronized. The separately attested single-file Source 18 v1.2 ChatGPT Project upload remains accepted within its recorded limits ([PR #609 comment 5750647268](https://github.com/SmartBusinessv1/smart-business/pull/609#issuecomment-5750647268)).
 
 ## Change Control
 
@@ -73,7 +71,7 @@ Any addition, removal, rename, reclassification, authority change, or substantiv
 2. evidence of the current package baseline;
 3. Mission Control review;
 4. Founder approval wherever governance requires it; and
-5. synchronized updates to this manifest, `merge/active/README.md`, and the Project HQ package.
+5. synchronized updates to this manifest and `merge/active/README.md` where the package changes. Any external reference-copy refresh requires separate current Mission Control direction; the retired Google Drive destination is not an active change-control requirement.
 
 ## Active GitHub Operational Sources for AI Participants
 
