@@ -9,18 +9,18 @@
 | Technology unit | Team LIPS |
 | Product | Smart Business |
 | Document type | Living historical narrative / institutional orientation |
-| Status | FOUNDER REVIEW — PROPOSED INITIAL PUBLICATION; NON-GOVERNING HISTORICAL REFERENCE |
+| Status | PUBLISHED — FOUNDER APPROVED AND MERGED; NON-GOVERNING HISTORICAL REFERENCE |
 | First drafted | 2026-09-21 16:54 IST (UTC+05:30) |
-| **Last updated** | **2026-09-21 16:54 IST (UTC+05:30)** |
+| **Last updated** | **2026-09-21 17:22 IST (UTC+05:30)** |
 | **Last updated PR (narrative coverage endpoint)** | **[PR #613](https://github.com/SmartBusinessv1/smart-business/pull/613), merged 2026-09-21 01:53:54 IST** |
 | Last incorporated GitHub main commit | 4d25b1fb44de554e5daab3a9a36a42e7a66d8211 |
-| This document's publication PR | PENDING — to be recorded on the next controlled narrative update after Founder merge |
+| This document's publication PR | [PR #614](https://github.com/SmartBusinessv1/smart-business/pull/614), Founder merged 2026-09-21 17:15:00 IST; merge commit 9c32e1444be4072a49c874671f6f5dd109ea8cc2 |
 | Canonical repository | SmartBusinessv1/smart-business |
 | Document path | mission-control/Smart_Business_Journey_Recap.md |
 | Relevant active authority | merge/active/; Source 00; Source 01 + Source 11 under the Phase 1 interpretation; Source 17; Source 18 v1.2 |
 | Next planned Product Mission at this endpoint | SB-P-1.12 — NOT ACTIVATED |
 
-> **How to read the metadata:** "Last updated" dates this narrative revision. "Last updated PR" names the most recent *merged repository event incorporated into the story*, not this document's publication PR or permission to perform subsequent actions. Both the timestamp and coverage PR must be rechecked before every future update. A future publication PR must not be described as merged before its actual human merge.
+> **How to read the metadata:** "Last updated" dates this narrative revision. "Last updated PR" names the most recent *merged repository event incorporated into the story*, not this document's publication PR or permission to perform subsequent actions. Both the timestamp and coverage PR must be rechecked before every future update. PR #614 published this document; its merge did not extend the story beyond the PR #613 narrative endpoint. Future update PRs must not be described as merged before their actual human merge.
 
 ## Purpose and evidence discipline
 
