@@ -26,7 +26,7 @@ The project has spent months recovering the Founder’s original intent and Grou
 
 The Founder judged an earlier rough **6–10-week estimate for only SB-P-1.12** to be too slow as a default planning posture for nine remaining missions. The Founder’s desired challenge is about **48 active execution hours** for SB-P-1.12 where its actual verified implementation delta supports that ambition. It is a stretch benchmark, **not** a binding delivery promise, a reason to accept failed security or a per-stage one-hour rule. Do not linearly extrapolate one provisional mission estimate to the full nine-mission programme.
 
-The durable [Founder-intended acceleration proposal](../../mission-control/Accelerating_Smart_Business_Product_Missions_Without_Sacrificing_Security.md), merged through PR #617, records the approach. It is **non-governing**. Source 18, approved contracts and explicit Founder decisions retain their full authority.
+The durable [Founder-intended acceleration proposal](Accelerating_Smart_Business_Product_Missions_Without_Sacrificing_Security.md), merged through PR #617, records the approach. It is **non-governing**. Source 18, approved contracts and explicit Founder decisions retain their full authority.
 
 **Founder clarification after the proposal:** never reduce an approved capability, erase an acceptance scenario, defer a Build Now requirement or mark a failed/incomplete row as demonstrated to meet an hour target. Source 18 T7/T8 and the Founder Decision Gate govern any genuine proposed change. If permission revocation allows a stale protected write at hour 48, the mission is **not complete**.
 
