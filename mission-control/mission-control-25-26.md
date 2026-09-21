@@ -3,13 +3,13 @@
 ## Document Identity
 
 - **Purpose:** Hydrate future Mission Control rooms with the *judgement*, practical decision patterns, operational corrections, governance sequencing, and continuity lessons visible across the MC25–MC26 successor era.
-- **Coverage:** The period after the MC22–MC24 handover/PR #586 through the Founder-merged Smart Business Journey Recap metadata correction, PR #615. Earlier decisions are included only where necessary to explain what MC25–MC26 inherited.
+- **Coverage:** Core MC25–MC26 extraction: the period after the MC22–MC24 handover/PR #586 through the Founder-merged Smart Business Journey Recap metadata correction, PR #615. A narrow post-extraction Founder clarification addendum now carries publication of this guide through PR #616 and the non-governing acceleration proposal through PR #617. Earlier decisions are included only where necessary to explain what MC25–MC26 inherited.
 - **Prepared:** 2026-09-21 18:14 IST (UTC+05:30).
-- **Last updated:** 2026-09-21 18:14 IST (UTC+05:30).
-- **Last incorporated merged PR:** [#615](https://github.com/SmartBusinessv1/smart-business/pull/615), merged 2026-09-21 17:34:03 IST.
-- **Coverage baseline:** `main@15d8851aa9057359b02d19667b0810a443d0a6b2`.
-- **Publication PR:** PENDING — record the actual PR and Founder merge on a narrow subsequent update if this draft is merged.
-- **Status:** DRAFT — FOUNDER / MISSION CONTROL REVIEW; HISTORICAL / ADVISORY ONLY.
+- **Last updated:** 2026-09-21 20:02 IST (UTC+05:30).
+- **Last incorporated merged PR:** [#617](https://github.com/SmartBusinessv1/smart-business/pull/617), merged 2026-09-21 19:57:51 IST. Core historical extraction remains through PR #615; PRs #616–#617 are the post-extraction publication/Founder-clarification addendum.
+- **Coverage baseline:** Core extraction `main@15d8851aa9057359b02d19667b0810a443d0a6b2`; current addendum baseline `main@f180f76daf0f00846b9afe53632c6c5ecd8fd070`.
+- **Publication PR:** [#616](https://github.com/SmartBusinessv1/smart-business/pull/616), Founder/human merged 2026-09-21 19:03:54 IST; merge commit `419f20af66665eeb50fba1add2130905ed67d874`.
+- **Status:** PUBLISHED — FOUNDER MERGED; HISTORICAL / ADVISORY ONLY.
 - **Document type:** Historical institutional-memory and successor-hydration guide.
 - **Authority:** This document creates **no** Product Truth, governance, Product Mission activation, implementation, migration, production, release, OLE promotion, or delegation authority.
 - **Current-state companion:** `mission-control/mission_memory.md` — verify volatile facts against current merged records.
@@ -298,6 +298,88 @@ At this document's **PR #615 checkpoint**, the repository facts are:
 - Current repository `main` at extraction: `15d8851aa9057359b02d19667b0810a443d0a6b2`. **Reverify**, because this is a historical handover SHA, not a guaranteed latest ref.
 
 Next room: verify the protected `main` baseline and mission status, inspect the current institutional learning/Phase 1 guide and product contracts, then prepare the precise **SB-P-1.12 Stage 1 authorization** if Founder and current mission conditions still permit it.
+
+---
+
+# 7A. Post-Extraction Founder Clarification — Speed Means Less Waste, Not Less Product
+
+This section was added after the original MC25–MC26 extraction was Founder-merged in [PR #616](https://github.com/SmartBusinessv1/smart-business/pull/616). It records a subsequent Founder discussion and the Founder-merged, **non-governing** proposal [PR #617](https://github.com/SmartBusinessv1/smart-business/pull/617):
+
+`mission-control/Accelerating_Smart_Business_Product_Missions_Without_Sacrificing_Security.md`
+
+## A. The acceleration intent
+
+The Founder challenged the earlier rough 6–10-week planning estimate for SB-P-1.12. The reason for the project's accumulated Product Truth, contracts, architecture, security practice, OLE, specialist rooms and AI-assisted toolchain is to make future Product Missions **faster to execute**, not to make each mission repeat greenfield discovery and sequential paperwork.
+
+The merged proposal therefore preserves a stretch planning hypothesis of roughly **48 active execution hours** for SB-P-1.12 when the verified remaining delta is small enough, with elapsed time driven by real gates, parallelism, CI and correction findings rather than by multiplying 24 lifecycle stages by an arbitrary duration.
+
+This is a benchmark and learning hypothesis, **not** a deadline, SLA, acceptance rule or Source 18 amendment.
+
+## B. Founder clarification — acceleration never reduces approved scope
+
+The Founder explicitly clarified the intended meaning after the proposal was prepared:
+
+> **Accelerate execution, not Product Truth.**
+
+For future Mission Control, this means acceleration must **not** be achieved by:
+
+- removing an approved feature, capability, acceptance scenario or Build Now obligation;
+- silently moving a Build Now obligation to Build Later;
+- simplifying an approved requirement merely to fit a time target;
+- treating an unimplemented FCTM row as complete because the clock expired;
+- weakening security, cross-business isolation, financial integrity, human runtime proof or independent verification;
+- reclassifying Product Truth without the applicable Founder decision.
+
+If an approved requirement genuinely needs omission, deferral, reclassification or scope change, current Source 18's Founder Decision Gate / T7-T8 path applies. Mission Control, Claude Code, Lovable, Supabase, an AI agent or a time budget cannot make that change silently.
+
+**Example:** if permission revocation still permits a consequential stale write at hour 48, SB-P-1.12 is not complete. The finding is corrected and re-proven; the requirement is not moved to a later mission merely to protect the estimate.
+
+## C. Where speed should actually come from
+
+Future Mission Control should seek time savings from:
+
+- preloading approved contracts, Product Truth, institutional memory and validated OLE learning;
+- discovering only the current implementation/product **Delta**;
+- assembling Blueprint material by reference rather than rewriting settled truth;
+- asking the Founder only genuine unresolved decisions;
+- preparing independent test fixtures and verification plans early;
+- running authorized non-overlapping implementation workstreams in parallel;
+- reusing valid prior evidence after required impact checks;
+- Fast Gate / selective Full Assurance discipline;
+- finding-scoped corrective cycles rather than restarting already-passed work;
+- mechanical evidence aggregation from CI, runtime records and row mappings;
+- read-only preparation of the **next** mission's context while the current mission is in implementation/verification, without activating or implementing the next mission early.
+
+The target is **less waiting, less duplication and less reconstruction**, not less product.
+
+## D. Mission timing should become OLE planning context
+
+The Founder also directed that, after each future mission, the organization should know from durable mission/report metadata:
+
+- when the mission actually started / became effective;
+- when implementation was authorized;
+- when Mission Control accepted it;
+- when formal closure became effective;
+- start-to-close elapsed time;
+- where measured, active work time, blocked/wait time and verification/correction time;
+- evidence/provenance for those times and limitations where measurement is partial.
+
+The purpose is to let the **next mission be estimated from actual Smart Business delivery evidence** rather than generic per-stage guesses.
+
+At the PR #617 checkpoint this is an **intended future capability, not an implemented OLE feature**. The current strict OLE v1 closure-envelope schema does not contain those timing fields, and deferred Stage 4B background automation is not activated. Therefore:
+
+1. future mission initiation/completion/closure artifacts should record factual timing evidence where permitted under current reporting practice;
+2. the existing manual OLE closure handoff can cite those allowlisted source records and preserve delivery-time observations as candidate learning/context;
+3. any machine-readable OLE timing schema or automatic ingestion requires its own narrow, versioned, reviewed authorization rather than silent modification of schemaVersion 1;
+4. OLE timing observations remain **context, not authority**: they may inform the next estimate but cannot authorize a mission, reduce scope or override Product Truth.
+
+## E. What the successor should do with PR #617
+
+Use the acceleration proposal as **Founder-intended planning guidance** alongside current authority. It should influence *how efficiently* Mission Control executes SB-P-1.12–1.20, while Source 18 and the approved product contracts continue to determine *what must be built and proven*.
+
+The practical successor principle is:
+
+> **Build the complete approved scope faster through reuse, automation, parallel execution and efficient verification. Never manufacture speed by reducing requirements, weakening security, hiding unfinished work or silently changing Founder-approved Product Truth.**
 
 ---
 
