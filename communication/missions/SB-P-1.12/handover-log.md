@@ -87,3 +87,22 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 2), valid until 2026-10-07 23:59 IST or an earlier stop condition.
 **Stage Ledger row updated:** Stage 2 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+## H-06 — Claude Code → Mission Control: Stage 2 narrow correction applied (MC-06), handed back for re-review
+
+**Date:** 2026-09-22
+**Mission:** SB-P-1.12
+**From:** Claude Code
+**To:** Mission Control
+**Stage completed:** Stage 2 correction cycle (still drafting only — not canonical)
+**Authority evidence:** same PR #623/MC-05 authorization as H-05; no new authorization required for a same-branch correction.
+**Work completed:** Read Mission Control's exact PR #624 review comment ([`5774508876`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5774508876)) via the GitHub API. Posted an acknowledgment and correction plan as a PR comment before rewriting, per the resuming instruction's explicit sequencing. Independently re-verified F1 by `grep -c` on the actual (pre-correction) FCTM before responding — confirmed 202 actual rows, matching Mission Control's own parse exactly. Rebuilt `03-stage2-populated-fctm.md` with 7 columns and obligation-level expansion of every in-scope/partially-demonstrated section (F2); every per-contract and disposition total verified by `grep -c`/`grep | sort | uniq -c` against the real file, catching and fixing an off-by-one (Contract 21: predicted 104, actual 105) and three mixed-disposition rows in the process, all disclosed in the FCTM's own §G rather than smoothed over. Rebuilt `04-stage2-obligation-inventory.md` to reconcile exactly against the corrected FCTM's real row IDs — every per-contract total now matches exactly (337 = 337), not the disclosed-mismatch state of an intermediate draft. Corrected `06-stage2-delta-evidence.md` Part 4 (F3): removed the invented T4 scope-change exception; T4, T6 and T8 now read `FLAGGED FOR MISSION CONTROL STAGE 3 GATE DETERMINATION`; no `NOT TRIGGERED` conclusion or Founder Decision Record asserted; Parts 2–3 (derived constraints, the `anon`-grant security finding) preserved unchanged as instructed. Tightened the split-assignment and ambiguous-flag citations (F4). Updated `02-stage2-mission-truth-pack.md`, `07-stage2-completion-report.md`, `05-stage2-institutional-learning-intake.md` (Q11), this mission's README, decision log, and `communication/live/report.md` to match.
+**Files created or modified:** the same authorized Stage 2 paths already tracked on this branch — no new file added, no path outside the authorized set.
+**Commit SHA:** recorded on branch `mission/SB-P-1.12-stage2-truth-delta`, same PR #624; exact SHA and CI run IDs reported in chat.
+**Verification performed:** every row-count/disposition-total claim produced by running `grep -c` against the actual committed file content and copying the real output (reproducible commands recorded in the FCTM's own §G), not hand-computed; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+**Open issues carried forward:** Mission Control's own T4/T6/T8 Stage 3 gate determination (the central open item this correction surfaces rather than resolves); confirmation of the split-assignment reasoning and the two ambiguous-assignment flags; the actual Security & Permissions Architecture specialist actor remains unnamed; the residual `anon` grant's live production status remains `UNVERIFIED`.
+**Next authorized action:** Mission Control re-review of this pull request; Founder or an authorized maintainer human-merges it if satisfied. No self-merge, no self-approval.
+**Action not yet authorized:** Stage 3 Gate Record, Stage 4 Blueprint drafting, implementation, production mutation, migration execution, delivery synchronization, publication, or OLE promotion.
+**Git authorization reference:** the same mission-scoped Git authority in `communication/live/instruction.md` (Stage 2), unchanged and re-confirmed still active.
+**Stage Ledger row updated:** Stage 2 — see `communication/missions/SB-P-1.12/README.md`.
+**Mission Control approval reference:** pending — this handover requests it.
