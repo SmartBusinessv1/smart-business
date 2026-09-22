@@ -201,3 +201,18 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the same mission-scoped Git authority in `communication/live/instruction.md` (Stage 2), unchanged and re-confirmed still active.
 **Stage Ledger row updated:** Stage 2 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+## H-12 — Mission Control: Stage 2 merge verified; Stage 3 Founder Brief preparation authorization prepared
+
+**Prepared:** 2026-09-23 IST
+**From:** Mission Control
+**To:** Claude Code (MC-02 appointed Definition Actor)
+**Status:** Stage 2 CANONICAL; separate Stage 3 preparation communication PR awaiting human merge
+**Canonical evidence:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093`; final reviewed head `2f82d378048fc2735fb7657b44bb2d58088e7d28`; MC-12 in decision log.
+**Mission Control decision:** MC-13, `mission-control/04-stage3-authorization-and-stage2-merge-reconciliation.md` plus the new `communication/live/instruction.md` — effective only on human merge of this separate Stage 3 communication PR.
+**Historical live exchange:** Stage 2 instruction/report preserved byte-identically in `mission-control/03-stage2-live-instruction-snapshot.md` and `claude-code/08-stage2-live-report-snapshot.md`.
+**Open Founder gate:** Stage 3 TRIGGERED. Contract 22 §12/§16: 15 `ESCALATED` FCTM rows requiring grouped assignment questions; existing Delta's `PRODUCT-AFFECTING` residual `anon` file-level finding triggers T4; T6 constraints/DC-1–3 and T8 must be assessed without assuming live production state. No `NOT TRIGGERED` gate permissible.
+**Authorized after this communication PR merge only:** Claude Code reads canonical source pack, prepares draft source-linked Founder Brief and bounded gate-preparation report, opens one draft PR on the exact branch and writable paths of live instruction, then stops for Mission Control review. Founder decision dialogue belongs to Mission Control/Founder; no approval on this branch.
+**Not authorized:** Stage 4 Sections 1–19, EIS, code, migrations, production, delivery/release, OLE promotion, self-merge, live security access, or unrecorded product/mission assignment.
+**Stage 7 separation:** Actual independent Security & Permissions Architecture specialist to be named and eligibility checked before Stage 7.
+**Next action:** Founder reviews/human-merges separate Stage 3 authorization PR. Mission Control verifies `main` and supplies concise Claude Code activation pointer; no Stage 3 preparation before that event.
