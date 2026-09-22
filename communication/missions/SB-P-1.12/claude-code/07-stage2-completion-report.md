@@ -4,8 +4,8 @@
 **Stage:** 2 — Mission Truth and Delta Reconciliation
 **From:** Claude Code, Stage 2 Definition Actor (MC-02, effective)
 **To:** Mission Control
-**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FIVE TIMES, FIVE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
-**Date:** 2026-09-22 (original preparation and all five corrections are all on PR #624)
+**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED SIX TIMES, SIX NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
+**Date:** 2026-09-22 (original preparation and all six corrections are all on PR #624)
 
 ---
 
@@ -175,7 +175,7 @@ Mission Control re-reviewed PR #624 at head `0e8c26e` and issued [comment `57785
 
 **Risks/limitations, this cycle:** the reclassification of Contract 17 §18's 2 items to `IN SCOPE` and Contract 7 §8's 5 items to `ASSIGNED` are Claude Code's own source-grounded readings, offered for Mission Control confirmation, not asserted as final; Mission Control's own instruction to "check the full inventory for equivalent mixed-section bundle/single-rule omissions" beyond the 3 named findings was not exhaustively performed this cycle, consistent with Mission Control's own caution to "prioritize the three concrete source-to-row findings, not artificial row inflation." T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) and `22-§29-9` are unchanged in substance, per Mission Control's explicit instruction not to decide unresolved reassignment by default.
 
-## 19. Completion status (round 4 — superseded by round 5 in §21)
+## 19. Completion status (round 4 — superseded by round 5 in §21, then round 6 in §23)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FOUR TIMES, FOUR NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
 
@@ -193,6 +193,24 @@ Mission Control re-reviewed PR #624 at head `b1c67bb` and issued [comment `57789
 
 **Risks/limitations, this cycle:** the `22-§16-2` (surveillance-rejection) `IN SCOPE` reclassification and the 15 `UNRESOLVED FOUNDER DECISION` dispositions are Claude Code's own source-grounded reading, offered for Mission Control confirmation per its explicit instruction not to resolve a genuine Founder scope question on Claude Code's own authority — none of the 15 items has been asserted as either SB-P-1.12's work or another mission's work. T4/T6/T8 remain genuinely open, unaffected by this cycle. T1/T3 now carry the new observation but are not self-concluded.
 
-## 21. Completion status (current)
+## 21. Completion status (round 5 — superseded by round 6 in §23)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FIVE TIMES, FIVE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
+
+## 22. Addendum — sixth correction cycle (2026-09-22, same day, MC-06 fifth re-review / MC-11)
+
+Mission Control re-reviewed PR #624 at head `b221307` and issued [comment `5779330365`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5779330365): MC-10's obligation enumeration was **accepted in full**, with one narrow disposition-vocabulary correction required:
+
+- **MC-11 (disposition vocabulary error):** Source 18 §3.2 item 3's disposition table defines `UNRESOLVED FOUNDER DECISION` as "on the approved unresolved list" — Build Plan §15's own nine named topics. The 15 rows added last round (Contract 22 §12/§16) were correctly identified as genuinely unowned, but Notification/Location foundation ownership is not one of the nine §15 topics, so the disposition value was wrong. Mission Control identified the correct Source 18 §3.2 item 10 treatment as `ESCALATED` ("a conflict or proposed change awaiting the Founder"), and asked for a recheck of whether any of the 15 items actually has a findable Build Plan citation before escalating (rather than escalating by default).
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. Independently re-verified the finding before responding: read Source 18 §3.2 item 3's disposition table directly, confirming the exact "on the approved unresolved list" / "a conflict or proposed change awaiting the Founder" definitions; read Build Plan §15 directly, confirming its nine named topics (trial policy, four add-on prices, retention duration, employee KYC, marketplace expansion, third-party underwriting) do not include Notification or Location foundation ownership. Performed the recheck Mission Control required: searched the actual Build Plan document directly for "Notification" and "Location" — zero matches for either term anywhere in the document, confirming no directly approved assignment source exists for any of the 15 items on this recheck; none reassigned to an existing mission. Relabeled all 15 rows from `UNRESOLVED FOUNDER DECISION` to `ESCALATED` in `03-stage2-populated-fctm.md`, updating each row's citation to name the Source 18 §3.2 items 3/5/10 basis and the absence of an approved source (Build Plan §9–§12 and §15 both checked). Preserved unchanged: `BUILD NOW`/`CORE-ARCH` classification on all 15 rows, every source pointer, `22-§16-2`'s `IN SCOPE` status, and `22-§29-9`'s `ASSIGNED TO LATER MISSION` status. Updated the FCTM's disposition-vocabulary line, correction-note history (added Correction note 6), §G reconciliation, and closing paragraph. Updated `04-stage2-obligation-inventory.md`'s §12/§16 descriptive text and §4 resolution language to the corrected terminology (pointer counts unchanged: 9 and 7). Rewrote `06-stage2-delta-evidence.md` Part 4: T7 is now recorded as genuinely triggered by the 15 `ESCALATED` rows, since Source 18 §3.2 item 10 explicitly ties `ESCALATED` to T7; T1/T3's prior "positive observation" (grounded in the mislabeled disposition) corrected to a cross-reference only, not the operative trigger; T4/T6/T8 left unchanged, open on their own existing, independent basis; Part 4 §3 rewritten to state the corrected three-way test outcome; Part 4 §4 rewritten to report 15 `ESCALATED` / 0 `UNRESOLVED FOUNDER DECISION`. No Founder question was answered, no Build Plan §15 amendment made, no new assignment invented. Updated `02-stage2-mission-truth-pack.md`, this report, and the mission README/decision-log/handover-log to match.
+
+**Changes made, this cycle:** the same authorized Stage 2 paths — no new file, no path outside the authorized set. FCTM row count unchanged at 373 (0 rows added/removed); disposition totals unchanged in aggregate (228/98/2/30/15), only the label on the 15-row category changes from `UNRESOLVED FOUNDER DECISION` to `ESCALATED`.
+
+**Verification, this cycle:** Source 18 §3.2 item 3's disposition table and Build Plan §15's exact nine-item list were both independently read directly from source before responding, not accepted from Mission Control's paraphrase; the Build Plan-wide search for "Notification"/"Location" was run and returned zero matches, confirmed before concluding no citation exists; final disposition totals (373; 228/98/2/30/15) `grep`-verified against the file as committed; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+
+**Risks/limitations, this cycle:** this correction relabels a disposition value; it does not, and is not intended to, resolve the underlying Founder scope question — the 15 `ESCALATED` rows remain exactly as unresolved as they were, now correctly vocabularied and correctly tied to T7. Mission Control's own guidance that "the Founder dialogue should group related questions by actual decision... not ask fifteen repetitive questions" is noted for Mission Control's own future handling, not acted on here (grouping the Founder-facing question is Mission Control's task, not a row-level FCTM change). T4/T6/T7/T8 remain genuinely open, unaffected in substance by this cycle.
+
+## 23. Completion status (current)
+
+**STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED SIX TIMES, SIX NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
