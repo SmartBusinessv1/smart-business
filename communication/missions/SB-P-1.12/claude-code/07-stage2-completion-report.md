@@ -4,8 +4,8 @@
 **Stage:** 2 — Mission Truth and Delta Reconciliation
 **From:** Claude Code, Stage 2 Definition Actor (MC-02, effective)
 **To:** Mission Control
-**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED THREE TIMES, THREE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
-**Date:** 2026-09-22 (original preparation and all three corrections are all on PR #624)
+**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FOUR TIMES, FOUR NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
+**Date:** 2026-09-22 (original preparation and all four corrections are all on PR #624)
 
 ---
 
@@ -135,7 +135,7 @@ Mission Control re-reviewed PR #624 at head `a64ea76` and issued [comment `57764
 
 **Risks/limitations, this cycle:** the source-first inventory's own summation in §2 needed one correction during this cycle (Contract 7, 8 vs. 9 wholly-assigned sections) — disclosed in the inventory document's §4 rather than silently fixed, consistent with the standard Mission Control is holding this Truth Pack to. T4/T6/T8 remain genuinely open. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance; `22-§29-9` now correctly mirrors `22-§16`'s status.
 
-## 15. Completion status (round 2 — superseded by round 3 in §17)
+## 15. Completion status (round 2 — superseded by round 3 in §17, then round 4 in §19)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
 
@@ -155,6 +155,26 @@ Mission Control re-reviewed PR #624 at head `4ef08a8` and issued [comment `57769
 
 **Risks/limitations, this cycle:** the source-first audit was thorough but not exhaustive — it focused on already-itemized enumerated lists and section-bundle counts (the exact failure pattern Mission Control identified), not a full re-litigation of every single-row narrative/single-rule classification choice across five contracts. T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance.
 
-## 17. Completion status (current)
+## 17. Completion status (round 3 — superseded by round 4 in §19)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED THREE TIMES, THREE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
+
+## 18. Addendum — fourth correction cycle (2026-09-22, same day, MC-06 third re-review / MC-09)
+
+Mission Control re-reviewed PR #624 at head `0e8c26e` and issued [comment `5778571759`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778571759): round 3's arithmetic, named omissions and mechanical citation corrections were **accepted**, with three targeted source-to-row gaps found still open:
+
+- **MC-09A (Contract 17 §18/§21 improperly bundled):** direct Contract 17 §18 has 5 distinct privacy obligations and §21 has 5 distinct non-goals; the FCTM still carried only 2 rows per section (1 extracted item + 1 grouped "remainder" of 4), which Source 18 §3.2 item 2's single-row exception does not permit for a mixed-disposition section. Mission Control specifically asked that §18 item 1 ("no cross-business data") and the legitimate-need-visibility item be re-examined against SB-P-1.12/Contract 21 rather than presumed to belong entirely to `SB-P-1.17`.
+- **MC-09B (Contract 7 §8 incomplete/misattributed):** direct Contract 7 §8 contains 1 integrated linking rule plus 4 examples; the FCTM's `7-§8-1` cited "Catalog↔Inventory↔Transactions separation preserved," which is not an exact §8 pointer for the rule or its first two examples, and the inventory reported only 3 source pointers while incorrectly treating the supplier-payment item as `IN SCOPE` merely because §8 was treated as touched.
+- **MC-09C (Contract 22 §27 process obligations):** §27 states 7 distinct mandatory things every Product Mission/EIS must disclose; the FCTM carried it as one `IN SCOPE` row styled "single rule," reasoned by analogy to Contract 21 §7–§9's genuinely single-rule sections — Mission Control asked either for the Source 18 separately-verifiable test to be applied to the 7 checklist entries, or a rigorous source-grounded reason why one row suffices.
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. Independently re-verified the touched-scope boundary before responding by re-reading the exact MC-03 decision-log text (confirmed: §§7, 9, 10, 12 only — §8 was never named). Re-examined Contract 17 §18's 4 "remainder" items individually against Contract 21's own obligations rather than presuming they all belong to `SB-P-1.17`: found "no cross-business data" restates Contract 21 §6's business-isolation obligation and "sensitive information surfaced only to roles with legitimate need" restates the Permission Engine's own access-scoping principle (Contract 21 §5/§14) — both reclassified `IN SCOPE`; the remaining 2 items ("no routine admin browsing through dashboard shortcuts," "hidden surveillance via dashboard analytics") are genuinely dashboard-UI-specific and stay `ASSIGNED`. Exploded §18 to 5 rows (3 `IN SCOPE`, 2 `ASSIGNED`) and §21 to 5 rows (1 `IN SCOPE`, 4 `ASSIGNED`, all individually enumerated per Mission Control's instruction that §21's items "can remain with `SB-P-1.17`, individually enumerated"). Rebuilt Contract 7 §8 from its actual 5 source items (the integrated rule plus 4 examples), reclassifying all 5 `ASSIGNED TO LATER MISSION` and removing the invented "Catalog↔Inventory↔Transactions separation preserved" pointer; the genuine, already-approved architecture-preservation concern this mission does own remains correctly attributed to `BP-§7-3`/`BP-§7-4`, not duplicated at §8. Exploded Contract 22 §27 to 7 `IN SCOPE` rows, one per mandatory disclosure item, distinguishing it from the contract's genuinely single-rule sections (§15/§17/§19/§21/§22) where listed items are alternative means to one end rather than individually mandatory. Rebuilt `04-stage2-obligation-inventory.md` §2–§4 for all three contracts: Contract 22's total grows to 98 (matching the FCTM exactly); Contract 17's §18/§21 are now reported as exact 1:1 matches (5 source items → 5 FCTM rows each) rather than round 3's "consolidation," leaving only 2 genuine 1-item-to-2-row splits (`17-§16`, `17-§22` scenario 10) as Contract 17's sole remaining difference; Contract 7's total grows to 36 (matching the FCTM exactly). **Self-caught bug:** while rewording `7-§8-5`'s citation, the phrase "reclassified from `IN SCOPE`" briefly reintroduced the literal substring this file's own overlap-check greps for, throwing the recount off by one; caught by re-running the established check before finalizing, reworded, re-verified at zero overlap. Updated `02-stage2-mission-truth-pack.md`, this report, and the mission README/decision-log/handover-log to match.
+
+**Changes made, this cycle:** the same authorized Stage 2 paths — no new file, no path outside the authorized set. FCTM row count moves from 345 to 359 (+14: +6 Contract 22 §27, +6 Contract 17 §18/§21, +2 Contract 7 §8); disposition totals move from 225/88/2/30 to 230/97/2/30.
+
+**Verification, this cycle:** the MC-03 touched-scope boundary was independently re-verified against the actual decision-log text before responding, not accepted from the resuming instruction's paraphrase; every row-count/disposition-total/citation-gap claim produced by running `grep -c`/`grep -cE` against the actual committed file content, including the self-check that caught the counting bug introduced mid-correction; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+
+**Risks/limitations, this cycle:** the reclassification of Contract 17 §18's 2 items to `IN SCOPE` and Contract 7 §8's 5 items to `ASSIGNED` are Claude Code's own source-grounded readings, offered for Mission Control confirmation, not asserted as final; Mission Control's own instruction to "check the full inventory for equivalent mixed-section bundle/single-rule omissions" beyond the 3 named findings was not exhaustively performed this cycle, consistent with Mission Control's own caution to "prioritize the three concrete source-to-row findings, not artificial row inflation." T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) and `22-§29-9` are unchanged in substance, per Mission Control's explicit instruction not to decide unresolved reassignment by default.
+
+## 19. Completion status (current)
+
+**STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FOUR TIMES, FOUR NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**

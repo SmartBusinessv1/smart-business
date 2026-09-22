@@ -19,6 +19,8 @@
 
 **Correction note 3 (2026-09-22, MC-06 second re-review).** Mission Control's second re-review ([PR #624 comment `5776916528`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776916528)) found the previous cycle's fixes were mechanically correct but source-inventory completeness was not yet verified: **F5** — Contract 21 §23's 7th non-goal ("routine denial = security accusation") was never added as its own row, only found and fixed in round 1's citation-quality pass, not its row-completeness pass. **F6** — the Contract 20 inventory's "§23 scenario 11 is distinct" explanation for its +1 discrepancy was invalid (all 12 scenarios were already counted); the real cause was a section-bundle undercount (15 vs. the actual 16 sections in §3/§5–§15/§17–§20). **F7** — the "0 citation gaps" measure only checked for non-empty cells, not real disposition support; 125 rows carried only a bare `` `NEW` ``/`` `PARTIAL` `` implementation-state tag. The required independent source-first audit (re-reading all five contracts' full text against every already-itemized list and section-bundle count, not just the three items Mission Control named) found two further self-caught omissions of the same class as F5: Contract 21 §10's "other job-specific information" bullet, and Contract 7 §8's "supplier payment state is distinct from goods receipt state" example — both silently absent from any row. It also found the old `20-§22-1` cited content that does not exist anywhere in Contract 20 §22's actual text (confusing it with §23 Scenario 11's content). All are corrected in this revision: see §G below for the verified totals and the obligation inventory's §3–§4 for the two-distinct-quantities (source obligations vs. FCTM representation rows) reconciliation F6 required.
 
+**Correction note 4 (2026-09-22, MC-06 third re-review / MC-09).** Mission Control's third re-review ([PR #624 comment `5778571759`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778571759)) accepted round 3's arithmetic, named omissions and mechanical citation corrections, and found three further targeted source-to-row gaps, all corrected: **MC-09A** — Contract 17 §18 and §21 were improperly bundled mixed-disposition sections; both exploded to 5 individual rows each (see §D below), with §18's "no cross-business data" and "legitimate-need visibility" items re-examined and reclassified `IN SCOPE` (they restate this mission's own Contract 21 isolation/permission obligations, not dashboard-UI-specific content). **MC-09B** — Contract 7 §8 was never in MC-03's actual named touched-scope list; all 5 of its real items are reclassified `ASSIGNED TO LATER MISSION`, and the genuine Product & Price Master architecture-preservation concern this mission does own is now correctly attributed to `BP-§7-3`/`BP-§7-4` rather than an invented §8 row (see §E below). **MC-09C** — Contract 22 §27's 7 mandatory disclosure items exploded from 1 row to 7 (see §B below). See §G for the full reconciliation.
+
 ### Citation legend (referenced by ID in the `Citation / evidence` column; each ID is a real, checkable basis, not a placeholder)
 
 | ID | Basis |
@@ -226,7 +228,13 @@
 | 22-§24 | AI Authority Foundation (whole section) | BUILD NOW | CORE-ARCH | `SB-P-1.13` | ASSIGNED TO LATER MISSION | AI kernel's own behaviour limits; SB-P-1.12 supplies the Permission Engine it must respect (21-§8/§9) |
 | 22-§25 | AI Orchestration / OpenAI Intelligence Foundation | BUILD NOW | CORE-ARCH | `SB-P-1.13` | DELEGATED | Names Contract 24 explicitly |
 | 22-§26 | Dedicated Channel Adapter Contracts | BUILD NOW | CORE-ARCH | `SB-P-1.20` | DELEGATED | Names Contract 23 explicitly |
-| 22-§27 | Dependency Rule for Product Missions (single rule — process obligation on every mission) | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | This Truth Pack is partial compliance evidence |
+| 22-§27-1 | §27 Dependency Rule — state which mature feature(s) it advances (corrected 2026-09-22, MC-09C: unbundled from a single "process obligation" row — the 7 items are mandatory, individually-required disclosure entries, not alternative means to one end) | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 1; this Truth Pack is partial compliance evidence |
+| 22-§27-2 | §27 — state which shared foundations it reuses | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 2; this Truth Pack is partial compliance evidence |
+| 22-§27-3 | §27 — state whether it consumes AI orchestration and/or a channel adapter | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 3; this Truth Pack is partial compliance evidence |
+| 22-§27-4 | §27 — state what already exists and must not be duplicated | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 4; this Truth Pack is partial compliance evidence |
+| 22-§27-5 | §27 — state what remains committed but outside current mission | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 5; this Truth Pack is partial compliance evidence |
+| 22-§27-6 | §27 — state exact blockers/dependencies | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 6; this Truth Pack is partial compliance evidence |
+| 22-§27-7 | §27 — state required evidence for acceptance | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE | Contract 22 §27 item 7; this Truth Pack is partial compliance evidence |
 | 22-§28-1 | §28 Non-goals — no duplicate Business Memory by channel | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | `L-NG22-1` |
 | 22-§28-2 | §28 — no duplicate Permission Engine per feature | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | `L-NG22-2` |
 | 22-§28-3 | §28 — no duplicate AI brain/orchestrator per channel/feature | BUILD NOW | CORE-ARCH | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | `L-NG22-3` |
@@ -350,12 +358,18 @@ Only §13 (Users and Permissions) and §14 (Permission Enforcement) match SB-P-1
 | 17-§16-1 | Stable UI/Testability — for the §13/§14 permission surface this mission itself adds | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — design constraint | Contract 17 §16 applied to the `17-§13-4`/`17-§14-*` surface this mission builds |
 | 17-§16-2 | Stable UI/Testability — for the remaining Manager-depth dashboard surface | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
 | 17-§17 | Error and Exception Behavior | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
-| 17-§18-1 | §18 Privacy/Trust — no staff access to Owner intelligence by default | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check, overlaps 21-§21 | Contract 17 §18 item 1; within Build Plan §10.1's permission scope even though the rest of §18 is dashboard-surface-specific |
-| 17-§18-2 | §18 — remainder (no cross-business data, no routine admin browsing, sensitive information surfaced only to roles with legitimate need [corrected 2026-09-22, MC-08: omitted from this row's citation until now], no hidden surveillance) | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | dashboard-surface-specific, `SB-P-1.17`'s own build |
+| 17-§18-1 | §18 Privacy/Trust — no cross-business data (corrected 2026-09-22, MC-09A: unbundled from the "remainder" row — this item restates Contract 21 §6's own business-isolation obligation, not a dashboard-UI-specific concern) | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check, overlaps 21-§6 | Contract 17 §18 item 1; within Build Plan §10.1's permission scope, same isolation basis as `21-§6-*` |
+| 17-§18-2 | §18 — no staff access to Owner intelligence by default | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check, overlaps 21-§21 | Contract 17 §18 item 2; within Build Plan §10.1's permission scope even though the rest of §18 is dashboard-surface-specific |
+| 17-§18-3 | §18 — no routine platform/admin merchant-data browsing through dashboard shortcuts | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | dashboard-surface-specific ("through dashboard shortcuts"), `SB-P-1.17`'s own build |
+| 17-§18-4 | §18 — sensitive information surfaced only to roles with legitimate need (corrected 2026-09-22, MC-09A: unbundled from the "remainder" row — this is the Permission Engine's own access-scoping principle, not a dashboard-UI-specific concern) | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check, overlaps 21-§5/21-§14 | Contract 17 §18 item 4; within Build Plan §10.1's permission scope, same basis as `21-§5-*`/`21-§14-*` |
+| 17-§18-5 | §18 — dashboard activity/analytics must not become hidden employee surveillance | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | dashboard-surface-specific ("dashboard activity/analytics"), `SB-P-1.17`'s own build |
 | 17-§19 | Performance Expectations | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
 | 17-§20 | Shared Foundations to Reuse | BUILD NOW | MGR+LDG | SB-P-1.12 | NOT APPLICABLE — cross-reference list | `L-REUSE` |
-| 17-§21-1 | §21 Non-goals — no employee visibility into Owner-wide financial intelligence by convenience | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | Contract 17 §21 item 1; overlaps `21-§21`/`17-§18-1` |
-| 17-§21-2 | §21 — remainder (fixed layout, ERP-form-first, dashboard-only duplicate logic, hiding Conversation Workspace) | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
+| 17-§21-1 | §21 Non-goals — fixed historic four-tab layout as immutable Product Truth (corrected 2026-09-22, MC-09A: unbundled from the "remainder" row — individually enumerated, dashboard-experience-specific, stays with `SB-P-1.17`) | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
+| 17-§21-2 | §21 — ERP-form-first experience | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
+| 17-§21-3 | §21 — dashboard-only duplicate business logic | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
+| 17-§21-4 | §21 — no employee visibility into Owner-wide financial intelligence by convenience | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | Contract 17 §21 item 4; overlaps `21-§21`/`17-§18-2` |
+| 17-§21-5 | §21 — hiding Conversation Workspace as optional fallback only | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A17` |
 | 17-§22-1 | Scenario 1: Owner sees accurate role-authorized summary | BUILD NOW | MGR+LDG | `SB-P-1.17` | ASSIGNED TO LATER MISSION | needs 17-§6 |
 | 17-§22-2 | Scenario 2: Manager sees delegated ops, not non-delegated Owner intelligence | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE | `NEW` — direct application of Founder Scenario A |
 | 17-§22-3 | Scenario 3: Employee limited to permitted operational/self-service surfaces | BUILD NOW | MGR+LDG | SB-P-1.12 | IN SCOPE | `NEW` — acceptance test of `17-§13-4`/`17-§14-1` |
@@ -388,9 +402,11 @@ Per MC-03, only the touched Product & Price Master / inventory-view / permission
 | 7-§5 | Reorder Authority | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | underlying delegated-automation *authority rule* is 21-§12's job |
 | 7-§6 | Imports and Documents | BUILD NOW | MGR/ADDON | `SB-P-1.17`/`SB-P-1.14` | ASSIGNED TO LATER MISSION | UDI |
 | 7-§7 | POS Relationship (touched, limited — single rule: no competing/duplicate stock-linked pricing path) | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — PARTIALLY DEMONSTRATED | `PARTIAL` — MC-03/MC-04 limited-opening scope (`03-stage2-populated-fctm.md` §E intro) |
-| 7-§8-1 | §8 Ledger Relationship (touched) — Catalog↔Inventory↔Transactions separation preserved | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — PARTIALLY DEMONSTRATED | `PARTIAL` — one-to-one link + `UNIQUE(business_id, inventory_item_id)` constraint already exist (`docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` §16) |
-| 7-§8-2 | §8 — stock correction never fabricates a financial transaction | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | Contract 7 §8's own rule; within MC-03's touched Ledger-relationship scope |
-| 7-§8-3 | §8 — supplier payment state is distinct from goods receipt state (added 2026-09-22, Mission Control finding F5-class gap: this is the 4th of §8's 4 example bullets, previously uncited in either `7-§8-1` or `7-§8-2`) | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — negative/must-not-appear check | Contract 7 §8's own rule; within MC-03's touched Ledger-relationship scope, same basis as `7-§8-2` |
+| 7-§8-1 | §8 Ledger Relationship — integrated linking rule (stock and Ledger link business events where appropriate without duplicating them) (corrected 2026-09-22, MC-09B: §8 was never in MC-03's named touched-scope list — §§7, 9, 10, 12 only; the prior "Catalog↔Inventory↔Transactions separation preserved" framing paraphrased an architecture concern rather than citing an actual §8 source item, and that genuine, already-approved concern is tracked at `BP-§7-3`/`BP-§7-4`, not here) | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A7`; the actual Product & Price Master architecture-preservation obligation this mission owns is `BP-§7-3`/`BP-§7-4`, cited there directly, not duplicated at §8 |
+| 7-§8-2 | §8 — confirmed purchase may create/associate inventory movement and Ledger expense | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A7`; stock feature's own event-linking behavior |
+| 7-§8-3 | §8 — confirmed sale/order may affect stock through the approved business-event path | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A7`; stock feature's own event-linking behavior |
+| 7-§8-4 | §8 — stock correction never fabricates a financial transaction (corrected 2026-09-22, MC-09B: reclassified — this is the stock feature's own financial-integrity rule, not within MC-03's named touched-scope list) | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A7` |
+| 7-§8-5 | §8 — supplier payment state is distinct from goods receipt state (corrected 2026-09-22, MC-09B: no longer treated as this mission's own scope — Mission Control explicit: do not pull supplier/payment execution into this mission via a section-wide opening) | BUILD NOW | MGR/ADDON | `SB-P-1.17` | ASSIGNED TO LATER MISSION | `L-A7` |
 | 7-§9 | Manager vs Ledger Packaging (touched, limited — single rule: no duplicate stock engine) | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — NOT YET IMPLEMENTED | `NEW` — MC-03/MC-04 limited-opening scope (`03-stage2-populated-fctm.md` §E intro) |
 | 7-§10-1 | §10 Roles and Permissions (touched) — Owner | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — NOT YET IMPLEMENTED | `NEW` — overlaps 21-§4-1 |
 | 7-§10-2 | §10 — Manager | BUILD NOW | MGR/ADDON | SB-P-1.12 | IN SCOPE — NOT YET IMPLEMENTED | `NEW` — overlaps 21-§4-2 |
@@ -449,39 +465,39 @@ Per MC-03, only the touched Product & Price Master / inventory-view / permission
 
 ## G. Row-count reconciliation (Source 18 §3.2 item 6 completeness test) — every number below is `grep`-counted, not hand-computed
 
-**Re-verified 2026-09-22 (MC-06 re-review correction cycle, second correction round).** Mission Control's second re-review ([comment `5776916528`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776916528)) found a genuinely missing Contract 21 §23 non-goal (F5), an invalid Contract 20 inventory-count explanation (F6), and 125 rows whose only "citation" was a bare implementation-state tag (`` `NEW` ``/`` `PARTIAL` ``) rather than a disposition-supporting source (F7). The required source-first audit, run against all five contracts' full text independently of this file, found one further omission each Mission Control had not named (Contract 21 §10's "other job-specific information" bullet; Contract 7 §8's "supplier payment state" example; a false citation on the old `20-§22-1` whose content does not exist anywhere in Contract 20 §22's actual text). All are corrected below: **8 rows added** (2 in Contract 21, 5 net in Contract 20 replacing 2 inaccurate rows with 7 accurate ones, 1 in Contract 7), **0 rows removed net**, and all 125 bare-tag citations replaced with real, checkable disposition support. Total row count moves from 337 to 345 — **not a target, the actual result of fixing every confirmed gap**, per Mission Control's standing instruction not to aim for a specific figure.
+**Re-verified 2026-09-22 (MC-06 second re-review correction cycle, fourth correction round — MC-09).** Mission Control's third re-review ([comment `5778571759`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778571759)) accepted round 3's arithmetic, named omissions and mechanical citation corrections, but found three targeted source-to-row gaps: **MC-09A** — Contract 17 §18 and §21 are genuinely mixed-disposition sections (part of each section is this mission's own scope, part is `SB-P-1.17`'s), which do not qualify for Source 18 §3.2 item 2's single-row exception (that exception applies only when the *whole* section shares one non-`IN SCOPE` disposition); both were bundled as "1 extracted item + 1 grouped remainder of 4" instead of 5 individual rows. **MC-09B** — Contract 7 §8 was never in MC-03's named touched-scope list (§§7, 9, 10, 12 only), and its prior "Catalog↔Inventory↔Transactions separation preserved" citation paraphrased an architecture concern rather than pointing to a real §8 source item; all 5 of §8's actual items (1 integrated rule + 4 examples) are the stock feature's own event-linking/correction/payment-tracking behavior, `SB-P-1.17`'s build — not Product & Price Master or permission-boundary content. **MC-09C** — Contract 22 §27's 7 numbered items are mandatory, individually-required disclosure entries (a mission must state *all 7*), not alternative means to one end like the contract's genuinely single-rule sections (§15/§17/§19/§21/§22); it needed exploding to 7 rows, not one. All three corrected below: Contract 17 §18 (2→5 rows: 3 `IN SCOPE`, 2 `ASSIGNED`), §21 (2→5 rows: 1 `IN SCOPE`, 4 `ASSIGNED`); Contract 7 §8 (3→5 rows, all 5 reclassified `ASSIGNED TO LATER MISSION`, removing 3 rows that were never within the authorized touched scope); Contract 22 §27 (1→7 rows, all `IN SCOPE`). Total row count moves from 345 to 359 — **not a target, the actual result of fixing every confirmed gap**, per Mission Control's standing instruction not to aim for a specific figure.
 
 Reproducible commands run against this file at the head recorded in `07-stage2-completion-report.md`:
 
 ```bash
 grep -c "^| 21-§" 03-stage2-populated-fctm.md   # 107
-grep -c "^| 22-§" 03-stage2-populated-fctm.md   # 92
+grep -c "^| 22-§" 03-stage2-populated-fctm.md   # 98
 grep -c "^| 20-§" 03-stage2-populated-fctm.md   # 47
-grep -c "^| 17-§" 03-stage2-populated-fctm.md   # 47
-grep -c "^| 7-§"  03-stage2-populated-fctm.md   # 34
+grep -c "^| 17-§" 03-stage2-populated-fctm.md   # 53
+grep -c "^| 7-§"  03-stage2-populated-fctm.md   # 36
 grep -c "^| BP-§" 03-stage2-populated-fctm.md   # 18
-grep -cE "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md            # 345 (total)
-grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "IN SCOPE"                    # 225
-grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "ASSIGNED TO LATER MISSION"   # 88
+grep -cE "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md            # 359 (total)
+grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "IN SCOPE"                    # 230
+grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "ASSIGNED TO LATER MISSION"   # 97
 grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "DELEGATED"                    # 2
 grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -c "NOT APPLICABLE"                # 30
 grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -cE '\| — \|$'                     # 0 (empty citation gaps)
-grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -cE '\| `(NEW|PARTIAL)` \|$'       # 0 (bare implementation-tag-only citations — F7)
+grep -E "^\| (21|22|20|17|7|BP)-§" 03-stage2-populated-fctm.md | grep -cE '\| `(NEW|PARTIAL)` \|$'       # 0 (bare implementation-tag-only citations)
 ```
 
 | Contract | Rows | Change this cycle |
 |---|---|---|
-| 21 | 107 | +2 (§10, §23 omissions added) |
-| 22 | 92 | 0 (citation-only fixes) |
-| 20 | 47 | +5 (§22's 2 inaccurate rows replaced by 7 accurate ones) |
-| 17 | 47 | 0 (citation-only fixes) |
-| 7 (limited) | 34 | +1 (§8 omission added) |
+| 21 | 107 | 0 |
+| 22 | 98 | +6 (§27 exploded from 1 to 7 rows) |
+| 20 | 47 | 0 |
+| 17 | 53 | +6 (§18 and §21 each exploded from 2 to 5 rows) |
+| 7 (limited) | 36 | +2 (§8 rebuilt from 3 to 5 rows, all reclassified `ASSIGNED`) |
 | Build Plan §10.1 + §7 | 18 | 0 |
-| **Total** | **345** | **+8** |
+| **Total** | **359** | **+14** |
 
-**Disposition totals: `IN SCOPE` 225 + `ASSIGNED TO LATER MISSION` 88 + `DELEGATED` 2 + `NOT APPLICABLE` 30 = 345.** Verified no row double-counts across dispositions (zero rows match both `IN SCOPE` and `ASSIGNED TO LATER MISSION` in the same cell).
+**Disposition totals: `IN SCOPE` 230 + `ASSIGNED TO LATER MISSION` 97 + `DELEGATED` 2 + `NOT APPLICABLE` 30 = 359.** Verified no row double-counts across dispositions (zero rows match both `IN SCOPE` and `ASSIGNED TO LATER MISSION` in the same cell — this check itself caught a self-introduced instance of the same class of bug found in round 2: an explanatory note on `7-§8-5` briefly contained the literal phrase "`IN SCOPE`" inside a "reclassified from" clause, which this file's own `grep` overlap check matched; reworded and re-verified at zero overlap before finalizing).
 
-**Citation-gap count: 0 empty cells, 0 bare-implementation-tag-only cells** (the first count was already 0 going into this cycle; the second count — 125 rows carrying only `` `NEW` ``/`` `PARTIAL` `` with no disposition-supporting source — is the defect Mission Control's F7 identified as hiding behind the first, now separately measured and closed).
+**Citation-gap count: 0 empty cells, 0 bare-implementation-tag-only cells** (both closed in round 3, re-verified unchanged after this round's row additions/rebuilds).
 
 This total (345) is **not** a target figure — it is what results from fixing every confirmed gap the source-first audit found, per Mission Control's standing instruction not to target a specific number. Every added or restructured row is individually marked with a "corrected 2026-09-22" or "added 2026-09-22" note in its own Source pointer cell, naming the finding it responds to.
 
