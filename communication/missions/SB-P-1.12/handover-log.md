@@ -68,3 +68,22 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Stage 7 separation:** independent Security & Permissions Architecture reviewer must be actually appointed/assessed before Stage 7 findings; intended Stage 19 Codex verifier is not yet appointed.  
 **Not authorized:** Stage 2 work before this authorization merge; Stage 3 Founder gate, Stage 4 Blueprint, implementation, production mutation, migration execution, delivery/publication or OLE promotion.  
 **Next action:** Founder reviews/human-merges the Stage 2 communication PR; Mission Control verifies main and supplies the brief Claude Code activation pointer. No self-merge.
+
+## H-05 — Claude Code → Mission Control: Stage 2 Mission Truth Pack drafted, handed back for review
+
+**Date:** 2026-09-22
+**Mission:** SB-P-1.12
+**From:** Claude Code
+**To:** Mission Control
+**Stage completed:** Stage 2 preparation (drafting only — not canonical)
+**Authority evidence:** human-merged [PR #623](https://github.com/SmartBusinessv1/smart-business/pull/623), `merged_at 2026-09-22T09:29:07Z`, `main@dc5fe69f14843002b46af6ef4116935cc36b6c68` (MC-05).
+**Work completed:** Verified intake safety (PR #622/#623 merge status, base SHA, no drift on any governing-source blob SHA or the OLE promotions directory since Stage 1); read the full text of Contracts 21, 22, 20, 17, 7, 23 and 24, and Build Plan §9's complete nine-mission table plus §10.6/§10.8; built the independent obligation inventory (129 sections + 60 scenarios + 18 Build Plan items = 208); populated the FCTM (208 rows, disposition and citation on each, zero coverage gap against the inventory); investigated current repository state for the Delta (confirmed the authority/permission model is entirely unimplemented; confirmed and sharpened the residual `anon`-grant finding via direct migration-file reading, including a file-level partial remediation whose own production execution is `UNVERIFIED`; confirmed live CI branch-protection state via the GitHub API); recorded three derived constraints; ran the full T1–T8 Stage 3 trigger screen (`NOT TRIGGERED`); completed the Institutional Learning Intake Record (12-question checklist answered, all 17 OLE promotions disposed); wrote the Mission Truth Pack overview binding all five parts; updated this mission's README/decision-log/handover-log; filed the Stage 2 completion report and the live report.
+**Files created or modified:** see `claude-code/07-stage2-completion-report.md` §6 for the exact list — 10 of the 11 authorized Stage 2 paths (6 new files under `claude-code/`, 3 updated, plus `communication/live/report.md`). No Founder decision brief was created — the T1–T8 screen found no trigger, so the 11th, conditional, path was correctly left unused.
+**Commit SHA:** recorded on branch `mission/SB-P-1.12-stage2-truth-delta`; exact SHA and CI run IDs reported in chat and in the pull request.
+**Verification performed:** see `claude-code/07-stage2-completion-report.md` §7.
+**Open issues carried forward:** the actual Security & Permissions Architecture specialist actor for the Stage 7 separation condition remains unnamed; the Contract 20/17/22 split-assignment reasoning and the two ambiguous-assignment flags (Contract 22 §12/§16) await Mission Control confirmation; the residual `anon` grant's live production status remains `UNVERIFIED` and no remediation was performed or assumed.
+**Next authorized action:** Mission Control review of this pull request; Founder or an authorized maintainer human-merges it. No self-merge, no self-approval.
+**Action not yet authorized:** Stage 3 Gate Record, Stage 4 Blueprint drafting, implementation, production mutation, migration execution, delivery synchronization, publication, or OLE promotion.
+**Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 2), valid until 2026-10-07 23:59 IST or an earlier stop condition.
+**Stage Ledger row updated:** Stage 2 — see `communication/missions/SB-P-1.12/README.md`.
+**Mission Control approval reference:** pending — this handover requests it.
