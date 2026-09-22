@@ -4,8 +4,8 @@
 **Stage:** 2 — Mission Truth and Delta Reconciliation
 **From:** Claude Code, Stage 2 Definition Actor (MC-02, effective)
 **To:** Mission Control
-**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
-**Date:** 2026-09-22 (original preparation and both corrections are all on PR #624)
+**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED THREE TIMES, THREE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
+**Date:** 2026-09-22 (original preparation and all three corrections are all on PR #624)
 
 ---
 
@@ -114,7 +114,7 @@ Mission Control reviewed PR #624 at head `4e10dff` and issued [comment `57745088
 
 **Risks/limitations, this cycle:** the FCTM's row total (337) is large; Mission Control's own review of a table this size is a real cost, disclosed rather than minimized. The Contract 20/17/22 split-assignment citations are stronger than before but remain Claude Code's reading, not a Founder decision. T4/T6/T8 remain genuinely open — this correction does not pre-guess what Mission Control will decide.
 
-## 13. Completion status (round 1 — superseded by round 2 below)
+## 13. Completion status (round 1 — superseded by round 2 in §15, then round 3 in §17)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED, NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
 
@@ -135,6 +135,26 @@ Mission Control re-reviewed PR #624 at head `a64ea76` and issued [comment `57764
 
 **Risks/limitations, this cycle:** the source-first inventory's own summation in §2 needed one correction during this cycle (Contract 7, 8 vs. 9 wholly-assigned sections) — disclosed in the inventory document's §4 rather than silently fixed, consistent with the standard Mission Control is holding this Truth Pack to. T4/T6/T8 remain genuinely open. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance; `22-§29-9` now correctly mirrors `22-§16`'s status.
 
-## 15. Completion status (current)
+## 15. Completion status (round 2 — superseded by round 3 in §17)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
+
+## 16. Addendum — third correction cycle (2026-09-22, same day, MC-06 second re-review / MC-08)
+
+Mission Control re-reviewed PR #624 at head `4ef08a8` and issued [comment `5776916528`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776916528): the round-2 correction (source-first inventory rebuild, 97 citation fixes, `22-§29-9` contradiction fix) was **accepted as mechanically correct, but source-inventory completeness was found not yet verified**, with three findings:
+
+- **F5 (missing Contract 21 §23 non-goal):** the source's 7th non-goal bullet ("routine denial = security accusation") was still absent as its own FCTM row — round 2's citation-quality pass had fixed *other* rows' citations but never added this missing row. Independently re-verified by reading Contract 21 §23 directly: confirmed 7 bullets in source, only 6 FCTM rows (`21-§23-1` through `-6`).
+- **F6 (invalid Contract 20 explanation):** this document's own inventory had explained Contract 20's +1 discrepancy as "§23 scenario 11 is distinct from the other 11" — Mission Control correctly identified this as invalid, since all 12 §23 scenarios were already counted in the inventory's own "12" term, so scenario 11 could not be the source of an extra pointer. Independently re-verified by re-reading Contract 20 §3 and §5–§20 directly: the real cause was a section-count error (the inventory's "15" for the §3/§5–§15/§17–§20 bundle undercounts the actual 16 sections in that range).
+- **F7 (citation-quality measure was incomplete):** the "0 citation gaps" figure only counted literally empty/dash cells — 125 rows still carried only a bare `` `NEW` ``/`` `PARTIAL` `` implementation-state tag with no disposition-supporting source, the same defect class as the 97 rows fixed in round 2, just missed because these cells were non-empty. Independently re-verified via a `grep` count of rows whose citation cell was only a bare `NEW`/`PARTIAL` tag against the actual file: confirmed 125 (100 `IN SCOPE`, 25 `ASSIGNED TO LATER MISSION`).
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. Performed the source-first audit Mission Control required across all five contracts' full text, not limited to the three items named — this found two further self-caught omissions of the same class as F5: Contract 21 §10's "other job-specific information" bullet (the source's 5th self-service item, silently dropped when the section was first built), and Contract 7 §8's "supplier payment state is distinct from goods receipt state" example (the 4th of §8's 4 example bullets, uncited in either of its 2 existing rows). Also found, while re-deriving Contract 20 §22's real content, that the existing `20-§22-1` row cited a phrase ("staff setup never default-grants Owner intelligence") that does not appear anywhere in §22's actual text — it is §23 Scenario 11's content, already correctly captured elsewhere (`20-§16-3`, `20-§23-11`); §22's real 7-item non-goals list was under-represented as a result. Added 2 rows to `03-stage2-populated-fctm.md` for Contract 21 (§10, §23), replaced 2 rows with 7 accurate ones for Contract 20 §22, added 1 row for Contract 7 §8, and fixed Contract 17 §18's citation for a 5th item silently dropped from its grouped citation text. Fixed all 125 bare-tag citations with real, checkable disposition support: Contract 21's wholly-assigned rows cite the existing `L-C21` legend entry; Contract 22's genuinely-own-scope rows (§5/§6/§13/§14/§20) cite a new `L-C22-OWN` legend entry tied to Build Plan §10.1's named anchors; acceptance-scenario rows cite the specific parent section they test; the rest cite the same Build Plan §10.1 basis already used by sibling rows in the same section. Rebuilt `04-stage2-obligation-inventory.md` a third time: corrected the Contract 20 bundle-count and §22 errors, corrected Contract 17's §18/§21 from "1 pointer" (a false "not numbered, unlike §23" justification — §23 also uses dash bullets, not numbers) to their real 5-item counts, and now reports **source-obligation counts and FCTM representation-row counts as two distinct figures per contract** (§3's table), with the only genuine remaining difference (Contract 17, −4, a disclosed representation consolidation) fully traced in §4 rather than blended into a single "matching total."
+
+**Changes made, this cycle:** the same authorized Stage 2 paths — no new file, no path outside the authorized set. FCTM row count moves from 337 to 345 (+8: +2 Contract 21, +5 net Contract 20, +1 Contract 7); disposition totals move from 223/82/2/30 to 225/88/2/30.
+
+**Verification, this cycle:** every claim produced by running `grep -c`/`grep -cE` against the actual committed file content — the Contract 21 §23 bullet count (7, confirmed by direct source read), the Contract 20 bundle section count (16, confirmed by direct source read), the 125 bare-citation count (confirmed by a `grep` count of bare-tag-only citation cells), and the final row/disposition/citation-gap totals (345; 225/88/2/30; 0 empty; 0 bare) all `grep`-verified against the file as committed, not hand-computed; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+
+**Risks/limitations, this cycle:** the source-first audit was thorough but not exhaustive — it focused on already-itemized enumerated lists and section-bundle counts (the exact failure pattern Mission Control identified), not a full re-litigation of every single-row narrative/single-rule classification choice across five contracts. T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance.
+
+## 17. Completion status (current)
+
+**STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED THREE TIMES, THREE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
