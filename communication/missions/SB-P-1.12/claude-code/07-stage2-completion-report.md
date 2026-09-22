@@ -4,8 +4,8 @@
 **Stage:** 2 — Mission Truth and Delta Reconciliation
 **From:** Claude Code, Stage 2 Definition Actor (MC-02, effective)
 **To:** Mission Control
-**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED, NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
-**Date:** 2026-09-22 (original preparation and this correction are both on PR #624)
+**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
+**Date:** 2026-09-22 (original preparation and both corrections are all on PR #624)
 
 ---
 
@@ -114,6 +114,27 @@ Mission Control reviewed PR #624 at head `4e10dff` and issued [comment `57745088
 
 **Risks/limitations, this cycle:** the FCTM's row total (337) is large; Mission Control's own review of a table this size is a real cost, disclosed rather than minimized. The Contract 20/17/22 split-assignment citations are stronger than before but remain Claude Code's reading, not a Founder decision. T4/T6/T8 remain genuinely open — this correction does not pre-guess what Mission Control will decide.
 
-## 13. Completion status (current)
+## 13. Completion status (round 1 — superseded by round 2 below)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED, NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
+
+---
+
+## 14. Addendum — second correction cycle (2026-09-22, same day, MC-06 re-review)
+
+Mission Control re-reviewed PR #624 at head `a64ea76` and issued [comment `5776468726`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776468726): the round-1 correction (337-row arithmetic, seven columns, obligation expansion, Stage 3 withdrawal) was **accepted as a correction, not a completeness approval**, with two further blockers, both accepted:
+
+- **MC-06A (circular inventory):** `04-stage2-obligation-inventory.md` derived its counts from the FCTM's own row IDs (`grep` on the FCTM) and then "reconciled" against those same IDs — mathematically guaranteed to match, and incapable of detecting an obligation the FCTM never enumerated in the first place.
+- **MC-06B (citation traceability):** independently re-verified before responding — a `grep` count of FCTM rows whose citation cell was empty or a bare em-dash gave exactly 97, matching Mission Control's count. Many rows carried only an implementation-state tag (`NEW`/`PARTIAL`) or nothing at all in the citation column, which speaks to current repository state, not to why a row is disposed as it is. One cross-column contradiction was confirmed exactly as described: `22-§29-9`'s disposition read `ASSIGNED TO LATER MISSION` while its own assigned-mission cell read `SB-P-1.12 (default; unresolved)`.
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. Rebuilt `04-stage2-obligation-inventory.md` §2 as a genuinely source-first pointer list — each contract's in-scope/mixed sections re-enumerated from the actual contract text (the same full-text reading recorded in §3 above), independent of the FCTM's row IDs — then ran a real set-difference against the FCTM's actual row counts (§3–§4 of the inventory): three discrepancies were found (Contract 20 +1, Contract 17 +4, Contract 7 +1, net of a self-caught summation slip), each traced to its exact cause and resolved by name — two are deliberate FCTM modeling choices (splitting a single source obligation into mission-specific rows so one row never carries two contradictory dispositions) and one is a correction to this inventory's own arithmetic, not a missing FCTM row. Fixed all 97 citation-gap rows in `03-stage2-populated-fctm.md` with real, disposition-supporting citations — specific section/item references, exact Build Plan mission-assignment citations, or a compact legend (added to the file's header) for recurring bases, so the table stays auditable without repeating the same prose 97 times. Fixed `22-§29-9`'s contradiction by correcting its disposition to `IN SCOPE` to match its own assigned-mission cell (the row now mirrors `22-§16`, the section it depends on) — this shifted the disposition totals by exactly one row. **While fixing that row, introduced and then caught a second instance of the same class of bug**: the correction text itself contained the literal phrase "ASSIGNED TO LATER MISSION" inside a negation, which the disposition-counting `grep` matched, producing 338 instead of 337 on the first re-count; re-verified via the explicit `IN SCOPE`-and-`ASSIGNED`-overlap check (`03-stage2-populated-fctm.md` §G's own methodology), traced to the one row, reworded, and re-confirmed at zero overlap. Updated `02-stage2-mission-truth-pack.md`, this report, and the mission README/decision-log/handover-log to match.
+
+**Changes made, this cycle:** the same authorized Stage 2 paths — no new file, no path outside the authorized set, no row added or removed from the FCTM (337 before and after; only citations and one disposition value changed).
+
+**Verification, this cycle:** every claim in this addendum was produced by running `grep -c`/`grep | sort | uniq -c` against the actual committed file content, including a self-check that caught and fixed a new counting bug introduced during the correction itself, disclosed above rather than silently fixed; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+
+**Risks/limitations, this cycle:** the source-first inventory's own summation in §2 needed one correction during this cycle (Contract 7, 8 vs. 9 wholly-assigned sections) — disclosed in the inventory document's §4 rather than silently fixed, consistent with the standard Mission Control is holding this Truth Pack to. T4/T6/T8 remain genuinely open. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance; `22-§29-9` now correctly mirrors `22-§16`'s status.
+
+## 15. Completion status (current)
+
+**STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
