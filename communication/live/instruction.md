@@ -1,83 +1,95 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.12 Initial Communication / Stage 1 Preparation
+# Instruction — SB-P-1.12 Stage 2 Mission Truth and Delta Reconciliation
 
 **Mission ID:** SB-P-1.12  
 **Mission Name:** Authority, Identity & Product Surface Foundation  
 **From:** Smart Business Mission Control  
-**To:** Claude Code — bounded Stage 1 documentation-preparation support  
-**Stage Owner:** Mission Control  
-**Status:** STAGE 1 RECORD PREPARATION AUTHORIZED — CANONICAL MISSION ACTIVATION PENDING  
+**To:** Claude Code — appointed Stage 2–4 Definition Actor (MC-02)  
+**Stage:** Source 18 v1.2 Stage 2 — Mission Truth and Delta Reconciliation  
+**Status:** STAGE 2 AUTHORIZATION — EFFECTIVE ONLY AFTER HUMAN MERGE OF THIS COMMUNICATION PR  
 **Date:** 2026-09-22 IST  
-**Initial communication baseline:** main@84cfc3c5d0ff0ec66594b080a5a0e4195caef3d2  
-**Effectiveness:** This initial communication must be reviewed and human-merged to main before Claude Code acts on its repository/Git authorization. The later complete Stage 1 Intake Pack is separately reviewed and human-merged to make Product Mission Stage 1 effective. No stage is activated by an unmerged branch or by this instruction alone.
+**Canonical Stage 1 activation:** PR #622, `merged_at 2026-09-22T09:16:35Z`, `main@fc3d2f3f48b80a17125f55536d2e431b49eea6c1`  
+**Prior instruction and reply:** byte-identical historical snapshots in `communication/missions/SB-P-1.12/mission-control/01-stage1-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/01-stage1-live-report-snapshot.md`; substantive history also in the Stage 1 Intake Pack, decision log, handover log and Claude Code Stage 1 preparation report.
 
 ---
 
-# Mission Objective
+## Objective and authorization gate
 
-Prepare, through the official repository communication channel, the complete **DRAFT Source 18 v1.2 Stage 1 Mission Initiation and Intake Pack**, preserving the entire approved SB-P-1.12 scope and the Founder-directed fast-but-safe approach. Mission Control retains Stage 1 ownership and gate decisions. Claude Code supports source-grounded documentation and draft PR preparation only. This instruction does not authorize Product Mission Stage 2, a Blueprint lock, implementation or production/release actions.
+Prepare the complete **DRAFT Mission Truth Pack** (Source 18 §6 Stage 2, §§3.1–3.3) by reconciling approved mature Product Truth against current evidence, not by reopening decisions. Claude Code owns Stage 2, Stage 3 preparation (if later separately authorized) and Stage 4 through its now-effective MC-02 appointment, but **this instruction authorizes Stage 2 only**. Mission Control owns review, stage crossing and Founder escalation.
 
-# Context and Superseding Actor Decision
+This instruction is an authority-bearing mission-stage communication **only when human-merged into canonical main**; no draft branch, PR, review comment or founder chat message authorizes Claude Code to begin Stage 2. Founder authorization to issue this instruction was given after confirming PR #622 merged; the Stage 1 activation event itself is verified in GitHub.
 
-Founder Riyas PK accepted the successor Mission Control, directed continuation toward SB-P-1.12 and required communication-first initiation under the active AI Communication and Handover Protocol. The earlier chat instruction proposing Codex for Stage 1 routine drafting is **superseded as to actor allocation only**. This is MC decision SB-P-1.12-MC-01, in communication/missions/SB-P-1.12/mission-control/01-stage1-communication-and-actor-allocation-decision.md.
+## Required intake — read before any drafting
 
-- Mission Control owns Stage 1, reviews the Intake Pack and makes all mission-stage decisions.
-- Claude Code is Stage 1 documentation-preparation support, not automatically the Stage 2–4 Definition Actor or Stage 15 Builder.
-- The Stage 1 Intake Pack shall make an explicit, reasoned Definition Actor appointment for Stages 2–4, including fitness, actual prior contributions, separation assessment and named eligible alternates. Do not assign Codex automatically. Where a proposed actor's contributions threaten later independent verification, present the tradeoff to Mission Control before naming that actor.
-- Codex remains available for high-value independent challenge (permission/revocation, cross-tenant isolation, privileged access, financial integrity) if later eligible and appointed at the actual Stage 19 gate. The preparation decision does not preappoint it.
-- The ~48 active-hour hypothesis is a non-binding stretch benchmark. Never omit or defer approved BUILD NOW scope, weaken a denial scenario or claim unfinished work demonstrated to meet it.
+1. `AGENTS.md`, `CLAUDE.md`, `merge/active/README.md`, Source 00 Lighthouse Constitution, Sources 01, 11, 12, 17, and `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` v1.2, especially §§3.1–3.3, 4.3, 6 Stages 1–3, 9 and 10.
+2. `communication/AI_Communication_and_Handover_Protocol.md` v1.1; `communication/Independent_Verification_Efficiency_Protocol.md` v1.1 (`SB-IV-1.0`); `communication/README.md`; branch/quality rules.
+3. `communication/missions/SB-P-1.12/README.md`, `decision-log.md`, `handover-log.md`; `mission-control/01-stage1-communication-and-actor-allocation-decision.md`, `02-stage1-intake-pack.md`, `03-stage1-fctm-open.md`, the latest Claude Code Stage 1 preparation report and the Stage 1 live-exchange snapshots; `communication/live/report.md` before replacing its Stage 2 awaiting-response template.
+4. `docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md` (especially §§4–12 and §15); `00_Global_Product_Completion_View.md`; **entire** mature primary Contracts 21, 22, 20 and 17, plus **entire** Contract 7 for bounded delegated-interface inventory, with recorded baseline blob SHAs. Re-screen delegated Contracts 23/24 (and every other actual delegation), not simply the known four primary contracts. Source identity is the Stage 1 intake baseline **and** any change since it.
+5. `docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md`, all 17 validated `organizational-learning/promotions/**` entries inventoried at Stage 1 and any additions/supersessions since the intake; predecessor accepted mission artifacts/evidence (especially SB-P-1.10/1.11) and current CI, migration, security and topology records.
 
-# Execute According To
+Do not substitute an older local `main`, a stale handover, or a prior AI report for the exact canonical source text. Verify current `origin/main`, branch, PRs, correct authorizations and source drift before writing.
 
-Read the canonical versions at the fresh main baseline and honor the source hierarchy:
+## Required work — one Mission Truth Pack in five parts
 
-1. AGENTS.md, CLAUDE.md, merge/active/README.md and Sources 00, 01, 11 (including constitutional interpretation), 17, 18 v1.2 and 12.
-2. communication/AI_Communication_and_Handover_Protocol.md v1.1; communication/README.md; communication/Independent_Verification_Efficiency_Protocol.md (stable ID SB-IV-1.0, v1.1).
-3. communication/missions/SB-P-1.12/README.md, decision-log.md, handover-log.md, MC decision 01 and this live instruction; check live/report.md before replacing its initial blank template.
-4. docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md — notably §§4–8, 9–12 and 15, including both Founder-reserved runtime scenarios in §10.1.
-5. docs/phase-1-mission-blueprint/smart-business-features/00_Global_Product_Completion_View.md and primary mature contracts 21 Permissions/Isolation/Role Authority, 22 Shared Product Foundations, 20 Onboarding/First Experience and 17 Operational Dashboard/Manager Workspace; discover and include every contract delegated to where SB-P-1.12 touches that behavior, rather than treating this initial list as exhaustive.
-6. docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md and all current VALIDATED organizational-learning/promotions/** records. Candidates with no promotions are non-authoritative.
-7. mission-control/SB-P-1.12_Successor_Mission_Control_Handover.md, mission-control/mission-control-25-26.md, the non-governing acceleration proposal, docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md, docs/migration/README.md and applicable CI/Build Assurance evidence.
-8. Current Source 18 and repository template conventions. Handover and dated memory are inputs, not an override of current governance or direct evidence.
+**Part 1 — Populated FCTM and independent obligation inventory**
 
-# Exact Scope and Required Work
+- Carry forward the opened Stage 1 FCTM baseline and exact SHA manifest. Enumerate source text independently of the FCTM first: **every numbered section, every applicable separately verifiable obligation, and every numbered acceptance scenario individually**; use actual contract wording as pointer, not copied requirement prose. Stage 1 records 48 numbered acceptance scenarios in primary Contracts 21/22/20/17, plus **all 12 Contract 7 §15 scenarios** that must be individually inventoried and disposed, including staff-permission and cross-business-isolation scenarios. Count and reconcile by contract, section and scenario against the original source; record independent set-difference results and genuine omissions, not a tautological matrix-vs-itself check.
+- For the four primary contracts, every numbered section must be represented, mixed/in-scope sections expanded to separately verifiable obligations. For Contract 7, the touched §7/§8/§9/§10/§12 surfaces and §15 scenarios receive precise dispositions; preserve remaining stock/supplier/reorder `BUILD NOW` work with its approved SB-P-1.17 assignment where source-supported. Re-screen §15 scenarios individually against approved SB-P-1.12 permission/isolation outcomes and do not mechanically assign all 12 to SB-P-1.17.
+- Record governing Build Plan §7, §10.1 and any other actually applicable subsections as traceable FCTM items without inventing an extra mature contract. Track direct and delegated source pointers, contract blob SHA, row ID, kind, exact source location, build commitment, commercial classification, owning mission, exactly one **Source 18 §3.2 disposition with citation**, evidence and Founder Decision ID when a departure is proposed. Preserve `BUILD NOW` versus `ASSIGNED TO LATER MISSION` and `ADD-ON` distinctions. A rejected feature is a negative `must not appear` check.
+- `ALREADY DEMONSTRATED` requires earlier accepted verification evidence **and a present Delta impact check**. CI green and implementation existence alone are not product acceptance. If missing traceable evidence, retain `IN SCOPE` and record partial/blocker candidly.
+- Contracts 23 and 24 require full-text compatibility/delegation screening; do not silently exclude them solely because their feature implementations belong to later missions. Identify any actual touched delegated behavior and add the necessary contract source inventory/FCTM rows; distinguish foundation compatibility from building a channel adapter or AI orchestration feature. Escalate any genuine proposed reassignment or classification change; do not treat already-approved overlapping permission application as a new Founder decision.
+- State FCTM row count **and discovery effort per contract** for Mission Control calibration. No “etc.” or placeholders for separately verifiable in-scope obligations. Do not invent dispositions or pretend a partial matrix passes Gate 10.
 
-1. **Intake safety:** Fetch/verify canonical main SHA, latest merges/open PRs and current live instruction/report; confirm this communication initialization is canonical and no other operational mission or changed authority conflicts. Check origin and branch identity before creating any branch. Stop for material drift or a conflicting live exchange.
-2. **Durable record:** Preserve original MC-01, append actual preparation events to the mission decision/handover logs and README; never erase or rewrite preceding decisions. Keep communication/live/instruction.md unchanged. Fill communication/live/report.md only when reporting the actual completed preparation, on the authorized PR; the mission-local report preserves its substantive content.
-3. **Stage 1 Intake Pack:** Draft Source 18 Stage 1 output under the mission-control mission folder: mission ID, approved mission scope, owner, named definition actor with assessment and alternates, exact sources and SHA identities, permitted paths, initial communication pointers, canonical crossing plan and stage stop conditions. The mission's Scope is Authority/Identity/Isolation and Product & Price Master surface reconciliation, not the entire later nine-mission product sequence.
-4. **FCTM opening:** Open the mission FCTM at the recorded intake baseline for contracts 21, 22, 20 and 17, the Build Plan sections governing the mission, and applicable delegated contracts; record each exact contract blob SHA and planned obligation/acceptance-scenario inventory. Source 18 Stage 2 owns full population and Delta classification. Do not falsely claim FCTM completeness in Stage 1, omit an entire source section, invent final dispositions or silently reclassify BUILD NOW as BUILD LATER.
-5. **Learning intake:** Open the Institutional Learning Intake Record and use the exact statement: "Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force". Record Phase 1 guide identity and current promotions inventory/baseline. The Stage 2 Definition Actor prepares complete per-promotion dispositions.
-6. **Draft workstreams / quality:** Propose bounded security/authority, RLS/tenant isolation and Product & Price Master UI workstreams; none is authorized to build now. Seed the verification preview, proposed eligible independent verifier/alternates and actual contribution-separation risks without making a Stage 19 appointment. Preserve the Founder-reserved bounded Manager access and revocation-before-commit scenarios, early anon grant review and relevant Fast/Full CI obligations. CI green is not permission evidence by itself.
-7. **Environment and default-deny:** State production mutation — NOT AUTHORIZED; migration execution — NOT AUTHORIZED; delivery synchronization and publication — NOT AUTHORIZED. Distinguish canonical and delivery repositories, current/legacy Lovable, production/test Supabase, and identify topology requiring fresh verification *before later external action*. No external provider mutation or unauthorized probe.
-8. **Timing and Founder brief:** Do not prefill mission_started_at_utc with chat or draft dates. Capture actual authorization/merge evidence once effective. Provide a concise Founder merge brief for the Stage 1 initiation PR; note no automatic OLE timing schema or Stage 4B activation.
+**Part 2 — Derived constraints**
 
-# Explicit Mission-Scoped Git Authority — CLAUDE CODE ONLY
+Record technical/product implications separately from approved requirements. Label every derived constraint, its source and evidence, and whether it may materially change merchant-facing, permission, denial, data-integrity or experience behavior. A derived constraint is not approved Product Truth; flag a material change for Mission Control's Stage 3 trigger T6 assessment.
 
-Mission Control explicitly authorizes **Claude Code**, for mission **SB-P-1.12**, on **SmartBusinessv1/smart-business**, to perform the bounded Git operations below **only after this opening communication instruction is human-merged into canonical main**. This permission does not grant Source 18 Stage 2 or implementation authority.
+**Part 3 — Delta**
 
-- **Remote:** origin must resolve to SmartBusinessv1/smart-business. Do not operate on starter-supab-shell or another repository.
-- **Base:** fresh origin/main after this communication PR has merged; reverify SHA and stop for a material intervening authority or live-communication change.
-- **Locked working branch:** mission/SB-P-1.12-stage1-intake (create from the verified base only; stop if it already exists with conflicting work).
-- **Exact authorized write paths only:**
-  - communication/live/report.md
-  - communication/missions/SB-P-1.12/README.md
-  - communication/missions/SB-P-1.12/decision-log.md
-  - communication/missions/SB-P-1.12/handover-log.md
-  - communication/missions/SB-P-1.12/mission-control/02-stage1-intake-pack.md
-  - communication/missions/SB-P-1.12/mission-control/03-stage1-fctm-open.md
-  - communication/missions/SB-P-1.12/claude-code/01-stage1-preparation-report.md
-  - communication/missions/SB-P-1.12/founder/01-stage1-merge-brief.md
-- **Permitted Git operations:** verify remote/status/current branch, fetch, fast-forward-only pull of the authorized base when safe, create/switch to the locked mission branch, edit exactly these paths, inspect diffs, run applicable formatting/quality and safe environment-independent checks, stage only exact files (never git add .), commit, push only the locked branch, and open/update **one draft PR** targeting main. Authorize PR preparation, not self-review or merge.
-- **Commit messages:** mission-scoped descriptive messages beginning "docs(SB-P-1.12):". **Co-Authored-By trailer:** PERMITTED, not required, and only truthful standard attribution. No fabricated authorship.
-- **Expiry:** on human merge/closure of the Stage 1 intake PR, revocation, material branch/scope/authority change, or 2026-10-06 23:59 IST, whichever comes first. Do not treat expiry as permission to continue after a blocker.
-- **Prohibitions:** no direct main push; force push; history rewriting; branch deletion; unapproved conflict resolution; unrelated staging; self-approval; self-merge; CI alteration; governance/Product Truth changes; source contracts edits; application code; SQL; provider writes; migration execution; Lovable publication; delivery sync; OLE candidate promotion.
-- **Mandatory checks:** clean or fully explained working tree; exact diff and paths; no secrets/private credentials; diff --check; current-base identity; applicable Markdown Quality Gate and Build Assurance run IDs, conclusions and actual head SHA. If GitHub/CI/branch protection cannot be verified or capacity is unavailable, stop and return the exact reason and remaining steps. Git authority never waives the Source 18 human canonical crossing.
+Compare each baseline source to current canonical repository history, implementations, migrations **as files, not executed actions**, RLS/grants metadata evidence where authorized, CI configuration/check requirements and actual runs, deployment/environment topology records, governance versions and validated OLE additions. Classify every material change exactly `NO PRODUCT EFFECT`, `ENGINEERING ONLY` or `PRODUCT-AFFECTING`, with evidence, date, path, SHA and impact on each relevant FCTM row. Preserve the last-recorded residual `anon` grant on `businesses`, `transactions` and `transaction_correction_events` as a critical **unverified** security risk until properly read-only verified; no assumed remediation. Independently check current Product & Price Master/Catalog/Inventory persistence and deep-link boundary, default-deny Owner/Manager/Employee permissions and no Owner financial leakage. Any live provider or tenant-specific examination not already authorized is **request for separate narrow read-only specialist access**, not implicit permission from this Git stage.
 
-# Deliverables and Reporting
+**Part 4 — Open decisions and conflicts**
 
-Submit a DRAFT Stage 1 initiation PR with the exact permitted files, a mission-local Claude Code preparation report, updated live report and Founder brief. Return to Mission Control the PR URL/number, final head SHA, changed-path list, source SHA manifest, appointed Definition Actor rationale and separation, FCTM opening state, dual learning intake, CI run IDs and limitations, blockers, and exact human merge action. Do not mark the Stage 1 Intake Pack complete until Mission Control reviews the exact PR head; only the human merge can make it effective.
+List every `UNRESOLVED FOUNDER DECISION` and `ESCALATED` FCTM row with critical-path status, evidence and precise question; explicitly screen Source 18 Stage 3 triggers T1–T8. Stop dependent work and refer real Product Truth conflicts, changes of approved assignment/classification/experience or product-affecting Delta to Mission Control/Founder. Do not claim Stage 3 `NOT TRIGGERED`, resolve a Founder issue by reinterpretation or silently narrow the approved scope. Non-critical-path historical open items need not block unrelated work.
 
-**Required concluding status:** STAGE 1 PACKAGE PREPARED — AWAITING MISSION CONTROL REVIEW AND FOUNDER MERGE
+**Part 5 — Institutional Learning Intake Record**
 
-**Until that merge, retained mission state:** STAGE 1 RECORD PREPARATION AUTHORIZED — CANONICAL MISSION ACTIVATION PENDING
+Use exactly: `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force`. Give Phase 1 guide identity, sections applied, 12-question mission-start checklist answered by Truth Pack citations, and stale guide statements as Delta. For every validated OLE promotion at the recorded intake baseline and newly added/superseded records, record exactly one `APPLIED` / `ALREADY EMBEDDED IN ACTIVE GOVERNANCE` / `INFORMATIONAL` / `NOT APPLICABLE` disposition with artifact/citation/reason. `MISSION_SCOPED` is an applicability screen, not universal rule; unpromoted candidates have no authority. Flag conflicts to Mission Control.
+
+## High-risk experience and verification anchors — preserve, do not implement
+
+Founder scenario A: bounded Owner delegation gives Manager **only** permissioned Product & Price Master / inventory context, with owner-only financial surfaces denied at UI **and backend/RLS**. Scenario B: Owner revokes a permission between consequential preview and commit; protected commit **fails without writes** due to execution-time revalidation. The security/tenant-isolation obligation inventory must support both and positive/negative employee access, cross-business denial, entitlement plus permission and effective support/automation scoping. Review last-recorded `anon` exposure and CI branch-protection gap as evidence questions, not assumed live results.
+
+MC-02 Stage 7 separation requirement remains binding: an actual **Security & Permissions Architecture specialist** who did not author Sections 1–19 must independently review feasibility/risk findings before Stage 7 advances. Identify eligibility/contribution facts for MC; do not self-appoint reviewer. Codex is intended for later Stage 19 if independently eligible, **not activated now**.
+
+## Git authorization — Claude Code, this mission and Stage 2 only
+
+Mission Control explicitly authorizes Claude Code under `SB-P-1.12` in `SmartBusinessv1/smart-business`, **effective only after human merge of this Stage 2 communication PR to main**, with these strict bounds:
+
+- Repository: `SmartBusinessv1/smart-business`; `origin` must match. Base: fresh `origin/main` *including this merged instruction* and verified PR #622 activation. Locked working branch: `mission/SB-P-1.12-stage2-truth-delta`, created from that base only; stop if already present with conflicting work.
+- Exact writable files:
+  - `communication/live/report.md`
+  - `communication/missions/SB-P-1.12/README.md`
+  - `communication/missions/SB-P-1.12/decision-log.md`
+  - `communication/missions/SB-P-1.12/handover-log.md`
+  - `communication/missions/SB-P-1.12/claude-code/02-stage2-mission-truth-pack.md`
+  - `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md`
+  - `communication/missions/SB-P-1.12/claude-code/04-stage2-obligation-inventory.md`
+  - `communication/missions/SB-P-1.12/claude-code/05-stage2-institutional-learning-intake.md`
+  - `communication/missions/SB-P-1.12/claude-code/06-stage2-delta-evidence.md`
+  - `communication/missions/SB-P-1.12/claude-code/07-stage2-completion-report.md`
+  - `communication/missions/SB-P-1.12/founder/02-stage2-decision-brief.md` **only if a real Founder decision trigger arises**.
+- Permitted operations: Git remote/branch/status/fetch and safe fast-forward base intake; read-only source/repository/CI inspection; edit exact files; staged exact-path diff (never `git add .`); Markdown and safe local checks; mission-scoped descriptive commit prefix `docs(SB-P-1.12):`; push only that branch; **one draft PR** targeting `main`; update that PR and report verified checks. `Co-Authored-By` trailer PERMITTED for truthful attribution only, not mandatory.
+- Valid until 2026-10-07 23:59 IST, or earlier on Stage 2 PR merge/closure, revocation, material source/authority/branch conflict or gate stop. A deadline does not waive a blocker.
+- No writing stage 1 historical snapshots or `communication/live/instruction.md`; no governance, source contract, Global Product Completion View or app code writes; no SQL/migration/provider mutation, production, deployment, Lovable publish, release transfer or OLE promotion. No direct main push, force push, self-approval, self-merge or unauthorized workstream assignment.
+- If read-only current runtime facts cannot be established inside explicit access, mark them `UNVERIFIED — ACCESS REQUIRED` and ask Mission Control for a separate tightly scoped fact-finding authorization. Never use guessed service-role access or production data access.
+- No Stage 3 gate decision, Stage 4 Blueprint draft, EIS, implementation prompt, code or automation is authorized by this instruction. Source 18 §3.3 permits **later** bundled documentary preparation only through a separate explicit authorization after Stage 2 evidence and stop-trigger screening.
+
+## Report and stop gate
+
+Prepare a source-linked Truth Pack with inventory-vs-FCTM completeness arithmetic, Delta classifications, specific contested choices, OLE dispositions, updated durable decision/handover/README stage ledger and a truthful live response. Push a **draft** Stage 2 PR. Report exact final SHA, diff paths, Markdown/Build-Assurance run IDs and conclusions, per-contract inventory/row counts and estimated effort, inaccessible evidence and T1–T8 findings. If a T1–T8 trigger affects a dependent part, stop that part and report Mission Control immediately; no invented Founder decisions.
+
+**Required ending:** `STAGE 2 TRUTH PACK PREPARED — AWAITING MISSION CONTROL REVIEW AND CANONICAL GATE CROSSING`.
+
+**Until human merge of this Stage 2 authorization PR:** `STAGE 1 EFFECTIVE — STAGE 2 AUTHORIZATION PENDING CANONICAL MERGE`.
