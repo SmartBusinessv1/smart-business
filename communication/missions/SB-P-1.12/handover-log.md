@@ -49,3 +49,22 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the same mission-scoped Git authority in `communication/live/instruction.md`, unchanged and re-confirmed still active.
 **Stage Ledger row updated:** Stage 1 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+## H-04 — Mission Control Stage 1 gate reconciliation and Stage 2 authorization to Claude Code
+
+**Prepared:** 2026-09-22 IST  
+**Status:** STAGE 1 CANONICAL; STAGE 2 COMMUNICATION PR AWAITING HUMAN MERGE  
+**From:** Mission Control  
+**To:** Claude Code, appointed Stage 2–4 Definition Actor by MC-02 (now effective)  
+**Authority evidence:** human-merged [PR #622](https://github.com/SmartBusinessv1/smart-business/pull/622), reviewed head `712c5bc9650f0fb58ca6cbcc8c6e43af46ec6490`, `merged_at 2026-09-22T09:16:35Z`, `main@fc3d2f3f48b80a17125f55536d2e431b49eea6c1`.  
+**Mission Control decision:** [MC-05 Stage 2 authorization and Stage 1 reconciliation](mission-control/02-stage2-authorization-and-activation-reconciliation.md) — effective only after human merge of the Stage 2 communication PR.  
+**Live instruction:** `communication/live/instruction.md` — Stage 2 only, pending canonical crossing.  
+**Previous live pair:** preserved byte-identically at `mission-control/01-stage1-live-instruction-snapshot.md` and `claude-code/01-stage1-live-report-snapshot.md`.  
+**Current stage owner after Stage 2 authorization merge:** Claude Code.  
+**Required inputs:** Source 18 v1.2; Stage 1 Intake Pack and FCTM opening; mature primary contracts 21/22/20/17, limited opened Contract 7 and all its 12 §15 acceptance scenarios, Build Plan §7/§10.1; all touched delegates; Global Product Completion View; Phase 1 institutional guide and 17 validated OLE records plus any changes; predecessor accepted evidence and current repository/CI/topology records. Full Git and stop boundaries live in the new instruction.  
+**Expected output:** Stage 2 DRAFT Mission Truth Pack: populated FCTM + independently sourced obligation inventory, derived constraints, classified Delta, unresolved decisions/T1–T8 screen, institutional-learning dispositions, exact stage report and PR evidence.  
+**Stage 1 Stage Ledger row:** COMPLETE — canonical at PR #622 merge.  
+**Stage 2 Stage Ledger row:** AUTHORIZATION PENDING — this communication PR is not yet merged.  
+**Stage 7 separation:** independent Security & Permissions Architecture reviewer must be actually appointed/assessed before Stage 7 findings; intended Stage 19 Codex verifier is not yet appointed.  
+**Not authorized:** Stage 2 work before this authorization merge; Stage 3 Founder gate, Stage 4 Blueprint, implementation, production mutation, migration execution, delivery/publication or OLE promotion.  
+**Next action:** Founder reviews/human-merges the Stage 2 communication PR; Mission Control verifies main and supplies the brief Claude Code activation pointer. No self-merge.
