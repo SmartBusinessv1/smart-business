@@ -4,8 +4,8 @@
 **Stage:** 2 — Mission Truth and Delta Reconciliation
 **From:** Claude Code, Stage 2 Definition Actor (MC-02, effective)
 **To:** Mission Control
-**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FOUR TIMES, FOUR NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
-**Date:** 2026-09-22 (original preparation and all four corrections are all on PR #624)
+**Status:** `STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FIVE TIMES, FIVE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW`
+**Date:** 2026-09-22 (original preparation and all five corrections are all on PR #624)
 
 ---
 
@@ -155,7 +155,7 @@ Mission Control re-reviewed PR #624 at head `4ef08a8` and issued [comment `57769
 
 **Risks/limitations, this cycle:** the source-first audit was thorough but not exhaustive — it focused on already-itemized enumerated lists and section-bundle counts (the exact failure pattern Mission Control identified), not a full re-litigation of every single-row narrative/single-rule classification choice across five contracts. T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) are unchanged in substance.
 
-## 17. Completion status (round 3 — superseded by round 4 in §19)
+## 17. Completion status (round 3 — superseded by round 4 in §19, then round 5 in §21)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED THREE TIMES, THREE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
 
@@ -175,6 +175,24 @@ Mission Control re-reviewed PR #624 at head `0e8c26e` and issued [comment `57785
 
 **Risks/limitations, this cycle:** the reclassification of Contract 17 §18's 2 items to `IN SCOPE` and Contract 7 §8's 5 items to `ASSIGNED` are Claude Code's own source-grounded readings, offered for Mission Control confirmation, not asserted as final; Mission Control's own instruction to "check the full inventory for equivalent mixed-section bundle/single-rule omissions" beyond the 3 named findings was not exhaustively performed this cycle, consistent with Mission Control's own caution to "prioritize the three concrete source-to-row findings, not artificial row inflation." T4/T6/T8 remain genuinely open, unaffected by this cycle. The two ambiguous-assignment flags (Contract 22 §12/§16) and `22-§29-9` are unchanged in substance, per Mission Control's explicit instruction not to decide unresolved reassignment by default.
 
-## 19. Completion status (current)
+## 19. Completion status (round 4 — superseded by round 5 in §21)
 
 **STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FOUR TIMES, FOUR NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
+
+## 20. Addendum — fifth correction cycle (2026-09-22, same day, MC-06 fourth re-review / MC-10)
+
+Mission Control re-reviewed PR #624 at head `b1c67bb` and issued [comment `5778960338`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778960338): MC-09A/B/C's repairs were **accepted**, with one remaining material scope/enumeration blocker found:
+
+- **MC-10 (Contract 22 §12/§16 still whole-section placeholders):** direct mature Contract 22 §12 (Notification Foundation) has 9 distinct items, and §16 (Location Foundation) has 7 (5 mandatory per-feature disclosures plus 2 rules); the FCTM still carried one `IN SCOPE (default; unresolved)` row per section, which Source 18 §3.2 item 2 does not permit for a section that is not uniformly non-`IN SCOPE`. Mission Control asked for the actual items to be enumerated, mapped to a truthful, separately-cited disposition each, without inventing an SB-P-1.12 notification-delivery or location-tracking feature — and for any genuinely unresolved item to be marked `UNRESOLVED FOUNDER DECISION` / T1–T3 candidate rather than silently defaulted to `IN SCOPE`. Mission Control also flagged two administrative staleness issues: the FCTM's own §G still said "This total (345)" after the file had already grown to 359 rows, and the Delta document's T1/T7/Part 4 §4 still cited "337 rows."
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. Re-read Contract 22 §12 and §16 directly from source. Exploded §12 into 9 rows; none are independently testable without a notification-sending feature this mission does not build, and none have a Build Plan naming source — all 9 disposed `UNRESOLVED FOUNDER DECISION` (this document's first use of that disposition value). Exploded §16 into 7 rows; re-examined each individually rather than defaulting the whole section: "reject continuous employee surveillance" is a direct, already-approved restatement of Contract 21 §21's own obligation (`21-§21-1`) and was confirmed `IN SCOPE` on that citation, as a design constraint on this mission's own Permission/Privacy foundation independent of whether any location feature is ever built; the shared-primitive rule and the 5 per-feature disclosure requirements have no Build Plan naming source and are not this mission's own build, so all 6 were disposed `UNRESOLVED FOUNDER DECISION`. Reconciled `22-§29-9`: the scenario names attendance and delivery specifically, both already owned by `SB-P-1.18` (per `17-§9`/`17-§10`'s existing citations), independent of §16's own foundation-ownership question — corrected from its prior fail-closed-default `IN SCOPE` to `ASSIGNED TO LATER MISSION` (`SB-P-1.18`). Updated the FCTM's disposition-vocabulary line to introduce `UNRESOLVED FOUNDER DECISION` and corrected the closing "No row is `UNRESOLVED FOUNDER DECISION`..." paragraph, which had gone stale. Updated `06-stage2-delta-evidence.md`: T1 now records the 15 new `UNRESOLVED FOUNDER DECISION` rows as a positive observation for Mission Control (not a self-cleared negative finding); T3 cross-references the same 15 rows as a distinct source of potential T3 relevance; T7 and Part 4 §4's row counts corrected from 337 to 373; Part 4 §3 rewritten from a pending-placeholder description to the actual item-by-item resolution reached, applying the three-way test the document itself had already proposed. Rebuilt `04-stage2-obligation-inventory.md` §2–§4 for Contract 22: total moves from 98 to 112 (matching the FCTM exactly), and the grand source-pointer/FCTM-row totals move from 357/359 to 371/373. **Self-caught bug:** the reasoning text on `22-§29-9` referenced its sibling row's disposition by name ("...`22-§16-1`'s own foundation-ownership question, which stays `UNRESOLVED FOUNDER DECISION`"), which this file's own overlap-check `grep` matched against `22-§29-9`'s own `ASSIGNED TO LATER MISSION` cell; caught via the established double-check, reworded, re-verified at zero overlap. Fixed the two stale current-state totals Mission Control named (the FCTM's "This total (345)" line, now 373; the Delta document's three "337 rows" references, now 373) while leaving every historical correction-note reference to 337/345/359 untouched as historical record. Updated `02-stage2-mission-truth-pack.md`, this report, and the mission README/decision-log/handover-log to match.
+
+**Changes made, this cycle:** the same authorized Stage 2 paths — no new file, no path outside the authorized set. FCTM row count moves from 359 to 373 (+14: +8 Contract 22 §12, +6 Contract 22 §16); disposition totals move from 230/97/2/30 to 228/98/2/30, plus 15 rows newly carrying `UNRESOLVED FOUNDER DECISION`.
+
+**Verification, this cycle:** every row-count/disposition-total/citation-gap claim produced by running `grep -c`/`grep -cE` against the actual committed file content, including the self-check that caught the counting bug introduced mid-correction; the exact Build Plan/Contract 17 citations for `17-§9`/`17-§10` (used to reconcile `22-§29-9`) re-verified against the FCTM's own already-committed rows, not re-derived from scratch; local Markdown Quality Gate re-run; CI re-checked green on the new head; secret scan re-run.
+
+**Risks/limitations, this cycle:** the `22-§16-2` (surveillance-rejection) `IN SCOPE` reclassification and the 15 `UNRESOLVED FOUNDER DECISION` dispositions are Claude Code's own source-grounded reading, offered for Mission Control confirmation per its explicit instruction not to resolve a genuine Founder scope question on Claude Code's own authority — none of the 15 items has been asserted as either SB-P-1.12's work or another mission's work. T4/T6/T8 remain genuinely open, unaffected by this cycle. T1/T3 now carry the new observation but are not self-concluded.
+
+## 21. Completion status (current)
+
+**STAGE 2 TRUTH PACK PREPARED, MISSION CONTROL REVIEWED FIVE TIMES, FIVE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW**
