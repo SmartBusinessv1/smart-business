@@ -22,8 +22,8 @@
 | Product outcome (Build Plan §10.1, verbatim) | "Make all later work safe by establishing durable authority, identity, isolation, and the correct product-surface model." |
 | Stage 1 owner | Mission Control |
 | Stage 1 documentation-preparation support | Claude Code (this package) |
-| Stage 2–4 Definition Actor | **Recommended, not appointed** — see Section 4 |
-| Stage 19 Independent Verification Actor | **Not appointed; seeded** — see Section 8 |
+| Stage 2–4 Definition Actor | **Claude Code — appointed by Mission Control decision MC-02, effective only upon human merge of this revised record** — see Section 4 |
+| Stage 19 Independent Verification Actor | **Not appointed; Codex intended (MC-02), formally activated only at Stage 18** — see Section 8 |
 | Founder authority for this Stage 1 preparation | PR #621 (merged), MC decision `SB-P-1.12-MC-01`/`MC-01-A`/`MC-01-B`, live instruction `communication/live/instruction.md` |
 
 **Scope, as bounded by the live instruction and Build Plan §9/§10.1:** authority, identity, tenant isolation, execution-time authorization, and Product & Price Master surface reconciliation. This is **not** the entire nine-mission product sequence, and it is not a general RBAC or security-hardening mission beyond what Contracts 21, 22, 20 and 17 and Build Plan §7/§10.1 actually require.
@@ -39,7 +39,7 @@ Read in the order Source 17 establishes (Founder → Lighthouse Constitution →
 **Governance framework**
 - `AGENTS.md`, `CLAUDE.md`
 - `merge/active/README.md` (canonical index) and `docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md` (register)
-- `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` — Source 18 **v1.2** (active from the PR #608 activation event, `merged_at` 2026-09-20T11:34:43Z UTC; register blob for Source 18 must be re-verified at this intake — see Section 9)
+- `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` — Source 18 **v1.2** (active from the PR #608 activation event, `merged_at` 2026-09-20T11:34:43Z UTC; blob verified at this intake as `0945bda60a93c99909c3b7a247d5427ebe256011` against `origin/main`, re-checked and confirmed unchanged during the MC-02/MC-03 correction cycle)
 - `communication/AI_Communication_and_Handover_Protocol.md` v1.1
 - `communication/Independent_Verification_Efficiency_Protocol.md` (`SB-IV-1.0`) v1.1
 - `communication/README.md`
@@ -87,31 +87,58 @@ No other path is touched by this preparation. No application code, SQL, configur
 
 ---
 
-## 4. Definition Actor appointment — recommendation for Mission Control decision
+## 4. Definition Actor appointment — Mission Control decision MC-02 (effective only upon human merge)
 
-Source 18 §4.3 requires Mission Control to appoint a qualified Definition Actor and record the actor, why it is fit, its prior contributions, a separation assessment, and named alternates. The live instruction explicitly prohibits automatic appointment of Codex and requires a reasoned assessment, with any contribution/independence tradeoff surfaced to Mission Control before naming an actor. **Claude Code does not appoint itself or any other actor here — this section is a reasoned recommendation for Mission Control's decision at review/merge.**
+**Status:** Mission Control decided this appointment in its Stage 1 review of PR #622 ([comment `5773270378`](https://github.com/SmartBusinessv1/smart-business/pull/622#issuecomment-5773270378), 2026-09-22). Per Source 18 §3.3, this decision is preparation until this revised Stage 1 record is human-merged — **it is effective only upon that merge**, not upon this commit or Mission Control's review comment alone.
 
-### 4.1 Candidates considered
+### 4.1 The decision
+
+Mission Control appoints **Claude Code** as the Stage 2–4 Definition Actor for SB-P-1.12.
+
+**Basis:** repository-aware continuity from SB-P-1.10/SB-P-1.11 — Claude Code authored the SB-P-1.10/SB-P-1.11 post-completion continuity record and performed SB-P-1.11 Builder Review and Engineering Review (Sections 20–21); Catalog/Pricing engineering familiarity directly relevant to the Product & Price Master reconciliation; and strong source-reference/contract-synthesis capability, as demonstrated by this Stage 1 package. (Full prior-contribution and candidate-comparison evidence is preserved in Section 4.4 below.)
+
+**What this appointment does not do:** it does not make Claude Code its own Stage 5 approver — Mission Control approves Sections 1–19 at Stage 5; it does not make Claude Code the Stage 19 Independent Verification Actor; and it does not appoint Claude Code as builder for any workstream.
+
+### 4.2 Separation condition (Source 18 §4.3)
+
+Because Claude Code also conducts Stage 6–7 (Builder Review, Engineering Review) under §4.4 by default, and SB-P-1.12 is a material-risk mission (authority, permissions, tenant isolation), Source 18 §4.3's role-separation table requires more than Mission Control's ordinary Stage 5/7 approval: **Stage 7 feasibility and risk findings require parallel review by a named Security & Permissions Architecture specialist role, held by an actor that did not author Blueprint Sections 1–19. Mission Control's own ordinary approval is not a substitute for that parallel review.**
+
+- **Specialist reviewer role named now:** *Security & Permissions Architecture specialist* (the Source 18 §4.8 specialist category whose review is mandatory for this mission's authority/permissions/RLS subject matter, independent of this appointment).
+- **Actual actor and independence not yet assessed.** Before Stage 7 findings are relied on, Mission Control (or the Definition Actor, on Mission Control's instruction) must name the actual specialist actor and confirm it did not author Blueprint Sections 1–19.
+- **If no eligible, independent specialist actor is available before Stage 7**, the Stage 7 feasibility/risk-finding gate stays pending rather than proceeding without the parallel review — the same posture Source 18 §4.9/IV Protocol §12 require for an unavailable Independent Verification Actor, applied here to this parallel-review condition.
+
+### 4.3 Codex — reserved for Stage 19; conditional alternate only
+
+Codex is **not** appointed Definition Actor by MC-02. It remains reserved for high-value independent security/authorization/tenant-isolation challenge:
+
+- **Intended Stage 19 Independent Verification Actor**, matching the IV Protocol §4 `Codex Required` classification for this mission's risk profile (Section 8). This is a seed only: formal activation is a Stage 18 Mission Control decision, with an actual independence review performed at that time.
+- **Conditional alternate Definition Actor** — only if Mission Control issues a *new* decision reappointing it, together with a replanning of independent-verifier capacity for this mission (Codex authoring the FCTM would itself weaken its Stage 19 independence — Source 18 §3.2 item 6 / IV Protocol §6).
+
+### 4.4 Historical record — Claude Code's original Stage 1 recommendation (preserved; superseded by MC-02 wherever the two differ)
+
+The first-pushed head of this pull request (`e2ce710`) recommended this same appointment without deciding it, and set out the candidate analysis, prior-contribution evidence and independence tradeoff that Mission Control has now resolved in Sections 4.1–4.3 above. It is preserved below for continuity, as Source 18 §7/§12 require — it carries no independent authority once MC-02 is recorded.
+
+### 4.4.1 Candidates considered
 
 Only Codex and Claude Code have an established track record on this repository's product-definition and engineering work (Source 18 §§4.3–4.9; Institutional Memory §15). No specialist AI (§§4.6–4.8) is eligible for the Definition Actor role — specialists review within a domain and may not redefine scope or author Sections 1–19.
 
-### 4.2 Why the mission's contract areas matter to fitness
+### 4.4.2 Why the mission's contract areas matter to fitness
 
 Contracts 21 and 22 are dense, backend-and-authorization-heavy (RLS, grants, execution-time revalidation, delegated-authority, entitlement) with 27 and 32 sections respectively; Contracts 20 and 17 are experience/workflow-heavy but still route every surface through "the Permission Engine" (Contract 21) and "shared identities" (Contract 22) by cross-reference. Stage 2–4 requires synthesizing this by reference (Source 18 §3.2 item 7: "requirement text lives only in the source contracts") into Blueprint Sections 1–19 without redefining Product Truth, plus a Delta classification against actual current repository/runtime state (Source 18 §2 Stage 2).
 
-### 4.3 Claude Code — prior contributions and fitness
+### 4.4.3 Claude Code — prior contributions and fitness
 
 - Authored `docs/implementation/SB-P-1.10-SB-P-1.11-post-completion-continuity.md` (`SB-DOC-1.10-1.11-CONTINUITY-1.0`, merged), the canonical bridge record this mission's Delta classification must consult — meaning first-hand, recent familiarity with the exact current Catalog/Inventory/Auth topology, the Catalog↔Inventory identity-linkage defect history, and the present rule that "Catalog and Inventory remain separate records" that Product & Price Master reconciliation must preserve.
 - Performed Builder Review and Engineering Review (Sections 20–21) on SB-P-1.11, the immediately preceding Product Catalog & Pricing mission whose data this mission's Product & Price Master reclassification directly touches.
 - Is presently performing this Stage 1 documentation-preparation work itself, under Mission Control's bounded authorization — direct demonstrated fitness for contract-synthesis and structured mission-record drafting at this repository's evidentiary standard.
 - Institutional Memory §15 records "Claude/Claude Code repository-aware engineering and verification" as an acquired Team LIPS capability; the CI baseline record separately shows the recurring pattern "Owner: Claude Code (…implementation…corrected per Codex Stage 2 review)."
 
-### 4.4 Codex — prior contributions and fitness
+### 4.4.4 Codex — prior contributions and fitness
 
 - Performed Product Discovery and Drafting on SB-P-1.11 (the pre-Source-18-v1.2 equivalent of the Definition Actor role) and authored the Independent Verification Efficiency Protocol itself.
 - Institutional Memory §15 records "Codex independent technical review and repository archaeology" as its acquired capability; IV Protocol §1 states plainly: **"Codex is a scarce verifier, not a builder."**
 
-### 4.5 The tradeoff Mission Control should weigh
+### 4.4.5 The tradeoff Mission Control weighed
 
 This mission's own risk profile — authority, permissions, tenant isolation, execution-time security — is **exactly** the IV Protocol §4 "Codex Required" trigger for the Stage 19 Independent Verification Actor ("Authority, financial integrity, permissions/isolation, security, irreversible actions or complex failure modes"), and Source 18 §4.9 states Codex "is preferred for the highest-risk cases where eligible and available" at that gate. Two coherent appointment patterns follow, and they conflict:
 
@@ -120,11 +147,11 @@ This mission's own risk profile — authority, permissions, tenant isolation, ex
 | **A — recommended** | Claude Code | Preserves Codex, uncommitted by this mission, as the natural, independent, preferred Stage 19 verifier for a mission the IV Protocol itself classifies "Codex Required." Triggers the Source 18 §4.3 role-separation table's own condition — Claude Code would then hold both Definition Actor (Stages 2–4) and, by §4.4 default, Engineering Review (Stages 6–7) — which the table requires Mission Control to record as a separation assessment, and because this is a material-risk mission, to have "a parallel specialist who did not author Sections 1–19" review the Stage 7 feasibility and risk findings. |
 | B | Codex | Reuses Codex's SB-P-1.11 discovery/drafting precedent and cleanly separates from Claude Code's Stage 6–7 Engineering Review role (no same-actor conflict there). But it spends Codex's independence on a mission Codex would then be the *least* independent to verify at Stage 19 — the only fallback is Source 18 §3.2 item 6 / IV Protocol §6's "if the only eligible verifier authored the FCTM, Mission Control records a separation assessment and checks against the source contracts," which is explicitly the less-preferred path, not the default one. |
 
-**Recommendation:** Option A (Claude Code as Definition Actor for Stages 2–4), with the required separation assessment recorded now: Mission Control should name a parallel specialist (or reserve its own Stage 7 review) for Stage 7 feasibility/risk findings given this mission's material-risk profile, and should not treat Claude Code's Stage 2–4 authorship as qualifying it as this mission's Stage 19 verifier without a further independence review at that gate. Codex is named the primary alternate for Definition Actor if Mission Control instead prioritizes builder/reviewer role separation over verifier-capacity preservation — that is Mission Control's tradeoff to make, not Claude Code's.
+**Original recommendation (historical):** Option A (Claude Code as Definition Actor for Stages 2–4), with a separation assessment recorded and a parallel specialist reviewing Stage 7 feasibility/risk findings. **Mission Control adopted Option A as MC-02** (Sections 4.1–4.3 above), with the parallel-review condition made explicit and the Codex reservation for Stage 19 made explicit.
 
-### 4.6 Named alternates
+### 4.4.6 Named alternates (historical framing; see Section 4.3 for the current, MC-02 status)
 
-1. **Codex** — alternate Definition Actor (Section 4.5, Option B); primary intended Stage 19 Independent Verification Actor under Option A.
+1. **Codex** — was named alternate Definition Actor under Option B; MC-02 instead makes it a *conditional* alternate (Section 4.3), contingent on a new MC decision and independent-verifier capacity replanning, and names it the intended Stage 19 verifier.
 2. No third AI actor is currently established as eligible under Source 18 §4.3.
 
 ---
@@ -141,6 +168,8 @@ Full detail, including blob SHAs, structural counts and the delegated-contract b
 | 17 | Operational Dashboard and Manager Workspace | BUILD NOW | `IMPLEMENTED BUT INCOMPLETE` |
 
 Plus Build Plan §10.1 (mission-specific plan) and §7 (Product & Price Master Founder decision) as governing Build Plan sections. None of the four contracts is yet `ACCEPTED AS MATURE FEATURE`.
+
+**Contract 7 — limited opening (MC-03).** Mission Control's Stage 1 review directed that Contract 7 (Stock, Supplier & Reorder Intelligence) be opened in the FCTM manifest, **limited to the Product & Price Master / inventory-view / permission-integration touch points** (Contract 17 §7 delegates dashboard stock-view content to it; Build Plan §7 and §10.1 both touch product-price-inventory context). This does not pull Contract 7's remaining stock/supplier/reorder feature behaviour into SB-P-1.12 — that stays under its own approved mission assignment — and it is not a `BUILD LATER` reclassification of anything. Detail, blob SHA and section pointers are in `03-stage1-fctm-open.md` §1a.
 
 ---
 
@@ -175,8 +204,8 @@ This register is draft and unauthorized for build. Builder assignment, exact sco
 ## 8. Verification-plan preview seed (Source 18 §4.9)
 
 - **Codex utilization classification (IV Protocol §4):** `Codex Required` — this mission's subject matter (authority, permissions/isolation, security) is a named trigger for that classification.
-- **Intended Stage 19 Independent Verification Actor:** Codex, subject to formal activation at Stage 18 and to whichever Definition Actor appointment Mission Control makes at Stage 1 (Section 4).
-- **Eligible alternate:** another appointed, independent actor if Codex is unavailable at Stage 18 (IV Protocol §12); not Claude Code by default, to preserve the independence the role-separation analysis in Section 4.5 is designed to protect.
+- **Intended Stage 19 Independent Verification Actor:** Codex, consistent with the MC-02 Definition Actor decision (Section 4) and subject to formal activation and an actual independence review at Stage 18.
+- **Eligible alternate:** another appointed, independent actor if Codex is unavailable at Stage 18 (IV Protocol §12); not Claude Code by default, to preserve the independence the MC-02 separation condition (Section 4.2) is designed to protect.
 - **Class A boundary seed** (IV Protocol §6, drawn from Build Plan §10.1's two Founder-reserved runtime scenarios — see Section 10): permission bypass and cross-business denial; delegated-capability boundary (Manager sees only delegated operational areas, Owner financial surfaces remain denied); and revocation-before-commit (a consequential preview, e.g. a Product & Price Master bulk-import preview, must fail at commit once the authorizing permission is revoked, because authority is rechecked at execution time).
 - This is a seed only. Formal verifier activation is a Stage 18 Mission Control decision; a replacement remains a recorded Mission Control decision under Source 18 §4.9.
 
@@ -213,7 +242,7 @@ This Stage 1 Intake Pack — this file, the FCTM opening record, the updated mis
 
 **What may not proceed before this crossing is merged:** Stage 2 Mission Truth Pack preparation (populated FCTM, Delta, Institutional Learning Intake Record disposition), Stage 3 Founder Decision Gate preparation, and Stage 4 Blueprint Sections 1–19 drafting. Source 18 §3.3 table: "The FCTM, Delta, Institutional Learning Intake Record, Gate Record and the Sections 1–19 draft" may be prepared together **only** once Stage 1 is canonical and no Stage 3 trigger has fired — that determination belongs to whoever Mission Control appoints Definition Actor, not to this record.
 
-**No Stage 3 trigger (Source 18 §3, T1–T8) has been identified during this Stage 1 preparation.** The two Definition Actor appointment options in Section 4.5 are a Mission Control staffing decision, not a Founder product-truth trigger, and are not treated as one here.
+**No Stage 3 trigger (Source 18 §3, T1–T8) has been identified during this Stage 1 preparation or its MC-02/MC-03 correction cycle.** The Definition Actor appointment (Section 4) is a Mission Control staffing decision, not a Founder product-truth trigger, and is not treated as one here. The Contract 7 boundary reconciliation (Section 5; `03-stage1-fctm-open.md` §1a) is a Stage 1 scope-mapping correction, not a change to any approved requirement's build commitment, commercial classification or mission assignment, and is likewise not a trigger.
 
 ---
 
@@ -228,8 +257,8 @@ This Stage 1 Intake Pack — this file, the FCTM opening record, the updated mis
 
 ## 13. What this package does not do
 
-- It does not appoint a Definition Actor (Mission Control decision).
-- It does not populate a single FCTM row or assign any disposition.
+- It records Mission Control's Definition Actor decision (MC-02), but that appointment is **not effective** until this revised record is human-merged (Section 4).
+- It does not populate a single FCTM row or assign any disposition, including for the newly-opened, limited Contract 7 entry.
 - It does not answer the Institutional Learning Intake mission-start checklist or dispose any OLE promotion.
 - It does not activate Stage 2, lock anything, or authorize implementation, production, migration or delivery action.
 - It does not reduce, omit, defer, simplify or reclassify any approved requirement of Contracts 21, 22, 20, 17 or Build Plan §7/§10.1.

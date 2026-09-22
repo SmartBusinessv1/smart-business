@@ -6,21 +6,21 @@ SB-P-1.12 — Authority, Identity & Product Surface Foundation. Source 18 v1.2, 
 
 ## Current Status
 
-`STAGE 1 PACKAGE PREPARED — AWAITING MISSION CONTROL REVIEW AND FOUNDER MERGE`. Claude Code has pushed branch `mission/SB-P-1.12-stage1-intake` and opened one draft pull request into `main`, exactly as authorized. Nothing in it is canonical, and no later stage is authorized, until it is reviewed and human-merged.
+`STAGE 1 PACKAGE PREPARED, MISSION CONTROL REVIEWED, NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW AND FOUNDER MERGE`. Claude Code pushed branch `mission/SB-P-1.12-stage1-intake` and opened one draft pull request (#622) into `main`. Mission Control then reviewed it and issued two decisions in a PR comment — MC-02 (Definition Actor appointment) and MC-03 (Contract 7/23/24 boundary reconciliation) — which Claude Code has now applied as narrow corrections on the same branch. Nothing in it is canonical, and no later stage is authorized, until it is (re-)reviewed and human-merged.
 
 ## What Has Been Completed
 
-Claude Code read the full governing source pack (Source 18 v1.2, the Communication Protocol, the Independent Verification Efficiency Protocol, Build Plan §§4–15, the Global Product Completion View, Contracts 21/22/20/17, the Phase 1 institutional-memory guide, and all 17 current OLE promotion records), verified intake safety (remote, base commit, no open PR, no conflicting branch, green CI), and drafted, on the authorized branch only:
+Claude Code read the full governing source pack, verified intake safety, and drafted the Stage 1 Intake Pack, the FCTM opening record, a draft workstream register, the Institutional Learning Intake opening, and a verification-plan preview seed. Mission Control reviewed that draft and decided:
 
-- The DRAFT Stage 1 Intake Pack (`mission-control/02-stage1-intake-pack.md`), including a reasoned Definition Actor recommendation — **not an appointment** — with the tradeoff between using Claude Code or Codex explicitly laid out for your and Mission Control's decision.
-- The FCTM opening record (`mission-control/03-stage1-fctm-open.md`) — the matrix is opened (contracts, blob SHAs, baseline) but **not populated**; row population is Stage 2 work.
-- A draft workstream register, the Institutional Learning Intake Record opening, and a verification-plan preview seed naming Codex as the intended Stage 19 verifier for this authority/permissions-shaped mission.
-- Updated mission README, decision log and handover log; this brief; and the Claude Code Stage 1 preparation report.
+- **MC-02:** Claude Code is appointed Stage 2–4 Definition Actor — **effective only upon your merge of this pull request**, not before. Mission Control also required a named *Security & Permissions Architecture specialist* to independently review Stage 7 findings (Claude Code also holds Stage 6–7 by default, and this is a material-risk mission), and preserved Codex as the intended Stage 19 verifier rather than spending it on Stage 2–4.
+- **MC-03:** Contract 7 is opened in the FCTM (limited to the Product & Price Master / inventory-view / permission-integration touch points), rather than excluded as Claude Code's original draft had preliminarily read it. Contracts 23 and 24 remain a compatibility screen for Stage 2 to re-test, not a final exclusion.
+
+Claude Code applied both decisions to the Stage 1 Intake Pack (`mission-control/02-stage1-intake-pack.md`) and the FCTM opening record (`mission-control/03-stage1-fctm-open.md`), corrected a stale README paragraph that had continued to describe the already-merged PR #621 as pending, and appended both decisions to the durable decision log with a link to Mission Control's review comment. The original Claude Code recommendations are preserved as historical record, not deleted.
 
 ## What You Need to Do Now
 
-1. Review the pull request (Mission Control review first is expected; your merge is the canonical act).
-2. Decide the Definition Actor appointment described in Intake Pack §4 — or explicitly defer that decision to Mission Control's own review comment on the pull request.
+1. Re-review the pull request — confirm the MC-02 and MC-03 corrections were applied as Mission Control intended.
+2. Name the actual Security & Permissions Architecture specialist actor for the MC-02 §4.2 separation condition (or confirm this is deferred to a Stage 2 Mission Control instruction).
 3. If satisfied, merge the pull request into `main` yourself, or direct an authorized maintainer to.
 
 Claude Code will not self-approve or self-merge this pull request.
@@ -81,11 +81,11 @@ The pull request shows `MERGED`, `main` fast-forwards cleanly to the merge commi
 
 ## What to Send Back to Mission Control
 
-Confirmation that the pull request is merged, the final merge commit SHA, and your Definition Actor decision (or confirmation that you are leaving it to Mission Control's review comment).
+Confirmation that the pull request is merged, the final merge commit SHA, and the named Security & Permissions Architecture specialist actor for the Stage 7 separation condition (or confirmation that naming it is deferred to Stage 2).
 
 ## Do Not Do
 
-- Do not treat this pull request, while open, as Stage 1 activation, as a Definition Actor appointment, or as authorization for any Stage 2 work.
+- Do not treat this pull request, while open, as Stage 1 activation or as authorization for any Stage 2 work — MC-02's Definition Actor appointment is recorded but **not effective** until you merge.
 - Do not approve or merge this pull request as Claude Code — only you or an authorized maintainer merges.
 - Do not infer production, migration or delivery authority from this package; all three flags are `NOT AUTHORIZED`.
-- Do not skip reviewing Intake Pack §4 (Definition Actor) and FCTM opening §3 (Contract 7/23/24 boundary) — both are flagged recommendations, not decisions.
+- Do not treat the MC-03 limited Contract 7 opening as pulling Contract 7's full stock/supplier/reorder feature into this mission, and do not treat the Contract 23/24 compatibility screen as a final, irrevocable exclusion.

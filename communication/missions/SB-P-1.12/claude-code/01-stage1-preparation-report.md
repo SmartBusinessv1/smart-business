@@ -84,16 +84,36 @@ No application code, SQL, configuration, dependency, workflow or other governanc
 - The row-ID convention proposed for Build-Plan-sourced FCTM obligations (`BP-§7-<ordinal>`, `BP-§10.1-<ordinal>`) is an extension of the Source 18 §3.2 convention, not literal text from Source 18; it is offered as a proposal for the Stage 2 Definition Actor and Mission Control to adopt, refine, or replace.
 - This report and the Intake Pack rely on a research subagent's extraction for the bulk of the Build Plan/contract/OLE facts; Claude Code did not independently re-read the full text of every one of the 138 combined contract sections line by line in this session, though it did directly verify blob SHAs, the Build Plan §10.1 verbatim text placement, and the OLE promotions directory listing.
 
-## 9. Founder or Mission Control action required
+## 9. Founder or Mission Control action required (original, Section 12 supersedes where it differs)
 
 Review this pull request; decide the Definition Actor appointment (Intake Pack §4); confirm or correct the Contract 7/23/24 boundary read (FCTM opening §3); human-merge if satisfied. See the Founder merge brief for exact commands.
 
-## 10. Recommended next step
+## 10. Recommended next step (original)
 
 Mission Control reviews and, if satisfied, merges this pull request; then issues the Stage 2 instruction to the appointed Definition Actor. No broader scope is proposed.
 
-## 11. Completion status
+## 11. Completion status (original — see Section 12 for the current state)
 
 **STAGE 1 PACKAGE PREPARED — AWAITING MISSION CONTROL REVIEW AND FOUNDER MERGE**
+
+Until that merge, retained mission state: **STAGE 1 RECORD PREPARATION AUTHORIZED — CANONICAL MISSION ACTIVATION PENDING.**
+
+---
+
+## 12. Addendum — MC-02/MC-03 narrow correction cycle (2026-09-22)
+
+Mission Control reviewed PR #622 at head `e2ce710` and issued [comment `5773270378`](https://github.com/SmartBusinessv1/smart-business/pull/622#issuecomment-5773270378): **MC-02** (appoint Claude Code as Stage 2–4 Definition Actor, effective only upon human merge, with a Source 18 §4.3 separation condition requiring parallel Security & Permissions Architecture specialist review of Stage 7 findings, and Codex reserved as intended Stage 19 verifier) and **MC-03** (open Contract 7 in the FCTM, limited to the touched Product & Price Master / inventory-view / permission-integration surface; treat Contracts 23/24 as a compatibility screen, not a final exclusion).
+
+**Work performed in this cycle:** read the exact review comment via the GitHub API (not a paraphrase); re-verified `origin/main` unchanged, PR #622 still open at the reported head, and both cited blob SHAs (Contract 7, Source 18) against current `origin/main`; read Contract 7's section headings directly to source accurate section pointers for the limited opening; applied the required reconciliation to `02-stage1-intake-pack.md` (§4 rewritten as MC-02, original recommendation preserved as historical §4.4; Source 18 blob placeholder resolved; §5, §8, §11, §13 updated for consistency), `03-stage1-fctm-open.md` (§1a Contract 7 limited opening added; §3 softened for Contracts 23/24; §7 updated), `README.md` (stale PR #621-vs-#622 paragraph corrected; ownership table, Stage Ledger, Next Action updated), `decision-log.md` (MC-02/MC-03 appended with the PR-comment link; CC-STAGE1-02/03 marked `HISTORICAL — SUPERSEDED`, not deleted), `handover-log.md` (H-03 appended), and `founder/01-stage1-merge-brief.md` (status, completed-work and action items updated). No new file was created; no path outside the original 8 was touched; Stage 2 was not begun.
+
+**Changes made, this cycle:** the same 8 authorized paths, no additions or removals of files.
+
+**Verification, this cycle:** `git status`/`git fetch`/`gh pr view 622` re-checked clean before editing; local Markdown Quality Gate (`tools/markdown/quality_gate.py`) re-run against all 8 files after editing — PASS; exact-path staging re-verified against `git diff --cached --name-status`; secret scan re-run; both required CI workflows re-checked green on the new head after push (exact run IDs reported in chat and recorded in the live report).
+
+**Risks/limitations, this cycle:** the Security & Permissions Architecture specialist role is named but no actual actor is assigned — that remains open for Mission Control. The Contract 23/24 compatibility screen is explicitly not final; Stage 2 must re-test it against the full contract text.
+
+## 13. Completion status (current)
+
+**STAGE 1 PACKAGE PREPARED, MISSION CONTROL REVIEWED, NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW AND FOUNDER MERGE**
 
 Until that merge, retained mission state: **STAGE 1 RECORD PREPARATION AUTHORIZED — CANONICAL MISSION ACTIVATION PENDING.**
