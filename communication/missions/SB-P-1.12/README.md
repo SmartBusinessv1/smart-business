@@ -35,23 +35,27 @@ See [Mission Control decision 01](mission-control/01-stage1-communication-and-ac
 | 1 — Mission Initiation and Intake Pack | COMPLETE — CANONICALLY EFFECTIVE | Mission Control (Claude Code prepared) | [02-stage1-intake-pack.md](mission-control/02-stage1-intake-pack.md), [03-stage1-fctm-open.md](mission-control/03-stage1-fctm-open.md) | [MC final review](https://github.com/SmartBusinessv1/smart-business/pull/622#issuecomment-5773880800), reviewed head `712c5bc9650f0fb58ca6cbcc8c6e43af46ec6490`; human merge `fc3d2f3f48b80a17125f55536d2e431b49eea6c1` at `2026-09-22T09:16:35Z` |
 | 2 — Mission Truth and Delta Reconciliation | COMPLETE — CANONICAL (PR #624, MC-12); 15 ESCALATED ROWS RETAINED | Claude Code prepared; Mission Control accepted (MC-12) | [02-stage2-mission-truth-pack.md](claude-code/02-stage2-mission-truth-pack.md), [03-stage2-populated-fctm.md](claude-code/03-stage2-populated-fctm.md), [04-stage2-obligation-inventory.md](claude-code/04-stage2-obligation-inventory.md), [05-stage2-institutional-learning-intake.md](claude-code/05-stage2-institutional-learning-intake.md), [06-stage2-delta-evidence.md](claude-code/06-stage2-delta-evidence.md) | MC review comments [`5774508876`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5774508876) (round 1), [`5776468726`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776468726) (round 2), [`5776916528`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776916528) (round 3), [`5778571759`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778571759) (round 4), [`5778960338`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778960338) (round 5) and [`5779330365`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5779330365) (round 6); FCTM corrected to 373 `grep`-counted rows, zero citation gaps of either kind (empty or bare-tag), all mixed-section bundling and source-to-row gaps closed including Contract 22 §12/§16 (15 rows correctly disposed `ESCALATED` per Source 18 §3.2 item 10, not `UNRESOLVED FOUNDER DECISION`); independent obligation inventory rebuilt source-first with source-obligation/FCTM-row counts reported distinctly (371/373); T4/T6/T7 left open. Mission Control MC-12 final review and Founder human merge verified: PR #624, `main@96a31aa7a0debc539fcda1bca2008457e1315093` |
 
-No Stage 3–24 authorization is implied. The Stage Ledger is an index only; it approves, locks, authorizes, accepts and closes nothing (Source 18 §10).
+| 3 — Founder Decision Gate | TRIGGERED — PREPARATION AUTHORIZATION PENDING CANONICAL MERGE; FOUNDER DECISIONS PENDING | Claude Code prepares draft brief after MC-13 merge; Mission Control leads Founder dialogue | [MC-13](mission-control/04-stage3-authorization-and-stage2-merge-reconciliation.md), [current live instruction](../../live/instruction.md) | 15 `ESCALATED` rows; T7 triggered, T4 Product-Affecting Delta; NO `NOT TRIGGERED` record, no Stage 4 authority |
+
+The Stage 3 **preparation instruction only** is pending human merge of MC-13; no Founder decision, Stage 4–24 authorization or implementation is implied. The Stage Ledger is an index only; it approves, locks, authorizes, accepts and closes nothing (Source 18 §10).
 
 ## Communication index
 
 - [MC-01 communication-first and actor-allocation decision](mission-control/01-stage1-communication-and-actor-allocation-decision.md)
-- [Stage 1 Intake Pack (DRAFT)](mission-control/02-stage1-intake-pack.md)
-- [Stage 1 FCTM opening record (DRAFT)](mission-control/03-stage1-fctm-open.md)
+- [Stage 1 Intake Pack (CANONICAL)](mission-control/02-stage1-intake-pack.md)
+- [Stage 1 FCTM opening record (CANONICAL)](mission-control/03-stage1-fctm-open.md)
 - [Claude Code Stage 1 preparation report](claude-code/01-stage1-preparation-report.md)
 - [Founder Stage 1 merge brief](founder/01-stage1-merge-brief.md)
 - [Decision log](decision-log.md)
 - [Handover log](handover-log.md)
-- [Initial live instruction](../../live/instruction.md)
+- [Current live instruction](../../live/instruction.md)
 - Stage 1 live instruction, preserved: [snapshot](mission-control/01-stage1-live-instruction-snapshot.md).
 - Stage 1 live report, preserved: [snapshot](claude-code/01-stage1-live-report-snapshot.md).
 - Stage 2 decision: [MC-05 activation reconciliation and authorization](mission-control/02-stage2-authorization-and-activation-reconciliation.md) — canonical, PR #623 merged.
-- Stage 2 Mission Truth Pack (DRAFT): [overview](claude-code/02-stage2-mission-truth-pack.md), [populated FCTM](claude-code/03-stage2-populated-fctm.md), [obligation inventory](claude-code/04-stage2-obligation-inventory.md), [institutional learning intake](claude-code/05-stage2-institutional-learning-intake.md), [Delta/derived constraints/open decisions](claude-code/06-stage2-delta-evidence.md), [Stage 2 completion report](claude-code/07-stage2-completion-report.md).
-- Current [live instruction](../../live/instruction.md): Stage 2, canonical; current [live reply](../../live/report.md): Stage 2 preparation report filed.
+- Stage 2 Mission Truth Pack (CANONICAL, PR #624 merged): [overview](claude-code/02-stage2-mission-truth-pack.md), [populated FCTM](claude-code/03-stage2-populated-fctm.md), [obligation inventory](claude-code/04-stage2-obligation-inventory.md), [institutional learning intake](claude-code/05-stage2-institutional-learning-intake.md), [Delta/derived constraints/open decisions](claude-code/06-stage2-delta-evidence.md), [Stage 2 completion report](claude-code/07-stage2-completion-report.md).
+- Stage 2 live pair, preserved byte-identically: [instruction snapshot](mission-control/03-stage2-live-instruction-snapshot.md), [report snapshot](claude-code/08-stage2-live-report-snapshot.md).
+- Stage 3 decision: [MC-13 Stage 2 merge reconciliation and Stage 3 authorization](mission-control/04-stage3-authorization-and-stage2-merge-reconciliation.md) — pending human merge of the separate communication PR.
+- Current [live instruction](../../live/instruction.md): Stage 3 brief preparation ONLY, pending canonical merge; current [live reply](../../live/report.md): awaiting activation and Claude Code response.
 
 ## Delivery / production flags
 
@@ -61,4 +65,4 @@ No Stage 3–24 authorization is implied. The Stage Ledger is an index only; it 
 
 ## Next action
 
-Mission Control re-reviews the corrected Stage 2 Truth Pack pull request (branch `mission/SB-P-1.12-stage2-truth-delta`): confirms the corrected FCTM completeness test, the Contract 20/17/22 split-assignment reasoning, and **makes its own Stage 3 T4/T6 gate determination** (not self-cleared by Claude Code); names the actual Security & Permissions Architecture specialist for the Stage 7 separation condition. Founder or an authorized maintainer human-merges if satisfied. No self-merge. Stage 3 Gate Record, Stage 4 Blueprint drafting, implementation, production, migration, delivery and publication remain not authorized until Mission Control separately crosses each gate.
+Founder reviews and human-merges the separate MC-13 Stage 3 authorization communication PR if satisfied. Mission Control verifies canonical main, then activates Claude Code to prepare a **DRAFT grouped Founder Brief only**. Mission Control leads the Founder dialogue on 15 escalated source obligations and the T4 security-boundary question. Neither the draft brief nor the authorization resolves any Founder decision. Stage 4 Blueprint, implementation, production, migration, delivery and publication remain unauthorized. Appoint the actual independent Security & Permissions Architecture specialist before Stage 7.
