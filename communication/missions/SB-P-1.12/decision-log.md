@@ -59,13 +59,29 @@
 These decisions preserve the original authorization history; they do not grant implementation, production, migration, delivery, publication, self-approval, self-merge or Stage 2/3 authority. The Stage 1 communication and Intake Pack records became canonical upon PR #621 and PR #622 human merges respectively; the Stage 2 authorization became canonical upon PR #623's human merge; the Stage 2 Truth Pack became canonical upon PR #624's human merge (MC-12); the Stage 3 preparation authorization became canonical upon PR #625's human merge (MC-13). The Stage 3 Founder Brief itself remains draft until its own pull request is human-merged. CC-STAGE1-02/03, CC-STAGE2-01/03/05/07/08/09/12/13/16/17/20/21 and CC-STAGE3-02 are preserved as historical record of superseded earlier drafts, not current content — CC-STAGE2-23 carries the current, six-times-corrected Stage 2 totals and disposition-vocabulary correction; CC-STAGE3-03 carries the current, twice-corrected Stage 3 Founder Brief content.
 
 
-## MC-16 — Stage 3 Founder dialogue reconciliation and separate decision-record preparation authorization (DRAFT)
+## MC-16 — Stage 3 Founder dialogue reconciliation and separate decision-record preparation authorization
 
 **Date:** 2026-09-23  
-**Status:** DRAFT — EFFECTIVE ONLY WHEN THE SEPARATE MC-16 COMMUNICATION PR IS HUMAN-MERGED  
+**Status:** **EFFECTIVE** — PR #627 human-merged, `main@7e9f9e97734d435154d6c7627434121b08012af3`  
 **Canonical prior brief:** PR #626, merged `2026-09-23T08:07:01Z`, `main@488874b728524a98c8633f8d839fc745a2b29859`, reviewed head `e3bd024e1bcec5ef466859f52c5e862a80445e5c`.  
 **Authority:** `mission-control/05-stage3-decision-record-preparation-authorization.md` and current `communication/live/instruction.md`.
 
 Founder Riyas PK confirmed in Stage 3 dialogue: nine §12 Notification Foundation rows to a distinct reusable workstream in SB-P-1.15 with SB-P-1.20 remaining a thin WhatsApp channel adapter; §16-1 shared purpose-limited Location Foundation to a distinct workstream in SB-P-1.18; §16-3–7 per-feature disclosures and proof to each location-consuming feature's owning mission, specifically attendance/delivery in SB-P-1.18, with common structure additional only; existing §16-2 surveillance rejection and §29-9 attendance/delivery consumption retained. Founder confirmed existing security/privacy intent unchanged and no additional T4/T6/T8 product requirement, without certifying production or waiving WS-B, independent review or security evidence. Stage 3 was TRIGGERED by T7 and T4, NOT TRIGGERED is prohibited. Canonical FCTM still retains 15 ESCALATED rows until the later decision-record/reconciliation PR's human merge.
 
 MC-16 **authorizes only the later draft decision record, surgical FCTM reconciliation, Stage 3 gate evidence and communication updates**, effective upon this PR's human merge. MC will review that subsequent PR and include the exact-head Stage 3 gate decision before a separate human merge. Stage 4, implementation, security mutation and production remain unauthorized.
+
+## CC-STAGE3-04 — Draft Founder Product Decision Record and 15-row FCTM reconciliation prepared
+
+**Date:** 2026-09-23  
+**Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED  
+**Authority:** `communication/live/instruction.md` (MC-16), effective on PR #627's human merge.
+
+Claude Code independently verified `origin/main` at `7e9f9e97734d435154d6c7627434121b08012af3` is PR #627's exact merge commit before treating MC-16 as effective, and confirmed zero drift in Source 18, the Build Plan, GPCV and OLE promotions between the PR #626 (`488874b7`) and MC-16 (`7e9f9e97`) baselines. Prepared `founder/03-stage3-founder-product-decision-record.md`, transcribing four Founder Decisions (`FPDR-1` Notification → `SB-P-1.15`; `FPDR-2` Location primitive → `SB-P-1.18`; `FPDR-3` per-feature disclosure accountability, `SB-P-1.18` named for attendance/delivery only, not asserted as exclusive future owner; `FPDR-4` T4/T6/T8 no-additional-requirement confirmation, T4 remaining historically `TRIGGERED`, production `UNVERIFIED`) strictly from Mission Control's own recorded account in `mission-control/05-stage3-decision-record-preparation-authorization.md` §1, not derived from the Founder Brief's earlier option tables.
+
+Surgically reconciled the 15 affected rows in `claude-code/03-stage2-populated-fctm.md` (Correction note 7): 9 rows to `ASSIGNED TO LATER MISSION`/`SB-P-1.15`, 6 rows to `ASSIGNED TO LATER MISSION`/`SB-P-1.18`. No row added or removed; `22-§16-2`/`22-§29-9` unchanged in substance. **Self-caught and fixed before finalizing:** three reconciled rows' Source-pointer prose restated the literal string "ESCALATED," which the file's own disposition-counting `grep` matched despite those rows' actual Disposition cell already reading `ASSIGNED TO LATER MISSION`; reworded and re-verified at `IN SCOPE` 228 + `ASSIGNED TO LATER MISSION` 113 + `DELEGATED` 2 + `NOT APPLICABLE` 30 + `ESCALATED` 0 = 373, zero double-counted rows.
+
+**Flagged, not silently resolved:** the live instruction's own escalation clause required stopping if FCTM vocabulary cannot truthfully express the cross-mission, per-feature nature of the 5 disclosure rows (`22-§16-3`–`-7`). Judged resolvable via a qualified `Assigned mission` cell (`SB-P-1.18 (named instance: attendance/delivery)`) plus a dedicated explanation in `claude-code/12-stage3-gate-evidence-and-row-reconciliation.md` §3, which also names an alternative encoding for Mission Control's choice rather than asserting the chosen one as beyond question.
+
+Drafted `claude-code/12-stage3-gate-evidence-and-row-reconciliation.md` (before/after 15-row crosswalk, Founder-answer/Mission-Control-assessment separation, dependency/future-mission verification mapping, proposed not self-declared gate-closure structure) and `claude-code/11-stage3-decision-record-preparation-report.md`. No Founder question answered on Claude Code's own authority beyond transcription; no `NOT TRIGGERED` Gate Record filed; no Stage 4/EIS/implementation/production/migration action taken.
+
+**Evidence:** `founder/03-stage3-founder-product-decision-record.md`; `claude-code/03-stage2-populated-fctm.md` §G; `claude-code/12-stage3-gate-evidence-and-row-reconciliation.md`; `claude-code/11-stage3-decision-record-preparation-report.md`

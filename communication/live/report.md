@@ -1,15 +1,18 @@
-# SB-P-1.12 — Stage 3 Founder Decision Record Preparation Handover
+# SB-P-1.12 — Stage 3 Founder Product Decision Record: Preparation Report
 
-**From:** Smart Business Mission Control (MC-16)  
-**To:** Claude Code, MC-02 appointed Definition Actor  
-**Status:** DRAFT — AUTHORIZATION PENDING FOUNDER/HUMAN MERGE  
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Canonical prior stage:** PR #626 merged, `main@488874b728524a98c8633f8d839fc745a2b29859`  
-**New instruction:** `communication/live/instruction.md` (MC-16), not effective until separate authorization PR human merge  
-**Prior Stage 3 preparation report:** preserved at `communication/missions/SB-P-1.12/claude-code/10-stage3-brief-live-report-snapshot.md`
+**From:** Claude Code, MC-02 appointed Definition Actor, Stage 3 documentary preparation only
+**To:** Smart Business Mission Control
+**Status:** `STAGE 3 DECISION RECORD DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; STAGE 4 NOT AUTHORIZED`
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Activation verified:** `origin/main` at `7e9f9e97734d435154d6c7627434121b08012af3` — confirmed via `gh pr view` to be PR #627's exact merge commit ("authorize Stage 3 Founder Decision Record preparation (MC-16)")
+**Instruction:** `communication/live/instruction.md` (MC-16 version) — decision-record preparation and canonical reconciliation
+**Branch:** `mission/SB-P-1.12-stage3-founder-decision-record`
+**Prior Stage 3 brief preparation:** preserved at `communication/missions/SB-P-1.12/claude-code/10-stage3-brief-live-report-snapshot.md`
 
-Founder Riyas PK confirmed the Notification Foundation workstream under SB-P-1.15, Location Foundation workstream under SB-P-1.18, feature-owning-mission responsibility for the five location disclosures, unchanged surveillance rejection and unchanged security/privacy commitments without an added T4/T6/T8 product requirement. The decisions have **not yet been canonically filed in a Founder Product Decision Record**; Stage 2 FCTM still retains 15 `ESCALATED` rows.
+Claude Code prepared the DRAFT Founder Product Decision Record (`founder/03-stage3-founder-product-decision-record.md`), transcribing Founder Riyas PK's confirmed 2026-09-23 decisions: Notification Foundation as a distinct workstream within `SB-P-1.15`; Location Foundation primitive as a distinct workstream within `SB-P-1.18`; feature-owning-mission accountability for the five location disclosures (`SB-P-1.18` named for attendance/delivery only, not asserted as exclusive future owner); and confirmation that T4/T6/T8 impose no additional product requirement, with T4 remaining historically `TRIGGERED` and live production security state remaining `UNVERIFIED`.
 
-On human merge of this MC-16 authorization PR, Claude Code may prepare the separate draft decision record, 15-row FCTM reconciliation and Stage 3 gate evidence, strictly under the complete current live instruction; stop for Mission Control review. T4 remains historically TRIGGERED and the residual anonymous grant's actual production status remains UNVERIFIED. No Stage 4, application build, migration or production action is authorized.
+The 15 affected FCTM rows are surgically reconciled in `claude-code/03-stage2-populated-fctm.md` (Correction note 7) from `ESCALATED` to `ASSIGNED TO LATER MISSION`, and full gate evidence — including an explicit treatment of a representational gap in the five per-feature disclosure rows, flagged rather than silently resolved — is recorded in `claude-code/12-stage3-gate-evidence-and-row-reconciliation.md`.
 
-**STAGE 3 FOUNDER DIALOGUE COMPLETE — DECISION-RECORD PREPARATION AUTHORIZATION PENDING CANONICAL MERGE.**
+**This is DRAFT only. It is not a canonical Founder Product Decision Record, not a Stage 3 gate closure, and not a Stage 4 authorization.** The last canonical FCTM record (PR #624, MC-12: 15 rows `ESCALATED`) remains authoritative until Mission Control reviews and the Founder human-merges this pull request.
+
+**Until Mission Control review and Founder human merge:** `STAGE 3 DECISION RECORD DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; STAGE 4 NOT AUTHORIZED.`
