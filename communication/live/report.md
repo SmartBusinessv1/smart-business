@@ -1,16 +1,16 @@
-# SB-P-1.12 — MC-19 Stage 4 Blueprint Drafting Authorization Handover
+# SB-P-1.12 — Stage 4 Product Blueprint Sections 1–19: Draft Preparation Report
 
-**From:** Smart Business Mission Control (MC-19)  
-**To:** Claude Code, MC-02 Stage 2–4 appointed Definition Actor  
-**Status:** DRAFT — AUTHORIZATION PENDING FOUNDER/HUMAN MERGE OF THE SEPARATE MC-19 COMMUNICATION PR  
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Verified canonical prior crossing:** PR #628, `main@d7110a98a8b843304c81e3803b637a6fc41906e9`, merged 2026-09-23T12:49:51Z; final reviewed head `38282236032c831760838f1270e919af4e4bd567`.  
-**Prior Stage 3 live report:** preserved byte-identically at `communication/missions/SB-P-1.12/claude-code/13-stage3-decision-record-live-report-snapshot.md`.
+**From:** Claude Code, MC-02 appointed Stage 2–4 Definition Actor
+**To:** Smart Business Mission Control
+**Status:** `STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED`
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Activation verified:** `origin/main` at `d86e8663eabccff62f3f7e3fadd5342a2ca56aac` — confirmed via `gh pr view` to be PR #629's exact merge commit ("authorize Stage 4 Blueprint Sections 1–19 preparation (MC-19)"); PR #628 (Founder Product Decision Record) independently confirmed `MERGED` and a genuine ancestor of this baseline
+**Instruction:** `communication/live/instruction.md` (MC-19 version) — Blueprint Sections 1–19 draft preparation only
+**Branch:** `mission/SB-P-1.12-stage4-blueprint-draft`
+**Prior Stage 3 live report:** preserved byte-identically at `communication/missions/SB-P-1.12/claude-code/13-stage3-decision-record-live-report-snapshot.md`
 
-Stage 3 Founder Decision Gate is COMPLETE — CANONICAL. The merged Founder Product Decision Record `FPDR-1`–`FPDR-4`, reconciled 373-row FCTM (228 in scope, 113 assigned later, 2 delegated, 30 not applicable, 0 escalated) and MC-18 gate determination govern. The historical T4 `PRODUCT-AFFECTING` security Delta remains a triggered item, with live production migration/grant/RLS state `UNVERIFIED` and WS-B remediation/independent review outstanding. Stage 7 Security & Permissions Architecture actor still unappointed.
+Claude Code prepared the DRAFT Product Blueprint at `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` — Metadata, Mission Snapshot, and Sections 1–19 — assembled by reference to the canonical 373-row FCTM (228 `IN SCOPE`, 113 `ASSIGNED TO LATER MISSION`, 2 `DELEGATED`, 30 `NOT APPLICABLE`, 0 `ESCALATED`) and Founder Decisions `FPDR-1`–`FPDR-4`. Section 11 individually enumerates every `ASSIGNED`/`DELEGATED`/`NOT APPLICABLE` row by receiving mission; Section 19 provides complete, independently script-verified FCTM row-ID-to-section traceability for all 373 rows, with zero omissions confirmed. The T4 residual-`anon` finding, `UNVERIFIED` production status, DC-1/DC-2/DC-3, and the Notification (`SB-P-1.15`)/Location (`SB-P-1.18`) Foundation boundary decisions are preserved exactly as canonically recorded.
 
-**After MC-19 is human-merged only**, Claude Code may prepare the **DRAFT** Stage 4 Product Blueprint Metadata, Mission Snapshot and Sections 1–19 on the exact branch and paths named in the new `communication/live/instruction.md`; submit one draft PR and stop for Mission Control Stage 5 review.
+**This is DRAFT only.** Claude Code does not approve Sections 1–19 — that is Mission Control's Stage 5 Product Review, including the Source 18 §3.2 item 6 FCTM completeness test (Gate 10). No Sections 20–21, Builder Review, Engineering Review, EIS, implementation, migration or production action was taken.
 
-**Stage 4 authority is NOT effective yet.** No Stage 5 approval, Builder/Engineering Review, EIS, implementation, production, migration execution, delivery or publication is authorized by this draft handover.
-
-**STAGE 3 CANONICAL — STAGE 4 PREPARATION AUTHORIZATION PENDING HUMAN MERGE.**
+**Until Mission Control's Stage 5 review:** `STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
