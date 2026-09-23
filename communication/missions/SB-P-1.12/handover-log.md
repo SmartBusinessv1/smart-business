@@ -317,3 +317,18 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (MC-16 version), unchanged and re-confirmed still active, valid through 2026-10-07 23:59 IST or an earlier stop condition.
 **Stage Ledger row updated:** Stage 3b — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+
+## H-18 — Mission Control: Stage 3 canonical; MC-19 Stage 4 authority pending Founder human merge
+
+**Prepared:** 2026-09-23  
+**From:** Mission Control  
+**To:** Claude Code, MC-02 appointed Stage 2–4 Definition Actor  
+**Status:** DRAFT — EFFECTIVE ON HUMAN MERGE OF MC-19 COMMUNICATION PR ONLY  
+**Completed:** PR #628 merged `2026-09-23T12:49:51Z`, canonical `main@d7110a98a8b843304c81e3803b637a6fc41906e9`, reviewed final head `38282236032c831760838f1270e919af4e4bd567`; Founder Decisions FPDR-1–FPDR-4 and reconciled FCTM canonically effective; Stage 3 complete.  
+**Files in MC-19 preparation:** `communication/live/instruction.md`; `communication/live/report.md`; mission `README.md`, `decision-log.md`, `handover-log.md`; `mission-control/07-stage4-blueprint-preparation-authorization.md`; `mission-control/07-stage3-decision-record-live-instruction-snapshot.md`; `claude-code/13-stage3-decision-record-live-report-snapshot.md`.  
+**Verification:** exact-head PR/CI/merge SHA for MC-19 must be checked before Founder merge; no Blueprint artifact is edited in this authorization PR.  
+**Open:** actual production anon-grant/migration state UNVERIFIED; WS-B security objective, cross-mission notification/location foundation dependencies, independent Stage 7 Security & Permissions Architecture appointment.  
+**Next action after human merge only:** Claude Code prepares DRAFT Blueprint Sections 1–19 on exact locked Stage 4 branch and authorized paths in new live instruction, opens one draft PR, stops for Mission Control Stage 5 review.  
+**Not authorized:** Stage 5 approval, Builder/Engineering review, Sections 20–21, Blueprint lock, EIS, code/build, privileged provider access, SQL/migration/production, delivery/publication, OLE or self-merge.  
+**MC reference:** MC-19 and Source 18 §3.3/§6 Stages 3–5.
