@@ -28,15 +28,15 @@ This document separates (a) the Founder's confirmed product answers, (b) Mission
 | `22-§12-8` | Link to originating business event | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.15` | `FPDR-1` |
 | `22-§12-9` | Delivery tracked separately from business-event completion | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.15` | `FPDR-1` |
 | `22-§16-1` | Shared purpose-limited primitive (construction) | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` | `FPDR-2` |
-| `22-§16-3` | Each feature must define why location is needed | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery) | `FPDR-3` |
-| `22-§16-4` | Each feature must define who may see it | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery) | `FPDR-3` |
-| `22-§16-5` | Each feature must define when it is captured | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery) | `FPDR-3` |
-| `22-§16-6` | Each feature must define how long it is retained | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery) | `FPDR-3` |
-| `22-§16-7` | Each feature must define when access ends | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery) | `FPDR-3` |
+| `22-§16-3` | Each feature must define why location is needed | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery only) | `FPDR-3` |
+| `22-§16-4` | Each feature must define who may see it | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery only) | `FPDR-3` |
+| `22-§16-5` | Each feature must define when it is captured | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery only) | `FPDR-3` |
+| `22-§16-6` | Each feature must define how long it is retained | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery only) | `FPDR-3` |
+| `22-§16-7` | Each feature must define when access ends | `ESCALATED` | `PENDING FOUNDER ASSIGNMENT` | `ASSIGNED TO LATER MISSION` | `SB-P-1.18` (named instance: attendance/delivery only) | `FPDR-3` |
 
 **Unchanged, not part of this reconciliation (retained here only as adjacent context):** `22-§16-2` (`IN SCOPE`, `SB-P-1.12`) and `22-§29-9` (`ASSIGNED TO LATER MISSION`, `SB-P-1.18`).
 
-**Totals:** 9 rows → `SB-P-1.15`; 6 rows → `SB-P-1.18`. `IN SCOPE` 228 (unchanged) + `ASSIGNED TO LATER MISSION` 113 (was 98, +15) + `DELEGATED` 2 (unchanged) + `NOT APPLICABLE` 30 (unchanged) + `ESCALATED` 0 (was 15) = 373 (unchanged). `grep`-verified in `03-stage2-populated-fctm.md` §G.
+**Totals:** 9 rows → `SB-P-1.15`; 6 rows → `SB-P-1.18` **as the named attendance/delivery instance, not as universal future disclosure owner** (1 primitive-construction row unconditionally, 5 per-feature disclosure rows scoped to attendance/delivery only — see §3 below). `IN SCOPE` 228 (unchanged) + `ASSIGNED TO LATER MISSION` 113 (was 98, +15) + `DELEGATED` 2 (unchanged) + `NOT APPLICABLE` 30 (unchanged) + `ESCALATED` 0 (was 15) = 373 (unchanged), counted from the actual Disposition column. `grep`/`awk`-verified in `03-stage2-populated-fctm.md` §G.
 
 ---
 
@@ -45,7 +45,7 @@ This document separates (a) the Founder's confirmed product answers, (b) Mission
 **The precise ambiguity, named explicitly per the live instruction's own escalation clause:** the FCTM's `Assigned mission` column is designed to name **one current mission owning an obligation**. The Founder's actual decision for these 5 rows is not that kind of single-owner assignment — it is a **standing, recurring rule** ("the owning mission of *each* location-consuming feature defines its own five disclosures") for which `SB-P-1.18` is currently the *only named instance* (attendance and delivery), not the rule's exclusive or permanent owner. A bare `SB-P-1.18` value in that column, without qualification, would misstate the decision by implying `SB-P-1.18` owns every future consuming feature's disclosures — exactly what the live instruction says must not be asserted.
 
 **Resolution attempted, not an escalation-without-delivery:** rather than stop without producing the requested draft, this reconciliation:
-1. Writes the `Assigned mission` cell as `SB-P-1.18 (named instance: attendance/delivery)` — not a bare mission ID — on all 5 affected FCTM rows.
+1. Writes the `Assigned mission` cell as `SB-P-1.18 (named instance: attendance/delivery only)` — not a bare mission ID — on all 5 affected FCTM rows, and restates in each row's own evidence cell that `SB-P-1.18` does not carry future missions' verification.
 2. Carries the full qualification in each row's own citation cell (`03-stage2-populated-fctm.md`), pointing to `FPDR-3` and to this section.
 3. States the general, recurring, future-binding rule explicitly and separately here and in `FPDR-3` itself, rather than folding it into a single-mission FCTM cell.
 
