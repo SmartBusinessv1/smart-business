@@ -216,3 +216,20 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Not authorized:** Stage 4 Sections 1–19, EIS, code, migrations, production, delivery/release, OLE promotion, self-merge, live security access, or unrecorded product/mission assignment.
 **Stage 7 separation:** Actual independent Security & Permissions Architecture specialist to be named and eligibility checked before Stage 7.
 **Next action:** Founder reviews/human-merges separate Stage 3 authorization PR. Mission Control verifies `main` and supplies concise Claude Code activation pointer; no Stage 3 preparation before that event.
+
+## H-13 — Claude Code: Stage 3 Founder Brief DRAFT prepared; stopped for Mission Control review
+
+**Prepared:** 2026-09-23
+**From:** Claude Code (MC-02 appointed Definition Actor, Stage 3 preparation only)
+**To:** Mission Control
+**Status:** `STAGE 3 FOUNDER BRIEF PREPARED — AWAITING MISSION CONTROL REVIEW; FOUNDER DECISIONS NOT YET RECORDED`
+**Canonical activation evidence:** independently verified `origin/main` at `713a99c77ab39bc8c6741aa4bd18d3656ac78639` is PR #625's merge commit ("authorize Stage 3 Founder Decision Gate preparation"); PR #624 and PR #625 both confirmed `MERGED` via `gh pr view`. A stale local branch that still carried the pre-PR#625 Stage 2 text of `communication/live/instruction.md` was found and discarded in favor of the fresh canonical read before any drafting began.
+**Files created or modified:** the six paths authorized by the Stage 3 live instruction — `communication/live/report.md`; `communication/missions/SB-P-1.12/README.md`; `communication/missions/SB-P-1.12/decision-log.md`; `communication/missions/SB-P-1.12/handover-log.md`; `communication/missions/SB-P-1.12/founder/02-stage3-founder-decision-brief.md` (new); `communication/missions/SB-P-1.12/claude-code/09-stage3-gate-preparation-report.md` (new). No governance, contract, Build Plan, application, SQL/migration or `communication/live/instruction.md` file touched.
+**Commit SHA:** recorded on branch `mission/SB-P-1.12-stage3-founder-gate-prep`; exact SHA and CI run IDs reported in chat and in the draft pull request.
+**Verification performed:** zero drift confirmed (`git diff --stat`) in Source 18, the Build Plan, GPCV and OLE promotions between the Stage 2 canonical baseline (`96a31aa7`) and the current Stage 3 baseline (`713a99c7`); the 15 `ESCALATED` row IDs and content independently re-checked against `03-stage2-populated-fctm.md`; the residual-`anon`-grant migration files and the migration authority index re-read directly, not paraphrased from memory; local Markdown Quality Gate run before commit; CI checked on the pushed head; secret scan of the full diff performed, none found.
+**Open issues carried forward:** Mission Control's own T4 (residual `anon` grant), T6 (DC-1/2/3) and T8 (security/integrity boundary) Stage 3 determinations — none resolved here; the 15 `ESCALATED` rows' actual owning mission (Notification Foundation, 9 rows; Location Foundation primitive/disclosures, 6 rows) — no answer proposed; the Stage 7 independent Security & Permissions Architecture specialist remains unnamed; live production state of the `anon` grant/RLS remains `UNVERIFIED`.
+**Next authorized action:** Mission Control reviews the draft pull request (Founder Brief + gate-preparation report); confirms or corrects the four-group structure; if satisfied, merges it and leads the Founder-led dialogue. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Founder Product Decision Record, `NOT TRIGGERED` Gate Record, Stage 4 Blueprint drafting, EIS, implementation, production mutation, migration execution, delivery synchronization, publication, or OLE promotion.
+**Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 3 version), effective on PR #625's human merge, valid until 2026-10-07 23:59 IST or an earlier stop condition.
+**Stage Ledger row updated:** Stage 3 — see `communication/missions/SB-P-1.12/README.md`.
+**Mission Control approval reference:** pending — this handover requests it.
