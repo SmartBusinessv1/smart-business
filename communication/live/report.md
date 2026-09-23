@@ -2,7 +2,7 @@
 
 **From:** Claude Code, MC-02 appointed Definition Actor
 **To:** Smart Business Mission Control
-**Status:** `STAGE 3 FOUNDER BRIEF PREPARED — AWAITING MISSION CONTROL REVIEW; FOUNDER DECISIONS NOT YET RECORDED`
+**Status:** `STAGE 3 FOUNDER BRIEF PREPARED, MISSION CONTROL REVIEWED, ONE NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW; FOUNDER DECISIONS NOT YET RECORDED`
 **Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
 **Activation verified:** `origin/main` at `713a99c77ab39bc8c6741aa4bd18d3656ac78639` — confirmed via `git log` to be PR #625's merge commit ("authorize Stage 3 Founder Decision Gate preparation"); PR #624 and PR #625 both independently confirmed `MERGED` via `gh pr view`
 **Instruction:** `communication/live/instruction.md` (Stage 3 version) — MC-13, preparation and escalation only
@@ -11,6 +11,8 @@
 
 Claude Code prepared the DRAFT Stage 3 Founder Brief (`communication/missions/SB-P-1.12/founder/02-stage3-founder-decision-brief.md`) and the Stage 3 gate-preparation report (`communication/missions/SB-P-1.12/claude-code/09-stage3-gate-preparation-report.md`), grouping the 15 `ESCALATED` FCTM rows into the two Founder decision questions they represent (Notification Foundation ownership; Location Foundation primitive/disclosure ownership), and preserving the T4 residual-`anon`-grant security finding, the T6 derived constraints and the T8 assessment boundary exactly as the canonical Stage 2 Truth Pack recorded them.
 
-**This is not a Founder decision, a Gate Record, a Blueprint authorization, or an opened Founder dialogue.** Stage 3 is `TRIGGERED`, not `NOT TRIGGERED`. No Founder Product Decision Record was filed. Mission Control reviews the draft before any Founder dialogue is treated as formally opened by the repository.
+Mission Control's substantive review of PR #626 at head `716334f21914f3898b23660607e28e094deddd7d` ([comment `5790977616`](https://github.com/SmartBusinessv1/smart-business/pull/626#issuecomment-5790977616)) found the four-group structure sound but required one narrow correction (MC-14A/B/C): add admissible-option build/verification/governance consequences to Groups 1–2 without recommending any; correct overstrong "cannot be cited in a Stage 4 Blueprint" phrasing to the accurate Source 18 §3.2 item 3 boundary and state plainly that no Stage 4 drafting is authorized regardless of resolution; and state explicitly that T4 is already `TRIGGERED` (not a trigger-or-not question), replacing overstated "inert"/"immediately exploitable" runtime-state language with evidence-conditional phrasing. All three applied; see `claude-code/09-stage3-gate-preparation-report.md` §13 for the full correction record.
 
-**Until Mission Control review and any resulting Founder decision:** `STAGE 3 FOUNDER BRIEF PREPARED — AWAITING MISSION CONTROL REVIEW; FOUNDER DECISIONS NOT YET RECORDED.`
+**This is not a Founder decision, a Gate Record, a Blueprint authorization, or an opened Founder dialogue.** Stage 3 is `TRIGGERED`, not `NOT TRIGGERED`. No Founder Product Decision Record was filed. Mission Control re-reviews the corrected draft before any Founder dialogue is treated as formally opened by the repository.
+
+**Until Mission Control re-review and any resulting Founder decision:** `STAGE 3 FOUNDER BRIEF PREPARED, MISSION CONTROL REVIEWED, ONE NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW; FOUNDER DECISIONS NOT YET RECORDED.`

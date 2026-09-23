@@ -233,3 +233,20 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 3 version), effective on PR #625's human merge, valid until 2026-10-07 23:59 IST or an earlier stop condition.
 **Stage Ledger row updated:** Stage 3 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+## H-14 — Claude Code: MC-14 narrow correction applied to Stage 3 Founder Brief; stopped for Mission Control re-review
+
+**Prepared:** 2026-09-23
+**From:** Claude Code (MC-02 appointed Definition Actor, Stage 3 preparation only)
+**To:** Mission Control
+**Status:** `STAGE 3 FOUNDER BRIEF PREPARED, MISSION CONTROL REVIEWED, ONE NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW; FOUNDER DECISIONS NOT YET RECORDED`
+**Mission Control review actioned:** MC-14, [PR #626 comment `5790977616`](https://github.com/SmartBusinessv1/smart-business/pull/626#issuecomment-5790977616), reviewed head `716334f21914f3898b23660607e28e094deddd7d`: `NARROW CORRECTION REQUIRED BEFORE FOUNDER BRIEF ACCEPTANCE / HUMAN MERGE` (MC-14A admissible-option consequences; MC-14B overstrong Stage 4 phrasing and arithmetic; MC-14C T4-triggered clarity and evidentiary-boundary wording). Acknowledgment and correction plan posted first, [comment `5791031399`](https://github.com/SmartBusinessv1/smart-business/pull/626#issuecomment-5791031399), before any edit.
+**Files created or modified:** the same six authorized Stage 3 preparation paths already tracked on this branch — no new file, no path outside the authorized set: `communication/live/report.md`; `communication/missions/SB-P-1.12/README.md`; `communication/missions/SB-P-1.12/decision-log.md`; `communication/missions/SB-P-1.12/handover-log.md`; `communication/missions/SB-P-1.12/founder/02-stage3-founder-decision-brief.md`; `communication/missions/SB-P-1.12/claude-code/09-stage3-gate-preparation-report.md`.
+**Commit SHA:** recorded on branch `mission/SB-P-1.12-stage3-founder-gate-prep`, same PR #626; exact revised head SHA and CI run IDs reported in chat.
+**Verification performed:** local Markdown Quality Gate re-run against all six changed files before commit; pre-commit hook re-ran the same gate on staged content; both required CI workflows re-checked green on the new head; secret/credential scan of the full diff re-run, none found; exact-path staging re-verified against `git diff --cached --name-status` before commit (no `git add .`).
+**Open issues carried forward:** all 15 `ESCALATED` rows and their two grouped Founder decision questions remain unanswered; T4's narrower open question (whether anything beyond the approved WS-B objective needs a Founder decision) remains genuinely unresolved — this cycle corrected only how the T4 boundary is described, not what the answer is; T6 (DC-1/2/3 materiality) and T8 remain open; the Stage 7 independent Security & Permissions Architecture specialist remains unnamed; live production state of the `anon` grant/RLS remains `UNVERIFIED`.
+**Next authorized action:** Mission Control re-reviews the corrected pull request; confirms the three findings are resolved; if satisfied, merges it and leads the Founder-led dialogue. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Founder Product Decision Record, `NOT TRIGGERED` Gate Record, Stage 4 Blueprint drafting of any kind, EIS, implementation, production mutation, migration execution, delivery synchronization, publication, or OLE promotion.
+**Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 3 version), unchanged and re-confirmed still active, valid until 2026-10-07 23:59 IST or an earlier stop condition.
+**Stage Ledger row updated:** Stage 3 — see `communication/missions/SB-P-1.12/README.md`.
+**Mission Control approval reference:** pending — this handover requests it.
