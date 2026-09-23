@@ -267,3 +267,19 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (Stage 3 version), unchanged and re-confirmed still active, valid until 2026-10-07 23:59 IST or an earlier stop condition.
 **Stage Ledger row updated:** Stage 3 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+
+## H-16 — Mission Control: Founder dialogue completed; MC-16 decision-record preparation handover pending canonical merge
+
+**Prepared:** 2026-09-23  
+**Mission:** SB-P-1.12  
+**From:** Mission Control  
+**To:** Claude Code, MC-02 appointed Definition Actor  
+**Status:** DRAFT — NO EFFECTIVE HANDOVER UNTIL FOUNDER/HUMAN MERGE OF MC-16 COMMUNICATION PR  
+**Completed basis:** Stage 3 Founder Brief PR #626 merged `2026-09-23T08:07:01Z`, canonical `main@488874b728524a98c8633f8d839fc745a2b29859`; Founder dialogue confirmed Notification, Location and no-new-product-requirement T4/T6/T8 treatment.  
+**Files prepared:** `communication/live/instruction.md`, `communication/live/report.md`, `README.md`, `decision-log.md`, this handover, `mission-control/05-stage3-decision-record-preparation-authorization.md` (MC-16), `mission-control/05-stage3-decision-brief-live-instruction-snapshot.md`, `claude-code/10-stage3-brief-live-report-snapshot.md`.  
+**Verification:** Mission Control to check actual PR paths, final reviewed head, CI and human merge before activation.  
+**Open issues:** all 15 rows remain canonically ESCALATED; Stage 3 decision record and FCTM reconciliation not merged; live production anonymous-grant/hardening state UNVERIFIED; independent Stage 7 Security & Permissions Architecture specialist unappointed.  
+**Next authorized action only after human merge:** Claude Code prepares one separate draft Stage 3 Founder Product Decision Record + surgical fifteen-row FCTM reconciliation + gate evidence PR under the exact live instruction, and stops for Mission Control review.  
+**Not authorized:** NOT TRIGGERED record; Stage 4 Blueprint/EIS; code/build; provider access; SQL/migration/production; deployment/delivery; OLE promotion; self-merge.  
+**Mission Control reference:** MC-16, effective only after human-merged communication PR.
