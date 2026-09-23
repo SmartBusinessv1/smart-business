@@ -4,15 +4,18 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 1 AND STAGE 2 CANONICAL; MC-13 STAGE 3 AUTHORIZATION HUMAN-MERGED (PR #625); STAGE 3 FOUNDER BRIEF DRAFT PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED (MC-14, MC-15) — AWAITING MISSION CONTROL RE-REVIEW  
+**Current status:** STAGE 1/2 CANONICAL; STAGE 3 BRIEF CANONICAL (#626); FOUNDER DIALOGUE COMPLETED; MC-16 DECISION-RECORD PREPARATION AUTHORIZATION PENDING HUMAN MERGE; 15 FCTM ROWS STILL ESCALATED  
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **Definition Actor:** Claude Code (MC-02), Stage 3 preparation only  
-**Founder decision:** Pending, not presumed by any draft  
+**Founder decision:** Confirmed in Founder dialogue on 2026-09-23; not yet canonically filed in a Founder Product Decision Record  
 
 Stage 1 [PR #622](https://github.com/SmartBusinessv1/smart-business/pull/622), Stage 2 authorization [PR #623](https://github.com/SmartBusinessv1/smart-business/pull/623), the Stage 2 Truth Pack ([PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), MC-12) and the Stage 3 authorization ([PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), MC-13) are all canonical. The Stage 2 FCTM contains **373 rows** with **15 `ESCALATED`** Contract 22 §12/§16 items; Stage 3 is `TRIGGERED`, not `NOT TRIGGERED`. Claude Code has prepared a DRAFT grouped Founder Brief (`founder/02-stage3-founder-decision-brief.md`) and gate-preparation report (`claude-code/09-stage3-gate-preparation-report.md`) for Mission Control review — **no Founder dialogue has been opened, no Founder Product Decision Record exists, and no Stage 4/implementation/migration/delivery authorization follows.** The shared Notification/Location owners are not approved by this documentation. The residual `anon` privilege finding is repository-file evidence; live production state is `UNVERIFIED`.
 
 The historical Stage 1 and Stage 2 opening and correction records below remain provenance; any descriptions of Stage 2 still being draft refer to their historical point in time, not current authority.
+
+
+> **Current MC-16 reconciliation (2026-09-23):** PR #626's prepared Founder Brief was human-merged at `main@488874b728524a98c8633f8d839fc745a2b29859`. Founder dialogue is complete: Notification Foundation to a distinct SB-P-1.15 workstream; Location primitive to a distinct SB-P-1.18 workstream; each consuming feature's owning mission accountable for five feature-specific disclosures, with existing surveillance rejection maintained. No additional T4/T6/T8 product requirement was requested; the T4 trigger and UNVERIFIED production security facts remain. MC-16 is a **separate, pending-human-merge authorization for documentary preparation only**; no Founder Decision Record, FCTM amendment or Stage 4 authority is canonical yet. Current live instruction and MC-16 control over superseded stage-status prose below.
 
 ## Current stage ownership
 
@@ -66,4 +69,4 @@ Stage 3 preparation authority became canonical upon PR #625's human merge (MC-13
 
 ## Next action
 
-Mission Control re-reviews the corrected draft pull request (Founder Brief + gate-preparation report) after the MC-14A/B/C and MC-15A/B corrections. If satisfied, Mission Control (or an authorized maintainer) merges it, then leads the Founder-led dialogue on the grouped decisions. Neither the draft brief nor this preparation resolves any Founder decision. Stage 4 Blueprint, implementation, production, migration, delivery and publication remain unauthorized regardless of how the escalated items resolve. Appoint the actual independent Security & Permissions Architecture specialist before Stage 7.
+Founder/human-merges the separate MC-16 communication authorization PR after Mission Control exact-head review. Only then Claude Code may prepare the draft Founder Product Decision Record and 15-row FCTM reconciliation in a separate PR. Historical next action was: Mission Control re-reviews the corrected draft pull request (Founder Brief + gate-preparation report) after the MC-14A/B/C and MC-15A/B corrections. If satisfied, Mission Control (or an authorized maintainer) merges it, then leads the Founder-led dialogue on the grouped decisions. Neither the draft brief nor this preparation resolves any Founder decision. Stage 4 Blueprint, implementation, production, migration, delivery and publication remain unauthorized regardless of how the escalated items resolve. Appoint the actual independent Security & Permissions Architecture specialist before Stage 7.
