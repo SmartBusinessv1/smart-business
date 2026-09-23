@@ -4,16 +4,19 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 1/2 CANONICAL; STAGE 3 BRIEF CANONICAL (#626); MC-16 PREPARATION AUTHORIZATION CANONICAL (#627); DRAFT FOUNDER PRODUCT DECISION RECORD AND 15-ROW FCTM RECONCILIATION PREPARED, MISSION CONTROL REVIEWED, ONE NARROW CORRECTION APPLIED (MC-17) — AWAITING MISSION CONTROL'S EXACT-HEAD GATE DECISION IN PR #628  
+**Current status:** STAGES 1–3 COMPLETE — CANONICAL; PR #628 FOUNDER DECISIONS AND RECONCILED FCTM CANONICAL; MC-19 STAGE 4 BLUEPRINT PREPARATION AUTHORIZATION PENDING HUMAN MERGE
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-16 preparation authorization canonical:** [PR #627](https://github.com/SmartBusinessv1/smart-business/pull/627), merged, `main@7e9f9e97734d435154d6c7627434121b08012af3` (MC-16)  
 **Definition Actor:** Claude Code (MC-02), Stage 3 documentary preparation only  
-**Founder decision:** Confirmed in Founder dialogue on 2026-09-23; transcribed in the DRAFT `founder/03-stage3-founder-product-decision-record.md`, not yet canonical  
+**Founder decision:** FPDR-1–FPDR-4 CANONICAL (PR #628, `main@d7110a98a8b843304c81e3803b637a6fc41906e9`); Stage 3 COMPLETE, historically TRIGGERED
 
 Stage 1 [PR #622](https://github.com/SmartBusinessv1/smart-business/pull/622), Stage 2 authorization [PR #623](https://github.com/SmartBusinessv1/smart-business/pull/623), the Stage 2 Truth Pack ([PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), MC-12), the Stage 3 authorization ([PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), MC-13), the Stage 3 Founder Brief ([PR #626](https://github.com/SmartBusinessv1/smart-business/pull/626), MC-14/MC-15) and the MC-16 decision-record preparation authorization ([PR #627](https://github.com/SmartBusinessv1/smart-business/pull/627)) are all canonical. The canonical Stage 2 FCTM (PR #624, MC-12) contains **373 rows** with **15 `ESCALATED`** Contract 22 §12/§16 items; Stage 3 is `TRIGGERED`, not `NOT TRIGGERED`. **Claude Code has now prepared a DRAFT Founder Product Decision Record (`founder/03-stage3-founder-product-decision-record.md`), a surgical 15-row FCTM reconciliation (`claude-code/03-stage2-populated-fctm.md` Correction note 7) and gate evidence (`claude-code/12-stage3-gate-evidence-and-row-reconciliation.md`) — none of this is canonical until Mission Control reviews and the Founder human-merges the pull request.** The residual `anon` privilege finding is repository-file evidence; live production state remains `UNVERIFIED`.
 
 The historical Stage 1 and Stage 2 opening and correction records below remain provenance; any descriptions of Stage 2 still being draft refer to their historical point in time, not current authority.
+
+
+> **Current MC-19 crossing note (2026-09-23; supersedes pre-merge current-status prose below):** PR #628 human-merged the Founder Product Decision Record, 15-row reconciliation and MC-18 Stage 3 gate record at `main@d7110a98a8b843304c81e3803b637a6fc41906e9`. Stage 3 is COMPLETE — CANONICAL, historically TRIGGERED by T7 and T4; the FCTM now has 373 rows: 228 IN SCOPE, 113 ASSIGNED TO LATER MISSION, 2 DELEGATED, 30 NOT APPLICABLE, 0 ESCALATED. `FPDR-1`–`FPDR-4` are effective. T4 production evidence remains UNVERIFIED; WS-B and Stage 7 independent security review remain open. MC-19 separately prepares **Stage 4 drafting authority only**, effective after its own human merge. The sections below recording “awaiting #628 merge” refer to their historical pre-merge status, not the present gate. No Stage 4 draft, EIS, implementation, migration or production permission follows from #628 alone.
 
 ## Current stage ownership
 
@@ -70,4 +73,4 @@ Stage 3 preparation authority for the Brief became canonical upon PR #625's huma
 
 ## Next action
 
-Mission Control re-reviews the MC-17-corrected pull request (Founder Product Decision Record, 15-row FCTM reconciliation, gate evidence and preparation report) and records its own exact-head Stage 3 gate decision within this same PR #628, per MC-17E. If satisfied, the Founder or an authorized maintainer human-merges it — Claude Code does not self-approve or self-merge. Neither the draft record nor this preparation itself closes the Stage 3 gate. Stage 4 Blueprint, implementation, production, migration, delivery and publication remain unauthorized regardless of how this review concludes. Appoint the actual independent Security & Permissions Architecture specialist before Stage 7.
+Founder/human review and merge of the separate MC-19 communication authorization PR **after exact-head Mission Control review and green CI**. Only after canonical merge may Claude Code draft `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` Sections 1–19 on the newly authorized branch and stop for Stage 5 review. Stage 4 Blueprint drafting, EIS, implementation and production action remain unauthorized until the corresponding gate is canonically effective.
