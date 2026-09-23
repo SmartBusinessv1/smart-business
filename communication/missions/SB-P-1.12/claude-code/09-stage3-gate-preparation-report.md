@@ -109,6 +109,27 @@ Mission Control reviewed PR #626 at head `716334f21914f3898b23660607e28e094deddd
 
 **Risks/limitations, this cycle:** the alternatives tables in Groups 1–2 are Claude Code's own structuring of the admissible-option consequences, offered for Mission Control's confirmation, not asserted as an exhaustive or final analysis — Mission Control or the Founder may identify additional consequences or admissible options during the actual dialogue. No option is recommended or implied preferred in any table. T4's narrower open question (whether something beyond WS-B remains) is still genuinely unresolved; this cycle only corrects how that boundary is described, not what the answer is.
 
-## 14. Completion status (current)
+## 14. Completion status (round 1 — superseded by round 2 in §16)
 
 **STAGE 3 FOUNDER BRIEF PREPARED, MISSION CONTROL REVIEWED, ONE NARROW CORRECTION APPLIED — AWAITING MISSION CONTROL RE-REVIEW; FOUNDER DECISIONS NOT YET RECORDED.**
+
+---
+
+## 15. Addendum — second correction cycle (2026-09-23, Mission Control re-review, MC-15)
+
+Mission Control re-reviewed PR #626 at head `a3fb395102f1d61ae63afdec50f11cd68cf4915e` and issued [comment `5791123693`](https://github.com/SmartBusinessv1/smart-business/pull/626#issuecomment-5791123693): `MC-14A/B/C CORRECTIONS SUBSTANTIVELY ACCEPTED; TWO NARROW OPTION-CONSEQUENCE ACCURACY FIXES REQUIRED BEFORE FOUNDER MERGE`, with two findings, both accepted:
+
+- **MC-15A ("separate workstream/mission" is not automatically "new mission ID"):** Group 1 option (c) and Group 2 Question 1's option (c) both described "a separate, not-yet-created workstream/mission" as if it always required a brand-new mission ID and full Stage 1 Intake Pack. A workstream assigned under an already-approved owning mission and a genuinely new, separately created Product Mission are distinct admissible structures with different authorization/lifecycle consequences; the draft did not distinguish them.
+- **MC-15B (shared disclosure template cannot replace each feature's own five disclosures):** Contract 22 §16 states "each feature must define" its five disclosure values. Group 2 Question 2's option (b) described a centrally authored template as producing "one Verification Checklist item at the foundation level, plus a compatibility check per later consuming feature" — wording that could be read as letting a template substitute for a consuming feature's own evidence, rather than sitting alongside it.
+
+**Work performed in this cycle:** posted an acknowledgment and correction plan as a PR comment before rewriting. In `founder/02-stage3-founder-decision-brief.md`: split option (c) into (c-i) "a separately assigned workstream under an already-approved owning mission" (lighter: amends that mission's existing scope via a Founder decision and a canonical mission-scope/FCTM record, no new mission ID) and (c-ii) "a genuinely new, separate Product Mission" (heavier: requires Founder authorization of a new mission ID and its own full Stage 1 Intake Pack), in both Group 1 and Group 2 Question 1, each as its own table row with a note that neither is preferred over the other or over options (a)/(b). Corrected Group 2 Question 2's option (b) to describe a centralized disclosure pattern/template as an *optional shared foundation mechanism* that does not reduce or excuse any consuming feature's own disclosure-defining work, with its Verification/acceptance consequence cell now stating the foundation-level check is "in addition to, not instead of" each consuming mission's own evidence that its specific feature defined and demonstrated all 5 values; added a closing statement that this obligation is the same under either option and is not a governance choice. No change made to Group 2 Question 2 option (a) (already per-feature by construction) or to Group 3/Group 4 (not implicated by these two findings).
+
+**Changes made, this cycle:** the same six authorized Stage 3 preparation paths — no new file, no path outside the authorized set. Only `founder/02-stage3-founder-decision-brief.md` and this report were touched; the accepted four-group Founder Brief structure, all 15 `ESCALATED` row IDs and citations, the MC-14 repairs, T4's `TRIGGERED` status and the file-vs-live security-evidence boundary are otherwise unchanged. No row disposition, FCTM content, canonical Stage 2 document, governance source, contract, Build Plan, application, SQL/migration or `communication/live/instruction.md` file touched; no live system probed or mutated.
+
+**Verification, this cycle:** local Markdown Quality Gate re-run against all six changed files before commit; pre-commit hook re-ran the same gate on the actual staged content; both required CI workflows re-checked green on the new head (exact run IDs in §16 below); secret/credential scan of the full diff re-run, none found; exact-path staging re-verified against `git diff --cached --name-status` before commit (no `git add .`).
+
+**Risks/limitations, this cycle:** the (c-i)/(c-ii) split and the option-(b) wording are Claude Code's own structuring, offered for Mission Control's confirmation; the underlying Founder questions (which structure, if any, and whether a template is wanted) remain exactly as unresolved as before — this cycle only corrects how the admissible options and their consequences are described.
+
+## 16. Completion status (current)
+
+**STAGE 3 FOUNDER BRIEF PREPARED, MISSION CONTROL REVIEWED TWICE, TWO NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW; FOUNDER DECISIONS NOT YET RECORDED.**
