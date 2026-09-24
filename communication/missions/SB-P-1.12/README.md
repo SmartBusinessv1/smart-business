@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–3 COMPLETE — CANONICAL; MC-19 STAGE 4 AUTHORIZATION CANONICAL (PR #629); DRAFT PRODUCT BLUEPRINT SECTIONS 1–19 PREPARED, STAGE 5 REVIEWED ONCE (MC-20), FIVE NARROW CORRECTIONS APPLIED — AWAITING MISSION CONTROL RE-REVIEW
+**Current status:** STAGES 1–5 COMPLETE — CANONICAL; #630 MC-21 SECTIONS 1–19 APPROVED; MC-22 STAGE 6 BUILDER REVIEW AUTHORIZATION PENDING HUMAN MERGE
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -80,4 +80,8 @@ Stage 3 Brief authority became canonical on #625, Brief on #626, Founder Decisio
 
 ## Next action
 
-Mission Control conducts Stage 5 Product Review of the draft pull request (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md` + drafting report): confirms FCTM completeness (Source 18 §3.2 item 6, Gate 10), the Institutional Learning Intake reconciliation, and the assembly-by-reference discipline; orders refinement or approves Sections 1–19. If satisfied, the Founder or an authorized maintainer human-merges it — Claude Code does not self-approve or self-merge. Stage 6 Builder Review, Stage 7 Engineering Review (pending the still-unappointed independent Security & Permissions Architecture specialist), EIS, implementation and production action all remain unauthorized until their own, separate gates.
+Founder/authorized human reviews and merges the separately prepared MC-22 communication authorization PR only after Mission Control final exact-head review and CI SUCCESS. After its canonical merge, Claude Code may prepare Stage 6 Builder Review findings only under `communication/live/instruction.md` and stops for Mission Control review. Stage 7, Sections 20–21, complete Blueprint approval/lock, EIS, implementation, migration, production and delivery are not authorized.
+
+## Current canonical crossing — MC-22 preparation note (2026-09-24)
+
+PR [#630](https://github.com/SmartBusinessv1/smart-business/pull/630) human merged at `2026-09-24T14:52:34Z`, final reviewed head `e41277726acf948679908ab1a872aa52f3a27dc7`, verified `main@cae6c064d1a88f766317373d4a16746bfafea0c6`. The [MC-21 Stage 5 gate record](mission-control/08-stage5-sections-1-19-gate-review.md) is canonical: Sections 1–19 APPROVED ONLY and Gate 10 complete. The historical current-status claims above about pending Stage 5 are preserved as history, not active status. [MC-22 Stage 6 authority](mission-control/09-stage6-builder-review-authorization.md) remains DRAFT until separately human-merged. [New live instruction](../../live/instruction.md) and [report](../../live/report.md) are prepared but not effective until that merge; the prior live pair is preserved byte-identically at [instruction snapshot](mission-control/10-stage4-live-instruction-snapshot.md) and [report snapshot](claude-code/15-stage4-live-report-snapshot.md). No Stage 6 report, Blueprint Section 20/21 or implementation is included in the MC-22 authorization PR.
