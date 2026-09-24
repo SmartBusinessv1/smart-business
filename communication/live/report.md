@@ -1,17 +1,22 @@
-# SB-P-1.12 — MC-22 Stage 5 Canonical Crossing / Stage 6 Authorization Handover
+# SB-P-1.12 — Stage 6 Builder Review Report Handover
 
-**From:** Smart Business Mission Control  
-**To:** Claude Code — Stage 6 Builder Review actor  
-**Status:** DRAFT — MC-22 AUTHORIZATION PENDING FOUNDER/AUTHORIZED HUMAN MERGE  
-**Stage 5 canonical:** PR #630 human-merged at `2026-09-24T14:52:34Z`; final MC-21-reviewed PR head `e41277726acf948679908ab1a872aa52f3a27dc7`; verified `main@cae6c064d1a88f766317373d4a16746bfafea0c6`.  
-**Previous live report:** preserved byte-identically at `communication/missions/SB-P-1.12/claude-code/15-stage4-live-report-snapshot.md`.  
-**Decision:** `communication/missions/SB-P-1.12/mission-control/09-stage6-builder-review-authorization.md` (MC-22).  
-**Operative instruction (after human merge only):** `communication/live/instruction.md`.
+**From:** Claude Code — Stage 6 Builder Review actor (Source 18 v1.2 §4.4)
+**To:** Smart Business Mission Control
+**Status:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-22, canonical via PR #631 (`main@5e64d84b4b6c58a4dedecc7f3b97da9a6c5ec5f0`).
+**Previous live report:** the MC-22 authorization handover is preserved in git history at `main@5e64d84b`.
+**Report:** `communication/missions/SB-P-1.12/claude-code/16-stage6-builder-review-report.md`
 
-Stage 5 Sections 1–19 content and FCTM Gate 10 are COMPLETE — CANONICAL. The Blueprint remains at `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` and is not a complete Sections 1–21 Blueprint or locked. MC-20A–E were corrected and MC-21 accepted the content; all 373 FCTM rows remain accountable (228 IN SCOPE, 113 ASSIGNED TO LATER MISSION, 2 DELEGATED, 30 NOT APPLICABLE).
+**This is a DRAFT review only.** It is a Builder finding set over the approved Blueprint Sections 1–19 and the current repository. It approves nothing, edits no approved Blueprint text, prepares no Sections 20–21 and is **not** the independent Security & Permissions Architecture specialist review (unappointed; MC-02 §4.2). Claude Code authored Sections 1–19.
 
-**Upon MC-22's separate human merge**, Claude Code may create the exact branch and one DRAFT PR specified in the live instruction, prepare **Stage 6 Builder Review findings only** and stop for Mission Control review. Until then Claude Code remains on hold.
+**Findings summary (recommendations only):**
 
-T4's residual-`anon` finding remains historically PRODUCT-AFFECTING; actual live grants/RLS/function/default-privilege and migration execution remain UNVERIFIED. An independent Security & Permissions Architecture actor who did not author Sections 1–19 must be named and independence-checked before Stage 7's technical risk findings are relied on.
+- Two Mission Control decisions requested: **F-02** (a person's business-membership cardinality; §3 "exactly one business" has no source; T1 candidate) and **F-03** (whether Reference Cost and margin are Owner-only in Scenario A; no source classifies them; possible T1).
+- **F-04** (import commit vs Scenario B) needs a decision on the merchant-visible outcome of a mid-batch revocation (possible T3).
+- Non-blocking refinements for Stage 7 input: F-01 (single Owner-only resolver, 105 references), F-05 (invited staff offered "create your business"), F-06 (DB isolation tests outside the per-PR gate, no role fixtures), F-07 (`returnTo`), F-08 (authority from the database, not token claims), F-09 (`/super-admin` stub).
+- F-10 (T4 residual `anon`) unchanged, production `UNVERIFIED`. F-11 positive: `catalog_link_preview_tokens` is a reusable binding precedent.
+- Explicit `NO FINDING` records: employee surveillance/tracking (none in `src`), Product & Price Master continuity beyond F-01/F-03, cross-mission dependencies.
 
-**No Stage 7/Sections 20–21, Blueprint lock, EIS, implementation, migration execution, production mutation or delivery/publication authorization.**
+No approved Product Truth, `FPDR-1`–`FPDR-4`, FCTM row (373; 228/113/2/30/0), or Founder Scenario A/B text was changed. T4 production remains `UNVERIFIED`.
+
+**Until Mission Control's review:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
