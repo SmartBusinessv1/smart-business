@@ -394,3 +394,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 **Mission Control approval reference:** pending — this handover requests review.
 
+
+## H-22 — Mission Control: Stage 6 canonical and MC-25 Founder decision reconciliation pending
+
+**Prepared:** 2026-09-25  
+**From / to:** Mission Control → Claude Code (documentary preparer under conditional MC-25 authority)  
+**Status:** DRAFT — NOT EFFECTIVE UNTIL FOUNDER/AUTHORIZED-HUMAN MERGE OF SEPARATE MC-25 AUTHORIZATION PR.  
+**Canonical predecessor:** PR #632 human-merged `2026-09-24T18:37:11Z`, MC-24 reviewed head `945ec8f330900f5902493eee9771406f90ceb83d`, verified `main@76ff1575e1ca3978f363d7a1daef307513376345`.  
+**Confirmed human-choice source:** [Founder #632 comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459): F-02 Option B, F-03 Option B, F-04(c) Option C; exact limitations in MC-24 and MC-25 records.  
+**MC-25 preparation files:** `mission-control/12-founder-decision-blueprint-reconciliation-authorization.md`; new `communication/live/instruction.md`, `communication/live/report.md`; mission README/decision/handover; previous live pair at `mission-control/13-stage6-live-instruction-snapshot.md` and `claude-code/17-stage6-live-report-snapshot.md`.  
+**After human merge only:** Claude Code prepares DRAFT `founder/04-stage6-builder-founder-decision-record.md` and minimal approved Blueprint §3/affected sentence reconciliation in one new draft PR using exact locked Git authority; returns evidence/CI and stops for MC review.  
+**Open:** actual T4 production state UNVERIFIED; F-06 branch-protection decision separate; independent Stage 7 Security & Permissions Architecture actual actor unappointed.  
+**Prohibited:** canonical Blueprint modification in MC-25 authorization PR; FCTM/FPDR-1–4 edit; Stage 7/Sections 20–21, lock, EIS, app, migrations, production, delivery/publication and AI self-merge.
