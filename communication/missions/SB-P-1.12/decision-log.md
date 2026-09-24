@@ -142,3 +142,9 @@ Acknowledgment and plan were posted first ([comment `5815572923`](https://github
 
 **Evidence:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (v0.2); `claude-code/14-stage4-blueprint-drafting-report.md` §13.
 
+
+## MC-22 — Stage 5 canonical reconciliation and separate Stage 6 Builder Review authority (DRAFT)
+
+**Prepared:** 2026-09-24. **Effective only upon Founder/authorized-human merge of separate MC-22 communication PR.** PR #630 human-merged at `2026-09-24T14:52:34Z`; MC-21 reviewed final head `e41277726acf948679908ab1a872aa52f3a27dc7` and approved the Blueprint Sections 1–19 and FCTM Gate 10; verified canonical `main@cae6c064d1a88f766317373d4a16746bfafea0c6`. Stage 5 COMPLETE — CANONICAL, but not full Blueprint approval or lock.
+
+**Decision:** after *this* MC-22 PR human merge only, Claude Code (Source 18 §4.4 default actor) may prepare Stage 6 Builder Review findings of the approved Sections 1–19 and current repository, through one separate DRAFT review PR; no Blueprint modification, Sections 20–21, Stage 7, EIS, code, migration, production or self-merge. Refer to `mission-control/09-stage6-builder-review-authorization.md` and the current `communication/live/instruction.md` for exact scope, branch, writable paths, expiry, stop/escalation and evidence requirements. T4 production remains UNVERIFIED; actual independent Stage 7 Security & Permissions Architecture actor remains unappointed.

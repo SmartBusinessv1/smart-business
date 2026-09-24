@@ -366,3 +366,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Stage Ledger row updated:** Stage 4 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
 
+
+## H-21 — Mission Control to Claude Code: Stage 5 canonical; Stage 6 authority pending MC-22 human merge
+
+**Prepared:** 2026-09-24  
+**Status:** DRAFT — effective only upon Founder/authorized-human merge of MC-22 communication PR.  
+**Sender / recipient:** Mission Control → Claude Code, Source 18 §4.4 Stage 6 Builder Review actor.  
+**Prior completed stage:** Stage 5 Sections 1–19 and Gate 10, MC-21 [PR #630](https://github.com/SmartBusinessv1/smart-business/pull/630), exact accepted head `e41277726acf948679908ab1a872aa52f3a27dc7`, human merge `2026-09-24T14:52:34Z`, `main@cae6c064d1a88f766317373d4a16746bfafea0c6`.  
+**Prepared files:** `mission-control/09-stage6-builder-review-authorization.md`; `communication/live/instruction.md` and `communication/live/report.md`; mission README, decision-log and handover-log; byte-identical prior live instruction and report snapshots `mission-control/10-stage4-live-instruction-snapshot.md` and `claude-code/15-stage4-live-report-snapshot.md`. No Stage 6 review findings or Blueprint changes.  
+**Next action after MC-22 merge and fresh verification only:** Claude Code on locked branch `mission/SB-P-1.12-stage6-builder-review` prepares one DRAFT Stage 6 Builder Review report and stops for Mission Control review.  
+**Open:** production T4 grant/RLS/function/default-privilege/migration state UNVERIFIED; WS-B objective; Stage 7 independent Security & Permissions Architecture actual actor unappointed; full Blueprint remains unlocked.  
+**Prohibited:** Stage 7, Sections 20–21, EIS, code, migration execution, production mutation, delivery/publication or self-merge.  
+**Authority:** MC-22, Source 18 v1.2 §3.3 and §6 Stages 5–7; final MC-22 exact-head CI/comment and human merge must precede actor activation.
