@@ -378,3 +378,19 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Open:** production T4 grant/RLS/function/default-privilege/migration state UNVERIFIED; WS-B objective; Stage 7 independent Security & Permissions Architecture actual actor unappointed; full Blueprint remains unlocked.  
 **Prohibited:** Stage 7, Sections 20–21, EIS, code, migration execution, production mutation, delivery/publication or self-merge.  
 **Authority:** MC-22, Source 18 v1.2 §3.3 and §6 Stages 5–7; final MC-22 exact-head CI/comment and human merge must precede actor activation.
+
+## H-22 — Claude Code to Mission Control: Stage 6 Builder Review draft submitted
+
+**Prepared:** 2026-09-24
+**From:** Claude Code (Source 18 §4.4 Stage 6 Builder Review actor)
+**To:** Mission Control
+**Status:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-22, H-21, canonical via PR #631.
+**Files created or modified:** `communication/missions/SB-P-1.12/claude-code/16-stage6-builder-review-report.md` (new), `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`. Approved Blueprint Sections 1–19, the FCTM and the Founder Product Decision Record were not touched.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Verification performed:** repository inspection (read-only); FCTM row IDs and Blueprint section numbers checked against the canonical files; local Markdown Quality Gate; exact-head CI; secret scan.
+**Open issues carried forward:** Mission Control decisions on F-02, F-03 and F-04(c); production T4 state `UNVERIFIED`; independent Security & Permissions Architecture specialist unappointed; DC-1 membership model; required-check question (F-06).
+**Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+**Mission Control approval reference:** pending — this handover requests review.
+
