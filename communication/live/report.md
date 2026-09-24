@@ -1,22 +1,15 @@
-# SB-P-1.12 — Stage 6 Builder Review Report Handover
+# SB-P-1.12 — MC-25 Founder Decision / Blueprint Reconciliation Authorization Handover
 
-**From:** Claude Code — Stage 6 Builder Review actor (Source 18 v1.2 §4.4)
-**To:** Smart Business Mission Control
-**Status:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
-**Authority:** MC-22, canonical via PR #631 (`main@5e64d84b4b6c58a4dedecc7f3b97da9a6c5ec5f0`).
-**Previous live report:** the MC-22 authorization handover is preserved in git history at `main@5e64d84b`.
-**Report:** `communication/missions/SB-P-1.12/claude-code/16-stage6-builder-review-report.md`
+**From:** Smart Business Mission Control  
+**To:** Claude Code — conditional Founder Decision Record/Blueprint reconciliation preparer  
+**Status:** DRAFT — MC-25 AUTHORITY PENDING FOUNDER/AUTHORIZED-HUMAN MERGE  
+**Stage 6 canonical:** PR #632, MC-24, human merge `2026-09-24T18:37:11Z`, exact reviewed head `945ec8f330900f5902493eee9771406f90ceb83d`, verified `main@76ff1575e1ca3978f363d7a1daef307513376345`.  
+**Founder choice source:** [#632 comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459); F-02 Option B multiple separately permissioned memberships and active-business context; F-03 Option B cost/margin independent Manager delegation with default denial; F-04(c) Option C retain completed rows, stop unauthorized remainder, count completed/remaining and guide duplicate-safe completion.  
+**Prior live report:** preserved byte-identically at `communication/missions/SB-P-1.12/claude-code/17-stage6-live-report-snapshot.md`.  
+**Companion authorization:** `communication/missions/SB-P-1.12/mission-control/12-founder-decision-blueprint-reconciliation-authorization.md`.
 
-**This is a DRAFT review only.** It is a Builder finding set over the approved Blueprint Sections 1–19 and the current repository. It approves nothing, edits no approved Blueprint text, prepares no Sections 20–21 and is **not** the independent Security & Permissions Architecture specialist review (unappointed; MC-02 §4.2). Claude Code authored Sections 1–19.
+Only after this separate MC-25 PR is human merged may Claude Code prepare a DRAFT durable Founder Decision Record and minimum approved Sections 1–19 Blueprint reconciliation on the exact branch/paths in `communication/live/instruction.md`, for separate MC review and subsequent human merge. Stage 6 accepted findings are canonical, but the three Founder answers are not yet incorporated into a canonical Founder Record/reconciled Blueprint.
 
-**Findings summary (recommendations only):**
+The current FCTM remains unchanged: 373 rows (228 IN SCOPE, 113 ASSIGNED LATER, 2 DELEGATED, 30 NOT APPLICABLE). Founder Scenarios A/B stay verbatim. T4 live production state remains UNVERIFIED; WS-B objective and independent Stage 7 security actor remain open. F-06 required-check decision and separately authorized T4 production-read verification are not decided by MC-25.
 
-- Two Mission Control decisions requested: **F-02** (a person's business-membership cardinality; §3 "exactly one business" has no source; T1 candidate) and **F-03** (whether Reference Cost and margin are Owner-only in Scenario A; no source classifies them; possible T1).
-- **F-04** (import commit vs Scenario B) needs a decision on the merchant-visible outcome of a mid-batch revocation (possible T3).
-- Non-blocking refinements for Stage 7 input: F-01 (single Owner-only resolver, 105 references), F-05 (invited staff offered "create your business"), F-06 (DB isolation tests outside the per-PR gate, no role fixtures), F-07 (`returnTo`), F-08 (authority from the database, not token claims), F-09 (`/super-admin` stub).
-- F-10 (T4 residual `anon`) unchanged, production `UNVERIFIED`. F-11 positive: `catalog_link_preview_tokens` is a reusable binding precedent.
-- Explicit `NO FINDING` records: employee surveillance/tracking (none in `src`), Product & Price Master continuity beyond F-01/F-03, cross-mission dependencies.
-
-No approved Product Truth, `FPDR-1`–`FPDR-4`, FCTM row (373; 228/113/2/30/0), or Founder Scenario A/B text was changed. T4 production remains `UNVERIFIED`.
-
-**Until Mission Control's review:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**No Stage 7/Sections 20–21, Blueprint lock, EIS, implementation, SQL/migrations, privileged production access or delivery/publication authorization.**
