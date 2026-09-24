@@ -394,3 +394,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 **Mission Control approval reference:** pending — this handover requests review.
 
+
+## H-22 — MC-25 post-Stage-6 Founder Decision Record/Blueprint reconciliation handover (DRAFT)
+
+**Prepared:** 2026-09-25  
+**Status:** DRAFT — not effective before Founder/authorized-human merge of MC-25 communication PR.  
+**Sender → recipient:** Mission Control → Claude Code (documentary preparation only).  
+**Canonical prior stage:** PR #632 merged at `main@76ff1575e1ca3978f363d7a1daef307513376345`; final reviewed head `945ec8f330900f5902493eee9771406f90ceb83d`; Stage 6 Builder Review findings accepted by MC-24, dependent design held.  
+**Founder input:** [comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459) F-02/B, F-03/B, F-04(c)/C already confirmed — do not re-ask or infer new policy.  
+**Authority prepared:** `mission-control/12-founder-decision-and-blueprint-reconciliation-authorization.md`, the next live instruction/report, current mission records, byte-identical preceding live snapshots `mission-control/13-stage6-builder-review-live-instruction-snapshot.md` and `claude-code/17-stage6-builder-review-live-report-snapshot.md`. No Founder Decision Record or Blueprint edits in this authorization PR.  
+**Next after actual MC-25 human merge:** Claude Code opens one DRAFT PR for the separately numbered Founder Decision Record, narrowly revised Sections 1–19 and reconciliation evidence; Mission Control independently reviews/records gate before authorized human merge.  
+**Open:** F-06 required-check governance; Stage 7 independent Security & Permissions Architecture actor unappointed; read-only T4 production verification separately gated and live state UNVERIFIED.  
+**Not authorized:** Stage 7, Section 20/21, Blueprint lock, EIS, code, migration, production or self-merge.
