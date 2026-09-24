@@ -406,3 +406,19 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **After human merge only:** Claude Code prepares DRAFT `founder/04-stage6-builder-founder-decision-record.md` and minimal approved Blueprint §3/affected sentence reconciliation in one new draft PR using exact locked Git authority; returns evidence/CI and stops for MC review.  
 **Open:** actual T4 production state UNVERIFIED; F-06 branch-protection decision separate; independent Stage 7 Security & Permissions Architecture actual actor unappointed.  
 **Prohibited:** canonical Blueprint modification in MC-25 authorization PR; FCTM/FPDR-1–4 edit; Stage 7/Sections 20–21, lock, EIS, app, migrations, production, delivery/publication and AI self-merge.
+
+## H-23 — Claude Code to Mission Control: Founder Record and narrow Blueprint reconciliation draft submitted
+
+**Prepared:** 2026-09-25
+**From:** Claude Code (documentary preparation only)
+**To:** Mission Control
+**Status:** `F-02/F-03/F-04(c) FOUNDER RECORD AND NARROW BLUEPRINT RECONCILIATION DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-25, canonical via PR #634 (`main@3a67c803f27d3790a4a772bf7c563b70b32cca2f`).
+**Files created or modified:** `communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md` (new), `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (v0.3), `communication/missions/SB-P-1.12/claude-code/18-founder-decision-blueprint-reconciliation-report.md` (new), `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`. The FCTM, `FPDR-1`–`FPDR-4` record, contracts, Build Plan, MC records, application code and SQL were not touched.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Verification performed:** quote-substring check against the Founder comment; Scenario A/B byte comparison; Section 19 owner-aware check (373/373, dispositions, owners and locations unchanged); FCTM Disposition-field counts (228/113/2/30/0); read-only file checks; institutional-learning intake recheck; local Markdown Quality Gate; exact-head CI; secret scan.
+**Open issues carried forward:** the F-03 derived-value question; production T4 state `UNVERIFIED`; independent Security & Permissions Architecture specialist unappointed; F-06 required-check decision; Blueprint Metadata fields not refreshed.
+**Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+**Mission Control approval reference:** pending — this handover requests review.
+
