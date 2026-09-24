@@ -1,58 +1,49 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.12 Stage 4 Product Blueprint Sections 1–19: Draft Preparation
+# Instruction — SB-P-1.12 Stage 6 Builder Review: Draft Preparation
 
 **Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**From:** Smart Business Mission Control (MC-19)  
-**To:** Claude Code — MC-02 appointed Stage 2–4 Definition Actor  
-**Status:** DRAFT — NOT EFFECTIVE UNTIL FOUNDER/HUMAN MERGE OF THE SEPARATE MC-19 COMMUNICATION PR  
-**Canonical Stage 3 merge:** [PR #628](https://github.com/SmartBusinessv1/smart-business/pull/628), `2026-09-23T12:49:51Z`, `main@d7110a98a8b843304c81e3803b637a6fc41906e9`; exact MC-18 reviewed head `38282236032c831760838f1270e919af4e4bd567`  
-**Companion authorization:** `communication/missions/SB-P-1.12/mission-control/07-stage4-blueprint-preparation-authorization.md` (MC-19)  
-**Governing:** Source 18 v1.2 §§3.1–3.3, 4.3, 5, 6 Stages 3–5, 10–12; AI Communication and Handover Protocol v1.1.
+**From:** Smart Business Mission Control (MC-22)  
+**To:** Claude Code — Source 18 §4.4 Builder Review actor; previously MC-02 Stage 2–4 Definition Actor  
+**Status:** DRAFT — EFFECTIVE ONLY AFTER FOUNDER/AUTHORIZED HUMAN MERGE OF THIS SEPARATE MC-22 COMMUNICATION PR  
+**Canonical Stage 5:** PR #630 human merged at `2026-09-24T14:52:34Z`, `main@cae6c064d1a88f766317373d4a16746bfafea0c6`; MC-21 final reviewed head `e41277726acf948679908ab1a872aa52f3a27dc7`.  
+**Companion authority:** `communication/missions/SB-P-1.12/mission-control/09-stage6-builder-review-authorization.md`.  
+**Governing:** Source 18 v1.2 §§3.2–3.3, 4.3–4.4, §6 Stages 5–7, §10; AI Communication and Handover Protocol v1.1.
 
-## Authorized stage — only after MC-19 human merge
+## Activation prerequisite
 
-Prepare a **DRAFT** Product Blueprint with Metadata, Mission Snapshot and canonical Sections **1–19** at:
+Do not act under this instruction before the separate MC-22 PR is human merged. On activation, independently fetch fresh `origin/main`, verify the MC-22 PR's exact merge SHA, verify PR #630 merged before it, check clean worktree, branch absence/non-conflict, source/Blueprint drift, and review current `AGENTS.md`, `CLAUDE.md`, canonical source index, Sources 00/01/11/12/17/18 v1.2, mission README/decision/handover, canonical Blueprint Sections 1–19, FCTM, Founder Decisions FPDR-1–4, MC-20/21, Delta/T4/DC-1–3, approved Build Plan §10.1, relevant mature contracts/delegates, Phase 1 guide and validated OLE promotions, communication/independent-review protocols, and actual repository state. Do not rely on chat as authority. Report actual baseline and stop for material drift.
 
-`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`
+## One authorized deliverable
 
-Claude Code **does not approve** Sections 1–19. Mission Control owns Stage 5 Product Review and must verify FCTM completeness and Institutional Learning Intake before any further gate. Do not draft Sections 20/21, Builder Review, EIS, implementation package or code. No Blueprint lock or move to `completed/`. Do not create the Blueprint on this authorization PR; it belongs to the next, separately authorized draft PR.
+Conduct **Stage 6 Builder Review only** of Mission Control-approved Blueprint Sections 1–19 and actual current repository; prepare a review/findings report at:
 
-## Fresh mandatory intake
+`communication/missions/SB-P-1.12/claude-code/16-stage6-builder-review-report.md`
 
-Before work, verify `SmartBusinessv1/smart-business`, the MC-19 PR's actual human merge SHA on fresh `origin/main`, clean local worktree, exact branch absence/non-conflict, unchanged source blob identities and actual current repository structure. Read `AGENTS.md`, `CLAUDE.md`, `merge/active/README.md`, Sources 00/01/11/12/17/18 v1.2, `communication/AI_Communication_and_Handover_Protocol.md`, Independent Verification Efficiency Protocol, mission README/decision/handover, MC-02/12/13/16/18/19, **canonical #628 Founder Product Decision Record `FPDR-1`–`FPDR-4`**, corrected 373-row FCTM, complete Stage 2 Mission Truth Pack, Delta, source-first obligation inventory, institutional-learning intake, Stage 3 gate evidence, applicable mature Contracts 21/22/20/17/7 and actual delegates, Founder-approved Build Plan §§4–12/15, GPCV, Phase 1 institutional-memory guide, applicable OLE promotions, and `docs/migration/README.md`. Respect source priority and distinguish historic Stage 2/3 DRAFT snapshots from effective human-merged decisions. Recheck changed external repository/runtime facts read-only; do not assert live verification from migration files.
+Review merchant/product experience, feasible build flow, permission/revocation and denial experience, existing product/price surface preservation, dependency boundaries, business isolation, privacy and human decision ownership, and practical implementation risks. For each finding cite precise Blueprint section, FCTM row ID(s), source/FPDR reference, repository evidence where relevant, proposed refinement (not approved truth), impact and blocker disposition. Record explicit `NO FINDING` where a reviewed domain raises none; give a concrete handover for Mission Control review. Review rather than silently modify approved Sections 1–19. Do not append Section 20 or 21, create an EIS, or perform Stage 7's per-row Engineering Review/early delivery plan.
 
-Check canonical Blueprint Sections 1–19 **by name and order** against the approved template/source and existing completed Blueprint convention, retaining §19 Governance History while placing the required **FCTM row-ID to Blueprint section/source table within Section 19**. Do not rename or omit a mandatory section merely to fit a new mapping table.
+Keep all 373 rows and their existing dispositions (228 IN SCOPE, 113 ASSIGNED TO LATER MISSION, 2 DELEGATED, 30 NOT APPLICABLE), verbatim Founder Scenarios A/B, FPDR-1–4 notification/location accountability, the surveillance rejection and staff/owner intelligence restrictions. `ASSIGNED TO LATER MISSION` remains BUILD NOW with other owners. Honor T4's PRODUCT-AFFECTING residual-`anon` repository risk and WS-B objective; production grants/RLS/function/default privileges/migration execution remain UNVERIFIED. Do not certify runtime safety. DC-1/2/3 are technical implications, not new Founder Product Truth. The independent Stage 7 Security & Permissions Architecture actor is not appointed: do not self-appoint or represent this Builder Review as the required independent specialist review.
 
-## Drafting contract
+If actual conflict, unsafe or infeasible Product Truth, proposed new behavior/scenario, omission, deferral, simplification, commercial or owning-mission reclassification occurs, document the exact affected rows/evidence, stop dependent work, and return to Mission Control for Founder gate determination (T2/T3/T6/T7/T8). Findings are recommendations, not authorization to change approved Blueprint text or code.
 
-1. **Assembly by reference:** approved truth is cited rather than re-authored. New prose is limited to SB-P-1.12 scope selection, Delta, dependencies and acceptance criteria. No orphan product behaviour, added scenario, broad RBAC redesign, silently invented product surface, feature deferral, new mission assignment or reinterpretation of Founder decisions.
-2. **All 373 FCTM obligations accounted for:** 228 `IN SCOPE`; 113 `ASSIGNED TO LATER MISSION` (`BUILD NOW`, not `BUILD LATER`); 2 `DELEGATED`; 30 `NOT APPLICABLE`; zero `ESCALATED`. Preserve 371 source-obligation pointers and two disclosed Contract 17 representation splits; cite source §/blob baseline, row ID and Founder Decision ID where changed. `IN SCOPE` rows each need a traceable mission obligation and acceptance plan. Section 19 has a keyed row-to-section/source accounting including legitimate non-in-scope dispositions; distinguish genuinely not-applicable rows instead of turning them into false build obligations.
-3. **Section 11:** account explicitly for every `ASSIGNED TO LATER MISSION`, `DELEGATED`, `OUT OF BUILD SCOPE` row as still committed/not in this mission with receiving mission/delegate and preserved approved classification. A grouped presentation is allowed only with individually enumerated row IDs and zero silent omissions; preserve `NOT APPLICABLE` reasons in traceability.
-4. **Section 15:** seed exactly the applicable Founder runtime scenarios and merchant experience anchors in Build Plan §10.1 (and approved delegates) by reference, not generic test cases promoted to new Founder scenarios. Proposed new scenario or behavioural change raises T3/T7 and stops dependent drafting.
-5. **Foundation boundaries:** FPDR-1: nine notification rows belong to SB-P-1.15 distinct cross-channel foundation, SB-P-1.20 thin WhatsApp adapter must reuse it; language integration with SB-P-1.13 remains to be designed/verified, not shown as done. FPDR-2: shared Location primitive belongs to SB-P-1.18; SB-P-1.12 retains its already-approved identity/permission/isolation rules. FPDR-3: §16 five disclosures are SB-P-1.18's responsibility for **attendance/delivery only**, but every future location-consuming feature's own mission independently defines/verifies all five; a shared template cannot substitute. `22-§16-2` surveillance rejection and `22-§29-9` remain as canonically disposed. Do not give SB-P-1.12 foundation construction or promise new specific retention periods.
-6. **Security:** T4 remains historically `TRIGGERED` by `PRODUCT-AFFECTING` residual-`anon` migration-file Delta. Capture approved WS-B remediation, permission/denial and tenant-isolation negative paths, data-integrity and RLS/function/default-privilege risk, conditional file-vs-live evidence. Production migration/grant/RLS state `UNVERIFIED`; no safe/remediated assertion. Carry DC-1 membership-model implication, DC-2 potential policy exposure and DC-3 partial cross-mission verification as engineering/acceptance constraints **without turning them into new Product Truth**. Concrete new infeasibility, change to approved behaviour or unsafe requirement raises T7/T8 to Mission Control/Founder; do not silently narrow.
-7. **Learning and separation:** dual Phase 1 guide + validated OLE intake; `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force` unless newly canonically changed; actual independent Security & Permissions Architecture specialist **unappointed** and must be appointed/independence-checked before Stage 7. No self-appointment; Stage 19 verifier not yet activated.
-8. **All delivery flags remain `NOT AUTHORIZED`:** production mutation, migration execution, delivery sync/publication. No privileged Supabase/provider reads, SQL/migration execution, deployments, publication, EIS, app edits or implementation.
+## Exact mission-scoped Git authority — effective only after human merge
 
-## Explicit mission-scoped Git authorization (operative only after human merge)
+Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** to operate on repository **`SmartBusinessv1/smart-business`**, using locked branch **`mission/SB-P-1.12-stage6-builder-review`**, limited to exactly the authorized paths below, using **mission-scoped descriptive `docs(SB-P-1.12):` commit messages**, with standard **`Co-Authored-By` attribution trailer permitted**, and to fetch, pull **fast-forward only**, stage **exact authorized files**, commit, push only that branch, and open/update **one DRAFT PR** to main. The authority expires **2026-10-08 23:59 IST**, or earlier on report submission, revocation, source/branch conflict, scope change, failed validation or other protocol stop condition. Branch protection or authorized compensating control remains mandatory.
 
-Founder/Mission Control authorizes **Claude Code**, for mission **SB-P-1.12**, to operate on **`SmartBusinessv1/smart-business`**, using locked branch **`mission/SB-P-1.12-stage4-blueprint-draft`**, limited to the exact writable paths below, using **mission-scoped descriptive `docs(SB-P-1.12):` commit messages** with the standard **`Co-Authored-By` attribution trailer permitted**, and to fetch, pull **fast-forward only**, stage **exact authorized files**, commit, push **only** that mission branch and open/update **one draft PR** to `main`, subject to the protocol, required branch-protection/compensating-control gate and CI. Authority ends **2026-10-07 23:59 IST** or sooner on stage submission/merge, revocation, material source drift, conflicting branch, scope changes, failing checks or any stop condition.
+Writable paths ONLY:
 
-Writable paths only:
-- `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (NEW, DRAFT)
 - `communication/live/report.md`
 - `communication/missions/SB-P-1.12/README.md`
 - `communication/missions/SB-P-1.12/decision-log.md`
 - `communication/missions/SB-P-1.12/handover-log.md`
-- `communication/missions/SB-P-1.12/claude-code/14-stage4-blueprint-drafting-report.md` (NEW, DRAFT)
+- `communication/missions/SB-P-1.12/claude-code/16-stage6-builder-review-report.md` (new DRAFT)
 
-`communication/live/instruction.md`, MC-authored decisions, original FCTM, Founder Product Decision Record, previous snapshots, the Delta/inventory, Contracts, Build Plan, governance, GPCV, OLE, migration/indexes, app/SQL/configuration and unrelated paths are **READ ONLY**. Stop and request new authorization if a genuine new FCTM correction, Founder decision, contract change or additional writable path is necessary. No `git add .`, force push, self-review/approval/merge or direct main write.
+**Read-only:** approved `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` Sections 1–19; FCTM; Founder Decision Record; `communication/live/instruction.md`; all MC-authored authority; previous reports and snapshots; contracts, Build Plan, governance, OLE, migrations, SQL, app/config and unrelated paths. No `git add .`, direct push to main, force push, self-approval or self-merge. A needed Blueprint refinement or new writable path requires Mission Control to authorize it separately; do not use this branch to edit product truth.
 
 ## Submit and stop
 
-Return one draft PR with complete Sections 1–19, source/row/section traceability, Section 11 full later-mission disposition coverage, Section 15 Founder-approved experience anchors, Section 19 row table, prior learning intake reconciliation, actual security/runtime unknowns, T7/T8 screen, exact final SHA, exact changed files and exact-head CI. Update current mission records as **DRAFT Stage 4 preparation**, not Stage 5 approval. If the new Blueprint file is too large, work in commits on the **same PR**, not an extra PR or a broadened branch.
+Produce the Stage 6 review report on one draft PR, update the current report/mission pointers to reflect **DRAFT Builder Review awaiting Mission Control**, give exact head, files, CI, issue-by-issue findings, evidence and escalation screen. Stop for Mission Control decision in a later gate. There is **no automatic Stage 7 activation or Blueprint edit**.
 
-**Required closing line:** `STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Required closing:** `STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
 
-Until this authorization PR is human-merged: `STAGE 3 CANONICAL — STAGE 4 PREPARATION AUTHORIZATION PENDING HUMAN MERGE.`
+**Until this MC-22 authorization PR is human merged:** `STAGE 5 COMPLETE — CANONICAL; STAGE 6 PREPARATION AUTHORIZATION PENDING HUMAN MERGE.`
