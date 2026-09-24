@@ -94,6 +94,30 @@ Mission Control conducts Stage 5 Product Review: confirms FCTM completeness (Gat
 
 Mission Control reviews this pull request. If refinement is required, Claude Code corrects on this same branch/PR, consistent with every prior stage's narrow-correction pattern. If Sections 1–19 are approved, Stage 6 Builder Review (Claude Code) and Stage 7 Engineering Review (Claude Code, with the still-unappointed independent Security & Permissions Architecture specialist) follow as separate, later authorizations — not implied or requested here.
 
-## 12. Completion status
+## 12. Completion status (round 1 — superseded by round 2 in §14)
 
 **STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+
+---
+
+## 13. Addendum — first correction cycle (2026-09-24, Mission Control Stage 5 review, MC-20)
+
+Mission Control reviewed PR #630 at head `8096a24674cec0cba48dffc26393d23590296d7b` ([comment `5795973460`](https://github.com/SmartBusinessv1/smart-business/pull/630#issuecomment-5795973460)): structure and Founder Runtime Verification Scenarios A/B substantively accepted; Stage 5/Gate 10 held for five narrow corrections, all accepted. Acknowledgment and plan were posted first ([comment `5815572923`](https://github.com/SmartBusinessv1/smart-business/pull/630#issuecomment-5815572923)).
+
+**Root-cause disclosure for MC-20A.** §5 above reported a disposition-accuracy check but did not compare the *Assigned mission* column. Round 1's Section 19 had grouped `20-§5`–`20-§14` as `SB-P-1.19` with a parenthetical admitting `20-§14` is `SB-P-1.13`'s primary build; the disposition-only check could not see that. §5's "disposition-accuracy" claim was true as far as it went but was not an owner-accuracy check, and I should not have let it read as one.
+
+| Finding | Correction applied | Evidence |
+|---|---|---|
+| **MC-20A** — `20-§14` receiving mission | Section 19 Contract 20 group split; `20-§14` = `SB-P-1.13 (primary build)`, `20-§13` = `SB-P-1.19/SB-P-1.13`, `20-§15` = `SB-P-1.13 (Workspace build)/SB-P-1.20 (WhatsApp adapter build)`; every range now has one uniform assigned-mission value | Script compares every row's assigned mission to the FCTM `Assigned mission` column: 373/373 exact match, 0 exceptions besides the corrected `20-§14`. Section 11's 113 `ASSIGNED` rows also matched the FCTM owners exactly with no extra mission (the 2 `DELEGATED` rows sit under a delegate-contract heading and match `22-§25`→`SB-P-1.13`, `22-§26`→`SB-P-1.20`) |
+| **MC-20B** — Section 12 Human Language | `SB-P-1.13` bullet now says foundation owner/provider of Human Language (`22-§8`, `20-§14`), not owner of notification-specific integration; `SB-P-1.15` bullet says it is the notification-specific consumer/integrator responsible for future design and verification of reuse (`22-§12-2`); integration stated as neither implemented nor verified | Blueprint Section 12 |
+| **MC-20C** — Mission Snapshot | Replaced "only authorization check ... is session authentication" with the precise absence of the approved shared role/membership/delegation/permission model, acknowledging partial owner-scoped RLS and auth patterns; same categorical claim also corrected in Section 4; production state stated as not verified | Blueprint Metadata/Snapshot and Section 4 |
+| **MC-20D** — checkable source field | All Section 19 tables now carry five fields: row ID(s), disposition, assigned mission exactly as in the FCTM, source reference (contract/Build Plan numbered section), Blueprint location; source baseline blob SHAs stated and re-verified unchanged; `NOT APPLICABLE` rows give the specific reason and are also listed in Section 11 | Script: 373 rows covered exactly once, 0 missing, 0 duplicate, 0 disposition errors, 0 owner errors, 0 empty source/location cells |
+| **MC-20E** — Section 15 scope of proof | Added a "Scope of proof owed by this mission (DC-3)" block; qualified the delegated-automation, Employee self-service and external-participant acceptance lines so this mission proves permission mechanics, isolation and negative paths (real runtime where it exists, labelled test fixtures or harness where the dependent feature does not yet exist) and assigns feature-specific end-to-end proof to the owning later missions; Founder Scenarios A/B unchanged and verbatim; no `IN SCOPE` row weakened or moved | Blueprint Section 15; §8 unchanged |
+
+**Institutional Learning Intake review.** Section 19's reconciliation was refreshed: Phase 1 guide blob unchanged; `organizational-learning/promotions/**` and the guide byte-identical between the Stage 2 and Stage 4 baselines; 17 promotion dispositions unchanged (8/1/5/3); two Stage 2 checklist answers recorded as stale Delta (Q10's 78 assigned rows, now 113; Q11's open T4/T6). Status statement unchanged: `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force`.
+
+**Boundary confirmation.** Only the six MC-19 writable paths changed. The canonical FCTM, Founder Product Decision Record, mature contracts, Build Plan and governance sources were not modified; no Founder decision was invented or rewritten; no Section 20/21, Builder/Engineering Review, EIS, implementation, migration or production action was taken; no self-merge.
+
+## 14. Completion status (current)
+
+**STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED, MISSION CONTROL REVIEWED ONCE, FIVE NARROW CORRECTIONS (MC-20A–E) APPLIED — AWAITING MISSION CONTROL RE-REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**

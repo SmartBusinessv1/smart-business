@@ -29,7 +29,7 @@
 
 | Field | Summary |
 |---|---|
-| Product problem | Nothing later can be safely built — Manager delegation, Employee self-service, external participants, AI/conversation intake, or any cross-mission foundation — until Smart Business has one durable, testable answer to "who is allowed to do what, to which business, under which entitlement, revalidated at the moment of action." Today that answer does not exist: there is no role/membership schema beyond a single `owner_id` per business, the only authorization check anywhere in the application is session authentication, and a residual overly-broad `anon` privilege grant remains an unresolved security gate. |
+| Product problem | Nothing later can be safely built — Manager delegation, Employee self-service, external participants, AI/conversation intake, or any cross-mission foundation — until Smart Business has one durable, testable answer to "who is allowed to do what, to which business, under which entitlement, revalidated at the moment of action." Today the approved shared answer does not exist. Repository evidence shows partial, owner-only building blocks — Supabase session authentication, and Owner-scoped (`owner_id = auth.uid()`) row-level-security patterns on previously delivered Catalog and Inventory paths — but no role, membership, delegation or permission model of the kind Contract 21 approves: no schema beyond a single `owner_id` per business, no Manager/Employee authority, and no execution-time revalidation. Those owner-only patterns are partial evidence, not Contract 21 authority. Separately, a residual overly-broad `anon` privilege grant is a repository-file finding whose live production state is `UNVERIFIED`; nothing here verifies live grants, RLS or function privileges. |
 | Primary users | Every role Contract 21 names — Owner, Manager, Employee, Supplier, Customer, Delivery Staff — as consumers of the authority/permission/isolation model this mission builds, plus every later Product Mission that must consume it rather than invent its own. |
 | Build Now | Core Authority Model (Owner/Manager/Employee/Supplier/Customer/Delivery Staff); explicit multi-dimensional permission matrix; business isolation at every layer; server-side/execution-time authorization and revalidation; delegated-automation authority checks; confirmation binding; permission/authority auditability; calm denial behavior; entitlement primitives; Employee self-service boundaries; temporary/purpose-limited support access; Privacy/Dignity guarantees (no continuous surveillance, no hidden scoring); the Identity, Permission/Isolation, Confirmation, Audit, Schema-Stability and Non-Goal slice of Contract 22 this mission owns; the Users-and-Permissions/Permission-Enforcement slice of Contract 17; the Permission/Role-Setup slice of Contract 20; the touched Product & Price Master / permission-integration surface of Contract 7; residual `anon` privilege remediation (WS-B); Product & Price Master reclassification, contextual demotion of the standalone `/catalog` surface, and preserved deep-link continuity. |
 | Core boundary | This mission owns *authority, permission, isolation and the shared architectural constraints every other foundation must respect* — it does not itself build Notification delivery, Location tracking, Conversation/AI orchestration, Document Intelligence, Reminders, Manager Operations depth, Onboarding, or WhatsApp. Those consume this mission's Permission Engine; they are not built here. |
@@ -115,7 +115,7 @@ Establish, for every business in Smart Business, one authority and identity kern
 
 ## 4. Business Purpose
 
-Smart Business cannot safely delegate work — to a Manager, to an Employee, to an AI assistant acting on a merchant's behalf, or to a future external participant like a Supplier or Delivery Staff member — without first answering, reliably and at the database layer, who that person is and what they are actually allowed to do right now. Today, `businesses.owner_id` is the only authority concept in the schema; the application's sole authorization check is session authentication; and every RLS policy in the repository is written for the single-owner case. This is not a partial implementation of Contract 21's authority model — it is the complete absence of one, confirmed directly by repository inspection (`06-stage2-delta-evidence.md` Part 3 §1).
+Smart Business cannot safely delegate work — to a Manager, to an Employee, to an AI assistant acting on a merchant's behalf, or to a future external participant like a Supplier or Delivery Staff member — without first answering, reliably and at the database layer, who that person is and what they are actually allowed to do right now. Today, `businesses.owner_id` is the only authority concept in the schema; the application's route-level gate checks session authentication only; and the RLS policies inspected in the repository are written for the single-owner case (`owner_id = auth.uid()`). Those Owner-scoped patterns are real but partial: they are not the approved shared role, membership, delegation and permission model of Contract 21, which does not yet exist, as confirmed by repository-file inspection (`06-stage2-delta-evidence.md` Part 3 §1). This is repository-file evidence only; it does not verify live production grants or RLS.
 
 Every later Product Mission this Build Plan sequences — Conversation/AI, Document Intelligence, Reminders and Notification, Manager Operations, Controlled Add-ons including Location tracking, Onboarding, WhatsApp — depends on this foundation existing first, correctly, and once, rather than each mission building its own ad hoc permission check. A merchant who delegates a bounded task to a Manager needs to trust that the Manager cannot silently become Owner-equivalent; an Employee who is trusted to log a sale needs to trust that doing so does not expose the business's financial intelligence to them; and the business itself needs to trust that another business's staff, AI tools, or a routine support ticket can never see its data. This mission's business purpose is to make that trust structurally true, not merely promised in the UI.
 
@@ -415,9 +415,9 @@ Contract 20: `20-§15` (WhatsApp adapter slice; Workspace slice shared `SB-P-1.1
 
 ### Downstream Dependencies (missions consuming this mission's Permission Engine and boundary decisions)
 
-- `SB-P-1.13` — Native Conversation & AI Intelligence Foundation: consumes the Conversation/AI Permission Boundary (`21-§8`) and Ask CFO boundary (`21-§9`); owns Human Language reuse design for the Notification Foundation (`FPDR-1`).
+- `SB-P-1.13` — Native Conversation & AI Intelligence Foundation: consumes the Conversation/AI Permission Boundary (`21-§8`) and Ask CFO boundary (`21-§9`); owns and provides the Human Language Foundation (`22-§8`, `20-§14`) as the foundation owner/provider. It is not the owner of notification-specific integration: under `FPDR-1`/`22-§12-2`, `SB-P-1.15` (the Shared Notification Foundation owner, below) is the notification-specific consumer/integrator responsible for its own future design and verification of appropriate reuse of `SB-P-1.13`'s Human Language Foundation. That integration is neither implemented nor verified by this Blueprint.
 - `SB-P-1.14` — Business Memory, Documents & Durable Media.
-- `SB-P-1.15` — Reminder, Daily Intelligence & Ask CFO: owns the Shared Notification Foundation workstream (`FPDR-1`).
+- `SB-P-1.15` — Reminder, Daily Intelligence & Ask CFO: owns the Shared Notification Foundation workstream (`FPDR-1`) and, as the notification-specific consumer of `SB-P-1.13`'s Human Language Foundation, is responsible for its own future design and verification of appropriate reuse (`22-§12-2`); not shown here as done.
 - `SB-P-1.17` — Manager Operations: consumes the Users-and-Permissions/Permission-Enforcement surface (`17-§13`/`17-§14`) and the stock/supplier/reorder feature's touched-scope boundary.
 - `SB-P-1.18` — Controlled Business Add-ons: owns the Shared Location Foundation primitive and named attendance/delivery disclosures (`FPDR-2`/`FPDR-3`), Staff/HR, and Order & Delivery.
 - `SB-P-1.19` — Activation, Lifecycle & Platform Stewardship: consumes the Permission/Role Setup surface (`20-§16`).
@@ -453,6 +453,10 @@ Contract 20: `20-§15` (WhatsApp adapter slice; Workspace slice shared `SB-P-1.1
 
 ## 15. Acceptance Criteria
 
+### Scope of proof owed by this mission (DC-3)
+
+All 228 `IN SCOPE` rows remain this mission's obligations; none is weakened, moved or excused by the qualifications below. This mission must demonstrate, with real evidence, the permission mechanics, isolation and negative (denial) paths it builds for every protected path that already exists in this mission's scope — including the Product & Price Master and inventory context of Founder Scenarios A and B. Where an acceptance line below concerns a feature whose operational build belongs to a later mission (Employee attendance, leave and assigned-task features; Supplier, Customer and Delivery Staff participation surfaces; standing automation, scheduler and channel runtime), this mission proves the permission boundary and denial behaviour that gates that feature, using scoped runtime where it exists and clearly labelled simulation or test fixtures where the dependent feature does not yet exist; it does not claim, and is not accepted as, delivery of the later mission's complete end-to-end feature. Each later mission's owning Verification Checklist carries the feature-specific end-to-end proof (`SB-P-1.18` for attendance/delivery; `SB-P-1.15` for scheduler/reminder automation; `SB-P-1.17` for Manager Operations depth; `SB-P-1.13`/`SB-P-1.20` for conversation and channel runtime; `SB-P-1.19` for onboarding). Missing authority or isolation proof for a protected path that is already in this mission is never excused by this qualification.
+
 ### Founder Runtime Verification Scenarios (Build Plan §10.1, preserved verbatim — not new scenarios)
 
 - [ ] **Scenario A — Bounded delegation.** Owner grants a Manager a bounded contextual product-price-inventory view capability using the shared Product & Price Master. Manager sees only delegated operational areas. Owner financial surfaces remain denied. Evidence must include UI result plus data-layer/RLS denial evidence.
@@ -468,15 +472,15 @@ Contract 20: `20-§15` (WhatsApp adapter slice; Workspace slice shared `SB-P-1.1
 
 ### Delegation, Revalidation and Confirmation
 
-- [ ] Standing automation re-checks its enabling rule, scope, target/action/limits, current entitlement, and absence of revocation on every run.
+- [ ] The delegated-automation authority check this mission owns (`21-§12-1`–`21-§12-5`) is demonstrated: for any standing rule that can be exercised in scope, the check re-verifies the enabling rule, scope, target/action/limits, current entitlement, and absence of revocation each time it is invoked. Where the scheduler/reminder runtime does not yet exist (`SB-P-1.15`), this is proven against a test harness that invokes the check, and the runtime's own on-every-run proof is owed by `SB-P-1.15`/`SB-P-1.17`.
 - [ ] Every consequential confirmation binds the exact actor, business, action, target/object and reviewed state/value.
 - [ ] Permission and state are revalidated at execution time, not only preview time.
 - [ ] A generic or stale "Yes" never grants unlimited authority.
 
 ### Employee Self-Service and External Participants
 
-- [ ] Employees can access their own attendance, correction requests, leave/request status, assigned tasks and other job-specific information without exposure to unrelated staff or Owner intelligence.
-- [ ] Supplier, Customer and Delivery Staff participation is bounded per role, never general dashboard access.
+- [ ] The Employee self-service permission boundary (`21-§10-1`–`21-§10-6`) is demonstrated: an Employee's own-record access (own attendance, correction requests, leave/request status, assigned tasks and other job-specific information) is permitted where the underlying record exists, unrelated staff and Owner intelligence stay denied, and the negative paths are proven. The attendance, leave and task features themselves are later missions' builds (attendance/delivery: `SB-P-1.18`); their end-to-end feature proof is owed by those missions, and this mission does not claim it. Where those records do not yet exist, the boundary is proven against labelled test fixtures.
+- [ ] The Supplier, Customer and Delivery Staff permission boundary (`21-§13-1`–`21-§13-3`) is demonstrated: each external role's bounded scope is enforced and never resolves to general dashboard access. External-participant surfaces or portals are not built by this mission; their end-to-end proof belongs to the missions that build them, and this mission does not claim it.
 
 ### Privacy, Dignity and Denial Behavior
 
@@ -527,173 +531,180 @@ Authority is not a feature a merchant sees — it is the quiet, structural guara
 | Version | Date | Author | Change | Status |
 |---|---|---|---|---|
 | 0.1 | 2026-09-23 | Claude Code (MC-02) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 373-row FCTM, Founder Decisions `FPDR-1`–`FPDR-4`, mature Contracts 21/22/20/17/7, and Build Plan §§5–7, 10.1. | DRAFT — awaiting Mission Control Stage 5 Product Review |
+| 0.2 | 2026-09-24 | Claude Code (MC-02) | Narrow corrections MC-20A–E on PR #630: Section 19 assigned-mission labels corrected against the FCTM `Assigned mission` column (`20-§14` = `SB-P-1.13` primary build) and Section 19 tables extended with explicit assigned-mission and source-reference fields; Section 12 distinguishes Human Language Foundation owner (`SB-P-1.13`) from notification-specific integrator (`SB-P-1.15`); Mission Snapshot and §4 authorization-evidence wording made precise; Section 15 qualified for mission-owned permission mechanics versus later missions' end-to-end features; Institutional Learning Intake reconciliation refreshed. No FCTM row, disposition, Founder Decision or Founder scenario changed. | DRAFT — awaiting Mission Control re-review
 
 ## 19. Governance History
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
-Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-populated-fctm.md`). Contiguous row IDs sharing the same disposition, receiving mission and Blueprint location are grouped with an explicit ID range per Source 18 §3.2 item 2's grouping convention; every row ID is individually named within its range, with zero silent omissions. Historical counts, Founder Decision IDs and source citations match the canonical FCTM exactly.
+Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-populated-fctm.md`). Every table row carries four checkable fields keyed by FCTM row ID: the **disposition**, the **assigned mission exactly as written in the FCTM `Assigned mission` column** (backticks removed), a **source reference** to the numbered section of the governing contract or Build Plan, and the **Blueprint location**. Contiguous row IDs are grouped into one line only when disposition, assigned mission and source section are identical across the range; every row ID inside a range is covered, in FCTM order, with zero silent omissions. Source references cite numbered sections and do not reproduce source prose; the FCTM `Source pointer` and `Citation / evidence` columns hold the row-level wording.
+
+**Source baseline (unchanged from the Stage 1 intake baseline; re-verified against `origin/main` at `d86e8663eabccff62f3f7e3fadd5342a2ca56aac`):** C21 = Contract 21, `21_Permissions_Business_Isolation_and_Role_Authority.md`, blob `f4a05d5c3aa76f70f0bdea0a83acdb7d7e61b36d`; C22 = Contract 22, `22_Shared_Product_Foundations.md`, blob `ca4a0fdaec1ac619663f768ccb2ff10f33c590ff`; C20 = Contract 20, `20_Onboarding_and_First_Experience.md`, blob `56ed4d11d2719abb83e6f9e862a51ffc5ebdf005`; C17 = Contract 17, `17_Operational_Dashboard_and_Manager_Workspace.md`, blob `7943f74a88c2922acc697115f336b68baf7a503a`; C7 = Contract 7, `07_Stock_Supplier_and_Reorder_Intelligence.md`, blob `65ad91b202def9cb4f42b97383bcc58475f59015` (limited MC-03/MC-04 opening); BP = Founder-approved Build Plan, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`. `NOT APPLICABLE` rows are not obligations; each states its specific reason and is also listed in §11 (Not Applicable), so none vanishes from accounting.
 
 #### Contract 21 — Permissions, Business Isolation and Role Authority (107 rows, wholly `SB-P-1.12`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `21-§1`–`21-§3` | NOT APPLICABLE (narrative) | Not mapped — narrative/interpretive, informs Sections 1, 4, 5 |
-| `21-§4-1`–`21-§4-6` | IN SCOPE | §8.1 |
-| `21-§5-1`–`21-§5-10` | IN SCOPE | §8.2 |
-| `21-§6-1`–`21-§6-7` | IN SCOPE | §8.3 |
-| `21-§7` | IN SCOPE | §8.4 |
-| `21-§8`, `21-§9` | IN SCOPE | §8.5 |
-| `21-§10-1`–`21-§10-6` | IN SCOPE | §8.6 |
-| `21-§11-1`, `21-§11-2` | IN SCOPE | §8.7 |
-| `21-§12-1`–`21-§12-5` | IN SCOPE | §8.8 |
-| `21-§13-1`–`21-§13-3` | IN SCOPE | §8.9 |
-| `21-§14-1`–`21-§14-7` | IN SCOPE | §8.10 |
-| `21-§15-1`–`21-§15-5` | IN SCOPE | §8.11 |
-| `21-§16-1`, `21-§16-2` | IN SCOPE | §8.12, §10 |
-| `21-§17` | IN SCOPE | §8.13, §15 Scenario B |
-| `21-§18-1`–`21-§18-6` | IN SCOPE | §8.14 |
-| `21-§19-1`–`21-§19-8` | IN SCOPE | §8.15 |
-| `21-§20-1`–`21-§20-5` | IN SCOPE | §8.16 |
-| `21-§21-1`–`21-§21-5` | IN SCOPE | §8.17, §10 |
-| `21-§22` | IN SCOPE | §8.18 |
-| `21-§23-1`–`21-§23-7` | IN SCOPE | §8.18, §10 |
-| `21-§24-1`–`21-§24-12` | IN SCOPE | §8.19, §15 |
-| `21-§25`–`21-§27` | NOT APPLICABLE (historical/provenance/gate) | Not mapped |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `21-§1`–`21-§3` | NOT APPLICABLE | SB-P-1.12 | C21 §§1–3 (Feature Identity; Founder Problem Statement; Lighthouse Principles) | Narrative/interpretive (`L-NARR`), not a testable obligation; informs §§1, 4, 5; listed in §11 |
+| `21-§4-1`–`21-§4-6` | IN SCOPE | SB-P-1.12 | C21 §4 Core Authority Model (Owner, Manager, Employee, Supplier, Customer, Delivery Staff); BP §10.1 (role model) | §8.1 |
+| `21-§5-1`–`21-§5-10` | IN SCOPE | SB-P-1.12 | C21 §5 Permission Dimensions (ten dimensions); BP §10.1 (permission matrix) | §8.2 |
+| `21-§6-1`–`21-§6-7` | IN SCOPE | SB-P-1.12 | C21 §6 Business Isolation (six isolation surfaces; client `business_id` never trusted alone); BP §10.1 (isolation) | §8.3 |
+| `21-§7` | IN SCOPE | SB-P-1.12 | C21 §7 Server-side Authorization | §8.4 |
+| `21-§8`, `21-§9` | IN SCOPE | SB-P-1.12 | C21 §8 Conversation/AI Permission Boundary; C21 §9 Ask CFO / Owner Intelligence boundary | §8.5 |
+| `21-§10-1`–`21-§10-6` | IN SCOPE | SB-P-1.12 | C21 §10 Employee Self-service | §8.6, §15 |
+| `21-§11-1`, `21-§11-2` | IN SCOPE | SB-P-1.12 | C21 §11 Scoped creation | §8.7 |
+| `21-§12-1`–`21-§12-5` | IN SCOPE | SB-P-1.12 | C21 §12 Delegated Automation authority checks; BP §10.1 (delegated authority) | §8.8, §15 |
+| `21-§13-1`–`21-§13-3` | IN SCOPE | SB-P-1.12 | C21 §13 Participation (Supplier, Customer, Delivery Staff) | §8.9, §15 |
+| `21-§14-1`–`21-§14-7` | IN SCOPE | SB-P-1.12 | C21 §14 Support Access | §8.10 |
+| `21-§15-1`–`21-§15-5` | IN SCOPE | SB-P-1.12 | C21 §15 Authentication vs Authorization | §8.11 |
+| `21-§16-1`, `21-§16-2` | IN SCOPE | SB-P-1.12 | C21 §16 Entitlements; BP §10.1 (entitlement primitives) | §8.12, §10 |
+| `21-§17` | IN SCOPE | SB-P-1.12 | C21 §17 Permission Changes and Runtime Revalidation; BP §10.1 Founder Scenario B | §8.13, §15 Scenario B |
+| `21-§18-1`–`21-§18-6` | IN SCOPE | SB-P-1.12 | C21 §18 Confirmation Binding | §8.14 |
+| `21-§19-1`–`21-§19-8` | IN SCOPE | SB-P-1.12 | C21 §19 Auditability | §8.15 |
+| `21-§20-1`–`21-§20-5` | IN SCOPE | SB-P-1.12 | C21 §20 Denial Behavior | §8.16 |
+| `21-§21-1`–`21-§21-5` | IN SCOPE | SB-P-1.12 | C21 §21 Privacy/Dignity | §8.17, §10 |
+| `21-§22` | IN SCOPE | SB-P-1.12 | C21 §22 Shared Foundation Reuse | §8.18 |
+| `21-§23-1`–`21-§23-7` | IN SCOPE | SB-P-1.12 | C21 §23 Non-goals (seven) | §8.18, §10 |
+| `21-§24-1`–`21-§24-12` | IN SCOPE | SB-P-1.12 | C21 §24 Acceptance scenarios 1–12 (Scenarios 3 and 8 = Founder A and B) | §8.19, §15 |
+| `21-§25`–`21-§27` | NOT APPLICABLE | SB-P-1.12 | C21 §25 Historical Corrections; §26 Provenance and Hydration Coverage; §27 Completion Gate | Provenance/synthesis (`L-HIST`/`L-PROV`/`L-GATE`), not obligations; listed in §11 |
 
-#### Contract 22 — Shared Product Foundations (112 rows, split `SB-P-1.12`/`1.13`/`1.14`/`1.15`/`1.18`/`1.20`)
+#### Contract 22 — Shared Product Foundations (112 rows, split across `SB-P-1.12`/`1.13`/`1.14`/`1.15`/`1.18`/`1.20`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `22-§1`–`22-§3` | NOT APPLICABLE (narrative) | Not mapped |
-| `22-§4` | ASSIGNED → `SB-P-1.14` | §11 |
-| `22-§5-1`–`22-§5-9` | IN SCOPE | §8.20 |
-| `22-§6-1`–`22-§6-10` | IN SCOPE | §8.21, §10 |
-| `22-§7`, `22-§8` | ASSIGNED → `SB-P-1.13` | §11 |
-| `22-§9`, `22-§10` | ASSIGNED → `SB-P-1.14` | §11 |
-| `22-§11` | ASSIGNED → `SB-P-1.15` | §11 |
-| `22-§12-1`–`22-§12-9` | ASSIGNED → `SB-P-1.15` (`FPDR-1`) | §2, §7, §11, §13 |
-| `22-§13-1`–`22-§13-5` | IN SCOPE | §8.22, §10 |
-| `22-§14-1`–`22-§14-9` | IN SCOPE | §8.23 |
-| `22-§15` | IN SCOPE | §8.24 |
-| `22-§16-1` | ASSIGNED → `SB-P-1.18` (`FPDR-2`) | §2, §7, §11, §13 |
-| `22-§16-2` | IN SCOPE (unchanged, not reopened) | §8.17, §10, §15 |
-| `22-§16-3`–`22-§16-7` | ASSIGNED → `SB-P-1.18` (named instance: attendance/delivery only, `FPDR-3`) | §2, §7, §11, §13 |
-| `22-§17` | IN SCOPE | §8.25 |
-| `22-§18` | ASSIGNED → `SB-P-1.15` | §11 |
-| `22-§19` | IN SCOPE | §8.25 |
-| `22-§20-1`–`22-§20-4` | IN SCOPE | §8.26 |
-| `22-§21`, `22-§22` | IN SCOPE | §8.27 |
-| `22-§23-1`–`22-§23-7` | IN SCOPE | §8.28 |
-| `22-§24` | ASSIGNED → `SB-P-1.13` | §11 |
-| `22-§25` | DELEGATED (Contract 24 → `SB-P-1.13`) | §11 |
-| `22-§26` | DELEGATED (Contract 23 → `SB-P-1.20`) | §11 |
-| `22-§27-1`–`22-§27-7` | IN SCOPE | §8.29 |
-| `22-§28-1`–`22-§28-10` | IN SCOPE | §8.30, §10 |
-| `22-§29-1` | ASSIGNED → `SB-P-1.13`/`SB-P-1.20` | §11 |
-| `22-§29-2` | ASSIGNED → `SB-P-1.13` | §11 |
-| `22-§29-3` | IN SCOPE (services-layer slice) | §8.31 |
-| `22-§29-4` | ASSIGNED → `SB-P-1.15` | §11 |
-| `22-§29-5` | ASSIGNED → `SB-P-1.14` | §11 |
-| `22-§29-6`–`22-§29-8` | IN SCOPE | §8.31 |
-| `22-§29-9` | ASSIGNED → `SB-P-1.18` (unchanged, not reopened) | §11 |
-| `22-§29-10`–`22-§29-12` | IN SCOPE | §8.31 |
-| `22-§29-13` | ASSIGNED → `SB-P-1.13` | §11 |
-| `22-§29-14` | IN SCOPE | §8.31 |
-| `22-§30`–`22-§32` | NOT APPLICABLE (historical/provenance/gate) | Not mapped |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `22-§1`–`22-§3` | NOT APPLICABLE | SB-P-1.12 | C22 §§1–3 (Feature Identity; Founder Problem Statement; Lighthouse Principles) | Narrative/interpretive (`L-NARR`); informs §§1, 4, 5; listed in §11 |
+| `22-§4` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C22 §4 Business Memory Foundation; BP §9 row 3, §10.3 | §11 |
+| `22-§5-1`–`22-§5-9` | IN SCOPE | SB-P-1.12 | C22 §5 Identity Foundation; BP §10.1 (shared identity primitives) | §8.20 |
+| `22-§6-1`–`22-§6-10` | IN SCOPE | SB-P-1.12 | C22 §6 Permission/Isolation Foundation (nine surfaces + extension rule) | §8.21, §10 |
+| `22-§7`, `22-§8` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C22 §7 Conversation/Intent-Action Foundation; C22 §8 Human Language Foundation; BP §10.2 | §11 |
+| `22-§9`, `22-§10` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C22 §9 Universal Document Intelligence; C22 §10 Document/Receipt Memory; BP §10.3 | §11 |
+| `22-§11` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §11 Reminder/Delegated Automation Foundation; BP §9 row 4, §10.4 | §11 |
+| `22-§12-1`–`22-§12-9` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §12 Notification Foundation (nine items); Founder Decision `FPDR-1` (BP has no naming source) | §2, §7, §11, §13 |
+| `22-§13-1`–`22-§13-5` | IN SCOPE | SB-P-1.12 | C22 §13 Confirmation/Clarification Foundation | §8.22, §10 |
+| `22-§14-1`–`22-§14-9` | IN SCOPE | SB-P-1.12 | C22 §14 Audit/Human Context | §8.23 |
+| `22-§15` | IN SCOPE | SB-P-1.12 | C22 §15 Idempotency / Duplicate Protection | §8.24 |
+| `22-§16-1` | ASSIGNED TO LATER MISSION | SB-P-1.18 | C22 §16 Location Foundation (shared purpose-limited primitive); Founder Decision `FPDR-2` | §2, §7, §11, §13 |
+| `22-§16-2` | IN SCOPE | SB-P-1.12 | C22 §16 (surveillance rejection), tied to C21 §21 (`21-§21-1`); unchanged, not reopened | §8.17, §10, §15 |
+| `22-§16-3`–`22-§16-7` | ASSIGNED TO LATER MISSION | SB-P-1.18 (named instance: attendance/delivery only) | C22 §16 per-feature disclosures (why, who sees, capture, retention, access end); Founder Decision `FPDR-3` — every future location-consuming feature's own mission independently defines and verifies all five | §2, §7, §11, §13 |
+| `22-§17` | IN SCOPE | SB-P-1.12 | C22 §17 Integration/Extension Foundation (design constraint) | §8.25 |
+| `22-§18` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §18 Scheduler / Background Job Foundation; BP §10.4 | §11 |
+| `22-§19` | IN SCOPE | SB-P-1.12 | C22 §19 Error and Narrow-failure Foundation | §8.25 |
+| `22-§20-1`–`22-§20-4` | IN SCOPE | SB-P-1.12 | C22 §20 Schema Stability; BP §7 | §8.26 |
+| `22-§21`, `22-§22` | IN SCOPE | SB-P-1.12 | C22 §21 Performance Foundation; C22 §22 Platform Quality / Testability | §8.27 |
+| `22-§23-1`–`22-§23-7` | IN SCOPE | SB-P-1.12 | C22 §23 Privacy/Data Ownership | §8.28 |
+| `22-§24` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C22 §24 AI Authority Foundation; BP §10.2 | §11 |
+| `22-§25` | DELEGATED | SB-P-1.13 | C22 §25 AI Orchestration / OpenAI Intelligence Foundation (names Contract 24) | §11 |
+| `22-§26` | DELEGATED | SB-P-1.20 | C22 §26 Dedicated Channel Adapter Contracts (names Contract 23) | §11 |
+| `22-§27-1`–`22-§27-7` | IN SCOPE | SB-P-1.12 | C22 §27 Dependency Rule (seven mandatory disclosures) | §8.29 |
+| `22-§28-1`–`22-§28-10` | IN SCOPE | SB-P-1.12 | C22 §28 Non-goals (ten) | §8.30, §10 |
+| `22-§29-1` | ASSIGNED TO LATER MISSION | SB-P-1.13/SB-P-1.20 | C22 §29 Scenario 1 (tests C22 §7/§4) | §11 |
+| `22-§29-2` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C22 §29 Scenario 2 (tests C22 §7) | §11 |
+| `22-§29-3` | IN SCOPE | SB-P-1.12 (services slice) | C22 §29 Scenario 3 (tests C21 §6 / C22 §6, services-layer slice only) | §8.31 |
+| `22-§29-4` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §29 Scenario 4 (tests C22 §11) | §11 |
+| `22-§29-5` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C22 §29 Scenario 5 (tests C22 §9) | §11 |
+| `22-§29-6`–`22-§29-8` | IN SCOPE | SB-P-1.12 | C22 §29 Scenarios 6–8 (tests C22 §5, §13/Founder B, §15) | §8.31 |
+| `22-§29-9` | ASSIGNED TO LATER MISSION | SB-P-1.18 | C22 §29 Scenario 9 (attendance/delivery location; C17 §9/§10); unchanged, not reopened | §11 |
+| `22-§29-10`–`22-§29-12` | IN SCOPE | SB-P-1.12 | C22 §29 Scenarios 10–12 (tests C22 §19, §20/C21 §16, §14/C21 §19) | §8.31 |
+| `22-§29-13` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C22 §29 Scenario 13 (tests C22 §7 AI boundary) | §11 |
+| `22-§29-14` | IN SCOPE | SB-P-1.12 | C22 §29 Scenario 14 (tests C22 §27) | §8.31 |
+| `22-§30`–`22-§32` | NOT APPLICABLE | SB-P-1.12 | C22 §30 Historical Corrections; §31 Provenance and Hydration Coverage; §32 Completion Gate | Provenance/synthesis (`L-HIST`/`L-PROV`/`L-GATE`), not obligations; listed in §11 |
 
-#### Contract 20 — Onboarding and First Experience (47 rows, split `SB-P-1.12`/`1.19`)
+#### Contract 20 — Onboarding and First Experience (47 rows, split `SB-P-1.12`/`1.13`/`1.15`/`1.19`/`1.20`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `20-§1`, `20-§2`, `20-§4` | NOT APPLICABLE (narrative) | Not mapped |
-| `20-§3` | ASSIGNED → `SB-P-1.19` | §11 |
-| `20-§5`–`20-§14` | ASSIGNED → `SB-P-1.19` (`20-§13` shared `SB-P-1.13`; `20-§14` primary `SB-P-1.13`) | §11 |
-| `20-§15` | ASSIGNED → `SB-P-1.13`/`SB-P-1.20` | §11 |
-| `20-§16-1`–`20-§16-4` | IN SCOPE | §8.32 |
-| `20-§17`–`20-§20` | ASSIGNED → `SB-P-1.19` | §11 |
-| `20-§21` | NOT APPLICABLE (cross-reference) | Not mapped |
-| `20-§22-1`–`20-§22-7` | ASSIGNED → `SB-P-1.19` | §11 |
-| `20-§23-1`–`20-§23-10`, `20-§23-12` | ASSIGNED → `SB-P-1.19` (`20-§23-5` shared `SB-P-1.13`; `20-§23-10` shared `SB-P-1.15`) | §11 |
-| `20-§23-11` | IN SCOPE | §8.32 |
-| `20-§24`, `20-§25` | NOT APPLICABLE (historical/provenance) | Not mapped |
-| `20-§26` | NOT APPLICABLE (unresolved Founder question, non-critical-path, carried in Delta document) | Not mapped |
-| `20-§27` | NOT APPLICABLE (gate) | Not mapped |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `20-§1`, `20-§2` | NOT APPLICABLE | SB-P-1.12 | C20 §1 Feature Identity; §2 Founder Problem Statement | Narrative (`L-NARR`); listed in §11 |
+| `20-§3` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §3 Approved Route and Domain; BP §10.8 (`/start`) | §11 |
+| `20-§4` | NOT APPLICABLE | SB-P-1.12 | C20 §4 Lighthouse Principles | Interpretive (`L-NARR`); listed in §11 |
+| `20-§5`–`20-§12` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §5 First-stage Discovery; §6 Historical Funnel Reconciliation; §7 Product Recommendation; §8 Business Identity Setup; §9 Existing Data Import; §10 Activation/Commercial Step; §11 First Practical Win; §12 First 24-hour Experience; BP §10.8 | §11 |
+| `20-§13` | ASSIGNED TO LATER MISSION | SB-P-1.19/SB-P-1.13 | C20 §13 Conversation-first Onboarding (needs Conversation Workspace); BP §10.2, §10.8 | §11 |
+| `20-§14` | ASSIGNED TO LATER MISSION | SB-P-1.13 (primary build) | C20 §14 Human Language; BP §10.2 names Human Language as `SB-P-1.13`'s build; C20 §21 lists it as a reused foundation | §11 |
+| `20-§15` | ASSIGNED TO LATER MISSION | SB-P-1.13 (Workspace build)/SB-P-1.20 (WhatsApp adapter build) | C20 §15 WhatsApp and Conversation Workspace; BP §10.2 (Workspace), §10.9 (WhatsApp adapter) | §11 |
+| `20-§16-1`–`20-§16-4` | IN SCOPE | SB-P-1.12 | C20 §16 Permission/Role Setup; BP §10.1 (permission scope) | §8.32 |
+| `20-§17`–`20-§20` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §17 Support During Onboarding; §18 Error and Exception Behavior; §19 Privacy and Trust; §20 Performance and Simplicity; BP §10.8 | §11 |
+| `20-§21` | NOT APPLICABLE | SB-P-1.12 | C20 §21 Shared Foundations to Reuse | Cross-reference list (`L-REUSE`), not an obligation; listed in §11 |
+| `20-§22-1`–`20-§23-4` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §22 Explicit Non-goals (seven); C20 §23 Scenarios 1–4 | §11 |
+| `20-§23-5` | ASSIGNED TO LATER MISSION | SB-P-1.19/SB-P-1.13 | C20 §23 Scenario 5 (tests C20 §11) | §11 |
+| `20-§23-6`–`20-§23-9` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §23 Scenarios 6–9 | §11 |
+| `20-§23-10` | ASSIGNED TO LATER MISSION | SB-P-1.19/SB-P-1.15 | C20 §23 Scenario 10 (tests C20 §12; Daily Intelligence timing is `SB-P-1.15`) | §11 |
+| `20-§23-11` | IN SCOPE | SB-P-1.12 | C20 §23 Scenario 11 (direct application of C20 §16-3) | §8.32 |
+| `20-§23-12` | ASSIGNED TO LATER MISSION | SB-P-1.19 | C20 §23 Scenario 12 (tests C20 §17) | §11 |
+| `20-§24`–`20-§27` | NOT APPLICABLE | SB-P-1.12 | C20 §24 Historical Corrections; §25 Provenance; §26 Unresolved Founder Questions (trial policy, BP §15, non-critical-path, carried in the canonical Delta document); §27 Completion Gate | Provenance/synthesis/carried elsewhere, not obligations; listed in §11 |
 
-#### Contract 17 — Operational Dashboard and Manager Workspace (53 rows, split `SB-P-1.12`/`1.17`/`1.18`)
+#### Contract 17 — Operational Dashboard and Manager Workspace (53 rows, split `SB-P-1.12`/`1.13`/`1.14`/`1.15`/`1.17`/`1.18`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `17-§1`–`17-§3` | NOT APPLICABLE (narrative) | Not mapped |
-| `17-§4` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§5` | ASSIGNED → `SB-P-1.13` | §11 |
-| `17-§6`–`17-§8` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§9`, `17-§10` | ASSIGNED → `SB-P-1.18` | §11 |
-| `17-§11` | ASSIGNED → `SB-P-1.15` | §11 |
-| `17-§12` | ASSIGNED → `SB-P-1.14` | §11 |
-| `17-§13-1`–`17-§13-4` | IN SCOPE | §8.33 |
-| `17-§14-1`–`17-§14-7` | IN SCOPE | §8.33, §10 |
-| `17-§15` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§16-1` | IN SCOPE | §8.33 |
-| `17-§16-2` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§17` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§18-1` | IN SCOPE | §8.33 |
-| `17-§18-2` | IN SCOPE | §8.33, §10 |
-| `17-§18-3` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§18-4` | IN SCOPE | §8.33 |
-| `17-§18-5` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§19` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§20` | NOT APPLICABLE (cross-reference) | Not mapped |
-| `17-§21-1`–`17-§21-3` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§21-4` | IN SCOPE | §8.33, §10 |
-| `17-§21-5` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§22-1` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§22-2`, `17-§22-3` | IN SCOPE | §8.33, §15 Scenario A |
-| `17-§22-4` | ASSIGNED → `SB-P-1.13` | §11 |
-| `17-§22-5`, `17-§22-6` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§22-7` | ASSIGNED → `SB-P-1.15` | §11 |
-| `17-§22-8` | ASSIGNED → `SB-P-1.13` | §11 |
-| `17-§22-9` | IN SCOPE | §8.33 |
-| `17-§22-10a` | IN SCOPE | §8.33 |
-| `17-§22-10b` | ASSIGNED → `SB-P-1.17` | §11 |
-| `17-§23`, `17-§24` | NOT APPLICABLE (historical/provenance) | Not mapped |
-| `17-§25` | NOT APPLICABLE (gate) | Not mapped |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `17-§1`–`17-§3` | NOT APPLICABLE | SB-P-1.12 | C17 §§1–3 (Feature Identity; Founder Problem Statement; Lighthouse Principles) | Narrative (`L-NARR`); listed in §11 |
+| `17-§4` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §4 Workspace Layers; BP §10.6 | §11 |
+| `17-§5` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C17 §5 Conversation Workspace Placement; BP §10.2 | §11 |
+| `17-§6`–`17-§8` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §6 Financial/Business Summary; §7 Inventory/Supplier/Reorder Views; §8 POS/Counter/Closing Cash Views; BP §10.6 | §11 |
+| `17-§9`, `17-§10` | ASSIGNED TO LATER MISSION | SB-P-1.18 | C17 §9 Staff/HR Views; §10 Order & Delivery Views; BP §9 row 7, §10.7 | §11 |
+| `17-§11` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C17 §11 Ask CFO and Daily Intelligence; BP §9 row 4, §10.4 | §11 |
+| `17-§12` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C17 §12 Documents and Receipt Cabinet; BP §9 row 3, §10.3 | §11 |
+| `17-§13-1`–`17-§13-4` | IN SCOPE | SB-P-1.12 | C17 §13 Users and Permissions; BP §10.1 (permission scope) | §8.33 |
+| `17-§14-1`–`17-§14-7` | IN SCOPE | SB-P-1.12 | C17 §14 Permission Enforcement | §8.33, §10 |
+| `17-§15` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §15 Personalization and Navigation; BP §10.6 | §11 |
+| `17-§16-1` | IN SCOPE | SB-P-1.12 | C17 §16 Stable UI/Testability, for the §13/§14 surface | §8.33 |
+| `17-§16-2`, `17-§17` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §16 Stable UI/Testability (remaining Manager-depth surface); C17 §17 Error and Exception Behavior; BP §10.6 | §11 |
+| `17-§18-1`, `17-§18-2` | IN SCOPE | SB-P-1.12 | C17 §18 Privacy/Trust items 1–2 (no cross-business data; no staff access to Owner intelligence by default); overlaps C21 §6, §21 | §8.33, §10 |
+| `17-§18-3` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §18 item 3 (no routine admin browsing through dashboard shortcuts) | §11 |
+| `17-§18-4` | IN SCOPE | SB-P-1.12 | C17 §18 item 4 (sensitive information only to roles with legitimate need); overlaps C21 §5, §14 | §8.33 |
+| `17-§18-5`, `17-§19` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §18 item 5 (dashboard analytics must not become hidden surveillance); C17 §19 Performance Expectations | §11 |
+| `17-§20` | NOT APPLICABLE | SB-P-1.12 | C17 §20 Shared Foundations to Reuse | Cross-reference list (`L-REUSE`); listed in §11 |
+| `17-§21-1`–`17-§21-3` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §21 Non-goals items 1–3 (dashboard-experience-specific) | §11 |
+| `17-§21-4` | IN SCOPE | SB-P-1.12 | C17 §21 item 4 (no employee visibility into Owner-wide financial intelligence by convenience); overlaps C21 §21 | §8.33, §10 |
+| `17-§21-5`, `17-§22-1` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §21 item 5 (Conversation Workspace not hidden as fallback only); C17 §22 Scenario 1 | §11 |
+| `17-§22-2`, `17-§22-3` | IN SCOPE | SB-P-1.12 | C17 §22 Scenarios 2–3 (Manager delegated ops only; Employee limited surfaces); Founder Scenario A | §8.33, §15 Scenario A |
+| `17-§22-4` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C17 §22 Scenario 4 (tests C17 §5) | §11 |
+| `17-§22-5`, `17-§22-6` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §22 Scenarios 5–6 (tests C17 §7/§8/§10, §17) | §11 |
+| `17-§22-7` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C17 §22 Scenario 7 (tests C17 §11) | §11 |
+| `17-§22-8` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C17 §22 Scenario 8 (tests C17 §5) | §11 |
+| `17-§22-9`, `17-§22-10a` | IN SCOPE | SB-P-1.12 | C17 §22 Scenario 9 (cross-business denied server-side); Scenario 10, §13/§14-surface half (tests C17 §16-1) | §8.33 |
+| `17-§22-10b` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §22 Scenario 10, remaining Manager-depth half (tests C17 §16-2) | §11 |
+| `17-§23`–`17-§25` | NOT APPLICABLE | SB-P-1.12 | C17 §23 Historical Corrections; §24 Provenance; §25 Completion Gate | Provenance/synthesis (`L-HIST`/`L-PROV`/`L-GATE`); listed in §11 |
 
-#### Contract 7 — Stock, Supplier & Reorder Intelligence (36 rows, limited MC-03/MC-04 opening, split `SB-P-1.12`/`1.17`)
+#### Contract 7 — Stock, Supplier & Reorder Intelligence (36 rows, limited MC-03/MC-04 opening, split `SB-P-1.12`/`1.13`/`1.14`/`1.17`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `7-§1` | NOT APPLICABLE (narrative) | Not mapped |
-| `7-§2`–`7-§6` | ASSIGNED → `SB-P-1.17` (`7-§6` shared `SB-P-1.14`) | §11 |
-| `7-§7` | IN SCOPE | §8.34 |
-| `7-§8-1`–`7-§8-5` | ASSIGNED → `SB-P-1.17` | §11 |
-| `7-§9` | IN SCOPE | §8.34 |
-| `7-§10-1`–`7-§10-4` | IN SCOPE | §8.34 |
-| `7-§11` | ASSIGNED → `SB-P-1.17` (primary)/`SB-P-1.13` (AI kernel) | §11 |
-| `7-§12` | IN SCOPE | §8.34 |
-| `7-§13`, `7-§14` | ASSIGNED → `SB-P-1.17` | §11 |
-| `7-§15-1`–`7-§15-9`, `7-§15-11` | ASSIGNED → `SB-P-1.17` (`7-§15-2` shared `SB-P-1.14`) | §11 |
-| `7-§15-10` | IN SCOPE | §8.34 |
-| `7-§15-12` | IN SCOPE | §8.34 |
-| `7-§16` | ASSIGNED → `SB-P-1.17` | §11 |
-| `7-§17` | NOT APPLICABLE (dependency cross-reference) | Not mapped |
-| `7-§18` | NOT APPLICABLE (gate) | Not mapped |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `7-§1` | NOT APPLICABLE | SB-P-1.12 | C7 §1 Feature Identity | Narrative (`L-NARR`); listed in §11 |
+| `7-§2`–`7-§5` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §2 Core Stock Capabilities; §3 Supplier Management; §4 Reorder Intelligence; §5 Reorder Authority (authority rule itself is C21 §12); BP §9 row 6 | §11 |
+| `7-§6` | ASSIGNED TO LATER MISSION | SB-P-1.17/SB-P-1.14 | C7 §6 Imports and Documents (UDI) | §11 |
+| `7-§7` | IN SCOPE | SB-P-1.12 | C7 §7 POS Relationship (touched, limited: no competing stock-linked pricing path); MC-03/MC-04 | §8.34 |
+| `7-§8-1`–`7-§8-5` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §8 Ledger Relationship (integrated rule + four examples); not in MC-03's touched-scope list | §11 |
+| `7-§9`–`7-§10-4` | IN SCOPE | SB-P-1.12 | C7 §9 Manager vs Ledger Packaging (touched, limited); C7 §10 Roles and Permissions (touched; Owner, Manager, Employee/Staff, Supplier) | §8.34 |
+| `7-§11` | ASSIGNED TO LATER MISSION | SB-P-1.17 (primary)/SB-P-1.13 (AI kernel) | C7 §11 AI Behaviour | §11 |
+| `7-§12` | IN SCOPE | SB-P-1.12 | C7 §12 Shared Foundations (touched: Catalog/Product identity, Permission Engine) | §8.34 |
+| `7-§13`–`7-§15-1` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §13 Failure and Exception Handling; §14 Privacy and Dignity; §15 Scenario 1 | §11 |
+| `7-§15-2` | ASSIGNED TO LATER MISSION | SB-P-1.17/SB-P-1.14 | C7 §15 Scenario 2 (tests C7 §6) | §11 |
+| `7-§15-3`–`7-§15-9` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §15 Scenarios 3–9 | §11 |
+| `7-§15-10` | IN SCOPE | SB-P-1.12 | C7 §15 Scenario 10 (staff permission boundaries); MC-04 | §8.34 |
+| `7-§15-11` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §15 Scenario 11 (tests C7 §14) | §11 |
+| `7-§15-12` | IN SCOPE | SB-P-1.12 | C7 §15 Scenario 12 (cross-business isolation); MC-04 | §8.34 |
+| `7-§16` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C7 §16 Non-goals / Rejected Historical Behaviour | §11 |
+| `7-§17`, `7-§18` | NOT APPLICABLE | SB-P-1.12 | C7 §17 Dependencies; §18 Completion Gate | Cross-reference/synthesis (`L-DEP`/`L-GATE`); listed in §11 |
 
 #### Build Plan §7 and §10.1 (18 rows, governing sections, wholly `SB-P-1.12`)
 
-| FCTM Row ID(s) | Disposition | Blueprint location |
-|---|---|---|
-| `BP-§10.1-1`–`BP-§10.1-6` | IN SCOPE | §8.1–§8.3 (anchors) |
-| `BP-§10.1-7`–`BP-§10.1-9` | IN SCOPE | §8.36, §13 (T4) |
-| `BP-§10.1-10` | IN SCOPE | §8.12 |
-| `BP-§10.1-11`–`BP-§10.1-13` | IN SCOPE | §8.35 |
-| `BP-§7-1`–`BP-§7-5` | IN SCOPE | §8.35 |
+| FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
+|---|---|---|---|---|
+| `BP-§10.1-1`–`BP-§10.1-6` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 1–6 (role model; membership/identity; permission matrix; delegated authority; execution-time revalidation; isolation) | §8.1–§8.3 |
+| `BP-§10.1-7`–`BP-§10.1-9` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 7–9 (RLS/grants/function review; `anon` remediation; CI baseline); BP §5.1, §5.2 | §8.36, §13 (T4) |
+| `BP-§10.1-10` | IN SCOPE | SB-P-1.12 | BP §10.1 required work area 10 (entitlement primitives) | §8.12 |
+| `BP-§10.1-11`–`BP-§10.1-13` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 11–13 (Product & Price Master reclassification; `/catalog` demotion plan; data and deep-link continuity); BP §7 | §8.35 |
+| `BP-§7-1`–`BP-§7-5` | IN SCOPE | SB-P-1.12 | BP §7 Founder decision — Product & Price Master (preserve list, do-not list, target treatment) | §8.35 |
 
-**Total: 373 rows — 228 `IN SCOPE`, 113 `ASSIGNED TO LATER MISSION`, 2 `DELEGATED`, 30 `NOT APPLICABLE`, 0 `ESCALATED`.** Matches the canonical FCTM (`claude-code/03-stage2-populated-fctm.md` §G) exactly; independently re-verified against that file before this table was drafted.
+**Total: 373 rows — 228 `IN SCOPE`, 113 `ASSIGNED TO LATER MISSION`, 2 `DELEGATED`, 30 `NOT APPLICABLE`, 0 `ESCALATED`.** Matches the canonical FCTM (`claude-code/03-stage2-populated-fctm.md` §G) exactly. Completeness of row coverage, disposition, assigned mission and non-empty source reference is machine-checked against the FCTM (see `claude-code/14-stage4-blueprint-drafting-report.md` §5).
 
 ### Institutional Learning Intake Reconciliation
 
-`Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force` (unchanged from the canonical Stage 2 Institutional Learning Intake Record, `claude-code/05-stage2-institutional-learning-intake.md`). This Blueprint applies the same dual-intake discipline: the Phase 1 institutional-memory guide and every validated `organizational-learning/promotions/**` entry current as of the Stage 2 intake baseline remain applicable; no new OLE promotion occurred between Stage 2 and this Stage 4 draft (no drift found on re-check). No conflict identified requiring Mission Control escalation.
+`Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force` (unchanged from the canonical Stage 2 Institutional Learning Intake Record, `claude-code/05-stage2-institutional-learning-intake.md`; no change has been canonically made to that status).
+
+- **Phase 1 guide (dual intake, first leg):** `docs/phase-1-mission-blueprint/00_Phase_1_Institutional_Memory_Lessons_Capabilities_and_Operational_Guardrails.md`, blob `3da3d6d3f9b7fbd89de028ca0191d99484049ba9`, unchanged from the Stage 1 baseline. Sections applied to this Blueprint: §2 (authority model — governs escalation posture, no self-clearing of gates), §5 (current build sequence — the basis of every `ASSIGNED TO LATER MISSION` row in §11), §6.2 (Product & Price Master / Inventory / Transactions architecture — §8.35), §8 (evidence doctrine — file-level versus live evidence in §13), and the §18 mission-start checklist.
+- **Validated OLE promotions (dual intake, second leg):** the 17 `VALIDATED`, `MISSION_SCOPED` promotions inventoried at Stage 1 remain the complete set — `organizational-learning/promotions/**` and the guide are byte-identical between the Stage 2 baseline (`96a31aa7a0debc539fcda1bca2008457e1315093`) and this Stage 4 baseline (`d86e8663eabccff62f3f7e3fadd5342a2ca56aac`); no addition or supersession. Dispositions are unchanged from Stage 2 §3 (8 `ALREADY EMBEDDED IN ACTIVE GOVERNANCE`, 1 `APPLIED`, 5 `INFORMATIONAL`, 3 `NOT APPLICABLE`; `MISSION_SCOPED` is an applicability screen, not a universal rule, and no unpromoted candidate is treated as authority). In this Stage 4 work the `SB-OPS-CI-ARCHITECTURE-1.0` exact-run-level-closure practice remains `APPLIED` (exact CI run identifiers are cited in the drafting report), and the `SB-ORG-LEARNING-1.1` narrow finding-scoped correction cycle is being practiced on this PR.
+- **Stale statements found (Delta):** the Stage 2 checklist answers that are now historical, superseded by the canonical Stage 3 record and not restated here as current — Q10's "78 `ASSIGNED TO LATER MISSION` rows" (current: 113, with 2 `DELEGATED`) and Q11's open T4/T6 determination and open Contract 22 §12/§16 assignment flags (current: Stage 3 complete, `FPDR-1`–`FPDR-4`, T4 historically `TRIGGERED` with production state `UNVERIFIED`). The Phase 1 guide itself has no stale statement affecting this Blueprint.
+- **Conflicts for Mission Control:** none identified between any promotion, the guide and the governing sources.
 
 ### Governance History
 
@@ -708,3 +719,5 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 | 2026-09-23 | Claude Code, Mission Control | Prepared and, over two correction rounds (MC-17, MC-18), corrected and reviewed the draft Founder Product Decision Record and 15-row FCTM reconciliation. | PR #628 human-merged; `FPDR-1`–`FPDR-4` and reconciled 373-row FCTM (228/113/2/30/0) canonical; Stage 3 COMPLETE — CANONICAL, historically `TRIGGERED`. |
 | 2026-09-23 | Mission Control | Authorized Stage 4 Product Blueprint Sections 1–19 drafting (MC-19), effective on PR #629 human merge. | Stage 4 drafting authorization canonical, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac`. |
 | 2026-09-23 | Claude Code | Prepared this DRAFT Product Blueprint — Metadata, Mission Snapshot, Sections 1–19 — assembled by reference to the canonical FCTM and `FPDR-1`–`FPDR-4`. | Draft prepared for Mission Control Stage 5 Product Review; no Builder Review, Engineering Review, lock, EIS or implementation performed. |
+| 2026-09-23 | Mission Control | First substantive Stage 5 Product Review of PR #630 at head `8096a24674cec0cba48dffc26393d23590296d7b` (MC-20). | Structure and Founder Scenarios A/B substantively accepted; Stage 5/Gate 10 held for five narrow corrections (MC-20A–E). |
+| 2026-09-24 | Claude Code | Applied MC-20A–E on the same branch/PR (Blueprint version 0.2). | Corrections only; awaiting Mission Control re-review; no approval, lock, Section 20/21, EIS or implementation. |

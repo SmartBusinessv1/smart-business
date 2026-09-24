@@ -349,3 +349,20 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Git authorization reference:** the mission-scoped Git authority in `communication/live/instruction.md` (MC-19 version), effective on PR #629's human merge, valid through 2026-10-07 23:59 IST or an earlier stop condition.
 **Stage Ledger row updated:** Stage 4 — see `communication/missions/SB-P-1.12/README.md`.
 **Mission Control approval reference:** pending — this handover requests it.
+
+## H-20 — Claude Code: MC-20 narrow correction applied to the Stage 4 Blueprint; stopped for Mission Control re-review
+
+**Prepared:** 2026-09-24
+**From:** Claude Code (MC-02 appointed Stage 2–4 Definition Actor)
+**To:** Mission Control
+**Status:** `STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED, MISSION CONTROL STAGE 5 REVIEWED ONCE, FIVE NARROW CORRECTIONS (MC-20A–E) APPLIED — AWAITING MISSION CONTROL RE-REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED`
+**Mission Control review actioned:** MC-20, [PR #630 comment `5795973460`](https://github.com/SmartBusinessv1/smart-business/pull/630#issuecomment-5795973460), reviewed head `8096a24674cec0cba48dffc26393d23590296d7b`. Acknowledgment and plan posted first, [comment `5815572923`](https://github.com/SmartBusinessv1/smart-business/pull/630#issuecomment-5815572923).
+**Files created or modified:** the same six MC-19 authorized paths — `docs/phase-1-mission-blueprint/active/SB-P-1.12.md`, `communication/live/report.md`, `communication/missions/SB-P-1.12/README.md`, `decision-log.md`, `handover-log.md`, `claude-code/14-stage4-blueprint-drafting-report.md`. The canonical FCTM, Founder Product Decision Record, contracts, Build Plan and governance sources were not touched.
+**Commit SHA:** recorded on branch `mission/SB-P-1.12-stage4-blueprint-draft`, same PR #630; exact revised head SHA and CI run IDs reported in chat and on the PR.
+**Verification performed:** machine check of every Section 19 row against the FCTM (disposition, `Assigned mission` column, non-empty source and location) — 373/373, zero errors; Section 11 owners checked against the FCTM; contract and Build Plan blob SHAs re-verified unchanged; local Markdown Quality Gate; exact-head CI; secret scan.
+**Open issues carried forward:** Mission Control's Stage 5 re-review and Gate 10; DC-1 membership-model design; Stage 7 independent Security & Permissions Architecture specialist unappointed; production `anon`/RLS state `UNVERIFIED`; the Fast Gate required-check question surfaced, not decided.
+**Next authorized action:** Mission Control re-reviews PR #630. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Sections 20–21, Builder Review, Engineering Review, Blueprint lock, EIS, implementation, production, migration, delivery, publication or OLE promotion.
+**Stage Ledger row updated:** Stage 4 — see `communication/missions/SB-P-1.12/README.md`.
+**Mission Control approval reference:** pending — this handover requests it.
+
