@@ -163,3 +163,20 @@ Claude Code prepared one DRAFT Stage 6 Builder Review report ([`16-stage6-builde
 **Prepared:** 2026-09-25. **Effective only on Founder/authorized-human merge of the separate MC-25 communication PR.** Human-merged #632 final head `945ec8f330900f5902493eee9771406f90ceb83d`, merge `2026-09-24T18:37:11Z`, canonical `main@76ff1575e1ca3978f363d7a1daef307513376345` makes MC-24 Stage 6 Builder findings canonical. The Founder answered F-02 **Option B**, F-03 **Option B**, F-04(c) **Option C** in [comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459); MC-24 transcribed exact meanings. These are confirmed in dialogue, pending a separate durable Founder Decision Record and narrow Sections 1–19 Blueprint reconciliation.
 
 **Conditional authorization:** after MC-25 human merge, Claude Code prepares the Founder Record and minimum §3/affected section reconciliation under `mission-control/12-founder-decision-blueprint-reconciliation-authorization.md` and `communication/live/instruction.md`, submits one draft PR and stops for MC review. Approved Scenarios A/B, FPDR-1–4 and canonical FCTM remain unchanged; FCTM annotations require additional authority. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production remain unauthorized. Independent security reviewer and F-06 CI-governance/T4 read-only runtime gates remain separate.
+
+## CC-FOUNDER-RECORD-01 — Founder Decision Record 04 and narrow Blueprint reconciliation drafted
+
+**Date:** 2026-09-25
+**Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
+**Authority:** MC-25, `communication/live/instruction.md`, canonical via PR #634.
+
+Claude Code transcribed Founder choices F-02 Option B, F-03 Option B and F-04(c) Option C from [PR #632 comment `5819755459`](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459) into [Founder Record 04](founder/04-stage6-builder-founder-decision-record.md). The three quoted decision paragraphs were machine-checked as exact substrings of the comment. The approved Blueprint was reconciled narrowly to version 0.3: the unsupported "within exactly one business" statement was replaced, and the affected Section 3, 8, 10, 12, 15 and 19 passages were amended with exact before and after clauses recorded in [`claude-code/18-founder-decision-blueprint-reconciliation-report.md`](claude-code/18-founder-decision-blueprint-reconciliation-report.md). Founder Scenarios A and B are byte-identical, no FCTM row, disposition or owner changed, and `FPDR-1`–`FPDR-4` are unchanged. One open question is raised, not answered: whether a delegated Reference Cost or margin value may reveal the other through a visible selling price. T4 production remains `UNVERIFIED`. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation and production are not authorized.
+
+## CC-FOUNDER-RECORD-02 — MC-26A wording correction applied to Blueprint Section 12
+
+**Date:** 2026-09-25
+**Status:** DRAFT — MISSION CONTROL RE-REVIEW REQUIRED
+**Authority:** MC-26, [PR #635 comment `5820859181`](https://github.com/SmartBusinessv1/smart-business/pull/635#issuecomment-5820859181), reviewed head `6ffeeb75f4218821820da2d5cf3161e686c312e8`; same branch and PR.
+
+Mission Control substantively accepted Founder Record 04 and the narrow Blueprint reconciliation and required one correction. Blueprint Section 12's sentence conditioning the F-04(c) outcome on a mission "adopting" the revalidation pattern was replaced by wording that requires a downstream permission-governed multi-row import to reuse this mission's mandatory execution-time authorization/revalidation boundary and preserve the F-04(c) outcome, with owning missions keeping their feature-specific end-to-end proof (DC-3). Exact before and after wording is in [`claude-code/18-founder-decision-blueprint-reconciliation-report.md`](claude-code/18-founder-decision-blueprint-reconciliation-report.md) Section 12. Founder Scenarios A and B, the FCTM, `FPDR-1`–`FPDR-4` and the three Founder decisions are unchanged. The F-03 derived-value question stays open and unanswered.
+

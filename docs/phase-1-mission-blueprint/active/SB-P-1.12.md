@@ -101,10 +101,11 @@ Catalog identity, pricing, tax, SKU/barcode, price history and audit already exi
 
 Establish, for every business in Smart Business, one authority and identity kernel that:
 
-- gives every person a clear role (Owner, Manager, Employee) or bounded external participation (Supplier, Customer, Delivery Staff) within exactly one business, with no ambient cross-business access;
+- gives every person a clear role (Owner, Manager, Employee) or bounded external participation (Supplier, Customer, Delivery Staff) within each business it belongs to — a person may hold memberships in more than one business, with a separately scoped role and permission set in each (for example Owner of one business and Manager of another), no cross-business access implied by any of them, and an unambiguous active-business context for every action (Stage 6 Founder Decision F-02, [Founder Record 04](../../../communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md));
 - expresses permission across every dimension Contract 21 §5 requires — authenticated user, business membership, role, explicit delegated capability, object/record ownership, action type, feature entitlement, channel/context, temporary/purpose-limited grant, and current account/subscription state — not merely a single "logged in" check;
 - enforces that permission at the server/database layer as the actual security boundary, with the UI as a secondary convenience only;
-- revalidates authority at the moment of execution, not merely at the moment of preview, so a permission revoked between preview and commit blocks the commit (Founder Scenario B);
+- keeps Reference Cost and margin Owner-only by default, each separately and explicitly delegable to an authorized Manager, with delegation of one never delegating the other, enforced at the backend/data layer as well as the UI (Stage 6 Founder Decision F-03);
+- revalidates authority at the moment of execution, not merely at the moment of preview, so a permission revoked between preview and commit blocks the commit (Founder Scenario B), and a permission revoked part-way through a multi-row import preserves the rows already committed, stops the unauthorized remainder, and tells the merchant what was completed and what remains (Stage 6 Founder Decision F-04(c), supplemental to and separate from Founder Scenario B);
 - binds every consequential confirmation to the exact actor, business, action, target and reviewed state/value it confirmed;
 - records who did what, from where, with what interpretation, correction and resulting action, on every security-sensitive event;
 - denies calmly, without leaking the protected answer, without accusing the person, and without disrupting the rest of their normal work;
@@ -180,15 +181,19 @@ Assembled by reference to the canonical FCTM (`claude-code/03-stage2-populated-f
 
 ### 8.1 Core Authority Model (`21-§4-1`–`21-§4-6`; `BP-§10.1-1`)
 
-A real authority record for Owner, Manager, Employee, Supplier, Customer and Delivery Staff — today only `businesses.owner_id UNIQUE` exists, structurally allowing exactly one authorized account per business (Delta DC-1). This mission's own membership-model design work resolves DC-1; no specific schema is approved Product Truth here.
+A real authority record for Owner, Manager, Employee, Supplier, Customer and Delivery Staff — today only `businesses.owner_id UNIQUE` exists, structurally allowing exactly one authorized account per business (Delta DC-1). This mission's own membership-model design work resolves DC-1; no specific schema is approved Product Truth here. `owner_id UNIQUE` is a repository fact about today's single-owner shape, not a product rule limiting a person to one business: per Stage 6 Founder Decision F-02 a person may hold memberships in more than one business, each with its own role and permissions.
 
 ### 8.2 Permission Dimensions (`21-§5-1`–`21-§5-10`; `BP-§10.1-2`, `BP-§10.1-3`)
 
 Every access decision must check: authenticated user, business membership, role, explicit delegated capability, object/record ownership and scope, action type (read/create/update/approve/export/admin), feature entitlement, channel/context, temporary/purpose-limited grant, and current account/subscription/security state — ten distinct dimensions, not a single "logged in" gate.
 
+**Active-business context (Stage 6 Founder Decision F-02).** A person may hold memberships in more than one business, with a separately scoped role and permission set in each; being Owner of one business and Manager of another is permitted. Every action carries an unambiguous active-business context, and no permission held in one business implies access to any other. How a person's active business is selected, carried and verified is future engineering design and is not fixed here; this Blueprint adds no new experience anchor or merchant-facing feature.
+
+**Field-specific delegation of Reference Cost and margin (Stage 6 Founder Decision F-03).** Reference Cost and margin are Owner-only by default. The Owner may separately and explicitly delegate each to an authorized Manager: delegating one never delegates the other, and a generic product read or a bounded Manager product view implies neither. The backend/data layer and the UI both enforce this, and no Employee visibility is inferred. The unconditional return of Reference Cost by the current product-read path is a repository finding recorded in the Stage 6 Builder Review (F-03), not accepted authorization, and no field-level permission is claimed to be implemented.
+
 ### 8.3 Business Isolation (`21-§6-1`–`21-§6-7`; `BP-§10.1-6`)
 
-Cross-business reads, writes, conversation context, file/document access, exports, and integration mappings are all denied server-side; a client-provided `business_id` is never trusted alone — scope is always derived server-side from the authenticated session.
+Cross-business reads, writes, conversation context, file/document access, exports, and integration mappings are all denied server-side; a client-provided `business_id` is never trusted alone — scope is always derived server-side from the authenticated session. A person's membership or role in one business never grants access to another business's protected data (Stage 6 Founder Decision F-02).
 
 ### 8.4 Server-Side Authorization (`21-§7`)
 
@@ -229,6 +234,8 @@ Role and entitlement are jointly required where relevant; entitlement state is n
 ### 8.13 Execution-Time Permission Revalidation (`21-§17`; `BP-§10.1-5`) — Founder Scenario B
 
 Permission is rechecked at the moment of execution, not only at preview. Founder Scenario B: a Manager begins a consequential preview (e.g. a Product & Price Master bulk-import preview); the Owner revokes the relevant permission before commit; the commit must fail because authority is rechecked at execution time, and no protected write may occur.
+
+**Revocation part-way through a multi-row import (Stage 6 Founder Decision F-04(c)) — supplemental to Founder Scenario B, which is unchanged above and in Section 15.** If permission is revoked while a multi-row import is running, rows already successfully committed are preserved and the unauthorized remainder is stopped. The merchant is told how many rows were completed and how many remain, and is guided to complete the remainder without duplicating rows already committed. There is no silent duplication, no automatic continuation under the revoked actor's authority and no mandatory rollback; any later completion re-checks the current actor's and business's authority. Progress accounting, replay protection and the resume or re-submission mechanism are not selected here and are left to a later authorized stage.
 
 ### 8.14 Confirmation Binding (`21-§18-1`–`21-§18-6`)
 
@@ -272,7 +279,7 @@ Every audited event retains the raw/original event, actor, source/channel, inter
 
 ### 8.24 Idempotency / Duplicate Protection (`22-§15`)
 
-Duplicate/retried external or internal events must not be double-applied — a single integrated rule this mission's own deliverable must satisfy.
+Duplicate/retried external or internal events must not be double-applied — a single integrated rule this mission's own deliverable must satisfy. Completion of a multi-row import interrupted by revocation must likewise be duplicate-safe (Stage 6 Founder Decision F-04(c); see Section 8.13); the mechanism is not selected here.
 
 ### 8.25 Integration/Extension and Error-Handling Design Constraints (`22-§17`, `22-§19`)
 
@@ -308,7 +315,7 @@ The Owner is the initial highest authority; staff/manager setup uses explicit in
 
 ### 8.33 Manager Workspace Permission Surface (`17-§13-1`–`17-§13-4`; `17-§14-1`–`17-§14-7`; `17-§16-1`; `17-§18-1`; `17-§18-2`; `17-§18-4`; `17-§21-4`; `17-§22-2`; `17-§22-3`; `17-§22-9`; `17-§22-10a`)
 
-Owner/Manager/Employee each have defined dashboard access; Customer/Supplier/Delivery Staff have none by default. Role-based UI is a usability layer, never the security boundary — every protected read/write independently enforces authenticated user, business isolation, current role/permission, feature entitlement, and object/action scope, and a UI component change never widens backend access. No cross-business dashboard data; no default staff access to Owner intelligence; no employee visibility into Owner-wide financial intelligence by convenience (directly overlaps `21-§21`). `SB-P-1.17`'s Manager Operations depth sits inside this surface; it does not redefine it.
+Owner/Manager/Employee each have defined dashboard access; Customer/Supplier/Delivery Staff have none by default. Role-based UI is a usability layer, never the security boundary — every protected read/write independently enforces authenticated user, business isolation, current role/permission, feature entitlement, and object/action scope, and a UI component change never widens backend access. No cross-business dashboard data; no default staff access to Owner intelligence; no employee visibility into Owner-wide financial intelligence by convenience (directly overlaps `21-§21`). `SB-P-1.17`'s Manager Operations depth sits inside this surface; it does not redefine it. Reference Cost and margin are not part of a Manager's bounded product view by default; each requires its own explicit Owner delegation (Stage 6 Founder Decision F-03; see Section 8.2).
 
 ### 8.34 Stock/Supplier Touch Points — Boundary Preservation (`7-§7`; `7-§9`; `7-§10-1`–`7-§10-4`; `7-§12`; `7-§15-10`; `7-§15-12`)
 
@@ -349,6 +356,9 @@ Negative and design-constraint obligations, assembled by reference (full list in
 - Entitlement and subscription-state changes never destroy or dynamically mutate schema (`21-§16-2`, `22-§20-1`, `22-§28-8`).
 - AI/tool capability is never authority, in any channel (`21-§23-5`, `22-§28-9`).
 - No default staff access to Owner-wide financial intelligence, via the dashboard or otherwise (`17-§18-2`, `17-§21-4`).
+- Reference Cost and margin are Owner-only by default and separately, explicitly delegable to an authorized Manager; delegating one never delegates the other, a generic product read or bounded Manager product view implies neither, no Employee visibility is inferred, and both the backend/data layer and the UI enforce this (Stage 6 Founder Decision F-03; `21-§5-4`, `17-§18-2`, `17-§21-4`).
+- A person's role in one business grants nothing in another, and every action has one unambiguous active-business context (Stage 6 Founder Decision F-02; `21-§5-2`, `21-§6-1`, `21-§6-2`).
+- Revocation during a multi-row import never silently duplicates rows, never continues automatically under the revoked authority and never mandates rollback of committed rows; any later completion requires current actor and business authority (Stage 6 Founder Decision F-04(c); `21-§17`, `22-§13-4`, `22-§15`).
 - No duplicate Permission Engine, Business Memory, AI orchestrator, reminder scheduler, document pipeline, or identity silo per feature or channel (`22-§28-1`–`22-§28-6`).
 - No new location-capture mode, retention period, consent/monitoring policy, or exclusive future-feature ownership is created by the Location Foundation boundary decisions (`FPDR-3`).
 - No independent Catalog product expansion, destructive collapse into Transactions, or Inventory-as-sole-commercial-owner (`BP-§7-4`).
@@ -415,6 +425,7 @@ Contract 20: `20-§15` (WhatsApp adapter slice; Workspace slice shared `SB-P-1.1
 
 ### Downstream Dependencies (missions consuming this mission's Permission Engine and boundary decisions)
 
+- All downstream missions consume this mission's active-business context (Stage 6 Founder Decision F-02) and field-level Reference Cost and margin delegation (Stage 6 Founder Decision F-03) as part of the one Permission Engine (`21-§22`) rather than building their own. Where a downstream mission implements a permission-governed multi-row import, it must reuse this mission's mandatory execution-time authorization/revalidation boundary and preserve the Founder F-04(c) outcome if permission is revoked during that import; owning missions retain their feature-specific end-to-end proof (DC-3). No receiving-mission assignment or FCTM disposition changes.
 - `SB-P-1.13` — Native Conversation & AI Intelligence Foundation: consumes the Conversation/AI Permission Boundary (`21-§8`) and Ask CFO boundary (`21-§9`); owns and provides the Human Language Foundation (`22-§8`, `20-§14`) as the foundation owner/provider. It is not the owner of notification-specific integration: under `FPDR-1`/`22-§12-2`, `SB-P-1.15` (the Shared Notification Foundation owner, below) is the notification-specific consumer/integrator responsible for its own future design and verification of appropriate reuse of `SB-P-1.13`'s Human Language Foundation. That integration is neither implemented nor verified by this Blueprint.
 - `SB-P-1.14` — Business Memory, Documents & Durable Media.
 - `SB-P-1.15` — Reminder, Daily Intelligence & Ask CFO: owns the Shared Notification Foundation workstream (`FPDR-1`) and, as the notification-specific consumer of `SB-P-1.13`'s Human Language Foundation, is responsible for its own future design and verification of appropriate reuse (`22-§12-2`); not shown here as done.
@@ -461,6 +472,14 @@ All 228 `IN SCOPE` rows remain this mission's obligations; none is weakened, mov
 
 - [ ] **Scenario A — Bounded delegation.** Owner grants a Manager a bounded contextual product-price-inventory view capability using the shared Product & Price Master. Manager sees only delegated operational areas. Owner financial surfaces remain denied. Evidence must include UI result plus data-layer/RLS denial evidence.
 - [ ] **Scenario B — Revocation invalidates stale action.** Manager begins a consequential preview such as a Product & Price Master bulk-import preview. Owner revokes the relevant permission before commit. Commit must fail because authority is rechecked at execution time; no protected write may occur.
+
+### Stage 6 Founder Decisions — supplemental acceptance (not new Founder Runtime Scenarios)
+
+These lines record the Founder-confirmed outcomes of Stage 6 F-02, F-03 and F-04(c) ([Founder Record 04](../../../communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md)). They are supplemental acceptance obligations within this mission's existing `IN SCOPE` rows, separate from Founder Runtime Verification Scenarios A and B (unchanged above), and follow the DC-3 scope of proof: this mission proves the permission mechanics for protected paths in its scope and does not claim end-to-end proof for later missions' features. No implementation is claimed to exist today.
+
+- [ ] **F-02 — Multiple memberships, isolated.** A person who holds memberships in two businesses has a separately scoped role and permission set in each (for example Owner of one and Manager of the other). Every action resolves to one unambiguous active business, and a role or permission held in one business never authorizes anything in the other; the cross-business denial path is proven.
+- [ ] **F-03 — Reference Cost and margin individually delegable.** A Manager granted a bounded product view does not see Reference Cost or margin by default. The Owner can delegate each separately, and delegating one leaves the other denied. A generic product read grants neither, and no Employee visibility is inferred. Evidence includes UI results plus backend/data-layer denial evidence for each default-denied and each partially delegated case.
+- [ ] **F-04(c) — Revocation during a multi-row import.** When permission is revoked during a multi-row import, the rows already committed are preserved and the unauthorized remainder is not written. The merchant is told how many rows were completed and how many remain, and is guided to complete the remainder without duplicating committed rows. No row is silently duplicated, nothing continues automatically under the revoked authority, and no rollback is required. Any later completion re-checks the current actor's and business's authority. This is separate from, and does not alter, Scenario B's pre-commit denial.
 
 ### Authority Model and Permission Matrix
 
@@ -532,6 +551,7 @@ Authority is not a feature a merchant sees — it is the quiet, structural guara
 |---|---|---|---|---|
 | 0.1 | 2026-09-23 | Claude Code (MC-02) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 373-row FCTM, Founder Decisions `FPDR-1`–`FPDR-4`, mature Contracts 21/22/20/17/7, and Build Plan §§5–7, 10.1. | DRAFT — awaiting Mission Control Stage 5 Product Review |
 | 0.2 | 2026-09-24 | Claude Code (MC-02) | Narrow corrections MC-20A–E on PR #630: Section 19 assigned-mission labels corrected against the FCTM `Assigned mission` column (`20-§14` = `SB-P-1.13` primary build) and Section 19 tables extended with explicit assigned-mission and source-reference fields; Section 12 distinguishes Human Language Foundation owner (`SB-P-1.13`) from notification-specific integrator (`SB-P-1.15`); Mission Snapshot and §4 authorization-evidence wording made precise; Section 15 qualified for mission-owned permission mechanics versus later missions' end-to-end features; Institutional Learning Intake reconciliation refreshed. No FCTM row, disposition, Founder Decision or Founder scenario changed. | DRAFT — awaiting Mission Control re-review
+| 0.3 | 2026-09-25 | Claude Code (documentary preparation, MC-25) | Narrow reconciliation of Founder-confirmed Stage 6 decisions F-02, F-03 and F-04(c) (Founder Record 04): removed the unsupported "within exactly one business" statement from Section 3; added Section 3 objective clauses and Section 8.1–8.3, 8.13, 8.24, 8.33, Section 10, Section 12 and Section 15 passages; appended Founder Record 04 references to the affected Section 19 source-reference cells; added Governance History rows. Founder Scenarios A and B, all 373 FCTM rows, dispositions, assigned missions and original source pointers, and `FPDR-1`–`FPDR-4` unchanged. | DRAFT — awaiting Mission Control review; not effective until human merge |
 
 ## 19. Governance History
 
@@ -541,14 +561,16 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 
 **Source baseline (unchanged from the Stage 1 intake baseline; re-verified against `origin/main` at `d86e8663eabccff62f3f7e3fadd5342a2ca56aac`):** C21 = Contract 21, `21_Permissions_Business_Isolation_and_Role_Authority.md`, blob `f4a05d5c3aa76f70f0bdea0a83acdb7d7e61b36d`; C22 = Contract 22, `22_Shared_Product_Foundations.md`, blob `ca4a0fdaec1ac619663f768ccb2ff10f33c590ff`; C20 = Contract 20, `20_Onboarding_and_First_Experience.md`, blob `56ed4d11d2719abb83e6f9e862a51ffc5ebdf005`; C17 = Contract 17, `17_Operational_Dashboard_and_Manager_Workspace.md`, blob `7943f74a88c2922acc697115f336b68baf7a503a`; C7 = Contract 7, `07_Stock_Supplier_and_Reorder_Intelligence.md`, blob `65ad91b202def9cb4f42b97383bcc58475f59015` (limited MC-03/MC-04 opening); BP = Founder-approved Build Plan, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`. `NOT APPLICABLE` rows are not obligations; each states its specific reason and is also listed in §11 (Not Applicable), so none vanishes from accounting.
 
+**Founder Record 04 references (version 0.3).** Where a row's source reference below ends with "Founder Record 04 (F-0x)", the row's obligation is also implicated by the Founder-confirmed Stage 6 decision named (F-02, F-03 or F-04(c)) in [`founder/04-stage6-builder-founder-decision-record.md`](../../../communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md). The suffix is added to, and never replaces, the original source pointer; no disposition, assigned mission or Blueprint location cell was changed.
+
 #### Contract 21 — Permissions, Business Isolation and Role Authority (107 rows, wholly `SB-P-1.12`)
 
 | FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
 |---|---|---|---|---|
 | `21-§1`–`21-§3` | NOT APPLICABLE | SB-P-1.12 | C21 §§1–3 (Feature Identity; Founder Problem Statement; Lighthouse Principles) | Narrative/interpretive (`L-NARR`), not a testable obligation; informs §§1, 4, 5; listed in §11 |
-| `21-§4-1`–`21-§4-6` | IN SCOPE | SB-P-1.12 | C21 §4 Core Authority Model (Owner, Manager, Employee, Supplier, Customer, Delivery Staff); BP §10.1 (role model) | §8.1 |
-| `21-§5-1`–`21-§5-10` | IN SCOPE | SB-P-1.12 | C21 §5 Permission Dimensions (ten dimensions); BP §10.1 (permission matrix) | §8.2 |
-| `21-§6-1`–`21-§6-7` | IN SCOPE | SB-P-1.12 | C21 §6 Business Isolation (six isolation surfaces; client `business_id` never trusted alone); BP §10.1 (isolation) | §8.3 |
+| `21-§4-1`–`21-§4-6` | IN SCOPE | SB-P-1.12 | C21 §4 Core Authority Model (Owner, Manager, Employee, Supplier, Customer, Delivery Staff); BP §10.1 (role model); Founder Record 04 (F-02, F-03) | §8.1 |
+| `21-§5-1`–`21-§5-10` | IN SCOPE | SB-P-1.12 | C21 §5 Permission Dimensions (ten dimensions); BP §10.1 (permission matrix); Founder Record 04 (F-02, F-03) | §8.2 |
+| `21-§6-1`–`21-§6-7` | IN SCOPE | SB-P-1.12 | C21 §6 Business Isolation (six isolation surfaces; client `business_id` never trusted alone); BP §10.1 (isolation); Founder Record 04 (F-02) | §8.3 |
 | `21-§7` | IN SCOPE | SB-P-1.12 | C21 §7 Server-side Authorization | §8.4 |
 | `21-§8`, `21-§9` | IN SCOPE | SB-P-1.12 | C21 §8 Conversation/AI Permission Boundary; C21 §9 Ask CFO / Owner Intelligence boundary | §8.5 |
 | `21-§10-1`–`21-§10-6` | IN SCOPE | SB-P-1.12 | C21 §10 Employee Self-service | §8.6, §15 |
@@ -558,14 +580,14 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 | `21-§14-1`–`21-§14-7` | IN SCOPE | SB-P-1.12 | C21 §14 Support Access | §8.10 |
 | `21-§15-1`–`21-§15-5` | IN SCOPE | SB-P-1.12 | C21 §15 Authentication vs Authorization | §8.11 |
 | `21-§16-1`, `21-§16-2` | IN SCOPE | SB-P-1.12 | C21 §16 Entitlements; BP §10.1 (entitlement primitives) | §8.12, §10 |
-| `21-§17` | IN SCOPE | SB-P-1.12 | C21 §17 Permission Changes and Runtime Revalidation; BP §10.1 Founder Scenario B | §8.13, §15 Scenario B |
-| `21-§18-1`–`21-§18-6` | IN SCOPE | SB-P-1.12 | C21 §18 Confirmation Binding | §8.14 |
+| `21-§17` | IN SCOPE | SB-P-1.12 | C21 §17 Permission Changes and Runtime Revalidation; BP §10.1 Founder Scenario B; Founder Record 04 (F-04(c)) | §8.13, §15 Scenario B |
+| `21-§18-1`–`21-§18-6` | IN SCOPE | SB-P-1.12 | C21 §18 Confirmation Binding; Founder Record 04 (F-04(c)) | §8.14 |
 | `21-§19-1`–`21-§19-8` | IN SCOPE | SB-P-1.12 | C21 §19 Auditability | §8.15 |
 | `21-§20-1`–`21-§20-5` | IN SCOPE | SB-P-1.12 | C21 §20 Denial Behavior | §8.16 |
 | `21-§21-1`–`21-§21-5` | IN SCOPE | SB-P-1.12 | C21 §21 Privacy/Dignity | §8.17, §10 |
 | `21-§22` | IN SCOPE | SB-P-1.12 | C21 §22 Shared Foundation Reuse | §8.18 |
 | `21-§23-1`–`21-§23-7` | IN SCOPE | SB-P-1.12 | C21 §23 Non-goals (seven) | §8.18, §10 |
-| `21-§24-1`–`21-§24-12` | IN SCOPE | SB-P-1.12 | C21 §24 Acceptance scenarios 1–12 (Scenarios 3 and 8 = Founder A and B) | §8.19, §15 |
+| `21-§24-1`–`21-§24-12` | IN SCOPE | SB-P-1.12 | C21 §24 Acceptance scenarios 1–12 (Scenarios 3 and 8 = Founder A and B); Founder Record 04 (F-03, F-04(c)) | §8.19, §15 |
 | `21-§25`–`21-§27` | NOT APPLICABLE | SB-P-1.12 | C21 §25 Historical Corrections; §26 Provenance and Hydration Coverage; §27 Completion Gate | Provenance/synthesis (`L-HIST`/`L-PROV`/`L-GATE`), not obligations; listed in §11 |
 
 #### Contract 22 — Shared Product Foundations (112 rows, split across `SB-P-1.12`/`1.13`/`1.14`/`1.15`/`1.18`/`1.20`)
@@ -574,15 +596,15 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 |---|---|---|---|---|
 | `22-§1`–`22-§3` | NOT APPLICABLE | SB-P-1.12 | C22 §§1–3 (Feature Identity; Founder Problem Statement; Lighthouse Principles) | Narrative/interpretive (`L-NARR`); informs §§1, 4, 5; listed in §11 |
 | `22-§4` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C22 §4 Business Memory Foundation; BP §9 row 3, §10.3 | §11 |
-| `22-§5-1`–`22-§5-9` | IN SCOPE | SB-P-1.12 | C22 §5 Identity Foundation; BP §10.1 (shared identity primitives) | §8.20 |
+| `22-§5-1`–`22-§5-9` | IN SCOPE | SB-P-1.12 | C22 §5 Identity Foundation; BP §10.1 (shared identity primitives); Founder Record 04 (F-02) | §8.20 |
 | `22-§6-1`–`22-§6-10` | IN SCOPE | SB-P-1.12 | C22 §6 Permission/Isolation Foundation (nine surfaces + extension rule) | §8.21, §10 |
 | `22-§7`, `22-§8` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C22 §7 Conversation/Intent-Action Foundation; C22 §8 Human Language Foundation; BP §10.2 | §11 |
 | `22-§9`, `22-§10` | ASSIGNED TO LATER MISSION | SB-P-1.14 | C22 §9 Universal Document Intelligence; C22 §10 Document/Receipt Memory; BP §10.3 | §11 |
 | `22-§11` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §11 Reminder/Delegated Automation Foundation; BP §9 row 4, §10.4 | §11 |
 | `22-§12-1`–`22-§12-9` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C22 §12 Notification Foundation (nine items); Founder Decision `FPDR-1` (BP has no naming source) | §2, §7, §11, §13 |
-| `22-§13-1`–`22-§13-5` | IN SCOPE | SB-P-1.12 | C22 §13 Confirmation/Clarification Foundation | §8.22, §10 |
+| `22-§13-1`–`22-§13-5` | IN SCOPE | SB-P-1.12 | C22 §13 Confirmation/Clarification Foundation; Founder Record 04 (F-04(c)) | §8.22, §10 |
 | `22-§14-1`–`22-§14-9` | IN SCOPE | SB-P-1.12 | C22 §14 Audit/Human Context | §8.23 |
-| `22-§15` | IN SCOPE | SB-P-1.12 | C22 §15 Idempotency / Duplicate Protection | §8.24 |
+| `22-§15` | IN SCOPE | SB-P-1.12 | C22 §15 Idempotency / Duplicate Protection; Founder Record 04 (F-04(c)) | §8.24 |
 | `22-§16-1` | ASSIGNED TO LATER MISSION | SB-P-1.18 | C22 §16 Location Foundation (shared purpose-limited primitive); Founder Decision `FPDR-2` | §2, §7, §11, §13 |
 | `22-§16-2` | IN SCOPE | SB-P-1.12 | C22 §16 (surveillance rejection), tied to C21 §21 (`21-§21-1`); unchanged, not reopened | §8.17, §10, §15 |
 | `22-§16-3`–`22-§16-7` | ASSIGNED TO LATER MISSION | SB-P-1.18 (named instance: attendance/delivery only) | C22 §16 per-feature disclosures (why, who sees, capture, retention, access end); Founder Decision `FPDR-3` — every future location-consuming feature's own mission independently defines and verifies all five | §2, §7, §11, §13 |
@@ -647,13 +669,13 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 | `17-§15` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §15 Personalization and Navigation; BP §10.6 | §11 |
 | `17-§16-1` | IN SCOPE | SB-P-1.12 | C17 §16 Stable UI/Testability, for the §13/§14 surface | §8.33 |
 | `17-§16-2`, `17-§17` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §16 Stable UI/Testability (remaining Manager-depth surface); C17 §17 Error and Exception Behavior; BP §10.6 | §11 |
-| `17-§18-1`, `17-§18-2` | IN SCOPE | SB-P-1.12 | C17 §18 Privacy/Trust items 1–2 (no cross-business data; no staff access to Owner intelligence by default); overlaps C21 §6, §21 | §8.33, §10 |
+| `17-§18-1`, `17-§18-2` | IN SCOPE | SB-P-1.12 | C17 §18 Privacy/Trust items 1–2 (no cross-business data; no staff access to Owner intelligence by default); overlaps C21 §6, §21; Founder Record 04 (F-03) | §8.33, §10 |
 | `17-§18-3` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §18 item 3 (no routine admin browsing through dashboard shortcuts) | §11 |
 | `17-§18-4` | IN SCOPE | SB-P-1.12 | C17 §18 item 4 (sensitive information only to roles with legitimate need); overlaps C21 §5, §14 | §8.33 |
 | `17-§18-5`, `17-§19` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §18 item 5 (dashboard analytics must not become hidden surveillance); C17 §19 Performance Expectations | §11 |
 | `17-§20` | NOT APPLICABLE | SB-P-1.12 | C17 §20 Shared Foundations to Reuse | Cross-reference list (`L-REUSE`); listed in §11 |
 | `17-§21-1`–`17-§21-3` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §21 Non-goals items 1–3 (dashboard-experience-specific) | §11 |
-| `17-§21-4` | IN SCOPE | SB-P-1.12 | C17 §21 item 4 (no employee visibility into Owner-wide financial intelligence by convenience); overlaps C21 §21 | §8.33, §10 |
+| `17-§21-4` | IN SCOPE | SB-P-1.12 | C17 §21 item 4 (no employee visibility into Owner-wide financial intelligence by convenience); overlaps C21 §21; Founder Record 04 (F-03) | §8.33, §10 |
 | `17-§21-5`, `17-§22-1` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C17 §21 item 5 (Conversation Workspace not hidden as fallback only); C17 §22 Scenario 1 | §11 |
 | `17-§22-2`, `17-§22-3` | IN SCOPE | SB-P-1.12 | C17 §22 Scenarios 2–3 (Manager delegated ops only; Employee limited surfaces); Founder Scenario A | §8.33, §15 Scenario A |
 | `17-§22-4` | ASSIGNED TO LATER MISSION | SB-P-1.13 | C17 §22 Scenario 4 (tests C17 §5) | §11 |
@@ -689,7 +711,7 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 
 | FCTM Row ID(s) | Disposition | Assigned mission (FCTM) | Source reference | Blueprint location |
 |---|---|---|---|---|
-| `BP-§10.1-1`–`BP-§10.1-6` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 1–6 (role model; membership/identity; permission matrix; delegated authority; execution-time revalidation; isolation) | §8.1–§8.3 |
+| `BP-§10.1-1`–`BP-§10.1-6` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 1–6 (role model; membership/identity; permission matrix; delegated authority; execution-time revalidation; isolation); Founder Record 04 (F-02, F-03, F-04(c)) | §8.1–§8.3 |
 | `BP-§10.1-7`–`BP-§10.1-9` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 7–9 (RLS/grants/function review; `anon` remediation; CI baseline); BP §5.1, §5.2 | §8.36, §13 (T4) |
 | `BP-§10.1-10` | IN SCOPE | SB-P-1.12 | BP §10.1 required work area 10 (entitlement primitives) | §8.12 |
 | `BP-§10.1-11`–`BP-§10.1-13` | IN SCOPE | SB-P-1.12 | BP §10.1 required work areas 11–13 (Product & Price Master reclassification; `/catalog` demotion plan; data and deep-link continuity); BP §7 | §8.35 |
@@ -721,3 +743,7 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 | 2026-09-23 | Claude Code | Prepared this DRAFT Product Blueprint — Metadata, Mission Snapshot, Sections 1–19 — assembled by reference to the canonical FCTM and `FPDR-1`–`FPDR-4`. | Draft prepared for Mission Control Stage 5 Product Review; no Builder Review, Engineering Review, lock, EIS or implementation performed. |
 | 2026-09-23 | Mission Control | First substantive Stage 5 Product Review of PR #630 at head `8096a24674cec0cba48dffc26393d23590296d7b` (MC-20). | Structure and Founder Scenarios A/B substantively accepted; Stage 5/Gate 10 held for five narrow corrections (MC-20A–E). |
 | 2026-09-24 | Claude Code | Applied MC-20A–E on the same branch/PR (Blueprint version 0.2). | Corrections only; awaiting Mission Control re-review; no approval, lock, Section 20/21, EIS or implementation. |
+| 2026-09-24 | Mission Control | Stage 5 approval of Sections 1–19 and Gate 10 (MC-21); PR #630 human-merged at `2026-09-24T14:52:34Z`, `main@cae6c064d1a88f766317373d4a16746bfafea0c6`. | Sections 1–19 approved only; Stage 5 COMPLETE — CANONICAL; no lock. |
+| 2026-09-24 | Mission Control, Claude Code | Authorized (MC-22, PR #631) and prepared the Stage 6 Builder Review; PR #632 human-merged at `2026-09-24T18:37:11Z`, `main@76ff1575e1ca3978f363d7a1daef307513376345` (MC-24 gate). | Stage 6 findings F-01–F-11 accepted as recommendations; Founder confirmed F-02 Option B, F-03 Option B and F-04(c) Option C in [PR #632 comment `5819755459`](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459). |
+| 2026-09-24 | Mission Control | Authorized the Founder Decision Record and narrow Sections 1–19 reconciliation (MC-25); PR #634 human-merged at `2026-09-24T19:09:02Z`, `main@3a67c803f27d3790a4a772bf7c563b70b32cca2f`. | Documentary preparation authorized only; Stage 7 not authorized. |
+| 2026-09-25 | Claude Code | Prepared DRAFT Founder Record 04 and this narrow reconciliation (Blueprint version 0.3). | Awaiting Mission Control review and human merge; no Stage 7, Sections 20–21, EIS, implementation or production action. |
