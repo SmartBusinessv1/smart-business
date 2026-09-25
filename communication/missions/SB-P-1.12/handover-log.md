@@ -448,3 +448,24 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** the MC-28 preparation itself (until human merge), Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 
+## H-26 — Record: PR #635 and MC-28 canonical crossings
+
+**Prepared:** 2026-09-25
+**Recorded by:** Claude Code, from repository and GitHub evidence, as part of the MC-28 reconciliation
+**Completed:** PR #635 human-merged `2026-09-25T10:38:22Z`, final head `12e6c3adf0fcef7d90ec897de7abc55fa5890315`, `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` (MC-27: Founder Record 04 and Blueprint v0.3 content accepted, MC-26A closed). PR #636 human-merged `2026-09-25T11:18:47Z`, approved head `28b47bece065388bae160189e7b95fb70b3e54e3`, `main@7f247759340fb2edf496bef1a7302abcd4633d20` (MC-28 authorization; R-4 struck by MC-28A).
+**Not completed and not authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery and publication.
+
+## H-27 — Claude Code to Mission Control: post-merge reconciliation and Stage 7 readiness draft submitted
+
+**Prepared:** 2026-09-25
+**From:** Claude Code (documentary preparation only)
+**To:** Mission Control
+**Status:** `POST-MERGE RECONCILIATION AND STAGE 7 READINESS DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-28, canonical via PR #636 (`main@7f247759340fb2edf496bef1a7302abcd4633d20`).
+**Files created or modified:** `communication/missions/SB-P-1.12/README.md`, `decision-log.md`, `handover-log.md`, `communication/live/report.md`, `communication/missions/SB-P-1.12/claude-code/20-post-merge-reconciliation-report.md` (new) and `claude-code/21-stage7-readiness-record.md` (new). The six authorized paths only.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Verification performed:** independent activation checks on fresh `origin/main`; byte comparison showing the entire Blueprint, Founder Records, FCTM and every other read-only path unchanged; before and after text for every README change (report Section 3); local Markdown Quality Gate; exact-head CI; secret scan.
+**Open issues carried forward:** the F-03 derived-value question; multiple-business ownership; independent Security & Permissions Architecture actor unappointed; F-06 required-check decision; T4 production state `UNVERIFIED`; Stage 7 authorization record not yet requested or issued.
+**Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+
