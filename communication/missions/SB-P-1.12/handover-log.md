@@ -422,3 +422,16 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 **Mission Control approval reference:** pending — this handover requests review.
 
+## H-24 — Claude Code to Mission Control: MC-26A correction applied; re-review requested
+
+**Prepared:** 2026-09-25
+**From:** Claude Code (documentary preparation only)
+**To:** Mission Control
+**Status:** `F-02/F-03/F-04(c) FOUNDER RECORD AND NARROW BLUEPRINT RECONCILIATION DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Mission Control review actioned:** MC-26, [PR #635 comment `5820859181`](https://github.com/SmartBusinessv1/smart-business/pull/635#issuecomment-5820859181), reviewed head `6ffeeb75f4218821820da2d5cf3161e686c312e8`.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (one sentence in Section 12), `communication/missions/SB-P-1.12/claude-code/18-founder-decision-blueprint-reconciliation-report.md`, `communication/live/report.md`, and this mission's `decision-log.md` and `handover-log.md`. No other path was touched.
+**Commit SHA and CI:** recorded in chat and on PR #635.
+**Open issues carried forward:** the F-03 derived-value question (Mission Control to secure Founder clarification or technical-feasibility disposition before Stage 7 relies on cost/margin design); the separate multiple-business-ownership question; production T4 state `UNVERIFIED`; independent Security & Permissions Architecture specialist unappointed; F-06 required-check decision.
+**Next authorized action:** Mission Control re-reviews PR #635. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+

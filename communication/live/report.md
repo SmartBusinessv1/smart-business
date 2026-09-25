@@ -6,6 +6,7 @@
 **Authority:** MC-25, canonical via PR #634 (`main@3a67c803f27d3790a4a772bf7c563b70b32cca2f`).
 **Previous live report:** the MC-25 authorization handover is preserved in git history at `main@3a67c803`.
 **Report:** `communication/missions/SB-P-1.12/claude-code/18-founder-decision-blueprint-reconciliation-report.md`
+**Mission Control review applied:** MC-26A ([comment `5820859181`](https://github.com/SmartBusinessv1/smart-business/pull/635#issuecomment-5820859181), reviewed head `6ffeeb75f4218821820da2d5cf3161e686c312e8`): one sentence in Blueprint Section 12 corrected so affected permission-governed multi-row imports must reuse the mandatory authorization/revalidation boundary and preserve F-04(c). Nothing else changed.
 
 **This is a DRAFT preparation only.** It transcribes the Founder-confirmed choices from [PR #632 comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459) into `communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md` and applies a narrow, source-cited reconciliation to the approved Blueprint Sections 1–19 (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`, version 0.3). It approves nothing, invents no Founder decision and is not Stage 7.
 

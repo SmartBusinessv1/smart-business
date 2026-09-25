@@ -74,7 +74,7 @@ After: the same clause, then "…, and a permission revoked part-way through a m
 
 **E-10, §10 (F-02, F-03, F-04(c)).** Three new rules after the existing "no default staff access to Owner-wide financial intelligence" rule, each citing existing row IDs (`21-§5-4`, `17-§18-2`, `17-§21-4`; `21-§5-2`, `21-§6-1`, `21-§6-2`; `21-§17`, `22-§13-4`, `22-§15`).
 
-**E-11, §12.** One new first bullet under Downstream Dependencies: downstream missions consume the active-business context and field-level delegation as part of the one Permission Engine (`21-§22`); where a mission's own multi-row import adopts the revalidation pattern the F-04(c) outcome applies; no assignment or disposition changes.
+**E-11, §12.** One new first bullet under Downstream Dependencies: downstream missions consume the active-business context and field-level delegation as part of the one Permission Engine (`21-§22`); a downstream mission that implements a permission-governed multi-row import must reuse this mission's mandatory execution-time authorization/revalidation boundary and preserve the F-04(c) outcome (worded this way after MC-26A, see Section 12 below; the first draft's conditional wording is superseded); no assignment or disposition changes.
 
 **E-12, §15.** New subsection "Stage 6 Founder Decisions — supplemental acceptance (not new Founder Runtime Scenarios)" between the Scenarios and "Authority Model and Permission Matrix", with one unchecked acceptance line per decision. It states that these follow the DC-3 scope of proof and that no implementation is claimed.
 
@@ -129,3 +129,25 @@ No new Founder decision was invented, and no T2, T7 or T8 condition arose. No FC
 ## 11. Recommended next steps
 
 Mission Control reviews the single DRAFT PR for source fidelity, Gate 10 and scope. Mission Control rules on §9 item 1, and only a later human merge makes Founder Record 04 and the reconciled Blueprint canonical. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation and production remain unauthorized.
+
+## 12. MC-26A correction (same branch and PR)
+
+**Authority:** Mission Control review MC-26, [PR #635 comment `5820859181`](https://github.com/SmartBusinessv1/smart-business/pull/635#issuecomment-5820859181), reviewed head `6ffeeb75f4218821820da2d5cf3161e686c312e8`. Mission Control substantively accepted the Founder Record, the Blueprint reconciliation, Section 19 coverage and the Section 18 and 19 record-keeping entries. It required one wording correction, MC-26A, to Blueprint Section 12.
+
+**Why:** the first draft said a downstream mission's multi-row import "adopts" the execution-time revalidation pattern. That reads as if a consuming mission could choose not to adopt the mandatory authorization/revalidation boundary or the F-04(c) outcome. Both apply to affected permission-governed imports regardless of choice.
+
+**Section 12 before:**
+
+"Where a mission's own multi-row import adopts the execution-time revalidation pattern, the F-04(c) outcome applies to it."
+
+**Section 12 after:**
+
+"Where a downstream mission implements a permission-governed multi-row import, it must reuse this mission's mandatory execution-time authorization/revalidation boundary and preserve the Founder F-04(c) outcome if permission is revoked during that import; owning missions retain their feature-specific end-to-end proof (DC-3)."
+
+Only that one sentence changed. The Blueprint diff for this correction is one line. The rest of the bullet is unchanged, including "No receiving-mission assignment or FCTM disposition changes." The sentence does not imply that `SB-P-1.12` builds other missions' import products, and it changes no assigned mission or FCTM row. The Section 7 deliverables row already says later missions "must adopt the same pattern for their own writes", so no other passage needed to change.
+
+**Not changed:** Founder Scenarios A and B, the FCTM, `FPDR-1`–`FPDR-4`, the three Founder decisions and Founder Record 04, the Section 18 change-log row and the Section 19 governance-history rows (retained as directed), and the Blueprint Metadata fields (Mission Control directed that they not be edited in this PR).
+
+**Still open, not answered:** the F-03 derived-value question, that is, whether disclosing one of Reference Cost or margin together with a visible selling price may reveal the other. The Founder chose independent field permissions. No inference-proof secrecy and no prohibition on either delegation is claimed anywhere. Mission Control holds dependent technical design until it secures a Founder clarification or disposition. Likewise the separate question of multiple-business ownership stays a documented unaddressed question and is not a prohibition on the approved multi-membership rule; the draft creates no switcher or multi-business creation feature.
+
+**Re-verification after the correction:** see the final-head evidence in the PR comment. The machine checks were re-run: Scenario A/B lines identical to `origin/main`, Section 19 373/373 with dispositions, owners and locations unchanged, and FCTM and `FPDR` files unchanged.
