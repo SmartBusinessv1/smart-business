@@ -13,7 +13,7 @@
 
 ## Activation prerequisite
 
-Do not begin before the MC-28 authorization PR is human-merged. After merge, independently verify on fresh `origin/main`: the actual MC-28 merge SHA; that `3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` is an ancestor; that branch `mission/SB-P-1.12-post-merge-reconciliation` exists neither locally nor remotely; a clean worktree; branch protection (or the Founder-approved compensating control); and that the canonical Blueprint, Founder Record 04 and FCTM match Section 1 of the companion authorization. Then read `AGENTS.md`, `CLAUDE.md`, Source 18 v1.2, `communication/AI_Communication_and_Handover_Protocol.md`, MC-24, MC-27, the companion authorization, Founder Record 04, the Blueprint Metadata table and the mission logs. Respect source order and dual institutional-learning intake.
+Do not begin before the MC-28 authorization PR is human-merged. After merge, independently verify on fresh `origin/main`: the actual MC-28 merge SHA; that `3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` is an ancestor; that branch `mission/SB-P-1.12-post-merge-reconciliation` exists neither locally nor remotely; a clean worktree; branch protection (or the Founder-approved compensating control); and that the canonical Blueprint, Founder Record 04 and FCTM match Section 1 of the companion authorization. Then read `AGENTS.md`, `CLAUDE.md`, Source 18 v1.2, `communication/AI_Communication_and_Handover_Protocol.md`, MC-24, MC-27, the companion authorization, Founder Record 04, the Blueprint (read-only) and the mission logs. Respect source order and dual institutional-learning intake.
 
 ## Deliverables, one DRAFT PR
 
@@ -22,18 +22,17 @@ Do not begin before the MC-28 authorization PR is human-merged. After merge, ind
 1. Mission `README.md`: refresh the Stage Ledger, Communication Index, Current Stage Ownership, Next Action and current-crossing note to canonical fact after #635 and MC-27. Preserve history; do not rewrite earlier notes.
 2. `decision-log.md` and `handover-log.md`: append-only closure records for MC-27 and the merge of #635, and one entry for this reconciliation.
 3. `communication/live/report.md`: report the result.
-4. Blueprint `docs/phase-1-mission-blueprint/active/SB-P-1.12.md`: refresh **Metadata table rows only**, add a Founder Record 04 row, and change nothing else. Do not describe the Blueprint as approved, complete or locked.
-5. New `claude-code/20-post-merge-reconciliation-report.md`: before and after text for every change, verification evidence and remaining risks.
+4. New `claude-code/20-post-merge-reconciliation-report.md`: before and after text for every change, verification evidence (including evidence that the entire Blueprint is byte-identical to `main`) and remaining risks.
 
-**Part B — readiness.**
+**Part B — readiness.** The entire Blueprint is read-only for this preparation; no Blueprint edit, including Metadata, is authorized.
 
-6. New `claude-code/21-stage7-readiness-record.md`, a DRAFT record with: the canonical baseline; a prerequisite gate ledger (source, owner, evidence needed, status) covering the F-03 derived-value question, appointment and independence check of the Security & Permissions Architecture actor, F-06 required-check governance, read-only T4 production verification and WS-B status, the multiple-business-ownership question, and the separate Stage 7 authorization record; accepted Stage 6 inputs F-01, F-05, F-07, F-08, F-09 and F-11 mapped to Blueprint sections and FCTM rows; a checklist of Source 18 Stage 7 output requirements for Sections 20 and 21; and a neutral question list with no recommended answers.
+5. New `claude-code/21-stage7-readiness-record.md`, a DRAFT record with: the canonical baseline; a prerequisite gate ledger (source, owner, evidence needed, status) covering the F-03 derived-value question, appointment and independence check of the Security & Permissions Architecture actor, F-06 required-check governance, read-only T4 production verification and WS-B status, the multiple-business-ownership question, and the separate Stage 7 authorization record; accepted Stage 6 inputs F-01, F-05, F-07, F-08, F-09 and F-11 mapped to Blueprint sections and FCTM rows; a checklist of Source 18 Stage 7 output requirements for Sections 20 and 21; and a neutral question list with no recommended answers.
 
 ## Do not
 
 - Begin Stage 7, draft Sections 20–21, or write any per-row feasibility finding.
 - Answer or recommend an answer to any Founder or Mission Control question, including the F-03 derived-value question and multiple-business ownership.
-- Modify the FCTM, `FPDR-1`–`FPDR-4`, Founder Records, contracts, the Build Plan, MC records, `communication/live/instruction.md`, any numbered Blueprint section, Founder Scenarios A and B, Section 18 or Section 19.
+- Modify the FCTM, `FPDR-1`–`FPDR-4`, Founder Records, contracts, the Build Plan, MC records, `communication/live/instruction.md`, the Blueprint in its entirety (including its Metadata table, all numbered sections, Founder Scenarios A and B, Section 18 and Section 19).
 - Invent a Founder decision, add an experience anchor, or change any disposition, owner or classification.
 - Modify application code, SQL or migrations, execute a migration, or take any privileged provider or production action.
 - Claim any T4 or security certification, or any implemented behavior.
@@ -47,7 +46,6 @@ Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** on 
 - `communication/missions/SB-P-1.12/decision-log.md` (append only)
 - `communication/missions/SB-P-1.12/handover-log.md` (append only)
 - `communication/live/report.md`
-- `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (Metadata table rows only)
 - `communication/missions/SB-P-1.12/claude-code/20-post-merge-reconciliation-report.md` (new)
 - `communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md` (new)
 
@@ -57,7 +55,7 @@ Never `git add .`, force push, direct push to `main`, self-review, self-approve 
 
 ## Stop conditions
 
-Stop and report, without guessing, if canonical state differs from the companion authorization's Section 1; if a needed edit falls outside the writable paths or beyond the Metadata table; if a statement would imply approval, completion or lock of the Blueprint; if a ledger entry would require answering a Founder question; if a new Product Truth ambiguity or source conflict appears (T1, T2, T3, T7 or T8); or if a T4 or security certification claim would be needed.
+Stop and report, without guessing, if canonical state differs from the companion authorization's Section 1; if a needed edit falls outside the writable paths or would touch the Blueprint; if a statement would imply approval, completion or lock of the Blueprint; if a ledger entry would require answering a Founder question; if a new Product Truth ambiguity or source conflict appears (T1, T2, T3, T7 or T8); or if a T4 or security certification claim would be needed.
 
 ## Submit and stop
 

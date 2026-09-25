@@ -8,9 +8,9 @@
 **Authorization record:** `communication/missions/SB-P-1.12/mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md`
 **Operative instruction (after human merge only):** `communication/live/instruction.md` (MC-28).
 
-**This is a communication-only DRAFT.** It proposes a documentary preparation with two parts: a post-merge reconciliation of stale mission pointers and Blueprint Metadata, and a Stage 7 readiness record that lists open gates without answering them. Its scope was derived by the drafter from MC-27 and the canonical files because the requesting instruction gave only a title. Mission Control must confirm or strike each item; item R-4 (Blueprint Metadata refresh) is the one MC-26 held out of PR #635.
+**This is a communication-only DRAFT.** It proposes a documentary preparation with two parts: a post-merge reconciliation of stale mission pointers, and a Stage 7 readiness record that lists open gates without answering them. Its scope was derived by the drafter from MC-27 and the canonical files because the requesting instruction gave only a title. Mission Control confirmed the scope in MC-28A, which struck item R-4 (Blueprint Metadata refresh) in full.
 
-The Blueprint, Founder Records, FCTM, application code, SQL and migrations are untouched. Nothing here answers the F-03 derived-value question or the multiple-business-ownership question. T4 production state stays `UNVERIFIED`. This record certifies no security state.
+The Blueprint remains unchanged and read-only for the subsequent preparation, as do the Founder Records, FCTM, application code, SQL and migrations. Nothing here answers the F-03 derived-value question or the multiple-business-ownership question. T4 production state stays `UNVERIFIED`. This record certifies no security state.
 
 **No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization.**
 

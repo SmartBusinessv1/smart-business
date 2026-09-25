@@ -15,7 +15,7 @@ Canonical as a result: Founder Record 04 (F-02 Option B, F-03 Option B, F-04(c) 
 
 ## 2. Scope derivation — read this first
 
-The instruction that requested this preparation gave the title only: "Post-Merge Reconciliation & Next-Gate Readiness Preparation". It gave no itemized scope. The scope below is therefore **proposed by the drafter** from three sources: MC-27 §§3–4 (open matters and the merge boundary), the current state of the mission README, Blueprint and live files on `main@3a6afae9`, and Source 18 §6 Stages 6–8. Mission Control must confirm or strike each item before merge. Item R-4 (Blueprint Metadata refresh) is the one item MC-26 expressly held out of PR #635, so it is the most likely to be struck.
+The instruction that requested this preparation gave the title only: "Post-Merge Reconciliation & Next-Gate Readiness Preparation". It gave no itemized scope. The scope below is therefore **proposed by the drafter** from three sources: MC-27 §§3–4 (open matters and the merge boundary), the current state of the mission README, Blueprint and live files on `main@3a6afae9`, and Source 18 §6 Stages 6–8. Mission Control confirmed items R-1, R-2, R-3, R-5 and B-1 through B-5 and **struck item R-4 in full** in MC-28A (PR #636 review, reviewed head `28ef60f31af81ce35f8b50d1f0908685aed3c646`). Blueprint Metadata refresh is not authorized by MC-28, and the entire Blueprint stays byte-identical.
 
 ## 3. Proposed scope
 
@@ -26,8 +26,8 @@ After #635, several mission pointers are stale because they describe the drafts 
 - **R-1 README.** Update the Stage Ledger (row 4 becomes historical draft, canonical through #630 and #635; row 6a becomes canonical through #635 and MC-27), the Communication Index (Founder Record 04, MC-27 gate record, reconciliation report, new snapshots and this authorization), Current Stage Ownership, Next Action and the current-crossing note. History is preserved, never rewritten.
 - **R-2 Decision log and handover log.** Append (do not edit earlier entries) closure records for MC-27 and the canonical merge of #635, and one entry for the reconciliation itself.
 - **R-3 Live pair.** After the reconciliation, `communication/live/report.md` reports the result. The prior pair is already preserved by this PR (`mission-control/16-founder-record-live-instruction-snapshot.md` and `claude-code/19-founder-record-live-report-snapshot.md`).
-- **R-4 Blueprint Metadata refresh (Metadata table rows only).** The Metadata table still carries Stage 4 draft values (Lifecycle Stage, Status, Builder Review, Engineering Review, Founder Approval, Mission Control Review, Next Lifecycle Gate, Date) and lists only Founder Record 03. Refresh those rows to canonical fact and add a Founder Record 04 row. No numbered section, Founder Scenario, Section 19 row, disposition, owner or source pointer is touched, and the Blueprint is not called approved, complete or locked.
-- **R-5 Reconciliation report.** New `claude-code/20-post-merge-reconciliation-report.md` with before and after text for every changed pointer, the verification evidence and remaining risks.
+- **R-4 — STRUCK by MC-28A; not authorized.** No part of the Blueprint is edited by this preparation, including the Metadata table, all numbered sections, Founder Scenarios A and B, Sections 18 and 19 and every historical status wording. The Blueprint stays byte-identical to `main`.
+- **R-5 Reconciliation report.** New `claude-code/20-post-merge-reconciliation-report.md` with before and after text for every changed pointer, the verification evidence (including evidence that the entire Blueprint is byte-identical to `main`) and remaining risks.
 
 ### Part B — Next-gate readiness preparation (documentary only)
 
@@ -45,13 +45,13 @@ Stage 7, Sections 20–21, per-row feasibility findings, any recommended answer 
 
 ## 4. Read-only sources
 
-The FCTM, `FPDR-1`–`FPDR-4` and Founder Record 04, all mission-control records, all contracts and the Build Plan, Source 18, the protocol and `AGENTS.md`/`CLAUDE.md`, `communication/live/instruction.md`, and every application, SQL, migration, workflow and provider file are read-only. In the Blueprint, everything outside the Metadata table (all numbered sections, Founder Scenarios, Section 18 and Section 19) is read-only.
+The FCTM, `FPDR-1`–`FPDR-4` and Founder Record 04, all mission-control records, all contracts and the Build Plan, Source 18, the protocol and `AGENTS.md`/`CLAUDE.md`, `communication/live/instruction.md`, and every application, SQL, migration, workflow and provider file are read-only. The entire Blueprint (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`, including its Metadata table, all numbered sections, Founder Scenarios, Section 18 and Section 19) is read-only.
 
-If a precise FCTM annotation or a numbered-section Blueprint edit is truly needed, the actor stops and requests separate exact-file authorization.
+If a precise FCTM annotation or any Blueprint edit is truly needed, the actor stops and requests separate exact-file authorization.
 
 ## 5. Mission-scoped Git authority (effective only after this PR is human-merged)
 
-Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** on repository **`SmartBusinessv1/smart-business`**, using the **locked branch `mission/SB-P-1.12-post-merge-reconciliation`**, limited to the seven paths below, using **mission-scoped descriptive `docs(SB-P-1.12):` commit messages** with the standard **`Co-Authored-By` attribution trailer permitted**, to fetch, pull fast-forward only, stage exact authorized files, commit, push that branch, and open or update one **DRAFT** pull request to `main`.
+Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** on repository **`SmartBusinessv1/smart-business`**, using the **locked branch `mission/SB-P-1.12-post-merge-reconciliation`**, limited to the six paths below, using **mission-scoped descriptive `docs(SB-P-1.12):` commit messages** with the standard **`Co-Authored-By` attribution trailer permitted**, to fetch, pull fast-forward only, stage exact authorized files, commit, push that branch, and open or update one **DRAFT** pull request to `main`.
 
 | Path | Purpose |
 |---|---|
@@ -59,7 +59,6 @@ Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** on 
 | `communication/missions/SB-P-1.12/decision-log.md` | R-2 (append only) |
 | `communication/missions/SB-P-1.12/handover-log.md` | R-2 (append only) |
 | `communication/live/report.md` | R-3 |
-| `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` | R-4, Metadata table rows only |
 | `communication/missions/SB-P-1.12/claude-code/20-post-merge-reconciliation-report.md` | R-5 (new) |
 | `communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md` | Part B (new) |
 
@@ -73,11 +72,11 @@ Do not begin before this PR is human-merged. After merge, the actor independentl
 
 ## 7. Stop conditions and escalation
 
-The actor stops and reports, and does not guess, if: any source or canonical state differs from Section 1; a reconciliation edit would need Blueprint text beyond the Metadata table or any FCTM change; any statement would imply approval, completion or a lock of the Blueprint; a Founder question would have to be answered to finish a ledger entry; a new Product Truth ambiguity or source conflict appears (T1, T2, T3, T7 or T8); or a T4 or security certification claim would be needed. The F-03 derived-value question and the multiple-business-ownership question stay open and are never answered by the actor.
+The actor stops and reports, and does not guess, if: any source or canonical state differs from Section 1; a reconciliation edit would need any Blueprint change or any FCTM change; any statement would imply approval, completion or a lock of the Blueprint; a Founder question would have to be answered to finish a ledger entry; a new Product Truth ambiguity or source conflict appears (T1, T2, T3, T7 or T8); or a T4 or security certification claim would be needed. The F-03 derived-value question and the multiple-business-ownership question stay open and are never answered by the actor.
 
 ## 8. Reporting requirements
 
-Submit one DRAFT PR and stop. Report: the draft PR number and URL; the final head SHA; the exact changed files (all within Section 5); before and after text for every pointer changed; evidence that the FCTM, Founder Records, contracts, and all Blueprint content outside the Metadata table are unchanged; exact-head CI results; any escalation; and the next required Mission Control decision. Close with the closing line in `communication/live/instruction.md`.
+Submit one DRAFT PR and stop. Report: the draft PR number and URL; the final head SHA; the exact changed files (all within Section 5); before and after text for every pointer changed; evidence that the FCTM, Founder Records, contracts and the entire Blueprint are unchanged; exact-head CI results; any escalation; and the next required Mission Control decision. Close with the closing line in `communication/live/instruction.md`.
 
 ## 9. Founder merge brief
 
