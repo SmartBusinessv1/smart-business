@@ -210,3 +210,17 @@ The earlier DRAFT MC-28 entry above records the proposal. Mission Control's MC-2
 
 Claude Code independently verified the MC-28 merge, then updated the mission README pointers (status line, stage ownership, ledger rows 4 and 6a, new rows 6b and 7, communication index, next action, closing note), appended these records, and prepared the [reconciliation report](claude-code/20-post-merge-reconciliation-report.md) with exact before and after text and the [Stage 7 readiness record](claude-code/21-stage7-readiness-record.md), a prerequisite ledger that answers nothing. The Blueprint, Founder Records, FCTM and every other read-only source are unchanged. The F-03 derived-value question and the multiple-business-ownership question stay open. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
 
+## MC-29B — PR #637 canonical; MC-28 reconciliation and Stage 7 readiness record effective (record)
+
+**Date:** 2026-09-25
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#637](https://github.com/SmartBusinessv1/smart-business/pull/637) comments MC-29B acceptance and post-merge verification.
+
+PR #637 was human-merged at `2026-09-25T11:40:06Z`, approved head `7500ce8336d4c7efbb4ba5803736b898ff03745f`, `main@55d96de24e8511d84528eebfdb36148c93866575`. The post-merge reconciliation and the Stage 7 readiness record (`claude-code/21-stage7-readiness-record.md`) are canonical. The Blueprint stayed unchanged (R-4 struck). Gates G-1 to G-8 remain as recorded, and Stage 7 is not authorized.
+
+## MC-30 — Stage 7 prerequisite disposition and independent Security reviewer appointment gate (DRAFT)
+
+**Prepared:** 2026-09-25. **Effective only on Founder/authorized-human merge of the separate MC-30 communication PR.** Even then it authorizes no Stage 7 work.
+
+**Proposed decision:** document proposed dispositions of readiness gates G-1 to G-8 with start-gate versus dependent-finding-gate classes; record the independent Security & Permissions Architecture reviewer appointment as `PENDING`, with the existing specialist room as a candidate only and no independence assessment made; keep the F-03 derived-value question and multiple-business ownership unanswered; separate read-only verification and CI-governance decisions; and flag source ambiguities S-1 to S-7 for Mission Control rather than assigning a final gate status. See [the decision record](mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md). No gate is closed, no reviewer is appointed, and Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
+
