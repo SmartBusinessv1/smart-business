@@ -28,14 +28,25 @@ It records that, once merged, the MC-30 decision record governs how the eight re
 - Do not lock the Blueprint, start an EIS or begin implementation.
 - Do not self-approve or self-merge.
 
-## What must happen before any Stage 7 work
+## What must happen, and before which action
 
-Each of the following needs its own Mission Control record, human-merged to `main`:
+Each item needs its own Mission Control record, human-merged to `main`. Open gates are not blanket blockers: each is a prerequisite only to the action or finding named below.
+
+**Before Stage 7 starts (START prerequisites):**
 
 1. A distinct, exact-scope Stage 7 authorization (G-1). This instruction and MC-30 are not that authorization.
-2. Either a completed reviewer-appointment record (actor, responsibility, prior contribution, independence assessment, deliverables and escalation route), or an explicit Mission Control statement of how G-2 is handled, since the sources do not say whether the appointment must precede the start of Stage 7 (source ambiguity S-1).
-3. A Mission Control determination of the flagged questions in the decision record, Section 8.
-4. Any read-only verification or CI-governance work, each under its own authorization.
+2. A completed independent-reviewer appointment (G-2): the actual named actor, its responsibility, a documented prior-contribution and independence assessment, deliverables and an escalation route. Per MC-31A (MC-05 §4; MC-02; Source 18 §§4.3 and 4.8) this is a START prerequisite and no substitute is accepted. The reviewer is still `PENDING`, and nothing here appoints anyone.
+
+**Before affected findings are accepted or relied on:**
+
+3. Completion of the independent specialist review, which may run in parallel with authorized Engineering Review, and resolution or explicit blocking treatment of the relevant dependent issues: the F-03 derived-value question (G-3), multiple-business ownership (G-4), F-06 (G-5), T4 and WS-B (G-6) and topology (G-7). Each blocks only the particular finding or design that depends on it, not unrelated Stage 7 planning.
+
+**Before separately scoped evidence or infrastructure actions:**
+
+4. Read-only production verification, topology verification, and any change to required checks or workflows each need their own authorization. MC-30 permits none of them.
+
+Questions S-2 to S-7 in the decision record, Section 8, remain flagged for Mission Control. S-1 was dispositioned by MC-31A.
+
 
 ## Stop conditions
 

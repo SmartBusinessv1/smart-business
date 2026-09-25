@@ -4,7 +4,7 @@
 **Decision:** MC-30
 **Prepared by:** Claude Code, as documentary drafter at Mission Control's direction. Claude Code has no authority to approve, appoint or authorize anything in this record.
 **Status:** DRAFT — PROPOSED DISPOSITIONS FOR MISSION CONTROL REVIEW. EFFECTIVE ONLY ON HUMAN MERGE OF THIS SEPARATE COMMUNICATION PR, AND EVEN THEN IT AUTHORIZES NO STAGE 7 WORK.
-**Authority:** Source 18 v1.2 §§3, 4.3, 4.8 and §6 Stage 7; MC-02 separation condition (intake pack §4.2); `communication/AI_Communication_and_Handover_Protocol.md` §§15, 16, 16.1, 21 and 27; the MC-30 instruction to prepare this record for review.
+**Authority:** Source 18 v1.2 §§3, 4.3, 4.8 and §6 Stage 7; MC-02 separation condition (intake pack §4.2); MC-05 §4 (`mission-control/02-stage2-authorization-and-activation-reconciliation.md`); `communication/AI_Communication_and_Handover_Protocol.md` §§15, 16, 16.1, 21 and 27; the MC-30 instruction to prepare this record for review.
 **Companion live instruction:** `communication/live/instruction.md` (MC-30, hold and disposition only).
 
 ## 1. Canonical baseline
@@ -22,7 +22,7 @@
 | Stage 7 | `NOT AUTHORIZED`; Sections 20–21 do not exist |
 | Verification at drafting time | `origin/main` equals the #637 merge commit; #636 is an ancestor; the branch for this draft did not exist; worktree clean. A read-only GitHub API read on 2026-09-25 showed required checks on `main` of `Markdown Quality Gate` only, strict, admins enforced, force pushes disallowed |
 
-Sources read for this record: the readiness record, Source 18 v1.2 (§4.3, §4.8, §4.9, §6 Stages 5–8), the communication protocol, the Stage 1 intake pack (§§4.2, 8, 9, 10), MC-24, MC-27, MC-28, the PR #637 review comments, Founder Record 04 and the canonical Blueprint.
+Sources read for this record: the readiness record, Source 18 v1.2 (§4.3, §4.8, §4.9, §6 Stages 5–8), the communication protocol, the Stage 1 intake pack (§§4.2, 8, 9, 10), the MC-05 Stage 2 authorization record (§4; omitted from the first draft and added under MC-31A), MC-24, MC-27, MC-28, the PR #637 review comments, Founder Record 04 and the canonical Blueprint.
 
 ## 2. What this record is, and is not
 
@@ -46,7 +46,7 @@ Status after MC-30 means the status if Mission Control accepts these disposition
 | Gate | Proposed disposition to document | Class | Basis in sources | Owner | Evidence needed | Status after MC-30 |
 |---|---|---|---|---|---|---|
 | G-1 Stage 7 authorization | A distinct, exact-scope Stage 7 authorization is still required. MC-30 is not that authorization and carries no Stage 7 Git authority | START | Source 18 §6 Stage 7; Protocol §16.1 (a work package may not include a step whose authority is not merged) | Mission Control, then human merge | A separate authorization merged to `main` (contents in Section 10) | OPEN — not issued |
-| G-2 Independent Security & Permissions Architecture actor | Appointment is recorded as PENDING until Mission Control names the actual actor and verifies independence. The existing specialist room is a candidate only. Claude Code cannot serve | FLAGGED (S-1) | MC-02 intake §4.2; Source 18 §4.3 role-separation table and §4.8 | Mission Control | A completed appointment record (Section 5) | PENDING |
+| G-2 Independent Security & Permissions Architecture actor | Mission Control disposition (MC-31A): the actual named reviewer appointment and a documented prior-contribution and independence assessment are Stage 7 START prerequisites. The independent review may run in parallel with authorized Engineering Review, and relevant feasibility and risk findings cannot be accepted or relied on before it is completed. Appointment is recorded as PENDING until Mission Control names the actual actor and verifies independence. The existing specialist room is a candidate only. Claude Code cannot serve | START (appointment and independence assessment); DEPENDENT (acceptance of affected findings, until the review is completed) | MC-05 §4; MC-02 intake §4.2; Source 18 §4.3 role-separation table and §4.8 | Mission Control | A completed appointment record (Section 5) | PENDING |
 | G-3 F-03 derived-value question | Not answered. Founder-approved separate field delegations preserved. Findings or design that assume an answer are held | DEPENDENT; resolution FOUNDER-RESERVED or MC-DISPOSITIONABLE (technical feasibility only) | Founder Record 04 (F-03 limits); MC-26; MC-27 §3 | Founder clarification, or an explicit bounded Mission Control technical-feasibility disposition | A recorded Founder clarification or a bounded disposition | OPEN |
 | G-4 Multiple-business ownership | Approved multi-business **membership** is distinguished from unanswered multiple-business **ownership**. Whether a Founder decision is needed before ownership-dependent design is relied on is a Mission Control determination the sources do not make | FLAGGED (S-2); any product answer FOUNDER-RESERVED | Founder Record 04 (F-02 limits); MC-27 §3 | Mission Control determines; the Founder decides if a decision is needed | The determination, and the decision if required | OPEN — determination pending |
 | G-5 F-06 | Evidence that database isolation testing exists and passes is kept separate from the governance choice to make it a required check. Recorded state is preserved until independently reverified. No workflow or protection change | DEPENDENT (only for any statement of required-check status); the required-check choice is MC-DISPOSITIONABLE governance | MC-24 §1; Stage 6 report F-06; `full-assurance.yml` header; Section 7 below | Mission Control (governance and infrastructure) | Independent verification of protection state, then a recorded decision | OPEN |
@@ -65,6 +65,15 @@ Status after MC-30 means the status if Mission Control accepts these disposition
 **G-6.** Read-only verification means verification only. Anything that changes production or a migration needs its own explicit mission (`docs/migration/README.md`).
 
 ## 5. Independent Security & Permissions Architecture reviewer
+
+### 5.0 Mission Control disposition of S-1 (MC-31A)
+
+Three sources bear on timing. MC-05 §4 says the actual specialist appointment and contribution check "remain pending before Stage 7". Source 18 §§4.3 and 4.8 permit specialist review to run in parallel with Engineering Review as read-only fact-finding. MC-02 (intake pack §4.2) requires the independent review before the affected Stage 7 feasibility and risk findings are relied on. Mission Control's disposition, recorded here as directed and not decided by the drafter:
+
+- The actual named reviewer appointment and a documented prior-contribution and independence assessment are **Stage 7 START prerequisites**.
+- The independent specialist review may run **in parallel** with authorized Engineering Review.
+- Relevant feasibility and risk findings **cannot be accepted or relied on** before the independent review is completed.
+- The reviewer remains **PENDING**. This disposition appoints no actor and closes no gate.
 
 ### 5.1 Recorded appointment status
 
@@ -97,6 +106,7 @@ The Security & Permissions Architecture specialist room is a candidate that Miss
 |---|---|
 | Actor (identity, provider, session) | NOT DETERMINED |
 | Responsibility | Parallel review of Stage 7 feasibility and risk findings for the mandatory domains, per MC-02 §4.2 (to be confirmed) |
+| Timing (MC-31A) | Appointment and independence assessment recorded before Stage 7 starts; review may run in parallel with authorized Engineering Review; affected findings not accepted or relied on until the review is completed |
 | Prior contribution to SB-P-1.12 and to the material it builds on | NOT ASSESSED |
 | Independence assessment (Mission Control) | NOT MADE |
 | Review deliverables and location | Findings under `communication/missions/SB-P-1.12/specialists/` (to be confirmed) |
@@ -137,9 +147,9 @@ Stated without proposed answers.
 
 ## 8. Source ambiguities flagged for Mission Control
 
-None of these is silently resolved.
+S-1 has been dispositioned by Mission Control (above). S-2 to S-7 remain flagged, and none of them is silently resolved.
 
-- **S-1 (G-2).** MC-02 §4.2 says the actor must be named "before Stage 7 findings are relied on", and that if none is available "the Stage 7 feasibility/risk-finding gate stays pending". Source 18 §4.8 also allows specialist review to run in parallel with Engineering Review as read-only fact-finding. The sources do not say whether the appointment must precede the **start** of Stage 7 or only the **reliance** on its findings.
+- **S-1 (G-2) — DISPOSITIONED by Mission Control (MC-31A); no longer flagged.** The first draft said the sources did not settle whether the appointment must precede the start of Stage 7 or only reliance on its findings. That was incomplete: it did not cite MC-05 §4, which says the actual appointment and contribution check remain pending before Stage 7. Mission Control's disposition (Section 5.0, citing MC-05 §4, MC-02 and Source 18 §§4.3 and 4.8): appointment and independence assessment are Stage 7 START prerequisites; the review may run in parallel with authorized Engineering Review; affected findings are not accepted or relied on before it is completed. The reviewer remains PENDING.
 - **S-2 (G-4).** MC-27 §3 separates ownership from membership but does not say whether an ownership decision is needed before dependent design is relied on.
 - **S-3 (G-6).** The intake pack requires fresh re-verification "before any remediation design". It does not say whether it must precede Stage 7 start.
 - **S-4 (G-7).** The sources do not say which topology facts are material to which Stage 7 output.
@@ -163,8 +173,8 @@ A future Stage 7 authorization must be a separate record, reviewed by Mission Co
 
 - the actor, repository, locked branch and exact writable paths;
 - the deliverables (Sections 20 and 21 with the early delivery plan and the per-`IN SCOPE`-row findings required by Source 18 §6 Stage 7), and that a row found blocked stays `IN SCOPE` and raises T8;
-- the reference to a merged reviewer-appointment record, or an explicit Mission Control statement of how G-2 is handled (S-1);
-- which DEPENDENT gates are held and how the actor must treat the affected findings;
+- the reference to a merged reviewer-appointment record (actor, prior contribution, independence assessment, deliverables, escalation route), which is a START prerequisite for Stage 7 (MC-31A; MC-05 §4), and the statement that the independent review may run in parallel with authorized Engineering Review but that affected feasibility and risk findings are not accepted or relied on before it is completed;
+- which DEPENDENT gates are held and how the actor must treat the affected findings. Open DEPENDENT gates G-3 to G-7, and separately authorized evidence or CI-governance work, are prerequisites only to the particular finding, design or action that depends on them, and are not blanket blockers of unrelated Stage 7 planning, unless a later Mission Control record says otherwise;
 - expiry, stop conditions, reporting requirements and the required closing line;
 - that no migration, production action, EIS, implementation or Blueprint lock is included.
 
@@ -211,4 +221,4 @@ gh pr merge mission/SB-P-1.12-stage7-prerequisite-disposition-authorization --re
 
 ## 14. Decision
 
-**MC-30 DECISION (PROPOSED, NOT EFFECTIVE):** THE DISPOSITIONS IN SECTION 4, THE REVIEWER APPOINTMENT STATUS IN SECTION 5 (PENDING) AND THE BOUNDARIES IN SECTIONS 6–11 ARE PROPOSED FOR MISSION CONTROL REVIEW. NO GATE IS CLOSED, NO REVIEWER IS APPOINTED AND STAGE 7 IS NOT AUTHORIZED.
+**MC-30 DECISION (PROPOSED, NOT EFFECTIVE):** THE DISPOSITIONS IN SECTION 4, THE REVIEWER APPOINTMENT STATUS IN SECTION 5 (PENDING) AND THE BOUNDARIES IN SECTIONS 6–11 ARE PROPOSED FOR MISSION CONTROL REVIEW. S-1 IS DISPOSITIONED PER MC-31A (SECTION 5.0); S-2 TO S-7 REMAIN FLAGGED. NO GATE IS CLOSED, NO REVIEWER IS APPOINTED AND STAGE 7 IS NOT AUTHORIZED.
