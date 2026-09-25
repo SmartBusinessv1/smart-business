@@ -1,64 +1,55 @@
-# SMART BUSINESS MISSION CONTROL — MC-28
+# SMART BUSINESS MISSION CONTROL — MC-30
 
-# SB-P-1.12 — Post-Merge Reconciliation and Next-Gate Readiness Preparation
+# SB-P-1.12 — Stage 7 Prerequisite Disposition and Independent Security Reviewer Appointment Gate (HOLD)
 
 **From:** Smart Business Mission Control
-**To:** Claude Code — documentary preparation only
-**Status:** DRAFT — EFFECTIVE ONLY AFTER HUMAN MERGE OF THE SEPARATE MC-28 AUTHORIZATION PR
+**To:** Claude Code — documentary drafter only
+**Status:** DRAFT — EFFECTIVE ONLY AFTER HUMAN MERGE OF THE SEPARATE MC-30 COMMUNICATION PR; EVEN THEN, A HOLD AND DISPOSITION INSTRUCTION ONLY
 **Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
 **Prepared by:** Claude Code as documentary drafter at Mission Control's direction; not approved by Claude Code.
-**Verified canonical predecessor:** PR #635, human merge `2026-09-25T10:38:22Z`, final head `12e6c3adf0fcef7d90ec897de7abc55fa5890315`, `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9`. MC-27 content accepted; MC-26A closed.
-**Companion authorization:** `communication/missions/SB-P-1.12/mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md`.
-**Prior live pair, preserved byte-identically:** `mission-control/16-founder-record-live-instruction-snapshot.md` and `claude-code/19-founder-record-live-report-snapshot.md`.
+**Verified canonical predecessor:** PR #637 human-merged `2026-09-25T11:40:06Z`, approved head `7500ce8336d4c7efbb4ba5803736b898ff03745f`, `main@55d96de24e8511d84528eebfdb36148c93866575`. The MC-28 reconciliation and the Stage 7 readiness record (`communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md`) are canonical.
+**Decision record:** `communication/missions/SB-P-1.12/mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md`.
+**Prior live pair, preserved byte-identically:** `mission-control/18-stage7-readiness-live-instruction-snapshot.md` and `claude-code/22-stage7-readiness-live-report-snapshot.md`.
 
-## Activation prerequisite
+## What this instruction does
 
-Do not begin before the MC-28 authorization PR is human-merged. After merge, independently verify on fresh `origin/main`: the actual MC-28 merge SHA; that `3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` is an ancestor; that branch `mission/SB-P-1.12-post-merge-reconciliation` exists neither locally nor remotely; a clean worktree; branch protection (or the Founder-approved compensating control); and that the canonical Blueprint, Founder Record 04 and FCTM match Section 1 of the companion authorization. Then read `AGENTS.md`, `CLAUDE.md`, Source 18 v1.2, `communication/AI_Communication_and_Handover_Protocol.md`, MC-24, MC-27, the companion authorization, Founder Record 04, the Blueprint (read-only) and the mission logs. Respect source order and dual institutional-learning intake.
+It records that, once merged, the MC-30 decision record governs how the eight readiness gates G-1 to G-8 are described: none is closed, each is classed START, DEPENDENT, EVIDENCE TASK, FOUNDER-RESERVED, MC-DISPOSITIONABLE or FLAGGED, and the independent Security & Permissions Architecture reviewer appointment is `PENDING`.
 
-## Deliverables, one DRAFT PR
+## Standing instruction to Claude Code
 
-**Part A — reconciliation.**
+**HOLD.** No Claude Code action beyond reading is authorized by this instruction.
 
-1. Mission `README.md`: refresh the Stage Ledger, Communication Index, Current Stage Ownership, Next Action and current-crossing note to canonical fact after #635 and MC-27. Preserve history; do not rewrite earlier notes.
-2. `decision-log.md` and `handover-log.md`: append-only closure records for MC-27 and the merge of #635, and one entry for this reconciliation.
-3. `communication/live/report.md`: report the result.
-4. New `claude-code/20-post-merge-reconciliation-report.md`: before and after text for every change, verification evidence (including evidence that the entire Blueprint is byte-identical to `main`) and remaining risks.
+- No Git authority is granted. The Git authority under MC-28 expired on draft submission. Any further branch, commit, push or pull request needs a new, exact, human-merged authorization in the form required by Protocol §16 or §16.1.
+- Do not begin Stage 7, draft Sections 20–21 or write any per-row feasibility finding.
+- Do not appoint, or imply the appointment of, an independent reviewer. Claude Code authored Sections 1–19 and the Stage 6 report and cannot serve as the independent specialist.
+- Do not answer the F-03 derived-value question or the multiple-business-ownership question, and do not treat a bounded assumption about either as settled.
+- Do not verify privileged production state, alter GitHub required checks, branch protection or workflows, or take any provider or production action.
+- Do not modify the Blueprint, FCTM, Founder Records, contracts, Source 18, code, SQL or migrations.
+- Do not lock the Blueprint, start an EIS or begin implementation.
+- Do not self-approve or self-merge.
 
-**Part B — readiness.** The entire Blueprint is read-only for this preparation; no Blueprint edit, including Metadata, is authorized.
+## What must happen, and before which action
 
-5. New `claude-code/21-stage7-readiness-record.md`, a DRAFT record with: the canonical baseline; a prerequisite gate ledger (source, owner, evidence needed, status) covering the F-03 derived-value question, appointment and independence check of the Security & Permissions Architecture actor, F-06 required-check governance, read-only T4 production verification and WS-B status, the multiple-business-ownership question, and the separate Stage 7 authorization record; accepted Stage 6 inputs F-01, F-05, F-07, F-08, F-09 and F-11 mapped to Blueprint sections and FCTM rows; a checklist of Source 18 Stage 7 output requirements for Sections 20 and 21; and a neutral question list with no recommended answers.
+Each item needs its own Mission Control record, human-merged to `main`. Open gates are not blanket blockers: each is a prerequisite only to the action or finding named below.
 
-## Do not
+**Before Stage 7 starts (START prerequisites):**
 
-- Begin Stage 7, draft Sections 20–21, or write any per-row feasibility finding.
-- Answer or recommend an answer to any Founder or Mission Control question, including the F-03 derived-value question and multiple-business ownership.
-- Modify the FCTM, `FPDR-1`–`FPDR-4`, Founder Records, contracts, the Build Plan, MC records, `communication/live/instruction.md`, the Blueprint in its entirety (including its Metadata table, all numbered sections, Founder Scenarios A and B, Section 18 and Section 19).
-- Invent a Founder decision, add an experience anchor, or change any disposition, owner or classification.
-- Modify application code, SQL or migrations, execute a migration, or take any privileged provider or production action.
-- Claim any T4 or security certification, or any implemented behavior.
-- Self-approve, self-review or self-merge.
+1. A distinct, exact-scope Stage 7 authorization (G-1). This instruction and MC-30 are not that authorization.
+2. A completed independent-reviewer appointment (G-2): the actual named actor, its responsibility, a documented prior-contribution and independence assessment, deliverables and an escalation route. Per MC-31A (MC-05 §4; MC-02; Source 18 §§4.3 and 4.8) this is a START prerequisite and no substitute is accepted. The reviewer is still `PENDING`, and nothing here appoints anyone.
 
-## Exact mission-scoped Git authority — only after MC-28 human merge
+**Before affected findings are accepted or relied on:**
 
-Founder/Mission Control authorizes **Claude Code** for mission **SB-P-1.12** on repository **`SmartBusinessv1/smart-business`**, locked branch **`mission/SB-P-1.12-post-merge-reconciliation`**, to fetch, pull fast-forward only, stage exact paths, commit with mission-scoped descriptive `docs(SB-P-1.12):` messages with the standard `Co-Authored-By` attribution trailer permitted, push only that branch, and create or update one **DRAFT** PR to `main`. Exact writable paths:
+3. Completion of the independent specialist review, which may run in parallel with authorized Engineering Review, and resolution or explicit blocking treatment of the relevant dependent issues: the F-03 derived-value question (G-3), multiple-business ownership (G-4), F-06 (G-5), T4 and WS-B (G-6) and topology (G-7). Each blocks only the particular finding or design that depends on it, not unrelated Stage 7 planning.
 
-- `communication/missions/SB-P-1.12/README.md`
-- `communication/missions/SB-P-1.12/decision-log.md` (append only)
-- `communication/missions/SB-P-1.12/handover-log.md` (append only)
-- `communication/live/report.md`
-- `communication/missions/SB-P-1.12/claude-code/20-post-merge-reconciliation-report.md` (new)
-- `communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md` (new)
+**Before separately scoped evidence or infrastructure actions:**
 
-Never `git add .`, force push, direct push to `main`, self-review, self-approve or self-merge. This is Git permission only and grants no authority to approve, lock, authorize, execute, accept, close or merge.
+4. Read-only production verification, topology verification, and any change to required checks or workflows each need their own authorization. MC-30 permits none of them.
 
-**Expiry:** `2026-10-09 23:59 IST`, or sooner on draft submission, revocation, the mission being paused, closed, superseded or rejected, scope or branch drift, source drift, unrelated working-tree changes, failing validation, a git conflict, a pull that cannot fast-forward, a change in repository or authentication state, or any Protocol §21 stop condition. Confirm branch protection or the Founder-approved compensating control before any activity.
+Questions S-2 to S-7 in the decision record, Section 8, remain flagged for Mission Control. S-1 was dispositioned by MC-31A.
+
 
 ## Stop conditions
 
-Stop and report, without guessing, if canonical state differs from the companion authorization's Section 1; if a needed edit falls outside the writable paths or would touch the Blueprint; if a statement would imply approval, completion or lock of the Blueprint; if a ledger entry would require answering a Founder question; if a new Product Truth ambiguity or source conflict appears (T1, T2, T3, T7 or T8); or if a T4 or security certification claim would be needed.
+Stop and report, without guessing, if canonical state differs from the decision record's Section 1, if any statement would imply a gate is closed, an actor appointed or Stage 7 authorized, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
 
-## Submit and stop
-
-Submit one DRAFT PR and stop for Mission Control review. Report: the draft PR number and URL; the final head SHA; the exact changed files; before and after text for every changed pointer; evidence that everything read-only is unchanged; exact-head CI results; any escalation; and the next required Mission Control decision. Mission Control review and a separate human merge alone make the result canonical. There is no automatic Stage 7.
-
-**Required closing line:** `POST-MERGE RECONCILIATION AND STAGE 7 READINESS DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Required closing line for any Claude Code report under this instruction:** `MC-30 STAGE 7 PREREQUISITE DISPOSITION AND INDEPENDENT SECURITY REVIEWER GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
