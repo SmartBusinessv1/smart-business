@@ -1,17 +1,22 @@
-# SB-P-1.12 — MC-28 Authorization Preparation Handover
+# SB-P-1.12 — Post-Merge Reconciliation and Stage 7 Readiness Report Handover
 
-**From:** Claude Code — documentary drafter at Mission Control's direction
+**From:** Claude Code — documentary preparation only (MC-28)
 **To:** Smart Business Mission Control
-**Status:** `MC-28 AUTHORIZATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; NOT EFFECTIVE UNTIL HUMAN MERGE; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
-**Canonical predecessor:** PR #635 human-merged `2026-09-25T10:38:22Z`, final head `12e6c3adf0fcef7d90ec897de7abc55fa5890315`, `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` (MC-27).
-**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/16-founder-record-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/19-founder-record-live-report-snapshot.md`.
-**Authorization record:** `communication/missions/SB-P-1.12/mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md`
-**Operative instruction (after human merge only):** `communication/live/instruction.md` (MC-28).
+**Status:** `POST-MERGE RECONCILIATION AND STAGE 7 READINESS DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-28, canonical via PR #636 (`main@7f247759340fb2edf496bef1a7302abcd4633d20`; approved head `28b47bece065388bae160189e7b95fb70b3e54e3`; R-4 struck by MC-28A).
+**Previous live report:** the MC-28 authorization handover is preserved byte-identically in git history at `main@7f247759`; the prior live pair before it is preserved at `communication/missions/SB-P-1.12/claude-code/19-founder-record-live-report-snapshot.md`.
+**Reports:** `communication/missions/SB-P-1.12/claude-code/20-post-merge-reconciliation-report.md` and `communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md`
 
-**This is a communication-only DRAFT.** It proposes a documentary preparation with two parts: a post-merge reconciliation of stale mission pointers, and a Stage 7 readiness record that lists open gates without answering them. Its scope was derived by the drafter from MC-27 and the canonical files because the requesting instruction gave only a title. Mission Control confirmed the scope in MC-28A, which struck item R-4 (Blueprint Metadata refresh) in full.
+**This is a DRAFT documentary preparation only.** It brings the mission README pointers and the decision and handover logs to canonical fact after the #635 and #636 merges, and lists Stage 7 prerequisites without answering any of them. It approves nothing and is not Stage 7.
 
-The Blueprint remains unchanged and read-only for the subsequent preparation, as do the Founder Records, FCTM, application code, SQL and migrations. Nothing here answers the F-03 derived-value question or the multiple-business-ownership question. T4 production state stays `UNVERIFIED`. This record certifies no security state.
+**Reconciliation (Part A):** README status line, stage ownership, ledger rows 4 and 6a, new ledger rows 6b and 7, communication index and next action updated, with earlier notes kept as history. Append-only records added for MC-27, the #635 and #636 merges, and this reconciliation. Exact before and after text is in the reconciliation report.
+
+**Readiness (Part B):** a prerequisite ledger (G-1 to G-8), accepted Stage 6 inputs mapped to Blueprint sections and FCTM rows, a Source 18 Stage 7 output checklist and a neutral question list, with no recommended answers.
+
+**Unchanged:** the entire Blueprint (including its Metadata table, which still shows historical draft-status wording that MC-28A did not authorize refreshing), Founder Records, FCTM (373 rows; 228/113/2/30/0), `FPDR-1`–`FPDR-4`, Founder Scenarios A and B, and every other read-only path.
+
+**Still open, not answered:** the F-03 derived-value question; multiple-business ownership; appointment of the independent Security & Permissions Architecture actor; F-06 required-check governance; T4 production state (`UNVERIFIED`); the Stage 7 authorization record itself.
 
 **No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization.**
 
-**Until Mission Control's review:** `MC-28 AUTHORIZATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; NOT EFFECTIVE UNTIL HUMAN MERGE; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Until Mission Control's review:** `POST-MERGE RECONCILIATION AND STAGE 7 READINESS DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`

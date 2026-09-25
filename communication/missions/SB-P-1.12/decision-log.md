@@ -186,3 +186,27 @@ Mission Control substantively accepted Founder Record 04 and the narrow Blueprin
 
 **Proposed decision:** after MC-28 merge, Claude Code prepares, in one DRAFT PR, a documentary reconciliation of stale mission pointers plus a Stage 7 readiness record listing open gates without answering them. The scope was derived by the drafter from MC-27 and the canonical files because the requesting instruction gave only a title. Mission Control's MC-28A review confirmed it and struck the proposed Blueprint Metadata refresh (R-4) in full: the Blueprint is entirely read-only, and the subsequent preparation is limited to six writable paths. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized. See [the authorization record](mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md).
 
+## MC-27 — Founder Record 04 and Blueprint v0.3 gate accepted; PR #635 canonical (record)
+
+**Date:** 2026-09-25
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** [MC-27 gate review](mission-control/14-founder-record-blueprint-reconciliation-gate-review.md); PR [#635](https://github.com/SmartBusinessv1/smart-business/pull/635).
+
+MC-27 independently re-reviewed MC-26A at head `f9487b319a0ff89c778405c7eb2857723969f8d6`, accepted Founder Record 04 and the narrow Blueprint v0.3 reconciliation, and closed MC-26A. PR #635 was human-merged at `2026-09-25T10:38:22Z`, final head `12e6c3adf0fcef7d90ec897de7abc55fa5890315` (the reviewed content plus the MC-27 record), `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9`. Founder Scenarios A and B, all 373 FCTM rows (228 IN SCOPE, 113 ASSIGNED TO LATER MISSION, 2 DELEGATED, 30 NOT APPLICABLE, 0 ESCALATED) and `FPDR-1`–`FPDR-4` are unchanged. MC-27 did not approve the full Sections 1–21 Blueprint, lock it or authorize Stage 7. Open: the F-03 derived-value question and the multiple-business-ownership question; T4 production state `UNVERIFIED`.
+
+## MC-28 — Authorization canonical; R-4 struck (record)
+
+**Date:** 2026-09-25
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#636](https://github.com/SmartBusinessv1/smart-business/pull/636), human-merged `2026-09-25T11:18:47Z`, approved head `28b47bece065388bae160189e7b95fb70b3e54e3`, `main@7f247759340fb2edf496bef1a7302abcd4633d20`.
+
+The earlier DRAFT MC-28 entry above records the proposal. Mission Control's MC-28A review confirmed items R-1, R-2, R-3, R-5 and B-1 through B-5 and struck R-4 (Blueprint Metadata refresh) in full: the entire Blueprint is read-only, and the preparation is limited to six writable paths on locked branch `mission/SB-P-1.12-post-merge-reconciliation`, expiring `2026-10-09 23:59 IST` or on draft submission.
+
+## CC-RECONCILE-01 — Post-merge reconciliation and Stage 7 readiness draft prepared
+
+**Date:** 2026-09-25
+**Status:** DRAFT — MISSION CONTROL REVIEW REQUIRED
+**Authority:** MC-28, `communication/live/instruction.md`, canonical via PR #636.
+
+Claude Code independently verified the MC-28 merge, then updated the mission README pointers (status line, stage ownership, ledger rows 4 and 6a, new rows 6b and 7, communication index, next action, closing note), appended these records, and prepared the [reconciliation report](claude-code/20-post-merge-reconciliation-report.md) with exact before and after text and the [Stage 7 readiness record](claude-code/21-stage7-readiness-record.md), a prerequisite ledger that answers nothing. The Blueprint, Founder Records, FCTM and every other read-only source are unchanged. The F-03 derived-value question and the multiple-business-ownership question stay open. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
+
