@@ -435,3 +435,16 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control re-reviews PR #635. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 
+## H-25 — Claude Code to Mission Control: MC-28 authorization draft prepared
+
+**Prepared:** 2026-09-25
+**From:** Claude Code (documentary drafter at Mission Control's direction)
+**To:** Mission Control
+**Status:** `MC-28 AUTHORIZATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; NOT EFFECTIVE UNTIL HUMAN MERGE; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Prior live pair preserved:** `mission-control/16-founder-record-live-instruction-snapshot.md` and `claude-code/19-founder-record-live-report-snapshot.md`, byte-identical to `main@3a6afae9`.
+**Files created or modified:** `communication/missions/SB-P-1.12/mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md` (new), `communication/live/instruction.md`, `communication/live/report.md`, the two snapshots (new), and this mission's `README.md`, `decision-log.md` and `handover-log.md`. The Blueprint, Founder Records, FCTM, application code, SQL and migrations were not touched.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Open issues carried forward:** scope confirmation by Mission Control (the requesting instruction gave only a title); F-03 derived-value question; multiple-business-ownership question; production T4 state `UNVERIFIED`; independent Security & Permissions Architecture actor unappointed; F-06 required-check decision.
+**Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** the MC-28 preparation itself (until human merge), Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+

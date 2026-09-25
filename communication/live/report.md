@@ -1,19 +1,17 @@
-# SB-P-1.12 — Founder Decision Record and Blueprint Reconciliation Report Handover
+# SB-P-1.12 — MC-28 Authorization Preparation Handover
 
-**From:** Claude Code — documentary preparation only (MC-25)
+**From:** Claude Code — documentary drafter at Mission Control's direction
 **To:** Smart Business Mission Control
-**Status:** `F-02/F-03/F-04(c) FOUNDER RECORD AND NARROW BLUEPRINT RECONCILIATION DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
-**Authority:** MC-25, canonical via PR #634 (`main@3a67c803f27d3790a4a772bf7c563b70b32cca2f`).
-**Previous live report:** the MC-25 authorization handover is preserved in git history at `main@3a67c803`.
-**Report:** `communication/missions/SB-P-1.12/claude-code/18-founder-decision-blueprint-reconciliation-report.md`
-**Mission Control review applied:** MC-26A ([comment `5820859181`](https://github.com/SmartBusinessv1/smart-business/pull/635#issuecomment-5820859181), reviewed head `6ffeeb75f4218821820da2d5cf3161e686c312e8`): one sentence in Blueprint Section 12 corrected so affected permission-governed multi-row imports must reuse the mandatory authorization/revalidation boundary and preserve F-04(c). Nothing else changed.
+**Status:** `MC-28 AUTHORIZATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; NOT EFFECTIVE UNTIL HUMAN MERGE; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Canonical predecessor:** PR #635 human-merged `2026-09-25T10:38:22Z`, final head `12e6c3adf0fcef7d90ec897de7abc55fa5890315`, `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9` (MC-27).
+**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/16-founder-record-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/19-founder-record-live-report-snapshot.md`.
+**Authorization record:** `communication/missions/SB-P-1.12/mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md`
+**Operative instruction (after human merge only):** `communication/live/instruction.md` (MC-28).
 
-**This is a DRAFT preparation only.** It transcribes the Founder-confirmed choices from [PR #632 comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459) into `communication/missions/SB-P-1.12/founder/04-stage6-builder-founder-decision-record.md` and applies a narrow, source-cited reconciliation to the approved Blueprint Sections 1–19 (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`, version 0.3). It approves nothing, invents no Founder decision and is not Stage 7.
+**This is a communication-only DRAFT.** It proposes a documentary preparation with two parts: a post-merge reconciliation of stale mission pointers, and a Stage 7 readiness record that lists open gates without answering them. Its scope was derived by the drafter from MC-27 and the canonical files because the requesting instruction gave only a title. Mission Control confirmed the scope in MC-28A, which struck item R-4 (Blueprint Metadata refresh) in full.
 
-**Decisions transcribed:** F-02 Option B (multiple businesses, separately scoped roles, unambiguous active-business context, no cross-business access implied); F-03 Option B (Reference Cost and margin Owner-only by default, each separately and explicitly delegable to an authorized Manager); F-04(c) Option C (on revocation during a multi-row import, preserve committed rows, stop the unauthorized remainder, tell the merchant what completed and what remains, guide duplicate-safe completion under current authority).
+The Blueprint remains unchanged and read-only for the subsequent preparation, as do the Founder Records, FCTM, application code, SQL and migrations. Nothing here answers the F-03 derived-value question or the multiple-business-ownership question. T4 production state stays `UNVERIFIED`. This record certifies no security state.
 
-**Unchanged:** Founder Scenarios A and B (byte-identical), all 373 FCTM rows and dispositions (228 IN SCOPE, 113 ASSIGNED TO LATER MISSION, 2 DELEGATED, 30 NOT APPLICABLE, 0 ESCALATED), `FPDR-1`–`FPDR-4`, §11 accountability, and T4 (production `UNVERIFIED`).
+**No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization.**
 
-**Raised for Mission Control:** whether a delegated Reference Cost or margin value may reveal the other through visible selling price (possible T1; not resolved and not written into the Blueprint). The report also flags the Section 18/19 record-keeping additions and the unrefreshed Metadata fields for review.
-
-**Until Mission Control's review:** `F-02/F-03/F-04(c) FOUNDER RECORD AND NARROW BLUEPRINT RECONCILIATION DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Until Mission Control's review:** `MC-28 AUTHORIZATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; NOT EFFECTIVE UNTIL HUMAN MERGE; STAGE 7/SECTIONS 20–21/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`

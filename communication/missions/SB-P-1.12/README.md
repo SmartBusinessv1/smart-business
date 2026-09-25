@@ -60,6 +60,9 @@ Stage 3 Brief authority became canonical on #625, Brief on #626, Founder Decisio
 - [Decision log](decision-log.md)
 - [Handover log](handover-log.md)
 - [Current live instruction](../../live/instruction.md)
+- MC-28 authorization (DRAFT, not yet effective): [post-merge reconciliation and next-gate readiness](mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md).
+- Founder Record 04 live pair, preserved byte-identically: [instruction snapshot](mission-control/16-founder-record-live-instruction-snapshot.md), [report snapshot](claude-code/19-founder-record-live-report-snapshot.md).
+- MC-27 gate review (canonical after #635): [Founder Record 04 / Blueprint v0.3](mission-control/14-founder-record-blueprint-reconciliation-gate-review.md).
 - Stage 1 live instruction, preserved: [snapshot](mission-control/01-stage1-live-instruction-snapshot.md).
 - Stage 1 live report, preserved: [snapshot](claude-code/01-stage1-live-report-snapshot.md).
 - Stage 2 decision: [MC-05 activation reconciliation and authorization](mission-control/02-stage2-authorization-and-activation-reconciliation.md) — canonical, PR #623 merged.
@@ -83,8 +86,12 @@ Stage 3 Brief authority became canonical on #625, Brief on #626, Founder Decisio
 
 ## Next action
 
-Mission Control reviews the single DRAFT PR carrying [Founder Record 04](founder/04-stage6-builder-founder-decision-record.md) and the narrow Blueprint v0.3 reconciliation (see the [reconciliation report](claude-code/18-founder-decision-blueprint-reconciliation-report.md)), including the derived-value question it raises under F-03. Only a later Founder/authorized-human merge makes them canonical. No Stage 7/Sections 20–21/EIS/implementation or production authority follows from the Stage 6 merge.
+PR [#635](https://github.com/SmartBusinessv1/smart-business/pull/635) is human-merged (`2026-09-25T10:38:22Z`, `main@3a6afae9d1b34628d6670cff3a6fdebcfc32d2b9`), so Founder Record 04 and Blueprint v0.3 are canonical (MC-27). Mission Control reviews the separate DRAFT [MC-28 authorization](mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md). Only its human merge lets Claude Code prepare the documentary reconciliation and Stage 7 readiness record. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production and delivery remain unauthorized.
 
 ## Current MC-25 reconciliation note (2026-09-25)
 
 [PR #632](https://github.com/SmartBusinessv1/smart-business/pull/632) human-merged at `2026-09-24T18:37:11Z`, final reviewed head `945ec8f330900f5902493eee9771406f90ceb83d`, canonical `main@76ff1575e1ca3978f363d7a1daef307513376345`. The [MC-24 Stage 6 gate](mission-control/11-stage6-builder-review-gate-and-founder-decision-handover.md) is now effective as **acceptance of Builder findings**. [Founder comment 5819755459](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459) explicitly confirms F-02 **Option B**, F-03 **Option B**, F-04(c) **Option C**; neither that dialogue nor Stage 6 merged documents has yet canonically reconciled these choices into the approved Blueprint. [MC-25 preparation authority](mission-control/12-founder-decision-blueprint-reconciliation-authorization.md) and the [new live instruction](../../live/instruction.md) are DRAFT until this separate authorization PR's human merge. The preceding live pair is preserved byte-identically as [Stage 6 instruction](mission-control/13-stage6-live-instruction-snapshot.md) and [Stage 6 report](claude-code/17-stage6-live-report-snapshot.md). Earlier “Stage 5 awaiting review / Stage 6 pending merge” language above is historical, not current. No EIS, production verification or implementation authorized.
+
+## Current MC-28 preparation note (2026-09-25)
+
+The mission-ledger rows for Stage 4 and Stage 6a below still describe the drafts as awaiting review because they pre-date the #635 merge. They are preserved as history and are reconciled only by the separately authorized MC-28 preparation. The prior live pair is preserved at [instruction snapshot](mission-control/16-founder-record-live-instruction-snapshot.md) and [report snapshot](claude-code/19-founder-record-live-report-snapshot.md). The [MC-28 authorization](mission-control/15-post-merge-reconciliation-and-next-gate-readiness-authorization.md) and the new [live instruction](../../live/instruction.md) are DRAFT and not effective until human merge.
