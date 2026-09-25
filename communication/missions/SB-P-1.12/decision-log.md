@@ -224,3 +224,17 @@ PR #637 was human-merged at `2026-09-25T11:40:06Z`, approved head `7500ce8336d4c
 
 **Proposed decision:** document proposed dispositions of readiness gates G-1 to G-8 with start-gate versus dependent-finding-gate classes; record the independent Security & Permissions Architecture reviewer appointment as `PENDING`, with the existing specialist room as a candidate only and no independence assessment made; keep the F-03 derived-value question and multiple-business ownership unanswered; separate read-only verification and CI-governance decisions; and flag source ambiguities S-1 to S-7 for Mission Control rather than assigning a final gate status. See [the decision record](mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md). No gate is closed, no reviewer is appointed, and Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
 
+## MC-31B — PR #638 canonical; MC-30 dispositions effective (record)
+
+**Date:** 2026-09-25
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#638](https://github.com/SmartBusinessv1/smart-business/pull/638) comments MC-31B acceptance and post-merge verification.
+
+PR #638 was human-merged at `2026-09-25T12:03:13Z`, approved head `11bd13cf3038702870ec9c2c8b54c26643ef5027`, `main@e934dbfe715dd6d132d625e6b61816565a0d7e1c`. The MC-30 dispositions are canonical, including the MC-31A disposition of S-1: the actual named reviewer appointment and a documented prior-contribution and independence assessment are Stage 7 START prerequisites (MC-05 §4); the review may run in parallel with authorized Engineering Review; affected findings are not accepted or relied on before it is completed. S-2 to S-7 remain flagged. G-1 stays open, and Stage 7 is not authorized.
+
+## MC-33 — Independent Security & Permissions Architecture reviewer appointment record (DRAFT)
+
+**Prepared:** 2026-09-25. **Not effective until Founder/authorized-human merge of the separate MC-33 communication PR and Mission Control's post-merge verification.**
+
+**Transcribed decision:** Mission Control accepted the MC-32 appointment-verification report (the specialist's own report submitted through the Founder, not a repository file) and selected the existing Security & Permissions Architecture room as SB-P-1.12's independent Stage 7 security reviewer, judging the room's declared absence of Sections 1–19 and Stage 6 authorship, with canonical attribution, sufficient separation, and treating its SB-P-1.11 participation as disclosed and subject to correlated-assumption controls. See [the appointment record](mission-control/19-independent-security-reviewer-appointment-record.md). G-2 stays pending until merge verification. The appointment is not the independent review, and Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
+

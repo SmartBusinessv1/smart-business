@@ -1,17 +1,21 @@
-# SB-P-1.12 — MC-30 Stage 7 Prerequisite Disposition Draft Handover
+# SB-P-1.12 — MC-33 Independent Reviewer Appointment Record Handover
 
-**From:** Claude Code — documentary drafter at Mission Control's direction
+**From:** Claude Code — documentary preparer at Mission Control's direction
 **To:** Smart Business Mission Control
-**Status:** `MC-31A REVIEWER-GATE CORRECTION SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD RE-REVIEW; PR #638 NOT MERGED; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
-**Canonical predecessor:** PR #637 human-merged `2026-09-25T11:40:06Z`, approved head `7500ce8336d4c7efbb4ba5803736b898ff03745f`, `main@55d96de24e8511d84528eebfdb36148c93866575`. The MC-28 reconciliation and Stage 7 readiness record are canonical.
-**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/18-stage7-readiness-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/22-stage7-readiness-live-report-snapshot.md`.
-**Decision record:** `communication/missions/SB-P-1.12/mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md`
-**Companion instruction (effective only after human merge):** `communication/live/instruction.md` (MC-30, hold and disposition only).
+**Status:** `MC-33 INDEPENDENT SECURITY REVIEWER APPOINTMENT RECORD SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; G-2 PENDING UNTIL MERGE VERIFICATION; STAGE 7 NOT AUTHORIZED.`
+**Canonical baseline:** `main@e934dbfe715dd6d132d625e6b61816565a0d7e1c` (PR #638, human-merged `2026-09-25T12:03:13Z`, approved head `11bd13cf3038702870ec9c2c8b54c26643ef5027`).
+**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/20-independent-reviewer-gate-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/23-independent-reviewer-gate-live-report-snapshot.md`.
+**Appointment record:** `communication/missions/SB-P-1.12/mission-control/19-independent-security-reviewer-appointment-record.md`
+**Companion instruction (effective only after human merge):** `communication/live/instruction.md` (MC-33, hold only).
 
-**This is a communication-only DRAFT.** It documents proposed dispositions of readiness gates G-1 to G-8 and classes each as START, DEPENDENT, EVIDENCE TASK, FOUNDER-RESERVED, MC-DISPOSITIONABLE or FLAGGED. No gate is closed. The independent Security & Permissions Architecture reviewer appointment is recorded as `PENDING`: the existing specialist room is identified only as a candidate, no independence assessment exists, and Claude Code cannot serve because it authored Sections 1–19 and the Stage 6 report.
+**This is a communication-only DRAFT.** It transcribes Mission Control's decision to select the existing Security & Permissions Architecture specialist room as the independent Stage 7 security reviewer. It appoints no one itself, is not effective until human merge and Mission Control's post-merge verification, and is not the independent review.
 
-**Source ambiguities:** S-1 has been dispositioned by Mission Control (MC-31A; MC-05 §4, MC-02, Source 18 §§4.3 and 4.8): the named reviewer appointment and a documented independence assessment are Stage 7 START prerequisites, the independent review may run in parallel with authorized Engineering Review, and affected findings are not accepted or relied on before it is completed. The reviewer remains `PENDING`; MC-31A appoints no one and closes no gate. S-2 to S-7 remain flagged: whether an ownership decision is needed; whether T4 verification must precede Stage 7; which topology facts are material; whether Mission Control alone can dispose of G-3; how Source 18 §4.9 independence rules apply by analogy; and how the path-filtered Full Assurance design reconciles with a required check.
+**Evidence limitations recorded in the record:** the MC-32 declaration is the specialist's own report submitted through the Founder and is not in the repository, and its full text was not supplied to the drafter, so it is not quoted; git attribution cannot show contributions relayed through dialogue; the room is not recorded as a model, provider or session; the retrospective's 2026-09-13 production observations may predate the production cutover and are not current evidence; Source 18 §4.9's use for this role is an analogy (S-6).
 
-**Not answered:** the F-03 derived-value question and multiple-business ownership. **Not done:** any appointment, Stage 7 work, Sections 20–21, per-row finding, production or privileged verification, or change to GitHub protection or workflows. The Blueprint, FCTM, Founder Records, contracts, code, SQL and migrations are untouched. T4 production state stays `UNVERIFIED`.
+**Disclosures drawn from the repository:** the room's earlier SB-P-1.11 security participation (EIS reviews, GC-42 and GC-43 provider verification) and its 2026-09-13 retrospective (PR #560), which discusses the same T4 subject matter and names the room as "likely owner" under future SB-P-1.12 scope. Correlated-assumption controls are drafted in Section 7 for Mission Control to adopt or amend.
 
-**Until Mission Control's exact-head re-review:** `MC-31A REVIEWER-GATE CORRECTION SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD RE-REVIEW; PR #638 NOT MERGED; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Unchanged:** G-1 OPEN, G-2 PENDING until merge verification, S-2 to S-7 flagged, the F-03 derived-value question and multiple-business ownership unanswered, T4 production `UNVERIFIED`. The Blueprint, FCTM, Founder Records, contracts, code, SQL, workflows and branch protection are untouched.
+
+**No Stage 7, Sections 20–21, per-row finding, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization.**
+
+**Until Mission Control's review:** `MC-33 INDEPENDENT SECURITY REVIEWER APPOINTMENT RECORD SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; G-2 PENDING UNTIL MERGE VERIFICATION; STAGE 7 NOT AUTHORIZED.`
