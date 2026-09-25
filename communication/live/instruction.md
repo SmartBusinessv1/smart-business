@@ -1,55 +1,41 @@
-# SMART BUSINESS MISSION CONTROL — MC-30
+# SMART BUSINESS MISSION CONTROL — MC-33
 
-# SB-P-1.12 — Stage 7 Prerequisite Disposition and Independent Security Reviewer Appointment Gate (HOLD)
+# SB-P-1.12 — Independent Security & Permissions Architecture Reviewer Appointment Record (HOLD)
 
 **From:** Smart Business Mission Control
-**To:** Claude Code — documentary drafter only
-**Status:** DRAFT — EFFECTIVE ONLY AFTER HUMAN MERGE OF THE SEPARATE MC-30 COMMUNICATION PR; EVEN THEN, A HOLD AND DISPOSITION INSTRUCTION ONLY
+**To:** Claude Code — documentary preparer only
+**Status:** DRAFT — EFFECTIVE ONLY AFTER HUMAN MERGE OF THE SEPARATE MC-33 COMMUNICATION PR; EVEN THEN, A HOLD INSTRUCTION ONLY
 **Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
-**Prepared by:** Claude Code as documentary drafter at Mission Control's direction; not approved by Claude Code.
-**Verified canonical predecessor:** PR #637 human-merged `2026-09-25T11:40:06Z`, approved head `7500ce8336d4c7efbb4ba5803736b898ff03745f`, `main@55d96de24e8511d84528eebfdb36148c93866575`. The MC-28 reconciliation and the Stage 7 readiness record (`communication/missions/SB-P-1.12/claude-code/21-stage7-readiness-record.md`) are canonical.
-**Decision record:** `communication/missions/SB-P-1.12/mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md`.
-**Prior live pair, preserved byte-identically:** `mission-control/18-stage7-readiness-live-instruction-snapshot.md` and `claude-code/22-stage7-readiness-live-report-snapshot.md`.
+**Prepared by:** Claude Code as documentary preparer at Mission Control's direction; not approved by Claude Code.
+**Verified canonical baseline:** `main@e934dbfe715dd6d132d625e6b61816565a0d7e1c` (PR #638 human-merged `2026-09-25T12:03:13Z`, approved head `11bd13cf3038702870ec9c2c8b54c26643ef5027`, MC-31B). MC-30 dispositions, including the MC-31A disposition of S-1, are canonical.
+**Appointment record:** `communication/missions/SB-P-1.12/mission-control/19-independent-security-reviewer-appointment-record.md`.
+**Prior live pair, preserved byte-identically:** `mission-control/20-independent-reviewer-gate-live-instruction-snapshot.md` and `claude-code/23-independent-reviewer-gate-live-report-snapshot.md`.
 
 ## What this instruction does
 
-It records that, once merged, the MC-30 decision record governs how the eight readiness gates G-1 to G-8 are described: none is closed, each is classed START, DEPENDENT, EVIDENCE TASK, FOUNDER-RESERVED, MC-DISPOSITIONABLE or FLAGGED, and the independent Security & Permissions Architecture reviewer appointment is `PENDING`.
+Once merged and verified, it records that Mission Control selected the existing Security & Permissions Architecture specialist room as SB-P-1.12's independent Stage 7 security reviewer. Until Mission Control verifies the merge, G-2 stays `PENDING`. The appointment is not the independent review, and it authorizes no Stage 7 work.
 
 ## Standing instruction to Claude Code
 
 **HOLD.** No Claude Code action beyond reading is authorized by this instruction.
 
-- No Git authority is granted. The Git authority under MC-28 expired on draft submission. Any further branch, commit, push or pull request needs a new, exact, human-merged authorization in the form required by Protocol §16 or §16.1.
-- Do not begin Stage 7, draft Sections 20–21 or write any per-row feasibility finding.
-- Do not appoint, or imply the appointment of, an independent reviewer. Claude Code authored Sections 1–19 and the Stage 6 report and cannot serve as the independent specialist.
-- Do not answer the F-03 derived-value question or the multiple-business-ownership question, and do not treat a bounded assumption about either as settled.
+- No Git authority is granted. The authority under MC-28 expired on draft submission, and any further branch, commit, push or pull request needs a new, exact, human-merged authorization in the form required by Protocol §16 or §16.1.
+- Do not begin Stage 7, draft Sections 20–21 or write any per-row feasibility finding. G-1, the separate exact-scope Stage 7 authorization, remains OPEN.
+- Claude Code is not the independent reviewer and must not present its own prior work (Sections 1–19, the Stage 6 report, Founder Record 04) as independent specialist review.
+- Do not appoint a different room or AI instance, or treat the appointment as completion of the independent review.
+- Do not answer the F-03 derived-value question or multiple-business ownership.
 - Do not verify privileged production state, alter GitHub required checks, branch protection or workflows, or take any provider or production action.
 - Do not modify the Blueprint, FCTM, Founder Records, contracts, Source 18, code, SQL or migrations.
-- Do not lock the Blueprint, start an EIS or begin implementation.
 - Do not self-approve or self-merge.
 
-## What must happen, and before which action
+## Sequence that still applies (MC-30, MC-31A)
 
-Each item needs its own Mission Control record, human-merged to `main`. Open gates are not blanket blockers: each is a prerequisite only to the action or finding named below.
-
-**Before Stage 7 starts (START prerequisites):**
-
-1. A distinct, exact-scope Stage 7 authorization (G-1). This instruction and MC-30 are not that authorization.
-2. A completed independent-reviewer appointment (G-2): the actual named actor, its responsibility, a documented prior-contribution and independence assessment, deliverables and an escalation route. Per MC-31A (MC-05 §4; MC-02; Source 18 §§4.3 and 4.8) this is a START prerequisite and no substitute is accepted. The reviewer is still `PENDING`, and nothing here appoints anyone.
-
-**Before affected findings are accepted or relied on:**
-
-3. Completion of the independent specialist review, which may run in parallel with authorized Engineering Review, and resolution or explicit blocking treatment of the relevant dependent issues: the F-03 derived-value question (G-3), multiple-business ownership (G-4), F-06 (G-5), T4 and WS-B (G-6) and topology (G-7). Each blocks only the particular finding or design that depends on it, not unrelated Stage 7 planning.
-
-**Before separately scoped evidence or infrastructure actions:**
-
-4. Read-only production verification, topology verification, and any change to required checks or workflows each need their own authorization. MC-30 permits none of them.
-
-Questions S-2 to S-7 in the decision record, Section 8, remain flagged for Mission Control. S-1 was dispositioned by MC-31A.
-
+- **Before Stage 7 starts:** a distinct merged Stage 7 authorization (G-1), and the completed reviewer appointment and independence assessment (G-2), which this record's merge and Mission Control's post-merge verification address.
+- **Before affected findings are accepted or relied on:** completion of the independent review, which may run in parallel with authorized Engineering Review, and resolution or explicit blocking treatment of the relevant dependent issues G-3 to G-7. Each blocks only the finding or design that depends on it.
+- **Before separately scoped evidence or infrastructure actions:** their own authorization.
 
 ## Stop conditions
 
-Stop and report, without guessing, if canonical state differs from the decision record's Section 1, if any statement would imply a gate is closed, an actor appointed or Stage 7 authorized, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
+Stop and report, without guessing, if canonical state differs from the appointment record's Section 1, if any statement would imply the review is complete, a gate is closed or Stage 7 is authorized, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
 
-**Required closing line for any Claude Code report under this instruction:** `MC-30 STAGE 7 PREREQUISITE DISPOSITION AND INDEPENDENT SECURITY REVIEWER GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.`
+**Required closing line for any Claude Code report under this instruction:** `MC-33 INDEPENDENT SECURITY REVIEWER APPOINTMENT RECORD SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; G-2 PENDING UNTIL MERGE VERIFICATION; STAGE 7 NOT AUTHORIZED.`
