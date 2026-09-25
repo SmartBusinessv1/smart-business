@@ -282,3 +282,78 @@ The Phase 1 guide blob is still `3da3d6d3f9b7fbd89de028ca0191d99484049ba9`, and 
 ## 10. Recommended next step
 
 Mission Control reviews the single DRAFT PR. Stage 7 needs its own authorization and human merge, and the prerequisites listed in the readiness record are Mission Control's to determine. No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration or production action is authorized.
+
+## 11. MC-29A narrow README consistency correction (same branch and PR)
+
+**Authority:** MC-29 review of PR #637, [comment `5831655866`](https://github.com/SmartBusinessv1/smart-business/pull/637#issuecomment-5831655866), reviewed head `b9bda1ca539fb54ac3067afa2f3fef2d3cfb7c59`, and the MC-29A reactivation, within MC-28 (canonical through PR #636). Mission Control substantively accepted the reconciliation, the readiness ledger G-1 to G-8, README rows 6b and 7 and the preserved open questions, and asked for four README wording corrections only.
+
+**Activation checks before editing:** PR #637 open and draft at head `b9bda1ca…`; `origin/main` still `7f247759340fb2edf496bef1a7302abcd4633d20`; locked branch checked out, worktree clean, no source drift.
+
+**Files changed in this correction cycle:** `communication/missions/SB-P-1.12/README.md` and this report. `communication/live/report.md` was reviewed and left unchanged, because its assertions (README pointers updated, Blueprint untouched, questions still open) remain accurate.
+
+Each earlier statement is kept verbatim inside an explicit "(Historical …)" marker instead of being rewritten. The four before and after texts are the exact strings recorded when each edit was applied.
+
+**Correction A — opening summary paragraph**
+
+Before:
+
+```text
+**Claude Code has now prepared a DRAFT Product Blueprint (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`), Metadata/Mission Snapshot/Sections 1–19, assembled by reference — not canonical until Mission Control's Stage 5 review.**
+```
+
+After:
+
+```text
+(Historical, as of MC-19; superseded as stated after the bolded text.) **Claude Code has now prepared a DRAFT Product Blueprint (`docs/phase-1-mission-blueprint/active/SB-P-1.12.md`), Metadata/Mission Snapshot/Sections 1–19, assembled by reference — not canonical until Mission Control's Stage 5 review.** Superseded by later canonical crossings: Sections 1–19 were approved at Mission Control's Stage 5 review (MC-21, PR #630), and Founder Record 04 with the Blueprint v0.3 reconciliation became canonical (MC-27, PR #635). This is approval of Sections 1–19 only; the complete Sections 1–21 Blueprint is neither approved nor locked.
+```
+
+**Correction B — sentence below the Stage Ledger**
+
+Before:
+
+```text
+The DRAFT Blueprint itself remains draft until Mission Control's Stage 5 Product Review.
+```
+
+After:
+
+```text
+(Historical, as of MC-19; superseded by the two sentences that follow.) The DRAFT Blueprint itself remains draft until Mission Control's Stage 5 Product Review. Stage 5 has since approved Sections 1–19 only (MC-21, PR #630), and the v0.3 reconciliation is canonical (MC-27, PR #635). The complete Sections 1–21 Blueprint remains unfinished and unlocked.
+```
+
+**Correction C — Next action**
+
+Before:
+
+```text
+## Next action
+
+PR [#636](https://github.com/SmartBusinessv1/smart-business/pull/636) is human-merged (`2026-09-25T11:18:47Z`, `main@7f247759340fb2edf496bef1a7302abcd4633d20`), so MC-28 is canonical. Mission Control reviews the DRAFT documentary preparation carried by the MC-28 PR: this README and the log updates, the [post-merge reconciliation report](claude-code/20-post-merge-reconciliation-report.md) and the [Stage 7 readiness record](claude-code/21-stage7-readiness-record.md). Stage 7 requires its own Mission Control authorization and human merge, plus the prerequisites the readiness record lists. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production and delivery are not authorized.
+```
+
+After:
+
+```text
+## Next action
+
+PR [#636](https://github.com/SmartBusinessv1/smart-business/pull/636) is the MC-28 **authorization**: human-merged (`2026-09-25T11:18:47Z`, `main@7f247759340fb2edf496bef1a7302abcd4633d20`) and canonical. PR [#637](https://github.com/SmartBusinessv1/smart-business/pull/637) is the MC-28 **documentary preparation**: a DRAFT, not merged, awaiting Mission Control review. It carries this README and the log updates, the [post-merge reconciliation report](claude-code/20-post-merge-reconciliation-report.md) and the [Stage 7 readiness record](claude-code/21-stage7-readiness-record.md). Stage 7 requires its own Mission Control authorization and human merge, plus the prerequisites the readiness record lists. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration, production and delivery are not authorized.
+```
+
+**Correction D — heading and lead line of the MC-28 preparation note**
+
+Before:
+
+```text
+## Current MC-28 preparation note (2026-09-25)
+```
+
+After:
+
+```text
+## Historical MC-28 preparation note (2026-09-25, pre-merge)
+
+**Historical — pre-merge state.** The note below records the position before PR [#636](https://github.com/SmartBusinessv1/smart-business/pull/636) was merged (`2026-09-25T11:18:47Z`). Its "not effective until human merge" language is preserved as chronology and is not current status: MC-28 is now canonical and effective. The original text is unchanged.
+```
+
+**Unchanged in this cycle (checked against the reviewed head):** `21-stage7-readiness-record.md`; the entire Blueprint, including its Metadata table; README ledger rows 6b and 7; both Founder Records; the FCTM; both live snapshots; `communication/live/instruction.md`; all historical decision-log and handover-log entries; and every path outside the two files above. The F-03 derived-value question and multiple-business ownership remain open, the independent Security & Permissions Architecture actor remains unappointed, T4 production remains `UNVERIFIED`, F-06 remains a separate decision, and no Stage 7 authorization exists. No escalation or stop condition arose.
+
