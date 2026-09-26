@@ -1,23 +1,44 @@
-# SB-P-1.12 — Stage 7 Engineering Review Handover
+# SB-P-1.12 — MC-46 Security-Authored Report Preservation Handover
 
-**From:** Claude Code — Source 18 §4.4 Engineering Review owner
+**From:** Existing MC-33-appointed Security & Permissions Architecture room
 **To:** Smart Business Mission Control
-**Status:** `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW NOT COMPLETE — FINAL FOCUSED RE-REVIEW OF MC-43 CORRECTIONS PENDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
-**Authority:** MC-35 activation record, work package `SB-P-1.12-WP-S7`, effective through PR #640 (`main@733f33935b37f6e3b5b4f7e8916f0161d6646527`) and MC-37 verification; MC-38.
-**Branch:** `mission/SB-P-1.12-stage7-engineering-review`, from `main@733f3393`.
-**Prior live report:** preserved byte-identically at `communication/missions/SB-P-1.12/claude-code/26-stage7-activation-live-report-snapshot.md`.
-**Stage 7 report:** `communication/missions/SB-P-1.12/claude-code/25-stage7-engineering-review-report.md`.
+**Mission ID:** SB-P-1.12
+**Mission name:** Authority, Identity & Product Surface Foundation
+**Date:** 2026-09-26
+**Status:** DRAFT — THREE ORIGINAL SECURITY REPORTS PRESERVED ON CONTROLLED BRANCH; MISSION CONTROL EXACT-HEAD REVIEW AND HUMAN MERGE PENDING
+**Instruction authority:** MC-46, effective after PR #642 human merge and MC-47 post-merge verification: https://github.com/SmartBusinessv1/smart-business/pull/642#issuecomment-5845793333
+**Instruction PR:** #642, approved head `e0ba706a5d719bdd9e4ad11e8ec42af1d36f1402`, human merge `2026-09-26T11:16:03Z`, main merge commit `f2f35f20f9f2fcc700bb068556bf40811b8c87ff`.
+**Repository:** `SmartBusinessv1/smart-business`
+**Branch:** `mission/SB-P-1.12-security-authored-evidence`
+**Exact base:** `main@f2f35f20f9f2fcc700bb068556bf40811b8c87ff`
+**DRAFT evidence PR:** [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) — OPEN/DRAFT/UNMERGED. No self-approval or self-merge.
 
-**Delivered (DRAFT):** Blueprint Section 20 (Engineering Review, early delivery plan, 228-row register) and Section 21 (questions, risks, recommendations, holds, independent-review handoff) in `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` v0.4, plus five Metadata status rows and one Section 18 row. Sections 1–17 and 19 are byte-identical.
+## Exactly four authorized files
 
-**Coverage:** 228 of 228 `IN SCOPE` rows, machine-checked against the FCTM. `FEASIBLE` 176, `CONDITIONAL` 51, `BLOCKED` 1 (`22-§20-2`, open T8), as engineering proposals, not accepted findings (corrected under MC-40 and MC-41). Independent review `PENDING` on 190 rows, `N/R` on 38.
+| Path | Source and exact original reviewed PR #641 head |
+|---|---|
+| `communication/missions/SB-P-1.12/specialists/01-stage7-independent-security-review-original.md` | Security room's MC-40 original report — `88b9256612e7d8bf1db88ec02c29eac8b5d545f9` |
+| `communication/missions/SB-P-1.12/specialists/02-stage7-independent-security-delta-re-review.md` | Security room's MC-42 original report — `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` |
+| `communication/missions/SB-P-1.12/specialists/03-stage7-independent-security-final-focused-verification.md` | Security room's MC-44 original report — `f791b6f29adb412eb99df8f121a25433850971f0` |
+| `communication/live/report.md` | PRESENT-DAY MC-46 handover (this report); not a fourth security assessment or reconstructed historical exchange |
 
-**Escalation:** ESC-1, the Owner business `DELETE` path and cascades (repository DDL only; runtime and production behaviour not established). Mission Control classified it as an open T8 security and integrity finding (MC-40). `22-§20-2` is `BLOCKED` and stays `IN SCOPE`; only the durability conclusions of `21-§19-1`–`21-§19-8`, `22-§29-12`, `22-§14-5` and `BP-§7-1` are held; unrelated rows continue. The Owner API and Auth-user deletion paths are distinguished, and the 18-foreign-key count is labelled as Claude Code's unverified inventory (MC-41).
+## Source and fidelity method
 
-**MC-43 correction:** after the reviewer's MC-42 delta re-review, ER-1 and M1 now reject only unauthorized `anon` or `PUBLIC` access to protected business tables and business-authority RPCs, permitting only separately approved, documented anonymous-public workflows (none is created). Deleting the Owner's Auth user is described as able to initiate cascading business deletion, with completion unverified. Counts unchanged. Details: Stage 7 report §15.
+The three report BODIES are the existing reports authored in this same Security & Permissions Architecture room, carried directly from its earlier MC-40, MC-42 and MC-44 responses. Each is preceded by a clearly separate present-day MC-46 provenance header, which records the genuine author, original reviewed SHA and delayed preservation date. The original reports had been relayed through Founder chat rather than written to the repository live pair at the time. The preserved bodies retain the original substantive text, headings, Markdown, tables, qualifications and conclusions, including the original in-chat presentation markup. No historical live instruction/report exchange is invented.
 
-**Open:** EQ-1 ownership (G-4); EQ-2 derived-value inference (G-3); EQ-3 T4 verification (G-6); EQ-4 required checks (G-5); EQ-5 topology (G-7); G-8 carried forward; S-2 to S-7 flagged.
+Fidelity verification: independently fetched all three committed report files from the controlled branch, verified their original headings and exact reviewed head references, their separate provenance headers, and the four-path compare against the MC-47-verified canonical base. The preservation is not a new security review or a replacement narrative. Original chat-to-Git byte-for-byte comparison is not independently machine-attested because the prior chat messages are not supplied as exportable source files.
 
-**Independent review:** the appointed room reviewed head `88b92566`; Mission Control dispositioned it as CORRECTION REQUIRED (MC-41). SEC-S7-01 to SEC-S7-09 are reconciled in this draft and mapped in the Stage 7 report §14. The same reviewer's re-review of the corrections and the nine newly `PENDING` rows is pending. Publishing its report under `specialists/` needs a separate authorization.
+## Retained boundaries
 
-**Not done, and not authorized:** no FCTM, Founder Record, code, SQL, migration, workflow, branch-protection, provider or production change; no specialist file; no self-approval or self-merge.
+MC-44's conclusion concerns Stage 7 DOCUMENTATION readiness for Mission Control review, not verified implementation or production security. ESC-1 remains OPEN T8; FCTM row `22-§20-2` remains `BLOCKED` and `IN SCOPE`; related durability conclusions remain held. G-3–G-8 and S-2–S-7 retain their recorded statuses. PR #641 stays DRAFT and not cleared for Founder merge by this evidence-preservation PR.
+
+No original reports were written in `communication/live/` on their historical dates. The prior MC-35 pair remains in snapshots 23 and 24. No Blueprint, FCTM, Founder Record, logs, code, SQL, migration, workflow, provider or production state was changed.
+
+## Exact-head evidence and stop
+
+**Final branch head:** GitHub PR #643 exact head at final handover; the commit SHA is verified in the separate exact-head evidence comment and Mission Control handover (not self-referentially recorded inside the same commit).
+**DRAFT PR:** [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) — OPEN/DRAFT/UNMERGED.
+**Exact-head CI:** The final commit's workflow run IDs and conclusions will be supplied in the separate GitHub PR comment and direct Mission Control handover; no result is asserted before a completed run.
+**Blocking limitations:** No privileged-provider or production access authorized; no runtime security certification; no Git merge or publication approval claimed.
+
+**MC-46 SECURITY-AUTHORED ORIGINAL REPORTS PRESERVED — DRAFT EVIDENCE PR FOR MISSION CONTROL REVIEW — STOP FOR HUMAN MERGE AND POST-MERGE VERIFICATION.**
