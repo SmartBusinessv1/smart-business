@@ -238,3 +238,17 @@ PR #638 was human-merged at `2026-09-25T12:03:13Z`, approved head `11bd13cf30387
 
 **Transcribed decision:** Mission Control accepted the MC-32 appointment-verification report (the specialist's own report submitted through the Founder, not a repository file) and selected the existing Security & Permissions Architecture room as SB-P-1.12's independent Stage 7 security reviewer, judging the room's declared absence of Sections 1–19 and Stage 6 authorship, with canonical attribution, sufficient separation, and treating its SB-P-1.11 participation as disclosed and subject to correlated-assumption controls. See [the appointment record](mission-control/19-independent-security-reviewer-appointment-record.md). G-2 stays pending until merge verification. The appointment is not the independent review, and Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, migration and production are not authorized.
 
+## MC-34 — PR #639 canonical; MC-33 appointment effective (record)
+
+**Date:** 2026-09-25
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#639](https://github.com/SmartBusinessv1/smart-business/pull/639) comments MC-34 exact-head approval and post-merge verification.
+
+PR #639 was human-merged at `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73c005a4654d293ed755961091e20`, `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c`. The MC-33 appointment of the existing Security & Permissions Architecture room is effective, and G-2's appointment and independence-assessment START prerequisite is satisfied, subject to the recorded correlated-assumption controls and evidence limitations. The independent review is not complete. G-1 stays open; G-3 to G-8 and S-2 to S-7 are unchanged; Stage 7 is not authorized by this merge.
+
+## MC-35 — Stage 7 Engineering Review activation record (DRAFT)
+
+**Prepared:** 2026-09-26. **Not effective until Founder/authorized-human merge of the separate MC-35 communication PR and Mission Control's recorded post-merge verification.**
+
+**Transcribed decision:** Mission Control authorizes SB-P-1.12 to enter Source 18 Stage 7 Engineering Review on an exact scope: Claude Code as Engineering Review owner and the appointed Security & Permissions Architecture room as independent reviewer in parallel; deliverables limited to Blueprint Sections 20–21, per-row findings for the 228 `IN SCOPE` rows, the early delivery plan and a Stage 7 report; G-3 to G-8 and S-2 to S-7 retained as dependent holds; and a work-package Git grant on locked branch `mission/SB-P-1.12-stage7-engineering-review` with seven exact paths, three Blueprint regions and an end event or `2026-10-17T23:59:59Z`. Committing the specialist's findings needs a further exact-scope authorization. See [the activation record](mission-control/21-stage7-engineering-review-activation-record.md). Until the merge is verified, G-1 is open and Stage 7 is not authorized. Stage 8, Blueprint lock, EIS, implementation, migration and production are not authorized by it at any point.
+
