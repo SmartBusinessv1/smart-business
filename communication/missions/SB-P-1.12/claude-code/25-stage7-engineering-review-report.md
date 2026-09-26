@@ -48,7 +48,7 @@ This report accompanies Blueprint Sections 20 and 21. It approves nothing and is
 
 **Classification.** Mission Control classified ESC-1 as an open T8 security and integrity finding in its MC-40 intake disposition on PR #641. It is held pending the independent Security & Permissions Architecture review and Mission Control disposition.
 
-**Repository evidence (DDL): two separate paths.** (1) Owner API path: an Owner `DELETE` policy and `authenticated` `DELETE` grant on `businesses`, reachable through the API though not offered by the UI. (2) Auth-user path: `businesses.owner_id` references `auth.users(id) ON DELETE CASCADE`, so deleting the Owner's Auth user deletes the business outside the application. Cascading foreign keys follow in both: by Claude Code's own inventory, not independently verified, 18 to `businesses`. Existing append-only catalog and inventory history may block a delete, but that is not a universal durability proof; `transactions` and `transaction_correction_events` have no delete guard. No deletion lifecycle and no remediation is selected.
+**Repository evidence (DDL): two separate paths.** (1) Owner API path: an Owner `DELETE` policy and `authenticated` `DELETE` grant on `businesses`, reachable through the API though not offered by the UI. (2) Auth-user path: `businesses.owner_id` references `auth.users(id) ON DELETE CASCADE`, so deleting the Owner's Auth user can initiate cascading deletion of the business, independent of the Owner API and UI. Whether that deletion completes depends on the applicable child-row state, constraints and triggers; no runtime outcome has been verified. Cascading foreign keys follow in both: by Claude Code's own inventory, not independently verified, 18 to `businesses`. Existing append-only catalog and inventory history may block a delete, but that is not a universal durability proof; `transactions` and `transaction_correction_events` have no delete guard. No deletion lifecycle and no remediation is selected.
 
 **Evidence class.** These are statements about migration DDL only. Nothing was executed. Runtime behaviour, and whether live production grants, policies, foreign keys and triggers match the files, are not established (G-6, T4 `UNVERIFIED`).
 
@@ -143,4 +143,22 @@ Mission Control-directed, finding-scoped correction on the same DRAFT PR under t
 
 **Unchanged:** the FCTM, Sections 1–19, the Metadata rows, the Section 18 row, the live-report snapshot, the live instruction and `specialists/**`. No EIS mechanism or Founder Product Truth is introduced.
 
-`SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW NOT COMPLETE — RE-REVIEW OF MC-41 CORRECTIONS PENDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
+## 15. MC-43 narrow correction record
+
+Mission Control-directed, finding-scoped correction on the same DRAFT PR (MC-43, [comment 5845526023](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845526023)), following the appointed reviewer's MC-42 delta re-review of head `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5`. Only the two corrections below were made. Feasibility and independent-review counts are unchanged: 176 `FEASIBLE`, 51 `CONDITIONAL`, 1 `BLOCKED`; 190 `PENDING`, 38 `N/R`.
+
+**Correction 1 — anonymous and `PUBLIC` access principle.**
+
+- Blueprint §21.2 ER-1 mitigation. Before: "a policy inventory test that fails on any `anon` or `PUBLIC` policy or grant". After: "a deny-by-default access-inventory test that rejects any unauthorized `anon` or `PUBLIC` effective access to protected business tables and business-authority RPCs, permitting only separately approved, expressly scoped anonymous-public workflow access documented in the inventory. This creates or approves no anonymous-public workflow".
+- Blueprint §20.4.2 M1. Before (risk): "new tables inherit the `public` default privileges unless revoked in the same migration"; (rehearsal): "assert no `anon` or `PUBLIC` grant on each new object". After (risk): "new tables inherit the `public` default privileges of their effective creator role unless revoked in the same migration"; (rehearsal): "deny-by-default check that no new protected object grants unauthorized `anon` or `PUBLIC` access, directly or through the effective creator-role default privileges; only a separately approved, expressly scoped anonymous-public workflow documented in the access inventory may be permitted".
+- E10 and M5 (effective-access reconciliation and creator-role default privileges) are unchanged.
+
+**Correction 2 — Auth-user cascade precision.**
+
+- Blueprint §20.2 Authority concept. Before: "deleting the Owner's Auth user is a second path to business deletion, separate from the application API". After: "deleting the Owner's Auth user can initiate cascading deletion of the business: a second path, independent of the application API and UI. Whether that deletion completes depends on the applicable child-row state, constraints and triggers; no runtime outcome has been verified".
+- Blueprint §21.1 ESC-1 and this report §5. Before: "deleting the Owner's Auth user deletes the business outside the application". After: "deleting the Owner's Auth user can initiate cascading deletion of the business, independent of the Owner API and UI. Whether that deletion completes depends on the applicable child-row state, constraints and triggers; no runtime outcome has been verified".
+- Both deletion paths, the unverified 18-foreign-key inventory, ESC-1 T8 open, `22-§20-2` `BLOCKED` and G-6/T4 `UNVERIFIED` are preserved.
+
+No anonymous-public workflow is created or approved, and no deletion lifecycle or remediation is selected.
+
+`SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW NOT COMPLETE — FINAL FOCUSED RE-REVIEW OF MC-43 CORRECTIONS PENDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`

@@ -550,3 +550,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Commit SHA and draft PR:** recorded on PR #641.
 **Next authorized action:** Mission Control exact-head review; the same appointed reviewer's re-review. No self-merge.
 
+## H-34 — Claude Code to Mission Control: MC-43 narrow correction submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner; Mission Control-directed, finding-scoped correction)
+**To:** Mission Control
+**Status:** `MC-43 NARROW CORRECTION SUBMITTED — AWAITING MISSION CONTROL VERIFICATION AND FINAL INDEPENDENT FOCUSED RE-REVIEW — ESC-1 T8 OPEN — NO STAGE 7 ACCEPTANCE OR FOUNDER MERGE GATE.`
+**Authority:** MC-35 §10.5 correction cycle, directed by MC-43 on PR #641.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (four lines in §20.2, §20.4.2, §21.1 and §21.2), `claude-code/25-stage7-engineering-review-report.md` (§5 and new §15), `communication/live/report.md`, and this mission's `decision-log.md` and `handover-log.md`.
+**Result:** two corrections applied as directed; counts unchanged; ESC-1 T8 open.
+**Commit SHA and draft PR:** recorded on PR #641.
+**Next authorized action:** Mission Control verification and the same reviewer's final focused re-review. No self-merge.
+

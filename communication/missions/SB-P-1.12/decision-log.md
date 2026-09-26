@@ -280,3 +280,10 @@ Mission Control received the Stage 7 draft. Its feasibility classifications are 
 
 The appointed Security & Permissions Architecture room reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`; its report reached Mission Control through Founder chat and is not a repository file. Mission Control dispositioned findings SEC-S7-01 to SEC-S7-09 as CORRECTION REQUIRED, kept ESC-1 T8 open, reclassified six rows to `PENDING` independent review and asked for five more to be reconsidered. The independent review is not complete or accepted, no Stage 7 finding is accepted, and publication of the specialist's report under `specialists/` needs a separate authorization.
 
+## MC-42 and MC-43 — Delta re-review; final narrow correction (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) ([comment 5845526023](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845526023)); recorded here by Claude Code.
+
+The appointed Security & Permissions Architecture room re-reviewed head `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` (MC-42) and reported SEC-S7-01 to SEC-S7-09 substantively reconciled for Stage 7 documentation, with two narrow corrections remaining: the `anon` and `PUBLIC` principle in ER-1 and M1, and the precision of the Auth-user cascade wording. Mission Control directed those two corrections only (MC-43). A final focused re-review follows. It is not certification, and ESC-1 T8 stays open.
+
