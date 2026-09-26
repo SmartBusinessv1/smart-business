@@ -11,7 +11,7 @@
 **Repository:** `SmartBusinessv1/smart-business`
 **Branch:** `mission/SB-P-1.12-security-authored-evidence`
 **Exact base:** `main@f2f35f20f9f2fcc700bb068556bf40811b8c87ff`
-**DRAFT evidence PR:** TO BE POPULATED AFTER PR CREATION. No self-approval or self-merge.
+**DRAFT evidence PR:** [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) — OPEN/DRAFT/UNMERGED. No self-approval or self-merge.
 
 ## Exactly four authorized files
 
@@ -36,9 +36,9 @@ No original reports were written in `communication/live/` on their historical da
 
 ## Exact-head evidence and stop
 
-**Final branch head:** TO BE RECORDED AT EXACT-HEAD HANDOVER.
-**DRAFT PR:** TO BE RECORDED AFTER CREATION.
-**Exact-head CI:** TO BE RECORDED AFTER THE FINAL HANDOVER UPDATE.
+**Final branch head:** GitHub PR #643 exact head at final handover; the commit SHA is verified in the separate exact-head evidence comment and Mission Control handover (not self-referentially recorded inside the same commit).
+**DRAFT PR:** [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) — OPEN/DRAFT/UNMERGED.
+**Exact-head CI:** The final commit's workflow run IDs and conclusions will be supplied in the separate GitHub PR comment and direct Mission Control handover; no result is asserted before a completed run.
 **Blocking limitations:** No privileged-provider or production access authorized; no runtime security certification; no Git merge or publication approval claimed.
 
 **MC-46 SECURITY-AUTHORED ORIGINAL REPORTS PRESERVED — DRAFT EVIDENCE PR FOR MISSION CONTROL REVIEW — STOP FOR HUMAN MERGE AND POST-MERGE VERIFICATION.**
