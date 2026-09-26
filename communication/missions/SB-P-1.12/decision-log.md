@@ -273,3 +273,10 @@ Blueprint v0.4 Sections 20–21 assess all 228 `IN SCOPE` rows: 184 `FEASIBLE`, 
 
 Mission Control received the Stage 7 draft. Its feasibility classifications are engineering proposals, not accepted findings. Mission Control classified ESC-1 (the repository-level Owner business `DELETE` path and financial-history cascade) as an open T8 security and integrity finding. The affected durability work is held pending the independent Security & Permissions Architecture review and Mission Control disposition. As directed, `22-§20-2` is recorded as `BLOCKED` and stays `IN SCOPE`; other ESC-1-dependent rows keep only their durability conclusions held. The independent reviewer is examining the draft. No Stage 7 finding is accepted, and the PR is not approved for merge.
 
+## MC-41 — Independent security review dispositioned; correction required (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) ([comment 5845390537](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845390537)); recorded here by Claude Code.
+
+The appointed Security & Permissions Architecture room reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`; its report reached Mission Control through Founder chat and is not a repository file. Mission Control dispositioned findings SEC-S7-01 to SEC-S7-09 as CORRECTION REQUIRED, kept ESC-1 T8 open, reclassified six rows to `PENDING` independent review and asked for five more to be reconsidered. The independent review is not complete or accepted, no Stage 7 finding is accepted, and publication of the specialist's report under `specialists/` needs a separate authorization.
+
