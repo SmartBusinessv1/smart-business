@@ -1,21 +1,23 @@
-# SB-P-1.12 — MC-33 Independent Reviewer Appointment Record Handover
+# SB-P-1.12 — MC-35 Stage 7 Activation Gate Handover
 
 **From:** Claude Code — documentary preparer at Mission Control's direction
 **To:** Smart Business Mission Control
-**Status:** `MC-33 INDEPENDENT SECURITY REVIEWER APPOINTMENT RECORD SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; G-2 PENDING UNTIL MERGE VERIFICATION; STAGE 7 NOT AUTHORIZED.`
-**Canonical baseline:** `main@e934dbfe715dd6d132d625e6b61816565a0d7e1c` (PR #638, human-merged `2026-09-25T12:03:13Z`, approved head `11bd13cf3038702870ec9c2c8b54c26643ef5027`).
-**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/20-independent-reviewer-gate-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/23-independent-reviewer-gate-live-report-snapshot.md`.
-**Appointment record:** `communication/missions/SB-P-1.12/mission-control/19-independent-security-reviewer-appointment-record.md`
-**Companion instruction (effective only after human merge):** `communication/live/instruction.md` (MC-33, hold only).
+**Status:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`
+**Canonical baseline:** `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c` (PR #639, human-merged `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73c005a4654d293ed755961091e20`; MC-34 post-merge verification in the PR comments). Equal to the verified starting checkpoint; `main` has not moved.
+**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/22-reviewer-appointment-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/24-reviewer-appointment-live-report-snapshot.md`.
+**Activation record:** `communication/missions/SB-P-1.12/mission-control/21-stage7-engineering-review-activation-record.md`
+**Companion instruction:** `communication/live/instruction.md` (MC-35, hold until the record's Section 13 effect).
 
-**This is a communication-only DRAFT.** It transcribes Mission Control's decision to select the existing Security & Permissions Architecture specialist room as the independent Stage 7 security reviewer. It appoints no one itself, is not effective until human merge and Mission Control's post-merge verification, and is not the independent review.
+**This is a communication-only DRAFT.** It transcribes Mission Control's Stage 7 activation decision. Before its human merge, G-1 is OPEN and Stage 7 is NOT AUTHORIZED. After human merge and Mission Control's recorded verification, the record's Sections 4 to 12 take effect without a further status-only PR.
 
-**Evidence limitations recorded in the record:** the MC-32 declaration is the specialist's own report submitted through the Founder and is not in the repository, and its full text was not supplied to the drafter, so it is not quoted; git attribution cannot show contributions relayed through dialogue; the room is not recorded as a model, provider or session; the retrospective's 2026-09-13 production observations may predate the production cutover and are not current evidence; Source 18 §4.9's use for this role is an analogy (S-6).
+**Evidence verified:** PRs #637, #638 and #639 merged at their approved heads and in `main`'s history; MC-29B, MC-31B and MC-34 post-merge verifications in the PR comments; FCTM Disposition column re-counted at 373 rows (228 `IN SCOPE`, 113, 2, 30, 0); Source 18 v1.2 §§4.3, 4.4, 4.8, §6 Stage 7 and §9.1; Protocol §§16, 16.1, 21 and 27; MC-02 intake §4.2.
 
-**Disclosures drawn from the repository:** the room's earlier SB-P-1.11 security participation (EIS reviews, GC-42 and GC-43 provider verification) and its 2026-09-13 retrospective (PR #560), which discusses the same T4 subject matter and names the room as "likely owner" under future SB-P-1.12 scope. Correlated-assumption controls are drafted in Section 7 for Mission Control to adopt or amend.
+**Proposed Stage 7 Git grant (record Section 10):** Claude Code; work package `SB-P-1.12-WP-S7`; locked branch `mission/SB-P-1.12-stage7-engineering-review` (unused at drafting); seven exact paths (the Blueprint within three regions, Stage 7 report `claude-code/25`, live-report snapshot `claude-code/26`, live report, README, and the two append-only logs); no `specialists/**`, `mission-control/**` or live instruction; trailer required; ends on Mission Control's final exact-head acceptance, explicit rejection or closure of the Stage 7 PR, a Protocol §21 event, revocation, or the `2026-10-17T23:59:59Z` outside expiry, whichever comes first. A return for correction is not an end event.
 
-**Unchanged:** G-1 OPEN, G-2 PENDING until merge verification, S-2 to S-7 flagged, the F-03 derived-value question and multiple-business ownership unanswered, T4 production `UNVERIFIED`. The Blueprint, FCTM, Founder Records, contracts, code, SQL, workflows and branch protection are untouched.
+**MC-36 correction (PR #640 comment `5844847963`):** Mission Control confirmed the five status-only Metadata rows, exactly one Section 18 v0.4 change-log row, and the outside expiry. Record §10.5 now separates end events from Mission Control-directed, finding-scoped corrections within unchanged paths and regions. Record §10.6 and the live instruction's Stop Conditions now separate mission-wide stops from finding-scoped holds, with T8 stopping the affected work immediately. No other content or path changed.
 
-**No Stage 7, Sections 20–21, per-row finding, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization.**
+**Unchanged:** G-3 to G-8 and S-2 to S-7 as recorded; the F-03 derived-value question and multiple-business ownership unanswered; F-06 undecided; T4 production `UNVERIFIED`; topology unverified; historical OLE backfill `NOT VERIFIED COMPLETE`. The Blueprint, FCTM, Founder Records, contracts, code, SQL, workflows and branch protection are untouched.
 
-**Until Mission Control's review:** `MC-33 INDEPENDENT SECURITY REVIEWER APPOINTMENT RECORD SUBMITTED — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE; G-2 PENDING UNTIL MERGE VERIFICATION; STAGE 7 NOT AUTHORIZED.`
+**No Stage 7 work, Sections 20–21, per-row finding, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization before the Section 13 effect.**
+
+**Until Mission Control's review:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`

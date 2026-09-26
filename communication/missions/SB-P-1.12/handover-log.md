@@ -497,3 +497,17 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control reviews the draft PR. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** Stage 7, Sections 20–21, per-row findings, privileged verification, any change to required checks, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 
+## H-30 — Claude Code to Mission Control: MC-35 Stage 7 activation gate draft submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (documentary preparer at Mission Control's direction)
+**To:** Mission Control
+**Status:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`
+**Canonical baseline:** PR #639, `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c`, approved head `6cb3b72e1dc73c005a4654d293ed755961091e20`, verified post-merge by MC-34.
+**Prior live pair preserved:** `mission-control/22-reviewer-appointment-live-instruction-snapshot.md` and `claude-code/24-reviewer-appointment-live-report-snapshot.md`, byte-identical to `main@df5d5257`.
+**Files created or modified:** `communication/missions/SB-P-1.12/mission-control/21-stage7-engineering-review-activation-record.md` (new), `communication/live/instruction.md`, `communication/live/report.md`, the two snapshots (new), and this mission's `README.md`, `decision-log.md` and `handover-log.md`. Eight paths, communication only.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Open issues carried forward:** G-1 open until activation merge verification; independent review outstanding; F-03 derived-value question; multiple-business ownership; F-06; T4 production `UNVERIFIED`; topology; historical OLE backfill; S-2 to S-7; separate authorization needed to commit specialist findings.
+**Next authorized action:** Mission Control reviews the draft PR at its exact head. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** creating the Stage 7 engineering branch, Stage 7, Sections 20–21, per-row findings, privileged verification, any change to required checks, Stage 8, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
+
