@@ -1,23 +1,44 @@
-# SB-P-1.12 — MC-35 Stage 7 Activation Gate Handover
+# SB-P-1.12 — MC-46 Security-Authored Report Preservation Handover
 
-**From:** Claude Code — documentary preparer at Mission Control's direction
+**From:** Existing MC-33-appointed Security & Permissions Architecture room
 **To:** Smart Business Mission Control
-**Status:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`
-**Canonical baseline:** `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c` (PR #639, human-merged `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73c005a4654d293ed755961091e20`; MC-34 post-merge verification in the PR comments). Equal to the verified starting checkpoint; `main` has not moved.
-**Prior live pair:** preserved byte-identically at `communication/missions/SB-P-1.12/mission-control/22-reviewer-appointment-live-instruction-snapshot.md` and `communication/missions/SB-P-1.12/claude-code/24-reviewer-appointment-live-report-snapshot.md`.
-**Activation record:** `communication/missions/SB-P-1.12/mission-control/21-stage7-engineering-review-activation-record.md`
-**Companion instruction:** `communication/live/instruction.md` (MC-35, hold until the record's Section 13 effect).
+**Mission ID:** SB-P-1.12
+**Mission name:** Authority, Identity & Product Surface Foundation
+**Date:** 2026-09-26
+**Status:** DRAFT — THREE ORIGINAL SECURITY REPORTS PRESERVED ON CONTROLLED BRANCH; MISSION CONTROL EXACT-HEAD REVIEW AND HUMAN MERGE PENDING
+**Instruction authority:** MC-46, effective after PR #642 human merge and MC-47 post-merge verification: https://github.com/SmartBusinessv1/smart-business/pull/642#issuecomment-5845793333
+**Instruction PR:** #642, approved head `e0ba706a5d719bdd9e4ad11e8ec42af1d36f1402`, human merge `2026-09-26T11:16:03Z`, main merge commit `f2f35f20f9f2fcc700bb068556bf40811b8c87ff`.
+**Repository:** `SmartBusinessv1/smart-business`
+**Branch:** `mission/SB-P-1.12-security-authored-evidence`
+**Exact base:** `main@f2f35f20f9f2fcc700bb068556bf40811b8c87ff`
+**DRAFT evidence PR:** TO BE POPULATED AFTER PR CREATION. No self-approval or self-merge.
 
-**This is a communication-only DRAFT.** It transcribes Mission Control's Stage 7 activation decision. Before its human merge, G-1 is OPEN and Stage 7 is NOT AUTHORIZED. After human merge and Mission Control's recorded verification, the record's Sections 4 to 12 take effect without a further status-only PR.
+## Exactly four authorized files
 
-**Evidence verified:** PRs #637, #638 and #639 merged at their approved heads and in `main`'s history; MC-29B, MC-31B and MC-34 post-merge verifications in the PR comments; FCTM Disposition column re-counted at 373 rows (228 `IN SCOPE`, 113, 2, 30, 0); Source 18 v1.2 §§4.3, 4.4, 4.8, §6 Stage 7 and §9.1; Protocol §§16, 16.1, 21 and 27; MC-02 intake §4.2.
+| Path | Source and exact original reviewed PR #641 head |
+|---|---|
+| `communication/missions/SB-P-1.12/specialists/01-stage7-independent-security-review-original.md` | Security room's MC-40 original report — `88b9256612e7d8bf1db88ec02c29eac8b5d545f9` |
+| `communication/missions/SB-P-1.12/specialists/02-stage7-independent-security-delta-re-review.md` | Security room's MC-42 original report — `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` |
+| `communication/missions/SB-P-1.12/specialists/03-stage7-independent-security-final-focused-verification.md` | Security room's MC-44 original report — `f791b6f29adb412eb99df8f121a25433850971f0` |
+| `communication/live/report.md` | PRESENT-DAY MC-46 handover (this report); not a fourth security assessment or reconstructed historical exchange |
 
-**Proposed Stage 7 Git grant (record Section 10):** Claude Code; work package `SB-P-1.12-WP-S7`; locked branch `mission/SB-P-1.12-stage7-engineering-review` (unused at drafting); seven exact paths (the Blueprint within three regions, Stage 7 report `claude-code/25`, live-report snapshot `claude-code/26`, live report, README, and the two append-only logs); no `specialists/**`, `mission-control/**` or live instruction; trailer required; ends on Mission Control's final exact-head acceptance, explicit rejection or closure of the Stage 7 PR, a Protocol §21 event, revocation, or the `2026-10-17T23:59:59Z` outside expiry, whichever comes first. A return for correction is not an end event.
+## Source and fidelity method
 
-**MC-36 correction (PR #640 comment `5844847963`):** Mission Control confirmed the five status-only Metadata rows, exactly one Section 18 v0.4 change-log row, and the outside expiry. Record §10.5 now separates end events from Mission Control-directed, finding-scoped corrections within unchanged paths and regions. Record §10.6 and the live instruction's Stop Conditions now separate mission-wide stops from finding-scoped holds, with T8 stopping the affected work immediately. No other content or path changed.
+The three report BODIES are the existing reports authored in this same Security & Permissions Architecture room, carried directly from its earlier MC-40, MC-42 and MC-44 responses. Each is preceded by a clearly separate present-day MC-46 provenance header, which records the genuine author, original reviewed SHA and delayed preservation date. The original reports had been relayed through Founder chat rather than written to the repository live pair at the time. The preserved bodies retain the original substantive text, headings, Markdown, tables, qualifications and conclusions, including the original in-chat presentation markup. No historical live instruction/report exchange is invented.
 
-**Unchanged:** G-3 to G-8 and S-2 to S-7 as recorded; the F-03 derived-value question and multiple-business ownership unanswered; F-06 undecided; T4 production `UNVERIFIED`; topology unverified; historical OLE backfill `NOT VERIFIED COMPLETE`. The Blueprint, FCTM, Founder Records, contracts, code, SQL, workflows and branch protection are untouched.
+Fidelity verification: independently fetched all three committed report files from the controlled branch, verified their original headings and exact reviewed head references, their separate provenance headers, and the four-path compare against the MC-47-verified canonical base. The preservation is not a new security review or a replacement narrative. Original chat-to-Git byte-for-byte comparison is not independently machine-attested because the prior chat messages are not supplied as exportable source files.
 
-**No Stage 7 work, Sections 20–21, per-row finding, Blueprint lock, EIS, implementation, migration, production, delivery or publication authorization before the Section 13 effect.**
+## Retained boundaries
 
-**Until Mission Control's review:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`
+MC-44's conclusion concerns Stage 7 DOCUMENTATION readiness for Mission Control review, not verified implementation or production security. ESC-1 remains OPEN T8; FCTM row `22-§20-2` remains `BLOCKED` and `IN SCOPE`; related durability conclusions remain held. G-3–G-8 and S-2–S-7 retain their recorded statuses. PR #641 stays DRAFT and not cleared for Founder merge by this evidence-preservation PR.
+
+No original reports were written in `communication/live/` on their historical dates. The prior MC-35 pair remains in snapshots 23 and 24. No Blueprint, FCTM, Founder Record, logs, code, SQL, migration, workflow, provider or production state was changed.
+
+## Exact-head evidence and stop
+
+**Final branch head:** TO BE RECORDED AT EXACT-HEAD HANDOVER.
+**DRAFT PR:** TO BE RECORDED AFTER CREATION.
+**Exact-head CI:** TO BE RECORDED AFTER THE FINAL HANDOVER UPDATE.
+**Blocking limitations:** No privileged-provider or production access authorized; no runtime security certification; no Git merge or publication approval claimed.
+
+**MC-46 SECURITY-AUTHORED ORIGINAL REPORTS PRESERVED — DRAFT EVIDENCE PR FOR MISSION CONTROL REVIEW — STOP FOR HUMAN MERGE AND POST-MERGE VERIFICATION.**
