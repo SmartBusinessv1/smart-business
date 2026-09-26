@@ -7,9 +7,9 @@
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Mission Type | Foundational Product Mission (Core Authority/Permission Kernel; not a single end-user feature) |
-| Lifecycle Stage | Stage 4 — Product Blueprint Sections 1–19 — **DRAFT** |
+| Lifecycle Stage | Stage 7 — Engineering Review — **DRAFT** (Sections 1–19 approved at Stage 5, MC-21, PR #630; Stage 6 Builder Review findings accepted, MC-24, PR #632) |
 | Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–19 (this document only). Sections 20–21, Builder Review, Engineering Review, EIS and implementation are separately authorized later stages. |
-| Status | `DRAFT — AWAITING MISSION CONTROL STAGE 5 PRODUCT REVIEW` |
+| Status | `SECTIONS 1–19 APPROVED (v0.3, PR #635); SECTIONS 20–21 DRAFT — AWAITING MISSION CONTROL STAGE 7 REVIEW AND INDEPENDENT SECURITY REVIEW; NOT LOCKED` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, MC-02 appointed Stage 2–4 Definition Actor |
 | Constitutional Authority | Source 01 and Source 11 jointly, subordinate to the Lighthouse Constitution (Source 00) |
@@ -18,12 +18,12 @@
 | Founder Product Decision Record | [`founder/03-stage3-founder-product-decision-record.md`](../../../communication/missions/SB-P-1.12/founder/03-stage3-founder-product-decision-record.md) — `FPDR-1`–`FPDR-4`, canonical, PR #628, `main@d7110a98a8b843304c81e3803b637a6fc41906e9` |
 | Canonical FCTM | [`claude-code/03-stage2-populated-fctm.md`](../../../communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md) — 373 rows: 228 `IN SCOPE`, 113 `ASSIGNED TO LATER MISSION`, 2 `DELEGATED`, 30 `NOT APPLICABLE`, 0 `ESCALATED` |
 | Date | 2026-09-23 |
-| Builder Review | Not started — separately authorized after Mission Control Stage 5 approval |
-| Engineering Review | Not started — Sections 20–21 remain absent from this document |
+| Builder Review | Complete — findings F-01–F-11 accepted as findings, not implementation decisions (MC-24, PR #632) |
+| Engineering Review | DRAFT — Sections 20–21 prepared by Claude Code under MC-35 (`mission-control/21-stage7-engineering-review-activation-record.md`); independent Security & Permissions Architecture review (MC-33) outstanding; no finding accepted |
 | Founder Approval | Not yet sought — Stage 5–8 review precedes any Founder Sections 1–19 approval |
 | Mission Control Review | Pending — Stage 5 Product Review, including the Source 18 §3.2 item 6 FCTM completeness test (Gate 10) and Institutional Learning Intake confirmation |
 | Blueprint Lock | Not applied |
-| Next Lifecycle Gate | Mission Control Stage 5 Product Review of Sections 1–19; Stage 6 Builder Review and Stage 7 Engineering Review (with the still-unappointed independent Security & Permissions Architecture specialist) follow only after Stage 5 approval |
+| Next Lifecycle Gate | Mission Control Stage 7 review of the complete Blueprint and disposition of the independent security review; Founder resolution of open product questions; then Stage 8 Founder approval and Blueprint lock, separately authorized |
 
 ## Mission Snapshot
 
@@ -552,6 +552,7 @@ Authority is not a feature a merchant sees — it is the quiet, structural guara
 | 0.1 | 2026-09-23 | Claude Code (MC-02) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 373-row FCTM, Founder Decisions `FPDR-1`–`FPDR-4`, mature Contracts 21/22/20/17/7, and Build Plan §§5–7, 10.1. | DRAFT — awaiting Mission Control Stage 5 Product Review |
 | 0.2 | 2026-09-24 | Claude Code (MC-02) | Narrow corrections MC-20A–E on PR #630: Section 19 assigned-mission labels corrected against the FCTM `Assigned mission` column (`20-§14` = `SB-P-1.13` primary build) and Section 19 tables extended with explicit assigned-mission and source-reference fields; Section 12 distinguishes Human Language Foundation owner (`SB-P-1.13`) from notification-specific integrator (`SB-P-1.15`); Mission Snapshot and §4 authorization-evidence wording made precise; Section 15 qualified for mission-owned permission mechanics versus later missions' end-to-end features; Institutional Learning Intake reconciliation refreshed. No FCTM row, disposition, Founder Decision or Founder scenario changed. | DRAFT — awaiting Mission Control re-review
 | 0.3 | 2026-09-25 | Claude Code (documentary preparation, MC-25) | Narrow reconciliation of Founder-confirmed Stage 6 decisions F-02, F-03 and F-04(c) (Founder Record 04): removed the unsupported "within exactly one business" statement from Section 3; added Section 3 objective clauses and Section 8.1–8.3, 8.13, 8.24, 8.33, Section 10, Section 12 and Section 15 passages; appended Founder Record 04 references to the affected Section 19 source-reference cells; added Governance History rows. Founder Scenarios A and B, all 373 FCTM rows, dispositions, assigned missions and original source pointers, and `FPDR-1`–`FPDR-4` unchanged. | DRAFT — awaiting Mission Control review; not effective until human merge |
+| 0.4 | 2026-09-26 | Claude Code (Stage 7 Engineering Review, MC-35) | Added Section 20 (Engineering Review, early delivery plan and 228-row feasibility and risk register) and Section 21 (Engineering Questions, Risks & Recommendations); updated five Metadata status rows. Sections 1–17 and 19 unchanged; all 373 FCTM dispositions, Founder Decisions and Scenarios A and B unchanged. | DRAFT — awaiting Mission Control Stage 7 review and independent security review |
 
 ## 19. Governance History
 
@@ -747,3 +748,539 @@ Complete accounting of all 373 canonical FCTM rows (`claude-code/03-stage2-popul
 | 2026-09-24 | Mission Control, Claude Code | Authorized (MC-22, PR #631) and prepared the Stage 6 Builder Review; PR #632 human-merged at `2026-09-24T18:37:11Z`, `main@76ff1575e1ca3978f363d7a1daef307513376345` (MC-24 gate). | Stage 6 findings F-01–F-11 accepted as recommendations; Founder confirmed F-02 Option B, F-03 Option B and F-04(c) Option C in [PR #632 comment `5819755459`](https://github.com/SmartBusinessv1/smart-business/pull/632#issuecomment-5819755459). |
 | 2026-09-24 | Mission Control | Authorized the Founder Decision Record and narrow Sections 1–19 reconciliation (MC-25); PR #634 human-merged at `2026-09-24T19:09:02Z`, `main@3a67c803f27d3790a4a772bf7c563b70b32cca2f`. | Documentary preparation authorized only; Stage 7 not authorized. |
 | 2026-09-25 | Claude Code | Prepared DRAFT Founder Record 04 and this narrow reconciliation (Blueprint version 0.3). | Awaiting Mission Control review and human merge; no Stage 7, Sections 20–21, EIS, implementation or production action. |
+
+## 20. Engineering Review
+
+**Stage 7 draft (version 0.4).** Prepared by Claude Code as the Source 18 §4.4 Engineering Review owner under the MC-35 activation record (`communication/missions/SB-P-1.12/mission-control/21-stage7-engineering-review-activation-record.md`), effective on the human merge of PR #640 (`main@733f33935b37f6e3b5b4f7e8916f0161d6646527`) and Mission Control's post-merge verification. This section and Section 21 are a DRAFT for Mission Control review. They approve, lock and authorize nothing.
+
+### 20.1 Basis, evidence class and independence
+
+- **Inputs.** Approved Sections 1–19 (v0.3), the accepted Stage 6 Builder Review findings (MC-24; `claude-code/16-stage6-builder-review-report.md`), Founder Records 03 and 04, the canonical FCTM (`claude-code/03-stage2-populated-fctm.md`) and the repository at `main@733f3393`.
+- **Evidence class.** Repository files only: migrations, application source, tests and workflow files. No database, provider, production or privileged access was used, and no SQL was executed. Every statement about current behaviour describes files in the repository, not live state. Production grants, RLS, function and default privileges, migration state and remediation execution remain `UNVERIFIED` (G-6).
+- **Independence.** Claude Code authored Sections 1–19, the FCTM, Founder Record 04 and the Stage 6 Builder Review. This Engineering Review is not independent security review. Findings marked `PENDING` in Section 20.5 are not accepted or relied on until the appointed Security & Permissions Architecture reviewer (MC-33) completes its review and Mission Control dispositions it.
+- **Recommendations, not decisions.** Where this section describes a design direction, it is a recommendation for the EIS, which may only be created after Stage 8 lock. No technical mechanism the Founder left unselected is selected here (in particular the F-04(c) progress, replay and resume mechanism).
+- **Product Truth.** No Product Truth, FCTM disposition, build commitment, commercial classification, mission assignment, Founder Decision or Founder Scenario is changed. All 228 `IN SCOPE` rows remain `IN SCOPE`.
+
+### 20.2 Repository baseline relevant to this mission
+
+| Area | Repository fact at `main@733f3393` | Source |
+|---|---|---|
+| Authority concept | `businesses.owner_id` is `NOT NULL`, `UNIQUE` and references `auth.users(id) ON DELETE CASCADE`. There is no membership, role, capability, entitlement or grant table | `supabase/migrations/20260708210504_0a471e2c-a76c-4178-8aa2-79a3744e8bd2.sql` |
+| Business row privileges | `authenticated` holds `SELECT, INSERT, UPDATE, DELETE` on `businesses`, and four Owner policies permit each, including `DELETE` where `auth.uid() = owner_id`. The application does not offer business deletion | Same file; `src/routes/_authenticated/dashboard.tsx` |
+| Cascades | 18 foreign keys to `businesses(id)` use `ON DELETE CASCADE`. Catalog event, audit, deletion-record and idempotency tables, and `inventory_movements`, have immutability triggers that raise on any delete, so a cascading business delete fails where such rows exist. `transactions` and `transaction_correction_events` have no delete guard | Stage 1 catalog schema §9; inventory migration `20260721205714_…` |
+| Authority resolver | `catalog_internal.resolve_owner_business(p_actor)` returns `businesses.id WHERE owner_id = p_actor`; `catalog_internal.current_actor_uid()` reads only the JWT subject. The resolver is referenced 105 times across migrations | `20260806120000_sb_p_1_11_impl_1_stage1_schema.sql` §4 |
+| Catalog commands | 19 public catalog functions run `SECURITY DEFINER` as one of seven `NOLOGIN NOINHERIT` executor roles with narrow table and column grants, and re-resolve the caller's business at execution time | `20260806130000_sb_p_1_11_impl_1_stage2_functions.sql` |
+| Legacy write paths | `transactions` is inserted and read directly by the client through PostgREST under Owner RLS (`src/integrations/supabase/transactions.ts`). `correct_transaction` and `create_inventory_movement` are `SECURITY INVOKER` and rely on RLS | `20260719102137_…`, `20260720142248_…`, `20260724170000_…` |
+| RLS | RLS is enabled on 21 application tables. The migrations contain 87 `CREATE POLICY` statements; the Stage 6 review counted 86 policies in effect, all Owner-scoped. Stage 7 did not re-verify each policy line by line | Migrations; Stage 6 report F-01 |
+| Default privileges | `reconcile_default_grants` grants `ALL` on six tables and `EXECUTE` on all `public` functions to `anon, authenticated, service_role`, and installs default privileges that do the same for future `postgres`-owned objects. Catalog migrations revoke per object. The Inventory hardening migration (file 21) covers three Inventory tables, and its production status is `UNVERIFIED` | `20260727000000_reconcile_default_grants.sql`; `20260830120000_…`; `docs/migration/README.md` |
+| Audit | `catalog_audit_events` and the four catalog event tables pin `authority_basis = 'owner_via_businesses.owner_id'`, `channel = 'dashboard'` and `executed_by_actor_type = 'user'` with `CHECK` constraints, and are append-only. There is no authority (grant, revoke, denial) audit | Stage 1 catalog schema §§9–10 |
+| Confirmation binding | `catalog_link_preview_tokens` binds business, initiating actor, requested action, target, expected state fingerprint, issue and expiry, and closure. It has no permission version | Stage 1 catalog schema; Stage 6 F-11 |
+| Idempotency | `catalog_write_idempotency_keys` (business, operation, key, payload fingerprint, outcome) and `inventory_movement_idempotency_keys` exist | Stage 1 catalog schema; inventory migrations |
+| Reference Cost | `catalog_product_read` returns `build_product_detail_with_cost` unconditionally. A cost-free `build_product_detail_base` exists. `current_reference_cost` is written only by `catalog_cost_executor` | Stage 2 functions; Stage 6 F-03 |
+| Service-role paths | `supabaseAdmin` is used in `src/server-functions/catalog-import.ts` and `src/server-functions/parser-lease.ts`. Each first resolves the business through `owner_id` with the caller's client, then uses the service role for batch, row, lease and guard bookkeeping | Both files |
+| Application gate | The authenticated route checks session only. `FirstTimeBusinessSetup` offers business creation to any signed-in user without a business. `/super-admin` is a public placeholder. `returnTo` is unvalidated | Stage 6 F-05, F-07, F-09 |
+| Tests and CI | 28 test files (catalog import 9, inventory 17, parser lease 2) with Owner-only fixtures. Fast Gate (Application Build Assurance) runs on every PR; Full Assurance runs DB suites against the isolated test environment on a path filter and is not a required check; the Markdown Quality Gate is required | `tests/`; `.github/workflows/`; Stage 6 F-06 |
+
+### 20.3 Engineering assessment by workstream
+
+Each item states feasibility, the main risks and a recommended direction for the EIS. The E-codes are referenced from the per-row register in Section 20.5.
+
+#### E1 — Authority kernel and membership (WS-A)
+
+- **Feasibility.** Feasible. The catalog already re-resolves authority in the database at execution time through one function. That is the seam to replace.
+- **Recommended direction.** Add membership beside `owner_id`, keyed by person and business with a role, rather than replacing `owner_id`. Replace `resolve_owner_business` with one kernel resolver that takes the actor, the active business and the required capability, and returns an allow or deny. Move all 105 references to it. Derive the actor only from the verified JWT subject and read role, capability, entitlement and grant state from the database at each execution, never from token claims (F-08). Carry a per-membership permission version so bound confirmations and running imports can detect change.
+- **Active-business context (F-02).** Every command should receive the active business explicitly and have the kernel verify membership in it. The kernel should never infer the business from "the one business this person owns", which today's `maybeSingle()` lookups in the client and server functions do.
+- **Held conclusion (G-4).** Whether `owner_id UNIQUE` is kept, and therefore whether a person may own more than one business, is not decided here. The membership design above works under either answer. Conclusions that depend on ownership cardinality are held.
+- **Risks.** Size: every catalog command, all Owner policies, both server functions and all client lookups change. Regression risk to the Product & Price Master. Partial migration could leave two authority paths.
+
+#### E2 — Role-aware enforcement at RLS and command layers (WS-A)
+
+- **Feasibility.** Feasible, with ordering risk.
+- **Recommended direction.** Express every policy through the kernel. Replace direct client table writes and reads on `transactions` with command and query functions, or with policies that separate insert permission from read-all, so that an Employee allowed to add a transaction does not receive read access to all amounts (`21-§11-2`, `21-§24-4`). Keep `SECURITY DEFINER` functions narrow, with `search_path = ''` and explicit executor roles, following the catalog precedent.
+- **Risks.** A permissive or unscoped policy written during migration could activate the dormant `anon` exposure (DC-2). Policies and functions must change together per table family, with deny-by-default in between.
+
+#### E3 — Field-level Reference Cost and margin delegation (F-03)
+
+- **Feasibility.** Feasible. The cost-free detail builder already exists, and cost writes already sit behind their own executor.
+- **Recommended direction.** Make each field an independent capability. Choose the detail builder by capability, not unconditionally. Restrict search, list, import preview and export paths the same way, and do not expose the columns through direct table grants.
+- **Held conclusion (G-3).** Whether a separately delegated value, combined with other visible values, may disclose the undelegated one is unanswered. No inference-proof guarantee is asserted, and no approved delegation is prohibited. Findings that would need that answer are held.
+
+#### E4 — Execution-time revalidation, confirmation binding and import (Scenario B, F-04(c))
+
+- **Feasibility.** Feasible.
+- **Recommended direction.** Generalize `catalog_link_preview_tokens` into one shared confirmation-binding pattern and add the permission version as its sixth element. For import: bind the batch to the initiating actor, business and permission version at preview; re-check authority at claim and for every row inside the database; stop the remainder on the first denial; and report completed and remaining counts. The resume or re-submission mechanism is left to the EIS (F-04(c)).
+- **Risks.** The current batch claim uses the service role with no actor predicate (Stage 6 F-04). Per-row RPCs already fail closed after revocation, so Scenario B's pre-commit denial is reachable once the kernel exists.
+
+#### E5 — Authority audit and human context
+
+- **Feasibility.** Feasible, with a schema-evolution dependency.
+- **Recommended direction.** Add an append-only authority event record for grant, revoke, role change, temporary elevation, support access and security-relevant denial, carrying grantor, subject, capability, scope, business, channel, timestamps and resulting action. Widen the existing catalog provenance `CHECK` constraints through governed migration so non-Owner actors and non-dashboard channels can be recorded truthfully.
+- **Risks.** The pinned `CHECK` values would reject any non-Owner write until changed. Audit durability depends on ESC-1 (Section 21.1).
+
+#### E6 — Idempotency and duplicate protection
+
+- **Feasibility.** Feasible. Two idempotency stores already exist and can be generalized. Duplicate-safe import completion (F-04(c)) should reuse the per-row outcome record rather than a second mechanism.
+
+#### E7 — Denial contract and experience
+
+- **Feasibility.** Feasible. Catalog commands already return a deterministic `PERMISSION_DENIED` without leaking whether the object exists.
+- **Recommended direction.** One denial outcome shape across commands, queries, RLS-filtered reads and server functions, with calm copy and a next step. Capability-driven navigation. First-run business creation offered only after checking for pending or active membership (F-05). An allowlist for `returnTo` (F-07). Routine denials are not escalated as security events.
+
+#### E8 — Entitlements
+
+- **Feasibility.** Feasible. Entitlements are data rows checked jointly with role by the kernel. No schema is created or dropped for entitlement state, which the repository already avoids.
+
+#### E9 — Surface coverage and shared-foundation reuse
+
+- **Feasibility.** Feasible for the surfaces this mission owns. For WhatsApp, Conversation Workspace, background jobs, integrations and AI tools, this mission supplies the kernel contract and a reusable test harness, and the owning missions prove their surfaces (DC-3).
+- **Risk.** Service-role code paths bypass RLS. Every such path must call the kernel before acting.
+
+#### E10 — Residual `anon` remediation and function security (WS-B)
+
+- **Feasibility.** Conditional. The design is feasible: revoke `anon` from `businesses`, `transactions`, `transaction_correction_events` and all `public` functions, replace the default-privilege clause, and grant `authenticated` only what the kernel design needs. Its production correctness depends on G-6 evidence.
+- **Boundary.** Stage 7 describes the design dependency and the verification plan only. Nothing here claims remediation complete, and nothing relies on the 2026-09-13 observations as current.
+
+#### E11 — Product & Price Master reclassification (WS-C)
+
+- **Feasibility.** Feasible. All catalog tables are keyed by `business_id`, so membership needs no data move. Reclassification is documentation, navigation and permission work; `/catalog` demotion must keep the structured management path and existing product URLs working until equivalent contextual access is proven.
+
+#### E12 — Tests and CI
+
+- **Feasibility.** Feasible. Add Manager, Employee, revoked-member, external-participant and cross-business fixtures, and DB-level tests for each policy family, Scenario A, Scenario B and F-04(c). Required-check governance stays with Mission Control (G-5).
+
+#### E13 — Temporary support access
+
+- **Feasibility.** Feasible as a wholly new build (F-09). Purpose, consent, minimum scope, time bound, identified privileged actor, audit and revocation as kernel-level grant types, not a bypass role.
+
+#### E14 — Delegated automation authority check
+
+- **Feasibility.** Feasible. A kernel entry point that re-verifies rule status, scope, target and limits, entitlement and permission version on every invocation, proven through a test harness until `SB-P-1.15` and `SB-P-1.17` supply runtimes.
+
+#### E15 — External participants and Employee self-service boundaries
+
+- **Feasibility.** Feasible for the permission boundary. External roles resolve to narrow, object-scoped capabilities with no dashboard capability. Employee self-service uses own-record predicates. The underlying features belong to later missions, so proof uses labelled fixtures (DC-3).
+
+### 20.4 Early delivery plan
+
+Planning and rehearsal only. Execution is never part of a Product Mission (Source 18 §9.1). Nothing in this section is execution authority, a migration execution plan or a deployment instruction.
+
+#### 20.4.1 Environments and the evidence needed to establish them
+
+| Environment | Planned use | Evidence needed before relying on it | Evidence owner | Status |
+|---|---|---|---|---|
+| Local development | Authoring, unit tests, migration replay from an empty database | None beyond the repository | Implementing actor | Available |
+| Isolated test environment (`smart-business-test`, GitHub Actions environment used by Full Assurance) | DB-level policy, kernel, Scenario A and B and F-04(c) tests; migration rehearsal by clean replay | Current project identity, applied migration list and secret bindings, freshly verified | Mission Control (G-7) | Named in `full-assurance.yml`; current identity `UNVERIFIED` |
+| Production-shaped rehearsal copy | Rehearsal of remediation and policy migrations against production-shaped grants and data | Whether such an environment exists, its source and its data-handling approval | Mission Control or Founder | Not established |
+| Production | Target of later, separately authorized execution only | Project identity, migration ledger, grants, RLS, function and default privileges (T4) through a separately authorized read-only verification | Mission Control or Founder authorizes; executing actor to be named | `UNVERIFIED` (G-6, G-7) |
+
+#### 20.4.2 Expected migration classes and rehearsal needs
+
+| Class | Expected content | Risk | Rehearsal need |
+|---|---|---|---|
+| M1 Additive schema | Membership, capability grant, entitlement, authority event and confirmation-binding tables; permission version | Low data risk; new tables inherit the `public` default privileges unless revoked in the same migration | Clean replay; assert no `anon` or `PUBLIC` grant on each new object |
+| M2 Data backfill | One Owner membership per existing `businesses.owner_id` | Medium; must be idempotent and must not change ownership | Replay on production-shaped data; row-count reconciliation |
+| M3 Function replacement | Kernel resolver; catalog commands and server-function paths moved to it; `SECURITY DEFINER` hygiene | High; behaviour change on every write | Full Assurance suite plus new role fixtures before and after |
+| M4 Policy replacement | Owner-only policies on 21 tables replaced by kernel-based policies | High; a gap or permissive policy is a security regression (DC-2) | Per-table-family ordering; deny-by-default checks; cross-business and role matrix tests |
+| M5 Privilege remediation (WS-B) | Revoke `anon` on the three remaining tables and on functions; replace the default-privilege clause | High, and dependent on the live state | Only after G-6 read-only verification; rehearse against production-shaped grants |
+| M6 Constraint evolution | Widen catalog provenance `CHECK` values; reconsider the business `DELETE` path and cascades (ESC-1) | Medium; append-only history must stay intact | Replay with existing event rows present |
+
+No destructive data migration and no subscription-driven schema change is expected. Any migration file is non-executable until a separate, explicit mission authorizes it under `docs/migration/README.md`.
+
+#### 20.4.3 Cross-mission dependencies
+
+| Mission | Dependency on this mission | This mission's dependency on it |
+|---|---|---|
+| `SB-P-1.13` | Conversation and AI intake use the kernel (`21-§8`, `22-§6-3`, `22-§6-9`) | None for build; channel-inclusive proof completes there (`22-§29-3`) |
+| `SB-P-1.14` | Document and file access uses kernel isolation (`21-§6-4`) | None |
+| `SB-P-1.15` | Scheduler, reminders and Ask CFO use the delegated-automation check and the Ask CFO boundary (`21-§9`, `21-§12-*`) | Runtime on-every-run proof owed there |
+| `SB-P-1.17` | Manager Operations sits inside the permission surface (`17-§13`, `17-§14`) | Feature depth owed there |
+| `SB-P-1.18` | Attendance, delivery and Staff/HR use Employee self-service and external-participant boundaries | Feature proof owed there |
+| `SB-P-1.19` | Onboarding consumes Owner and invitation setup (`20-§16-*`) | Onboarding flow owed there |
+| `SB-P-1.20` | WhatsApp adapter uses the kernel (`22-§6-2`) | Channel proof owed there |
+
+#### 20.4.4 Applicable CI tiers
+
+- **Markdown Quality Gate:** required on `main`; applies to every documentation change.
+- **Fast Gate (Application Build Assurance: lint, typecheck, build, fast tests):** every PR and checkpoint. Not a required branch-protection check.
+- **Full Assurance (DB, RLS, concurrency suites against the isolated test environment):** triggered by `src/**`, `tests/**`, `supabase/**` and the other listed paths. It will run on every implementation checkpoint of this mission, which touches those paths. It is deliberately not a required check because of its path filter.
+- **Governance (G-5).** Whether database isolation tests become a required check is a Mission Control decision. This plan changes no workflow or branch protection.
+
+#### 20.4.5 Stage 1 scope flags (carried unchanged)
+
+`PRODUCTION MUTATION: NOT AUTHORIZED`. `MIGRATION EXECUTION: NOT AUTHORIZED`. `DELIVERY SYNC AND PUBLICATION: NOT AUTHORIZED`.
+
+#### 20.4.6 Planning and execution boundary, and recommended order
+
+Recommended order for the EIS, subject to Stage 8 lock and later authorizations:
+
+1. Separately authorized evidence: T4 read-only verification (G-6) and topology verification (G-7).
+2. M1 and M2, with deny-by-default kernel in place but unused.
+3. M3 and M4 per table family, with role fixtures (E12).
+4. M5 WS-B remediation, informed by step 1. The Blueprint names it a mandatory early security gate, so it should not wait for later steps once its evidence exists.
+5. Field-level cost and margin (E3), confirmation binding and import revalidation (E4), audit (E5).
+6. Capability-driven UI, denial experience and first-run membership check (E7).
+7. Product & Price Master reclassification and `/catalog` demotion (E11).
+
+Every step above is engineering planning. Infrastructure changes, migration execution, production verification and deployment each need their own authorization.
+
+### 20.5 Per-row feasibility and risk register
+
+One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keeps its FCTM disposition `IN SCOPE`, and none is narrowed, moved or reclassified.
+
+**Feasibility values.** `FEASIBLE`: buildable within the approved scope on present evidence. `CONDITIONAL`: buildable, but a conclusion depends on named evidence, verification or a dependent gate. `HELD`: the row's main conclusion needs an answer that is not available; it is held on a finding-scoped basis and escalated. `BLOCKED`: infeasible, unsafe or in conflict with Product Truth, raising T8. No row is `BLOCKED` in this draft.
+
+**Independent review (IR).** `PENDING`: security-sensitive under Source 18 §4.8 (authority or permissions, RLS or grants, migrations, idempotency or concurrency, financial integrity). The finding is not accepted or relied on until the MC-33 reviewer completes its review and Mission Control dispositions it. `N/R`: Claude Code's assessment that no mandatory domain is engaged. Mission Control may require review of any `N/R` row.
+
+**Evidence.** Unless stated otherwise, evidence is the repository baseline in Section 20.2 and the E-codes in Section 20.3. Production state is `UNVERIFIED` throughout.
+
+#### Contract 21 — Permissions, Business Isolation and Role Authority (101 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `21-§4-1` | §8.1 | CONDITIONAL | Owner exists only as `owner_id`. Model Owner as a membership role beside `owner_id` (E1). Owner authority must be preserved exactly during migration (M2) | G-4 HOLD on ownership cardinality only | PENDING |
+| `21-§4-2` | §8.1 | FEASIBLE | New Manager role with no implied Owner capability; bounded delegations granted explicitly (E1, E3) | G-3 applies only to cost and margin inference | PENDING |
+| `21-§4-3` | §8.1 | FEASIBLE | New Employee role with own-record and scoped-creation capabilities (E1, E15) | None | PENDING |
+| `21-§4-4` | §8.1 | FEASIBLE | Supplier as a bounded external role with object-scoped capabilities and no dashboard capability (E15) | Feature surface is later missions' (DC-3) | PENDING |
+| `21-§4-5` | §8.1 | FEASIBLE | Customer as a bounded external role (E15) | As `21-§4-4` | PENDING |
+| `21-§4-6` | §8.1 | FEASIBLE | Delivery Staff as a bounded external role (E15) | As `21-§4-4` | PENDING |
+| `21-§5-1` | §8.2 | FEASIBLE | Authenticated user is already derived from the verified JWT subject only (`current_actor_uid`). Keep that as the kernel's sole identity input (F-08) | None | PENDING |
+| `21-§5-2` | §8.2 | CONDITIONAL | Membership table and active-business verification in the kernel (E1, F-02). Client `maybeSingle()` business lookups must be replaced | G-4 HOLD on ownership-dependent conclusions | PENDING |
+| `21-§5-3` | §8.2 | FEASIBLE | Role held per membership, checked in the kernel (E1) | None | PENDING |
+| `21-§5-4` | §8.2 | CONDITIONAL | Explicit delegated capability as grant rows with permission version (E1); Reference Cost and margin as separate capabilities (E3) | G-3 HOLD on derived-value inference | PENDING |
+| `21-§5-5` | §8.2 | FEASIBLE | Object scope is partially present through `business_id` keys and composite foreign keys. Extend with owner-of-record predicates for self-service (E15) | None | PENDING |
+| `21-§5-6` | §8.2 | FEASIBLE | Action type as part of the capability checked by each command and policy (E1, E2) | None | PENDING |
+| `21-§5-7` | §8.2 | FEASIBLE | Entitlement as data, checked jointly with role (E8) | Commercial tiers are a later product decision | PENDING |
+| `21-§5-8` | §8.2 | FEASIBLE | Channel is currently pinned to `dashboard` in provenance. Pass channel into the kernel and widen provenance (E5, E9) | M6 constraint change | PENDING |
+| `21-§5-9` | §8.2 | FEASIBLE | Temporary grants as time-bounded grant rows re-checked at execution (E1, E13) | None | PENDING |
+| `21-§5-10` | §8.2 | CONDITIONAL | No account or subscription state exists. Kernel input once defined; must not change schema (E8) | The state model belongs to later commercial decisions | PENDING |
+| `21-§6-1` | §8.3 | CONDITIONAL | Owner-scoped RLS denies cross-business reads today in repository files. Kernel policies must keep that for every role (E2) | G-6: live policies `UNVERIFIED` | PENDING |
+| `21-§6-2` | §8.3 | CONDITIONAL | As `21-§6-1` for writes. Service-role paths must call the kernel first (E9) | G-6 | PENDING |
+| `21-§6-3` | §8.3 | FEASIBLE | No conversation context exists. The kernel contract and tests are supplied here; `SB-P-1.13` proves its surface (E9) | DC-3 | PENDING |
+| `21-§6-4` | §8.3 | CONDITIONAL | Parser upload leases and import files are business-scoped behind service-role paths. Storage bucket policies were not inspected in migrations | Storage configuration `UNVERIFIED` (G-7) | PENDING |
+| `21-§6-5` | §8.3 | FEASIBLE | No export exists. Any export must go through the kernel with an export action type (E1) | None | PENDING |
+| `21-§6-6` | §8.3 | FEASIBLE | No integration mapping exists. Kernel contract only (E9) | DC-3 | PENDING |
+| `21-§6-7` | §8.3 | FEASIBLE | Client supplies `business_id` on `transactions` inserts but RLS re-checks it. The kernel must verify membership in the supplied active business (E1, E2) | None | PENDING |
+| `21-§7` | §8.4 | CONDITIONAL | Enforcement already sits in RLS and command functions. It must remain there for every role (E2) | G-6 | PENDING |
+| `21-§8` | §8.5 | FEASIBLE | One kernel for all channels; natural language cannot widen access because every channel calls the same kernel (E9) | `SB-P-1.13` proof (DC-3) | PENDING |
+| `21-§9` | §8.5 | FEASIBLE | Ask CFO and Owner intelligence as capabilities denied by default to non-Owners (E1) | `SB-P-1.15` feature | PENDING |
+| `21-§10-1` | §8.6 | FEASIBLE | Own-attendance read as own-record predicate; proven with labelled fixtures (E15) | Attendance feature is `SB-P-1.18`'s | PENDING |
+| `21-§10-2` | §8.6 | FEASIBLE | Own correction requests; `transaction_correction_events.edited_by` shows actor capture is possible (E15) | DC-3 | PENDING |
+| `21-§10-3` | §8.6 | FEASIBLE | Own leave and request status via own-record predicate (E15) | DC-3 | PENDING |
+| `21-§10-4` | §8.6 | FEASIBLE | Assigned tasks, orders and deliveries via assignment predicate (E15) | DC-3 | PENDING |
+| `21-§10-5` | §8.6 | FEASIBLE | Other job-specific information as scoped capabilities (E15) | DC-3 | PENDING |
+| `21-§10-6` | §8.6 | FEASIBLE | Negative path: self-service must not expose staff or Owner intelligence; requires E2 on `transactions` reads | None | PENDING |
+| `21-§11-1` | §8.7 | FEASIBLE | Actor identity is already captured (`creator_id`, `authorized_by_user_id`) and is re-checked in RLS; preserve for all roles | None | PENDING |
+| `21-§11-2` | §8.7 | FEASIBLE | Risk: today `transactions` insert and select are granted together to the Owner. Separate insert from read-all for non-Owners (E2) | None | PENDING |
+| `21-§12-1` | §8.8 | FEASIBLE | Rule-enabled check in the automation entry point (E14) | Runtime proof `SB-P-1.15`/`SB-P-1.17` | PENDING |
+| `21-§12-2` | §8.8 | FEASIBLE | Actor and business scope check (E14, E1) | As above | PENDING |
+| `21-§12-3` | §8.8 | FEASIBLE | Target, action and limits stored with the rule and compared on each run (E14) | As above | PENDING |
+| `21-§12-4` | §8.8 | FEASIBLE | Entitlement and state re-checked on each run (E14, E8) | As above | PENDING |
+| `21-§12-5` | §8.8 | FEASIBLE | Permission-version comparison detects revocation since grant (E14, E1) | As above | PENDING |
+| `21-§13-1` | §8.9 | FEASIBLE | Supplier bounded participation (E15) | DC-3 | PENDING |
+| `21-§13-2` | §8.9 | FEASIBLE | Customer bounded participation (E15) | DC-3 | PENDING |
+| `21-§13-3` | §8.9 | FEASIBLE | Delivery Staff bounded participation (E15) | DC-3 | PENDING |
+| `21-§14-1` | §8.10 | FEASIBLE | Purpose as a mandatory field of a support grant (E13) | None | PENDING |
+| `21-§14-2` | §8.10 | FEASIBLE | Owner consent step before a support grant becomes active (E13) | None | PENDING |
+| `21-§14-3` | §8.10 | FEASIBLE | Minimum module and data scope as grant capabilities (E13) | None | PENDING |
+| `21-§14-4` | §8.10 | FEASIBLE | Time bound enforced at each execution (E13) | None | PENDING |
+| `21-§14-5` | §8.10 | FEASIBLE | Identified privileged actor; must not be a shared or service-role identity (E13) | None | PENDING |
+| `21-§14-6` | §8.10 | FEASIBLE | Audit through the authority event record (E5) | None | PENDING |
+| `21-§14-7` | §8.10 | FEASIBLE | Revocation on resolution plus automatic expiry (E13) | None | PENDING |
+| `21-§15-1` | §8.11 | FEASIBLE | Risk F-05: first-run creates an Owner business for any session. Check membership and invitations before offering creation (E7) | None | PENDING |
+| `21-§15-2` | §8.11 | FEASIBLE | Owner role from membership, never from session (E1) | None | PENDING |
+| `21-§15-3` | §8.11 | CONDITIONAL | Cross-business denial holds in repository RLS; must hold for all roles (E2) | G-6 | PENDING |
+| `21-§15-4` | §8.11 | FEASIBLE | Entitlement checked independently of session (E8) | None | PENDING |
+| `21-§15-5` | §8.11 | FEASIBLE | No admin privilege exists; `/super-admin` must not become one (E13, F-09) | None | PENDING |
+| `21-§16-1` | §8.12 | FEASIBLE | Role and entitlement jointly required in the kernel (E8) | None | PENDING |
+| `21-§16-2` | §8.12 | FEASIBLE | Negative: no schema create or drop for entitlement state. The repository has none today | None | PENDING |
+| `21-§17` | §8.13 | FEASIBLE | Scenario B: per-row RPCs already re-resolve authority, so pre-commit revocation fails closed once the kernel exists. F-04(c) outcome needs E4; mechanism left to the EIS | None | PENDING |
+| `21-§18-1` | §8.14 | FEASIBLE | Actor binding exists in the preview-token precedent (E4) | None | PENDING |
+| `21-§18-2` | §8.14 | FEASIBLE | Business binding exists in the precedent (E4) | None | PENDING |
+| `21-§18-3` | §8.14 | FEASIBLE | Action binding exists in the precedent (E4) | None | PENDING |
+| `21-§18-4` | §8.14 | FEASIBLE | Target binding exists in the precedent (E4) | None | PENDING |
+| `21-§18-5` | §8.14 | FEASIBLE | Reviewed-state fingerprint exists in the precedent (E4) | None | PENDING |
+| `21-§18-6` | §8.14 | FEASIBLE | Expiry exists; permission version to be added (E4) | None | PENDING |
+| `21-§19-1` | §8.15 | CONDITIONAL | No grant or revoke audit exists. Add authority event record (E5) | Durability depends on ESC-1 | PENDING |
+| `21-§19-2` | §8.15 | CONDITIONAL | Grantor and actor captured in the authority event (E5) | ESC-1 | PENDING |
+| `21-§19-3` | §8.15 | CONDITIONAL | Role or capability captured (E5) | ESC-1 | PENDING |
+| `21-§19-4` | §8.15 | CONDITIONAL | Scope captured (E5) | ESC-1 | PENDING |
+| `21-§19-5` | §8.15 | CONDITIONAL | Timestamps exist on current events; extend to authority events (E5) | ESC-1 | PENDING |
+| `21-§19-6` | §8.15 | CONDITIONAL | Security-sensitive resulting action or denial recorded; routine denials not treated as incidents (E5, E7) | ESC-1 | PENDING |
+| `21-§19-7` | §8.15 | CONDITIONAL | Temporary elevation and support access recorded (E5, E13) | ESC-1 | PENDING |
+| `21-§19-8` | §8.15 | CONDITIONAL | Automation provenance: current `executed_by_actor_type` is pinned to `user` and must be widened (E5, M6) | ESC-1 | PENDING |
+| `21-§20-1` | §8.16 | FEASIBLE | Deterministic `PERMISSION_DENIED` without existence disclosure exists in catalog commands; extend to all paths, including RLS-filtered reads (E7) | None | PENDING |
+| `21-§20-2` | §8.16 | FEASIBLE | Next-step guidance in denial copy (E7) | None | N/R |
+| `21-§20-3` | §8.16 | FEASIBLE | Denial scoped to the action; session and other features continue (E7) | None | N/R |
+| `21-§20-4` | §8.16 | FEASIBLE | Non-accusatory copy (E7) | None | N/R |
+| `21-§20-5` | §8.16 | FEASIBLE | Escalation only on defined security or abuse criteria; criteria to be defined in the EIS (E7) | None | PENDING |
+| `21-§21-1` | §8.17 | FEASIBLE | Negative: no geolocation or activity-tracking code in `src` (Stage 6); kernel adds none | None | N/R |
+| `21-§21-2` | §8.17 | FEASIBLE | Negative: no scoring; denial events are not attributed as misconduct (E5, E7) | None | N/R |
+| `21-§21-3` | §8.17 | FEASIBLE | Negative: no admin visibility; support access only via E13 | None | PENDING |
+| `21-§21-4` | §8.17 | FEASIBLE | Negative: no cross-business analytics; every aggregate query goes through the kernel | None | PENDING |
+| `21-§21-5` | §8.17 | FEASIBLE | Capability design for useful work, including Employee self-service (E15) | None | N/R |
+| `21-§22` | §8.18 | FEASIBLE | One kernel reused by every surface; risk of parallel checks in server functions (E1, E9) | None | PENDING |
+| `21-§23-1` | §8.18 | FEASIBLE | Negative: no UI-only enforcement; every UI capability check mirrors a backend check (E2) | None | PENDING |
+| `21-§23-2` | §8.18 | FEASIBLE | Negative: Manager capabilities are explicit; no Owner fallback in the kernel | None | PENDING |
+| `21-§23-3` | §8.18 | FEASIBLE | Negative: Employee has useful own-record read (E15) | None | N/R |
+| `21-§23-4` | §8.18 | FEASIBLE | Negative: support is scoped and time-bound (E13) | None | PENDING |
+| `21-§23-5` | §8.18 | FEASIBLE | Negative: AI and tool calls go through the kernel as the requesting person (E9) | DC-3 | PENDING |
+| `21-§23-6` | §8.18 | FEASIBLE | Negative: no subscription-driven schema change (E8) | None | PENDING |
+| `21-§23-7` | §8.18 | FEASIBLE | Negative: routine denial is not a security accusation (E7) | None | N/R |
+| `21-§24-1` | §8.19 | CONDITIONAL | Owner own-business access works in repository tests; must survive M2 to M4 | G-6 for production | PENDING |
+| `21-§24-2` | §8.19 | CONDITIONAL | Cross-business denial is tested for Inventory and catalog import; extend to all touched tables (E12) | G-6; F-06 | PENDING |
+| `21-§24-3` | §8.19 | CONDITIONAL | Scenario A: needs E1, E2, E3 and Manager fixtures | G-3 HOLD on inference conclusions only | PENDING |
+| `21-§24-4` | §8.19 | FEASIBLE | Needs E2 on `transactions` so that insert does not grant read-all | None | PENDING |
+| `21-§24-5` | §8.19 | FEASIBLE | Own-attendance boundary via fixtures (E15) | DC-3 | PENDING |
+| `21-§24-6` | §8.19 | FEASIBLE | Ask CFO denial via kernel; natural-language path proven by `SB-P-1.13`/`SB-P-1.15` with this mission's harness | DC-3 | PENDING |
+| `21-§24-7` | §8.19 | FEASIBLE | External participant boundary via fixtures (E15) | DC-3 | PENDING |
+| `21-§24-8` | §8.19 | FEASIBLE | Scenario B via E4 and per-row re-resolution | None | PENDING |
+| `21-§24-9` | §8.19 | FEASIBLE | Joint role and entitlement test (E8, E12) | None | PENDING |
+| `21-§24-10` | §8.19 | FEASIBLE | Support access lifecycle test (E13) | None | PENDING |
+| `21-§24-11` | §8.19 | FEASIBLE | Automation check test harness (E14) | Runtime proof later missions | PENDING |
+| `21-§24-12` | §8.19 | FEASIBLE | Denial experience and no-leak tests (E7) | None | PENDING |
+
+#### Contract 22 — Shared Product Foundations (75 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `22-§5-1` | §8.20 | FEASIBLE | `businesses` is the business identity; keep it and add membership (E1) | None | PENDING |
+| `22-§5-2` | §8.20 | CONDITIONAL | Owner identity through membership plus `owner_id` (E1) | G-4 HOLD on ownership cardinality | PENDING |
+| `22-§5-3` | §8.20 | FEASIBLE | Manager identity as membership (E1) | None | PENDING |
+| `22-§5-4` | §8.20 | FEASIBLE | Employee identity as membership (E1) | None | PENDING |
+| `22-§5-5` | §8.20 | FEASIBLE | Customer identity: one shared record per business, not per feature (E15) | None | PENDING |
+| `22-§5-6` | §8.20 | FEASIBLE | Supplier identity: one shared record per business (E15) | None | PENDING |
+| `22-§5-7` | §8.20 | FEASIBLE | Delivery Staff identity (E15) | None | PENDING |
+| `22-§5-8` | §8.20 | FEASIBLE | `catalog_products` is the product identity; preserved (E11) | None | N/R |
+| `22-§5-9` | §8.20 | FEASIBLE | External provider references as business-scoped identity records (E9) | None | PENDING |
+| `22-§6-1` | §8.21 | FEASIBLE | UI and workspace use capability-driven rendering backed by the kernel (E7, E2) | None | PENDING |
+| `22-§6-2` | §8.21 | FEASIBLE | Design constraint: WhatsApp adapter calls the kernel (E9) | `SB-P-1.20` proof | PENDING |
+| `22-§6-3` | §8.21 | FEASIBLE | Design constraint: Conversation Workspace calls the kernel (E9) | `SB-P-1.13` proof | PENDING |
+| `22-§6-4` | §8.21 | FEASIBLE | Server functions: both service-role files must resolve through the kernel before service-role writes (E9, F-04) | None | PENDING |
+| `22-§6-5` | §8.21 | CONDITIONAL | Database and RLS: kernel policies (E2) | G-6 | PENDING |
+| `22-§6-6` | §8.21 | FEASIBLE | Background jobs call the kernel as the delegating actor (E14) | `SB-P-1.15` runtime | PENDING |
+| `22-§6-7` | §8.21 | FEASIBLE | Integrations call the kernel (E9) | DC-3 | PENDING |
+| `22-§6-8` | §8.21 | CONDITIONAL | Exports and files through the kernel; storage policy state not inspected (E9) | Storage configuration `UNVERIFIED` (G-7) | PENDING |
+| `22-§6-9` | §8.21 | FEASIBLE | AI tools act as the requesting person through the kernel (E9) | DC-3 | PENDING |
+| `22-§6-10` | §8.21 | FEASIBLE | Negative: feature permissions extend the kernel's capability list, never bypass it | None | PENDING |
+| `22-§13-1` | §8.22 | FEASIBLE | Clarify before consequential write; the preview step exists for links and import | None | N/R |
+| `22-§13-2` | §8.22 | FEASIBLE | Import preview exists; keep it and bind it (E4) | None | PENDING |
+| `22-§13-3` | §8.22 | FEASIBLE | Shared binding pattern (E4) | None | PENDING |
+| `22-§13-4` | §8.22 | FEASIBLE | Revalidation at execution (E4, E1) | None | PENDING |
+| `22-§13-5` | §8.22 | FEASIBLE | Negative: expiry and permission version make a stale confirmation fail (E4) | None | PENDING |
+| `22-§14-1` | §8.23 | FEASIBLE | Raw event retained in `change_payload` and event tables; extend to authority events (E5) | None | PENDING |
+| `22-§14-2` | §8.23 | FEASIBLE | Actor captured today; must record non-Owner actors truthfully (E5, M6) | None | PENDING |
+| `22-§14-3` | §8.23 | FEASIBLE | Channel is pinned to `dashboard`; widen (E5, M6) | None | PENDING |
+| `22-§14-4` | §8.23 | FEASIBLE | Interpretation field for AI or parser-derived actions (E5) | DC-3 | PENDING |
+| `22-§14-5` | §8.23 | FEASIBLE | Corrections recorded (`transaction_correction_events`); keep the pattern (E5) | None | PENDING |
+| `22-§14-6` | §8.23 | FEASIBLE | Authorized human context field (E5) | None | N/R |
+| `22-§14-7` | §8.23 | FEASIBLE | Confirmation reference linked to the binding record (E4, E5) | None | PENDING |
+| `22-§14-8` | §8.23 | FEASIBLE | Resulting action recorded today; extend (E5) | None | PENDING |
+| `22-§14-9` | §8.23 | FEASIBLE | Timestamps exist; extend (E5) | None | N/R |
+| `22-§15` | §8.24 | FEASIBLE | Two idempotency stores exist; generalize and reuse for F-04(c) completion (E6) | Mechanism left to the EIS | PENDING |
+| `22-§16-2` | §8.17 | FEASIBLE | Negative: no location capture in the kernel | None | N/R |
+| `22-§17` | §8.25 | FEASIBLE | Design constraint: the kernel contract is callable by future integrations without schema change (E9) | None | N/R |
+| `22-§19` | §8.25 | FEASIBLE | Design constraint: a kernel failure denies narrowly and does not cascade to unrelated features (E7) | None | PENDING |
+| `22-§20-1` | §8.26 | FEASIBLE | Negative: no subscription-driven schema change (E8) | None | PENDING |
+| `22-§20-2` | §8.26 | HELD | Append-only history is enforced by triggers on catalog and inventory history, but `transactions` and `transaction_correction_events` can be removed by an Owner business `DELETE` through cascade | ESC-1 (Section 21.1) | PENDING |
+| `22-§20-3` | §8.26 | FEASIBLE | Capability through entitlements and grants, not schema (E8) | None | PENDING |
+| `22-§20-4` | §8.26 | FEASIBLE | All changes as governed migrations (Section 20.4.2); no execution in this mission | `docs/migration/README.md` | PENDING |
+| `22-§21` | §8.27 | FEASIBLE | Kernel resolution on every policy check adds cost. Use indexed membership lookups and stable functions; measure in Full Assurance | None | N/R |
+| `22-§22` | §8.27 | CONDITIONAL | Testability through role fixtures and DB suites (E12) | G-5 on required-check status | N/R |
+| `22-§23-1` | §8.28 | FEASIBLE | Merchant ownership: business-scoped data and no platform role reading it | None | N/R |
+| `22-§23-2` | §8.28 | CONDITIONAL | No cross-business leakage: kernel policies (E2) | G-6 | PENDING |
+| `22-§23-3` | §8.28 | FEASIBLE | No routine platform access; only E13 support grants | None | PENDING |
+| `22-§23-4` | §8.28 | FEASIBLE | Purpose-limited support access (E13) | None | PENDING |
+| `22-§23-5` | §8.28 | FEASIBLE | Staff data limited by role and purpose (E15) | None | PENDING |
+| `22-§23-6` | §8.28 | FEASIBLE | Negative: no data sale path; a policy commitment verified by absence of any export to third parties | None | N/R |
+| `22-§23-7` | §8.28 | FEASIBLE | Aggregate insight only through governed, kernel-checked queries; none is built here | None | PENDING |
+| `22-§27-1` | §8.29 | FEASIBLE | Process: this Blueprint states the features it advances | None | N/R |
+| `22-§27-2` | §8.29 | FEASIBLE | Process: shared foundations reused are listed (Section 20.3) | None | N/R |
+| `22-§27-3` | §8.29 | FEASIBLE | Process: no AI orchestration or channel adapter consumed | None | N/R |
+| `22-§27-4` | §8.29 | FEASIBLE | Process: existing assets not to duplicate are listed (Section 20.2) | None | N/R |
+| `22-§27-5` | §8.29 | FEASIBLE | Process: committed work outside this mission is listed (Section 11) | None | N/R |
+| `22-§27-6` | §8.29 | FEASIBLE | Process: blockers and dependencies listed (Sections 20.4.3 and 21) | None | N/R |
+| `22-§27-7` | §8.29 | FEASIBLE | Process: acceptance evidence listed (Section 15; E12) | None | N/R |
+| `22-§28-1` | §8.30 | FEASIBLE | Negative: no Business Memory built here | None | N/R |
+| `22-§28-2` | §8.30 | FEASIBLE | Negative: the kernel replaces `resolve_owner_business` and the two `loadOwnedBusinessId` helpers rather than adding a second engine (E1) | None | PENDING |
+| `22-§28-3` | §8.30 | FEASIBLE | Negative: no AI orchestrator built here | None | N/R |
+| `22-§28-4` | §8.30 | FEASIBLE | Negative: no scheduler built here | None | N/R |
+| `22-§28-5` | §8.30 | FEASIBLE | Negative: the existing parser pipeline is reused, not duplicated | None | N/R |
+| `22-§28-6` | §8.30 | FEASIBLE | Negative: one customer and supplier identity per business (E15) | None | N/R |
+| `22-§28-7` | §8.30 | FEASIBLE | Negative: no GPS foundation | None | N/R |
+| `22-§28-8` | §8.30 | FEASIBLE | Negative: no subscription-driven table create or drop (E8) | None | PENDING |
+| `22-§28-9` | §8.30 | FEASIBLE | Negative: tool capability is not authority (E9) | None | PENDING |
+| `22-§28-10` | §8.30 | FEASIBLE | Negative: no client-specific forks; one kernel and one policy set | None | N/R |
+| `22-§29-3` | §8.31 | CONDITIONAL | Services layer proof here (E12); channel-inclusive proof completes in later missions | G-6; DC-3 | PENDING |
+| `22-§29-6` | §8.31 | FEASIBLE | Shared customer and supplier identity test (E15) | None | N/R |
+| `22-§29-7` | §8.31 | FEASIBLE | Binding and revalidation tests (E4) | None | PENDING |
+| `22-§29-8` | §8.31 | FEASIBLE | Idempotency replay tests extend existing ones (E6) | None | PENDING |
+| `22-§29-10` | §8.31 | FEASIBLE | Narrow-failure tests for kernel denial and parser failure (E7) | None | N/R |
+| `22-§29-11` | §8.31 | FEASIBLE | Entitlement change test asserts no schema change (E8) | None | PENDING |
+| `22-§29-12` | §8.31 | CONDITIONAL | Audit retains raw evidence and human context (E5) | ESC-1 for durability | PENDING |
+| `22-§29-14` | §8.31 | FEASIBLE | Process: this Blueprint identifies reused foundations first | None | N/R |
+
+#### Contract 20 — Onboarding and First Experience (5 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `20-§16-1` | §8.32 | CONDITIONAL | The creator of a business becomes its Owner today through `owner_id`; keep that as the initial highest authority and record the Owner membership (E1, M2) | G-4 HOLD on ownership cardinality | PENDING |
+| `20-§16-2` | §8.32 | FEASIBLE | Explicit invitation and acceptance creating a membership with assigned capabilities; first-run must check for invitations (E7, F-05) | Onboarding flow is `SB-P-1.19`'s (DC-3) | PENDING |
+| `20-§16-3` | §8.32 | FEASIBLE | Negative: default Manager and Employee capability sets exclude Owner intelligence and cost and margin (E1, E3) | None | PENDING |
+| `20-§16-4` | §8.32 | FEASIBLE | Design constraint: Owner setup requires no role configuration; delegation is optional and later | None | N/R |
+| `20-§23-11` | §8.32 | FEASIBLE | Scenario test: staff setup grants no Owner intelligence (E12) | DC-3 | PENDING |
+
+#### Contract 17 — Operational Dashboard and Manager Workspace (20 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `17-§13-1` | §8.33 | FEASIBLE | Owner dashboard access through capabilities (E7) | None | PENDING |
+| `17-§13-2` | §8.33 | CONDITIONAL | Manager dashboard shows delegated areas only. Dashboard totals are computed client-side from `transactions` rows, so they need E2 | G-3 HOLD on cost and margin inference only | PENDING |
+| `17-§13-3` | §8.33 | FEASIBLE | Employee sees permitted operational and self-service surfaces (E15, E7) | None | PENDING |
+| `17-§13-4` | §8.33 | FEASIBLE | Negative: external roles hold no dashboard capability (E15) | DC-3 | PENDING |
+| `17-§14-1` | §8.33 | FEASIBLE | Design constraint: role-based UI is usability only (E2, E7) | None | PENDING |
+| `17-§14-2` | §8.33 | FEASIBLE | Authenticated user enforced in every command and policy today; keep | None | PENDING |
+| `17-§14-3` | §8.33 | CONDITIONAL | Business isolation enforced in repository RLS; must hold for all roles (E2) | G-6 | PENDING |
+| `17-§14-4` | §8.33 | FEASIBLE | Current role and permission enforced by the kernel (E1) | None | PENDING |
+| `17-§14-5` | §8.33 | FEASIBLE | Entitlement enforced where relevant (E8) | None | PENDING |
+| `17-§14-6` | §8.33 | FEASIBLE | Object and action scope enforced (E1, E15); `returnTo` allowlist so navigation never implies authority (F-07) | None | PENDING |
+| `17-§14-7` | §8.33 | FEASIBLE | Negative: UI changes cannot widen backend access because enforcement is in the kernel and RLS (E2) | None | PENDING |
+| `17-§16-1` | §8.33 | FEASIBLE | Stable identifiers for the permission surface this mission adds | None | N/R |
+| `17-§18-1` | §8.33 | CONDITIONAL | Negative: no cross-business dashboard data (E2) | G-6 | PENDING |
+| `17-§18-2` | §8.33 | CONDITIONAL | Negative: no default staff access to Owner intelligence (E1, E3) | G-3 HOLD on inference only | PENDING |
+| `17-§18-4` | §8.33 | FEASIBLE | Negative: sensitive information only to roles with need (E1) | None | PENDING |
+| `17-§21-4` | §8.33 | CONDITIONAL | Negative: no Employee visibility into Owner-wide financials; requires E2 on `transactions` | G-3 HOLD on inference only | PENDING |
+| `17-§22-2` | §8.33 | CONDITIONAL | Scenario: Manager sees delegated operations only (E12) | G-3 HOLD on inference only | PENDING |
+| `17-§22-3` | §8.33 | FEASIBLE | Scenario: Employee limited to permitted surfaces (E12) | None | PENDING |
+| `17-§22-9` | §8.33 | CONDITIONAL | Scenario: cross-business denial server-side (E12) | G-6 | PENDING |
+| `17-§22-10a` | §8.33 | FEASIBLE | Testable stable identifiers for this mission's surface | None | N/R |
+
+#### Contract 7 — Stock, Supplier and Reorder Intelligence, touched scope (9 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `7-§7` | §8.34 | FEASIBLE | Negative: one pricing path; selling price stays in `catalog_products` and its event table | None | N/R |
+| `7-§9` | §8.34 | FEASIBLE | Negative: one stock engine; `create_inventory_movement` stays the sole stock write path | None | N/R |
+| `7-§10-1` | §8.34 | FEASIBLE | Owner stock authority through the kernel (E1) | None | PENDING |
+| `7-§10-2` | §8.34 | CONDITIONAL | Manager stock capabilities explicit (E1) | G-3 HOLD on cost and margin inference only | PENDING |
+| `7-§10-3` | §8.34 | FEASIBLE | Employee stock capabilities bounded (E1, E15) | None | PENDING |
+| `7-§10-4` | §8.34 | FEASIBLE | Supplier bounded participation (E15) | DC-3 | PENDING |
+| `7-§12` | §8.34 | FEASIBLE | Catalog and Permission Engine are this mission's shared foundations (E1, E11) | None | PENDING |
+| `7-§15-10` | §8.34 | FEASIBLE | Staff permission boundaries on inventory tested with role fixtures (E12) | None | PENDING |
+| `7-§15-12` | §8.34 | CONDITIONAL | Cross-business isolation on `inventory_items` and `inventory_movements` is tested today for Owners; extend to roles | G-6 for production; the file 21 status is `UNVERIFIED` | PENDING |
+
+#### Build Plan §7 and §10.1 (18 rows)
+
+| Row | Blueprint | Feasibility | Finding and dependencies | Gate or evidence | IR |
+|---|---|---|---|---|---|
+| `BP-§10.1-1` | §8.1 | FEASIBLE | Owner, Manager and Employee role model (E1) | None | PENDING |
+| `BP-§10.1-2` | §8.2, §8.20 | CONDITIONAL | Membership and shared identity primitives (E1) | G-4 HOLD on ownership-dependent conclusions | PENDING |
+| `BP-§10.1-3` | §8.2 | FEASIBLE | Explicit permission matrix as capability data checked by the kernel (E1) | None | PENDING |
+| `BP-§10.1-4` | §8.8 | FEASIBLE | Delegated authority boundaries (E1, E14) | None | PENDING |
+| `BP-§10.1-5` | §8.13 | FEASIBLE | Execution-time authorization and revalidation (E4) | None | PENDING |
+| `BP-§10.1-6` | §8.3 | CONDITIONAL | Isolation and cross-tenant denial (E2) | G-6 | PENDING |
+| `BP-§10.1-7` | §8.36 | CONDITIONAL | RLS, grants and function-security review: repository review in Section 20.2; the live review needs separately authorized evidence | G-6 | PENDING |
+| `BP-§10.1-8` | §8.36, §13 | CONDITIONAL | Residual `anon` remediation design (E10, M5). Not claimed complete | G-6; T4 `UNVERIFIED` | PENDING |
+| `BP-§10.1-9` | §8.36 | CONDITIONAL | Keep the Fast Gate green and extend DB tests (E12) | G-5 required-check governance | N/R |
+| `BP-§10.1-10` | §8.12 | FEASIBLE | Entitlement primitives as data (E8) | None | PENDING |
+| `BP-§10.1-11` | §8.35 | FEASIBLE | Reclassification as the shared foundation (E11) | None | N/R |
+| `BP-§10.1-12` | §8.35 | FEASIBLE | `/catalog` demotion plan keeping structured management until contextual access is proven (E11) | None | N/R |
+| `BP-§10.1-13` | §8.35 | CONDITIONAL | No data move is needed; deep links are route paths in `src/routes/_authenticated`. Continuity must be tested on each route change | G-7 for any environment-specific URL facts | N/R |
+| `BP-§7-1` | §8.35 | FEASIBLE | Preserve product identity, pricing, tax, SKU and barcode, price history and audit; append-only triggers already protect history | None | PENDING |
+| `BP-§7-2` | §8.35 | FEASIBLE | Preserve import foundations; the import path is revised only for authority (E4) | None | PENDING |
+| `BP-§7-3` | §8.35 | FEASIBLE | Preserve relationships; catalog-inventory link tables unchanged | None | N/R |
+| `BP-§7-4` | §8.35 | FEASIBLE | Negative: no expansion, deletion, collapse into Transactions or Inventory ownership of commercial identity | None | N/R |
+| `BP-§7-5` | §8.35 | FEASIBLE | Target treatment recorded as `CORE SHARED FOUNDATION` with `PRESERVE + EVOLVE + DEMOTE SURFACE` (E11) | None | N/R |
+
+#### 20.5.1 Register totals
+
+| Measure | Count |
+|---|---|
+| `IN SCOPE` rows addressed | 228 of 228 (machine-checked against the FCTM, same IDs and order) |
+| `FEASIBLE` | 184 |
+| `CONDITIONAL` | 43 |
+| `HELD` | 1 (`22-§20-2`, ESC-1) |
+| `BLOCKED` (T8) | 0 |
+| Independent review `PENDING` | 181 |
+| Independent review `N/R` | 47 |
+
+## 21. Engineering Questions, Risks & Recommendations
+
+Stage 7 draft (version 0.4). Nothing in this section answers a Founder question, selects a mechanism the Founder left open, or accepts a finding.
+
+### 21.1 Engineering questions and escalations
+
+| ID | Question | Route | Affected rows | Effect until answered |
+|---|---|---|---|---|
+| EQ-1 (G-4, S-2) | May one person own more than one business? This decides whether `businesses.owner_id` stays `UNIQUE` and how the kernel treats ownership | Mission Control determines whether a Founder decision is needed | `21-§4-1`, `21-§5-2`, `22-§5-2`, `20-§16-1`, `BP-§10.1-2` | Ownership-cardinality conclusions held. Membership design proceeds under either answer |
+| EQ-2 (G-3, S-5) | May a separately delegated Reference Cost or margin value, combined with other visible values, disclose the undelegated one? | Founder clarification or a bounded Mission Control technical-feasibility disposition | `21-§4-2`, `21-§5-4`, `21-§24-3`, `17-§13-2`, `17-§18-2`, `17-§21-4`, `17-§22-2`, `7-§10-2` | Inference conclusions held. Field-level delegation design proceeds |
+| ESC-1 (new) | Is Owner deletion of a business a supported product action? In repository files, an Owner may `DELETE` their `businesses` row through the API (policy and grant exist; no UI offers it). The cascade fails where append-only history exists, but otherwise removes `transactions` and `transaction_correction_events`. Deleting the Owner's `auth.users` record also cascades to the business. This bears on `22-§20-2` (durable history) and on the durability of this mission's authority audit | Mission Control, which may route a product question to the Founder. Claude Code has not classified it as T8. Mission Control determines whether it is one | `22-§20-2` (HELD); durability conclusions of `21-§19-1`–`21-§19-8`, `22-§29-12` | Only the durability conclusion is held. Audit capture design proceeds. Evidence is repository DDL only, not executed |
+| EQ-3 (G-6, S-3) | Will a read-only production verification of grants, RLS, function and default privileges and migration state be authorized, and must it precede WS-B remediation design being relied on? | Mission Control or Founder | Rows marked G-6 (Section 20.5) | Production-security conclusions stay `UNVERIFIED` |
+| EQ-4 (G-5, S-7) | Should database isolation tests become a required check, given that Full Assurance is path-filtered? | Mission Control governance | `BP-§10.1-9`, `22-§22` | Testing design proceeds; required-check status undecided |
+| EQ-5 (G-7, S-4) | Which environment and provider facts will be verified, and by whom: test project identity, production project identity and ledger, storage bucket policies, any production-shaped rehearsal copy? | Mission Control | `21-§6-4`, `22-§6-8`, `BP-§10.1-13`; Section 20.4.1 | Topology-specific conclusions not relied on |
+| EQ-6 (evidence) | What access-token lifetime is configured for production? It bounds how long a client session exists after revocation, although this design reads authority from the database at every execution | Separately authorized read-only evidence | `21-§17`, `21-§24-8` (informational) | None; the design does not rely on token claims |
+
+The F-04(c) progress, replay and resume mechanism is an EIS selection after Stage 8, not a question for this stage.
+
+### 21.2 Risks
+
+| ID | Risk | Likelihood | Impact | Recommended mitigation |
+|---|---|---|---|---|
+| ER-1 | Migrating 105 resolver references and 87 policy statements leaves a gap or a permissive policy (DC-2) | Medium | High | Table-family migration with deny-by-default, one kernel, and a policy inventory test that fails on any `anon` or `PUBLIC` policy or grant |
+| ER-2 | Service-role paths in two server functions act before or without kernel checks | Medium | High | Kernel call as the first step of each service-role handler; tests with revoked and non-Owner actors |
+| ER-3 | Default privileges from `reconcile_default_grants` expose each new object to `anon` unless revoked in the same migration | High if unaddressed | High | Revoke in the same migration; replace the default-privilege clause in M5; inventory test |
+| ER-4 | Employee insert permission on `transactions` becomes read-all through a shared policy | Medium | High | Command functions or separate insert and select policies (E2) |
+| ER-5 | Reference Cost reaches a Manager through the read, search, list, import or export paths | Medium | High | Capability-selected detail builder on every path; column-level grants (E3) |
+| ER-6 | Pinned provenance `CHECK` values reject non-Owner writes, or are loosened too far | High (certain rejection today) | Medium | Governed constraint widening to an enumerated set (M6) |
+| ER-7 | Active business inferred from single-ownership lookups gives wrong-business context once memberships exist | High if unaddressed | High | Explicit active business on every call; kernel verification (E1) |
+| ER-8 | First-run flow makes an invited person the Owner of an empty business (F-05) | Medium | Medium | Membership and invitation check before creation (E7) |
+| ER-9 | Kernel checks on every policy evaluation slow queries | Medium | Medium | Indexed lookups, `STABLE` functions and Full Assurance timing checks (`22-§21`) |
+| ER-10 | Live production differs from repository files (T4) | Unknown | High | Separately authorized read-only verification before remediation is relied on (EQ-3) |
+| ER-11 | Correlated assumptions between this review and earlier SB-P-1.11 designs | Medium | Medium | Independent review under the MC-33 controls; this review discloses its reliance on the catalog executor and preview-token precedents |
+
+### 21.3 Recommendations for the EIS
+
+These are recommendations only. Mission Control accepts, rejects or routes each one, and the EIS is created only after Stage 8 lock.
+
+1. One kernel resolver replacing `resolve_owner_business` and both `loadOwnedBusinessId` helpers (E1).
+2. Membership beside `owner_id`, with the ownership-cardinality conclusion held for EQ-1.
+3. Authority read from the database at each execution; no role or capability in JWT claims (F-08).
+4. A permission version used by confirmation binding, import batches and automation checks (E1, E4, E14).
+5. The preview-token pattern generalized as the shared confirmation-binding foundation (F-11).
+6. Reference Cost and margin as independent capabilities on every read path (E3).
+7. An append-only authority event record, and widened catalog provenance constraints (E5).
+8. Role, revoked-member, external and cross-business fixtures, with DB-level tests for Scenarios A and B and F-04(c) (E12).
+9. WS-B revocations and default-privilege replacement planned as M5, relied on only after EQ-3 evidence (E10).
+10. `returnTo` allowlist, membership-aware first run, and one calm denial contract (E7).
+
+### 21.4 Dependent holds, gates and T1–T8 screen
+
+**Gates.** G-1 satisfied by the MC-35 activation record (MC-37 verification). G-2 appointment satisfied (MC-33); the independent review is outstanding. G-3 to G-8 keep their recorded statuses and are applied as finding-scoped holds in Section 20.5. `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force` is carried forward (G-8). S-2 to S-7 remain flagged.
+
+| Trigger | Result of this review |
+|---|---|
+| T1 unresolved product question | EQ-1 and EQ-2 were already open (G-4, G-3). ESC-1 may be a product question; Mission Control determines it |
+| T2 source conflict | None found |
+| T3 new product decision | None proposed |
+| T4 `PRODUCT-AFFECTING` delta | Historically triggered; unchanged; production `UNVERIFIED` |
+| T5 Founder request | None received |
+| T6 derived constraint | None new. ESC-1 is recorded for Mission Control rather than treated as a constraint |
+| T7 omission, deferral or reclassification | None. All 228 rows stay `IN SCOPE` |
+| T8 Product Truth conflict, infeasibility or security finding | None raised by Claude Code. ESC-1 is escalated for Mission Control to determine whether it is one, and its affected row is held |
+
+### 21.5 Independent security review handoff
+
+The appointed Security & Permissions Architecture room reviews in parallel and reports to Mission Control. Claude Code does not write under `specialists/**`, and committing the specialist's findings needs a separate authorization.
+
+First reviewable material, in suggested order:
+
+1. Section 20.2 (repository baseline) and Section 20.3 E1, E2 and E10 (kernel, enforcement and WS-B).
+2. Section 20.4.2 (migration classes) and Section 21.2 ER-1 to ER-5.
+3. ESC-1 (Section 21.1).
+4. Section 20.3 E3, E4 and E13 (cost and margin, confirmation and import, support access).
+5. The 181 register rows marked `PENDING` in Section 20.5.
+
+Reliance disclosure for the reviewer: this review relies on the SB-P-1.11 catalog executor-role pattern and the preview-token binding pattern as precedents. Under the MC-33 controls, those are claims to verify, not settled premises.
+
+### 21.6 Status
+
+This Engineering Review is a DRAFT. No finding is accepted. Findings marked `PENDING` cannot be accepted or relied on until the independent review is completed and dispositioned by Mission Control. Mission Control reviews the complete Blueprint, and the Founder resolves product decisions. Stage 8 (Founder approval and Blueprint lock), the EIS, implementation, migration execution, production action, delivery and publication are not authorized.

@@ -511,3 +511,18 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control reviews the draft PR at its exact head. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** creating the Stage 7 engineering branch, Stage 7, Sections 20–21, per-row findings, privileged verification, any change to required checks, Stage 8, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 
+## H-31 — Claude Code to Mission Control: Stage 7 Engineering Review draft submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Source 18 §4.4 Engineering Review owner)
+**To:** Mission Control
+**Status:** `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW OUTSTANDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-35 activation record (PR #640, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`, MC-37 verification); MC-38.
+**Branch:** `mission/SB-P-1.12-stage7-engineering-review`.
+**Prior live report preserved:** `claude-code/26-stage7-activation-live-report-snapshot.md`, byte-identical to `main@733f3393`.
+**Files created or modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (three permitted regions), `claude-code/25-stage7-engineering-review-report.md` (new), `claude-code/26-stage7-activation-live-report-snapshot.md` (new), `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`. Seven paths.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Open issues carried forward:** ESC-1; EQ-1 (G-4); EQ-2 (G-3); EQ-3 (G-6, T4 `UNVERIFIED`); EQ-4 (G-5); EQ-5 (G-7); G-8; S-2 to S-7; independent review outstanding; separate authorization needed to commit specialist findings.
+**Next authorized action:** Mission Control reviews the draft PR at its exact head; Mission Control-directed, finding-scoped corrections only, within the same paths and regions. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 8, Blueprint lock, EIS, implementation, migration execution, production inspection or action, delivery or publication, and any write under `specialists/**`.
+

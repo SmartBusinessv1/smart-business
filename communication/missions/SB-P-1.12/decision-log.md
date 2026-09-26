@@ -252,3 +252,17 @@ PR #639 was human-merged at `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73
 
 **Transcribed decision:** Mission Control authorizes SB-P-1.12 to enter Source 18 Stage 7 Engineering Review on an exact scope: Claude Code as Engineering Review owner and the appointed Security & Permissions Architecture room as independent reviewer in parallel; deliverables limited to Blueprint Sections 20–21, per-row findings for the 228 `IN SCOPE` rows, the early delivery plan and a Stage 7 report; G-3 to G-8 and S-2 to S-7 retained as dependent holds; and a work-package Git grant on locked branch `mission/SB-P-1.12-stage7-engineering-review` with seven exact paths, three Blueprint regions and an end event or `2026-10-17T23:59:59Z`. Committing the specialist's findings needs a further exact-scope authorization. See [the activation record](mission-control/21-stage7-engineering-review-activation-record.md). Until the merge is verified, G-1 is open and Stage 7 is not authorized. Stage 8, Blueprint lock, EIS, implementation, migration and production are not authorized by it at any point.
 
+## MC-36 and MC-37 — PR #640 canonical; Stage 7 activation effective (record)
+
+**Date:** 2026-09-26
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#640](https://github.com/SmartBusinessv1/smart-business/pull/640) comments MC-36 correction request, MC-37 acceptance and post-merge verification ([comment 5844925720](https://github.com/SmartBusinessv1/smart-business/pull/640#issuecomment-5844925720)).
+
+MC-36 required a narrow stop/resume correction to the activation record §§10.5–10.6 and the live instruction; it was applied at head `6a8ac4e568ee2f65d37cb8148387fcaab87adae9`. PR #640 was human-merged at `2026-09-26T09:15:55Z`, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`. MC-37 verified the merge: G-1 is satisfied and Stage 7 is authorized within the record's Sections 4–12. The G-2 appointment was already satisfied; the independent review is outstanding. G-3 to G-8 and S-2 to S-7 are unchanged.
+
+## Stage 7 Engineering Review (DRAFT)
+
+**Prepared:** 2026-09-26 by Claude Code under MC-35 and MC-38. **Not accepted; awaiting Mission Control review and the independent security review.**
+
+Blueprint v0.4 Sections 20–21 assess all 228 `IN SCOPE` rows: 184 `FEASIBLE`, 43 `CONDITIONAL`, 1 `HELD`, 0 `BLOCKED`; 181 rows need independent review. New escalation ESC-1 (Owner business `DELETE` path and cascades, bearing on `22-§20-2`) is referred to Mission Control for classification. EQ-1 (ownership) and EQ-2 (derived-value inference) remain unanswered and their dependent conclusions are held. No FCTM disposition, Founder Decision or Scenario changed. See [the Stage 7 report](claude-code/25-stage7-engineering-review-report.md).
+
