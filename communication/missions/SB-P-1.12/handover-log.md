@@ -511,3 +511,66 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control reviews the draft PR at its exact head. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** creating the Stage 7 engineering branch, Stage 7, Sections 20–21, per-row findings, privileged verification, any change to required checks, Stage 8, Blueprint lock, EIS, implementation, migration, production, delivery or publication.
 
+## H-31 — Claude Code to Mission Control: Stage 7 Engineering Review draft submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Source 18 §4.4 Engineering Review owner)
+**To:** Mission Control
+**Status:** `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW OUTSTANDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-35 activation record (PR #640, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`, MC-37 verification); MC-38.
+**Branch:** `mission/SB-P-1.12-stage7-engineering-review`.
+**Prior live report preserved:** `claude-code/26-stage7-activation-live-report-snapshot.md`, byte-identical to `main@733f3393`.
+**Files created or modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (three permitted regions), `claude-code/25-stage7-engineering-review-report.md` (new), `claude-code/26-stage7-activation-live-report-snapshot.md` (new), `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`. Seven paths.
+**Commit SHA and draft PR:** recorded in chat and on the draft PR.
+**Open issues carried forward:** ESC-1; EQ-1 (G-4); EQ-2 (G-3); EQ-3 (G-6, T4 `UNVERIFIED`); EQ-4 (G-5); EQ-5 (G-7); G-8; S-2 to S-7; independent review outstanding; separate authorization needed to commit specialist findings.
+**Next authorized action:** Mission Control reviews the draft PR at its exact head; Mission Control-directed, finding-scoped corrections only, within the same paths and regions. No self-merge, no self-approval by Claude Code.
+**Action not yet authorized:** Stage 8, Blueprint lock, EIS, implementation, migration execution, production inspection or action, delivery or publication, and any write under `specialists/**`.
+
+## H-32 — Claude Code to Mission Control: MC-40 ESC-1 T8 reconciliation applied
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner; Mission Control-directed, finding-scoped correction)
+**To:** Mission Control
+**Status:** `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW OUTSTANDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-35 §10.5 correction cycle, directed by MC-40 on PR #641.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (Sections 20–21 only), `claude-code/25-stage7-engineering-review-report.md`, `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`.
+**Result:** `22-§20-2` `BLOCKED` by the open T8 and still `IN SCOPE`; counts 184 `FEASIBLE`, 43 `CONDITIONAL`, 1 `BLOCKED`, as proposals. Repository-DDL evidence distinguished from runtime and production evidence.
+**Commit SHA and draft PR:** recorded on PR #641.
+**Next authorized action:** Mission Control re-review; independent specialist review continues separately. No self-merge.
+
+## H-33 — Claude Code to Mission Control: MC-41 security reconciliation submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner; Mission Control-directed, finding-scoped correction)
+**To:** Mission Control
+**Status:** `MC-41 SECURITY RECONCILIATION SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND INDEPENDENT SECURITY RE-REVIEW — ESC-1 T8 OPEN — NO STAGE 7 ACCEPTANCE OR FOUNDER MERGE GATE.`
+**Authority:** MC-35 §10.5 correction cycle, directed by MC-41 on PR #641.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (Sections 20–21 only), `claude-code/25-stage7-engineering-review-report.md` (§§3–6, 12 and new §14), `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`.
+**Result:** SEC-S7-01 to SEC-S7-09 mapped to corrections in the report §14; 176 `FEASIBLE`, 51 `CONDITIONAL`, 1 `BLOCKED`; 190 `PENDING`, 38 `N/R`; 228 of 228 rows re-checked. ESC-1 T8 open.
+**Commit SHA and draft PR:** recorded on PR #641.
+**Next authorized action:** Mission Control exact-head review; the same appointed reviewer's re-review. No self-merge.
+
+## H-34 — Claude Code to Mission Control: MC-43 narrow correction submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner; Mission Control-directed, finding-scoped correction)
+**To:** Mission Control
+**Status:** `MC-43 NARROW CORRECTION SUBMITTED — AWAITING MISSION CONTROL VERIFICATION AND FINAL INDEPENDENT FOCUSED RE-REVIEW — ESC-1 T8 OPEN — NO STAGE 7 ACCEPTANCE OR FOUNDER MERGE GATE.`
+**Authority:** MC-35 §10.5 correction cycle, directed by MC-43 on PR #641.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (four lines in §20.2, §20.4.2, §21.1 and §21.2), `claude-code/25-stage7-engineering-review-report.md` (§5 and new §15), `communication/live/report.md`, and this mission's `decision-log.md` and `handover-log.md`.
+**Result:** two corrections applied as directed; counts unchanged; ESC-1 T8 open.
+**Commit SHA and draft PR:** recorded on PR #641.
+**Next authorized action:** Mission Control verification and the same reviewer's final focused re-review. No self-merge.
+
+## H-35 — Claude Code to Mission Control: MC-50 current-main reconciliation submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner, work package `SB-P-1.12-WP-S7-MC50`)
+**To:** Mission Control
+**Status:** `MC-50 CURRENT-MAIN RECONCILIATION SUBMITTED — PR #641 DRAFT AWAITING MISSION CONTROL EXACT-HEAD REVIEW — ESC-1 T8 OPEN — NO STAGE 7 ACCEPTANCE OR FOUNDER MERGE GATE.`
+**Authority:** MC-50 (`communication/live/instruction1.1.md`), effective through PR #644 and MC-51.
+**Git actions:** non-rewriting merge of `main@fdb4f569411c50226a6b6816b11062a1a83cd230` into `mission/SB-P-1.12-stage7-engineering-review` (merge commit `27ac784`); the sole conflict, `communication/live/report.md`, resolved by retaining the `main` version exactly (blob `1b0c0341503315ed2259db3b1f72929eaad2d1ba`).
+**Files modified:** `claude-code/25-stage7-engineering-review-report.md` (new §16 addendum only), this mission's `README.md`, `decision-log.md` and `handover-log.md`, and new `communication/live/report1.1.md`. The Blueprint is unchanged under MC-50.
+**Handover:** `communication/live/report1.1.md`, paired with `communication/live/instruction1.1.md`.
+**Next authorized action:** Mission Control exact-head review of PR #641. No self-merge.
+

@@ -252,3 +252,46 @@ PR #639 was human-merged at `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73
 
 **Transcribed decision:** Mission Control authorizes SB-P-1.12 to enter Source 18 Stage 7 Engineering Review on an exact scope: Claude Code as Engineering Review owner and the appointed Security & Permissions Architecture room as independent reviewer in parallel; deliverables limited to Blueprint Sections 20–21, per-row findings for the 228 `IN SCOPE` rows, the early delivery plan and a Stage 7 report; G-3 to G-8 and S-2 to S-7 retained as dependent holds; and a work-package Git grant on locked branch `mission/SB-P-1.12-stage7-engineering-review` with seven exact paths, three Blueprint regions and an end event or `2026-10-17T23:59:59Z`. Committing the specialist's findings needs a further exact-scope authorization. See [the activation record](mission-control/21-stage7-engineering-review-activation-record.md). Until the merge is verified, G-1 is open and Stage 7 is not authorized. Stage 8, Blueprint lock, EIS, implementation, migration and production are not authorized by it at any point.
 
+## MC-36 and MC-37 — PR #640 canonical; Stage 7 activation effective (record)
+
+**Date:** 2026-09-26
+**Status:** CANONICAL — recorded here by Claude Code from repository and GitHub evidence
+**Authority:** PR [#640](https://github.com/SmartBusinessv1/smart-business/pull/640) comments MC-36 correction request, MC-37 acceptance and post-merge verification ([comment 5844925720](https://github.com/SmartBusinessv1/smart-business/pull/640#issuecomment-5844925720)).
+
+MC-36 required a narrow stop/resume correction to the activation record §§10.5–10.6 and the live instruction; it was applied at head `6a8ac4e568ee2f65d37cb8148387fcaab87adae9`. PR #640 was human-merged at `2026-09-26T09:15:55Z`, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`. MC-37 verified the merge: G-1 is satisfied and Stage 7 is authorized within the record's Sections 4–12. The G-2 appointment was already satisfied; the independent review is outstanding. G-3 to G-8 and S-2 to S-7 are unchanged.
+
+## Stage 7 Engineering Review (DRAFT)
+
+**Prepared:** 2026-09-26 by Claude Code under MC-35 and MC-38. **Not accepted; awaiting Mission Control review and the independent security review.**
+
+Blueprint v0.4 Sections 20–21 assess all 228 `IN SCOPE` rows: 184 `FEASIBLE`, 43 `CONDITIONAL`, 1 `HELD`, 0 `BLOCKED`; 181 rows need independent review. New escalation ESC-1 (Owner business `DELETE` path and cascades, bearing on `22-§20-2`) is referred to Mission Control for classification. EQ-1 (ownership) and EQ-2 (derived-value inference) remain unanswered and their dependent conclusions are held. No FCTM disposition, Founder Decision or Scenario changed. See [the Stage 7 report](claude-code/25-stage7-engineering-review-report.md).
+
+## MC-40 — Stage 7 draft intake; ESC-1 classified as open T8 (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) at reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`; recorded here by Claude Code.
+
+Mission Control received the Stage 7 draft. Its feasibility classifications are engineering proposals, not accepted findings. Mission Control classified ESC-1 (the repository-level Owner business `DELETE` path and financial-history cascade) as an open T8 security and integrity finding. The affected durability work is held pending the independent Security & Permissions Architecture review and Mission Control disposition. As directed, `22-§20-2` is recorded as `BLOCKED` and stays `IN SCOPE`; other ESC-1-dependent rows keep only their durability conclusions held. The independent reviewer is examining the draft. No Stage 7 finding is accepted, and the PR is not approved for merge.
+
+## MC-41 — Independent security review dispositioned; correction required (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) ([comment 5845390537](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845390537)); recorded here by Claude Code.
+
+The appointed Security & Permissions Architecture room reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`; its report reached Mission Control through Founder chat and is not a repository file. Mission Control dispositioned findings SEC-S7-01 to SEC-S7-09 as CORRECTION REQUIRED, kept ESC-1 T8 open, reclassified six rows to `PENDING` independent review and asked for five more to be reconsidered. The independent review is not complete or accepted, no Stage 7 finding is accepted, and publication of the specialist's report under `specialists/` needs a separate authorization.
+
+## MC-42 and MC-43 — Delta re-review; final narrow correction (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) ([comment 5845526023](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845526023)); recorded here by Claude Code.
+
+The appointed Security & Permissions Architecture room re-reviewed head `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` (MC-42) and reported SEC-S7-01 to SEC-S7-09 substantively reconciled for Stage 7 documentation, with two narrow corrections remaining: the `anon` and `PUBLIC` principle in ER-1 and M1, and the precision of the Auth-user cascade wording. Mission Control directed those two corrections only (MC-43). A final focused re-review follows. It is not certification, and ESC-1 T8 stays open.
+
+## MC-49 and MC-50 — Security reports preserved; current-main reconciliation (record)
+
+**Date:** 2026-09-26
+**Status:** Recorded here by Claude Code from repository and GitHub evidence.
+**Authority:** PR [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) (MC-49 post-merge verification, [comment 5845928841](https://github.com/SmartBusinessv1/smart-business/pull/643#issuecomment-5845928841)); PR [#644](https://github.com/SmartBusinessv1/smart-business/pull/644) (MC-50 instruction `communication/live/instruction1.1.md`, MC-51 post-merge verification).
+
+PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Security & Permissions Architecture room's MC-40, MC-42 and MC-44 reports canonical under `specialists/`. MC-44 recorded documentary sufficiency of the Stage 7 security documentation at PR #641 head `f791b6f29adb412eb99df8f121a25433850971f0`, without certifying implementation or production. PR #644 (`main@fdb4f569411c50226a6b6816b11062a1a83cd230`) issued MC-50, which directed a non-rewriting merge of current `main` into the Stage 7 branch, retention of the current `main` live report, and factual status reconciliation only. ESC-1 T8 stays open, and no Stage 7 finding is accepted.
+
