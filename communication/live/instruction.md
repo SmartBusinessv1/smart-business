@@ -1,54 +1,69 @@
-# SMART BUSINESS MISSION CONTROL — MC-35
+# SMART BUSINESS MISSION CONTROL — MC-46
 
-# SB-P-1.12 — Stage 7 Engineering Review Activation (HOLD UNTIL EFFECT)
+# SB-P-1.12 — Direct Security-Authored Report Preservation and Live Handover
 
-**From:** Smart Business Mission Control
-**To:** Claude Code — Engineering Review owner once effective; documentary preparer until then
-**Status:** DRAFT — HOLD. Effective only as stated in Section 13 of the activation record.
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
-**Prepared by:** Claude Code as documentary preparer at Mission Control's direction; not approved by Claude Code.
-**Verified canonical baseline:** `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c` (PR #639 human-merged `2026-09-25T12:41:08Z`, approved head `6cb3b72e1dc73c005a4654d293ed755961091e20`, verified post-merge by MC-34).
-**Activation record:** `communication/missions/SB-P-1.12/mission-control/21-stage7-engineering-review-activation-record.md`.
-**Prior live pair, preserved byte-identically:** `mission-control/22-reviewer-appointment-live-instruction-snapshot.md` and `claude-code/24-reviewer-appointment-live-report-snapshot.md`.
+**Mission ID:** SB-P-1.12  
+**Mission name:** Authority, Identity & Product Surface Foundation  
+**From:** Smart Business Mission Control  
+**To:** Existing MC-33-appointed Security & Permissions Architecture room  
+**Date:** 2026-09-26  
+**Status:** DRAFT INSTRUCTION — NOT EXECUTABLE UNTIL THIS SEPARATE INSTRUCTION PR IS HUMAN-MERGED AND MISSION CONTROL VERIFIES THE MERGE  
+**Repository:** `SmartBusinessv1/smart-business`  
+**Instruction preparation baseline:** `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`  
+**Relevant engineering draft:** PR #641 at last checked `f791b6f29adb412eb99df8f121a25433850971f0`, OPEN/DRAFT/UNMERGED  
+**Controlling correction:** [MC-46 on PR #641](https://github.com/SmartBusinessv1/smart-business/pull/641#issuecomment-5845747352)
 
-## Current state
+## 1. Purpose and correction of the handoff route
 
-- **G-2** independent reviewer appointment: **SATISFIED for Stage 7 START** (MC-33, PR #639, MC-34). The independent security review is **not complete**.
-- **G-1** Stage 7 authorization: **OPEN** until the activation record is human-merged and Mission Control records its verification of that merge.
-- **Stage 7: NOT YET AUTHORIZED.**
+The three security reviews already authored in this same Security & Permissions Architecture room were relayed through the Founder chat instead of deposited into the approved repository communication channel at the time. Do not require the Founder to repaste those reports to Administration Lab. The MC-45/MC-45A Administration Lab transcription route has been revoked by MC-46.
 
-## Standing instruction to Claude Code
+The original reviewer must now preserve its OWN complete existing report texts directly, then write a PRESENT-DAY handover in `communication/live/report.md`. This is delayed source preservation following an acknowledged communication-protocol deviation. It is **not** a new security assessment, not a re-creation of historical live reports, and not proof that the repository originally carried MC-40, MC-42 or MC-44 as live instruction/report exchanges.
 
-**HOLD.** Until Mission Control records its post-merge verification of the activation record on its pull request, no Claude Code action beyond reading is authorized.
+The default `communication/live/instruction.md` / `report.md` pair is used for this **current** MC-46 instruction and its current reply. The prior MC-35 live pair is preserved verbatim at:
 
-- No Git authority is granted by this instruction. The MC-35 preparation authority expired on submission of the draft activation PR and its handover report.
-- Do not create `mission/SB-P-1.12-stage7-engineering-review`, draft Sections 20–21 or write any per-row finding before that verification.
+- `communication/missions/SB-P-1.12/mission-control/23-stage7-activation-live-instruction-snapshot.md`
+- `communication/missions/SB-P-1.12/mission-control/24-stage7-activation-live-report-snapshot.md`
 
-## Once effective
+The old MC-35 text inside `communication/live/report.md` is prior handoff content, NOT a response to MC-46. Replace it only under the later specialist Git grant below.
 
-When Mission Control records its verification of the activation record's merge, the activation record's Sections 4 to 12 become the operative Stage 7 instruction, with no further status-only PR. Claude Code then acts only within them, in particular:
+## 2. Original reports that the specialist must preserve
 
-- deliverables A to E in Section 5, with all 228 `IN SCOPE` rows addressed and none moved or narrowed;
-- the independent-review conditions and handoff path in Section 6. Claude Code does not write to `specialists/**`, and affected findings are not accepted or relied on before the review is completed and dispositioned;
-- the retained gates G-3 to G-8 and S-2 to S-7 in Section 7, each blocking only the dependent finding or action;
-- the protected Product Truth and stage boundaries in Section 8, and the scope flags in Section 9;
-- the Git grant, exact paths, Blueprint regions, operations, expiry and stop conditions in Section 10;
-- the closing line in Section 10.7.
+Use the complete original texts from the Security room's own previous responses, preserving all headings, Markdown/body, findings, disputed evidence, qualifications and conclusions unedited:
 
-## Not authorized at any point by this instruction
+| File to create | Source-authored report | Exact head reviewed |
+|---|---|---|
+| `communication/missions/SB-P-1.12/specialists/01-stage7-independent-security-review-original.md` | Original independent Stage 7 report with SEC-S7-01–09, submitted under MC-40 | `88b9256612e7d8bf1db88ec02c29eac8b5d545f9` |
+| `communication/missions/SB-P-1.12/specialists/02-stage7-independent-security-delta-re-review.md` | MC-42 independent delta re-review | `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` |
+| `communication/missions/SB-P-1.12/specialists/03-stage7-independent-security-final-focused-verification.md` | MC-44 final focused independent verification | `f791b6f29adb412eb99df8f121a25433850971f0` |
 
-Stage 8, Blueprint lock, EIS, implementation package, code, SQL, migration execution, production inspection or mutation, workflow or branch-protection change, delivery or publication, and any answer to the F-03 derived-value question or multiple-business ownership. No self-approval or self-merge.
+A clearly separated present-day preservation/provenance header MAY precede each complete original body, identifying its genuine Security & Permissions Architecture author, original reviewed head, later preservation date and the Founder-chat relay deviation. Do not alter the body or backdate the preservation. Do not infer missing text from Mission Control's PR comments or Claude Code's report. If the original full text is inaccessible even to the author room, STOP and identify which text is missing; do not manufacture an equivalent report.
 
-## Stop conditions
+## 3. Direct specialist Git authority — effective only after this instruction's merge verification
 
-**While on HOLD** (until the human merge and Mission Control's recorded post-merge verification): stop and report, without guessing, if canonical state differs from Section 1 of the activation record, if any statement would imply that the independent review is complete or a gate other than G-1 is closed, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
+Mission Control authorizes the **existing MC-33-appointed Security & Permissions Architecture room** for mission **SB-P-1.12** in repository **SmartBusinessv1/smart-business** to perform the ordered steps **(a) independently retrieve its own existing three complete authored reports, (b) preserve them verbatim in the three exact specialist paths above, and (c) replace `communication/live/report.md` with a current MC-46 handover naming all three files and their actual reviewed heads**, using locked branch **`mission/SB-P-1.12-security-authored-evidence`** created once from verified current canonical `main` only after this instruction's human merge and Mission Control post-merge verification.
 
-**Once effective**, Section 10.6 of the activation record governs, and it separates two cases:
+**Exactly four writable paths:** the three files in Section 2 and `communication/live/report.md`. There is no permission to edit this instruction or any other path, including PR #641, historical snapshots, README, logs, source/frameworks, FCTM, Founder Records, code, SQL, workflows or `communication/archive/**`.
 
-- **Mission-wide stop:** a missing canonical authorization or verification; changed governing state, source or target; path, region, branch or CI safety events under Protocol §21; forbidden access; or inability to proceed without an unauthorized change. All Stage 7 work stops and is reported.
-- **Finding-scoped hold:** G-3 or G-4, S-2 to S-7, evidence under G-5 to G-7, T1, T2, T3 or T7. Record the exact affected rows, keep them `IN SCOPE`, do not decide or rely on the issue, escalate to Mission Control, and continue unrelated authorized drafting and read-only planning.
-- **T8:** stop the affected work immediately and escalate. Unrelated rows are not thereby accepted, and Mission Control decides whether wider work stops.
+**Git operations:** read/fetch; verify remote, base and clean tree; fast-forward-only pull; verify locked branch absent; create the locked branch once; stage only the exact four authorized files by name; run required whitespace, Markdown, secret and quality checks; make mission-scoped descriptive commits with the standard `Co-Authored-By` trailer **EXCLUDED** (do not fabricate an additional Git co-author or represent a connector identity as proof of review authorship); push only the named branch without force; open ONE DRAFT PR to `main`; comment and submit exact-head handover to Mission Control. The actual specialist authorship of the three report BODIES must be explicit in their provenance, independently of GitHub's technical commit identity. No self-approval, self-merge, mark-ready, rebase, force push, unrelated staging, branch deletion or provider/production access.
 
-A Mission Control return for correction does not end the authority. Section 10.5 governs the end events and the `2026-10-17T23:59:59Z` outside expiry.
+**End:** Mission Control's recorded final exact-head acceptance or rejection/closure of the evidence-preservation PR, or `2026-10-17T23:59:59Z`, whichever comes first, or any Protocol §21 stop event/revocation. This grant is Git permission only, not authority to approve findings or the mission. If the room lacks Git write capability, it must report that exact blocker in this room; tool access cannot be assumed.
 
-**Required closing line for the preparation report under this instruction:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`
+Do not begin before this instruction is human-merged and Mission Control verifies its actual merge commit. A GitHub commit by itself does not activate an AI chat room; the Founder need only paste the minimal activation pointer supplied by Mission Control, not original report bodies.
+
+## 4. Contents of the PRESENT-DAY live report
+
+On its authorized branch, replace `communication/live/report.md` with a report headed:
+
+`SB-P-1.12 — MC-46 Security-Authored Report Preservation Handover`
+
+State From, To, Mission ID/name, current date, actual status, instruction PR and merge verification reference, report-preservation branch, base/head SHA, DRAFT PR link, exact four-file inventory, the three original reviewed SHAs, verbatim/source-fidelity verification method and any limitation; exact-head CI and any blocker.
+
+The live report is **not** a fourth security opinion and must not state that the original three reports were written in `communication/live/` at their historical dates. Its purpose is to hand the durable originals to Mission Control for review.
+
+## 5. Preserved findings and prohibitions
+
+MC-44 found the security-sensitive Stage 7 DOCUMENTATION adequate for Mission Control substantive review; it did not verify implementation or production security. ESC-1 stays OPEN T8; `22-§20-2` stays BLOCKED and FCTM IN SCOPE; dependent durability conclusions remain held. G-3–G-8 and S-2–S-7 stay open/flagged as recorded.
+
+PR #641 remains DRAFT, not approved for Founder merge until this separately authorized preservation PR is reviewed, human-merged and post-merge verified and MC issues a final exact-head disposition. No Stage 8, Blueprint lock, EIS, implementation, migration, SQL, production or provider authority follows.
+
+**MC-46 DIRECT SECURITY REPORT HANDOFF — AWAIT INSTRUCTION PR HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION; NO SECURITY REPORT WRITES BEFORE EFFECTIVENESS; NO ADMINISTRATION LAB TRANSCRIPTION; NO FOUNDER MANUAL REPORT RELAY.**
