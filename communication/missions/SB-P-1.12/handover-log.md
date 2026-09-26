@@ -562,3 +562,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Commit SHA and draft PR:** recorded on PR #641.
 **Next authorized action:** Mission Control verification and the same reviewer's final focused re-review. No self-merge.
 
+## H-35 — Claude Code to Mission Control: MC-50 current-main reconciliation submitted
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner, work package `SB-P-1.12-WP-S7-MC50`)
+**To:** Mission Control
+**Status:** `MC-50 CURRENT-MAIN RECONCILIATION SUBMITTED — PR #641 DRAFT AWAITING MISSION CONTROL EXACT-HEAD REVIEW — ESC-1 T8 OPEN — NO STAGE 7 ACCEPTANCE OR FOUNDER MERGE GATE.`
+**Authority:** MC-50 (`communication/live/instruction1.1.md`), effective through PR #644 and MC-51.
+**Git actions:** non-rewriting merge of `main@fdb4f569411c50226a6b6816b11062a1a83cd230` into `mission/SB-P-1.12-stage7-engineering-review` (merge commit `27ac784`); the sole conflict, `communication/live/report.md`, resolved by retaining the `main` version exactly (blob `1b0c0341503315ed2259db3b1f72929eaad2d1ba`).
+**Files modified:** `claude-code/25-stage7-engineering-review-report.md` (new §16 addendum only), this mission's `README.md`, `decision-log.md` and `handover-log.md`, and new `communication/live/report1.1.md`. The Blueprint is unchanged under MC-50.
+**Handover:** `communication/live/report1.1.md`, paired with `communication/live/instruction1.1.md`.
+**Next authorized action:** Mission Control exact-head review of PR #641. No self-merge.
+

@@ -287,3 +287,11 @@ The appointed Security & Permissions Architecture room reviewed head `88b9256612
 
 The appointed Security & Permissions Architecture room re-reviewed head `67fee9b55ff7ecbf5fe13aad878ce9379c4061a5` (MC-42) and reported SEC-S7-01 to SEC-S7-09 substantively reconciled for Stage 7 documentation, with two narrow corrections remaining: the `anon` and `PUBLIC` principle in ER-1 and M1, and the precision of the Auth-user cascade wording. Mission Control directed those two corrections only (MC-43). A final focused re-review follows. It is not certification, and ESC-1 T8 stays open.
 
+## MC-49 and MC-50 — Security reports preserved; current-main reconciliation (record)
+
+**Date:** 2026-09-26
+**Status:** Recorded here by Claude Code from repository and GitHub evidence.
+**Authority:** PR [#643](https://github.com/SmartBusinessv1/smart-business/pull/643) (MC-49 post-merge verification, [comment 5845928841](https://github.com/SmartBusinessv1/smart-business/pull/643#issuecomment-5845928841)); PR [#644](https://github.com/SmartBusinessv1/smart-business/pull/644) (MC-50 instruction `communication/live/instruction1.1.md`, MC-51 post-merge verification).
+
+PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Security & Permissions Architecture room's MC-40, MC-42 and MC-44 reports canonical under `specialists/`. MC-44 recorded documentary sufficiency of the Stage 7 security documentation at PR #641 head `f791b6f29adb412eb99df8f121a25433850971f0`, without certifying implementation or production. PR #644 (`main@fdb4f569411c50226a6b6816b11062a1a83cd230`) issued MC-50, which directed a non-rewriting merge of current `main` into the Stage 7 branch, retention of the current `main` live report, and factual status reconciliation only. ESC-1 T8 stays open, and no Stage 7 finding is accepted.
+
