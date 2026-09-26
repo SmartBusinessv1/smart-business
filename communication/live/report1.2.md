@@ -31,14 +31,16 @@ No Blueprint, FCTM, Founder Record, Stage 7 report, live base or earlier numbere
 
 - The approved principles on data ownership, durable history, audit and cancellation, each with its exact source pointer.
 - The two deletion paths (Owner API and Auth user), with repository evidence, the reviewer's inference, and unverified runtime facts kept separate. The 18-foreign-key count is labelled as Claude Code's unverified inventory. It explains why removing a UI action cannot close ESC-1.
-- Candidate directions, marked as proposals: A (close, history retained), B (close, then scheduled deletion after notice and export) and C (Owner permanent deletion); and for identity removal, I-1 (history survives) and I-2 (Owner closes first).
-- Three decision questions, a "do not decide now" list, dependent rows and held assertions, and a short plain-language version for Mission Control to put to the Founder.
+- Candidate end-of-life directions, marked as proposals and not ranked: A (close, history retained), B (close, then scheduled deletion after notice and export) and C (Owner-requested final deletion of only the records that approved retention policy and legal or privacy requirements allow, conditional on later policy and verification).
+- Two separate yes-or-no login questions that can both hold: login removal never by itself deletes the business or its history; and removal of the last active Owner's login waits until the business is closed or otherwise resolved (MC-56).
+- Four decision questions, a "do not decide now" list, dependent rows and held assertions, and a short plain-language version for Mission Control to put to the Founder.
 
 ## 4. Outstanding Founder questions
 
-1. **Q1 — End of life:** direction A, B, C or another.
+1. **Q1 — End of life:** direction A, B, C or another; C conditional on a later approved retention policy and technical and legal verification.
 2. **Q2 — History:** must financial and authority history stay intact until any final deletion, with no individual able to erase it?
-3. **Q3 — Identity removal:** does the business and its history survive a login removal (I-1), or must the Owner close first (I-2)?
+3. **Q3 — Login removal and history (yes or no):** must login removal never by itself delete the business or its shared history?
+4. **Q4 — Last active Owner (yes or no):** must removal of the last active Owner's login wait until the business is closed or otherwise resolved? Succession is not decided.
 
 **Coupling flagged:** direction B, and any final removal under A, depend on the unresolved retention duration (Build Plan §15 item 6) and on Contract 18 lifecycle work owned by `SB-P-1.19`. The ESC-1 answer can set the principle without fixing the duration.
 
@@ -54,6 +56,10 @@ No Blueprint, FCTM, Founder Record, Stage 7 report, live base or earlier numbere
 
 The draft PR number, the exact head that contains this report and the exact-head CI results are recorded in the PR handover comment, because a file cannot contain the hash of its own commit. The local Markdown Quality Gate and pre-commit gate were run on both files before commit.
 
-## 7. Stop
+## 7. MC-56 correction
+
+MC-56 ([comment 5846151822](https://github.com/SmartBusinessv1/smart-business/pull/646#issuecomment-5846151822)) found that the former I-1 and I-2 options answered different questions. The brief's Sections 4, 5.1 (direction C), 5.2, 6 and 8 now present them as separate yes-or-no questions (Q3 and Q4), and every final-deletion wording is conditional on later approved retention policy and technical and legal verification. No evidence, principle, dependent row, hold or other section changed, and no mechanism, retention period or succession decision was introduced.
+
+## 8. Stop
 
 Stopping for Mission Control's exact-head review. No self-approval, no marking ready and no merge.

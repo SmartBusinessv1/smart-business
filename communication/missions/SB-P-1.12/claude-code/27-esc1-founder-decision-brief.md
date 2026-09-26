@@ -66,11 +66,12 @@ All evidence is repository DDL at canonical `main`. Sources: Blueprint §20.2 an
 
 ## 4. The decision the Founder is asked to make
 
-One product-level decision area, with three parts:
+One product-level decision area, with four parts. Parts 3 and 4 answer different questions and can both hold:
 
 1. **Business end of life.** When an Owner wants to stop, what does "closing" a business mean?
 2. **History.** What happens to the business's financial history and its authority and audit history, and can anyone's action remove it?
-3. **Identity removal.** When a person's login identity (Owner or staff) is removed, does the business's shared history survive it?
+3. **Login removal and history.** Must removing a person's login (Owner or staff) never, by itself, delete the business or its shared history?
+4. **Last active Owner.** Must removing the login of a business's last active Owner wait until that business is closed or otherwise resolved?
 
 This is product policy. How it is enforced (archiving, deletion restrictions, identity detachment, scheduled jobs and so on) is later engineering design.
 
@@ -82,22 +83,25 @@ This is product policy. How it is enforced (archiving, deletion restrictions, id
 |---|---|---|
 | **A — Close, never hard-delete by the merchant** | Closing stops use of the business. Its financial and authority history is retained. Any final removal happens only under a later platform retention policy | Strongest fit with "keep historical records durable" and audit. The merchant cannot erase their own history on demand, so export and clear notice matter. Retention duration stays the Build Plan §15 item 6 decision |
 | **B — Close, then scheduled deletion after notice and an export window** | Closing starts a defined period with export access; history is retained until the scheduled deletion; the deletion itself is recorded | Matches Contract 18 §§10–11 closely. It depends on the unresolved retention duration, which can stay open if the Founder approves the principle now. Durability holds until the scheduled point, not forever |
-| **C — Owner-initiated permanent deletion** | After explicit confirmation, an export offer and notice, the Owner may permanently delete the business and its history, leaving at most a minimal record that deletion occurred | Maximizes the merchant's control over their data. It is in tension with "keep historical records durable" and Contract 21 §19 auditability, and would need the Founder to state how durability applies. It must also cover history that other members helped create |
+| **C — Owner-initiated final deletion** | After explicit confirmation, an export offer and notice, the Owner may request final deletion of the business and of those records that the approved retention policy and any applicable legal or privacy requirements allow to be deleted, leaving at most a minimal record that deletion occurred. Which records may be deleted, and when, stays conditional on a later approved retention policy and technical and legal verification | Maximizes the merchant's control over their data. It is in tension with "keep historical records durable" and Contract 21 §19 auditability, and would need the Founder to state how durability applies. It must also cover history that other members helped create |
 
-### 5.2 Identity removal
+### 5.2 Login removal
 
-| Direction | What it would mean | Tradeoffs |
-|---|---|---|
-| **I-1 — History survives identity removal** | Removing a person's login never removes the business or its shared history; the person's personal details in that history are minimized to what integrity requires | Protects the business and other members. It needs a policy for a business whose Owner identity is removed, such as closure under the chosen direction or succession, which is a separate question |
-| **I-2 — Owner identity removal only after the business is closed** | An Owner's login cannot be removed while their business is open; removal follows the chosen end-of-life direction | Keeps a single, predictable sequence. An Owner who wants to leave must close first |
+Two separate questions, not alternatives. The Founder may answer yes to both, no to both, or differently.
 
-Staff and Manager identity removal under any direction should keep the authority history of what they did, minimized to what integrity requires. This follows from the existing approved audit and staff-data principles and is listed only so the Founder can object.
+| Question | If yes | If no | Notes |
+|---|---|---|---|
+| **Login removal and history** — removing a person's login never, by itself, deletes the business or its shared financial, authority or audit history | History outlives any login; the person's personal details in it are minimized to what integrity requires. Any final deletion of a business happens only through the separate, governed end-of-life policy in Q1, never as a side effect of login removal | Removing a login could also remove the business and its history, as the repository DDL permits today for an Owner | Protects the business and its other members. It does not decide whether final business deletion is allowed; that is Q1 |
+| **Last active Owner** — removing the login of a business's last active Owner must wait until that business is closed or otherwise resolved | An active business is never left without an Owner by a login removal. How it is resolved (closure under Q1, or another route) is decided separately | A last Owner's login may be removed while the business is active; the product must then define what the business's state is | Applies to the last active Owner only. Staff and Manager logins are not affected by this question. Succession or transfer of ownership is not decided here |
+
+Staff and Manager login removal should keep the authority history of what they did, minimized to what integrity requires. This follows from the existing approved audit and staff-data principles and is listed only so the Founder can object.
 
 ## 6. Minimal decision questions for Mission Control to pose
 
-1. **Q1 — End of life.** Should a merchant who wants to stop be able to (A) close the business with history retained, (B) close it with history deleted on a schedule after notice and an export window, or (C) permanently delete the business and its history themselves, or something else?
+1. **Q1 — End of life.** Should a merchant who wants to stop be able to (A) close the business with history retained, (B) close it with history deleted on a schedule after notice and an export window, or (C) request final deletion of the business and of the records that approved retention policy and any applicable legal or privacy requirements allow, or something else? A and B keep history retained until any final removal; C remains conditional on a later approved retention policy and technical and legal verification. The directions are not ranked.
 2. **Q2 — History.** Until any final deletion your answer to Q1 allows, must the business's financial history and its record of who was granted or refused what be kept intact, with no individual user able to erase it?
-3. **Q3 — Identity removal.** If a person's Smart Business login is removed, should the business and its shared history survive (I-1), or must the Owner close the business first (I-2)?
+3. **Q3 — Login removal and history (yes or no).** Must removing a person's Smart Business login, whether Owner or staff, never by itself delete the business or its shared financial, authority or audit history? Any final business deletion would then happen only under your Q1 answer.
+4. **Q4 — Last active Owner (yes or no).** Must removing the login of a business's last active Owner wait until that business is closed or otherwise resolved? This does not decide who, if anyone, takes over the business.
 
 ### Do not decide now
 
@@ -138,10 +142,11 @@ No FCTM disposition, assignment or build commitment changes. All rows stay `IN S
 >
 > Smart Business's approved principles say owners own their data and business history should be durable. They do not say whether a merchant can permanently delete a business, or what happens to its records when someone's login is removed. The current database would let a business deletion remove its sales and purchase records in some cases, and removing an Owner's login can start the same deletion. No screen offers this today, but hiding a button would not close the gap.
 >
-> 1. When a merchant wants to stop, should they (A) close with history kept, (B) close with history deleted on a schedule after notice and a chance to export, or (C) permanently delete everything themselves?
+> 1. When a merchant wants to stop, should they (A) close with history kept, (B) close with history deleted on a schedule after notice and a chance to export, or (C) ask for final deletion of whatever records the approved retention rules and any legal or privacy requirements allow to be deleted? These options are not ranked, and any final deletion depends on a retention policy and checks that come later.
 > 2. Until any final deletion, must financial history and the record of who was allowed or refused what be kept intact, with no individual able to erase it?
-> 3. If someone's login is removed, should the business and its history survive, or must the Owner close the business first?
+> 3. Yes or no: should removing someone's login never, on its own, delete the business or its history?
+> 4. Yes or no: must removing the last active Owner's login wait until the business is closed or otherwise sorted out?
 >
-> You do not need to decide how long data is kept, how it is built, or who takes over a business when an Owner leaves.
+> Questions 3 and 4 are separate; both can be yes. You do not need to decide how long data is kept, how it is built, or who takes over a business when an Owner leaves.
 
 `ESC-1 FOUNDER DECISION BRIEF — DRAFT FOR MISSION CONTROL REVIEW — NOT A FOUNDER DECISION — ESC-1 T8 OPEN — NO STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION AUTHORITY.`
