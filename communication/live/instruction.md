@@ -41,6 +41,14 @@ Stage 8, Blueprint lock, EIS, implementation package, code, SQL, migration execu
 
 ## Stop conditions
 
-Stop and report, without guessing, if canonical state differs from Section 1 of the activation record, if any statement would imply that the independent review is complete or a gate other than G-1 is closed, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
+**While on HOLD** (until the human merge and Mission Control's recorded post-merge verification): stop and report, without guessing, if canonical state differs from Section 1 of the activation record, if any statement would imply that the independent review is complete or a gate other than G-1 is closed, if an open question would have to be answered, or if a production, provider, branch-protection or workflow change would be needed.
+
+**Once effective**, Section 10.6 of the activation record governs, and it separates two cases:
+
+- **Mission-wide stop:** a missing canonical authorization or verification; changed governing state, source or target; path, region, branch or CI safety events under Protocol §21; forbidden access; or inability to proceed without an unauthorized change. All Stage 7 work stops and is reported.
+- **Finding-scoped hold:** G-3 or G-4, S-2 to S-7, evidence under G-5 to G-7, T1, T2, T3 or T7. Record the exact affected rows, keep them `IN SCOPE`, do not decide or rely on the issue, escalate to Mission Control, and continue unrelated authorized drafting and read-only planning.
+- **T8:** stop the affected work immediately and escalate. Unrelated rows are not thereby accepted, and Mission Control decides whether wider work stops.
+
+A Mission Control return for correction does not end the authority. Section 10.5 governs the end events and the `2026-10-17T23:59:59Z` outside expiry.
 
 **Required closing line for the preparation report under this instruction:** `MC-35 STAGE 7 ACTIVATION GATE DRAFT SUBMITTED — AWAITING MISSION CONTROL EXACT-HEAD REVIEW AND FOUNDER HUMAN MERGE; G-2 APPOINTMENT SATISFIED; G-1 OPEN UNTIL ACTIVATION MERGE VERIFICATION; STAGE 7 NOT YET AUTHORIZED.`

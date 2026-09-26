@@ -171,26 +171,37 @@ Not permitted: `git add .` or any wildcard staging; force push; rebase or any hi
 
 The authority ends at the first of:
 
-- Mission Control's recorded exact-head acceptance or return of the Stage 7 DRAFT pull request. After submission and before that decision, commits are permitted only to apply Mission Control-directed corrections recorded on that pull request, within the same paths and regions;
-- `2026-10-17T23:59:59Z`;
-- any event in Protocol §21, including a change of governing state or of this record's scope;
+- Mission Control's recorded final exact-head acceptance of the Stage 7 DRAFT pull request;
+- Mission Control's recorded explicit rejection of that pull request, or its closure;
+- `2026-10-17T23:59:59Z`, the outside expiry, which no correction cycle extends;
+- any event in Protocol §21;
 - Mission Control revocation.
+
+A return for correction is not an end event. After the Stage 7 draft is submitted, commits are permitted only to apply Mission Control-directed, finding-scoped corrections recorded on that pull request, within the unchanged paths in Section 10.2 and regions in Section 10.3, until an end event above occurs. A correction request that would change scope, paths, regions, branch, governing sources or authority is not a correction under this grant. It stops the work under Protocol §21 and needs renewed authorization.
 
 After expiry, any further Git action needs a new, exact, human-merged authorization.
 
-### 10.6 Stop conditions
+### 10.6 Stop conditions and finding-scoped holds
 
-Claude Code stops, commits nothing further and reports to Mission Control if:
+**Mission-wide stop.** Claude Code stops all Stage 7 work, commits nothing further and reports to Mission Control if:
 
 - canonical `main` does not contain this record's merge commit, or Mission Control has not recorded its post-merge verification;
-- the locked branch or file number 25 or 26 is already in use;
-- `main` moved after this record's merge and an intervening change touches a writable path or a governing source, until Mission Control dispositions it;
-- a finding would need an answer to G-3 or G-4, a resolution of S-2 to S-7, or a new product decision (T1, T3);
-- a source conflict (T2), a proposed omission, deferral or reclassification (T7) or a Product Truth conflict, infeasibility or security finding (T8) arises. The affected row stays `IN SCOPE`, is marked blocked with the reason, and dependent work stops. Unrelated rows may continue;
+- governing state, a governing source or the target changes, including `main` moving after this record's merge with an intervening change that touches a writable path or a governing source, until Mission Control dispositions it;
+- the locked branch or file number 25 or 26 is already in use, or any other branch-safety event in Protocol §21 occurs: validation or CI fails, a pull cannot fast-forward, a conflict occurs or unrelated working-tree changes appear;
+- a change outside the paths in Section 10.2 or the regions in Section 10.3 would be needed;
 - production, provider, privileged database, branch-protection or workflow access or change would be needed;
-- any statement would claim that the independent review is complete, that T4 remediation is done, that production is secure, or that a gate other than G-1 is closed;
-- a change outside Section 10.2 or 10.3 would be needed;
-- validation fails, a pull cannot fast-forward, a conflict occurs or unrelated working-tree changes appear.
+- Stage 7 cannot proceed at all without an unauthorized change, access or decision.
+
+**Finding-scoped hold.** Where a finding would need an answer to G-3 or G-4, a resolution of S-2 to S-7, fresh evidence under G-5 to G-7, or raises T1, T2, T3 or T7, Claude Code:
+
+- records the exact affected FCTM row IDs and the reason, and keeps each affected row `IN SCOPE`;
+- does not decide the issue and does not rely on any conclusion that depends on it;
+- reports and escalates it to Mission Control in the Stage 7 report and the handover;
+- continues unrelated authorized drafting and read-only planning.
+
+**T8.** A Product Truth conflict, infeasibility or security finding stops the affected work immediately. The affected rows stay `IN SCOPE` and are marked blocked with the reason, and the T8 is escalated to Mission Control at once. This does not mean that unrelated rows are accepted, and it does not by itself stop the whole of authorized Stage 7. Mission Control decides whether wider work stops.
+
+**Prohibited statements.** No text may claim that the independent review is complete, that T4 remediation is done, that production is secure, or that a gate other than G-1 is closed. If a statement would need such a claim, the affected finding is held on the finding-scoped basis above.
 
 ### 10.7 Required closing line for the Stage 7 report
 
