@@ -927,7 +927,7 @@ Every step above is engineering planning. Infrastructure changes, migration exec
 
 One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keeps its FCTM disposition `IN SCOPE`, and none is narrowed, moved or reclassified.
 
-**Feasibility values.** `FEASIBLE`: buildable within the approved scope on present evidence. `CONDITIONAL`: buildable, but a conclusion depends on named evidence, verification or a dependent gate. `HELD`: the row's main conclusion needs an answer that is not available; it is held on a finding-scoped basis and escalated. `BLOCKED`: infeasible, unsafe or in conflict with Product Truth, raising T8. No row is `BLOCKED` in this draft.
+**Feasibility values.** `FEASIBLE`: buildable within the approved scope on present evidence. `CONDITIONAL`: buildable, but a conclusion depends on named evidence, verification or a dependent gate. `HELD`: the row's main conclusion needs an answer that is not available; it is held on a finding-scoped basis and escalated. `BLOCKED`: infeasible, unsafe or in conflict with Product Truth, raising T8. One row is `BLOCKED`: `22-§20-2`, by the open T8 that Mission Control recorded for ESC-1 (MC-40). A `BLOCKED` row stays `IN SCOPE`.
 
 **Independent review (IR).** `PENDING`: security-sensitive under Source 18 §4.8 (authority or permissions, RLS or grants, migrations, idempotency or concurrency, financial integrity). The finding is not accepted or relied on until the MC-33 reviewer completes its review and Mission Control dispositions it. `N/R`: Claude Code's assessment that no mandatory domain is engaged. Mission Control may require review of any `N/R` row.
 
@@ -1000,14 +1000,14 @@ One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keep
 | `21-§18-4` | §8.14 | FEASIBLE | Target binding exists in the precedent (E4) | None | PENDING |
 | `21-§18-5` | §8.14 | FEASIBLE | Reviewed-state fingerprint exists in the precedent (E4) | None | PENDING |
 | `21-§18-6` | §8.14 | FEASIBLE | Expiry exists; permission version to be added (E4) | None | PENDING |
-| `21-§19-1` | §8.15 | CONDITIONAL | No grant or revoke audit exists. Add authority event record (E5) | Durability depends on ESC-1 | PENDING |
-| `21-§19-2` | §8.15 | CONDITIONAL | Grantor and actor captured in the authority event (E5) | ESC-1 | PENDING |
-| `21-§19-3` | §8.15 | CONDITIONAL | Role or capability captured (E5) | ESC-1 | PENDING |
-| `21-§19-4` | §8.15 | CONDITIONAL | Scope captured (E5) | ESC-1 | PENDING |
-| `21-§19-5` | §8.15 | CONDITIONAL | Timestamps exist on current events; extend to authority events (E5) | ESC-1 | PENDING |
-| `21-§19-6` | §8.15 | CONDITIONAL | Security-sensitive resulting action or denial recorded; routine denials not treated as incidents (E5, E7) | ESC-1 | PENDING |
-| `21-§19-7` | §8.15 | CONDITIONAL | Temporary elevation and support access recorded (E5, E13) | ESC-1 | PENDING |
-| `21-§19-8` | §8.15 | CONDITIONAL | Automation provenance: current `executed_by_actor_type` is pinned to `user` and must be widened (E5, M6) | ESC-1 | PENDING |
+| `21-§19-1` | §8.15 | CONDITIONAL | No grant or revoke audit exists. Add authority event record (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-2` | §8.15 | CONDITIONAL | Grantor and actor captured in the authority event (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-3` | §8.15 | CONDITIONAL | Role or capability captured (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-4` | §8.15 | CONDITIONAL | Scope captured (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-5` | §8.15 | CONDITIONAL | Timestamps exist on current events; extend to authority events (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-6` | §8.15 | CONDITIONAL | Security-sensitive resulting action or denial recorded; routine denials not treated as incidents (E5, E7) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-7` | §8.15 | CONDITIONAL | Temporary elevation and support access recorded (E5, E13) | Durability conclusion only: ESC-1 open T8 | PENDING |
+| `21-§19-8` | §8.15 | CONDITIONAL | Automation provenance: current `executed_by_actor_type` is pinned to `user` and must be widened (E5, M6) | Durability conclusion only: ESC-1 open T8 | PENDING |
 | `21-§20-1` | §8.16 | FEASIBLE | Deterministic `PERMISSION_DENIED` without existence disclosure exists in catalog commands; extend to all paths, including RLS-filtered reads (E7) | None | PENDING |
 | `21-§20-2` | §8.16 | FEASIBLE | Next-step guidance in denial copy (E7) | None | N/R |
 | `21-§20-3` | §8.16 | FEASIBLE | Denial scoped to the action; session and other features continue (E7) | None | N/R |
@@ -1081,7 +1081,7 @@ One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keep
 | `22-§17` | §8.25 | FEASIBLE | Design constraint: the kernel contract is callable by future integrations without schema change (E9) | None | N/R |
 | `22-§19` | §8.25 | FEASIBLE | Design constraint: a kernel failure denies narrowly and does not cascade to unrelated features (E7) | None | PENDING |
 | `22-§20-1` | §8.26 | FEASIBLE | Negative: no subscription-driven schema change (E8) | None | PENDING |
-| `22-§20-2` | §8.26 | HELD | Append-only history is enforced by triggers on catalog and inventory history, but `transactions` and `transaction_correction_events` can be removed by an Owner business `DELETE` through cascade | ESC-1 (Section 21.1) | PENDING |
+| `22-§20-2` | §8.26 | BLOCKED | Repository DDL: append-only triggers protect catalog and inventory history, but an Owner business `DELETE` can cascade-remove `transactions` and `transaction_correction_events`. Not executed; runtime and production behaviour not established. Durability design is held | T8 open (ESC-1, MC-40); FCTM disposition stays `IN SCOPE` | PENDING |
 | `22-§20-3` | §8.26 | FEASIBLE | Capability through entitlements and grants, not schema (E8) | None | PENDING |
 | `22-§20-4` | §8.26 | FEASIBLE | All changes as governed migrations (Section 20.4.2); no execution in this mission | `docs/migration/README.md` | PENDING |
 | `22-§21` | §8.27 | FEASIBLE | Kernel resolution on every policy check adds cost. Use indexed membership lookups and stable functions; measure in Full Assurance | None | N/R |
@@ -1116,7 +1116,7 @@ One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keep
 | `22-§29-8` | §8.31 | FEASIBLE | Idempotency replay tests extend existing ones (E6) | None | PENDING |
 | `22-§29-10` | §8.31 | FEASIBLE | Narrow-failure tests for kernel denial and parser failure (E7) | None | N/R |
 | `22-§29-11` | §8.31 | FEASIBLE | Entitlement change test asserts no schema change (E8) | None | PENDING |
-| `22-§29-12` | §8.31 | CONDITIONAL | Audit retains raw evidence and human context (E5) | ESC-1 for durability | PENDING |
+| `22-§29-12` | §8.31 | CONDITIONAL | Audit retains raw evidence and human context (E5) | Durability conclusion only: ESC-1 open T8 | PENDING |
 | `22-§29-14` | §8.31 | FEASIBLE | Process: this Blueprint identifies reused foundations first | None | N/R |
 
 #### Contract 20 — Onboarding and First Experience (5 rows)
@@ -1198,8 +1198,8 @@ One entry per `IN SCOPE` FCTM row ID, in FCTM order: 228 entries. Every row keep
 | `IN SCOPE` rows addressed | 228 of 228 (machine-checked against the FCTM, same IDs and order) |
 | `FEASIBLE` | 184 |
 | `CONDITIONAL` | 43 |
-| `HELD` | 1 (`22-§20-2`, ESC-1) |
-| `BLOCKED` (T8) | 0 |
+| `HELD` | 0 as a row-level result; dependent conclusions are held inside rows (G-3, G-4, ESC-1) |
+| `BLOCKED` (T8) | 1 (`22-§20-2`, ESC-1, MC-40) |
 | Independent review `PENDING` | 181 |
 | Independent review `N/R` | 47 |
 
@@ -1213,7 +1213,7 @@ Stage 7 draft (version 0.4). Nothing in this section answers a Founder question,
 |---|---|---|---|---|
 | EQ-1 (G-4, S-2) | May one person own more than one business? This decides whether `businesses.owner_id` stays `UNIQUE` and how the kernel treats ownership | Mission Control determines whether a Founder decision is needed | `21-§4-1`, `21-§5-2`, `22-§5-2`, `20-§16-1`, `BP-§10.1-2` | Ownership-cardinality conclusions held. Membership design proceeds under either answer |
 | EQ-2 (G-3, S-5) | May a separately delegated Reference Cost or margin value, combined with other visible values, disclose the undelegated one? | Founder clarification or a bounded Mission Control technical-feasibility disposition | `21-§4-2`, `21-§5-4`, `21-§24-3`, `17-§13-2`, `17-§18-2`, `17-§21-4`, `17-§22-2`, `7-§10-2` | Inference conclusions held. Field-level delegation design proceeds |
-| ESC-1 (new) | Is Owner deletion of a business a supported product action? In repository files, an Owner may `DELETE` their `businesses` row through the API (policy and grant exist; no UI offers it). The cascade fails where append-only history exists, but otherwise removes `transactions` and `transaction_correction_events`. Deleting the Owner's `auth.users` record also cascades to the business. This bears on `22-§20-2` (durable history) and on the durability of this mission's authority audit | Mission Control, which may route a product question to the Founder. Claude Code has not classified it as T8. Mission Control determines whether it is one | `22-§20-2` (HELD); durability conclusions of `21-§19-1`–`21-§19-8`, `22-§29-12` | Only the durability conclusion is held. Audit capture design proceeds. Evidence is repository DDL only, not executed |
+| ESC-1 — **open T8 security and integrity finding (MC-40)** | Repository DDL shows an Owner `DELETE` policy and `authenticated` `DELETE` grant on `businesses`, reachable through the API though no UI offers it, and 18 `ON DELETE CASCADE` foreign keys to `businesses`. Append-only triggers would make the cascade fail where catalog or inventory history exists; otherwise it would remove `transactions` and `transaction_correction_events`. `businesses.owner_id` also cascades from `auth.users`. **Evidence class:** repository DDL only. Nothing was executed, and runtime and production behaviour, including live grants and policies, are not established (G-6). This bears on `22-§20-2` and on the durability of this mission's authority audit | Mission Control classified it as an open T8 (MC-40). Held pending the independent Security & Permissions Architecture review and Mission Control disposition; any product question goes to the Founder through Mission Control | `22-§20-2` (`BLOCKED`); durability conclusions only of `21-§19-1`–`21-§19-8` and `22-§29-12` (`CONDITIONAL`) | Durability design is held and dependent work stops. Audit capture design and unrelated rows continue and are not blocked automatically |
 | EQ-3 (G-6, S-3) | Will a read-only production verification of grants, RLS, function and default privileges and migration state be authorized, and must it precede WS-B remediation design being relied on? | Mission Control or Founder | Rows marked G-6 (Section 20.5) | Production-security conclusions stay `UNVERIFIED` |
 | EQ-4 (G-5, S-7) | Should database isolation tests become a required check, given that Full Assurance is path-filtered? | Mission Control governance | `BP-§10.1-9`, `22-§22` | Testing design proceeds; required-check status undecided |
 | EQ-5 (G-7, S-4) | Which environment and provider facts will be verified, and by whom: test project identity, production project identity and ledger, storage bucket policies, any production-shaped rehearsal copy? | Mission Control | `21-§6-4`, `22-§6-8`, `BP-§10.1-13`; Section 20.4.1 | Topology-specific conclusions not relied on |
@@ -1258,14 +1258,14 @@ These are recommendations only. Mission Control accepts, rejects or routes each 
 
 | Trigger | Result of this review |
 |---|---|
-| T1 unresolved product question | EQ-1 and EQ-2 were already open (G-4, G-3). ESC-1 may be a product question; Mission Control determines it |
+| T1 unresolved product question | EQ-1 and EQ-2 were already open (G-4, G-3). Any product question within ESC-1 goes to the Founder through Mission Control |
 | T2 source conflict | None found |
 | T3 new product decision | None proposed |
 | T4 `PRODUCT-AFFECTING` delta | Historically triggered; unchanged; production `UNVERIFIED` |
 | T5 Founder request | None received |
-| T6 derived constraint | None new. ESC-1 is recorded for Mission Control rather than treated as a constraint |
+| T6 derived constraint | None new |
 | T7 omission, deferral or reclassification | None. All 228 rows stay `IN SCOPE` |
-| T8 Product Truth conflict, infeasibility or security finding | None raised by Claude Code. ESC-1 is escalated for Mission Control to determine whether it is one, and its affected row is held |
+| T8 Product Truth conflict, infeasibility or security finding | **Open: ESC-1**, classified by Mission Control as a T8 security and integrity finding (MC-40) on repository-DDL evidence. `22-§20-2` is `BLOCKED` and stays `IN SCOPE`; its durability work stops pending independent review and Mission Control disposition. No other T8 |
 
 ### 21.5 Independent security review handoff
 

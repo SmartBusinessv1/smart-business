@@ -526,3 +526,15 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** Mission Control reviews the draft PR at its exact head; Mission Control-directed, finding-scoped corrections only, within the same paths and regions. No self-merge, no self-approval by Claude Code.
 **Action not yet authorized:** Stage 8, Blueprint lock, EIS, implementation, migration execution, production inspection or action, delivery or publication, and any write under `specialists/**`.
 
+## H-32 — Claude Code to Mission Control: MC-40 ESC-1 T8 reconciliation applied
+
+**Prepared:** 2026-09-26
+**From:** Claude Code (Stage 7 Engineering Review owner; Mission Control-directed, finding-scoped correction)
+**To:** Mission Control
+**Status:** `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW OUTSTANDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`
+**Authority:** MC-35 §10.5 correction cycle, directed by MC-40 on PR #641.
+**Files modified:** `docs/phase-1-mission-blueprint/active/SB-P-1.12.md` (Sections 20–21 only), `claude-code/25-stage7-engineering-review-report.md`, `communication/live/report.md`, and this mission's `README.md`, `decision-log.md` and `handover-log.md`.
+**Result:** `22-§20-2` `BLOCKED` by the open T8 and still `IN SCOPE`; counts 184 `FEASIBLE`, 43 `CONDITIONAL`, 1 `BLOCKED`, as proposals. Repository-DDL evidence distinguished from runtime and production evidence.
+**Commit SHA and draft PR:** recorded on PR #641.
+**Next authorized action:** Mission Control re-review; independent specialist review continues separately. No self-merge.
+

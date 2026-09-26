@@ -33,22 +33,26 @@ This report accompanies Blueprint Sections 20 and 21. It approves nothing and is
 ## 3. Review coverage
 
 - **Rows.** 228 of 228 `IN SCOPE` FCTM rows addressed. The register's row IDs were extracted and compared to the FCTM Disposition column: same set, same order. By source: Contract 21, 101; Contract 22, 75; Contract 17, 20; Build Plan, 18; Contract 7, 9; Contract 20, 5.
-- **Results.** `FEASIBLE` 184; `CONDITIONAL` 43; `HELD` 1 (`22-§20-2`); `BLOCKED` 0.
+- **Results (engineering proposals, not accepted findings; corrected under MC-40).** `FEASIBLE` 184; `CONDITIONAL` 43; `BLOCKED` 1 (`22-§20-2`, open T8); no row-level `HELD` result. At the original head `88b92566` the counts were `HELD` 1 and `BLOCKED` 0.
 - **Independent review.** 181 rows `PENDING`, 47 `N/R`.
 - **FCTM.** No disposition, build commitment, commercial classification or mission assignment changed. No row moved to a later mission.
 - **Evidence class.** Repository files at `main@733f3393` only. No database, provider or production access, and no SQL executed.
 
 ## 4. Blocked, held and conditional findings
 
-- **Blocked (T8):** none raised by Claude Code.
-- **Held:** `22-§20-2`, pending ESC-1. Separately, conclusions depending on EQ-1 (G-4, ownership cardinality) and EQ-2 (G-3, derived-value inference) are held inside otherwise `CONDITIONAL` or `FEASIBLE` rows.
-- **Conditional:** 43 rows, each naming its dependency in the register: G-6 production state, G-4, G-3, G-5, G-7 or ESC-1.
+- **Blocked (T8):** `22-§20-2`, blocked by the open T8 that Mission Control recorded for ESC-1 (MC-40). Its FCTM disposition stays `IN SCOPE`. Its durability work is held pending the independent Security & Permissions Architecture review and Mission Control disposition.
+- **Held conclusions inside rows:** the durability conclusions only of `21-§19-1`–`21-§19-8` and `22-§29-12` (ESC-1); ownership-cardinality conclusions (EQ-1, G-4); derived-value inference conclusions (EQ-2, G-3). These rows stay `CONDITIONAL` or `FEASIBLE` on their other conclusions and are not blocked automatically.
+- **Conditional:** 43 rows, each naming its dependency in the register: G-6 production state, G-4, G-3, G-5, G-7 or ESC-1 durability.
 
-## 5. New escalation: ESC-1
+## 5. ESC-1 — open T8 (Mission Control classification, MC-40)
 
-Repository files show an Owner `DELETE` policy and `authenticated` `DELETE` grant on `businesses`, reachable through the API though not offered by the UI, and 18 `ON DELETE CASCADE` foreign keys to `businesses`. Append-only triggers make the cascade fail where catalog or inventory history exists. Otherwise it removes `transactions` and `transaction_correction_events`, which have no delete guard. `businesses.owner_id` also cascades from `auth.users`.
+**Classification.** Mission Control classified ESC-1 as an open T8 security and integrity finding in its MC-40 intake disposition on PR #641. It is held pending the independent Security & Permissions Architecture review and Mission Control disposition.
 
-This bears on `22-§20-2` (durable history) and on the durability of the authority audit this mission must add. Claude Code has not classified it as T8. Mission Control is asked to determine whether it is T8, a product question (T1) or an EIS design matter. Only the affected durability conclusions are held. The behaviour is inferred from DDL and was not executed.
+**Repository evidence (DDL).** Repository files show an Owner `DELETE` policy and `authenticated` `DELETE` grant on `businesses`, reachable through the API though not offered by the UI, and 18 `ON DELETE CASCADE` foreign keys to `businesses`. Append-only triggers make the cascade fail where catalog or inventory history exists. Otherwise it removes `transactions` and `transaction_correction_events`, which have no delete guard. `businesses.owner_id` also cascades from `auth.users`.
+
+**Evidence class.** These are statements about migration DDL only. Nothing was executed. Runtime behaviour, and whether live production grants, policies, foreign keys and triggers match the files, are not established (G-6, T4 `UNVERIFIED`).
+
+**Effect.** It bears on `22-§20-2` (durable history), which is `BLOCKED`, and on the durability of the authority audit this mission must add, whose durability conclusions are held while their capture design continues. Unrelated rows are not blocked. Any product question within it goes to the Founder through Mission Control.
 
 ## 6. Independent security review status and handoff
 
@@ -75,7 +79,7 @@ This bears on `22-§20-2` (durable history) and on the durability of the authori
 
 ## 9. T1–T8 screen
 
-T1: EQ-1 and EQ-2 already open; ESC-1 possible, for Mission Control. T2: none. T3: none. T4: historically triggered, unchanged, production `UNVERIFIED`. T5: none. T6: none new. T7: none; all 228 rows stay `IN SCOPE`. T8: none raised; ESC-1 escalated for determination.
+T1: EQ-1 and EQ-2 already open; any product question within ESC-1 goes to the Founder through Mission Control. T2: none. T3: none. T4: historically triggered, unchanged, production `UNVERIFIED`. T5: none. T6: none new. T7: none; all 228 rows stay `IN SCOPE`. T8: **open — ESC-1**, classified by Mission Control (MC-40) as a security and integrity finding on repository-DDL evidence; `22-§20-2` `BLOCKED` and still `IN SCOPE`; no other T8.
 
 ## 10. Blueprint change evidence
 
@@ -106,10 +110,14 @@ The seven paths authorized by the activation record §10.2, and no others:
 Mission Control is asked to:
 
 1. review Sections 20 and 21 and this report at the exact PR head, and accept, return for finding-scoped correction, or reject;
-2. classify ESC-1;
+2. disposition ESC-1 (open T8, MC-40) after the independent review;
 3. route EQ-1 and EQ-2, and decide EQ-3 to EQ-5;
 4. start or confirm the independent review, and authorize a path for committing its findings under `specialists/`.
 
 No finding is to be accepted or relied on before the independent review is completed and dispositioned. Stage 8 remains a separate later gate.
+
+## 13. MC-40 correction record
+
+Mission Control-directed, finding-scoped correction on the same DRAFT PR (MC-40, PR #641, reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`). Changed: Blueprint §20.5 feasibility definitions, the `22-§20-2` entry (`HELD` to `BLOCKED`), the durability gate cells of `21-§19-1`–`21-§19-8` and `22-§29-12` (still `CONDITIONAL`), §20.5.1 totals, §21.1 ESC-1, and the §21.4 T1, T6 and T8 rows; this report §§3–5, 9 and 12; the live report; the README Stage 7 row; and new decision-log and handover-log entries. The FCTM, Sections 1–19, the Metadata rows and the Section 18 row are unchanged by this correction.
 
 `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; INDEPENDENT SECURITY REVIEW OUTSTANDING; AFFECTED FINDINGS NOT ACCEPTED OR RELIED ON UNTIL REVIEW DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/MIGRATION/PRODUCTION NOT AUTHORIZED.`

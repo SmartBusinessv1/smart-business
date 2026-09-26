@@ -266,3 +266,10 @@ MC-36 required a narrow stop/resume correction to the activation record §§10.5
 
 Blueprint v0.4 Sections 20–21 assess all 228 `IN SCOPE` rows: 184 `FEASIBLE`, 43 `CONDITIONAL`, 1 `HELD`, 0 `BLOCKED`; 181 rows need independent review. New escalation ESC-1 (Owner business `DELETE` path and cascades, bearing on `22-§20-2`) is referred to Mission Control for classification. EQ-1 (ownership) and EQ-2 (derived-value inference) remain unanswered and their dependent conclusions are held. No FCTM disposition, Founder Decision or Scenario changed. See [the Stage 7 report](claude-code/25-stage7-engineering-review-report.md).
 
+## MC-40 — Stage 7 draft intake; ESC-1 classified as open T8 (record)
+
+**Date:** 2026-09-26
+**Status:** Mission Control decision recorded on PR [#641](https://github.com/SmartBusinessv1/smart-business/pull/641) at reviewed head `88b9256612e7d8bf1db88ec02c29eac8b5d545f9`; recorded here by Claude Code.
+
+Mission Control received the Stage 7 draft. Its feasibility classifications are engineering proposals, not accepted findings. Mission Control classified ESC-1 (the repository-level Owner business `DELETE` path and financial-history cascade) as an open T8 security and integrity finding. The affected durability work is held pending the independent Security & Permissions Architecture review and Mission Control disposition. As directed, `22-§20-2` is recorded as `BLOCKED` and stays `IN SCOPE`; other ESC-1-dependent rows keep only their durability conclusions held. The independent reviewer is examining the draft. No Stage 7 finding is accepted, and the PR is not approved for merge.
+
