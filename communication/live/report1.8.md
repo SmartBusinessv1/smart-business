@@ -39,7 +39,7 @@ No other path changed: Founder Records, ledgers, `claude-code/28`–`31`, contra
 |---|---|
 | Row count | 373 before and after |
 | Row IDs and order | Identical |
-| Fields 1–7 (ID, source pointer, build commitment, commercial classification, assigned mission, disposition) | Unchanged on every row; field 8 only extended on the 14 rows |
+| Columns 1–6 (Row ID, Source pointer, Build commitment, Commercial classification, Assigned mission, Disposition) | Unchanged on every row; only column 7 (Citation / evidence) extended on 14 rows |
 | Dispositions | `IN SCOPE` 228, `ASSIGNED TO LATER MISSION` 113, `DELEGATED` 2, `NOT APPLICABLE` 30, `ESCALATED` 0, unchanged |
 | SB-P-1.19 requirements copied in | None |
 | New text | Correction note 8 (header) and a §G "Re-verified 2026-09-27" line |
