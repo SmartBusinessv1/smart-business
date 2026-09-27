@@ -31,7 +31,7 @@ No other path changed: Founder Records, ledgers, `claude-code/28`–`31`, contra
 
 **No row is added.** Source 18 §3.2 item 1 requires every FCTM row to have the form `<contract number>-§<section>-<ordinal>`, cited to a contract or Build Plan section. It also says the FCTM "adds no product decision" and that a Founder decision is cited in a row by Decision ID. Founder Record 05 is a Founder decision, not a contract. Its SB-P-1.12 foundation obligations (ESC1-8) are therefore traced by citing Founder Record 05 Decision IDs on the existing rows that carry them. This follows the Founder Record 04 precedent, which also added no rows.
 
-**Rows whose Citation / evidence cell was extended:** 14 under MC-83 (`21-§4-1`, `20-§16-1`, `21-§5-2`, `22-§5-2`, `BP-§10.1-2`, `21-§6-1`, `21-§6-2`, `21-§17`, `21-§18-1`, `21-§19-1`, `22-§20-2`, `22-§29-12`, `22-§14-5`, `BP-§7-1`), and 7 more under MC-87 (`21-§15-2`, `21-§18-2`, `21-§5-4`, `21-§19-2`, `22-§5-1`, `22-§5-3`, `22-§5-4`). 21 in total; see Section 8.
+**Rows whose Citation / evidence cell was extended:** 14 under MC-83 (`21-§4-1`, `20-§16-1`, `21-§5-2`, `22-§5-2`, `BP-§10.1-2`, `21-§6-1`, `21-§6-2`, `21-§17`, `21-§18-1`, `21-§19-1`, `22-§20-2`, `22-§29-12`, `22-§14-5`, `BP-§7-1`), and 7 more under MC-87 (`21-§15-2`, `21-§18-2`, `21-§5-4`, `21-§19-2`, `22-§5-1`, `22-§5-3`, `22-§5-4`). 21 under MC-87, and 1 more (`21-§19-6`) under MC-89: 22 in total; see Sections 8 and 9.
 
 **Deterministic checks against `main`:**
 
@@ -39,7 +39,7 @@ No other path changed: Founder Records, ledgers, `claude-code/28`–`31`, contra
 |---|---|
 | Row count | 373 before and after |
 | Row IDs and order | Identical |
-| Columns 1–6 (Row ID, Source pointer, Build commitment, Commercial classification, Assigned mission, Disposition) | Unchanged on every row; only column 7 (Citation / evidence) extended on 21 rows (14 under MC-83, 7 under MC-87) |
+| Columns 1–6 (Row ID, Source pointer, Build commitment, Commercial classification, Assigned mission, Disposition) | Unchanged on every row; only column 7 (Citation / evidence) extended on 22 rows (14 under MC-83, 7 under MC-87, 1 under MC-89) |
 | Dispositions | `IN SCOPE` 228, `ASSIGNED TO LATER MISSION` 113, `DELEGATED` 2, `NOT APPLICABLE` 30, `ESCALATED` 0, unchanged |
 | SB-P-1.19 requirements copied in | None |
 | New text | Correction note 8 (header) and a §G "Re-verified 2026-09-27" line |
@@ -160,10 +160,52 @@ Each line has its own negative path, planned evidence class and boundary in Blue
 
 These are not claimed as covered.
 
-## 9. PR, head and CI
+## 9. MC-89 correction (second independent Security delta review)
+
+Authority: MC-89 ([PR #659 comment 5855510097](https://github.com/SmartBusinessv1/smart-business/pull/659#issuecomment-5855510097)), on the same PR, branch and three paths. `communication/live/report1.9.md` was not created or edited.
+
+### 9.1 Changes
+
+| Item | Blueprint lines (new) | Change |
+|---|---|---|
+| FA-6 | 500 | Adds the business-scoped notification authorization and protected-data eligibility boundary: the former Owner is not an eligible recipient, tested through a labelled harness. Delivery integration stays with `SB-P-1.15` and channel missions. Adds `22-§6-7` (integrations) and `22-§23-2` as anchors. Other per-surface denials unchanged |
+| FA-7 | 501 | Adds in-flight and privileged operations, including those started before the transfer: authority revalidated at each consequential execution and commit boundary, with no commit after completion under revoked authority. E4 stays authoritative; no mechanism selected. Adds `22-§13-4` and `BP-§10.1-5` |
+| FA-11 | 505 | Adds the R-1 foundation part (no foundation action modifies, deletes or invalidates the transferred business's operating or subscription state data or authority; `21-§5-10`), and the cross-mission acceptance dependency on `SB-P-1.19` |
+| FA-15 to FA-18 | 509–512 | New R-2 eligibility guards: not while the person owns a business; not while another membership remains; never erasing history or attribution; only through the governed, recorded path. All held |
+| Referrals | 514–518 | R-1 and R-3 dispositions recorded; R-2 rewritten as a critical-path hold with two unanchored parts |
+| §18, §19, E1 | 592, 604, 837 | Counts and pointers updated (FA-1 to FA-18; 22 cited rows) |
+
+**FCTM:** one column-7 citation added on `21-§19-6` (FA-18's primary anchor), with Correction note 8 and the §G line updated to 22 rows. Nothing else changed.
+
+### 9.2 R-2 stop report: precise gaps for Mission Control
+
+MC-89 authorized an attempt at source-compliant R-2 coverage and required a stop with exact evidence where anchors are inadequate. FA-15 to FA-18 cover the eligibility **guards**. Two parts cannot be faithfully anchored:
+
+1. **The positive deletion obligation (FR05 ESC1-6: "Delete personal identity too after obligations").** No numbered section of C20, C21 or C22, and no Build Plan section, requires deleting a personal identity. The nearest source is Contract 18 §12 (retention and final deletion), which is `SB-P-1.19` scope and has no row in this mission's FCTM. Anchoring it here would need a new source-coverage decision: a new anchor, or an allocation to `SB-P-1.19`.
+2. **The content of "all relevant obligations" (ESC1-6).** It depends on legal and retention-policy input and on commercial settlement (Contract 18, `SB-P-1.19`), none of which is in this mission's sources.
+
+R-2 therefore stays a critical-path **HOLD**. Coverage is not claimed complete, no row ID is invented, and nothing here permits an identity deletion or closes ESC-1.
+
+### 9.3 Verification (scripted)
+
+| Check | Result |
+|---|---|
+| FCTM rows, IDs, order | 373; identical to `main` |
+| Columns 1–6 | Unchanged on every row; column 7 changed on 22 rows vs `main`, and on `21-§19-6` only vs `a05630d` |
+| Dispositions | 228 / 113 / 2 / 30 / 0 |
+| Mapping | FA-1 to FA-18; 56 rows, all `IN SCOPE` for SB-P-1.12 |
+| Every FR05-cited row is in the mapping; every FA has a cited anchor | Yes |
+| Stage 7 register | Unchanged since `7321977` (228 rows; 176/51/1; 190/38) |
+| §19 row maps | Unchanged since `main` |
+
+### 9.4 Independent re-review requested
+
+Targeted Security delta re-review of FA-6, FA-7, FA-11, FA-15 to FA-18, the R-1, R-2 and R-3 text, and the `21-§19-6` citation. Unchanged sections may carry forward only if the reviewer verifies the delta.
+
+## 10. PR, head and CI
 
 The draft PR number, exact head and exact-head CI results are recorded in the PR handover comment, because a file cannot contain the hash of its own commit. The local Markdown Quality Gate and pre-commit gate were run on all three files before commit.
 
-## 10. Stop
+## 11. Stop
 
 Stopping for Mission Control's exact-head review and the independent Security & Permissions Architecture delta review. No self-approval, no marking ready and no merge.
