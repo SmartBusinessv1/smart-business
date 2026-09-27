@@ -41,11 +41,11 @@ The Blueprint, FCTM, contracts, Build Plan, Founder Records, Source 18, source r
 - `instruction1.9.md` and the MC-90 to MC-98 dispositions;
 - the Global Product Completion View.
 
-**Finding:** no approved numbered source in C20, C21, C22, the Build Plan, Source 11 or the constitutions states a positive personal-identity deletion obligation. Contract 18 (`SB-P-1.19` by Build Plan §9) is the only approved contract that addresses final deletion, and it speaks of the "account/business". Whether that includes the personal identity is not stated.
+**Finding:** the positive personal-identity deletion obligation is **approved** in Founder Record 05 ESC1-6. What is missing is a faithful **numbered** anchor: no numbered section of C20, C21, C22, the Build Plan, Source 11 or the constitutions states it. Contract 18 (`SB-P-1.19` by Build Plan §9) is the only approved contract that addresses final deletion, and it refers to account/business deletion without explicitly defining personal-identity deletion.
 
 ## 4. Unresolved source gaps
 
-- **R-2A:** the positive personal-identity deletion action has no approved source anchor for any mission. The responsible mission is not determined by any approved source.
+- **R-2A:** approved in FR05 ESC1-6; no identified faithful numbered contract or Build Plan anchor, and no explicit mission ownership, for the positive personal-identity deletion action. ESC1-8 allocates foundations and the merchant-facing Delete experience but not this action expressly; SB-P-1.19 is not treated as the accepted owner.
 - **R-2B:** no approved source defines "all relevant obligations". The input register (assessment §5) lists L-1 to L-3 (legal, privacy and retention), C-1 and C-2 (Finance & Payments; `SB-P-1.19`) and F-1 to F-3 (facts and owners), each with a stop condition. The Founder's 90-day business windows are not applied to identity retention.
 - **Crosswalk:** FA-15 to FA-18 cover only negative guards. The positive trigger, timing, obligations content, the deletion action's own acceptance and its proof owner are uncovered, so the Source 18 §3.2 completeness check cannot yet be applied to the positive action.
 - **ESC-1:** the `auth.users` cascade contradicts FA-11 and FA-15, and the Owner API delete path bypasses FA-18. No mechanism is designed.
@@ -54,7 +54,7 @@ The Blueprint, FCTM, contracts, Build Plan, Founder Records, Source 18, source r
 
 - **(i)** A supplementary row-keyed acceptance line on existing SB-P-1.12 sections. Not faithful as-is: those sections do not state a deletion obligation, so using them would invent an anchor.
 - **(ii)** A source amendment or new approved numbered source. Needs approval of the source text; creates a new row in the owning mission.
-- **(iii)** A cross-mission interface with `SB-P-1.19` under Contract 18. Requires Mission Control to confirm that Contract 18's "account" includes the personal identity; otherwise option (ii) applies.
+- **(iii)** A cross-mission interface with `SB-P-1.19` under Contract 18. Whether Contract 18's "account" includes the personal identity is a source-interpretation and mission-accounting issue for Mission Control, not a T1 product question. Stage 3 triggers (T3, T7, T8) apply only if an actual proposed change meets their definitions; if the reading would change what Contract 18 requires, option (ii) applies.
 
 For each option, the assessment states whether Source 18 §3.2 allows it as-is, the triggers, whether a Founder decision is needed, what is outside this actor's authority, and the FCTM impact.
 
@@ -69,10 +69,19 @@ For each option, the assessment states whether Source 18 §3.2 allows it as-is, 
 
 R-2 OPEN / CRITICAL PATH / SOURCE-COVERAGE HOLD. ESC-1 OPEN T8. `22-§20-2` `BLOCKED` and `IN SCOPE`; related durability held. G-6/T4 `UNVERIFIED`. G-4 design gated. R-1 and R-3 unchanged. No EIS, implementation, SQL, migration, identity deletion, payment or provider, or production action.
 
-## 8. PR, head and CI
+## 8. MC-99 correction
+
+Authority: MC-99 ([PR #662 comment 5855858511](https://github.com/SmartBusinessv1/smart-business/pull/662#issuecomment-5855858511)), on the same PR and the same two paths.
+
+1. **Approved decision versus missing anchor.** Assessment §3 row 1 and §6, and this report's §§3–4, now state that FR05 ESC1-6 is the approved source of the positive obligation. The gap is the absence of an identified faithful numbered contract or Build Plan anchor and of explicit mission ownership. SB-P-1.19 is not implied as the owner.
+2. **No manufactured T1.** Option (iii) now treats the Contract 18 "account" reading as a source-interpretation, coverage and mission-accounting issue. T3, T7 or T8 apply only where an actual proposed change meets their definitions. Option (i)'s loose "T8 source-fidelity" wording was also replaced: an unfaithful anchor is a source-accounting error, not a trigger.
+
+The 24 evidence entries and blobs, the options (still unranked), the specialist-input register and all holds are unchanged.
+
+## 9. PR, head and CI
 
 The draft PR number, exact head, blobs and exact-head CI results are recorded in the PR handover comment, because a file cannot contain the hash of its own commit. The local Markdown Quality Gate and pre-commit gate were run on both files before commit.
 
-## 9. Stop
+## 10. Stop
 
 Stopping for Mission Control's exact-head review and next source-coverage disposition. No self-approval, no marking ready and no merge.
