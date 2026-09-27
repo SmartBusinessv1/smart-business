@@ -4,7 +4,7 @@
 **Prepared by:** Claude Code, MC-02-appointed Definition Actor, evidence assessor and documentary preparer only (MC-78, `communication/live/instruction1.7.md`, work package `SB-P-1.12-WP-ESC1-RECONCILIATION-ASSESSMENT`)
 **Prepared:** 2026-09-27
 **Canonical baseline:** `main@7a30afb1a41ed40189faf0fcd40390d1dea36ae2` (PR #656, MC-79)
-**Status:** `RECONCILIATION ASSESSMENT AND PROPOSAL — FOR MISSION CONTROL REVIEW — CHANGES NOTHING — NO T1/T7 CLASSIFICATION, NO G-4 CLOSURE, NO T3 ROW ACCEPTANCE`
+**Status:** `RECONCILIATION ASSESSMENT AND PROPOSAL — FOR MISSION CONTROL REVIEW — CHANGES NOTHING — NO SOURCE 18 TRIGGER DETERMINATION, NO G-4 CLOSURE, NO T3 ROW ACCEPTANCE`
 
 ## 1. Scope and evidence
 
@@ -77,28 +77,27 @@ This assessment identifies what would need reconciling after Founder Record 05 (
 | Scheduled and final deletion, "controlled irreversible deletion process", "audit/proof of deletion" | C18 §6 line 70; §12 lines 164–175 | ESC1-3, ESC1-4, ESC1-7 |
 | Retention and deletion duration unresolved | C18 §12 line 175; Build Plan §15 line 938 | ESC1-2 to ESC1-4 (the three 90-day periods) |
 
-### 3.3 Evidence for Mission Control's T1-or-T7 classification (not classified here)
+### 3.3 Evidence for Mission Control's Source 18 trigger determination (not determined here)
 
-Source 18 lines 271 (T1) and 277 (T7) define the triggers.
+**Source 18 vocabulary (§6 Stage 3, the trigger list).**
 
-**Evidence consistent with T1 (clarification of an approved requirement):**
+- **T1** (line 271): "an unresolved product question that no approved source answers".
+- **T3** (line 273): "a new product decision, or an approved-unresolved Build Plan or Phase 1 guide decision that the mission needs".
+- **T7** (line 277): "a proposed omission, deferral, pull-forward, simplification or reclassification of any approved requirement, including any change of its build commitment, commercial classification or mission assignment".
 
-- C22 §20 does not define how long history lasts or say that it can never be deleted.
-- C18 §§6 and 12, which are approved sources, already contemplate scheduled or final deletion, a controlled irreversible deletion process and proof of deletion.
-- The retention and deletion duration was an acknowledged unresolved Founder decision (C18 §12 line 175; Build Plan §15 item 6), which FR05 now answers.
+T1 and T7 are not an exhaustive pair, and neither is a general "clarification" trigger. The evidence falls into three distinct categories. Mission Control reserves the determination.
 
-**Evidence consistent with T7 (change to an approved requirement):**
+**(a) A previously unresolved decision, now answered by FR05.** The retention and deletion duration was recorded as unresolved in approved sources (C18 §12 line 175; Build Plan §15 item 6, line 938). FR05 ESC1-2 to ESC1-4 now answer it. Mission Control determines which Source 18 wording applies to that answer (for example T1, or T3's "approved-unresolved Build Plan … decision") and how it is recorded, including for SB-P-1.19.
 
-- The FCTM row `22-§20-2` states the durability obligation for SB-P-1.12 with no deletion carve-out, and C21 §19 audit rows likewise have none.
-- FR05 ESC1-4 "Delete now" allows history to end at the merchant's request, which could be read as narrowing durability for this mission's rows.
+**(b) Cross-source interpretation that changes no requirement.** C22 §20 (line 363) requires historical records to be durable, and does not state how long they last or that they can never be deleted. C18 §6 (line 70) and §12 (lines 164–175), also approved, already contemplate scheduled or final deletion, a controlled irreversible deletion process and proof of deletion. If Mission Control reads these sources as consistent, with durability holding until a governed deletion that the approved lifecycle permits, then no approved requirement changes and the `22-§20-2` and C21 §19 rows keep their current wording and disposition. On that reading, no trigger arises from the interpretation itself.
 
-**Distinctions to keep whichever classification is chosen:**
+**(c) An actual T7 change, only if one is proposed.** A T7 would arise only if a change to an approved requirement were proposed, such as narrowing, reclassifying or reassigning `22-§20-2` or `21-§19-1`–`21-§19-8`. This assessment proposes none. Evidence that could prompt such a proposal: the FCTM row `22-§20-2` (line 238) and the C21 §19 rows (lines 125–132) state durability with no deletion exception, and FR05 ESC1-4 "Delete now" lets history end at the merchant's request. If Mission Control finds that a T7 change is needed, Source 18 requires a Founder decision, and Mission Control determines whether FR05 already constitutes it.
+
+**Distinctions to keep in every case:**
 
 - Lawful, intentional, governed deletion under FR05 is different from the incidental cascade loss described in ESC-1 (Blueprint §21.1 line 1221; SEC-01 §1).
-- `BLOCKED` on `22-§20-2` reflects the unresolved safe-durability architecture, not the product policy. Classifying T1 or T7 does not by itself unblock the row.
-- `22-§20-2` stays `IN SCOPE` either way.
-
-**If Mission Control classifies T7:** Source 18 requires a Founder decision for the change. Mission Control determines whether FR05 already constitutes that decision or whether an explicit confirmation is needed.
+- `BLOCKED` on `22-§20-2` reflects the unresolved safe-durability architecture, not the product policy. No trigger determination by itself unblocks the row.
+- `22-§20-2` stays `IN SCOPE` in every case.
 
 ## 4. Delta 3 — New Founder-approved behaviour (T3 candidates)
 
@@ -132,7 +131,7 @@ Every currently `IN SCOPE` row stays `IN SCOPE`. Nothing below is changed by thi
 | §8.1, §8.2 | 182–192 | G-4 answer |
 | §8.13 | 234 | Transfer completion as a revalidation point, if accepted |
 | §8.15, §8.23 | 244–278 | Audit of transfer and of permitted deletion |
-| §8.26 | 288 | `22-§20-2` wording, after the T1-or-T7 classification |
+| §8.26 | 288 | `22-§20-2` wording, only if Mission Control's trigger determination (Section 3.3) requires a change |
 | §11 Out of Scope | 366 | SB-P-1.19 experience items, if recorded there |
 | §12 Dependencies | 416 | SB-P-1.19 dependency on SB-P-1.12 foundations |
 | §13 Risks | 438 (443) | DC-1; ESC-1 risk |
@@ -160,7 +159,7 @@ Any change to Sections 20–21 is a Stage 7 change. It needs its own finding-sco
 | How is financial and audit durability, including authority audit and denial-audit durability, preserved until permitted deletion? | Design question | Blueprint §20.3 E5; SEC-S7-07 |
 | How does transfer completion deny the former Owner across every channel, API, export and stale or delegated path, with authority rechecked at execution? | Design question | FR05 ESC1-5; Blueprint §20.3 E4, E9 |
 | How are business isolation and other-business membership continuity kept when one identity is deleted or retained? | Design question | FR05 ESC1-1, ESC1-6 |
-| How is governed deletion recorded, and limited to what law and policy allow? | Design question; legal input not in repository | FR05 ESC1-7; C18 §12 |
+| How is governed deletion recorded, and limited to what law and policy allow? | Design question; depends on legal and retention-policy input not present in the repository | FR05 ESC1-7; C18 §12 |
 
 No SQL fix is proposed. The review should state its own evidence classes.
 
@@ -169,7 +168,7 @@ No SQL fix is proposed. The review should state its own evidence classes.
 | # | Decision | Who can decide | Basis | Notes |
 |---|---|---|---|---|
 | D-1 | Record G-4 as answered | Mission Control, administratively | FR05 ESC1-1 is the Founder decision | Blueprint and register text changes still need an authorized reconciliation |
-| D-2 | Classify `22-§20-2` and C21 §19 as T1 or T7 | Mission Control | Source 18 lines 271, 277 | If T7, a Founder decision is required; Mission Control decides whether FR05 suffices |
+| D-2 | Determine the Source 18 treatment of the durability evidence: (a) record the answered retention and deletion decision; (b) confirm, or not, that the sources read consistently with no requirement change; (c) decide whether any T7 change is proposed | Mission Control | Source 18 lines 271, 273, 277; Section 3.3 | Only a T7 change needs a Founder decision; Mission Control decides whether FR05 suffices |
 | D-3 | Accept T3-1 to T3-9 as obligations, and create or amend FCTM rows | Founder decision (FR05 exists) plus Mission Control; rows only through an authorized reconciliation | Source 18 line 273 and §3.2 | Owner per ESC1-8; no existing row moved |
 | D-4 | Record T3-7 to T3-9 and the retention duration in SB-P-1.19's intake | Mission Control, cross-mission | FR05 ESC1-8; C18 §12 | Outside this mission's FCTM |
 | D-5 | Authorize the independent security design review (Section 6) | Mission Control | MC-33 appointment; ESC-1 | Separate scope |
@@ -180,7 +179,9 @@ No SQL fix is proposed. The review should state its own evidence classes.
 
 No new Founder product question is needed to start reconciliation. FR05 decides the policy. What remains is Mission Control classification (D-1 to D-4) and design work (D-5).
 
-Items that FR05 leaves to later design, not to the Founder: a transfer requested while a Pause, cancellation or deletion period is running; the exact records that law requires to be kept; and payment handling on transfer and Pause (SB-P-1.19).
+Items that FR05 leaves to later design, not to the Founder: a transfer requested while a Pause, cancellation or deletion period is running; and payment handling on transfer and Pause (SB-P-1.19).
+
+**Legal and retention-policy input required before deletion design.** Which records must be kept, and for how long, is a matter for competent legal and retention-policy determination, not for engineering or design discretion. That input is needed before any deletion design is relied on. This assessment assumes no jurisdiction or retention period, and it does not create a new Founder product question: FR05 ESC1-7 already limits deletion to what law and the approved retention policy allow.
 
 ## 9. Holds
 

@@ -31,7 +31,7 @@ No change to the Blueprint, FCTM, contracts, Founder Records, ledgers, earlier l
 ## 3. What the assessment contains
 
 - **Delta 1, G-4:** the three ledger entries holding G-4, eight Blueprint locations, and five FCTM rows, each with its line, current state and needed change. All rows stay `IN SCOPE`.
-- **Delta 2, `22-§20-2` and the durability rows:** rows and lines; source wording compared with FR05 by citation; evidence for T1 and for T7 set out without classifying. It distinguishes governed deletion from incidental cascade loss, and notes that `BLOCKED` reflects the safe-durability architecture, not the policy.
+- **Delta 2, `22-§20-2` and the durability rows:** rows and lines; source wording compared with FR05 by citation; evidence set out in Source 18's own trigger vocabulary (T1, T3, T7), without determining the trigger (corrected under MC-80). It distinguishes governed deletion from incidental cascade loss, and notes that `BLOCKED` reflects the safe-durability architecture, not the policy.
 - **Delta 3, T3 candidates:** nine behaviours (T3-1 to T3-9), each with its FR05 decision, nearest existing source or row, a proposed candidate obligation and a proposed owner under ESC1-8. None is accepted and no existing row is moved. Dependency notes for SB-P-1.13, 1.15, 1.18 and 1.20 are kept separate.
 - **Delta 4:** Blueprint sections that would need amendment or review, and source and contract relationships, identified without rewriting them.
 - **Delta 5:** six questions for the independent Security & Permissions Architecture review, each with its evidence class. No SQL fix is proposed.
