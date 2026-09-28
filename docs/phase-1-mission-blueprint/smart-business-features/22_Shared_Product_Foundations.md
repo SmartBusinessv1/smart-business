@@ -554,3 +554,95 @@ Reconciled primarily from Founder-origin Section 7 Q87–100, supported by Secti
 ## 32. Completion Gate
 
 Shared Foundations are not a one-time implementation milestone. They are complete enough for a release only when the relevant foundation is proven and every feature mission demonstrably reuses/extends it without creating conflicting parallel truth, permissions or AI orchestration.
+
+---
+
+## 33. Personal Identity Lifecycle and Governed Deletion
+
+### 33.1 Positive personal-identity deletion
+
+Smart Business shall support governed deletion of a person's Smart Business personal identity after the approved deletion-eligibility conditions are satisfied.
+
+Deletion of the personal identity is separate from deletion or retention of business, financial, audit, employee, statutory or other records whose approved retention purpose survives.
+
+### 33.2 Eligibility conditions
+
+A personal identity may become eligible for deletion only when all of the following are true:
+
+1. the person owns no surviving business;
+2. the person's final formerly owned business has completed its permitted governed deletion lifecycle;
+3. the person has no remaining authorized membership in any other business;
+4. no ownership transfer involving a business still owned by the person remains pending or incomplete;
+5. no authoritatively established relevant obligation remains that genuinely requires the active personal identity to continue;
+6. required business, financial, authority, audit and statutory history can survive without preserving active authority;
+7. the deletion proceeds through an authorized, confirmed, recorded and auditable path.
+
+A deletion request, cancellation request, pause state, scheduled deletion, hidden state or support ticket is not by itself proof that these conditions are satisfied.
+
+### 33.3 Cross-mission evidence boundary
+
+SB-P-1.12 owns the authority, ownership, membership, isolation, historical-attribution and deletion-eligibility foundation for the personal identity.
+
+SB-P-1.19 owns the merchant-facing business/account lifecycle experience and the governed lifecycle evidence that a final owned business has actually completed permitted deletion.
+
+Personal-identity deletion eligibility therefore requires evidence from both domains where applicable. Neither SB-P-1.12 ownership state alone nor SB-P-1.19 lifecycle state alone is sufficient to prove final eligibility.
+
+### 33.4 Relevant obligations and retention
+
+A retained record does not automatically require the active personal identity to remain.
+
+Relevant obligations must be established under an applicable legal, privacy, retention, commercial, claims, security or lifecycle basis and must be distinguished from ordinary historical record retention.
+
+Where a surviving record legitimately requires personal attribution, only the minimum necessary attribution may survive, and that attribution must not grant authority, recreate membership or restore access.
+
+Retention periods must remain record-class-specific and must not be inferred from Smart Business business-lifecycle windows.
+
+### 33.5 History and attribution integrity
+
+Personal-identity deletion must not:
+
+- erase or corrupt required business, financial, authority or audit history;
+- destroy a transferred business;
+- reassign historical actions to another actor;
+- recreate current authority from historical attribution;
+- cascade-delete another person's business, employee history or other independently retained record.
+
+Historical attribution may survive only as a non-authorizing relationship subject to the applicable retention/privacy rule.
+
+### 33.6 Governed deletion and proof
+
+Personal-identity deletion must be deliberate, authorized, confirmed, recorded and independently auditable.
+
+Smart Business may retain bounded deletion-proof evidence where required for accountability, provided that the proof does not become a substitute copy of the deleted live profile and follows the applicable retention/privacy rule.
+
+Deletion must not rely on an uncontrolled direct-delete or authentication-cascade path.
+
+### 33.7 Legal and privacy boundary
+
+Smart Business shall distinguish:
+
+- deletion of active identity/account data;
+- retention of merchant statutory/business records;
+- Team LIPS's own independently required records;
+- legal/dispute holds;
+- security logs;
+- historical audit attribution.
+
+No universal legal-retention duration is created by this section.
+
+Any legally required retention period, personal-data minimization rule, backup treatment or other jurisdiction-specific requirement shall follow the applicable validated policy and law.
+
+### 33.8 Acceptance boundary
+
+The personal-identity deletion requirement is accepted only when:
+
+1. all eligibility conditions are authoritatively proven;
+2. final-owned-business deletion has governed lifecycle proof;
+3. no authorized membership remains;
+4. no incomplete ownership transfer remains;
+5. relevant obligations have been dispositioned;
+6. required retained history remains intact;
+7. surviving attribution grants no authority;
+8. deletion proof is recorded as required;
+9. no uncontrolled direct/cascade deletion path is used.
+
