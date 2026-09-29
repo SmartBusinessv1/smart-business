@@ -20,7 +20,7 @@ No other file changed. The final branch head and PR number are recorded in the P
 
 | Source | Blob |
 |---|---|
-| Contract 22, `22_Shared_Product_Foundations.md` (§33) | `1a025e8d03a77fb805ef4375abc1e44204a49528` |
+| Contract 22, `22_Shared_Product_Foundations.md` (§33) | `61e1bb91970be410e9daf1d3b80875c35f29db04` |
 | Founder Record 05 | `f52b5ebd8a4040d114f2ca8629f1a56bcbb608c2` |
 | Founder Record 06 | `c3a32f9eee7a4795813b0b9db04244ac25b19b5a` |
 | Founder Record 07 | `327e7db10fb966b13306ce9576c404343c69affb` |
@@ -35,7 +35,7 @@ No other file changed. The final branch head and PR number are recorded in the P
 | Source 18 v1.2 | `0945bda60a93c99909c3b7a247d5427ebe256011` |
 | Contract 18 (read only; not reinterpreted) | `6b96b10aee35036b18afb3bba7a4950e7b36b7fb` |
 
-**Source-conflict check.** Contract 22 §§1–32 are byte-identical to the Stage 1 baseline blob `ca4a0fda…`; the amendment appended only a trailing newline and §33. §33 is consistent with Founder Records 05 and 07, MC-109, MC-117 and the research report (identity versus record separation, non-authorizing attribution, bounded deletion proof, no universal period). No conflict was found.
+**Source-conflict check.** Contract 22 §§1–32 are byte-identical to the Stage 1 baseline blob `ca4a0fda…`; the amendment appended only a trailing newline and §33. §33, including the SEC-128-02 transfer-path correction merged in PR #675, is consistent with Founder Records 05 and 07, MC-109, MC-117 and the research report (identity versus record separation, non-authorizing attribution, bounded deletion proof, no universal period). No conflict was found.
 
 ## 3. Source-to-FCTM decomposition (39 rows)
 
@@ -46,7 +46,7 @@ Rule: each independently testable mandatory obligation of §33 has its own row; 
 | `22-§33-1` | §33.1 ¶1 | positive personal-identity deletion: governed deletion supported once eligibility conditions are satisfied | Obligation | SB-P-1.12, IN SCOPE | FA-19 | None; new positive obligation (FA-15–FA-18 are guards only) |
 | `22-§33-2` | §33.1 ¶2 | personal-identity deletion separate from deletion/retention of business, financial, audit, employee, statutory or other records whose retention purpose survives | Design constraint | SB-P-1.12, IN SCOPE | FA-19, FA-25 | `22-§20-2` (general durability) — related, distinct |
 | `22-§33-3` | §33.2 item 1 | eligibility: person owns no surviving business | Obligation | SB-P-1.12, IN SCOPE | FA-20 | `21-§4-1`, `22-§5-2` — Owner authority/identity primitives; FA-15 guard |
-| `22-§33-4` | §33.2 item 2 | eligibility: final formerly owned business has completed its permitted governed deletion lifecycle | Obligation | SB-P-1.12, IN SCOPE | FA-21 | None in SB-P-1.12; SB-P-1.19 evidence dependency |
+| `22-§33-4` | §33.2 item 2 | eligibility: final ownership ended through either governed final-business deletion or authoritative completion of a valid transfer with former-Owner authority/access ended and transferred-business survival/isolation preserved | Obligation | SB-P-1.12, IN SCOPE | FA-21 | Deletion branch uses SB-P-1.19 lifecycle proof; transfer branch uses authoritative transfer-completion and isolation/denial evidence |
 | `22-§33-5` | §33.2 item 3 | eligibility: no remaining authorized membership in any other business | Obligation | SB-P-1.12, IN SCOPE | FA-22 | `21-§5-2`, `22-§5-3`, `22-§5-4` — membership primitives; FA-12, FA-16 |
 | `22-§33-6` | §33.2 item 4 | eligibility: no pending or incomplete ownership transfer involving a business still owned by the person | Obligation | SB-P-1.12, IN SCOPE | FA-23 | `21-§4-1`, `21-§17`, `21-§18-*` — transfer foundations FA-1–FA-10 |
 | `22-§33-7` | §33.2 item 5 | eligibility: no authoritatively established relevant obligation genuinely requiring the active identity | Obligation | SB-P-1.12, IN SCOPE | FA-24 | None |
@@ -74,7 +74,7 @@ Rule: each independently testable mandatory obligation of §33 has its own row; 
 | `22-§33-29` | §33.7 | no universal legal-retention duration is created | Negative check | SB-P-1.12, IN SCOPE | FA-29 | Covered by the obligation row it tests |
 | `22-§33-30` | §33.7 final ¶ | legally required retention periods, personal-data minimization, backup treatment and jurisdiction-specific requirements follow the applicable validated policy and law | Obligation | SB-P-1.12, IN SCOPE | FA-19, FA-29 | Covered by the obligation row it tests |
 | `22-§33-31` | §33.8 item 1 | acceptance: all eligibility conditions authoritatively proven | Acceptance item | SB-P-1.12, IN SCOPE | FA-20 | Covered by the obligation row it tests |
-| `22-§33-32` | §33.8 item 2 | acceptance: final-owned-business deletion has governed lifecycle proof | Acceptance item | SB-P-1.12, IN SCOPE | FA-21 | Covered by the obligation row it tests |
+| `22-§33-32` | §33.8 item 2 | acceptance: final-ownership exit has governed proof, via either final-business deletion or completed valid transfer with former-Owner authority ended and surviving-business isolation preserved | Acceptance item | SB-P-1.12, IN SCOPE | FA-21 | Covered by the obligation row it tests |
 | `22-§33-33` | §33.8 item 3 | acceptance: no authorized membership remains | Acceptance item | SB-P-1.12, IN SCOPE | FA-22 | Covered by the obligation row it tests |
 | `22-§33-34` | §33.8 item 4 | acceptance: no incomplete ownership transfer remains | Acceptance item | SB-P-1.12, IN SCOPE | FA-23 | Covered by the obligation row it tests |
 | `22-§33-35` | §33.8 item 5 | acceptance: relevant obligations dispositioned | Acceptance item | SB-P-1.12, IN SCOPE | FA-24 | Covered by the obligation row it tests |
@@ -112,7 +112,7 @@ FCTM count statements updated: Correction note 9 (new), §G "Re-verified 2026-09
 | §12 | New cross-mission evidence bullet (§33.3, Founder Record 07) |
 | §14 | "267 total" |
 | §15 scope of proof | "All 267 `IN SCOPE` rows" |
-| §15 mapping | New FA-19 to FA-29 (positive action; no surviving business; SB-P-1.19 final-deletion proof; no membership; no incomplete transfer; obligations dispositioned; history survives; non-authorizing minimal attribution; governed, recorded path and bounded proof; no uncontrolled direct or cascade deletion; legal and retention boundary) |
+| §15 mapping | New FA-19 to FA-29 (positive action; no surviving business; governed final-ownership-exit proof for either deletion or completed valid transfer; no membership; no incomplete transfer; obligations dispositioned; history survives; non-authorizing minimal attribution; governed, recorded path and bounded proof; no uncontrolled direct or cascade deletion; legal and retention boundary) |
 | §15 R-2 referral | Rewritten (Section 7) |
 | §18 | Change-log row 0.6 |
 | §19 | Contract 22 baseline notes the §33 blob; new "Contract 22 §33 references" paragraph; eight §33 row-map lines; Contract 22 header 151 rows; total 412; new Governance History row |
