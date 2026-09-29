@@ -570,7 +570,7 @@ Deletion of the personal identity is separate from deletion or retention of busi
 A personal identity may become eligible for deletion only when all of the following are true:
 
 1. the person owns no surviving business;
-2. the person's final formerly owned business has completed its permitted governed deletion lifecycle;
+2. the person's final ownership has ended through either (a) completion of the permitted governed deletion lifecycle for the final owned business, or (b) authoritative completion of a valid ownership transfer, after which the former Owner has no continuing authority or access to the transferred business and that business continues independently under the new Owner;
 3. the person has no remaining authorized membership in any other business;
 4. no ownership transfer involving a business still owned by the person remains pending or incomplete;
 5. no authoritatively established relevant obligation remains that genuinely requires the active personal identity to continue;
@@ -637,7 +637,7 @@ Any legally required retention period, personal-data minimization rule, backup t
 The personal-identity deletion requirement is accepted only when:
 
 1. all eligibility conditions are authoritatively proven;
-2. final-owned-business deletion has governed lifecycle proof;
+2. the final-ownership exit has governed proof: either final-owned-business deletion lifecycle proof, or authoritative proof of a completed valid ownership transfer with former-Owner authority ended and transferred-business survival and isolation preserved;
 3. no authorized membership remains;
 4. no incomplete ownership transfer remains;
 5. relevant obligations have been dispositioned;
