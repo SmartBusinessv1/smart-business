@@ -604,3 +604,22 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Locked target:** `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`.  
 **Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.  
 **Next action after merge:** Mission Control verifies the lock crossing, then separately decides Stage 9 EIS authorization.
+
+## H-38 — Claude Code to Mission Control: MC-148 Stage 9 EIS draft submitted
+
+**Prepared:** 2026-09-30
+**From:** Claude Code (Source 18 §4.4 EIS owner, work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`)
+**To:** Mission Control
+**Status:** `STAGE 9 EIS DRAFT SUBMITTED — DRAFT PR AWAITING MISSION CONTROL STAGE 10 REVIEW — EIS NOT LOCKED — ESC-1 T8 OPEN — T8-EIS-1 RAISED.`
+**Authority:** MC-148 (`communication/live/instruction1.23.md`), effective through PR #686 and Mission Control's verification of it.
+**Git actions:** branch `mission/SB-P-1.12-stage9-eis-draft` from `main@24730a684f7ab8d0550066db1ad1acdde0128192`; one commit; one DRAFT PR.
+**Files created or modified:**
+
+- new `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`;
+- new `claude-code/36-stage9-eis-creation-report.md`;
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.23.md`.
+
+**Unchanged:** the locked Blueprint, the FCTM, source contracts, Founder Records, Security reports, Mission Control records, code, schema, SQL and migrations.
+**Handover:** `communication/live/report1.23.md`, paired with `communication/live/instruction1.23.md`.
+**Next authorized action:** Mission Control Stage 10 review. No self-merge.

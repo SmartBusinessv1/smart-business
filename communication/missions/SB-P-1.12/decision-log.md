@@ -317,3 +317,14 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - ESC-1 stays open T8, and `22-§20-2` stays `BLOCKED`. Stage 7 is not accepted, and Stage 8 is not authorized.
 
 | MC-146 | **Stage 8 Founder approval accepted; Blueprint lock authorized.** Founder explicitly approved the complete SB-P-1.12 Sections 1–21 Blueprint and authorized Stage 8 lock. Lock freezes FCTM disposition, build commitment, commercial classification and mission assignment while preserving ESC-1 OPEN T8, `22-§20-2` BLOCKED / IN SCOPE, G-6/T4 UNVERIFIED and deferred professional legal/privacy/retention validation. No EIS or implementation authority follows automatically. | `founder/08-stage8-blueprint-lock-approval.md`; `mission-control/27-stage8-founder-approval-and-blueprint-lock.md` | APPROVED — LOCK-ONLY PR / HUMAN MERGE REQUIRED |
+
+## MC-147 and MC-148 — Stage 8 lock crossing verified; Stage 9 EIS authorized (record)
+
+**Date:** 2026-09-30
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#685](https://github.com/SmartBusinessv1/smart-business/pull/685) (MC-146 lock record; MC-147 verification); PR [#686](https://github.com/SmartBusinessv1/smart-business/pull/686) (MC-148, `communication/live/instruction1.23.md`).
+
+- **Blueprint lock:** the Blueprint is `APPROVED — LOCKED` at `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md` (blob `77d52096c020668311b039721a4de9248ddd460e`).
+- **Stage 9 authorization:** MC-148 authorized Stage 9 EIS creation under work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`, with Stage 10 Mission Control review required.
+- **Unchanged holds:** ESC-1 OPEN T8; `22-§20-2` `BLOCKED`; G-6/T4 `UNVERIFIED`; legal validation deferred.
+- **Not authorized:** EIS lock, implementation package and implementation.
