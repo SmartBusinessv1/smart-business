@@ -295,3 +295,23 @@ The appointed Security & Permissions Architecture room re-reviewed head `67fee9b
 
 PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Security & Permissions Architecture room's MC-40, MC-42 and MC-44 reports canonical under `specialists/`. MC-44 recorded documentary sufficiency of the Stage 7 security documentation at PR #641 head `f791b6f29adb412eb99df8f121a25433850971f0`, without certifying implementation or production. PR #644 (`main@fdb4f569411c50226a6b6816b11062a1a83cd230`) issued MC-50, which directed a non-rewriting merge of current `main` into the Stage 7 branch, retention of the current `main` live report, and factual status reconciliation only. ESC-1 T8 stays open, and no Stage 7 finding is accepted.
 
+
+## MC-137 to MC-143 — §33 Security review, R-2 closure and Stage 7 status dispositions (record)
+
+**Date:** 2026-09-30
+**Status:** Recorded here by Claude Code from repository and GitHub evidence. This entry is an index, not an authority record.
+**Authority:**
+
+- PR [#679](https://github.com/SmartBusinessv1/smart-business/pull/679): MC-137 ([comment 5907060906](https://github.com/SmartBusinessv1/smart-business/pull/679#issuecomment-5907060906)) and MC-140 ([comment 5907676965](https://github.com/SmartBusinessv1/smart-business/pull/679#issuecomment-5907676965)).
+- PR [#681](https://github.com/SmartBusinessv1/smart-business/pull/681): MC-138 ([comment 5907356400](https://github.com/SmartBusinessv1/smart-business/pull/681#issuecomment-5907356400)) and MC-139 ([comment 5907473253](https://github.com/SmartBusinessv1/smart-business/pull/681#issuecomment-5907473253)).
+- PR [#682](https://github.com/SmartBusinessv1/smart-business/pull/682): MC-141 closure record and MC-142 ([comment 5907896735](https://github.com/SmartBusinessv1/smart-business/pull/682#issuecomment-5907896735)).
+- PR [#683](https://github.com/SmartBusinessv1/smart-business/pull/683): MC-143, `communication/live/instruction1.22.md`.
+
+**Dispositions recorded:**
+
+- MC-137 classified the `transactions.creator_id → auth.users ON DELETE CASCADE` path, with the dependent `transaction_correction_events` cascade, as an additional technical manifestation of ESC-1 (open T8).
+- The targeted §33 Security review (`communication/live/report1.21.md`) found the MC-136 candidate security-acceptable and accepted that classification. It became canonical under MC-139.
+- PR #679 was human-merged at `main@c0de71d5bf92818b854494df9e1e787a6ceedfc0` (MC-140).
+- MC-141 closed the R-2 source-coverage gate, and MC-142 verified the crossing at `main@b40d7be248925323357473b59beb44c91acc0311`.
+- MC-143 dispositioned EQ-2/G-3, EQ-4/G-5 and EQ-6 for Stage 7. It resolved EQ-3/G-6 and EQ-5/G-7 while retaining them as downstream evidence gates.
+- ESC-1 stays open T8, and `22-§20-2` stays `BLOCKED`. Stage 7 is not accepted, and Stage 8 is not authorized.

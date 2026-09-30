@@ -574,3 +574,23 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Handover:** `communication/live/report1.1.md`, paired with `communication/live/instruction1.1.md`.
 **Next authorized action:** Mission Control exact-head review of PR #641. No self-merge.
 
+
+## H-36 — Claude Code to Mission Control: MC-143 Stage 7 final status reconciliation submitted
+
+**Prepared:** 2026-09-30
+**From:** Claude Code (Stage 7 Engineering Review owner, work package `SB-P-1.12-WP-S7-FINAL-STATUS-RECONCILIATION`)
+**To:** Mission Control
+**Status:** `MC-143 STATUS RECONCILIATION SUBMITTED — DRAFT PR AWAITING MISSION CONTROL REVIEW — R-2 SOURCE-COVERAGE GATE CLOSED — ESC-1 T8 OPEN — STAGE 7 NOT ACCEPTED.`
+**Authority:** MC-143 (`communication/live/instruction1.22.md`), effective through PR #683 and Mission Control's verification of it.
+**Git actions:** branch `mission/SB-P-1.12-stage7-final-status-reconciliation` from `main@1e958b383fcfb33b17504bf916a48427c5989068`; one commit; one DRAFT PR.
+**Files modified:**
+
+- the Blueprint (version 0.8, status wording only);
+- `claude-code/25-stage7-engineering-review-report.md` (new §18);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `claude-code/35-stage7-final-status-gate-reconciliation-report.md`;
+- new `communication/live/report1.22.md`.
+
+**Unchanged:** the FCTM, source contracts, Founder Records, Security reports and every register line.
+**Handover:** `communication/live/report1.22.md`, paired with `communication/live/instruction1.22.md`.
+**Next authorized action:** Mission Control review of the DRAFT PR. No self-merge.
