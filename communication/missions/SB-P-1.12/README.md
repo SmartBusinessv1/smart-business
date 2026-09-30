@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–6 COMPLETE — CANONICAL; MC-35 STAGE 7 ACTIVATION EFFECTIVE (PR #640, MC-37); STAGE 7 ENGINEERING REVIEW DRAFT (PR #641) CORRECTED UNDER MC-40, MC-41 AND MC-43 AND RECONCILED WITH CURRENT MAIN UNDER MC-50; INDEPENDENT SECURITY REVIEWS MC-40, MC-42 AND MC-44 PRESERVED (PR #643, MC-49), MC-44 RECORDING DOCUMENTARY SUFFICIENCY AT `f791b6f2`; ESC-1 T8 OPEN; NO STAGE 7 FINDING ACCEPTED; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED
+**Current status:** STAGES 1–6 COMPLETE — CANONICAL; STAGE 7 ENGINEERING REVIEW DRAFT (BLUEPRINT SECTIONS 20–21; 267 OF 267 `IN SCOPE` ROWS: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED`); GROUPED INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED (MC-40, MC-42, MC-44; `report1.19.md`; `report1.21.md`); R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED (MC-141, MC-142); STAGE 7 STATUS RECONCILED UNDER MC-143, AWAITING MISSION CONTROL FINAL STAGE 7 REVIEW; ESC-1 T8 OPEN (INCLUDING THE `transactions.creator_id` CASCADE, MC-137); `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; STAGE 7 NOT ACCEPTED; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -63,7 +63,7 @@ See [Mission Control decision 01](mission-control/01-stage1-communication-and-ac
 | 6c — Stage 7 prerequisite disposition and independent reviewer appointment gate (MC-30) | COMPLETE — CANONICAL (PR #638, MC-31B) | Claude Code, documentary drafter only; Mission Control decides; human merge required | [MC-30 decision record](mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md) | Proposed G-1 to G-8 dispositions; reviewer appointment `PENDING`; source ambiguities S-1 to S-7 flagged; no gate closed; Stage 7 not authorized |
 | 6d — Independent Security & Permissions Architecture reviewer appointment record (MC-33) | EFFECTIVE (PR #639, MC-34) | Claude Code, documentary preparer only; Mission Control decided | [MC-33 appointment record](mission-control/19-independent-security-reviewer-appointment-record.md) | Human-merged `2026-09-25T12:41:08Z`, `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c`; MC-34 post-merge verification; existing specialist room appointed; G-2 START prerequisite satisfied; the independent review is not complete |
 | 6e — Stage 7 Engineering Review activation record (MC-35) | EFFECTIVE (PR #640, MC-37) | Claude Code, documentary preparer only; Mission Control decided | [MC-35 activation record](mission-control/21-stage7-engineering-review-activation-record.md) | Human-merged `2026-09-26T09:15:55Z`, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`; MC-36 stop/resume correction; G-1 satisfied |
-| 7 — Engineering Review | DRAFT (PR #641) — CORRECTED UNDER MC-40, MC-41 AND MC-43; RECONCILED WITH CURRENT MAIN (MC-50); INDEPENDENT SECURITY DOCUMENTARY VERIFICATION RECORDED (MC-44); AWAITING MISSION CONTROL EXACT-HEAD REVIEW | Claude Code (Source 18 §4.4), with the appointed independent Security & Permissions Architecture room reviewing in parallel | [Blueprint v0.4 Sections 20–21](../../docs/phase-1-mission-blueprint/active/SB-P-1.12.md), [Stage 7 report](claude-code/25-stage7-engineering-review-report.md) | 228 of 228 `IN SCOPE` rows assessed: 176 `FEASIBLE`, 51 `CONDITIONAL`, 1 `BLOCKED` (`22-§20-2`, ESC-1 open T8 per MC-40), as proposals; 190 rows pending independent review; SEC-S7-01 to SEC-S7-09 reconciled (MC-41); no finding accepted |
+| 7 — Engineering Review | DRAFT — PR #641 CANONICAL; CONTRACT 22 §33 FINDINGS ADDED (PR #679, MC-140); GROUPED INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED; STATUS RECONCILED UNDER MC-143; AWAITING MISSION CONTROL FINAL STAGE 7 SUBSTANTIVE REVIEW | Claude Code (Source 18 §4.4), with the appointed independent Security & Permissions Architecture room | [Blueprint Sections 20–21](../../docs/phase-1-mission-blueprint/active/SB-P-1.12.md), [Stage 7 report](claude-code/25-stage7-engineering-review-report.md), [MC-143 reconciliation report](claude-code/35-stage7-final-status-gate-reconciliation-report.md) | 267 of 267 `IN SCOPE` rows: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED` (`22-§20-2`, ESC-1 open T8); 227 `PENDING`, 40 `N/R` as the historical review taxonomy; EQ-2 to EQ-5 resolved for Stage 7 by Mission Control (MC-143); R-2 source-coverage gate closed (MC-141, MC-142); Stage 7 not accepted |
 
 Stage 3 Brief authority became canonical on #625, Brief on #626, Founder Decision Record preparation on #627, Founder Decision Record/FCTM/gate review on #628, and Stage 4 Blueprint drafting authority on #629. (Historical, as of MC-19; superseded by the two sentences that follow.) The DRAFT Blueprint itself remains draft until Mission Control's Stage 5 Product Review. Stage 5 has since approved Sections 1–19 only (MC-21, PR #630), and the v0.3 reconciliation is canonical (MC-27, PR #635). The complete Sections 1–21 Blueprint remains unfinished and unlocked. The Stage Ledger is only an index and approves, locks, authorizes, accepts and closes nothing (Source 18 §10).
 
@@ -156,3 +156,23 @@ The rows and notes above that describe the MC-35 record as a DRAFT are historica
 ## Current MC-50 note (2026-09-26)
 
 Earlier rows and notes that describe the independent Security review as outstanding or pending are historical. The appointed room's MC-40, MC-42 and MC-44 reports are canonical under `specialists/` (PR #643, MC-49), and MC-44 recorded documentary sufficiency of the Stage 7 security documentation at PR #641 head `f791b6f29adb412eb99df8f121a25433850971f0`, without certifying implementation or production. Under MC-50, current `main@fdb4f569411c50226a6b6816b11062a1a83cd230` was merged into the Stage 7 branch; the live-report conflict was resolved by keeping the current `main` version. Claude Code's handover is `communication/live/report1.1.md`. ESC-1 T8 stays open, `22-§20-2` stays `BLOCKED` and `IN SCOPE`, and G-3 to G-8, S-2 to S-7 and G-6/T4 `UNVERIFIED` are unchanged. The Blueprint was not edited under MC-50.
+
+## Current MC-143 note (2026-09-30)
+
+Earlier rows and notes that describe R-2 as open, the independent Security review as outstanding, or the `transactions.creator_id` cascade as unclassified are historical. The present facts are:
+
+- PR #679 added the Contract 22 §33 Stage 2 inventory and Stage 7 findings (MC-140).
+- The targeted Security review `communication/live/report1.21.md` is canonical (PR #681; MC-138, MC-139). MC-137 classified the `transactions.creator_id` cascade as an additional manifestation of ESC-1.
+- Mission Control closed the R-2 source-coverage gate ([closure record](mission-control/25-r2-source-coverage-gate-closure-record.md), PR #682; MC-141, MC-142).
+- Under MC-143 (`communication/live/instruction1.22.md`), Claude Code reconciled the Stage 7 status wording in Blueprint version 0.8 and the [Stage 7 report](claude-code/25-stage7-engineering-review-report.md) §18. Details are in the [MC-143 reconciliation report](claude-code/35-stage7-final-status-gate-reconciliation-report.md). No register line or FCTM row changed.
+
+The handover is `communication/live/report1.22.md`. The following holds are unchanged:
+
+- ESC-1 stays open T8.
+- `22-§20-2` stays `BLOCKED` and `IN SCOPE`.
+- G-6/T4 stays `UNVERIFIED`.
+- Professional legal, privacy and retention validation stays deferred.
+- Stage 7 is not accepted.
+- Stage 8, Blueprint lock, EIS, implementation and production are not authorized.
+
+This README is an index, not an authority record.

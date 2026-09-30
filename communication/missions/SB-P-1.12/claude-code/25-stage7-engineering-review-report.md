@@ -231,3 +231,40 @@ So deleting a person's Auth user can initiate cascading deletion of the transact
 **Holds.** R-2 OPEN. ESC-1 OPEN T8. `22-§20-2` `BLOCKED` / `IN SCOPE`. G-6/T4 `UNVERIFIED`. G-4 design gated.
 
 `SB-P-1.12 STAGE 7 — CONTRACT 22 §33 FINDINGS PREPARED (MC-136); NOT ACCEPTED; INDEPENDENT SECURITY REVIEW OF THE §33 DELTA REQUIRED; R-2 OPEN; ESC-1 T8 OPEN; NO STAGE 7 COMPLETION, STAGE 8, BLUEPRINT LOCK, EIS, IMPLEMENTATION, SCHEMA, SQL, MIGRATION, IDENTITY-DELETION RUNTIME OR PRODUCTION AUTHORITY.`
+
+## 18. MC-143 final status reconciliation (2026-09-30)
+
+**Authority.** MC-143, `communication/live/instruction1.22.md`, work package `SB-P-1.12-WP-S7-FINAL-STATUS-RECONCILIATION`, on canonical `main@1e958b383fcfb33b17504bf916a48427c5989068` (PR #683 merge; named baseline `b40d7be248925323357473b59beb44c91acc0311`, which differs only by the instruction file). This section is a factual status update. It changes no finding, feasibility value, independent-review label or FCTM row. Earlier statements in this report that describe the independent Security review as outstanding or pending, R-2 as open, or the `transactions.creator_id` observation as unclassified are **historical at their drafting time** and are kept as provenance.
+
+**Current facts.**
+
+- **R-2.** The source-coverage gate is CLOSED / SATISFIED. It was closed by `mission-control/25-r2-source-coverage-gate-closure-record.md` (MC-141, PR #682) and verified under MC-142. The closure is documentary only: ESC-1 stays open, legal professional validation stays deferred, no implementation or runtime proof exists, and cross-mission runtime evidence remains future work.
+- **Independent Security review.** The required grouped review is complete and canonically dispositioned:
+  - MC-40 original, MC-42 delta re-review and MC-44 final focused verification (PR #643, MC-49);
+  - the targeted SEC-128-02 re-review (`communication/live/report1.19.md`);
+  - the targeted §33 and E16 review of head `193ebce8` (`communication/live/report1.21.md`, MC-137; dispositioned under MC-138; canonical under MC-139, PR #681).
+
+  PR #679 was human-merged at exact head `79ea7d483a67b8dc9ab6733a1092a48da69b9cb2` (MC-140), with the reviewed blobs unchanged. The register's `PENDING` and `N/R` labels are kept as the historical review taxonomy. Documentary review is not implementation verification.
+- **MC-137 classification.** The `transactions.creator_id → auth.users ON DELETE CASCADE` path, with the dependent `transaction_correction_events → transactions ON DELETE CASCADE` consequence, is an additional technical manifestation of the existing ESC-1 open T8. It is not a separate Product Truth escalation. The Security review accepted this (SEC-137-12).
+- **EQ-2 / G-3.** Resolved for Stage 7 as a Mission Control technical-feasibility boundary under Founder Record 04. Derived disclosure of an undelegated Reference Cost or margin value is prohibited disclosure. The mechanism is an EIS choice. Later evidence that no faithful solution exists would trigger T8 and Founder routing.
+- **EQ-3 / G-6.** Resolved for Stage 7. Production verification is not required to accept the repository-based review or to request Stage 8. It is retained as a downstream evidence gate, and G-6/T4 stays `UNVERIFIED`.
+- **EQ-4 / G-5.** Resolved for Stage 7. The database isolation and security suite is a mandatory mission verification requirement for affected implementation. Branch protection is unchanged.
+- **EQ-5 / G-7.** Resolved for Stage 7 and retained as a downstream evidence gate for the EIS or implementation-preparation cycle. No provider or production access is authorized.
+- **EQ-6.** Informational and non-blocking. The design must not rely on token-embedded permission truth.
+- **ESC-1.** Open T8. `22-§20-2` stays `BLOCKED` and `IN SCOPE`, and the affected durability conclusions stay held inside their rows. This does not invalidate the Engineering Review, but it prevents any claim that the deletion and durability surface is implementation-ready. No new Founder decision is currently required (MC-143 §4).
+
+**Unchanged totals (267 rows).** The totals are 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD` and 1 `BLOCKED`, with 227 `PENDING` and 40 `N/R`. The 267 register lines are byte-identical to `main`, and the FCTM blob is `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`.
+
+**Blueprint (version 0.8).** Only status wording changed. The affected sections are:
+
+- the Metadata rows;
+- the §15 R-2 referral and the R-2 status in FA-12 and FA-15 to FA-18;
+- §20.1, and E1, E3 and E16 in §20.3;
+- the §20.5 intro, the IR status note and the §20.5.1 notes;
+- §21.1 EQ-2 to EQ-6 and ESC-1, and §21.2 ER-5;
+- the §21.4 gates, T1 and T8;
+- §21.5 and §21.6.
+
+The details are in `claude-code/35-stage7-final-status-gate-reconciliation-report.md`.
+
+`SB-P-1.12 STAGE 7 — STATUS RECONCILED (MC-143); READY FOR MISSION CONTROL FINAL STAGE 7 SUBSTANTIVE REVIEW; NOT SELF-ACCEPTED; R-2 SOURCE-COVERAGE GATE CLOSED; ESC-1 T8 OPEN; 22-§20-2 BLOCKED; G-6/T4 UNVERIFIED; NO STAGE 8, BLUEPRINT LOCK, EIS, IMPLEMENTATION, MIGRATION, DELETION RUNTIME OR PRODUCTION AUTHORITY.`
