@@ -594,3 +594,13 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Unchanged:** the FCTM, source contracts, Founder Records, Security reports and every register line.
 **Handover:** `communication/live/report1.22.md`, paired with `communication/live/instruction1.22.md`.
 **Next authorized action:** Mission Control review of the DRAFT PR. No self-merge.
+
+
+### H-37 — Stage 8 Founder approval / Blueprint lock crossing
+
+**From:** Mission Control  
+**To:** Founder / authorized human merge  
+**Status:** Stage 8 Founder approval granted; lock-only repository transition prepared.  
+**Locked target:** `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`.  
+**Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.  
+**Next action after merge:** Mission Control verifies the lock crossing, then separately decides Stage 9 EIS authorization.
