@@ -315,3 +315,5 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - MC-141 closed the R-2 source-coverage gate, and MC-142 verified the crossing at `main@b40d7be248925323357473b59beb44c91acc0311`.
 - MC-143 dispositioned EQ-2/G-3, EQ-4/G-5 and EQ-6 for Stage 7. It resolved EQ-3/G-6 and EQ-5/G-7 while retaining them as downstream evidence gates.
 - ESC-1 stays open T8, and `22-§20-2` stays `BLOCKED`. Stage 7 is not accepted, and Stage 8 is not authorized.
+
+| MC-146 | **Stage 8 Founder approval accepted; Blueprint lock authorized.** Founder explicitly approved the complete SB-P-1.12 Sections 1–21 Blueprint and authorized Stage 8 lock. Lock freezes FCTM disposition, build commitment, commercial classification and mission assignment while preserving ESC-1 OPEN T8, `22-§20-2` BLOCKED / IN SCOPE, G-6/T4 UNVERIFIED and deferred professional legal/privacy/retention validation. No EIS or implementation authority follows automatically. | `founder/08-stage8-blueprint-lock-approval.md`; `mission-control/27-stage8-founder-approval-and-blueprint-lock.md` | APPROVED — LOCK-ONLY PR / HUMAN MERGE REQUIRED |
