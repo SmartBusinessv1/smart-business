@@ -1,4 +1,4 @@
-# SB-P-1.12 — Stage 2 Independent Obligation Inventory (CORRECTED — MC-06A, MC-08, MC-09, MC-10, MC-11)
+# SB-P-1.12 — Stage 2 Independent Obligation Inventory (CORRECTED — MC-06A, MC-08, MC-09, MC-10, MC-11; Contract 22 §33 addendum MC-136)
 
 **Correction note (2026-09-22, second correction, round 1).** Mission Control's re-review ([PR #624 comment `5776468726`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5776468726), Blocker MC-06A) found this document's §2 explicitly derived its counts "from the corrected FCTM's own row IDs" and then "reconciled" against those same IDs — circular, and incapable of detecting an obligation the FCTM itself never enumerated. That revision replaced it with a genuinely source-first pointer inventory: each section's obligations were listed by re-reading the actual contract text, not by counting or grouping the FCTM's row IDs.
 
@@ -9,6 +9,8 @@
 **Correction note 4 (2026-09-22, fourth correction, round 4 — MC-10).** Mission Control's next re-review ([PR #624 comment `5778960338`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5778960338)) accepted MC-09A/B/C's repairs but found `22-§12` and `22-§16` remained single whole-section `IN SCOPE (default; unresolved)` placeholder rows — the same defect class as round 3's mixed-section findings, just not yet closed for these two sections: a whole-section single row is not permitted under Source 18 §3.2 item 2 when the section carries a non-`IN SCOPE` disposition, and these placeholders, by asserting `IN SCOPE` while exempting themselves from full enumeration, were never itemized to begin with. Both re-read from source: §12 (Notification Foundation) has 9 separately verifiable items, §16 (Location Foundation) has 7 (the "approved uses" bullets are illustrative examples per Mission Control's own framing, not independent obligations). Of these 16, only one — §16's "reject continuous employee surveillance" — ties to an obligation this mission already owns (`21-§21-1`); the other 15 have no Build Plan naming source and are not this mission's own build, so they are disposed `UNRESOLVED FOUNDER DECISION` rather than defaulted to `IN SCOPE` (the error MC-10 named) or guessed as `ASSIGNED TO LATER MISSION` without a real citation. `22-§29-9` is reconciled separately, since it names attendance/delivery specifically (already owned by `SB-P-1.18`), independent of §16's own foundation-ownership question. **This round's `UNRESOLVED FOUNDER DECISION` labeling was itself corrected in round 5 (MC-11) below — the underlying finding (no approved owner) was right, the disposition value was wrong.**
 
 **Correction note 5 (2026-09-22, fifth correction, round 5 — MC-11).** Mission Control's next re-review ([PR #624 comment `5779330365`](https://github.com/SmartBusinessv1/smart-business/pull/624#issuecomment-5779330365)) accepted round 4's 16-item enumeration but found the 15-row `UNRESOLVED FOUNDER DECISION` disposition itself was not Source 18 vocabulary-compliant. Source 18 §3.2 item 3's disposition table defines `UNRESOLVED FOUNDER DECISION` as "on the approved unresolved list" — independently re-verified against the actual Build Plan document (§15, "Current Unresolved Founder Decisions"): its nine named topics are trial policy, Voice Plus/Staff-HR/Smart-Stock/Smart-Order-Delivery pricing, retention duration, employee KYC, wholesaler/marketplace expansion and third-party underwriting; neither "Notification" nor "Location" appears anywhere in the document. These 15 rows are newly-discovered, previously-uncited gaps, not items on that approved list — the correct Source 18 §3.2 item 10 value is `ESCALATED` ("a conflict or proposed change awaiting the Founder"). All 15 relabeled; pointer counts, source text and every other figure in this document are unchanged (§12 still 9 pointers, §16 still 7). No approved assignment source was found for any of the 15 on this recheck — none is reassigned to an existing mission.
+
+**Correction note 6 (2026-09-30, Contract 22 §33 source accounting — MC-136, `communication/live/instruction1.20.md`; DRAFT pending Mission Control independent review and human merge).** Canonical Contract 22 now carries §33 "Personal Identity Lifecycle and Governed Deletion" (blob `61e1bb91970be410e9daf1d3b80875c35f29db04` on `main@62514a23f946e0bba42b8494d2290817eec0d7ae`, including the PR #675 clarification of §33.2 item 2 and §33.8 item 2). The canonical FCTM (blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`, merged through PR #673) represents it as 39 rows, `22-§33-1`–`22-§33-39`. This addendum counts §33's source pointers independently from the contract text, using the discipline in §2. It keeps the source count and the FCTM row count as distinct figures and explains each difference (§2, §3, §4). The pre-§33 figures in §§1–4 (371 source pointers; 373 FCTM rows; baseline `dc5fe69f`) are kept as historical context. The **current** figures are stated separately, labelled "current (MC-136)". No FCTM row was added, removed, renumbered, reclassified or reassigned by this addendum.
 
 **Purpose (Source 18 §3.2 item 6):** an inventory of pointers into the source text, used to test the FCTM's completeness by set comparison. It restates no requirement text and is not a second matrix.
 
@@ -29,6 +31,8 @@
 | 7 — Stock, Supplier & Reorder Intelligence (limited opening) | `65ad91b202def9cb4f42b97383bcc58475f59015` | §1–§18 (18) | §15: 12 unnumbered items, ordered 1–12 |
 
 **129 numbered sections; 60 acceptance scenarios.**
+
+**Current (MC-136).** Contract 22 is now blob `61e1bb91970be410e9daf1d3b80875c35f29db04`, with §1–§33 (33 numbered sections). The current total is **130 numbered sections**. The acceptance-scenario count stays **60**: §33.8 is an acceptance-boundary list inside §33, not an addition to §29's numbered scenarios, and its nine items are counted as source pointers in §2. The other four contract blobs above are unchanged.
 
 ## 2. Source-first pointer inventory — every in-scope/partial section's obligations, listed from the contract text
 
@@ -84,7 +88,19 @@ Each entry below cites the **exact enumerated items the contract text itself pre
 - **§29 Acceptance Scenarios:** 14 pointers (the contract's own numbered list, items 1–14).
 - **§30–§32:** 3 pointers, non-enumerable content.
 
-**Contract 22 total: 4+9+10+5+9+5+9+1+7+1+1+1+4+2+7+1+2+7+10+14+3 = 112 pointers** (was 98; +8 for §12, +6 for §16). **This now matches the FCTM's actual 112 rows exactly.**
+**Contract 22 total: 4+9+10+5+9+5+9+1+7+1+1+1+4+2+7+1+2+7+10+14+3 = 112 pointers** (was 98; +8 for §12, +6 for §16). **This now matches the FCTM's actual 112 rows exactly.** (Historical: Contract 22 §§1–32 before §33.)
+
+- **§33 Personal Identity Lifecycle and Governed Deletion (current, MC-136): 43 pointers.** Counted from the contract text, one pointer per numbered item, bullet or free-standing paragraph. List lead-in sentences ("…only when all of the following are true:", "…must not:", "…shall distinguish:", "…is accepted only when:") are not counted separately.
+  - **§33.1:** 2 — ¶1 positive governed deletion; ¶2 identity deletion separate from retained records.
+  - **§33.2:** 8 — items 1–7 and the closing "not by itself proof" rule. Item 2, as clarified by PR #675, names two alternative ways one condition is satisfied: (a) governed deletion of the final owned business, or (b) authoritative completion of a valid ownership transfer. It is one pointer, consistent with §2's treatment of alternative means to one end (Contract 21 §7–§9).
+  - **§33.3:** 3 — ¶1 SB-P-1.12 ownership of the eligibility foundation; ¶2 SB-P-1.19 ownership of the lifecycle experience and final-business-deletion evidence; ¶3 two-domain evidence rule.
+  - **§33.4:** 4 — ¶1 a retained record does not require the active identity; ¶2 basis of relevant obligations; ¶3 minimum necessary, non-authorizing attribution; ¶4 record-class-specific retention.
+  - **§33.5:** 6 — five "must not" bullets and the closing non-authorizing-attribution paragraph.
+  - **§33.6:** 3 — ¶1 deliberate, authorized, confirmed, recorded and auditable; ¶2 bounded deletion proof; ¶3 no uncontrolled direct-delete or authentication-cascade path.
+  - **§33.7:** 8 — six distinctions; "no universal legal-retention duration"; "follow the applicable validated policy and law".
+  - **§33.8:** 9 — acceptance items 1–9 (item 2 as clarified by PR #675, one pointer).
+
+**Contract 22 current total (MC-136): 112 + 43 = 155 source pointers**, against **151 FCTM rows** (112 + 39). The −4 difference is explained in §3 and §4.
 
 ### Contract 20 (split — only §16/§22 are genuinely in-scope or SB-P-1.12-adjacent)
 
@@ -145,6 +161,20 @@ Each entry below cites the **exact enumerated items the contract text itself pre
 | Build Plan | 18 | 18 | 0 | — |
 | **Total** | **371** | **373** | **+2** | entirely attributable to Contract 17's two representation splits above |
 
+**Current figures (MC-136, after Contract 22 §33).** The table above is historical, before §33. The current figures are:
+
+| Contract | Source-derived pointer count | FCTM actual row count | Difference | Nature of any difference |
+|---|---|---|---|---|
+| 21 | 107 | 107 | 0 | — |
+| 22 | 155 (112 + §33: 43) | 151 (112 + §33: 39) | **−4 (FCTM has fewer rows)** | four §33 representation choices, traced in §4: two allocation paragraphs recorded in one row (−2), one paragraph split into two rows (+1), two restatements folded into one row (−2), one restatement folded into another row (−1) |
+| 20 | 47 | 47 | 0 | — |
+| 17 | 51 | 53 | +2 | unchanged: `17-§16` and `17-§22` scenario 10 splits |
+| 7 | 36 | 36 | 0 | — |
+| Build Plan | 18 | 18 | 0 | — |
+| **Total** | **414** | **412** | **−2** | net of Contract 17's +2 and Contract 22 §33's −4 |
+
+The current FCTM total is **412 rows**: 267 `IN SCOPE`, 113 `ASSIGNED TO LATER MISSION`, 2 `DELEGATED`, 30 `NOT APPLICABLE` and 0 `ESCALATED`, `grep`-counted from `03-stage2-populated-fctm.md` (blob `1650ff95`). Contract 22 §33 contributes exactly **39** representation rows, all `IN SCOPE`, `BUILD NOW`, `CORE-ARCH` and assigned to `SB-P-1.12`. The pre-§33 total was 373 rows, so 373 + 39 = 412.
+
 **This is the genuine, disclosed set-difference Mission Control's blockers asked for** — two distinct quantities, not a single retroactively-matched total. The only contract with a real difference (Contract 17) has that difference traced to two specific, named rows and explained as a representation choice, not asserted away. This round's correction (MC-10) closed the last two whole-section placeholder rows (Contract 22 §12/§16), leaving a materially tighter, fully 1:1 picture everywhere except Contract 17's two genuine splits.
 
 ## 4. Set-difference resolution — every discrepancy identified and explained
@@ -155,8 +185,18 @@ Each entry below cites the **exact enumerated items the contract text itself pre
 - **Contract 17 (+2, genuine and explained, unchanged this round):** traces to exactly two rows: `17-§16` (1 source item → 2 FCTM rows, consuming-mission split, +1) and `17-§22` scenario 10 (1 source item → 2 FCTM rows, consuming-mission split, +1). **Resolution: this is the one contract where source-obligation count and FCTM representation-row count genuinely differ, for a disclosed, auditable reason (two sections whose content legitimately splits across missions) — not a missing obligation, and not asserted equal to avoid explaining it.**
 - **Contract 7 (0 net, unchanged this round):** closed in round 4 (MC-09B); no further findings this round.
 
+- **Contract 22 §33 (current, MC-136; −4 net, every difference traced).** All 43 source pointers are represented, and every one of the 39 FCTM rows traces to at least one pointer. There are no orphan rows and no missing obligations. The row-to-pointer map is: §33.1 → `22-§33-1`, `22-§33-2`; §33.2 items 1–7 → `22-§33-3`–`22-§33-9`; §33.2 closing rule → `22-§33-10`; §33.3 ¶3 → `22-§33-11`; §33.4 ¶1, ¶2, ¶4 → `22-§33-12`, `22-§33-13`, `22-§33-16`; §33.4 ¶3 → `22-§33-14`, `22-§33-15`; §33.5 bullets 1, 2, 3 and 5 → `22-§33-17`–`22-§33-20`; §33.6 ¶2, ¶3 → `22-§33-21`, `22-§33-22`; §33.7 → `22-§33-23`–`22-§33-30`; §33.8 items 1–9 → `22-§33-31`–`22-§33-39`. The four representation choices are:
+  1. **§33.3 ¶1–¶2 (2 pointers → recorded in `22-§33-11`, −2).** These are the ownership allocation between SB-P-1.12 and SB-P-1.19 (Founder Record 07 §3), not separate product obligations of this mission. `22-§33-11`'s citation records them, and the FCTM `Assigned mission` column reflects SB-P-1.12's share.
+  2. **§33.4 ¶3 (1 pointer → 2 rows, +1).** Minimum necessary attribution (`22-§33-14`) and non-authorizing attribution (`22-§33-15`) are separately testable, one a minimization rule and one an authority negative.
+  3. **§33.5 bullet 4 and closing paragraph (2 pointers → folded into `22-§33-15`, −2).** Both restate §33.4 ¶3's non-authorizing rule; `22-§33-15`'s source pointer names them.
+  4. **§33.6 ¶1 (1 pointer → folded into `22-§33-9`, −1).** It restates §33.2 item 7's governed-path condition; `22-§33-9`'s source pointer names it.
+  - **PR #675 effect.** The clarification changed the text of §33.2 item 2 and §33.8 item 2, not the pointer count. `22-§33-4` and `22-§33-32` represent the two alternative exits (governed deletion, or a completed valid transfer with former-Owner authority ended and transferred-business survival and isolation preserved), as reviewed in `communication/live/report1.19.md` (SEC-128-02-R1, SEC-128-02-R7).
+  - **Resolution:** representation choices, disclosed and traceable, not missing obligations. No FCTM row is changed to make the arithmetic match.
+
 **Net result across all five contracts and Build Plan: zero missing obligations, zero orphan FCTM rows, zero duplicate row IDs, and exactly two disclosed, fully-traced representation splits (both in Contract 17: `17-§16`, `17-§22` scenario 10).** Every number in §3's table is traced to its actual source, not asserted equal — including where the honest answer is "these two figures are legitimately different, and here is exactly why," and including where the honest answer for an unowned obligation is `ESCALATED` (a proposed assignment awaiting the Founder, Source 18 §3.2 item 10), not a silent default to `IN SCOPE`, not a guessed `ASSIGNED TO LATER MISSION`, and not `UNRESOLVED FOUNDER DECISION` (a different value, reserved for Build Plan §15's own already-approved list).
 
-**Total source pointers: 107+112+47+51+36+18 = 371.** **Total FCTM rows: 107+112+47+53+36+18 = 373** (`03-stage2-populated-fctm.md` §G, `grep`-counted). These are reported as two distinct figures per Mission Control's explicit instruction, not blended into one number.
+**Total source pointers: 107+112+47+51+36+18 = 371.** **Total FCTM rows: 107+112+47+53+36+18 = 373** (`03-stage2-populated-fctm.md` §G, `grep`-counted). These are reported as two distinct figures per Mission Control's explicit instruction, not blended into one number. (Historical, before Contract 22 §33.)
+
+**Current (MC-136): total source pointers 107+155+47+51+36+18 = 414; total FCTM rows 107+151+47+53+36+18 = 412** (`grep`-counted at FCTM blob `1650ff95`). The −2 net difference is Contract 17's +2 and Contract 22 §33's −4, each traced above.
 
 This is Claude Code's own source-derived inventory as Stage 2 Definition Actor, not an independent verifier's inventory. Source 18 §3.2 item 6 and IV Protocol §6.1 require the Stage 19 verifier to take its own inventory, independent of this one.

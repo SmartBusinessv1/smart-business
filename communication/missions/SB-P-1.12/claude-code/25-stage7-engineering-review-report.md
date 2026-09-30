@@ -174,3 +174,60 @@ This addendum records the current state after later canonical events. It changes
 - **Not authorized.** Stage 7 acceptance, Founder merge, Stage 8, Blueprint lock, EIS, implementation, SQL, migration, production or provider action, delivery and publication.
 
 `SB-P-1.12 STAGE 7 ENGINEERING REVIEW DRAFT — CURRENT-MAIN RECONCILED (MC-50); INDEPENDENT SECURITY DOCUMENTARY VERIFICATION RECORDED (MC-44, AT f791b6f2); ESC-1 T8 OPEN; AWAITING MISSION CONTROL EXACT-HEAD REVIEW; NO STAGE 7 ACCEPTANCE, FOUNDER MERGE, STAGE 8, EIS, IMPLEMENTATION, MIGRATION OR PRODUCTION AUTHORITY.`
+
+## 17. MC-136 addendum — Stage 7 findings for Contract 22 §33 rows (2026-09-30)
+
+**Authority.** MC-136, `communication/live/instruction1.20.md`, work package `SB-P-1.12-WP-R2-S33-STAGE2-STAGE7`, on canonical `main@62514a23f946e0bba42b8494d2290817eec0d7ae` (PR #678 merge; content baseline `c8015b4f0e229aa2dd03a110881593b6684aa9e1`, the PR #673 merge). The source blobs were verified unchanged before editing: FCTM `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`, Blueprint `58a00479637d0053b3a2e347bde72488dea96144`, Contract 22 `61e1bb91970be410e9daf1d3b80875c35f29db04`, `report1.19.md` `4665cb73472247a65433ac9e9da2594b60ea9700`.
+
+**Scope.** Stage 7 findings for exactly the 39 `IN SCOPE` rows `22-§33-1`–`22-§33-39`, added to the FCTM after §§3–16 of this report were prepared. They use the same taxonomy and evidence class: repository files only, with no database, provider or production access, and no SQL executed. They are recorded in Blueprint §20.5 (Contract 22 register) and are supported by the new Blueprint §20.3 E16. The per-row table and every dependency are in `claude-code/34-r2-section33-stage2-stage7-completion-report.md`.
+
+**Results (engineering proposals, not accepted findings).**
+
+| Measure | Earlier 228 rows (unchanged) | §33 rows | Current total |
+|---|---|---|---|
+| `IN SCOPE` rows addressed | 228 | 39 | 267 of 267, machine-checked against the FCTM (same IDs, same order) |
+| `FEASIBLE` | 176 | 3 (`22-§33-10`, `22-§33-16`, `22-§33-29`, all negatives) | 179 |
+| `CONDITIONAL` | 51 | 36 | 87 |
+| `HELD` (row-level) | 0 | 0 | 0 |
+| `BLOCKED` (T8) | 1 | 0 | 1 (`22-§20-2`) |
+| Independent review `PENDING` | 190 | 37 | 227 |
+| Independent review `N/R` | 38 | 2 (`22-§33-16`, `22-§33-29`) | 40 |
+
+**Principal dependencies.**
+
+- ESC-1 open T8 bears on the deletion-path and durability conclusions.
+- `22-§20-2` stays `BLOCKED`.
+- Execution-boundary recheck of eligibility at the deletion commit (SEC-S7-05).
+- Membership kernel and authority-surface inventory (E1, SEC-S7-02).
+- Transfer foundations FA-1 to FA-10.
+- Cross-mission evidence under the SB-P-1.12 / `SB-P-1.19` boundary, for either the deletion exit or the completed-transfer exit (Founder Record 07; Contract 18 unchanged).
+- Legal, privacy and retention conclusions, provisional under Founder Record 06 and MC-117 with professional validation deferred.
+- Provider facts (G-7).
+- Denial-audit durability (SEC-S7-07).
+
+**Why no §33 row is `BLOCKED` or `HELD`.** This follows the MC-40 and SEC-S7-08 precedent. The rows neighbouring ESC-1 stay `CONDITIONAL`, with the ESC-1-dependent conclusion held inside the row. The §33 prohibitions (`22-§33-20`, `22-§33-22`, `22-§33-39`) remain satisfiable by a design that does not rely on the prohibited paths. The legal rows have a provisional Phase One basis (Founder Record 06).
+
+**Repository observation referred to Mission Control.** By Claude Code's own search of migration files, not independently verified:
+
+- `transactions.creator_id` references `auth.users(id) ON DELETE CASCADE` (`20260719102137_…`, `20260719140000_…`);
+- `transaction_correction_events.transaction_id` references `transactions(id) ON DELETE CASCADE` (`20260720142204_…`).
+
+So deleting a person's Auth user can initiate cascading deletion of the transactions they created, including in a business they no longer own. This is a second Auth-user cascade, independent of `businesses.owner_id`. The ESC-1 record (§5; Blueprint §21.1) names only the Owner API path and the `businesses.owner_id` path. Nothing was executed, and production is `UNVERIFIED` (G-6, T4). Claude Code does not classify this observation; whether it falls within ESC-1 or needs a separate classification is for Mission Control. No earlier finding needs to change because of it: the durability conclusions it bears on (`22-§20-2`, `21-§19-*`, `22-§14-5`, `22-§29-12`, `BP-§7-1`) are already held or blocked under ESC-1.
+
+**Earlier 228 findings.** Not substantively changed. Every earlier register line is byte-identical and in the same order. Only the Blueprint's descriptive counts (§20.1, §20.5 intro, §20.5.1, §21.4 T7) and the §21.4 T8 referral sentence were updated.
+
+**T1–T8 screen for the §33 delta.**
+
+| Trigger | Result |
+|---|---|
+| T1 | None |
+| T2 | None: Contract 22 §33 conflicts with no other approved source |
+| T3 | None |
+| T4 | Unchanged; production `UNVERIFIED` |
+| T5, T6 | None |
+| T7 | None: all 39 rows stay `IN SCOPE` |
+| T8 | ESC-1 stays open; the `creator_id` observation is referred for classification, not self-classified |
+
+**Holds.** R-2 OPEN. ESC-1 OPEN T8. `22-§20-2` `BLOCKED` / `IN SCOPE`. G-6/T4 `UNVERIFIED`. G-4 design gated.
+
+`SB-P-1.12 STAGE 7 — CONTRACT 22 §33 FINDINGS PREPARED (MC-136); NOT ACCEPTED; INDEPENDENT SECURITY REVIEW OF THE §33 DELTA REQUIRED; R-2 OPEN; ESC-1 T8 OPEN; NO STAGE 7 COMPLETION, STAGE 8, BLUEPRINT LOCK, EIS, IMPLEMENTATION, SCHEMA, SQL, MIGRATION, IDENTITY-DELETION RUNTIME OR PRODUCTION AUTHORITY.`
