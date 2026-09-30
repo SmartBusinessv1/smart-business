@@ -176,3 +176,12 @@ The handover is `communication/live/report1.22.md`. The following holds are unch
 - Stage 8, Blueprint lock, EIS, implementation and production are not authorized.
 
 This README is an index, not an authority record.
+
+
+## Stage 8 status — MC-146
+
+Founder Stage 8 approval has been granted for the complete Sections 1–21 Blueprint. The lock-only transition is recorded in `founder/08-stage8-blueprint-lock-approval.md` and `mission-control/27-stage8-founder-approval-and-blueprint-lock.md`.
+
+After protected-main merge and Mission Control verification, the locked Blueprint lives at `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`.
+
+Carried forward: ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred. No EIS or implementation authority is implied.
