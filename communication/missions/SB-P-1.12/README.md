@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RAISED FOR ROUTING; `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
+**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RESOLVED BY FOUNDER DECISION RECORD 09 (EIS VERSION 0.2 CORRECTION UNDER MC-151, AWAITING STAGE 10 RE-REVIEW); `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -204,3 +204,13 @@ The handover is `communication/live/report1.23.md`. The following are unchanged:
 - The EIS is not locked. The implementation package, implementation, schema, SQL, migrations and production remain not authorized.
 
 This README is an index, not an authority record.
+
+## Stage 10 correction — MC-151 (2026-09-30)
+
+Founder Decision Record 09 resolved T8-EIS-1. Under MC-151 (`communication/live/instruction1.24.md`), Claude Code corrected the draft EIS to version 0.2 on the PR #687 branch:
+
+- Section 12.4 and `EIS-PPM-04` were rewritten to the Founder rule.
+- The aggregate-only margin behaviour was removed.
+- No margin formula or margin display semantics were selected.
+
+The EIS still has 80 requirements covering 267 of 267 rows. The handover is `communication/live/report1.24.md`. ESC-1 stays OPEN T8, `22-§20-2` stays `BLOCKED`, G-6/T4 stays `UNVERIFIED`, and legal validation stays deferred. The EIS is not accepted or locked.

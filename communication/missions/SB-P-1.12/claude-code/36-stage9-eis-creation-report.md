@@ -165,3 +165,25 @@ Mission Control may instead treat it as a stop and hold the whole draft.
 The draft is ready for Mission Control's Stage 10 review, with specialist review where applicable, subject to routing T8-EIS-1. It is not locked. No implementation package, implementation, schema, SQL, migration, provider mutation, identity-deletion runtime or production action is authorized.
 
 `SB-P-1.12 STAGE 9 EIS DRAFT SUBMITTED (MC-148) — 267/267 ROWS TRACED — ESC-1 SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED — T8-EIS-1 RAISED — STOP FOR MISSION CONTROL STAGE 10 DISPOSITION.`
+
+## 11. Stage 10 correction under MC-151 (2026-09-30)
+
+Sections 1 to 10 above record the version 0.1 submission as made and are kept as provenance. Founder Decision Record 09 (`founder/09-reference-cost-margin-permission-semantics.md`, blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9`) resolved T8-EIS-1. MC-150 (`mission-control/28-t8-eis1-founder-decision-disposition.md`) found the version 0.1 aggregate-only margin behaviour unapproved. Under MC-151 (`communication/live/instruction1.24.md`), work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION`, the EIS was corrected to version 0.2 on the same PR #687 branch.
+
+**What changed in the EIS:**
+
+- Section 12.4 was rewritten to the Founder rule. The aggregate-only margin output and the three options were removed. Exact delegated Reference Cost may appear alongside an otherwise-authorized selling price, and a person's own arithmetic on separately authorized values is not a Smart Business margin output.
+- Without `catalog.margin.read`, Smart Business never computes, labels, displays, returns, reports, aggregates or exposes margin.
+- No margin formula and no per-product or aggregate margin semantics are selected.
+- `EIS-PPM-04` was rewritten and is no longer held.
+- EQ-S9-1 (T8-EIS-1) is marked **RESOLVED BY FOUNDER DECISION RECORD 09**. EQ-S9-2 (aggregate group size) is withdrawn.
+- Dependent status references in Sections 1, 3, 19.4, 19.5, 20, 21 and 23 were updated, and a change-log row was added.
+
+**Unchanged:**
+
+- Requirements: 80 before and 80 after. No requirement ID was added or removed, and every FCTM mapping is identical.
+- Coverage: 267 of 267 rows, re-verified by the independent script.
+- Orphans: one engineering-only requirement (`EIS-ENV-02`) and 0 behaviour-adding orphans.
+- Everything else: the ESC-1 design, `22-§20-2` treatment, G-6/T4, the legal boundary, workstreams and SB-P-1.13 boundaries.
+
+Section 9's T8-EIS-1 discussion and its stop-condition note are superseded by this section for current status.

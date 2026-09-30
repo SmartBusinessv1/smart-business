@@ -19,10 +19,10 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`, blob `77d52096c020668311b039721a4de9248ddd460e` (`APPROVED — LOCKED`, Sections 1–21) |
 | Canonical FCTM | `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md`, blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259` (412 rows; 267 `IN SCOPE`) |
 | Document Type | Engineering Implementation Specification (EIS), Source 18 Stage 9 |
-| Document Version | 0.1 |
+| Document Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — Source 18 §4.4 EIS owner |
-| Authorizing Instruction | `communication/live/instruction1.23.md` (MC-148), work package `SB-P-1.12-WP-STAGE9-EIS-CREATION` |
+| Authorizing Instruction | `communication/live/instruction1.23.md` (MC-148), work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`; version 0.2 correction under `communication/live/instruction1.24.md` (MC-151), work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION` |
 | Canonical baseline | `main@24730a684f7ab8d0550066db1ad1acdde0128192` (PR #686 merge; named baseline `e1ecbe39f66509d9606d48f09a86b3c3611d64ad`, differing only by the instruction) |
 | Structural precedent | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` (executor roles, committed rejections, preview binding, idempotency, provenance) |
 | Next gate | Stage 10 — EIS Review by Mission Control, with specialist review where applicable |
@@ -61,7 +61,8 @@ Stage 7 feasibility labels (`FEASIBLE`, `CONDITIONAL`), independent-review label
 | Stage 8 lock record (MC-146) | `mission-control/27-stage8-founder-approval-and-blueprint-lock.md`, blob `a57eadc56e8f7e76ea81f4be6c2f7204ffdd7925` |
 | Independent Security reports | `specialists/01` (MC-40), `specialists/02` (MC-42), `specialists/03` (MC-44); `communication/live/report1.19.md` (SEC-128-02); `communication/live/report1.21.md` (SEC-137-01 to SEC-137-14) |
 | R-2 closure record | `mission-control/25-r2-source-coverage-gate-closure-record.md`, blob `e1c940ae4a6ea87033b58d73c0efe78509a1befa` |
-| Founder Records | 03 (`FPDR-1`–`FPDR-4`), 04 (F-02, F-03, F-04(c)), 05 (ESC1-1–ESC1-8), 06 (legal-validation deferral), 07 (§33 ownership split) |
+| Founder Records | 03 (`FPDR-1`–`FPDR-4`), 04 (F-02, F-03, F-04(c)), 05 (ESC1-1–ESC1-8), 06 (legal-validation deferral), 07 (§33 ownership split), 09 (Reference Cost and margin permission semantics, blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9`; version 0.2) |
+| MC-150 disposition (version 0.2) | `mission-control/28-t8-eis1-founder-decision-disposition.md`, blob `95a5c5df32a09dc3a49e0d0f6366e73331c2af72` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011` |
 | Repository | 24 migrations under `supabase/migrations/`; `src/integrations/supabase/*`; `src/server-functions/catalog-import.ts`, `parser-lease.ts`; `src/routes/**`; `tests/**`; `.github/workflows/*` at `main@24730a68` |
 
@@ -283,20 +284,20 @@ Catalog commands use EIS-CNF-02 serialization; a revoked Manager's next command,
 
 One projection function (`catalog_internal.project_product`) takes the row and the caller's capabilities and includes Reference Cost only with `catalog.cost.read` and margin only with `catalog.margin.read`. Every read path uses it, including `SECURITY DEFINER` functions, whose own responses are shaped by caller capability rather than by column grants (SEC-S7-04).
 
-### 12.4 Derived disclosure and T8-EIS-1
+### 12.4 Reference Cost and margin boundary (Founder Decision Record 09)
 
-MC-143 §3.1 prohibits exposing a value from which an undelegated Reference Cost or margin can be reasonably derived, and leaves the mechanism to the EIS.
+**History.** Version 0.1 of this EIS raised T8-EIS-1: a Manager delegated Reference Cost, who also sees the selling price, could compute a per-product difference by hand. It also proposed an aggregate-only margin output for a margin-only delegate. Founder Decision Record 09 (`founder/09-reference-cost-margin-permission-semantics.md`, blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9`) resolved T8-EIS-1, and MC-150 (`mission-control/28-t8-eis1-founder-decision-disposition.md`) found the aggregate-only behaviour unapproved. Version 0.2 removes it.
 
-- **Margin-only delegate.** Per-product exact margin together with the visible selling price reveals Reference Cost (cost = price − margin). The EIS therefore outputs margin to a margin-only delegate only in a non-invertible form: aggregated over a group of products whose size is at least a configured minimum, and never for a single product. Exact per-product margin remains Owner-only unless cost is also delegated. This is an alternative safe output within MC-143 §3.1; the group-size minimum is a configuration value for Stage 10 review.
-- **Cost-only delegate.** The system never outputs margin fields, margin reports or margin aggregates to this delegate. But a Manager who sees both the exact Reference Cost and the selling price of a product (Founder Scenario A's bounded product-price view) can compute that product's unit margin by subtraction. No response shaping can prevent that arithmetic without withholding either the delegated cost or the selling price.
+**Rule applied.** Reference Cost and margin permissions govern what Smart Business itself provides: fields, calculations, reports, aggregates and derived outputs.
 
-**T8-EIS-1 (raised by this EIS, routed to Mission Control for Founder routing under MC-143 §3.1).** Preserving both the approved cost-only delegation and the visible selling price necessarily discloses per-product unit margin arithmetically. Founder Record 04 states that it "does not define how margin is computed or displayed". Engineering options, not decided here:
+- Reference Cost and margin stay Owner-only by default and separately delegable; delegating one never delegates the other; a general product read or bounded Manager view grants neither (Founder Record 04 F-03, unchanged).
+- A Manager holding `catalog.cost.read` receives exact Reference Cost, including alongside a selling price the Manager is otherwise authorized to see. That combination is not a margin-permission violation. A person's own arithmetic on two values each separately authorized to them is not Smart Business granting margin.
+- Without `catalog.margin.read`, Smart Business never computes, labels, displays, returns, reports, aggregates or otherwise exposes margin or any output it identifies as margin-derived, on any path covered by Section 12.3.
+- Holding `catalog.margin.read` does not by itself imply that any particular margin output (for example, exact per-product margin) is approved.
 
-1. Treat per-unit arithmetic from delegated cost and visible price as inherent to the cost delegation, and protect margin outputs, reports and aggregates only.
-2. Show exact Reference Cost to a cost-only delegate only where selling price is not shown in the same surface. This does not prevent cross-surface arithmetic.
-3. Require margin to be delegated whenever exact cost is delegated. This would change Founder Record 04's "delegating one never delegates the other" and needs a Founder decision.
+**Not selected by this EIS.** No margin formula, and no per-product or aggregate margin computation or display semantics. These remain a separate future product definition. When approved Product Truth defines them, the Section 12.3 projection function enforces the resulting permission boundary on every path, including `SECURITY DEFINER` responses.
 
-Until disposition, `EIS-PPM-04` is held for the per-product cost-only case, and the implementation package may not fix that behaviour either way. The FCTM rows stay `IN SCOPE`, and their disposition, build commitment, classification and assignment are unchanged.
+**Status.** T8-EIS-1 / EQ-S9-1: **RESOLVED BY FOUNDER DECISION RECORD 09.** `EIS-PPM-04` is no longer held. The FCTM rows keep their disposition, build commitment, classification and assignment.
 
 ### 12.5 Surface demotion and continuity
 
@@ -309,7 +310,7 @@ The standalone Catalog surface is contextualized as Product & Price Master insid
 | `EIS-PPM-01` | Replace `catalog_internal.resolve_owner_business` in all 19 catalog functions and the RLS policies that use it with the kernel resolver for the requested business and capability; keep the seven `NOLOGIN` executor roles and narrow grants; move `loadOwnedBusinessId` in both server functions to kernel resolution of the requested business. | `BP-§10.1-11`, `7-§12`, `22-§5-8` |
 | `EIS-PPM-02` | Catalog capability set: `catalog.read`, `catalog.write.identity`, `catalog.write.pricing`, `catalog.write.tax`, `catalog.write.link`, `catalog.lifecycle`, `catalog.import`, `catalog.cost.read`, `catalog.cost.write`, `catalog.margin.read`. Owner holds all by default; Manager and Employee hold only what their defaults and explicit grants give. | `7-§10-1`, `7-§10-2`, `7-§10-3`, `7-§10-4`, `7-§15-10`, `BP-§10.1-11` |
 | `EIS-PPM-03` | Field-level projection on every read path: one projection function decides, per caller capability, whether Reference Cost and margin fields are present, and every path that can return them (direct read, batch, list, search, import preview, export, dashboards, aggregates, caches, privileged RPC responses) uses it. `catalog_product_read` stops returning cost unconditionally. Column grants alone are not relied on. | `21-§4-2`, `21-§5-4`, `21-§24-3`, `17-§13-2`, `17-§22-2`, `7-§10-2`, `BP-§10.1-3` |
-| `EIS-PPM-04` | Derived disclosure (G-3 boundary, MC-143 §3.1): no response exposes a value from which an undelegated Reference Cost or margin can be reasonably derived. For a margin-only delegate, margin is output only in a non-invertible form (see Section 12.4). For a cost-only delegate, the system never outputs margin fields, margin reports or margin aggregates. **Held for the per-product cost-only case: T8-EIS-1 (Section 12.4).** | `17-§18-2`, `17-§21-4`, `21-§24-3`, `21-§5-4`, `17-§22-2` |
+| `EIS-PPM-04` | Margin and Reference Cost output boundary (Founder Decision Record 09; Section 12.4): Smart Business never computes, labels, displays, returns, reports, aggregates or otherwise exposes margin or a margin-derived output unless `catalog.margin.read` is present, and never exposes Reference Cost unless `catalog.cost.read` is present. Exact delegated Reference Cost may be shown alongside a selling price the caller is otherwise authorized to see; a person's own arithmetic on separately authorized values is not a Smart Business margin output. No margin formula and no per-product or aggregate margin semantics are selected here. | `17-§18-2`, `17-§21-4`, `21-§24-3`, `21-§5-4`, `17-§22-2` |
 | `EIS-PPM-05` | Preserve product identity, pricing, tax, SKU and barcode, price history, audit history, import foundations and existing relationships; no independent Catalog expansion, no deletion of valid data, no collapse into Transactions and no Inventory ownership of commercial identity; no competing stock-linked pricing path or duplicate stock engine. | `BP-§7-1`, `BP-§7-2`, `BP-§7-3`, `BP-§7-4`, `BP-§10.1-13`, `7-§7`, `7-§9` |
 | `EIS-PPM-06` | Reclassify the surface as Product & Price Master, a core shared foundation: navigation and entry points are contextualized under business operations; `/catalog`, `/catalog/$productId` and `/catalog/import` keep resolving (redirect or alias) so valid deep links and bookmarks continue; no data moves. | `BP-§10.1-12`, `BP-§10.1-13`, `BP-§7-5` |
 
@@ -522,14 +523,14 @@ WS-0 (as authorized) → WS-A1 → WS-A2 and WS-E → WS-F → WS-D → WS-A3 pe
 | AI or channel consumption | None built here; the kernel contract is consumed by SB-P-1.13 and SB-P-1.20 |
 | What exists and must not be duplicated | Catalog commands and executors; inventory ledger; transaction correction events; import and parser support |
 | Outside this mission | Notification delivery (SB-P-1.15), location (SB-P-1.18), conversation and AI (SB-P-1.13), documents (SB-P-1.14), merchant lifecycle and transfer experience (SB-P-1.19), WhatsApp (SB-P-1.20) |
-| Blockers and dependencies | ESC-1 (OPEN T8); `22-§20-2` BLOCKED; T8-EIS-1; G-6/T4 and G-7 evidence; legal validation deferred |
+| Blockers and dependencies | ESC-1 (OPEN T8); `22-§20-2` BLOCKED; G-6/T4 and G-7 evidence; legal validation deferred. T8-EIS-1 is resolved by Founder Decision Record 09 |
 | Required evidence | Section 18 suites; Section 17 evidence; Stage 10 and Stage 11 dispositions |
 
 ### 19.5 What SB-P-1.13 may depend on
 
 **May depend on, once WS-A1, WS-A2 and WS-D are implemented, verified and accepted, and this EIS is locked:** the `authz.authorize` contract and reason codes; the capability registry, with SB-P-1.13 registering its own capabilities; the channel values `conversation`, `whatsapp` and `ai_tool`; `confirmation_bindings`; the shared idempotency pattern; `authority_events` and the denial contract; explicit active-business context.
 
-**Remains gated for SB-P-1.13:** any assumption that production enforcement is current (G-6); WS-B remediation state; Reference Cost and margin projection (WS-C, T8-EIS-1); identity and business lifecycle behaviour (ESC-1, WS-F, deletion design); transfer runtime (WS-G). SB-P-1.13 must not create authority tables, resolve business from single ownership, or treat AI or tool capability as authority.
+**Remains gated for SB-P-1.13:** any assumption that production enforcement is current (G-6); WS-B remediation state; Reference Cost and margin projection (WS-C); identity and business lifecycle behaviour (ESC-1, WS-F, deletion design); transfer runtime (WS-G). SB-P-1.13 must not create authority tables, resolve business from single ownership, or treat AI or tool capability as authority.
 
 | ID | Requirement | FCTM rows |
 |---|---|---|
@@ -542,7 +543,7 @@ WS-0 (as authorized) → WS-A1 → WS-A2 and WS-E → WS-F → WS-D → WS-A3 pe
 | SEC-S7-01 ESC-1 | Section 14; `EIS-ESC-01`–`EIS-ESC-08`; Section 18.3 |
 | SEC-S7-02 Authority and isolation migration | Section 9.1 inventory precondition; Section 9.2 per-family migration; Owner-of-A/Manager-of-B tests; ER-4 handling in Section 9.2 |
 | SEC-S7-03 WS-B and default grants | Section 9.3; `EIS-ISO-03`; WS-B gated on G-6 evidence; no blanket function revocation |
-| SEC-S7-04 Reference Cost and margin | Section 12.3 projection on every path, including `SECURITY DEFINER` responses; Section 12.4 derived disclosure and T8-EIS-1 |
+| SEC-S7-04 Reference Cost and margin | Section 12.3 projection on every path, including `SECURITY DEFINER` responses; Section 12.4 output boundary under Founder Decision Record 09 |
 | SEC-S7-05 Revocation, confirmations, imports | Section 10.2 serialization; Section 10.3 five revocation points and truthful counts; `EIS-CNF-02`, `EIS-CNF-05` |
 | SEC-S7-06 Service role and support | `EIS-ISO-04` privileged-operation contract per handler; `EIS-SUP-01`; no standing bypass; `/super-admin` not an authority surface |
 | SEC-S7-07 Denial-audit durability | Section 11; `EIS-AUD-02` |
@@ -564,8 +565,8 @@ WS-0 (as authorized) → WS-A1 → WS-A2 and WS-E → WS-F → WS-D → WS-A3 pe
 
 | ID | Question | Route |
 |---|---|---|
-| EQ-S9-1 | T8-EIS-1: per-product cost-only delegation arithmetically discloses unit margin (Section 12.4) | Mission Control, for Founder routing under MC-143 §3.1 |
-| EQ-S9-2 | Minimum group size for aggregated margin output to a margin-only delegate | Mission Control (engineering parameter) |
+| EQ-S9-1 | T8-EIS-1: per-product cost-only delegation arithmetically discloses unit margin (raised in version 0.1) | **RESOLVED BY FOUNDER DECISION RECORD 09** (Section 12.4) |
+| EQ-S9-2 | Minimum group size for aggregated margin output to a margin-only delegate (version 0.1) | **Withdrawn**: the aggregate-only margin behaviour was unapproved (MC-150) and is removed in version 0.2 |
 | EQ-S9-3 | Whether provider Auth deletion honours `RESTRICT` references as expected, and how backups treat de-identified data | Evidence (G-7), before any deletion runtime |
 | EQ-S9-4 | Record-class decisions for operational tables that may keep `business_id` cascades | Stage 10 review of the source-complete inventory |
 | EQ-S9-5 | The locked Blueprint's line 1 carries a Metadata row before the H1 | Mission Control (formatting only; no Product Truth effect) |
@@ -584,13 +585,13 @@ WS-0 (as authorized) → WS-A1 → WS-A2 and WS-E → WS-F → WS-D → WS-A3 pe
 
 | Trigger | Result |
 |---|---|
-| T1 | None: no unanswered product question beyond T8-EIS-1's routing |
+| T1 | None |
 | T2 | None: no source conflict found |
 | T3 | None: no new product decision proposed; no orphan requirement adds behaviour |
 | T4 | Unchanged; production `UNVERIFIED` |
 | T5, T6 | None |
 | T7 | None: all 267 rows stay `IN SCOPE`; no deferral or reclassification |
-| T8 | ESC-1 stays open, with a safe-design direction proposed. New: **T8-EIS-1** (Section 12.4), raised for Mission Control routing |
+| T8 | ESC-1 stays open, with a safe-design direction proposed. T8-EIS-1, raised in version 0.1, is **RESOLVED BY FOUNDER DECISION RECORD 09** (Section 12.4) |
 
 ## 22. FCTM Traceability
 
@@ -890,10 +891,11 @@ A mapping shows where an obligation is realized in the design. It is not impleme
 
 ## 23. Status
 
-This EIS is a DRAFT for Mission Control's Stage 10 review. It is not locked. Product Blueprint: `APPROVED — LOCKED`. Implementation package, implementation, schema, SQL, migrations, provider mutation, identity-deletion runtime and production action: NOT AUTHORIZED. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; T8-EIS-1 is raised for routing.
+This EIS is a DRAFT for Mission Control's Stage 10 review. It is not locked. Product Blueprint: `APPROVED — LOCKED`. Implementation package, implementation, schema, SQL, migrations, provider mutation, identity-deletion runtime and production action: NOT AUTHORIZED. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; T8-EIS-1 is resolved by Founder Decision Record 09.
 
 ## 24. Document Change Log
 
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-09-30 | Claude Code (MC-148) | Initial Stage 9 draft |
+| 0.2 | 2026-09-30 | Claude Code (MC-151) | Finding-scoped Stage 10 correction under Founder Decision Record 09: Section 12.4 rewritten; `EIS-PPM-04` rewritten and no longer held; aggregate-only margin behaviour removed; T8-EIS-1 / EQ-S9-1 resolved and EQ-S9-2 withdrawn; dependent status references in Sections 1, 3, 19.4, 19.5, 20, 21 and 23. No other requirement, mapping or architecture changed |

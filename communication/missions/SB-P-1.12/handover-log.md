@@ -623,3 +623,21 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Unchanged:** the locked Blueprint, the FCTM, source contracts, Founder Records, Security reports, Mission Control records, code, schema, SQL and migrations.
 **Handover:** `communication/live/report1.23.md`, paired with `communication/live/instruction1.23.md`.
 **Next authorized action:** Mission Control Stage 10 review. No self-merge.
+
+## H-39 — Claude Code to Mission Control: MC-151 T8-EIS-1 correction submitted
+
+**Prepared:** 2026-09-30
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION`)
+**To:** Mission Control
+**Status:** `EIS VERSION 0.2 FINDING-SCOPED CORRECTION SUBMITTED ON PR #687 — AWAITING MISSION CONTROL STAGE 10 RE-REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-151 (`communication/live/instruction1.24.md`), effective through PR #688 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of the reviewed head `9a9a4f390dbf04f6eb77e4f800bbb25ca2eab701`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §11);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.24.md`.
+
+**Handover:** `communication/live/report1.24.md`, paired with `communication/live/instruction1.24.md`.
+**Next authorized action:** Mission Control exact-head re-review, then the independent Security specialist's Stage 10 review. No self-merge.

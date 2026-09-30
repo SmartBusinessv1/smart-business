@@ -328,3 +328,14 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - **Stage 9 authorization:** MC-148 authorized Stage 9 EIS creation under work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`, with Stage 10 Mission Control review required.
 - **Unchanged holds:** ESC-1 OPEN T8; `22-§20-2` `BLOCKED`; G-6/T4 `UNVERIFIED`; legal validation deferred.
 - **Not authorized:** EIS lock, implementation package and implementation.
+
+## MC-150 and MC-151 — T8-EIS-1 resolved by Founder Decision Record 09; finding-scoped EIS correction (record)
+
+**Date:** 2026-09-30
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#688](https://github.com/SmartBusinessv1/smart-business/pull/688): Founder Decision Record 09, the MC-150 disposition (`mission-control/28-t8-eis1-founder-decision-disposition.md`) and MC-151 (`communication/live/instruction1.24.md`).
+
+- Founder Decision Record 09 clarifies Founder Record 04 F-03. Reference Cost and margin permissions govern Smart Business-provided outputs. Exact delegated Reference Cost may coexist with an otherwise-authorized selling price. Human arithmetic is not Smart Business permission leakage. Smart Business never exposes margin without margin permission. Margin semantics remain undefined.
+- MC-150 found the EIS version 0.1 aggregate-only margin behaviour unapproved.
+- MC-151 authorized a finding-scoped correction on PR #687.
+- ESC-1, `22-§20-2`, G-6/T4 and the legal-validation deferral are unchanged.
