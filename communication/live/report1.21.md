@@ -1,11 +1,11 @@
 # SB-P-1.12 — Targeted Security Review of R-2 §33 Stage 2 / Stage 7 Candidate
 
-**Report:** `communication/live/report1.21.md`  
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Review authority:** MC-137 / `communication/live/instruction1.21.md`  
-**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room  
-**Work package:** `SB-P-1.12-WP-R2-S33-SECURITY-REVIEW`  
-**Review type:** Targeted documentary / security-feasibility review only  
+**Report:** `communication/live/report1.21.md`
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Review authority:** MC-137 / `communication/live/instruction1.21.md`
+**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room
+**Work package:** `SB-P-1.12-WP-R2-S33-SECURITY-REVIEW`
+**Review type:** Targeted documentary / security-feasibility review only
 **Status:** SUBMITTED FOR MISSION CONTROL DISPOSITION — NO MERGE OR IMPLEMENTATION AUTHORITY
 
 ## 1. Exact target and evidence verified
@@ -118,8 +118,8 @@ That distinction is important for the §33 rows whose eventual demonstration can
 
 ### SEC-137-02 — Three FEASIBLE §33 rows
 
-**Rows:** `22-§33-10`, `22-§33-16`, `22-§33-29`  
-**Candidate:** 3 FEASIBLE  
+**Rows:** `22-§33-10`, `22-§33-16`, `22-§33-29`
+**Candidate:** 3 FEASIBLE
 **Disposition: ACCEPT**
 
 - `22-§33-10`: negative rule that request/cancellation/pause/scheduled deletion/hidden state/support ticket is not eligibility proof.
@@ -138,7 +138,7 @@ No correction required.
 
 ### SEC-137-03 — Positive deletion and eligibility-state rows
 
-**Rows:** `22-§33-1`, `-3`–`-7`, `-9`, `-11`, `-31`–`-35`  
+**Rows:** `22-§33-1`, `-3`–`-7`, `-9`, `-11`, `-31`–`-35`
 **Disposition: ACCEPT AS CONDITIONAL**
 
 These rows correctly preserve:
@@ -161,7 +161,7 @@ No row-level HELD or BLOCKED correction is required.
 
 ### SEC-137-04 — History separation, retained-record and attribution rows
 
-**Rows:** `22-§33-2`, `-8`, `-12`–`-15`, `-17`–`-21`, `-24`, `-28`, `-36`–`-38`  
+**Rows:** `22-§33-2`, `-8`, `-12`–`-15`, `-17`–`-21`, `-24`, `-28`, `-36`–`-38`
 **Disposition: ACCEPT AS CONDITIONAL WITH RETAINED DURABILITY HOLDS**
 
 These rows are where the newly confirmed transaction cascade matters most.
@@ -183,7 +183,7 @@ No row-level status correction required.
 
 ### SEC-137-05 — Direct-delete / cascade prohibition rows
 
-**Rows:** `22-§33-20`, `22-§33-22`, `22-§33-39`  
+**Rows:** `22-§33-20`, `22-§33-22`, `22-§33-39`
 **Disposition: ACCEPT AS CONDITIONAL**
 
 The candidate explicitly recognizes both existing uncontrolled deletion classes:
@@ -201,7 +201,7 @@ No correction required.
 
 ### SEC-137-06 — Legal/privacy/retention classification rows
 
-**Rows:** `22-§33-7`, `-12`–`-14`, `-16`, `-21`, `-23`–`-30`, `-31`, `-35`, `-38` as applicable  
+**Rows:** `22-§33-7`, `-12`–`-14`, `-16`, `-21`, `-23`–`-30`, `-31`, `-35`, `-38` as applicable
 **Disposition: ACCEPT**
 
 The candidate preserves Founder Record 06's boundary:
@@ -314,7 +314,7 @@ I independently read the exact migration files on canonical repository state.
 
 Migration:
 
-`supabase/migrations/20260719102137_55a1dac6-b26a-47e6-aed3-305b9b20636b.sql`  
+`supabase/migrations/20260719102137_55a1dac6-b26a-47e6-aed3-305b9b20636b.sql`
 blob `b79ad8e79f0a13d72ae63ef6a8debe25643ee22d`
 
 defines:
@@ -323,7 +323,7 @@ defines:
 
 The duplicate/alternate transaction migration:
 
-`supabase/migrations/20260719140000_f24b4d69-127e-4547-9fff-8ed9f31cc8fe.sql`  
+`supabase/migrations/20260719140000_f24b4d69-127e-4547-9fff-8ed9f31cc8fe.sql`
 blob `3cbdcde6662dc0b99268e2ff41c9604b498cce48`
 
 contains the same FK declaration.
@@ -339,7 +339,7 @@ This is repository evidence only; it does not establish which duplicate migratio
 
 Migration:
 
-`supabase/migrations/20260720142204_3786b8a1-e72a-4ae4-88b3-837b76ce1bf9.sql`  
+`supabase/migrations/20260720142204_3786b8a1-e72a-4ae4-88b3-837b76ce1bf9.sql`
 blob `62f250f47c3af70f7ef69a3193a675a4cc02a275`
 
 defines:
