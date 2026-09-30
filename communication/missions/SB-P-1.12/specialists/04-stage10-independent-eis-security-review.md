@@ -1,11 +1,11 @@
 # SB-P-1.12 — Stage 10 Independent EIS Security Review
 
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Stage:** 10 — EIS Review  
-**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room  
-**Authority:** MC-153 / communication/live/instruction1.25.md and communication/missions/SB-P-1.12/mission-control/29-stage10-independent-eis-security-review-authorization.md  
-**Work package:** SB-P-1.12-WP-STAGE10-INDEPENDENT-EIS-SECURITY-REVIEW  
-**Review type:** Independent complete-EIS documentary security review  
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Stage:** 10 — EIS Review
+**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room
+**Authority:** MC-153 / communication/live/instruction1.25.md and communication/missions/SB-P-1.12/mission-control/29-stage10-independent-eis-security-review-authorization.md
+**Work package:** SB-P-1.12-WP-STAGE10-INDEPENDENT-EIS-SECURITY-REVIEW
+**Review type:** Independent complete-EIS documentary security review
 **Status:** SUBMITTED FOR MISSION CONTROL STAGE 10 DISPOSITION — EIS NOT ACCEPTED OR LOCKED
 
 ## 1. Exact review target
@@ -76,7 +76,7 @@ The required Stage 10 outcome is therefore refinement, not a Founder decision.
 
 ### SEC-EIS10-01 — Principal derivation is inconsistent across human, participant, support and automation paths
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §7.1–§7.4; EIS-ID-01; EIS-ID-03; EIS-AUT-01; EIS-SUP-01; §8.1; EIS-KER-01; EIS-KER-02; EIS-KER-06
 
 **Exact evidence**
@@ -112,7 +112,7 @@ No new merchant-facing role or Product Truth decision is needed.
 
 ### SEC-EIS10-02 — First-run creation rule incorrectly blocks approved multi-business ownership
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §13; EIS-FRL-02; EIS-ID-02; EIS-ID-06
 
 **Exact evidence**
@@ -144,7 +144,7 @@ No Founder decision is required; the approved multi-business rule already contro
 
 ### SEC-EIS10-03 — Generic membership removal does not exclude the active Owner
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §7.2; EIS-ID-02; §13 Removal; EIS-FRL-03; EIS-FRL-04
 
 **Exact evidence**
@@ -177,7 +177,7 @@ This is reconciliation to existing Product Truth, not a new Founder decision.
 
 ### SEC-EIS10-04 — Execution-time authorization serialization does not cover the complete mutable authority state
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §8.1; EIS-KER-03 through EIS-KER-09; §10.2; EIS-CNF-02; EIS-AUT-01; EIS-SUP-01; EIS-FRL-04
 
 **Exact evidence**
@@ -221,7 +221,7 @@ membership_version may remain a change detector, not the serialization mechanism
 
 ### SEC-EIS10-05 — Single-use confirmation binding is not specified as an atomic consume
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §10.1; EIS-CNF-01; EIS-CNF-02; EIS-CNF-04
 
 **Exact evidence**
@@ -247,7 +247,7 @@ Specify that consumption of a confirmation binding is atomic and occurs inside t
 
 ### SEC-EIS10-06 — Privileged service-role contract constrains writes more strongly than reads
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §9.3; EIS-ISO-04; §18.1 Privileged paths; §19.1 WS-A3
 
 **Exact evidence**
@@ -278,7 +278,7 @@ Extend EIS-ISO-04 to every privileged data access, not only writes:
 
 ### SEC-EIS10-07 — Denial-audit durability fallback is not available to every direct RPC path
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §9.3 authenticated EXECUTE model; §11; EIS-AUD-01; EIS-AUD-02; EIS-UX-01
 
 **Exact evidence**
@@ -309,7 +309,7 @@ Do not claim SEC-S7-07 resolved until this boundary is explicit and independentl
 
 ### SEC-EIS10-08 — SECURITY DEFINER hardening requirements are incomplete
 
-**Severity:** MEDIUM  
+**Severity:** MEDIUM
 **Affected EIS:** §8.1 policy helpers; §9.3 executor roles; EIS-ISO-03; EIS-ISO-04; EIS-PPM-01
 
 **Exact evidence**
@@ -338,7 +338,7 @@ Add a cross-cutting SECURITY DEFINER invariant:
 
 ### SEC-EIS10-09 — Retained RESTRICT records are not reconciled with governed physical business-row deletion
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §14.3; EIS-ESC-04; EIS-ESC-06; §15; EIS-LEG-01; EIS-LEG-02
 
 **Exact evidence**
@@ -372,7 +372,7 @@ This is an engineering design choice under existing Product Truth; no new Founde
 
 ### SEC-EIS10-10 — 22-§20-2 unblocking evidence is incomplete relative to the EIS's own durability design
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** EIS-ESC-06; EIS-ESC-07; EIS-ESC-08; §18.3; EIS-TST-03
 
 **Exact evidence**
@@ -412,7 +412,7 @@ EIS-ESC-07 must require, before any proposal to unblock 22-§20-2:
 
 ### SEC-EIS10-11 — SB-P-1.13 early-consumption boundary precedes relevant enforcement and audit completion
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §19.1 workstreams; §19.2; §19.5; EIS-DEP-01
 
 **Exact evidence**
@@ -449,7 +449,7 @@ SB-P-1.13 must not infer production enforcement from repository design or create
 
 ### SEC-EIS10-12 — Founder Decision Record 09 correction is faithfully represented
 
-**Severity:** INFO  
+**Severity:** INFO
 **Affected EIS:** §12.3; §12.4; EIS-PPM-03; EIS-PPM-04
 
 **Exact evidence**
@@ -480,7 +480,7 @@ No EIS correction for this finding. Later verification must prove every direct, 
 
 ### SEC-EIS10-13 — Effective grants/default privileges remain an evidence gate, not an EIS defect
 
-**Severity:** MEDIUM  
+**Severity:** MEDIUM
 **Affected EIS:** §9.1; §9.3; EIS-ISO-03; §17; WS-B
 
 **Exact evidence**
@@ -509,7 +509,7 @@ No design correction beyond SEC-EIS10-08. Before any WS-B or production-security
 
 ### SEC-EIS10-14 — ESC-1 provider, retention and legal-hold boundaries remain evidence and implementation gates
 
-**Severity:** MEDIUM  
+**Severity:** MEDIUM
 **Affected EIS:** §15; §16; §17; EIS-DEL-01 through EIS-DEL-07; EIS-LEG-01 through EIS-LEG-03
 
 **Exact evidence**
