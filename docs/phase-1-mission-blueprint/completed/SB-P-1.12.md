@@ -1,4 +1,4 @@
-# SB-P-1.12 — Authority, Identity & Product Surface Foundation
+| Engineering Review | COMPLETE / ACCEPTED — Stage 7 canonically accepted under MC-144 and verified post-merge under MC-145; canonical Stage 7 Engineering Review blob `b023b04450869625b75444340785fa5fa6d09a19` |# SB-P-1.12 — Authority, Identity & Product Surface Foundation
 
 ## Metadata
 
@@ -7,9 +7,9 @@
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Mission Type | Foundational Product Mission (Core Authority/Permission Kernel; not a single end-user feature) |
-| Lifecycle Stage | Stage 7 — Engineering Review — **DRAFT** (Sections 1–19 approved at Stage 5, MC-21, PR #630; Stage 6 Builder Review findings accepted, MC-24, PR #632) |
-| Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–19 (this document only). Sections 20–21, Builder Review, Engineering Review, EIS and implementation are separately authorized later stages. |
-| Status | `SECTIONS 1–19 APPROVED (v0.3, PR #635); SECTIONS 20–21 DRAFT — INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED; STATUS RECONCILED UNDER MC-143; AWAITING MISSION CONTROL FINAL STAGE 7 SUBSTANTIVE REVIEW; NOT ACCEPTED; NOT LOCKED` |
+| Lifecycle Stage | Stage 8 — Founder Approval and Blueprint Lock — **APPROVED — LOCKED** |
+| Product Blueprint Scope | Metadata, Mission Snapshot, Sections 1–21 — complete Product Blueprint |
+| Status | `APPROVED — LOCKED` — Founder approved the complete Sections 1–21 Blueprint at Stage 8; Mission Control applied the canonical Blueprint lock. Open technical/security/evidence holds remain carried forward and are not waived by the lock. |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, MC-02 appointed Stage 2–4 Definition Actor |
 | Constitutional Authority | Source 01 and Source 11 jointly, subordinate to the Lighthouse Constitution (Source 00) |
@@ -20,10 +20,10 @@
 | Date | 2026-09-23 |
 | Builder Review | Complete — findings F-01–F-11 accepted as findings, not implementation decisions (MC-24, PR #632) |
 | Engineering Review | DRAFT — Sections 20–21 prepared by Claude Code under MC-35 (`mission-control/21-stage7-engineering-review-activation-record.md`), with Contract 22 §33 findings added under MC-136 (PR #679) and status reconciled under MC-143 (`communication/live/instruction1.22.md`). The grouped independent Security & Permissions Architecture review is complete and canonically dispositioned (Section 21.5). Mission Control's final Stage 7 substantive review is pending; Stage 7 is not accepted |
-| Founder Approval | Not yet sought — Stage 5–8 review precedes any Founder Sections 1–19 approval |
-| Mission Control Review | Stage 5 Product Review complete (MC-21, PR #630). Stage 7 final substantive review pending |
-| Blueprint Lock | Not applied |
-| Next Lifecycle Gate | Mission Control final Stage 7 substantive review of the complete Blueprint; then Stage 8 Founder approval and Blueprint lock, separately authorized. ESC-1 (open T8) and `22-§20-2` (`BLOCKED`) remain and prevent treating the deletion and durability surface as implementation-ready |
+| Founder Approval | GRANTED — Founder explicitly approved the complete SB-P-1.12 Sections 1–21 Blueprint and authorized Stage 8 Blueprint lock on 2026-09-30; canonical Founder approval record: `communication/missions/SB-P-1.12/founder/08-stage8-blueprint-lock-approval.md` |
+| Mission Control Review | COMPLETE THROUGH STAGE 8 — Stage 7 accepted under MC-144/MC-145; Stage 8 lock applied by Mission Control under MC-146, subject to protected-main human merge and post-merge verification |
+| Blueprint Lock | ACTIVE — complete Sections 1–21 Blueprint locked at Stage 8. The lock freezes every FCTM row's disposition, build commitment, commercial classification and mission assignment. It does not certify implementation, runtime safety or production state. |
+| Next Lifecycle Gate | Separate Stage 9 EIS authorization/preparation. No EIS, implementation, schema, SQL, migration, identity-deletion runtime or production action is authorized by the Blueprint lock itself. ESC-1 remains OPEN T8; `22-§20-2` remains BLOCKED / IN SCOPE; G-6/T4 remains UNVERIFIED; professional legal/privacy/retention validation remains deferred. |
 
 ## Mission Snapshot
 
@@ -1432,3 +1432,28 @@ Reliance disclosure for the reviewer: this review relies on the SB-P-1.11 catalo
 ### 21.6 Status
 
 This Engineering Review is a DRAFT awaiting Mission Control's final Stage 7 substantive review; Claude Code does not accept it. The grouped independent Security review is complete and canonically dispositioned (Section 21.5). The R-2 source-coverage gate is closed / satisfied (MC-141, MC-142). The register covers 267 of 267 `IN SCOPE` rows: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED`; 227 `PENDING`, 40 `N/R`. ESC-1 stays open T8, `22-§20-2` stays `BLOCKED` and `IN SCOPE`, G-6/T4 stays `UNVERIFIED`, and professional legal, privacy and retention validation stays deferred. Stage 8 (Founder approval and Blueprint lock), the EIS, implementation, schema, SQL, migration execution, identity-deletion runtime, production action, delivery and publication are not authorized.
+
+
+---
+
+## Stage 8 — Founder Approval and Blueprint Lock
+
+**Status:** `APPROVED — LOCKED`
+
+**Founder approval:** Granted on 2026-09-30 for the complete SB-P-1.12 Product Blueprint, Sections 1–21.
+
+**Mission Control lock disposition:** MC-146.
+
+**Locked authority effect:** The Blueprint lock freezes every FCTM row's disposition, build commitment, commercial classification and mission assignment. Any later change to those locked product-definition values requires a recorded Founder decision under Source 18.
+
+**Carried-forward holds — not waived by this lock:**
+
+- R-2 source-coverage gate: CLOSED / SATISFIED.
+- ESC-1: OPEN T8.
+- `22-§20-2`: BLOCKED / IN SCOPE.
+- G-6/T4 production state: UNVERIFIED.
+- professional legal/privacy/retention validation: deferred, not cancelled.
+- environment/provider evidence: downstream gate where applicable.
+- identity-deletion / durability surface: not implementation-ready until the safe EIS design and required evidence exist.
+
+**Not authorized by this lock:** EIS creation without separate authorization, implementation, schema/SQL changes, migrations, provider mutation, identity-deletion runtime, deployment or production action.
