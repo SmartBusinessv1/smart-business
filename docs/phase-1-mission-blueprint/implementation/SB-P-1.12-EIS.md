@@ -1,10 +1,10 @@
 # SB-P-1.12 — Engineering Implementation Specification (EIS)
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED
-EIS: DRAFT / NOT LOCKED
-IMPLEMENTATION PACKAGE: NOT AUTHORIZED
+EIS: APPROVED — LOCKED
+IMPLEMENTATION PACKAGE: STAGE 12 DRAFT CREATION AUTHORIZED — MISSION CONTROL REVIEW REQUIRED
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -20,12 +20,12 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Canonical FCTM | `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md`, blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259` (412 rows; 267 `IN SCOPE`) |
 | Document Type | Engineering Implementation Specification (EIS), Source 18 Stage 9 |
 | Document Version | 0.4 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — Source 18 §4.4 EIS owner |
 | Authorizing Instruction | `communication/live/instruction1.23.md` (MC-148), work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`; version 0.2 correction under `communication/live/instruction1.24.md` (MC-151), work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION`; version 0.3 Security refinement under `communication/live/instruction1.26.md` (MC-157), work package `SB-P-1.12-WP-STAGE10-SECURITY-EIS-REFINEMENT`; version 0.4 SEC-EIS10-04 refinement under `communication/live/instruction1.28.md` (MC-161), work package `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-REFINEMENT` |
 | Canonical baseline | `main@24730a684f7ab8d0550066db1ad1acdde0128192` (PR #686 merge; named baseline `e1ecbe39f66509d9606d48f09a86b3c3611d64ad`, differing only by the instruction) |
 | Structural precedent | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` (executor roles, committed rejections, preview binding, idempotency, provenance) |
-| Next gate | Stage 10 — EIS Review by Mission Control, with specialist review where applicable |
+| Next gate | Stage 12 — Initial Implementation Package creation by Claude Code after this lock becomes canonical on `main` |
 
 ## 2. Purpose and Authority
 
