@@ -317,3 +317,68 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - ESC-1 stays open T8, and `22-§20-2` stays `BLOCKED`. Stage 7 is not accepted, and Stage 8 is not authorized.
 
 | MC-146 | **Stage 8 Founder approval accepted; Blueprint lock authorized.** Founder explicitly approved the complete SB-P-1.12 Sections 1–21 Blueprint and authorized Stage 8 lock. Lock freezes FCTM disposition, build commitment, commercial classification and mission assignment while preserving ESC-1 OPEN T8, `22-§20-2` BLOCKED / IN SCOPE, G-6/T4 UNVERIFIED and deferred professional legal/privacy/retention validation. No EIS or implementation authority follows automatically. | `founder/08-stage8-blueprint-lock-approval.md`; `mission-control/27-stage8-founder-approval-and-blueprint-lock.md` | APPROVED — LOCK-ONLY PR / HUMAN MERGE REQUIRED |
+
+## MC-147 and MC-148 — Stage 8 lock crossing verified; Stage 9 EIS authorized (record)
+
+**Date:** 2026-09-30
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#685](https://github.com/SmartBusinessv1/smart-business/pull/685) (MC-146 lock record; MC-147 verification); PR [#686](https://github.com/SmartBusinessv1/smart-business/pull/686) (MC-148, `communication/live/instruction1.23.md`).
+
+- **Blueprint lock:** the Blueprint is `APPROVED — LOCKED` at `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md` (blob `77d52096c020668311b039721a4de9248ddd460e`).
+- **Stage 9 authorization:** MC-148 authorized Stage 9 EIS creation under work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`, with Stage 10 Mission Control review required.
+- **Unchanged holds:** ESC-1 OPEN T8; `22-§20-2` `BLOCKED`; G-6/T4 `UNVERIFIED`; legal validation deferred.
+- **Not authorized:** EIS lock, implementation package and implementation.
+
+## MC-150 and MC-151 — T8-EIS-1 resolved by Founder Decision Record 09; finding-scoped EIS correction (record)
+
+**Date:** 2026-09-30
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#688](https://github.com/SmartBusinessv1/smart-business/pull/688): Founder Decision Record 09, the MC-150 disposition (`mission-control/28-t8-eis1-founder-decision-disposition.md`) and MC-151 (`communication/live/instruction1.24.md`).
+
+- Founder Decision Record 09 clarifies Founder Record 04 F-03. Reference Cost and margin permissions govern Smart Business-provided outputs. Exact delegated Reference Cost may coexist with an otherwise-authorized selling price. Human arithmetic is not Smart Business permission leakage. Smart Business never exposes margin without margin permission. Margin semantics remain undefined.
+- MC-150 found the EIS version 0.1 aggregate-only margin behaviour unapproved.
+- MC-151 authorized a finding-scoped correction on PR #687.
+- ESC-1, `22-§20-2`, G-6/T4 and the legal-validation deferral are unchanged.
+
+## MC-153 to MC-157 — Stage 10 independent EIS Security review and refinement authorization (record)
+
+**Date:** 2026-10-01
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:**
+
+- PR [#689](https://github.com/SmartBusinessv1/smart-business/pull/689): MC-153 review authorization.
+- PR [#690](https://github.com/SmartBusinessv1/smart-business/pull/690): Security review `specialists/04-stage10-independent-eis-security-review.md` and `communication/live/report1.25.md`; MC-156 verification.
+- PR [#691](https://github.com/SmartBusinessv1/smart-business/pull/691): CI manual-equivalence exception for PR #690.
+- PR [#692](https://github.com/SmartBusinessv1/smart-business/pull/692): MC-157 refinement authorization `mission-control/31-stage10-security-eis-refinement-authorization.md` and `communication/live/instruction1.26.md`.
+
+**Recorded:**
+
+- The Security review found the EIS version 0.2 not yet security-sufficient. It raised eleven EIS design corrections (SEC-EIS10-01 to SEC-EIS10-11), confirmed the Founder Decision Record 09 correction (SEC-EIS10-12), and carried two evidence gates (SEC-EIS10-13 and SEC-EIS10-14).
+- No Founder decision was required.
+- MC-157 authorized finding-scoped refinement on PR #687.
+- Holds are unchanged, and Stage 10 acceptance and Stage 11 lock remain separate.
+
+## MC-158 to MC-161 — Stage 10 Security delta re-review; narrow SEC-EIS10-04 refinement authorized (record)
+
+**Date:** 2026-10-01
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#693](https://github.com/SmartBusinessv1/smart-business/pull/693) (delta re-review authorization); PR [#695](https://github.com/SmartBusinessv1/smart-business/pull/695) (`specialists/05-stage10-eis-security-delta-rereview.md`, `communication/live/report1.27.md`); PR [#696](https://github.com/SmartBusinessv1/smart-business/pull/696) (MC-161, `mission-control/34-stage10-sec-eis10-04-refinement-authorization.md`, `communication/live/instruction1.28.md`).
+
+- The delta re-review closed SEC-EIS10-01 to SEC-EIS10-03 and SEC-EIS10-05 to SEC-EIS10-11 at design level.
+- SEC-EIS10-04 still needed refinement in three areas: business lifecycle status serialization, multi-person lock order for transfer, and `EIS-KER-01` contract wording.
+- MC-161 authorized that narrow refinement on PR #687.
+- No Founder decision was needed. Holds are unchanged.
+
+
+## MC-164 / MC-165 — Stage 10 EIS acceptance and Stage 11 EIS lock (record)
+
+**Date:** 2026-10-01  
+**Status:** Prepared on PR #687; authority-bearing transition is effective only on human merge to canonical `main`.
+
+- MC-164 accepts EIS v0.4 for Source 18 Stage 10 after final Security confirmation.
+- Accepted pre-lock EIS blob: `7879c106474b71d2ea70f7355db69a4ee61f0e37`.
+- FCTM completeness at acceptance: 267/267 `IN SCOPE` rows; 81 EIS requirements; 463 links; 0 behavior-adding orphans.
+- MC-165 separately locks the accepted EIS at Stage 11. Locked-status blob in PR #687: `4b2153c9363434adb1f424288aafdd23556314fd`.
+- Stage 12 package creation becomes executable only after the human merge of PR #687 and Mission Control verification of the locked blob on `main`.
+- No implementation authority is granted.
+- ESC-1, `22-§20-2`, G-6/T4 and legal/privacy/retention deferral remain unchanged.

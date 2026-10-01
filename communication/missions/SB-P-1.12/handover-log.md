@@ -604,3 +604,91 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Locked target:** `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`.  
 **Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.  
 **Next action after merge:** Mission Control verifies the lock crossing, then separately decides Stage 9 EIS authorization.
+
+## H-38 — Claude Code to Mission Control: MC-148 Stage 9 EIS draft submitted
+
+**Prepared:** 2026-09-30
+**From:** Claude Code (Source 18 §4.4 EIS owner, work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`)
+**To:** Mission Control
+**Status:** `STAGE 9 EIS DRAFT SUBMITTED — DRAFT PR AWAITING MISSION CONTROL STAGE 10 REVIEW — EIS NOT LOCKED — ESC-1 T8 OPEN — T8-EIS-1 RAISED.`
+**Authority:** MC-148 (`communication/live/instruction1.23.md`), effective through PR #686 and Mission Control's verification of it.
+**Git actions:** branch `mission/SB-P-1.12-stage9-eis-draft` from `main@24730a684f7ab8d0550066db1ad1acdde0128192`; one commit; one DRAFT PR.
+**Files created or modified:**
+
+- new `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`;
+- new `claude-code/36-stage9-eis-creation-report.md`;
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.23.md`.
+
+**Unchanged:** the locked Blueprint, the FCTM, source contracts, Founder Records, Security reports, Mission Control records, code, schema, SQL and migrations.
+**Handover:** `communication/live/report1.23.md`, paired with `communication/live/instruction1.23.md`.
+**Next authorized action:** Mission Control Stage 10 review. No self-merge.
+
+## H-39 — Claude Code to Mission Control: MC-151 T8-EIS-1 correction submitted
+
+**Prepared:** 2026-09-30
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION`)
+**To:** Mission Control
+**Status:** `EIS VERSION 0.2 FINDING-SCOPED CORRECTION SUBMITTED ON PR #687 — AWAITING MISSION CONTROL STAGE 10 RE-REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-151 (`communication/live/instruction1.24.md`), effective through PR #688 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of the reviewed head `9a9a4f390dbf04f6eb77e4f800bbb25ca2eab701`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §11);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.24.md`.
+
+**Handover:** `communication/live/report1.24.md`, paired with `communication/live/instruction1.24.md`.
+**Next authorized action:** Mission Control exact-head re-review, then the independent Security specialist's Stage 10 review. No self-merge.
+
+## H-40 — Claude Code to Mission Control: MC-157 Stage 10 Security refinement submitted
+
+**Prepared:** 2026-10-01
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-SECURITY-EIS-REFINEMENT`)
+**To:** Mission Control
+**Status:** `EIS VERSION 0.3 SECURITY REFINEMENT SUBMITTED ON PR #687 — AWAITING MISSION CONTROL REVIEW AND SECURITY DELTA RE-REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-157 (`communication/live/instruction1.26.md`), effective through PR #692 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of `a1beda8c006ab69b28f5354b686c941384cd1e86`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §12);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.26.md`.
+
+**Handover:** `communication/live/report1.26.md`, paired with `communication/live/instruction1.26.md`.
+**Next authorized action:** Mission Control exact-head review, then a separately authorized Security delta re-review. No self-merge.
+
+## H-41 — Claude Code to Mission Control: MC-161 SEC-EIS10-04 refinement submitted
+
+**Prepared:** 2026-10-01
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-REFINEMENT`)
+**To:** Mission Control
+**Status:** `SEC-EIS10-04 REFINEMENT SUBMITTED ON PR #687 (EIS VERSION 0.4) — AWAITING MISSION CONTROL REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-161 (`communication/live/instruction1.28.md`), effective through PR #696 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of `022aefbd49f483b8bca1ad469fd8980718670f67`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §13);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.28.md`.
+
+**Handover:** `communication/live/report1.28.md`, paired with `communication/live/instruction1.28.md`.
+**Next authorized action:** Mission Control review. No self-merge.
+
+
+## H-42 — Mission Control Stage 10 acceptance / Stage 11 lock handover
+
+**Prepared:** 2026-10-01  
+**From:** Mission Control  
+**To:** Founder / authorized human merge, then Claude Code after post-merge verification  
+**Stage 10:** ACCEPTED under MC-164.  
+**Stage 11:** `APPROVED — LOCKED` under MC-165, effective only on human merge of PR #687.  
+**Accepted pre-lock EIS:** `7879c106474b71d2ea70f7355db69a4ee61f0e37`.  
+**Locked-status EIS prepared in PR #687:** `4b2153c9363434adb1f424288aafdd23556314fd`.  
+**Traceability:** 81 requirements; 463 links; 267/267 `IN SCOPE`; 0 behavior-adding orphans.  
+**Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; legal/privacy/retention validation deferred.  
+**Next authorized action:** human merge PR #687. After Mission Control verifies the canonical lock, Claude Code may execute `communication/live/instruction1.30.md` for Stage 12 package creation.  
+**Action not authorized:** implementation, schema/SQL/migrations, provider/production mutation.

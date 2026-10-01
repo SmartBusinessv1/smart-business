@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–6 COMPLETE — CANONICAL; STAGE 7 ENGINEERING REVIEW DRAFT (BLUEPRINT SECTIONS 20–21; 267 OF 267 `IN SCOPE` ROWS: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED`); GROUPED INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED (MC-40, MC-42, MC-44; `report1.19.md`; `report1.21.md`); R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED (MC-141, MC-142); STAGE 7 STATUS RECONCILED UNDER MC-143, AWAITING MISSION CONTROL FINAL STAGE 7 REVIEW; ESC-1 T8 OPEN (INCLUDING THE `transactions.creator_id` CASCADE, MC-137); `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; STAGE 7 NOT ACCEPTED; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED
+**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RESOLVED BY FOUNDER DECISION RECORD 09 (EIS VERSION 0.2, MC-151); STAGE 10 SECURITY REFINEMENT SEC-EIS10-01–11 APPLIED IN EIS VERSION 0.3 (MC-157); DELTA RE-REVIEW CLOSED TEN FINDINGS; NARROW SEC-EIS10-04 REFINEMENT IN EIS VERSION 0.4 (MC-161), AWAITING MISSION CONTROL REVIEW; `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -63,7 +63,7 @@ See [Mission Control decision 01](mission-control/01-stage1-communication-and-ac
 | 6c — Stage 7 prerequisite disposition and independent reviewer appointment gate (MC-30) | COMPLETE — CANONICAL (PR #638, MC-31B) | Claude Code, documentary drafter only; Mission Control decides; human merge required | [MC-30 decision record](mission-control/17-stage7-prerequisite-disposition-and-reviewer-appointment-gate.md) | Proposed G-1 to G-8 dispositions; reviewer appointment `PENDING`; source ambiguities S-1 to S-7 flagged; no gate closed; Stage 7 not authorized |
 | 6d — Independent Security & Permissions Architecture reviewer appointment record (MC-33) | EFFECTIVE (PR #639, MC-34) | Claude Code, documentary preparer only; Mission Control decided | [MC-33 appointment record](mission-control/19-independent-security-reviewer-appointment-record.md) | Human-merged `2026-09-25T12:41:08Z`, `main@df5d5257e1d22072f2163b2d04d04e72e73f0a0c`; MC-34 post-merge verification; existing specialist room appointed; G-2 START prerequisite satisfied; the independent review is not complete |
 | 6e — Stage 7 Engineering Review activation record (MC-35) | EFFECTIVE (PR #640, MC-37) | Claude Code, documentary preparer only; Mission Control decided | [MC-35 activation record](mission-control/21-stage7-engineering-review-activation-record.md) | Human-merged `2026-09-26T09:15:55Z`, `main@733f33935b37f6e3b5b4f7e8916f0161d6646527`; MC-36 stop/resume correction; G-1 satisfied |
-| 7 — Engineering Review | DRAFT — PR #641 CANONICAL; CONTRACT 22 §33 FINDINGS ADDED (PR #679, MC-140); GROUPED INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED; STATUS RECONCILED UNDER MC-143; AWAITING MISSION CONTROL FINAL STAGE 7 SUBSTANTIVE REVIEW | Claude Code (Source 18 §4.4), with the appointed independent Security & Permissions Architecture room | [Blueprint Sections 20–21](../../docs/phase-1-mission-blueprint/active/SB-P-1.12.md), [Stage 7 report](claude-code/25-stage7-engineering-review-report.md), [MC-143 reconciliation report](claude-code/35-stage7-final-status-gate-reconciliation-report.md) | 267 of 267 `IN SCOPE` rows: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED` (`22-§20-2`, ESC-1 open T8); 227 `PENDING`, 40 `N/R` as the historical review taxonomy; EQ-2 to EQ-5 resolved for Stage 7 by Mission Control (MC-143); R-2 source-coverage gate closed (MC-141, MC-142); Stage 7 not accepted |
+| 7 — Engineering Review | ACCEPTED (MC-144, MC-145) — PR #641 CANONICAL; CONTRACT 22 §33 FINDINGS ADDED (PR #679, MC-140); GROUPED INDEPENDENT SECURITY REVIEW COMPLETE AND CANONICALLY DISPOSITIONED; STATUS RECONCILED UNDER MC-143 | Claude Code (Source 18 §4.4), with the appointed independent Security & Permissions Architecture room | [Blueprint Sections 20–21](../../docs/phase-1-mission-blueprint/active/SB-P-1.12.md), [Stage 7 report](claude-code/25-stage7-engineering-review-report.md), [MC-143 reconciliation report](claude-code/35-stage7-final-status-gate-reconciliation-report.md) | 267 of 267 `IN SCOPE` rows: 179 `FEASIBLE`, 87 `CONDITIONAL`, 0 `HELD`, 1 `BLOCKED` (`22-§20-2`, ESC-1 open T8); 227 `PENDING`, 40 `N/R` as the historical review taxonomy; EQ-2 to EQ-5 resolved for Stage 7 by Mission Control (MC-143); R-2 source-coverage gate closed (MC-141, MC-142) |
 
 Stage 3 Brief authority became canonical on #625, Brief on #626, Founder Decision Record preparation on #627, Founder Decision Record/FCTM/gate review on #628, and Stage 4 Blueprint drafting authority on #629. (Historical, as of MC-19; superseded by the two sentences that follow.) The DRAFT Blueprint itself remains draft until Mission Control's Stage 5 Product Review. Stage 5 has since approved Sections 1–19 only (MC-21, PR #630), and the v0.3 reconciliation is canonical (MC-27, PR #635). The complete Sections 1–21 Blueprint remains unfinished and unlocked. The Stage Ledger is only an index and approves, locks, authorizes, accepts and closes nothing (Source 18 §10).
 
@@ -185,3 +185,65 @@ Founder Stage 8 approval has been granted for the complete Sections 1–21 Bluep
 After protected-main merge and Mission Control verification, the locked Blueprint lives at `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`.
 
 Carried forward: ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred. No EIS or implementation authority is implied.
+
+## Stage 9 status — MC-148 (2026-09-30)
+
+Under MC-148 (`communication/live/instruction1.23.md`), Claude Code prepared the draft [EIS](../../../docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md) and the [Stage 9 creation report](claude-code/36-stage9-eis-creation-report.md).
+
+- **Traceability:** the EIS maps all 267 `IN SCOPE` FCTM rows to 80 requirements in both directions, with one engineering-only requirement.
+- **ESC-1:** it proposes a safe-design direction. ESC-1 is not closed.
+- **New T8:** it raises T8-EIS-1 on Reference Cost and margin derivation, for Mission Control routing.
+
+The handover is `communication/live/report1.23.md`. The following are unchanged:
+
+- The Blueprint stays `APPROVED — LOCKED`, and the FCTM is unchanged.
+- ESC-1 stays OPEN T8.
+- `22-§20-2` stays `BLOCKED` / `IN SCOPE`.
+- G-6/T4 stays `UNVERIFIED`.
+- Professional legal, privacy and retention validation stays deferred.
+- The EIS is not locked. The implementation package, implementation, schema, SQL, migrations and production remain not authorized.
+
+This README is an index, not an authority record.
+
+## Stage 10 correction — MC-151 (2026-09-30)
+
+Founder Decision Record 09 resolved T8-EIS-1. Under MC-151 (`communication/live/instruction1.24.md`), Claude Code corrected the draft EIS to version 0.2 on the PR #687 branch:
+
+- Section 12.4 and `EIS-PPM-04` were rewritten to the Founder rule.
+- The aggregate-only margin behaviour was removed.
+- No margin formula or margin display semantics were selected.
+
+The EIS still has 80 requirements covering 267 of 267 rows. The handover is `communication/live/report1.24.md`. ESC-1 stays OPEN T8, `22-§20-2` stays `BLOCKED`, G-6/T4 stays `UNVERIFIED`, and legal validation stays deferred. The EIS is not accepted or locked.
+
+## Stage 10 Security refinement — MC-157 (2026-10-01)
+
+The Stage 10 independent Security review (`specialists/04-stage10-independent-eis-security-review.md`) required refinement. Under MC-157 (`communication/live/instruction1.26.md`), Claude Code refined the EIS to version 0.3 on the PR #687 branch for SEC-EIS10-01 to SEC-EIS10-11:
+
+- verified-principal model;
+- multi-business first run;
+- active-Owner invariant;
+- complete authority serialization;
+- atomic confirmation consumption;
+- bound privileged reads;
+- direct-RPC denial durability;
+- `SECURITY DEFINER` hardening (new `EIS-ISO-10`);
+- tombstoned business identity;
+- `22-§20-2` evidence;
+- SB-P-1.13 consumption boundary.
+
+The EIS now has 81 requirements covering 267 of 267 rows. SEC-EIS10-12 to SEC-EIS10-14 are carried as evidence and verification gates. The handover is `communication/live/report1.26.md`. Founder Decision Record 09 material and all holds are unchanged. The EIS is not accepted or locked.
+
+## Narrow SEC-EIS10-04 refinement — MC-161 (2026-10-01)
+
+The Stage 10 Security delta re-review (`specialists/05-stage10-eis-security-delta-rereview.md`) closed ten findings at design level and left SEC-EIS10-04 open. Under MC-161 (`communication/live/instruction1.28.md`), Claude Code refined the EIS to version 0.4 on the PR #687 branch. Business lifecycle status is now under the business authority-state lock, every relied-on person row is locked in deterministic UUID order, transfer locks both Owner rows, and `EIS-KER-01` is aligned with Section 8.1. The EIS keeps 81 requirements covering 267 of 267 rows. The handover is `communication/live/report1.28.md`. All holds are unchanged, and the EIS is not accepted or locked.
+
+
+## Stage 10 accepted / Stage 11 EIS lock prepared — MC-164 / MC-165 (2026-10-01)
+
+Mission Control accepted EIS v0.4 at Stage 10 after the final Security confirmation closed `SEC-EIS10-04` at design level. All eleven Stage 10 Security design findings are closed at documentary design level. The accepted pre-lock EIS blob is `7879c106474b71d2ea70f7355db69a4ee61f0e37`.
+
+Stage 11 is recorded separately in `mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`. The lock is effective only when PR #687 is human-merged to canonical `main`. The locked-status EIS blob prepared in PR #687 is `4b2153c9363434adb1f424288aafdd23556314fd`.
+
+After Mission Control verifies that merge, Claude Code may execute `communication/live/instruction1.30.md` for Source 18 Stage 12 package creation only. Implementation remains unauthorized.
+
+Preserved: ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.
