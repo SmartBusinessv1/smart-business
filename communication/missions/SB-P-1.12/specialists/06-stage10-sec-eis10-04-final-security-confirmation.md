@@ -1,11 +1,11 @@
 # SB-P-1.12 — Final Security Confirmation of SEC-EIS10-04
 
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Stage:** 10 — EIS Review  
-**Reviewer:** Security & Permissions Architecture — existing specialist room  
-**Authority:** MC-163 / `communication/live/instruction1.29.md` and `communication/missions/SB-P-1.12/mission-control/35-stage10-sec-eis10-04-final-security-confirmation-authorization.md`  
-**Work package:** `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-FINAL-CONFIRMATION`  
-**Review type:** Final finding-scoped exact-delta confirmation  
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Stage:** 10 — EIS Review
+**Reviewer:** Security & Permissions Architecture — existing specialist room
+**Authority:** MC-163 / `communication/live/instruction1.29.md` and `communication/missions/SB-P-1.12/mission-control/35-stage10-sec-eis10-04-final-security-confirmation-authorization.md`
+**Work package:** `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-FINAL-CONFIRMATION`
+**Review type:** Final finding-scoped exact-delta confirmation
 **Status:** SUBMITTED FOR MISSION CONTROL DISPOSITION — EIS NOT ACCEPTED OR LOCKED
 
 ## 1. Exact target and canonical basis
