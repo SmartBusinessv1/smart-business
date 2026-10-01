@@ -572,7 +572,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 
 ## 14. Final Acceptance Statement
 
-Not executed. To be completed only after the package is locked, implementation is authorized and performed, and Stages 16 to 19 have produced their records. Mission Control decides acceptance. Nothing in this draft is acceptance, demonstration or evidence.
+Not executed. To be completed only after the package is locked, implementation is authorized and performed, and Stages 16 to 19 have produced their records. Mission Control decides acceptance. Nothing in this locked checklist is acceptance, demonstration or evidence.
 
 ```text
 CHECKLIST EXECUTION: NOT STARTED
@@ -589,3 +589,5 @@ LEGAL, PRIVACY AND RETENTION VALIDATION: DEFERRED
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `NP-35` test or migration context with synthetic fixtures; `VC-TEST-11` runtime-gated verification; identity-deletion rows shown as execution-gated, not deferred; evidence classes of the gated identity-deletion obligations updated to build evidence. No row, item or mapping changed |
+
+| 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
