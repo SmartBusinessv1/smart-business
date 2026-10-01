@@ -1,11 +1,11 @@
 # SB-P-1.12 — MC-159 Stage 10 Independent Security Delta Re-Review Handover
 
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**From:** Security & Permissions Architecture — existing MC-33-appointed specialist room  
-**To:** Smart Business Mission Control  
-**Paired instruction:** `communication/live/instruction1.27.md`  
-**Work package:** `SB-P-1.12-WP-STAGE10-EIS-SECURITY-DELTA-REREVIEW`  
-**Primary report:** `communication/missions/SB-P-1.12/specialists/05-stage10-eis-security-delta-rereview.md`  
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**From:** Security & Permissions Architecture — existing MC-33-appointed specialist room
+**To:** Smart Business Mission Control
+**Paired instruction:** `communication/live/instruction1.27.md`
+**Work package:** `SB-P-1.12-WP-STAGE10-EIS-SECURITY-DELTA-REREVIEW`
+**Primary report:** `communication/missions/SB-P-1.12/specialists/05-stage10-eis-security-delta-rereview.md`
 **Status:** INDEPENDENT DELTA RE-REVIEW SUBMITTED — ONE DESIGN REFINEMENT REMAINS — EIS NOT ACCEPTED OR LOCKED
 
 ## 1. Exact target
