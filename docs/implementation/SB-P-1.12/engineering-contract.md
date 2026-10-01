@@ -1,7 +1,7 @@
 # SB-P-1.12 — Engineering Contract
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
 IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
@@ -19,7 +19,7 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
 | Version | 0.2 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — Source 18 Section 4.4 initial implementation package owner |
 | Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE` |
 | Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5` |
@@ -631,7 +631,7 @@ Observations raised at Stage 12 and their Mission Control dispositions (MC-166, 
 
 ## 14. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. Not approved, not locked, not an implementation authorization. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; implementation, runtime and production Security proof is not established.
+`APPROVED — LOCKED`. Not approved, not locked, not an implementation authorization. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; implementation, runtime and production Security proof is not established.
 
 ## 15. Change Log
 
@@ -639,3 +639,5 @@ Observations raised at Stage 12 and their Mission Control dispositions (MC-166, 
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166 and PQ-5 marked resolved; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; PQ-1 (`EC-ISO-10` to WS-A3, `EC-DEP-01` consumer gate), PQ-2 (`EC-LEG-02` to WS-F, authorization gated), PQ-3 (gated build classifications replace design-only), PQ-4 recorded as downstream prerequisites, PQ-7 resolved. No row, mapping, link or count changed |
+
+| 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
