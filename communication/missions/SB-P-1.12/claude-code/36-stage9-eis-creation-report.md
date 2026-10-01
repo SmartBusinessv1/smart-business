@@ -208,3 +208,15 @@ The Stage 10 independent Security review (`specialists/04-stage10-independent-ei
 - Legal validation stays deferred.
 
 The finding-by-finding closure table is in `communication/live/report1.26.md`.
+
+## 13. Narrow SEC-EIS10-04 refinement under MC-161 (2026-10-01)
+
+The Stage 10 Security delta re-review (`specialists/05-stage10-eis-security-delta-rereview.md`, blob `363da0024c86f11055a4954b13aa63af3f0ec999`) closed ten findings at design level and left SEC-EIS10-04 open. Under MC-161 (`communication/live/instruction1.28.md`), the EIS was refined to version 0.4 on the PR #687 branch:
+
+- Business lifecycle status is placed under the business authority-state epoch and lock. Lifecycle transitions that change authorization, including governed deletion and tombstoning, take `FOR UPDATE` on that row and increment its epoch in the same transaction.
+- Every person row whose current state a decision relies on is locked.
+- Same-type rows are locked in ascending canonical UUID order, after the fixed type order (registry, persons, business authority state).
+- Transfer completion locks both Owner person rows and the business authority-state row, and revalidates both identities and approvals in that transaction.
+- `EIS-KER-01` now states the Section 8.1 result contract (principal, authority epochs, grant identifiers, decision identifier).
+
+**Counts:** requirements 81 → 81 and links 463 → 463, with 267 of 267 rows and 0 behaviour-adding orphans. No requirement was added. EIS Sections 12, 15 to 17 and 22 are byte-identical to version 0.3.

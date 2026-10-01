@@ -357,3 +357,14 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - No Founder decision was required.
 - MC-157 authorized finding-scoped refinement on PR #687.
 - Holds are unchanged, and Stage 10 acceptance and Stage 11 lock remain separate.
+
+## MC-158 to MC-161 — Stage 10 Security delta re-review; narrow SEC-EIS10-04 refinement authorized (record)
+
+**Date:** 2026-10-01
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:** PR [#693](https://github.com/SmartBusinessv1/smart-business/pull/693) (delta re-review authorization); PR [#695](https://github.com/SmartBusinessv1/smart-business/pull/695) (`specialists/05-stage10-eis-security-delta-rereview.md`, `communication/live/report1.27.md`); PR [#696](https://github.com/SmartBusinessv1/smart-business/pull/696) (MC-161, `mission-control/34-stage10-sec-eis10-04-refinement-authorization.md`, `communication/live/instruction1.28.md`).
+
+- The delta re-review closed SEC-EIS10-01 to SEC-EIS10-03 and SEC-EIS10-05 to SEC-EIS10-11 at design level.
+- SEC-EIS10-04 still needed refinement in three areas: business lifecycle status serialization, multi-person lock order for transfer, and `EIS-KER-01` contract wording.
+- MC-161 authorized that narrow refinement on PR #687.
+- No Founder decision was needed. Holds are unchanged.

@@ -659,3 +659,21 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 
 **Handover:** `communication/live/report1.26.md`, paired with `communication/live/instruction1.26.md`.
 **Next authorized action:** Mission Control exact-head review, then a separately authorized Security delta re-review. No self-merge.
+
+## H-41 — Claude Code to Mission Control: MC-161 SEC-EIS10-04 refinement submitted
+
+**Prepared:** 2026-10-01
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-REFINEMENT`)
+**To:** Mission Control
+**Status:** `SEC-EIS10-04 REFINEMENT SUBMITTED ON PR #687 (EIS VERSION 0.4) — AWAITING MISSION CONTROL REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-161 (`communication/live/instruction1.28.md`), effective through PR #696 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of `022aefbd49f483b8bca1ad469fd8980718670f67`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §13);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.28.md`.
+
+**Handover:** `communication/live/report1.28.md`, paired with `communication/live/instruction1.28.md`.
+**Next authorized action:** Mission Control review. No self-merge.
