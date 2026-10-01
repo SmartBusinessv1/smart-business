@@ -368,3 +368,17 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - SEC-EIS10-04 still needed refinement in three areas: business lifecycle status serialization, multi-person lock order for transfer, and `EIS-KER-01` contract wording.
 - MC-161 authorized that narrow refinement on PR #687.
 - No Founder decision was needed. Holds are unchanged.
+
+
+## MC-164 / MC-165 — Stage 10 EIS acceptance and Stage 11 EIS lock (record)
+
+**Date:** 2026-10-01  
+**Status:** Prepared on PR #687; authority-bearing transition is effective only on human merge to canonical `main`.
+
+- MC-164 accepts EIS v0.4 for Source 18 Stage 10 after final Security confirmation.
+- Accepted pre-lock EIS blob: `7879c106474b71d2ea70f7355db69a4ee61f0e37`.
+- FCTM completeness at acceptance: 267/267 `IN SCOPE` rows; 81 EIS requirements; 463 links; 0 behavior-adding orphans.
+- MC-165 separately locks the accepted EIS at Stage 11. Locked-status blob in PR #687: `4b2153c9363434adb1f424288aafdd23556314fd`.
+- Stage 12 package creation becomes executable only after the human merge of PR #687 and Mission Control verification of the locked blob on `main`.
+- No implementation authority is granted.
+- ESC-1, `22-§20-2`, G-6/T4 and legal/privacy/retention deferral remain unchanged.
