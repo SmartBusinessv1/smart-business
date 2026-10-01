@@ -18,11 +18,11 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — Source 18 Section 4.4 initial implementation package owner |
 | Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE` |
-| Canonical baseline | `main@e6c6aac5395fcffc4693bd53144e310c70657c6f` (PR #699 merge, MC-166); package created at `main@0b69f50f` (PR #687 merge) |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5` |
 | Date | 2026-10-01 |
 | Next gate | Stage 13 — Implementation Package Review by Mission Control |
 
@@ -39,13 +39,14 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Reference | Path | Identity |
 |---|---|---|
 | Locked Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md` | blob `77d52096c020668311b039721a4de9248ddd460e` (`APPROVED — LOCKED`) |
-| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `476b00e061772648c5547161328e48e3f5ab0991` (`APPROVED — LOCKED`, version 0.4 with MC-166 lock-metadata reconciliation 0.4-L1; pre-reconciliation blob `4b2153c9363434adb1f424288aafdd23556314fd`) |
+| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `c444f7509477d0e8b997af538440d93bf2ca4d72` (`APPROVED — LOCKED`, version 0.4 with MC-166 lock-metadata reconciliation 0.4-L1 and MC-167 formatting reconciliation 0.4-L2) |
 | Canonical FCTM | `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md` | blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259` (412 rows; 267 `IN SCOPE`) |
 | Founder Decision Record 09 | `communication/missions/SB-P-1.12/founder/09-reference-cost-margin-permission-semantics.md` | blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9` |
-| Stage 10 acceptance (MC-164) | `communication/missions/SB-P-1.12/mission-control/36-stage10-eis-review-acceptance.md` | canonical on `main@e6c6aac5` |
-| Stage 11 lock and Stage 12 authorization (MC-165) | `communication/missions/SB-P-1.12/mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md` | canonical on `main@e6c6aac5` |
-| Lock-metadata reconciliation and Stage 12 Git authorization (MC-166) | `communication/missions/SB-P-1.12/mission-control/38-stage11-lock-metadata-reconciliation-and-stage12-git-authorization.md` | canonical on `main@e6c6aac5` (PR #699) |
-| Stage 12 instructions | `communication/live/instruction1.30.md` (MC-165); `communication/live/instruction1.31.md` (MC-166 publication) | canonical on `main@e6c6aac5` |
+| Stage 10 acceptance (MC-164) | `communication/missions/SB-P-1.12/mission-control/36-stage10-eis-review-acceptance.md` | canonical on `main@7d95143e` |
+| Stage 11 lock and Stage 12 authorization (MC-165) | `communication/missions/SB-P-1.12/mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md` | canonical on `main@7d95143e` |
+| Lock-metadata reconciliation and Stage 12 Git authorization (MC-166) | `communication/missions/SB-P-1.12/mission-control/38-stage11-lock-metadata-reconciliation-and-stage12-git-authorization.md` | canonical on `main@7d95143e` (PR #699) |
+| Stage 13 review and refinement authorization (MC-167) | `communication/missions/SB-P-1.12/mission-control/39-stage13-package-review-and-refinement-authorization.md` | canonical on `main@7d95143e` (PR #701) |
+| Stage 12 and 13 instructions | `communication/live/instruction1.30.md` (MC-165); `communication/live/instruction1.31.md` (MC-166 publication); `communication/live/instruction1.32.md` (MC-167 refinement) | canonical on `main@7d95143e` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Stage 12 and Section 3.2 |
 | Package template | `docs/implementation/templates/SB-P-Implementation-and-Evidence-Workflow-Template.md` | Phases A to C |
 
@@ -60,7 +61,7 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | G-7 environment and provider topology | Evidence gate | Storage, provider Auth-deletion and backup facts need separately authorized evidence before reliance |
 | Professional legal, privacy and retention validation | **Deferred** (Founder Record 06, MC-117) | No retention period, policy text or legal finality is created; rules stay data |
 | Founder Decision Record 09 | APPROVED Product Truth | Reference Cost and margin semantics are applied exactly; no margin formula or margin output semantics are selected |
-| Identity-deletion runtime | Not authorized (EIS Section 15) | `EC-DEL-*` and `EC-LEG-*` are design-only; their rows stay `IN SCOPE` and are marked runtime-gated with the reason |
+| Identity-deletion runtime | Not authorized (EIS Section 15) | An execution gate, not a scope deferral. `EC-DEL-*` and `EC-LEG-*` keep their build, verification or evidence obligations (MC-167 PQ-3); their rows stay `IN SCOPE` and `BUILD NOW`; execution waits for a separate runtime authorization |
 | Security design findings SEC-EIS10-01 to SEC-EIS10-11 | Closed at design level (MC-164) | Realized through the obligations that implement the EIS sections named in EIS Section 20 |
 | Security implementation and evidence gates SEC-EIS10-12 to SEC-EIS10-14 | Open as implementation and evidence gates | Carried as verification items: projection on every read path (12); live effective-access evidence (13); provider, backup, PITR and legal-hold evidence (14) |
 | Implementation and runtime Security proof | Not yet established | Nothing in this package is runtime, implementation or production evidence |
@@ -108,10 +109,15 @@ Each obligation `EC-<suffix>` realizes exactly one EIS requirement `EIS-<suffix>
 | `BUILD` | Implement exactly as the locked EIS specifies, under a future Implementation Authorization. |
 | `BUILD-HARNESS` | Implement the authority boundary here. Where the consuming surface belongs to a later mission, prove the boundary with a clearly labelled harness (Blueprint Section 15, DC-3). Do not build the later mission's feature. |
 | `BUILD-EVIDENCE-GATED` | Implement only after the named separately authorized evidence exists (G-6 or G-7). Repository files never substitute for that evidence. |
-| `DESIGN-ONLY` | Identity-deletion runtime is not authorized (EIS Section 15). Preserve the design, build nothing that precludes it, and keep the row `IN SCOPE`, marked runtime-gated. Runtime work needs a separate authorization. |
+| `BUILD — RUNTIME / AUTHORIZATION GATED` | A `BUILD NOW` implementation obligation. Execution waits for a separate identity-deletion runtime authorization and, for schema, a migration mission. The gate is an execution gate, not a scope deferral; the row stays `IN SCOPE`. |
+| `VERIFICATION — RUNTIME GATED` | A verification obligation whose tests run once the identity-deletion runtime is authorized, with labelled fixtures. The row stays `IN SCOPE`. |
+| `BUILD — LEGAL / RUNTIME GATED` | A `BUILD NOW` implementation obligation whose rule entries stay provisional data until professional legal, privacy and retention validation exists, and whose runtime use waits for the runtime authorization. No period, category or legal conclusion is coded. |
+| `BUILD — AUTHORIZATION GATED` | A `BUILD NOW` implementation obligation that starts only under an Implementation Authorization and, for schema, a migration mission. It is built as neutral technical state only. |
+| `EVIDENCE-ONLY / PROVIDER-LEGAL GATED` | An evidence obligation: provider facts and the legal rule must both exist before any behaviour is assumed. It adds no behaviour. |
 | `MIGRATION-DESIGN` | Fixes migration order and reconciliation. Writing or executing any migration needs an explicit migration mission under `docs/migration/README.md`. |
 | `EVIDENCE` | An evidence obligation. It adds no product behaviour. It is satisfied only by the named evidence, collected under separate authorization where required. |
-| `GOVERNANCE` | Applies to every workstream. It constrains how behaviour is built and adds no product behaviour of its own. |
+| `GOVERNANCE` | Applies to every builder workstream. It constrains how behaviour is built and adds no product behaviour of its own. |
+| `CONSUMER GATE` | Cross-cutting Governance / Consumer Gate. **Not an implementation builder workstream obligation**: no builder builds anything for it. Mission Control enforces it through dependency evidence before a later mission consumes an authority surface. |
 
 ## 7. Engineering Obligations
 
@@ -165,7 +171,7 @@ The source-complete authority-surface inventory (EIS Section 9.1) is produced be
 | `EC-ISO-07` | `EIS-ISO-07` | Reference-level isolation with composite keys | `BUILD` | WS-A3 | M6 | 9.4 | NP-03, RS-03 | `21-§6-6`, `21-§6-7`, `22-§5-9` |
 | `EC-ISO-08` | `EIS-ISO-08` | Kernel performance on list and search paths | `BUILD` | WS-A3 | M1 | 9.4 | per-row `VC-R` items | `22-§21` |
 | `EC-ISO-09` | `EIS-ISO-09` | Data ownership and privacy boundary | `BUILD` | WS-A3 | None | 9.4 | NP-42 | `21-§21-4`, `22-§23-1`, `22-§23-5`, `22-§23-6`, `22-§23-7` |
-| `EC-ISO-10` | `EIS-ISO-10` | `SECURITY DEFINER` hardening invariant | `BUILD` | Cross-cutting | Every M3 | 9.3, 9.4 | NP-28 | `21-§7`, `BP-§10.1-7`, `BP-§10.1-8` |
+| `EC-ISO-10` | `EIS-ISO-10` | `SECURITY DEFINER` hardening invariant | `BUILD` | WS-A3 | Every M3 | 9.3, 9.4 | NP-28 | `21-§7`, `BP-§10.1-7`, `BP-§10.1-8` |
 
 ### 7.4 Confirmation, Concurrency and Idempotency
 
@@ -234,22 +240,22 @@ ESC-1 stays OPEN T8. These obligations realize the EIS safe-design direction onl
 | `EC-ESC-07` | `EIS-ESC-07` | Evidence required before `22-§20-2` can be proposed for unblocking | `EVIDENCE` | WS-F | None | 14.6, 14.7 | NP-29, NP-30, NP-31, NP-32, NP-33, NP-34, NP-35, NP-41, NP-45 | `22-§20-2`, `22-§29-11`, `22-§29-12` |
 | `EC-ESC-08` | `EIS-ESC-08` | ESC-1 migration and backfill order | `MIGRATION-DESIGN` | WS-F | M2, M6 | 14.4, 14.6 | NP-41, RS-13 | `22-§20-1`, `22-§20-4`, `BP-§10.1-13` |
 
-### 7.9 Identity Deletion and Legal Boundary — Design Only
+### 7.9 Identity Deletion and Legal Boundary — Runtime, Authorization, Legal and Provider Gated
 
-Identity-deletion runtime is not authorized. These obligations bind the foundation not to preclude the EIS Section 15 and Section 16 design. No retention period, legal text or professional legal finality is created. Every row they realize stays `IN SCOPE` and is marked runtime-gated in the Verification Checklist; none is deferred.
+These are `BUILD NOW` obligations for `IN SCOPE` rows (MC-167 PQ-3). Identity-deletion runtime is not authorized, so their execution is gated; that is an execution gate, not a scope deferral, and no row is deferred. `EC-LEG-02` is a neutral technical record-level hold state built in WS-F (MC-167 PQ-2). No legal category, legal basis, retention period, release authority, policy text, or production or legal conclusion is created; those stay deferred to professional validation and evidence
 
 | Obligation | Realizes | Title | Type | Workstream | Migration class | EIS section | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
-| `EC-DEL-01` | `EIS-DEL-01` | Identity-deletion eligibility evaluator | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-40 | `22-§33-3`, `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-7`, `22-§33-8`, `22-§33-10`, `22-§33-11`, `22-§33-31`, `22-§33-33`, `22-§33-34` |
-| `EC-DEL-02` | `EIS-DEL-02` | Governed identity-deletion command | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-29, NP-30, NP-31, NP-33 | `22-§33-1`, `22-§33-9`, `22-§33-22` |
-| `EC-DEL-03` | `EIS-DEL-03` | De-identification separating identity from records | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-31, NP-40 | `22-§33-2`, `22-§33-12`, `22-§33-14`, `22-§33-19`, `22-§33-23` |
-| `EC-DEL-04` | `EIS-DEL-04` | Non-authorizing attribution | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-39, NP-43 | `22-§33-15`, `22-§33-28`, `22-§33-37` |
-| `EC-DEL-05` | `EIS-DEL-05` | Bounded deletion proof | `DESIGN-ONLY` | Deletion design | Design only | 15 | per-row `VC-R` items | `22-§33-21`, `22-§33-38` |
-| `EC-DEL-06` | `EIS-DEL-06` | Obligation and hold register | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-35 | `22-§33-7`, `22-§33-13`, `22-§33-26`, `22-§33-35` |
-| `EC-DEL-07` | `EIS-DEL-07` | Section 33.8 acceptance evidence plan | `DESIGN-ONLY` | Deletion design | Design only | 15 | NP-29, NP-30, NP-31, NP-32, NP-33, NP-37, NP-39, NP-40 | `22-§33-31`, `22-§33-32`, `22-§33-33`, `22-§33-34`, `22-§33-35`, `22-§33-36`, `22-§33-37`, `22-§33-38`, `22-§33-39` |
-| `EC-LEG-01` | `EIS-LEG-01` | Record-class registry with retention rules as data | `DESIGN-ONLY` | Deletion design | Design only | 16 | NP-34, NP-35, NP-39, NP-42 | `22-§33-16`, `22-§33-23`, `22-§33-24`, `22-§33-25`, `22-§33-27`, `22-§33-28`, `22-§33-29`, `22-§33-30` |
-| `EC-LEG-02` | `EIS-LEG-02` | Legal and dispute hold state | `DESIGN-ONLY` | Deletion design | Design only | 16 | NP-35 | `22-§33-26` |
-| `EC-LEG-03` | `EIS-LEG-03` | Backup and PITR treatment as an evidence item | `DESIGN-ONLY` | Deletion design | Design only | 16 | per-row `VC-R` items | `22-§33-30` |
+| `EC-DEL-01` | `EIS-DEL-01` | Identity-deletion eligibility evaluator | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | NP-40 | `22-§33-3`, `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-7`, `22-§33-8`, `22-§33-10`, `22-§33-11`, `22-§33-31`, `22-§33-33`, `22-§33-34` |
+| `EC-DEL-02` | `EIS-DEL-02` | Governed identity-deletion command | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | NP-29, NP-30, NP-31, NP-33 | `22-§33-1`, `22-§33-9`, `22-§33-22` |
+| `EC-DEL-03` | `EIS-DEL-03` | De-identification separating identity from records | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | NP-31, NP-40 | `22-§33-2`, `22-§33-12`, `22-§33-14`, `22-§33-19`, `22-§33-23` |
+| `EC-DEL-04` | `EIS-DEL-04` | Non-authorizing attribution | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | NP-39, NP-43 | `22-§33-15`, `22-§33-28`, `22-§33-37` |
+| `EC-DEL-05` | `EIS-DEL-05` | Bounded deletion proof | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | per-row `VC-R` items | `22-§33-21`, `22-§33-38` |
+| `EC-DEL-06` | `EIS-DEL-06` | Obligation and hold register | `BUILD — RUNTIME / AUTHORIZATION GATED` | Identity deletion | Per separate migration mission | 15 | NP-35 | `22-§33-7`, `22-§33-13`, `22-§33-26`, `22-§33-35` |
+| `EC-DEL-07` | `EIS-DEL-07` | Section 33.8 acceptance evidence plan | `VERIFICATION — RUNTIME GATED` | Identity deletion | Per separate migration mission | 15 | NP-29, NP-30, NP-31, NP-32, NP-33, NP-37, NP-39, NP-40 | `22-§33-31`, `22-§33-32`, `22-§33-33`, `22-§33-34`, `22-§33-35`, `22-§33-36`, `22-§33-37`, `22-§33-38`, `22-§33-39` |
+| `EC-LEG-01` | `EIS-LEG-01` | Record-class registry with retention rules as data | `BUILD — LEGAL / RUNTIME GATED` | Identity deletion | Per separate migration mission | 16 | NP-34, NP-35, NP-39, NP-42 | `22-§33-16`, `22-§33-23`, `22-§33-24`, `22-§33-25`, `22-§33-27`, `22-§33-28`, `22-§33-29`, `22-§33-30` |
+| `EC-LEG-02` | `EIS-LEG-02` | Neutral technical record-level hold state | `BUILD — AUTHORIZATION GATED` | WS-F | Per separate migration mission | 16 | NP-35 | `22-§33-26` |
+| `EC-LEG-03` | `EIS-LEG-03` | Backup and PITR treatment as an evidence item | `EVIDENCE-ONLY / PROVIDER-LEGAL GATED` | Identity deletion | None | 16 | per-row `VC-R` items | `22-§33-30` |
 
 ### 7.10 Testing
 
@@ -271,7 +277,7 @@ Later missions consume only the EIS Section 19.5 surfaces, and only after the de
 | `EC-GOV-01` | `EIS-GOV-01` | Contract 22 section 27 disclosures | `GOVERNANCE` | Cross-cutting | None | 19.3, 19.4 | NP-42 | `21-§22`, `22-§27-1`, `22-§27-2`, `22-§27-3`, `22-§27-4`, `22-§27-5`, `22-§27-6`, `22-§27-7`, `22-§29-14` |
 | `EC-GOV-02` | `EIS-GOV-02` | Non-duplication | `GOVERNANCE` | Cross-cutting | None | 19.3 | NP-42 | `22-§28-1`, `22-§28-2`, `22-§28-3`, `22-§28-4`, `22-§28-5`, `22-§28-6`, `22-§28-7`, `22-§28-8`, `22-§28-9`, `22-§28-10` |
 | `EC-GOV-03` | `EIS-GOV-03` | Schema stability | `GOVERNANCE` | Cross-cutting | None | 19.3 | NP-41 | `21-§16-2`, `22-§20-1`, `22-§20-3`, `22-§20-4`, `22-§29-11` |
-| `EC-DEP-01` | `EIS-DEP-01` | Consumption contract for later missions | `GOVERNANCE` | Cross-cutting | None | 19.5 | NP-05, NP-08, NP-12, NP-42 | `21-§8`, `21-§22`, `22-§6-10`, `22-§28-2` |
+| `EC-DEP-01` | `EIS-DEP-01` | Consumption contract for later missions | `CONSUMER GATE` | Consumer gate | None | 19.5 | NP-05, NP-08, NP-12, NP-42 | `21-§8`, `21-§22`, `22-§6-10`, `22-§28-2` |
 
 ### 7.12 Environment and Provider Evidence
 
@@ -345,8 +351,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 21 | `21-§6-5` | §8.3 | `EC-ISO-05` | WS-A3 | FEASIBLE | G-7 |
 | 22 | `21-§6-6` | §8.3 | `EC-ID-05`, `EC-ISO-04`, `EC-ISO-07` | WS-A1, WS-A3 | FEASIBLE | — |
 | 23 | `21-§6-7` | §8.3 | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02` | WS-A1, WS-A3, WS-G | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
-| 24 | `21-§7` | §8.4 | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` | WS-A2, WS-A3, Cross-cutting | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
-| 25 | `21-§8` | §8.5 | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` | WS-A2, Cross-cutting | FEASIBLE | — |
+| 24 | `21-§7` | §8.4 | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` | WS-A2, WS-A3 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
+| 25 | `21-§8` | §8.5 | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` | WS-A2, Consumer gate | FEASIBLE | — |
 | 26 | `21-§9` | §8.5 | `EC-KER-06`, `EC-KER-07` | WS-A2 | FEASIBLE | — |
 | 27 | `21-§10-1` | §8.6 | `EC-EXT-01` | WS-A2 | FEASIBLE | — |
 | 28 | `21-§10-2` | §8.6 | `EC-EXT-01` | WS-A2 | FEASIBLE | — |
@@ -403,7 +409,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 79 | `21-§21-3` | §8.17 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
 | 80 | `21-§21-4` | §8.17 | `EC-ISO-01`, `EC-ISO-09` | WS-A3 | FEASIBLE | — |
 | 81 | `21-§21-5` | §8.17 | `EC-AUD-05` | WS-E | FEASIBLE | — |
-| 82 | `21-§22` | §8.18 | `EC-KER-01`, `EC-GOV-01`, `EC-DEP-01` | WS-A2, Cross-cutting | CONDITIONAL | — |
+| 82 | `21-§22` | §8.18 | `EC-KER-01`, `EC-GOV-01`, `EC-DEP-01` | WS-A2, Cross-cutting, Consumer gate | CONDITIONAL | — |
 | 83 | `21-§23-1` | §8.18 | `EC-ISO-02` | WS-A3 | FEASIBLE | — |
 | 84 | `21-§23-2` | §8.18 | `EC-KER-03` | WS-A2 | FEASIBLE | — |
 | 85 | `21-§23-3` | §8.18 | `EC-KER-03`, `EC-EXT-01` | WS-A2 | FEASIBLE | — |
@@ -441,7 +447,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 117 | `22-§6-7` | §8.21 | `EC-ISO-04` | WS-A3 | FEASIBLE | — |
 | 118 | `22-§6-8` | §8.21 | `EC-ISO-05` | WS-A3 | CONDITIONAL | G-7 |
 | 119 | `22-§6-9` | §8.21 | `EC-KER-06` | WS-A2 | FEASIBLE | — |
-| 120 | `22-§6-10` | §8.21 | `EC-KER-01`, `EC-DEP-01` | WS-A2, Cross-cutting | FEASIBLE | — |
+| 120 | `22-§6-10` | §8.21 | `EC-KER-01`, `EC-DEP-01` | WS-A2, Consumer gate | FEASIBLE | — |
 | 121 | `22-§13-1` | §8.22 | `EC-CNF-03` | WS-D | FEASIBLE | — |
 | 122 | `22-§13-2` | §8.22 | `EC-CNF-03` | WS-D | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 123 | `22-§13-3` | §8.22 | `EC-CNF-01` | WS-D | FEASIBLE | — |
@@ -481,7 +487,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 157 | `22-§27-6` | §8.29 | `EC-GOV-01` | Cross-cutting | FEASIBLE | — |
 | 158 | `22-§27-7` | §8.29 | `EC-GOV-01` | Cross-cutting | FEASIBLE | — |
 | 159 | `22-§28-1` | §8.30 | `EC-GOV-02` | Cross-cutting | FEASIBLE | — |
-| 160 | `22-§28-2` | §8.30 | `EC-KER-01`, `EC-GOV-02`, `EC-DEP-01` | WS-A2, Cross-cutting | FEASIBLE | — |
+| 160 | `22-§28-2` | §8.30 | `EC-KER-01`, `EC-GOV-02`, `EC-DEP-01` | WS-A2, Cross-cutting, Consumer gate | FEASIBLE | — |
 | 161 | `22-§28-3` | §8.30 | `EC-GOV-02` | Cross-cutting | FEASIBLE | — |
 | 162 | `22-§28-4` | §8.30 | `EC-AUT-01`, `EC-GOV-02` | WS-A2, Cross-cutting | FEASIBLE | — |
 | 163 | `22-§28-5` | §8.30 | `EC-GOV-02` | Cross-cutting | FEASIBLE | — |
@@ -498,45 +504,45 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 174 | `22-§29-11` | §8.31 | `EC-ESC-07`, `EC-GOV-03`, `EC-TST-02` | WS-F, Cross-cutting, WS-H | FEASIBLE | ESC-1, 22-§20-2 |
 | 175 | `22-§29-12` | §8.31 | `EC-AUD-04`, `EC-ESC-07`, `EC-TST-02` | WS-E, WS-F, WS-H | CONDITIONAL | ESC-1, 22-§20-2 |
 | 176 | `22-§29-14` | §8.31 | `EC-GOV-01` | Cross-cutting | FEASIBLE | — |
-| 177 | `22-§33-1` | §8.37 | `EC-DEL-02` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 178 | `22-§33-2` | §8.37 | `EC-ID-01`, `EC-DEL-03` | WS-A1, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 179 | `22-§33-3` | §8.37 | `EC-DEL-01` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 180 | `22-§33-4` | §8.37 | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` | WS-G, WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 181 | `22-§33-5` | §8.37 | `EC-FRL-03`, `EC-DEL-01` | WS-G, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 182 | `22-§33-6` | §8.37 | `EC-FRL-04`, `EC-DEL-01` | WS-G, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 183 | `22-§33-7` | §8.37 | `EC-DEL-01`, `EC-DEL-06` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 184 | `22-§33-8` | §8.37 | `EC-ESC-03`, `EC-DEL-01` | WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 185 | `22-§33-9` | §8.37 | `EC-DEL-02` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 186 | `22-§33-10` | §8.37 | `EC-DEL-01` | Deletion design | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 187 | `22-§33-11` | §8.37 | `EC-FRL-05`, `EC-DEL-01` | WS-G, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 188 | `22-§33-12` | §8.37 | `EC-DEL-03` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 189 | `22-§33-13` | §8.37 | `EC-DEL-06` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| 190 | `22-§33-14` | §8.37 | `EC-DEL-03` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| 191 | `22-§33-15` | §8.37 | `EC-DEL-04` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 192 | `22-§33-16` | §8.37 | `EC-LEG-01` | Deletion design | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
+| 177 | `22-§33-1` | §8.37 | `EC-DEL-02` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 178 | `22-§33-2` | §8.37 | `EC-ID-01`, `EC-DEL-03` | WS-A1, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 179 | `22-§33-3` | §8.37 | `EC-DEL-01` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 180 | `22-§33-4` | §8.37 | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` | WS-G, WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 181 | `22-§33-5` | §8.37 | `EC-FRL-03`, `EC-DEL-01` | WS-G, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 182 | `22-§33-6` | §8.37 | `EC-FRL-04`, `EC-DEL-01` | WS-G, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 183 | `22-§33-7` | §8.37 | `EC-DEL-01`, `EC-DEL-06` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 184 | `22-§33-8` | §8.37 | `EC-ESC-03`, `EC-DEL-01` | WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 185 | `22-§33-9` | §8.37 | `EC-DEL-02` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 186 | `22-§33-10` | §8.37 | `EC-DEL-01` | Identity deletion | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 187 | `22-§33-11` | §8.37 | `EC-FRL-05`, `EC-DEL-01` | WS-G, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 188 | `22-§33-12` | §8.37 | `EC-DEL-03` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 189 | `22-§33-13` | §8.37 | `EC-DEL-06` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| 190 | `22-§33-14` | §8.37 | `EC-DEL-03` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| 191 | `22-§33-15` | §8.37 | `EC-DEL-04` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 192 | `22-§33-16` | §8.37 | `EC-LEG-01` | Identity deletion | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
 | 193 | `22-§33-17` | §8.37 | `EC-ESC-03`, `EC-ESC-04` | WS-F | CONDITIONAL | ESC-1 |
 | 194 | `22-§33-18` | §8.37 | `EC-FRL-04`, `EC-ESC-02` | WS-G, WS-F | CONDITIONAL | ESC-1 |
-| 195 | `22-§33-19` | §8.37 | `EC-ESC-03`, `EC-DEL-03` | WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 195 | `22-§33-19` | §8.37 | `EC-ESC-03`, `EC-DEL-03` | WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
 | 196 | `22-§33-20` | §8.37 | `EC-ESC-01`, `EC-ESC-02` | WS-F | CONDITIONAL | ESC-1 |
-| 197 | `22-§33-21` | §8.37 | `EC-DEL-05` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 198 | `22-§33-22` | §8.37 | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` | WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
-| 199 | `22-§33-23` | §8.37 | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` | WS-A1, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 200 | `22-§33-24` | §8.37 | `EC-ESC-06`, `EC-LEG-01` | WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 201 | `22-§33-25` | §8.37 | `EC-LEG-01` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| 202 | `22-§33-26` | §8.37 | `EC-DEL-06`, `EC-LEG-02` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| 203 | `22-§33-27` | §8.37 | `EC-LEG-01` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | G-7, LEGAL, SEC-EIS10-14 |
-| 204 | `22-§33-28` | §8.37 | `EC-DEL-04`, `EC-LEG-01` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 205 | `22-§33-29` | §8.37 | `EC-LEG-01` | Deletion design | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| 206 | `22-§33-30` | §8.37 | `EC-LEG-01`, `EC-LEG-03` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | G-7, LEGAL, SEC-EIS10-14 |
-| 207 | `22-§33-31` | §8.37 | `EC-DEL-01`, `EC-DEL-07` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 208 | `22-§33-32` | §8.37 | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` | WS-G, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 209 | `22-§33-33` | §8.37 | `EC-DEL-01`, `EC-DEL-07` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 210 | `22-§33-34` | §8.37 | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` | WS-G, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 211 | `22-§33-35` | §8.37 | `EC-DEL-06`, `EC-DEL-07` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 212 | `22-§33-36` | §8.37 | `EC-ESC-04`, `EC-DEL-07` | WS-F, Deletion design | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 213 | `22-§33-37` | §8.37 | `EC-DEL-04`, `EC-DEL-07` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| 214 | `22-§33-38` | §8.37 | `EC-DEL-05`, `EC-DEL-07` | Deletion design | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| 215 | `22-§33-39` | §8.37 | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` | WS-F, Deletion design, WS-H | CONDITIONAL; design-only part (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
+| 197 | `22-§33-21` | §8.37 | `EC-DEL-05` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 198 | `22-§33-22` | §8.37 | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` | WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
+| 199 | `22-§33-23` | §8.37 | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` | WS-A1, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 200 | `22-§33-24` | §8.37 | `EC-ESC-06`, `EC-LEG-01` | WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 201 | `22-§33-25` | §8.37 | `EC-LEG-01` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| 202 | `22-§33-26` | §8.37 | `EC-DEL-06`, `EC-LEG-02` | Identity deletion, WS-F | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| 203 | `22-§33-27` | §8.37 | `EC-LEG-01` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | G-7, LEGAL, SEC-EIS10-14 |
+| 204 | `22-§33-28` | §8.37 | `EC-DEL-04`, `EC-LEG-01` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 205 | `22-§33-29` | §8.37 | `EC-LEG-01` | Identity deletion | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| 206 | `22-§33-30` | §8.37 | `EC-LEG-01`, `EC-LEG-03` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | G-7, LEGAL, SEC-EIS10-14 |
+| 207 | `22-§33-31` | §8.37 | `EC-DEL-01`, `EC-DEL-07` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 208 | `22-§33-32` | §8.37 | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` | WS-G, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 209 | `22-§33-33` | §8.37 | `EC-DEL-01`, `EC-DEL-07` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 210 | `22-§33-34` | §8.37 | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` | WS-G, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 211 | `22-§33-35` | §8.37 | `EC-DEL-06`, `EC-DEL-07` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 212 | `22-§33-36` | §8.37 | `EC-ESC-04`, `EC-DEL-07` | WS-F, Identity deletion | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| 213 | `22-§33-37` | §8.37 | `EC-DEL-04`, `EC-DEL-07` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| 214 | `22-§33-38` | §8.37 | `EC-DEL-05`, `EC-DEL-07` | Identity deletion | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| 215 | `22-§33-39` | §8.37 | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` | WS-F, Identity deletion, WS-H | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
 | 216 | `20-§16-1` | §8.32 | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` | WS-A1, WS-G | CONDITIONAL | — |
 | 217 | `20-§16-2` | §8.32 | `EC-KER-04`, `EC-FRL-01` | WS-A2, WS-G | FEASIBLE | — |
 | 218 | `20-§16-3` | §8.32 | `EC-KER-03`, `EC-FRL-01` | WS-A2, WS-G | FEASIBLE | — |
@@ -577,8 +583,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 253 | `BP-§10.1-4` | §8.8 | `EC-KER-04`, `EC-AUT-01` | WS-A2 | FEASIBLE | — |
 | 254 | `BP-§10.1-5` | §8.13 | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-TST-02` | WS-A2, WS-D, WS-H | CONDITIONAL | — |
 | 255 | `BP-§10.1-6` | §8.3 | `EC-ID-06`, `EC-ISO-01` | WS-A1, WS-A3 | CONDITIONAL | G-6/T4 |
-| 256 | `BP-§10.1-7` | §8.36 | `EC-ISO-01`, `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` | WS-A3, WS-B, Cross-cutting, WS-H, WS-0 | CONDITIONAL | G-6/T4, SEC-EIS10-13 |
-| 257 | `BP-§10.1-8` | §8.36, §13 | `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` | WS-B, Cross-cutting, WS-H, WS-0 | CONDITIONAL | G-6/T4, SEC-EIS10-13 |
+| 256 | `BP-§10.1-7` | §8.36 | `EC-ISO-01`, `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` | WS-A3, WS-B, WS-H, WS-0 | CONDITIONAL | G-6/T4, SEC-EIS10-13 |
+| 257 | `BP-§10.1-8` | §8.36, §13 | `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` | WS-B, WS-A3, WS-H, WS-0 | CONDITIONAL | G-6/T4, SEC-EIS10-13 |
 | 258 | `BP-§10.1-9` | §8.36 | `EC-TST-01`, `EC-TST-04` | WS-H | CONDITIONAL | — |
 | 259 | `BP-§10.1-10` | §8.12 | `EC-KER-05` | WS-A2 | FEASIBLE | — |
 | 260 | `BP-§10.1-11` | §8.35 | `EC-PPM-01`, `EC-PPM-02` | WS-C | FEASIBLE | — |
@@ -604,23 +610,24 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | Cross-cutting rules (Section 8) and process obligations (Section 9) | 9 and 7; non-behavioural; each rule names the obligations it serves |
 | Rows `BLOCKED` | 1 (`22-§20-2`) |
 | Rows `CONDITIONAL` (Blueprint Section 20.5) | 87 |
-| Rows marked `RUNTIME NOT AUTHORIZED` | 22 |
+| Rows execution-gated (`RUNTIME NOT AUTHORIZED`; `IN SCOPE`, not a scope deferral) | 22 |
 | FCTM, Blueprint and EIS | Unchanged |
 
 Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 22.2. All three are identical. Each obligation's row list equals the EIS requirement-to-row mapping.
 
-## 13. Package Observations for Mission Control
+## 13. Package Observations and Dispositions
 
-These are observations for Stage 13. None is a decision, and none changes a row, requirement or hold.
+Observations raised at Stage 12 and their Mission Control dispositions (MC-166, MC-167). None changes a row, requirement or hold.
 
 | ID | Topic | Observation |
 |---|---|---|
-| PQ-1 | Workstream placement of two requirements | EIS Section 19.1 lists no workstream for `EIS-ISO-10` (added in version 0.3) or `EIS-DEP-01`. This package treats both as cross-cutting, beside `EIS-GOV-*`. Every row they realize is also realized by another obligation in a named workstream, so no row's coverage depends on this choice. Mission Control fixes the workstream register at Stage 13. |
-| PQ-2 | Legal-hold state needed by a WS-F test | `EC-ESC-06` and EIS Section 18.3 item 9 (`NP-35`) need a record-level hold state, while `EIS-LEG-02` is classified design-only. This package does not decide whether WS-F may build a minimal hold state. `NP-35` is marked gated on Mission Control's disposition. |
-| PQ-3 | Runtime-gated identity-deletion rows | 22 `IN SCOPE` rows are realized only by design-only obligations (`EC-DEL-*`, `EC-LEG-*`). They stay `IN SCOPE`, each with an obligation and a checklist item, and are marked `RUNTIME NOT AUTHORIZED`. Their demonstration needs a separate runtime authorization. They are not deferred. |
-| PQ-4 | Builder identity and migration authority | The Implementation Authorization must name the builder per workstream. WS-A1, WS-A2, WS-A3, WS-B, WS-C, WS-D, WS-E, WS-F and WS-G need schema migrations, which need a migration mission under `docs/migration/README.md` in addition to implementation authorization. |
-| PQ-5 | Stale status paragraph in the locked EIS — resolved | Reported at package creation: EIS Section 23 read as a Stage 10 draft. Resolved by MC-166 (PR #699): Section 23 now reads `APPROVED — LOCKED`, reconciled locked EIS blob `476b00e061772648c5547161328e48e3f5ab0991`. This package cites the reconciled blob. No package change beyond identity references was needed. |
+| PQ-1 | Workstream placement — corrected (MC-167) | `EC-ISO-10` is assigned to WS-A3, with the authority and isolation enforcement cut-over. `EC-DEP-01` is Cross-cutting Governance / Consumer Gate: it is not an implementation builder workstream obligation, and Mission Control enforces it through dependency evidence before a later mission consumes a surface. No FCTM row changed; every row `EC-DEP-01` realizes also has a builder obligation in WS-A2. |
+| PQ-2 | Technical hold state — corrected (MC-167) | `EC-LEG-02` is `BUILD — AUTHORIZATION GATED` and its neutral technical record-level hold state is allocated to WS-F. Schema work needs a separate migration mission. No legal category, legal basis, retention period, release authority, policy text, or production or legal conclusion is created. `NP-35` runs only in an authorized test or migration context with synthetic hold fixtures. |
+| PQ-3 | Identity-deletion obligations — corrected (MC-167) | `EC-DEL-01` to `EC-DEL-06`: `BUILD — RUNTIME / AUTHORIZATION GATED`; `EC-DEL-07`: `VERIFICATION — RUNTIME GATED`; `EC-LEG-01`: `BUILD — LEGAL / RUNTIME GATED`; `EC-LEG-02`: `BUILD — AUTHORIZATION GATED`; `EC-LEG-03`: `EVIDENCE-ONLY / PROVIDER-LEGAL GATED`. All 22 affected rows stay `IN SCOPE` and `BUILD NOW`. `RUNTIME NOT AUTHORIZED` is an execution gate, not a scope deferral. |
+| PQ-4 | Builder identity and migration authority — downstream prerequisites (MC-167) | Recorded as downstream prerequisites only: the Implementation Authorization must name builders per workstream (with paths, scope, tests, environment, rollback and evidence); schema-changing workstreams (WS-A1, WS-A2, WS-A3, WS-B, WS-C, WS-D, WS-E, WS-F, WS-G and the identity-deletion obligations) need a separate migration mission under `docs/migration/README.md`. Implementation remains withheld. |
+| PQ-5 | Stale status paragraph in the locked EIS — resolved | Reported at package creation: EIS Section 23 read as a Stage 10 draft. Resolved by MC-166 (PR #699). No package change beyond identity references was needed. |
 | PQ-6 | Carried formatting defect | EQ-S9-5 (a Metadata row before the H1 on line 1 of the locked Blueprint) remains open for Mission Control. It has no Product Truth effect. |
+| PQ-7 | Literal line-break sequence in the EIS change log — resolved | Reported at publication. Resolved by MC-167 (PR #701): the EIS change-log formatting was corrected (0.4-L2), giving locked EIS blob `c444f7509477d0e8b997af538440d93bf2ca4d72`, which this package cites. |
 
 ## 14. Status
 
@@ -631,3 +638,4 @@ These are observations for Stage 13. None is a decision, and none changes a row,
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166 and PQ-5 marked resolved; no row, obligation, check or count changed |
+| 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; PQ-1 (`EC-ISO-10` to WS-A3, `EC-DEP-01` consumer gate), PQ-2 (`EC-LEG-02` to WS-F, authorization gated), PQ-3 (gated build classifications replace design-only), PQ-4 recorded as downstream prerequisites, PQ-7 resolved. No row, mapping, link or count changed |

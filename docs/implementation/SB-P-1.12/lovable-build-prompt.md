@@ -17,12 +17,12 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
-| Canonical baseline | `main@e6c6aac5395fcffc4693bd53144e310c70657c6f` |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` |
 | Date | 2026-10-01 |
 
 ## 2. Builder Identity and Artifact Name
@@ -35,7 +35,7 @@ Read, in this order, and treat each as binding:
 
 1. `AGENTS.md` and `CLAUDE.md`;
 2. the locked Product Blueprint, blob `77d52096c020668311b039721a4de9248ddd460e`;
-3. the locked EIS, blob `476b00e061772648c5547161328e48e3f5ab0991`;
+3. the locked EIS, blob `c444f7509477d0e8b997af538440d93bf2ca4d72`;
 4. Founder Decision Record 09;
 5. the Engineering Contract (`engineering-contract.md`) once locked;
 6. this Build Prompt once locked;
@@ -77,7 +77,7 @@ This draft authorizes no build. It does not authorize code, schema, SQL, migrati
 
 ## 7. Workstreams
 
-Workstreams are those of EIS Section 19.1. Splitting into workstreams changes no mission assignment. Order (EIS Section 19.2): WS-0 (as authorized), WS-A1, WS-A2 and WS-E, WS-F, WS-D, WS-A3 per family, WS-B (once its evidence exists), WS-C, WS-G. WS-H runs throughout. Cross-cutting obligations apply to every workstream. Deletion design stays design-only.
+Workstreams are those of EIS Section 19.1, with the MC-167 placements: `EC-ISO-10` in WS-A3 and `EC-LEG-02` in WS-F; the EIS "Deletion design" line is shown as "Identity deletion" because its obligations are gated builds, not design-only. `EC-DEP-01` is a consumer gate, not a builder workstream. Splitting into workstreams changes no mission assignment. Order (EIS Section 19.2): WS-0 (as authorized), WS-A1, WS-A2 and WS-E, WS-F, WS-D, WS-A3 per family, WS-B (once its evidence exists), WS-C, WS-G. WS-H runs throughout. Cross-cutting obligations apply to every builder workstream. Identity-deletion obligations are `BUILD NOW` and execution-gated until a separate runtime authorization.
 
 A row appears under every workstream whose obligations realize it. A workstream builds only its own obligations for that row.
 
@@ -138,12 +138,12 @@ Forbidden in this workstream, in addition to Section 8:
 
 | Field | Value |
 |---|---|
-| Obligations | `EC-ISO-01`, `EC-ISO-02`, `EC-ISO-04`, `EC-ISO-05`, `EC-ISO-06`, `EC-ISO-07`, `EC-ISO-08`, `EC-ISO-09` |
+| Obligations | `EC-ISO-01`, `EC-ISO-02`, `EC-ISO-04`, `EC-ISO-05`, `EC-ISO-06`, `EC-ISO-07`, `EC-ISO-08`, `EC-ISO-09`, `EC-ISO-10` |
 | Depends on | WS-A2 |
 | Migration class | M3, M4 |
 | Verification | Role matrix, isolation and regression suites per family |
 | Rollback and recovery | Per-family revert migration held ready; never two authority paths live on one family |
-| FCTM rows built (35) | `21-§6-1`, `21-§6-2`, `21-§6-3`, `21-§6-4`, `21-§6-5`, `21-§6-6`, `21-§6-7`, `21-§7`, `21-§11-1`, `21-§11-2`, `21-§15-5`, `21-§21-4`, `21-§23-1`, `21-§24-2`, `21-§24-4`, `22-§5-9`, `22-§6-3`, `22-§6-4`, `22-§6-5`, `22-§6-7`, `22-§6-8`, `22-§21`, `22-§23-1`, `22-§23-2`, `22-§23-5`, `22-§23-6`, `22-§23-7`, `22-§29-3`, `17-§14-1`, `17-§14-7`, `17-§18-1`, `17-§22-9`, `7-§15-12`, `BP-§10.1-6`, `BP-§10.1-7` |
+| FCTM rows built (36) | `21-§6-1`, `21-§6-2`, `21-§6-3`, `21-§6-4`, `21-§6-5`, `21-§6-6`, `21-§6-7`, `21-§7`, `21-§11-1`, `21-§11-2`, `21-§15-5`, `21-§21-4`, `21-§23-1`, `21-§24-2`, `21-§24-4`, `22-§5-9`, `22-§6-3`, `22-§6-4`, `22-§6-5`, `22-§6-7`, `22-§6-8`, `22-§21`, `22-§23-1`, `22-§23-2`, `22-§23-5`, `22-§23-6`, `22-§23-7`, `22-§29-3`, `17-§14-1`, `17-§14-7`, `17-§18-1`, `17-§22-9`, `7-§15-12`, `BP-§10.1-6`, `BP-§10.1-7`, `BP-§10.1-8` |
 
 Forbidden in this workstream, in addition to Section 8:
 
@@ -226,19 +226,20 @@ Forbidden in this workstream, in addition to Section 8:
 
 | Field | Value |
 |---|---|
-| Obligations | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-03`, `EC-ESC-04`, `EC-ESC-05`, `EC-ESC-06`, `EC-ESC-07`, `EC-ESC-08` |
+| Obligations | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-03`, `EC-ESC-04`, `EC-ESC-05`, `EC-ESC-06`, `EC-ESC-07`, `EC-ESC-08`, `EC-LEG-02` |
 | Depends on | WS-A1 |
 | Migration class | M6 |
 | Verification | EIS section 18.3 negative paths |
 | Rollback and recovery | EIS section 14.4 |
-| FCTM rows built (19) | `21-§11-1`, `21-§23-6`, `22-§14-5`, `22-§20-1`, `22-§20-2`, `22-§20-4`, `22-§29-11`, `22-§29-12`, `22-§33-4`, `22-§33-8`, `22-§33-17`, `22-§33-18`, `22-§33-19`, `22-§33-20`, `22-§33-22`, `22-§33-24`, `22-§33-36`, `22-§33-39`, `BP-§10.1-13` |
+| FCTM rows built (20) | `21-§11-1`, `21-§23-6`, `22-§14-5`, `22-§20-1`, `22-§20-2`, `22-§20-4`, `22-§29-11`, `22-§29-12`, `22-§33-4`, `22-§33-8`, `22-§33-17`, `22-§33-18`, `22-§33-19`, `22-§33-20`, `22-§33-22`, `22-§33-24`, `22-§33-26`, `22-§33-36`, `22-§33-39`, `BP-§10.1-13` |
 
 Forbidden in this workstream, in addition to Section 8:
 
 - identity-deletion runtime;
 - claiming ESC-1 closed or `22-§20-2` unblocked;
 - physical removal of a business row while retained records or holds reference it;
-- a legal-hold state beyond what Mission Control dispositions under PQ-2;
+- any legal category, legal basis, retention period, release authority, policy text, or production or legal conclusion in the hold state (`EC-LEG-02` is a neutral technical state only);
+- running `NP-35` outside an authorized test or migration context, or with non-synthetic hold fixtures;
 - any provider Auth deletion.
 
 ### 7.10 SB-P-1.12/WS-G — First run, invitations, transfer
@@ -276,40 +277,56 @@ Forbidden in this workstream, in addition to Section 8:
 - changing workflows or branch protection;
 - reporting a missing or skipped run as a pass.
 
-### 7.12 Deletion design — Section 33 evaluator, register, registry
+### 7.12 Identity deletion — Section 33 evaluator, command, de-identification, proof, register and record-class registry (EIS Section 19.1 "Deletion design"); runtime / authorization gated
 
 | Field | Value |
 |---|---|
-| Obligations | `EC-DEL-01`, `EC-DEL-02`, `EC-DEL-03`, `EC-DEL-04`, `EC-DEL-05`, `EC-DEL-06`, `EC-DEL-07`, `EC-LEG-01`, `EC-LEG-02`, `EC-LEG-03` |
+| Obligations | `EC-DEL-01`, `EC-DEL-02`, `EC-DEL-03`, `EC-DEL-04`, `EC-DEL-05`, `EC-DEL-06`, `EC-DEL-07`, `EC-LEG-01`, `EC-LEG-03` |
 | Depends on | WS-F, WS-G; separate runtime authorization |
-| Migration class | Design only |
-| Verification | Design review |
-| Rollback and recovery | Not applicable |
+| Migration class | Per separate migration mission |
+| Verification | Section 33.8 acceptance suite with labelled fixtures, once runtime is authorized |
+| Rollback and recovery | As set by the runtime authorization |
 | FCTM rows built (36) | `22-§33-1`, `22-§33-2`, `22-§33-3`, `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-7`, `22-§33-8`, `22-§33-9`, `22-§33-10`, `22-§33-11`, `22-§33-12`, `22-§33-13`, `22-§33-14`, `22-§33-15`, `22-§33-16`, `22-§33-19`, `22-§33-21`, `22-§33-22`, `22-§33-23`, `22-§33-24`, `22-§33-25`, `22-§33-26`, `22-§33-27`, `22-§33-28`, `22-§33-29`, `22-§33-30`, `22-§33-31`, `22-§33-32`, `22-§33-33`, `22-§33-34`, `22-§33-35`, `22-§33-36`, `22-§33-37`, `22-§33-38`, `22-§33-39` |
 
 Forbidden in this workstream, in addition to Section 8:
 
-- any identity-deletion runtime, provider Auth deletion or de-identification of real data;
+- executing anything before a separate identity-deletion runtime authorization and, for schema, a migration mission;
+- any provider Auth deletion or de-identification of real data;
 - coding any retention period;
 - Privacy Policy or Terms text, or any claim of professional legal finality.
 
-### 7.13 Cross-cutting — Governance and invariants applying to every workstream
+### 7.13 Cross-cutting — Governance applying to every builder workstream
 
 | Field | Value |
 |---|---|
-| Obligations | `EC-ISO-10`, `EC-GOV-01`, `EC-GOV-02`, `EC-GOV-03`, `EC-DEP-01` |
+| Obligations | `EC-GOV-01`, `EC-GOV-02`, `EC-GOV-03` |
 | Depends on | Every workstream |
-| Migration class | Every M3 for EIS-ISO-10 |
-| Verification | Inventory, repository and design review |
+| Migration class | None |
+| Verification | Inventory and repository review |
 | Rollback and recovery | Not applicable |
-| FCTM rows built (29) | `21-§7`, `21-§8`, `21-§16-2`, `21-§22`, `22-§6-10`, `22-§20-1`, `22-§20-3`, `22-§20-4`, `22-§27-1`, `22-§27-2`, `22-§27-3`, `22-§27-4`, `22-§27-5`, `22-§27-6`, `22-§27-7`, `22-§28-1`, `22-§28-2`, `22-§28-3`, `22-§28-4`, `22-§28-5`, `22-§28-6`, `22-§28-7`, `22-§28-8`, `22-§28-9`, `22-§28-10`, `22-§29-11`, `22-§29-14`, `BP-§10.1-7`, `BP-§10.1-8` |
+| FCTM rows built (24) | `21-§16-2`, `21-§22`, `22-§20-1`, `22-§20-3`, `22-§20-4`, `22-§27-1`, `22-§27-2`, `22-§27-3`, `22-§27-4`, `22-§27-5`, `22-§27-6`, `22-§27-7`, `22-§28-1`, `22-§28-2`, `22-§28-3`, `22-§28-4`, `22-§28-5`, `22-§28-6`, `22-§28-7`, `22-§28-8`, `22-§28-9`, `22-§28-10`, `22-§29-11`, `22-§29-14` |
 
 Forbidden in this workstream, in addition to Section 8:
 
 - any duplicate permission engine, Business Memory, AI orchestrator, scheduler, document pipeline, identity silo or client-specific fork;
 - schema change driven by entitlement or subscription state;
-- any later-mission consumption before EIS Section 19.5 conditions hold and Mission Control accepts the evidence;
-- a `SECURITY DEFINER` function without the `EC-ISO-10` hardening.
+- a `SECURITY DEFINER` function in any workstream without the `EC-ISO-10` hardening (owned by WS-A3, binding on every workstream that creates or replaces one).
+
+### 7.14 Consumer gate — Cross-cutting Governance / Consumer Gate; not a builder workstream
+
+| Field | Value |
+|---|---|
+| Obligations | `EC-DEP-01` |
+| Depends on | Mission Control dependency evidence |
+| Migration class | None |
+| Verification | Mission Control acceptance of dependency evidence before a later mission consumes a surface |
+| Rollback and recovery | Not applicable |
+| FCTM rows gated (no builder work) (4) | `21-§8`, `21-§22`, `22-§6-10`, `22-§28-2` |
+
+Forbidden in this workstream, in addition to Section 8:
+
+- building anything for `EC-DEP-01`: it is not an implementation builder workstream obligation;
+- any later-mission consumption of an authority surface before EIS Section 19.5 conditions hold and Mission Control accepts the evidence.
 
 ## 8. Behaviour Outside the Assigned Rows Is Forbidden
 
@@ -335,7 +352,7 @@ Anything a builder believes is needed but not assigned is raised under Section 1
 | G-7 environment and provider topology | Evidence gate | Storage, provider Auth-deletion and backup facts need separately authorized evidence before reliance |
 | Professional legal, privacy and retention validation | **Deferred** (Founder Record 06, MC-117) | No retention period, policy text or legal finality is created; rules stay data |
 | Founder Decision Record 09 | APPROVED Product Truth | Reference Cost and margin semantics are applied exactly; no margin formula or margin output semantics are selected |
-| Identity-deletion runtime | Not authorized (EIS Section 15) | `EC-DEL-*` and `EC-LEG-*` are design-only; their rows stay `IN SCOPE` and are marked runtime-gated with the reason |
+| Identity-deletion runtime | Not authorized (EIS Section 15) | An execution gate, not a scope deferral. `EC-DEL-*` and `EC-LEG-*` keep their build, verification or evidence obligations (MC-167 PQ-3); their rows stay `IN SCOPE` and `BUILD NOW`; execution waits for a separate runtime authorization |
 | Security design findings SEC-EIS10-01 to SEC-EIS10-11 | Closed at design level (MC-164) | Realized through the obligations that implement the EIS sections named in EIS Section 20 |
 | Security implementation and evidence gates SEC-EIS10-12 to SEC-EIS10-14 | Open as implementation and evidence gates | Carried as verification items: projection on every read path (12); live effective-access evidence (13); provider, backup, PITR and legal-hold evidence (14) |
 | Implementation and runtime Security proof | Not yet established | Nothing in this package is runtime, implementation or production evidence |
@@ -390,8 +407,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 21 | `21-§6-5` | WS-A3 | `EC-ISO-05` |
 | 22 | `21-§6-6` | WS-A1, WS-A3 | `EC-ID-05`, `EC-ISO-04`, `EC-ISO-07` |
 | 23 | `21-§6-7` | WS-A1, WS-A3, WS-G | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02` |
-| 24 | `21-§7` | WS-A2, WS-A3, Cross-cutting | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` |
-| 25 | `21-§8` | WS-A2, Cross-cutting | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` |
+| 24 | `21-§7` | WS-A2, WS-A3 | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` |
+| 25 | `21-§8` | WS-A2, Consumer gate | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` |
 | 26 | `21-§9` | WS-A2 | `EC-KER-06`, `EC-KER-07` |
 | 27 | `21-§10-1` | WS-A2 | `EC-EXT-01` |
 | 28 | `21-§10-2` | WS-A2 | `EC-EXT-01` |
@@ -448,7 +465,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 79 | `21-§21-3` | WS-A2 | `EC-SUP-01` |
 | 80 | `21-§21-4` | WS-A3 | `EC-ISO-01`, `EC-ISO-09` |
 | 81 | `21-§21-5` | WS-E | `EC-AUD-05` |
-| 82 | `21-§22` | WS-A2, Cross-cutting | `EC-KER-01`, `EC-GOV-01`, `EC-DEP-01` |
+| 82 | `21-§22` | WS-A2, Cross-cutting, Consumer gate | `EC-KER-01`, `EC-GOV-01`, `EC-DEP-01` |
 | 83 | `21-§23-1` | WS-A3 | `EC-ISO-02` |
 | 84 | `21-§23-2` | WS-A2 | `EC-KER-03` |
 | 85 | `21-§23-3` | WS-A2 | `EC-KER-03`, `EC-EXT-01` |
@@ -486,7 +503,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 117 | `22-§6-7` | WS-A3 | `EC-ISO-04` |
 | 118 | `22-§6-8` | WS-A3 | `EC-ISO-05` |
 | 119 | `22-§6-9` | WS-A2 | `EC-KER-06` |
-| 120 | `22-§6-10` | WS-A2, Cross-cutting | `EC-KER-01`, `EC-DEP-01` |
+| 120 | `22-§6-10` | WS-A2, Consumer gate | `EC-KER-01`, `EC-DEP-01` |
 | 121 | `22-§13-1` | WS-D | `EC-CNF-03` |
 | 122 | `22-§13-2` | WS-D | `EC-CNF-03` |
 | 123 | `22-§13-3` | WS-D | `EC-CNF-01` |
@@ -526,7 +543,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 157 | `22-§27-6` | Cross-cutting | `EC-GOV-01` |
 | 158 | `22-§27-7` | Cross-cutting | `EC-GOV-01` |
 | 159 | `22-§28-1` | Cross-cutting | `EC-GOV-02` |
-| 160 | `22-§28-2` | WS-A2, Cross-cutting | `EC-KER-01`, `EC-GOV-02`, `EC-DEP-01` |
+| 160 | `22-§28-2` | WS-A2, Cross-cutting, Consumer gate | `EC-KER-01`, `EC-GOV-02`, `EC-DEP-01` |
 | 161 | `22-§28-3` | Cross-cutting | `EC-GOV-02` |
 | 162 | `22-§28-4` | WS-A2, Cross-cutting | `EC-AUT-01`, `EC-GOV-02` |
 | 163 | `22-§28-5` | Cross-cutting | `EC-GOV-02` |
@@ -543,45 +560,45 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 174 | `22-§29-11` | WS-F, Cross-cutting, WS-H | `EC-ESC-07`, `EC-GOV-03`, `EC-TST-02` |
 | 175 | `22-§29-12` | WS-E, WS-F, WS-H | `EC-AUD-04`, `EC-ESC-07`, `EC-TST-02` |
 | 176 | `22-§29-14` | Cross-cutting | `EC-GOV-01` |
-| 177 | `22-§33-1` | Deletion design | `EC-DEL-02` |
-| 178 | `22-§33-2` | WS-A1, Deletion design | `EC-ID-01`, `EC-DEL-03` |
-| 179 | `22-§33-3` | Deletion design | `EC-DEL-01` |
-| 180 | `22-§33-4` | WS-G, WS-F, Deletion design | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` |
-| 181 | `22-§33-5` | WS-G, Deletion design | `EC-FRL-03`, `EC-DEL-01` |
-| 182 | `22-§33-6` | WS-G, Deletion design | `EC-FRL-04`, `EC-DEL-01` |
-| 183 | `22-§33-7` | Deletion design | `EC-DEL-01`, `EC-DEL-06` |
-| 184 | `22-§33-8` | WS-F, Deletion design | `EC-ESC-03`, `EC-DEL-01` |
-| 185 | `22-§33-9` | Deletion design | `EC-DEL-02` |
-| 186 | `22-§33-10` | Deletion design | `EC-DEL-01` |
-| 187 | `22-§33-11` | WS-G, Deletion design | `EC-FRL-05`, `EC-DEL-01` |
-| 188 | `22-§33-12` | Deletion design | `EC-DEL-03` |
-| 189 | `22-§33-13` | Deletion design | `EC-DEL-06` |
-| 190 | `22-§33-14` | Deletion design | `EC-DEL-03` |
-| 191 | `22-§33-15` | Deletion design | `EC-DEL-04` |
-| 192 | `22-§33-16` | Deletion design | `EC-LEG-01` |
+| 177 | `22-§33-1` | Identity deletion | `EC-DEL-02` |
+| 178 | `22-§33-2` | WS-A1, Identity deletion | `EC-ID-01`, `EC-DEL-03` |
+| 179 | `22-§33-3` | Identity deletion | `EC-DEL-01` |
+| 180 | `22-§33-4` | WS-G, WS-F, Identity deletion | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` |
+| 181 | `22-§33-5` | WS-G, Identity deletion | `EC-FRL-03`, `EC-DEL-01` |
+| 182 | `22-§33-6` | WS-G, Identity deletion | `EC-FRL-04`, `EC-DEL-01` |
+| 183 | `22-§33-7` | Identity deletion | `EC-DEL-01`, `EC-DEL-06` |
+| 184 | `22-§33-8` | WS-F, Identity deletion | `EC-ESC-03`, `EC-DEL-01` |
+| 185 | `22-§33-9` | Identity deletion | `EC-DEL-02` |
+| 186 | `22-§33-10` | Identity deletion | `EC-DEL-01` |
+| 187 | `22-§33-11` | WS-G, Identity deletion | `EC-FRL-05`, `EC-DEL-01` |
+| 188 | `22-§33-12` | Identity deletion | `EC-DEL-03` |
+| 189 | `22-§33-13` | Identity deletion | `EC-DEL-06` |
+| 190 | `22-§33-14` | Identity deletion | `EC-DEL-03` |
+| 191 | `22-§33-15` | Identity deletion | `EC-DEL-04` |
+| 192 | `22-§33-16` | Identity deletion | `EC-LEG-01` |
 | 193 | `22-§33-17` | WS-F | `EC-ESC-03`, `EC-ESC-04` |
 | 194 | `22-§33-18` | WS-G, WS-F | `EC-FRL-04`, `EC-ESC-02` |
-| 195 | `22-§33-19` | WS-F, Deletion design | `EC-ESC-03`, `EC-DEL-03` |
+| 195 | `22-§33-19` | WS-F, Identity deletion | `EC-ESC-03`, `EC-DEL-03` |
 | 196 | `22-§33-20` | WS-F | `EC-ESC-01`, `EC-ESC-02` |
-| 197 | `22-§33-21` | Deletion design | `EC-DEL-05` |
-| 198 | `22-§33-22` | WS-F, Deletion design | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` |
-| 199 | `22-§33-23` | WS-A1, Deletion design | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` |
-| 200 | `22-§33-24` | WS-F, Deletion design | `EC-ESC-06`, `EC-LEG-01` |
-| 201 | `22-§33-25` | Deletion design | `EC-LEG-01` |
-| 202 | `22-§33-26` | Deletion design | `EC-DEL-06`, `EC-LEG-02` |
-| 203 | `22-§33-27` | Deletion design | `EC-LEG-01` |
-| 204 | `22-§33-28` | Deletion design | `EC-DEL-04`, `EC-LEG-01` |
-| 205 | `22-§33-29` | Deletion design | `EC-LEG-01` |
-| 206 | `22-§33-30` | Deletion design | `EC-LEG-01`, `EC-LEG-03` |
-| 207 | `22-§33-31` | Deletion design | `EC-DEL-01`, `EC-DEL-07` |
-| 208 | `22-§33-32` | WS-G, Deletion design | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` |
-| 209 | `22-§33-33` | Deletion design | `EC-DEL-01`, `EC-DEL-07` |
-| 210 | `22-§33-34` | WS-G, Deletion design | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` |
-| 211 | `22-§33-35` | Deletion design | `EC-DEL-06`, `EC-DEL-07` |
-| 212 | `22-§33-36` | WS-F, Deletion design | `EC-ESC-04`, `EC-DEL-07` |
-| 213 | `22-§33-37` | Deletion design | `EC-DEL-04`, `EC-DEL-07` |
-| 214 | `22-§33-38` | Deletion design | `EC-DEL-05`, `EC-DEL-07` |
-| 215 | `22-§33-39` | WS-F, Deletion design, WS-H | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` |
+| 197 | `22-§33-21` | Identity deletion | `EC-DEL-05` |
+| 198 | `22-§33-22` | WS-F, Identity deletion | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` |
+| 199 | `22-§33-23` | WS-A1, Identity deletion | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` |
+| 200 | `22-§33-24` | WS-F, Identity deletion | `EC-ESC-06`, `EC-LEG-01` |
+| 201 | `22-§33-25` | Identity deletion | `EC-LEG-01` |
+| 202 | `22-§33-26` | Identity deletion, WS-F | `EC-DEL-06`, `EC-LEG-02` |
+| 203 | `22-§33-27` | Identity deletion | `EC-LEG-01` |
+| 204 | `22-§33-28` | Identity deletion | `EC-DEL-04`, `EC-LEG-01` |
+| 205 | `22-§33-29` | Identity deletion | `EC-LEG-01` |
+| 206 | `22-§33-30` | Identity deletion | `EC-LEG-01`, `EC-LEG-03` |
+| 207 | `22-§33-31` | Identity deletion | `EC-DEL-01`, `EC-DEL-07` |
+| 208 | `22-§33-32` | WS-G, Identity deletion | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` |
+| 209 | `22-§33-33` | Identity deletion | `EC-DEL-01`, `EC-DEL-07` |
+| 210 | `22-§33-34` | WS-G, Identity deletion | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` |
+| 211 | `22-§33-35` | Identity deletion | `EC-DEL-06`, `EC-DEL-07` |
+| 212 | `22-§33-36` | WS-F, Identity deletion | `EC-ESC-04`, `EC-DEL-07` |
+| 213 | `22-§33-37` | Identity deletion | `EC-DEL-04`, `EC-DEL-07` |
+| 214 | `22-§33-38` | Identity deletion | `EC-DEL-05`, `EC-DEL-07` |
+| 215 | `22-§33-39` | WS-F, Identity deletion, WS-H | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` |
 | 216 | `20-§16-1` | WS-A1, WS-G | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` |
 | 217 | `20-§16-2` | WS-A2, WS-G | `EC-KER-04`, `EC-FRL-01` |
 | 218 | `20-§16-3` | WS-A2, WS-G | `EC-KER-03`, `EC-FRL-01` |
@@ -622,8 +639,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 253 | `BP-§10.1-4` | WS-A2 | `EC-KER-04`, `EC-AUT-01` |
 | 254 | `BP-§10.1-5` | WS-A2, WS-D, WS-H | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-TST-02` |
 | 255 | `BP-§10.1-6` | WS-A1, WS-A3 | `EC-ID-06`, `EC-ISO-01` |
-| 256 | `BP-§10.1-7` | WS-A3, WS-B, Cross-cutting, WS-H, WS-0 | `EC-ISO-01`, `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` |
-| 257 | `BP-§10.1-8` | WS-B, Cross-cutting, WS-H, WS-0 | `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` |
+| 256 | `BP-§10.1-7` | WS-A3, WS-B, WS-H, WS-0 | `EC-ISO-01`, `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` |
+| 257 | `BP-§10.1-8` | WS-B, WS-A3, WS-H, WS-0 | `EC-ISO-03`, `EC-ISO-10`, `EC-TST-03`, `EC-ENV-01` |
 | 258 | `BP-§10.1-9` | WS-H | `EC-TST-01`, `EC-TST-04` |
 | 259 | `BP-§10.1-10` | WS-A2 | `EC-KER-05` |
 | 260 | `BP-§10.1-11` | WS-C | `EC-PPM-01`, `EC-PPM-02` |
@@ -642,18 +659,19 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | WS-0 | 2 | 3 |
 | WS-A1 | 6 | 39 |
 | WS-A2 | 13 | 95 |
-| WS-A3 | 8 | 35 |
+| WS-A3 | 9 | 36 |
 | WS-B | 1 | 2 |
 | WS-C | 6 | 25 |
 | WS-D | 6 | 21 |
 | WS-E | 7 | 34 |
-| WS-F | 8 | 19 |
+| WS-F | 9 | 20 |
 | WS-G | 5 | 20 |
 | WS-H | 4 | 34 |
-| Deletion design | 10 | 36 |
-| Cross-cutting | 5 | 29 |
+| Identity deletion | 9 | 36 |
+| Cross-cutting | 3 | 24 |
+| Consumer gate | 1 | 4 |
 
-Every one of the 267 rows is assigned to at least one workstream; 103 rows are shared by two or more workstreams. No row is assigned outside SB-P-1.12.
+Every one of the 267 rows is assigned to at least one workstream; 104 rows are shared by two or more workstreams. No row is assigned outside SB-P-1.12.
 
 ## 14. Status
 
@@ -664,3 +682,4 @@ Every one of the 267 rows is assigned to at least one workstream; 103 rows are s
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
+| 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `EC-ISO-10` in WS-A3; `EC-DEP-01` shown as a consumer gate, not a builder workstream; `EC-LEG-02` in WS-F; identity-deletion obligations reclassified as gated builds. No row or mapping changed |

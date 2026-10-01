@@ -17,12 +17,13 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — initial implementation package owner |
-| Canonical baseline | `main@e6c6aac5395fcffc4693bd53144e310c70657c6f` |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` |
 | Date | 2026-10-01 |
 | Execution state | **Not executed.** Every item is a planned check. Nothing here is evidence |
+| `EC-DEP-01` | Cross-cutting Governance / Consumer Gate; verified by Mission Control dependency evidence, not by builder checks |
 
 ## How to Use This Checklist
 
@@ -52,7 +53,7 @@ After lock, criteria are never edited to fit a result. Results go in an appended
 | Item | Check | Planned evidence class | FCTM rows |
 |---|---|---|---|
 | VC-AUTH-01 | The locked Blueprint on canonical `main` is blob `77d52096c020668311b039721a4de9248ddd460e` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
-| VC-AUTH-02 | The locked EIS on canonical `main` is blob `476b00e061772648c5547161328e48e3f5ab0991` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
+| VC-AUTH-02 | The locked EIS on canonical `main` is blob `c444f7509477d0e8b997af538440d93bf2ca4d72` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-03 | The canonical FCTM is blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`; its `IN SCOPE` set is the same 267 rows as Section 13, by set difference. | `REPO` | 267 rows via ALL; each listed against its row in Section 13 |
 | VC-AUTH-04 | The three package documents are `APPROVED — LOCKED` (Stage 13) and an Implementation Authorization names the builder, workstreams, paths and Git authority before any build. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-05 | Every migration written or executed is covered by an explicit migration mission that meets `docs/migration/README.md`. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
@@ -136,7 +137,7 @@ Each experience row has at least one named runtime scenario. Every scenario is a
 | VC-SEC-02 | Effective-access inventory (`NP-28`) for every protected object and `SECURITY DEFINER` function. Any production claim also needs live evidence (SEC-EIS10-13; G-6/T4 stays `UNVERIFIED` until then). | `INV`, `PROV` | `21-§7`, `BP-§10.1-7`, `BP-§10.1-8` |
 | VC-SEC-03 | SEC-EIS10-12: every direct, batch, list, search, import-preview, export, dashboard, aggregate, cache and `SECURITY DEFINER` response goes through the projection; the unconditional cost return is removed (`NP-14`). | `DB` | `21-§4-2`, `21-§5-4`, `21-§24-3`, `17-§13-2`, `17-§18-2`, `17-§21-4`, `17-§22-2`, `7-§10-2`, `BP-§10.1-3` |
 | VC-SEC-04 | SEC-EIS10-14: provider Auth-deletion, backup, PITR and legal-hold facts are collected before any deletion-runtime claim; a local schema test is never proof of them. | `PROV`, `DOC` | 15 rows via EC-ESC-05, EC-LEG-03, EC-DEL-01; each listed against its row in Section 13 |
-| VC-SEC-05 | ESC-1 negative paths, EIS Section 18.3 items 1 to 10 (`NP-29` to `NP-35`, `VC-DB-04`). `NP-35` is gated on PQ-2. | `DB`, `INV` | 16 rows via EC-TST-03, NP-29, NP-30, NP-31, NP-32, NP-33, NP-34, NP-35; each listed against its row in Section 13 |
+| VC-SEC-05 | ESC-1 negative paths, EIS Section 18.3 items 1 to 10 (`NP-29` to `NP-35`, `VC-DB-04`). `NP-35` runs only in an authorized test or migration context with synthetic hold fixtures (MC-167 PQ-2). | `DB`, `INV` | 16 rows via EC-TST-03, NP-29, NP-30, NP-31, NP-32, NP-33, NP-34, NP-35; each listed against its row in Section 13 |
 | VC-SEC-06 | Independent Security review of the implementation of authority, RLS, grants, migrations and concurrency. | `DOC` | Process item; no FCTM row; adds no behaviour |
 
 ### 6.1 Named Negative-Path Checks
@@ -179,12 +180,12 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-32 | `DELETE` on `transactions` and `transaction_correction_events` rejected outside the lifecycle role (item 6) | EIS-ESC-04 | ESC-1 negative paths | `DB` | `22-§14-5`, `22-§20-2`, `22-§29-12`, `22-§33-17`, `22-§33-36` |
 | NP-33 | No `ON DELETE CASCADE` from `auth.users` or `persons`, or from `businesses` into a retained class (item 7) | EIS-ESC-02, EIS-ESC-03, EIS-ESC-04 | ESC-1 negative paths | `INV` | `22-§20-2`, `22-§33-18`, `22-§33-20`, `22-§33-22`, `22-§33-36`, `22-§33-39` |
 | NP-34 | Governed business deletion over a mixed record set leaves a tombstone; no action, reactivation or selector appearance (item 8) | EIS-ESC-06 | ESC-1 negative paths | `DB`, `HARNESS` | `22-§20-2`, `22-§33-24` |
-| NP-35 | Records under legal or dispute hold survive governed deletion with stable attribution until release (item 9) | EIS-ESC-06, EIS-LEG-02 | ESC-1 negative paths | `DB` | `22-§20-2`, `22-§33-24`, `22-§33-26` |
+| NP-35 | Records under a technical hold state survive governed deletion with stable attribution until release (item 9); executable only in an authorized test or migration context with synthetic hold fixtures | EIS-ESC-06, EIS-LEG-02 | ESC-1 negative paths | `DB` | `22-§20-2`, `22-§33-24`, `22-§33-26` |
 | NP-36 | Active Owner membership cannot be removed through generic membership APIs by any principal | EIS-FRL-03, EIS-ID-02 | Transfer and Owner invariant | `DB` | `21-§4-1`, `21-§5-2`, `22-§5-2`, `22-§33-5`, `20-§16-1` |
 | NP-37 | Transfer completion refused without both distinct verified approvals, on changed terms, after expiry, or after an authority change | EIS-FRL-04 | Transfer and Owner invariant | `DB`, `CONC`, `HARNESS` | `21-§4-1`, `21-§18-1`, `21-§18-2`, `22-§33-6`, `22-§33-32`, `22-§33-34` |
 | NP-38 | Former Owner denied on every surface after transfer; no residual membership, capability or exemption | EIS-FRL-04, EIS-KER-09 | Transfer and Owner invariant | `DB`, `HARNESS` | `22-§33-18` |
 | NP-39 | Historical or surviving attribution grants no access, membership or authority | EIS-DEL-04 | Transfer and Owner invariant | `DB` | `22-§33-15`, `22-§33-28`, `22-§33-37` |
-| NP-40 | Identity-deletion eligibility refusals: owned business, remaining membership, pending transfer, undispositioned obligation; request, pause, schedule, hidden or ticket states are not proof | EIS-DEL-01 | Identity deletion and retained history | `HARNESS`, `DOC` | `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-8`, `22-§33-10`, `22-§33-11`, `22-§33-12`, `22-§33-32`, `22-§33-34` |
+| NP-40 | Identity-deletion eligibility refusals: owned business, remaining membership, pending transfer, undispositioned obligation; request, pause, schedule, hidden or ticket states are not proof | EIS-DEL-01 | Identity deletion and retained history | `HARNESS`, `DB` | `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-8`, `22-§33-10`, `22-§33-11`, `22-§33-12`, `22-§33-32`, `22-§33-34` |
 | NP-41 | No entitlement or subscription change creates, drops or mutates schema | EIS-GOV-03, EIS-KER-05 | Effective access inventory | `INV`, `REPO` | `21-§16-2`, `21-§23-6`, `22-§20-1`, `22-§20-3`, `22-§20-4`, `22-§29-11` |
 | NP-42 | Must-not-appear inventory: no parallel permission engine, identity silo, surveillance, scoring, data sale, universal retention period or duplicate engine | EIS-GOV-02, EIS-AUD-05, EIS-ISO-09 | Effective access inventory | `REPO`, `INV` | `21-§21-1`, `21-§21-2`, `21-§21-4`, `21-§21-5`, `21-§22`, `22-§6-10`, `22-§16-2`, `22-§23-1`, `22-§23-6`, `22-§23-7`, `22-§28-1`, `22-§28-2`, `22-§28-3`, `22-§28-4`, `22-§28-5`, `22-§28-6`, `22-§28-7`, `22-§28-8`, `22-§28-9`, `22-§28-10`, `22-§29-6`, `22-§33-16`, `22-§33-29`, `7-§7`, `7-§9`, `7-§12`, `BP-§7-4` |
 | NP-43 | Kernel always denies a `deleted` person or a `deleted` (tombstoned) business | EIS-KER-01, EIS-DEL-04 | Kernel unit and DB suite | `DB` | `21-§5-10`, `22-§5-1` |
@@ -234,7 +235,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-TEST-08 | Privileged-paths suite. | `DB` | `21-§6-6`, `21-§15-5`, `22-§6-4`, `22-§6-7` |
 | VC-TEST-09 | Denial-audit suite. | `DB`, `AUDIT` | `21-§19-6`, `21-§20-5`, `21-§23-7` |
 | VC-TEST-10 | Transfer and Owner-invariant suite (FA-1 to FA-11, labelled harness where SB-P-1.19 surfaces are absent). | `DB`, `HARNESS` | `21-§4-1`, `21-§5-2`, `21-§17`, `21-§18-1`, `21-§18-2`, `22-§33-4`, `22-§33-5`, `22-§33-6`, `22-§33-18`, `22-§33-32`, `22-§33-34` |
-| VC-TEST-11 | Identity deletion and retained history (Contract 22 Section 33.8, labelled fixtures, design-time only until runtime is authorized). | `HARNESS`, `DOC` | `22-§33-31`, `22-§33-32`, `22-§33-33`, `22-§33-34`, `22-§33-35`, `22-§33-36`, `22-§33-37`, `22-§33-38`, `22-§33-39` |
+| VC-TEST-11 | Identity deletion and retained history (Contract 22 Section 33.8, labelled fixtures); `VERIFICATION — RUNTIME GATED`: executed once the identity-deletion runtime is authorized. The rows stay `IN SCOPE`. | `DB`, `HARNESS` | `22-§33-31`, `22-§33-32`, `22-§33-33`, `22-§33-34`, `22-§33-35`, `22-§33-36`, `22-§33-37`, `22-§33-38`, `22-§33-39` |
 | VC-TEST-12 | Effective-access inventory test. | `INV` | `21-§7`, `22-§20-2`, `22-§33-39`, `BP-§10.1-7`, `BP-§10.1-8` |
 | VC-TEST-13 | Executable acceptance scenarios (Contract 21 scenarios 1 to 12, Contract 22, 17 and 7 scenarios, Founder Scenarios A and B, F-04(c)). | `DB`, `HARNESS` | 27 rows via EC-TST-02; each listed against its row in Section 13 |
 | VC-TEST-14 | Existing suites (catalog import 9, inventory 17, parser lease 2) green at every checkpoint, re-run with non-Owner fixtures where they touch authority. | `REG` | `BP-§10.1-9`, `BP-§10.1-13` |
@@ -284,7 +285,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | `ALREADY DEMONSTRATED` rows | 0 in the FCTM; no regression-only item is needed. Rows `IN SCOPE — PARTIALLY DEMONSTRATED` carry `VC-TEST-15` |
 | Rows `BLOCKED` | 1 (`22-§20-2`), `IN SCOPE` |
 | Rows `CONDITIONAL` | 87, `IN SCOPE` |
-| Rows `RUNTIME NOT AUTHORIZED` | 22, `IN SCOPE` |
+| Rows execution-gated (`RUNTIME NOT AUTHORIZED`) | 22, `IN SCOPE`; an execution gate, not a scope deferral |
 | Behaviour-adding orphan items | 0 |
 
 ### 13.3 Drift and completeness checks to execute
@@ -477,45 +478,45 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-174 | `22-§29-11` | `EC-ESC-07`, `EC-GOV-03`, `EC-TST-02` | `DB`, `HARNESS`, `INV`, `REPO`, `DOC` | NP-41 | — | FEASIBLE | ESC-1, 22-§20-2 |
 | VC-R-175 | `22-§29-12` | `EC-AUD-04`, `EC-ESC-07`, `EC-TST-02` | `DB`, `HARNESS`, `INV`, `AUDIT`, `DOC` | NP-32, NP-45 | — | CONDITIONAL | ESC-1, 22-§20-2 |
 | VC-R-176 | `22-§29-14` | `EC-GOV-01` | `REPO`, `DOC` | — | — | FEASIBLE | — |
-| VC-R-177 | `22-§33-1` | `EC-DEL-02` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-178 | `22-§33-2` | `EC-ID-01`, `EC-DEL-03` | `DB`, `HARNESS`, `INV`, `DOC` | — | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-179 | `22-§33-3` | `EC-DEL-01` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-180 | `22-§33-4` | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` | `DB`, `CONC`, `HARNESS`, `DOC` | NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-181 | `22-§33-5` | `EC-FRL-03`, `EC-DEL-01` | `DB`, `HARNESS`, `DOC` | NP-36, NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-182 | `22-§33-6` | `EC-FRL-04`, `EC-DEL-01` | `DB`, `CONC`, `HARNESS`, `DOC` | NP-37, NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-183 | `22-§33-7` | `EC-DEL-01`, `EC-DEL-06` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-184 | `22-§33-8` | `EC-ESC-03`, `EC-DEL-01` | `DB`, `HARNESS`, `INV`, `DOC` | NP-31, NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-185 | `22-§33-9` | `EC-DEL-02` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-186 | `22-§33-10` | `EC-DEL-01` | `HARNESS`, `DOC` | NP-40 | — | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-187 | `22-§33-11` | `EC-FRL-05`, `EC-DEL-01` | `HARNESS`, `DOC` | NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-188 | `22-§33-12` | `EC-DEL-03` | `HARNESS`, `DOC` | NP-40 | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-189 | `22-§33-13` | `EC-DEL-06` | `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| VC-R-190 | `22-§33-14` | `EC-DEL-03` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| VC-R-191 | `22-§33-15` | `EC-DEL-04` | `DB`, `DOC` | NP-39 | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-192 | `22-§33-16` | `EC-LEG-01` | `INV`, `REPO`, `DOC` | NP-42 | — | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
+| VC-R-177 | `22-§33-1` | `EC-DEL-02` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-178 | `22-§33-2` | `EC-ID-01`, `EC-DEL-03` | `DB`, `HARNESS`, `INV` | — | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-179 | `22-§33-3` | `EC-DEL-01` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-180 | `22-§33-4` | `EC-FRL-04`, `EC-FRL-05`, `EC-ESC-06`, `EC-DEL-01` | `DB`, `CONC`, `HARNESS` | NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-181 | `22-§33-5` | `EC-FRL-03`, `EC-DEL-01` | `DB`, `HARNESS` | NP-36, NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-182 | `22-§33-6` | `EC-FRL-04`, `EC-DEL-01` | `DB`, `CONC`, `HARNESS` | NP-37, NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-183 | `22-§33-7` | `EC-DEL-01`, `EC-DEL-06` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-184 | `22-§33-8` | `EC-ESC-03`, `EC-DEL-01` | `DB`, `HARNESS`, `INV` | NP-31, NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-185 | `22-§33-9` | `EC-DEL-02` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-186 | `22-§33-10` | `EC-DEL-01` | `DB`, `HARNESS` | NP-40 | — | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-187 | `22-§33-11` | `EC-FRL-05`, `EC-DEL-01` | `DB`, `HARNESS` | NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-188 | `22-§33-12` | `EC-DEL-03` | `DB`, `HARNESS` | NP-40 | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-189 | `22-§33-13` | `EC-DEL-06` | `DB` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| VC-R-190 | `22-§33-14` | `EC-DEL-03` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| VC-R-191 | `22-§33-15` | `EC-DEL-04` | `DB` | NP-39 | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-192 | `22-§33-16` | `EC-LEG-01` | `DB`, `INV`, `REPO`, `DOC` | NP-42 | — | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
 | VC-R-193 | `22-§33-17` | `EC-ESC-03`, `EC-ESC-04` | `DB`, `INV` | NP-31, NP-32 | — | CONDITIONAL | ESC-1 |
 | VC-R-194 | `22-§33-18` | `EC-FRL-04`, `EC-ESC-02` | `DB`, `CONC`, `HARNESS`, `INV` | NP-31, NP-33, NP-38 | — | CONDITIONAL | ESC-1 |
-| VC-R-195 | `22-§33-19` | `EC-ESC-03`, `EC-DEL-03` | `DB`, `HARNESS`, `INV`, `DOC` | NP-31 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-195 | `22-§33-19` | `EC-ESC-03`, `EC-DEL-03` | `DB`, `HARNESS`, `INV` | NP-31 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
 | VC-R-196 | `22-§33-20` | `EC-ESC-01`, `EC-ESC-02` | `DB`, `INV` | NP-29, NP-30, NP-33 | — | CONDITIONAL | ESC-1 |
-| VC-R-197 | `22-§33-21` | `EC-DEL-05` | `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-198 | `22-§33-22` | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` | `DB`, `HARNESS`, `INV`, `PROV`, `DOC` | NP-29, NP-30, NP-31, NP-33 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
-| VC-R-199 | `22-§33-23` | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` | `DB`, `HARNESS`, `INV`, `DOC` | — | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-200 | `22-§33-24` | `EC-ESC-06`, `EC-LEG-01` | `DB`, `HARNESS`, `DOC` | NP-34, NP-35 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-201 | `22-§33-25` | `EC-LEG-01` | `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| VC-R-202 | `22-§33-26` | `EC-DEL-06`, `EC-LEG-02` | `DB`, `DOC` | NP-35 | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| VC-R-203 | `22-§33-27` | `EC-LEG-01` | `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | G-7, LEGAL, SEC-EIS10-14 |
-| VC-R-204 | `22-§33-28` | `EC-DEL-04`, `EC-LEG-01` | `DB`, `DOC` | NP-39 | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-205 | `22-§33-29` | `EC-LEG-01` | `INV`, `REPO`, `DOC` | NP-42 | — | FEASIBLE; RUNTIME NOT AUTHORIZED (identity deletion) | LEGAL, SEC-EIS10-14 |
-| VC-R-206 | `22-§33-30` | `EC-LEG-01`, `EC-LEG-03` | `PROV`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | G-7, LEGAL, SEC-EIS10-14 |
-| VC-R-207 | `22-§33-31` | `EC-DEL-01`, `EC-DEL-07` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-208 | `22-§33-32` | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` | `DB`, `CONC`, `HARNESS`, `DOC` | NP-37, NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-209 | `22-§33-33` | `EC-DEL-01`, `EC-DEL-07` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-210 | `22-§33-34` | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` | `DB`, `CONC`, `HARNESS`, `DOC` | NP-37, NP-40 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-211 | `22-§33-35` | `EC-DEL-06`, `EC-DEL-07` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-212 | `22-§33-36` | `EC-ESC-04`, `EC-DEL-07` | `DB`, `HARNESS`, `INV`, `DOC` | NP-32, NP-33 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-213 | `22-§33-37` | `EC-DEL-04`, `EC-DEL-07` | `DB`, `HARNESS`, `DOC` | NP-39 | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, SEC-EIS10-14 |
-| VC-R-214 | `22-§33-38` | `EC-DEL-05`, `EC-DEL-07` | `HARNESS`, `DOC` | — | — | CONDITIONAL; RUNTIME NOT AUTHORIZED (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
-| VC-R-215 | `22-§33-39` | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` | `DB`, `HARNESS`, `INV`, `PROV`, `DOC` | NP-29, NP-30, NP-31, NP-33 | — | CONDITIONAL; design-only part (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
+| VC-R-197 | `22-§33-21` | `EC-DEL-05` | `DB` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-198 | `22-§33-22` | `EC-ESC-01`, `EC-ESC-02`, `EC-ESC-05`, `EC-DEL-02` | `DB`, `HARNESS`, `INV`, `PROV` | NP-29, NP-30, NP-31, NP-33 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
+| VC-R-199 | `22-§33-23` | `EC-ID-01`, `EC-DEL-03`, `EC-LEG-01` | `DB`, `HARNESS`, `INV`, `DOC` | — | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-200 | `22-§33-24` | `EC-ESC-06`, `EC-LEG-01` | `DB`, `HARNESS`, `DOC` | NP-34, NP-35 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-201 | `22-§33-25` | `EC-LEG-01` | `DB`, `DOC` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| VC-R-202 | `22-§33-26` | `EC-DEL-06`, `EC-LEG-02` | `DB` | NP-35 | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| VC-R-203 | `22-§33-27` | `EC-LEG-01` | `DB`, `DOC` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | G-7, LEGAL, SEC-EIS10-14 |
+| VC-R-204 | `22-§33-28` | `EC-DEL-04`, `EC-LEG-01` | `DB`, `DOC` | NP-39 | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-205 | `22-§33-29` | `EC-LEG-01` | `DB`, `INV`, `REPO`, `DOC` | NP-42 | — | FEASIBLE; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | LEGAL, SEC-EIS10-14 |
+| VC-R-206 | `22-§33-30` | `EC-LEG-01`, `EC-LEG-03` | `DB`, `PROV`, `DOC` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | G-7, LEGAL, SEC-EIS10-14 |
+| VC-R-207 | `22-§33-31` | `EC-DEL-01`, `EC-DEL-07` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-208 | `22-§33-32` | `EC-FRL-04`, `EC-FRL-05`, `EC-DEL-07` | `DB`, `CONC`, `HARNESS` | NP-37, NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-209 | `22-§33-33` | `EC-DEL-01`, `EC-DEL-07` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-210 | `22-§33-34` | `EC-FRL-04`, `EC-DEL-01`, `EC-DEL-07` | `DB`, `CONC`, `HARNESS` | NP-37, NP-40 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-211 | `22-§33-35` | `EC-DEL-06`, `EC-DEL-07` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-212 | `22-§33-36` | `EC-ESC-04`, `EC-DEL-07` | `DB`, `HARNESS`, `INV` | NP-32, NP-33 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, SEC-EIS10-14 |
+| VC-R-213 | `22-§33-37` | `EC-DEL-04`, `EC-DEL-07` | `DB`, `HARNESS` | NP-39 | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, SEC-EIS10-14 |
+| VC-R-214 | `22-§33-38` | `EC-DEL-05`, `EC-DEL-07` | `DB`, `HARNESS` | — | — | CONDITIONAL; EXECUTION GATED — RUNTIME NOT AUTHORIZED (identity deletion; IN SCOPE, not a scope deferral) | ESC-1, LEGAL, SEC-EIS10-14 |
+| VC-R-215 | `22-§33-39` | `EC-ESC-01`, `EC-ESC-05`, `EC-DEL-07`, `EC-TST-03` | `DB`, `HARNESS`, `INV`, `PROV` | NP-29, NP-30, NP-31, NP-33 | — | CONDITIONAL; part execution-gated (identity deletion) | ESC-1, G-6/T4, G-7, SEC-EIS10-14 |
 | VC-R-216 | `20-§16-1` | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` | `DB`, `CONC`, `INV`, `UNIT`, `RT` | NP-36, NP-46 | RS-08, RS-09 | CONDITIONAL | — |
 | VC-R-217 | `20-§16-2` | `EC-KER-04`, `EC-FRL-01` | `DB`, `AUDIT`, `RT` | NP-09 | RS-09 | FEASIBLE | — |
 | VC-R-218 | `20-§16-3` | `EC-KER-03`, `EC-FRL-01` | `DB`, `HARNESS`, `RT` | NP-13 | RS-09, RS-11 | FEASIBLE | — |
@@ -587,3 +588,4 @@ LEGAL, PRIVACY AND RETENTION VALIDATION: DEFERRED
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
+| 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `NP-35` test or migration context with synthetic fixtures; `VC-TEST-11` runtime-gated verification; identity-deletion rows shown as execution-gated, not deferred; evidence classes of the gated identity-deletion obligations updated to build evidence. No row, item or mapping changed |
