@@ -677,3 +677,18 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 
 **Handover:** `communication/live/report1.28.md`, paired with `communication/live/instruction1.28.md`.
 **Next authorized action:** Mission Control review. No self-merge.
+
+
+## H-42 — Mission Control Stage 10 acceptance / Stage 11 lock handover
+
+**Prepared:** 2026-10-01  
+**From:** Mission Control  
+**To:** Founder / authorized human merge, then Claude Code after post-merge verification  
+**Stage 10:** ACCEPTED under MC-164.  
+**Stage 11:** `APPROVED — LOCKED` under MC-165, effective only on human merge of PR #687.  
+**Accepted pre-lock EIS:** `7879c106474b71d2ea70f7355db69a4ee61f0e37`.  
+**Locked-status EIS prepared in PR #687:** `4b2153c9363434adb1f424288aafdd23556314fd`.  
+**Traceability:** 81 requirements; 463 links; 267/267 `IN SCOPE`; 0 behavior-adding orphans.  
+**Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; legal/privacy/retention validation deferred.  
+**Next authorized action:** human merge PR #687. After Mission Control verifies the canonical lock, Claude Code may execute `communication/live/instruction1.30.md` for Stage 12 package creation.  
+**Action not authorized:** implementation, schema/SQL/migrations, provider/production mutation.
