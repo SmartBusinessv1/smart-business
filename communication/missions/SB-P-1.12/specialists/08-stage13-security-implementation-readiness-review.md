@@ -1,10 +1,10 @@
 # SB-P-1.12 — Stage 13 Security Implementation Readiness Review
 
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Reviewer:** Security & Permissions Architecture — existing specialist room  
-**Authority:** MC-171 / `communication/live/instruction1.35.md` and `communication/missions/SB-P-1.12/mission-control/42-package-lock-metadata-reconciliation-and-specialist-readiness-authorization.md`  
-**Work package:** `SB-P-1.12-WP-SECURITY-IMPLEMENTATION-READINESS-REVIEW`  
-**Review type:** Independent implementation-readiness/security planning review  
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Reviewer:** Security & Permissions Architecture — existing specialist room
+**Authority:** MC-171 / `communication/live/instruction1.35.md` and `communication/missions/SB-P-1.12/mission-control/42-package-lock-metadata-reconciliation-and-specialist-readiness-authorization.md`
+**Work package:** `SB-P-1.12-WP-SECURITY-IMPLEMENTATION-READINESS-REVIEW`
+**Review type:** Independent implementation-readiness/security planning review
 **Status:** SUBMITTED FOR MISSION CONTROL DISPOSITION — IMPLEMENTATION AUTHORIZATION REMAINS WITHHELD
 
 ## 1. Canonical baseline and locked artifacts verified
