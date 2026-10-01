@@ -1,7 +1,7 @@
 # SB-P-1.12 — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
 IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
@@ -18,7 +18,7 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
 | Version | 0.2 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
@@ -675,7 +675,7 @@ Every one of the 267 rows is assigned to at least one workstream; 104 rows are s
 
 ## 14. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. No builder is named and no build is authorized.
+`APPROVED — LOCKED`. No builder is named and no build is authorized.
 
 ## 15. Change Log
 
@@ -683,3 +683,5 @@ Every one of the 267 rows is assigned to at least one workstream; 104 rows are s
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `EC-ISO-10` in WS-A3; `EC-DEP-01` shown as a consumer gate, not a builder workstream; `EC-LEG-02` in WS-F; identity-deletion obligations reclassified as gated builds. No row or mapping changed |
+
+| 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
