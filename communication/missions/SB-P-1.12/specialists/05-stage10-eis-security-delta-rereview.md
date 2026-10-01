@@ -1,11 +1,11 @@
 # SB-P-1.12 — Stage 10 Independent EIS Security Delta Re-Review
 
-**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
-**Stage:** 10 — EIS Review  
-**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room  
-**Authority:** MC-159 / `communication/live/instruction1.27.md` and `communication/missions/SB-P-1.12/mission-control/32-stage10-security-delta-rereview-authorization.md`  
-**Work package:** `SB-P-1.12-WP-STAGE10-EIS-SECURITY-DELTA-REREVIEW`  
-**Review type:** Independent finding-scoped exact-delta re-review  
+**Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation
+**Stage:** 10 — EIS Review
+**Reviewer:** Security & Permissions Architecture — existing MC-33-appointed specialist room
+**Authority:** MC-159 / `communication/live/instruction1.27.md` and `communication/missions/SB-P-1.12/mission-control/32-stage10-security-delta-rereview-authorization.md`
+**Work package:** `SB-P-1.12-WP-STAGE10-EIS-SECURITY-DELTA-REREVIEW`
+**Review type:** Independent finding-scoped exact-delta re-review
 **Status:** SUBMITTED FOR MISSION CONTROL DISPOSITION — EIS NOT ACCEPTED OR LOCKED
 
 ## 1. Exact target and canonical basis
