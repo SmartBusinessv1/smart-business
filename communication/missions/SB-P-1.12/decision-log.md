@@ -339,3 +339,21 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - MC-150 found the EIS version 0.1 aggregate-only margin behaviour unapproved.
 - MC-151 authorized a finding-scoped correction on PR #687.
 - ESC-1, `22-§20-2`, G-6/T4 and the legal-validation deferral are unchanged.
+
+## MC-153 to MC-157 — Stage 10 independent EIS Security review and refinement authorization (record)
+
+**Date:** 2026-10-01
+**Status:** Recorded here by Claude Code from repository evidence. This entry is an index, not an authority record.
+**Authority:**
+
+- PR [#689](https://github.com/SmartBusinessv1/smart-business/pull/689): MC-153 review authorization.
+- PR [#690](https://github.com/SmartBusinessv1/smart-business/pull/690): Security review `specialists/04-stage10-independent-eis-security-review.md` and `communication/live/report1.25.md`; MC-156 verification.
+- PR [#691](https://github.com/SmartBusinessv1/smart-business/pull/691): CI manual-equivalence exception for PR #690.
+- PR [#692](https://github.com/SmartBusinessv1/smart-business/pull/692): MC-157 refinement authorization `mission-control/31-stage10-security-eis-refinement-authorization.md` and `communication/live/instruction1.26.md`.
+
+**Recorded:**
+
+- The Security review found the EIS version 0.2 not yet security-sufficient. It raised eleven EIS design corrections (SEC-EIS10-01 to SEC-EIS10-11), confirmed the Founder Decision Record 09 correction (SEC-EIS10-12), and carried two evidence gates (SEC-EIS10-13 and SEC-EIS10-14).
+- No Founder decision was required.
+- MC-157 authorized finding-scoped refinement on PR #687.
+- Holds are unchanged, and Stage 10 acceptance and Stage 11 lock remain separate.

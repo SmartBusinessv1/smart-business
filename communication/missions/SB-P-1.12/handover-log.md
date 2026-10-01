@@ -641,3 +641,21 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 
 **Handover:** `communication/live/report1.24.md`, paired with `communication/live/instruction1.24.md`.
 **Next authorized action:** Mission Control exact-head re-review, then the independent Security specialist's Stage 10 review. No self-merge.
+
+## H-40 — Claude Code to Mission Control: MC-157 Stage 10 Security refinement submitted
+
+**Prepared:** 2026-10-01
+**From:** Claude Code (EIS owner, work package `SB-P-1.12-WP-STAGE10-SECURITY-EIS-REFINEMENT`)
+**To:** Mission Control
+**Status:** `EIS VERSION 0.3 SECURITY REFINEMENT SUBMITTED ON PR #687 — AWAITING MISSION CONTROL REVIEW AND SECURITY DELTA RE-REVIEW — EIS NOT ACCEPTED OR LOCKED — ESC-1 T8 OPEN.`
+**Authority:** MC-157 (`communication/live/instruction1.26.md`), effective through PR #692 and Mission Control's verification of it.
+**Git actions:** one commit on the existing branch `mission/SB-P-1.12-stage9-eis-draft`, on top of `a1beda8c006ab69b28f5354b686c941384cd1e86`; pushed without force; no new PR.
+**Files modified:**
+
+- the EIS;
+- `claude-code/36-stage9-eis-creation-report.md` (new §12);
+- this mission's `README.md`, `decision-log.md` and `handover-log.md`;
+- new `communication/live/report1.26.md`.
+
+**Handover:** `communication/live/report1.26.md`, paired with `communication/live/instruction1.26.md`.
+**Next authorized action:** Mission Control exact-head review, then a separately authorized Security delta re-review. No self-merge.

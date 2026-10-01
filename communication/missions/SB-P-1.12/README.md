@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RESOLVED BY FOUNDER DECISION RECORD 09 (EIS VERSION 0.2 CORRECTION UNDER MC-151, AWAITING STAGE 10 RE-REVIEW); `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
+**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RESOLVED BY FOUNDER DECISION RECORD 09 (EIS VERSION 0.2, MC-151); STAGE 10 SECURITY REFINEMENT SEC-EIS10-01–11 APPLIED IN EIS VERSION 0.3 (MC-157), AWAITING MISSION CONTROL REVIEW AND SECURITY DELTA RE-REVIEW; `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -214,3 +214,21 @@ Founder Decision Record 09 resolved T8-EIS-1. Under MC-151 (`communication/live/
 - No margin formula or margin display semantics were selected.
 
 The EIS still has 80 requirements covering 267 of 267 rows. The handover is `communication/live/report1.24.md`. ESC-1 stays OPEN T8, `22-§20-2` stays `BLOCKED`, G-6/T4 stays `UNVERIFIED`, and legal validation stays deferred. The EIS is not accepted or locked.
+
+## Stage 10 Security refinement — MC-157 (2026-10-01)
+
+The Stage 10 independent Security review (`specialists/04-stage10-independent-eis-security-review.md`) required refinement. Under MC-157 (`communication/live/instruction1.26.md`), Claude Code refined the EIS to version 0.3 on the PR #687 branch for SEC-EIS10-01 to SEC-EIS10-11:
+
+- verified-principal model;
+- multi-business first run;
+- active-Owner invariant;
+- complete authority serialization;
+- atomic confirmation consumption;
+- bound privileged reads;
+- direct-RPC denial durability;
+- `SECURITY DEFINER` hardening (new `EIS-ISO-10`);
+- tombstoned business identity;
+- `22-§20-2` evidence;
+- SB-P-1.13 consumption boundary.
+
+The EIS now has 81 requirements covering 267 of 267 rows. SEC-EIS10-12 to SEC-EIS10-14 are carried as evidence and verification gates. The handover is `communication/live/report1.26.md`. Founder Decision Record 09 material and all holds are unchanged. The EIS is not accepted or locked.

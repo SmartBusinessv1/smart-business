@@ -187,3 +187,24 @@ Sections 1 to 10 above record the version 0.1 submission as made and are kept as
 - Everything else: the ESC-1 design, `22-§20-2` treatment, G-6/T4, the legal boundary, workstreams and SB-P-1.13 boundaries.
 
 Section 9's T8-EIS-1 discussion and its stop-condition note are superseded by this section for current status.
+
+## 12. Stage 10 Security refinement under MC-157 (2026-10-01)
+
+The Stage 10 independent Security review (`specialists/04-stage10-independent-eis-security-review.md`, blob `ddaa405f6d3145249fbcc6e29d88c9aaa229285b`) required finding-scoped refinement for SEC-EIS10-01 to SEC-EIS10-11. Under MC-157 (`communication/live/instruction1.26.md`), work package `SB-P-1.12-WP-STAGE10-SECURITY-EIS-REFINEMENT`, the EIS was refined to version 0.3 on the same PR #687 branch. Sections 1 to 11 above are kept as provenance.
+
+**Counts:**
+
+- Requirements: 80 → 81. The only addition is `EIS-ISO-10`, the cross-cutting `SECURITY DEFINER` invariant required by SEC-EIS10-08, mapped to `BP-§10.1-7`, `BP-§10.1-8` and `21-§7`.
+- Requirement-to-row links: 460 → 463, from those three new links.
+- Coverage: 267 of 267 rows. No existing mapping changed.
+- Orphans: one engineering-only requirement (`EIS-ENV-02`) and 0 behaviour-adding orphans.
+
+**Unchanged:**
+
+- Founder Decision Record 09 material: EIS Section 12 is byte-identical to version 0.2.
+- Sections 15 to 17 are byte-identical.
+- ESC-1 stays OPEN T8 and `22-§20-2` stays `BLOCKED`.
+- G-6/T4 stays `UNVERIFIED`.
+- Legal validation stays deferred.
+
+The finding-by-finding closure table is in `communication/live/report1.26.md`.
