@@ -236,3 +236,14 @@ The EIS now has 81 requirements covering 267 of 267 rows. SEC-EIS10-12 to SEC-EI
 ## Narrow SEC-EIS10-04 refinement — MC-161 (2026-10-01)
 
 The Stage 10 Security delta re-review (`specialists/05-stage10-eis-security-delta-rereview.md`) closed ten findings at design level and left SEC-EIS10-04 open. Under MC-161 (`communication/live/instruction1.28.md`), Claude Code refined the EIS to version 0.4 on the PR #687 branch. Business lifecycle status is now under the business authority-state lock, every relied-on person row is locked in deterministic UUID order, transfer locks both Owner rows, and `EIS-KER-01` is aligned with Section 8.1. The EIS keeps 81 requirements covering 267 of 267 rows. The handover is `communication/live/report1.28.md`. All holds are unchanged, and the EIS is not accepted or locked.
+
+
+## Stage 10 accepted / Stage 11 EIS lock prepared — MC-164 / MC-165 (2026-10-01)
+
+Mission Control accepted EIS v0.4 at Stage 10 after the final Security confirmation closed `SEC-EIS10-04` at design level. All eleven Stage 10 Security design findings are closed at documentary design level. The accepted pre-lock EIS blob is `7879c106474b71d2ea70f7355db69a4ee61f0e37`.
+
+Stage 11 is recorded separately in `mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`. The lock is effective only when PR #687 is human-merged to canonical `main`. The locked-status EIS blob prepared in PR #687 is `4b2153c9363434adb1f424288aafdd23556314fd`.
+
+After Mission Control verifies that merge, Claude Code may execute `communication/live/instruction1.30.md` for Source 18 Stage 12 package creation only. Implementation remains unauthorized.
+
+Preserved: ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.
