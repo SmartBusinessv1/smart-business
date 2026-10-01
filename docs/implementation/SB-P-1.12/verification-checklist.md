@@ -1,7 +1,7 @@
 # SB-P-1.12 — Verification Checklist
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
 IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
@@ -18,7 +18,7 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
 | Version | 0.2 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — initial implementation package owner |
 | Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` |
 | Date | 2026-10-01 |
