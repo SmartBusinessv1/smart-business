@@ -26,24 +26,26 @@ The required two suitable external devices are not yet available and must first 
 
 No password, PIN, recovery phrase, encryption key, MFA seed, token, device serial number or exact private physical address is recorded here.
 
-## 4. Current operational state
+## 4. Founder execution-direction amendment — dependency-based parallel continuity
 
-MC-181 §8 step 1 remains blocked pending availability of the two suitable hardware-encrypted external storage devices.
+After resolving SC-P1 and SC-P2, the Founder further directed that lack of the hardware-encrypted external devices must **not** act as a global blocker for continuity controls that do not technically depend on those devices.
 
-This report does not authorize:
+Founder direction:
 
-- mirror or bundle creation/retry;
-- plaintext backup creation;
-- GitLab step 2;
-- restore drill step 3;
-- 1Password activation;
-- WSL2/LGA work;
-- Supabase work;
-- FD-C7 evidence work;
-- application implementation;
-- SQL/migration authoring or execution;
-- test-fixture creation;
-- runtime activation;
-- production mutation.
+- replace the strict linear interpretation of MC-181 §8 with dependency-based parallel continuity tracks;
+- keep the physical/offline source-recovery track mandatory and Build Now;
+- allow independent continuity tracks to proceed while the two hardware-encrypted devices are being obtained;
+- start with the independent GitLab continuity track;
+- when the hardware becomes available, resume and complete the physical/offline recovery track without waiting for later independent tracks to finish.
 
-**FOUNDER SOURCE-CONTINUITY PREREQUISITES SUBMITTED — STOP FOR MISSION CONTROL DISPOSITION**
+This amendment does not waive or reduce any physical/offline recovery requirement. It changes sequencing only.
+
+## 5. Current operational state
+
+Physical/offline source recovery remains blocked pending availability of the two suitable hardware-encrypted external storage devices.
+
+That procurement blocker does **not** block independently authorized GitLab continuity, LGA preparation/review, Supabase Support evidence work, FD-C7 read-only evidence work, or separately authorized recovery-mechanism work where their own prerequisites are satisfied.
+
+No plaintext backup is authorized. Product implementation, SQL/migration work, fixtures, runtime activation and production mutation remain unauthorized.
+
+**FOUNDER SOURCE-CONTINUITY PREREQUISITES AND PARALLELIZATION DIRECTION SUBMITTED — STOP FOR MISSION CONTROL DISPOSITION**
