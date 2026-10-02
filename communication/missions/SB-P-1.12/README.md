@@ -247,3 +247,20 @@ Stage 11 is recorded separately in `mission-control/37-stage11-eis-lock-and-stag
 After Mission Control verifies that merge, Claude Code may execute `communication/live/instruction1.30.md` for Source 18 Stage 12 package creation only. Implementation remains unauthorized.
 
 Preserved: ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; professional legal/privacy/retention validation deferred.
+
+
+## Continuity checkpoint — MC-181 / MC-182 (2026-10-02)
+
+The later provider-continuity sequence supersedes older index-only status notes above for the current checkpoint.
+
+- MC-181: `mission-control/51-provider-continuity-reconciliation-and-founder-decisions.md`.
+- Active Founder exchange completed on this branch: `communication/live/instruction1.44.md` → `communication/live/report1.44.md`.
+- Founder decisions FD-C1 through FD-C7 are recorded in `report1.44.md`.
+- MC-182 disposition: `mission-control/52-founder-continuity-decision-disposition-and-canonicalization.md`.
+- FD-C4 second-human Supabase Owner control remains open/deferred; no Supabase membership or role mutation is authorized.
+- FD-C7 is evidence-pending under a read-only evidence-check authorization.
+- No continuity implementation is activated by the Founder decisions alone.
+- After human merge and Mission Control post-merge verification, the next sequential communication is `instruction1.45.md`, limited to MC-181 §8 step 1. It has not yet been issued.
+- Implementation Authorization remains WITHHELD; `SB-MIG-1.4` remains NON-EXECUTABLE; EV-01 remains OPEN; EV-02 remains PARTIALLY EVIDENCED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation remain NOT AUTHORIZED.
+
+This README remains an index, not an authority record.
