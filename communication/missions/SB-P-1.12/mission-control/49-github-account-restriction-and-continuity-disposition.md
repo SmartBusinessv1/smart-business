@@ -248,3 +248,23 @@ Unchanged:
 - runtime activation NOT AUTHORIZED;
 - test-fixture creation NOT AUTHORIZED;
 - production mutation NOT AUTHORIZED.
+## 11. GitHub support case and reusable support route
+
+Founder successfully created a GitHub Support case after the flagged-account/SMS routing loop.
+
+- Support ticket: `#4816157`
+- Subject: `Account flagged — third-party OAuth and GitHub Actions blocked`
+- Status observed at creation: `Open`
+- Priority observed at creation: `Normal`
+- Contact account: `SmartBusinessv1`
+- Contact email: `sbtools@teamlips.com`
+
+Reusable official support route:
+
+- GitHub Support Portal: `https://support.github.com/`
+- Operational shortcut: open the Support Portal, select the `SmartBusinessv1` account, go to **Support tickets / My Tickets**, then use **Create ticket**.
+
+GitHub's official documentation identifies the Support Portal as the location for viewing, updating, and creating support tickets. Preserve this route in future incident runbooks so Community is not treated as the only escalation path for account/security incidents.
+
+If the Founder later supplies a more specific stable ticket-dashboard URL from the browser address bar, record it as an additional convenience link; do not replace the canonical Support Portal root unless GitHub documents a stable direct route.
+
