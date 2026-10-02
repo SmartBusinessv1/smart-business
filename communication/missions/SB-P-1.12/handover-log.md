@@ -706,3 +706,18 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** human merge of the PR containing `report1.44.md`, MC-182 and the durable mission-index updates. After Mission Control verifies canonical `main`, issue the next numbered work package as `communication/live/instruction1.45.md`, limited to MC-181 §8 step 1 (local bare mirror + encrypted multi-generation bundles + one normally disconnected site-independent copy). Do not self-merge and do not issue step 2 in the same work package.
 
 **Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
+
+
+## H-44 — Founder source-continuity prerequisites resolved; procurement blocker remains
+
+**Prepared:** 2026-10-02  
+**From:** Founder / Mission Control  
+**To:** Founder human merge, then device procurement  
+**Paired exchange:** `communication/live/instruction1.46.md` → `communication/live/report1.46.md`  
+**Disposition:** `mission-control/55-founder-source-continuity-prerequisite-disposition.md`
+
+**Status:** SC-P1 resolved to hardware-encrypted external storage. SC-P2 confirms two suitable devices must first be obtained. MC-181 §8 step 1 remains BLOCKED; no retry is authorized.
+
+**Next authorized action:** human merge of the PR containing `report1.46.md`, MC-185 and durable mission-index updates. After post-merge verification, the operational Founder prerequisite is to obtain two suitable Founder-controlled hardware-encrypted external storage devices. No `instruction1.47.md` is issued until device availability is confirmed.
+
+**Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; FD-C4 OPEN / DEFERRED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
