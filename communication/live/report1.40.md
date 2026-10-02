@@ -190,7 +190,17 @@ Community Discussions:
 
 Direct public fetches failed and the GitHub connector has no Community Discussion read action. The prior canonical 0-comment observation is not treated as current evidence.
 
-Exact PR-head Actions state and PR metadata are appended to this handover after the PR is opened.
+PR opened:
+
+- PR: #716
+- URL: https://github.com/SmartBusinessv1/smart-business/pull/716
+- PR opening head: `c479cd3f571e2a3849b8bf9d6fd38ed4b5cbec6b`
+- exact Actions read on that head: `workflow_runs=[]`
+- exact combined-status read on that head: `statuses=[]`
+
+This is a passive read-only checkpoint. No workflow was retriggered and no Actions setting changed.
+
+The immutable final branch head created by this metadata append cannot be self-embedded in the same commit; it is re-read after this commit and reported in the final Mission Control handover together with the exact two final blob IDs.
 
 ## No-mutation confirmation
 
