@@ -264,3 +264,35 @@ The later provider-continuity sequence supersedes older index-only status notes 
 - Implementation Authorization remains WITHHELD; `SB-MIG-1.4` remains NON-EXECUTABLE; EV-01 remains OPEN; EV-02 remains PARTIALLY EVIDENCED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation remain NOT AUTHORIZED.
 
 This README remains an index, not an authority record.
+
+
+## Source-continuity prerequisite checkpoint — MC-184 / MC-185 (2026-10-02)
+
+- `communication/live/instruction1.46.md` requested Founder decisions on encryption class and external-media availability.
+- `communication/live/report1.46.md` records SC-P1 = hardware-encrypted external storage and SC-P2 = two suitable devices must first be obtained.
+- MC-185 disposition is `mission-control/55-founder-source-continuity-prerequisite-disposition.md`.
+- MC-181 §8 step 1 remains BLOCKED pending device availability.
+- No mirror/bundle retry or later continuity step is authorized.
+- After canonicalization, the current Founder operational prerequisite is obtaining two suitable Founder-controlled hardware-encrypted external storage devices.
+- `instruction1.47.md` has not yet been issued.
+- All product/migration/runtime/production holds remain unchanged.
+
+This README remains an index, not an authority record.
+
+
+## Parallel continuity checkpoint — revised MC-185 / MC-186 (2026-10-02)
+
+Founder corrected the continuity sequencing model: unavailable hardware must not globally block controls that do not technically depend on the physical/offline recovery media.
+
+Current continuity tracks:
+
+- **Track A — Physical/offline recovery:** mandatory Build Now; currently blocked pending two suitable hardware-encrypted external devices.
+- **Track B — Provider-independent Git hosting:** MC-186 prepares `communication/live/instruction1.47.md` for a private GitLab.com downstream/non-canonical continuity repository after PR #728 merge and post-merge verification.
+- **Track C — Assurance resilience:** WSL2/LGA and independent review remain separately gated.
+- **Track D — Administrative recovery:** Supabase Support, FD-C7 and separately authorized recovery-mechanism work remain separately gated.
+
+The blocked Track A does not block Track B. When hardware becomes available, Track A should resume independently without waiting for the other tracks to finish.
+
+No continuity requirement is waived. Product implementation, SQL/migrations, fixtures, runtime and production remain unauthorized.
+
+This README remains an index, not an authority record.
