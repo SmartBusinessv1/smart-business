@@ -692,3 +692,17 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Preserved holds:** ESC-1 OPEN T8; `22-§20-2` BLOCKED / IN SCOPE; G-6/T4 UNVERIFIED; legal/privacy/retention validation deferred.  
 **Next authorized action:** human merge PR #687. After Mission Control verifies the canonical lock, Claude Code may execute `communication/live/instruction1.30.md` for Stage 12 package creation.  
 **Action not authorized:** implementation, schema/SQL/migrations, provider/production mutation.
+
+
+## H-43 — Founder continuity decisions to Mission Control; MC-182 disposition prepared
+
+**Prepared:** 2026-10-02  
+**From:** Founder / Mission Control  
+**To:** Founder human merge, then Mission Control post-merge verification  
+**Paired exchange:** `communication/live/instruction1.44.md` → `communication/live/report1.44.md`  
+**Disposition:** `mission-control/52-founder-continuity-decision-disposition-and-canonicalization.md`  
+**Status:** FD-C1 through FD-C7 received and faithfully recorded; MC-182 disposition prepared. FD-C4 remains an open/deferred second-human Owner control; FD-C7 remains evidence-pending. No continuity implementation or provider mutation has been executed.
+
+**Next authorized action:** human merge of the PR containing `report1.44.md`, MC-182 and the durable mission-index updates. After Mission Control verifies canonical `main`, issue the next numbered work package as `communication/live/instruction1.45.md`, limited to MC-181 §8 step 1 (local bare mirror + encrypted multi-generation bundles + one normally disconnected site-independent copy). Do not self-merge and do not issue step 2 in the same work package.
+
+**Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
