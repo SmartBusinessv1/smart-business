@@ -414,3 +414,19 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - No unencrypted internal-disk exemption is granted.
 - No mirror/bundle retry, GitLab step 2, restore drill step 3, 1Password activation, Supabase work, FD-C7 work or product/migration/runtime/production action is authorized.
 - After device availability is confirmed and this record is canonical, Mission Control may issue the next sequential communication as `instruction1.47.md`; it is not included in this draft.
+
+
+## MC-185A / MC-186 — Dependency-based parallel continuity; GitLab track authorized (record)
+
+**Date:** 2026-10-02  
+**Status:** Prepared on PR #728; effective only after human merge to canonical `main` and Mission Control post-merge verification.  
+**Authority:** Founder parallelization direction preserved in `communication/live/report1.46.md`; revised MC-185; MC-186; `communication/live/instruction1.47.md`.
+
+- The Founder directed that hardware procurement for the physical/offline recovery track must not globally block continuity controls that do not technically depend on that hardware.
+- MC-185 replaces strict-linear sequencing with dependency-based parallel tracks while preserving every continuity requirement.
+- Track A — physical/offline recovery remains mandatory Build Now and blocked only on hardware procurement.
+- Track B — independent GitLab continuity may proceed independently after PR #728 merge and verification.
+- Track C — LGA/assurance resilience may be separately authorized when its own prerequisites are satisfied.
+- Track D — administrative recovery tasks may be separately authorized when their own prerequisites are satisfied.
+- MC-186 authorizes Track B only: one private GitLab.com downstream/non-canonical continuity repository with GitHub-independent authentication/recovery, explicit branch/tag seeding, no force/prune/mirror push, and fail-closed divergence handling.
+- No Smart Business product implementation, SQL/migration, runtime, fixture or production authority is created.
