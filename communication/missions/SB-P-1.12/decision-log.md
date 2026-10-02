@@ -382,3 +382,21 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - Stage 12 package creation becomes executable only after the human merge of PR #687 and Mission Control verification of the locked blob on `main`.
 - No implementation authority is granted.
 - ESC-1, `22-§20-2`, G-6/T4 and legal/privacy/retention deferral remain unchanged.
+
+
+## MC-181 / MC-182 — Founder continuity decisions and Mission Control disposition (record)
+
+**Date:** 2026-10-02  
+**Status:** Prepared on the Founder-continuity decision branch; MC-182 is effective only after human merge to canonical `main` and Mission Control post-merge verification.  
+**Authority:** `mission-control/51-provider-continuity-reconciliation-and-founder-decisions.md`; `communication/live/instruction1.44.md`; Founder response captured in `communication/live/report1.44.md`; disposition in `mission-control/52-founder-continuity-decision-disposition-and-canonicalization.md`.
+
+- FD-C1: approved normally disconnected, encrypted, multi-generation, site-independent external recovery copy; exact private address excluded from Git.
+- FD-C2: GitLab.com approved as private downstream/non-canonical secondary Git provider with recovery independent of the affected GitHub identity.
+- FD-C3: WSL2/Ubuntu on existing Team LIPS-controlled hardware approved as Linux parity environment for governed local validation.
+- FD-C4: second human Supabase Owner candidate not selected yet; Founder intends serious reconsideration once active subscribers begin after Phase 1 build completion; the control remains open and no invitation/role change is authorized.
+- FD-C5: Supabase Support enquiry approved for recovery/identity-decoupling/second-Owner guidance only; no provider mutation authorized.
+- FD-C6: 1Password Teams Starter Pack selected as organizational password-manager/secret-recovery mechanism; no credential migration, secret rotation or provider mutation authorized.
+- FD-C7: narrow read-only email + domain/DNS recovery evidence check authorized; no provider mutation authorized.
+- MC-182 finds all seven Founder decision prompts sufficiently answered for sequencing purposes while explicitly keeping FD-C4 open/deferred and FD-C7 evidence-pending.
+- After human merge and post-merge verification, the next sequential communication is `instruction1.45.md`, limited to MC-181 §8 step 1. It is not issued by this draft.
+- All implementation, migration, runtime, test-fixture and production holds remain unchanged.
