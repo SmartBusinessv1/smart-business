@@ -721,3 +721,19 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** human merge of the PR containing `report1.46.md`, MC-185 and durable mission-index updates. After post-merge verification, the operational Founder prerequisite is to obtain two suitable Founder-controlled hardware-encrypted external storage devices. No `instruction1.47.md` is issued until device availability is confirmed.
 
 **Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; FD-C4 OPEN / DEFERRED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
+
+
+## H-45 — Founder parallelization correction; GitLab continuity track prepared
+
+**Prepared:** 2026-10-02  
+**From:** Founder / Mission Control  
+**To:** Founder human merge, then Claude Code Track-B execution  
+**Founder direction:** hardware procurement must not globally block technically independent continuity work.  
+**Disposition:** revised MC-185 dependency-based parallel model.  
+**Next work package:** MC-186 / `communication/live/instruction1.47.md`.
+
+**Current state:** Track A physical/offline recovery remains mandatory but hardware-blocked. Track B GitLab continuity is prepared to proceed after PR #728 human merge and Mission Control post-merge verification. Track C and Track D remain separately gated.
+
+**Next authorized action:** human merge PR #728. After canonical verification, Claude Code may execute `instruction1.47.md` for the private downstream GitLab continuity repository only. If the two hardware-encrypted devices become available meanwhile, Founder should notify Mission Control so Track A can resume independently through a separate scoped instruction.
+
+**Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; FD-C4 OPEN / DEFERRED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
