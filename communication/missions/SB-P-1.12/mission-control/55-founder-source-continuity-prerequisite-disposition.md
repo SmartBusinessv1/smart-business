@@ -1,6 +1,6 @@
 # SMART BUSINESS MISSION CONTROL — MC-185
 
-# SB-P-1.12 — Founder Source-Continuity Prerequisite Disposition
+# SB-P-1.12 — Founder Source-Continuity Prerequisite and Parallelization Disposition
 
 **Mission:** SB-P-1.12 — Authority, Identity & Product Surface Foundation  
 **Date:** 2026-10-02  
@@ -8,83 +8,119 @@
 **Status:** DRAFT — EFFECTIVE ONLY AFTER HUMAN MERGE TO CANONICAL `main` AND POST-MERGE VERIFICATION  
 **Input:** `communication/live/report1.46.md`  
 **Baseline:** `main@548b3330feecc4c9fcc3a78f8ec0e9189cc77ac8`  
-**Implementation Authorization:** WITHHELD  
+**Implementation Authorization:** WITHHELD for Smart Business product implementation  
 **Candidate migration mission:** `SB-MIG-1.4` — NON-EXECUTABLE
 
 ## 1. Purpose
 
-MC-184 requested two Founder prerequisite decisions before source-continuity step 1 could be retried.
+MC-184 requested Founder decisions on encryption class and media availability. The Founder resolved both and then issued an additional execution-direction correction: unavailable hardware must not become a global blocker for independent continuity controls.
 
-Both decisions are now resolved and preserved in `communication/live/report1.46.md`.
+This record accepts that correction and replaces the prior strict-linear interpretation of MC-181 §8 with dependency-based parallel continuity tracks.
 
-## 2. Mission Control disposition
+No continuity requirement is waived.
+
+## 2. Founder prerequisite disposition
 
 ### SC-P1 — encryption class
 
-**Disposition: ACCEPT — DECISION SUFFICIENT.**
+**ACCEPT — DECISION SUFFICIENT.**
 
 Approved class:
 
 - hardware-encrypted external storage;
-- unlock material remains controlled by the Founder or another explicitly authorized human custodian;
-- unlock material must not be placed in Git or repository communication.
-
-This selection does not itself create, configure or unlock any device.
+- unlock material controlled by the Founder or another explicitly authorized human custodian;
+- unlock material excluded from Git and repository communication.
 
 ### SC-P2 — external media availability
 
-**Disposition: ACCEPT — PROCUREMENT BLOCKER CONFIRMED.**
+**ACCEPT — PHYSICAL/OFFLINE TRACK PROCUREMENT BLOCKER CONFIRMED.**
 
-The Founder states that two suitable external storage devices must first be obtained.
+Two suitable hardware-encrypted external storage devices must first be obtained.
 
-Therefore MC-181 §8 step 1 remains **BLOCKED** and may not be retried yet.
+This blocks the physical/offline source-recovery track only. It does not block independent tracks whose execution does not technically depend on those devices.
 
-## 3. Binding controls carried forward
+## 3. Binding physical/offline controls
 
 Unchanged:
 
 - no unencrypted internal-disk exemption;
 - the continuity mirror must reside on verified encrypted storage;
-- any required PIN/passphrase/unlock secret is entered and retained by a human, never by an AI actor;
+- any PIN/passphrase/unlock secret is entered and retained by a human, never an AI actor;
 - no secret value, recovery material or exact private physical address enters Git;
-- step 1 cannot be marked complete until the Founder confirms the site-independent copy is normally disconnected and held in the approved separate-location class.
+- the physical/offline track cannot be marked complete until the Founder confirms that the site-independent copy is normally disconnected and held in the approved separate-location class.
 
-## 4. Exact next action
+The physical/offline track remains mandatory Build Now work and must resume promptly when the required hardware becomes available.
 
-The next action is a **Founder operational prerequisite**, not an AI implementation work package:
+## 4. Sequencing correction — dependency-based parallel continuity
 
-**obtain two suitable Founder-controlled hardware-encrypted external storage devices.**
+MC-181 §8 remains authoritative for the required continuity outcomes, but its numbered order is no longer interpreted as a universal hard dependency chain.
 
-One device will serve as the encrypted continuity working/recovery medium.
+Mission Control adopts four parallel tracks:
 
-The second will serve as the encrypted recovery medium intended for normally disconnected, site-independent FD-C1 custody.
+### Track A — Physical/offline source recovery
 
-Mission Control does not prescribe a specific product or purchase through this record.
+- verified encrypted local continuity mirror;
+- encrypted multi-generation Git bundles;
+- normally disconnected site-independent copy under FD-C1;
+- first restore drill after the governed backup artifacts exist.
 
-When the Founder confirms that the two suitable devices are available, Mission Control may issue the next sequential communication as `communication/live/instruction1.47.md` to verify availability and authorize a fresh step-1 retry under an exact then-current canonical SHA.
+**Current state:** BLOCKED on hardware procurement. Mandatory; not cancelled or downgraded.
 
-No `instruction1.47.md` is issued by this draft.
+### Track B — Provider-independent source hosting
 
-## 5. Explicitly not authorized
+- private GitLab.com downstream continuity repository;
+- authentication and recovery independent of the affected GitHub identity;
+- GitHub remains canonical;
+- seed and verify from exact canonical Git history;
+- no force push, prune, mirror push or co-equal canonical history;
+- secondary-ahead or non-fast-forward state is an incident.
 
-Still not authorized:
+**Current state:** MAY PROCEED under separately scoped MC-186 authority after this PR is human-merged and post-merge verified.
 
-- mirror or bundle creation/retry;
-- plaintext backup creation;
-- AI-generated or AI-held secret material;
-- 1Password activation or credential migration;
-- GitLab account/repository/remote creation or seeding;
-- restore drill;
-- WSL2/LGA work;
-- Supabase work or provider mutation;
-- FD-C7 evidence work;
-- application code changes;
-- SQL/migration authoring or execution;
-- test fixtures;
-- runtime activation;
-- production mutation.
+### Track C — Assurance resilience
 
-## 6. Preserved mission boundary
+- WSL2/Ubuntu parity environment;
+- corrected Local Governed Assurance implementation/validation;
+- independent LGA review;
+- route-B / EV-01 disposition.
+
+**Current state:** may be authorized independently later where its own prerequisites are satisfied. Not authorized by MC-185 alone.
+
+### Track D — Administrative recovery
+
+- Supabase Support enquiry and access-recovery evidence;
+- FD-C7 mailbox/domain/DNS read-only evidence check;
+- separately authorized 1Password activation/recovery-mechanism work;
+- second-human Supabase Owner later when FD-C4 is resolved.
+
+**Current state:** each subtask requires its own scoped authority. Not authorized by MC-185 alone.
+
+## 5. Dependency rule
+
+A blocked track blocks only tasks that technically or governance-depend on it.
+
+Examples:
+
+- the first offline restore drill depends on governed backup artifacts and therefore waits for Track A artifacts;
+- GitLab continuity does not depend on external backup hardware and may proceed independently;
+- independent LGA review depends on an LGA run;
+- Supabase Owner mutation depends on provider/dashboard recovery and separate mutation authority.
+
+Parallel execution must not be used to claim a blocked control complete.
+
+## 6. Exact next action
+
+Founder has directed Mission Control to start with Track B while Track A hardware is being obtained.
+
+Therefore the next sequential communication is:
+
+`communication/live/instruction1.47.md`
+
+under MC-186, limited to creation and verification of the independent GitLab.com continuity repository.
+
+When the two hardware-encrypted devices become available, Founder should inform Mission Control. Track A may then resume through a separately scoped retry instruction without waiting for Tracks B–D to finish.
+
+## 7. Preserved mission boundary
 
 Unchanged:
 
@@ -100,4 +136,4 @@ Unchanged:
 - test-fixture creation: NOT AUTHORIZED;
 - production mutation: NOT AUTHORIZED.
 
-**FOUNDER SOURCE-CONTINUITY PREREQUISITES DISPOSITIONED — STOP FOR HUMAN MERGE AND DEVICE PROCUREMENT**
+**FOUNDER SOURCE-CONTINUITY PREREQUISITES AND PARALLEL EXECUTION MODEL DISPOSITIONED — STOP FOR HUMAN MERGE AND POST-MERGE VERIFICATION**
