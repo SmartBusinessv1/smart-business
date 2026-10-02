@@ -400,3 +400,17 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - MC-182 finds all seven Founder decision prompts sufficiently answered for sequencing purposes while explicitly keeping FD-C4 open/deferred and FD-C7 evidence-pending.
 - After human merge and post-merge verification, the next sequential communication is `instruction1.45.md`, limited to MC-181 §8 step 1. It is not issued by this draft.
 - All implementation, migration, runtime, test-fixture and production holds remain unchanged.
+
+
+## MC-184 / MC-185 — Source-continuity prerequisite decisions (record)
+
+**Date:** 2026-10-02  
+**Status:** Prepared on the Founder-prerequisite branch; MC-185 becomes effective only after human merge to canonical `main` and Mission Control post-merge verification.  
+**Authority:** `communication/live/instruction1.46.md`; Founder response captured in `communication/live/report1.46.md`; disposition in `mission-control/55-founder-source-continuity-prerequisite-disposition.md`.
+
+- SC-P1: Founder selected **A — hardware-encrypted external storage**. Unlock material remains human-controlled and must not enter Git or repository communication.
+- SC-P2: Founder confirmed that **two suitable external storage devices must first be obtained**.
+- MC-181 §8 step 1 remains BLOCKED pending device availability.
+- No unencrypted internal-disk exemption is granted.
+- No mirror/bundle retry, GitLab step 2, restore drill step 3, 1Password activation, Supabase work, FD-C7 work or product/migration/runtime/production action is authorized.
+- After device availability is confirmed and this record is canonical, Mission Control may issue the next sequential communication as `instruction1.47.md`; it is not included in this draft.
