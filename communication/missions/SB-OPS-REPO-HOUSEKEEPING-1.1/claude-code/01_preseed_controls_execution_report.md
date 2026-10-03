@@ -25,7 +25,8 @@
 | Accepted audit inputs | `SB-OPS-REPO-HOUSEKEEPING-1.0/claude-code/01_…audit.md` and `02_…register.md` on `main` (PR #736) |
 | MC-186 constraints | Confirmed from `communication/live/instruction1.47.md`: seed ordinary branches and tags only; no `--mirror`, `--force` or `--prune`. Seed procedure (bare clone, then explicit `refs/heads/*` and `refs/tags/*` push) from `communication/missions/SB-P-1.12/claude-code/42-gitlab-secondary-continuity-implementation-report.md` |
 | Newer or conflicting authority | None; no open PRs at start |
-| Mission branch | `mission/SB-OPS-REPO-HOUSEKEEPING-1.1-preseed-controls`, created from the exact baseline SHA |
+| Mission branch | `mission/SB-OPS-REPO-HOUSEKEEPING-1.1-claude-code-preseed`, created from the exact baseline SHA |
+| Branch-name note | The first push, as `mission/SB-OPS-REPO-HOUSEKEEPING-1.1-preseed-controls`, was rejected non-fast-forward because that name is Mission Control's squash-merged authorization branch (PR #737). Nothing was forced or overwritten; the identical commit was published under the distinct name above |
 
 ## 2. HK-078 — History-Wide Secret Scan
 
