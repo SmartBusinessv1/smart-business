@@ -24,6 +24,8 @@ The official **Smart Business Canonical Project Source Set v1.0** is indexed at 
 
 The approved governance defines Product Truth, implementation discipline, quality expectations, continuity, and execution authority.
 
+The intended GitHub account usage, connected-service role, organizational structure, and future repository-placement plan are recorded in [`docs/governance/GitHub_Operating_Model_and_Organization_Plan.md`](docs/governance/GitHub_Operating_Model_and_Organization_Plan.md). This records operating intent only; planned organization creation or repository transfer still requires separately governed execution authority.
+
 This repository implements the approved governance. It does not redefine it.
 
 During Phase 1, the Smart Business constitutional authority is formed jointly by:
