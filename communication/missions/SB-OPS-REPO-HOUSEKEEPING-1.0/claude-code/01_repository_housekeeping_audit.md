@@ -22,7 +22,11 @@ The material findings are concentrated in six areas:
 3. **Recorded controls no longer match live provider state.** `communication/governance/branch-protection-verification.md` records `Markdown Quality Gate` as a required check; the live GitHub API returns no required checks. A later Mission Control record (MC-160 §2, item 7) made the gate advisory, but the verification record was never reconciled. Separately, GitHub Actions reports zero workflow runs although all six workflows are `active`; MC-160 records this as a suspected GitHub-side dispatch incident, not a repository defect.
 4. **The 668-branch count has a single root cause.** `delete_branch_on_merge` is `false`. Of 667 non-`main` remote branches, 643 sit exactly at the head of their merged pull request and add nothing beyond `main` plus GitHub's preserved `refs/pull/*`. Five more refs carry no unique content. Nineteen hold divergent work and need human review, including one unmerged, PR-less 12-file branch (`mission/SB-ENG-BUILD-ASSURANCE-1.0-foundation`).
 5. **Public-repository security guards are off.** The repository is public, and GitHub secret scanning, push protection and Dependabot security updates are all disabled (all are free for public repositories).
-6. **Continuity-specific hazards exist before Track A and GitLab seeding.** These are: no `.gitattributes`, with `core.autocrlf=true`, so the Windows working tree is mixed (480 CRLF and 1,322 LF files) and will not hash-match canonical blobs; a case-insensitive `.gitignore` false positive that silently excludes a local-only EOS **Backup and Disaster Recovery** draft from Git; ignored local secret-bearing files (`.env.test.local`, `.mcp.json`, `gitleaks-report.json`) that a working-directory copy would capture; and test fixtures (a throwaway private key, synthetic AWS key IDs, Supabase anon JWTs in archives) that GitLab secret detection may flag at seed time.
+6. **Continuity-relevant findings, separated by effect.**
+   - **Genuine pre-GitLab-seed controls.** The seed replicates Git history, so a history-wide secret scan (HK-078) should precede it. Test fixtures (a throwaway private key, synthetic AWS key IDs, Supabase anon JWTs in archives) may trip GitLab secret detection and need handling so the seed is not falsely blocked (HK-062). The prune-before-or-after-seed order for the 648 non-unique branches must also be decided (HK-050 to HK-052).
+   - **Already settled by existing authority.** Track A is an encrypted bare mirror, multi-generation Git bundles, verified manifests/checksums and a site-independent encrypted copy. Ignored local secret-bearing files on the workstation (`.env.test.local`, `.mcp.json`, `gitleaks-report.json`) reinforce why a checked-out working-directory copy is not, and must not become, the governed baseline (HK-065).
+   - **Useful hardening, not seed or Track A blockers.** No `.gitattributes`, with `core.autocrlf=true`, leaves the Windows working tree mixed (480 CRLF and 1,322 LF files) (HK-066). A case-insensitive `.gitignore` pattern is too broad (HK-067). The governed mechanisms operate on canonical Git objects and refs, which working-tree EOL conversion does not alter.
+   - **Separate owner housekeeping item.** The same `.gitignore` false positive silently excludes a local-only EOS **Backup and Disaster Recovery** draft from Git (HK-017). It is not canonical Git content, and its status does not redefine or block the authorized Track A method.
 
 The register contains 78 candidates. The highest-value early actions are low-risk and mostly configuration or record reconciliation rather than deletion. See Section 16.
 
@@ -191,7 +195,14 @@ The workstation clone holds five ignored files in `docs/engineering/eos/`:
 | `Engineering_Platform_Inventory_v1.0_REPAIR_REPORT.txt` | `.gitignore:52` | Toolkit report (intended) |
 | `Engineering_Backup_and_Disaster_Recovery_v1.0.md` (7,446 bytes, 2026-07-17) | `.gitignore:51` `*_BACKUP_*.md` — **false positive** | A genuine EOS governance standard draft ("Engineering Backup and Disaster Recovery v1.0") |
 
-`git check-ignore -v` attributes the last file to `*_BACKUP_*.md`. It matches only because `core.ignorecase=true` on Windows makes `_Backup_` match `_BACKUP_`. With `-c core.ignorecase=false` (Linux, GitLab runners) the file is **not** ignored. The SB-GOV-IV-1.0 reconciliation report noticed the file was absent from Git and excluded it as authority. Nobody recorded that it was excluded by accident. A disaster-recovery standard that exists only on one workstation, invisible to Git, is directly relevant to the continuity work this audit gates. The four intended artifacts show that the gitignore guard works. They also show that toolkit runs leave residue in the source tree, not in a scratch location.
+`git check-ignore -v` attributes the last file to `*_BACKUP_*.md`. It matches only because `core.ignorecase=true` on Windows makes `_Backup_` match `_BACKUP_`. With `-c core.ignorecase=false` (Linux, GitLab runners) the file is **not** ignored. The SB-GOV-IV-1.0 reconciliation report noticed the file was absent from Git and excluded it as authority. Nobody recorded that it was excluded by accident. A disaster-recovery standard that exists only on one workstation, invisible to Git, is an owner housekeeping item. Its boundary is explicit:
+
+- it is local-only and not part of canonical Git history;
+- Track A protects canonical Git repository content (bare mirror and bundles), so this file was never within Track A scope;
+- its unresolved status does not redefine or block the authorized Track A method;
+- the Founder may later recover and admit it into Git under a separate mission, or consciously discard it.
+
+The four intended artifacts show that the gitignore guard works. They also show that toolkit runs leave residue in the source tree, not in a scratch location.
 
 ### 5.8 EOS verdict
 
@@ -209,7 +220,7 @@ The workstation clone holds five ignored files in `docs/engineering/eos/`:
 | `archive/` boundary | **KEEP — ACTIVE** |
 | `v1.0/` and tag `eos-v1.0` | **KEEP — HISTORICAL / AUDIT** |
 | Authority-order placement of EOS | **OWNER DECISION** |
-| Local B&DR draft | **OWNER DECISION** (recover into Git or consciously discard) |
+| Local B&DR draft | **OWNER DECISION** (recover into Git or consciously discard); local-only housekeeping, not a Track A blocker |
 
 In short, EOS is still serving the project only through the two actor workflows, and those need repair. Everything else in EOS is either historical or parked.
 
@@ -226,7 +237,7 @@ In short, EOS is still serving the project only through the two actor workflows,
 | HK-025 | `.github/workflows/aws-gc42-oidc-claims.yml`, `aws-gc42-role-assumption-verification.yml` | ARCHIVE | One-off SB-P-1.11 GC-42 verification workflows (`workflow_dispatch` only); evidence already recorded under `communication/evidence/` | MEDIUM |
 | HK-022 | `tools/markdown/vscode_save_watcher.py`, `tools/markdown/cleanup_markdown_artifacts.py` | INVESTIGATE (see register) | Zero executable references; watcher still promised by EOS README §8 | MEDIUM |
 
-Branch deletion is the largest single cleanup. It is safe only if the `refs/pull/*` preservation assumption holds for the chosen continuity design. The SB-P-1.12 GitLab report already excludes `refs/pull/*` from the seed manifest. Mission Control should decide whether those 648 branch names should be seeded into GitLab at all before any deletion. See Section 16.
+Branch deletion is the largest single cleanup. MC-186 already requires the Track B seed to carry ordinary `refs/heads/*` and `refs/tags/*` and to exclude GitHub `refs/pull/*`; that is not reopened here. The only open question is timing: should the 648 non-unique branches be governed-pruned before the first GitLab seed, or retained through the first seed and pruned later? See Sections 16 and 17 (D-3).
 
 ## 7. Repair Candidates
 
@@ -329,7 +340,7 @@ Most closed PRs appear to be superseded by later merged PRs (for example #732 �
 
 **Provider-generated refs.** None other than GitHub's `refs/pull/*`. An earlier audit (`docs/audits/SB-AUDIT-1.1-…`) noted a local `refs/codex/turn-diffs/...` ref, which is local-only and not on the remote.
 
-**Continuity-relevant refs.** `main`, `eos-v1.0`, and any branch Mission Control rules as holding unique work (HK-053 to HK-056). The SB-P-1.12 pre-seed evidence counted 661 branches. Pruning before seeding would materially shrink the GitLab manifest, so the order of pruning and seeding is a Mission Control decision (Section 17).
+**Continuity-relevant refs.** `main`, `eos-v1.0`, and any branch Mission Control rules as holding unique work (HK-053 to HK-056). The SB-P-1.12 pre-seed evidence counted 661 branches. Under MC-186 ordinary branches and tags are seeded and PR refs are excluded. Pruning the 648 non-unique branches before the first seed would materially shrink the GitLab manifest; retaining them through the first seed and pruning later is equally compatible with MC-186. That timing is the only open Mission Control decision here (Section 17, D-3).
 
 ## 13. Security Hygiene
 
@@ -343,7 +354,7 @@ No credible live secret exposure was found. No secret value was printed, copied 
 | Synthetic AWS key-ID-shaped strings; synthetic JWT; dummy RSA header | `organizational-learning/tests/*.test.ts` (5 files) | Scanner test fixtures | NONE | No | HK-062 |
 | `sk-…` pattern hits | 9 files | False positive ("ri**sk-**triggered…") | NONE | No | — |
 | AWS account-bearing ARNs | 36 tracked files; `.env.example` contains a literal role ARN, bucket name and region | Infrastructure identifiers (not credentials) | LOW | No | HK-063 |
-| Ignored local secret-bearing files on the workstation | `.env.test`, `.env.test.local`, `.mcp.json`, `gitleaks-report.json` | Local secrets / scan output | MEDIUM **for Track A** if a working directory is copied | n/a | HK-065 |
+| Ignored local secret-bearing files on the workstation | `.env.test`, `.env.test.local`, `.mcp.json`, `gitleaks-report.json` | Local secrets / scan output | LOW under the authorized Track A method (bare mirror and bundles exclude untracked files); would only matter for a working-directory copy, which is not an authorized baseline | n/a | HK-065 |
 | `.env*.example` files | Root | Placeholders or empty for every key/secret variable | NONE | No | — |
 
 Private-key, GitHub-token, Supabase new-format key, Slack, Google, credentialed Postgres URL, payment live-key and Meta-token patterns returned no hits other than those above. Certificate blocks found are public certificates (workflow and archived SB-P-1.11 PKI exchange).
@@ -357,8 +368,8 @@ Only gaps with a concrete failure mode observed in this audit are listed.
 | ID | Gap | Observed failure mode | Priority |
 |---|---|---|---|
 | HK-060 | Enable secret scanning and push protection (and Dependabot alerts) | Public repository with no server-side secret guard; only an ad hoc local gitleaks run | HIGH |
-| HK-066 | `.gitattributes` (`* text=auto eol=lf`, binary rules for PNG/ICO, LF for hooks/scripts) | Index is clean LF (1,802 LF, 0 CRLF), but this Windows working tree is mixed (480 CRLF, 1,322 LF; for example `scripts/supabase-cli.mjs` is CRLF on disk). Any working-directory-based backup will not hash-match canonical blobs, and a CRLF hook copied to Linux breaks | HIGH (before Track A) |
-| HK-065 | Continuity baseline method rule: baseline from `git bundle` / clean `--mirror` clone, never from a working directory | Ignored secret-bearing files and the local B&DR draft exist only in the working directory | HIGH (before Track A) |
+| HK-066 | `.gitattributes` (`* text=auto eol=lf`, binary rules for PNG/ICO, LF for hooks/scripts) | Index is clean LF (1,802 LF, 0 CRLF), but this Windows working tree is mixed (480 CRLF, 1,322 LF; for example `scripts/supabase-cli.mjs` is CRLF on disk). Working-tree files differ from canonical blobs, and a CRLF script copied from a Windows checkout to Linux can break. Bare mirrors, bundles and explicit ref pushes operate on canonical Git objects, so this is not a GitLab-seed or Track A blocker | MEDIUM (recommended portability hardening) |
+| HK-065 | Reinforcement of the already-authorized Track A method (encrypted bare mirror, multi-generation Git bundles, verified manifests/checksums, site-independent encrypted copy) | Ignored secret-bearing files and the local B&DR draft exist only in the working directory, which confirms why a checked-out working-directory copy must not be used as the governed baseline. No new decision required | Validation of existing authority |
 | HK-057 / HK-072 | Branch lifecycle rule (enable `delete_branch_on_merge`, or a periodic governed prune; one naming convention) | 667 branches, growing about 8 a day | HIGH |
 | HK-073 | Internal link check in the Markdown gate | `AGENTS.md` requires "Functional internal links"; the gate does not check links; 36 broken links found, 6 in an active mission README | MEDIUM |
 | HK-037 | `communication/missions/` index | 23 mission folders, 18 not listed anywhere navigable | MEDIUM |
@@ -377,36 +388,58 @@ Not recommended: a new ownership-marker scheme (`CODEOWNERS` adds little with a 
 - **`bun.lock` removal** (HK-026) may affect Lovable, which can install with Bun. Confirm Lovable's installer before removing; refreshing it is the lower-risk alternative.
 - **`.lovable/plan.md`** (HK-029) is platform-managed; Lovable may rewrite or rely on it. Do not edit from the repository side without a Lovable-side check.
 - **`.gitattributes` introduction** (HK-066) causes a one-time renormalization on Windows clones. The index is already LF, so the content diff should be empty, but every Windows clone should re-checkout afterwards.
-- **`.gitignore` pattern repair** (HK-067) will make the B&DR draft visible as untracked on Windows. Decide HK-017 in the same step.
+- **`.gitignore` pattern repair** (HK-067) will make the B&DR draft visible as untracked on Windows. It needs coordinating with HK-017 only if the Founder chooses to admit that draft into Git; otherwise it is independent hardening.
 - **Enabling push protection** (HK-060) may block future pushes containing the HK-062 fixtures; prepare an allowlist first.
 - **AWS GC-42 workflow archival** (HK-025): the OIDC trust policies they verify still exist; keep their evidence links intact.
 - **Supabase migrations** were inventoried only. Their disposition is governed by `docs/migration/README.md` and was not assessed.
 
 ## 16. Recommended Cleanup Sequencing
 
-Each step requires its own Mission Control authorization. Steps 1–3 are recommended **before** the first GitLab seed and the Track A baseline.
+Each step requires its own Mission Control authorization. Continuity items fall into four groups.
 
-1. **Continuity safety (pre-seed).** Decide HK-017 (B&DR draft), HK-065 (baseline method), HK-066 (`.gitattributes`), HK-067 (ignore-pattern case fix) and the HK-061/HK-062 secret-detection allowlist.
+**Genuine pre-GitLab-seed controls**
+
+- HK-078: history-wide secret scan, because the seed replicates Git history, not only the current tree.
+- HK-062 (with HK-061 as context): scanner and fixture handling (allowlist or path exclusions), where required to prevent false blocking during the seed.
+- HK-050 to HK-052: decide whether the 648 non-unique branches are governed-pruned before the first seed or retained through it and pruned later. Ordinary branch and tag inclusion is already required by MC-186.
+
+**Track A / continuity method already settled**
+
+- HK-065 validates and reinforces the existing encrypted bare-mirror and Git-bundle authority. No decision required.
+
+**Useful hardening, not seed or Track A blockers**
+
+- HK-066: `.gitattributes`.
+- HK-067: `.gitignore` narrowing, unless it materially affects a file intentionally being admitted into Git.
+
+**Owner housekeeping, separate from canonical continuity**
+
+- HK-017: local-only EOS B&DR draft (recover under a separate mission, or discard knowingly).
+
+Recommended order of work:
+
+1. **Pre-seed controls.** HK-078; HK-062 fixture handling; the HK-050 to HK-052 prune-timing decision.
 2. **Record reconciliation (documentation only, low risk).** HK-027 branch-protection record; HK-036 mission memory; HK-032 SB-P-1.12 README links; HK-031 README structure; HK-030 `merge/README.md`; HK-021 `tools/README.md`; HK-010 Tooling Register.
-3. **Branch disposition.** Owner review of the 19 divergent refs (HK-053 to HK-056); then decide whether to prune HK-050 to HK-052 before or after the GitLab seed; then decide HK-057 (`delete_branch_on_merge`).
-4. **Security guards.** HK-060 (enable secret scanning, push protection, Dependabot alerts), after the step-1 allowlist.
-5. **EOS governance mission.** HK-016 authority order; HK-002/003 workflow repair; HK-004 README register; HK-005 AC-02 reclassification decision; HK-006/HK-007/HK-009 archive, refresh or consolidate; HK-011 sample removal.
-6. **Tooling tidy.** HK-020 `tools/governance/`; HK-022 watcher and cleanup scripts; HK-024 workflow trigger and pinning; HK-025 GC-42 workflows; HK-026 `bun.lock`; HK-029 `.lovable/plan.md`.
-7. **Navigation and conventions.** HK-037 missions index; HK-046 implementation index; HK-071 archive policy; HK-058 branch naming; HK-073 link check; HK-074 and HK-075 as capacity allows.
+3. **Branch disposition.** Owner review of the 19 divergent refs (HK-053 to HK-056), which must never be included in a bulk prune; execute the HK-050 to HK-052 prune per the D-3 timing; then decide HK-057 (`delete_branch_on_merge`).
+4. **Security guards.** HK-060 (enable secret scanning, push protection, Dependabot alerts), after the HK-062 fixture handling.
+5. **Hardening and owner housekeeping.** HK-066 `.gitattributes`; HK-067 `.gitignore` narrowing; HK-017 owner decision.
+6. **EOS governance mission.** HK-016 authority order; HK-002/003 workflow repair; HK-004 README register; HK-005 AC-02 reclassification decision; HK-006/HK-007/HK-009 archive, refresh or consolidate; HK-011 sample removal.
+7. **Tooling tidy.** HK-020 `tools/governance/`; HK-022 watcher and cleanup scripts; HK-024 workflow trigger and pinning; HK-025 GC-42 workflows; HK-026 `bun.lock`; HK-029 `.lovable/plan.md`.
+8. **Navigation and conventions.** HK-037 missions index; HK-046 implementation index; HK-071 archive policy; HK-058 branch naming; HK-073 link check; HK-074 and HK-075 as capacity allows.
 
 ## 17. Founder / Mission Control Decision Items
 
 | # | Decision | Register |
 |---|---|---|
-| D-1 | Should the local-only `Engineering_Backup_and_Disaster_Recovery_v1.0.md` draft be recovered into Git under a mission, or consciously discarded, before Track A? | HK-017 |
-| D-2 | Track A baseline method: confirm a `git bundle` / mirror-based baseline (excludes ignored local secrets) rather than a working-directory copy | HK-065 |
-| D-3 | Order of operations: prune the 648 non-unique branches **before** or **after** the first GitLab seed; and whether branch names, not just `main` and tags, should be seeded at all | HK-050–052 |
+| D-1 | Should the local-only `Engineering_Backup_and_Disaster_Recovery_v1.0.md` draft be recovered into Git under a separate mission, or consciously discarded? (Owner housekeeping; not part of canonical Git history and not a Track A blocker) | HK-017 |
+| D-2 | CLOSED BY EXISTING AUTHORITY: HK-065 validates the already-authorized Track A bare-mirror / Git-bundle method and reinforces that a checked-out working-directory copy must not be used as the governed baseline. | HK-065 |
+| D-3 | Should the 648 non-unique stale branches be governed-pruned before the first GitLab seed, or retained through the first seed and pruned later? (Ordinary `refs/heads/*` and `refs/tags/*` seeding is already required by MC-186; the 19 divergent branches require owner review either way) | HK-050–052 |
 | D-4 | Enable `delete_branch_on_merge` going forward? | HK-057 |
 | D-5 | Resolve the authority-order conflict (`AGENTS.md` vs Source 17 vs EOS README); where, if anywhere, does EOS sit? | HK-016 |
 | D-6 | AC-02: keep deferred under the existing reopen gate, or reclassify the seven HK-005 documents (and HK-006) as historical non-governing drafts? | HK-005 |
 | D-7 | Platform Inventory / Pipeline Architecture: refresh under a mission, or withdraw "Approved Baseline" status and archive? | HK-007 |
 | D-8 | Enable GitHub secret scanning, push protection and Dependabot alerts on the public repository | HK-060 |
-| D-9 | Confirm the Markdown Quality Gate's advisory status as policy, and authorize reconciliation of `branch-protection-verification.md` | HK-027 |
+| D-9 | Authorize / perform reconciliation of `communication/governance/branch-protection-verification.md` with MC-160 and current live provider state (advisory status already decided by MC-160) | HK-027 |
 | D-10 | Owner review of `mission/SB-ENG-BUILD-ASSURANCE-1.0-foundation` and the other 18 divergent refs | HK-053–056 |
 | D-11 | `bun.lock`: refresh, remove, or keep as-is pending Lovable confirmation | HK-026 |
 | D-12 | `tools/governance/`: register and document, or remove | HK-020 |
