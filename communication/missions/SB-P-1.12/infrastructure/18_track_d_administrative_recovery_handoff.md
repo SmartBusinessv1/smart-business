@@ -10,8 +10,27 @@ Close the administrative-recovery evidence gap across:
 
 1. Supabase Support / independent administrative recovery;
 2. Lovable account/project recovery dependency;
-3. FD-C7 mailbox + domain/DNS recovery;
-4. 1Password organizational recovery readiness.
+3. the full observed GitHub OAuth dependency set;
+4. FD-C7 mailbox + domain/DNS recovery;
+5. 1Password organizational recovery readiness.
+
+Founder live evidence shows 7 Authorized OAuth Apps on the affected GitHub identity:
+
+- Git Credential Manager
+- GitHub CLI
+- GitHub Desktop
+- Lovable
+- Resend
+- Supabase
+- Visual Studio Code
+
+All seven require an explicit recovery treatment.
+
+For external services (Lovable, Resend, Supabase), establish a provider-native independent sign-in/recovery path or the provider-supported procedure to obtain one.
+
+For GitHub client/tooling integrations (Git Credential Manager, GitHub CLI, GitHub Desktop, Visual Studio Code GitHub integration), verify they can be safely re-authenticated after GitHub account recovery and are not dependent on an unrecoverable local-only credential.
+
+Do not revoke or disconnect any OAuth authorization during this evidence mission.
 
 Important:
 
@@ -23,6 +42,7 @@ Important:
 - No secret migration/rotation.
 - No credentials in Git or chat.
 - Supabase Support enquiry is allowed because FD-C5 already approved it.
+- Provider support enquiries for Lovable/Resend recovery-path clarification are evidence actions only; do not mutate accounts without later authority.
 - Guide Founder only for human-only UI/support steps that genuinely require the signed-in human.
 - Produce one consolidated final report:
   `communication/missions/SB-P-1.12/infrastructure/17_track_d_administrative_recovery_report.md`
