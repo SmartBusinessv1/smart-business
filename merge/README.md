@@ -1,5 +1,21 @@
 # Governance Merge Workspace
 
+## Current Role
+
+*Reconciled 2026-10-04 under `SB-OPS-REPO-HOUSEKEEPING-1.2` (HK-030).*
+
+`merge/active/` is **not** a working folder of `<MERGE-ID>/` subfolders. It holds the flat **Smart Business Canonical Project Source Set v1.0**: the canonical governance sources (`00_` to `18_`, `16A_`, `P00_`, and the Phase 1 constitutional-authority interpretation), indexed by [`active/README.md`](active/README.md). The durable register is [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](../docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md). Changes to those sources follow that register's change control, not the workspace workflow below.
+
+The consolidations this workspace was created for were integrated directly as canonical sources in `merge/active/`. The successor mapping is recorded in [`Project Source File Archive/README.md`](../Project%20Source%20File%20Archive/README.md):
+
+- the planned `M001_AI_Operations` consolidation became `17_AI_Operations_Manual.md` (Parts A–F);
+- `12_Product_Execution_and_Release_Framework.md` consolidates the former Sources 12–14;
+- `P00_Operational_Profiles.md` consolidates the former P01–P06 profiles.
+
+`merge/merged/` contains only `.gitkeep`. No merged document has been stored there.
+
+The sections from "Purpose" onward record the original workspace protocol (2026-07-28). They are retained as historical context. They do not describe the current contents of `merge/active/`.
+
 ## Purpose
 
 The `merge/` directory is the controlled workspace for consolidating approved Smart Business source files.
@@ -7,6 +23,18 @@ The `merge/` directory is the controlled workspace for consolidating approved Sm
 This workspace exists to strengthen document structure, depth, clarity, and project stability without weakening governance authority, changing approved meaning, or overwriting original sources before Founder approval.
 
 ## Structure
+
+Current layout:
+
+```text
+merge/
+├── README.md
+├── active/                  Canonical Project Source Set v1.0 (flat; see active/README.md)
+└── merged/
+    └── .gitkeep             No merged documents stored
+```
+
+Original planned layout (2026-07-28, not in use):
 
 ```text
 merge/
@@ -71,6 +99,8 @@ The merge workspace must not be used to:
 - alter product scope or implementation authority.
 
 ## Initial Planned Merge
+
+*Historical plan. The outcome is `merge/active/17_AI_Operations_Manual.md`, not a file in `merge/merged/` (see Current Role).*
 
 ```text
 M001_AI_Operations
