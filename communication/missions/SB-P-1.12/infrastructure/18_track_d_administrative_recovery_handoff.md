@@ -28,7 +28,9 @@ All seven require an explicit recovery treatment.
 
 For external services (Lovable, Resend, Supabase), establish a provider-native independent sign-in/recovery path or the provider-supported procedure to obtain one.
 
-For GitHub client/tooling integrations (Git Credential Manager, GitHub CLI, GitHub Desktop, Visual Studio Code GitHub integration), verify they can be safely re-authenticated after GitHub account recovery and are not dependent on an unrecoverable local-only credential.
+For GitHub-specific client/tooling integrations (Git Credential Manager, GitHub CLI, GitHub Desktop), verify they can be safely re-authenticated after GitHub account recovery and are not dependent on an unrecoverable local-only credential.
+
+Treat Visual Studio Code separately as a **multi-provider development control surface**. Team LIPS uses it with GitHub, GitLab, Claude Code, Codex and the local development environment. Verify that VS Code/configuration can be restored and that each connected provider has its own appropriate recoverable authentication path. Do not treat GitHub OAuth as the master recovery dependency for VS Code.
 
 Do not revoke or disconnect any OAuth authorization during this evidence mission.
 
