@@ -156,4 +156,40 @@ Provider mutation occurred: No
 GitLab push/seed occurred: No
 ```
 
+
+## G. Founder Effort Preservation / No Unnecessary Rediscovery
+
+This process improvement is recorded because the Founder had to perform the same or substantially similar GitLab provider-state walkthrough three times. The objective is to preserve Founder time, reduce cognitive load, avoid governance loops, and make accepted evidence genuinely reusable.
+
+1. **Accepted human-verified provider facts are reusable evidence.** Once a provider fact has been human-verified, recorded, merged, and accepted by Mission Control, later missions must consume that evidence instead of asking the Founder to rediscover the same fact from scratch.
+
+2. **Fresh checks must be delta/revalidation checks, not repeated discovery.** Repeat only the minimum necessary observation when provider state can materially drift, a later action depends on the state still being current, previous evidence is stale for that action, conflicting evidence appears, or Mission Control explicitly requires a fresh check.
+
+3. **Stable identity / structure facts must be carried forward unless contradicted.** Current accepted baseline facts include:
+   - GitLab continuity target: `team-lips/smart-business/smart-business-continuity`
+   - accepted live Lighthouse group name: `lighthouse-hq`
+   - GitLab role: Private, downstream, noncanonical, continuity-only
+   - GitHub remains canonical
+   - authentication independence design
+   - Founder / human Owner-level control
+
+   These are baseline facts, not items for repeated rediscovery.
+
+4. **Dynamic pre-seed facts may require narrow revalidation immediately before seed.** Examples include:
+   - project still blank
+   - group/subgroup/project still Private
+   - no mirror/import
+   - CI / Auto DevOps still inert
+   - no blocking push/security policy
+   - no automatic Duo / AI action
+   - human seed actor still has sufficient role
+
+   These should be checked as concise confirmations against the accepted baseline, not another full guided walkthrough.
+
+5. **Founder must not become the integration layer between rooms.** Infrastructure must return a complete final report to Mission Control. Mission Control must carry accepted provider facts forward into later instructions. The Founder should not be repeatedly asked to restate the same environment, reproduce the same screenshots, re-navigate the same settings, or manually reconcile Infrastructure findings with Mission Control.
+
+6. **Any future repeated verification request must state why the fresh check is necessary.** If a later mission asks the Founder to repeat a previously accepted provider check, the instruction must identify the specific freshness dependency or conflicting evidence requiring that repeat.
+
+7. **Operational lesson.** This rule exists because the Founder had to perform the same or substantially similar GitLab provider walkthrough three times. Accepted evidence should reduce future verification to only the smallest justified delta check.
+
 **FOUNDER-GUIDED PV-1 TO PV-9 VERIFICATION COMPLETE — STOP FOR MISSION CONTROL DISPOSITION**
