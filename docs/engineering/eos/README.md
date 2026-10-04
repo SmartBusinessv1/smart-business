@@ -69,14 +69,14 @@ The Engineering Operating System exists to ensure engineering work is:
 
 ## 3. Authority
 
-Engineering follows this order of authority:
+*Aligned 2026-10-04 with Founder decision FD-HK-2 (`communication/missions/SB-OPS-REPO-HOUSEKEEPING-1.6/mission-control/01_founder_eos_disposition_and_alignment_authorization.md`).*
 
-1.  Founder-approved Lighthouse governance.
-2.  Smart Business Mission Control.
-3.  Approved Engineering Operating System.
-4.  Approved engineering governance documents.
-5.  Mission-specific instructions.
-6.  Verified engineering evidence.
+EOS is an **operational-workflow layer, not an independent authority or precedence tier**.
+
+- The single canonical authority and precedence model is the Canonical Governance Authority and Precedence Table in Source 17 (`merge/active/17_AI_Operations_Manual.md`). EOS does not restate or vary it.
+- EOS operational guidance is subordinate to canonical governance, Mission Control instructions, the Communication Protocol (`communication/AI_Communication_and_Handover_Protocol.md`), and the repository instruction files (`AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`).
+- The two actor-specific workflows (`Claude_GitHub_Engineering_Artifact_Workflow_v1.0.md` and `ChatGPT_GitHub_Engineering_Artifact_Workflow_v1.0.md`) remain operational intake where the canonical source set requires them.
+- Every other EOS document keeps the status recorded in Section 2. Dormant, stale, historical or non-governing EOS material cannot outrank current canonical governance, and this alignment does not approve or revive any deferred document.
 
 ------------------------------------------------------------------------
 
