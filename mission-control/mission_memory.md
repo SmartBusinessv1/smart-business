@@ -51,6 +51,10 @@
 - **GitHub is canonical.** `SmartBusinessv1/smart-business` `main` remains the single source of truth.
 - **GitLab is intended as private, downstream, non-canonical continuity** (Track B, MC-186). The seed carries ordinary `refs/heads/*` and `refs/tags/*` only, excludes GitHub `refs/pull/*`, and uses no `--mirror`, `--force` or `--prune`.
 - **The first GitLab seed remains held.** It waits until repository housekeeping reaches a Mission Control / Founder "clean enough to preserve" disposition and seed continuation is separately authorized. GitLab account, group and blank-project setup may proceed in parallel.
+- **D-3 / Option B — DECIDED AND CANONICAL** through accepted and merged PR #738 (Mission Control disposition: OPTION B APPROVED).
+  - The non-unique stale ordinary branches remain through the first GitLab seed.
+  - Any branch pruning is deferred to a later, separately authorized housekeeping mission. That mission must re-derive the stale set at execution time and exclude the divergent refs from any bulk prune.
+  - The remaining pre-seed housekeeping gate is the Founder / Mission Control "clean enough to preserve" disposition. The GitLab seed itself still requires separate authorization after that.
 - **Track A (physical/offline continuity) is separately governed.** It uses the authorized encrypted bare-mirror / Git-bundle method. A checked-out working-directory copy is not an authorized baseline.
 - **Accepted and canonical housekeeping records:**
   - `SB-OPS-REPO-HOUSEKEEPING-1.0` repository audit and 78-item candidate register (PR #736);
@@ -69,8 +73,7 @@
 
 # Pending Founder Decisions
 
-- **Branch prune timing (housekeeping D-3):** whether the non-unique stale branches (650 at the 2026-10-03 snapshot) are governed-pruned before the first GitLab seed or retained through it and pruned later. PR #738 recommends retaining them through the seed (Option B). No decision is recorded yet.
-- **"Clean enough to preserve" disposition** of repository housekeeping, which gates the first GitLab seed.
+- **"Clean enough to preserve" disposition** of repository housekeeping (Founder / Mission Control). This is the remaining pre-seed housekeeping gate. GitLab seed continuation then still requires separate authorization.
 
 ---
 

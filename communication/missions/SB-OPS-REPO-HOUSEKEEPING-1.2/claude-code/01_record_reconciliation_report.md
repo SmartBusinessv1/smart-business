@@ -64,7 +64,8 @@ Narrow additions only; historical sections were not rewritten.
   - Track A is separately governed (bare mirror / bundles; no working-directory baseline);
   - the audit (#736) and pre-seed controls (#738) are accepted and canonical;
   - no cleanup authority is inferred from classifications.
-- **Pending Founder Decisions:** "None" replaced with D-3 prune timing (Option B recommended in #738; no decision recorded) and the "clean enough to preserve" disposition.
+- **D-3 / Option B:** recorded as **DECIDED AND CANONICAL** through accepted and merged PR #738 (Mission Control disposition: OPTION B APPROVED). Non-unique stale ordinary branches remain through the first seed. Later pruning is separately governed, re-derives the set at execution time, and excludes the divergent refs.
+- **Pending Founder Decisions:** "None" replaced with the "clean enough to preserve" disposition, the remaining pre-seed housekeeping gate. Seed continuation still requires separate authorization afterwards.
 - **Current Constraints:** one bullet added for the MC-160 Actions incident and the advisory gate.
 - **Next Recommended Mission:** one status note added. `SB-DOC-PHASE1-HISTORY-1.0` has run, reached closeout readiness and been archived; whether it fully satisfies the completed-mission-register prerequisite is explicitly not re-determined.
 
@@ -133,7 +134,6 @@ The structure section now shows the current layout, followed by the original pla
 | Approval of the Quality Gate, pre-commit gate, watcher, cleanup tool, governance tools, Supabase wrapper, Lambda build, OLE scripts | No approval recorded in the register; marked "Not recorded" |
 | Whether `SB-DOC-PHASE1-HISTORY-1.0` satisfies the completed-mission-register prerequisite in mission memory | Requires a Mission Control judgement; noted rather than decided |
 | When and by whom the required status check was removed from GitHub settings | Not evidenced in the repository; the branch-protection record says so explicitly |
-| D-3 branch-prune timing | Recorded as pending in mission memory; no decision is on record |
 | Non-link mentions of the former `active/` blueprint path in the SB-P-1.12 README | Historical narrative; changing it would alter mission prose |
 
 ## 5. Validation Results
@@ -158,10 +158,13 @@ The structure section now shows the current layout, followed by the original pla
 
 ## 7. Residual Housekeeping Items (Outside This Package)
 
-| Area | Items |
+**Closed / decided:** D-3 / Option B (retain non-unique stale ordinary branches through the first GitLab seed), decided and canonical through accepted and merged PR #738.
+
+| Area | Items still outstanding |
 |---|---|
-| Pre-seed / seed gating | D-3 prune-timing decision; "clean enough to preserve" disposition; seed continuation authorization |
-| Branches | HK-050 to HK-052 later governed prune; HK-053 to HK-056 owner review of 19 divergent refs; HK-057 `delete_branch_on_merge`; HK-058 naming convention; HK-072 branch lifecycle policy |
+| Pre-seed / seed gating | "Clean enough to preserve" disposition (Founder / Mission Control); then separate seed continuation authorization |
+| Later governed prune execution | HK-050 to HK-052, after the first seed under a separately authorized mission; stale set re-derived at execution time; divergent refs excluded |
+| Branches | HK-053 to HK-056 owner review of 19 divergent refs; HK-057 `delete_branch_on_merge`; HK-058 naming convention; HK-072 branch lifecycle policy |
 | Security | HK-060 secret scanning / push protection / Dependabot (after the fingerprint allowlist, H-4 in PR #738); HK-061 / HK-063 identifier acceptance and project attribution; HK-074 dependency policy |
 | EOS governance mission | HK-016 authority order; HK-002 / HK-003 actor-workflow drift; HK-004 EOS README; HK-005 AC-02; HK-006 / HK-007 / HK-009 archive, refresh or consolidate; HK-011 sample; HK-017 local B&DR draft |
 | Tooling | HK-020 `tools/governance/` disposition; HK-022 watcher and cleanup scripts; HK-024 workflow trigger and pinning; HK-025 GC-42 workflows; HK-026 `bun.lock`; HK-029 `.lovable/plan.md` |
