@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 !.env.test.example
+!.env.test.local.example
 
 # Logs
 logs
@@ -36,7 +37,6 @@ supabase/.temp/
 
 # Claude Code local workspace (machine-specific, not shared)
 .claude/
-.claude/settings.local.json
 .DS_Store
 *.suo
 *.ntvs*
@@ -48,12 +48,18 @@ __pycache__/
 *.py[cod]
 
 # Team LIPS Markdown Toolkit generated artifacts
-*_BACKUP_*.md
+# Timestamped backups written by tools/markdown/repair_markdown.py:
+# {stem}_BACKUP_{YYYYMMDD}_{HHMMSS}{suffix}. Anchored on the timestamp so ordinary
+# names containing "Backup" are not ignored on case-insensitive clones.
+*_BACKUP_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9].md
+*_BACKUP_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9].markdown
 *_REPAIR_REPORT.txt
 *_TEST.md
 *_TOOL_TEST.md
 *_WHITESPACE_TEST.md
 MARKDOWN_REPAIR_SUMMARY.txt
+
+# Local AI tool / MCP configuration (may contain credentials — never commit)
 .mcp.json
 
 # Local secret-scan artifacts (never commit)
