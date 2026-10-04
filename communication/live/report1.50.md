@@ -2,14 +2,14 @@
 
 # SB-P-1.12 — Founder-Guided GitLab PV-1 to PV-9 Verification Report
 
-**Live report:** report1.50  
-**Date/time:** 2026-10-04 — live Founder-guided session, IST  
-**Actor:** Infrastructure / Provider Operations  
-**Founder present:** Yes — Riyas PK  
-**Target:** `team-lips/smart-business/smart-business-continuity`  
-**Mode:** Read-only GitLab provider verification  
-**Provider mutation during verification:** No  
-**Seed authority:** Withheld  
+**Live report:** report1.50
+**Date/time:** 2026-10-04 — live Founder-guided session, IST
+**Actor:** Infrastructure / Provider Operations
+**Founder present:** Yes — Riyas PK
+**Target:** `team-lips/smart-business/smart-business-continuity`
+**Mode:** Read-only GitLab provider verification
+**Provider mutation during verification:** No
+**Seed authority:** Withheld
 **GitLab push/seed performed:** No
 
 ## A. Session summary
