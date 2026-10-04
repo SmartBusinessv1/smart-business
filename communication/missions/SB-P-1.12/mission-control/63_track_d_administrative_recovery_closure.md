@@ -42,7 +42,9 @@ The Founder decision is that **all seven dependencies must have an explicit reco
 
 For external SaaS/provider services, the target state is a **provider-native, independently recoverable sign-in/recovery path** that does not require GitHub OAuth as the sole first factor.
 
-For GitHub client/tooling integrations whose purpose is to authenticate to GitHub, “independent login” means the tool itself must not become a separate recovery blocker: it must be re-authenticatable from the recovered GitHub account without relying on an unrecoverable local-only credential. These tools are not required to become independent identity providers.
+For GitHub-specific client/tooling integrations whose primary purpose is GitHub access — Git Credential Manager, GitHub CLI and GitHub Desktop — “independent login” means the tool itself must not become a separate recovery blocker: it must be re-authenticatable from the recovered GitHub account without relying on an unrecoverable local-only credential. These tools are not required to become independent identity providers.
+
+**Visual Studio Code is a separate category.** For Team LIPS it is a multi-provider development control surface, not merely a GitHub client. It is used with GitHub, GitLab, Claude Code, Codex and the local development environment. Its recovery treatment must therefore verify that VS Code, its required extensions/configuration, and each connected provider authentication path can be restored independently as appropriate, without making the affected GitHub identity the master recovery dependency for the development workstation.
 
 Do not revoke any OAuth authorization during this evidence mission.
 
@@ -196,8 +198,9 @@ For each application record:
 
 - application name;
 - category:
-  - external provider/service; or
-  - GitHub client/tooling integration;
+  - external provider/service;
+  - GitHub-specific client/tooling integration; or
+  - multi-provider development control surface;
 - current GitHub OAuth dependency;
 - whether the application/service has its own provider-native account/sign-in;
 - whether a non-GitHub recovery path exists;
@@ -225,14 +228,31 @@ GitHub OAuth must not remain the sole administrative recovery path.
 
 If a provider requires Support to attach or migrate an alternate first factor, record the supported procedure and case/reference.
 
-### GitHub-client/tooling rule
+### GitHub-specific client/tooling rule
 
-For Git Credential Manager, GitHub CLI, GitHub Desktop and Visual Studio Code GitHub integration:
+For Git Credential Manager, GitHub CLI and GitHub Desktop:
 
 - verify each can be re-authenticated after GitHub account recovery;
 - verify no unrecoverable local-only token/key is required;
 - identify any credential/cache that should later be rotated after incident recovery;
 - do not treat these tools as needing their own independent identity provider where their purpose is GitHub access.
+
+### VS Code multi-provider recovery rule
+
+Treat Visual Studio Code separately as a multi-provider development control surface.
+
+Verify, without changing configuration:
+
+- VS Code itself can be restored/reinstalled independently of GitHub;
+- required Team LIPS extensions/configuration can be reconstructed from governed sources or other recoverable records;
+- GitHub authentication inside VS Code can be re-established from the recovered GitHub account;
+- GitLab authentication inside VS Code has its own provider-appropriate recovery path;
+- Claude Code authentication/access has its own provider-appropriate recovery path;
+- Codex authentication/access has its own provider-appropriate recovery path;
+- no VS Code-local credential/cache is the sole recovery copy for any provider;
+- loss of the affected GitHub OAuth authorization does not make the wider VS Code development environment unrecoverable.
+
+Do not store VS Code provider credentials, extension secrets, tokens or session material in Git.
 
 ### No-revocation rule
 
@@ -343,7 +363,7 @@ Track D can be recommended **CLOSED FOR PRODUCT-RESUMPTION PURPOSES** only if Mi
 1. Supabase has a credible provider-supported administrative recovery path independent of exclusive GitHub OAuth reliance, or a provider-supported route is actively established with no known dead end;
 2. Lovable has a credible supported account/project recovery route not irrecoverably tied to the affected GitHub identity;
 3. Resend has a credible supported account/service recovery route not irrecoverably tied to the affected GitHub identity;
-4. all seven observed GitHub OAuth applications have an explicit recovery treatment appropriate to their category;
+4. all seven observed GitHub OAuth applications have an explicit recovery treatment appropriate to their category, including VS Code as a multi-provider development control surface rather than a GitHub-only client;
 5. business email and domain/DNS control have independent recovery paths sufficient to avoid correlated lockout;
 6. the approved secrets-recovery mechanism is at least sufficiently established to avoid Git as the secret-recovery store and avoid exclusive dependence on the affected GitHub identity;
 7. no material unresolved administrative single point of failure remains that would make core product work operationally irresponsible.
