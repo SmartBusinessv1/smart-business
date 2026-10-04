@@ -55,13 +55,28 @@ Migration authority is indexed at [`docs/migration/README.md`](docs/migration/RE
 
 ## **High-Level Structure**
 
-/  
-├── app/                  Application source  
-├── public/               Static assets  
-├── docs/                 Approved implementation documentation  
-├── README.md             Repository overview  
-├── AGENTS.md             AI development contract  
-└── ...
+```text
+/
+├── src/                        Application source (TanStack Start; routes, components, integrations)
+├── public/                     Static assets
+├── tests/                      Application and integration tests (Vitest)
+├── supabase/                   Database migrations, verification SQL, CLI config (see docs/migration/)
+├── lambda/                     AWS Lambda parser source and build script
+├── scripts/                    Repository scripts (Supabase CLI wrapper)
+├── tools/                      Engineering tooling (Markdown quality gate, governance metadata)
+├── organizational-learning/    Organizational Learning Engine (harvester, schemas, promotions)
+├── merge/active/               Smart Business Canonical Project Source Set (governance sources)
+├── docs/                       Implementation, migration, blueprint, governance and engineering docs
+├── communication/              Mission Control ↔ AI communication: live, missions, archive, evidence
+├── mission-control/            Mission Control memory and handover records
+├── reports/                    Historical governance comparison reports
+├── Project Source File Archive/  Non-governing legacy project-source archive
+├── .github/                    GitHub Actions workflows
+├── .githooks/                  Optional local pre-commit hook (Markdown quality gate)
+├── README.md                   Repository overview
+├── AGENTS.md                   AI development contract
+└── CLAUDE.md, CHATGPT.md       Actor-specific AI instructions
+```
 
 The internal structure may evolve as implementation progresses, provided governance, Product Truth, and implementation discipline remain unchanged.
 

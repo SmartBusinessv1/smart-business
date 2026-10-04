@@ -49,6 +49,22 @@ Technology-specific application frameworks are maintained separately.
 |------|---------|---------|-------|--------|
 | Markdown Toolkit | v1.0 | Repairs, validates, lints, and reports on Markdown engineering documents | Infrastructure Operations | Approved |
 
+## Factual Inventory Refresh — 2026-10-04
+
+*Recorded under `SB-OPS-REPO-HOUSEKEEPING-1.2` (HK-010) as a factual inventory of tooling tracked in the repository at `main@ca0c3b0`. This refresh does not approve any tool, does not change the status of the entry above, and does not change this register's own governance status or EOS authority. Where approval is not recorded, the entry says so.*
+
+| Tool | Location | Version / provenance | Purpose | Where used | Approval status in this register |
+|------|----------|----------------------|---------|------------|----------------------------------|
+| Markdown Toolkit v1.1 | `tools/markdown/` | Release records `tools/markdown/release/*_v1.1.md` (2026-07-14); release-notes status "Ready for Engineering Review" | Adds optional trailing-whitespace cleanup and compact lint summaries to the v1.0 components | Manual use | Not recorded |
+| Markdown Quality Gate | `tools/markdown/quality_gate.py`, `quality_gate_core.py`, configuration `.markdown-gate.yml` | Added 2026-07-16 (SB-INF-1.8); not listed in the v1.0 or v1.1 manifests | Single entry point running repair-check, lint, and validation | `.github/workflows/markdown-quality-gate.yml` (advisory, not a required check); pre-commit gate | Not recorded |
+| Pre-commit Markdown gate | `tools/markdown/pre_commit_markdown_gate.py`; hook `.githooks/pre-commit` | Added 2026-07-16 (SB-INF-1.8) | Runs the gate on staged Markdown files | Clones with `core.hooksPath=.githooks` set locally | Not recorded |
+| VS Code save watcher | `tools/markdown/vscode_save_watcher.py` | Added 2026-07-17 (SB-INF-1.8) | Runs the gate after a Markdown file is saved | Optional local use; nothing in the repository starts it | Not recorded |
+| Markdown artifact cleanup | `tools/markdown/cleanup_markdown_artifacts.py` | Added 2026-07-14 in the v1.1 release commit; not listed in the v1.1 manifest | Lists (`--check`) or deletes (`--apply`) generated repair artifacts | Manual use | Not recorded |
+| Governance metadata tools | `tools/governance/governance_repository_audit.py`, `governance_metadata_initializer.py`, `markdown_governance_manager.py` | Added 2026-07-18 (SB-INF-1.9); no README or release record | Audit (read-only), initialize, or update approval metadata in selected Markdown documents | No current repository references | Not recorded |
+| Supabase CLI wrapper | `scripts/supabase-cli.mjs` | Added 2026-07-27 (SB-INC-2026-001 / SB-MIG-1.2E-C) | Guarded Supabase CLI invocation requiring an explicit named target | `npm run supabase:test`, `npm run supabase:production` | Not recorded |
+| Lambda parser build | `lambda/parser/build.mjs` | Added 2026-08-20 (SB-P-1.11-GC-38R) | Bundles the parser Lambda | `npm run build:lambda`; `.github/workflows/aws-gc38r-parser-deploy.yml` | Not recorded |
+| OLE scripts | `organizational-learning/scripts/` (`harvest.mjs`, `validate.mjs`, `reconcile.mjs`, `context-pack.mjs`) | Added 2026-09-17 (SB-ORG-LEARNING-1.1) | Organizational Learning Engine harvesting, validation, reconciliation, context packs | `npm run ole:harvest`, `npm run ole:validate` | Not recorded |
+
 ---
 
 # Tool Details
@@ -79,6 +95,8 @@ tools/markdown/
 | repair_report.py | Generates repair summaries and engineering reports |
 | README.md | Toolkit documentation |
 | release/ | Release documentation for the toolkit |
+
+Additional files now present in `tools/markdown/` (`quality_gate.py`, `quality_gate_core.py`, `pre_commit_markdown_gate.py`, `vscode_save_watcher.py`, `cleanup_markdown_artifacts.py`) are recorded in the 2026-10-04 Factual Inventory Refresh above. They are not part of the approved v1.0 component list.
 
 ---
 

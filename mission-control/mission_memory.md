@@ -39,7 +39,27 @@
 
 # Active Mission
 
-- NONE — READY FOR NEXT AUTHORIZED MISSION
+*Refreshed 2026-10-04 under `SB-OPS-REPO-HOUSEKEEPING-1.2` (HK-036).*
+
+- **SB-P-1.12 — Authority, Identity & Product Surface Foundation: ACTIVE.** The current stage status is maintained in `communication/missions/SB-P-1.12/README.md`. Its source-continuity work (Track A physical/offline and Track B GitLab; `communication/missions/SB-P-1.12/mission-control/52-` to `58-…`) remains active.
+- **SB-OPS-REPO-HOUSEKEEPING series: ACTIVE.** Repository housekeeping before the first GitLab continuity seed. Status is in the next section.
+
+---
+
+# Repository Continuity and Housekeeping State
+
+- **GitHub is canonical.** `SmartBusinessv1/smart-business` `main` remains the single source of truth.
+- **GitLab is intended as private, downstream, non-canonical continuity** (Track B, MC-186). The seed carries ordinary `refs/heads/*` and `refs/tags/*` only, excludes GitHub `refs/pull/*`, and uses no `--mirror`, `--force` or `--prune`.
+- **The first GitLab seed remains held.** It waits until repository housekeeping reaches a Mission Control / Founder "clean enough to preserve" disposition and seed continuation is separately authorized. GitLab account, group and blank-project setup may proceed in parallel.
+- **D-3 / Option B — DECIDED AND CANONICAL** through accepted and merged PR #738 (Mission Control disposition: OPTION B APPROVED).
+  - The non-unique stale ordinary branches remain through the first GitLab seed.
+  - Any branch pruning is deferred to a later, separately authorized housekeeping mission. That mission must re-derive the stale set at execution time and exclude the divergent refs from any bulk prune.
+  - The remaining pre-seed housekeeping gate is the Founder / Mission Control "clean enough to preserve" disposition. The GitLab seed itself still requires separate authorization after that.
+- **Track A (physical/offline continuity) is separately governed.** It uses the authorized encrypted bare-mirror / Git-bundle method. A checked-out working-directory copy is not an authorized baseline.
+- **Accepted and canonical housekeeping records:**
+  - `SB-OPS-REPO-HOUSEKEEPING-1.0` repository audit and 78-item candidate register (PR #736);
+  - `SB-OPS-REPO-HOUSEKEEPING-1.1` pre-seed controls (PR #738): history-wide secret scan with 0 credible secrets, scanner/fixture handling plan, and branch-seed timing analysis.
+- **No cleanup authority is inferred from audit classifications.** REMOVE CANDIDATE, ARCHIVE, CONSOLIDATE and REPAIR are recommendations only. Each action requires its own Mission Control authorization and, where governance requires it, Founder approval.
 
 ---
 
@@ -53,7 +73,7 @@
 
 # Pending Founder Decisions
 
-- None
+- **"Clean enough to preserve" disposition** of repository housekeeping (Founder / Mission Control). This is the remaining pre-seed housekeeping gate. GitLab seed continuation then still requires separate authorization.
 
 ---
 
@@ -76,6 +96,7 @@
 - Frontend content work requiring Lovable is postponed until credits are available.
 - Placeholder legal pages must not be used for Google OAuth branding verification.
 - Repository visibility remains PUBLIC while `SmartBusinessv1` uses GitHub Free so protected-branch controls remain available.
+- GitHub Actions is affected by the provider-side dispatch incident recorded in MC-160 (`communication/missions/SB-P-1.12/mission-control/33-github-platform-incidents-community-escalation-record.md`). Missing Actions evidence is recorded as missing, not inferred as a pass. The Markdown Quality Gate is advisory, not a required merge check (`communication/governance/branch-protection-verification.md`).
 
 ---
 
@@ -294,6 +315,7 @@ For every review performed by Mission Control, including Stage 1 Product Bluepri
 
 # Next Recommended Mission
 
+- **Status note (2026-10-04, HK-036):** `SB-DOC-PHASE1-HISTORY-1.0` has since run, reached closeout readiness, and had its live handoffs archived (`communication/archive/SB-DOC-PHASE1-HISTORY-1.0/`). Whether its output fully satisfies the completed-mission-register prerequisite below is not re-determined in this refresh; Mission Control should confirm it before relying on the items below.
 - **NOT YET ACTIVATED** — Historical continuity reconstruction: reconstruct the evidence-backed record of Smart Business from inception through SB-P-1.11 completion (historical Mission Control and specialist-room chats in batches, Claude Code and Codex evidence, GitHub repository history, tool/platform/capability evolution, and Founder clarification where evidence is incomplete). Its output is the evidence-backed completed SB-P mission register. It must start as a fresh mission and a fresh communication cycle; it is not activated by the SB-GOV-COMMS-1.3 closure/archive.
 - Final SB-P lifecycle metadata normalization is deferred until that reconstruction establishes the completed-mission register.
 - After the reconstruction, implement and verify the planned daily Smart Business application-audit tools covering security, bugs, scalability, and performance, plus the additional GitHub Actions automations; then remind the Founder and reopen AC-02 for explicit approval review.
