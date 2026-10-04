@@ -21,9 +21,30 @@ This mission covers:
 
 1. Supabase administrative recovery / independent-login support path;
 2. Lovable access and recovery dependency;
-3. FD-C7 mailbox + domain/DNS recovery independence;
-4. approved organizational secrets-recovery mechanism readiness;
-5. a final Track D closure assessment for Mission Control.
+3. the full observed GitHub OAuth application dependency set;
+4. FD-C7 mailbox + domain/DNS recovery independence;
+5. approved organizational secrets-recovery mechanism readiness;
+6. a final Track D closure assessment for Mission Control.
+
+### Founder decision — recover the full GitHub OAuth dependency set
+
+Before merge, the Founder provided live GitHub evidence showing **7 Authorized OAuth Apps** on the affected GitHub identity:
+
+- Git Credential Manager;
+- GitHub CLI;
+- GitHub Desktop;
+- Lovable;
+- Resend;
+- Supabase;
+- Visual Studio Code.
+
+The Founder decision is that **all seven dependencies must have an explicit recovery treatment** so none is left as an unexamined operational dependency on the flagged GitHub identity.
+
+For external SaaS/provider services, the target state is a **provider-native, independently recoverable sign-in/recovery path** that does not require GitHub OAuth as the sole first factor.
+
+For GitHub client/tooling integrations whose purpose is to authenticate to GitHub, “independent login” means the tool itself must not become a separate recovery blocker: it must be re-authenticatable from the recovered GitHub account without relying on an unrecoverable local-only credential. These tools are not required to become independent identity providers.
+
+Do not revoke any OAuth authorization during this evidence mission.
 
 This mission does **not** authorize product implementation, migrations, runtime changes, Auth changes, Supabase membership changes, Lovable project mutations, DNS changes, mailbox changes, secret migration/rotation, or second-Owner invitation.
 
@@ -163,7 +184,70 @@ D-2 may be:
 - STOP — project/admin access is confirmed irrecoverably dependent on the affected GitHub identity;
 - NOT VERIFIABLE.
 
-## 6. Workstream D-3 — FD-C7 mailbox + domain/DNS recovery evidence
+## 6. Workstream D-3 — Full GitHub OAuth application recovery inventory
+
+### Objective
+
+Assess all seven currently authorized GitHub OAuth applications and assign each one an explicit recovery treatment.
+
+### Required inventory
+
+For each application record:
+
+- application name;
+- category:
+  - external provider/service; or
+  - GitHub client/tooling integration;
+- current GitHub OAuth dependency;
+- whether the application/service has its own provider-native account/sign-in;
+- whether a non-GitHub recovery path exists;
+- whether account/workspace/project/service access survives loss of GitHub OAuth;
+- whether provider support is needed;
+- whether any local credential/token is a single point of failure;
+- required next action;
+- closure state.
+
+The seven observed applications are:
+
+1. Git Credential Manager
+2. GitHub CLI
+3. GitHub Desktop
+4. Lovable
+5. Resend
+6. Supabase
+7. Visual Studio Code
+
+### External-provider rule
+
+For Lovable, Resend and Supabase, establish whether the service can be recovered through a provider-native independent sign-in/recovery path.
+
+GitHub OAuth must not remain the sole administrative recovery path.
+
+If a provider requires Support to attach or migrate an alternate first factor, record the supported procedure and case/reference.
+
+### GitHub-client/tooling rule
+
+For Git Credential Manager, GitHub CLI, GitHub Desktop and Visual Studio Code GitHub integration:
+
+- verify each can be re-authenticated after GitHub account recovery;
+- verify no unrecoverable local-only token/key is required;
+- identify any credential/cache that should later be rotated after incident recovery;
+- do not treat these tools as needing their own independent identity provider where their purpose is GitHub access.
+
+### No-revocation rule
+
+Do not revoke, disconnect or reauthorize any OAuth app in this evidence mission.
+
+### Result states
+
+D-3 may be:
+
+- PASS — all seven have an explicit acceptable recovery treatment;
+- PARTIAL — one or more recovery paths need provider confirmation;
+- STOP — one or more critical external services remain irrecoverably dependent on GitHub OAuth;
+- NOT VERIFIABLE.
+
+## 7. Workstream D-4 — FD-C7 mailbox + domain/DNS recovery evidence
 
 ### Objective
 
@@ -210,7 +294,7 @@ D-3 may be:
 - STOP;
 - NOT VERIFIABLE.
 
-## 7. Workstream D-4 — 1Password organizational recovery readiness
+## 8. Workstream D-5 — 1Password organizational recovery readiness
 
 ### Objective
 
@@ -243,14 +327,14 @@ This mission does **not** authorize:
 
 ### Result states
 
-D-4 may be:
+D-5 may be:
 
 - PASS — organizational recovery mechanism operational enough to support Track D;
 - PARTIAL — design/provider selected but activation/readiness incomplete;
 - STOP — mechanism cannot meet independence/recovery requirements;
 - NOT VERIFIABLE.
 
-## 8. Track D closure test
+## 9. Track D closure test
 
 Infrastructure must produce a single closure assessment.
 
@@ -258,15 +342,17 @@ Track D can be recommended **CLOSED FOR PRODUCT-RESUMPTION PURPOSES** only if Mi
 
 1. Supabase has a credible provider-supported administrative recovery path independent of exclusive GitHub OAuth reliance, or a provider-supported route is actively established with no known dead end;
 2. Lovable has a credible supported account/project recovery route not irrecoverably tied to the affected GitHub identity;
-3. business email and domain/DNS control have independent recovery paths sufficient to avoid correlated lockout;
-4. the approved secrets-recovery mechanism is at least sufficiently established to avoid Git as the secret-recovery store and avoid exclusive dependence on the affected GitHub identity;
-5. no material unresolved administrative single point of failure remains that would make core product work operationally irresponsible.
+3. Resend has a credible supported account/service recovery route not irrecoverably tied to the affected GitHub identity;
+4. all seven observed GitHub OAuth applications have an explicit recovery treatment appropriate to their category;
+5. business email and domain/DNS control have independent recovery paths sufficient to avoid correlated lockout;
+6. the approved secrets-recovery mechanism is at least sufficiently established to avoid Git as the secret-recovery store and avoid exclusive dependence on the affected GitHub identity;
+7. no material unresolved administrative single point of failure remains that would make core product work operationally irresponsible.
 
 If one or more items are PARTIAL, explain whether the partial state is acceptable for Track D closure or remains a blocker.
 
 Do not declare Track D closed yourself. Return a recommendation to Mission Control.
 
-## 9. Required final report
+## 10. Required final report
 
 Create:
 
@@ -281,7 +367,7 @@ Include:
 - material partials;
 - whether Founder action remains.
 
-### B. D-1 through D-4 matrix
+### B. D-1 through D-5 matrix
 
 For each:
 
@@ -309,14 +395,26 @@ For each:
 - support/documentation evidence;
 - unresolved questions.
 
-### E. FD-C7 record
+### E. Full OAuth application recovery matrix
+
+For all seven applications record:
+
+- category;
+- current GitHub dependency;
+- independent/provider-native recovery path where applicable;
+- re-authentication path for GitHub tooling;
+- provider support dependency;
+- remaining blocker;
+- PASS/PARTIAL/STOP/NOT VERIFIABLE.
+
+### F. FD-C7 record
 
 - mailbox recovery finding;
 - domain/DNS recovery finding;
 - circular-dependency finding;
 - remaining gaps.
 
-### F. 1Password readiness record
+### G. 1Password readiness record
 
 - activation/readiness state;
 - independence finding;
@@ -324,7 +422,7 @@ For each:
 - deferred second-human status;
 - remaining actions.
 
-### G. Correlated-failure assessment
+### H. Correlated-failure assessment
 
 State whether the affected GitHub identity still creates a material single administrative failure domain across:
 
@@ -335,7 +433,7 @@ State whether the affected GitHub identity still creates a material single admin
 - domain/DNS;
 - secrets recovery.
 
-### H. Mutation attestation
+### I. Mutation attestation
 
 State explicitly whether any:
 
@@ -350,7 +448,7 @@ State explicitly whether any:
 
 Expected: all No, except the allowed creation/continuation of a Supabase Support enquiry.
 
-### I. Mission Control recommendation
+### J. Mission Control recommendation
 
 Choose one:
 
@@ -362,7 +460,7 @@ End exactly:
 
 **TRACK D ADMINISTRATIVE RECOVERY REPORT SUBMITTED — STOP FOR MISSION CONTROL DISPOSITION**
 
-## 10. Authority boundary after this mission
+## 11. Authority boundary after this mission
 
 This mission does not authorize Track C execution.
 
