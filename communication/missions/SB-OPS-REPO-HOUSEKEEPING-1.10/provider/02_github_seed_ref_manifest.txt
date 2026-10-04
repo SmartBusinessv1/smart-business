@@ -687,4 +687,3 @@ d95c0a1f41214e99abe7e062dfb5dc4b795b9d56	refs/heads/security/SB-P-1.11-GC-4-lamb
 ef10f221acc415db5df71d81958cbf2f121bfd40	refs/heads/security/SB-P-1.11-GC-43D-runtime-boundary-reverification
 75a86c25dd0bc2751dc9f98c76909e4131ee4898	refs/heads/security/SB-REL-1.10-1.11-gate-2a-evidence-closure
 b2a88174f08e37f83790660a6c15f3e97c04be72	refs/tags/eos-v1.0
-d9991a0fd41af751667915b6f520c5cc6b952453	refs/tags/eos-v1.0^{}

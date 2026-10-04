@@ -20,7 +20,7 @@
 | PV-7 | Trial status; Duo / AI / automated review not acting on pushes | NOT VERIFIABLE | No authenticated view | Yes (unverifiable) | Human UI check |
 | PV-8 | GitLab-native authentication, 2FA, no GitHub sign-in or recovery dependency | NOT VERIFIABLE | Account settings visible only to the account holder | Yes (unverifiable) | Founder UI check (no secrets recorded) |
 | PV-9 | Pusher is Owner or Maintainer | NOT VERIFIABLE | Membership visible only when authenticated | Yes (unverifiable) | Human UI check |
-| PV-10 | GitHub seed snapshot | **PASS** | `main` `80aca83…914d`; 688 heads; 1 tag (+ peeled line); 690 lines; 0 `refs/pull/*`; SHA-256 `1f65ce5d56355cddbf77ff1e559f6865a6de6019a4d0abab5aab3a99657103ce` | No | **Recapture at seed time** (ref set grows with each merge) |
+| PV-10 | GitHub seed snapshot | **PASS** | `main` `80aca83…914d`; 688 heads; 1 tag; 689 lines; 0 peeled `^{}` pseudo-refs; 0 `refs/pull/*`; SHA-256 `a055928ee5ff78921f4ce45b74d17463a84f132ea019d4dc5c44c797ee7c8161` (corrected per Mission Control review on PR #756: peeled tag line removed) | No | **Recapture at seed time** (ref set grows with each merge) |
 | PV-11 | Seed mechanism uses explicit `refs/heads/*` + `refs/tags/*` only | **PASS** | Bare-clone shape proven (1.1); command form fixed; `--mirror`, `--force`, `--prune`, deletions and `refs/pull/*` excluded | No | Executability depends on PV-1 to PV-9 |
 
 ## Summary for Mission Control
@@ -37,8 +37,8 @@
 | Authentication independence | Not verifiable |
 | Human project role | Not verifiable |
 | Ordinary branch count | 688 |
-| Tag count | 1 (`eos-v1.0`; manifest also lists its peeled object) |
-| Manifest SHA-256 | `1f65ce5d56355cddbf77ff1e559f6865a6de6019a4d0abab5aab3a99657103ce` |
+| Tag count | 1 (`refs/tags/eos-v1.0`); 0 peeled pseudo-refs in the manifest |
+| Manifest SHA-256 | `a055928ee5ff78921f4ce45b74d17463a84f132ea019d4dc5c44c797ee7c8161` (689 non-empty lines) |
 | Provider verification gate | **NOT SATISFIED** |
 | Stop condition | Provider state cannot be verified confidently (actor visibility limitation, not a detected provider defect) |
 
