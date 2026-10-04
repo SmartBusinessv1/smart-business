@@ -24,7 +24,7 @@ Its purpose is to ensure that every AI assistant produces engineering work that 
 - Evidence-based
 - Aligned with the Smart Business governance framework
 
-This file supplements the Engineering Operating System (EOS). It does not replace or modify approved governance.
+This file works alongside the actor-specific Engineering Operating System (EOS) workflows, which are operational guidance subordinate to canonical governance (see Authority Order). It does not replace or modify approved governance.
 
 Before mission execution, use [`merge/active/README.md`](merge/active/README.md) as the index for the **Smart Business Canonical Project Source Set v1.0**, then read the foundational and mission-relevant canonical sources identified by Mission Control. The durable package and AI operational-source map are recorded in [`docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md`](docs/governance/Smart_Business_Canonical_Project_Source_Set_v1.0.md). For a Product Mission, also follow the Source 18 lifecycle (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`): complete the Institutional Learning Intake Record (Section 3.1, covering both the Phase 1 institutional-memory guide and current validated OLE learning) and the mission's Feature Coverage and Product Truth Traceability Matrix (Section 3.2).
 
@@ -72,15 +72,13 @@ Every contribution to this repository shall follow these principles:
 
 # Authority Order
 
-When instructions conflict, follow this order of precedence:
+The single canonical authority and precedence model is the **Canonical Governance Authority and Precedence Table** in Source 17, [`merge/active/17_AI_Operations_Manual.md`](merge/active/17_AI_Operations_Manual.md). When instructions conflict, follow that table. This file does not restate or vary it.
 
-1. Founder-approved governance
-2. Lighthouse Constitution
-3. Smart Business Master System Manifesto
-4. Engineering Operating System (EOS)
-5. Repository instruction files (`AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`)
-6. Mission-specific instructions
-7. User implementation requests
+The Engineering Operating System (EOS) is an operational-workflow layer, not a precedence tier (Founder decision FD-HK-2, [`communication/missions/SB-OPS-REPO-HOUSEKEEPING-1.6/mission-control/01_founder_eos_disposition_and_alignment_authorization.md`](communication/missions/SB-OPS-REPO-HOUSEKEEPING-1.6/mission-control/01_founder_eos_disposition_and_alignment_authorization.md)):
+
+- The actor-specific EOS workflows remain operational intake where the canonical source set requires them.
+- EOS operational guidance is subordinate to canonical governance, Mission Control instructions, the Communication Protocol, and the repository instruction files (`AGENTS.md`, `CLAUDE.md`, `CHATGPT.md`).
+- Dormant, stale, historical, or non-governing EOS material cannot override current canonical governance.
 
 No lower-level instruction may override a higher-level authority.
 
