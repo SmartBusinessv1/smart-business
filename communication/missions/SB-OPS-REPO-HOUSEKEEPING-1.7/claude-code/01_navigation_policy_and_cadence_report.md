@@ -138,6 +138,6 @@ Every relative Markdown link target in the five new files was checked for existe
 - **EOS hygiene:** HK-002 to HK-011.
 - **Branches and security:** HK-050 to HK-052 (later governed prune per D-3 / Option B), HK-057, HK-058, HK-072, HK-060, HK-061, HK-063, HK-074.
 - **Mission README statuses:** the stale statuses noted in Section 3 (for example SB-GOV-HOUSEKEEPING-1.0 to 1.7, SB-GOV-PRODUCT-EXEC-1.0) are recorded, not corrected; any status correction belongs to Mission Control.
-- **Continuity:** the GitLab target-path confirmation raised in SB-OPS-REPO-HOUSEKEEPING-1.5 remains with Mission Control. Checklist item 11 covers it.
+- **Continuity path references (documentation reconciliation only):** Mission Control has accepted the live Infrastructure verification. The current GitLab continuity target is `team-lips/smart-business/smart-business-continuity`. Older repository records that still show the pre-subgroup path `team-lips/smart-business-continuity` (for example `communication/live/instruction1.48.md` and `1.49.md`) are a documentation-reconciliation item only; the provider target itself is not unresolved. Checklist item 11 checks current records against the verified target.
 
 NAVIGATION / ARCHIVE POLICY / CADENCE PACKAGE SUBMITTED — NO HISTORICAL MOVE / PROVIDER / SEED MUTATION PERFORMED — STOP FOR MISSION CONTROL DISPOSITION
