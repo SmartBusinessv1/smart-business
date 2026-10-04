@@ -1,0 +1,8 @@
+# Repository line-ending policy (SB-OPS-REPO-HOUSEKEEPING-1.4, HK-066).
+# Git auto-detects text; detected text is stored and checked out with LF on
+# every platform, overriding a local core.autocrlf setting.
+* text=auto eol=lf
+
+# Binary asset types present in the repository: no EOL conversion or text diff.
+*.png binary
+*.ico binary
