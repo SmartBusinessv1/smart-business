@@ -19,3 +19,19 @@ Key boundaries:
 - WhatsApp adapter stays SB-P-1.20;
 - all production/provider/migration/delivery mutations remain NOT AUTHORIZED;
 - SB-P-1.12 documentary dependencies may be consumed, but unimplemented runtime behavior may not be assumed.
+
+
+## D-02 — Stage 2 Truth & Delta authorization prepared
+
+**Date:** 2026-10-05  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 1 is canonical at `e2df36bfe631b7993dfb31a5884f8f65fec20470`.
+
+Mission Control prepares Stage 2 for Claude Code.
+
+Scope is documentary Mission Truth / FCTM / Delta / Institutional Learning Intake only.
+
+SB-P-1.12 is consumed as specification authority but not runtime proof.
+
+No Stage 3 decision, Blueprint drafting, implementation or provider/runtime mutation is authorized.

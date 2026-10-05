@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 1 INTAKE PACK PREPARED — AWAITING FOUNDER HUMAN MERGE; STAGE 2 NOT YET AUTHORIZED  
+**Current status:** STAGE 1 CANONICAL — STAGE 2 AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -40,3 +40,14 @@ Provider/runtime/schema/migration/production mutation remains NOT AUTHORIZED.
 - Stage 3+ — **NOT AUTHORIZED**
 
 This README is an index, not an independent authority record.
+
+
+## Stage 2 preparation — MC-02
+
+Stage 1 became canonical in PR #774 at `main@e2df36bfe631b7993dfb31a5884f8f65fec20470`.
+
+Mission Control has prepared a separate Stage 2 Mission Truth & Delta Reconciliation authorization.
+
+Stage 2 remains NOT EFFECTIVE until the authorization PR is human-merged.
+
+No Blueprint, EIS, implementation, provider mutation, migration or production authority follows.
