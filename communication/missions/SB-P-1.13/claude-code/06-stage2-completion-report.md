@@ -34,7 +34,7 @@ Prepare the complete draft Mission Truth Pack for SB-P-1.13 under SB-P-1.13-MC-0
 | Mission index and logs | `communication/missions/SB-P-1.13/README.md`, `decision-log.md`, `handover-log.md` |
 | Live report | `communication/live/report.md` |
 
-Pull request: **DRAFT PR #PRNUM** to `main`. Content commit: `CONTENTSHA`. The final branch head is recorded in the pull-request handover comment, because a file cannot contain the SHA of the commit that contains it.
+Pull request: **DRAFT PR #777** to `main`. Content commit: `484ff0c602f0279ac2f6100aabb63025b6a93422`. The final branch head is recorded in the pull-request handover comment, because a file cannot contain the SHA of the commit that contains it.
 
 ## 4. Per-source inventory counts
 
@@ -80,7 +80,7 @@ The Stage 3 gate is not decided here. A questions-only Founder decision brief is
 
 ### Check and workflow evidence under the current GitHub restriction
 
-GitHub Actions remains impaired by the account restriction recorded in MC-70 (SB-P-1.12 EV-01 OPEN). The most recent `main` runs returned by `gh run list` are dated 2026-09-30 (`36708731638`, `36708731667`). Workflow runs for this pull request: CIEVIDENCE.
+GitHub Actions remains impaired by the account restriction recorded in MC-70 (SB-P-1.12 EV-01 OPEN). The most recent `main` runs returned by `gh run list` are dated 2026-09-30 (`36708731638`, `36708731667`). Workflow runs for this pull request: none produced. At content commit `484ff0c6`, `gh run list --branch mission/SB-P-1.13-stage2-truth-delta` returned `[]` and the pull request's status-check rollup was empty, consistent with the Actions restriction. The local Markdown Quality Gate and the repository pre-commit gate both passed.
 
 ## 7. Inaccessible evidence
 

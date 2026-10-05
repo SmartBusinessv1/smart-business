@@ -18,7 +18,7 @@
 
 # Executive Summary
 
-The Stage 2 Mission Truth Pack for SB-P-1.13 is prepared as a draft pull request (**DRAFT PR #PRNUM**, content commit `CONTENTSHA`) from `mission/SB-P-1.13-stage2-truth-delta`, based on `main@488b16346941e70975edfe849af4aea317cbd6a3`.
+The Stage 2 Mission Truth Pack for SB-P-1.13 is prepared as a draft pull request (**DRAFT PR #777**, content commit `484ff0c602f0279ac2f6100aabb63025b6a93422`) from `mission/SB-P-1.13-stage2-truth-delta`, based on `main@488b16346941e70975edfe849af4aea317cbd6a3`.
 
 The FCTM has 974 rows: 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION` (none on the critical path), 0 `ESCALATED`. All 185 numbered sections and 84 numbered acceptance scenarios of the opened contracts are represented.
 
@@ -78,7 +78,7 @@ Documentation only, on the exact writable paths:
 - Section and scenario coverage checked against the source text (inventory §3).
 - Every cited row ID checked against the FCTM.
 - Markdown Quality Gate: PASS on every changed Markdown file.
-- GitHub Actions: impaired by the account restriction (MC-70). Workflow evidence for this pull request: CIEVIDENCE.
+- GitHub Actions: impaired by the account restriction (MC-70). Workflow evidence for this pull request: none produced. At content commit `484ff0c6`, `gh run list --branch mission/SB-P-1.13-stage2-truth-delta` returned `[]` and the pull request's status-check rollup was empty, consistent with the Actions restriction. The local Markdown Quality Gate and the repository pre-commit gate both passed.
 
 ---
 
@@ -98,7 +98,7 @@ Mission Control: substantive review of the Truth Pack; questions MC-Q1 to MC-Q7;
 
 # Recommended Next Step
 
-Mission Control review of DRAFT PR #PRNUM.
+Mission Control review of DRAFT PR #777.
 
 ---
 
