@@ -62,3 +62,17 @@ No Stage 3 determination, Founder decision, Blueprint, EIS or implementation aut
 Mission Control reviewed PR #777 at `f43ac9a2` and required corrections C-1 to C-8. It resolved MC-Q1 to MC-Q7 and determined that the Stage 3 Founder Decision Gate is triggered once Stage 2 is canonically merged: T1 (D-02), T2 (D-16), T4 (D-02, D-16); T5 not triggered; T7 not triggered by the Truth Pack; T8 not applicable yet.
 
 The Definition Actor applied the corrections on the same pull request. This entry records Mission Control's determination; it is not a Stage 3 decision record.
+
+
+## D-05 — Stage 3 Founder Decision Gate authorization prepared
+
+**Date:** 2026-10-05  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 2 is canonical at `a8099775bc12c9379c104f235a43b39d1405b416`.
+
+Mission Control confirms T1, T2 and T4 triggered Stage 3.
+
+Founder dialogue scope is limited to FDB-1, FDB-2 and FDB-3.
+
+No Stage 4, EIS, implementation or provider/runtime authority follows.
