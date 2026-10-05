@@ -76,3 +76,27 @@ Applied Mission Control corrections C-1 to C-8 from its review of head `f43ac9a2
 Next action: Mission Control re-review; then human merge and the Stage 3 Founder Decision Gate on FDB-1 to FDB-3.
 
 Not authorized: Stage 3 decision record, Blueprint, EIS, implementation, SQL or migration work, provider or production action, OLE promotion, self-merge.
+
+
+## H-05 — Stage 2 canonical → Stage 3 Founder Decision Gate
+
+**Date:** 2026-10-05  
+**From:** Mission Control  
+**To:** Founder human merge, then Founder/Mission Control dialogue  
+**Stage 2 canonical main:** `a8099775bc12c9379c104f235a43b39d1405b416`
+
+Prepared:
+
+- Stage 3 Founder Decision Gate authorization;
+- Stage 3 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder human merge of the Stage 3 authorization PR.
+
+After merge:
+
+Mission Control conducts the Founder dialogue limited to FDB-1, FDB-2 and FDB-3.
+
+No Stage 4 work is authorized.

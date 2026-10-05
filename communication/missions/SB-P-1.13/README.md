@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 2 AUTHORIZED (MC-02 canonical, PR #776) — STAGE 2 OUTPUT CORRECTED UNDER MISSION CONTROL REVIEW (C-1 TO C-8) / NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+**Current status:** STAGE 2 CANONICAL — STAGE 3 FOUNDER DECISION GATE AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -68,3 +68,14 @@ Prepared by Claude Code on `mission/SB-P-1.13-stage2-truth-delta` from `main@488
 | Founder decision brief (questions only, for Mission Control review) | `founder/01-stage2-decision-brief.md` |
 
 Mission Control review of PR #777 (corrections C-1 to C-8): Stage 3 Founder Decision Gate triggered on canonical merge (T1, T2, T4 on D-02 and D-16); D-05 and D-09 are `ENGINEERING ONLY`; Founder brief limited to FDB-1 to FDB-3. No Blueprint, EIS, implementation, SQL, provider or production work is authorized.
+
+
+## Stage 3 gate preparation — MC-03
+
+Stage 2 became canonical in PR #777 at `main@a8099775bc12c9379c104f235a43b39d1405b416`.
+
+Mission Control confirms Stage 3 is TRIGGERED by T1, T2 and T4.
+
+The Founder dialogue is limited to FDB-1, FDB-2 and FDB-3 from the canonical Stage 2 Founder Decision Brief.
+
+No Stage 4 Blueprint work is authorized before the resulting Founder Product Decision Record is canonically reconciled.
