@@ -430,3 +430,25 @@ PR #643 (`main@ca45720262baba8efb0b14e5484641e8e90e161b`) made the appointed Sec
 - Track D — administrative recovery tasks may be separately authorized when their own prerequisites are satisfied.
 - MC-186 authorizes Track B only: one private GitLab.com downstream/non-canonical continuity repository with GitHub-independent authentication/recovery, explicit branch/tag seeding, no force/prune/mirror push, and fail-closed divergence handling.
 - No Smart Business product implementation, SQL/migration, runtime, fixture or production authority is created.
+
+
+## MC-70 — Partial completion / suspension and Phase 1 documentary acceleration
+
+**Date:** 2026-10-05  
+**Status:** DRAFT UNTIL HUMAN MERGE
+
+Founder directs that SB-P-1.12 stop at the current implementation/provider boundary and preserve a durable partial-completion/resume record before SB-P-1.13 continues.
+
+Mission Control records:
+
+- SB-P-1.12 documentary/EIS/package readiness is complete;
+- implementation/formal completion is not complete;
+- provider recovery remains active;
+- later Phase 1 documentary work may continue sequentially;
+- the exact SB-P-1.12 resume point and residual work are preserved;
+- a partial OLE learning handoff is created;
+- formal OLE closure envelope and formal communication archive are deferred because the mission is not closed and blocking issues remain;
+- the reusable live base pair may be restored after byte-identical mission snapshots are preserved;
+- the numbered SB-P-1.12 live chain remains frozen pending eventual archive reconciliation.
+
+Open PR #774 (SB-P-1.13 Stage 1) remains a follow-up and must not be merged until this suspension package is canonical.

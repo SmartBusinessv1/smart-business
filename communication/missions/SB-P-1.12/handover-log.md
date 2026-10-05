@@ -737,3 +737,32 @@ Future actual ownership changes and canonical gate crossings must be appended; p
 **Next authorized action:** human merge PR #728. After canonical verification, Claude Code may execute `instruction1.47.md` for the private downstream GitLab continuity repository only. If the two hardware-encrypted devices become available meanwhile, Founder should notify Mission Control so Track A can resume independently through a separate scoped instruction.
 
 **Preserved holds:** Implementation Authorization WITHHELD; `SB-MIG-1.4` NON-EXECUTABLE; EV-01 OPEN; EV-02 PARTIALLY EVIDENCED; FD-C4 OPEN / DEFERRED; SQL/migration authoring and execution, application implementation, runtime activation, test-fixture creation and production mutation NOT AUTHORIZED.
+
+
+## H-46 — SB-P-1.12 partial completion / suspension handover
+
+**Prepared:** 2026-10-05  
+**From:** Mission Control  
+**To:** Founder human merge; later SB-P-1.12 resumption actor  
+**Baseline:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
+
+Prepared:
+
+- Partial Completion and Suspension Report;
+- Residual Work & Exact Resume Register;
+- Communication Suspension and Archive Deferment Record;
+- Partial Mission Learning / OLE Handoff;
+- byte-identical snapshots of current live base instruction/report;
+- frozen live numbered-chain blob index;
+- README / decision-log / handover-log reconciliation;
+- reset of reusable live base templates only.
+
+Formal communication archive is intentionally deferred because SB-P-1.12 still has blocking open work and the numbered chain has unresolved missing report pairs.
+
+Open follow-up:
+
+- PR #774 — SB-P-1.13 Stage 1 initiation; keep open/unmerged until this suspension package is canonical.
+
+After this package is human-merged and verified, Mission Control may continue PR #774.
+
+No implementation/provider/migration authority is granted.
