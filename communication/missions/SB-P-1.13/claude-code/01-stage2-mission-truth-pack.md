@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
 **Lifecycle stage:** Source 18 v1.2, Stage 2 — Mission Truth and Delta Reconciliation
-**Status:** `DRAFT — NOT AUTHORIZED`. Preparation only. Not canonical until Mission Control review and human merge (Source 18 §3.3).
+**Status:** `DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; OUTPUT NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`. Stage 2 was authorized by SB-P-1.13-MC-02 (PR #776, merged) (Source 18 §3.3).
 **Prepared by:** Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01)
 **Authorization:** SB-P-1.13-MC-02, `mission-control/04-stage2-authorization-and-stage1-reconciliation.md`, canonical at `main@488b16346941e70975edfe849af4aea317cbd6a3` (PR #776, merged 2026-10-05T14:08:02Z)
 **Baseline:** `main@488b16346941e70975edfe849af4aea317cbd6a3`, 2026-10-05
@@ -19,7 +19,7 @@ This pack does not decide the Stage 3 gate, draft the Blueprint or the EIS, or a
 | 3 | Derived constraints | this file |
 | 4 | Delta | [`05-stage2-delta-evidence.md`](05-stage2-delta-evidence.md) |
 | 5 | SB-P-1.12 dependency reconciliation | this file |
-| 6 | Unresolved items, Mission Control questions and T1–T8 screen | this file |
+| 6 | Unresolved items, Mission Control resolutions and T1–T8 determination | this file |
 | 7 | Institutional Learning Intake Record | [`04-stage2-institutional-learning-intake.md`](04-stage2-institutional-learning-intake.md) |
 
 ## Part 1 — Mission scope and experience anchors
@@ -31,7 +31,7 @@ Build Plan §9 row 2 assigns Contracts 9, 10, 12 Basic, 24, 22 and the Support A
 - residual rows that the locked SB-P-1.12 FCTM assigns to SB-P-1.13 in Contracts 17, 20 and 7 (FCTM Part H; Delta D-14);
 - `DELEGATED` rows for the sections of Contracts 2, 3, 5, 11, 18, 19, 23 and 25 whose behaviour this mission touches at its boundary (FCTM Part J).
 
-Neither addition changes an approved assignment. Both are listed for Mission Control confirmation (Part 6, MC-Q1 and MC-Q7).
+Neither addition changes an approved assignment. Mission Control confirmed both (MC-Q1, MC-Q7). The 15 inherited SB-P-1.12 source rows expand to 45 SB-P-1.13 obligation/scenario rows: the 8 rows in Contracts 17, 20 and 7 expand to 21 rows (FCTM Part H), and the 7 Contract 22 rows expand to 24 rows (FCTM Part F).
 
 Boundaries preserved from SB-P-1.13-MC-02 §4: broader Support completion and Voice Plus are SB-P-1.19; UDI, durable media and mature Business Memory are SB-P-1.14; Ask CFO is SB-P-1.15; the WhatsApp adapter is SB-P-1.20. Attachment work stops at intake and handoff.
 
@@ -39,7 +39,7 @@ Boundaries preserved from SB-P-1.13-MC-02 §4: broader Support completion and Vo
 
 | Anchor | FCTM rows | Status at this baseline |
 |---|---|---|
-| 1. Governed natural-language consequential action: clarification, preview, permission enforcement, deterministic execution, truthful confirmation | `BP-§10.2-SA1`, `10-§23-1`, `24-§21-*`, `24-§31-5`, `24-§31-7`, `9-§9-*`, `3-§6` (delegated) | Specified; blocked by `DTX` (Delta D-02) and `D12` (Delta D-05) |
+| 1. Governed natural-language consequential action: clarification, preview, permission enforcement, deterministic execution, truthful confirmation | `BP-§10.2-SA1`, `10-§23-1`, `24-§21-*`, `24-§31-5`, `24-§31-7`, `9-§9-*`, `3-§6` (delegated) | Specified; blocked by `DTX` (Delta D-02, Founder question FDB-1) and `D12` (Delta D-05, implementation dependency) |
 | 2. Employee denied Owner-only financial intelligence | `BP-§10.2-SA2`, `10-§23-5`, `24-§10-8`, `24-§31-4`, `21-§8-3` (delegated), `21-§24-6` (delegated) | Specified; blocked by `D12` (Delta D-05) |
 | 3. Native workflow succeeds while WhatsApp/Meta is unavailable | `BP-§10.2-SB`, `BP-§8.4-2`, `10-§14-1`, `10-§23-7` | Specified; no blocker beyond this mission's own build |
 | 4. Basic Voice keeps exactly the same authority and confirmation rules as text | `9-§8-2`, `10-§23-2`, `12-§6-6`, `12-§14-*`, `12-§21-8`, `24-§31-2` | Specified; blocked by `DV` (activation gate) and `D12` |
@@ -62,24 +62,24 @@ Boundaries preserved from SB-P-1.13-MC-02 §4: broader Support completion and Vo
 
 ## Part 3 — Derived constraints
 
-These are engineering or product implications inferred by the Definition Actor. **None is approved Product Truth.** Each one marked "material" could change merchant experience, permission behaviour, financial-data visibility, confirmation or denial, voice behaviour or provider-failure behaviour, and is flagged for Mission Control's T6 judgment. None is applied to any FCTM row.
+These are engineering or product implications inferred by the Definition Actor. **None is approved Product Truth.** None is applied to any FCTM row. The last column records Mission Control's disposition from its review of PR #777 (correction C-5).
 
-| ID | Derived constraint | Inferred from | Material to | Material? |
+| ID | Derived constraint | Inferred from | Material to | Mission Control disposition (C-5) |
 |---|---|---|---|---|
-| DC-01 | Business and principal context are resolved server-side for every conversational turn and attached to every tool proposal by the gateway; the model never supplies or chooses `business_id`, actor or role. | `21-§6-7`, `24-§10-1`, EIS-KER-02, EIS-KER-06 | permission behaviour | Yes |
-| DC-02 | The tool registry exposes read tools and write tools separately. A write tool returns only a preview and a single-use binding; execution happens only through a separate confirm step that the SB-P-1.12 kernel revalidates. | `24-§11-5`, `24-§11-6`, `24-§11-10`, `21-§18-*`, EIS-CNF-01 | confirmation/denial | Yes |
-| DC-03 | Owner-only financial aggregates are excluded from model context for non-Owner principals before the model call, not filtered from model output afterwards. | `24-§10-8`, `24-§25-3`, `21-§8-7` | financial-data visibility; denial | Yes |
-| DC-04 | Until SB-P-1.14 governed media storage exists, Basic Voice processes audio transiently and keeps no durable raw recording; only the transcript and the resulting governed record persist. | `12-§15-4`, `12-§16-8`, `25-§12`, Build Plan §10.3 | voice behaviour; privacy | Yes |
-| DC-05 | Voice output defaults to text for Owner-sensitive content whenever the role or listening context is uncertain. | `12-§15-1` to `-3`, `10-§19-4` | voice behaviour; financial-data visibility | Yes |
-| DC-06 | When the AI provider is unavailable, the Workspace keeps the merchant's input, points to the structured pages, and never auto-executes a queued consequential action after recovery without a fresh confirmation. | `24-§23-1`, `-12`, `-13`, `-18`, `22-§19-*`, Phase 1 guide §10 unknown-outcome rule | provider-failure behaviour; confirmation | Yes |
-| DC-07 | Pending confirmations expire. The expiry period is visible to the merchant ("this preview has expired, please review again"). | `21-§18-6`, `10-§7-2`, `10-§18-8` | confirmation | Yes |
-| DC-08 | Before SB-P-1.14, a document sent in the Workspace is accepted and acknowledged but produces no consequential update; the merchant is told interpretation is not yet available or is routed to an existing import surface. | `10-§4-8`, `10-§23-3a`, `10-§23-3b`, SB-P-1.13-MC-02 §4 | merchant experience | Yes |
-| DC-09 | Clarification thresholds are calibrated per field (amount, party, date, unit) and never default a consequential value silently. | `9-§15-*`, `24-§6-3` | merchant experience | No (engineering realization of approved behaviour) |
-| DC-10 | The FAQ corpus starts as a Team LIPS-curated seed in English, Malayalam and Manglish with recorded provenance and version, and AI answers in support are grounded only in it. | `8-§4-1`, `8-§6-*`, `8-§7-*` | merchant experience | Yes |
-| DC-11 | AI provider data controls (no training on merchant data; bounded retention) must be verified and configured before any merchant data reaches the provider. | `24-§25-*`, `24-§31-14`, Delta D-03 | privacy | Yes |
-| DC-12 | Conversation history needs a default retention period for active accounts. Build Plan §15 item 6 covers only post-cancellation retention. | `10-§16-1`, `-2`, `24-§24-10` | merchant experience; privacy | Yes |
-| DC-13 | Basic Voice quality in Malayalam and Manglish depends on the provider chosen at the activation gate; a provider that cannot meet it would narrow the approved experience. | `9-§8-2`, `12-§9-*`, `12-§21-7`, Delta D-04 | voice behaviour | Yes |
-| DC-14 | A governed create-transaction command is needed for Scenario A (Delta D-02). It extends, and does not replace, the existing transaction and correction foundations (Contract 3 §22). | `BP-§10.2-SA1`, `3-§22`, `BP-§6.2-1` | confirmation; merchant experience | Yes (see FDB-1) |
+| DC-01 | Business and principal context are resolved server-side for every conversational turn and attached to every tool proposal by the gateway; the model never supplies or chooses `business_id`, actor or role. | `21-§6-7`, `24-§10-1`, EIS-KER-02, EIS-KER-06 | permission behaviour | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-02 | The tool registry exposes read tools and write tools separately. A write tool returns only a preview and a single-use binding; execution happens only through a separate confirm step that the SB-P-1.12 kernel revalidates. | `24-§11-5`, `24-§11-6`, `24-§11-10`, `21-§18-*`, EIS-CNF-01 | confirmation/denial | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-03 | Owner-only financial aggregates are excluded from model context for non-Owner principals before the model call, not filtered from model output afterwards. | `24-§10-8`, `24-§25-3`, `21-§8-7` | financial-data visibility; denial | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-04 | Until SB-P-1.14 governed media storage exists, Basic Voice processes audio transiently and keeps no durable raw recording; only the transcript and the resulting governed record persist. | `12-§15-4`, `12-§16-8`, `25-§12`, Build Plan §10.3 | voice behaviour; privacy | Genuine merchant-facing voice/privacy choice; may remain in the Stage 3 brief (FDB-3) |
+| DC-05 | Voice output defaults to text for Owner-sensitive content whenever the role or listening context is uncertain. | `12-§15-1` to `-3`, `10-§19-4` | voice behaviour; financial-data visibility | Genuine merchant-facing voice/privacy choice; may remain in the Stage 3 brief (FDB-3) |
+| DC-06 | When the AI provider is unavailable, the Workspace keeps the merchant's input, points to the structured pages, and never auto-executes a queued consequential action after recovery without a fresh confirmation. | `24-§23-1`, `-12`, `-13`, `-18`, `22-§19-*`, Phase 1 guide §10 unknown-outcome rule | provider-failure behaviour; confirmation | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-07 | Pending confirmations expire. The expiry period is visible to the merchant ("this preview has expired, please review again"). | `21-§18-6`, `10-§7-2`, `10-§18-8` | confirmation | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-08 | Before SB-P-1.14, a document sent in the Workspace is accepted and acknowledged but produces no consequential update; the merchant is told interpretation is not yet available or is routed to an existing import surface. | `10-§4-8`, `10-§23-3a`, `10-§23-3b`, SB-P-1.13-MC-02 §4 | merchant experience | Already bounded by the approved SB-P-1.13/SB-P-1.14 split. Not a Founder question unless a different merchant experience is proposed |
+| DC-09 | Clarification thresholds are calibrated per field (amount, party, date, unit) and never default a consequential value silently. | `9-§15-*`, `24-§6-3` | merchant experience | Not material (engineering realization of approved behaviour) |
+| DC-10 | Support resolution is FAQ-first. When the FAQ alone is insufficient, AI-supported explanation may use trusted, versioned, approved support knowledge with recorded provenance, in English, Malayalam and Manglish. It never invents policy or an answer the approved knowledge does not support. (Corrected under C-5: the first draft limited AI answers to the FAQ corpus alone, which is narrower than Contract 8 §3 step 5 and §7.) | `8-§4-1`, `8-§6-*`, `8-§7-*` | merchant experience | Wording corrected (see row). Not a Founder question |
+| DC-11 | AI provider data controls (no training on merchant data; bounded retention) must be verified and configured before any merchant data reaches the provider. | `24-§25-*`, `24-§31-14`, Delta D-03 | privacy | Engineering realization; already constrained by approved sources and the locked SB-P-1.12 design. Not a Founder question at this gate |
+| DC-12 | Conversation history needs a default retention period for active accounts. Build Plan §15 item 6 covers only post-cancellation retention. | `10-§16-1`, `-2`, `24-§24-10` | merchant experience; privacy | Open policy/legal-retention dependency; not on the critical path for this Stage 3 gate |
+| DC-13 | Basic Voice quality in Malayalam and Manglish depends on the provider chosen at the activation gate; a provider that cannot meet it would narrow the approved experience. | `9-§8-2`, `12-§9-*`, `12-§21-7`, Delta D-04 | voice behaviour | Activation-gate risk; becomes a Founder/product issue only if no provider can meet the approved Malayalam/Manglish commitment |
+| DC-14 | A governed create-transaction command is needed for Scenario A (Delta D-02). It extends, and does not replace, the existing transaction and correction foundations (Contract 3 §22). | `BP-§10.2-SA1`, `3-§22`, `BP-§6.2-1` | confirmation; merchant experience | Folded into the D-02 governed-command question (FDB-1); not a separate decision |
 
 ## Part 5 — SB-P-1.12 dependency reconciliation
 
@@ -114,45 +114,51 @@ Shared evidence for every row below:
 
 No SB-P-1.13 row is marked implemented or demonstrated because of any entry above. If SB-P-1.12 resumes, each row's state is re-read at that time; this table is not a standing assumption.
 
-## Part 6 — Unresolved items, Mission Control questions and T1–T8 screen
+## Part 6 — Unresolved items, Mission Control resolutions and T1–T8 determination
 
 ### 6.1 Unresolved Founder decisions and escalations in the FCTM
 
 - `ESCALATED` rows: none.
 - `UNRESOLVED FOUNDER DECISION` rows: `12-§24` and `BP-§15-2` (Voice Plus price) and `BP-§15-6` (post-cancellation retention). None is on this mission's critical path: GPCV §8 says the Voice Plus price does not block Basic Voice, and the conversation retention controls can follow policy without a final duration.
 
-### 6.2 Questions for Mission Control (not Founder decisions unless Mission Control finds otherwise)
+### 6.2 Mission Control questions — resolved
 
-| ID | Question | Evidence |
+Mission Control resolved MC-Q1 to MC-Q7 in its review of PR #777 at head `f43ac9a2`.
+
+| ID | Question | Mission Control resolution |
 |---|---|---|
-| MC-Q1 | Confirm the 21 inherited residual rows from Contracts 17, 20 and 7 (FCTM Part H) as accounting of existing assignments, not scope expansion. | Delta D-14; SB-P-1.12 FCTM blob `1650ff95` |
-| MC-Q2 | Confirm the feature-subject splits. Rows whose subject is another mission's named feature are `ASSIGNED TO LATER MISSION` with a Build Plan §9/§10/§12 citation: SB-P-1.14 34, SB-P-1.15 38, SB-P-1.16 4, SB-P-1.17 7, SB-P-1.18 8, SB-P-1.19 41, SB-P-1.20 19 rows (owning-mission totals across all dispositions, FCTM §K). None changes an approved commitment; each is offered so Mission Control can test it is not a T7 reclassification. | FCTM §0.2 |
-| MC-Q3 | Confirm the vocabulary for Contract 22 sections owned by SB-P-1.12 (`DELEGATED`, citing `I-12` and `L-DEL12`). The alternative, `NOT APPLICABLE`, would hide a real consumption dependency. | FCTM Part F |
-| MC-Q4 | Review the 17 category-`G` single-rule judgments. | Inventory §3.1 |
-| MC-Q5 | Confirm the split of Contract 10 Scenario 3 into a Workspace handoff slice (`10-§23-3a`, SB-P-1.13) and a UDI preview slice (`10-§23-3b`, SB-P-1.14). | Build Plan §10.2 work area 11; §10.3 Scenario A |
-| MC-Q6 | Confirm that Contract 8 §4's 100+ FAQ growth is SB-P-1.19 completion (`8-§4-2`) while the trusted FAQ store is SB-P-1.13 (`8-§4-1`). | Build Plan §12 |
-| MC-Q7 | Decide whether any delegate contract in FCTM Part J (notably Contract 3, which governs Scenario A's transaction confirmation) must be opened at full obligation level for SB-P-1.13. | Inventory §4.2 |
+| MC-Q1 | Inherited residual rows | CONFIRMED. 15 inherited SB-P-1.12 source rows expand to 45 SB-P-1.13 rows (21 in FCTM Part H from Contracts 17, 20, 7; 24 in Part F from Contract 22); no scope expansion |
+| MC-Q2 | Feature-subject splits to later missions | ACCEPTED, subject to D-16 (C-6). The splits preserve Build Plan ownership and do not trigger T7 |
+| MC-Q3 | `DELEGATED` for SB-P-1.12-owned Contract 22 foundations | CONFIRMED |
+| MC-Q4 | 17 category-`G` single-rule judgments | ACCEPTED for Stage 2; Stage 19 may challenge them independently |
+| MC-Q5 | Contract 10 Scenario 3 split (`10-§23-3a`, `10-§23-3b`) | CONFIRMED; both slices trace to the original scenario |
+| MC-Q6 | Trusted FAQ foundation here; 100+ corpus SB-P-1.19 | CONFIRMED |
+| MC-Q7 | Opening Contract 3 at full obligation level | NOT REQUIRED. Touched Contract 3 sections stay `DELEGATED`; the governed create-transaction gap is governed by Build Plan §6.2/§10.2 and Contract 10/24 rows; mature Ledger is not pulled into SB-P-1.13 |
 
-### 6.3 T1–T8 screen (evidence only; Mission Control determines the gate)
+### 6.3 T1–T8 — Mission Control determination
 
-A `Founder Decision Gate — NOT TRIGGERED` outcome is not authorized in this stage (SB-P-1.13-MC-02 §10). The screen records evidence only.
+Mission Control's determination from its review of PR #777 (correction C-3) replaces the first draft's evidence-only screen. **The Stage 3 Founder Decision Gate IS TRIGGERED once this Stage 2 output is canonically merged.** No `NOT TRIGGERED` record is written.
 
-| Trigger | Finding | Evidence |
+| Trigger | Result | Basis |
 |---|---|---|
-| T1 — unresolved product question no approved source answers | **Candidate present.** Which mission builds the governed create-transaction command that Founder Runtime Scenario A presumes exists, and whether Scenario A waits for it. Also DC-12 (active-account conversation retention default). | Delta D-02; DC-12, DC-14 |
-| T2 — conflict among approved sources | **Candidate present.** Contract 12 §21 Scenario 1 and §7 (Basic Voice credit/repayment, SB-P-1.13) depend on the four-state Ledger that Build Plan §10.3 assigns to SB-P-1.14. | Delta D-16; rows `12-§4-1`, `12-§7-6`, `12-§21-1` |
-| T3 — new product decision, or approved-unresolved decision needed | No approved-unresolved Build Plan §15 or Phase 1 guide decision is on the critical path. Any decision arising from T1/T2 candidates would be new. | Part 6.1 |
-| T4 — Delta item classified `PRODUCT-AFFECTING` | **Present by definition.** D-02, D-05, D-09 (carried forward from SB-P-1.12) and D-16. | Delta §2 |
-| T5 — Founder request | None recorded at the baseline. | Mission decision log D-01, D-02 |
-| T6 — derived constraint that materially affects behaviour | **Candidates present.** Twelve derived constraints are marked material (DC-01 to DC-08, DC-10 to DC-14). Mission Control judges which, if any, are T6. | Part 3 |
-| T7 — proposed omission, deferral, pull-forward, simplification or reclassification | No proposal is made in this pack. All later-mission dispositions cite approved sources (MC-Q2). Dependency-blocked rows remain `IN SCOPE`. Source 18 §3.2 item 5 leaves any change to them to the Founder. | FCTM §0.2 |
-| T8 — Product Truth conflict or infeasibility at a later stage | Not applicable at Stage 2. Watch item: if SB-P-1.12 does not resume, 198 `D12` rows cannot be runtime-demonstrated. | Delta D-05 |
+| T1 — unresolved product question no approved source answers | **TRIGGERED** | D-02: Founder Runtime Scenario A assumes a governed transaction command/RPC that does not exist, and approved sources do not unambiguously assign creating it |
+| T2 — conflict among approved sources | **TRIGGERED** | D-16: Basic Voice in SB-P-1.13 requires credit/repayment behaviour; the four-state Ledger it depends on is assigned to SB-P-1.14 |
+| T3 — new product decision, or approved-unresolved decision needed | Not separately determined by Mission Control | No Build Plan §15 or Phase 1 guide unresolved decision is on the critical path. Decisions arising from T1/T2 are new decisions |
+| T4 — Delta item classified `PRODUCT-AFFECTING` | **TRIGGERED** | D-02 and D-16 accepted as `PRODUCT-AFFECTING`. D-05 and D-09 reclassified `ENGINEERING ONLY` (C-2) |
+| T5 — Founder request | **NOT TRIGGERED** at the Stage 2 baseline | No Founder request recorded |
+| T6 — derived constraint that materially affects behaviour | Limited to DC-04 and DC-05, which may remain in the Stage 3 brief | Part 3, Mission Control disposition column |
+| T7 — proposed omission, deferral, pull-forward, simplification or reclassification | **Not triggered by this Truth Pack** | A Founder choice that pulls four-state Ledger work forward, moves Scenario A, or changes mission ownership or timing would itself be a T7 decision |
+| T8 — Product Truth conflict or infeasibility at a later stage | Not applicable yet | Stage 2 |
 
-Because T4 is present by definition and T1, T2 and T6 candidates exist, a Founder decision brief is prepared as a draft for Mission Control: `founder/01-stage2-decision-brief.md`. It does not record any decision.
+The SB-P-1.12 dependency (D-05) is not a Founder question. It is already governed by the Founder-directed documentation-acceleration lane (SB-P-1.12 MC-70 §1, §7): later missions continue documentary and readiness work; SB-P-1.12-dependent implementation and runtime proof stay blocked; no temporary parallel permission system may be created (SB-P-1.12 EIS §19.5). The 198 `D12` rows stay `IN SCOPE` and dependency-blocked.
+
+Rows `12-§4-1`, `12-§7-6` and `12-§21-1` stay `IN SCOPE` with the SB-P-1.14 dependency until the Founder decides sequencing (C-6).
+
+The Founder decision brief is narrowed accordingly (`founder/01-stage2-decision-brief.md`): FDB-1 governed create-transaction command and Scenario A ownership and timing (including DC-14); FDB-2 Basic Voice credit/repayment versus the SB-P-1.14 four-state Ledger; FDB-3 voice/privacy choices DC-04 and DC-05. The brief records no decision.
 
 ### 6.4 Dependent work stopped
 
-Source 18 §3.3 item 5 stops preparation of dependent artifacts if a Stage 3 trigger fires. No Blueprint, EIS or package work has been started. Nothing beyond the Stage 2 outputs listed in SB-P-1.13-MC-02 was prepared.
+Source 18 §3.3 item 5 stops preparation of dependent artifacts if a Stage 3 trigger fires; Mission Control has determined that it does. No Blueprint, EIS or package work has been started. Nothing beyond the Stage 2 outputs listed in SB-P-1.13-MC-02 was prepared.
 
 ## Part 7 — Institutional Learning Intake
 

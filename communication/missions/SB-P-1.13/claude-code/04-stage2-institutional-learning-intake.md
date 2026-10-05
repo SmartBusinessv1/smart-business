@@ -3,7 +3,7 @@
 **Status statement (Source 18 §3.1, verbatim, mandatory):** `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force`
 
 **Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
-**Status:** `DRAFT — NOT AUTHORIZED`. Mission Control reviews this record at Stage 5.
+**Status:** `DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; OUTPUT NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`. Mission Control also reviews this record at Stage 5.
 **Baseline:** `main@488b16346941e70975edfe849af4aea317cbd6a3`, 2026-10-05
 **Prepared by:** Claude Code, Stage 2 Definition Actor
 
@@ -41,7 +41,7 @@
 8. **What success and denial/error scenarios prove the behavior?** The 84 numbered acceptance scenarios and the Founder Runtime Scenarios, especially `10-§23-1`, `10-§23-5`, `10-§23-8`, `24-§31-4`, `24-§31-7`, `24-§31-11`, `12-§21-8`, `BP-§10.2-SA1`, `-SA2`, `-SB`.
 9. **What shared foundations must be reused?** SB-P-1.12 kernel surfaces listed in SB-P-1.12 EIS §19.5; Contract 22 foundations per FCTM Part F.
 10. **What remains outside this mission but still committed?** 126 `ASSIGNED TO LATER MISSION` rows, each naming its owning mission; none reclassified to `BUILD LATER`.
-11. **What requires Founder or Mission Control decision?** Truth Pack Part 6: the T1–T8 evidence and Mission Control questions MC-Q1 to MC-Q7.
+11. **What requires Founder or Mission Control decision?** Truth Pack Part 6: Mission Control has resolved MC-Q1 to MC-Q7 and determined that Stage 3 is triggered (T1, T2, T4) on canonical merge; Founder questions FDB-1 to FDB-3.
 12. **Who builds, who verifies, who accepts?** Builder: not appointed. Stage 7 specialist reviewers: Security & Permissions Architecture, AI Behaviour / Orchestration Safety, and Voice/Provider readiness, to be appointed (SB-P-1.13-MC-01 §2). Stage 19: Codex preferred if eligible and independent. Acceptance: Mission Control.
 
 None of the twelve answers required guessing.

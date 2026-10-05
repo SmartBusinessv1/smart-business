@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 2 AUTHORIZED (MC-02 canonical, PR #776) — STAGE 2 TRUTH PACK PREPARED AS DRAFT / AWAITING MISSION CONTROL REVIEW
+**Current status:** STAGE 2 AUTHORIZED (MC-02 canonical, PR #776) — STAGE 2 OUTPUT CORRECTED UNDER MISSION CONTROL REVIEW (C-1 TO C-8) / NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -36,7 +36,7 @@ Provider/runtime/schema/migration/production mutation remains NOT AUTHORIZED.
 ## Current lifecycle
 
 - Stage 1 — Mission Initiation and Intake Pack: **CANONICAL** (PR #774, `main@e2df36bfe631b7993dfb31a5884f8f65fec20470`)
-- Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZED** (PR #776, `main@488b16346941e70975edfe849af4aea317cbd6a3`); Truth Pack **DRAFT — AWAITING MISSION CONTROL REVIEW**
+- Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZED** (PR #776, `main@488b16346941e70975edfe849af4aea317cbd6a3`); Truth Pack **DRAFT STAGE 2 OUTPUT — NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE** (PR #777)
 - Stage 3+ — **NOT AUTHORIZED**
 
 This README is an index, not an independent authority record.
@@ -67,4 +67,4 @@ Prepared by Claude Code on `mission/SB-P-1.13-stage2-truth-delta` from `main@488
 | Stage 2 completion report | `claude-code/06-stage2-completion-report.md` |
 | Founder decision brief (questions only, for Mission Control review) | `founder/01-stage2-decision-brief.md` |
 
-T1–T8 evidence is reported, not decided: T4 is present by definition (four `PRODUCT-AFFECTING` Delta items) and T1, T2 and T6 candidates exist. Stage 3 is not decided. No Blueprint, EIS, implementation, SQL, provider or production work is authorized.
+Mission Control review of PR #777 (corrections C-1 to C-8): Stage 3 Founder Decision Gate triggered on canonical merge (T1, T2, T4 on D-02 and D-16); D-05 and D-09 are `ENGINEERING ONLY`; Founder brief limited to FDB-1 to FDB-3. No Blueprint, EIS, implementation, SQL, provider or production work is authorized.

@@ -1,7 +1,7 @@
 # SB-P-1.13 — Stage 2 Delta Evidence
 
 **Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
-**Status:** `DRAFT — NOT AUTHORIZED`. Not canonical until Mission Control review and human merge.
+**Status:** `DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; OUTPUT NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`.
 **Baseline:** `main@488b16346941e70975edfe849af4aea317cbd6a3`, 2026-10-05
 **Prepared by:** Claude Code, Stage 2 Definition Actor
 **Method:** read-only repository inspection of the files named in each item. No production system, test project, provider dashboard, Supabase CLI or deployment was accessed. No code, SQL, migration, configuration or provider state was changed.
@@ -24,11 +24,11 @@ A fact that needs privileged access is recorded as `UNVERIFIED — ACCESS REQUIR
 | D-02 | Transaction write path versus "existing governed command/RPC" | `PRODUCT-AFFECTING` |
 | D-03 | AI/OpenAI integration | `NO PRODUCT EFFECT` (code); provider state `UNVERIFIED — ACCESS REQUIRED` |
 | D-04 | Voice code and voice-provider topology | `ENGINEERING ONLY`; provider state `UNVERIFIED — ACCESS REQUIRED` |
-| D-05 | Permission-context plumbing and SB-P-1.12 implementation suspension | `PRODUCT-AFFECTING` |
+| D-05 | Permission-context plumbing and SB-P-1.12 implementation suspension | `ENGINEERING ONLY` (implementation/assurance blocker; reclassified under Mission Control C-2) |
 | D-06 | Attachment/media path | `ENGINEERING ONLY` |
 | D-07 | Support/FAQ routing | `NO PRODUCT EFFECT` |
 | D-08 | CI/workflows and GitHub Actions availability | `ENGINEERING ONLY` |
-| D-09 | Migrations (files only) and inherited residual `anon` grant | `PRODUCT-AFFECTING` (carried forward from SB-P-1.12; no new decision proposed) |
+| D-09 | Migrations (files only) and inherited residual `anon` grant | `ENGINEERING ONLY` (security/assurance blocker owned by SB-P-1.12; reclassified under Mission Control C-2) |
 | D-10 | Runtime and provider topology | `ENGINEERING ONLY`; current state `UNVERIFIED — ACCESS REQUIRED` |
 | D-11 | Governance and source versions | `NO PRODUCT EFFECT` |
 | D-12 | Global Product Completion View lag | `NO PRODUCT EFFECT` |
@@ -39,7 +39,9 @@ A fact that needs privileged access is recorded as `UNVERIFIED — ACCESS REQUIR
 | D-17 | Public marketing copy | `NO PRODUCT EFFECT` |
 | D-18 | Test and runtime environments | `ENGINEERING ONLY`; current state `UNVERIFIED — ACCESS REQUIRED` |
 
-Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3 trigger T4 is defined as "a Delta item classified `PRODUCT-AFFECTING`". The Truth Pack (Part 6) reports this; it does not decide the gate.
+Classification counts after Mission Control correction C-2: 2 `PRODUCT-AFFECTING` (D-02, D-16), 7 `ENGINEERING ONLY` (D-04, D-05, D-06, D-08, D-09, D-10, D-18), 9 `NO PRODUCT EFFECT` (D-01, D-03, D-07, D-11, D-12, D-13, D-14, D-15, D-17). Mission Control confirms T4 is triggered by D-02 and D-16 (Truth Pack Part 6.3).
+
+**Correction note (Mission Control review of PR #777, C-2).** The first draft classified D-05 and D-09 `PRODUCT-AFFECTING`. Mission Control found that both block or endanger implementation and assurance but change no approved merchant-facing behaviour. No concrete change to approved product behaviour can be cited for either, so both are reclassified `ENGINEERING ONLY`. Their dependency effects on FCTM rows are unchanged.
 
 ## 3. Items
 
@@ -54,7 +56,7 @@ Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3
 - **Evidence:** `src/integrations/supabase/transactions.ts` `createTransaction` performs a direct client-side `insert` into `public.transactions` through the anon-key client, relying on RLS (`supabase/migrations/20260719102137_…sql`: `GRANT SELECT, INSERT … TO authenticated`; policy "Owners can create their business transactions", `creator_id = auth.uid()`). There is no create-transaction RPC, no idempotency key, no preview step and no confirmation binding. Corrections do use an RPC (`correct_transaction`). Transaction types are `sale` and `purchase` only.
 - **Approved source:** Build Plan §10.2 Founder Runtime Scenario A: the assistant "executes through the existing governed command/RPC". Build Plan §6.2 and Contracts 10 §13, 24 §11 and 22 §15 require a deterministic, idempotent, confirmation-bound command. Contract 3 §22 says existing transaction foundations are extended, not replaced. Mature Ledger work is assigned to SB-P-1.14 (Build Plan §10.3).
 - **Reading:** for transactions, Scenario A's premise is not met by the repository. Catalog and inventory do have governed commands (D-15), so a native workflow exists for those domains, but Scenario A names a transaction.
-- **Classification:** `PRODUCT-AFFECTING`. Which mission builds the governed create-transaction command, and whether Scenario A waits for it, is not answered by any approved source. Affected rows carry `DTX` (17 `IN SCOPE` rows, including `BP-§10.2-SA1`, `10-§23-1`, `10-§23-9`, `12-§21-1`, `24-§31-13`). Founder decision brief item FDB-1.
+- **Classification:** `PRODUCT-AFFECTING` (confirmed by Mission Control C-3). Which mission builds the governed create-transaction command, and whether Scenario A waits for it, is not answered by any approved source. Affected rows carry `DTX` (17 `IN SCOPE` rows, including `BP-§10.2-SA1`, `10-§23-1`, `10-§23-9`, `12-§21-1`, `24-§31-13`). Founder decision brief item FDB-1.
 
 ### D-03 — AI/OpenAI integration
 
@@ -75,7 +77,7 @@ Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3
 - **Evidence:** `src/integrations/supabase/auth-middleware.ts:34` `requireSupabaseAuth` verifies a Bearer session. Authorization is owner-only RLS on `businesses.owner_id`. No membership, role, capability, entitlement, channel or confirmation-binding schema exists in `supabase/migrations/`. The SB-P-1.12 Implementation Authorization is `WITHHELD` (`communication/missions/SB-P-1.12/mission-control/implementation-authorization.md`). MC-70 (2026-10-05) suspends SB-P-1.12 implementation at the provider boundary.
 - **Approved source:** Build Plan §11 ("1.12 Authority/Identity underpins all later role/permission behavior") and §10.2 Scenario A ("Employee requests for Owner-only profit must be denied"). SB-P-1.12 EIS §19.5 lets SB-P-1.13 consume the kernel only after the relevant SB-P-1.12 workstreams are implemented and verified and Mission Control accepts the dependency evidence.
 - **Reading:** the Build Plan sequence assumed SB-P-1.12 would be implemented before SB-P-1.13 needs it. MC-70 changed that after the Build Plan was approved. SB-P-1.13 can be fully specified, but its role-dependent rows cannot be built against a real kernel or runtime-demonstrated until SB-P-1.12 resumes. That includes the Founder-reserved Employee denial (`BP-§10.2-SA2`) and the Manager/Employee rows. 198 `IN SCOPE` rows carry `D12`.
-- **Classification:** `PRODUCT-AFFECTING`. No row is moved. Under Source 18 §3.2 item 5 the rows stay `IN SCOPE`, marked blocked, and the Founder decides any change. Founder decision brief item FDB-2.
+- **Classification:** `ENGINEERING ONLY` (corrected under Mission Control C-2). The suspension blocks implementation and runtime proof; it changes no approved product behaviour. Sequencing is already governed by the Founder-directed documentation-acceleration lane recorded in SB-P-1.12 MC-70 §1 and §7: later missions continue documentary work, SB-P-1.12-dependent implementation and runtime proof stay blocked, and no temporary parallel permission system may be created (SB-P-1.12 EIS §19.5). No row is moved; the rows stay `IN SCOPE` with `D12`. Not a Founder question (Mission Control C-4).
 
 ### D-06 — Attachment/media path
 
@@ -99,7 +101,7 @@ Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3
 
 - **Evidence:** 24 files in `supabase/migrations/`; none creates conversation, message, AI, voice, FAQ or support objects. `20260727000000_reconcile_default_grants.sql:42-55` grants table and function privileges and default privileges to `anon`. `20260830120000_…_inventory_anon_privilege_hardening.sql` hardens the three inventory tables only. `docs/migration/README.md` records its production status as `UNVERIFIED` and leaves `businesses`, `transactions` and `transaction_correction_events` unremediated in the file set.
 - **Reading:** a conversational read or write path over transactions would sit on these tables. Build Plan §5.1 assigns remediation to SB-P-1.12 (WS-B), whose G-6/T4 hold is already canonically dispositioned there.
-- **Classification:** `PRODUCT-AFFECTING`, carried forward from the SB-P-1.12 Stage 2 record. This Truth Pack proposes no separate SB-P-1.13 decision. It lists the item so Mission Control can confirm none is needed.
+- **Classification:** `ENGINEERING ONLY` (corrected under Mission Control C-2): a security/assurance blocker owned by SB-P-1.12 WS-B, not a change to approved product behaviour. No separate SB-P-1.13 decision is proposed.
 
 ### D-10 — Runtime and provider topology
 
@@ -125,9 +127,9 @@ Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3
 
 ### D-14 — Residual rows inherited from the SB-P-1.12 FCTM
 
-- **Evidence:** the canonical SB-P-1.12 FCTM assigns 15 rows to SB-P-1.13. Eight are in Contracts 17, 20 and 7, which the SB-P-1.13 Stage 1 Intake Pack did not open: `17-§5`, `17-§22-4`, `17-§22-8`, `20-§13`, `20-§14`, `20-§15`, `20-§23-5`, `7-§11`.
-- **Reading:** these are approved assignments, not new scope. Source 18 §3.2 item 9 requires the later mission to inherit them. They are FCTM Part H.
-- **Classification:** `NO PRODUCT EFFECT`. Mission Control confirmation requested (Truth Pack MC-Q1).
+- **Evidence:** the canonical SB-P-1.12 FCTM assigns 15 source rows to SB-P-1.13. Eight are in Contracts 17, 20 and 7, which the SB-P-1.13 Stage 1 Intake Pack did not open: `17-§5`, `17-§22-4`, `17-§22-8`, `20-§13`, `20-§14`, `20-§15`, `20-§23-5`, `7-§11`.
+- **Reading:** these are approved assignments, not new scope. Source 18 §3.2 item 9 requires the later mission to inherit them. The 15 inherited SB-P-1.12 source rows expand to 45 SB-P-1.13 obligation/scenario rows: the 8 rows in Contracts 17, 20 and 7 expand to 21 rows (FCTM Part H), and the 7 Contract 22 rows expand to 24 rows (FCTM Part F).
+- **Classification:** `NO PRODUCT EFFECT`. Mission Control confirmed MC-Q1 (no scope expansion).
 
 ### D-15 — Existing governed command precedents
 
@@ -139,7 +141,7 @@ Four items are `PRODUCT-AFFECTING`: D-02, D-05, D-09 and D-16. Source 18 Stage 3
 
 - **Evidence:** transaction types are `sale` and `purchase` (`src/integrations/supabase/transactions.ts`). Four-state Ledger (income, expense, credit, repayment) is a Build Plan §10.3 SB-P-1.14 work area.
 - **Approved source tension:** Contract 12 §21 Scenario 1 ("natural sale/expense/credit/repayment voice input") and §7 ("credit vs repayment" clarification) belong to Basic Voice, which is SB-P-1.13. The states they need arrive in SB-P-1.14.
-- **Classification:** `PRODUCT-AFFECTING`. Rows `12-§4-1`, `12-§7-6` and `12-§21-1` stay `IN SCOPE` with `D14`. Founder decision brief item FDB-3.
+- **Classification:** `PRODUCT-AFFECTING` (confirmed by Mission Control C-3). Rows `12-§4-1`, `12-§7-6` and `12-§21-1` stay `IN SCOPE` with `D14` until the Founder decides sequencing; they are not moved to SB-P-1.14 (Mission Control C-6). Founder decision brief item FDB-2.
 
 ### D-17 — Public marketing copy
 

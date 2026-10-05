@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
 **Lifecycle stage:** Source 18 v1.2, Stage 2 — Mission Truth and Delta Reconciliation (Section 3.2, Section 6)
-**Status:** `DRAFT — NOT AUTHORIZED`. Preparation only; not canonical until Mission Control review and human merge (Source 18 Section 3.3).
+**Status:** `DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; OUTPUT NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`. Stage 2 was authorized by SB-P-1.13-MC-02 (PR #776, merged) (Source 18 Section 3.3).
 **Prepared by:** Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01), under SB-P-1.13-MC-02
 **Baseline:** `main@488b16346941e70975edfe849af4aea317cbd6a3`, 2026-10-05
 **Opened by:** `mission-control/03-stage1-fctm-open.md` (Stage 1 canonical at `main@e2df36bfe631b7993dfb31a5884f8f65fec20470`)

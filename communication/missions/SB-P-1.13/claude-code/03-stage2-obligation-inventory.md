@@ -1,7 +1,7 @@
 # SB-P-1.13 — Stage 2 Independent Obligation Inventory
 
 **Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
-**Status:** `DRAFT — NOT AUTHORIZED`. Not canonical until Mission Control review and human merge.
+**Status:** `DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; OUTPUT NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`.
 **Prepared by:** Claude Code, Stage 2 Definition Actor
 **Baseline:** `main@488b16346941e70975edfe849af4aea317cbd6a3`, 2026-10-05
 
@@ -364,7 +364,7 @@ Category `G` judgments: 17. They are the only places where this inventory and th
 
 ### 4.1 Inherited residual rows (locked SB-P-1.12 FCTM assigns them to SB-P-1.13)
 
-The canonical SB-P-1.12 FCTM (blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`) names SB-P-1.13 in the Assigned-mission column of these rows. The Stage 1 Intake Pack did not open Contracts 17, 20 or 7. Source 18 §3.2 item 9 requires a later mission to inherit them. They are surfaced here, not added as new scope (Truth Pack Part 6, MC-Q1).
+The canonical SB-P-1.12 FCTM (blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`) names SB-P-1.13 in the Assigned-mission column of these rows. The Stage 1 Intake Pack did not open Contracts 17, 20 or 7. Source 18 §3.2 item 9 requires a later mission to inherit them. They are surfaced here, not added as new scope; Mission Control confirmed this (MC-Q1).
 
 | SB-P-1.12 row | Source pointer | Source items | SB-P-1.13 rows |
 |---|---|---|---|
@@ -377,7 +377,7 @@ The canonical SB-P-1.12 FCTM (blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`) n
 | `20-§23-5` | Contract 20 §23 Scenario 5 | 1 scenario | `20-§23-5` |
 | `7-§11` | Contract 7 §11 AI Behaviour (`65ad91b2`; SB-P-1.17 primary, SB-P-1.13 AI-kernel slice) | 6 "may" + 5 "must not" | `7-§11-1` (feature), `7-§11-2` (kernel slice) |
 
-Set check: every SB-P-1.12 FCTM row whose Assigned-mission cell names SB-P-1.13 (15 rows) maps to at least one row here or in Part F of the FCTM (`22-§7`, `22-§8`, `22-§24`, `22-§25`, `22-§29-1`, `22-§29-2`, `22-§29-13`). Reproduce: `awk -F'|' '$6 ~ /1\.13/ {print $2}' communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md`.
+Set check: 15 inherited SB-P-1.12 source rows expand to 45 SB-P-1.13 obligation/scenario rows: the 8 rows in Contracts 17, 20 and 7 expand to 21 rows (FCTM Part H), and the 7 Contract 22 rows expand to 24 rows (FCTM Part F). Every SB-P-1.12 FCTM row whose Assigned-mission cell names SB-P-1.13 maps to at least one row here or in Part F of the FCTM (`22-§7`, `22-§8`, `22-§24`, `22-§25`, `22-§29-1`, `22-§29-2`, `22-§29-13`). Reproduce: `awk -F'|' '$6 ~ /1\.13/ {print $2}' communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md`.
 
 ### 4.2 Delegate contracts touched at the boundary
 
@@ -394,7 +394,7 @@ Contracts 8, 9, 10, 12, 22 and 24 name these contracts as dependencies or shared
 | 23 WhatsApp Intelligence and Channel Adapter (`2430e1c6`) | §9, §22 | all other sections; SB-P-1.20 |
 | 25 Document, Media Storage and Retention Foundation (`406ce089`) | §12, §13 | all other sections; SB-P-1.14 |
 
-20 pointers, 20 FCTM rows. Whether any of these contracts must be opened at full obligation level for SB-P-1.13 is Mission Control's call (Truth Pack Part 6, MC-Q7).
+20 pointers, 20 FCTM rows. Mission Control decided no full Contract 3 opening is required; the touched sections stay `DELEGATED` (MC-Q7).
 
 ### 4.3 Build Plan pointers (`9dfdd924`)
 
@@ -433,5 +433,5 @@ The 974 rows are not a target. They are what obligation-level enumeration of the
 ## 6. Limits of this inventory
 
 - The parser counts list items; it cannot see obligations stated only in prose. Section 3.2 shows where prose added rows. A prose obligation the FCTM omitted would not appear in Section 2's counts, so Stage 19 must still take its own inventory.
-- Category `G` rows (Section 3.1) are Definition Actor judgments. If Mission Control rejects one, that section expands to one row per item.
+- Category `G` rows (Section 3.1) are Definition Actor judgments. Mission Control accepted them for Stage 2 (MC-Q4); Stage 19 may challenge them independently.
 - Contract 22 §33's acceptance-boundary list is counted by the parser (16 numbered items across §33.2 and §33.8) but is not rowed here; SB-P-1.12 owns it (`22-§33-1` to `22-§33-39`).

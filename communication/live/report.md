@@ -10,7 +10,7 @@
 
 **To:** Mission Control
 
-**Status:** STAGE 2 TRUTH PACK PREPARED — DRAFT PR OPEN — AWAITING MISSION CONTROL REVIEW
+**Status:** DRAFT STAGE 2 OUTPUT — STAGE 2 AUTHORIZED; CORRECTED UNDER MISSION CONTROL REVIEW C-1 TO C-8; NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
 
 **Date:** 2026-10-05
 
@@ -22,7 +22,7 @@ The Stage 2 Mission Truth Pack for SB-P-1.13 is prepared as a draft pull request
 
 The FCTM has 974 rows: 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION` (none on the critical path), 0 `ESCALATED`. All 185 numbered sections and 84 numbered acceptance scenarios of the opened contracts are represented.
 
-Stage 3 trigger evidence exists: T4 is present by definition (four `PRODUCT-AFFECTING` Delta items), and there are T1, T2 and T6 candidates. The gate is not decided here. A questions-only Founder decision brief is prepared for Mission Control review.
+Mission Control reviewed head `f43ac9a2` and required corrections C-1 to C-8, now applied. Mission Control determined that the Stage 3 Founder Decision Gate is triggered on canonical merge (T1, T2, T4 on D-02 and D-16). D-05 and D-09 are reclassified `ENGINEERING ONLY`. The questions-only Founder brief is narrowed to FDB-1 to FDB-3.
 
 ---
 
@@ -41,7 +41,7 @@ Stage 3 trigger evidence exists: T4 is present by definition (four `PRODUCT-AFFE
 - No conversation route, AI integration, voice code or FAQ/support routing exists in the repository (Delta D-01, D-03, D-04, D-07).
 - Transaction creation is a direct client-side insert, not a governed command; Scenario A's "existing governed command/RPC" premise is not met for transactions (D-02).
 - SB-P-1.12 authority capabilities are specification-available, but not implemented and not evidenced; 198 `IN SCOPE` rows depend on them (D-05; Truth Pack Part 5).
-- The locked SB-P-1.12 FCTM assigns 15 rows to SB-P-1.13, eight of them in Contracts 17, 20 and 7, which Stage 1 did not open (D-14). They are surfaced in FCTM Part H.
+- The locked SB-P-1.12 FCTM assigns 15 source rows to SB-P-1.13; they expand to 45 rows: 8 in Contracts 17, 20 and 7, which Stage 1 did not open, expand to 21 rows (FCTM Part H), and 7 Contract 22 rows expand to 24 rows (Part F) (D-14; MC-Q1 confirmed).
 - Basic Voice credit/repayment scenarios need the four-state Ledger assigned to SB-P-1.14 (D-16).
 
 **Inferences**
@@ -92,7 +92,7 @@ Documentation only, on the exact writable paths:
 
 # Founder or Mission Control Action Required
 
-Mission Control: substantive review of the Truth Pack; questions MC-Q1 to MC-Q7; Stage 3 trigger determination. No Founder action until Mission Control decides.
+Mission Control: re-review of corrections C-1 to C-8. After human merge, Mission Control opens the Stage 3 dialogue on FDB-1 to FDB-3.
 
 ---
 
