@@ -1,251 +1,95 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.13 Stage 2 Mission Truth and Delta Reconciliation
+# Instruction — SB-P-1.13 Stage 3 Founder Decision Gate
 
 **Mission ID:** SB-P-1.13  
 **Mission Name:** Native Conversation & AI Intelligence Foundation  
 **From:** Smart Business Mission Control  
-**To:** Claude Code — appointed Stage 2–4 Definition Actor  
-**Stage:** Source 18 v1.2 Stage 2 — Mission Truth and Delta Reconciliation  
+**To:** Founder Riyas PK / Mission Control dialogue  
+**Stage:** Source 18 v1.2 Stage 3 — Founder Decision Gate  
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
 **Date:** 2026-10-05  
-**Canonical Stage 1:** PR #774, `main@e2df36bfe631b7993dfb31a5884f8f65fec20470`
+**Canonical Stage 2:** PR #777, `main@a8099775bc12c9379c104f235a43b39d1405b416`
 
 ---
 
 # Mission Objective
 
-Prepare the complete DRAFT Mission Truth Pack for SB-P-1.13.
+Resolve only the genuine Founder decisions identified by the canonical Stage 2 Truth Pack.
 
-Do not draft the Product Blueprint yet.
+Do not draft the Blueprint yet.
 
 Do not implement anything.
 
 ---
 
-# Execute According To
+# Canonical Decision Inputs
 
-Read first:
+Read:
 
-1. `communication/missions/SB-P-1.13/README.md`
-2. `communication/missions/SB-P-1.13/mission-control/01-stage1-initiation-and-actor-allocation.md`
-3. `communication/missions/SB-P-1.13/mission-control/02-stage1-intake-pack.md`
-4. `communication/missions/SB-P-1.13/mission-control/03-stage1-fctm-open.md`
-5. `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`
-6. `communication/AI_Communication_and_Handover_Protocol.md`
-7. Build Plan §10.2
-8. Global Product Completion View
-9. full current text of Contracts 8, 9, 10, 12, 22 and 24
-10. current Contract 21 for delegated permission/authority touch points
-11. current institutional-memory guide and every validated OLE promotion
-12. SB-P-1.12 locked Blueprint/EIS/package plus MC-70/71 suspension/resume records where upstream dependency facts are needed.
-
-Use exact canonical source text and current blobs. Do not substitute old summaries.
-
----
-
-# Required Work
-
-## Part 1 — Independent obligation inventory
-
-Before populating the FCTM, independently enumerate:
-
-- every numbered section in the opened mission scope;
-- every separately verifiable obligation;
-- every numbered acceptance scenario;
-- every delegate actually touched by this mission.
-
-For partial contracts:
-
-- Contract 8: inventory only the FAQ-before-AI / low-compute support foundation touched here; record broader support as later-mission commitment.
-- Contract 12: inventory Basic Voice obligations here; preserve Voice Plus for SB-P-1.19.
-
-Do not hide obligations under “etc.”
-
-## Part 2 — Populated FCTM
-
-Each row must carry at minimum:
-
-- row ID;
-- source;
-- exact source pointer;
-- source blob;
-- obligation/scenario kind;
-- build commitment;
-- commercial classification;
-- owning mission;
-- Source 18 disposition;
-- evidence;
-- dependency state;
-- Founder decision reference where applicable.
-
-Use approved disposition vocabulary only.
-
-## Part 3 — Derived constraints
-
-Separate inferred engineering/product implications from approved Product Truth.
-
-Flag any derived constraint that could materially change:
-
-- merchant experience;
-- permission behavior;
-- financial-data visibility;
-- confirmation/denial;
-- voice behavior;
-- provider-failure behavior.
-
-## Part 4 — Delta
-
-Compare approved source state against current repository/topology evidence.
-
-Inspect, read-only:
-
-- existing conversation UI/routes/components;
-- AI/OpenAI integration code;
-- tool/RPC/domain-command execution surfaces;
-- current permission-context plumbing;
-- voice-related code/provider config references;
-- attachment/media paths;
-- support/FAQ routing;
-- CI/workflows;
-- migrations as repository files only;
-- runtime/topology documentation;
-- OLE/governance additions.
-
-Classify each material delta exactly:
-
-`NO PRODUCT EFFECT` / `ENGINEERING ONLY` / `PRODUCT-AFFECTING`
-
-Do not access production/provider dashboards under this authorization.
-
-## Part 5 — SB-P-1.12 dependency reconciliation
-
-For every dependency on SB-P-1.12 classify:
-
-- SPECIFICATION AVAILABLE;
-- IMPLEMENTATION UNVERIFIED / NOT COMPLETE;
-- EVIDENCE UNVERIFIED / NOT COMPLETE.
-
-Do not assume runtime authority/permission behavior merely because the SB-P-1.12 specification is locked.
-
-## Part 6 — Open decisions and T1–T8
-
-List every unresolved / escalated row.
-
-Screen all T1–T8 triggers.
-
-Do not decide the Founder gate yourself.
-
-## Part 7 — Institutional Learning Intake
-
-Record:
-
-`Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force`
-
-Disposition every current validated promotion.
-
-Use the SB-P-1.12 partial OLE handoff only as contextual mission evidence, not as promoted authority.
-
----
-
-# Experience Anchors
-
-Preserve:
-
-1. governed natural-language consequential action with clarification, preview, permission enforcement, deterministic execution and truthful confirmation;
-2. employee denial of Owner-only financial intelligence;
-3. native workflow success while WhatsApp/Meta is unavailable;
-4. Basic Voice preserving exactly the same authority/confirmation rules as text.
-
-Do not implement these.
-
----
-
-# Git Authorization
-
-Effective only after human merge of the Stage 2 authorization PR.
-
-Repository:
-
-`SmartBusinessv1/smart-business`
-
-Base:
-
-fresh canonical `main` including this authorization.
-
-Locked branch:
-
-`mission/SB-P-1.13-stage2-truth-delta`
-
-Exact writable paths:
-
-- `communication/live/report.md`
-- `communication/missions/SB-P-1.13/README.md`
-- `communication/missions/SB-P-1.13/decision-log.md`
-- `communication/missions/SB-P-1.13/handover-log.md`
+- `communication/missions/SB-P-1.13/founder/01-stage2-decision-brief.md`
 - `communication/missions/SB-P-1.13/claude-code/01-stage2-mission-truth-pack.md`
-- `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`
-- `communication/missions/SB-P-1.13/claude-code/03-stage2-obligation-inventory.md`
-- `communication/missions/SB-P-1.13/claude-code/04-stage2-institutional-learning-intake.md`
 - `communication/missions/SB-P-1.13/claude-code/05-stage2-delta-evidence.md`
-- `communication/missions/SB-P-1.13/claude-code/06-stage2-completion-report.md`
-- `communication/missions/SB-P-1.13/founder/01-stage2-decision-brief.md` only if genuine Founder-decision triggers are found.
-
-Permitted:
-
-- read/fetch/status/branch inspection;
-- read-only repository/CI inspection;
-- create locked branch;
-- edit exact paths;
-- safe checks;
-- commit/push only locked branch;
-- open one DRAFT PR to `main`.
-
-Prohibited:
-
-- direct main push;
-- force push;
-- self-merge;
-- source contract/governance/Product Truth edits;
-- Global Product Completion View edit;
-- application/code/SQL/migration edits;
-- provider access/mutation;
-- production access;
-- voice-provider activation;
-- OLE promotion.
-
-If a runtime/provider fact cannot be established from repository evidence, record:
-
-`UNVERIFIED — ACCESS REQUIRED`
-
-and continue where independent documentary work remains valid.
+- `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`
+- `communication/missions/SB-P-1.13/mission-control/05-stage3-founder-decision-gate-authorization.md`
 
 ---
 
-# Deliverables
+# Founder Decision Scope
 
-Return:
+## FDB-1 — Governed create-transaction command / Scenario A
 
-- Truth Pack path;
-- FCTM path;
-- obligation inventory path;
-- OLE intake path;
-- Delta evidence path;
-- completion report path;
-- DRAFT PR number;
-- final branch head SHA;
-- changed-file list;
-- per-source inventory counts;
-- T1–T8 trigger result;
-- inaccessible evidence;
-- check/workflow evidence available under current GitHub restriction.
+Decide:
 
-Do not self-merge.
+- who owns the additive governed create-transaction command required by Scenario A;
+- whether Scenario A is verified in SB-P-1.13 or later;
+- whether existing sale/purchase transaction foundations are extended now or the runtime scenario waits for SB-P-1.14.
+
+Do not silently change Scenario A or mission ownership.
+
+## FDB-2 — Basic Voice credit/repayment sequencing
+
+Decide how SB-P-1.13 Basic Voice handles the requirement for sale/expense/credit/repayment when the four-state Ledger is assigned to SB-P-1.14.
+
+Rows `12-§4-1`, `12-§7-6`, `12-§21-1` remain IN SCOPE until this decision is recorded.
+
+## FDB-3 — Voice/privacy behavior
+
+Decide:
+
+- DC-04 — whether raw voice audio is transient/not durably stored until SB-P-1.14 governed media storage exists;
+- DC-05 — whether sensitive Owner-only spoken output falls back to text when listener/context certainty is insufficient.
 
 ---
 
-# Completion Status
+# Existing decisions that are NOT reopened
 
-End exactly:
+Do not ask the Founder again about:
 
-**STAGE 2 TRUTH PACK PREPARED — AWAITING MISSION CONTROL REVIEW AND CANONICAL GATE CROSSING**
+- whether later missions may continue documentary work while SB-P-1.12 implementation is suspended;
+- whether a temporary parallel permission system may be built;
+- whether mature Ledger belongs to SB-P-1.14;
+- whether Voice Plus belongs to SB-P-1.19;
+- whether UDI/durable media belongs to SB-P-1.14;
+- whether Ask CFO belongs to SB-P-1.15;
+- whether WhatsApp adapter belongs to SB-P-1.20.
+
+Those remain governed by existing canonical records unless the Founder explicitly chooses to change them during this gate.
+
+---
+
+# Completion
+
+After Founder decisions are stated:
+
+- record exact decisions;
+- identify affected FCTM rows;
+- identify any T7 effects;
+- prepare a Founder Product Decision Record / Stage 3 reconciliation package;
+- stop before Stage 4.
+
+No direct source-contract, Blueprint, EIS, code, SQL, migration, provider, production, OLE or GPCV mutation is authorized here.
+
+**Required status after dialogue:**
+
+**STAGE 3 FOUNDER DECISIONS CAPTURED — AWAITING CANONICAL DECISION-RECORD RECONCILIATION**
