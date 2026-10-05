@@ -35,3 +35,30 @@ Scope is documentary Mission Truth / FCTM / Delta / Institutional Learning Intak
 SB-P-1.12 is consumed as specification authority but not runtime proof.
 
 No Stage 3 decision, Blueprint drafting, implementation or provider/runtime mutation is authorized.
+
+
+## D-03 — Stage 2 Truth Pack prepared (draft)
+
+**Date:** 2026-10-05
+**Status:** DRAFT — AWAITING MISSION CONTROL REVIEW
+
+Claude Code prepared the Stage 2 Mission Truth Pack under SB-P-1.13-MC-02 (canonical at `main@488b16346941e70975edfe849af4aea317cbd6a3`).
+
+Recorded, not decided:
+
+- FCTM populated: 974 rows, 0 `ESCALATED`, 3 `UNRESOLVED FOUNDER DECISION` (none on the critical path);
+- residual rows that the locked SB-P-1.12 FCTM assigns to SB-P-1.13 in Contracts 17, 20 and 7 surfaced for Mission Control confirmation;
+- two `PRODUCT-AFFECTING` Delta items (D-02, D-16); D-05 and D-09 `ENGINEERING ONLY` (corrected under Mission Control C-2);
+- Founder decision brief drafted as questions only, limited to FDB-1 to FDB-3 (C-4, C-5).
+
+No Stage 3 determination, Founder decision, Blueprint, EIS or implementation authority follows from this entry.
+
+
+## D-04 — Mission Control Stage 2 review dispositions recorded
+
+**Date:** 2026-10-05
+**Status:** DRAFT UNTIL HUMAN MERGE
+
+Mission Control reviewed PR #777 at `f43ac9a2` and required corrections C-1 to C-8. It resolved MC-Q1 to MC-Q7 and determined that the Stage 3 Founder Decision Gate is triggered once Stage 2 is canonically merged: T1 (D-02), T2 (D-16), T4 (D-02, D-16); T5 not triggered; T7 not triggered by the Truth Pack; T8 not applicable yet.
+
+The Definition Actor applied the corrections on the same pull request. This entry records Mission Control's determination; it is not a Stage 3 decision record.
