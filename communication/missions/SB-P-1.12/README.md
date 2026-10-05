@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGES 1–8 COMPLETE — CANONICAL (STAGE 7 ACCEPTED, MC-144/MC-145; BLUEPRINT `APPROVED — LOCKED`, MC-146/MC-147, `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`); STAGE 9 EIS DRAFT PREPARED UNDER MC-148 (`docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`), AWAITING MISSION CONTROL STAGE 10 REVIEW; EIS NOT LOCKED; R-2 SOURCE-COVERAGE GATE CLOSED / SATISFIED; ESC-1 T8 OPEN (SAFE-DESIGN DIRECTION PROPOSED, NOT CLOSED); T8-EIS-1 RESOLVED BY FOUNDER DECISION RECORD 09 (EIS VERSION 0.2, MC-151); STAGE 10 SECURITY REFINEMENT SEC-EIS10-01–11 APPLIED IN EIS VERSION 0.3 (MC-157); DELTA RE-REVIEW CLOSED TEN FINDINGS; NARROW SEC-EIS10-04 REFINEMENT IN EIS VERSION 0.4 (MC-161), AWAITING MISSION CONTROL REVIEW; `22-§20-2` BLOCKED; G-6/T4 UNVERIFIED; IMPLEMENTATION PACKAGE/IMPLEMENTATION/SCHEMA/SQL/MIGRATION/PRODUCTION NOT AUTHORIZED
+**Current status:** PARTIAL COMPLETION / SUSPENDED — DOCUMENTATION, LOCKED BLUEPRINT, LOCKED EIS AND LOCKED STAGE 13 IMPLEMENTATION PACKAGE COMPLETE; IMPLEMENTATION AUTHORIZATION WITHHELD; PROVIDER RECOVERY / CONTINUITY WORK REMAINS OPEN; EXACT RESUME POINT RECORDED IN MC-70/MC-71; FORMAL STAGE 23/24 ACCEPTANCE/CLOSURE NOT CLAIMED
 **Stage 2 canonical:** [PR #624](https://github.com/SmartBusinessv1/smart-business/pull/624), merged `2026-09-22T18:58:42Z`, `main@96a31aa7a0debc539fcda1bca2008457e1315093` (MC-12)  
 **Stage 3 authorization canonical:** [PR #625](https://github.com/SmartBusinessv1/smart-business/pull/625), merged `2026-09-23T00:40:15+05:30`, `main@713a99c77ab39bc8c6741aa4bd18d3656ac78639` (MC-13)  
 **MC-19 Stage 4 authorization canonical:** [PR #629](https://github.com/SmartBusinessv1/smart-business/pull/629), merged, `main@d86e8663eabccff62f3f7e3fadd5342a2ca56aac` (MC-19)  
@@ -296,3 +296,29 @@ The blocked Track A does not block Track B. When hardware becomes available, Tra
 No continuity requirement is waived. Product implementation, SQL/migrations, fixtures, runtime and production remain unauthorized.
 
 This README remains an index, not an authority record.
+
+
+## Partial-completion / suspension checkpoint — MC-70 / MC-71 (2026-10-05)
+
+Founder directed SB-P-1.12 to pause at the implementation/provider-access boundary so Phase 1 documentary readiness can continue through later missions without losing the exact SB-P-1.12 resume point.
+
+Canonical suspension package (effective only on human merge of its PR):
+
+- `mission-control/70_partial_completion_and_suspension_report.md`
+- `mission-control/71_residual_work_and_exact_resume_register.md`
+- `mission-control/72_communication_suspension_and_archive_deferment.md`
+- `organizational-learning/01_partial_mission_learning_handoff.md`
+- `communication/01_live_instruction_snapshot.md`
+- `communication/02_live_report_snapshot.md`
+- `communication/03_live_chain_index.md`
+
+Disposition:
+
+- documentary / EIS / implementation-package readiness: COMPLETE;
+- implementation: NOT COMPLETE / NOT AUTHORIZED;
+- formal Product Mission completion: NOT CLAIMED;
+- communication cycle: SUSPENDED;
+- formal `communication/archive/SB-P-1.12/` action: DEFERRED until real Stage 24 closure;
+- next product-documentation mission: SB-P-1.13 after this checkpoint becomes canonical.
+
+The durable observed-findings / Founder-effort-preservation rule remains controlling. Do not rediscover stable provider facts without a stated freshness dependency.
