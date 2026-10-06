@@ -207,3 +207,21 @@ Pull request, head SHA and check evidence: pull-request handover comment.
 Next action: Mission Control review of each finding, including B6-01 (Stage 7 blocker) and B6-02; appointment of independent Stage 7 specialists.
 
 Not authorized: Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.
+
+
+## H-11 — Stage 6 canonical → B6-01/B6-02 reconciliation
+
+**Date:** 2026-10-06  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Stage 6 canonical main:** `8d9fb3af6e1af9943a970d6ca75b8500b8d46715`
+
+Next action:
+
+Founder human merge of the B6-01/B6-02 reconciliation authorization PR.
+
+After merge:
+
+Claude Code may prepare only the authorized reconciliation package.
+
+Stage 7 remains blocked.
