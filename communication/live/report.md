@@ -4,13 +4,13 @@
 
 **Mission ID:** SB-P-1.13
 
-**Mission Name:** Native Conversation & AI Intelligence Foundation — Stage 4 Product Blueprint Sections 1–19
+**Mission Name:** Native Conversation & AI Intelligence Foundation — Stage 6 Builder Review
 
-**From:** Claude Code, Stage 2–4 Definition Actor
+**From:** Claude Code, Stage 6 Builder Review actor
 
 **To:** Mission Control
 
-**Status:** DRAFT STAGE 4 OUTPUT — STAGE 4 AUTHORIZED; NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE
+**Status:** DRAFT STAGE 6 OUTPUT — FINDINGS ONLY; NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
 
 **Date:** 2026-10-06
 
@@ -18,38 +18,32 @@
 
 # Executive Summary
 
-The draft Product Blueprint for SB-P-1.13 (Metadata, Mission Snapshot, Sections 1–19) is prepared at `docs/phase-1-mission-blueprint/active/SB-P-1.13.md` on `mission/SB-P-1.13-stage4-blueprint-draft`, based on `main@f81219cc89019af005fc2985acf0e1ba01445031`. Pull request and head SHA: see the pull-request handover comment.
+The Stage 6 Builder Review is at `communication/missions/SB-P-1.13/claude-code/08-stage6-builder-review-report.md` on `mission/SB-P-1.13-stage6-builder-review`, based on `main@b146cad8ff05d1c511e37ebfe2f4172857ff23b5`. Pull request and head SHA: see the pull-request handover comment.
 
-All 974 FCTM rows are mapped in Section 19. Section 8 carries the 651 `IN SCOPE` rows; Section 11 carries the other 323. `FPDR-1` to `FPDR-4` are quoted unchanged. No T3, T7 or T8 trigger was found.
+16 findings: 2 High, 8 Medium, 6 Low.
+
+- B6-01 (High, T8 candidate, Stage 7 blocker): the locked SB-P-1.12 EIS §19.5 forbids SB-P-1.13 from resolving the business from single ownership, and the app resolves it no other way today. Owner-only paths and Scenario B therefore also wait for SB-P-1.12, although the Blueprint records Scenario B as having no external dependency.
+- B6-02 (High, T3 candidate): it is undetermined whether a sale with payment method "credit" is an available capability under `FPDR-1` or part of the credit portion blocked by `FPDR-2`.
+
+Dependent work is stopped on both and returned to Mission Control.
 
 ---
 
 # Work Performed
 
-- Verified PR #780 merged and fresh `origin/main` at `f81219cc`; created the locked branch.
-- Read the Stage 4 authorization, the Founder decision record, the Stage 3 gate review, the reconciled FCTM and the Stage 2 Truth Pack, and used the SB-P-1.12 Blueprint structure as the canonical Section 1–19 format.
-- Drafted the Blueprint by reference; generated the row-level sections from the canonical FCTM.
+Read-only review of the canonical Blueprint, FCTM, `FPDR-1` to `FPDR-4`, the SB-P-1.12 EIS and the current repository across every mandatory review area.
 
 ---
 
 # Findings
 
-**Confirmed facts**
-
-- Section 19 is identical to the FCTM on row ID, disposition and owning mission for all 974 rows.
-- Founder-decision quotations are identical to the record.
-- FCTM row `22-§12` cites SB-P-1.12's `FPDR-1`, a different decision from SB-P-1.13's `FPDR-1`; the Blueprint qualifies SB-P-1.12 decision IDs to avoid confusion.
-
-**Unknowns**
-
-- AI provider and voice-provider state remain `UNVERIFIED — ACCESS REQUIRED`.
+See the report, Sections 3–8. No Blueprint, FCTM, Founder decision or Product Truth was changed. No Stage 7 specialist was appointed.
 
 ---
 
 # Changes Made
 
-- `docs/phase-1-mission-blueprint/active/SB-P-1.13.md` (new)
-- `communication/missions/SB-P-1.13/claude-code/07-stage4-blueprint-drafting-report.md` (new)
+- `communication/missions/SB-P-1.13/claude-code/08-stage6-builder-review-report.md` (new)
 - `communication/missions/SB-P-1.13/README.md`
 - `communication/missions/SB-P-1.13/decision-log.md`
 - `communication/missions/SB-P-1.13/handover-log.md`
@@ -59,31 +53,30 @@ All 974 FCTM rows are mapped in Section 19. Section 8 carries the 651 `IN SCOPE`
 
 # Verification
 
-- Section 19 versus FCTM: identical (974 rows).
-- Section 8 and Section 11 coverage: set-equal to the FCTM's `IN SCOPE` and non-`IN SCOPE` rows.
-- Markdown Quality Gate: PASS on every changed file; repository pre-commit gate: PASS.
+- Every cited FCTM row ID exists in the FCTM.
+- Markdown Quality Gate and pre-commit gate: PASS.
+- No GitHub Actions runs (account restriction).
 
 ---
 
 # Risks and Limitations
 
-- SB-P-1.12 implementation remains suspended; 198 `IN SCOPE` rows are dependency-blocked.
-- Category-`G` single-row judgments from Stage 2 carry into the Blueprint unchanged.
+The reviewer also drafted Sections 1–19; this is not independent assurance.
 
 ---
 
 # Founder or Mission Control Action Required
 
-Mission Control Stage 5 Product Review.
+Mission Control: disposition of B6-01 and B6-02 and of the other findings; appointment of independent Stage 7 specialists.
 
 ---
 
 # Recommended Next Step
 
-Mission Control Stage 5 review of the draft pull request.
+Mission Control review of the Stage 6 report.
 
 ---
 
 # Completion Status
 
-**STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+**STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
