@@ -89,7 +89,7 @@ All eleven Stage 1 intake blobs (Build Plan, GPCV, Contracts 8, 9, 10, 12, 22, 2
 | `D12` | SB-P-1.12 authority kernel: identity, membership, roles, permission dimensions, isolation, channel values `conversation` and `ai_tool`, confirmation binding, revalidation, idempotency pattern, authority events and denial contract | SPECIFICATION AVAILABLE (locked Blueprint and EIS); IMPLEMENTATION NOT COMPLETE (Implementation Authorization WITHHELD); EVIDENCE NOT COMPLETE (no Stage 17 or Stage 19; EV-01 OPEN). Consumption conditions: SB-P-1.12 EIS Section 19.5 (EIS-DEP-01). Detail: Truth Pack Part 5 |
 | `DAI` | AI provider integration (OpenAI) behind a server-side gateway | No code, dependency or configuration reference in the repository (Delta D-03). Provider account, key custody and data-control settings: `UNVERIFIED — ACCESS REQUIRED` |
 | `DV` | Basic Voice provider and environment activation gate (Build Plan Sections 5.4 and 10.2) | No voice code or provider in the repository (Delta D-04). Provider topology: `UNVERIFIED — ACCESS REQUIRED`. Voice-provider purchase or activation: NOT AUTHORIZED |
-| `DTX` | A governed create-transaction domain command | Not present. Transaction creation is a client-side table insert (Delta D-02) |
+| `DTX` | A governed create-transaction domain command | Founder FPDR-1 assigns the additive governed command for existing transaction types to SB-P-1.13; implementation/runtime evidence remains pending |
 | `D14` | SB-P-1.14: UDI, governed media/object storage, mature four-state Ledger | Not started; Build Plan Section 10.3 |
 | `D15` | SB-P-1.15: Reminder Engine, Daily Intelligence, Ask CFO, Notification Foundation (SB-P-1.12 `FPDR-1`) | Not started; Build Plan Section 10.4 |
 | `D16`, `D17`, `D18` | SB-P-1.16 credit/payment, SB-P-1.17 stock/supplier, SB-P-1.18 add-ons | Not started |
@@ -225,7 +225,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 24-§20-9 | C24@0c1dcbb2 | §20 validate duplicate/idempotency conditions | OBL | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DAI | NI-CONV; A-BP9-13 | — |
 | 24-§20-10 | C24@0c1dcbb2 | §20 invalid structured AI output fails safely and is retried/clarified, never blindly written | OBL | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; A-BP9-13 | — |
 | 24-§21-1 | C24@0c1dcbb2 | §21 AI may prepare/recommend; default authority remains human | OBL | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP9-13 | — |
-| 24-§21-2 | C24@0c1dcbb2 | §21 confirmation or valid delegation for recording uncertain financial facts | OBL | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; A-BP102 Scenario A | — |
+| 24-§21-2 | C24@0c1dcbb2 | §21 confirmation or valid delegation for recording uncertain financial facts | OBL | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; A-BP102 Scenario A; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 24-§21-3 | C24@0c1dcbb2 | §21 confirmation for supplier orders | OBL | BUILD NOW | CORE-INT | SB-P-1.17 | ASSIGNED TO LATER MISSION | D17 | A-BP106 | — |
 | 24-§21-4 | C24@0c1dcbb2 | §21 confirmation for credit overrides | OBL | BUILD NOW | CORE-INT | SB-P-1.16 | ASSIGNED TO LATER MISSION | D16 | A-BP105 (customer-credit maturity) | — |
 | 24-§21-5 | C24@0c1dcbb2 | §21 confirmation for payment match resolution | OBL | BUILD NOW | CORE-INT | SB-P-1.16 | ASSIGNED TO LATER MISSION | D16 | A-BP105 (bank/payment reconciliation) | — |
@@ -338,7 +338,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 24-§31-10 | C24@0c1dcbb2 | §31 acceptance 10: reminder creation routes to the shared Reminder Engine | SCN | BUILD NOW | CORE-INT | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (shared Reminder Engine) | — |
 | 24-§31-11 | C24@0c1dcbb2 | §31 acceptance 11: OpenAI outage does not corrupt or duplicate business state | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DAI | NI-AI; A-BP102 (graceful AI/provider failure) | — |
 | 24-§31-12 | C24@0c1dcbb2 | §31 acceptance 12: deterministic fallback remains available where designed | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | DAI | NI-AI; A-BP102 | — |
-| 24-§31-13 | C24@0c1dcbb2 | §31 acceptance 13: retry is idempotent for consequential actions | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP9-13 | — |
+| 24-§31-13 | C24@0c1dcbb2 | §31 acceptance 13: retry is idempotent for consequential actions | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP9-13; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 24-§31-14 | C24@0c1dcbb2 | §31 acceptance 14: model/provider metadata and merchant data handled under privacy policy | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | DAI | NI-AI; A-BP9-13 | — |
 | 24-§31-15 | C24@0c1dcbb2 | §31 acceptance 15: Business Memory persists independently of model conversation history | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | D14 | NI-AI; A-BP9-13 | — |
 | 24-§31-16 | C24@0c1dcbb2 | §31 acceptance 16: model routing can evolve without rewriting domain business rules | SCN | BUILD NOW | CORE-INT | SB-P-1.13 | IN SCOPE | DAI | NI-AI; A-BP9-13 | — |
@@ -439,7 +439,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 9-§16-3 | C9@649c55f3 | §16 allow switching text/voice/channel where useful (second channel verified in SB-P-1.20) | OBL | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | DV | NI-CONV; A-BP9-13 | — |
 | 9-§16-4 | C9@649c55f3 | §16 avoid creating a consequential record until meaning is safe | OBL | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | D12; DAI | NI-CONV; A-BP9-13 | — |
 | 9-§16-5 | C9@649c55f3 | §16 allow Support escalation when persistent language failure blocks use | OBL | BUILD NOW | CORE-FDN | SB-P-1.19 | ASSIGNED TO LATER MISSION | D19 | A-BP12; A-BP108 (human escalation) | — |
-| 9-§17-1 | C9@649c55f3 | §17 acceptance 1: equivalent Ledger intent in English, Malayalam and Manglish | SCN | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | DAI; DTX | NI-AI; NI-TXCMD; A-BP102 | — |
+| 9-§17-1 | C9@649c55f3 | §17 acceptance 1: equivalent Ledger intent in English, Malayalam and Manglish | SCN | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | DAI; DTX | NI-AI; NI-TXCMD; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 9-§17-2 | C9@649c55f3 | §17 acceptance 2: mixed-language sentence handling | SCN | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | DAI | NI-AI; A-BP102 | — |
 | 9-§17-3 | C9@649c55f3 | §17 acceptance 3: spelling variation without unsafe identity merge | SCN | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | D12; DAI | NI-AI; A-BP9-13 | — |
 | 9-§17-4 | C9@649c55f3 | §17 acceptance 4: voice input with language uncertainty requiring clarification | SCN | BUILD NOW | CORE-FDN | SB-P-1.13 | IN SCOPE | DV; DAI | NI-VOICE; A-BP102 | — |
@@ -522,7 +522,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 10-§10-7 | C10@5c145ed7 | §10 retrieve permitted documents/exports later | OBL | BUILD NOW | CORE-CH | SB-P-1.14 | ASSIGNED TO LATER MISSION | D14 | A-BP103 (Receipt Cabinet; governed document storage) | — |
 | 10-§10-8 | C10@5c145ed7 | §10 unsupported/unsafe files fail clearly without affecting unrelated operation | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | — | NI-ATT; A-BP102; PRECEDENT: catalog import content-type rejection | — |
 | 10-§11-1 | C10@5c145ed7 | §11 Basic Voice available according to plan/permission rules | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
-| 10-§11-2 | C10@5c145ed7 | §11 voice supports business input | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV; DTX | NI-VOICE; A-BP102 | — |
+| 10-§11-2 | C10@5c145ed7 | §11 voice supports business input | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV; DTX | NI-VOICE; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 10-§11-3 | C10@5c145ed7 | §11 voice supports questions | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
 | 10-§11-4 | C10@5c145ed7 | §11 voice supports reminders | OBL | BUILD NOW | CORE-CH | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (shared Reminder Engine) | — |
 | 10-§11-5 | C10@5c145ed7 | §11 voice supports operational commands | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
@@ -532,8 +532,8 @@ A section is expanded to one row per item when its text lists separately testabl
 | 10-§12-1 | C10@5c145ed7 | §12 English, Malayalam and Manglish first-class in the Workspace | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; A-BP9-13 | — |
 | 10-§12-2 | C10@5c145ed7 | §12 no formal software terminology needed; mixed expressions via shared Human Language Layer | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; A-BP9-13 | — |
 | 10-§12-3 | C10@5c145ed7 | §12 consequential ambiguity triggers clarification, not guesswork | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; A-BP9-13 | — |
-| 10-§13-1 | C10@5c145ed7 | §13 Workspace may prepare/initiate actions; execution belongs to the underlying feature service | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP102 | — |
-| 10-§13-2 | C10@5c145ed7 | §13 example action: create a Ledger transaction (through a governed domain command) | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; A-BP102 Scenario A | — |
+| 10-§13-1 | C10@5c145ed7 | §13 Workspace may prepare/initiate actions; execution belongs to the underlying feature service | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
+| 10-§13-2 | C10@5c145ed7 | §13 example action: create a Ledger transaction (through a governed domain command) | OBL | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; A-BP102 Scenario A; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 10-§13-3 | C10@5c145ed7 | §13 example action: confirm an interpreted receipt | OBL | BUILD NOW | CORE-CH | SB-P-1.14 | ASSIGNED TO LATER MISSION | D14 | A-BP103 (UDI) | — |
 | 10-§13-4 | C10@5c145ed7 | §13 example action: create a reminder | OBL | BUILD NOW | CORE-CH | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 | — |
 | 10-§13-5 | C10@5c145ed7 | §13 example action: create an order draft | OBL | BUILD NOW | CORE-CH | SB-P-1.18 | ASSIGNED TO LATER MISSION | D18 | A-BP107 (Smart Order & Delivery) | — |
@@ -608,7 +608,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 10-§22-4 | C10@5c145ed7 | §22 non-goal: duplicating data/permissions by channel | NEG | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | — | L-NEG; A-BP9-13 | — |
 | 10-§22-5 | C10@5c145ed7 | §22 non-goal: offline-without-internet operation unless separately approved | NEG | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | — | L-NEG; A-BP9-13 | — |
 | 10-§22-6 | C10@5c145ed7 | §22 non-goal: public customer/supplier portal into Owner intelligence | NEG | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | — | L-NEG; A-BP9-13 | — |
-| 10-§23-1 | C10@5c145ed7 | §23 acceptance 1: Owner text transaction with accurate stored-state confirmation | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX; DAI | NI-TXCMD; A-BP102 Scenario A | — |
+| 10-§23-1 | C10@5c145ed7 | §23 acceptance 1: Owner text transaction with accurate stored-state confirmation | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX; DAI | NI-TXCMD; A-BP102 Scenario A; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 10-§23-2 | C10@5c145ed7 | §23 acceptance 2: Owner voice gets same permission/clarification behavior as text | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 10-§23-3a | C10@5c145ed7 | §23 acceptance 3 (Workspace slice): image/PDF/CSV accepted and handed off; no consequential update without UDI preview | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D14 | NI-ATT; A-BP102 (attachment handoff) | — |
 | 10-§23-3b | C10@5c145ed7 | §23 acceptance 3 (UDI slice): UDI preview before consequential update | SCN | BUILD NOW | CORE-CH | SB-P-1.14 | ASSIGNED TO LATER MISSION | D14 | A-BP103 Scenario A | — |
@@ -617,7 +617,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 10-§23-6 | C10@5c145ed7 | §23 acceptance 6: workflow begins on WhatsApp and continues in the app without duplicates | SCN | BUILD NOW | CORE-CH | SB-P-1.20 | ASSIGNED TO LATER MISSION | D20 | A-BP109 Scenario A | — |
 | 10-§23-7 | C10@5c145ed7 | §23 acceptance 7: WhatsApp outage does not stop healthy app operations (native slice; background-ops slice re-verified SB-P-1.20) | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102 Scenario B; BP §8.4 | — |
 | 10-§23-8 | C10@5c145ed7 | §23 acceptance 8: permission revoked before execution blocks only the pending action | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP9-13 | — |
-| 10-§23-9 | C10@5c145ed7 | §23 acceptance 9: duplicate/retry does not duplicate consequential writes | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP9-13 | — |
+| 10-§23-9 | C10@5c145ed7 | §23 acceptance 9: duplicate/retry does not duplicate consequential writes | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP9-13; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 10-§23-10 | C10@5c145ed7 | §23 acceptance 10: cross-business context leakage impossible under server-side authorization | SCN | BUILD NOW | CORE-CH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP9-13 | — |
 | 10-§24 | C10@5c145ed7 | §24 Historical Corrections / Superseded Behavior | HIST | BUILD NOW | CORE-CH | SB-P-1.13 | NOT APPLICABLE | — | L-HIST | — |
 | 10-§25 | C10@5c145ed7 | §25 Provenance and Hydration Coverage | PROV | BUILD NOW | CORE-CH | SB-P-1.13 | NOT APPLICABLE | — | L-PROV | — |
@@ -634,7 +634,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§2 | C12@6d48feff | §2 Founder Problem Statement | NARR | BUILD NOW | CORE-LM | SB-P-1.13 | NOT APPLICABLE | — | L-NARR | — |
 | 12-§3 | C12@6d48feff | §3 Lighthouse Principles (nine qualities) | PRIN | BUILD NOW | CORE-LM | SB-P-1.13 | NOT APPLICABLE | — | L-NARR; realized by 12-§6, §8, §14, §15 rows | — |
 | 12-§3-1 | C12@6d48feff | §3 never force a long AI monologue when readable text is better | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
-| 12-§4-1 | C12@6d48feff | §4 Basic Voice supports Ledger transaction/credit/repayment input | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DTX; D14 | NI-VOICE; NI-TXCMD; A-BP102; credit/repayment states depend on SB-P-1.14 four-state Ledger (BP §10.3) | — |
+| 12-§4-1 | C12@6d48feff | §4 Basic Voice supports Ledger transaction/credit/repayment input | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DTX; D14 | NI-VOICE; NI-TXCMD; A-BP102; credit/repayment states depend on SB-P-1.14 four-state Ledger (BP §10.3); Founder-approved governed-command ownership/timing | FPDR-1; FPDR-2 |
 | 12-§4-2 | C12@6d48feff | §4 Basic Voice supports Ask CFO questions | OBL | BUILD NOW | CORE-LM | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (Ask CFO) | — |
 | 12-§4-3 | C12@6d48feff | §4 Basic Voice supports reminder creation | OBL | BUILD NOW | CORE-LM | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (Reminder Engine) | — |
 | 12-§4-4 | C12@6d48feff | §4 Basic Voice supports stock/supplier/order instructions where product/role permits | OBL | BUILD NOW | CORE-LM | SB-P-1.17 | ASSIGNED TO LATER MISSION | D17 | A-BP106 (stock/supplier); secondary SB-P-1.18 A-BP107 (orders) | — |
@@ -655,7 +655,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§7-3 | C12@6d48feff | §7 clarify material uncertainty about customer/supplier/product identity | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 12-§7-4 | C12@6d48feff | §7 clarify material uncertainty about quantity/unit | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
 | 12-§7-5 | C12@6d48feff | §7 clarify material uncertainty about payment state | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
-| 12-§7-6 | C12@6d48feff | §7 clarify material uncertainty about credit vs repayment | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14 | NI-VOICE; A-BP102; four-state Ledger is SB-P-1.14 (BP §10.3) | — |
+| 12-§7-6 | C12@6d48feff | §7 clarify material uncertainty about credit vs repayment | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14 | NI-VOICE; A-BP102; four-state Ledger is SB-P-1.14 (BP §10.3); Founder-approved Basic Voice/Ledger sequencing | FPDR-2 |
 | 12-§7-7 | C12@6d48feff | §7 clarify material uncertainty about order/reorder instruction | OBL | BUILD NOW | CORE-LM | SB-P-1.17 | ASSIGNED TO LATER MISSION | D17 | A-BP106 (reorder); secondary SB-P-1.18 A-BP107 (orders) | — |
 | 12-§7-8 | C12@6d48feff | §7 clarify material uncertainty about permission-sensitive action | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 12-§7-9 | C12@6d48feff | §7 clarify material uncertainty about noisy or incomplete transcription | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
@@ -689,9 +689,9 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§14-3 | C12@6d48feff | §14 Employee voice only permitted operations/self-service; no Owner profit/full analytics/Ask CFO by default | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 Scenario A | — |
 | 12-§14-4 | C12@6d48feff | §14 customer/supplier/delivery voice bounded by the workflow, not general Owner voice access | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | L-NEG; A-BP9-13 | — |
 | 12-§15-1 | C12@6d48feff | §15 avoid speaking sensitive Owner data where the user role is not authorized | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
-| 12-§15-2 | C12@6d48feff | §15 avoid speaking sensitive Owner data where the requested output is inappropriate for audio | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
-| 12-§15-3 | C12@6d48feff | §15 avoid speaking sensitive Owner data where the product has context to prefer safer text presentation | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
-| 12-§15-4 | C12@6d48feff | §15 audio/transcription retention follows privacy/account policy | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14; DUF6 | NI-VOICE; A-BP102; durable raw-audio storage is C25 §12 (SB-P-1.14) | — |
+| 12-§15-2 | C12@6d48feff | §15 avoid speaking sensitive Owner data where the requested output is inappropriate for audio | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102; Founder-approved sensitive spoken-output fallback to authenticated text | FPDR-4 |
+| 12-§15-3 | C12@6d48feff | §15 avoid speaking sensitive Owner data where the product has context to prefer safer text presentation | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102; Founder-approved sensitive spoken-output fallback to authenticated text | FPDR-4 |
+| 12-§15-4 | C12@6d48feff | §15 audio/transcription retention follows privacy/account policy | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14; DUF6 | NI-VOICE; A-BP102; durable raw-audio storage is C25 §12 (SB-P-1.14); Founder-approved transient raw-audio handling before SB-P-1.14 governed media | FPDR-3 |
 | 12-§15-5 | C12@6d48feff | §15 voice never becomes a route around data-access controls | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | L-NEG; A-BP9-13 | — |
 | 12-§16-1 | C12@6d48feff | §16 voice state change preserves actor | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 12-§16-2 | C12@6d48feff | §16 voice state change preserves business scope | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
@@ -700,7 +700,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§16-5 | C12@6d48feff | §16 voice state change preserves confirmation where applicable | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 12-§16-6 | C12@6d48feff | §16 voice state change preserves resulting authoritative record/action | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
 | 12-§16-7 | C12@6d48feff | §16 voice state change preserves correction/audit linkage where needed | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
-| 12-§16-8 | C12@6d48feff | §16 implementation must not assume every recording is permanent | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14 | L-NEG; A-BP9-13 | — |
+| 12-§16-8 | C12@6d48feff | §16 implementation must not assume every recording is permanent | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D14 | L-NEG; A-BP9-13; Founder-approved transient raw-audio handling before SB-P-1.14 governed media | FPDR-3 |
 | 12-§17-1 | C12@6d48feff | §17 handle noisy/partial audio | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
 | 12-§17-2 | C12@6d48feff | §17 handle unsupported audio format | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
 | 12-§17-3 | C12@6d48feff | §17 handle transcription failure | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
@@ -726,7 +726,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§20-4 | C12@6d48feff | §20 non-goal: voice-created authority | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | L-NEG; A-BP9-13 | — |
 | 12-§20-5 | C12@6d48feff | §20 non-goal: long audio where text is clearly better | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | L-NEG; A-BP9-13 | — |
 | 12-§20-6 | C12@6d48feff | §20 non-goal: employee access to Owner intelligence through spoken prompts | NEG | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | L-NEG; A-BP9-13 | — |
-| 12-§21-1 | C12@6d48feff | §21 acceptance 1: natural sale/expense/credit/repayment voice input | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DTX; D14 | NI-VOICE; NI-TXCMD; A-BP102; credit/repayment blocked by SB-P-1.14 four-state Ledger (BP §10.3) | — |
+| 12-§21-1 | C12@6d48feff | §21 acceptance 1: natural sale/expense/credit/repayment voice input | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DTX; D14 | NI-VOICE; NI-TXCMD; A-BP102; credit/repayment blocked by SB-P-1.14 four-state Ledger (BP §10.3); Founder-approved governed-command ownership/timing | FPDR-1; FPDR-2 |
 | 12-§21-2 | C12@6d48feff | §21 acceptance 2: ambiguous amount/name leads to clarification, not guess | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DAI | NI-VOICE; A-BP102 | — |
 | 12-§21-3 | C12@6d48feff | §21 acceptance 3: Basic Ask CFO voice question: short audio plus accurate text detail | SCN | BUILD NOW | CORE-LM | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (Ask CFO) | — |
 | 12-§21-4 | C12@6d48feff | §21 acceptance 4: voice reminder creation | SCN | BUILD NOW | CORE-LM | SB-P-1.15 | ASSIGNED TO LATER MISSION | D15 | A-BP104 (Reminder Engine) | — |
@@ -734,7 +734,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 12-§21-6 | C12@6d48feff | §21 acceptance 6: Voice Plus summary/action items without autonomous execution | SCN | ADD-ON + BUILD NOW | ADDON-LM | SB-P-1.19 | ASSIGNED TO LATER MISSION | D19 | A-BP108 (Voice Plus) | — |
 | 12-§21-7 | C12@6d48feff | §21 acceptance 7: English/Malayalam/Manglish mixed speech | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; DAI | NI-VOICE; A-BP102 | — |
 | 12-§21-8 | C12@6d48feff | §21 acceptance 8: Employee voice prompt cannot access Owner intelligence | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 Scenario A; experience anchor 4 | — |
-| 12-§21-9 | C12@6d48feff | §21 acceptance 9: duplicate/replayed voice does not duplicate business write | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12; DTX | NI-VOICE; NI-TXCMD; A-BP102 | — |
+| 12-§21-9 | C12@6d48feff | §21 acceptance 9: duplicate/replayed voice does not duplicate business write | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12; DTX | NI-VOICE; NI-TXCMD; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 12-§21-10 | C12@6d48feff | §21 acceptance 10: provider failure offers safe text/retry path | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; A-BP102 | — |
 | 12-§21-11 | C12@6d48feff | §21 acceptance 11: WhatsApp and Conversation Workspace use one voice/action truth | SCN | BUILD NOW | CORE-LM | SB-P-1.20 | ASSIGNED TO LATER MISSION | D20 | A-BP109; BP §9 row 9 (channel verification of 12) | — |
 | 12-§21-12 | C12@6d48feff | §21 acceptance 12: sensitive information is not spoken to an unauthorized role | SCN | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV; D12 | NI-VOICE; A-BP102 | — |
@@ -932,7 +932,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 22-§29-5 | C22@61e1bb91 | §29 acceptance 5: multiple document types reuse one UDI pipeline | SCN | BUILD NOW | CORE-ARCH | SB-P-1.14 | ASSIGNED TO LATER MISSION | D14 | I-12; A-BP103 | — |
 | 22-§29-6 | C22@61e1bb91 | §29 acceptance 6: customer/supplier identity not duplicated by channel/feature | SCN | BUILD NOW | CORE-ARCH | SB-P-1.12 | DELEGATED | D12 | I-12 (IN SCOPE SB-P-1.12); L-DEL12 | — |
 | 22-§29-7 | C22@61e1bb91 | §29 acceptance 7: consequential confirmation exact and revalidated at execution (conversation slice) | SCN | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; I-12 (IN SCOPE SB-P-1.12 kernel); conversational confirmation is built here | — |
-| 22-§29-8 | C22@61e1bb91 | §29 acceptance 8: duplicate external/retry events idempotent (AI/tool retry slice) | SCN | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; I-12 (IN SCOPE SB-P-1.12 pattern) | — |
+| 22-§29-8 | C22@61e1bb91 | §29 acceptance 8: duplicate external/retry events idempotent (AI/tool retry slice) | SCN | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; I-12 (IN SCOPE SB-P-1.12 pattern); Founder-approved governed-command ownership/timing | FPDR-1 |
 | 22-§29-9 | C22@61e1bb91 | §29 acceptance 9: attendance/delivery location uses purpose-limited primitive | SCN | BUILD NOW | CORE-ARCH | SB-P-1.18 | NOT APPLICABLE | — | SB-P-1.13 captures no location; I-12 (ASSIGNED SB-P-1.18) | — |
 | 22-§29-10 | C22@61e1bb91 | §29 acceptance 10: feature/provider failure narrowly contained (AI/voice provider slice) | SCN | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | DAI; DV | NI-AI; A-BP102 | — |
 | 22-§29-11 | C22@61e1bb91 | §29 acceptance 11: subscription changes do not destroy core schema/history | SCN | BUILD NOW | CORE-ARCH | SB-P-1.12 | DELEGATED | D12 | I-12 (IN SCOPE SB-P-1.12); L-DEL12 | — |
@@ -1045,7 +1045,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 17-§5-4 | C17@7943f74a | §5 visual and conversation workspaces share Business Memory | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D14 | NI-CONV; I-12 | — |
 | 17-§5-5 | C17@7943f74a | §5 visual and conversation workspaces share Permission Engine | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; I-12 | — |
 | 17-§5-6 | C17@7943f74a | §5 visual and conversation workspaces share Human Language Layer | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; I-12 | — |
-| 17-§5-7 | C17@7943f74a | §5 visual and conversation workspaces share feature action services | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; I-12 | — |
+| 17-§5-7 | C17@7943f74a | §5 visual and conversation workspaces share feature action services | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; I-12; Founder-approved governed-command ownership/timing | FPDR-1 |
 | 17-§5-8 | C17@7943f74a | §5 visual and conversation workspaces share document/reminder/intelligence foundations | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D14; D15 | NI-CONV; I-12 | — |
 | 17-§22-4 | C17@7943f74a | §22 acceptance 4: dashboard and conversation show consistent underlying state | SCN | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | D14 | NI-CONV; I-12 (ASSIGNED SB-P-1.13) | — |
 | 17-§22-8 | C17@7943f74a | §22 acceptance 8: Conversation Workspace is first-class in app navigation/experience | SCN | BUILD NOW | MGR+LDG | SB-P-1.13 | IN SCOPE | — | NI-CONV; I-12 (ASSIGNED SB-P-1.13) | — |
@@ -1068,7 +1068,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | Row ID | Source @ blob | Exact source pointer | Kind | Build commitment | Commercial | Owning mission | Disposition | Dependency | Evidence / citation | Founder decision |
 |---|---|---|---|---|---|---|---|---|---|---|
 | BP-§5.4-1 | BP@9dfdd924 | §5.4 Basic Voice provider integration: Blueprint/EIS identifies environment activation, credentials, failure behavior, rollback, verification | OBL | BUILD NOW | CORE-LM | SB-P-1.13 | IN SCOPE | DV | NI-VOICE; BP §5.4 | — |
-| BP-§6.2-1 | BP@9dfdd924 | §6.2 one command path input to interpretation to permission to clarification/preview to confirmation/delegation to deterministic command to write to audit to response | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP102 | — |
+| BP-§6.2-1 | BP@9dfdd924 | §6.2 one command path input to interpretation to permission to clarification/preview to confirmation/delegation to deterministic command to write to audit to response | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-TXCMD; PRECEDENT-CMD; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
 | BP-§6.2-2 | BP@9dfdd924 | §6.2 path reusable from structured surfaces, Workspace, UDI, reminders, WhatsApp, POS adapters | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; BP §6.2 | — |
 | BP-§6.4-1 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares Business Memory | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D14 | NI-CONV; BP §6.4 | — |
 | BP-§6.4-2 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares permissions | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; BP §6.4 | — |
@@ -1077,7 +1077,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | BP-§6.4-5 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares AI orchestration | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; BP §6.4 | — |
 | BP-§6.4-6 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares typed tool/action proposals | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | DAI | NI-CONV; BP §6.4 | — |
 | BP-§6.4-7 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares confirmation state | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; BP §6.4 | — |
-| BP-§6.4-8 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares deterministic domain commands | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; BP §6.4 | — |
+| BP-§6.4-8 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares deterministic domain commands | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; BP §6.4; Founder-approved governed-command ownership/timing | FPDR-1 |
 | BP-§6.4-9 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares voice/document handoff | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | DV; D14 | NI-CONV; BP §6.4 | — |
 | BP-§6.4-10 | BP@9dfdd924 | §6.4 Conversation and AI kernel shares auditability | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; BP §6.4 | — |
 | BP-§6.6-1 | BP@9dfdd924 | §6.6 thin channel adapters; channels do not become separate business engines | RULE | BUILD NOW | CORE-ARCH | SB-P-1.13 | IN SCOPE | — | NI-CONV; BP §6.6 | — |
@@ -1094,7 +1094,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | BP-§10.2-W6 | BP@9dfdd924 | §10.2 required work area: typed tool/action proposals | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102 | — |
 | BP-§10.2-W7 | BP@9dfdd924 | §10.2 required work area: permission-context propagation | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP102 | — |
 | BP-§10.2-W8 | BP@9dfdd924 | §10.2 required work area: clarification/preview/confirmation | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP102 | — |
-| BP-§10.2-W9 | BP@9dfdd924 | §10.2 required work area: deterministic domain command execution | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; A-BP102 | — |
+| BP-§10.2-W9 | BP@9dfdd924 | §10.2 required work area: deterministic domain command execution | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12; DTX | NI-CONV; A-BP102; Founder-approved governed-command ownership/timing | FPDR-1 |
 | BP-§10.2-W10 | BP@9dfdd924 | §10.2 required work area: audit trail | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP102 | — |
 | BP-§10.2-W11 | BP@9dfdd924 | §10.2 required work area: attachment handoff into UDI path | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D14 | NI-CONV; A-BP102 | — |
 | BP-§10.2-W12 | BP@9dfdd924 | §10.2 required work area: FAQ-before-AI Support Automation foundation | WORK | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102 | — |
@@ -1105,7 +1105,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | BP-§10.2-E3 | BP@9dfdd924 | §10.2 Founder-approved experience: natural-language actions cannot bypass permissions | EXP | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12 | NI-CONV; A-BP102 | — |
 | BP-§10.2-E4 | BP@9dfdd924 | §10.2 Founder-approved experience: structured pages remain available; conversation enriches rather than replaces | EXP | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102 | — |
 | BP-§10.2-E5 | BP@9dfdd924 | §10.2 Founder-approved experience: Smart Business still works if WhatsApp/Meta is disconnected | EXP | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102 | — |
-| BP-§10.2-SA1 | BP@9dfdd924 | §10.2 Founder Runtime Scenario A: natural-language transaction; clarify if required; preview; execute through governed command/RPC; confirm stored state | FRV | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12; DTX; DAI | NI-TXCMD; NI-AI; A-BP102; Delta D-02 (premise 'existing governed command/RPC' not met for transaction creation) | — |
+| BP-§10.2-SA1 | BP@9dfdd924 | §10.2 Founder Runtime Scenario A: natural-language transaction; clarify if required; preview; execute through governed command/RPC; confirm stored state | FRV | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12; DTX; DAI | NI-TXCMD; NI-AI; A-BP102; Delta D-02 (premise 'existing governed command/RPC' not met for transaction creation); Founder-approved governed-command ownership/timing | FPDR-1 |
 | BP-§10.2-SA2 | BP@9dfdd924 | §10.2 Founder Runtime Scenario A: Employee request for Owner-only profit denied | FRV | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | D12; DAI | NI-AI; A-BP102; dependency-blocked on SB-P-1.12 implementation (Delta D-05) | — |
 | BP-§10.2-SB | BP@9dfdd924 | §10.2 Founder Runtime Scenario B: Meta/WhatsApp unavailable; Owner completes approved native workflow; evidence of no Meta call | FRV | BUILD NOW | per row family | SB-P-1.13 | IN SCOPE | — | NI-CONV; A-BP102; BP §8.4 | — |
 | BP-§10.2-X | BP@9dfdd924 | §10.2 Exit principle | NARR | BUILD NOW | per contract | SB-P-1.13 | NOT APPLICABLE | — | L-NARR | — |

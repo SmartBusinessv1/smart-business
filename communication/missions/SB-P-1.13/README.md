@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 2 CANONICAL — STAGE 3 FOUNDER DECISION GATE AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE
+**Current status:** STAGE 3 FOUNDER DECISIONS CAPTURED — DECISION RECONCILIATION AWAITING FOUNDER HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -79,3 +79,17 @@ Mission Control confirms Stage 3 is TRIGGERED by T1, T2 and T4.
 The Founder dialogue is limited to FDB-1, FDB-2 and FDB-3 from the canonical Stage 2 Founder Decision Brief.
 
 No Stage 4 Blueprint work is authorized before the resulting Founder Product Decision Record is canonically reconciled.
+
+
+## Stage 3 Founder decisions — MC-04
+
+Founder approved FDB-1, FDB-2 and FDB-3 in the Stage 3 dialogue.
+
+Draft decision IDs:
+
+- FPDR-1 — governed create-transaction command / Scenario A;
+- FPDR-2 — Basic Voice credit/repayment sequencing;
+- FPDR-3 — transient raw-audio handling;
+- FPDR-4 — sensitive spoken-output fallback.
+
+Stage 4 remains NOT AUTHORIZED until the Stage 3 reconciliation is human-merged and verified.
