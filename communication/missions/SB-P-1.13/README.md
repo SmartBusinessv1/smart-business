@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 6 AUTHORIZED (MC-07, PR #782) — BUILDER REVIEW DRAFT SUBMITTED / AWAITING MISSION CONTROL REVIEW
+**Current status:** STAGE 6 COMPLETE / CANONICAL — B6-01/B6-02 RECONCILIATION AUTHORIZATION PREPARED / STAGE 7 BLOCKED
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -134,3 +134,14 @@ Stage 7, Sections 20–21, EIS and implementation remain NOT AUTHORIZED.
 Prepared on `mission/SB-P-1.13-stage6-builder-review` from `main@b146cad8ff05d1c511e37ebfe2f4172857ff23b5`: `claude-code/08-stage6-builder-review-report.md`. Draft only; findings and recommendations, not authority.
 
 16 findings (2 High, 8 Medium, 6 Low). B6-01 (T8 candidate: Owner-only paths and Scenario B also depend on SB-P-1.12 under its locked EIS §19.5) is a Stage 7 blocker pending Mission Control. B6-02 (T3 candidate: credit payment method versus `FPDR-2`) needs determination before the EIS. Dependent work is stopped on both. Stage 7, Sections 20–21, lock, EIS, implementation and production are not authorized.
+
+
+## Post-Stage-6 reconciliation — MC-09
+
+Stage 6 became canonical in PR #783 at `main@8d9fb3af6e1af9943a970d6ca75b8500b8d46715`.
+
+B6-01 requires narrow Blueprint/FCTM dependency reconciliation.
+
+B6-02 Founder decision is substantively resolved and requires canonical recording.
+
+Stage 7 remains blocked until the reconciliation is reviewed and human-merged.
