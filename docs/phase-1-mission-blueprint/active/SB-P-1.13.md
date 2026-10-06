@@ -7,8 +7,8 @@
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Mission Type | Product Mission — shared conversational, language, voice and AI-orchestration foundation |
-| Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 |
-| Status | `DRAFT — STAGE 4 AUTHORIZED; NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE`. Sections 20–21 are not drafted. No Builder Review, Engineering Review, lock, EIS or implementation follows from this draft. |
+| Lifecycle Stage | Post-Stage-6 B6-01/B6-02 canonical reconciliation — Stage 7 not authorized |
+| Status | `SECTIONS 1–19 STAGE 5 CANONICAL; STAGE 6 BUILDER REVIEW COMPLETE / CANONICAL; v0.2 B6-01/B6-02 RECONCILIATION PENDING MISSION CONTROL FINAL ACCEPTANCE AND HUMAN MERGE OF PR #785. STAGE 7 / SECTIONS 20–21 / BLUEPRINT LOCK / EIS / IMPLEMENTATION NOT AUTHORIZED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -19,9 +19,9 @@
 | Stage 3 gate | Triggered (T1, T2, T4, T6) and resolved by `FPDR-1` to `FPDR-4`; Stage 3 COMPLETE / CANONICAL (SB-P-1.13-MC-04, MC-05) |
 | Upstream dependency | SB-P-1.12 Authority, Identity & Product Surface Foundation: specification available (Blueprint and EIS `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`); evidence not complete |
 | Date | 2026-10-06 |
-| Builder Review | Not started (Stage 6, not authorized) |
+| Builder Review | COMPLETE / CANONICAL — Stage 6 findings B6-01 through B6-16 accepted under SB-P-1.13-MC-08, PR #783 |
 | Engineering Review | Not started (Stage 7, not authorized) |
-| Mission Control Review | Stage 5 pending |
+| Mission Control Review | COMPLETE THROUGH STAGE 6; B6-01/B6-02 reconciliation under Mission Control review |
 | Blueprint Lock | Not locked |
 
 ## Mission Snapshot
