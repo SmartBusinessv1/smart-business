@@ -1,29 +1,23 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.13 Stage 4 Product Blueprint Sections 1–19
+# Instruction — SB-P-1.13 Stage 6 Builder Review
 
 **Mission ID:** SB-P-1.13  
 **Mission Name:** Native Conversation & AI Intelligence Foundation  
 **From:** Smart Business Mission Control  
-**To:** Claude Code — Stage 2–4 Definition Actor  
-**Stage:** Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19  
+**To:** Claude Code — Stage 6 Builder Review actor  
+**Stage:** Source 18 v1.2 Stage 6 — Builder Review  
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
 **Date:** 2026-10-06 IST  
-**Canonical Stage 3:** PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`
+**Canonical Stage 5:** PR #781, `main@0944e0f621a9ee159b00eaf6b323e1d234de364d`
 
 ---
 
 # Objective
 
-Prepare the DRAFT Product Blueprint for SB-P-1.13:
+Conduct **Stage 6 Builder Review only** of the approved Blueprint Sections 1–19 and actual current repository.
 
-`docs/phase-1-mission-blueprint/active/SB-P-1.13.md`
-
-Draft only:
-
-- Metadata;
-- Mission Snapshot;
-- canonical Sections 1–19.
+Do not edit the Blueprint.
 
 Do not draft Sections 20/21.
 
@@ -33,133 +27,101 @@ Do not implement anything.
 
 # Required Intake
 
-Read canonical:
+Read fresh canonical:
 
-1. Stage 2 Mission Truth Pack;
-2. 974-row FCTM;
-3. source-first obligation inventory;
-4. Institutional Learning Intake;
-5. Delta evidence;
-6. Stage 2 completion report;
-7. Founder Product Decision Record FPDR-1 to FPDR-4;
-8. Stage 3 gate review;
-9. Build Plan §10.2 and all FCTM-linked Build Plan sections;
-10. Contracts 8, 9, 10, 12, 22, 24;
-11. Contract 21 delegated authority seams;
-12. inherited Contract 17/20/7 obligations;
-13. mapped delegate contracts;
-14. Global Product Completion View;
-15. Phase 1 institutional-memory guide and validated OLE promotions;
-16. Source 18 and communication protocol.
+1. `docs/phase-1-mission-blueprint/active/SB-P-1.13.md`;
+2. canonical 974-row FCTM;
+3. Founder Product Decision Record FPDR-1 through FPDR-4;
+4. Stage 5 gate record;
+5. Stage 2 Mission Truth Pack, Delta and obligation inventory;
+6. Build Plan §10.2 and mapped Build Plan sections;
+7. Contracts 8, 9, 10, 12, 22, 24;
+8. Contract 21 authority seam;
+9. inherited Contract 17/20/7 obligations;
+10. mapped delegate contracts;
+11. canonical SB-P-1.12 Blueprint/EIS and suspension/resume records;
+12. current repository implementation, routes, AI integration, commands/RPCs, voice references, attachment/media paths, support/FAQ paths and CI/workflow state;
+13. GPCV, Source 18, communication and independent-review protocols;
+14. Phase 1 institutional-memory guide and validated OLE promotions.
 
-Use fresh canonical blobs.
+Use read-only repository inspection. No provider dashboards or privileged production access.
 
 ---
 
-# Drafting Rules
+# One Authorized Deliverable
 
-## Assembly by reference
+Create:
 
-Do not rewrite mature Product Truth in new words where a citation is sufficient.
+`communication/missions/SB-P-1.13/claude-code/08-stage6-builder-review-report.md`
 
-New prose is limited to:
+For every finding include:
 
-- mission scope selection;
-- dependency explanation;
-- Delta implications;
-- acceptance structure;
-- implementation-neutral mission design.
+- Finding ID;
+- importance/severity;
+- Blueprint section;
+- FCTM row IDs;
+- source / FPDR reference;
+- repository evidence;
+- finding;
+- proposed refinement/engineering consideration;
+- product-behavior effect;
+- Stage 7 blocker status;
+- T2/T3/T6/T7/T8 screen.
 
-Any behavior with no FCTM/source mapping is a proposed refinement or scope expansion and must be flagged.
+Record `NO FINDING` where appropriate.
 
-## FCTM completeness
+---
 
-All 974 rows must be accounted for.
+# Mandatory Review Areas
 
-Every `IN SCOPE` row must map to:
+Review:
 
-- a Blueprint section;
-- source pointer;
-- acceptance/design obligation.
-
-Non-in-scope rows must preserve their exact disposition semantics.
-
-## Section 11
-
-Explicitly account for every:
-
-- `ASSIGNED TO LATER MISSION`;
-- `DELEGATED`;
-- `OUT OF BUILD SCOPE`.
-
-Preserve the receiving mission/delegate and commitment.
-
-Do not turn `BUILD NOW` into `BUILD LATER`.
-
-## Section 15
-
-Seed only approved Founder runtime scenarios / experience anchors.
-
-Required anchors include:
-
-- governed natural-language consequential action;
-- Employee denial of Owner-only financial intelligence;
+- Conversation Workspace fit with current app/navigation;
+- English/Malayalam/Manglish implementation path;
+- AI gateway/provider abstraction;
+- typed tool/action proposals;
+- governed deterministic command path;
+- FPDR-1 create-transaction command;
+- permission-context propagation and denial;
+- cross-business isolation;
+- execution-time revalidation;
+- Basic Voice and FPDR-2 dependency;
+- FPDR-3 transient audio;
+- FPDR-4 sensitive output fallback;
+- UDI attachment handoff boundary;
+- FAQ-first support foundation;
 - WhatsApp-independence;
-- Basic Voice using the same authority/confirmation truth as text.
-
-Do not invent a new Founder scenario.
-
-## Section 19
-
-Include FCTM row-ID → Blueprint section → source mapping for all rows.
+- provider failure and retries/idempotency;
+- OpenAI/provider data controls;
+- voice-provider readiness;
+- SB-P-1.12 implementation dependency.
 
 ---
 
-# Founder Decisions
+# Escalation Rule
 
-## FPDR-1
+If you find a new product decision, conflict, infeasibility, scope change, mission reassignment, omission, deferral, pull-forward, commercial change or new Founder scenario:
 
-Design the additive governed create-transaction command for currently available transaction types as part of SB-P-1.13.
+1. cite exact evidence;
+2. classify the applicable T2/T3/T6/T7/T8 trigger;
+3. stop dependent work;
+4. return it to Mission Control.
 
-Reuse existing transaction/correction foundations.
-
-Do not pull mature Ledger into this mission.
-
-## FPDR-2
-
-Build Basic Voice here.
-
-Credit/repayment final persistence/acceptance remains blocked on SB-P-1.14 four-state Ledger.
-
-Do not move the affected Voice rows.
-
-## FPDR-3
-
-Before SB-P-1.14 governed media:
-
-- raw audio is transient;
-- raw audio is not durable Smart Business media;
-- transcript/result/audit may persist under policy.
-
-## FPDR-4
-
-Sensitive authorized Owner-only content falls back to authenticated text where spoken presentation is inappropriate/unsafe.
-
-Permission system remains authoritative.
+Do not silently repair Product Truth.
 
 ---
 
-# SB-P-1.12 Dependency
+# Stage 7 Independence
 
-Treat SB-P-1.12 as:
+This review is not independent Stage 7 assurance.
 
-- specification available;
-- implementation not complete;
-- evidence not complete.
+Do not self-appoint specialist reviewers.
 
-No temporary parallel permission model.
+Mission Control must later appoint independent:
 
-Do not claim runtime behavior is working unless later independently evidenced.
+- Security & Permissions Architecture;
+- AI Behavior / Model Orchestration Safety;
+- Voice / Provider Readiness.
 
 ---
 
@@ -173,7 +135,7 @@ Repository:
 
 Locked branch:
 
-`mission/SB-P-1.13-stage4-blueprint-draft`
+`mission/SB-P-1.13-stage6-builder-review`
 
 Base:
 
@@ -181,35 +143,45 @@ fresh canonical `main` containing this authorization.
 
 Exact writable paths:
 
-- `docs/phase-1-mission-blueprint/active/SB-P-1.13.md`
 - `communication/live/report.md`
 - `communication/missions/SB-P-1.13/README.md`
 - `communication/missions/SB-P-1.13/decision-log.md`
 - `communication/missions/SB-P-1.13/handover-log.md`
-- `communication/missions/SB-P-1.13/claude-code/07-stage4-blueprint-drafting-report.md`
+- `communication/missions/SB-P-1.13/claude-code/08-stage6-builder-review-report.md`
+
+Read-only:
+
+- Blueprint;
+- FCTM;
+- Founder Decision Record;
+- Mission Control decisions;
+- contracts;
+- Build Plan;
+- GPCV;
+- governance/OLE;
+- migrations/SQL/app/config;
+- unrelated paths.
 
 Permitted:
 
-- read/fetch/status inspection;
+- fetch/status/read-only inspection;
 - create locked branch;
-- read-only source/repository inspection;
-- edit exact writable files;
-- run safe local validation;
+- exact authorized file edits;
+- safe local checks;
 - commit/push only locked branch;
 - open one DRAFT PR to `main`.
 
 Prohibited:
 
+- Blueprint edits;
 - direct main push;
+- force push;
 - self-merge;
-- FCTM edits;
-- Founder Decision Record edits;
-- source contract/governance/GPCV/OLE edits;
 - Sections 20/21;
 - EIS;
-- application code;
+- implementation;
 - SQL/migration;
-- provider or production action.
+- provider/production action.
 
 ---
 
@@ -217,17 +189,16 @@ Prohibited:
 
 Return:
 
-- draft Blueprint path;
-- drafting report path;
+- report path;
 - DRAFT PR number;
 - final head SHA;
-- changed-file list;
-- Section 11 accounting result;
-- Section 15 scenario list;
-- Section 19 row-mapping count;
-- T3/T7/T8 findings;
+- changed files;
+- finding count by severity;
+- finding-by-finding disposition recommendation;
+- T2/T3/T6/T7/T8 results;
+- Stage 7 blocker list;
 - local/check evidence.
 
 End exactly:
 
-**STAGE 4 BLUEPRINT SECTIONS 1–19 DRAFT PREPARED — AWAITING MISSION CONTROL STAGE 5 REVIEW; STAGE 6/7/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+**STAGE 6 BUILDER REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
