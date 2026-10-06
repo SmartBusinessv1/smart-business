@@ -15,7 +15,7 @@
 | Stage 4 Authorization | SB-P-1.13-MC-05, `communication/missions/SB-P-1.13/mission-control/07-stage4-blueprint-preparation-authorization.md`, canonical at `main@f81219cc89019af005fc2985acf0e1ba01445031` (PR #780) |
 | Governing Build Plan section | Build Plan §10.2 (`00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Canonical FCTM | `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`, blob `97ddc752dcbbdb6586110a782ef1e24405b6dd22`: 974 rows — 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). Post-Stage-6 decision `FPDR-5`: `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md` (draft until human merge; SB-P-1.13-MC-09). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
+| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). Post-Stage-6 decision `FPDR-5`: `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md` (canonical — PR #785, main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc; SB-P-1.13-MC-09 / MC-10). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
 | Stage 3 gate | Triggered (T1, T2, T4, T6) and resolved by `FPDR-1` to `FPDR-4`; Stage 3 COMPLETE / CANONICAL (SB-P-1.13-MC-04, MC-05) |
 | Upstream dependency | SB-P-1.12 Authority, Identity & Product Surface Foundation: specification available (Blueprint and EIS `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`); evidence not complete |
 | Date | 2026-10-06 |
@@ -281,7 +281,7 @@ This decision does not decide the still-open long-term post-cancellation retenti
 - lack of listening-context certainty must never be used to grant or deny underlying data permission;
 - unauthorized roles remain denied entirely under the existing permission rules.
 
-**FPDR-5 — Existing credit-payment-method sales in SB-P-1.13** (post-Stage-6, `founder/03-post-stage6-founder-product-decision-record.md`; draft until human merge).
+**FPDR-5 — Existing credit-payment-method sales in SB-P-1.13** (post-Stage-6, `founder/03-post-stage6-founder-product-decision-record.md`; canonical — PR #785, `main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc`).
 
 Founder approval, quoted: "Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14."
 
