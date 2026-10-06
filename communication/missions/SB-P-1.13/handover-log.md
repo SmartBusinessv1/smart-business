@@ -242,3 +242,21 @@ Pull request, head SHA and check evidence: pull-request handover comment.
 Next action: Mission Control review of the exact row-level changes; human merge; Mission Control verification; separate appointment of independent Stage 7 specialists.
 
 Not authorized: Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.
+
+
+## H-13 — B6 reconciliation canonical → Stage 7 authorization
+
+**Date:** 2026-10-06  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code + independent specialists  
+**Canonical main:** `dbd8f4c179cba0888afc80c67616cbe4cceabcfc`
+
+Next action:
+
+Founder human merge of the Stage 7 authorization PR.
+
+After post-merge verification:
+- Claude Code may draft Sections 20–21;
+- the three independent specialist reviews may run in parallel.
+
+No Stage 8, Blueprint lock or EIS authority follows.
