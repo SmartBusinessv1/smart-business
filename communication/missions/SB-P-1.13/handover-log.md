@@ -147,3 +147,22 @@ After merge:
 Claude Code may prepare only Metadata, Mission Snapshot and Sections 1–19 in the SB-P-1.13 Blueprint.
 
 Stage 5 Mission Control review follows. No EIS or implementation authority is implied.
+
+
+## H-08 — Stage 4 Blueprint draft → Mission Control Stage 5 review
+
+**Date:** 2026-10-06
+**From:** Claude Code (Stage 2–4 Definition Actor)
+**To:** Mission Control
+**Base:** `main@f81219cc89019af005fc2985acf0e1ba01445031`
+**Branch:** `mission/SB-P-1.13-stage4-blueprint-draft`
+
+Prepared `docs/phase-1-mission-blueprint/active/SB-P-1.13.md` (Metadata, Mission Snapshot, Sections 1–19) and `claude-code/07-stage4-blueprint-drafting-report.md`.
+
+The live report base file was reused for this handover. Its previous Stage 3 content is preserved byte-identically at `main@f81219cc89019af005fc2985acf0e1ba01445031` and recorded in `founder/02-stage3-founder-product-decision-record.md` and `mission-control/06-stage3-founder-decision-gate-review.md`.
+
+Pull request, head SHA and check evidence: pull-request handover comment.
+
+Next action: Mission Control Stage 5 Product Review.
+
+Not authorized: Sections 20–21, Builder Review, Engineering Review, EIS, implementation, SQL or migration work, provider or voice-provider action, production access, Blueprint lock, self-merge.
