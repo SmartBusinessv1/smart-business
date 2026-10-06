@@ -10,7 +10,7 @@
 
 **To:** Mission Control
 
-**Status:** DRAFT STAGE 7 OUTPUT — FINDINGS NAMING A SPECIALIST HELD; NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+**Status:** STAGE 7 ENGINEERING REVIEW SUBMITTED FOR FINAL MISSION CONTROL ACCEPTANCE — NOT YET ACCEPTED; NOT CANONICAL UNTIL HUMAN MERGE
 
 **Date:** 2026-10-06
 
@@ -18,9 +18,9 @@
 
 # Executive Summary
 
-Blueprint Sections 20–21 are drafted on `mission/SB-P-1.13-stage7-engineering-review` from `main@81c7d520a4d226cd9b7bf2165cd2dfcd494d613b`. Pull request and head SHA: see the pull-request handover comment.
+The Stage 7 Engineering Review on PR #787 (`mission/SB-P-1.13-stage7-engineering-review`, with canonical `main@dbe30ed583af1449289120b6074b171cbd2bdae5`) now incorporates the three canonical independent specialist reviews (PRs #788, #789, #790) under the Mission Control consolidated correction. Head SHA: see the pull-request handover comment.
 
-651 rows with a finding: 252 `BLOCKED` (exactly the `D12` rows), 271 `FOLLOW-UP`, 128 `PASS`, 0 `NOT APPLICABLE`; 598 held pending a specialist. No new T2, T3, T6, T7 or T8 trigger. The three independent specialist reviews are separate and pending.
+651 rows with a finding: 252 `BLOCKED` (exactly the `D12` rows; all 17 `DTX` rows included), 271 `FOLLOW-UP`, 128 `PASS`, 0 `NOT APPLICABLE`. Remaining holds are tied to unresolved conditions (SB-P-1.12 evidence, transaction cut-over, provider evidence, multilingual evaluation, transient-audio proof, confirmation/idempotency, FPDR-4 context, later-mission dependencies, runtime evidence), not to pending reviews. T6 triggered and resolved by Mission Control as engineering constraints; T2, T3, T7, T8 not triggered.
 
 ---
 
@@ -49,30 +49,31 @@ See Blueprint Sections 20–21 and `communication/missions/SB-P-1.13/claude-code
 
 # Verification
 
-- Register: 651 rows, each `IN SCOPE` row once; `BLOCKED` set equals the `D12` set.
-- Sections 1–19 unchanged apart from the permitted lines.
+- Register: 651 unique rows; `BLOCKED` set equals the `D12` set; all 17 `DTX` rows `BLOCKED`.
+- Specialist report files byte-identical to main; FCTM and `FPDR-1` to `FPDR-5` unchanged.
+- Sections 1–17 identical to main; Section 19 changed only by C-2; Metadata only the four permitted fields.
 - Markdown Quality Gate and pre-commit gate: PASS.
 
 ---
 
 # Risks and Limitations
 
-Not independent assurance: the same actor authored Sections 1–19 and the Stage 6 review.
+The Engineering Review owner also authored Sections 1–19 and the Stage 6 review; independent assurance comes from the three canonical specialist reviews.
 
 ---
 
 # Founder or Mission Control Action Required
 
-Mission Control: receive the specialist reports and disposition held findings.
+Mission Control: final exact-head review and Stage 7 acceptance decision.
 
 ---
 
 # Recommended Next Step
 
-Independent specialist reviews, then Mission Control Stage 7 review.
+Mission Control final Stage 7 review of PR #787.
 
 ---
 
 # Completion Status
 
-**STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL AND INDEPENDENT SPECIALIST REVIEW; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+**STAGE 7 CONSOLIDATED CORRECTION COMPLETE — PR #787 AWAITING MISSION CONTROL FINAL EXACT-HEAD REVIEW; STAGE 8 / BLUEPRINT LOCK / EIS / IMPLEMENTATION / PROVIDER / PRODUCTION NOT AUTHORIZED.**
