@@ -112,3 +112,15 @@ No Sections 20/21, EIS, implementation or provider/runtime work is authorized.
 Claude Code prepared the draft Product Blueprint Sections 1–19 under SB-P-1.13-MC-05. It is assembled by reference to the canonical 974-row FCTM and `FPDR-1` to `FPDR-4`, which are quoted unchanged.
 
 No FCTM row, disposition, assignment, commitment or Founder decision was changed. No T3, T7 or T8 trigger was found. This entry authorizes nothing.
+
+
+## D-09 — Stage 5 canonical; Stage 6 Builder Review authorization prepared
+
+**Date:** 2026-10-06  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 5 Sections 1–19 are canonical at `0944e0f621a9ee159b00eaf6b323e1d234de364d`.
+
+Mission Control prepares Stage 6 Builder Review authorization for Claude Code.
+
+Blueprint/FCTM/Product Truth remain read-only. Stage 7 specialist review, Sections 20–21, EIS and implementation remain NOT AUTHORIZED.

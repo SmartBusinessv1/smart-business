@@ -166,3 +166,27 @@ Pull request, head SHA and check evidence: pull-request handover comment.
 Next action: Mission Control Stage 5 Product Review.
 
 Not authorized: Sections 20–21, Builder Review, Engineering Review, EIS, implementation, SQL or migration work, provider or voice-provider action, production access, Blueprint lock, self-merge.
+
+
+## H-09 — Stage 5 canonical → Stage 6 Builder Review authorization
+
+**Date:** 2026-10-06  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Stage 5 canonical main:** `0944e0f621a9ee159b00eaf6b323e1d234de364d`
+
+Prepared:
+
+- Stage 6 Builder Review authorization;
+- Stage 6 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder human merge of the Stage 6 authorization PR.
+
+After merge:
+
+Claude Code may conduct review-only Stage 6 and submit one DRAFT findings PR.
+
+No Blueprint edit, Stage 7, EIS or implementation authority follows.

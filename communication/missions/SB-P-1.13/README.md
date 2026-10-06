@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 4 AUTHORIZED (MC-05, PR #780) — BLUEPRINT SECTIONS 1–19 DRAFT PREPARED / AWAITING MISSION CONTROL STAGE 5 REVIEW
+**Current status:** STAGE 5 COMPLETE / CANONICAL — STAGE 6 BUILDER REVIEW AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -116,3 +116,14 @@ Prepared on `mission/SB-P-1.13-stage4-blueprint-draft` from `main@f81219cc89019a
 | Stage 4 drafting report | `claude-code/07-stage4-blueprint-drafting-report.md` |
 
 All 974 FCTM rows are mapped in Section 19; `FPDR-1` to `FPDR-4` are quoted unchanged in Section 10.1. No T3, T7 or T8 trigger found. Sections 20–21, EIS, implementation, SQL, provider and production work are not authorized.
+
+
+## Stage 6 preparation — MC-07
+
+Stage 5 became canonical in PR #781 at `main@0944e0f621a9ee159b00eaf6b323e1d234de364d`.
+
+Mission Control has prepared a separate Stage 6 Builder Review authorization.
+
+The Blueprint and FCTM remain read-only during Stage 6. Findings are recommendations/evidence only.
+
+Stage 7, Sections 20–21, EIS and implementation remain NOT AUTHORIZED.
