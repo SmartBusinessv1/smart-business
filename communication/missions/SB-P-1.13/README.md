@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** B6-01/B6-02 RECONCILIATION AUTHORIZED (MC-09, PR #784) — RECONCILIATION DRAFT PREPARED / AWAITING MISSION CONTROL REVIEW / STAGE 7 BLOCKED
+**Current status:** STAGE 6 COMPLETE / B6 RECONCILIATION CANONICAL — STAGE 7 ENGINEERING + SPECIALIST AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -159,3 +159,12 @@ Prepared on `mission/SB-P-1.13-b6-reconciliation` from `main@35314a92a357646c56c
 | FCTM (dependency, evidence and Founder-decision cells only) | `claude-code/02-stage2-populated-fctm.md` |
 
 B6-01: 54 rows gain `D12` (252 `IN SCOPE` rows now carry it); Scenario B is WhatsApp-independent, not SB-P-1.12-authority-independent. B6-02: `FPDR-5` on 5 rows. FCTM stays 974 rows with no disposition, owner, commitment or classification change. Stage 7 remains blocked until this package is merged and specialists are appointed.
+
+
+## Stage 7 preparation — MC-11
+
+PR #785 is canonical at `main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc`.
+
+Stage 7 Engineering Review and three mandatory independent specialist domains are prepared for authorization.
+
+No Stage 7 work is effective until the authorization PR is human-merged and Mission Control verifies the merge.
