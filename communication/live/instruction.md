@@ -1,128 +1,157 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.13 B6-01/B6-02 Canonical Reconciliation
+# Instruction — SB-P-1.13 Stage 7 Engineering Review
 
 **Mission ID:** SB-P-1.13  
 **From:** Smart Business Mission Control  
-**To:** Claude Code  
+**To:** Claude Code — Stage 7 Engineering Review owner  
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
 **Date:** 2026-10-06 IST  
-**Canonical Stage 6:** PR #783, `main@8d9fb3af6e1af9943a970d6ca75b8500b8d46715`
+**Canonical baseline:** `main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc`
 
 ---
 
 # Objective
 
-Prepare one narrow post-Stage-6 reconciliation package.
+After this authorization becomes effective, prepare Source 18 Stage 7:
 
-Resolve only:
+- `20. Engineering Review`
+- `21. Engineering Questions, Risks & Recommendations`
 
-1. B6-01 — SB-P-1.12 authority/business-context dependency annotation.
-2. B6-02 — canonical Founder decision for existing sale + payment_method=credit.
+for SB-P-1.13.
 
-Do not begin Stage 7.
+Address every one of the **651 IN SCOPE** FCTM rows.
 
----
+Do not edit the FCTM.
 
-# B6-01
-
-Use the locked SB-P-1.12 EIS §19.5 as controlling authority.
-
-Correct Blueprint §12 and §15.1 so Scenario B remains WhatsApp-independent but is not falsely described as independent of SB-P-1.12 authority/business-context infrastructure.
-
-Derive the exact FCTM rows that require `D12`.
-
-Do not assume 139.
-
-For each newly annotated row report:
-
-- row ID;
-- business-scoped reason;
-- consumed SB-P-1.12 capability;
-- source/Blueprint pointer;
-- previous dependency;
-- new dependency.
-
-Preserve every other FCTM field.
+Do not create an EIS.
 
 ---
 
-# B6-02
+# Mandatory Inputs
 
-Create:
+Read fresh canonical:
 
-`communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md`
+- Blueprint v0.2 Sections 1–19;
+- 974-row reconciled FCTM;
+- FPDR-1 through FPDR-5;
+- Stage 6 Builder Review and MC-08;
+- B6 reconciliation report and MC-10;
+- SB-P-1.12 locked Blueprint/EIS and current suspension status;
+- Build Plan §10.2;
+- all mapped contracts/delegates;
+- current repository;
+- Source 18;
+- applicable institutional learning.
 
-Record the Founder decision exactly:
-
-`Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14.`
-
-Meaning:
-
-- existing sale + payment_method=credit may be recorded here;
-- no mature credit balance/owed-state/repayment/four-state Ledger state here;
-- repayment remains SB-P-1.14;
-- ambiguous statements that require unavailable mature credit truth must clarify or remain blocked.
-
-Assign a new Founder Decision ID and annotate only exact affected Blueprint/FCTM rows.
-
-Do not alter FPDR-1 through FPDR-4.
+Carry Stage 6 findings B6-03 through B6-16 according to MC-08/MC-10.
 
 ---
 
-# Exact Writable Paths
+# Required Stage 7 Outputs
 
-Repository:
+Append only:
 
-`SmartBusinessv1/smart-business`
+`## 20. Engineering Review`
+
+and
+
+`## 21. Engineering Questions, Risks & Recommendations`
+
+Section 20/21 must include:
+
+- feasibility/risk finding for all 651 IN SCOPE rows;
+- early delivery plan;
+- environment assumptions;
+- migration expectations and rehearsal needs;
+- cross-mission dependencies;
+- CI tiers;
+- scope flags;
+- specialist dependencies;
+- held findings;
+- verification implications.
+
+Blocked/unsafe/infeasible rows remain IN SCOPE.
+
+---
+
+# Independent Specialist Boundary
+
+Three specialist reviews are mandatory and run in parallel:
+
+1. Security & Permissions Architecture
+2. AI Behavior / Model Orchestration Safety
+3. Voice / Provider Readiness
+
+Do not author those reports.
+
+Do not represent them as complete until Mission Control has their actual reports.
+
+Engineering findings dependent on a specialist remain held until that review is dispositioned.
+
+---
+
+# Git Authorization
+
+Effective only after human merge of the companion Stage 7 authorization PR and Mission Control post-merge verification.
 
 Locked branch:
 
-`mission/SB-P-1.13-b6-reconciliation`
-
-Effective only after human merge of this authorization PR.
+`mission/SB-P-1.13-stage7-engineering-review`
 
 Writable:
 
 - `docs/phase-1-mission-blueprint/active/SB-P-1.13.md`
-- `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`
-- `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md`
-- `communication/missions/SB-P-1.13/claude-code/09-b6-reconciliation-report.md`
+- `communication/missions/SB-P-1.13/claude-code/10-stage7-engineering-review-report.md`
 - `communication/live/report.md`
 - `communication/missions/SB-P-1.13/README.md`
 - `communication/missions/SB-P-1.13/decision-log.md`
 - `communication/missions/SB-P-1.13/handover-log.md`
 
-Read-only:
+Blueprint permission:
 
-- prior Founder records;
-- Stage 6 report;
-- Mission Control records;
-- contracts;
-- Build Plan;
-- SB-P-1.12 EIS;
-- GPCV/OLE;
-- app/code/SQL/migrations/config;
-- Sections 20–21.
+- append Sections 20 and 21;
+- update only Lifecycle Stage, Status, Engineering Review and Mission Control Review metadata;
+- append one Section 18 change-log row.
+
+Everything else in Sections 1–19 remains byte-identical.
+
+FCTM is read-only.
 
 ---
 
-# Required Evidence
+# Prohibited
+
+No:
+
+- Stage 8;
+- Blueprint lock;
+- EIS;
+- implementation;
+- code;
+- SQL/migration;
+- provider/production action;
+- workflow/branch-protection change;
+- FCTM edit;
+- Founder Decision edit;
+- self-merge.
+
+---
+
+# Submission
 
 Return:
 
 - DRAFT PR number;
 - final head SHA;
 - changed files;
-- exact B6-01 newly-D12 row count and row-ID list;
-- exact B6-02 annotated row count and row-ID list;
-- proof FCTM remains 974 rows;
-- proof no owner/disposition/build/commercial field changed;
-- Blueprint section diffs;
-- Founder Decision ID;
+- count of per-row Stage 7 findings;
+- finding counts by PASS/FOLLOW-UP/BLOCKED/NOT APPLICABLE;
+- early delivery plan summary;
+- specialist-dependent finding list;
 - T2/T3/T6/T7/T8 screen;
-- local/check evidence.
+- checks.
 
 End exactly:
 
-**B6-01/B6-02 CANONICAL RECONCILIATION DRAFT PREPARED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+**STAGE 7 ENGINEERING REVIEW DRAFT SUBMITTED — AWAITING MISSION CONTROL AND INDEPENDENT SPECIALIST REVIEW; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
