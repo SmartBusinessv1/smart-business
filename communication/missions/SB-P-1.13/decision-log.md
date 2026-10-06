@@ -76,3 +76,15 @@ Mission Control confirms T1, T2 and T4 triggered Stage 3.
 Founder dialogue scope is limited to FDB-1, FDB-2 and FDB-3.
 
 No Stage 4, EIS, implementation or provider/runtime authority follows.
+
+
+## D-06 — Founder approves all Stage 3 decision areas
+
+**Date:** 2026-10-06  
+**Founder response:** `yes approved` to the three recommendations presented under FDB-1, FDB-2 and FDB-3.
+
+Mission Control records draft FPDR-1 through FPDR-4 and a surgical FCTM reconciliation.
+
+Stage 3 remains non-canonical until Founder human merge of the reconciliation PR.
+
+Stage 4 remains NOT AUTHORIZED.
