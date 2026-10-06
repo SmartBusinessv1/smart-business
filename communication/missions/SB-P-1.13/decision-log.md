@@ -159,3 +159,18 @@ Under SB-P-1.13-MC-09, Claude Code prepared the reconciliation package:
 - B6-02: Founder decision recorded as `FPDR-5` ("Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14.") and annotated on 5 rows.
 
 No row, disposition, owning mission, build commitment or commercial classification changed; `FPDR-1` to `FPDR-4` are unchanged. This entry authorizes nothing.
+
+
+## D-13 — Stage 7 Engineering Review + specialist authorization prepared
+
+**Date:** 2026-10-06  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+B6 reconciliation is canonical at `dbd8f4c179cba0888afc80c67616cbe4cceabcfc`.
+
+Mission Control prepares Stage 7 Engineering Review authority for Claude Code plus mandatory parallel independent specialist reviews:
+- Security & Permissions Architecture;
+- AI Behavior / Model Orchestration Safety;
+- Voice / Provider Readiness.
+
+Stage 8, Blueprint lock and EIS remain NOT AUTHORIZED.
