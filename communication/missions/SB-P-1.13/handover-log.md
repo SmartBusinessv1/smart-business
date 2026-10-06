@@ -123,3 +123,27 @@ Founder human merge of the Stage 3 decision-reconciliation PR.
 After verified merge:
 
 Mission Control may prepare a separate Stage 4 Blueprint authorization.
+
+
+## H-07 — Stage 3 canonical → Stage 4 Blueprint authorization
+
+**Date:** 2026-10-06  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Stage 3 canonical main:** `ecae33128e28358bf8fa3c308a5b33fc3fe284b2`
+
+Prepared:
+
+- Stage 4 Blueprint drafting authorization;
+- Stage 4 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder human merge of the Stage 4 authorization PR.
+
+After merge:
+
+Claude Code may prepare only Metadata, Mission Snapshot and Sections 1–19 in the SB-P-1.13 Blueprint.
+
+Stage 5 Mission Control review follows. No EIS or implementation authority is implied.
