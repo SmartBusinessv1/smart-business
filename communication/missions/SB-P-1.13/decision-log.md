@@ -132,3 +132,17 @@ Blueprint/FCTM/Product Truth remain read-only. Stage 7 specialist review, Sectio
 **Status:** DRAFT — AWAITING MISSION CONTROL REVIEW
 
 Claude Code submitted the Stage 6 Builder Review under SB-P-1.13-MC-07. Findings only: B6-01 is a T8 candidate and a Stage 7 blocker pending Mission Control; B6-02 is a T3 candidate. No Blueprint, FCTM or Founder decision was changed, and no specialist was appointed. This entry authorizes nothing.
+
+
+## D-11 — Stage 6 canonical; B6-01/B6-02 reconciliation authorization prepared
+
+**Date:** 2026-10-06  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 6 is canonical at `8d9fb3af6e1af9943a970d6ca75b8500b8d46715`.
+
+Mission Control prepares a narrow reconciliation authorization for:
+- B6-01 authority dependency truth;
+- B6-02 Founder credit-payment-method decision.
+
+Stage 7 remains NOT AUTHORIZED.
