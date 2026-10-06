@@ -1,17 +1,17 @@
 # SB-P-1.13 — Independent Stage 7 Security & Permissions Architecture Review
 
-**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation  
-**Review role:** S7-SP-1 — Security & Permissions Architecture  
-**Authority:** `communication/missions/SB-P-1.13/mission-control/14-stage7-security-specialist-instruction.md` and SB-P-1.13-MC-11 / `mission-control/13-stage7-engineering-and-specialist-authorization.md`  
-**Canonical repository baseline actually reviewed:** `main@81c7d520a4d226cd9b7bf2165cd2dfcd494d613b`  
-**Review type:** Read-only independent specialist review  
+**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
+**Review role:** S7-SP-1 — Security & Permissions Architecture
+**Authority:** `communication/missions/SB-P-1.13/mission-control/14-stage7-security-specialist-instruction.md` and SB-P-1.13-MC-11 / `mission-control/13-stage7-engineering-and-specialist-authorization.md`
+**Canonical repository baseline actually reviewed:** `main@81c7d520a4d226cd9b7bf2165cd2dfcd494d613b`
+**Review type:** Read-only independent specialist review
 **Status:** SUBMITTED TO MISSION CONTROL — NO APPROVAL / IMPLEMENTATION AUTHORITY
 
 ## 1. Actor, provider, session and independence statement
 
-**Actual actor/model:** ChatGPT — GPT-5.6 Sol  
-**Provider:** OpenAI  
-**Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room  
+**Actual actor/model:** ChatGPT — GPT-5.6 Sol
+**Provider:** OpenAI
+**Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room
 **Specialist role:** Existing Security & Permissions Architecture reviewer
 
 ### Prior contribution
@@ -92,8 +92,8 @@ Accordingly:
 
 ### SEC-13-S7-01 — D12 is a hard consumption gate, not documentary proof
 
-**Severity:** HIGH  
-**Finding type:** Dependency / evidence hold  
+**Severity:** HIGH
+**Finding type:** Dependency / evidence hold
 **Stage 7 disposition:** HOLD affected findings pending upstream implementation evidence
 
 #### Evidence
@@ -145,8 +145,8 @@ No Product Truth change is required.
 
 ### SEC-13-S7-02 — Direct transaction INSERT cannot coexist as an authority-bypassing second write path
 
-**Severity:** CRITICAL  
-**Finding type:** Security architecture / cut-over requirement  
+**Severity:** CRITICAL
+**Finding type:** Security architecture / cut-over requirement
 **Stage 7 disposition:** HOLD all DTX acceptance until single-path cut-over is evidenced
 
 #### Evidence
@@ -225,8 +225,8 @@ No Founder/Product Truth gate is required to enforce the locked one-path securit
 
 ### SEC-13-S7-03 — Active-business context and cross-business isolation are correctly specified but not yet demonstrable
 
-**Severity:** HIGH  
-**Finding type:** Dependency / verification hold  
+**Severity:** HIGH
+**Finding type:** Dependency / verification hold
 **Stage 7 disposition:** HOLD runtime/isolation acceptance
 
 #### Evidence
@@ -277,8 +277,8 @@ No new security architecture is required inside SB-P-1.13.
 
 ### SEC-13-S7-04 — Employee denial must be enforced before protected context reaches the model
 
-**Severity:** HIGH  
-**Finding type:** Security verification hold  
+**Severity:** HIGH
+**Finding type:** Security verification hold
 **Stage 7 disposition:** HOLD Employee-denial acceptance
 
 #### Evidence
@@ -325,8 +325,8 @@ Required verification must prove:
 
 ### SEC-13-S7-05 — Execution-time revalidation, confirmation binding and idempotency are correctly consumed, but remain upstream-gated
 
-**Severity:** HIGH  
-**Finding type:** Dependency / concurrency evidence hold  
+**Severity:** HIGH
+**Finding type:** Dependency / concurrency evidence hold
 **Stage 7 disposition:** HOLD consequential-action acceptance
 
 #### Evidence
@@ -388,8 +388,8 @@ No separate SB-P-1.13 confirmation or idempotency store may be introduced.
 
 ### SEC-13-S7-06 — Service-role paths must inherit the SB-P-1.12 privileged-operation contract
 
-**Severity:** HIGH  
-**Finding type:** Dependency / privileged-path hold  
+**Severity:** HIGH
+**Finding type:** Dependency / privileged-path hold
 **Stage 7 disposition:** HOLD any privileged conversational tool path until handler binding is evidenced
 
 #### Evidence
@@ -438,8 +438,8 @@ Any Stage 7 finding involving a privileged tool/server handler must remain held 
 
 ### SEC-13-S7-07 — Audit/provenance design is directionally correct; durability remains D12-dependent
 
-**Severity:** MEDIUM-HIGH  
-**Finding type:** Dependency / audit evidence hold  
+**Severity:** MEDIUM-HIGH
+**Finding type:** Dependency / audit evidence hold
 **Stage 7 disposition:** HOLD audit-completeness claims
 
 #### Evidence
@@ -486,8 +486,8 @@ Conversation provenance may add the SB-P-1.13 interpretation/clarification layer
 
 ### SEC-13-S7-08 — Permission propagation across text/voice/AI is structurally sound, but channel parity must not be inferred from orchestration reuse alone
 
-**Severity:** MEDIUM  
-**Finding type:** Verification requirement  
+**Severity:** MEDIUM
+**Finding type:** Verification requirement
 **Stage 7 disposition:** FOLLOW-UP / HOLD runtime parity evidence
 
 #### Evidence
