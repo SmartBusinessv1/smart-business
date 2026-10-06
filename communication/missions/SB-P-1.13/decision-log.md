@@ -146,3 +146,16 @@ Mission Control prepares a narrow reconciliation authorization for:
 - B6-02 Founder credit-payment-method decision.
 
 Stage 7 remains NOT AUTHORIZED.
+
+
+## D-12 — B6-01/B6-02 reconciliation drafted; `FPDR-5` recorded
+
+**Date:** 2026-10-06
+**Status:** DRAFT — AWAITING MISSION CONTROL REVIEW AND HUMAN MERGE
+
+Under SB-P-1.13-MC-09, Claude Code prepared the reconciliation package:
+
+- B6-01: `D12` added to 54 proven rows; Blueprint §12.1 and §15.1 corrected so Scenario B is WhatsApp-independent but not SB-P-1.12-authority-independent;
+- B6-02: Founder decision recorded as `FPDR-5` ("Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14.") and annotated on 5 rows.
+
+No row, disposition, owning mission, build commitment or commercial classification changed; `FPDR-1` to `FPDR-4` are unchanged. This entry authorizes nothing.

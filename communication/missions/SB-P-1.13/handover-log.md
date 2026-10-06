@@ -225,3 +225,20 @@ After merge:
 Claude Code may prepare only the authorized reconciliation package.
 
 Stage 7 remains blocked.
+
+
+## H-12 — B6-01/B6-02 reconciliation → Mission Control review
+
+**Date:** 2026-10-06
+**From:** Claude Code (reconciliation actor)
+**To:** Mission Control
+**Base:** `main@35314a92a357646c56cda6107e2aebeb970a28f6`
+**Branch:** `mission/SB-P-1.13-b6-reconciliation`
+
+Prepared the reconciliation report, `FPDR-5` record, Blueprint v0.2 and FCTM cell amendments. The live report base file was reused; its previous content is preserved byte-identically at `main@35314a92`.
+
+Pull request, head SHA and check evidence: pull-request handover comment.
+
+Next action: Mission Control review of the exact row-level changes; human merge; Mission Control verification; separate appointment of independent Stage 7 specialists.
+
+Not authorized: Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.

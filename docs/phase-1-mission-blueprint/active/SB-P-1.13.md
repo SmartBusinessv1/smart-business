@@ -7,21 +7,21 @@
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Mission Type | Product Mission — shared conversational, language, voice and AI-orchestration foundation |
-| Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 |
-| Status | `DRAFT — STAGE 4 AUTHORIZED; NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE`. Sections 20–21 are not drafted. No Builder Review, Engineering Review, lock, EIS or implementation follows from this draft. |
+| Lifecycle Stage | Post-Stage-6 B6-01/B6-02 canonical reconciliation — Stage 7 not authorized |
+| Status | `SECTIONS 1–19 STAGE 5 CANONICAL; STAGE 6 BUILDER REVIEW COMPLETE / CANONICAL; v0.2 B6-01/B6-02 RECONCILIATION PENDING MISSION CONTROL FINAL ACCEPTANCE AND HUMAN MERGE OF PR #785. STAGE 7 / SECTIONS 20–21 / BLUEPRINT LOCK / EIS / IMPLEMENTATION NOT AUTHORIZED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
 | Stage 4 Authorization | SB-P-1.13-MC-05, `communication/missions/SB-P-1.13/mission-control/07-stage4-blueprint-preparation-authorization.md`, canonical at `main@f81219cc89019af005fc2985acf0e1ba01445031` (PR #780) |
 | Governing Build Plan section | Build Plan §10.2 (`00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
-| Canonical FCTM | `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`, blob `f3a912290e10a8b4bb49998206e48c2b8980aea1`: 974 rows — 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
+| Canonical FCTM | `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`, blob `97ddc752dcbbdb6586110a782ef1e24405b6dd22`: 974 rows — 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED` |
+| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). Post-Stage-6 decision `FPDR-5`: `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md` (draft until human merge; SB-P-1.13-MC-09). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
 | Stage 3 gate | Triggered (T1, T2, T4, T6) and resolved by `FPDR-1` to `FPDR-4`; Stage 3 COMPLETE / CANONICAL (SB-P-1.13-MC-04, MC-05) |
 | Upstream dependency | SB-P-1.12 Authority, Identity & Product Surface Foundation: specification available (Blueprint and EIS `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`); evidence not complete |
 | Date | 2026-10-06 |
-| Builder Review | Not started (Stage 6, not authorized) |
+| Builder Review | COMPLETE / CANONICAL — Stage 6 findings B6-01 through B6-16 accepted under SB-P-1.13-MC-08, PR #783 |
 | Engineering Review | Not started (Stage 7, not authorized) |
-| Mission Control Review | Stage 5 pending |
+| Mission Control Review | COMPLETE THROUGH STAGE 6; B6-01/B6-02 reconciliation under Mission Control review |
 | Blueprint Lock | Not locked |
 
 ## Mission Snapshot
@@ -162,7 +162,7 @@ Mission design: the verified principal, business, role, capability, entitlement,
 
 Sources: Contract 24 §11 (tool schemas, validation, least privilege, read/write separation, confirmation, idempotency, provenance, structured results; choosing a function is not authorization), §20 (structured-output validation), §21 (human authority, binding to the reviewed action and state, execution-time revalidation); Contract 10 §7, §13, §17; Build Plan §6.2 command path; `FPDR-1`.
 
-Mission design: the model may only propose typed actions. A consequential action follows the Build Plan §6.2 path and the `FPDR-1` sequence: interpretation → smallest necessary clarification → preview → confirmation binding → execution-time permission revalidation → deterministic command → authoritative stored-state confirmation → audit/idempotency. Confirmation binding, revalidation and idempotency consume SB-P-1.12 EIS-CNF-01, -02 and -04; no temporary parallel binding is built. Under `FPDR-1`, this mission owns an additive governed create-transaction command for the transaction types available when SB-P-1.13 is implemented, extending the existing transaction and correction foundations (Contract 3 §22, delegated) and not pulling the mature four-state Ledger forward. Ask CFO-class intents receive no write tools (`10-§9-3`).
+Mission design: the model may only propose typed actions. A consequential action follows the Build Plan §6.2 path and the `FPDR-1` sequence: interpretation → smallest necessary clarification → preview → confirmation binding → execution-time permission revalidation → deterministic command → authoritative stored-state confirmation → audit/idempotency. Confirmation binding, revalidation and idempotency consume SB-P-1.12 EIS-CNF-01, -02 and -04; no temporary parallel binding is built. Under `FPDR-1`, this mission owns an additive governed create-transaction command for the transaction types available when SB-P-1.13 is implemented, extending the existing transaction and correction foundations (Contract 3 §22, delegated) and not pulling the mature four-state Ledger forward. Under `FPDR-5`, an existing `sale` with `payment_method = credit` is one of those available transaction types; it creates no customer-credit balance, owed state or repayment allocation. Ask CFO-class intents receive no write tools (`10-§9-3`).
 
 **FCTM rows realized here (54 `IN SCOPE`):** `24-§11-1`, `24-§11-2`, `24-§11-3`, `24-§11-4`, `24-§11-5`, `24-§11-6`, `24-§11-7`, `24-§11-8`, `24-§11-9`, `24-§11-10`, `24-§13-2`, `24-§20-1`, `24-§20-2`, `24-§20-3`, `24-§20-4`, `24-§20-5`, `24-§20-6`, `24-§20-7`, `24-§20-8`, `24-§20-9`, `24-§20-10`, `24-§21-1`, `24-§21-2`, `24-§21-8`, `24-§21-9`, `24-§21-10`, `24-§31-7`, `24-§31-13`, `10-§7-2`, `10-§7-3`, `10-§7-4`, `10-§7-5`, `10-§9-3`, `10-§13-1`, `10-§13-2`, `10-§13-8`, `10-§13-9`, `10-§13-10`, `10-§13-11`, `10-§13-12`, `10-§17-8`, `10-§17-9`, `10-§23-1`, `10-§23-8`, `10-§23-9`, `22-§29-7`, `22-§29-8`, `17-§5-7`, `BP-§6.2-1`, `BP-§6.2-2`, `BP-§10.2-W6`, `BP-§10.2-W8`, `BP-§10.2-W9`, `BP-§10.2-SA1`.
 
@@ -186,6 +186,7 @@ Mission design: voice is a modality over the same language, intent, permission a
 
 - **Activation gate.** No voice provider exists (Delta D-04). The Blueprint/EIS must identify environment activation, credentials, failure behaviour, rollback and verification before any provider is used (`BP-§5.4-1`, `BP-§10.2-I1`). Provider availability and Malayalam/Manglish quality are `UNVERIFIED — ACCESS REQUIRED`; a provider that cannot meet the approved language commitment becomes a Founder/product issue (Stage 2 DC-13). Voice-provider purchase or activation is not authorized.
 - **`FPDR-2`.** Basic Voice infrastructure and the governed voice-action path are built and verified here for transaction capabilities available at that stage. The credit/repayment portions of `12-§4-1`, `12-§7-6` and `12-§21-1` stay `IN SCOPE` and dependency-blocked on the SB-P-1.14 four-state Ledger; they are not reassigned and no completion is claimed before the dependency is met.
+- **`FPDR-5`.** A credit-payment-method sale may be recorded by voice when it can be represented truthfully by the existing transaction model. A statement that implies an owed balance or a repayment is clarified or stays dependency-blocked on SB-P-1.14; no mature credit state is fabricated (`12-§4-1`, `12-§7-5`, `12-§7-6`, `12-§21-1`, `9-§9-4`).
 - **`FPDR-3`.** Before SB-P-1.14 governed durable media exists, raw audio is processed transiently and is not durable Smart Business media; transcript, structured result and required audit evidence may persist under policy; no unmanaged audio store is created (`12-§15-4`, `12-§16-8`).
 - **`FPDR-4`.** Sensitive Owner-only content the user is authorized to see is not spoken when context shows spoken output is inappropriate or unsafe; that portion falls back to authenticated text or visual output. Listening-context uncertainty never grants or denies permission (`12-§15-2`, `12-§15-3`).
 
@@ -280,7 +281,19 @@ This decision does not decide the still-open long-term post-cancellation retenti
 - lack of listening-context certainty must never be used to grant or deny underlying data permission;
 - unauthorized roles remain denied entirely under the existing permission rules.
 
-FCTM rows carrying these decisions: `FPDR-1` on 17 rows, `FPDR-2` on 3, `FPDR-3` on 2, `FPDR-4` on 2 (Section 19, Founder decision column).
+**FPDR-5 — Existing credit-payment-method sales in SB-P-1.13** (post-Stage-6, `founder/03-post-stage6-founder-product-decision-record.md`; draft until human merge).
+
+Founder approval, quoted: "Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14."
+
+- a normal existing `sale` with `payment_method = credit` is an available transaction capability under `FPDR-1`;
+- SB-P-1.13 may record such a sale through text or Basic Voice when the merchant intent can be represented truthfully by the existing transaction model;
+- this does not create or update a mature customer-credit balance, owed-state ledger, repayment allocation or four-state Ledger state;
+- repayment remains blocked on SB-P-1.14;
+- if the merchant statement implies balance truth or repayment semantics unavailable in the existing model, Smart Business clarifies or the request remains dependency-blocked, rather than fabricating mature credit state.
+
+`FPDR-1` to `FPDR-4` above are unchanged.
+
+FCTM rows carrying these decisions: `FPDR-1` on 17 rows, `FPDR-2` on 3, `FPDR-3` on 2, `FPDR-4` on 2, `FPDR-5` on 5 (Section 19, Founder decision column).
 
 ### 10.2 Standing rules by reference
 
@@ -720,7 +733,9 @@ Every row keeps its approved build commitment (`BUILD NOW`, or `ADD-ON + BUILD N
 | Implementation | NOT COMPLETE | Implementation Authorization `WITHHELD`; MC-70 suspension; no membership, role, kernel or binding schema in the repository (Delta D-05) |
 | Evidence | NOT COMPLETE | No Stage 17 or Stage 19; EV-01 OPEN |
 
-Consumption follows SB-P-1.12 EIS §19.5 (EIS-DEP-01): SB-P-1.13 may use a capability only after the providing workstreams are implemented and verified, touched table families have completed cut-over and isolation tests, and Mission Control accepts the dependency evidence. SB-P-1.13 must not create authority tables, resolve business from single ownership, treat AI or tool capability as authority, or build a temporary parallel permission system. The seventeen consumed capabilities (R-01 to R-17) are listed in the Stage 2 Truth Pack Part 5. 198 `IN SCOPE` rows carry `D12`; none is claimed as working until independently evidenced. Sequencing follows the Founder-directed documentation-acceleration lane (SB-P-1.12 MC-70 §1, §7).
+Consumption follows SB-P-1.12 EIS §19.5 (EIS-DEP-01): SB-P-1.13 may use a capability only after the providing workstreams are implemented and verified, touched table families have completed cut-over and isolation tests, and Mission Control accepts the dependency evidence. SB-P-1.13 must not create authority tables, resolve business from single ownership, treat AI or tool capability as authority, or build a temporary parallel permission system. The seventeen consumed capabilities (R-01 to R-17) are listed in the Stage 2 Truth Pack Part 5. 252 `IN SCOPE` rows carry `D12` (198 at Stage 4, plus 54 added by the B6-01 reconciliation under SB-P-1.13-MC-09); none is claimed as working until independently evidenced. Sequencing follows the Founder-directed documentation-acceleration lane (SB-P-1.12 MC-70 §1, §7).
+
+**Business-scoped paths (B6-01).** Every business-scoped Conversation/AI path consumes SB-P-1.12 explicit active-business context and the applicable authority and enforcement evidence. This includes Owner-only flows and Founder Runtime Scenario B, not only Manager and Employee flows. SB-P-1.13 has no other permitted way to decide which business a request acts on: the current owner-only, single-ownership lookup may not be used (SB-P-1.12 EIS §19.5), and no temporary parallel path may be built. WhatsApp independence and SB-P-1.12-authority independence are different properties: these paths need no Meta/WhatsApp call, but they do need SB-P-1.12. The 54 rows added under B6-01, each with its business-scoped reason and consumed capability, are listed in `communication/missions/SB-P-1.13/claude-code/09-b6-reconciliation-report.md`.
 
 ### 12.2 Other dependencies of `IN SCOPE` rows
 
@@ -750,7 +765,7 @@ SB-P-1.14 (attachment handoff into UDI; four-state Ledger completes `FPDR-2` row
 
 | Risk | Source | Mitigation in this Blueprint |
 |---|---|---|
-| SB-P-1.12 stays suspended, so permission-dependent rows cannot be built or proven | Delta D-05 | Rows stay `IN SCOPE` and dependency-blocked; no parallel model; documentary work continues (Section 12.1) |
+| SB-P-1.12 stays suspended, so permission-dependent and business-scoped rows, including Owner-only paths and Scenario B, cannot be built or proven | Delta D-05; B6-01 | Rows stay `IN SCOPE` and dependency-blocked; no parallel model; documentary work continues (Section 12.1) |
 | Prompt or tool injection widens access | Contract 24 §10; Contract 21 §8 | Permission resolved outside the model; tool proposals carry no authority (Section 8.4) |
 | Duplicate writes from retries or replayed voice | Contract 24 §11, §23; Contract 12 §17 | Shared idempotency pattern consumed from SB-P-1.12; governed command (Section 8.5) |
 | AI provider outage or bad output corrupts state | Contract 24 §23; Contract 22 §29 Scenario 13 | Narrow failure, validation, no false success, no unconfirmed replay (Section 8.10) |
@@ -774,9 +789,9 @@ SB-P-1.14 (attachment handoff into UDI; four-state Ledger completes `FPDR-2` row
 
 | Scenario | FCTM rows | Acceptance qualifier |
 |---|---|---|
-| A — Natural-language governed action: authorized user describes a transaction; clarify only if required; show the proposed consequential action; execute through the governed command; confirm actual stored state | `BP-§10.2-SA1` | `FPDR-1`: executes through the SB-P-1.13 additive governed create-transaction command, verified for transaction capabilities available at that stage. Dependency: `D12`, `DAI` |
+| A — Natural-language governed action: authorized user describes a transaction; clarify only if required; show the proposed consequential action; execute through the governed command; confirm actual stored state | `BP-§10.2-SA1` | `FPDR-1`: executes through the SB-P-1.13 additive governed create-transaction command, verified for transaction capabilities available at that stage; under `FPDR-5` these include an existing sale with payment method credit, while mature credit and repayment remain SB-P-1.14. Dependency: `D12`, `DAI` |
 | A — Employee requests for Owner-only profit are denied | `BP-§10.2-SA2` | Dependency-blocked on SB-P-1.12 implementation (`D12`); never claimed from specification alone |
-| B — WhatsApp-independence: Meta/WhatsApp deliberately unavailable; Owner completes an approved native workflow; evidence proves no Meta/WhatsApp call was required | `BP-§10.2-SB` | No external dependency beyond this mission's build |
+| B — WhatsApp-independence: Meta/WhatsApp deliberately unavailable; Owner completes an approved native workflow; evidence proves no Meta/WhatsApp call was required | `BP-§10.2-SB` | WhatsApp-independent, not SB-P-1.12-authority-independent: no Meta/WhatsApp dependency, but the Owner's native workflow consumes SB-P-1.12 explicit active-business context and authority evidence (`D12`; SB-P-1.12 EIS §19.5; B6-01) |
 
 ### 15.2 Experience anchors (designated by Mission Control, SB-P-1.13-MC-02 §7 and MC-05 §5; Build Plan §13 rule 9)
 
@@ -810,6 +825,7 @@ Every numbered acceptance scenario that is `IN SCOPE` for this mission is an acc
 - `FPDR-2`: `12-§4-1`, `12-§7-6`, `12-§21-1` may be reported only as `PARTIALLY DEMONSTRATED` or dependency-blocked for their credit/repayment portion until SB-P-1.14 delivers; no "complete" claim before then.
 - `FPDR-3`: acceptance evidence must show no durable raw-audio store.
 - `FPDR-4`: acceptance evidence must show sensitive authorized content falls back to text and that permission outcomes do not change with listening context.
+- `FPDR-5`: acceptance may include an existing sale with payment method credit; it must show that no customer-credit balance, owed state or repayment allocation is created, and that owed-balance or repayment statements are clarified or remain dependency-blocked.
 
 ### 15.5 Experience Verification Matrix seed (Build Plan §13)
 
@@ -817,7 +833,7 @@ Every numbered acceptance scenario that is `IN SCOPE` for this mission is an acc
 |---|---|---|---|---|
 | Scenario A governed transaction | Owner | Not yet run | — | `FPDR-1`; `D12`; `DAI` |
 | Scenario A Employee profit denial | Employee | Not yet run | — | `D12` |
-| Scenario B Meta unavailable | Owner | Not yet run | — | — |
+| Scenario B Meta unavailable | Owner | Not yet run | — | `D12` (B6-01): WhatsApp-independent, not SB-P-1.12-independent |
 | Basic Voice same authority and confirmation as text | Owner, Manager, Employee | Not yet run | — | `DV`; `D12`; `FPDR-2`, `FPDR-4` |
 
 ## 16. Future Evolution
@@ -837,6 +853,7 @@ Build Plan §10.2 exit principle: "I can simply tell Smart Business what I mean,
 | Version | Date | Author | Change | Status |
 |---|---|---|---|---|
 | 0.1 | 2026-10-06 | Claude Code (Stage 2–4 Definition Actor) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 974-row FCTM (blob `f3a912290e10a8b4bb49998206e48c2b8980aea1`) and `FPDR-1` to `FPDR-4` | DRAFT — awaiting Mission Control Stage 5 review |
+| 0.2 | 2026-10-06 | Claude Code (B6-01/B6-02 reconciliation, SB-P-1.13-MC-09) | B6-01: §12.1 business-scoped dependency statement; §13 risk; §15.1 and §15.5 Scenario B qualified as WhatsApp-independent but not SB-P-1.12-authority-independent; 54 Section 19 rows gain `D12`. B6-02: `FPDR-5` added to Metadata, §8.5, §8.7, §10.1, §15.1, §15.4 and 5 Section 19 rows. FCTM blob updated; no disposition, owner, commitment or classification changed | DRAFT — awaiting Mission Control review |
 
 ## 19. Governance History
 
@@ -848,11 +865,15 @@ Build Plan §10.2 exit principle: "I can simply tell Smart Business what I mean,
 | Stage 3 authorization | `mission-control/05` | PR #778, `53edac51` |
 | Stage 3 Founder decisions `FPDR-1` to `FPDR-4`; FCTM reconciliation | `founder/02`; SB-P-1.13-MC-04 (`mission-control/06`) | PR #779, `ecae3312` |
 | Stage 4 authorization | SB-P-1.13-MC-05 (`mission-control/07`) | PR #780, `f81219cc` |
-| Stage 4 Blueprint Sections 1–19 draft | this file | not canonical |
+| Stage 4 Blueprint Sections 1–19; Stage 5 Product Review (SB-P-1.13-MC-06) | this file; `mission-control/08` | PR #781, `0944e0f6` |
+| Stage 6 authorization (SB-P-1.13-MC-07) | `mission-control/09` | PR #782, `b146cad8` |
+| Stage 6 Builder Review; gate (SB-P-1.13-MC-08) | `claude-code/08`; `mission-control/10` | PR #783, `8d9fb3af` |
+| B6-01/B6-02 reconciliation authorization (SB-P-1.13-MC-09) | `mission-control/11` | PR #784, `35314a92` |
+| B6-01/B6-02 reconciliation; `FPDR-5` | this file v0.2; `founder/03`; `claude-code/09` | not canonical |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
-Complete accounting of all 974 canonical FCTM rows (blob `f3a912290e10a8b4bb49998206e48c2b8980aea1`), in FCTM order. Each line gives the disposition and owning mission exactly as in the FCTM, the source reference (source code, blob prefix and section; full pointers and blobs in FCTM §0.4 and each row), the Blueprint location and the FCTM Founder-decision cell. `IN SCOPE` rows map to a Section 8 subsection, plus §15 for acceptance rows, §12 for dependency-coded rows, §10 for must-not rows and §10.1 for Founder-decision rows. All other rows map to Section 11.
+Complete accounting of all 974 canonical FCTM rows (blob `97ddc752dcbbdb6586110a782ef1e24405b6dd22`), in FCTM order. Each line gives the disposition and owning mission exactly as in the FCTM, the source reference (source code, blob prefix and section; full pointers and blobs in FCTM §0.4 and each row), the Blueprint location and the FCTM Founder-decision cell. `IN SCOPE` rows map to a Section 8 subsection, plus §15 for acceptance rows, §12 for dependency-coded rows, §10 for must-not rows and §10.1 for Founder-decision rows. All other rows map to Section 11.
 
 Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN SCOPE`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`.
 
@@ -1107,7 +1128,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `9-§9-1` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
 | `9-§9-2` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
 | `9-§9-3` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
-| `9-§9-4` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
+| `9-§9-4` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12; §10.1 | FPDR-5 |
 | `9-§9-5` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
 | `9-§9-6` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
 | `9-§9-7` | IN SCOPE | SB-P-1.13 | C9@649c55f3 §9 | §8.2; §12 | — |
@@ -1267,7 +1288,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `10-§13-10` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §13 | §8.5; §12 | — |
 | `10-§13-11` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §13 | §8.5; §12 | — |
 | `10-§13-12` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §13 | §8.5; §12; §10 | — |
-| `10-§14-1` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §14 | §8.10 | — |
+| `10-§14-1` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §14 | §8.10; §12 | — |
 | `10-§14-2` | ASSIGNED TO LATER MISSION | SB-P-1.20 | C10@5c145ed7 §14 | §11 | — |
 | `10-§14-3` | ASSIGNED TO LATER MISSION | SB-P-1.20 | C10@5c145ed7 §14 | §11 | — |
 | `10-§14-4` | ASSIGNED TO LATER MISSION | SB-P-1.20 | C10@5c145ed7 §14 | §11 | — |
@@ -1283,7 +1304,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `10-§15-7` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §15 | §8.4; §12; §10 | — |
 | `10-§16-1` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §10 | — |
 | `10-§16-2` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §12 | — |
-| `10-§16-3` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1 | — |
+| `10-§16-3` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §12 | — |
 | `10-§16-4` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §12 | — |
 | `10-§16-5` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §12 | — |
 | `10-§16-6` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §16 | §8.1; §12 | — |
@@ -1298,7 +1319,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `10-§17-7` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §17 | §8.2; §12 | — |
 | `10-§17-8` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §17 | §8.5; §12 | — |
 | `10-§17-9` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §17 | §8.5; §12 | — |
-| `10-§18-1` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §18 | §8.10 | — |
+| `10-§18-1` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §18 | §8.10; §12 | — |
 | `10-§18-2` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §18 | §8.10 | — |
 | `10-§18-3` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §18 | §8.10 | — |
 | `10-§18-4` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §18 | §8.10 | — |
@@ -1338,7 +1359,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `10-§23-4` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C10@5c145ed7 §23 | §11 | — |
 | `10-§23-5` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.4; §15; §12 | — |
 | `10-§23-6` | ASSIGNED TO LATER MISSION | SB-P-1.20 | C10@5c145ed7 §23 | §11 | — |
-| `10-§23-7` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.10; §15 | — |
+| `10-§23-7` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.10; §15; §12 | — |
 | `10-§23-8` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.5; §15; §12 | — |
 | `10-§23-9` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.5; §15; §12; §10.1 | FPDR-1 |
 | `10-§23-10` | IN SCOPE | SB-P-1.13 | C10@5c145ed7 §23 | §8.4; §15; §12 | — |
@@ -1355,7 +1376,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `12-§2` | NOT APPLICABLE | SB-P-1.13 | C12@6d48feff §2 | §11 | — |
 | `12-§3` | NOT APPLICABLE | SB-P-1.13 | C12@6d48feff §3 | §11 | — |
 | `12-§3-1` | IN SCOPE | SB-P-1.13 | C12@6d48feff §3 | §8.7; §12 | — |
-| `12-§4-1` | IN SCOPE | SB-P-1.13 | C12@6d48feff §4 | §8.7; §12; §10.1 | FPDR-1; FPDR-2 |
+| `12-§4-1` | IN SCOPE | SB-P-1.13 | C12@6d48feff §4 | §8.7; §12; §10.1 | FPDR-1; FPDR-2; FPDR-5 |
 | `12-§4-2` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C12@6d48feff §4 | §11 | — |
 | `12-§4-3` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C12@6d48feff §4 | §11 | — |
 | `12-§4-4` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C12@6d48feff §4 | §11 | — |
@@ -1375,8 +1396,8 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `12-§7-2` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
 | `12-§7-3` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
 | `12-§7-4` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
-| `12-§7-5` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
-| `12-§7-6` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12; §10.1 | FPDR-2 |
+| `12-§7-5` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12; §10.1 | FPDR-5 |
+| `12-§7-6` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12; §10.1 | FPDR-2; FPDR-5 |
 | `12-§7-7` | ASSIGNED TO LATER MISSION | SB-P-1.17 | C12@6d48feff §7 | §11 | — |
 | `12-§7-8` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
 | `12-§7-9` | IN SCOPE | SB-P-1.13 | C12@6d48feff §7 | §8.7; §12 | — |
@@ -1447,7 +1468,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `12-§20-4` | IN SCOPE | SB-P-1.13 | C12@6d48feff §20 | §8.7; §12; §10 | — |
 | `12-§20-5` | IN SCOPE | SB-P-1.13 | C12@6d48feff §20 | §8.7; §12; §10 | — |
 | `12-§20-6` | IN SCOPE | SB-P-1.13 | C12@6d48feff §20 | §8.7; §12; §10 | — |
-| `12-§21-1` | IN SCOPE | SB-P-1.13 | C12@6d48feff §21 | §8.7; §15; §12; §10.1 | FPDR-1; FPDR-2 |
+| `12-§21-1` | IN SCOPE | SB-P-1.13 | C12@6d48feff §21 | §8.7; §15; §12; §10.1 | FPDR-1; FPDR-2; FPDR-5 |
 | `12-§21-2` | IN SCOPE | SB-P-1.13 | C12@6d48feff §21 | §8.7; §15; §12 | — |
 | `12-§21-3` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C12@6d48feff §21 | §11 | — |
 | `12-§21-4` | ASSIGNED TO LATER MISSION | SB-P-1.15 | C12@6d48feff §21 | §11 | — |
@@ -1608,7 +1629,7 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `22-§20` | DELEGATED | SB-P-1.12 | C22@61e1bb91 §20 | §11 | — |
 | `22-§21` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §21 | §8.11; §12 | — |
 | `22-§22-1` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11 | — |
-| `22-§22-2` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11 | — |
+| `22-§22-2` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11; §12 | — |
 | `22-§22-3` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11 | — |
 | `22-§22-4` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11 | — |
 | `22-§22-5` | IN SCOPE | SB-P-1.13 | C22@61e1bb91 §22 | §8.11 | — |
@@ -1794,15 +1815,15 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `BP-§6.6-1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §6.6 | §8.3 | — |
 | `BP-§8.3-1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §8.3 | §8.1 | — |
 | `BP-§8.4-1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §8.4 | §8.3 | — |
-| `BP-§8.4-2` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §8.4 | §8.10 | — |
+| `BP-§8.4-2` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §8.4 | §8.10; §12 | — |
 | `BP-§8.4-3` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §8.4 | §8.3 | — |
 | `BP-§8.4-4` | OUT OF BUILD SCOPE | SB-P-1.13 | BP@9dfdd924 §8.4 | §11 | — |
-| `BP-§10.2-W1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.1 | — |
+| `BP-§10.2-W1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.1; §12 | — |
 | `BP-§10.2-W2` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.2 | — |
-| `BP-§10.2-W3` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.1 | — |
+| `BP-§10.2-W3` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.1; §12 | — |
 | `BP-§10.2-W4` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.7; §12 | — |
 | `BP-§10.2-W5` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.3; §12 | — |
-| `BP-§10.2-W6` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.5 | — |
+| `BP-§10.2-W6` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.5; §12 | — |
 | `BP-§10.2-W7` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.4; §12 | — |
 | `BP-§10.2-W8` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.5; §12 | — |
 | `BP-§10.2-W9` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.5; §12; §10.1 | FPDR-1 |
@@ -1815,10 +1836,10 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `BP-§10.2-E2` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.2; §15; §12 | — |
 | `BP-§10.2-E3` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.4; §15; §12 | — |
 | `BP-§10.2-E4` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.1; §15 | — |
-| `BP-§10.2-E5` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.10; §15 | — |
+| `BP-§10.2-E5` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.10; §15; §12 | — |
 | `BP-§10.2-SA1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.5; §15; §12; §10.1 | FPDR-1 |
 | `BP-§10.2-SA2` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.4; §15; §12 | — |
-| `BP-§10.2-SB` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.10; §15 | — |
+| `BP-§10.2-SB` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §10.2 | §8.10; §15; §12 | — |
 | `BP-§10.2-X` | NOT APPLICABLE | SB-P-1.13 | BP@9dfdd924 §10.2 | §11 | — |
 | `BP-§11-1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §11 | §8.3 | — |
 | `BP-§12-1` | IN SCOPE | SB-P-1.13 | BP@9dfdd924 §12 | §8.8 | — |
