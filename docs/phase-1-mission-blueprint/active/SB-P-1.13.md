@@ -7,21 +7,21 @@
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Mission Type | Product Mission — shared conversational, language, voice and AI-orchestration foundation |
-| Lifecycle Stage | Post-Stage-6 B6-01/B6-02 canonical reconciliation — Stage 7 not authorized |
-| Status | `SECTIONS 1–19 STAGE 5 CANONICAL; STAGE 6 BUILDER REVIEW COMPLETE / CANONICAL; v0.2 B6-01/B6-02 RECONCILIATION PENDING MISSION CONTROL FINAL ACCEPTANCE AND HUMAN MERGE OF PR #785. STAGE 7 / SECTIONS 20–21 / BLUEPRINT LOCK / EIS / IMPLEMENTATION NOT AUTHORIZED.` |
+| Lifecycle Stage | Source 18 v1.2 Stage 7 — Engineering Review submitted for final Mission Control acceptance |
+| Status | `SECTIONS 1–19 v0.2 CANONICAL (PR #785); THREE INDEPENDENT STAGE 7 SPECIALIST REVIEWS COMPLETE / CANONICAL (PRs #788, #789, #790); STAGE 7 ENGINEERING REVIEW SECTIONS 20–21 PENDING MISSION CONTROL FINAL EXACT-HEAD REVIEW AND HUMAN MERGE OF PR #787. STAGE 8 / BLUEPRINT LOCK / EIS / IMPLEMENTATION NOT AUTHORIZED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
 | Stage 4 Authorization | SB-P-1.13-MC-05, `communication/missions/SB-P-1.13/mission-control/07-stage4-blueprint-preparation-authorization.md`, canonical at `main@f81219cc89019af005fc2985acf0e1ba01445031` (PR #780) |
 | Governing Build Plan section | Build Plan §10.2 (`00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Canonical FCTM | `communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md`, blob `97ddc752dcbbdb6586110a782ef1e24405b6dd22`: 974 rows — 651 `IN SCOPE`, 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 52 `NOT APPLICABLE`, 21 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). Post-Stage-6 decision `FPDR-5`: `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md` (draft until human merge; SB-P-1.13-MC-09). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
+| Founder Product Decision Record | `communication/missions/SB-P-1.13/founder/02-stage3-founder-product-decision-record.md` — `FPDR-1` to `FPDR-4`, canonical (PR #779, `main@ecae33128e28358bf8fa3c308a5b33fc3fe284b2`). Post-Stage-6 decision `FPDR-5`: `communication/missions/SB-P-1.13/founder/03-post-stage6-founder-product-decision-record.md` (canonical — PR #785, main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc; SB-P-1.13-MC-09 / MC-10). In this Blueprint, an unqualified `FPDR-n` means the SB-P-1.13 decision; SB-P-1.12's decisions of the same number are always written `SB-P-1.12 FPDR-n`. |
 | Stage 3 gate | Triggered (T1, T2, T4, T6) and resolved by `FPDR-1` to `FPDR-4`; Stage 3 COMPLETE / CANONICAL (SB-P-1.13-MC-04, MC-05) |
 | Upstream dependency | SB-P-1.12 Authority, Identity & Product Surface Foundation: specification available (Blueprint and EIS `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`); evidence not complete |
 | Date | 2026-10-06 |
 | Builder Review | COMPLETE / CANONICAL — Stage 6 findings B6-01 through B6-16 accepted under SB-P-1.13-MC-08, PR #783 |
-| Engineering Review | Not started (Stage 7, not authorized) |
-| Mission Control Review | COMPLETE THROUGH STAGE 6; B6-01/B6-02 reconciliation under Mission Control review |
+| Engineering Review | SUBMITTED FOR FINAL MISSION CONTROL ACCEPTANCE — Sections 20–21 by Claude Code under SB-P-1.13-MC-11, incorporating the canonical S7-SP-1, S7-SP-2 and S7-SP-3 reviews; not yet accepted |
+| Mission Control Review | COMPLETE THROUGH STAGE 6 AND B6-01/B6-02 RECONCILIATION (PR #785); specialist reviews canonical; Stage 7 final review pending |
 | Blueprint Lock | Not locked |
 
 ## Mission Snapshot
@@ -281,7 +281,7 @@ This decision does not decide the still-open long-term post-cancellation retenti
 - lack of listening-context certainty must never be used to grant or deny underlying data permission;
 - unauthorized roles remain denied entirely under the existing permission rules.
 
-**FPDR-5 — Existing credit-payment-method sales in SB-P-1.13** (post-Stage-6, `founder/03-post-stage6-founder-product-decision-record.md`; draft until human merge).
+**FPDR-5 — Existing credit-payment-method sales in SB-P-1.13** (post-Stage-6, `founder/03-post-stage6-founder-product-decision-record.md`; canonical — PR #785, `main@dbd8f4c179cba0888afc80c67616cbe4cceabcfc`).
 
 Founder approval, quoted: "Approved — allow existing credit-payment-method sales in SB-P-1.13; mature credit/repayment remains SB-P-1.14."
 
@@ -854,6 +854,8 @@ Build Plan §10.2 exit principle: "I can simply tell Smart Business what I mean,
 |---|---|---|---|---|
 | 0.1 | 2026-10-06 | Claude Code (Stage 2–4 Definition Actor) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 974-row FCTM (blob `f3a912290e10a8b4bb49998206e48c2b8980aea1`) and `FPDR-1` to `FPDR-4` | DRAFT — awaiting Mission Control Stage 5 review |
 | 0.2 | 2026-10-06 | Claude Code (B6-01/B6-02 reconciliation, SB-P-1.13-MC-09) | B6-01: §12.1 business-scoped dependency statement; §13 risk; §15.1 and §15.5 Scenario B qualified as WhatsApp-independent but not SB-P-1.12-authority-independent; 54 Section 19 rows gain `D12`. B6-02: `FPDR-5` added to Metadata, §8.5, §8.7, §10.1, §15.1, §15.4 and 5 Section 19 rows. FCTM blob updated; no disposition, owner, commitment or classification changed | DRAFT — awaiting Mission Control review |
+| 0.3 | 2026-10-06 | Claude Code (Stage 7 Engineering Review, SB-P-1.13-MC-11) | Appended Section 20 (Engineering Review, early delivery plan, 651-row feasibility and risk register) and Section 21 (Engineering Questions, Risks & Recommendations); updated four Metadata status fields. Sections 1–17 and 19 unchanged | DRAFT — superseded by 0.4 within PR #787 |
+| 0.4 | 2026-10-06 | Claude Code (Stage 7 final reconciliation, Mission Control consolidated correction on PR #787) | Sections 20–21 reconciled with the canonical S7-SP-1/2/3 reviews (corrections C-1 to C-15; specialist markers now coverage only; holds tied to unresolved conditions; T-screen updated); Section 19 PR #785 row marked canonical (C-2); four Metadata status fields updated | SUBMITTED — awaiting Mission Control final acceptance |
 
 ## 19. Governance History
 
@@ -869,7 +871,7 @@ Build Plan §10.2 exit principle: "I can simply tell Smart Business what I mean,
 | Stage 6 authorization (SB-P-1.13-MC-07) | `mission-control/09` | PR #782, `b146cad8` |
 | Stage 6 Builder Review; gate (SB-P-1.13-MC-08) | `claude-code/08`; `mission-control/10` | PR #783, `8d9fb3af` |
 | B6-01/B6-02 reconciliation authorization (SB-P-1.13-MC-09) | `mission-control/11` | PR #784, `35314a92` |
-| B6-01/B6-02 reconciliation; `FPDR-5` | this file v0.2; `founder/03`; `claude-code/09` | not canonical |
+| B6-01/B6-02 reconciliation; `FPDR-5` | this file v0.2; `founder/03`; `claude-code/09` | PR #785, dbd8f4c1 |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -1900,3 +1902,961 @@ Counts: 974 rows — 126 `ASSIGNED TO LATER MISSION`, 121 `DELEGATED`, 651 `IN S
 | `23-§22` | DELEGATED | SB-P-1.20 | C23@2430e1c6 §22 | §11 | — |
 | `25-§12` | DELEGATED | SB-P-1.14 | C25@406ce089 §12 | §11 | — |
 | `25-§13` | DELEGATED | SB-P-1.14 | C25@406ce089 §13 | §11 | — |
+
+## 20. Engineering Review
+
+### 20.1 Scope, baseline and independent review
+
+- **Authorization:** SB-P-1.13-MC-11 (`mission-control/13-stage7-engineering-and-specialist-authorization.md`), canonical at `main@81c7d520a4d226cd9b7bf2165cd2dfcd494d613b` (PR #786). Consolidated correction instruction from Mission Control on PR #787.
+- **Baseline:** Blueprint v0.2 Sections 1–19 (PR #785); FCTM blob `97ddc752dcbbdb6586110a782ef1e24405b6dd22` (974 rows; 651 `IN SCOPE`; 252 carry `D12`; 17 carry `DTX`); `FPDR-1` to `FPDR-5`; canonical `main@dbe30ed583af1449289120b6074b171cbd2bdae5`.
+- **Owner:** Claude Code. Claude Code also authored Sections 1–19 and the Stage 6 Builder Review, so independent assurance comes from the specialist reviews below.
+- **Independent specialist reviews (complete and canonical):**
+
+| Review | Report | Canonical |
+|---|---|---|
+| S7-SP-1 Security & Permissions Architecture | `specialists/01-stage7-security-permissions-review.md` (SEC-13-S7-01 to -08) | PR #788, `180865c3` |
+| S7-SP-2 AI Behaviour / Model Orchestration Safety | `specialists/02-stage7-ai-behavior-orchestration-review.md` (AI-S7-01 to -15) | PR #789, `182cef67` |
+| S7-SP-3 Voice / Provider Readiness | `specialists/03-stage7-voice-provider-review.md` (VOICE-S7-01 to -17) | PR #790, `dbe30ed5` |
+
+- **Use of the reviews:** findings accepted by Mission Control are carried in Section 20.8 as EIS-derived engineering constraints. In Section 20.6, `SP-1`, `SP-2` and `SP-3` are coverage markers for traceability only. No finding is held because a specialist review is pending. Remaining holds are tied to the specific unresolved condition in the Remaining hold column.
+- **Not done:** no FCTM, Founder decision, specialist report or Sections 1–17 change; Section 19 changed only by Mission Control correction C-2; no EIS, code, SQL, migration, provider or production action.
+
+### 20.2 Environment assumptions (read-only evidence; Stage 6 Section 2)
+
+| Item | Assumption | Evidence state |
+|---|---|---|
+| Runtime | TanStack Start built by Nitro with a Cloudflare default target via `@lovable.dev/vite-tanstack-config`; server functions run per request with Worker limits on duration, CPU and body size | Repository |
+| Server authentication | `requireSupabaseAuth` verifies the Bearer JWT and creates an RLS-bound client; service-role paths inherit the SB-P-1.12 privileged-operation contract (SEC-13-S7-06) | Repository; locked EIS |
+| Secrets | Provider keys are server-only `process.env` values provisioned through Lovable Cloud; never `VITE_*` | Repository pattern; Lovable admin access impaired (SB-P-1.12 MC-70) |
+| Business resolution | Only through SB-P-1.12 explicit active-business context; the current owner-only `maybeSingle()` lookup may not be used (SB-P-1.12 EIS §19.5; Blueprint §12.1) | Locked specification; not implemented |
+| Test environment | Isolated Supabase test project used by integration tests | SB-P-1.12 EV-02 partially evidenced; current state `UNVERIFIED — ACCESS REQUIRED` |
+| Production | Not accessed; no production assumption is made | — |
+| CI | GitHub Actions impaired since 2026-09-30 (SB-P-1.12 EV-01 OPEN); local gates available | Repository; `gh` |
+
+Provider and AI evidence held as `UNVERIFIED — ACCESS REQUIRED` until evidence exists (correction C-6; AI-S7-08; VOICE-S7-03, -15, -16). These are evidence holds, not Stage 7 failures or Product Truth changes:
+
+| Evidence item | AI | Voice |
+|---|---|---|
+| Exact provider, service and model | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Account or project identity | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Credential custody | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Provider retention | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Training or improvement use | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Abuse-monitoring retention | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Regional or data processing location | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Provider logging and deletion controls | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Malayalam/Manglish quality | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+| Production/provider latency | `UNVERIFIED — ACCESS REQUIRED` | `UNVERIFIED — ACCESS REQUIRED` |
+
+Provider selection, purchase and activation remain NOT AUTHORIZED.
+
+### 20.3 Engineering assessment by Blueprint subsection
+
+| Code | Subsection | Feasibility assessment | Principal engineering risk |
+|---|---|---|---|
+| F1 | §8.1 Native Conversation Workspace | Feasible. New authenticated route; entries in both desktop and mobile navigation; one shared business-context provider consuming SB-P-1.12 active-business context (B6-11) | Navigation drift between the two menus; business context resolved the old way |
+| F2 | §8.2 Human Language and Clarification | Feasible through the AI gateway if the chosen model meets the commitment. Requires a Malayalam-capable web font, per-message `lang` attributes and a governed evaluation suite (B6-04; AI-S7-10) | Malayalam and Manglish quality unproven (`H-LANG`) |
+| F3 | §8.3 AI Orchestration and Provider Abstraction | Feasible as a server-function gateway behind `requireSupabaseAuth`, with streaming and explicit timeouts sized to Worker limits; model choice is routing configuration (B6-03; AI-S7-15). Instruction/data separation applies (Section 20.8, C-4) | Provider evidence unverified (`H-PROV`); untrusted content treated as instructions |
+| F4 | §8.4 Permission Context, Isolation and Denial | Feasible only by consuming the SB-P-1.12 kernel; authorization and context filtering happen before model exposure (SEC-13-S7-03, -04; AI-S7-06). No interim path (EIS §19.5) | Implementation blocked until SB-P-1.12 consumption conditions are evidenced (`H-D12`) |
+| F5 | §8.5 Typed Tools, Confirmation, Governed Command | Feasible. Typed registry with an explicit authority-exclusion contract (AI-S7-05); frozen confirmed proposal (C-5); the `FPDR-1` command becomes the single effective protected transaction-write boundary (C-8; SEC-13-S7-02; AI-S7-04) | Upstream-gated confirmation, revalidation and idempotency (`H-CONF`, `H-DTX`); idempotency precedent's production state `UNKNOWN` |
+| F6 | §8.6 Audit and Provenance | Feasible on SB-P-1.12 authority events and audit; durability remains `D12`-dependent (SEC-13-S7-07) | Telemetry becoming a content archive (AI-S7-12; VOICE-S7-17) |
+| F7 | §8.7 Basic Voice | Feasible behind the voice activation gate, converging on the text path (C-9 to C-15) | Provider evidence, transient-audio proof, Malayalam speech quality, FPDR-4 context (`H-PROV`, `H-AUDIO`, `H-LANG`, `H-FPDR4`) |
+| F8 | §8.8 FAQ-Before-AI Support | Feasible with versioned, provenance-recorded knowledge under the MC-08 §5 stewardship (C-7; AI-S7-09) | Answers beyond approved knowledge |
+| F9 | §8.9 Attachment Handoff | Feasible with transient handling only; attachment content is untrusted data (C-4); no Supabase storage bucket before SB-P-1.14 (B6-13) | Pressure to keep files "for later" |
+| F10 | §8.10 Failure, Outage, WhatsApp Independence | Feasible. Unknown domain-command outcome is a first-class state (AI-S7-03; VOICE-S7-09); positive no-Meta-call evidence for Scenario B (B6-14) | Retry or restoration replaying a consequential command |
+| F11 | §8.11 Platform Quality | Feasible with local gates while Actions are impaired; AI and voice tests use recorded provider fixtures (B6-16) | Missing CI evidence |
+| F12 | §8.12 Non-Goals | Feasible as design-review and negative-test checks | Drift toward a generic chatbot or second brain |
+
+### 20.4 Early delivery plan
+
+This plan orders work; it authorizes none of it. Every step needs a later Implementation Authorization.
+
+#### 20.4.1 Phases and gates
+
+| Phase | Content | Entry gate |
+|---|---|---|
+| P0 — Gates | SB-P-1.12 consumption conditions evidenced for every consumed family, including the transactions-family command-only cut-over (EIS §19.5, EIS-ISO-02); AI and voice provider evidence pack (Section 20.2); voice-provider selection and activation decision; idempotency-precedent production re-verification; CI evidence path | Mission Control and Founder authorization |
+| P1 — Foundations without business data | AI gateway, model routing, structured-output validation, instruction/data separation, language and speech evaluation suites, FAQ knowledge store | P0 provider gate; Implementation Authorization |
+| P2 — Business-scoped Workspace | Workspace route and navigation, shared business-context provider, conversation store with truth-precedence rules (AI-S7-13), permission-context propagation, denial | P0 SB-P-1.12 gate |
+| P3 — Governed actions | Typed registry, frozen proposal, preview, confirmation binding, revalidation, the `FPDR-1` command as the single protected transaction-write boundary, audit, outcome lookup | P2; transactions-family cut-over |
+| P4 — Basic Voice | Normalized voice contract, transient audio, spoken confirmation of frozen proposals, `FPDR-3`, `FPDR-4`, `FPDR-5`; credit/repayment portions held for SB-P-1.14 (`FPDR-2`) | P0 voice gate; P3 |
+| P5 — Boundary and verification | Transient attachment handoff, outage hardening, paired text/voice parity runs, Scenarios A and B, Experience Verification Matrix | P3, P4 |
+
+#### 20.4.2 Expected migrations and rehearsal
+
+Expected additive schema families, stated as expectations for the EIS, not designs:
+
+- conversation threads and messages, business-scoped through the SB-P-1.12 kernel;
+- frozen tool proposals referencing SB-P-1.12 `confirmation_bindings`;
+- the `FPDR-1` governed create-transaction RPC and its idempotency and outcome records, delivered with the SB-P-1.12 transactions-family command-only cut-over (EIS-ISO-02);
+- FAQ knowledge entries with provenance, effective and version dates, language variants and retired state;
+- transcript and structured-result records under `FPDR-3` (no raw audio);
+- aggregate AI and voice usage, cost and outcome telemetry.
+
+Rehearsal: each migration is executed only under a separately authorized migration mission (`docs/migration/README.md`), rehearsed first on the isolated test project, with rollback and verification evidence. No migration file is self-authorizing. None is created here.
+
+#### 20.4.3 Cross-mission dependencies
+
+| Dependency | Effect on SB-P-1.13 rows |
+|---|---|
+| SB-P-1.12 kernel (`D12`) | 252 rows `BLOCKED` until consumption conditions are evidenced and accepted |
+| SB-P-1.12 transactions-family cut-over | All 17 `DTX` rows blocked until command-only effective access is evidenced (SEC-13-S7-02) |
+| SB-P-1.14 (`D14`) | UDI handoff target, durable media, four-state Ledger; credit/repayment portions of `FPDR-2` rows |
+| SB-P-1.15 (`D15`) | Workspace use of Ask CFO, reminders and notifications |
+| SB-P-1.16 to SB-P-1.18 | Later intent routing destinations only |
+| SB-P-1.19 (`D19`) | Human support escalation, onboarding surface, Voice Plus |
+| SB-P-1.20 (`D20`) | Second-channel proof; future WhatsApp payloads are untrusted data (C-4) |
+
+#### 20.4.4 CI tiers
+
+| Tier | Content for SB-P-1.13 |
+|---|---|
+| Fast Gate (`build-assurance.yml`) | Lint, typecheck, build, fast unit tests: tool-schema and authority-exclusion checks, structured-output validation, instruction/data separation and multilingual or document-borne injection fixtures against a mocked provider, frozen-proposal immutability, FPDR-4 presentation rules |
+| Full Assurance (`full-assurance.yml`) | Integration on the isolated test project: conversation-data isolation, governed command idempotency and concurrency, unknown-outcome handling, revalidation after revocation (once SB-P-1.12 is present), denial behaviour, absence of an effective direct transaction write path |
+| Markdown Quality Gate | All governance and specification documents |
+| Provider evaluation (outside CI) | Live AI and voice quality runs on the governed evaluation suites; separately authorized; never in CI with live keys |
+
+While Actions are impaired, local gates are recorded with exact command output, and run-level CI evidence is supplied when available (OLE `SB-OPS-CI-ARCHITECTURE-1.0` promotion-02).
+
+#### 20.4.5 Scope flags
+
+| Flag | Value |
+|---|---|
+| Production mutation | NOT AUTHORIZED |
+| Migration execution | NOT AUTHORIZED |
+| Delivery sync and publication | NOT AUTHORIZED |
+| AI provider selection, activation or purchase | NOT AUTHORIZED |
+| Voice-provider selection, activation or purchase | NOT AUTHORIZED |
+| Lovable build or publish | NOT AUTHORIZED |
+
+### 20.5 Stage 6 findings carried (MC-08, MC-10)
+
+| Finding | Carried as | Where |
+|---|---|---|
+| B6-01 | Reconciled (PR #785); not reopened | §12.1; `D12` rows |
+| B6-02 | Resolved by `FPDR-5`; not reopened; preserved by AI-S7-14 | §10.1; F7 |
+| B6-03 | Engineering input: gateway runtime, streaming, timeouts, secret provisioning | F3; EQ-1 |
+| B6-04 | Engineering input: Malayalam font, `lang` attributes, evaluation suite | F2; EQ-2 |
+| B6-05 | Engineering input, reconciled by C-8: the `FPDR-1` command becomes the single effective protected transaction-write boundary | F5; EQ-4 |
+| B6-06 | Dispositioned through S7-SP-3 (VOICE-S7-03): Smart Business transient retention and provider retention are separate claims; provider retention remains `UNVERIFIED — ACCESS REQUIRED` | F7; Section 20.2 |
+| B6-07 | EIS-design boundary: existing trustworthy context and capability sensitivity only; no new sensing or privacy control (MC-08 §4; AI-S7-11; VOICE-S7-13) | F7; EQ-9 |
+| B6-08 | Engineering input: idempotency key and outcome lookup; unknown outcome first-class (AI-S7-03) | F10 |
+| B6-09 | FAQ stewardship per MC-08 §5, refined only as in C-7 | F8 |
+| B6-10 | Dispositioned through S7-SP-2 and S7-SP-3 (AI-S7-08; VOICE-S7-15, -16): provider evidence remains an activation-gate hold | F3, F7; Section 20.2 |
+| B6-11 | Engineering input: navigation and shared business-context provider | F1 |
+| B6-12 | Engineering input: typed registry with existing schema tooling and authority exclusion | F5 |
+| B6-13 | Engineering input: transient attachment handling | F9 |
+| B6-14 | Verification Checklist requirement: positive no-Meta-call evidence for Scenario B | F10; V-FRV |
+| B6-15 | Engineering input: stage-by-stage latency budgets (VOICE-S7-12) | F3, F7 |
+| B6-16 | Engineering input: telemetry sink without content archive; local-gate evidence | F11 |
+
+### 20.6 Per-row feasibility and risk register (651 `IN SCOPE` rows)
+
+Legends:
+
+| Code | Meaning |
+|---|---|
+| F1–F12 | Feasibility assessment of the row's Blueprint subsection (Section 20.3) |
+| I-AUTH | Consumes SB-P-1.12 kernel, active-business context, binding or idempotency (EIS §19.5); no interim path |
+| I-AI | Server-only provider gateway; provider evidence held (Section 20.2) |
+| I-VOICE | Voice activation gate; transient raw audio (`FPDR-3`; C-10) |
+| I-CMD | `FPDR-1` governed create-transaction command as the single protected write boundary (C-8) |
+| I-FPDR5 | `FPDR-5` credit-payment-method boundary; owed balance and repayment not fabricated |
+| I-L14, I-L15, I-L19, I-L20, I-LATER | Later-mission dependency (SB-P-1.14, 1.15, 1.19, 1.20, or 1.16–1.18) |
+| I-POLICY | Open retention policy (Build Plan §15 item 6), off the critical path |
+| I-NONE | No external implication beyond this mission's build |
+| V-TEST | Unit or integration test evidence |
+| V-NEG | Negative test or design inspection proving absence |
+| V-DES | Design review against the rule |
+| V-ACC | Acceptance-scenario evidence at Stage 17/19 |
+| V-FRV | Founder Runtime Verification with runtime evidence |
+| V-EVM | Experience Verification Matrix entry |
+| SP-1, SP-2, SP-3 | Specialist coverage marker (S7-SP-1 Security; S7-SP-2 AI Behaviour; S7-SP-3 Voice/Provider). Traceability only; not a hold |
+
+Remaining hold categories (mechanical rules; a row may carry several):
+
+| Code | Unresolved condition | Rule |
+|---|---|---|
+| H-D12 | SB-P-1.12 consumption evidence | Row carries `D12` |
+| H-DTX | Transactions-family command-only cut-over and governed-command evidence | Row carries `DTX` |
+| H-PROV | Provider evidence (Section 20.2) | Row carries `DAI` or `DV` |
+| H-LANG | Governed English/Malayalam/Manglish text or speech evaluation | Row in §8.2, or `12-§9-*`, `8-§5-*`, `12-§21-7`, `8-§16-2` |
+| H-AUDIO | Transient-audio proof (C-10) | Row carries `FPDR-3`, or is a raw-audio capture row (`10-§4-2`, `12-§11-1`, `24-§7-2`, `24-§15-2`, `12-§17-1`, `12-§17-2`, `12-§17-6`) |
+| H-CONF | Confirmation, binding, revalidation, idempotency or replay evidence | Pointer mentions confirm, idempotency, duplicate, binding, revalidation, retry or replay, or row is in the idempotency set of Stage 7 |
+| H-FPDR4 | FPDR-4 trustworthy-context evidence (VOICE-S7-13) | Row carries `FPDR-4`, or is `12-§15-1`, `12-§21-12`, `10-§19-4` |
+| H-LATER | Later-mission dependency | Row carries `D14`, `D15`, `D16`, `D17`, `D18`, `D19`, `D20` or `DUF6` |
+| H-EVID | Runtime or acceptance evidence | Row kind is acceptance scenario, Founder Runtime scenario or experience anchor |
+
+Finding values are exactly `PASS`, `FOLLOW-UP`, `BLOCKED` and `NOT APPLICABLE`:
+
+| Finding | Meaning |
+|---|---|
+| `BLOCKED` | Feasible, but cannot be built or demonstrated until SB-P-1.12 consumption conditions are evidenced and accepted (`D12`). The row stays `IN SCOPE` |
+| `FOLLOW-UP` | Feasible; depends on a gate, evidence or later-mission dependency other than `D12` |
+| `PASS` | Feasible with no external dependency |
+| `NOT APPLICABLE` | Not used: every row here is `IN SCOPE` in the FCTM |
+
+| Row | Blueprint | Source | Feasibility | Implications | Dependency status | Risk | Verification | Specialist coverage | Remaining hold | Finding |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `24-§4-1` | §8.3 | C24 §4 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-2` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-3` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-4` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-5` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-6` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-7` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§4-8` | §8.12 | C24 §4 | F12 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§5-1` | §8.3 | C24 §5 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§5-3` | §8.3 | C24 §5 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§5-5` | §8.7 | C24 §5 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§5-7` | §8.3 | C24 §5 | F3 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `24-§5-8` | §8.3 | C24 §5 | F3 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§6-1` | §8.3 | C24 §6 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§6-2` | §8.3 | C24 §6 | F3 | I-AI, I-L14, I-L15, I-LATER | DAI unverified; D14 not started; D15 not started; D16 not started; D17 not started; D18 not started | Medium | V-TEST | SP-2 | H-PROV, H-LATER | FOLLOW-UP |
+| `24-§6-3` | §8.2 | C24 §6 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `24-§7-1` | §8.3 | C24 §7 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§7-2` | §8.7 | C24 §7 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `24-§7-5` | §8.3 | C24 §7 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-DES | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§8-1` | §8.2 | C24 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `24-§8-2` | §8.2 | C24 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `24-§8-3` | §8.2 | C24 §8 | F2 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `24-§9-1` | §8.3 | C24 §9 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§9-2` | §8.3 | C24 §9 | F3 | I-AUTH, I-L14, I-L15, I-LATER | D12 impl/evidence not complete; D14 not started; D15 not started; D16 not started; D17 not started; D18 not started | Medium | V-TEST | SP-1, SP-2 | H-D12, H-LATER | BLOCKED |
+| `24-§9-3` | §8.3 | C24 §9 | F3 | I-L14 | D14 not started | Low | V-TEST | SP-2 | H-LATER | FOLLOW-UP |
+| `24-§9-4` | §8.3 | C24 §9 | F3 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§10-1` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-2` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-3` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-4` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-5` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-6` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-7` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§10-8` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `24-§10-9` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `24-§10-10` | §8.4 | C24 §10 | F4 | I-AUTH, I-L20, I-LATER | D12 impl/evidence not complete; D18 not started; D20 not started | High | V-NEG | SP-1 | H-D12, H-LATER | BLOCKED |
+| `24-§10-11` | §8.4 | C24 §10 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `24-§11-1` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-2` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-3` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-4` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-5` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-6` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§11-7` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§11-8` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-9` | §8.5 | C24 §11 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§11-10` | §8.5 | C24 §11 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `24-§13-2` | §8.5 | C24 §13 | F5 | I-NONE | none external | Low | V-NEG | SP-1 | — | PASS |
+| `24-§15-1` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§15-2` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `24-§15-3` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§15-4` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§15-5` | §8.7 | C24 §15 | F7 | I-AI, I-AUTH, I-VOICE | D12 impl/evidence not complete; DV gate not activated; DAI unverified | Medium | V-TEST | SP-1, SP-2, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§15-6` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§15-7` | §8.7 | C24 §15 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§15-8` | §8.7 | C24 §15 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `24-§17-1` | §8.8 | C24 §17 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§17-2` | §8.8 | C24 §17 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§17-4` | §8.8 | C24 §17 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§17-5` | §8.8 | C24 §17 | F8 | I-AUTH, I-L19 | D12 impl/evidence not complete; D19 not started | Medium | V-NEG | SP-1, SP-2 | H-D12, H-LATER | BLOCKED |
+| `24-§19-1` | §8.3 | C24 §19 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§19-2` | §8.3 | C24 §19 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§19-3` | §8.3 | C24 §19 | F3 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§19-4` | §8.3 | C24 §19 | F3 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-1` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-2` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-3` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-4` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-5` | §8.5 | C24 §20 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§20-6` | §8.5 | C24 §20 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§20-7` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§20-8` | §8.5 | C24 §20 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§20-9` | §8.5 | C24 §20 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§20-10` | §8.5 | C24 §20 | F5 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§21-1` | §8.5 | C24 §21 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§21-2` | §8.5 | C24 §21 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-TEST | SP-1 | H-D12, H-DTX, H-CONF | BLOCKED |
+| `24-§21-8` | §8.5 | C24 §21 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `24-§21-9` | §8.5 | C24 §21 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `24-§21-10` | §8.5 | C24 §21 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `24-§22-1` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-NEG | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-2` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-3` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-4` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-5` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-6` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-7` | §8.4 | C24 §22 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§22-8` | §8.4 | C24 §22 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§23-1` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-2` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-3` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-4` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-5` | §8.10 | C24 §23 | F10 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§23-7` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-8` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-9` | §8.10 | C24 §23 | F10 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§23-10` | §8.10 | C24 §23 | F10 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§23-11` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-12` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-13` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-14` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-CONF | FOLLOW-UP |
+| `24-§23-15` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-16` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-17` | §8.10 | C24 §23 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§23-18` | §8.10 | C24 §23 | F10 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `24-§24-1` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-2` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-3` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-4` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-5` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-6` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `24-§24-7` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-8` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-9` | §8.6 | C24 §24 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `24-§24-10` | §8.6 | C24 §24 | F6 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§25-1` | §8.4 | C24 §25 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§25-2` | §8.4 | C24 §25 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§25-3` | §8.4 | C24 §25 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§25-4` | §8.4 | C24 §25 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§25-5` | §8.4 | C24 §25 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§25-6` | §8.4 | C24 §25 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§25-7` | §8.4 | C24 §25 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§25-8` | §8.4 | C24 §25 | F4 | I-AI | DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-PROV | FOLLOW-UP |
+| `24-§25-9` | §8.4 | C24 §25 | F4 | I-NONE | none external | Low | V-DES | SP-1 | — | PASS |
+| `24-§26-1` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-2` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-3` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-4` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-5` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-6` | §8.3 | C24 §26 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§26-7` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-CONF | FOLLOW-UP |
+| `24-§26-8` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-9` | §8.3 | C24 §26 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§26-10` | §8.3 | C24 §26 | F3 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§27-2` | §8.3 | C24 §27 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§27-4` | §8.7 | C24 §27 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `24-§27-6` | §8.3 | C24 §27 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§27-7` | §8.3 | C24 §27 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§27-8` | §8.3 | C24 §27 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§27-9` | §8.3 | C24 §27 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§27-10` | §8.3 | C24 §27 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§27-11` | §8.3 | C24 §27 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-1` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-2` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-3` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-4` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-5` | §8.3 | C24 §28 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§28-6` | §8.3 | C24 §28 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§28-7` | §8.3 | C24 §28 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§28-8` | §8.3 | C24 §28 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§28-9` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-CONF | FOLLOW-UP |
+| `24-§28-10` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-11` | §8.3 | C24 §28 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§28-12` | §8.3 | C24 §28 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§29-1` | §8.3 | C24 §29 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§29-2` | §8.3 | C24 §29 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§29-3` | §8.3 | C24 §29 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§29-4` | §8.3 | C24 §29 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§29-5` | §8.3 | C24 §29 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `24-§29-6` | §8.3 | C24 §29 | F3 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `24-§30-1` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§30-2` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§30-3` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§30-4` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-1, SP-2 | — | PASS |
+| `24-§30-5` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§30-6` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-1, SP-2 | — | PASS |
+| `24-§30-7` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§30-8` | §8.12 | C24 §30 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `24-§31-1` | §8.3 | C24 §31 | F3 | I-AI, I-AUTH, I-L20 | D12 impl/evidence not complete; DAI unverified; D20 not started | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-LATER, H-EVID | BLOCKED |
+| `24-§31-2` | §8.7 | C24 §31 | F7 | I-AI, I-AUTH, I-VOICE | D12 impl/evidence not complete; DV gate not activated; DAI unverified | Medium | V-ACC | SP-1, SP-2, SP-3 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `24-§31-3` | §8.4 | C24 §31 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `24-§31-4` | §8.4 | C24 §31 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `24-§31-5` | §8.2 | C24 §31 | F2 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `24-§31-6` | §8.3 | C24 §31 | F3 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `24-§31-7` | §8.5 | C24 §31 | F5 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-CONF, H-EVID | BLOCKED |
+| `24-§31-11` | §8.10 | C24 §31 | F10 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-CONF, H-EVID | BLOCKED |
+| `24-§31-12` | §8.10 | C24 §31 | F10 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `24-§31-13` | §8.5 | C24 §31 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-ACC | SP-1 | H-D12, H-DTX, H-CONF, H-EVID | BLOCKED |
+| `24-§31-14` | §8.3 | C24 §31 | F3 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `24-§31-15` | §8.3 | C24 §31 | F3 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-ACC | SP-1, SP-2 | H-D12, H-LATER, H-EVID | BLOCKED |
+| `24-§31-16` | §8.3 | C24 §31 | F3 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `9-§3-1` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-2` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-3` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-4` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-5` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-6` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-7` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-8` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§3-9` | §8.2 | C9 §3 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§4-1` | §8.2 | C9 §4 | F2 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12, H-LANG | BLOCKED |
+| `9-§4-2` | §8.2 | C9 §4 | F2 | I-NONE | none external | Low | V-TEST | SP-2 | H-LANG | PASS |
+| `9-§4-3` | §8.2 | C9 §4 | F2 | I-NONE | none external | Low | V-TEST | SP-2 | H-LANG | PASS |
+| `9-§4-4` | §8.2 | C9 §4 | F2 | I-NONE | none external | Low | V-TEST | SP-2 | H-LANG | PASS |
+| `9-§4-5` | §8.2 | C9 §4 | F2 | I-NONE | none external | Low | V-TEST | SP-2 | H-LANG | PASS |
+| `9-§5-1` | §8.2 | C9 §5 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§5-2` | §8.2 | C9 §5 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§6-1` | §8.2 | C9 §6 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§6-2` | §8.2 | C9 §6 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§7-1` | §8.2 | C9 §7 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§7-2` | §8.2 | C9 §7 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§7-3` | §8.2 | C9 §7 | F2 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§8-1` | §8.2 | C9 §8 | F2 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§8-2` | §8.2 | C9 §8 | F2 | I-AI, I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2, SP-3 | H-D12, H-PROV, H-LANG, H-CONF | BLOCKED |
+| `9-§8-4` | §8.2 | C9 §8 | F2 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§9-1` | §8.2 | C9 §9 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§9-2` | §8.2 | C9 §9 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `9-§9-3` | §8.2 | C9 §9 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§9-4` | §8.2 | C9 §9 | F2 | I-AI, I-FPDR5 | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§9-5` | §8.2 | C9 §9 | F2 | I-AI, I-L15 | DAI unverified; D15 not started | Medium | V-TEST | SP-2 | H-PROV, H-LANG, H-LATER | FOLLOW-UP |
+| `9-§9-6` | §8.2 | C9 §9 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `9-§9-7` | §8.2 | C9 §9 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§9-8` | §8.2 | C9 §9 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§10-1` | §8.2 | C9 §10 | F2 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12, H-LANG | BLOCKED |
+| `9-§10-2` | §8.2 | C9 §10 | F2 | I-AUTH | D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-2 | H-D12, H-LANG | BLOCKED |
+| `9-§10-3` | §8.2 | C9 §10 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `9-§11-1` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-2` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-3` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-4` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-5` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-6` | §8.2 | C9 §11 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§11-7` | §8.2 | C9 §11 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG, H-CONF | BLOCKED |
+| `9-§12-4` | §8.2 | C9 §12 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§12-10` | §8.8 | C9 §12 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `9-§12-13` | §8.2 | C9 §12 | F2 | I-NONE | none external | Low | V-NEG | SP-2 | H-LANG | PASS |
+| `9-§13-1` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-2` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-3` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-4` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-5` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-6` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-7` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-8` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§13-9` | §8.4 | C9 §13 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `9-§13-10` | §8.4 | C9 §13 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `9-§13-11` | §8.2 | C9 §13 | F2 | I-AI | DAI unverified | Medium | V-NEG | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-1` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-2` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-3` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-4` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-5` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-6` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-7` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§14-8` | §8.2 | C9 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§15-1` | §8.2 | C9 §15 | F2 | I-NONE | none external | Low | V-NEG | SP-2 | H-LANG | PASS |
+| `9-§15-2` | §8.2 | C9 §15 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§15-3` | §8.2 | C9 §15 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§15-4` | §8.2 | C9 §15 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§15-5` | §8.2 | C9 §15 | F2 | I-NONE | none external | Low | V-NEG | SP-2 | H-LANG | PASS |
+| `9-§16-1` | §8.2 | C9 §16 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§16-2` | §8.2 | C9 §16 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§16-3` | §8.2 | C9 §16 | F2 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `9-§16-4` | §8.2 | C9 §16 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `9-§17-1` | §8.2 | C9 §17 | F2 | I-AI, I-AUTH, I-CMD | D12 impl/evidence not complete; DAI unverified; DTX FPDR-1, not built | High | V-ACC | SP-1, SP-2 | H-D12, H-DTX, H-PROV, H-LANG, H-EVID | BLOCKED |
+| `9-§17-2` | §8.2 | C9 §17 | F2 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `9-§17-3` | §8.2 | C9 §17 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-LANG, H-EVID | BLOCKED |
+| `9-§17-4` | §8.2 | C9 §17 | F2 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-ACC | SP-2, SP-3 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `9-§17-7` | §8.8 | C9 §17 | F8 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `9-§17-8` | §8.2 | C9 §17 | F2 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `9-§17-9` | §8.2 | C9 §17 | F2 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-ACC | SP-1, SP-2 | H-D12, H-LANG, H-LATER, H-EVID | BLOCKED |
+| `9-§17-10` | §8.2 | C9 §17 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-LANG, H-EVID | BLOCKED |
+| `9-§18-1` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-2` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-3` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-4` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-5` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-6` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§18-7` | §8.12 | C9 §18 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `9-§19` | §8.4 | C9 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§4-1` | §8.1 | C10 §4 | F1 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `10-§4-2` | §8.7 | C10 §4 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `10-§4-3` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§4-4` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§4-5` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§4-6` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§4-7` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§4-8` | §8.9 | C10 §4 | F9 | I-L14 | D14 not started | Low | V-NEG | — | H-LATER | FOLLOW-UP |
+| `10-§5-1` | §8.1 | C10 §5 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§5-2` | §8.7 | C10 §5 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§5-3` | §8.1 | C10 §5 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§5-4` | §8.1 | C10 §5 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§5-6` | §8.1 | C10 §5 | F1 | I-NONE | none external | Low | V-TEST | — | H-CONF | PASS |
+| `10-§5-8` | §8.1 | C10 §5 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§5-9` | §8.1 | C10 §5 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§5-11` | §8.1 | C10 §5 | F1 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§6-1` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-2` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-3` | §8.1 | C10 §6 | F1 | I-AUTH, I-L14, I-L20 | D12 impl/evidence not complete; D14 not started; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-4` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-5` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-6` | §8.1 | C10 §6 | F1 | I-L20 | D20 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§6-7` | §8.1 | C10 §6 | F1 | I-AUTH, I-L14, I-L20 | D12 impl/evidence not complete; D14 not started; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-8` | §8.1 | C10 §6 | F1 | I-AUTH, I-L15, I-L20 | D12 impl/evidence not complete; D15 not started; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-9` | §8.1 | C10 §6 | F1 | I-AUTH, I-L15, I-L20 | D12 impl/evidence not complete; D15 not started; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-10` | §8.1 | C10 §6 | F1 | I-AUTH, I-L15, I-L20 | D12 impl/evidence not complete; D15 not started; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§6-11` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-CONF, H-LATER | BLOCKED |
+| `10-§6-12` | §8.1 | C10 §6 | F1 | I-AUTH, I-L20 | D12 impl/evidence not complete; D20 not started | Medium | V-TEST | SP-1 | H-D12, H-CONF, H-LATER | BLOCKED |
+| `10-§6-13` | §8.1 | C10 §6 | F1 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§7-2` | §8.5 | C10 §7 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§7-3` | §8.5 | C10 §7 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§7-4` | §8.5 | C10 §7 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§7-5` | §8.5 | C10 §7 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§7-6` | §8.1 | C10 §7 | F1 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§8-1` | §8.4 | C10 §8 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§8-2` | §8.4 | C10 §8 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§8-3` | §8.4 | C10 §8 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§8-4` | §8.4 | C10 §8 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§9-3` | §8.5 | C10 §9 | F5 | I-AUTH, I-L15 | D12 impl/evidence not complete; D15 not started | High | V-NEG | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§10-2` | §8.9 | C10 §10 | F9 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§10-6` | §8.9 | C10 §10 | F9 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `10-§10-8` | §8.9 | C10 §10 | F9 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§11-1` | §8.7 | C10 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `10-§11-2` | §8.7 | C10 §11 | F7 | I-AUTH, I-CMD, I-VOICE | D12 impl/evidence not complete; DV gate not activated; DTX FPDR-1, not built | High | V-TEST | SP-1, SP-3 | H-D12, H-DTX, H-PROV | BLOCKED |
+| `10-§11-3` | §8.7 | C10 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§11-5` | §8.7 | C10 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `10-§11-6` | §8.7 | C10 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§11-7` | §8.7 | C10 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§11-8` | §8.7 | C10 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `10-§12-1` | §8.2 | C10 §12 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `10-§12-2` | §8.2 | C10 §12 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `10-§12-3` | §8.2 | C10 §12 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `10-§13-1` | §8.5 | C10 §13 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-TEST | SP-1 | H-D12, H-DTX | BLOCKED |
+| `10-§13-2` | §8.5 | C10 §13 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-TEST | SP-1 | H-D12, H-DTX | BLOCKED |
+| `10-§13-8` | §8.5 | C10 §13 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§13-9` | §8.5 | C10 §13 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§13-10` | §8.5 | C10 §13 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§13-11` | §8.5 | C10 §13 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§13-12` | §8.5 | C10 §13 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§14-1` | §8.10 | C10 §14 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `10-§15-1` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-DES | SP-1 | H-D12 | BLOCKED |
+| `10-§15-2` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§15-3` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§15-4` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§15-5` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§15-6` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§15-7` | §8.4 | C10 §15 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§16-1` | §8.1 | C10 §16 | F1 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§16-2` | §8.1 | C10 §16 | F1 | I-POLICY | DUF6 open, off critical path | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§16-3` | §8.1 | C10 §16 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§16-4` | §8.1 | C10 §16 | F1 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§16-5` | §8.1 | C10 §16 | F1 | I-L14 | D14 not started | Low | V-TEST | — | H-LATER | FOLLOW-UP |
+| `10-§16-6` | §8.1 | C10 §16 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `10-§16-7` | §8.1 | C10 §16 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§16-8` | §8.1 | C10 §16 | F1 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§17-1` | §8.2 | C10 §17 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `10-§17-2` | §8.2 | C10 §17 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `10-§17-3` | §8.2 | C10 §17 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `10-§17-6` | §8.2 | C10 §17 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `10-§17-7` | §8.2 | C10 §17 | F2 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LANG | BLOCKED |
+| `10-§17-8` | §8.5 | C10 §17 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§17-9` | §8.5 | C10 §17 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§18-1` | §8.10 | C10 §18 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `10-§18-2` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-TEST | SP-2 | — | PASS |
+| `10-§18-3` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-TEST | SP-2 | — | PASS |
+| `10-§18-4` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-TEST | SP-2 | — | PASS |
+| `10-§18-5` | §8.10 | C10 §18 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `10-§18-6` | §8.10 | C10 §18 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `10-§18-7` | §8.10 | C10 §18 | F10 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1, SP-2 | H-D12, H-CONF | BLOCKED |
+| `10-§18-8` | §8.10 | C10 §18 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12, H-CONF | BLOCKED |
+| `10-§18-9` | §8.10 | C10 §18 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `10-§18-10` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-TEST | SP-2 | — | PASS |
+| `10-§18-12` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-TEST | SP-2 | — | PASS |
+| `10-§18-13` | §8.10 | C10 §18 | F10 | I-NONE | none external | Medium | V-DES | SP-2 | — | PASS |
+| `10-§19-1` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§19-2` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§19-3` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§19-4` | §8.4 | C10 §19 | F4 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | High | V-NEG | SP-1, SP-3 | H-D12, H-PROV, H-FPDR4 | BLOCKED |
+| `10-§19-5` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§19-6` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§19-7` | §8.4 | C10 §19 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `10-§20-1` | §8.1 | C10 §20 | F1 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `10-§20-2` | §8.1 | C10 §20 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§20-3` | §8.1 | C10 §20 | F1 | I-NONE | none external | High | V-TEST | SP-1 | H-CONF | PASS |
+| `10-§20-4` | §8.1 | C10 §20 | F1 | I-NONE | none external | Low | V-TEST | — | H-CONF | PASS |
+| `10-§20-5` | §8.1 | C10 §20 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-NEG | SP-1 | H-D12, H-CONF | BLOCKED |
+| `10-§20-6` | §8.1 | C10 §20 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `10-§22-1` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§22-2` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `10-§22-3` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§22-4` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | SP-1 | — | PASS |
+| `10-§22-5` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§22-6` | §8.12 | C10 §22 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `10-§23-1` | §8.5 | C10 §23 | F5 | I-AI, I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built; DAI unverified | High | V-ACC | SP-1, SP-2 | H-D12, H-DTX, H-PROV, H-CONF, H-EVID | BLOCKED |
+| `10-§23-2` | §8.7 | C10 §23 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-ACC | SP-1, SP-3 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `10-§23-3a` | §8.9 | C10 §23 | F9 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-ACC | SP-1 | H-D12, H-LATER, H-EVID | BLOCKED |
+| `10-§23-5` | §8.4 | C10 §23 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `10-§23-7` | §8.10 | C10 §23 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-ACC | SP-1, SP-2 | H-D12, H-EVID | BLOCKED |
+| `10-§23-8` | §8.5 | C10 §23 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-ACC | SP-1 | H-D12, H-EVID | BLOCKED |
+| `10-§23-9` | §8.5 | C10 §23 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-ACC | SP-1 | H-D12, H-DTX, H-CONF, H-EVID | BLOCKED |
+| `10-§23-10` | §8.4 | C10 §23 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-ACC | SP-1 | H-D12, H-EVID | BLOCKED |
+| `12-§3-1` | §8.7 | C12 §3 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§4-1` | §8.7 | C12 §4 | F7 | I-AUTH, I-CMD, I-L14, I-VOICE, I-FPDR5 | D12 impl/evidence not complete; DV gate not activated; DTX FPDR-1, not built; D14 not started; FPDR-2: credit/repayment portion blocked on D14 | High | V-TEST | SP-1, SP-2, SP-3 | H-D12, H-DTX, H-PROV, H-LATER | BLOCKED |
+| `12-§4-6` | §8.7 | C12 §4 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-CONF | FOLLOW-UP |
+| `12-§4-7` | §8.7 | C12 §4 | F7 | I-AUTH, I-VOICE | D12 impl/evidence not complete; DV gate not activated | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§4-8` | §8.7 | C12 §4 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§4-9` | §8.7 | C12 §4 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§6-1` | §8.7 | C12 §6 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `12-§6-2` | §8.7 | C12 §6 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§6-3` | §8.7 | C12 §6 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§6-4` | §8.7 | C12 §6 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§6-5` | §8.7 | C12 §6 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§6-6` | §8.7 | C12 §6 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§7-1` | §8.7 | C12 §7 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§7-2` | §8.7 | C12 §7 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§7-3` | §8.7 | C12 §7 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§7-4` | §8.7 | C12 §7 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§7-5` | §8.7 | C12 §7 | F7 | I-VOICE, I-FPDR5 | DV gate not activated | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§7-6` | §8.7 | C12 §7 | F7 | I-L14, I-VOICE, I-FPDR5 | DV gate not activated; D14 not started; FPDR-2: credit/repayment portion blocked on D14 | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LATER | FOLLOW-UP |
+| `12-§7-8` | §8.7 | C12 §7 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§7-9` | §8.7 | C12 §7 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§7-10` | §8.7 | C12 §7 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§8-1` | §8.7 | C12 §8 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§8-2` | §8.7 | C12 §8 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§8-3` | §8.7 | C12 §8 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§8-5` | §8.7 | C12 §8 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§9-1` | §8.7 | C12 §9 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `12-§9-2` | §8.7 | C12 §9 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `12-§9-3` | §8.7 | C12 §9 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `12-§11-1` | §8.7 | C12 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `12-§11-2` | §8.7 | C12 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§11-3` | §8.7 | C12 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§11-4` | §8.7 | C12 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§11-5` | §8.7 | C12 §11 | F7 | I-AUTH, I-L14, I-VOICE | D12 impl/evidence not complete; DV gate not activated; D14 not started | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-LATER | BLOCKED |
+| `12-§11-7` | §8.7 | C12 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `12-§11-8` | §8.7 | C12 §11 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§11-9` | §8.7 | C12 §11 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§13-3` | §8.7 | C12 §13 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§14-1` | §8.7 | C12 §14 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§14-2` | §8.7 | C12 §14 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§14-3` | §8.7 | C12 §14 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§14-4` | §8.7 | C12 §14 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§15-1` | §8.7 | C12 §15 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-FPDR4 | BLOCKED |
+| `12-§15-2` | §8.7 | C12 §15 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-FPDR4 | BLOCKED |
+| `12-§15-3` | §8.7 | C12 §15 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-FPDR4 | BLOCKED |
+| `12-§15-4` | §8.7 | C12 §15 | F7 | I-AUTH, I-L14, I-POLICY, I-VOICE | D12 impl/evidence not complete; DV gate not activated; D14 not started; DUF6 open, off critical path | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-AUDIO, H-LATER | BLOCKED |
+| `12-§15-5` | §8.7 | C12 §15 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-1` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-2` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-3` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-4` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-5` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `12-§16-6` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-7` | §8.7 | C12 §16 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§16-8` | §8.7 | C12 §16 | F7 | I-L14, I-VOICE | DV gate not activated; D14 not started | Medium | V-NEG | SP-3 | H-PROV, H-AUDIO, H-LATER | FOLLOW-UP |
+| `12-§17-1` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `12-§17-2` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `12-§17-3` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-4` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-5` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-6` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-AUDIO | FOLLOW-UP |
+| `12-§17-7` | §8.7 | C12 §17 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `12-§17-8` | §8.7 | C12 §17 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | High | V-TEST | SP-1, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `12-§17-9` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-10` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-11` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-12` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV, H-CONF | FOLLOW-UP |
+| `12-§17-13` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-14` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§17-15` | §8.7 | C12 §17 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§18-1` | §8.7 | C12 §18 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§18-2` | §8.7 | C12 §18 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `12-§18-3` | §8.7 | C12 §18 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-3 | H-D12, H-PROV, H-CONF | BLOCKED |
+| `12-§20-1` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§20-2` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§20-3` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§20-4` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§20-5` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§20-6` | §8.7 | C12 §20 | F7 | I-VOICE | DV gate not activated | Medium | V-NEG | SP-3 | H-PROV | FOLLOW-UP |
+| `12-§21-1` | §8.7 | C12 §21 | F7 | I-AUTH, I-CMD, I-L14, I-VOICE, I-FPDR5 | D12 impl/evidence not complete; DV gate not activated; DTX FPDR-1, not built; D14 not started; FPDR-2: credit/repayment portion blocked on D14 | High | V-ACC | SP-1, SP-2, SP-3 | H-D12, H-DTX, H-PROV, H-LATER, H-EVID | BLOCKED |
+| `12-§21-2` | §8.7 | C12 §21 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-ACC | SP-2, SP-3 | H-PROV, H-EVID | FOLLOW-UP |
+| `12-§21-7` | §8.7 | C12 §21 | F7 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-ACC | SP-2, SP-3 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `12-§21-8` | §8.7 | C12 §21 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-ACC | SP-1, SP-3 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `12-§21-9` | §8.7 | C12 §21 | F7 | I-AUTH, I-CMD, I-VOICE | DV gate not activated; D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-ACC | SP-1, SP-3 | H-D12, H-DTX, H-PROV, H-CONF, H-EVID | BLOCKED |
+| `12-§21-10` | §8.7 | C12 §21 | F7 | I-VOICE | DV gate not activated | Medium | V-ACC | SP-3 | H-PROV, H-CONF, H-EVID | FOLLOW-UP |
+| `12-§21-12` | §8.7 | C12 §21 | F7 | I-AUTH, I-VOICE | DV gate not activated; D12 impl/evidence not complete | Medium | V-ACC | SP-1, SP-3 | H-D12, H-PROV, H-FPDR4, H-EVID | BLOCKED |
+| `8-§3-1` | §8.8 | C8 §3 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§3-2` | §8.8 | C8 §3 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§3-3` | §8.8 | C8 §3 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§3-4` | §8.8 | C8 §3 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§3-5` | §8.8 | C8 §3 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§3-8` | §8.8 | C8 §3 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§4-1` | §8.8 | C8 §4 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§5-1` | §8.8 | C8 §5 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `8-§5-2` | §8.8 | C8 §5 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `8-§5-3` | §8.8 | C8 §5 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `8-§6-1` | §8.8 | C8 §6 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§6-2` | §8.8 | C8 §6 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§6-3` | §8.8 | C8 §6 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§6-4` | §8.8 | C8 §6 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§6-5` | §8.8 | C8 §6 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§7-1` | §8.8 | C8 §7 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§7-2` | §8.8 | C8 §7 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§7-3` | §8.8 | C8 §7 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§7-6` | §8.8 | C8 §7 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§7-7` | §8.8 | C8 §7 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§7-8` | §8.8 | C8 §7 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§7-9` | §8.8 | C8 §7 | F8 | I-AUTH | D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-2 | H-D12 | BLOCKED |
+| `8-§7-10` | §8.8 | C8 §7 | F8 | I-AUTH | D12 impl/evidence not complete | Medium | V-NEG | SP-1, SP-2 | H-D12 | BLOCKED |
+| `8-§7-11` | §8.8 | C8 §7 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§7-12` | §8.8 | C8 §7 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§11-1` | §8.8 | C8 §11 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§11-2` | §8.8 | C8 §11 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§11-4` | §8.8 | C8 §11 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§11-5` | §8.8 | C8 §11 | F8 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `8-§12-1` | §8.8 | C8 §12 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§12-5` | §8.8 | C8 §12 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§13-1` | §8.8 | C8 §13 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§15-1` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-2` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-3` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-4` | §8.8 | C8 §15 | F8 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `8-§15-6` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-7` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-10` | §8.8 | C8 §15 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `8-§15-11` | §8.8 | C8 §15 | F8 | I-L19 | D19 not started | Low | V-TEST | SP-2 | H-LATER | FOLLOW-UP |
+| `8-§16-1` | §8.8 | C8 §16 | F8 | I-NONE | none external | Low | V-ACC | SP-2 | H-EVID | PASS |
+| `8-§16-2` | §8.8 | C8 §16 | F8 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `8-§16-3` | §8.8 | C8 §16 | F8 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `8-§16-4` | §8.8 | C8 §16 | F8 | I-NONE | none external | Low | V-ACC | SP-2 | H-EVID | PASS |
+| `8-§16-5` | §8.8 | C8 §16 | F8 | I-AI | DAI unverified | Medium | V-ACC | SP-2 | H-PROV, H-EVID | FOLLOW-UP |
+| `8-§16-9` | §8.8 | C8 §16 | F8 | I-NONE | none external | Low | V-ACC | SP-2 | H-EVID | PASS |
+| `8-§17-2` | §8.8 | C8 §17 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§17-3` | §8.8 | C8 §17 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§17-4` | §8.8 | C8 §17 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `8-§17-6` | §8.8 | C8 §17 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `22-§4-2` | §8.1 | C22 §4 | F1 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `22-§7-1` | §8.3 | C22 §7 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§7-2` | §8.3 | C22 §7 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `22-§7-3` | §8.3 | C22 §7 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `22-§7-4` | §8.3 | C22 §7 | F3 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§7-5` | §8.3 | C22 §7 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12, H-CONF | BLOCKED |
+| `22-§7-6` | §8.3 | C22 §7 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `22-§7-7` | §8.3 | C22 §7 | F3 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-TEST | SP-1, SP-2 | H-D12, H-LATER | BLOCKED |
+| `22-§7-8` | §8.3 | C22 §7 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12, H-CONF | BLOCKED |
+| `22-§7-9` | §8.3 | C22 §7 | F3 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `22-§7-10` | §8.3 | C22 §7 | F3 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§8-1` | §8.2 | C22 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§8-2` | §8.2 | C22 §8 | F2 | I-NONE | none external | Low | V-NEG | SP-2 | H-LANG | PASS |
+| `22-§8-3` | §8.2 | C22 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§8-4` | §8.2 | C22 §8 | F2 | I-AI, I-VOICE | DV gate not activated; DAI unverified | Medium | V-TEST | SP-2, SP-3 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§8-5` | §8.2 | C22 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§8-6` | §8.2 | C22 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§8-7` | §8.2 | C22 §8 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `22-§17` | §8.3 | C22 §17 | F3 | I-AI, I-VOICE | DAI unverified; DV gate not activated | Medium | V-DES | SP-2, SP-3 | H-PROV | FOLLOW-UP |
+| `22-§19-1` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§19-2` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-CONF | FOLLOW-UP |
+| `22-§19-3` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§19-4` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§19-5` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§19-6` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§19-7` | §8.10 | C22 §19 | F10 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `22-§21` | §8.11 | C22 §21 | F11 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-CONF | FOLLOW-UP |
+| `22-§22-1` | §8.11 | C22 §22 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§22-2` | §8.11 | C22 §22 | F11 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `22-§22-3` | §8.11 | C22 §22 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§22-4` | §8.11 | C22 §22 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§22-5` | §8.11 | C22 §22 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§22-6` | §8.11 | C22 §22 | F11 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `22-§23-2` | §8.4 | C22 §23 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `22-§23-3` | §8.4 | C22 §23 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `22-§23-5` | §8.4 | C22 §23 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `22-§23-7` | §8.4 | C22 §23 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `22-§24-1` | §8.3 | C22 §24 | F3 | I-AI, I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started; DAI unverified | Medium | V-TEST | SP-1, SP-2 | H-D12, H-PROV, H-LATER | BLOCKED |
+| `22-§24-2` | §8.4 | C22 §24 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-NEG | SP-1 | H-D12 | BLOCKED |
+| `22-§24-3` | §8.4 | C22 §24 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `22-§27-1` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§27-2` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§27-3` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§27-4` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | H-CONF | PASS |
+| `22-§27-5` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§27-6` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§27-7` | §8.11 | C22 §27 | F11 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `22-§28-1` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | H-CONF | PASS |
+| `22-§28-2` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | SP-1 | H-CONF | PASS |
+| `22-§28-3` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | SP-2 | H-CONF | PASS |
+| `22-§28-4` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | H-CONF | PASS |
+| `22-§28-5` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | H-CONF | PASS |
+| `22-§28-6` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | H-CONF | PASS |
+| `22-§28-7` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `22-§28-8` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `22-§28-9` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | SP-1, SP-2 | — | PASS |
+| `22-§28-10` | §8.12 | C22 §28 | F12 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `22-§29-1` | §8.3 | C22 §29 | F3 | I-AUTH, I-L14, I-L20 | D12 impl/evidence not complete; D14 not started; D20 not started | Medium | V-ACC | SP-1, SP-2 | H-D12, H-LATER, H-EVID | BLOCKED |
+| `22-§29-2` | §8.3 | C22 §29 | F3 | I-AI, I-AUTH, I-L20 | D12 impl/evidence not complete; DAI unverified; D20 not started | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-LATER, H-EVID | BLOCKED |
+| `22-§29-3` | §8.4 | C22 §29 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-ACC | SP-1 | H-D12, H-EVID | BLOCKED |
+| `22-§29-7` | §8.5 | C22 §29 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-ACC | SP-1 | H-D12, H-CONF, H-EVID | BLOCKED |
+| `22-§29-8` | §8.5 | C22 §29 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-ACC | SP-1 | H-D12, H-DTX, H-CONF, H-EVID | BLOCKED |
+| `22-§29-10` | §8.10 | C22 §29 | F10 | I-AI, I-VOICE | DAI unverified; DV gate not activated | Medium | V-ACC | SP-2, SP-3 | H-PROV, H-EVID | FOLLOW-UP |
+| `22-§29-12` | §8.6 | C22 §29 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-ACC | SP-1 | H-D12, H-EVID | BLOCKED |
+| `22-§29-13` | §8.10 | C22 §29 | F10 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-ACC | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `22-§29-14` | §8.11 | C22 §29 | F11 | I-NONE | none external | Low | V-ACC | — | H-EVID | PASS |
+| `17-§5-1` | §8.1 | C17 §5 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `17-§5-2` | §8.1 | C17 §5 | F1 | I-NONE | none external | Low | V-NEG | — | — | PASS |
+| `17-§5-3` | §8.1 | C17 §5 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `17-§5-4` | §8.1 | C17 §5 | F1 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `17-§5-5` | §8.1 | C17 §5 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1 | H-D12 | BLOCKED |
+| `17-§5-6` | §8.1 | C17 §5 | F1 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV | FOLLOW-UP |
+| `17-§5-7` | §8.5 | C17 §5 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-TEST | SP-1 | H-D12, H-DTX | BLOCKED |
+| `17-§5-8` | §8.1 | C17 §5 | F1 | I-AUTH, I-L14, I-L15 | D12 impl/evidence not complete; D14 not started; D15 not started | Medium | V-TEST | SP-1 | H-D12, H-LATER | BLOCKED |
+| `17-§22-4` | §8.1 | C17 §22 | F1 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-ACC | SP-1 | H-D12, H-LATER, H-EVID | BLOCKED |
+| `17-§22-8` | §8.1 | C17 §22 | F1 | I-NONE | none external | Low | V-ACC | — | H-EVID | PASS |
+| `20-§14-1` | §8.2 | C20 §14 | F2 | I-AI, I-L19 | DAI unverified; D19 not started | Medium | V-TEST | SP-2 | H-PROV, H-LANG, H-LATER | FOLLOW-UP |
+| `20-§14-2` | §8.2 | C20 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `20-§14-3` | §8.2 | C20 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `20-§14-4` | §8.2 | C20 §14 | F2 | I-AI | DAI unverified | Medium | V-TEST | SP-2 | H-PROV, H-LANG | FOLLOW-UP |
+| `20-§15-3` | §8.1 | C20 §15 | F1 | I-NONE | none external | Low | V-TEST | — | — | PASS |
+| `7-§11-2` | §8.4 | C7 §11 | F4 | I-AUTH, I-LATER | D12 impl/evidence not complete; D17 not started | High | V-NEG | SP-1 | H-D12, H-CONF, H-LATER | BLOCKED |
+| `BP-§5.4-1` | §8.7 | BP §5.4 | F7 | I-VOICE | DV gate not activated | Medium | V-TEST | SP-3 | H-PROV | FOLLOW-UP |
+| `BP-§6.2-1` | §8.5 | BP §6.2 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-DES | SP-1 | H-D12, H-DTX, H-CONF | BLOCKED |
+| `BP-§6.2-2` | §8.5 | BP §6.2 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-DES | SP-1 | H-D12 | BLOCKED |
+| `BP-§6.4-1` | §8.3 | BP §6.4 | F3 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-DES | SP-1, SP-2 | H-D12, H-LATER | BLOCKED |
+| `BP-§6.4-2` | §8.3 | BP §6.4 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-DES | SP-1, SP-2 | H-D12 | BLOCKED |
+| `BP-§6.4-3` | §8.3 | BP §6.4 | F3 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `BP-§6.4-4` | §8.3 | BP §6.4 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-DES | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `BP-§6.4-5` | §8.3 | BP §6.4 | F3 | I-AI | DAI unverified | Medium | V-DES | SP-2 | H-PROV | FOLLOW-UP |
+| `BP-§6.4-6` | §8.3 | BP §6.4 | F3 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-DES | SP-1, SP-2 | H-D12, H-PROV | BLOCKED |
+| `BP-§6.4-7` | §8.3 | BP §6.4 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-DES | SP-1, SP-2 | H-D12, H-CONF | BLOCKED |
+| `BP-§6.4-8` | §8.3 | BP §6.4 | F3 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-DES | SP-1, SP-2 | H-D12, H-DTX | BLOCKED |
+| `BP-§6.4-9` | §8.3 | BP §6.4 | F3 | I-AUTH, I-L14, I-VOICE | D12 impl/evidence not complete; DV gate not activated; D14 not started | Medium | V-DES | SP-1, SP-2, SP-3 | H-D12, H-PROV, H-LATER | BLOCKED |
+| `BP-§6.4-10` | §8.3 | BP §6.4 | F3 | I-AUTH | D12 impl/evidence not complete | Medium | V-DES | SP-1, SP-2 | H-D12 | BLOCKED |
+| `BP-§6.6-1` | §8.3 | BP §6.6 | F3 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `BP-§8.3-1` | §8.1 | BP §8.3 | F1 | I-NONE | none external | Low | V-DES | — | — | PASS |
+| `BP-§8.4-1` | §8.3 | BP §8.4 | F3 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `BP-§8.4-2` | §8.10 | BP §8.4 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-TEST | SP-1, SP-2 | H-D12 | BLOCKED |
+| `BP-§8.4-3` | §8.3 | BP §8.4 | F3 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `BP-§10.2-W1` | §8.1 | BP §10.2 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-EVM | SP-1 | H-D12 | BLOCKED |
+| `BP-§10.2-W2` | §8.2 | BP §10.2 | F2 | I-NONE | none external | Low | V-EVM | SP-2 | H-LANG | PASS |
+| `BP-§10.2-W3` | §8.1 | BP §10.2 | F1 | I-AUTH | D12 impl/evidence not complete | Medium | V-EVM | SP-1 | H-D12 | BLOCKED |
+| `BP-§10.2-W4` | §8.7 | BP §10.2 | F7 | I-AUTH, I-VOICE | D12 impl/evidence not complete; DV gate not activated | Medium | V-EVM | SP-1, SP-3 | H-D12, H-PROV | BLOCKED |
+| `BP-§10.2-W5` | §8.3 | BP §10.2 | F3 | I-AI | DAI unverified | Medium | V-EVM | SP-2 | H-PROV | FOLLOW-UP |
+| `BP-§10.2-W6` | §8.5 | BP §10.2 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-EVM | SP-1 | H-D12 | BLOCKED |
+| `BP-§10.2-W7` | §8.4 | BP §10.2 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-EVM | SP-1 | H-D12 | BLOCKED |
+| `BP-§10.2-W8` | §8.5 | BP §10.2 | F5 | I-AUTH | D12 impl/evidence not complete | High | V-EVM | SP-1 | H-D12, H-CONF | BLOCKED |
+| `BP-§10.2-W9` | §8.5 | BP §10.2 | F5 | I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built | High | V-EVM | SP-1 | H-D12, H-DTX | BLOCKED |
+| `BP-§10.2-W10` | §8.6 | BP §10.2 | F6 | I-AUTH | D12 impl/evidence not complete | High | V-EVM | SP-1 | H-D12 | BLOCKED |
+| `BP-§10.2-W11` | §8.9 | BP §10.2 | F9 | I-AUTH, I-L14 | D12 impl/evidence not complete; D14 not started | Medium | V-EVM | SP-1 | H-D12, H-LATER | BLOCKED |
+| `BP-§10.2-W12` | §8.8 | BP §10.2 | F8 | I-NONE | none external | Low | V-EVM | SP-2 | — | PASS |
+| `BP-§10.2-W13` | §8.10 | BP §10.2 | F10 | I-AI | DAI unverified | Medium | V-EVM | SP-2 | H-PROV | FOLLOW-UP |
+| `BP-§10.2-I1` | §8.7 | BP §10.2 | F7 | I-VOICE | DV gate not activated | Medium | V-DES | SP-3 | H-PROV | FOLLOW-UP |
+| `BP-§10.2-E1` | §8.1 | BP §10.2 | F1 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | Medium | V-EVM | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `BP-§10.2-E2` | §8.2 | BP §10.2 | F2 | I-AI | DAI unverified | Medium | V-EVM | SP-2 | H-PROV, H-LANG, H-EVID | FOLLOW-UP |
+| `BP-§10.2-E3` | §8.4 | BP §10.2 | F4 | I-AUTH | D12 impl/evidence not complete | High | V-EVM | SP-1 | H-D12, H-EVID | BLOCKED |
+| `BP-§10.2-E4` | §8.1 | BP §10.2 | F1 | I-NONE | none external | Low | V-EVM | — | H-EVID | PASS |
+| `BP-§10.2-E5` | §8.10 | BP §10.2 | F10 | I-AUTH | D12 impl/evidence not complete | Medium | V-EVM | SP-1, SP-2 | H-D12, H-EVID | BLOCKED |
+| `BP-§10.2-SA1` | §8.5 | BP §10.2 | F5 | I-AI, I-AUTH, I-CMD | D12 impl/evidence not complete; DTX FPDR-1, not built; DAI unverified | High | V-FRV | SP-1, SP-2 | H-D12, H-DTX, H-PROV, H-CONF, H-EVID | BLOCKED |
+| `BP-§10.2-SA2` | §8.4 | BP §10.2 | F4 | I-AI, I-AUTH | D12 impl/evidence not complete; DAI unverified | High | V-FRV | SP-1, SP-2 | H-D12, H-PROV, H-EVID | BLOCKED |
+| `BP-§10.2-SB` | §8.10 | BP §10.2 | F10 | I-AUTH | D12 impl/evidence not complete | High | V-FRV | SP-1, SP-2 | H-D12, H-EVID | BLOCKED |
+| `BP-§11-1` | §8.3 | BP §11 | F3 | I-NONE | none external | Low | V-DES | SP-2 | — | PASS |
+| `BP-§12-1` | §8.8 | BP §12 | F8 | I-NONE | none external | Low | V-TEST | SP-2 | — | PASS |
+| `BP-§12-3` | §8.8 | BP §12 | F8 | I-NONE | none external | Low | V-NEG | SP-2 | — | PASS |
+| `BP-§13-1` | §8.11 | BP §13 | F11 | I-NONE | none external | Low | V-DES | — | — | PASS |
+
+### 20.7 Register totals
+
+| Measure | Count |
+|---|---|
+| Rows with a Stage 7 finding | 651 |
+| `BLOCKED` | 252 |
+| `FOLLOW-UP` | 271 |
+| `PASS` | 128 |
+| `NOT APPLICABLE` | 0 |
+| Risk High / Medium / Low | 121 / 397 / 133 |
+| Specialist coverage markers SP-1 / SP-2 / SP-3 | 278 / 393 / 122 |
+
+Every `BLOCKED` row is exactly a row carrying `D12`, and all 17 `DTX` rows are `BLOCKED`. No row changed disposition, owner, commitment or classification. Remaining holds are counted by category in Section 21.4.
+
+### 20.8 Specialist-derived engineering constraints accepted by Mission Control
+
+Each item is an EIS-derived engineering constraint. None changes Product Truth, an FCTM row or a Founder decision, and none needs a Founder gate.
+
+| ID | Constraint | Specialist source |
+|---|---|---|
+| C-4 | **Instruction/data separation.** System/developer policy and the application-controlled tool registry are control data. Merchant text, retrieved business content, FAQ content, documents and attachments, and future WhatsApp payload content are untrusted data. Retrieved content cannot enable tools or alter capability requirements. Instructions embedded in business documents are content, not executable instructions. Authorization and context filtering happen before model exposure. Multilingual and document-borne injection belong in verification | AI-S7-01, AI-S7-06; SEC-13-S7-04 |
+| C-5 | **Frozen confirmed proposal.** Model proposes → server canonicalizes and validates → preview → fingerprint and binding → user confirms → deterministic execution of that exact bound proposal. No second model interpretation after confirmation may alter material fields. Any material change requires a new preview and confirmation binding | AI-S7-02 |
+| C-8 | **Single protected transaction-write boundary.** AI and Voice may never expose raw `transactions.insert`. Protected transaction writes converge on the governed command boundary (SB-P-1.12 EIS-ISO-02). All 17 `DTX` rows remain blocked until the SB-P-1.12 transactions-family cut-over and evidence gates are met. The structured Transactions UI and Conversation/Voice ultimately converge on the same effective command boundary. Sequencing, mechanics and evidence are engineering questions (EQ-4); a permanent parallel bypass is not an open product choice | SEC-13-S7-02; AI-S7-04 |
+| C-9 | **Voice modality convergence.** Voice/STT normalizes into the same channel-neutral language, proposal, authority and command path as text. STT output is evidence and input only, never authority or a direct write path. A normalized inbound contract carries server-derived principal, business and authority context | VOICE-S7-01; SEC-13-S7-08 |
+| C-10 | **Transient-audio contract (`FPDR-3`).** The EIS accounts for accidental persistence through temporary files, request buffering, framework and proxy behaviour, application and error logs, crash and debug capture, APM and observability, retry and dead-letter queues, analytics, test fixtures and backup inclusion. "No voice storage bucket" alone is insufficient. Raw merchant audio is not default durable Smart Business data | VOICE-S7-02, VOICE-S7-03 |
+| C-11 | **Voice confirmation and streaming safety.** Spoken confirm or reject consumes only the frozen bound proposal; a spoken "yes" cannot regenerate it; stale or duplicate confirmation safely no-ops or rejects; execution-time authority is revalidated. Streaming and interim transcripts are strictly non-executable; consequential proposals use finalized utterance content; background speech or partial transcripts cannot execute a command | VOICE-S7-07, VOICE-S7-11 |
+| C-12 | **Voice semantic parity, idempotency and unknown outcome.** Paired text and voice verification for equivalent consequential intents at proposal, authority result, confirmation requirement, command, idempotency and stored-state result. Voice retries and replays use Smart Business idempotency and outcome lookup; provider or channel request IDs are provenance only, never authority or the sole duplicate-prevention key. Unknown domain-command outcome is a first-class state | VOICE-S7-05, -08, -09; AI-S7-03 |
+| C-13 | **Kerala merchant speech evaluation.** A governed evaluation covering Malayalam, Manglish, code switching, Kerala accent variation, shop and background noise, amounts, quantities and units, dates and times, names and products, payment methods, credit versus repayment, corrections, ambiguity and clarification, and denial parity. It measures business-semantic correctness, not WER/CER alone. The specialist's suggested 1,000–1,500 utterances is a practical recommendation only; exact corpus size belongs to EIS and test design, not Product Truth or Blueprint acceptance | VOICE-S7-04, VOICE-S7-06; AI-S7-10 |
+| C-14 | **Provider adapter, activation and rollback gate.** Normalized STT/TTS provider adapter and error contract; provider data-control and configuration identity; provider activation evidence pack; provider-disable and rollback capability. The text path stays usable while Voice is disabled; completed authoritative records stay intact; pending or unknown commands stay reconcilable; service restoration never replays a consequential command automatically. Provider selection, purchase and activation remain NOT AUTHORIZED | VOICE-S7-14, -15, -16; AI-S7-08 |
+| C-15 | **Voice telemetry and authoritative success.** No raw-audio shadow archive by default; no full transcript or prompt archive merely for telemetry; operational telemetry favours identifiers, configuration version, latency, errors, retries, usage, cost and domain outcome. Spoken or TTS "Recorded", "Saved" or "Done" derives only from the authoritative domain outcome; a TTS failure after a successful command must not re-run the command | VOICE-S7-10, VOICE-S7-17; AI-S7-07, AI-S7-12 |
+
+FAQ stewardship (C-7): the MC-08 §5 assignment is not reopened. Team LIPS Support/CX authors and stewards FAQ content; Founder/Product Authority approval is required for Product-Truth-bearing content; routine wording may be maintained with provenance and version control. The specialist refinement carried is limited to provenance, effective and version dates, language variants, stale or retired state, the no-answer state and escalation (AI-S7-09).
+
+Other specialist findings are reflected where they apply: AI-S7-05 (authority-exclusion contract, F5), AI-S7-11 and VOICE-S7-13 (FPDR-4, `H-FPDR4`), AI-S7-13 (conversation truth precedence, P2), AI-S7-14 (FPDR-5 preserved), AI-S7-15 (abstraction and WhatsApp independence sound), VOICE-S7-12 (latency budgets), SEC-13-S7-01, -03, -05, -06, -07 (`H-D12`, `H-CONF`, F4, F6).
+
+## 21. Engineering Questions, Risks & Recommendations
+
+### 21.1 Engineering questions for the EIS
+
+| ID | Question | Source |
+|---|---|---|
+| EQ-1 | Where exactly does the AI gateway run, and how are streaming, timeouts and request size kept within Worker limits? | B6-03; F3 |
+| EQ-2 | Which governed evaluation suites and pass criteria prove English/Malayalam/Manglish text and speech behaviour on business-semantic correctness, without a fixed accuracy promise (`9-§15-5`)? | B6-04; C-13 |
+| EQ-3 | Which AI and voice providers, if any, meet the commitments and data controls in Section 20.2? | B6-06, B6-10; C-6, C-14 |
+| EQ-4 | How is the transactions family cut over to kernel-checked command-only effective access (SB-P-1.12 EIS-ISO-02): sequencing relative to SB-P-1.12 workstreams, migration of the structured Transactions UI onto the governed command, revocation of direct client write access, and the tests and evidence that prove no permanent parallel direct-write bypass remains? | B6-05; C-3; C-8; SEC-13-S7-02 |
+| EQ-5 | What conversation-history retention default applies to active accounts? | DC-12; open policy dependency |
+| EQ-6 | Is the `20260724170000` idempotency fix present in production? Re-verify before relying on the pattern | B6-05; `docs/migration/README.md` |
+| EQ-7 | When will the SB-P-1.12 workstreams that SB-P-1.13 consumes be implemented, verified and accepted? | §12.1 |
+| EQ-8 | How is CI evidence produced while Actions are impaired? | B6-16 |
+| EQ-9 | Which existing, trustworthy context and capability-sensitivity signals drive `FPDR-4`, with no new sensing? | B6-07; AI-S7-11; VOICE-S7-13 |
+| EQ-10 | What FAQ seed scope satisfies `8-§16-1` to `8-§16-5` without the SB-P-1.19 100+ corpus? | B6-09; C-7 |
+| EQ-11 | How is the transient-audio contract proven across every persistence channel listed in C-10? | C-10 |
+| EQ-12 | How is the unknown-outcome state presented to the merchant and reconciled, for text and voice? | C-12; AI-S7-03 |
+
+### 21.2 Engineering risks
+
+| ID | Risk | Level | Mitigation | Remaining hold | Specialist coverage |
+|---|---|---|---|---|---|
+| R7-1 | SB-P-1.12 does not resume; 252 rows stay blocked | High | Documentary work continues; P1 proceeds only if separately authorized | H-D12 | SP-1 |
+| R7-2 | A shortcut business lookup or parallel permission path is introduced | High | EIS §19.5 rule in Blueprint §12.1; design review and negative tests | H-D12 | SP-1 |
+| R7-3 | Prompt, document or tool injection widens access | High | Permission outside the model; instruction/data separation (C-4) | H-CONF, H-EVID | SP-1, SP-2 |
+| R7-4 | Duplicate or unknown-outcome writes after retries, timeouts or restoration | High | Idempotency, outcome lookup, frozen proposals, no automatic replay (C-5, C-12, C-14) | H-CONF, H-DTX | SP-1, SP-2, SP-3 |
+| R7-5 | A direct transaction write path stays effective beside the governed command | High | C-8; transactions-family cut-over evidence | H-DTX | SP-1, SP-2 |
+| R7-6 | Provider data handling incompatible with privacy commitments | Medium | Provider evidence pack before activation (C-6, C-14) | H-PROV | SP-2, SP-3 |
+| R7-7 | No provider meets the Malayalam/Manglish commitment | Medium | Governed evaluation (C-13); Founder escalation only if unmet (DC-13) | H-LANG, H-PROV | SP-2, SP-3 |
+| R7-8 | Raw audio persists through an unplanned channel | Medium | Transient-audio contract (C-10) | H-AUDIO | SP-3 |
+| R7-9 | AI answers support questions beyond approved knowledge | Medium | FAQ-first with versioned, provenance-recorded knowledge (C-7) | H-EVID | SP-2 |
+| R7-10 | Credit statements fabricate owed balances | Medium | `FPDR-5` clarification rule (AI-S7-14) | H-EVID | SP-2 |
+| R7-11 | Telemetry becomes a transcript or audio archive | Medium | C-15 | H-AUDIO | SP-2, SP-3 |
+| R7-12 | Missing CI evidence | Low | Local gates; run-level evidence when available | — | — |
+
+### 21.3 Recommendations
+
+1. Treat P0 as a hard gate in the Implementation Authorization: no business-scoped build before SB-P-1.12 consumption conditions, including the transactions-family cut-over, are evidenced.
+2. Build P1 foundations only if Mission Control separately authorizes work that consumes no SB-P-1.12 surface.
+3. Run the AI and voice provider evidence work (Section 20.2; C-14) as a separately authorized, read-only readiness step before any activation.
+4. Re-verify the idempotency precedent's production state under the existing migration governance before the EIS relies on it.
+5. Carry C-4, C-5 and C-8 to C-15 into the EIS as engineering constraints, B6-14 into the Verification Checklist, and B6-07 into the EIS as a boundary.
+
+### 21.4 Remaining holds by unresolved condition
+
+No finding is held because a specialist review is pending: all three reviews are complete and canonical. The remaining holds are the conditions below, counted by the mechanical rules in Section 20.6. Categories overlap, so no single total is given.
+
+| Hold | Unresolved condition | Rows |
+|---|---|---|
+| H-D12 | SB-P-1.12 consumption evidence | 252 |
+| H-DTX | Transactions-family cut-over and governed-command evidence | 17 |
+| H-PROV | Provider evidence (Section 20.2) | 367 |
+| H-LANG | Multilingual text or speech evaluation | 111 |
+| H-AUDIO | Transient-audio proof | 9 |
+| H-CONF | Confirmation, binding, revalidation or idempotency evidence | 66 |
+| H-FPDR4 | FPDR-4 trustworthy-context evidence | 5 |
+| H-LATER | Later-mission dependency | 54 |
+| H-EVID | Runtime or acceptance evidence | 61 |
+
+Rows with no remaining hold category under these rules: 103. Per-row categories are in the Remaining hold column of Section 20.6.
+
+### 21.5 Trigger screen (after specialist disposition)
+
+| Trigger | Result |
+|---|---|
+| T2 — conflict among approved sources | NOT TRIGGERED |
+| T3 — new product decision | NOT TRIGGERED now. Conditional provider, privacy and FPDR-4 candidates remain future-only |
+| T6 — material derived constraint | TRIGGERED by the accepted specialist-derived constraints and RESOLVED by Mission Control as EIS/engineering constraints with no Product Truth effect (Section 20.8) |
+| T7 — omission, deferral, pull-forward, simplification, reclassification | NOT TRIGGERED |
+| T8 — conflict or infeasibility | NOT TRIGGERED on current evidence |
+
+### 21.6 Stage 7 readiness
+
+All three independent specialist reviews are complete and canonical. This Engineering Review is submitted for final Mission Control acceptance. Stage 7 is not yet accepted, Stage 8 is not authorized, the Blueprint is not locked and no EIS exists. Stage 8 remains pending Mission Control exact-head review and Stage 7 acceptance.

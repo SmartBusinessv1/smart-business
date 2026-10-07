@@ -260,3 +260,35 @@ After post-merge verification:
 - the three independent specialist reviews may run in parallel.
 
 No Stage 8, Blueprint lock or EIS authority follows.
+
+
+## H-14 — Stage 7 Engineering Review → Mission Control and specialists
+
+**Date:** 2026-10-06
+**From:** Claude Code (Stage 7 Engineering Review owner)
+**To:** Mission Control
+**Base:** `main@81c7d520a4d226cd9b7bf2165cd2dfcd494d613b`
+**Branch:** `mission/SB-P-1.13-stage7-engineering-review`
+
+Submitted Blueprint Sections 20–21 and `claude-code/10-stage7-engineering-review-report.md`. The live report base file was reused; its previous content is preserved byte-identically at `main@81c7d520`.
+
+Pull request, head SHA and check evidence: pull-request handover comment.
+
+Next action: independent specialist reports S7-SP-1 to S7-SP-3; Mission Control disposition of held findings and of this Engineering Review.
+
+Not authorized: specialist reports by Claude Code, Stage 8, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.
+
+## H-15 — Stage 7 consolidated correction → Mission Control final review
+
+**Date:** 2026-10-06
+**From:** Claude Code (Stage 7 Engineering Review owner)
+**To:** Mission Control
+**Base:** `main@dbe30ed583af1449289120b6074b171cbd2bdae5` (merged into the PR branch)
+**Branch:** `mission/SB-P-1.13-stage7-engineering-review`
+
+Applied the consolidated Stage 7 correction to PR #787. Head SHA and check evidence: pull-request handover comment.
+
+Next action: Mission Control final exact-head review and Stage 7 acceptance decision.
+
+Not authorized: Stage 8, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.
+
