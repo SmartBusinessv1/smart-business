@@ -189,3 +189,17 @@ Claude Code prepared Blueprint Sections 20–21 under SB-P-1.13-MC-11. 651 rows 
 **Status:** SUBMITTED — AWAITING MISSION CONTROL FINAL ACCEPTANCE
 
 Claude Code applied the Mission Control consolidated Stage 7 correction on PR #787 after the three specialist reviews became canonical (PRs #788, #789, #790): finding enum normalized (C-1); Section 19 PR #785 row marked canonical (C-2); EQ-4 rewritten as a cut-over question (C-3); specialist-derived engineering constraints carried (C-4 to C-15); holds tied to unresolved conditions instead of pending reviews. Trigger disposition: T2, T3, T7, T8 not triggered; T6 triggered and resolved by Mission Control as engineering constraints. No FCTM, Founder decision or specialist report changed. This entry authorizes nothing.
+
+
+## D-16 — Founder Stage 8 Blueprint lock approval
+
+**Date:** 2026-10-07  
+**Status:** APPROVED BY FOUNDER — LOCK CROSSING PENDING HUMAN MERGE
+
+Founder instruction:
+
+`Approve Stage 8 Blueprint lock.`
+
+Mission Control accepts the approval under SB-P-1.13-MC-13 and prepares the lock-only move from `active/` to `completed/`.
+
+Stage 9 EIS remains NOT AUTHORIZED until the Stage 8 lock is canonical.
