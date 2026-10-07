@@ -7,8 +7,8 @@
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Mission Type | Product Mission — shared conversational, language, voice and AI-orchestration foundation |
-| Lifecycle Stage | Source 18 v1.2 Stage 7 — Engineering Review submitted for final Mission Control acceptance |
-| Status | `SECTIONS 1–19 v0.2 CANONICAL (PR #785); THREE INDEPENDENT STAGE 7 SPECIALIST REVIEWS COMPLETE / CANONICAL (PRs #788, #789, #790); STAGE 7 ENGINEERING REVIEW SECTIONS 20–21 PENDING MISSION CONTROL FINAL EXACT-HEAD REVIEW AND HUMAN MERGE OF PR #787. STAGE 8 / BLUEPRINT LOCK / EIS / IMPLEMENTATION NOT AUTHORIZED.` |
+| Lifecycle Stage | Source 18 v1.2 Stage 8 — Founder Approval and Blueprint Lock |
+| Status | `APPROVED — LOCKED — STAGE 8 FOUNDER APPROVAL GRANTED; EFFECTIVE CANONICALLY ONLY AFTER HUMAN MERGE OF THE STAGE 8 LOCK PR.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.13-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -20,9 +20,9 @@
 | Upstream dependency | SB-P-1.12 Authority, Identity & Product Surface Foundation: specification available (Blueprint and EIS `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`); evidence not complete |
 | Date | 2026-10-06 |
 | Builder Review | COMPLETE / CANONICAL — Stage 6 findings B6-01 through B6-16 accepted under SB-P-1.13-MC-08, PR #783 |
-| Engineering Review | SUBMITTED FOR FINAL MISSION CONTROL ACCEPTANCE — Sections 20–21 by Claude Code under SB-P-1.13-MC-11, incorporating the canonical S7-SP-1, S7-SP-2 and S7-SP-3 reviews; not yet accepted |
-| Mission Control Review | COMPLETE THROUGH STAGE 6 AND B6-01/B6-02 RECONCILIATION (PR #785); specialist reviews canonical; Stage 7 final review pending |
-| Blueprint Lock | Not locked |
+| Engineering Review | COMPLETE / CANONICAL — Stage 7 accepted under SB-P-1.13-MC-12 and PR #787 |
+| Mission Control Review | COMPLETE THROUGH STAGE 7; Stage 8 Founder approval granted; Blueprint lock crossing pending human merge |
+| Blueprint Lock | APPROVED — LOCKED (effective canonically after human merge of Stage 8 lock PR) |
 
 ## Mission Snapshot
 
@@ -856,6 +856,7 @@ Build Plan §10.2 exit principle: "I can simply tell Smart Business what I mean,
 | 0.2 | 2026-10-06 | Claude Code (B6-01/B6-02 reconciliation, SB-P-1.13-MC-09) | B6-01: §12.1 business-scoped dependency statement; §13 risk; §15.1 and §15.5 Scenario B qualified as WhatsApp-independent but not SB-P-1.12-authority-independent; 54 Section 19 rows gain `D12`. B6-02: `FPDR-5` added to Metadata, §8.5, §8.7, §10.1, §15.1, §15.4 and 5 Section 19 rows. FCTM blob updated; no disposition, owner, commitment or classification changed | DRAFT — awaiting Mission Control review |
 | 0.3 | 2026-10-06 | Claude Code (Stage 7 Engineering Review, SB-P-1.13-MC-11) | Appended Section 20 (Engineering Review, early delivery plan, 651-row feasibility and risk register) and Section 21 (Engineering Questions, Risks & Recommendations); updated four Metadata status fields. Sections 1–17 and 19 unchanged | DRAFT — superseded by 0.4 within PR #787 |
 | 0.4 | 2026-10-06 | Claude Code (Stage 7 final reconciliation, Mission Control consolidated correction on PR #787) | Sections 20–21 reconciled with the canonical S7-SP-1/2/3 reviews (corrections C-1 to C-15; specialist markers now coverage only; holds tied to unresolved conditions; T-screen updated); Section 19 PR #785 row marked canonical (C-2); four Metadata status fields updated | SUBMITTED — awaiting Mission Control final acceptance |
+| 0.5 | 2026-10-07 | Stage 8 Founder approval granted; Blueprint lock crossing prepared under SB-P-1.13-MC-13; substantive Sections 1–21 unchanged. |
 
 ## 19. Governance History
 
