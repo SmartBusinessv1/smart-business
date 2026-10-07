@@ -1,15 +1,15 @@
 # SB-P-1.13 — Stage 10 Security Delta Review
 
-**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation  
-**Specialist:** S10-DR-1 — Security & Permissions Architecture  
-**Authority:** SB-P-1.13-MC-17 and `communication/missions/SB-P-1.13/mission-control/27-stage10-security-delta-review-instruction.md`  
-**Review type:** Finding-closure delta review only  
+**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
+**Specialist:** S10-DR-1 — Security & Permissions Architecture
+**Authority:** SB-P-1.13-MC-17 and `communication/missions/SB-P-1.13/mission-control/27-stage10-security-delta-review-instruction.md`
+**Review type:** Finding-closure delta review only
 **Status:** SUBMITTED TO MISSION CONTROL — NO EIS ACCEPTANCE / LOCK / IMPLEMENTATION AUTHORITY
 
 ## 1. Reviewer identity and independence
 
-**Actual actor/model:** ChatGPT — GPT-5.6 Sol  
-**Provider:** OpenAI  
+**Actual actor/model:** ChatGPT — GPT-5.6 Sol
+**Provider:** OpenAI
 **Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room
 
 This same room authored the canonical SB-P-1.13 Stage 7 Security review and the initial Stage 10 Security EIS review.
