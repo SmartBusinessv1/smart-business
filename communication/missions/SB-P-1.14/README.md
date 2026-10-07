@@ -4,8 +4,8 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 1 INTAKE PACK PREPARED — AWAITING FOUNDER HUMAN MERGE; STAGE 2 NOT YET AUTHORIZED  
-**Canonical baseline for this preparation:** `8a44bc986d86addd6c7d97fb0c278abaa5a28ead`
+**Current status:** STAGE 1 CANONICAL — STAGE 2 AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE  
+**Canonical Stage 1:** PR #811, `main@8747a1bcd0816e79fad7158e52a4113708664d2d`
 
 ## Mission outcome
 
@@ -30,14 +30,22 @@ The mission materially advances:
 
 SB-P-1.14 may consume locked documentary specifications from SB-P-1.12 and SB-P-1.13, but it must not claim their runtime implementation or evidence is complete.
 
-Cloudflare R2 / approved durable object storage is an explicit future infrastructure activation gate. Stage 1 does not activate, purchase, configure or select a provider.
+Cloudflare R2 / approved durable object storage is an explicit future infrastructure activation gate. Stage 2 does not activate, purchase, configure or select a provider.
 
 Production, provider, schema/SQL, migration execution and delivery remain NOT AUTHORIZED.
 
 ## Current lifecycle
 
-- Stage 1 — Mission Initiation and Intake Pack: **PREPARED — AWAITING HUMAN MERGE**
-- Stage 2 — Mission Truth and Delta Reconciliation: **NOT YET AUTHORIZED**
+- Stage 1 — Mission Initiation and Intake Pack: **CANONICAL — PR #811**
+- Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZATION PREPARED — NOT EFFECTIVE UNTIL HUMAN MERGE**
 - Stage 3+ — **NOT AUTHORIZED**
+
+## Stage 2 preparation — MC-02
+
+Mission Control has prepared a separate Stage 2 Mission Truth & Delta Reconciliation authorization for Claude Code.
+
+Scope is documentary Mission Truth / FCTM / Delta / Institutional Learning Intake only.
+
+No Stage 3 decision, Blueprint drafting, EIS drafting, implementation, provider/storage mutation, migration execution, production or delivery authority follows.
 
 This README is an index, not an independent authority record.
