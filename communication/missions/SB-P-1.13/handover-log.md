@@ -292,3 +292,21 @@ Next action: Mission Control final exact-head review and Stage 7 acceptance deci
 
 Not authorized: Stage 8, Blueprint lock, EIS, implementation, SQL or migration work, provider or production action, self-merge.
 
+
+
+## H-16 — Stage 7 canonical → Stage 8 lock crossing
+
+**Date:** 2026-10-07  
+**From:** Mission Control  
+**To:** Founder / authorized human merge  
+**Canonical Stage 7 baseline:** `39e7ea9472fc9c5bbf32cbe02dff2386dada3c41`
+
+Founder Stage 8 approval has been granted.
+
+Next action:
+
+Human merge of the Stage 8 lock PR.
+
+After post-merge verification, Mission Control may separately authorize Stage 9 EIS Creation.
+
+No EIS, implementation, provider, migration, production or delivery authority is implied by this handover.
