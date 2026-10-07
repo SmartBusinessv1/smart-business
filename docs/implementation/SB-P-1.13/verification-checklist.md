@@ -1,10 +1,10 @@
 # SB-P-1.13 — Verification Checklist
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (STAGE 13, SB-P-1.13-MC-21)
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PROVIDER SELECTION / ACTIVATION: NOT AUTHORIZED
@@ -18,8 +18,8 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
-| Version | 0.1 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Version | 1.0 |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — initial implementation package owner |
 | Canonical baseline | `main@654811df61fb59a0f0de35af7be2bc6614aae9ef` (Stage 11 EIS lock, PR #806) |
 | Date | 2026-10-07 |
@@ -931,7 +931,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 
 ## 14. Final Acceptance Statement
 
-Not executed. To be completed only after the package is locked, implementation is authorized and performed, and Stages 16 to 19 have produced their records. Mission Control decides acceptance. Nothing in this draft checklist is acceptance, demonstration or evidence.
+Not executed. To be completed only after the package is locked, implementation is authorized and performed, and Stages 16 to 19 have produced their records. Mission Control decides acceptance. Nothing in this locked checklist is acceptance, demonstration or evidence.
 
 ```text
 CHECKLIST EXECUTION: NOT STARTED
@@ -947,3 +947,4 @@ UNVERIFIED — ACCESS REQUIRED: 17 FACTS
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-07 | Claude Code (MC-19) | Initial Stage 12 draft |
+| 1.0-L | 2026-10-07 | Claude Code under SB-P-1.13-MC-21 (Mission Control Stage 13 disposition, record 36) | Stage 13 lock-only transition: status `DRAFT — MISSION CONTROL REVIEW REQUIRED` → `APPROVED — LOCKED`, version 1.0, lock metadata. No obligation, row, mapping, workstream, hold, check, scenario, evidence class or builder instruction changed. Not an implementation authorization |

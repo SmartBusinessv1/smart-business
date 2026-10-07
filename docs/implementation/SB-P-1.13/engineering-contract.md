@@ -1,10 +1,10 @@
 # SB-P-1.13 — Engineering Contract
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (STAGE 13, SB-P-1.13-MC-21)
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PROVIDER SELECTION / ACTIVATION: NOT AUTHORIZED
@@ -19,13 +19,13 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.1 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Version | 1.0 |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — Source 18 Section 4.4 initial implementation package owner |
 | Authorizing record | SB-P-1.13-MC-19 (`mission-control/32-post-793-verification-and-stage11-eis-lock-disposition.md`, blob `b55a5261`); activation instruction `mission-control/33-stage12-initial-package-activation-instruction.md` (blob `2a44f258`) |
 | Canonical baseline | `main@654811df61fb59a0f0de35af7be2bc6614aae9ef` (Stage 11 EIS lock, PR #806) |
 | Date | 2026-10-07 |
-| Next gate | Stage 13 — Implementation Package Review by Mission Control |
+| Next gate | Implementation Authorization by Mission Control (`mission-control/implementation-authorization.md`, Source 18 Stage 13); then Stage 14 Founder Lovable Brief only if applicable |
 
 ## 2. Purpose and Authority
 
@@ -33,7 +33,7 @@ This contract translates the locked SB-P-1.13 Product Blueprint and the locked E
 
 Order of authority (package template Section 4): Lighthouse Constitution; Master System Manifesto; locked Product Blueprint with the Founder Product Decision Records it applies (`FPDR-1` to `FPDR-5`); locked EIS; approved architecture and security frameworks; this Engineering Contract once locked; the Build Prompt once locked; the Verification Checklist once locked; explicit Mission Control implementation and correction authorizations; builder interpretation. If any statement here could be read as new behaviour, the higher source prevails and this contract is in error.
 
-**Package approval is not implementation authorization.** This draft authorizes nothing. It creates no code, schema, SQL, migration, provider setting or production change, and it changes no FCTM disposition, build commitment, commercial classification or mission assignment.
+**Package approval is not implementation authorization.** This package authorizes nothing. It creates no code, schema, SQL, migration, provider setting or production change, and it changes no FCTM disposition, build commitment, commercial classification or mission assignment.
 
 ## 3. Locked References
 
@@ -1053,10 +1053,11 @@ Observations raised at Stage 12 for Mission Control. None changes a row, require
 
 ## 14. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. Not approved, not locked and not an implementation authorization. `D12`, `DTX`, provider, transient-audio, `FPDR-4`, later-mission and runtime-evidence holds remain open; every EIS Section 28 fact remains `UNVERIFIED — ACCESS REQUIRED`.
+`APPROVED — LOCKED` (Stage 13, SB-P-1.13-MC-21). This package lock is not an implementation authorization. `D12`, `DTX`, provider, transient-audio, `FPDR-4`, later-mission and runtime-evidence holds remain open; every EIS Section 28 fact remains `UNVERIFIED — ACCESS REQUIRED`.
 
 ## 15. Change Log
 
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-07 | Claude Code (MC-19) | Initial Stage 12 draft |
+| 1.0-L | 2026-10-07 | Claude Code under SB-P-1.13-MC-21 (Mission Control Stage 13 disposition, record 36) | Stage 13 lock-only transition: status `DRAFT — MISSION CONTROL REVIEW REQUIRED` → `APPROVED — LOCKED`, version 1.0, lock metadata. No obligation, row, mapping, workstream, hold, check, scenario, evidence class or builder instruction changed. Not an implementation authorization |

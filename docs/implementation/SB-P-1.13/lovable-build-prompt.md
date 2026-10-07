@@ -1,10 +1,10 @@
 # SB-P-1.13 — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (STAGE 13, SB-P-1.13-MC-21)
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PROVIDER SELECTION / ACTIVATION: NOT AUTHORIZED
@@ -18,8 +18,8 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission ID | SB-P-1.13 |
 | Mission Name | Native Conversation & AI Intelligence Foundation |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 0.1 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Version | 1.0 |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
@@ -49,7 +49,7 @@ This prompt references the Engineering Contract and does not restate or alter it
 
 ## 4. What This Prompt Does Not Authorize
 
-This draft authorizes no build. It does not authorize code, schema, SQL, migrations, the transactions-family cut-over, Lovable execution or publication, AI or voice provider selection, purchase, configuration or activation, sending merchant data to a provider, secrets or environment changes, production mutation or delivery, or crossing any hold in Section 9.
+This prompt authorizes no build. It does not authorize code, schema, SQL, migrations, the transactions-family cut-over, Lovable execution or publication, AI or voice provider selection, purchase, configuration or activation, sending merchant data to a provider, secrets or environment changes, production mutation or delivery, or crossing any hold in Section 9.
 
 ## 5. Repository Scope and Paths
 
@@ -979,10 +979,11 @@ Every one of the 651 rows is assigned to at least one workstream; 500 rows are s
 
 ## 14. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. No builder is named and nothing may be built from this prompt.
+`APPROVED — LOCKED` (Stage 13, SB-P-1.13-MC-21). No builder is named and nothing may be built from this prompt until an Implementation Authorization is recorded.
 
 ## 15. Change Log
 
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-07 | Claude Code (MC-19) | Initial Stage 12 draft |
+| 1.0-L | 2026-10-07 | Claude Code under SB-P-1.13-MC-21 (Mission Control Stage 13 disposition, record 36) | Stage 13 lock-only transition: status `DRAFT — MISSION CONTROL REVIEW REQUIRED` → `APPROVED — LOCKED`, version 1.0, lock metadata. No obligation, row, mapping, workstream, hold, check, scenario, evidence class or builder instruction changed. Not an implementation authorization |
