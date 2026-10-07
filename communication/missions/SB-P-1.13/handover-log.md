@@ -332,3 +332,20 @@ Human merge of the Stage 9 authorization PR.
 After post-merge verification, Claude Code may create only the Stage 9 EIS draft and Stage 9 report on the locked Stage 9 branch.
 
 No implementation, migration, provider, production or delivery authority follows.
+
+## H-18 — Stage 9 EIS draft → Mission Control Stage 10 review
+
+**Date:** 2026-10-07
+**From:** Claude Code (Stage 9 EIS author)
+**To:** Mission Control
+**Base:** `main@0b83960113fb12a8258a2c4fdfc783f942b64ac3`
+**Branch:** `mission/SB-P-1.13-stage9-eis-draft`
+
+Submitted the EIS draft and `claude-code/11-stage9-eis-creation-report.md`. The live report base file was reused; its previous Stage 7 content is preserved byte-identically in canonical history (for example at `main@0b839601`).
+
+Pull request, head SHA and check evidence: pull-request handover comment.
+
+Next action: Mission Control Stage 10 EIS review.
+
+Not authorized: EIS lock, implementation package, implementation, SQL or migration, provider or production action, self-merge.
+
