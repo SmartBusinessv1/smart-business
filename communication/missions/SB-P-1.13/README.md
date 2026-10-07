@@ -4,8 +4,8 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 9 AUTHORIZED (MC-14, PR #792) — EIS DRAFT SUBMITTED / AWAITING MISSION CONTROL STAGE 10 REVIEW
-**Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
+**Current status:** STAGE 10 ACCEPTED (MC-18); PR #793 MERGED AND POST-MERGE VERIFIED — STAGE 11 EIS LOCK PREPARED / AWAITING HUMAN MERGE
+**Canonical baseline for this preparation:** `daef783955e5fefd8104c714b627754913d1ae5f`
 
 ## Mission outcome
 
