@@ -332,3 +332,21 @@ Human merge of the Stage 9 authorization PR.
 After post-merge verification, Claude Code may create only the Stage 9 EIS draft and Stage 9 report on the locked Stage 9 branch.
 
 No implementation, migration, provider, production or delivery authority follows.
+
+
+## H-19 — Stage 9 EIS draft → Stage 10 specialist review authorization
+
+**Date:** 2026-10-07  
+**From:** Mission Control  
+**To:** Founder / authorized human merge, then independent Stage 10 specialists  
+**EIS draft:** PR #793 @ `970128762d0cd039ee6eeaa45967b7ca7a6b02e5`
+
+Mission Control structural review passes 72-requirement / 651-row traceability, with three preliminary substantive findings requiring specialist confirmation.
+
+Next action:
+
+Human merge of the Stage 10 specialist-review authorization PR.
+
+After post-merge verification, Security, AI and Voice EIS reviews may run in parallel. Claude Code must not correct PR #793 until Mission Control consolidates those findings.
+
+No EIS lock, implementation package, implementation, migration, provider or production authority follows.
