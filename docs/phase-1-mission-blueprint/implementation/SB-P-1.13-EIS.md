@@ -1,6 +1,6 @@
 # SB-P-1.13 — Engineering Implementation Specification
 
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 
 ## 1. Document Metadata
 
@@ -8,8 +8,8 @@ STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
 |---|---|
 | Mission | SB-P-1.13 — Native Conversation & AI Intelligence Foundation |
 | Document | Engineering Implementation Specification (EIS) |
-| Lifecycle stage | Source 18 v1.2 Stage 9 — EIS Creation |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Lifecycle stage | Source 18 v1.2 Stage 11 — EIS Lock |
+| Status | `APPROVED — LOCKED` |
 | Author | Claude Code (Stage 9 EIS author) |
 | Authorization | SB-P-1.13-MC-14, `communication/missions/SB-P-1.13/mission-control/19-stage9-eis-creation-authorization.md` (blob `b1c7455a5e042e3bb8cbdb2826edfe0a8dadc860`), canonical at `main@0b83960113fb12a8258a2c4fdfc783f942b64ac3` (PR #792) |
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.13.md`, blob `bbf65429e3c1f18b9dacdda62e1c175d9eb395a1` (`APPROVED — LOCKED`, Sections 1–21) |
@@ -17,13 +17,13 @@ STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
 | Founder decisions | `FPDR-1` to `FPDR-4` (`founder/02`, blob `78f9afdb`); `FPDR-5` (`founder/03`, blob `001de805`) |
 | Date | 2026-10-07 |
 | Revision | Stage 10 refinement under SB-P-1.13-MC-16 (correction packages C1–C7); requirement IDs, count (72) and FCTM row mappings unchanged |
-| Next gate | Stage 10 — EIS Review by Mission Control |
+| Next gate | Stage 12 — Initial Implementation Package |
 
 ## 2. Purpose and Authority
 
 This EIS specifies how the locked SB-P-1.13 Blueprint is to be built. It realizes the locked product intent and the Stage 7 accepted constraints; it does not change Product Truth, FCTM dispositions, owning missions, build commitments, commercial classifications or Founder decisions. Where Product Truth does not fix a mechanism, the EIS chooses the simplest architecture that preserves human decision ownership, permission and isolation truth, deterministic domain truth, provider replaceability, graceful failure, evidenceability and sustainability (SB-P-1.13-MC-14 §6).
 
-This document authorizes nothing: no code, SQL, migration, provider selection or activation, production access, implementation package or EIS lock.
+This EIS is locked by Mission Control at Source 18 Stage 11. It authorizes preparation of the Stage 12 Initial Implementation Package only after this Stage 11 lock is canonical. It does not authorize code, SQL, schema or migration work, provider selection or activation, production access, implementation, or delivery.
 
 ## 3. Canonical Inputs Read
 
