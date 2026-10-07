@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 7 COMPLETE / CANONICAL — STAGE 8 FOUNDER APPROVAL GRANTED — BLUEPRINT LOCK CROSSING PENDING HUMAN MERGE
+**Current status:** STAGE 8 COMPLETE / BLUEPRINT APPROVED — LOCKED — STAGE 9 EIS CREATION AUTHORIZATION PREPARED / AWAITING HUMAN MERGE
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -180,3 +180,14 @@ Prepared on `mission/SB-P-1.13-stage7-engineering-review`, with canonical `main@
 Founder approval granted on 2026-10-07 for the complete canonical Sections 1–21 Blueprint at `main@39e7ea9472fc9c5bbf32cbe02dff2386dada3c41`.
 
 The lock crossing is prepared under SB-P-1.13-MC-13. No EIS, implementation, provider, migration, production or delivery authority follows until separately authorized after the canonical lock.
+
+
+## Stage 9 preparation — MC-14
+
+Stage 8 became canonical at `main@32b8d5f2464e0773572deb742fd49cd89c81a85b`.
+
+The SB-P-1.13 Blueprint is `APPROVED — LOCKED` under `docs/phase-1-mission-blueprint/completed/`.
+
+Stage 9 EIS Creation is prepared for Claude Code but is not effective until the authorization PR is human-merged and Mission Control verifies the merge.
+
+No implementation, migration, provider, production or delivery authority follows.

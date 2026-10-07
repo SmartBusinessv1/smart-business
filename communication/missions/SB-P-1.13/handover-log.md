@@ -310,3 +310,25 @@ Human merge of the Stage 8 lock PR.
 After post-merge verification, Mission Control may separately authorize Stage 9 EIS Creation.
 
 No EIS, implementation, provider, migration, production or delivery authority is implied by this handover.
+
+
+## H-17 — Stage 8 canonical → Stage 9 EIS authorization
+
+**Date:** 2026-10-07  
+**From:** Mission Control  
+**To:** Founder / authorized human merge, then Claude Code  
+**Canonical Stage 8 main:** `32b8d5f2464e0773572deb742fd49cd89c81a85b`
+
+Prepared:
+
+- Stage 9 EIS Creation authorization;
+- Stage 9 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Human merge of the Stage 9 authorization PR.
+
+After post-merge verification, Claude Code may create only the Stage 9 EIS draft and Stage 9 report on the locked Stage 9 branch.
+
+No implementation, migration, provider, production or delivery authority follows.
