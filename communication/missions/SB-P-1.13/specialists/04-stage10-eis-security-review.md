@@ -1,16 +1,16 @@
 # SB-P-1.13 — Stage 10 Independent Security / Permissions EIS Review
 
-**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation  
-**Specialist ID:** S10-SP-1 — Security & Permissions Architecture  
-**Authority:** `communication/missions/SB-P-1.13/mission-control/21-stage10-eis-security-review-instruction.md` and SB-P-1.13-MC-15 / `mission-control/20-stage10-eis-review-and-specialist-authorization.md`  
-**Review type:** Independent complete-EIS documentary security review  
+**Mission:** SB-P-1.13 — Native Conversation & AI Intelligence Foundation
+**Specialist ID:** S10-SP-1 — Security & Permissions Architecture
+**Authority:** `communication/missions/SB-P-1.13/mission-control/21-stage10-eis-security-review-instruction.md` and SB-P-1.13-MC-15 / `mission-control/20-stage10-eis-review-and-specialist-authorization.md`
+**Review type:** Independent complete-EIS documentary security review
 **Status:** SUBMITTED TO MISSION CONTROL — NO EIS ACCEPTANCE / LOCK / IMPLEMENTATION AUTHORITY
 
 ## 1. Reviewer identity and independence
 
-**Actual actor/model:** ChatGPT — GPT-5.6 Sol  
-**Provider:** OpenAI  
-**Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room  
+**Actual actor/model:** ChatGPT — GPT-5.6 Sol
+**Provider:** OpenAI
+**Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room
 **Prior SB-P-1.13 contribution:** this same room authored the canonical Stage 7 independent Security & Permissions review at `communication/missions/SB-P-1.13/specialists/01-stage7-security-permissions-review.md`.
 
 This actor/session did **not** author or materially shape:
@@ -95,7 +95,7 @@ No new Founder Product Truth decision is required by these findings.
 
 ### SEC13-EIS-S10-01 — `SECURITY INVOKER` transaction command conflicts with the locked command-only grant model
 
-**Severity:** CRITICAL  
+**Severity:** CRITICAL
 **Affected EIS:** §5 repository baseline; §13; `EIS13-CMD-02`; §23 `EIS13-MIG-01`; §27 `EIS13-HOLD-02`; §24 `EIS13-VER-01`
 
 **Exact evidence**
@@ -176,7 +176,7 @@ A plain `SECURITY INVOKER` design must not be retained if the target still revok
 
 ### SEC13-EIS-S10-02 — New SB-P-1.13 tables lack a complete RLS/grant/object-scope security contract
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §7 `EIS13-WSP-05`; §8 `EIS13-AUTH-04`; §12 proposal/binding model; §15 `EIS13-TEL-01`; §23 `EIS13-MIG-01`; §24 `EIS13-VER-01`
 
 **Exact evidence**
@@ -258,7 +258,7 @@ At minimum:
 
 ### SEC13-EIS-S10-03 — Cached and historical conversational context is not safely invalidated after permission revocation
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §7 `EIS13-WSP-05`; §8 `EIS13-AUTH-02` through `EIS13-AUTH-04`; §9 `EIS13-GW-05`; §10 `EIS13-CTX-02`, `EIS13-CTX-03`; §12 `EIS13-CNF-02`
 
 **Exact evidence**
@@ -332,7 +332,7 @@ The same rule must apply to:
 
 ### SEC13-EIS-S10-04 — Privileged `service_role` use is prohibited for model context but not governed across all SB-P-1.13 server paths
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §6 module architecture; §8; §10 `EIS13-CTX-02`; §13 commands; §19 attachments; §23 migration design
 
 **Exact evidence**
@@ -398,7 +398,7 @@ Add an explicit SB-P-1.13 privileged-handler rule:
 
 ### SEC13-EIS-S10-05 — Transaction cut-over sequencing is internally ambiguous and can create a circular dependency
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Affected EIS:** §13 `EIS13-CMD-02`; §23 `EIS13-MIG-01`, `EIS13-MIG-02`; §24 `EIS13-VER-01`; §27 `EIS13-HOLD-01`, `EIS13-HOLD-02`
 
 **Exact evidence**
@@ -464,7 +464,7 @@ The exact migration grouping may be chosen later; the EIS must make the ordering
 
 ### SEC13-EIS-S10-06 — Attachment "transient" handling is under-specified compared with the raw-audio security contract
 
-**Severity:** MEDIUM-HIGH  
+**Severity:** MEDIUM-HIGH
 **Affected EIS:** §19 `EIS13-ATT-01`; §20 `EIS13-FAIL-02`; §15 `EIS13-TEL-01`; §23 `EIS13-MIG-01`
 
 **Exact evidence**
@@ -546,7 +546,7 @@ This does not decide the SB-P-1.14 durable-media architecture.
 
 ### SEC13-EIS-S10-07 — D12 fail-closed gate is correctly preserved
 
-**Severity:** INFO / GATE  
+**Severity:** INFO / GATE
 **Affected EIS:** §8; §27 `EIS13-HOLD-01`; all 252 D12 rows
 
 **Exact evidence**
@@ -581,7 +581,7 @@ For each consumed capability:
 
 ### SEC13-EIS-S10-08 — Employee denial / authorization-before-model exposure is sound at design level
 
-**Severity:** INFO / IMPLEMENTATION VERIFICATION  
+**Severity:** INFO / IMPLEMENTATION VERIFICATION
 **Affected EIS:** `EIS13-AUTH-02`, `EIS13-AUTH-03`, `EIS13-CTX-02`, `EIS13-HOLD-01`
 
 **Exact evidence**
@@ -616,7 +616,7 @@ This matches the Stage 7 finding.
 
 ### SEC13-EIS-S10-09 — Confirmation binding and execution-time revalidation are correctly consumed
 
-**Severity:** INFO / IMPLEMENTATION VERIFICATION  
+**Severity:** INFO / IMPLEMENTATION VERIFICATION
 **Affected EIS:** `EIS13-CNF-01`, `EIS13-CNF-02`; `EIS13-IDM-01`, `EIS13-IDM-02`; `EIS13-HOLD-01`
 
 **Exact evidence**
@@ -647,7 +647,7 @@ Outcome lookup must inherit the same server-derived principal/business authoriza
 
 ### SEC13-EIS-S10-10 — Audit/provenance direction is acceptable, but denial durability remains upstream-evidence dependent
 
-**Severity:** MEDIUM / GATE  
+**Severity:** MEDIUM / GATE
 **Affected EIS:** §15 `EIS13-AUD-01`; §8; §27 `EIS13-HOLD-01`
 
 **Exact evidence**
@@ -676,7 +676,7 @@ The locked SB-P-1.12 EIS is responsible for durable security-relevant denial beh
 
 ### SEC13-EIS-S10-11 — Voice transient-data security is strong at design level
 
-**Severity:** INFO / PROVIDER GATE  
+**Severity:** INFO / PROVIDER GATE
 **Affected EIS:** `EIS13-VOI-02`, `EIS13-VOI-03`, `EIS13-VOI-04`, `EIS13-PRV-01`, `EIS13-TEL-01`
 
 **Exact evidence**
@@ -711,7 +711,7 @@ Interim transcripts cannot execute. Spoken confirmation binds to the pending fro
 
 ### SEC13-EIS-S10-12 — Provider-secret custody is appropriately server-side but remains activation evidence
 
-**Severity:** MEDIUM / GATE  
+**Severity:** MEDIUM / GATE
 **Affected EIS:** `EIS13-GW-01`, `EIS13-ENV-01`, `EIS13-PRV-01`
 
 **Exact evidence**
