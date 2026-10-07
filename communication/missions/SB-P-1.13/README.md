@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 8 COMPLETE / BLUEPRINT APPROVED — LOCKED — STAGE 9 EIS CREATION AUTHORIZATION PREPARED / AWAITING HUMAN MERGE
+**Current status:** STAGE 9 AUTHORIZED (MC-14, PR #792) — EIS DRAFT SUBMITTED / AWAITING MISSION CONTROL STAGE 10 REVIEW
 **Canonical baseline for this preparation:** `37cb67c18d2a39664505715cc2d96494f0da14d1`
 
 ## Mission outcome
@@ -191,3 +191,7 @@ The SB-P-1.13 Blueprint is `APPROVED — LOCKED` under `docs/phase-1-mission-blu
 Stage 9 EIS Creation is prepared for Claude Code but is not effective until the authorization PR is human-merged and Mission Control verifies the merge.
 
 No implementation, migration, provider, production or delivery authority follows.
+
+## Stage 9 EIS draft — Claude Code
+
+Prepared on `mission/SB-P-1.13-stage9-eis-draft` from `main@0b83960113fb12a8258a2c4fdfc783f942b64ac3`: `docs/phase-1-mission-blueprint/implementation/SB-P-1.13-EIS.md` (`DRAFT — MISSION CONTROL REVIEW REQUIRED`) and `claude-code/11-stage9-eis-creation-report.md`. 72 requirements; 651/651 `IN SCOPE` rows mapped; 0 missing, 0 extra, 0 orphan product behaviour. EIS lock, implementation package, implementation, migration, provider and production are not authorized.
