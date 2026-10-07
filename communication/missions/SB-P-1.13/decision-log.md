@@ -203,3 +203,19 @@ Founder instruction:
 Mission Control accepts the approval under SB-P-1.13-MC-13 and prepares the lock-only move from `active/` to `completed/`.
 
 Stage 9 EIS remains NOT AUTHORIZED until the Stage 8 lock is canonical.
+
+
+## D-17 — Stage 8 canonical; Stage 9 EIS Creation authorization prepared
+
+**Date:** 2026-10-07  
+**Status:** DRAFT UNTIL FOUNDER / AUTHORIZED-HUMAN MERGE
+
+Stage 8 is canonical at `32b8d5f2464e0773572deb742fd49cd89c81a85b`.
+
+The Blueprint is `APPROVED — LOCKED`.
+
+Mission Control prepares Stage 9 EIS Creation authorization for Claude Code under SB-P-1.13-MC-14.
+
+No EIS work is effective before human merge and post-merge verification.
+
+No implementation, SQL/migration, provider or production authority follows.
