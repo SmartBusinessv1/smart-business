@@ -16,12 +16,27 @@ Prepared:
 - decision log;
 - handover log.
 
+Canonical crossing:
+
+PR #811 was human-merged at `main@8747a1bcd0816e79fad7158e52a4113708664d2d`.
+
+## H-02 — Stage 1 canonical → Stage 2 authorization preparation
+
+**Date:** 2026-10-07  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Stage 1 canonical main:** `8747a1bcd0816e79fad7158e52a4113708664d2d`
+
+Prepared:
+
+- Stage 2 authorization decision;
+- Stage 2 live instruction;
+- durable README / decision / handover reconciliation.
+
 Next action:
 
-Founder human merge of the Stage 1 PR.
+Founder human merge of the Stage 2 authorization PR.
 
-After merge:
+After merge, Claude Code may execute only Source 18 Stage 2 on the locked `mission/SB-P-1.14-stage2-truth-delta` branch.
 
-Mission Control verifies canonical `main` and may separately authorize Stage 2 Mission Truth & Delta Reconciliation to the appointed Definition Actor.
-
-No Stage 2 population, Founder decision gate, Blueprint drafting, EIS work, implementation, object-storage activation, SQL/schema/migration, production or delivery action is authorized before that crossing.
+No Stage 3/4, Blueprint, EIS or implementation authority is implied.
