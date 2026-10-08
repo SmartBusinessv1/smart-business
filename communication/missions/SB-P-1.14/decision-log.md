@@ -209,3 +209,31 @@ No Stage 7 authority follows.
 Under SB-P-1.14-MC-09 (PR #820, `main@28b2b941`), Claude Code recorded the Founder-approved B6-01 decision as `FPDR-4` (`founder/03-post-stage6-founder-product-decision-record.md`): a repayment may settle a standalone credit entry or an existing/future `sale + payment_method=credit` row without rewriting, converting or duplicating the sale; a new credit sale stays one sale row; standalone credit entries and repayments never add to sales/income; authoritative customer balances stay SB-P-1.16; existing history is unchanged.
 
 `FPDR-4` is annotated on exactly 13 FCTM rows. FCTM 766 → 766 with 0 disposition, owner, commitment, classification or assignment changes; `3-§9-12` stays SB-P-1.16; `FPDR-1` to `FPDR-3` unchanged. No new T2/T3/T6/T7/T8 condition.
+
+
+## D-15 — B6-01 reconciliation accepted
+
+**Date:** 2026-10-08  
+**Status:** CONTENT ACCEPTED — CONDITIONAL UNTIL FOUNDER HUMAN MERGE OF PR #821
+
+Mission Control independently verified the FPDR-4 / Blueprint / FCTM reconciliation.
+
+Accepted exact FCTM annotation set: 13 rows.
+
+Verified:
+
+- 766 rows before and after;
+- 0 disposition changes;
+- 0 owning-mission changes;
+- 0 build-commitment changes;
+- 0 commercial-classification changes;
+- 0 dependency/evidence changes;
+- 13 Founder-decision-cell changes;
+- `3-§9-12` unchanged in SB-P-1.16;
+- Section 8 / Section 11 membership unchanged;
+- Section 19 consistent with all 766 rows;
+- no new T2/T3/T6/T7/T8.
+
+FPDR-4 becomes canonical only on human merge of PR #821.
+
+Stage 7 remains NOT AUTHORIZED.
