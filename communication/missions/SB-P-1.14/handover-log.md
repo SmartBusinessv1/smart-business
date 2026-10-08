@@ -376,3 +376,24 @@ Next action: Founder / authorized-human merge of this T7 disposition PR at the M
 After verified merge, Mission Control may prepare one separate consolidated Stage 10 EIS refinement authorization for Claude Code covering the accepted findings across all five specialist reviews.
 
 PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
+
+
+## H-24 — T7 canonical → consolidated Stage 10 EIS refinement authorization
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Canonical main:** `40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`  
+**Draft EIS:** PR #831
+
+Founder T7 Security refinement disposition is canonical through PR #836.
+
+Prepared:
+
+- SB-P-1.14-MC-16 consolidated Stage 10 EIS refinement authorization;
+- live refinement instruction;
+- mission status/log reconciliation.
+
+After human merge and post-merge verification, Claude Code may synchronize the existing PR #831 branch to current main and refine only the EIS plus the authorized Stage 10 refinement report, finding-by-finding.
+
+PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration execution, provider activation, production and delivery remain NOT AUTHORIZED.

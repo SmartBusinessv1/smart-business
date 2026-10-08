@@ -338,3 +338,15 @@ Founder explicitly approved:
 The decision restores already-approved security constraints only. It does not change Product Truth, the FCTM, build commitment, commercial classification, mission assignment or FPDR-1 through FPDR-4.
 
 PR #831 remains DRAFT. A separate Mission Control authorization is required before Claude Code may refine the EIS.
+
+
+## D-24 — Founder T7 canonical; consolidated Stage 10 EIS refinement authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT AUTHORIZATION UNTIL HUMAN MERGE
+
+PR #836 is canonical at `main@40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`. The finding-scoped Security T7 is resolved in favor of restorative EIS refinement without Product Truth/FCTM product-definition change.
+
+Mission Control prepares SB-P-1.14-MC-16 authorizing Claude Code to synchronize the existing PR #831 branch with current canonical main and perform one consolidated documentary refinement pass over the accepted findings from all five Stage 10 specialist reports.
+
+No implementation, SQL/schema/migration execution, provider activation, production, delivery, Stage 10 acceptance or EIS lock follows.
