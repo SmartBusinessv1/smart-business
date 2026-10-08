@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 2 AUTHORIZED (PR #812, `main@5a464e55`) — DRAFT STAGE 2 TRUTH PACK PREPARED / AWAITING MISSION CONTROL REVIEW  
+**Current status:** STAGE 2 DRAFT — MISSION CONTROL CONTENT REVIEW COMPLETE SUBJECT TO CORRECTIONS / STAGE 3 FOUNDER DECISION GATE TRIGGERED (NOT YET AUTHORIZED)  
 **Canonical Stage 1:** PR #811, `main@8747a1bcd0816e79fad7158e52a4113708664d2d`
 
 ## Mission outcome
@@ -38,7 +38,8 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 
 - Stage 1 — Mission Initiation and Intake Pack: **CANONICAL — PR #811**
 - Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZED (PR #812) — DRAFT TRUTH PACK PREPARED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
-- Stage 3+ — **NOT AUTHORIZED**
+- Stage 3 — Founder Decision Gate: **TRIGGERED** by Mission Control (PR #813 review). Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization.
+- Stage 4+ — **NOT AUTHORIZED**
 
 ## Stage 2 preparation — MC-02
 
@@ -56,8 +57,8 @@ No Stage 3 decision, Blueprint drafting, EIS drafting, implementation, provider/
 - `claude-code/04-stage2-institutional-learning-intake.md` — Institutional Learning Intake Record
 - `claude-code/05-stage2-delta-evidence.md` — Delta evidence (2 `PRODUCT-AFFECTING`)
 - `claude-code/06-stage2-completion-report.md` — Stage 2 completion report
-- `founder/01-stage2-decision-brief.md` — open questions FDB-1, FDB-2 (questions only)
+- `founder/01-stage2-decision-brief.md` — open questions FDB-1, FDB-2, FDB-3 (questions only)
 
-Mission Control determines whether the Stage 3 gate is triggered. No Stage 3, Blueprint, EIS or implementation authority follows.
+Mission Control determined the Stage 3 gate TRIGGERED (T1, T2, T4, and T6 narrowly) and resolved MC-Q1 to MC-Q6. No Stage 3, Blueprint, EIS or implementation authority follows from this draft.
 
 This README is an index, not an independent authority record.

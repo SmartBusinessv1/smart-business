@@ -5,11 +5,17 @@
 **Prepared by:** Claude Code, Stage 2 Definition Actor
 **Baseline:** `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`, 2026-10-07
 
-This brief records questions, not decisions. Mission Control decides whether the Stage 3 gate is triggered and who conducts any Founder dialogue. Nothing here is Product Truth until a Founder Product Decision Record is merged.
+This brief records questions, not decisions. It contains no Founder answers. Mission Control has determined the Stage 3 Founder Decision Gate **TRIGGERED** (review of PR #813, comment `6054966674`; Truth Pack Part 6.5). Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization, which also designates who conducts the Founder dialogue. Nothing here is Product Truth until a Founder Product Decision Record is merged.
 
 ## Why these questions exist
 
-Stage 2 found two places where the approved sources do not say what SB-P-1.14 must deliver. Everything else in the mission is answered by the contracts and the Build Plan (`claude-code/01-stage2-mission-truth-pack.md` Part 6).
+This brief is limited to the triggering items in Mission Control's determination. Everything else in the mission is answered by the contracts and the Build Plan (`claude-code/01-stage2-mission-truth-pack.md` Part 6).
+
+| Question | Triggering items |
+|---|---|
+| FDB-1 | T1; T2 (CF-2: SB-P-1.13 FPDR-5 §3 and §6 versus Build Plan §10.5); T4 (D-19, D-20); T6 (DC-02) |
+| FDB-2 | T1; T6 (DC-11, DC-12) |
+| FDB-3 | T6 (DC-05) |
 
 ## FDB-1 — Where four-state Ledger ends and customer credit begins
 
@@ -39,8 +45,18 @@ Stage 2 found two places where the approved sources do not say what SB-P-1.14 mu
 
 **Not asked:** any legal retention period. No legal rule is inferred; legal validation follows SB-P-1.12 Founder Record 06.
 
+## FDB-3 — What counts as a "changed target" in Scenario A
+
+**What is settled.** If the underlying target changes between preview and commit, Smart Business re-prompts rather than silently retargeting (Build Plan §10.3 Scenario A).
+
+**What is not settled.** Which changes count as a changed target that forces the merchant to review again. Candidates include: the matched customer or supplier, the earlier credit entry a repayment is linked to, the stock item for an opening-stock line, and a newly detected possible duplicate. A narrow definition re-prompts less often; a broad one protects more but asks the merchant to review more often.
+
+**Affected rows:** `BP-§10.3-SA2`, `22-§13-4`, `21-§18`. Derived constraint DC-05. The FCTM is unchanged; no row is newly marked.
+
 ## What the Founder is not asked
 
 - the SB-P-1.12 or SB-P-1.13 implementation suspension (already governed by the documentation-acceleration lane);
 - storage provider choice (Cloudflare R2 is the approved direction; activation is a later gate);
-- Mission Control questions MC-Q1 to MC-Q6 (Truth Pack Part 6.4).
+- Mission Control questions MC-Q1 to MC-Q6, already resolved by Mission Control (Truth Pack Part 6.4);
+- permission defaults for viewing uploaded documents (DC-07), which Mission Control found already constrained by the locked SB-P-1.12 authority model;
+- the AWS S3 transient staging seam (MC-Q5) and storage-job scheduling (MC-Q4).

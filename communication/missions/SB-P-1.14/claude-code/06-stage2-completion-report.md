@@ -51,20 +51,22 @@ The pull-request number and final branch head are recorded in the pull-request h
 
 Disposition totals: 564 `IN SCOPE`, 44 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`. Reproducible by the commands in FCTM §H.
 
-## 5. T1–T8 evidence screen (Mission Control determines)
+## 5. T1–T8 — Mission Control determination
 
-| Trigger | Evidence |
+Mission Control's review of PR #813 (comment `6054966674`) replaces the first draft's evidence-only screen. **Stage 3 Founder Decision Gate: TRIGGERED.** Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization.
+
+| Trigger | Determination |
 |---|---|
-| T1 | Candidate — FDB-1 (credit/repayment boundary; existing credit-method sales; payables; totals), FDB-2 (retention purpose for unconfirmed originals and raw voice) |
-| T2 | Candidate — CF-2: SB-P-1.13 FPDR-5 restatement versus Build Plan §10.5; CF-1 Source 02 §8 versus Contract 25, read as reconcilable |
-| T3 | Not found — Build Plan §15 item 6 relevant but off the critical path |
-| T4 | Candidate — D-19 and D-20 `PRODUCT-AFFECTING` |
-| T5 | Not found |
-| T6 | For Mission Control judgment — DC-02, DC-05, DC-07, DC-11, DC-12 flagged material |
-| T7 | Not found — no omission, deferral, pull-forward or reclassification proposed |
+| T1 | **YES** — FDB-1, FDB-2 |
+| T2 | **YES** — CF-2: SB-P-1.13 FPDR-5 §3 and §6 versus Build Plan §10.5 |
+| T3 | **NO** on current evidence |
+| T4 | **YES** — D-19, D-20 (`PRODUCT-AFFECTING`, preserved) |
+| T5 | **NO** on current evidence |
+| T6 | **YES, narrowly** — DC-02, DC-05, DC-11, DC-12. DC-07 is not an independent trigger |
+| T7 | **NO** on current evidence |
 | T8 | Not applicable at Stage 2 |
 
-The Definition Actor does not decide the gate. Because candidate triggers were found, the Stage 2 Founder decision brief was prepared with questions only.
+Triggering items, to which the Founder brief is limited: FDB-1, FDB-2; CF-2 / D-19 / D-20; DC-02, DC-05, DC-11, DC-12. DC-05 had no question in the first brief, so the correction adds FDB-3 (questions only).
 
 ## 6. Verification performed
 
@@ -88,12 +90,29 @@ Documentation only, limited to the exact writable paths in the live instruction.
 
 ## 9. Outstanding issues
 
-- Mission Control determination of the T1–T8 screen; Founder dialogue on FDB-1 and FDB-2 if the gate is triggered.
-- Mission Control answers to MC-Q1 to MC-Q6.
+- Human merge of this Stage 2 output, then Mission Control's separate Stage 3 authorization; Founder dialogue on FDB-1 to FDB-3 only after that.
+- MC-Q1 to MC-Q6 are resolved (Truth Pack Part 6.4); MC-Q4 and MC-Q5 constrain later Blueprint/EIS work.
 - SB-P-1.12 and SB-P-1.13 implementation remain suspended; 226 `IN SCOPE` rows carry `D12` and 93 carry `D13`.
 - Durable storage (`DR2`) and AI provider (`DAI`) activation gates remain closed.
 - Specialist reviewers (Security & Permissions, Supabase/storage, UDI/AI safety, transaction integrity/migration) not yet appointed.
 
 ## 10. Recommended next step
 
-Mission Control review of the draft pull request and determination of the Stage 3 trigger screen.
+Mission Control re-review of the correction commit on PR #813; then Founder human merge of Stage 2 and Mission Control's separate Stage 3 authorization.
+
+## 11. Correction round (Mission Control review of PR #813, comment `6054966674`)
+
+Stage 2 content review is complete subject to these corrections.
+
+| Required correction | Applied |
+|---|---|
+| 1. Part 6.5 shows the Mission Control determination | Truth Pack Part 6.5 rewritten as the determination |
+| 2. Stage 3 TRIGGERED; triggering items limited | Recorded in Truth Pack Part 6.5, this report §5, README, logs and live report |
+| 3. MC-Q1 to MC-Q6 dispositions recorded | Truth Pack Part 6.4; decision log D-04; DC-07, DC-09, DC-15 readings updated |
+| 4. Brief stays questions-only and narrowed | No answers inserted; triggering-item table added; FDB-3 added for DC-05, a triggering constraint the first brief did not ask about; DC-07, MC-Q4 and MC-Q5 listed as not asked |
+| 5. Status wording across artifacts | Completion report, README, decision log, handover log, live report |
+| 6. FCTM unchanged | 766 rows; no row, disposition or Founder-decision cell changed. No factual row error was found |
+| 7. D-19 and D-20 stay `PRODUCT-AFFECTING` | Unchanged |
+| 8. No-CI finding preserved as absence | §6 unchanged in substance; refreshed observation in the PR handover comment |
+| 9. Local checks re-run | Per-file Markdown Quality Gate and pre-commit gate; results in the PR handover comment |
+| 10. Stop; no self-merge | Observed |

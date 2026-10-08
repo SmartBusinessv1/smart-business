@@ -8,7 +8,9 @@
 **Baseline:** `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`, 2026-10-07
 **Owner of this record:** the Definition Actor prepares; Mission Control reviews. The Definition Actor does not approve its own findings (Source 18 §4.3).
 
-This pack does not decide the Stage 3 gate, draft the Blueprint or the EIS, or authorize implementation, SQL, migration, storage-provider, AI-provider, production or OLE action.
+**Correction round (Mission Control review of PR #813, comment `6054966674`, 2026-10-08).** Mission Control completed content review, determined the Stage 3 Founder Decision Gate **TRIGGERED** (Part 6.5) and answered MC-Q1 to MC-Q6 (Part 6.4). Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues a separate Stage 3 authorization. The FCTM is unchanged (766 rows).
+
+This pack does not itself decide the Stage 3 gate, draft the Blueprint or the EIS, or authorize implementation, SQL, migration, storage-provider, AI-provider, production or OLE action.
 
 ## Contents
 
@@ -19,7 +21,7 @@ This pack does not decide the Stage 3 gate, draft the Blueprint or the EIS, or a
 | 3 | Derived constraints | this file |
 | 4 | Delta | [`05-stage2-delta-evidence.md`](05-stage2-delta-evidence.md) |
 | 5 | Upstream dependency reconciliation (SB-P-1.12, SB-P-1.13) | this file |
-| 6 | Unresolved items, conflicts, Mission Control questions and T1–T8 evidence screen | this file |
+| 6 | Unresolved items, conflicts, Mission Control dispositions and T1–T8 determination | this file |
 | 7 | Institutional Learning Intake Record | [`04-stage2-institutional-learning-intake.md`](04-stage2-institutional-learning-intake.md) |
 
 ## Part 1 — Mission scope and experience anchors
@@ -70,25 +72,25 @@ UDI interprets and proposes. It creates no authority and no parallel protected-w
 
 ## Part 3 — Derived constraints
 
-These are engineering or product implications inferred by the Definition Actor. **None is approved Product Truth. None is applied to any FCTM row.** The "Could materially change" column flags the instruction's categories: R = merchant review/confirmation; T = transaction behaviour; P = permission/data visibility; D = document retention/deletion; S = storage/provider behaviour; C = correction/audit; Q = search/retrieval. The last column is the Definition Actor's reading for Mission Control; Mission Control decides T6.
+These are engineering or product implications inferred by the Definition Actor. **None is approved Product Truth. None is applied to any FCTM row.** The "Could materially change" column flags the instruction's categories: R = merchant review/confirmation; T = transaction behaviour; P = permission/data visibility; D = document retention/deletion; S = storage/provider behaviour; C = correction/audit; Q = search/retrieval. The last column is the Definition Actor's reading, followed where applicable by Mission Control's disposition from its review of PR #813. Mission Control determined T6 **YES, narrowly, for DC-02, DC-05, DC-11 and DC-12** only.
 
 | ID | Derived constraint | Inferred from | Could materially change | Reading for Mission Control |
 |---|---|---|---|---|
 | DC-01 | Four states are added by additive widening of the transaction model and the correction function; existing `sale`/`purchase` rows are neither rewritten nor reinterpreted, and every reader is updated so no new type renders as a purchase. | `3-§4-5`, `3-§22-2`, `BP-§10.3-W3`, D-01, D-03 | T, C | Engineering realization of approved truth |
-| DC-02 | How credit and repayment enter merchant-visible totals ("Today's sales/purchases", period summaries, exports) must avoid double counting (credit sale then repayment). No approved source defines the totals semantics. | `3-§10-*`, `14-§22`, `17-§6`, D-03 | T, Q | **Material.** Tied to FDB-1; candidate T6 |
+| DC-02 | How credit and repayment enter merchant-visible totals ("Today's sales/purchases", period summaries, exports) must avoid double counting (credit sale then repayment). No approved source defines the totals semantics. | `3-§10-*`, `14-§22`, `17-§6`, D-03 | T, Q | **Material.** Tied to FDB-1. MC: **T6 triggering constraint** |
 | DC-03 | All four-state and UDI-confirmed Ledger writes go through the one governed command (`create_transaction_governed`), widened for new types, with idempotency and first-class unknown outcome; no second protected write path. | `BP-§6.2-1`, SB-P-1.13 EIS13-CMD-02, EIS13-IDM-02, resume register §D, D-02 | T | Engineering realization; already constrained by locked upstream specifications |
 | DC-04 | Stored object, interpreted fact and confirmed record are three distinct states. The preview fingerprints the exact reviewed interpretation (after merchant corrections) and its target; commit through `confirmation_bindings` writes exactly that. | `25-§11-4`, `BP-§10.3-SA1`, SB-P-1.12 EIS-CNF-01 | R | Engineering realization |
-| DC-05 | The "underlying resolvable target" of Scenario A must be defined: at least the matched counterparty reference, a linked credit record for a repayment, an inventory item for opening stock, and duplicate candidates. A change to any of them after preview causes a re-prompt. | `BP-§10.3-SA2`, `22-§13-4`, `21-§17` | R, T | **Material.** What counts as a target change is merchant-visible; candidate T6, otherwise settled at Blueprint |
+| DC-05 | The "underlying resolvable target" of Scenario A must be defined: at least the matched counterparty reference, a linked credit record for a repayment, an inventory item for opening stock, and duplicate candidates. A change to any of them after preview causes a re-prompt. | `BP-§10.3-SA2`, `22-§13-4`, `21-§17` | R, T | **Material.** What counts as a target change is merchant-visible. MC: **T6 triggering constraint**; FDB-3 |
 | DC-06 | Original bytes are immutable once stored; corrections change interpretation or the record, never the original. Replacement creates a new version linked to the prior one. | `22-§14`, `25-§10-12`, `25-§23-7`, `3-§8-16` | C, D | Engineering realization |
-| DC-07 | Document retrieval inherits the permission of the linked record at request time, revocation is honoured, and create does not imply read-all. Whether an Employee may later view a receipt they uploaded is not stated by any source; it falls to the SB-P-1.12 capability registry and role defaults. | `21-§11`, `5-§12-4`, `25-§19-7`, `25-§26-11` | P | **Material** if a default differs from Contract 21 §4/§11; otherwise Blueprint detail |
+| DC-07 | Document retrieval inherits the permission of the linked record at request time, revocation is honoured, and create does not imply read-all. Whether an Employee may later view a receipt they uploaded is not stated by any source; it falls to the SB-P-1.12 capability registry and role defaults. | `21-§11`, `5-§12-4`, `25-§19-7`, `25-§26-11` | P | Material permission design. MC: **not an independent T6 trigger**; already constrained by the locked SB-P-1.12 authority model unless an actual conflict in role defaults or capability truth is found |
 | DC-08 | Storage keys may be business-prefixed (SB-P-1.12 EIS-ISO-05), but authorization never derives from the path, and the internal object identity, not the provider key, is the business reference. | `25-§14-1`, `25-§15-*`, `25-§19-3`, EIS-ISO-05 | S | Engineering realization |
-| DC-09 | The existing AWS S3 presigned staging and Lambda parser (non-production) may serve only as transient processing staging; durable originals live in the approved durable object storage. Retaining AWS staging is an infrastructure choice for Mission Control. | `25-§11-2`, `25-§27-4`, `22-§28-5`, D-05 | S | Engineering; infrastructure choice for Mission Control, not a Founder question |
+| DC-09 | The existing AWS S3 presigned staging and Lambda parser (non-production) may serve only as transient processing staging; durable originals live in the approved durable object storage. Retaining AWS staging is an infrastructure choice for Mission Control. | `25-§11-2`, `25-§27-4`, `22-§28-5`, D-05 | S | MC-Q5: AWS S3 staging is **not** Product Truth; optional transient-processing seam only, reusable only after engineering/provider review validates it; never the durable authoritative store and never a bypass of the approved storage/permission model |
 | DC-10 | No retention duration is coded. Documents reuse the SB-P-1.12 record-class retention registry and legal-hold pattern; lifecycle transitions are non-destructive by default; deletion is deliberate and audited. No legal retention rule is inferred. | `25-§17-*`, Contract 22 §33.7, EIS-LEG-01 to -03, Founder Record 06 | D | Engineering realization of approved principles |
-| DC-11 | What happens to an uploaded original whose interpretation is rejected, abandoned or whose preview expires (kept as proof, or discarded under minimum-necessary retention) is not stated by any source. | `5-§16-3`, `25-§17-6`, `25-§27-7`, SB-P-1.13 partial learning L-7 | D, R | **Material.** FDB-2 |
-| DC-12 | Raw voice audio: once governed storage exists, whether any raw audio is retained durably, and for which purpose, is not stated. FPDR-3 governs only the period before this mission; Contract 25 §12 allows retention only "where justified". | `25-§12-1`, `25-§12-3`, SB-P-1.13 FPDR-3 | D, S | **Material.** FDB-2 |
+| DC-11 | What happens to an uploaded original whose interpretation is rejected, abandoned or whose preview expires (kept as proof, or discarded under minimum-necessary retention) is not stated by any source. | `5-§16-3`, `25-§17-6`, `25-§27-7`, SB-P-1.13 partial learning L-7 | D, R | **Material.** FDB-2. MC: **T6 triggering constraint** |
+| DC-12 | Raw voice audio: once governed storage exists, whether any raw audio is retained durably, and for which purpose, is not stated. FPDR-3 governs only the period before this mission; Contract 25 §12 allows retention only "where justified". | `25-§12-1`, `25-§12-3`, SB-P-1.13 FPDR-3 | D, S | **Material.** FDB-2. MC: **T6 triggering constraint** |
 | DC-13 | Duplicate detection uses a business-scoped content fingerprint (never cross-business) and surfaces a possible duplicate in the preview rather than silently dropping it. | `5-§9-7`, `5-§11-*`, `25-§14-4`, D-07 | R | Engineering realization |
 | DC-14 | Search covers period, counterparty reference (free text), purpose/description, amount, payment method, document type and linked record through one permission-scoped query layer shared by conversation and visual surfaces; no directory identity is created. | `3-§9-*`, `BP-§10.3-S1`, `S2` | Q | Engineering realization within approved scope |
-| DC-15 | Orphan detection, reconciliation and lifecycle jobs need scheduled execution, but the Scheduler foundation is SB-P-1.15 (`22-§18`). Either these jobs wait, run on demand, or SB-P-1.14 builds against the shared foundation early; a feature-specific scheduler is a non-goal (`22-§28-4`). | `25-§14-6`, `25-§21-*`, `22-§18`, `22-§28-4` | S | Sequencing question for Mission Control (MC-Q4) |
+| DC-15 | Orphan detection, reconciliation and lifecycle jobs need scheduled execution, but the Scheduler foundation is SB-P-1.15 (`22-§18`). Either these jobs wait, run on demand, or SB-P-1.14 builds against the shared foundation early; a feature-specific scheduler is a non-goal (`22-§28-4`). | `25-§14-6`, `25-§21-*`, `22-§18`, `22-§28-4` | S | MC-Q4: no feature-specific scheduler; define storage-job requirements and interfaces now; scheduled runtime execution depends on the shared SB-P-1.15 Scheduler; on-demand/manual-safe execution only where approved behaviour needs no background timing; any Scheduler pull-forward needs a later T7 gate |
 | DC-16 | Image, PDF and handwriting interpretation sends merchant documents to the AI provider only after the SB-P-1.13 provider data-control gate (EIS13-PRV-01); deterministic CSV/XLSX parsing needs no provider. | `24-§25`, `5-§16-7`, EIS13-PRV-01 | S, P | Engineering realization; already constrained |
 | DC-17 | Exports are computed from the same query layer as summaries; a generated export is stored durably only where retention is required. | `3-§10-9`, `25-§7-1` | Q, D | Engineering realization |
 | DC-18 | Uploader and creator attribution on documents and Ledger rows survives identity deletion as non-authorizing history; the current `ON DELETE CASCADE` paths are SB-P-1.12's (EIS-ESC-03, -04). | `22-§33-1`, D-08 | C | Engineering; owned by SB-P-1.12 |
@@ -153,7 +155,7 @@ No SB-P-1.14 row is marked implemented or demonstrated because of any entry abov
 - conversation history and media: `10-§16-4`, `10-§16-5`, `BP-§6.4-9`;
 - Basic Voice credit/repayment and raw audio: `12-§4-1`, `12-§7-6`, `12-§21-1` (FPDR-2, FPDR-5), `12-§11-5`, `12-§15-4`, `12-§16-8` (FPDR-3).
 
-## Part 6 — Unresolved items, conflicts and T1–T8 evidence screen
+## Part 6 — Unresolved items, conflicts, Mission Control dispositions and T1–T8 determination
 
 ### 6.1 Unresolved Founder decisions and escalations in the FCTM
 
@@ -166,45 +168,50 @@ No SB-P-1.14 row is marked implemented or demonstrated because of any entry abov
 |---|---|---|---|
 | FDB-1 | Where exactly is the line between SB-P-1.14 four-state credit/repayment and SB-P-1.16 customer-credit maturity? (a) Must SB-P-1.14 answer per-counterparty owed amounts ("What does Shameer still owe me?") or only record, link and retrieve credit and repayment entries? (b) What merchant-visible meaning do existing `sale` rows with `payment_method = credit` take once a `credit` state exists? (c) Does "credit" include amounts the business owes (payables)? (d) How do credit and repayment enter daily totals? | D-19, D-20, DC-02; Build Plan §10.3, §10.5; Contract 3 §4, §9; Contract 14 §5, §7; SB-P-1.13 FPDR-5 | 24 rows marked `FDB-1` |
 | FDB-2 | Retention purpose for originals that never become confirmed records, and for raw voice audio once governed storage exists | DC-11, DC-12; Contract 5 §16; Contract 25 §12, §17; SB-P-1.13 FPDR-3 | 8 rows marked `FDB-2` |
+| FDB-3 | Which changes count as a "changed target" that forces a Scenario A re-prompt (counterparty match, linked credit entry for a repayment, opening-stock item, newly detected duplicate) | DC-05 (MC T6 triggering constraint); Build Plan §10.3 Scenario A | `BP-§10.3-SA2`, `22-§13-4`, `21-§18` (no FCTM row newly marked) |
 
-### 6.3 Candidate conflicts and observations among sources
+### 6.3 Conflicts and observations among sources
 
 | ID | Finding | Definition Actor reading (not a decision) |
 |---|---|---|
-| CF-1 | Source 02 §8 (blob `b35ebc2b`) says recent media in Supabase Storage, older media in an R2 archive. Contract 25 §16 and §28 classify that model as historical provenance that an EIS may deliberately re-adopt; Build Plan §16 rejects uncontrolled binary-media concentration in Supabase. | Reconcilable: Contract 25 is the later, reconciled, more specific source. Surfaced for T2 screening; not placed in the Founder brief |
-| CF-2 | SB-P-1.13 FPDR-5 restatement versus Build Plan §10.5 (D-19) | Genuine wording conflict between approved records; candidate T2; folded into FDB-1 |
+| CF-1 | Source 02 §8 (blob `b35ebc2b`) says recent media in Supabase Storage, older media in an R2 archive. Contract 25 §16 and §28 classify that model as historical provenance that an EIS may deliberately re-adopt; Build Plan §16 rejects uncontrolled binary-media concentration in Supabase. | Reconcilable: Contract 25 is the later, reconciled, more specific source. Not a triggering item (the MC determination lists CF-2 only); not placed in the Founder brief |
+| CF-2 | SB-P-1.13 FPDR-5 restatement versus Build Plan §10.5 (D-19) | Genuine conflict: FPDR-5 §3 says SB-P-1.13 creates no mature customer-credit balance truth; FPDR-5 §6 places "customer-credit balance … ownership in SB-P-1.14"; Build Plan §10.5 assigns customer-credit records and balances to SB-P-1.16. MC: **T2 YES**; folded into FDB-1 |
 | O-1 | SB-P-1.14 Stage 1 records call R2 "a known candidate infrastructure seam"; Contract 25 header, §2, §5 record R2 as the Founder-selected primary object store. Build Plan §5.4 says "Cloudflare R2 / approved durable object storage". | No conflict among approved sources: R2 is selected product direction; activation is a separate gate. Choosing a provider other than R2 would be a T3/T7 matter. Mission Control may align its wording |
 | O-2 | Source 11 "Receipt Scanning" experience reads "Take photo → Smart Business understands → record created"; Contract 5 §3 requires preview and confirmation for uncertain or consequential updates; Source 11's own UDI section requires "create preview, ask confirmation". | Consistent once read together; no change proposed |
 
-### 6.4 Mission Control questions
+### 6.4 Mission Control questions and dispositions
 
-| ID | Question |
-|---|---|
-| MC-Q1 | Confirm the inherited residual accounting: 34 SB-P-1.13 and 7 SB-P-1.12 rows naming SB-P-1.14, expanded to obligation level (inventory §3) |
-| MC-Q2 | Confirm the slice splits (`a`/`b` rows and `3-§9-2`/`-3`, `5-§4-9`/`-10`, `7-§6-*`) preserve Build Plan ownership and do not trigger T7 |
-| MC-Q3 | Confirm the 57 `DELEGATED` boundary rows (FCTM Part G) are the right set of touched delegate sections, and that Contract 21 stays section-level rather than fully opened |
-| MC-Q4 | DC-15: how scheduled storage jobs (orphan detection, reconciliation, lifecycle) are sequenced against the SB-P-1.15 Scheduler foundation |
-| MC-Q5 | DC-09: whether the AWS S3 transient staging path is retained for UDI processing |
-| MC-Q6 | Accept the `L-ILL` single-row judgments and the two departures from precedent (inventory §3) |
+Questions as submitted, with Mission Control's dispositions from its review of PR #813 (comment `6054966674`).
 
-### 6.5 T1–T8 evidence screen
-
-This is evidence only. **Mission Control determines whether Stage 3 is triggered.** No `NOT TRIGGERED` record is written.
-
-| Trigger | Evidence found | Candidate? |
+| ID | Question | Mission Control disposition |
 |---|---|---|
-| T1 — unresolved product question no approved source answers | FDB-1 (a)–(d); FDB-2 | **Yes** |
-| T2 — conflict among approved sources | CF-2 (FPDR-5 vs Build Plan §10.5); CF-1 (Source 02 §8 vs Contract 25, read as reconcilable) | **Yes** (CF-2) |
-| T3 — new product decision or approved-unresolved decision needed | Build Plan §15 item 6 is relevant but not on the critical path (GPCV §8) | No, on this reading |
-| T4 — Delta item `PRODUCT-AFFECTING` | D-19, D-20 | **Yes** |
-| T5 — Founder request | None recorded at the baseline | No |
-| T6 — material derived constraint | DC-02, DC-05, DC-07, DC-11, DC-12 flagged material | For Mission Control judgment |
-| T7 — proposed omission, deferral, pull-forward, simplification or reclassification | None proposed. A Founder answer to FDB-1 that moves owed-balance truth between SB-P-1.14 and SB-P-1.16 would itself be a T7 decision | No |
-| T8 — later-stage conflict or infeasibility | Stage 2 | Not applicable |
+| MC-Q1 | Inherited residual accounting: 34 SB-P-1.13 and 7 SB-P-1.12 rows naming SB-P-1.14, expanded to obligation level | **CONFIRMED.** The rows are represented; keep the obligation-level expansion |
+| MC-Q2 | Slice splits (`a`/`b` rows and `3-§9-2`/`-3`, `5-§4-9`/`-10`, `7-§6-*`) preserve ownership and do not trigger T7 | **CONFIRMED.** The splits preserve ownership and accounting and do not themselves trigger T7. They remain representational only; no mission assignment is changed |
+| MC-Q3 | The 57 `DELEGATED` boundary rows are the right touched-delegate set; Contract 21 stays section-level | **CONFIRMED for Stage 2.** Contract 21 remains section-level unless a later finding proves the mission consumes additional Contract 21 obligations |
+| MC-Q4 | DC-15: sequencing of scheduled storage jobs against the SB-P-1.15 Scheduler | **RESOLVED.** SB-P-1.14 must not build a feature-specific scheduler. Define storage-job requirements and interfaces now. Runtime scheduled execution depends on the shared SB-P-1.15 Scheduler foundation; on-demand/manual-safe execution may be used only where approved behaviour does not require background timing. Any pull-forward of the shared Scheduler requires a later T7 gate |
+| MC-Q5 | DC-09: whether the AWS S3 transient staging path is retained for UDI processing | **RESOLVED.** Do not lock AWS S3 staging as Product Truth. It is only an optional transient-processing implementation seam, reusable later only if engineering/provider review validates it. It must never become the durable authoritative object store or bypass the approved storage/permission model |
+| MC-Q6 | `L-ILL` single-row judgments and the two departures from precedent | **ACCEPTED.** The `L-ILL` judgments stand. `BP-§10.3-X` may remain `IN SCOPE` as a testable experience statement, and Contract 22 §33.8 may remain enumerated item by item. These are conservative coverage choices, not product reclassification |
+
+### 6.5 T1–T8 — Mission Control determination
+
+The first draft carried an evidence-only screen. Mission Control's determination from its review of PR #813 replaces it. **The Stage 3 Founder Decision Gate is TRIGGERED.** No `NOT TRIGGERED` record is written. Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization.
+
+| Trigger | Determination | Basis |
+|---|---|---|
+| T1 — unresolved product question no approved source answers | **YES** | FDB-1 and FDB-2 |
+| T2 — conflict among approved sources | **YES** | CF-2: SB-P-1.13 FPDR-5 §3 and §6 versus Build Plan §10.5 |
+| T3 — new product decision or approved-unresolved decision needed | **NO** on current evidence | Build Plan §15 item 6 is off the critical path (GPCV §8) |
+| T4 — Delta item `PRODUCT-AFFECTING` | **YES** | D-19 and D-20 |
+| T5 — Founder request | **NO** on current evidence | none recorded |
+| T6 — material derived constraint | **YES, narrowly** | DC-02, DC-05, DC-11, DC-12. DC-07 is material permission design already constrained by the locked SB-P-1.12 authority model and is not an independent T6 trigger |
+| T7 — proposed omission, deferral, pull-forward, simplification or reclassification | **NO** on current evidence | none proposed; a Founder answer to FDB-1 that moves owed-balance truth between SB-P-1.14 and SB-P-1.16, or any Scheduler pull-forward (MC-Q4), would itself be a T7 matter |
+| T8 — later-stage conflict or infeasibility | Not applicable at Stage 2 | — |
+
+**Triggering items (the Stage 3 brief is limited to these):** FDB-1, FDB-2; CF-2 / D-19 / D-20; DC-02, DC-05, DC-11, DC-12.
 
 ### 6.6 Dependent work stopped
 
-If Mission Control determines that the gate is triggered, Source 18 §3.3 item 5 stops dependent preparation. No Blueprint, EIS or package work has been started. Nothing beyond the Stage 2 outputs listed in the live instruction was prepared.
+Mission Control has determined that the gate is triggered, so Source 18 §3.3 item 5 stops dependent preparation until the Founder decides. No Blueprint, EIS or package work has been started. Nothing beyond the Stage 2 outputs listed in the live instruction was prepared.
 
 ## Part 7 — Institutional Learning Intake
 

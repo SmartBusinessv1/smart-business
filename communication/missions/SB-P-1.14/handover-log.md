@@ -53,3 +53,13 @@ Delivered: Truth Pack, populated FCTM, obligation inventory, Institutional Learn
 
 Next action: Mission Control review of the draft pull request, determination of the Stage 3 trigger screen, and answers to MC-Q1 to MC-Q6. Human merge makes the Stage 2 output canonical. No Stage 3/4, Blueprint, EIS or implementation authority is implied.
 
+## H-04 — Stage 2 correction round → Mission Control re-review
+
+**Date:** 2026-10-08
+**From:** Claude Code (Stage 2–4 Definition Actor)
+**To:** Mission Control, then Founder human merge
+**Branch:** `mission/SB-P-1.14-stage2-truth-delta` (DRAFT PR #813)
+
+Applied the corrections in Mission Control comment `6054966674`: T1–T8 determination (Stage 3 TRIGGERED), MC-Q1 to MC-Q6 dispositions, a narrowed questions-only Founder brief (FDB-1 to FDB-3) and status updates. FCTM unchanged at 766 rows.
+
+Next action: Mission Control re-review; Founder human merge of Stage 2; Mission Control issues the separate Stage 3 authorization. Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization.

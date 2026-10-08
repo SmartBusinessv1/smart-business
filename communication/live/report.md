@@ -18,7 +18,9 @@
 
 # Executive Summary
 
-Stage 2 (Mission Truth and Delta Reconciliation) is prepared as a draft on `mission/SB-P-1.14-stage2-truth-delta`, based on `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`. The FCTM has 766 rows (564 `IN SCOPE`, 0 `ESCALATED`). An independent coverage check against the source text passed for every opened source. Two Delta items are `PRODUCT-AFFECTING`, and the evidence screen finds candidate T1, T2 and T4 triggers. Mission Control decides the gate.
+Stage 2 (Mission Truth and Delta Reconciliation) is prepared as a draft on `mission/SB-P-1.14-stage2-truth-delta`, based on `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`. The FCTM has 766 rows (564 `IN SCOPE`, 0 `ESCALATED`). An independent coverage check against the source text passed for every opened source. Two Delta items are `PRODUCT-AFFECTING`.
+
+**Correction round (Mission Control comment `6054966674`):** Stage 2 content review is complete subject to corrections. Mission Control determined the **Stage 3 Founder Decision Gate TRIGGERED** (T1, T2, T4 YES; T6 YES narrowly for DC-02, DC-05, DC-11, DC-12; T3, T5, T7 NO; T8 not applicable) and resolved MC-Q1 to MC-Q6. Stage 3 is not authorized or effective until this Stage 2 output is human-merged and Mission Control issues the separate Stage 3 authorization.
 
 ---
 
@@ -30,7 +32,8 @@ Stage 2 (Mission Truth and Delta Reconciliation) is prepared as a draft on `miss
 - Delta: 21 items (2 `PRODUCT-AFFECTING`, 11 `ENGINEERING ONLY`, 8 `NO PRODUCT EFFECT`).
 - SB-P-1.12 (19) and SB-P-1.13 (12) dependency reconciliation; 33-row reverse-dependency register.
 - Institutional Learning Intake: `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force`; 17 promotions dispositioned.
-- Founder decision brief with questions only (FDB-1, FDB-2).
+- Founder decision brief with questions only (FDB-1, FDB-2; FDB-3 added in the correction round for DC-05).
+- Correction round: Mission Control determination and MC-Q1 to MC-Q6 dispositions recorded; FCTM unchanged.
 
 ---
 
@@ -78,13 +81,13 @@ FCTM counts by parsing (FCTM §H); independent coverage check all PASS (inventor
 
 # Founder or Mission Control Action Required
 
-Mission Control review of the draft pull request; determination of the T1–T8 screen; answers to MC-Q1 to MC-Q6.
+Mission Control re-review of the correction commit; Founder human merge of Stage 2; Mission Control's separate Stage 3 authorization.
 
 ---
 
 # Recommended Next Step
 
-Mission Control reviews the Stage 2 draft pull request and determines whether the Stage 3 Founder Decision Gate is triggered.
+Mission Control re-reviews the correction commit on PR #813. Stage 3 begins only after human merge and a separate Stage 3 authorization.
 
 ---
 
