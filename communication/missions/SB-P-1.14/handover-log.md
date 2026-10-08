@@ -178,3 +178,27 @@ Next sequence:
 5. Only then may Stage 7 authorization be prepared.
 
 No Stage 7, Sections 20–21, Blueprint lock, EIS or implementation authority follows from this handover.
+
+
+## H-13 — Stage 6 canonical → B6-01 reconciliation authorization
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then reconciliation actor  
+**Stage 6 canonical main:** `77a05c56ba2f420bb2dd83c81b211ba5ea9b1b56`
+
+Prepared:
+
+- B6-01 canonical reconciliation authorization;
+- reconciliation live instruction;
+- mission status/log updates.
+
+Next action:
+
+Founder human merge of the reconciliation authorization PR.
+
+After merge:
+
+Claude Code may prepare only the FPDR-4 / Blueprint-FCTM reconciliation package.
+
+Stage 7 remains NOT AUTHORIZED.
