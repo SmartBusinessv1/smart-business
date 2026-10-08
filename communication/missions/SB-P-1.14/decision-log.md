@@ -150,3 +150,14 @@ Mission Control prepares Stage 6 Builder Review authorization for Claude Code.
 Stage 6 may return findings and recommendations only. It may not edit the Blueprint or Product Truth.
 
 No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, provider/storage or runtime authority follows.
+
+## D-11 — Stage 6 Builder Review prepared (draft)
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+
+Stage 6 authorization became effective with PR #818 at `main@8bfc100f98b81c146ace4147561c954ba6731ab5`. Claude Code prepared the Builder Review on `mission/SB-P-1.14-stage6-builder-review`: 19 findings across the 20 required lenses.
+
+B6-01 — whether a repayment may settle a sale recorded with `payment_method = credit`, how new credit sales are represented after widening, and whether a standalone credit entry counts in totals — is a **T3 candidate**. Dependent Stage 7 work on its 13 rows is stopped pending Mission Control. No other T2/T3/T6/T7/T8 trigger was found.
+
+No Blueprint, FCTM or Founder Decision Record change. No decision is recorded by this entry.
