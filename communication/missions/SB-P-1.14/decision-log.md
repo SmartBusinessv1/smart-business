@@ -304,9 +304,49 @@ Mission Control prepares SB-P-1.14-MC-13 authorizing Claude Code to create only 
 
 The locked Blueprint, FCTM, Founder records and specialist reports are read-only. No implementation, migration execution, provider activation, production or delivery authority is granted.
 
-## D-21 — Stage 9 EIS draft prepared
 
-**Date:** 2026-10-08
-**Status:** DRAFT UNTIL MISSION CONTROL STAGE 10 REVIEW AND HUMAN MERGE
+## D-22 — Stage 9 draft passes preliminary completeness gate; Stage 10 specialist review prepared
 
-Under SB-P-1.14-MC-13 (PR #830, `main@ded86278`), Claude Code created the SB-P-1.14 EIS draft on `mission/SB-P-1.14-stage9-eis-draft`: 83 requirements; 563/563 `IN SCOPE` rows mapped; 0 missing, 0 extra, 0 duplicate IDs, 0 orphans; every Stage 7 residual hold carried. `FPDR-1` to `FPDR-4` and the SB-P-1.16 customer-balance boundary preserved. T2/T3/T6/T7/T8 not triggered. No decision is recorded by this entry.
+**Date:** 2026-10-08  
+**Status:** PRELIMINARY DOCUMENTARY PASS — STAGE 10 AUTHORIZATION PENDING HUMAN MERGE
+
+PR #831 Stage 9 EIS draft contains 83 EIS requirements and maps all 563 `IN SCOPE` FCTM rows bidirectionally with 0 missing/extra/orphan requirement.
+
+Mission Control records two non-triggering preliminary refinement candidates:
+
+- MC10-PRE-01 — EIS14-SEC-02 must distinguish table RLS from view/function security/grant semantics;
+- MC10-PRE-02 — EIS14-TOT-01 must preserve truthful distinct sales/income and purchase/expense totals while maintaining canonical no-double-counting rules.
+
+All five Stage 10 specialist confirmations are mandatory and may run in parallel after authorization becomes canonical.
+
+No T2/T3/T6/T7/T8 trigger is recorded by this preliminary review.
+
+
+## D-23 — Stage 10 Security T7 Founder refinement approved
+
+**Date:** 2026-10-08  
+**Status:** FOUNDER APPROVED — EFFECTIVE AFTER HUMAN MERGE
+
+All five Stage 10 specialist reports are canonical through PR #835 at `main@512790427e995f91a3fd869a5792c66db1f23f38`.
+
+S10-SP-1 identified three finding-scoped T7 omissions/simplifications: object-type-specific birth hardening, authority-event/durable-denial separation from domain provenance, and complete effective-access/callable-surface/privileged-handler verification.
+
+Founder explicitly approved:
+
+`SB-P-1.14 STAGE 10 T7 SECURITY REFINEMENT — APPROVED`
+
+The decision restores already-approved security constraints only. It does not change Product Truth, the FCTM, build commitment, commercial classification, mission assignment or FPDR-1 through FPDR-4.
+
+PR #831 remains DRAFT. A separate Mission Control authorization is required before Claude Code may refine the EIS.
+
+
+## D-24 — Founder T7 canonical; consolidated Stage 10 EIS refinement authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT AUTHORIZATION UNTIL HUMAN MERGE
+
+PR #836 is canonical at `main@40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`. The finding-scoped Security T7 is resolved in favor of restorative EIS refinement without Product Truth/FCTM product-definition change.
+
+Mission Control prepares SB-P-1.14-MC-16 authorizing Claude Code to synchronize the existing PR #831 branch with current canonical main and perform one consolidated documentary refinement pass over the accepted findings from all five Stage 10 specialist reports.
+
+No implementation, SQL/schema/migration execution, provider activation, production, delivery, Stage 10 acceptance or EIS lock follows.

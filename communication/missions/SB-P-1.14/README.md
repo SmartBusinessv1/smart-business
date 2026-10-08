@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 8 BLUEPRINT LOCKED (PR #829) — STAGE 9 EIS DRAFT SUBMITTED / AWAITING MISSION CONTROL STAGE 10 REVIEW  
+**Current status:** STAGE 10 SPECIALIST REVIEW COMPLETE / T7 SECURITY DISPOSITION CANONICAL / CONSOLIDATED EIS REFINEMENT AUTHORIZATION PENDING
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -44,9 +44,8 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 6 — Builder Review: **COMPLETE / CANONICAL — PR #819**
 - Post-Stage-6 B6-01 reconciliation (`FPDR-4`): **COMPLETE / CANONICAL — PR #821**
 - Stage 7 — Engineering Review: **COMPLETE / CANONICAL — PR #823, `main@d270befb9a0f2d9883e8d5f55677279616a404fa`**
-- Stage 8 — Founder Approval & Blueprint Lock: **COMPLETE / CANONICAL — PR #829 (`APPROVED — LOCKED`)**
-- Stage 9 — EIS Creation: **AUTHORIZED (PR #830) — DRAFT EIS SUBMITTED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
-- Stage 10+ — **NOT AUTHORIZED**
+- Stage 8 — Founder Approval & Blueprint Lock: **FOUNDER APPROVED — LOCK CROSSING PREPARED; EFFECTIVE ONLY AFTER HUMAN MERGE**
+- Stage 9+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
 
@@ -262,9 +261,41 @@ Stage 9 is not effective until that authorization PR is human-merged and Mission
 
 No implementation, SQL/schema/migration execution, provider activation, production mutation or delivery authority follows.
 
-## Stage 9 draft outputs — Claude Code
 
-- `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` — EIS draft (`DRAFT — MISSION CONTROL REVIEW REQUIRED`): 83 requirements; 563/563 `IN SCOPE` rows mapped bidirectionally; 0 orphans; all Stage 7 holds carried
-- `claude-code/12-stage9-eis-creation-report.md` — Stage 9 report
+## Stage 9 EIS draft → Stage 10 review preparation — MC-14
 
-No EIS lock, implementation package, implementation, migration, provider or production authority follows.
+Stage 9 draft is PR #831 at head `254e40a723e4c74af69d425cb918bb03dc9817e2`.
+
+Mission Control preliminary completeness checks pass: 83 requirements, 563/563 `IN SCOPE` rows, 0 missing/extra rows, 0 orphan requirements, and Stage 7 holds reproduced.
+
+Two preliminary refinement candidates are open for specialist confirmation: MC10-PRE-01 (object-type-specific hardening semantics) and MC10-PRE-02 (truthful financial totals vocabulary).
+
+Mission Control has prepared Stage 10 review authorization plus five mandatory independent specialist confirmations. Stage 10 is not effective until this authorization PR is human-merged.
+
+EIS acceptance/lock, implementation package, implementation, migration, provider and production remain NOT AUTHORIZED.
+
+
+## Stage 10 specialist evidence and T7 Security disposition — MC-15
+
+All five Stage 10 specialist reports are canonical through PR #835 at `main@512790427e995f91a3fd869a5792c66db1f23f38`.
+
+The Security specialist raised finding-scoped T7 for three Stage 9 EIS omissions/simplifications. Founder explicitly approved restorative refinement:
+
+`SB-P-1.14 STAGE 10 T7 SECURITY REFINEMENT — APPROVED`
+
+Mission Control has prepared MC-15 to canonicalize that decision. No Product Truth, FCTM disposition, build commitment, commercial classification or mission assignment changes.
+
+PR #831 remains DRAFT and must not be refined until a separate consolidated Stage 10 refinement authorization is human-merged after this T7 disposition becomes canonical.
+
+Stage 10 acceptance, Stage 11 EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
+
+
+## Stage 10 consolidated EIS refinement preparation — MC-16
+
+PR #836 is canonical at `main@40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`. The finding-scoped Security T7 is resolved for restorative refinement.
+
+Mission Control has prepared one consolidated Claude Code refinement authorization covering the accepted findings from all five canonical Stage 10 specialist reviews. The authorization includes controlled synchronization of PR #831's branch to current canonical main before EIS edits.
+
+The authorization is not effective until human-merged and post-merge verified. PR #831 remains DRAFT.
+
+No Stage 10 acceptance, Stage 11 EIS lock, implementation package, implementation, SQL/schema/migration execution, provider activation, production or delivery authority follows.
