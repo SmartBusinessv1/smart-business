@@ -243,3 +243,20 @@ Mission Control has prepared the lock-only transition:
 Substantive Sections 1–21, FCTM, FPDR-1 through FPDR-4 and all specialist reports remain unchanged.
 
 Stage 9 EIS creation is NOT AUTHORIZED until this Stage 8 lock is human-merged, post-merge verified, and a separate Stage 9 authorization is issued.
+
+
+## Stage 8 canonical; Stage 9 EIS authorization preparation — MC-13
+
+PR #829 is canonical at `main@e5d12aa773b57405c91be5f6aed42264459ae356`.
+
+The complete SB-P-1.14 Blueprint is `APPROVED — LOCKED` at:
+
+`docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`
+
+Locked Blueprint blob: `256828d2c26fba7dab6f52975efb8b574b1563f1`.
+
+Mission Control has prepared the separate Stage 9 EIS Creation authorization for Claude Code.
+
+Stage 9 is not effective until that authorization PR is human-merged and Mission Control verifies the canonical crossing.
+
+No implementation, SQL/schema/migration execution, provider activation, production mutation or delivery authority follows.

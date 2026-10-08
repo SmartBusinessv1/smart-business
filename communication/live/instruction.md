@@ -1,35 +1,38 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 8 Blueprint Lock Crossing
+# Instruction — SB-P-1.14 Stage 9 EIS Creation Authorization
 
 **Mission ID:** SB-P-1.14  
 **Mission Name:** Business Memory, Documents & Durable Media  
-**Stage:** Source 18 v1.2 Stage 8 — Founder Approval and Blueprint Lock  
-**Status:** FOUNDER APPROVED — HUMAN MERGE REQUIRED  
-**Canonical Stage 7 baseline:** `main@d270befb9a0f2d9883e8d5f55677279616a404fa`
+**From:** Smart Business Mission Control  
+**To:** Claude Code — Stage 9 EIS Creation owner  
+**Stage:** Source 18 v1.2 Stage 9 — Engineering Implementation Specification Creation  
+**Status:** AUTHORIZATION PENDING HUMAN MERGE  
+**Date:** 2026-10-08 IST  
+**Canonical Stage 8 baseline:** `main@e5d12aa773b57405c91be5f6aed42264459ae356`  
+**Locked Blueprint:** `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`
 
-Founder decision:
+Do not begin Stage 9 until this authorization is human-merged and Mission Control confirms the canonical crossing.
 
-`SB-P-1.14 STAGE 8 — APPROVED`
+After effectiveness, execute:
 
-Mission Control has prepared the lock-only repository transition.
+`communication/missions/SB-P-1.14/mission-control/20-stage9-eis-creation-authorization.md`
 
-No builder action is authorized at this stage.
+Authorized branch:
 
-Required next action:
+`mission/SB-P-1.14-stage9-eis-draft`
 
-**Founder / authorized-human merge of the Stage 8 lock PR at the reviewed head.**
+Writable paths only:
 
-After merge, Mission Control must verify the canonical crossing before issuing any Stage 9 EIS authorization.
+- `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md`
+- `communication/missions/SB-P-1.14/claude-code/12-stage9-eis-creation-report.md`
+- `communication/live/report.md`
+- `communication/missions/SB-P-1.14/README.md`
+- `communication/missions/SB-P-1.14/decision-log.md`
+- `communication/missions/SB-P-1.14/handover-log.md`
 
-Not authorized:
+Locked Blueprint, FCTM, Founder records and specialist reports are READ ONLY.
 
-- Stage 9 EIS drafting;
-- implementation/code;
-- SQL/schema/migration;
-- provider activation;
-- production access/mutation;
-- delivery publication;
-- self-merge.
+No Stage 10 acceptance, EIS lock, implementation package, implementation, SQL/schema/migration execution, provider activation, production access/mutation, delivery publication or self-merge.
 
-**STOP FOR HUMAN MERGE.**
+**STOP UNTIL HUMAN MERGE MAKES THIS AUTHORIZATION CANONICAL.**

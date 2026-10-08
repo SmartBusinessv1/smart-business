@@ -309,3 +309,27 @@ Next action: human merge of the Stage 8 lock PR at the Mission Control-reviewed 
 After verified merge, Mission Control may prepare a separate Stage 9 EIS Creation authorization for Claude Code.
 
 No EIS drafting, implementation, migration execution, provider activation, production mutation or delivery publication is authorized by this handover.
+
+
+## H-20 — Stage 8 canonical → Stage 9 EIS Creation authorization
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Canonical Stage 8 main:** `e5d12aa773b57405c91be5f6aed42264459ae356`  
+**Locked Blueprint:** `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`  
+**Locked Blueprint blob:** `256828d2c26fba7dab6f52975efb8b574b1563f1`
+
+Prepared:
+
+- SB-P-1.14-MC-13 Stage 9 EIS Creation authorization;
+- Stage 9 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder / authorized-human merge of the Stage 9 authorization PR.
+
+After verified merge, Claude Code may create only the Stage 9 EIS draft and Stage 9 report on the authorized branch/paths.
+
+Stage 10 acceptance, EIS lock, implementation package, implementation, migration execution, provider activation, production mutation and delivery publication remain NOT AUTHORIZED.

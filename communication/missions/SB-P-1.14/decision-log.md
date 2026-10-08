@@ -289,3 +289,17 @@ Founder explicitly approved `SB-P-1.14 STAGE 8 — APPROVED`.
 Mission Control accepts the approval and prepares the Stage 8 lock crossing under SB-P-1.14-MC-12. The lock freezes FCTM disposition, build commitment, commercial classification and mission assignment.
 
 No Stage 9 EIS work, implementation, migration, provider activation, production or delivery authority follows until the lock is canonical and separately authorized.
+
+
+## D-20 — Stage 8 canonical; Stage 9 EIS Creation authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT AUTHORIZATION UNTIL HUMAN MERGE
+
+PR #829 is canonical at `main@e5d12aa773b57405c91be5f6aed42264459ae356`.
+
+SB-P-1.14 Blueprint Sections 1–21 are now `APPROVED — LOCKED` at `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`, blob `256828d2c26fba7dab6f52975efb8b574b1563f1`.
+
+Mission Control prepares SB-P-1.14-MC-13 authorizing Claude Code to create only the Stage 9 EIS draft after the authorization becomes canonical.
+
+The locked Blueprint, FCTM, Founder records and specialist reports are read-only. No implementation, migration execution, provider activation, production or delivery authority is granted.

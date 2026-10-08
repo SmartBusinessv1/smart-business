@@ -1,24 +1,22 @@
 # SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
 **Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Current canonical baseline:** `main@d270befb9a0f2d9883e8d5f55677279616a404fa`  
-**Lifecycle:** Stage 8 — Founder Approval and Blueprint Lock  
-**Status:** FOUNDER APPROVED — LOCK CROSSING PENDING HUMAN MERGE
+**Canonical main:** `e5d12aa773b57405c91be5f6aed42264459ae356`  
+**Lifecycle:** Stage 8 COMPLETE / CANONICAL; Stage 9 authorization prepared  
+**Locked Blueprint:** `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`  
+**Locked Blueprint blob:** `256828d2c26fba7dab6f52975efb8b574b1563f1`
 
-Founder decision:
+Stage 8 Founder Approval and Blueprint Lock is COMPLETE / CANONICAL through PR #829.
 
-`SB-P-1.14 STAGE 8 — APPROVED`
+Mission Control has prepared the separate Stage 9 EIS Creation authorization.
 
-Stage 7 is COMPLETE / CANONICAL.
+Until that authorization is human-merged and post-merge verified:
 
-Mission Control has prepared the Stage 8 lock-only transition. Until that PR is human-merged and verified:
-
-- Blueprint is not canonically locked;
-- Stage 9 EIS drafting is NOT AUTHORIZED;
+- EIS drafting is NOT AUTHORIZED;
 - implementation is NOT AUTHORIZED;
 - migration execution is NOT AUTHORIZED;
 - provider activation is NOT AUTHORIZED;
 - production mutation is NOT AUTHORIZED;
 - delivery publication is NOT AUTHORIZED.
 
-Next: Founder / authorized-human merge of the Stage 8 lock PR, then Mission Control post-merge verification and separate Stage 9 authorization.
+Next: Founder / authorized-human merge of the Stage 9 authorization PR.
