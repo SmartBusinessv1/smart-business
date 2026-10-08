@@ -8,7 +8,7 @@
 | Mission Name | Business Memory, Documents & Durable Media |
 | Mission Type | Product Mission — mature Ledger / Business Memory, Universal Document Intelligence, Receipt Cabinet and governed durable media foundation |
 | Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 |
-| Status | `DRAFT — STAGE 4 SECTIONS 1–19 PREPARED; AWAITING MISSION CONTROL STAGE 5 PRODUCT REVIEW. NOT APPROVED; NOT LOCKED.` |
+| Status | `DRAFT — SECTIONS 1–19 ACCEPTED BY MISSION CONTROL STAGE 5; CANONICAL ONLY AFTER HUMAN MERGE OF PR #817. FULL BLUEPRINT NOT APPROVED; NOT LOCKED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.14-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -22,7 +22,7 @@
 | Date | 2026-10-08 |
 | Builder Review | NOT STARTED — not authorized |
 | Engineering Review (Sections 20–21) | NOT STARTED — not authorized |
-| Mission Control Review | Stage 5 pending |
+| Mission Control Review | Stage 5 Sections 1–19 content accepted by SB-P-1.14-MC-06; conditional until human merge of PR #817 |
 | Blueprint Lock | NOT LOCKED |
 
 ## Mission Snapshot
