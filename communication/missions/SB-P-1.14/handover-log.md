@@ -234,3 +234,29 @@ After verified merge:
 Mission Control may prepare a separate Stage 7 Engineering Review / mandatory specialist-review authorization package.
 
 No Stage 7, Sections 20–21, Blueprint lock, EIS or implementation authority is implied.
+
+
+## H-16 — Reconciliation canonical → Stage 7 authorization
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code + independent specialists  
+**Canonical main:** `feb0f522b7093bd1105d3acc8ffdf834465e9bba`
+
+Prepared:
+
+- Stage 7 Engineering Review authorization;
+- Stage 7 live instruction;
+- five independent specialist-review instructions;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder human merge of the Stage 7 authorization PR.
+
+After merge:
+
+- Claude Code may draft Sections 20–21 and the Engineering Review;
+- independent specialists may perform only their read-only assigned reviews.
+
+No Stage 8, Blueprint lock, EIS or implementation authority is implied.
