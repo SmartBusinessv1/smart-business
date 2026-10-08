@@ -1,22 +1,19 @@
 # SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
-**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Canonical main:** `e5d12aa773b57405c91be5f6aed42264459ae356`  
-**Lifecycle:** Stage 8 COMPLETE / CANONICAL; Stage 9 authorization prepared  
-**Locked Blueprint:** `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`  
-**Locked Blueprint blob:** `256828d2c26fba7dab6f52975efb8b574b1563f1`
+**Mission:** SB-P-1.14  
+**Lifecycle:** Stage 9 draft submitted; Stage 10 review authorization prepared  
+**Draft EIS:** PR #831 @ `254e40a723e4c74af69d425cb918bb03dc9817e2`
 
-Stage 8 Founder Approval and Blueprint Lock is COMPLETE / CANONICAL through PR #829.
+Preliminary Mission Control gate:
 
-Mission Control has prepared the separate Stage 9 EIS Creation authorization.
+- 83 EIS requirements;
+- 563/563 IN SCOPE rows mapped;
+- 0 missing / 0 extra / 0 orphan;
+- Stage 7 row and hold counts reproduced;
+- MC10-PRE-01 and MC10-PRE-02 open for independent review.
 
-Until that authorization is human-merged and post-merge verified:
+Five Stage 10 specialist confirmations are required after authorization becomes canonical.
 
-- EIS drafting is NOT AUTHORIZED;
-- implementation is NOT AUTHORIZED;
-- migration execution is NOT AUTHORIZED;
-- provider activation is NOT AUTHORIZED;
-- production mutation is NOT AUTHORIZED;
-- delivery publication is NOT AUTHORIZED.
+PR #831 remains DRAFT.
 
-Next: Founder / authorized-human merge of the Stage 9 authorization PR.
+EIS acceptance/lock, implementation package, implementation, migration, provider activation and production remain NOT AUTHORIZED.
