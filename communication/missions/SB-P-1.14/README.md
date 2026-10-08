@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 5 SECTIONS 1–19 CONTENT ACCEPTED — CONDITIONAL UNTIL FOUNDER HUMAN MERGE OF PR #817  
+**Current status:** STAGE 5 COMPLETE / CANONICAL — STAGE 6 BUILDER REVIEW AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -40,8 +40,9 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 2 — Mission Truth and Delta Reconciliation: **CANONICAL — PR #813**
 - Stage 3 — Founder Decision Gate: **COMPLETE / CANONICAL — PR #815 (`FPDR-1` to `FPDR-3`)**
 - Stage 4 — Product Blueprint Sections 1–19: **AUTHORIZED (PR #816) — DRAFT PREPARED, NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE**
-- Stage 5 — Mission Control Product Review: **CONTENT ACCEPTED — CONDITIONAL UNTIL HUMAN MERGE OF PR #817**
-- Stage 6+ — **NOT AUTHORIZED**
+- Stage 5 — Mission Control Product Review: **COMPLETE / CANONICAL — PR #817**
+- Stage 6 — Builder Review: **AUTHORIZATION PREPARED — NOT EFFECTIVE UNTIL HUMAN MERGE**
+- Stage 7+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
 
@@ -117,3 +118,18 @@ Mission Control independently passed Gate 10 against the canonical 766-row FCTM:
 Sections 1–19 are content-accepted, conditional until Founder human merge of PR #817.
 
 Stage 6 Builder Review remains NOT AUTHORIZED until a separate post-merge authorization.
+
+
+## Stage 6 preparation — MC-07
+
+Stage 5 became canonical in PR #817 at `main@2c44945a3f9679632ea981a8144161c5403257a0`.
+
+Blueprint Metadata, Mission Snapshot and Sections 1–19 are canonical and remain part of a not-yet-locked full Blueprint.
+
+Mission Control has prepared a separate Stage 6 Builder Review authorization for Claude Code.
+
+Stage 6 may produce findings/recommendations only and may not edit the Blueprint or Product Truth.
+
+Stage 6 is not effective until this authorization PR is human-merged.
+
+No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, provider/storage mutation or production authority follows.
