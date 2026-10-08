@@ -159,3 +159,14 @@ The decision is not canonical Product Truth until a separate Founder Decision Re
 B6-02 through B6-19 are retained as Stage 7/EIS/specialist/dependency inputs.
 
 Stage 7 remains NOT AUTHORIZED.
+
+
+## Post-Stage-6 B6-01 reconciliation preparation — MC-09
+
+Stage 6 became canonical in PR #819 at `main@77a05c56ba2f420bb2dd83c81b211ba5ea9b1b56`.
+
+Founder has already approved the B6-01 product decision, but it is not yet canonical Product Truth.
+
+Mission Control has prepared a separate reconciliation authorization to record the decision as SB-P-1.14 `FPDR-4` and update only the exact affected Blueprint/FCTM references.
+
+Stage 7 remains NOT AUTHORIZED until the reconciliation is reviewed and human-merged.
