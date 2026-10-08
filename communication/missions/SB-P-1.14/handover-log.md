@@ -147,3 +147,34 @@ After merge:
 Claude Code may conduct only Stage 6 Builder Review on the locked Stage 6 branch and return findings/recommendations.
 
 Stage 7, Sections 20–21, Blueprint lock, EIS and implementation remain NOT AUTHORIZED.
+
+## H-11 — Stage 6 Builder Review → Mission Control review
+
+**Date:** 2026-10-08
+**From:** Claude Code (Stage 6 Builder Review owner)
+**To:** Mission Control
+**Base:** `main@8bfc100f98b81c146ace4147561c954ba6731ab5`
+**Branch:** `mission/SB-P-1.14-stage6-builder-review` (DRAFT pull request to `main`)
+
+Delivered: Builder Review (`claude-code/08`) and completion report (`claude-code/09`).
+
+Next action: Mission Control reviews each finding (accept as Stage 7/EIS input, narrow Blueprint refinement, Founder gate, specialist review, or reject), determines B6-01, and appoints Stage 7 specialists. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation and production remain not authorized.
+
+
+## H-12 — Stage 6 review → Founder merge → B6-01 reconciliation
+
+**Date:** 2026-10-08  
+**From:** Mission Control / Founder  
+**To:** Founder human merge
+
+Mission Control accepts the Stage 6 Builder Review. Founder approved the B6-01 T3 recommendation.
+
+Next sequence:
+
+1. Founder human merge PR #819.
+2. Mission Control verifies canonical Stage 6 crossing.
+3. Mission Control prepares a separate B6-01 Founder Decision Record / Blueprint-FCTM reconciliation.
+4. Founder human-merges the reviewed reconciliation.
+5. Only then may Stage 7 authorization be prepared.
+
+No Stage 7, Sections 20–21, Blueprint lock, EIS or implementation authority follows from this handover.

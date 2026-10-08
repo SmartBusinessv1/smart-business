@@ -150,3 +150,39 @@ Mission Control prepares Stage 6 Builder Review authorization for Claude Code.
 Stage 6 may return findings and recommendations only. It may not edit the Blueprint or Product Truth.
 
 No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, provider/storage or runtime authority follows.
+
+## D-11 — Stage 6 Builder Review prepared (draft)
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+
+Stage 6 authorization became effective with PR #818 at `main@8bfc100f98b81c146ace4147561c954ba6731ab5`. Claude Code prepared the Builder Review on `mission/SB-P-1.14-stage6-builder-review`: 19 findings across the 20 required lenses.
+
+B6-01 — whether a repayment may settle a sale recorded with `payment_method = credit`, how new credit sales are represented after widening, and whether a standalone credit entry counts in totals — is a **T3 candidate**. Dependent Stage 7 work on its 13 rows is stopped pending Mission Control. No other T2/T3/T6/T7/T8 trigger was found.
+
+No Blueprint, FCTM or Founder Decision Record change. No decision is recorded by this entry.
+
+
+## D-12 — Stage 6 Builder Review accepted; B6-01 T3 Founder decision approved
+
+**Date:** 2026-10-08  
+**Status:** STAGE 6 CONTENT ACCEPTED — CONDITIONAL UNTIL FOUNDER HUMAN MERGE OF PR #819
+
+Mission Control accepts the Stage 6 Builder Review.
+
+B6-01 triggered T3. Founder response:
+
+`B6-01: Approved`
+
+Approved meaning:
+
+- repayment may settle a standalone credit entry or a `sale + payment_method=credit` row;
+- credit-method sales remain sales and are not rewritten;
+- a new credit sale remains one sale row and does not create a duplicate credit row;
+- standalone credit entries do not count as sales/income unless a separate sale/income event exists;
+- repayment is settlement and never new sales/income;
+- authoritative customer-credit balance truth remains SB-P-1.16.
+
+The decision is substantively resolved but not yet canonical. A separate Founder Decision Record / Blueprint-FCTM reconciliation is required after PR #819 becomes canonical.
+
+Stage 7 remains NOT AUTHORIZED.
