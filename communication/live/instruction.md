@@ -1,17 +1,17 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 10 Final Security Residual Refinement
+# Instruction — SB-P-1.14 Stage 10 Final Security Re-Confirmation
 
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
-**Canonical baseline:** `main@7477f83ce2acbc29c377b09bc58880fb22a33340`  
-**Target:** PR #831 @ `e858a18e00719aed6464822d684c6580fce1f9bf`
+**Target PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
+**Target EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
 
-After this authorization is human-merged and Mission Control verifies the crossing, Claude Code must execute:
+After human merge and Mission Control verification, execute:
 
-`communication/missions/SB-P-1.14/mission-control/35-stage10-final-security-residual-refinement-authorization.md`
+`communication/missions/SB-P-1.14/mission-control/36-stage10-final-security-reconfirmation-authorization.md`
 
-This is one exact-text documentary correction only: replace `EIS14-STO-03` as specified, preserve its ID and 26-row FCTM mapping, and produce `claude-code/14-stage10-final-security-residual-refinement-report.md`.
+Security reviews only the former `R10-SEC-03` residual and whether the Founder-approved restorative Security T7 is now fully realized.
 
-PR #831 remains DRAFT. No implementation, SQL/migration, provider activation, production, Stage 10 acceptance or EIS lock is authorized.
+No EIS edit, implementation, SQL/migration, provider activation, production, Stage 10 acceptance or EIS lock is authorized.
 
 **STOP FOR HUMAN MERGE.**
