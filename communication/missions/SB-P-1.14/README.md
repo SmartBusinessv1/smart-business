@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 10 SPECIALIST REVIEW COMPLETE / T7 SECURITY DISPOSITION CANONICAL / CONSOLIDATED EIS REFINEMENT AUTHORIZATION PENDING
+**Current status:** STAGE 10 EIS REFINED / MISSION CONTROL PRELIMINARY REVIEW PASS / DELTA SPECIALIST CONFIRMATIONS PENDING
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -299,3 +299,12 @@ Mission Control has prepared one consolidated Claude Code refinement authorizati
 The authorization is not effective until human-merged and post-merge verified. PR #831 remains DRAFT.
 
 No Stage 10 acceptance, Stage 11 EIS lock, implementation package, implementation, SQL/schema/migration execution, provider activation, production or delivery authority follows.
+
+
+## Stage 10 refined EIS delta confirmation preparation — MC-17
+
+Claude Code refined PR #831 under MC-16. Exact refined head: `e858a18e00719aed6464822d684c6580fce1f9bf`; EIS blob: `d97d23048f0dda76f3f60b0b03569a928d9e45d1`.
+
+Mission Control preliminarily verifies the refinement and has prepared delta-only confirmations for all five specialist domains. Stage 10 is not restarted; each specialist reviews only its previously blocking findings and directly coupled corrected text.
+
+The delta-confirmation authorization is not effective until human-merged and post-merge verified. PR #831 remains DRAFT. Stage 10 acceptance and Stage 11 EIS lock remain NOT AUTHORIZED.
