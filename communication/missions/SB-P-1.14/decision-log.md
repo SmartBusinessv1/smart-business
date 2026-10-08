@@ -200,3 +200,12 @@ B6-01 T3 was substantively resolved by Founder approval. The decision is not yet
 Mission Control prepares a narrow reconciliation authorization to create SB-P-1.14 FPDR-4 and annotate only the exact affected Blueprint/FCTM references.
 
 No Stage 7 authority follows.
+
+## D-14 — B6-01 reconciliation prepared (`FPDR-4`, draft)
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+
+Under SB-P-1.14-MC-09 (PR #820, `main@28b2b941`), Claude Code recorded the Founder-approved B6-01 decision as `FPDR-4` (`founder/03-post-stage6-founder-product-decision-record.md`): a repayment may settle a standalone credit entry or an existing/future `sale + payment_method=credit` row without rewriting, converting or duplicating the sale; a new credit sale stays one sale row; standalone credit entries and repayments never add to sales/income; authoritative customer balances stay SB-P-1.16; existing history is unchanged.
+
+`FPDR-4` is annotated on exactly 13 FCTM rows. FCTM 766 → 766 with 0 disposition, owner, commitment, classification or assignment changes; `3-§9-12` stays SB-P-1.16; `FPDR-1` to `FPDR-3` unchanged. No new T2/T3/T6/T7/T8 condition.

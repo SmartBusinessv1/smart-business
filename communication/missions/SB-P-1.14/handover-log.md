@@ -202,3 +202,15 @@ After merge:
 Claude Code may prepare only the FPDR-4 / Blueprint-FCTM reconciliation package.
 
 Stage 7 remains NOT AUTHORIZED.
+
+## H-14 — B6-01 reconciliation → Mission Control review
+
+**Date:** 2026-10-08
+**From:** Claude Code (reconciliation actor)
+**To:** Mission Control, then Founder human merge
+**Base:** `main@28b2b94122ef404fe6692bfb29787aa8e55e2cdc`
+**Branch:** `mission/SB-P-1.14-b6-01-reconciliation` (DRAFT pull request to `main`)
+
+Delivered: `FPDR-4` record, 13-row FCTM annotation, Blueprint v0.2 and the reconciliation report with before/after proof.
+
+Next action: Mission Control review; human merge makes `FPDR-4` canonical; Stage 7 authorization and specialist inputs follow separately. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation and production remain not authorized.
