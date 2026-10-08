@@ -303,3 +303,10 @@ SB-P-1.14 Blueprint Sections 1–21 are now `APPROVED — LOCKED` at `docs/phase
 Mission Control prepares SB-P-1.14-MC-13 authorizing Claude Code to create only the Stage 9 EIS draft after the authorization becomes canonical.
 
 The locked Blueprint, FCTM, Founder records and specialist reports are read-only. No implementation, migration execution, provider activation, production or delivery authority is granted.
+
+## D-21 — Stage 9 EIS draft prepared
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL STAGE 10 REVIEW AND HUMAN MERGE
+
+Under SB-P-1.14-MC-13 (PR #830, `main@ded86278`), Claude Code created the SB-P-1.14 EIS draft on `mission/SB-P-1.14-stage9-eis-draft`: 83 requirements; 563/563 `IN SCOPE` rows mapped; 0 missing, 0 extra, 0 duplicate IDs, 0 orphans; every Stage 7 residual hold carried. `FPDR-1` to `FPDR-4` and the SB-P-1.16 customer-balance boundary preserved. T2/T3/T6/T7/T8 not triggered. No decision is recorded by this entry.

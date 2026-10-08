@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 7 DRAFT RECONCILED WITH FIVE CANONICAL SPECIALIST REPORTS (`main@ebe14b87`) / AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION  
+**Current status:** STAGE 8 BLUEPRINT LOCKED (PR #829) — STAGE 9 EIS DRAFT SUBMITTED / AWAITING MISSION CONTROL STAGE 10 REVIEW  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -44,8 +44,9 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 6 — Builder Review: **COMPLETE / CANONICAL — PR #819**
 - Post-Stage-6 B6-01 reconciliation (`FPDR-4`): **COMPLETE / CANONICAL — PR #821**
 - Stage 7 — Engineering Review: **COMPLETE / CANONICAL — PR #823, `main@d270befb9a0f2d9883e8d5f55677279616a404fa`**
-- Stage 8 — Founder Approval & Blueprint Lock: **FOUNDER APPROVED — LOCK CROSSING PREPARED; EFFECTIVE ONLY AFTER HUMAN MERGE**
-- Stage 9+ — **NOT AUTHORIZED**
+- Stage 8 — Founder Approval & Blueprint Lock: **COMPLETE / CANONICAL — PR #829 (`APPROVED — LOCKED`)**
+- Stage 9 — EIS Creation: **AUTHORIZED (PR #830) — DRAFT EIS SUBMITTED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
+- Stage 10+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
 
@@ -260,3 +261,10 @@ Mission Control has prepared the separate Stage 9 EIS Creation authorization for
 Stage 9 is not effective until that authorization PR is human-merged and Mission Control verifies the canonical crossing.
 
 No implementation, SQL/schema/migration execution, provider activation, production mutation or delivery authority follows.
+
+## Stage 9 draft outputs — Claude Code
+
+- `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` — EIS draft (`DRAFT — MISSION CONTROL REVIEW REQUIRED`): 83 requirements; 563/563 `IN SCOPE` rows mapped bidirectionally; 0 orphans; all Stage 7 holds carried
+- `claude-code/12-stage9-eis-creation-report.md` — Stage 9 report
+
+No EIS lock, implementation package, implementation, migration, provider or production authority follows.
