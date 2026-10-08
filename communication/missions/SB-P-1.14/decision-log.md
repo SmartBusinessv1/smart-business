@@ -374,3 +374,13 @@ PR #840 is canonical at `main@7477f83ce2acbc29c377b09bc58880fb22a33340`, making 
 Four domains are fully closed. Security retains one narrow documentary residual in `EIS14-STO-03`: a documented system-maintenance basis must not operate as an alternative source of authority to the locked SB-P-1.12 `EIS-ISO-04` binding contract.
 
 Mission Control prepares SB-P-1.14-MC-18 for one exact-text residual correction only. No new Founder decision is required. No Stage 10 acceptance or EIS lock is granted.
+
+
+## D-27 — Final Security residual corrected; re-confirmation prepared
+
+**Date:** 2026-10-08  
+**Status:** FINAL SECURITY RE-CONFIRMATION AUTHORIZATION PENDING HUMAN MERGE
+
+Claude Code applied the exact MC-18 `EIS14-STO-03` replacement on PR #831. Mission Control verified head `7798c8ac03a4e8d3d833be6772a348dda53c6387`, EIS blob `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`, one-line EIS delta, unchanged requirement ID and unchanged 26-row mapping.
+
+Mission Control prepares MC-19 for one final Security-only read-only re-confirmation. Stage 10 acceptance is still not granted.
