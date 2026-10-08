@@ -7,6 +7,8 @@
 **Baseline:** `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`, 2026-10-07
 **Opened by:** `mission-control/03-stage1-fctm-open.md` (Stage 1 canonical at `main@8747a1bcd0816e79fad7158e52a4113708664d2d`)
 
+**Post-Stage-6 reconciliation note (B6-01, SB-P-1.14-MC-09 — DRAFT until Mission Control review and human merge).** `FPDR-4` (`founder/03-post-stage6-founder-product-decision-record.md`) is appended to the Founder-decision cell of exactly 13 rows. No row is added or removed, and no Row ID, source pointer, kind, build commitment, commercial classification, owning mission, disposition, dependency or evidence cell changes. Row-by-row reasons: `10-b6-01-reconciliation-report.md`.
+
 This matrix is an accounting of approved truth. It adds no product decision and reopens no approved decision. Requirement text lives only in the source contracts. Rows hold pointers, dispositions and citations. The independent obligation inventory is `03-stage2-obligation-inventory.md`.
 
 ## 0. How to read this matrix
@@ -153,15 +155,15 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§3 | C3@d8c26c07 | §3 Lighthouse Principle: Ledger behaviour must preserve the seven listed principles (single rule; realized by 3-§6-*, 3-§8-*, 3-§16-*, 3-§20-*) | PRIN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | — | A-BP103; principle stated as 'must preserve' | — |
 | 3-§4-1 | C3@d8c26c07 | §4 core state 1: Income persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103 | — |
 | 3-§4-2 | C3@d8c26c07 | §4 core state 2: Expense persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103 | — |
-| 3-§4-3 | C3@d8c26c07 | §4 core state 3: Credit (owed to or by a relevant party, per approved workflow) persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103; A-BP103-C | FPDR-1 |
-| 3-§4-4 | C3@d8c26c07 | §4 core state 4: Repayment (settlement against an existing credit relationship) persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103; A-BP103-C | FPDR-1 |
+| 3-§4-3 | C3@d8c26c07 | §4 core state 3: Credit (owed to or by a relevant party, per approved workflow) persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103; A-BP103-C | FPDR-1; FPDR-4 |
+| 3-§4-4 | C3@d8c26c07 | §4 core state 4: Repayment (settlement against an existing credit relationship) persists | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4 (D-01); A-BP103; A-BP103-C | FPDR-1; FPDR-4 |
 | 3-§4-5 | C3@d8c26c07 | §4 must not reduce product behaviour to a permanent sale/purchase-only model | NEG | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | — | L-NEG; A-BP103-C; D-01 | — |
 | 3-§4-6 | C3@d8c26c07 | §4 richer internal event types permitted (implementation choice) | RULE | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | — | A-BP103 ('additive transaction-type widening') | — |
 | 3-§5-1 | C3@d8c26c07 | §5 Ledger recording available through the approved shared conversation and document foundations | RULE | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13 | A-BP103; BP §6.2 | — |
 | 3-§5-2 | C3@d8c26c07 | §5 text example 1: sale/income stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | — |
 | 3-§5-3 | C3@d8c26c07 | §5 text example 2: payment to supplier (expense) stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | — |
-| 3-§5-4 | C3@d8c26c07 | §5 text example 3: 'Shameer owes' (credit) stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | FPDR-1 |
-| 3-§5-5 | C3@d8c26c07 | §5 text example 4: received against credit (repayment) stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | FPDR-1 |
+| 3-§5-4 | C3@d8c26c07 | §5 text example 3: 'Shameer owes' (credit) stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
+| 3-§5-5 | C3@d8c26c07 | §5 text example 4: received against credit (repayment) stated in text | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | 3-§5-6 | C3@d8c26c07 | §5 same business facts spoken in English/Malayalam/Manglish through Basic Voice (Ledger semantics; modality built by SB-P-1.13) | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103; I-13 (12-§4-1 FPDR-2 waits on this mission) | SB-P-1.13 FPDR-2 |
 | 3-§5-7 | C3@d8c26c07 | §5 images/receipts/invoices via UDI capture→interpret→preview→clarify→confirm→validated Ledger update | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; D13; DAI; DR2 | NI-UDI (D-04); A-BP103 | — |
 | 3-§5-8 | C3@d8c26c07 | §5 Excel/CSV/PDF bulk or structured input reuses UDI | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DAI | PART-IMP (D-04); A-BP103 | — |
@@ -174,7 +176,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§6-5 | C3@d8c26c07 | §6 confirmation shows, as relevant: date/time | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | PART-LDG; A-BP103 | — |
 | 3-§6-6 | C3@d8c26c07 | §6 confirmation shows, as relevant: payment method | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | PART-LDG; A-BP103 | — |
 | 3-§6-7 | C3@d8c26c07 | §6 confirmation shows, as relevant: purpose/description | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | PART-LDG; A-BP103 | — |
-| 3-§6-8 | C3@d8c26c07 | §6 confirmation shows, as relevant: credit/repayment linkage | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4; A-BP103 | FPDR-1 |
+| 3-§6-8 | C3@d8c26c07 | §6 confirmation shows, as relevant: credit/repayment linkage | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | 3-§6-9 | C3@d8c26c07 | §6 confirmation shows, as relevant: whether any information remains uncertain | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4; A-BP103 | — |
 | 3-§6-10 | C3@d8c26c07 | §6 a model-generated interpretation is not proof that storage succeeded | NEG | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13 | L-NEG; A-BP103 | — |
 | 3-§7-1 | C3@d8c26c07 | §7 smallest useful clarification when a consequential record is ambiguous | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13 | NI-LDG4; A-BP103; I-13 (3-§7 DELEGATED to SB-P-1.14) | — |
@@ -193,7 +195,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§8-5 | C3@d8c26c07 | §8 correction kind: wrong payment method | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (sale/purchase only, D-01); A-BP103 | — |
 | 3-§8-6 | C3@d8c26c07 | §8 correction kind: wrong date | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (sale/purchase only, D-01); A-BP103 | — |
 | 3-§8-7 | C3@d8c26c07 | §8 correction kind: wrong description | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (sale/purchase only, D-01); A-BP103 | — |
-| 3-§8-8 | C3@d8c26c07 | §8 correction kind: incorrect credit/repayment association | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1 |
+| 3-§8-8 | C3@d8c26c07 | §8 correction kind: incorrect credit/repayment association | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | 3-§8-9 | C3@d8c26c07 | §8 correction preserves: original record identity | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (transaction_correction_events, D-08); A-BP103 | — |
 | 3-§8-10 | C3@d8c26c07 | §8 correction preserves: original values | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (transaction_correction_events, D-08); A-BP103 | — |
 | 3-§8-11 | C3@d8c26c07 | §8 correction preserves: updated values | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (transaction_correction_events, D-08); A-BP103 | — |
@@ -208,7 +210,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§9-4 | C3@d8c26c07 | §9 retrieve by category/purpose | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-SRCH; A-BP103-S | — |
 | 3-§9-5 | C3@d8c26c07 | §9 retrieve by payment method | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-SRCH; A-BP103 | — |
 | 3-§9-6 | C3@d8c26c07 | §9 retrieve by amount range where useful | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-SRCH; A-BP103 | — |
-| 3-§9-7 | C3@d8c26c07 | §9 retrieve by credit/repayment state | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-SRCH; NI-LDG4; A-BP103-FRV (Scenario B 'retrieve correctly') | FPDR-1 |
+| 3-§9-7 | C3@d8c26c07 | §9 retrieve by credit/repayment state | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-SRCH; NI-LDG4; A-BP103-FRV (Scenario B 'retrieve correctly') | FPDR-1; FPDR-4 |
 | 3-§9-8 | C3@d8c26c07 | §9 retrieve by linked document | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DR2 | NI-CAB (D-06); A-BP103-S | — |
 | 3-§9-9 | C3@d8c26c07 | §9 retrieve by product or stock relationship where available | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D17 | NI-SRCH; no transaction-product link exists (D-01); relationship matures under 7-§8 (SB-P-1.17) | — |
 | 3-§9-10 | C3@d8c26c07 | §9 example: spend on bakery supplies last month (purpose + period) | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; D13 | NI-SRCH; A-BP103-S | — |
@@ -220,7 +222,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§10-2 | C3@d8c26c07 | §10 period summaries | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | PART-LDG (daily totals only, D-03); A-BP103 | — |
 | 3-§10-3 | C3@d8c26c07 | §10 income/expense views | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-LDG4; A-BP103 | — |
 | 3-§10-4 | C3@d8c26c07 | §10 customer/supplier views (counterparty-reference level; directory form follows 3-§9-3) | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-EXP; A-BP103-S | — |
-| 3-§10-5 | C3@d8c26c07 | §10 credit/repayment views | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-LDG4; A-BP103 | FPDR-1 |
+| 3-§10-5 | C3@d8c26c07 | §10 credit/repayment views | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | 3-§10-6 | C3@d8c26c07 | §10 CSV export | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-EXP; A-BP103 | — |
 | 3-§10-7 | C3@d8c26c07 | §10 Excel export | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-EXP; A-BP103 | — |
 | 3-§10-8 | C3@d8c26c07 | §10 PDF export | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | NI-EXP; A-BP103 | — |
@@ -287,7 +289,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | 3-§18-5 | C3@d8c26c07 | §18 no broad routine Super Admin visibility into merchant financial detail | NEG | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12 | L-NEG; A-BP103 | — |
 | 3-§18-6 | C3@d8c26c07 | §18 no unsupported financial certainty claims | NEG | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | — | L-NEG; A-BP103 | — |
 | 3-§19-1 | C3@d8c26c07 | §19 acceptance 1: text income/expense recording | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | — |
-| 3-§19-2 | C3@d8c26c07 | §19 acceptance 2: credit and repayment recording | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1 |
+| 3-§19-2 | C3@d8c26c07 | §19 acceptance 2: credit and repayment recording | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | 3-§19-3 | C3@d8c26c07 | §19 acceptance 3: voice-created Ledger event | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13; DTX | NI-LDG4; A-BP103 | SB-P-1.13 FPDR-2 |
 | 3-§19-4 | C3@d8c26c07 | §19 acceptance 4: image/document-created draft with preview/confirmation | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D12; DAI; DR2 | NI-UDI; A-BP103 | — |
 | 3-§19-5 | C3@d8c26c07 | §19 acceptance 5: ambiguous-input clarification | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | IN SCOPE | D13 | NI-LDG4; A-BP103 | — |
@@ -837,7 +839,7 @@ A section is expanded to one row per item when its text lists separately testabl
 | BP-§9-2 | BP@9dfdd924 | §9 row 5: SB-P-1.16 advances 'Contract 3 completion' (assignment source for the credit-specific residual) | RULE | BUILD NOW | per contract | SB-P-1.16 | ASSIGNED TO LATER MISSION | D16 | BP §9 row 5; A-BP103-C | FPDR-1 |
 | BP-§10.3-O | BP@9dfdd924 | §10.3 product outcome: trustworthy Business Memory accepting the real documents merchants already use | EXP | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DAI; DR2 | A-BP103 | — |
 | BP-§10.3-W1 | BP@9dfdd924 | §10.3 required work area: mature Ledger/Business Memory | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | PART-LDG; A-BP103 | — |
-| BP-§10.3-W2 | BP@9dfdd924 | §10.3 required work area: four-state transaction maturity required by Contract 3 (income, expense, credit, repayment) | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1 |
+| BP-§10.3-W2 | BP@9dfdd924 | §10.3 required work area: four-state transaction maturity required by Contract 3 (income, expense, credit, repayment) | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103 | FPDR-1; FPDR-4 |
 | BP-§10.3-W3 | BP@9dfdd924 | §10.3 required work area: additive transaction-type widening where required | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4 (D-01); A-BP103 | — |
 | BP-§10.3-W4 | BP@9dfdd924 | §10.3 required work area: UDI for approved images/PDF/Excel/CSV/document inputs | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DAI; DR2 | NI-UDI; PART-IMP; A-BP103 | — |
 | BP-§10.3-W5 | BP@9dfdd924 | §10.3 required work area: receipt/document provenance | WORK | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DR2 | NI-PROV; A-BP103 | — |
@@ -854,9 +856,9 @@ A section is expanded to one row per item when its text lists separately testabl
 | BP-§10.3-S1 | BP@9dfdd924 | §10.3 search by available human concepts: period, party/counterparty reference, purpose, document | OBL | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DR2 | NI-SRCH; A-BP103-S | — |
 | BP-§10.3-S2 | BP@9dfdd924 | §10.3 structured Customer/Supplier-directory-indexed search after identities are established | OBL | BUILD NOW | per contract | SB-P-1.17 / SB-P-1.18 | ASSIGNED TO LATER MISSION | D17; D18 | A-BP103-S | — |
 | BP-§10.3-SA1 | BP@9dfdd924 | §10.3 Founder Runtime Scenario A: upload receipt/invoice/image/PDF, correct an ambiguous interpreted field, confirm; committed record uses the exact reviewed interpretation | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; D13; DAI; DTX; DR2 | NI-UDI; A-BP103-FRV; Experience anchors 1, 3 | — |
-| BP-§10.3-SA2 | BP@9dfdd924 | §10.3 Founder Runtime Scenario A: if the resolvable target changes between preview and commit, re-prompt rather than silently retarget | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-UDI; A-BP103-FRV; Experience anchor 2; EIS-CNF-01 fingerprint | FPDR-3 |
-| BP-§10.3-SB1 | BP@9dfdd924 | §10.3 Founder Runtime Scenario B: Owner records income, expense, credit and repayment; all four persist and retrieve correctly | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103-FRV; Experience anchor 4 | FPDR-1 |
-| BP-§10.3-SB2 | BP@9dfdd924 | §10.3 Founder Runtime Scenario B: without damaging existing sale/purchase history | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4; D-01, D-03; A-BP103-FRV; Experience anchor 5 | FPDR-1 |
+| BP-§10.3-SA2 | BP@9dfdd924 | §10.3 Founder Runtime Scenario A: if the resolvable target changes between preview and commit, re-prompt rather than silently retarget | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-UDI; A-BP103-FRV; Experience anchor 2; EIS-CNF-01 fingerprint | FPDR-3; FPDR-4 |
+| BP-§10.3-SB1 | BP@9dfdd924 | §10.3 Founder Runtime Scenario B: Owner records income, expense, credit and repayment; all four persist and retrieve correctly | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DTX | NI-LDG4; A-BP103-FRV; Experience anchor 4 | FPDR-1; FPDR-4 |
+| BP-§10.3-SB2 | BP@9dfdd924 | §10.3 Founder Runtime Scenario B: without damaging existing sale/purchase history | FRV | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | DTX | NI-LDG4; D-01, D-03; A-BP103-FRV; Experience anchor 5 | FPDR-1; FPDR-4 |
 | BP-§10.3-X | BP@9dfdd924 | §10.3 exit principle: give messy documents, review what was understood, later find both the business fact and the original proof (testable experience statement) | EXP | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | D12; DAI; DR2 | A-BP103; Experience anchors 1, 3 | — |
 | BP-§11-1 | BP@9dfdd924 | §11 SB-P-1.14 Business Memory/UDI underpins later financial integrity, Compliance documents, onboarding imports and Order/Delivery document inputs (adapter-ready design) | RULE | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | — | BP §11 | — |
 | BP-§11-2 | BP@9dfdd924 | §11 a later mission may complete a contract partly advanced earlier but must not claim earlier work as newly created (SB-P-1.9A, SB-P-1.11 foundations) | RULE | BUILD NOW | per contract | SB-P-1.14 | IN SCOPE | — | BP §11; GPCV §7 | — |
@@ -985,5 +987,7 @@ Owning-mission distribution: SB-P-1.12 52, SB-P-1.13 21, SB-P-1.14 615, SB-P-1.1
 Dependency incidence across `IN SCOPE` rows (a row may carry several codes): `D12` 225, `D13` 92, `D15` 7, `D17` 3, `D19` 1, `D20` 2, `DAI` 97, `DLEG` 11, `DR2` 124, `DTX` 42, `DUF6` 2.
 
 Stage 3 reconciliation: 24 former `FDB-1` rows now reference `FPDR-1`; 8 former `FDB-2` rows now reference `FPDR-2`; `BP-§10.3-SA2`, `22-§13-4` and `21-§18` reference `FPDR-3`. FPDR-1 creates one explicit T7 row change: `3-§9-12` moves from `IN SCOPE` SB-P-1.14 to `ASSIGNED TO LATER MISSION` SB-P-1.16. Total rows remain 766.
+
+Post-Stage-6 reconciliation (B6-01): `FPDR-4` is added to the Founder-decision cell of 13 rows (`3-§4-3`, `3-§4-4`, `3-§5-4`, `3-§5-5`, `3-§6-8`, `3-§8-8`, `3-§9-7`, `3-§10-5`, `3-§19-2`, `BP-§10.3-W2`, `BP-§10.3-SB1`, `BP-§10.3-SB2`, `BP-§10.3-SA2`). Dispositions, owning missions, commitments and classifications are unchanged; totals above are unchanged.
 
 No row is `ESCALATED`. No row is `ALREADY DEMONSTRATED`. Two rows are `UNRESOLVED FOUNDER DECISION` (`25-§17-1`, `BP-§15-6`), both the Build Plan Section 15 item 6 retention duration; neither is on this mission's critical path.

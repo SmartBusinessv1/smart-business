@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 6 AUTHORIZED (PR #818, `main@8bfc100f`) — DRAFT BUILDER REVIEW PREPARED / AWAITING MISSION CONTROL REVIEW  
+**Current status:** STAGE 6 COMPLETE / CANONICAL (PR #819) — B6-01 RECONCILIATION (`FPDR-4`) PREPARED / AWAITING MISSION CONTROL REVIEW  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -41,7 +41,8 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 3 — Founder Decision Gate: **COMPLETE / CANONICAL — PR #815 (`FPDR-1` to `FPDR-3`)**
 - Stage 4 — Product Blueprint Sections 1–19: **AUTHORIZED (PR #816) — DRAFT PREPARED, NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE**
 - Stage 5 — Mission Control Product Review: **COMPLETE / CANONICAL — PR #817**
-- Stage 6 — Builder Review: **AUTHORIZED (PR #818) — DRAFT FINDINGS PREPARED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
+- Stage 6 — Builder Review: **COMPLETE / CANONICAL — PR #819**
+- Post-Stage-6 B6-01 reconciliation (`FPDR-4`): **AUTHORIZED (PR #820) — DRAFT PREPARED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
 - Stage 7+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
@@ -170,3 +171,34 @@ Founder has already approved the B6-01 product decision, but it is not yet canon
 Mission Control has prepared a separate reconciliation authorization to record the decision as SB-P-1.14 `FPDR-4` and update only the exact affected Blueprint/FCTM references.
 
 Stage 7 remains NOT AUTHORIZED until the reconciliation is reviewed and human-merged.
+
+## B6-01 reconciliation draft outputs — Claude Code
+
+- `founder/03-post-stage6-founder-product-decision-record.md` — `FPDR-4` (repayment targets and credit representation)
+- `claude-code/10-b6-01-reconciliation-report.md` — reconciliation proof
+- FCTM: `FPDR-4` added to the Founder-decision cell of 13 rows; 766 rows; no disposition, owner, commitment or classification change
+- Blueprint v0.2: `FPDR-4` carried in Metadata, §8.1, §8.3, §8.6, §10.1, §14, §15.1, §15.4, §18, §19; Section 8 and 11 membership unchanged
+
+No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation or production authority follows.
+
+
+## B6-01 reconciliation review — MC-10
+
+Mission Control independently verified and accepts the FPDR-4 reconciliation.
+
+Verified:
+
+- FCTM stays 766 rows;
+- exactly 13 Founder-decision cells change;
+- no disposition, ownership, build commitment, commercial classification, dependency, evidence or mission-assignment change;
+- Section 8 remains 563 rows;
+- Section 11 remains 203 rows;
+- Section 19 maps all 766 rows consistently;
+- `3-§9-12` remains SB-P-1.16;
+- FPDR-1 through FPDR-3 remain unchanged.
+
+No expansion to `3-§10-2`, `3-§10-3` or `3-§10-9` is required.
+
+Reconciliation acceptance is conditional until Founder human merge of PR #821.
+
+Stage 7 remains NOT AUTHORIZED.

@@ -7,22 +7,22 @@
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Mission Type | Product Mission — mature Ledger / Business Memory, Universal Document Intelligence, Receipt Cabinet and governed durable media foundation |
-| Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 |
-| Status | `DRAFT — SECTIONS 1–19 ACCEPTED BY MISSION CONTROL STAGE 5; CANONICAL ONLY AFTER HUMAN MERGE OF PR #817. FULL BLUEPRINT NOT APPROVED; NOT LOCKED.` |
+| Lifecycle Stage | Source 18 v1.2 — post-Stage-6 B6-01 canonical reconciliation; Stage 7 not yet authorized |
+| Status | `DRAFT FULL BLUEPRINT — SECTIONS 1–19 CANONICAL; STAGE 6 BUILDER REVIEW CANONICAL; FPDR-4 RECONCILIATION ACCEPTED BY MISSION CONTROL, CONDITIONAL UNTIL HUMAN MERGE OF PR #821. SECTIONS 20–21 NOT AUTHORIZED; NOT LOCKED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.14-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
 | Stage 4 Authorization | SB-P-1.14-MC-05, `communication/missions/SB-P-1.14/mission-control/07-stage4-blueprint-preparation-authorization.md`, and `communication/live/instruction.md`, canonical at `main@6712fa5220731293daa0c53d9b3d7da6d52beeb8` (PR #816) |
 | Governing Build Plan section | Build Plan §10.3 (`00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 3 (`d8c26c07`), Contract 5 (`80ac648e`), Contract 22 (`61e1bb91`), Contract 25 (`406ce089`); Global Product Completion View (`ee76d920`) |
-| Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md`, blob `3154330ded098486e6f48ae7a18dbddd93998e5b`: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SCOPE`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`; 0 `ESCALATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.14/founder/02-stage3-founder-product-decision-record.md`, blob `9717b29d`, `FPDR-1` to `FPDR-3`, canonical (PR #815, `main@a719766d1d20c15437e150da66ba8778a06f773d`). In this Blueprint an unqualified `FPDR-n` means the SB-P-1.14 decision; upstream decisions are always written `SB-P-1.13 FPDR-n` or `SB-P-1.12 FPDR-n` |
+| Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md`, reconciled blob `01e9856aca0afdb1267230a1932fe34054449a4b` on PR #821 (becomes canonical on human merge): 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SCOPE`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`; 0 `ESCALATED` |
+| Founder Product Decision Record | `communication/missions/SB-P-1.14/founder/02-stage3-founder-product-decision-record.md`, blob `9717b29d`, `FPDR-1` to `FPDR-3`, canonical (PR #815, `main@a719766d1d20c15437e150da66ba8778a06f773d`). Post-Stage-6 decision `FPDR-4` (B6-01): `communication/missions/SB-P-1.14/founder/03-post-stage6-founder-product-decision-record.md` (DRAFT until Mission Control review and human merge; SB-P-1.14-MC-08, MC-09). In this Blueprint an unqualified `FPDR-n` means the SB-P-1.14 decision; upstream decisions are always written `SB-P-1.13 FPDR-n` or `SB-P-1.12 FPDR-n` |
 | Stage 3 gate | Triggered (T1, T2, T4, T6; T7 for `3-§9-12` only) and resolved by `FPDR-1` to `FPDR-3`; Stage 3 COMPLETE / CANONICAL (SB-P-1.14-MC-04, MC-05) |
 | Upstream dependencies | SB-P-1.12 and SB-P-1.13: specification available (Blueprints and EISs `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`, both suspended); evidence not complete |
 | Date | 2026-10-08 |
-| Builder Review | NOT STARTED — not authorized |
+| Builder Review | COMPLETE / CANONICAL — PR #819; findings B6-01 to B6-19 accepted by Mission Control under SB-P-1.14-MC-08 |
 | Engineering Review (Sections 20–21) | NOT STARTED — not authorized |
-| Mission Control Review | Stage 5 Sections 1–19 content accepted by SB-P-1.14-MC-06; conditional until human merge of PR #817 |
+| Mission Control Review | Stage 5 Sections 1–19 canonical; Stage 6 Builder Review canonical; B6-01 / FPDR-4 reconciliation accepted by SB-P-1.14-MC-10, conditional until human merge of PR #821 |
 | Blueprint Lock | NOT LOCKED |
 
 ## Mission Snapshot
@@ -121,7 +121,7 @@ Each subsection names the governing sources and lists every `IN SCOPE` FCTM row 
 
 Sources: Contract 3 §2–§6, §11, §12, §14, §15, §18, §19, §22; Contract 22 §4; Build Plan §6.3, §9 row 3, §10.3 work areas 1–3, engineering correction, Scenario B; `FPDR-1`.
 
-Mission design: income, expense, credit and repayment are added by additive widening of the existing transaction foundation and its correction function, never by replacement or rewriting (`3-§22-2`, `BP-§10.3-W3`). Existing `sale` and `purchase` rows, including `sale + payment_method=credit`, keep their recorded meaning (`FPDR-1`; Delta D-01, D-20). Every reader of the Ledger shows each state truthfully; no new state may render as a purchase (Delta D-03). Merchant-visible totals count a credit sale once as the earned business event; a later repayment is settlement against the credit relationship and not new revenue (`FPDR-1`). Credit may be owed to or by a relevant party (`3-§4-3`; `FPDR-1`). All four-state writes, from forms, conversation, voice or documents, go through the one governed transaction command (`DTX`; Section 12). Authoritative per-customer owed balances are not built here (`3-§9-12`, Section 11.1).
+Mission design: income, expense, credit and repayment are added by additive widening of the existing transaction foundation and its correction function, never by replacement or rewriting (`3-§22-2`, `BP-§10.3-W3`). Existing `sale` and `purchase` rows, including `sale + payment_method=credit`, keep their recorded meaning (`FPDR-1`; Delta D-01, D-20). Every reader of the Ledger shows each state truthfully; no new state may render as a purchase (Delta D-03). Merchant-visible totals count a credit sale once as the earned business event; a later repayment is settlement against the credit relationship and not new revenue (`FPDR-1`). Credit may be owed to or by a relevant party (`3-§4-3`; `FPDR-1`). A repayment may settle either a standalone credit entry or an existing or future `sale + payment_method=credit` row; linking it never rewrites, converts or duplicates that sale. A new credit sale stays one sale row and creates no separate credit row. A standalone credit entry records an owed relationship not already represented by a sale/income event and does not increase sales/income totals; a repayment never does (`FPDR-4`). All four-state writes, from forms, conversation, voice or documents, go through the one governed transaction command (`DTX`; Section 12). Authoritative per-customer owed balances are not built here (`3-§9-12`, Section 11.1).
 
 **FCTM rows realized here (67 `IN SCOPE`):** `3-§2-2`, `3-§3`, `3-§4-1`, `3-§4-2`, `3-§4-3`, `3-§4-4`, `3-§4-5`, `3-§4-6`, `3-§5-1`, `3-§5-2`, `3-§5-3`, `3-§5-4`, `3-§5-5`, `3-§5-6`, `3-§5-10`, `3-§6-1`, `3-§6-2`, `3-§6-3`, `3-§6-4`, `3-§6-5`, `3-§6-6`, `3-§6-7`, `3-§6-8`, `3-§6-9`, `3-§6-10`, `3-§11-1`, `3-§11-2`, `3-§11-3`, `3-§11-4`, `3-§11-5`, `3-§11-7`, `3-§12-2`, `3-§12-3`, `3-§12-4`, `3-§12-5`, `3-§14-2`, `3-§15-1`, `3-§15-2`, `3-§15-3`, `3-§15-4`, `3-§15-5`, `3-§18-1`, `3-§18-2`, `3-§18-3`, `3-§18-5`, `3-§18-6`, `3-§19-1`, `3-§19-2`, `3-§19-3`, `3-§19-10`, `3-§19-11`, `3-§19-13a`, `3-§22-1`, `3-§22-2`, `22-§4-1`, `22-§4-2`, `22-§4-3`, `22-§4-4`, `BP-§6.3-1`, `BP-§9-1`, `BP-§10.3-O`, `BP-§10.3-W1`, `BP-§10.3-W2`, `BP-§10.3-W3`, `BP-§10.3-C1`, `BP-§10.3-SB1`, `BP-§10.3-SB2`.
 
@@ -141,7 +141,7 @@ Mission design: one shared pipeline interprets approved inputs and hands normali
 
 Sources: Contract 5 §9, §10, §18; Contract 3 §7, §8, §16, §19; Contract 10 §10, §13, §17, §23 (inherited); Contract 24 §21 (inherited); Contract 12 §4 (inherited); Contract 22 §29; Build Plan §6.1, §6.2, §10.3 work areas 7 and 11, Scenario A; `FPDR-3`.
 
-Mission design: confirmation applies to the proposed business update, not to the upload (`5-§9-9`). The merchant reviews and may correct the interpretation; the committed record is the exact reviewed interpretation (`BP-§10.3-SA1`), bound through the SB-P-1.12 confirmation binding (Section 12). Between preview and commit, a material target change re-prompts: a different counterparty, a different credit entry for a repayment, a different inventory item for an opening-stock line, or a newly detected duplicate with meaningful double-recording risk; internal changes that do not alter merchant-visible meaning or consequence do not (`FPDR-3`). Authority, permission and revocation revalidation at execution remain independently binding (`FPDR-3`; SB-P-1.12 EIS-CNF-02). Corrections keep the original record, values, actor, time and reason (`3-§8-*`). No AI or document path writes around the governed command or authority kernel (`BP-§6.1-1`, `BP-§6.2-1`).
+Mission design: confirmation applies to the proposed business update, not to the upload (`5-§9-9`). The merchant reviews and may correct the interpretation; the committed record is the exact reviewed interpretation (`BP-§10.3-SA1`), bound through the SB-P-1.12 confirmation binding (Section 12). Between preview and commit, a material target change re-prompts: a different counterparty, a different credit entry for a repayment (a standalone credit entry or a credit-method sale, `FPDR-4`), a different inventory item for an opening-stock line, or a newly detected duplicate with meaningful double-recording risk; internal changes that do not alter merchant-visible meaning or consequence do not (`FPDR-3`). Authority, permission and revocation revalidation at execution remain independently binding (`FPDR-3`; SB-P-1.12 EIS-CNF-02). Corrections keep the original record, values, actor, time and reason (`3-§8-*`). No AI or document path writes around the governed command or authority kernel (`BP-§6.1-1`, `BP-§6.2-1`).
 
 **FCTM rows realized here (78 `IN SCOPE`):** `3-§7-1`, `3-§7-2`, `3-§7-3`, `3-§7-4`, `3-§7-5`, `3-§7-6`, `3-§7-7`, `3-§7-8`, `3-§7-9`, `3-§8-1`, `3-§8-2`, `3-§8-3`, `3-§8-4`, `3-§8-5`, `3-§8-6`, `3-§8-7`, `3-§8-8`, `3-§8-9`, `3-§8-10`, `3-§8-11`, `3-§8-12`, `3-§8-13`, `3-§8-14`, `3-§8-15`, `3-§8-16`, `3-§16-1`, `3-§16-2`, `3-§16-3`, `3-§16-4`, `3-§16-5`, `3-§16-6`, `3-§16-7`, `3-§16-8`, `3-§16-9`, `3-§16-10`, `3-§16-11`, `3-§16-12`, `3-§16-13`, `3-§16-14`, `3-§19-4`, `3-§19-5`, `3-§19-7`, `5-§9-1`, `5-§9-2`, `5-§9-3`, `5-§9-4`, `5-§9-5`, `5-§9-6`, `5-§9-7`, `5-§9-8`, `5-§9-9`, `5-§10-1`, `5-§10-2`, `5-§10-3`, `5-§10-4`, `5-§10-5`, `5-§10-6`, `5-§10-7`, `5-§10-8`, `5-§10-9`, `5-§10-10`, `5-§18-1`, `5-§18-2`, `22-§29-7`, `24-§21-7`, `10-§10-3`, `10-§10-4`, `10-§10-5`, `10-§13-3`, `10-§17-4`, `10-§23-3b`, `12-§4-5`, `BP-§6.1-1`, `BP-§6.2-1`, `BP-§10.3-W7`, `BP-§10.3-W11`, `BP-§10.3-SA1`, `BP-§10.3-SA2`.
 
@@ -171,7 +171,7 @@ Mission design: Cloudflare R2 is the Founder-approved primary object store for e
 
 Sources: Contract 3 §9, §10, §19; Build Plan §10.3 search sequencing.
 
-Mission design: retrieval uses the human concepts available now: period, counterparty reference, purpose/description, amount, payment method, document and linked record, through one permission-scoped query layer shared by conversation and visual surfaces (`3-§9-14`, `BP-§10.3-S1`). Underlying credit and repayment entries are retrievable by counterparty or reference (`3-§9-7`; `FPDR-1`) without presenting an authoritative customer balance (`3-§9-12`, SB-P-1.16). Structured directory-indexed search is later (`3-§9-3`, `BP-§10.3-S2`). Summaries and CSV/Excel/PDF exports come from the same truth and follow the `FPDR-1` totals rule (`3-§10-9`).
+Mission design: retrieval uses the human concepts available now: period, counterparty reference, purpose/description, amount, payment method, document and linked record, through one permission-scoped query layer shared by conversation and visual surfaces (`3-§9-14`, `BP-§10.3-S1`). Underlying credit and repayment entries are retrievable by counterparty or reference (`3-§9-7`; `FPDR-1`) without presenting an authoritative customer balance (`3-§9-12`, SB-P-1.16). Structured directory-indexed search is later (`3-§9-3`, `BP-§10.3-S2`). Credit/repayment retrieval and views cover both standalone credit entries and credit-method sales with their linked repayments (`3-§9-7`, `3-§10-5`; `FPDR-4`). Summaries and CSV/Excel/PDF exports come from the same truth and follow the `FPDR-1` and `FPDR-4` totals rules (`3-§10-9`).
 
 **FCTM rows realized here (24 `IN SCOPE`):** `3-§9-1`, `3-§9-2`, `3-§9-4`, `3-§9-5`, `3-§9-6`, `3-§9-7`, `3-§9-8`, `3-§9-9`, `3-§9-10`, `3-§9-11`, `3-§9-13`, `3-§9-14`, `3-§10-1`, `3-§10-2`, `3-§10-3`, `3-§10-4`, `3-§10-5`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-8`, `3-§19-12`, `BP-§10.3-S1`.
 
@@ -242,7 +242,22 @@ This decision does not determine any long-term statutory or post-cancellation re
 - internal changes that do not alter the merchant-visible business meaning or consequence do **not** force another confirmation merely because implementation state changed;
 - authority, permission and revocation checks remain independently binding under SB-P-1.12 and can still block execution even when the target itself did not materially change.
 
-Rows carrying an SB-P-1.14 Founder decision (35): `3-§4-3` (FPDR-1), `3-§4-4` (FPDR-1), `3-§5-4` (FPDR-1), `3-§5-5` (FPDR-1), `3-§6-8` (FPDR-1), `3-§7-4` (FPDR-1), `3-§8-8` (FPDR-1), `3-§9-7` (FPDR-1), `3-§9-12` (FPDR-1), `3-§10-5` (FPDR-1), `3-§19-2` (FPDR-1), `5-§6-1` (FPDR-2), `5-§16-3` (FPDR-2), `22-§10-5` (FPDR-2), `22-§13-4` (FPDR-3), `25-§12-1` (FPDR-2), `25-§12-3` (FPDR-2), `25-§17-6` (FPDR-2), `25-§26-12` (FPDR-2), `BP-§9-2` (FPDR-1), `BP-§10.3-W2` (FPDR-1), `BP-§10.3-C2` (FPDR-1), `BP-§10.3-SA2` (FPDR-3), `BP-§10.3-SB1` (FPDR-1), `BP-§10.3-SB2` (FPDR-1), `21-§18` (FPDR-3), `12-§15` (FPDR-2), `9-§9` (FPDR-1), `14-§4` (FPDR-1), `14-§5` (FPDR-1), `14-§6` (FPDR-1), `14-§7` (FPDR-1), `14-§21` (FPDR-1), `14-§22` (FPDR-1), `17-§6` (FPDR-1).
+**FPDR-4 — Repayment targets and credit representation (post-Stage-6, B6-01).** Founder approves:
+
+- a repayment may settle either:
+  - a standalone `credit` entry; or
+  - an existing or future `sale + payment_method=credit` row;
+- linking a repayment to a credit-method sale must not rewrite, convert or duplicate that sale;
+- a new credit sale remains one `sale` row with `payment_method=credit`; it does not additionally create a separate `credit` row merely to support repayment;
+- a standalone `credit` entry represents an owed relationship that is not already represented by a sale/income event;
+- a standalone `credit` entry does not increase sales/income totals unless a separate sale/income event exists;
+- a repayment is settlement and never increases sales/income totals;
+- authoritative per-customer balance truth, ageing and reconciliation remain SB-P-1.16;
+- existing sale/purchase history remains unchanged.
+
+This decision extends `FPDR-1` without changing `FPDR-1`, `FPDR-2` or `FPDR-3`.
+
+Rows carrying an SB-P-1.14 Founder decision (35): `3-§4-3` (FPDR-1/FPDR-4), `3-§4-4` (FPDR-1/FPDR-4), `3-§5-4` (FPDR-1/FPDR-4), `3-§5-5` (FPDR-1/FPDR-4), `3-§6-8` (FPDR-1/FPDR-4), `3-§7-4` (FPDR-1), `3-§8-8` (FPDR-1/FPDR-4), `3-§9-7` (FPDR-1/FPDR-4), `3-§9-12` (FPDR-1), `3-§10-5` (FPDR-1/FPDR-4), `3-§19-2` (FPDR-1/FPDR-4), `5-§6-1` (FPDR-2), `5-§16-3` (FPDR-2), `22-§10-5` (FPDR-2), `22-§13-4` (FPDR-3), `25-§12-1` (FPDR-2), `25-§12-3` (FPDR-2), `25-§17-6` (FPDR-2), `25-§26-12` (FPDR-2), `BP-§9-2` (FPDR-1), `BP-§10.3-W2` (FPDR-1/FPDR-4), `BP-§10.3-C2` (FPDR-1), `BP-§10.3-SA2` (FPDR-3/FPDR-4), `BP-§10.3-SB1` (FPDR-1/FPDR-4), `BP-§10.3-SB2` (FPDR-1/FPDR-4), `21-§18` (FPDR-3), `12-§15` (FPDR-2), `9-§9` (FPDR-1), `14-§4` (FPDR-1), `14-§5` (FPDR-1), `14-§6` (FPDR-1), `14-§7` (FPDR-1), `14-§21` (FPDR-1), `14-§22` (FPDR-1), `17-§6` (FPDR-1).
 
 Upstream Founder decisions consumed, unchanged: SB-P-1.13 `FPDR-1` (governed create-transaction command for existing types), `FPDR-2` (Basic Voice credit/repayment waits for this mission), `FPDR-3` (raw voice transient before this mission; now governed by SB-P-1.14 `FPDR-2`), `FPDR-5` (existing credit-payment-method sales; no mature credit state in SB-P-1.13); SB-P-1.12 Founder Record 04 F-04(c) (multi-row import under revocation) and Founder Record 06 (legal validation deferral).
 
@@ -634,7 +649,7 @@ SB-P-1.13 rows waiting on this mission (33; Truth Pack Part 5.3) — attachment 
 ## 14. Success Criteria
 
 1. Every one of the 563 `IN SCOPE` rows is realized, demonstrated and independently verified, or recorded as dependency-blocked with its approved dependency (Source 18 §3.2 item 11).
-2. Founder Runtime Scenarios A and B and the six experience anchors in Section 15 pass Founder Runtime Verification within the limits `FPDR-1` to `FPDR-3` set.
+2. Founder Runtime Scenarios A and B and the six experience anchors in Section 15 pass Founder Runtime Verification within the limits `FPDR-1` to `FPDR-4` set.
 3. No Section 8.9 or 10.3 must-not and no Section 11.3 rejection appears.
 4. No Section 11 row is built here as hidden scope; in particular no authoritative per-customer owed balance (`3-§9-12`).
 5. The Completion Report carries an Experience Verification Matrix seeded from Section 15 (Build Plan §13).
@@ -646,9 +661,9 @@ SB-P-1.13 rows waiting on this mission (33; Truth Pack Part 5.3) — attachment 
 | Scenario | FCTM rows | Acceptance qualifier |
 |---|---|---|
 | A — Merchant uploads a receipt/invoice/image/PDF, corrects an ambiguous interpreted field and confirms; the committed record uses the exact reviewed interpretation | `BP-§10.3-SA1` | Dependencies `D12`, `D13`, `DAI`, `DTX`, `DR2` |
-| A — If the underlying resolvable target changes between preview and commit, the system re-prompts rather than silently retargeting | `BP-§10.3-SA2` | `FPDR-3`: material target changes only; authority/permission/revocation revalidation independently binding. Dependencies `D12`, `DTX` |
-| B — Owner records income, expense, credit and repayment; all four persist and retrieve correctly | `BP-§10.3-SB1` | `FPDR-1`: retrieval of underlying credit/repayment entries; no authoritative customer balance; totals do not double count |
-| B — without damaging existing sale/purchase history | `BP-§10.3-SB2` | `FPDR-1`: existing `sale + payment_method=credit` rows remain sales |
+| A — If the underlying resolvable target changes between preview and commit, the system re-prompts rather than silently retargeting | `BP-§10.3-SA2` | `FPDR-3`: material target changes only, including a different repayment target (standalone credit entry or credit-method sale, `FPDR-4`); authority/permission/revocation revalidation independently binding. Dependencies `D12`, `DTX` |
+| B — Owner records income, expense, credit and repayment; all four persist and retrieve correctly | `BP-§10.3-SB1` | `FPDR-1`: retrieval of underlying credit/repayment entries; no authoritative customer balance; totals do not double count. `FPDR-4`: repayment may settle a standalone credit entry or a credit-method sale; standalone credit and repayment never add to sales/income |
+| B — without damaging existing sale/purchase history | `BP-§10.3-SB2` | `FPDR-1`: existing `sale + payment_method=credit` rows remain sales. `FPDR-4`: repayment linkage never rewrites, converts or duplicates them |
 
 ### 15.2 Experience anchors (designated by Mission Control, SB-P-1.14-MC-02 §7 and the Stage 2 and Stage 4 live instructions)
 
@@ -682,6 +697,7 @@ Every `IN SCOPE` acceptance scenario, worked example, Founder Runtime scenario a
 ### 15.4 Founder-decision acceptance limits
 
 - `FPDR-1`: acceptance of credit and repayment covers recording, linkage, confirmation, correction and retrieval of the underlying entries; it must show existing credit-method sales unchanged and totals without double counting; it must not claim an authoritative per-customer balance.
+- `FPDR-4`: acceptance evidence must show a repayment linked to a standalone credit entry and one linked to a credit-method sale, the sale unchanged and not duplicated, one row per new credit sale, and neither standalone credit nor repayment counted in sales/income totals.
 - `FPDR-2`: acceptance evidence must show unconfirmed originals discarded after the configured bounded grace period (absent an approved hold) and no durable raw-audio store by default.
 - `FPDR-3`: acceptance evidence must show a re-prompt for each listed material target change, no forced re-confirmation for irrelevant internal change, and an authority/revocation block even when the target is unchanged.
 
@@ -714,6 +730,7 @@ Build Plan §10.3 exit principle: "I can give Smart Business the messy documents
 | Version | Date | Author | Change | Status |
 |---|---|---|---|---|
 | 0.1 | 2026-10-08 | Claude Code (Stage 2–4 Definition Actor) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 766-row FCTM (blob `3154330d`) and `FPDR-1` to `FPDR-3`. No refinement or scope expansion beyond FCTM-mapped rows is proposed; mission-design paragraphs restate approved sources, Founder decisions and Mission Control dispositions MC-Q4, MC-Q5 only | DRAFT — awaiting Mission Control Stage 5 review |
+| 0.2 | 2026-10-08 | Claude Code (B6-01 reconciliation, SB-P-1.14-MC-09) | Carried post-Stage-6 `FPDR-4`: Metadata decision reference; §8.1, §8.3, §8.6 sentences; §10.1 decision block and row labels; §14 item 2; §15.1 Scenario A/B qualifiers; §15.4 limit; §19 Founder-decision cells of the 13 annotated rows; §19 governance rows. Section 8 and Section 11 membership, dispositions, owners, commitments and classifications unchanged | DRAFT — awaiting Mission Control review |
 
 ## 19. Governance History
 
@@ -725,11 +742,14 @@ Build Plan §10.3 exit principle: "I can give Smart Business the messy documents
 | Stage 3 authorization | `mission-control/05` | PR #814, `8e62dbb8` |
 | Stage 3 Founder decisions `FPDR-1` to `FPDR-3`; FCTM reconciliation | `founder/02`; SB-P-1.14-MC-04 (`mission-control/06`) | PR #815, `a719766d` |
 | Stage 4 authorization | SB-P-1.14-MC-05 (`mission-control/07`) | PR #816, `6712fa52` |
-| Stage 4 Blueprint Sections 1–19 | this file | DRAFT — pending Stage 5 |
+| Stage 4 Blueprint Sections 1–19 | this file | PR #817, `2c44945a` |
+| Stage 6 authorization; Builder Review; gate (SB-P-1.14-MC-07, MC-08) | `mission-control/09`, `claude-code/08`–`09`, `mission-control/10` | PR #818 `8bfc100f`; PR #819 `77a05c56` |
+| B6-01 reconciliation authorization (SB-P-1.14-MC-09) | `mission-control/11` | PR #820, `28b2b941` |
+| B6-01 reconciliation; `FPDR-4` | this file v0.2; `founder/03`; `claude-code/10` | DRAFT — pending Mission Control review |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
-Complete accounting of all 766 canonical FCTM rows (blob `3154330ded098486e6f48ae7a18dbddd93998e5b`), in FCTM order. Each line gives the disposition and owning mission exactly as in the FCTM, the source reference (source code, blob prefix and section; full pointers in the FCTM), the Blueprint location and the FCTM Founder-decision cell. `IN SCOPE` rows map to one Section 8 subsection, plus §15 for acceptance and experience rows, §12 for dependency-coded rows, §10 for must-not rows and §10.1 for rows carrying an SB-P-1.14 Founder decision. All other rows map to Section 11.
+Complete accounting of all 766 canonical FCTM rows (blob `3154330ded098486e6f48ae7a18dbddd93998e5b`), in FCTM order. Each line gives the disposition and owning mission exactly as in the FCTM, the source reference (source code, blob prefix and section; full pointers in the FCTM), the Blueprint location and the FCTM Founder-decision cell. `IN SCOPE` rows map to one Section 8 subsection, plus §15 for acceptance and experience rows, §12 for dependency-coded rows, §10 for must-not rows and §10.1 for rows carrying an SB-P-1.14 Founder decision (`FPDR-1` to `FPDR-4`). All other rows map to Section 11.
 
 Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SCOPE`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`.
 
@@ -743,15 +763,15 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §3 | §8.1 | — |
 | `3-§4-1` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12 | — |
 | `3-§4-2` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12 | — |
-| `3-§4-3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12; §10.1 | FPDR-1 |
-| `3-§4-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12; §10.1 | FPDR-1 |
+| `3-§4-3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12; §10.1 | FPDR-1; FPDR-4 |
+| `3-§4-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§4-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1; §10 | — |
 | `3-§4-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §4 | §8.1 | — |
 | `3-§5-1` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §12 | — |
 | `3-§5-2` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12 | — |
 | `3-§5-3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12 | — |
-| `3-§5-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12; §10.1 | FPDR-1 |
-| `3-§5-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12; §10.1 | FPDR-1 |
+| `3-§5-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12; §10.1 | FPDR-1; FPDR-4 |
+| `3-§5-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §15; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§5-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.1; §12 | SB-P-1.13 FPDR-2 |
 | `3-§5-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.2; §12 | — |
 | `3-§5-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §5 | §8.2; §12 | — |
@@ -764,7 +784,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§6-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12 | — |
 | `3-§6-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12 | — |
 | `3-§6-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12 | — |
-| `3-§6-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12; §10.1 | FPDR-1 |
+| `3-§6-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§6-9` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12 | — |
 | `3-§6-10` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §6 | §8.1; §12; §10 | — |
 | `3-§7-1` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §7 | §8.3; §12 | — |
@@ -783,7 +803,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§8-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
 | `3-§8-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
 | `3-§8-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
-| `3-§8-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12; §10.1 | FPDR-1 |
+| `3-§8-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§8-9` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
 | `3-§8-10` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
 | `3-§8-11` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §8 | §8.3; §12 | — |
@@ -798,7 +818,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§9-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12 | — |
 | `3-§9-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12 | — |
 | `3-§9-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12 | — |
-| `3-§9-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12; §10.1 | FPDR-1 |
+| `3-§9-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§9-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12 | — |
 | `3-§9-9` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §12 | — |
 | `3-§9-10` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §9 | §8.6; §15; §12 | — |
@@ -810,7 +830,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§10-2` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
 | `3-§10-3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
 | `3-§10-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
-| `3-§10-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12; §10.1 | FPDR-1 |
+| `3-§10-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§10-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
 | `3-§10-7` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
 | `3-§10-8` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §10 | §8.6; §12 | — |
@@ -877,7 +897,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `3-§18-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §18 | §8.1; §12; §10 | — |
 | `3-§18-6` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §18 | §8.1; §10 | — |
 | `3-§19-1` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.1; §15; §12 | — |
-| `3-§19-2` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.1; §15; §12; §10.1 | FPDR-1 |
+| `3-§19-2` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.1; §15; §12; §10.1 | FPDR-1; FPDR-4 |
 | `3-§19-3` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.1; §15; §12 | SB-P-1.13 FPDR-2 |
 | `3-§19-4` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.3; §15; §12 | — |
 | `3-§19-5` | IN SCOPE | SB-P-1.14 | C3@d8c26c07 §19 | §8.3; §15; §12 | — |
@@ -1417,7 +1437,7 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `BP-§9-2` | ASSIGNED TO LATER MISSION | SB-P-1.16 | BP@9dfdd924 §9 | §11 | FPDR-1 |
 | `BP-§10.3-O` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §15; §12 | — |
 | `BP-§10.3-W1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §12 | — |
-| `BP-§10.3-W2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §12; §10.1 | FPDR-1 |
+| `BP-§10.3-W2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §12; §10.1 | FPDR-1; FPDR-4 |
 | `BP-§10.3-W3` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §12 | — |
 | `BP-§10.3-W4` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.2; §12 | — |
 | `BP-§10.3-W5` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.4; §12 | — |
@@ -1434,9 +1454,9 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `BP-§10.3-S1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.6; §12 | — |
 | `BP-§10.3-S2` | ASSIGNED TO LATER MISSION | SB-P-1.17 / SB-P-1.18 | BP@9dfdd924 §10.3 | §11 | — |
 | `BP-§10.3-SA1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.3; §15; §12 | — |
-| `BP-§10.3-SA2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.3; §15; §12; §10.1 | FPDR-3 |
-| `BP-§10.3-SB1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §15; §12; §10.1 | FPDR-1 |
-| `BP-§10.3-SB2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §15; §12; §10.1 | FPDR-1 |
+| `BP-§10.3-SA2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.3; §15; §12; §10.1 | FPDR-3; FPDR-4 |
+| `BP-§10.3-SB1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §15; §12; §10.1 | FPDR-1; FPDR-4 |
+| `BP-§10.3-SB2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.1; §15; §12; §10.1 | FPDR-1; FPDR-4 |
 | `BP-§10.3-X` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §10.3 | §8.4; §15; §12 | — |
 | `BP-§11-1` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §11 | §8.2 | — |
 | `BP-§11-2` | IN SCOPE | SB-P-1.14 | BP@9dfdd924 §11 | §8.8 | — |
