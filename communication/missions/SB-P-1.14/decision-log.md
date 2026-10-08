@@ -134,3 +134,19 @@ Results:
 This is not full Blueprint approval or lock.
 
 Stage 6 remains NOT AUTHORIZED until PR #817 is human-merged and a separate authorization is issued.
+
+
+## D-10 — Stage 5 canonical; Stage 6 Builder Review authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 5 is canonical at `2c44945a3f9679632ea981a8144161c5403257a0` through PR #817.
+
+Blueprint Metadata, Mission Snapshot and Sections 1–19 are canonical. The FCTM remains 766 rows and FPDR-1 through FPDR-3 remain effective.
+
+Mission Control prepares Stage 6 Builder Review authorization for Claude Code.
+
+Stage 6 may return findings and recommendations only. It may not edit the Blueprint or Product Truth.
+
+No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, provider/storage or runtime authority follows.
