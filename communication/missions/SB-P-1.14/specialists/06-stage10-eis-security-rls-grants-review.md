@@ -1,15 +1,15 @@
 # SB-P-1.14 — Stage 10 Security / Permissions / RLS & Grants EIS Review
 
-**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Specialist:** S10-SP-1 — Security / Permissions / RLS & Grants  
-**Authority:** `communication/missions/SB-P-1.14/mission-control/22-stage10-eis-security-specialist-instruction.md` and SB-P-1.14-MC-14  
-**Review type:** Independent complete-EIS documentary security review  
+**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media
+**Specialist:** S10-SP-1 — Security / Permissions / RLS & Grants
+**Authority:** `communication/missions/SB-P-1.14/mission-control/22-stage10-eis-security-specialist-instruction.md` and SB-P-1.14-MC-14
+**Review type:** Independent complete-EIS documentary security review
 **Status:** SUBMITTED TO MISSION CONTROL — NO EIS ACCEPTANCE / LOCK / IMPLEMENTATION AUTHORITY
 
 ## 1. Actor, prior contribution and independence
 
-**Actual actor/model:** ChatGPT — GPT-5.6 Sol  
-**Provider:** OpenAI  
+**Actual actor/model:** ChatGPT — GPT-5.6 Sol
+**Provider:** OpenAI
 **Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room
 
 ### Prior contribution
@@ -87,10 +87,10 @@ No new Product Truth / Founder decision is required by the corrections below.
 
 ### SEC14-EIS10-01 — EIS14-SEC-02 is technically incorrect across object types and incomplete for protected-table writes
 
-**Severity:** CRITICAL  
-**Blocks Stage 10 acceptance:** YES  
-**Primary EIS requirement:** `EIS14-SEC-02`  
-**Related requirements:** `EIS14-MIG-02`, `EIS14-MIG-03`, `EIS14-TOT-01`, `EIS14-CMD-03`, `EIS14-VER-01`  
+**Severity:** CRITICAL
+**Blocks Stage 10 acceptance:** YES
+**Primary EIS requirement:** `EIS14-SEC-02`
+**Related requirements:** `EIS14-MIG-02`, `EIS14-MIG-03`, `EIS14-TOT-01`, `EIS14-CMD-03`, `EIS14-VER-01`
 **Mission Control intersection:** MC10-PRE-01
 
 #### Exact evidence
@@ -210,16 +210,16 @@ Replace the generic sentence with an object-type-specific rule equivalent to:
 
 #### Required disposition
 
-**EIS CORRECTION REQUIRED.**  
+**EIS CORRECTION REQUIRED.**
 All H-BIRTH rows remain held.
 
 ---
 
 ### SEC14-EIS10-02 — Scheduled reconciliation/discard cannot depend on a caller-derived authority binding
 
-**Severity:** HIGH  
-**Blocks Stage 10 acceptance:** YES  
-**Primary EIS requirements:** `EIS14-STO-03`, `EIS14-STO-05`, `EIS14-RET-01`, `EIS14-ARC-01`  
+**Severity:** HIGH
+**Blocks Stage 10 acceptance:** YES
+**Primary EIS requirements:** `EIS14-STO-03`, `EIS14-STO-05`, `EIS14-RET-01`, `EIS14-ARC-01`
 **Upstream dependency:** SB-P-1.12 `EIS-ISO-04`, `EIS-AUT-01`
 
 #### Exact evidence
@@ -298,16 +298,16 @@ Split privileged storage execution into two explicit classes:
 
 #### Required disposition
 
-**EIS CORRECTION REQUIRED.**  
+**EIS CORRECTION REQUIRED.**
 H-PRIV and related scheduled-maintenance findings remain held.
 
 ---
 
 ### SEC14-EIS10-03 — Revocation-safe retrieval direction is correct, but ordinary presigned URLs do not satisfy it
 
-**Severity:** HIGH  
-**Blocks Stage 10 acceptance:** NO, provided the invariant remains explicit and the mechanism stays evidence-held  
-**Primary EIS requirements:** `EIS14-RTV-01`, `EIS14-SRC-02`, `EIS14-STO-03`, `EIS14-PRV-02`  
+**Severity:** HIGH
+**Blocks Stage 10 acceptance:** NO, provided the invariant remains explicit and the mechanism stays evidence-held
+**Primary EIS requirements:** `EIS14-RTV-01`, `EIS14-SRC-02`, `EIS14-STO-03`, `EIS14-PRV-02`
 **Stage 7 source:** SEC14-S7-06 / H-REVOKE
 
 #### Exact evidence
@@ -374,8 +374,8 @@ No wording correction is mandatory if Mission Control preserves the strict inter
 
 ### SEC14-EIS10-04 — Create/read/replace/delete/export capability separation is faithfully realized
 
-**Severity:** INFO / FAVORABLE  
-**Blocks Stage 10 acceptance:** NO  
+**Severity:** INFO / FAVORABLE
+**Blocks Stage 10 acceptance:** NO
 **Primary EIS requirements:** `EIS14-LDG-06`, `EIS14-SEC-03`, `EIS14-SRC-02`, `EIS14-SEC-04`
 
 #### Evidence
@@ -415,8 +415,8 @@ T2/T3/T6/T7/T8: **NOT TRIGGERED**.
 
 ### SEC14-EIS10-05 — Confirmation binding and execution-time revalidation are correctly kept independent
 
-**Severity:** INFO / FAVORABLE  
-**Blocks Stage 10 acceptance:** NO  
+**Severity:** INFO / FAVORABLE
+**Blocks Stage 10 acceptance:** NO
 **Primary EIS requirements:** `EIS14-CNF-03`, `EIS14-CNF-04`, `EIS14-CMD-01`, `EIS14-CMD-02`
 
 #### Evidence
@@ -442,8 +442,8 @@ T2/T3/T6/T7/T8: **NOT TRIGGERED**.
 
 ### SEC14-EIS10-06 — Direct transaction DML elimination is faithfully carried, but runtime proof remains held
 
-**Severity:** HIGH / EVIDENCE HOLD  
-**Blocks Stage 10 acceptance:** NO  
+**Severity:** HIGH / EVIDENCE HOLD
+**Blocks Stage 10 acceptance:** NO
 **Primary EIS requirements:** `EIS14-CMD-01`, `EIS14-CMD-02`, `EIS14-CMD-03`, `EIS14-MIG-01`, `EIS14-HOLD-03`
 
 #### Exact evidence
@@ -485,8 +485,8 @@ T2/T3/T6/T7/T8: **NOT TRIGGERED**.
 
 ### SEC14-EIS10-07 — Audit/provenance design is acceptable, with D12 denial-durability evidence still required
 
-**Severity:** MEDIUM / EVIDENCE HOLD  
-**Blocks Stage 10 acceptance:** NO  
+**Severity:** MEDIUM / EVIDENCE HOLD
+**Blocks Stage 10 acceptance:** NO
 **Primary EIS requirements:** `EIS14-CAB-03`, `EIS14-SEC-01`, `EIS14-STO-03`
 
 #### Evidence
