@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 7 DRAFT RECONCILED WITH FIVE CANONICAL SPECIALIST REPORTS (`main@ebe14b87`) / AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION  
+**Current status:** STAGE 10 SPECIALIST EVIDENCE CANONICAL / FOUNDER T7 SECURITY REFINEMENT APPROVED — CANONICALIZATION PENDING
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -273,3 +273,18 @@ Two preliminary refinement candidates are open for specialist confirmation: MC10
 Mission Control has prepared Stage 10 review authorization plus five mandatory independent specialist confirmations. Stage 10 is not effective until this authorization PR is human-merged.
 
 EIS acceptance/lock, implementation package, implementation, migration, provider and production remain NOT AUTHORIZED.
+
+
+## Stage 10 specialist evidence and T7 Security disposition — MC-15
+
+All five Stage 10 specialist reports are canonical through PR #835 at `main@512790427e995f91a3fd869a5792c66db1f23f38`.
+
+The Security specialist raised finding-scoped T7 for three Stage 9 EIS omissions/simplifications. Founder explicitly approved restorative refinement:
+
+`SB-P-1.14 STAGE 10 T7 SECURITY REFINEMENT — APPROVED`
+
+Mission Control has prepared MC-15 to canonicalize that decision. No Product Truth, FCTM disposition, build commitment, commercial classification or mission assignment changes.
+
+PR #831 remains DRAFT and must not be refined until a separate consolidated Stage 10 refinement authorization is human-merged after this T7 disposition becomes canonical.
+
+Stage 10 acceptance, Stage 11 EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
