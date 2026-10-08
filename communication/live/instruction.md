@@ -1,137 +1,110 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 6 Builder Review
+# Instruction — SB-P-1.14 B6-01 Canonical Reconciliation
 
 **Mission ID:** SB-P-1.14  
 **Mission Name:** Business Memory, Documents & Durable Media  
 **From:** Smart Business Mission Control  
-**To:** Claude Code — Stage 6 Builder Review owner  
-**Stage:** Source 18 v1.2 Stage 6 — Builder Review  
+**To:** Claude Code — reconciliation actor  
+**Stage:** Post-Stage-6 canonical reconciliation  
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
 **Date:** 2026-10-08 IST  
-**Canonical Stage 5:** PR #817, `main@2c44945a3f9679632ea981a8144161c5403257a0`
+**Canonical Stage 6:** PR #819, `main@77a05c56ba2f420bb2dd83c81b211ba5ea9b1b56`
 
 ---
 
 # Objective
 
-Review the canonical Blueprint Sections 1–19 against current repository reality and return product-experience/build-feasibility findings.
+Canonicalize the Founder-approved B6-01 decision as **FPDR-4** and reconcile only its exact Blueprint/FCTM references.
 
-Do not edit the Blueprint.
-
-Do not draft Sections 20–21.
-
-Do not implement anything.
+Do not begin Stage 7.
 
 ---
 
-# Canonical Inputs
+# Founder-approved FPDR-4 meaning
 
-Read:
-
-1. `docs/phase-1-mission-blueprint/active/SB-P-1.14.md`;
-2. canonical 766-row FCTM;
-3. Founder Product Decision Record FPDR-1 to FPDR-3;
-4. Stage 5 gate review SB-P-1.14-MC-06;
-5. Stage 4 drafting report;
-6. Stage 2 Delta evidence;
-7. Contracts 3, 5, 22 and 25 plus all mapped delegates;
-8. Build Plan §10.3 and linked Build Plan rows;
-9. locked SB-P-1.12 / SB-P-1.13 specifications;
-10. current repository, migrations, workflows and topology as read-only evidence;
-11. Source 18.
+- repayment may settle a standalone `credit` entry or an existing/future `sale + payment_method=credit` row;
+- repayment linkage never rewrites or converts the sale;
+- a future credit sale stays one sale row and does not create a duplicate credit row;
+- standalone credit entries do not count as sales/income unless a separate sale/income event exists;
+- repayments never count as new sales/income;
+- authoritative customer-credit balance truth remains SB-P-1.16;
+- existing sale/purchase history remains unchanged.
 
 ---
 
-# Required Review
+# Exact candidate rows
 
-Use every lens and guardrail in:
+Only:
 
-`communication/missions/SB-P-1.14/mission-control/09-stage6-builder-review-authorization.md`
+`3-§4-3`, `3-§4-4`, `3-§5-4`, `3-§5-5`, `3-§6-8`, `3-§8-8`, `3-§9-7`, `3-§10-5`, `3-§19-2`, `BP-§10.3-W2`, `BP-§10.3-SB1`, `BP-§10.3-SB2`, `BP-§10.3-SA2`.
 
-At minimum cover:
+A strict subset is allowed only with row-by-row proof.
 
-- four-state Ledger widening and history safety;
-- FPDR-1 totals/customer-credit boundary;
-- governed transaction command reuse;
-- UDI/parser/import convergence;
-- confirmation/material-target binding;
-- Receipt Cabinet/provenance;
-- durable object storage/control-plane boundary;
-- FPDR-2 retention/raw voice;
-- permissions/isolation;
-- idempotency/dedup/concurrency;
-- untrusted document/AI safety;
-- search/retrieval;
-- opening-stock convergence;
-- scheduler dependency;
-- AWS S3 transient-seam boundary;
-- provider/runtime unknowns;
-- SB-P-1.12/SB-P-1.13 incomplete implementation/evidence;
-- failure/recovery;
-- migration/topology implications;
-- merchant simplicity.
-
-For each lens record a finding or `NO FINDING`.
+Any proposed expansion beyond these 13 rows requires STOP and Mission Control review.
 
 ---
 
-# Git Authorization
+# Exact writable files
 
-Effective only after human merge of this authorization PR.
-
-Locked branch:
-
-`mission/SB-P-1.14-stage6-builder-review`
-
-Exact writable paths:
-
+- `docs/phase-1-mission-blueprint/active/SB-P-1.14.md`
+- `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md`
+- `communication/missions/SB-P-1.14/founder/03-post-stage6-founder-product-decision-record.md` (NEW)
+- `communication/missions/SB-P-1.14/claude-code/10-b6-01-reconciliation-report.md` (NEW)
 - `communication/live/report.md`
 - `communication/missions/SB-P-1.14/README.md`
 - `communication/missions/SB-P-1.14/decision-log.md`
 - `communication/missions/SB-P-1.14/handover-log.md`
-- `communication/missions/SB-P-1.14/claude-code/08-stage6-builder-review.md`
-- `communication/missions/SB-P-1.14/claude-code/09-stage6-completion-report.md`
 
-Do not modify:
-
-- Blueprint;
-- FCTM;
-- Founder Decision Record;
-- contracts/governance/GPCV/OLE;
-- application code;
-- SQL/migrations;
-- provider/storage/runtime state.
-
-Open one DRAFT PR to `main`.
+Do not edit prior Founder records, Stage 6 reports, Mission Control gate records, contracts, Build Plan, GPCV, OLE, Sections 20–21, code, SQL, migrations or provider state.
 
 ---
 
-# Stop Rules
+# Required proof
 
-If review finds a new T2/T3/T6/T7/T8 issue, document the exact evidence and stop dependent work.
+Show:
 
-Recommendations do not become Product Truth.
+- FCTM 766 before / 766 after;
+- same row IDs in same order;
+- 0 disposition changes;
+- 0 owning-mission changes;
+- 0 build-commitment changes;
+- 0 commercial-classification changes;
+- 0 mission-assignment changes;
+- exact rows whose Founder-decision/evidence cells change;
+- `3-§9-12` remains SB-P-1.16;
+- FPDR-1 through FPDR-3 unchanged;
+- Section 8 membership unchanged;
+- Section 11 membership unchanged;
+- Section 19 consistent with reconciled FCTM.
 
-No Stage 7 begins automatically.
+---
+
+# Stop rules
+
+STOP on any T2/T3/T6/T7/T8 issue beyond the approved FPDR-4 decision.
+
+No Stage 7 work.
 
 ---
 
 # Submission
+
+Open one DRAFT PR from:
+
+`mission/SB-P-1.14-b6-01-reconciliation`
 
 Return:
 
 - DRAFT PR number;
 - final head SHA;
 - changed files;
-- findings by severity;
-- all 20 review lenses and their outcome;
-- Stage 7 blockers;
-- T2/T3/T6/T7/T8 result;
-- repository/runtime evidence;
-- unverified/access-required facts;
-- check evidence.
+- exact affected FCTM rows;
+- before/after proof;
+- Blueprint sections changed;
+- trigger screen;
+- local/check evidence.
 
 End exactly:
 
-**STAGE 6 BUILDER REVIEW PREPARED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+**B6-01 CANONICAL RECONCILIATION PREPARED — AWAITING MISSION CONTROL REVIEW; STAGE 7/SECTIONS 20–21/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**

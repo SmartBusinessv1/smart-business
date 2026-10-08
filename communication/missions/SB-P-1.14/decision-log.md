@@ -186,3 +186,17 @@ Approved meaning:
 The decision is substantively resolved but not yet canonical. A separate Founder Decision Record / Blueprint-FCTM reconciliation is required after PR #819 becomes canonical.
 
 Stage 7 remains NOT AUTHORIZED.
+
+
+## D-13 — Stage 6 canonical; B6-01 reconciliation authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 6 is canonical at `77a05c56ba2f420bb2dd83c81b211ba5ea9b1b56` through PR #819.
+
+B6-01 T3 was substantively resolved by Founder approval. The decision is not yet canonical Product Truth.
+
+Mission Control prepares a narrow reconciliation authorization to create SB-P-1.14 FPDR-4 and annotate only the exact affected Blueprint/FCTM references.
+
+No Stage 7 authority follows.
