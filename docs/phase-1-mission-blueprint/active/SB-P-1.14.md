@@ -7,22 +7,22 @@
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Mission Type | Product Mission — mature Ledger / Business Memory, Universal Document Intelligence, Receipt Cabinet and governed durable media foundation |
-| Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 |
-| Status | `DRAFT — SECTIONS 1–19 ACCEPTED BY MISSION CONTROL STAGE 5; CANONICAL ONLY AFTER HUMAN MERGE OF PR #817. FULL BLUEPRINT NOT APPROVED; NOT LOCKED.` |
+| Lifecycle Stage | Source 18 v1.2 — post-Stage-6 B6-01 canonical reconciliation; Stage 7 not yet authorized |
+| Status | `DRAFT FULL BLUEPRINT — SECTIONS 1–19 CANONICAL; STAGE 6 BUILDER REVIEW CANONICAL; FPDR-4 RECONCILIATION ACCEPTED BY MISSION CONTROL, CONDITIONAL UNTIL HUMAN MERGE OF PR #821. SECTIONS 20–21 NOT AUTHORIZED; NOT LOCKED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.14-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
 | Stage 4 Authorization | SB-P-1.14-MC-05, `communication/missions/SB-P-1.14/mission-control/07-stage4-blueprint-preparation-authorization.md`, and `communication/live/instruction.md`, canonical at `main@6712fa5220731293daa0c53d9b3d7da6d52beeb8` (PR #816) |
 | Governing Build Plan section | Build Plan §10.3 (`00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 3 (`d8c26c07`), Contract 5 (`80ac648e`), Contract 22 (`61e1bb91`), Contract 25 (`406ce089`); Global Product Completion View (`ee76d920`) |
-| Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md`, blob `3154330ded098486e6f48ae7a18dbddd93998e5b`: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SCOPE`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`; 0 `ESCALATED` |
+| Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md`, reconciled blob `01e9856aca0afdb1267230a1932fe34054449a4b` on PR #821 (becomes canonical on human merge): 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SCOPE`, 32 `NOT APPLICABLE`, 20 `OUT OF BUILD SCOPE`, 2 `UNRESOLVED FOUNDER DECISION`; 0 `ESCALATED` |
 | Founder Product Decision Record | `communication/missions/SB-P-1.14/founder/02-stage3-founder-product-decision-record.md`, blob `9717b29d`, `FPDR-1` to `FPDR-3`, canonical (PR #815, `main@a719766d1d20c15437e150da66ba8778a06f773d`). Post-Stage-6 decision `FPDR-4` (B6-01): `communication/missions/SB-P-1.14/founder/03-post-stage6-founder-product-decision-record.md` (DRAFT until Mission Control review and human merge; SB-P-1.14-MC-08, MC-09). In this Blueprint an unqualified `FPDR-n` means the SB-P-1.14 decision; upstream decisions are always written `SB-P-1.13 FPDR-n` or `SB-P-1.12 FPDR-n` |
 | Stage 3 gate | Triggered (T1, T2, T4, T6; T7 for `3-§9-12` only) and resolved by `FPDR-1` to `FPDR-3`; Stage 3 COMPLETE / CANONICAL (SB-P-1.14-MC-04, MC-05) |
 | Upstream dependencies | SB-P-1.12 and SB-P-1.13: specification available (Blueprints and EISs `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`, both suspended); evidence not complete |
 | Date | 2026-10-08 |
-| Builder Review | NOT STARTED — not authorized |
+| Builder Review | COMPLETE / CANONICAL — PR #819; findings B6-01 to B6-19 accepted by Mission Control under SB-P-1.14-MC-08 |
 | Engineering Review (Sections 20–21) | NOT STARTED — not authorized |
-| Mission Control Review | Stage 5 Sections 1–19 content accepted by SB-P-1.14-MC-06; conditional until human merge of PR #817 |
+| Mission Control Review | Stage 5 Sections 1–19 canonical; Stage 6 Builder Review canonical; B6-01 / FPDR-4 reconciliation accepted by SB-P-1.14-MC-10, conditional until human merge of PR #821 |
 | Blueprint Lock | NOT LOCKED |
 
 ## Mission Snapshot
