@@ -362,3 +362,15 @@ Claude Code synchronized PR #831 to canonical main under MC-16 and submitted ref
 Mission Control verified the exact head/blob, DRAFT state and authorized refinement scope. The refinement materially addresses the accepted Stage 10 findings on preliminary review.
 
 Because every specialist domain had blocking findings, Mission Control prepares delta-only confirmations for all five domains. Stage 10 is not restarted. No Stage 10 acceptance or EIS lock is granted yet.
+
+
+## D-26 — Delta evidence canonical; final Security residual refinement prepared
+
+**Date:** 2026-10-08  
+**Status:** AUTHORIZATION PENDING HUMAN MERGE
+
+PR #840 is canonical at `main@7477f83ce2acbc29c377b09bc58880fb22a33340`, making all five Stage 10 delta specialist reports canonical.
+
+Four domains are fully closed. Security retains one narrow documentary residual in `EIS14-STO-03`: a documented system-maintenance basis must not operate as an alternative source of authority to the locked SB-P-1.12 `EIS-ISO-04` binding contract.
+
+Mission Control prepares SB-P-1.14-MC-18 for one exact-text residual correction only. No new Founder decision is required. No Stage 10 acceptance or EIS lock is granted.
