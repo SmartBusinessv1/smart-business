@@ -425,3 +425,16 @@ All five delta specialist reports are canonical. Only the narrow `EIS14-STO-03` 
 MC-18 authorizes one exact replacement of that requirement text while preserving its ID and 26-row mapping. After refinement, only Security requires delta re-confirmation unless another domain is unexpectedly affected.
 
 PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
+
+
+## H-27 — Final residual correction → Security re-confirmation
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Security specialist  
+**Target PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
+**Target EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
+
+The MC-18 correction is verified. MC-19 authorizes one final Security-only delta re-confirmation of the former `R10-SEC-03` residual and restorative T7 closure.
+
+PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
