@@ -180,3 +180,25 @@ Stage 7 remains NOT AUTHORIZED until the reconciliation is reviewed and human-me
 - Blueprint v0.2: `FPDR-4` carried in Metadata, §8.1, §8.3, §8.6, §10.1, §14, §15.1, §15.4, §18, §19; Section 8 and 11 membership unchanged
 
 No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation or production authority follows.
+
+
+## B6-01 reconciliation review — MC-10
+
+Mission Control independently verified and accepts the FPDR-4 reconciliation.
+
+Verified:
+
+- FCTM stays 766 rows;
+- exactly 13 Founder-decision cells change;
+- no disposition, ownership, build commitment, commercial classification, dependency, evidence or mission-assignment change;
+- Section 8 remains 563 rows;
+- Section 11 remains 203 rows;
+- Section 19 maps all 766 rows consistently;
+- `3-§9-12` remains SB-P-1.16;
+- FPDR-1 through FPDR-3 remain unchanged.
+
+No expansion to `3-§10-2`, `3-§10-3` or `3-§10-9` is required.
+
+Reconciliation acceptance is conditional until Founder human merge of PR #821.
+
+Stage 7 remains NOT AUTHORIZED.
