@@ -44,3 +44,26 @@ After merge:
 Mission Control conducts the Founder dialogue limited to FDB-1, FDB-2 and FDB-3.
 
 No Stage 4 work is authorized.
+
+
+## H-06 — Stage 3 dialogue complete → decision reconciliation
+
+**Date:** 2026-10-08  
+**From:** Founder / Mission Control  
+**To:** Founder human merge gate
+
+Founder approved FDB-1, FDB-2 and FDB-3.
+
+Prepared for canonicalization:
+
+- Founder Product Decision Record FPDR-1 through FPDR-3;
+- surgical 766-row FCTM reconciliation;
+- Mission Control Stage 3 gate review.
+
+Next action:
+
+Founder human merge of the Stage 3 decision-reconciliation PR.
+
+After verified merge:
+
+Mission Control may prepare a separate Stage 4 Blueprint authorization.
