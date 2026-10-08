@@ -140,3 +140,22 @@ No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation, provider/stor
 - `claude-code/09-stage6-completion-report.md` — Stage 6 completion report
 
 B6-01 (credit/repayment representation and linkage) is a T3 candidate; dependent Stage 7 work on its 13 rows is stopped pending Mission Control. Findings are recommendations, not Product Truth. No Stage 7, Sections 20–21, Blueprint lock, EIS, implementation or production authority follows.
+
+
+## Stage 6 Mission Control review — MC-08
+
+Mission Control accepts the Stage 6 Builder Review.
+
+B6-01 triggered T3. Founder approved the narrow credit/repayment representation rule:
+
+- repayments may settle either standalone credit entries or credit-method sale rows;
+- credit-method sale rows remain sales and are not rewritten;
+- future credit sales stay single sale rows and do not create duplicate credit rows;
+- standalone credit entries do not count as sales/income absent a separate sale/income event;
+- repayments are never new sales/income.
+
+The decision is not canonical Product Truth until a separate Founder Decision Record / Blueprint-FCTM reconciliation is human-merged.
+
+B6-02 through B6-19 are retained as Stage 7/EIS/specialist/dependency inputs.
+
+Stage 7 remains NOT AUTHORIZED.
