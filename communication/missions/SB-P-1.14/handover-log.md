@@ -260,3 +260,15 @@ After merge:
 - independent specialists may perform only their read-only assigned reviews.
 
 No Stage 8, Blueprint lock, EIS or implementation authority is implied.
+
+## H-17 — Stage 7 Engineering Review draft → Mission Control and specialists
+
+**Date:** 2026-10-08
+**From:** Claude Code (Stage 7 Engineering Review owner)
+**To:** Mission Control; independent specialists S7-SP-1 to S7-SP-5
+**Base:** `main@cdb94b21284ba18d3bee523009eb4dbe3e8d7b11`
+**Branch:** `mission/SB-P-1.14-stage7-engineering-review` (DRAFT pull request to `main`)
+
+Delivered: Blueprint Sections 20–21 (v0.3) and the Stage 7 report.
+
+Next action: Mission Control obtains and dispositions the five independent specialist reports, then reviews Sections 20–21. Stage 8, Blueprint lock, EIS, implementation and production remain not authorized.

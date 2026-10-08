@@ -7,8 +7,8 @@
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Mission Type | Product Mission — mature Ledger / Business Memory, Universal Document Intelligence, Receipt Cabinet and governed durable media foundation |
-| Lifecycle Stage | Source 18 v1.2 — post-Stage-6 B6-01 canonical reconciliation; Stage 7 not yet authorized |
-| Status | `DRAFT FULL BLUEPRINT — SECTIONS 1–19 CANONICAL; STAGE 6 BUILDER REVIEW CANONICAL; FPDR-4 RECONCILIATION ACCEPTED BY MISSION CONTROL, CONDITIONAL UNTIL HUMAN MERGE OF PR #821. SECTIONS 20–21 NOT AUTHORIZED; NOT LOCKED.` |
+| Lifecycle Stage | Source 18 v1.2 Stage 7 — Engineering Review (Sections 20–21 drafted) |
+| Status | `DRAFT FULL BLUEPRINT — SECTIONS 1–19 CANONICAL; SECTIONS 20–21 STAGE 7 DRAFT AWAITING MISSION CONTROL REVIEW AND FIVE INDEPENDENT SPECIALIST REPORTS. NOT APPROVED; NOT LOCKED.` |
 | Product Authority | Founder (Riyas PK) |
 | Product Discovery and Drafting | Claude Code, Stage 2–4 Definition Actor (SB-P-1.14-MC-01) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -21,8 +21,8 @@
 | Upstream dependencies | SB-P-1.12 and SB-P-1.13: specification available (Blueprints and EISs `APPROVED — LOCKED`); implementation not complete (Implementation Authorization `WITHHELD`, both suspended); evidence not complete |
 | Date | 2026-10-08 |
 | Builder Review | COMPLETE / CANONICAL — PR #819; findings B6-01 to B6-19 accepted by Mission Control under SB-P-1.14-MC-08 |
-| Engineering Review (Sections 20–21) | NOT STARTED — not authorized |
-| Mission Control Review | Stage 5 Sections 1–19 canonical; Stage 6 Builder Review canonical; B6-01 / FPDR-4 reconciliation accepted by SB-P-1.14-MC-10, conditional until human merge of PR #821 |
+| Engineering Review (Sections 20–21) | DRAFT — prepared under SB-P-1.14-MC-11 (PR #822); specialist-dependent findings held pending S7-SP-1 to S7-SP-5 |
+| Mission Control Review | Stage 5 Sections 1–19 canonical; Stage 6 Builder Review canonical; B6-01 / `FPDR-4` reconciliation canonical (PR #821); Stage 7 review pending |
 | Blueprint Lock | NOT LOCKED |
 
 ## Mission Snapshot
@@ -731,6 +731,7 @@ Build Plan §10.3 exit principle: "I can give Smart Business the messy documents
 |---|---|---|---|---|
 | 0.1 | 2026-10-08 | Claude Code (Stage 2–4 Definition Actor) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19, assembled by reference to the canonical 766-row FCTM (blob `3154330d`) and `FPDR-1` to `FPDR-3`. No refinement or scope expansion beyond FCTM-mapped rows is proposed; mission-design paragraphs restate approved sources, Founder decisions and Mission Control dispositions MC-Q4, MC-Q5 only | DRAFT — awaiting Mission Control Stage 5 review |
 | 0.2 | 2026-10-08 | Claude Code (B6-01 reconciliation, SB-P-1.14-MC-09) | Carried post-Stage-6 `FPDR-4`: Metadata decision reference; §8.1, §8.3, §8.6 sentences; §10.1 decision block and row labels; §14 item 2; §15.1 Scenario A/B qualifiers; §15.4 limit; §19 Founder-decision cells of the 13 annotated rows; §19 governance rows. Section 8 and Section 11 membership, dispositions, owners, commitments and classifications unchanged | DRAFT — awaiting Mission Control review |
+| 0.3 | 2026-10-08 | Claude Code (Stage 7 Engineering Review, SB-P-1.14-MC-11) | Appended Section 20 (Engineering Review, early delivery plan, 563-row feasibility and risk register, Stage 6 dispositions) and Section 21 (Engineering Questions, Risks & Recommendations); updated four Metadata fields. Sections 1–17 and 19 unchanged | DRAFT — awaiting Mission Control and independent specialist review |
 
 ## 19. Governance History
 
@@ -1553,3 +1554,816 @@ Counts: 766 rows — 45 `ASSIGNED TO LATER MISSION`, 104 `DELEGATED`, 563 `IN SC
 | `20-§9` | DELEGATED | SB-P-1.19 | C20@56ed4d11 §9 | §11 | — |
 | `13-§4` | DELEGATED | SB-P-1.17 | C13@4426e8b1 §4 | §11 | — |
 | `13-§6` | DELEGATED | SB-P-1.17 | C13@4426e8b1 §6 | §11 | — |
+
+## 20. Engineering Review
+
+### 20.1 Scope, baseline and independence
+
+- **Authorization:** SB-P-1.14-MC-11 (`communication/missions/SB-P-1.14/mission-control/13-stage7-engineering-and-specialist-authorization.md`) and `communication/live/instruction.md`, canonical at `main@cdb94b21284ba18d3bee523009eb4dbe3e8d7b11` (PR #822).
+- **Baseline:** Blueprint v0.2 Sections 1–19 (PR #821); FCTM blob `01e9856aca0afdb1267230a1932fe34054449a4b` (766 rows; 563 `IN SCOPE`); `FPDR-1` to `FPDR-4`; Stage 6 Builder Review B6-01 to B6-19 (PR #819, SB-P-1.14-MC-08).
+- **Owner:** Claude Code. Claude Code also authored Sections 1–19 and the Stage 6 Builder Review; this Engineering Review is therefore not independent assurance.
+- **Independent specialist reviews (mandatory; none received at this draft):**
+
+| Review | Required report | State |
+|---|---|---|
+| S7-SP-1 Security, Permissions, RLS & Grants | `communication/missions/SB-P-1.14/specialists/01-stage7-security-rls-grants-review.md` | PENDING — not received |
+| S7-SP-2 Transaction & Financial Integrity | `communication/missions/SB-P-1.14/specialists/02-stage7-transaction-financial-integrity-review.md` | PENDING — not received |
+| S7-SP-3 UDI / AI Interpretation Safety | `communication/missions/SB-P-1.14/specialists/03-stage7-udi-ai-safety-review.md` | PENDING — not received |
+| S7-SP-4 Storage / Provider Readiness | `communication/missions/SB-P-1.14/specialists/04-stage7-storage-provider-readiness-review.md` | PENDING — not received |
+| S7-SP-5 Migration / Data-Transition Safety | `communication/missions/SB-P-1.14/specialists/05-stage7-migration-data-transition-review.md` | PENDING — not received |
+
+- **Use of the reviews:** every finding in this Section that depends on a specialist domain carries that specialist's marker (`SP-1` to `SP-5`) and is **held pending** until Mission Control receives and dispositions the corresponding independent report (SB-P-1.14-MC-11 §3). No such finding may be accepted or relied upon before then. Claude Code did not author, and does not anticipate the conclusions of, any specialist report.
+- **Not done:** no FCTM, Founder decision or Sections 1–19 change beyond the authorized Metadata fields and one Section 18 row; no EIS, code, SQL, migration, provider or production action.
+
+### 20.2 Environment assumptions (read-only evidence)
+
+| Item | Assumption | Evidence state |
+|---|---|---|
+| Runtime | TanStack Start built by Nitro with a Cloudflare default target; in-process `worker_threads` parse isolation is documented as incompatible with that target (B6-05) | Repository (`vite.config.ts`, `src/lib/catalog-import/parse-isolated.ts`); live hosting `UNVERIFIED — ACCESS REQUIRED` |
+| Data layer | Supabase/Postgres; `transactions` written by direct client insert; Owner-only RLS; `GRANT ALL` to `anon`/`authenticated` and matching default privileges for future tables (B6-04, B6-10) | Repository migrations (files only); live grants and policies `UNVERIFIED — ACCESS REQUIRED` |
+| Parser offload | Lease-bound presigned S3 upload and AWS Lambda parser for CSV/XLSX, object deleted after parse; unwired (B6-05, MC-Q5) | Repository; AWS account `UNVERIFIED — ACCESS REQUIRED` |
+| Durable object storage | None in the repository; Cloudflare R2 is the approved direction behind the `DR2` gate | Account, region, lifecycle-rule capability, pricing `UNVERIFIED — ACCESS REQUIRED`; activation NOT AUTHORIZED |
+| AI provider | Consumed only through the SB-P-1.13 gateway and its data-control gate (EIS13-PRV-01) | Provider document data controls `UNVERIFIED — ACCESS REQUIRED` |
+| Test environment | Isolated Supabase test project used by existing integration suites | Current state `UNVERIFIED — ACCESS REQUIRED` |
+| Production data | Not accessed; presence and volume of `sale + payment_method=credit` rows unknown (affects only rehearsal sizing; `FPDR-1`/`FPDR-4` forbid rewriting them) | `UNVERIFIED — ACCESS REQUIRED` |
+| CI | Fast Gate, Full Assurance and Markdown workflows exist; the last `main` runs are dated 2026-09-30; required status checks currently empty | Repository; `gh` read-only |
+
+### 20.3 Engineering assessment by Blueprint subsection
+
+| Code | Subsection | Assessment | Stage 6 inputs | Specialists |
+|---|---|---|---|---|
+| F1 | §8.1 Four-state Ledger | Feasible by additive widening inside the one governed command: widen `transaction_type`, add an explicit credit direction (amount stays positive), add a repayment-to-target link whose target is either a standalone `credit` entry or a `sale` with `payment_method=credit` (`FPDR-4`), never altering the sale; one totals definition excluding repayment and standalone credit from sales/income (`FPDR-1`, `FPDR-4`); every reader updated; pre-widening regression baseline. No backfill | B6-02, B6-03, B6-04 | SP-2, SP-5, SP-1 |
+| F2 | §8.2 UDI intake and interpretation | Feasible by generalizing the existing lease, content checks and limits into one intake pipeline; deterministic CSV/XLSX parsing; image/PDF/handwriting through the SB-P-1.13 AI gateway with schema-validated output; interpretation isolation that runs in the deployed runtime (offload where needed); domain adapters for Ledger and opening stock only | B6-05, B6-12, B6-14 | SP-3, SP-4 |
+| F3 | §8.3 Review, preview, confirmation, correction | Feasible on SB-P-1.12 `confirmation_bindings` with a material-field fingerprint per destination (`FPDR-3`), authority revalidation kept separate; correction becomes a command that writes the correction event atomically; direct `UPDATE` and correction-event `INSERT` removed in the cut-over | B6-04, B6-06 | SP-1, SP-2, SP-3 |
+| F4 | §8.4 Receipt Cabinet and provenance | Feasible: documents link to the stable record identity; append-only version chain for originals; provenance events in governed storage | B6-07 | SP-4, SP-5 |
+| F5 | §8.5 Governed durable media | Feasible behind `DR2`: provider-independent object identity; server-held credentials; ingest state machine extending the lease pattern; retrieval by short-lived signed access or proxy with a stated revocation window; `FPDR-2` discard via transient staging with object-store lifecycle expiry and metadata reconciliation, with no feature-specific scheduler (MC-Q4); raw voice not durable by default | B6-08, B6-09 | SP-4, SP-1, SP-5 |
+| F6 | §8.6 Search, reports, exports | Feasible: normalized counterparty search key (no identity table); one query layer; formula neutralization on CSV/Excel export; no authoritative balance presented (`3-§9-12` stays SB-P-1.16) | B6-12, B6-13 | SP-1, SP-3 |
+| F7 | §8.7 Isolation, idempotency, failure | Feasible only on the SB-P-1.12 kernel: every new table created with RLS and narrowed grants in the same migration; business-scoped content fingerprint plus shared idempotency key; first-class unknown outcome; end-to-end failure states | B6-10, B6-11, B6-17 | SP-1, SP-2, SP-4 |
+| F8 | §8.8 Platform quality and delivery | Feasible: new test suites; migration plan for a separately authorized migration mission; delivery accounting in Section 20.4 | B6-18 | SP-5 |
+| F9 | §8.9 Non-goals | Feasible as negative design checks and tests | — | as marked per row |
+
+### 20.4 Early delivery plan
+
+**Environments.** Local development; the isolated Supabase test project for integration and rehearsal; a non-production object-storage bucket only after `DR2` activation is separately authorized; the SB-P-1.13 AI gateway in non-production only after its provider gate. No production environment is used by this mission's build or verification without separate release authority.
+
+**Activation order (cross-mission dependencies).**
+
+1. Prerequisites outside this mission: SB-P-1.12 WS-A1, WS-A2, WS-D, WS-E implemented and verified; WS-A3 cut-over for the transactions family and WS-B effective-access reconciliation; SB-P-1.13 `create_transaction_governed` (EIS13-CMD-02), AI gateway and provider gate, attachment handoff (EIS13-ATT-01) implemented and verified; Mission Control acceptance of the dependency evidence (SB-P-1.12 EIS-DEP-01).
+2. WS-A four-state widening of the governed command and correction command (same cut-over family).
+3. WS-G idempotency, unknown-outcome and failure-state scaffolding.
+4. WS-E storage control plane and object metadata, after `DR2` activation.
+5. WS-B UDI intake pipeline and the Ledger and opening-stock adapters.
+6. WS-C review, preview and confirmation binding.
+7. WS-D Receipt Cabinet and provenance.
+8. WS-F search, summaries and exports.
+
+**Expected migrations (design level; not executed; separately authorized migration mission required).**
+
+| ID | Content | Rehearsal need |
+|---|---|---|
+| M14-1 | Widen `transaction_type`; credit direction; repayment-target link (`FPDR-4`); widen the governed create and correction commands; no backfill | Fresh replay on the test project; replay against a production-shaped snapshot (`UNVERIFIED — ACCESS REQUIRED`); regression baseline green before and after |
+| M14-2 | Document/object metadata, versions and provenance events; RLS enabled and `anon` revoked in the same migration | Negative `anon`/cross-business tests; default-privilege check |
+| M14-3 | UDI intake, interpretation, preview and import-ledger state (extends the parser lease) | Lease state-machine tests; per-row import under revocation |
+| M14-4 | Search keys and indexes | Performance check on test data |
+
+Each migration has a reverse plan; ordering follows the SB-P-1.12 migration series; generated types are regenerated from the schema, never hand-edited.
+
+**CI tiers.** Fast Gate (lint, typecheck, build, unit) at every checkpoint; Full Assurance (integration against the test project) on `src/**`, `supabase/**`, `tests/**`, `lambda/**`. New suites expected: Ledger regression baseline; four-state and `FPDR-1`/`FPDR-4` totals; RLS/grant negatives for new tables; idempotency and unknown outcome; `FPDR-3` fingerprint (material and non-material changes); document-borne injection and spreadsheet-formula fixtures; storage two-phase ingest and revocation window. GitHub Actions has produced no `main` runs since 2026-09-30, so interim evidence is local and recorded as such.
+
+**Stage 1 scope flags (unchanged).** Production mutation, migration execution, delivery sync/publication, provider-account mutation, Supabase schema/Auth/key mutation, Lovable build execution, Cloudflare R2 / durable-object-storage activation and external document/AI provider activation: each `NOT AUTHORIZED`.
+
+**Provider and storage activation dependencies.** `DR2`: account and environment-separated buckets, server-held credentials, CORS for presigned upload, lifecycle rules for the transient staging prefix (`FPDR-2`), monitoring, rollback and verification. `DAI`: SB-P-1.13 EIS13-PRV-01 data-control evidence before merchant documents reach the provider. AWS S3 staging: optional transient seam only, after engineering/provider review (MC-Q5).
+
+### 20.5 Stage 6 findings carried
+
+B6-01 is resolved by `FPDR-4` and is not reopened. Each remaining finding is carried as an engineering constraint for the EIS; specialist-routed constraints are held pending the named report.
+
+| Finding | Carried as | Subsection | Specialist (pending) |
+|---|---|---|---|
+| B6-02 widening surface, credit direction | EC14-01 | F1 | SP-2, SP-5 |
+| B6-03 totals treatment | EC14-02 | F1, F6 | SP-2 |
+| B6-04 governed command cut-over, audit-safe writes | EC14-03 | F1, F3 | SP-1, SP-2 |
+| B6-05 UDI/parser/runtime constraints | EC14-04 | F2 | SP-3 |
+| B6-06 material-field fingerprint | EC14-05 | F3 | SP-3, SP-2 |
+| B6-07 original-proof versioning | EC14-06 | F4 | SP-4 |
+| B6-08 storage control plane, signed access, ingest | EC14-07 | F5 | SP-4, SP-1 |
+| B6-09 `FPDR-2` discard timing | EC14-08 | F5 | SP-4 |
+| B6-10 default privileges, RLS/grants | EC14-09 | F7 | SP-1, SP-5 |
+| B6-11 idempotency, unknown outcome | EC14-10 | F7 | SP-2 |
+| B6-12 prompt and formula injection | EC14-11 | F2, F6 | SP-3 |
+| B6-13 counterparty search boundary | EC14-12 | F6 | — (design check) |
+| B6-14 opening-stock convergence | EC14-13 | F2 | SP-2 |
+| B6-15 provider/runtime facts unverified | Section 20.2 evidence holds | all | SP-4 |
+| B6-16 upstream implementation chain | Section 20.4 activation order | all | — |
+| B6-17 failure-state design | EC14-14 | F7 | SP-4, SP-2 |
+| B6-18 migration/topology | EC14-15; Section 20.4 migrations | F8 | SP-5 |
+| B6-19 merchant-language continuity | EC14-16 | F1, F6 | — (UX design check) |
+
+### 20.6 Per-row feasibility and risk register (563 `IN SCOPE` rows)
+
+Legends:
+
+| Code | Meaning |
+|---|---|
+| F1–F9 | Feasibility assessment of the row's Blueprint subsection (Section 20.3) |
+| I-AUTH | Consumes the SB-P-1.12 kernel (EIS-DEP-01); no interim authority path |
+| I-CONV | Consumes the SB-P-1.13 Conversation/AI kernel or attachment handoff |
+| I-CMD | Writes only through the one governed transaction command (`DTX`) |
+| I-AI | Through the SB-P-1.13 AI gateway; provider evidence held |
+| I-STO | Behind the `DR2` storage activation gate |
+| I-LEG | Record-class retention basis; no duration invented |
+| I-L15, I-L17, I-L19, I-L20 | Later-mission dependency |
+| I-FPDR14, I-FPDR2, I-FPDR3 | Governed by `FPDR-1`/`FPDR-4`, `FPDR-2` or `FPDR-3` |
+| I-NONE | No external implication beyond this mission's build |
+| V-TEST, V-NEG, V-DES, V-ACC, V-FRV, V-EVM | Unit/integration test; negative test or absence proof; design review; acceptance-scenario evidence; Founder Runtime Verification; Experience Verification Matrix entry |
+| SP-1 to SP-5 | Specialist domain whose independent report must be dispositioned before the finding is relied on (Section 20.1) |
+
+Classification rules (mechanical; reproducible from the FCTM dependency cell and the specialist marker):
+
+- `BLOCKED` — the row carries `D12`, `D13` or `DTX`: it cannot be built or demonstrated until the upstream implementation and evidence exist. The row stays `IN SCOPE`. This is a dependency block, not an infeasibility; no T8 arises from it.
+- `FOLLOW-UP` — not blocked, but carries a provider, storage, legal or later-mission hold (`DAI`, `DR2`, `DLEG`, `DUF6`, `D15`, `D17`, `D19`, `D20`) or a pending specialist marker.
+- `PASS` — none of the above; feasible within this mission's own build.
+
+Remaining hold codes: `H-D12`, `H-D13`, `H-DTX` (upstream), `H-PROV` (`DAI`), `H-STO` (`DR2`), `H-LEG` (`DLEG`, `DUF6`), `H-LATER` (`D15`, `D17`, `D19`, `D20`), `H-SP-1` to `H-SP-5` (specialist report pending).
+
+Risk: High where the row writes through `DTX`, is a Contract 3 §4 state, a Founder Runtime scenario, a cross-business or revocation boundary, or a document-interpretation must-not; Low where the row is a must-not, rule or principle with no dependency; otherwise Medium.
+
+| Row | Blueprint § | Source | Feasibility | Implications | Dependency status | Risk | Verification | Specialist dependency (pending) | Classification | Remaining hold |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `3-§2-2` | §8.1 | C3@d8c26c07 §2 | F1 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§3` | §8.1 | C3@d8c26c07 §3 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `3-§4-1` | §8.1 | C3@d8c26c07 §4 | F1 | I-AUTH, I-CMD | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§4-2` | §8.1 | C3@d8c26c07 §4 | F1 | I-AUTH, I-CMD | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§4-3` | §8.1 | C3@d8c26c07 §4 | F1 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§4-4` | §8.1 | C3@d8c26c07 §4 | F1 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§4-5` | §8.1 | C3@d8c26c07 §4 | F1 | I-NONE | none beyond this mission | High | V-NEG | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§4-6` | §8.1 | C3@d8c26c07 §4 | F1 | I-NONE | none beyond this mission | High | V-DES | SP-2, SP-5 | FOLLOW-UP | H-SP-2, H-SP-5 |
+| `3-§5-1` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV | D13 | Medium | V-DES | — | BLOCKED | H-D13 |
+| `3-§5-2` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV, I-CMD | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§5-3` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV, I-CMD | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§5-4` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV, I-CMD, I-FPDR14 | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§5-5` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV, I-CMD, I-FPDR14 | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§5-6` | §8.1 | C3@d8c26c07 §5 | F1 | I-CONV, I-CMD | D13; DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§5-7` | §8.2 | C3@d8c26c07 §5 | F2 | I-AUTH, I-CONV, I-AI, I-STO | D12; D13; DAI; DR2 | Medium | V-TEST | SP-1, SP-3, SP-4 | BLOCKED | H-D12, H-D13, H-PROV, H-STO, H-SP-1, H-SP-3, H-SP-4 |
+| `3-§5-8` | §8.2 | C3@d8c26c07 §5 | F2 | I-AUTH, I-AI | D12; DAI | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-PROV, H-SP-1, H-SP-3 |
+| `3-§5-9` | §8.2 | C3@d8c26c07 §5 | F2 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§5-10` | §8.1 | C3@d8c26c07 §5 | F1 | I-AUTH | D12 | Medium | V-DES | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§6-1` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-2` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-3` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-4` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-5` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-6` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-7` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-8` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD, I-FPDR14 | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-9` | §8.1 | C3@d8c26c07 §6 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§6-10` | §8.1 | C3@d8c26c07 §6 | F1 | I-CONV | D13 | Medium | V-NEG | SP-2 | BLOCKED | H-D13, H-SP-2 |
+| `3-§7-1` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-2` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-3` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-4` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV, I-FPDR14 | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-5` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-6` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§7-7` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§7-8` | §8.3 | C3@d8c26c07 §7 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§7-9` | §8.3 | C3@d8c26c07 §7 | F3 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§8-1` | §8.3 | C3@d8c26c07 §8 | F3 | I-CONV, I-CMD | D13; DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§8-2` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-3` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-4` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-5` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-6` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-7` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-8` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§8-9` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-10` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-11` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-12` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-13` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-14` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-15` | §8.3 | C3@d8c26c07 §8 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§8-16` | §8.3 | C3@d8c26c07 §8 | F3 | I-NONE | none beyond this mission | High | V-NEG | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§9-1` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-2` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-4` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-5` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-6` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-7` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH, I-FPDR14 | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§9-8` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `3-§9-9` | §8.6 | C3@d8c26c07 §9 | F6 | I-L17 | D17 | Medium | V-TEST | — | FOLLOW-UP | H-LATER |
+| `3-§9-10` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH, I-CONV | D12; D13 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-D13, H-SP-1 |
+| `3-§9-11` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH, I-CONV | D12; D13 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-D13, H-SP-1 |
+| `3-§9-13` | §8.6 | C3@d8c26c07 §9 | F6 | I-AUTH, I-CONV, I-STO | D12; D13; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-D13, H-STO, H-SP-1, H-SP-4 |
+| `3-§9-14` | §8.6 | C3@d8c26c07 §9 | F6 | I-CONV | D13 | Medium | V-DES | — | BLOCKED | H-D13 |
+| `3-§10-1` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-2` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-3` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-4` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-5` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH, I-FPDR14 | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-6` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-2, H-SP-3 |
+| `3-§10-7` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-2, H-SP-3 |
+| `3-§10-8` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§10-9` | §8.6 | C3@d8c26c07 §10 | F6 | I-AUTH | D12 | Medium | V-NEG | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§11-1` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§11-2` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§11-3` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§11-4` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§11-5` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§11-7` | §8.1 | C3@d8c26c07 §11 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§12-2` | §8.1 | C3@d8c26c07 §12 | F1 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `3-§12-3` | §8.1 | C3@d8c26c07 §12 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§12-4` | §8.1 | C3@d8c26c07 §12 | F1 | I-CONV | D13 | Medium | V-NEG | — | BLOCKED | H-D13 |
+| `3-§12-5` | §8.1 | C3@d8c26c07 §12 | F1 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `3-§14-2` | §8.1 | C3@d8c26c07 §14 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `3-§15-1` | §8.1 | C3@d8c26c07 §15 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `3-§15-2` | §8.1 | C3@d8c26c07 §15 | F1 | I-CONV | D13 | Medium | V-DES | — | BLOCKED | H-D13 |
+| `3-§15-3` | §8.1 | C3@d8c26c07 §15 | F1 | I-CONV | D13 | Medium | V-DES | — | BLOCKED | H-D13 |
+| `3-§15-4` | §8.1 | C3@d8c26c07 §15 | F1 | I-AUTH | D12 | Medium | V-DES | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§15-5` | §8.1 | C3@d8c26c07 §15 | F1 | I-CONV | D13 | Medium | V-DES | — | BLOCKED | H-D13 |
+| `3-§16-1` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-2` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-3` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-4` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-5` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-6` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-7` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `3-§16-8` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-9` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-10` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-11` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-12` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-13` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§16-14` | §8.3 | C3@d8c26c07 §16 | F3 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `3-§17-1` | §8.7 | C3@d8c26c07 §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§17-2` | §8.7 | C3@d8c26c07 §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§17-3` | §8.7 | C3@d8c26c07 §17 | F7 | I-AI | DAI | Medium | V-TEST | SP-2, SP-3 | FOLLOW-UP | H-PROV, H-SP-2, H-SP-3 |
+| `3-§17-4` | §8.7 | C3@d8c26c07 §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§17-5` | §8.7 | C3@d8c26c07 §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§17-6` | §8.7 | C3@d8c26c07 §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§17-7` | §8.7 | C3@d8c26c07 §17 | F7 | I-L15 | D15 | Medium | V-TEST | SP-2 | FOLLOW-UP | H-LATER, H-SP-2 |
+| `3-§17-8` | §8.7 | C3@d8c26c07 §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§17-9` | §8.7 | C3@d8c26c07 §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§17-10` | §8.7 | C3@d8c26c07 §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§17-11` | §8.7 | C3@d8c26c07 §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-2 | FOLLOW-UP | H-SP-2 |
+| `3-§18-1` | §8.1 | C3@d8c26c07 §18 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§18-2` | §8.1 | C3@d8c26c07 §18 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§18-3` | §8.1 | C3@d8c26c07 §18 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§18-5` | §8.1 | C3@d8c26c07 §18 | F1 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§18-6` | §8.1 | C3@d8c26c07 §18 | F1 | I-NONE | none beyond this mission | Low | V-NEG | SP-1 | FOLLOW-UP | H-SP-1 |
+| `3-§19-1` | §8.1 | C3@d8c26c07 §19 | F1 | I-CONV, I-CMD | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§19-2` | §8.1 | C3@d8c26c07 §19 | F1 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-ACC | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `3-§19-3` | §8.1 | C3@d8c26c07 §19 | F1 | I-CONV, I-CMD | D13; DTX | High | V-ACC | SP-2, SP-5 | BLOCKED | H-D13, H-DTX, H-SP-2, H-SP-5 |
+| `3-§19-4` | §8.3 | C3@d8c26c07 §19 | F3 | I-AUTH, I-AI, I-STO | D12; DAI; DR2 | Medium | V-ACC | SP-1, SP-3, SP-4 | BLOCKED | H-D12, H-PROV, H-STO, H-SP-1, H-SP-3, H-SP-4 |
+| `3-§19-5` | §8.3 | C3@d8c26c07 §19 | F3 | I-CONV | D13 | Medium | V-ACC | — | BLOCKED | H-D13 |
+| `3-§19-6` | §8.7 | C3@d8c26c07 §19 | F7 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§19-7` | §8.3 | C3@d8c26c07 §19 | F3 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§19-8` | §8.6 | C3@d8c26c07 §19 | F6 | I-AUTH | D12 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§19-9` | §8.4 | C3@d8c26c07 §19 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `3-§19-10` | §8.1 | C3@d8c26c07 §19 | F1 | I-AUTH | D12 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§19-11` | §8.1 | C3@d8c26c07 §19 | F1 | I-AUTH | D12 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§19-12` | §8.6 | C3@d8c26c07 §19 | F6 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `3-§19-13a` | §8.1 | C3@d8c26c07 §19 | F1 | I-CONV | D13 | Medium | V-ACC | — | BLOCKED | H-D13 |
+| `3-§19-14` | §8.7 | C3@d8c26c07 §19 | F7 | I-AUTH | D12 | High | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `3-§20-1` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | High | V-NEG | — | PASS | — |
+| `3-§20-2` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§20-3` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§20-4` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§20-5` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§20-6` | §8.9 | C3@d8c26c07 §20 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `3-§22-1` | §8.1 | C3@d8c26c07 §22 | F1 | I-CMD | DTX | High | V-DES | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `3-§22-2` | §8.1 | C3@d8c26c07 §22 | F1 | I-CMD | DTX | High | V-DES | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `5-§2-2` | §8.2 | C5@80ac648e §2 | F2 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§3-1` | §8.2 | C5@80ac648e §3 | F2 | I-AUTH, I-AI | D12; DAI | Medium | V-DES | SP-1, SP-3 | BLOCKED | H-D12, H-PROV, H-SP-1, H-SP-3 |
+| `5-§3-2` | §8.2 | C5@80ac648e §3 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§3-3` | §8.2 | C5@80ac648e §3 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§4-1` | §8.2 | C5@80ac648e §4 | F2 | I-AI, I-STO | DAI; DR2 | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `5-§4-2` | §8.2 | C5@80ac648e §4 | F2 | I-AI, I-STO | DAI; DR2 | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `5-§4-3` | §8.2 | C5@80ac648e §4 | F2 | I-AI, I-STO | DAI; DR2 | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `5-§4-4` | §8.2 | C5@80ac648e §4 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `5-§4-5` | §8.2 | C5@80ac648e §4 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `5-§4-6` | §8.2 | C5@80ac648e §4 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§4-7` | §8.2 | C5@80ac648e §4 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§4-8` | §8.2 | C5@80ac648e §4 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§4-9` | §8.2 | C5@80ac648e §4 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `5-§4-14` | §8.2 | C5@80ac648e §4 | F2 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `5-§5-1` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-2` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-3` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-4` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-5` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-6` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-7` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-8` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§5-9` | §8.2 | C5@80ac648e §5 | F2 | I-AI | DAI | Medium | V-NEG | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§6-1` | §8.4 | C5@80ac648e §6 | F4 | I-STO, I-LEG, I-FPDR2 | DR2; DLEG; DUF6 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LEG, H-SP-4 |
+| `5-§6-2` | §8.4 | C5@80ac648e §6 | F4 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `5-§6-3` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-CONV, I-STO | D12; D13; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-D13, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-4` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-5` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-6` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-7` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-8` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-9` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§6-11` | §8.4 | C5@80ac648e §6 | F4 | I-AUTH, I-STO, I-L17 | D12; DR2; D17 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-LATER, H-SP-1, H-SP-4 |
+| `5-§6-13` | §8.4 | C5@80ac648e §6 | F4 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§7-1` | §8.2 | C5@80ac648e §7 | F2 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `5-§7-2` | §8.2 | C5@80ac648e §7 | F2 | I-AUTH, I-AI, I-CMD, I-STO | D12; DAI; DTX; DR2 | High | V-ACC | SP-1, SP-2, SP-3, SP-4, SP-5 | BLOCKED | H-D12, H-PROV, H-DTX, H-STO, H-SP-1, H-SP-2, H-SP-3, H-SP-4, H-SP-5 |
+| `5-§7-3` | §8.2 | C5@80ac648e §7 | F2 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§7-4` | §8.2 | C5@80ac648e §7 | F2 | I-AUTH, I-AI, I-L17 | D12; DAI; D17 | Medium | V-ACC | SP-1, SP-3 | BLOCKED | H-D12, H-PROV, H-LATER, H-SP-1, H-SP-3 |
+| `5-§7-8` | §8.2 | C5@80ac648e §7 | F2 | I-AUTH | D12 | Medium | V-DES | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§8-2` | §8.2 | C5@80ac648e §8 | F2 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `5-§8-3` | §8.2 | C5@80ac648e §8 | F2 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§8-4` | §8.2 | C5@80ac648e §8 | F2 | I-CONV | D13 | Medium | V-NEG | — | BLOCKED | H-D13 |
+| `5-§9-1` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-2` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-3` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-4` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-5` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-6` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-7` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-8` | §8.3 | C5@80ac648e §9 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§9-9` | §8.3 | C5@80ac648e §9 | F3 | I-AUTH | D12 | Medium | V-DES | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§10-1` | §8.3 | C5@80ac648e §10 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§10-2` | §8.3 | C5@80ac648e §10 | F3 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§10-3` | §8.3 | C5@80ac648e §10 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§10-4` | §8.3 | C5@80ac648e §10 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§10-5` | §8.3 | C5@80ac648e §10 | F3 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§10-6` | §8.3 | C5@80ac648e §10 | F3 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§10-7` | §8.3 | C5@80ac648e §10 | F3 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§10-8` | §8.3 | C5@80ac648e §10 | F3 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§10-9` | §8.3 | C5@80ac648e §10 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§10-10` | §8.3 | C5@80ac648e §10 | F3 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§11-1` | §8.7 | C5@80ac648e §11 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§11-2` | §8.7 | C5@80ac648e §11 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§11-3` | §8.7 | C5@80ac648e §11 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§11-4` | §8.7 | C5@80ac648e §11 | F7 | I-AUTH, I-CONV, I-L20 | D12; D13; D20 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-D13, H-LATER, H-SP-1, H-SP-2 |
+| `5-§11-5` | §8.7 | C5@80ac648e §11 | F7 | I-NONE | none beyond this mission | Low | V-DES | SP-2 | FOLLOW-UP | H-SP-2 |
+| `5-§12-1` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§12-2` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§12-3` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§12-4` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§12-5` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§12-6` | §8.7 | C5@80ac648e §12 | F7 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§13-1` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-2` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-3` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-4` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-5` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-6` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-7` | §8.2 | C5@80ac648e §13 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `5-§13-8` | §8.2 | C5@80ac648e §13 | F2 | I-CONV | D13 | High | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `5-§13-9` | §8.2 | C5@80ac648e §13 | F2 | I-CONV | D13 | High | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `5-§13-10` | §8.2 | C5@80ac648e §13 | F2 | I-CONV | D13 | High | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `5-§13-11` | §8.2 | C5@80ac648e §13 | F2 | I-CONV | D13 | High | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `5-§13-12` | §8.2 | C5@80ac648e §13 | F2 | I-CONV | D13 | High | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `5-§14-1` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-2` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-3` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-4` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-5` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-6` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-7` | §8.2 | C5@80ac648e §14 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§14-8` | §8.2 | C5@80ac648e §14 | F2 | I-NONE | none beyond this mission | Low | V-NEG | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§15-1` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4, H-SP-5 |
+| `5-§15-2` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-3` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-4` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-5` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-6` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-7` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4, H-SP-5 |
+| `5-§15-8` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-9` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-10` | §8.4 | C5@80ac648e §15 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-5 |
+| `5-§15-11` | §8.4 | C5@80ac648e §15 | F4 | I-NONE | none beyond this mission | Low | V-DES | SP-5 | FOLLOW-UP | H-SP-5 |
+| `5-§16-1` | §8.7 | C5@80ac648e §16 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§16-2` | §8.5 | C5@80ac648e §16 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§16-3` | §8.5 | C5@80ac648e §16 | F5 | I-LEG, I-FPDR2 | DLEG | Medium | V-TEST | SP-1, SP-4 | FOLLOW-UP | H-LEG, H-SP-1, H-SP-4 |
+| `5-§16-4` | §8.2 | C5@80ac648e §16 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | SP-1, SP-3 | FOLLOW-UP | H-SP-1, H-SP-3 |
+| `5-§16-5` | §8.2 | C5@80ac648e §16 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | SP-1, SP-3 | FOLLOW-UP | H-SP-1, H-SP-3 |
+| `5-§16-6` | §8.7 | C5@80ac648e §16 | F7 | I-AUTH | D12 | High | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§16-7` | §8.2 | C5@80ac648e §16 | F2 | I-AI | DAI | Medium | V-NEG | SP-1, SP-3 | FOLLOW-UP | H-PROV, H-SP-1, H-SP-3 |
+| `5-§17-1` | §8.7 | C5@80ac648e §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§17-2` | §8.7 | C5@80ac648e §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§17-3` | §8.7 | C5@80ac648e §17 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§17-4` | §8.7 | C5@80ac648e §17 | F7 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§17-5` | §8.7 | C5@80ac648e §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§17-6` | §8.7 | C5@80ac648e §17 | F7 | I-CMD | DTX | High | V-TEST | SP-2, SP-3, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-3, H-SP-5 |
+| `5-§17-7` | §8.7 | C5@80ac648e §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§17-8` | §8.7 | C5@80ac648e §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§17-9` | §8.7 | C5@80ac648e §17 | F7 | I-STO | DR2 | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-STO, H-SP-3, H-SP-4 |
+| `5-§17-10` | §8.7 | C5@80ac648e §17 | F7 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `5-§17-11` | §8.7 | C5@80ac648e §17 | F7 | I-NONE | none beyond this mission | Low | V-NEG | SP-3 | FOLLOW-UP | H-SP-3 |
+| `5-§18-1` | §8.3 | C5@80ac648e §18 | F3 | I-AUTH, I-AI, I-CMD, I-STO | D12; DAI; DTX; DR2 | High | V-ACC | SP-1, SP-2, SP-3, SP-4, SP-5 | BLOCKED | H-D12, H-PROV, H-DTX, H-STO, H-SP-1, H-SP-2, H-SP-3, H-SP-4, H-SP-5 |
+| `5-§18-2` | §8.3 | C5@80ac648e §18 | F3 | I-AI | DAI | Medium | V-ACC | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `5-§18-3` | §8.2 | C5@80ac648e §18 | F2 | I-AI, I-STO | DAI; DR2 | Medium | V-ACC | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `5-§18-4` | §8.2 | C5@80ac648e §18 | F2 | I-AUTH | D12 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§18-5` | §8.2 | C5@80ac648e §18 | F2 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§18-6` | §8.7 | C5@80ac648e §18 | F7 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `5-§18-7` | §8.4 | C5@80ac648e §18 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `5-§18-8a` | §8.2 | C5@80ac648e §18 | F2 | I-CONV | D13 | Medium | V-ACC | — | BLOCKED | H-D13 |
+| `5-§18-9` | §8.7 | C5@80ac648e §18 | F7 | I-AUTH | D12 | Medium | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§18-10` | §8.7 | C5@80ac648e §18 | F7 | I-AUTH | D12 | High | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `5-§18-11` | §8.7 | C5@80ac648e §18 | F7 | I-NONE | none beyond this mission | Medium | V-ACC | — | PASS | — |
+| `5-§19-1` | §8.9 | C5@80ac648e §19 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§19-2` | §8.9 | C5@80ac648e §19 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§19-3` | §8.9 | C5@80ac648e §19 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§19-4` | §8.9 | C5@80ac648e §19 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `5-§19-5` | §8.9 | C5@80ac648e §19 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§4-1` | §8.1 | C22@61e1bb91 §4 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§4-2` | §8.1 | C22@61e1bb91 §4 | F1 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§4-3` | §8.1 | C22@61e1bb91 §4 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `22-§4-4` | §8.1 | C22@61e1bb91 §4 | F1 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§9-1` | §8.2 | C22@61e1bb91 §9 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `22-§9-2` | §8.2 | C22@61e1bb91 §9 | F2 | I-AUTH, I-AI | D12; DAI | Medium | V-DES | SP-1, SP-3 | BLOCKED | H-D12, H-PROV, H-SP-1, H-SP-3 |
+| `22-§9-3` | §8.2 | C22@61e1bb91 §9 | F2 | I-NONE | none beyond this mission | Low | V-NEG | SP-3 | FOLLOW-UP | H-SP-3 |
+| `22-§10-1` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§10-2` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§10-3` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§10-4` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§10-5` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO, I-LEG, I-FPDR2 | D12; DR2; DLEG | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-LEG, H-SP-1, H-SP-4 |
+| `22-§10-6` | §8.4 | C22@61e1bb91 §10 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§10-7` | §8.4 | C22@61e1bb91 §10 | F4 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `22-§17-1` | §8.5 | C22@61e1bb91 §17 | F5 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `22-§17-7` | §8.5 | C22@61e1bb91 §17 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `22-§17-9` | §8.9 | C22@61e1bb91 §17 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§19-1` | §8.7 | C22@61e1bb91 §19 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§19-2` | §8.7 | C22@61e1bb91 §19 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `22-§19-3` | §8.7 | C22@61e1bb91 §19 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§19-4` | §8.7 | C22@61e1bb91 §19 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§19-5` | §8.7 | C22@61e1bb91 §19 | F7 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§19-6` | §8.7 | C22@61e1bb91 §19 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `22-§19-7` | §8.7 | C22@61e1bb91 §19 | F7 | I-STO, I-AI | DR2; DAI | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-STO, H-PROV, H-SP-3, H-SP-4 |
+| `22-§21` | §8.8 | C22@61e1bb91 §21 | F8 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `22-§22-1` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§22-2` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§22-3` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§22-4` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§22-5` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§22-6` | §8.8 | C22@61e1bb91 §22 | F8 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§23-2` | §8.7 | C22@61e1bb91 §23 | F7 | I-AUTH | D12 | High | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§23-3` | §8.7 | C22@61e1bb91 §23 | F7 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§23-5` | §8.7 | C22@61e1bb91 §23 | F7 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§23-7` | §8.7 | C22@61e1bb91 §23 | F7 | I-NONE | none beyond this mission | Low | V-NEG | SP-1 | FOLLOW-UP | H-SP-1 |
+| `22-§27-1` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-2` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-3` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-4` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-5` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-6` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-7` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `22-§27-8` | §8.8 | C22@61e1bb91 §27 | F8 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-1` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-2` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-3` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-4` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-5` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-6` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-7` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-8` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-9` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§28-10` | §8.9 | C22@61e1bb91 §28 | F9 | I-NONE | none beyond this mission | Low | V-NEG | — | PASS | — |
+| `22-§29-3` | §8.7 | C22@61e1bb91 §29 | F7 | I-AUTH | D12 | High | V-ACC | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `22-§29-5` | §8.2 | C22@61e1bb91 §29 | F2 | I-AI | DAI | Medium | V-ACC | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `22-§29-7` | §8.3 | C22@61e1bb91 §29 | F3 | I-AUTH, I-CMD | D12; DTX | High | V-ACC | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `22-§29-8` | §8.7 | C22@61e1bb91 §29 | F7 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `22-§29-10` | §8.7 | C22@61e1bb91 §29 | F7 | I-STO, I-AI | DR2; DAI | Medium | V-ACC | SP-3, SP-4 | FOLLOW-UP | H-STO, H-PROV, H-SP-3, H-SP-4 |
+| `22-§29-12` | §8.4 | C22@61e1bb91 §29 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `22-§29-13` | §8.7 | C22@61e1bb91 §29 | F7 | I-AI | DAI | Medium | V-ACC | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `22-§29-14` | §8.8 | C22@61e1bb91 §29 | F8 | I-NONE | none beyond this mission | Medium | V-ACC | — | PASS | — |
+| `25-§4-1` | §8.5 | C25@406ce089 §4 | F5 | I-STO | DR2 | Medium | V-DES | SP-4, SP-5 | FOLLOW-UP | H-STO, H-SP-4, H-SP-5 |
+| `25-§4-2` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-3` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-4` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-5` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-6` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-7` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-8` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH, I-LEG | D12; DLEG | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-LEG, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-9` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-10` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-11` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§4-12` | §8.5 | C25@406ce089 §4 | F5 | I-AUTH | D12 | High | V-NEG | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§5-1` | §8.5 | C25@406ce089 §5 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§5-2` | §8.5 | C25@406ce089 §5 | F5 | I-NONE | none beyond this mission | Low | V-DES | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§6-1` | §8.5 | C25@406ce089 §6 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§6-2` | §8.5 | C25@406ce089 §6 | F5 | I-NONE | none beyond this mission | Low | V-DES | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§7-1` | §8.5 | C25@406ce089 §7 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§7-2` | §8.5 | C25@406ce089 §7 | F5 | I-NONE | none beyond this mission | Low | V-DES | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§8-1` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-2` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-3` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-4` | §8.5 | C25@406ce089 §8 | F5 | I-NONE | none beyond this mission | Medium | V-TEST | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§8-5` | §8.5 | C25@406ce089 §8 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§8-6` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-7` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-8` | §8.5 | C25@406ce089 §8 | F5 | I-AI | DAI | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-SP-3, H-SP-4 |
+| `25-§8-9` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH, I-CMD | D12; DTX | High | V-TEST | SP-1, SP-2, SP-4, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-4, H-SP-5 |
+| `25-§8-10` | §8.5 | C25@406ce089 §8 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§8-11` | §8.5 | C25@406ce089 §8 | F5 | I-STO | DR2 | Medium | V-NEG | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§9-1` | §8.5 | C25@406ce089 §9 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§9-2` | §8.5 | C25@406ce089 §9 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§9-3` | §8.5 | C25@406ce089 §9 | F5 | I-STO | DR2 | Medium | V-TEST | SP-1, SP-4 | FOLLOW-UP | H-STO, H-SP-1, H-SP-4 |
+| `25-§9-4` | §8.5 | C25@406ce089 §9 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§9-5` | §8.5 | C25@406ce089 §9 | F5 | I-STO | DR2 | Medium | V-TEST | SP-1, SP-4 | FOLLOW-UP | H-STO, H-SP-1, H-SP-4 |
+| `25-§9-6` | §8.5 | C25@406ce089 §9 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§9-7` | §8.5 | C25@406ce089 §9 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-DES | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§9-8` | §8.5 | C25@406ce089 §9 | F5 | I-STO | DR2 | Medium | V-DES | SP-1, SP-4 | FOLLOW-UP | H-STO, H-SP-1, H-SP-4 |
+| `25-§10-1` | §8.4 | C25@406ce089 §10 | F4 | I-NONE | none beyond this mission | Low | V-NEG | SP-4, SP-5 | FOLLOW-UP | H-SP-4, H-SP-5 |
+| `25-§10-2` | §8.4 | C25@406ce089 §10 | F4 | I-NONE | none beyond this mission | Low | V-DES | SP-4, SP-5 | FOLLOW-UP | H-SP-4, H-SP-5 |
+| `25-§10-3` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-4` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-5` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-6` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-7` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-8` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-9` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-10` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-11` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH, I-LEG | D12; DLEG | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-LEG, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§10-12` | §8.4 | C25@406ce089 §10 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§11-1` | §8.4 | C25@406ce089 §11 | F4 | I-AI, I-STO | DAI; DR2 | Medium | V-TEST | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `25-§11-2` | §8.4 | C25@406ce089 §11 | F4 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§11-3` | §8.4 | C25@406ce089 §11 | F4 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§11-4` | §8.4 | C25@406ce089 §11 | F4 | I-NONE | none beyond this mission | Low | V-DES | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§12-1` | §8.5 | C25@406ce089 §12 | F5 | I-CONV, I-STO, I-LEG, I-FPDR2 | D13; DR2; DLEG | Medium | V-TEST | SP-4 | BLOCKED | H-D13, H-STO, H-LEG, H-SP-4 |
+| `25-§12-2` | §8.5 | C25@406ce089 §12 | F5 | I-CONV | D13 | Medium | V-TEST | SP-4 | BLOCKED | H-D13, H-SP-4 |
+| `25-§12-3` | §8.5 | C25@406ce089 §12 | F5 | I-LEG, I-FPDR2 | DLEG | Medium | V-NEG | SP-4 | FOLLOW-UP | H-LEG, H-SP-4 |
+| `25-§13-1a` | §8.5 | C25@406ce089 §13 | F5 | I-CONV, I-STO | D13; DR2 | Medium | V-TEST | SP-4 | BLOCKED | H-D13, H-STO, H-SP-4 |
+| `25-§13-2` | §8.5 | C25@406ce089 §13 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§13-3` | §8.5 | C25@406ce089 §13 | F5 | I-AUTH | D12 | Medium | V-DES | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§14-1` | §8.5 | C25@406ce089 §14 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§14-2` | §8.5 | C25@406ce089 §14 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§14-3` | §8.5 | C25@406ce089 §14 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§14-4` | §8.5 | C25@406ce089 §14 | F5 | I-NONE | none beyond this mission | Medium | V-TEST | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§14-5` | §8.5 | C25@406ce089 §14 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§14-6` | §8.5 | C25@406ce089 §14 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§14-7` | §8.5 | C25@406ce089 §14 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§15-1` | §8.5 | C25@406ce089 §15 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§15-2` | §8.5 | C25@406ce089 §15 | F5 | I-NONE | none beyond this mission | Low | V-DES | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§15-3` | §8.5 | C25@406ce089 §15 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§15-4` | §8.5 | C25@406ce089 §15 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§16-1` | §8.5 | C25@406ce089 §16 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§16-2` | §8.5 | C25@406ce089 §16 | F5 | I-LEG | DLEG | Medium | V-DES | SP-4 | FOLLOW-UP | H-LEG, H-SP-4 |
+| `25-§16-3` | §8.5 | C25@406ce089 §16 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§17-2` | §8.5 | C25@406ce089 §17 | F5 | I-STO, I-L19 | DR2; D19 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§17-3` | §8.5 | C25@406ce089 §17 | F5 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§17-4` | §8.5 | C25@406ce089 §17 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§17-5` | §8.5 | C25@406ce089 §17 | F5 | I-LEG | DLEG | Medium | V-DES | SP-4 | FOLLOW-UP | H-LEG, H-SP-4 |
+| `25-§17-6` | §8.5 | C25@406ce089 §17 | F5 | I-LEG, I-FPDR2 | DLEG | Medium | V-TEST | SP-4 | FOLLOW-UP | H-LEG, H-SP-4 |
+| `25-§17-7` | §8.5 | C25@406ce089 §17 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§18-1` | §8.5 | C25@406ce089 §18 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§18-2` | §8.5 | C25@406ce089 §18 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§18-3` | §8.5 | C25@406ce089 §18 | F5 | I-STO | DR2 | Medium | V-NEG | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§19-1` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-2` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | High | V-NEG | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-3` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | High | V-NEG | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-4` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-5` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-6` | §8.5 | C25@406ce089 §19 | F5 | I-NONE | none beyond this mission | Low | V-NEG | SP-1, SP-4 | FOLLOW-UP | H-SP-1, H-SP-4 |
+| `25-§19-7` | §8.5 | C25@406ce089 §19 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§19-8` | §8.5 | C25@406ce089 §19 | F5 | I-NONE | none beyond this mission | Medium | V-TEST | SP-1, SP-4 | FOLLOW-UP | H-SP-1, H-SP-4 |
+| `25-§20-1` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-2` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-3` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-4` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-5` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-6` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-7` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-8` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-9` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-10` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-11` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-12` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§20-13` | §8.7 | C25@406ce089 §20 | F7 | I-STO, I-AUTH | DR2; D12 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-STO, H-D12, H-SP-1, H-SP-4 |
+| `25-§20-14` | §8.7 | C25@406ce089 §20 | F7 | I-STO | DR2 | Medium | V-NEG | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§21-1` | §8.5 | C25@406ce089 §21 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§21-2` | §8.5 | C25@406ce089 §21 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§21-3` | §8.5 | C25@406ce089 §21 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§21-4` | §8.5 | C25@406ce089 §21 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§21-5` | §8.5 | C25@406ce089 §21 | F5 | I-STO | DR2 | Medium | V-NEG | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-1` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-2` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-3` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-4` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-5` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§22-6` | §8.5 | C25@406ce089 §22 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§23-1` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-2` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-3` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-4` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-5` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-6` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-7` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-8` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-9` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-10` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-11` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§23-12` | §8.4 | C25@406ce089 §23 | F4 | I-AUTH | D12 | Medium | V-DES | SP-1, SP-4, SP-5 | BLOCKED | H-D12, H-SP-1, H-SP-4, H-SP-5 |
+| `25-§24-1` | §8.5 | C25@406ce089 §24 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§24-2` | §8.5 | C25@406ce089 §24 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§24-3` | §8.5 | C25@406ce089 §24 | F5 | I-AUTH | D12 | Medium | V-NEG | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§25-1` | §8.5 | C25@406ce089 §25 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§25-2` | §8.5 | C25@406ce089 §25 | F5 | I-AUTH | D12 | Medium | V-DES | SP-1, SP-4 | BLOCKED | H-D12, H-SP-1, H-SP-4 |
+| `25-§25-3` | §8.5 | C25@406ce089 §25 | F5 | I-AI | DAI | Medium | V-NEG | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-SP-3, H-SP-4 |
+| `25-§25-4` | §8.5 | C25@406ce089 §25 | F5 | I-CONV | D13 | Medium | V-NEG | SP-4 | BLOCKED | H-D13, H-SP-4 |
+| `25-§26-1` | §8.5 | C25@406ce089 §26 | F5 | I-AUTH, I-STO, I-CONV | D12; DR2; D13 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-D13, H-SP-1, H-SP-4 |
+| `25-§26-2` | §8.5 | C25@406ce089 §26 | F5 | I-AUTH, I-STO | D12; DR2 | High | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§26-3` | §8.5 | C25@406ce089 §26 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§26-4a` | §8.5 | C25@406ce089 §26 | F5 | I-CONV, I-STO | D13; DR2 | Medium | V-ACC | SP-4 | BLOCKED | H-D13, H-STO, H-SP-4 |
+| `25-§26-5` | §8.5 | C25@406ce089 §26 | F5 | I-AI, I-STO | DAI; DR2 | Medium | V-ACC | SP-3, SP-4 | FOLLOW-UP | H-PROV, H-STO, H-SP-3, H-SP-4 |
+| `25-§26-6` | §8.5 | C25@406ce089 §26 | F5 | I-STO | DR2 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§26-7` | §8.5 | C25@406ce089 §26 | F5 | I-STO, I-L15 | DR2; D15 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-LATER, H-SP-4 |
+| `25-§26-8` | §8.5 | C25@406ce089 §26 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§26-9` | §8.5 | C25@406ce089 §26 | F5 | I-STO | DR2 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§26-10` | §8.5 | C25@406ce089 §26 | F5 | I-STO | DR2 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§26-11` | §8.5 | C25@406ce089 §26 | F5 | I-AUTH, I-STO | D12; DR2 | High | V-ACC | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `25-§26-12` | §8.5 | C25@406ce089 §26 | F5 | I-LEG, I-FPDR2 | DLEG; DUF6 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-LEG, H-SP-4 |
+| `25-§26-13` | §8.5 | C25@406ce089 §26 | F5 | I-STO | DR2 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§26-14` | §8.5 | C25@406ce089 §26 | F5 | I-STO | DR2 | Medium | V-ACC | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `25-§27-1` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-2` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-3` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-4` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-5` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-6` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-7` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `25-§27-8` | §8.9 | C25@406ce089 §27 | F9 | I-NONE | none beyond this mission | Low | V-NEG | SP-4 | FOLLOW-UP | H-SP-4 |
+| `24-§5-6` | §8.2 | C24@0c1dcbb2 §5 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§7-3` | §8.2 | C24@0c1dcbb2 §7 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§7-4` | §8.2 | C24@0c1dcbb2 §7 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `24-§14-1` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-AI | DAI | Medium | V-DES | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `24-§14-2` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-3` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-4` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-5` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-6` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-7` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `24-§14-8` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-AUTH, I-AI | D12; DAI | Medium | V-DES | SP-1, SP-3 | BLOCKED | H-D12, H-PROV, H-SP-1, H-SP-3 |
+| `24-§14-9` | §8.2 | C24@0c1dcbb2 §14 | F2 | I-CONV | D13 | Medium | V-NEG | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `24-§18-1a` | §8.2 | C24@0c1dcbb2 §18 | F2 | I-CONV, I-AI, I-CMD, I-L20 | D13; DAI; DTX; D20 | High | V-ACC | SP-2, SP-3, SP-5 | BLOCKED | H-D13, H-PROV, H-DTX, H-LATER, H-SP-2, H-SP-3, H-SP-5 |
+| `24-§21-7` | §8.3 | C24@0c1dcbb2 §21 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-3 | BLOCKED | H-D12, H-SP-1, H-SP-3 |
+| `24-§23-6` | §8.7 | C24@0c1dcbb2 §23 | F7 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `24-§27-5` | §8.2 | C24@0c1dcbb2 §27 | F2 | I-CONV | D13 | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-SP-3 |
+| `24-§31-8` | §8.2 | C24@0c1dcbb2 §31 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-ACC | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `9-§12-1` | §8.2 | C9@649c55f3 §12 | F2 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `10-§5-10` | §8.4 | C10@5c145ed7 §5 | F4 | I-AUTH, I-CONV, I-STO | D12; D13; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-D13, H-STO, H-SP-1, H-SP-4 |
+| `10-§10-1` | §8.2 | C10@5c145ed7 §10 | F2 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `10-§10-3` | §8.3 | C10@5c145ed7 §10 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `10-§10-4` | §8.3 | C10@5c145ed7 §10 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `10-§10-5` | §8.3 | C10@5c145ed7 §10 | F3 | I-AUTH, I-CONV | D12; D13 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-D13, H-SP-1 |
+| `10-§10-7` | §8.4 | C10@5c145ed7 §10 | F4 | I-AUTH, I-CONV, I-STO | D12; D13; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-D13, H-STO, H-SP-1, H-SP-4 |
+| `10-§13-3` | §8.3 | C10@5c145ed7 §13 | F3 | I-AUTH, I-CONV, I-CMD | D12; D13; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-D13, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `10-§17-4` | §8.3 | C10@5c145ed7 §17 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-TEST | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `10-§23-3b` | §8.3 | C10@5c145ed7 §23 | F3 | I-CONV, I-AI | D13; DAI | Medium | V-ACC | SP-3 | BLOCKED | H-D13, H-PROV, H-SP-3 |
+| `12-§4-5` | §8.3 | C12@6d48feff §4 | F3 | I-CONV | D13 | Medium | V-TEST | — | BLOCKED | H-D13 |
+| `17-§12-1` | §8.4 | C17@7943f74a §12 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `17-§12-2` | §8.4 | C17@7943f74a §12 | F4 | I-AUTH | D12 | Medium | V-DES | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `7-§6-2` | §8.2 | C7@65ad91b2 §6 | F2 | I-AUTH | D12 | Medium | V-TEST | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `7-§6-4` | §8.2 | C7@65ad91b2 §6 | F2 | I-AUTH | D12 | Medium | V-DES | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `7-§6-5` | §8.2 | C7@65ad91b2 §6 | F2 | I-NONE | none beyond this mission | Low | V-NEG | SP-2 | FOLLOW-UP | H-SP-2 |
+| `7-§15-2a` | §8.2 | C7@65ad91b2 §15 | F2 | I-AUTH | D12 | Medium | V-ACC | SP-1, SP-2 | BLOCKED | H-D12, H-SP-1, H-SP-2 |
+| `BP-§5.3-1` | §8.8 | BP@9dfdd924 §5.3 | F8 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `BP-§5.4-1` | §8.5 | BP@9dfdd924 §5.4 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `BP-§6.1-1` | §8.3 | BP@9dfdd924 §6.1 | F3 | I-AUTH | D12 | Medium | V-NEG | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `BP-§6.2-1` | §8.3 | BP@9dfdd924 §6.2 | F3 | I-AUTH, I-CONV, I-CMD | D12; D13; DTX | High | V-DES | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-D13, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§6.3-1` | §8.1 | BP@9dfdd924 §6.3 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§6.3-2` | §8.5 | BP@9dfdd924 §6.3 | F5 | I-STO | DR2 | Medium | V-DES | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `BP-§8.4-1` | §8.2 | BP@9dfdd924 §8.4 | F2 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§9-1` | §8.1 | BP@9dfdd924 §9 | F1 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§10.3-O` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-AUTH, I-AI, I-STO | D12; DAI; DR2 | Medium | V-EVM | SP-1, SP-3, SP-4 | BLOCKED | H-D12, H-PROV, H-STO, H-SP-1, H-SP-3, H-SP-4 |
+| `BP-§10.3-W1` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-AUTH, I-CMD | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§10.3-W2` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§10.3-W3` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-CMD | DTX | High | V-TEST | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `BP-§10.3-W4` | §8.2 | BP@9dfdd924 §10.3 | F2 | I-AUTH, I-AI, I-STO | D12; DAI; DR2 | Medium | V-TEST | SP-1, SP-3, SP-4 | BLOCKED | H-D12, H-PROV, H-STO, H-SP-1, H-SP-3, H-SP-4 |
+| `BP-§10.3-W5` | §8.4 | BP@9dfdd924 §10.3 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `BP-§10.3-W6` | §8.2 | BP@9dfdd924 §10.3 | F2 | I-AI | DAI | Medium | V-TEST | SP-3 | FOLLOW-UP | H-PROV, H-SP-3 |
+| `BP-§10.3-W7` | §8.3 | BP@9dfdd924 §10.3 | F3 | I-AUTH, I-CMD | D12; DTX | High | V-TEST | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§10.3-W8` | §8.4 | BP@9dfdd924 §10.3 | F4 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `BP-§10.3-W9` | §8.5 | BP@9dfdd924 §10.3 | F5 | I-STO | DR2 | Medium | V-TEST | SP-4 | FOLLOW-UP | H-STO, H-SP-4 |
+| `BP-§10.3-W10` | §8.5 | BP@9dfdd924 §10.3 | F5 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `BP-§10.3-W11` | §8.3 | BP@9dfdd924 §10.3 | F3 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `BP-§10.3-W12` | §8.2 | BP@9dfdd924 §10.3 | F2 | I-NONE | none beyond this mission | Medium | V-TEST | — | PASS | — |
+| `BP-§10.3-W13` | §8.2 | BP@9dfdd924 §10.3 | F2 | I-AUTH | D12 | Medium | V-TEST | SP-1 | BLOCKED | H-D12, H-SP-1 |
+| `BP-§10.3-C1` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-CMD | DTX | High | V-DES | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `BP-§10.3-S1` | §8.6 | BP@9dfdd924 §10.3 | F6 | I-AUTH, I-STO | D12; DR2 | Medium | V-TEST | SP-1, SP-4 | BLOCKED | H-D12, H-STO, H-SP-1, H-SP-4 |
+| `BP-§10.3-SA1` | §8.3 | BP@9dfdd924 §10.3 | F3 | I-AUTH, I-CONV, I-AI, I-CMD, I-STO | D12; D13; DAI; DTX; DR2 | High | V-FRV; V-EVM | SP-1, SP-2, SP-3, SP-4, SP-5 | BLOCKED | H-D12, H-D13, H-PROV, H-DTX, H-STO, H-SP-1, H-SP-2, H-SP-3, H-SP-4, H-SP-5 |
+| `BP-§10.3-SA2` | §8.3 | BP@9dfdd924 §10.3 | F3 | I-AUTH, I-CMD, I-FPDR14, I-FPDR3 | D12; DTX | High | V-FRV; V-EVM | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§10.3-SB1` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-AUTH, I-CMD, I-FPDR14 | D12; DTX | High | V-FRV; V-EVM | SP-1, SP-2, SP-5 | BLOCKED | H-D12, H-DTX, H-SP-1, H-SP-2, H-SP-5 |
+| `BP-§10.3-SB2` | §8.1 | BP@9dfdd924 §10.3 | F1 | I-CMD, I-FPDR14 | DTX | High | V-FRV; V-EVM | SP-2, SP-5 | BLOCKED | H-DTX, H-SP-2, H-SP-5 |
+| `BP-§10.3-X` | §8.4 | BP@9dfdd924 §10.3 | F4 | I-AUTH, I-AI, I-STO | D12; DAI; DR2 | Medium | V-EVM | SP-1, SP-3, SP-4 | BLOCKED | H-D12, H-PROV, H-STO, H-SP-1, H-SP-3, H-SP-4 |
+| `BP-§11-1` | §8.2 | BP@9dfdd924 §11 | F2 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§11-2` | §8.8 | BP@9dfdd924 §11 | F8 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§11-3` | §8.8 | BP@9dfdd924 §11 | F8 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+| `BP-§13-1` | §8.8 | BP@9dfdd924 §13 | F8 | I-NONE | none beyond this mission | Low | V-DES | — | PASS | — |
+
+### 20.7 Register totals
+
+| Measure | Count |
+|---|---|
+| Rows with a Stage 7 finding | 563 |
+| `BLOCKED` | 319 |
+| `FOLLOW-UP` | 176 |
+| `PASS` | 68 |
+| `NOT APPLICABLE` | 0 |
+| Risk High / Medium / Low | 61 / 427 / 75 |
+| Specialist markers SP-1 / SP-2 / SP-3 / SP-4 / SP-5 | 236 / 95 / 135 / 211 / 90 |
+| Rows with no specialist marker | 90 |
+
+| Subsection | Rows | `BLOCKED` | `FOLLOW-UP` | `PASS` |
+|---|---|---|---|---|
+| §8.1 | 67 | 55 | 3 | 9 |
+| §8.2 | 92 | 46 | 36 | 10 |
+| §8.3 | 78 | 58 | 19 | 1 |
+| §8.4 | 67 | 56 | 10 | 1 |
+| §8.5 | 114 | 48 | 65 | 1 |
+| §8.6 | 24 | 23 | 1 | 0 |
+| §8.7 | 71 | 33 | 33 | 5 |
+| §8.8 | 20 | 0 | 1 | 19 |
+| §8.9 | 30 | 0 | 8 | 22 |
+
+Every `BLOCKED` row is exactly a row carrying `D12`, `D13` or `DTX`. All 42 `DTX` rows are `BLOCKED`. No row changed disposition, owning mission, build commitment or commercial classification.
+
+`PASS` rows (68): `3-§2-2`, `3-§3`, `3-§5-9`, `3-§7-9`, `3-§12-5`, `3-§14-2`, `3-§15-1`, `3-§20-1`, `3-§20-2`, `3-§20-3`, `3-§20-4`, `3-§20-5`, `3-§20-6`, `5-§2-2`, `5-§4-4`, `5-§4-5`, `5-§4-9`, `5-§4-14`, `5-§6-13`, `5-§7-1`, `5-§18-11`, `5-§19-1`, `5-§19-2`, `5-§19-3`, `5-§19-4`, `5-§19-5`, `22-§4-3`, `22-§4-4`, `22-§17-1`, `22-§17-9`, `22-§19-1`, `22-§19-3`, `22-§19-4`, `22-§19-5`, `22-§22-1`, `22-§22-2`, `22-§22-3`, `22-§22-4`, `22-§22-5`, `22-§22-6`, `22-§27-1`, `22-§27-2`, `22-§27-3`, `22-§27-4`, `22-§27-5`, `22-§27-6`, `22-§27-7`, `22-§27-8`, `22-§28-1`, `22-§28-2`, `22-§28-3`, `22-§28-4`, `22-§28-5`, `22-§28-6`, `22-§28-7`, `22-§28-8`, `22-§28-9`, `22-§28-10`, `22-§29-14`, `BP-§5.3-1`, `BP-§6.3-1`, `BP-§8.4-1`, `BP-§9-1`, `BP-§10.3-W12`, `BP-§11-1`, `BP-§11-2`, `BP-§11-3`, `BP-§13-1`.
+
+## 21. Engineering Questions, Risks & Recommendations
+
+### 21.1 Engineering questions for the EIS and specialists
+
+| ID | Question | Routed to |
+|---|---|---|
+| EQ14-01 | Shape of the repayment-target link that can point to either a standalone credit entry or a credit-method sale without altering the sale (`FPDR-4`), and its integrity constraints (same business, same counterparty reference, direction) | SP-2, SP-5 |
+| EQ14-02 | Whether partial and multiple repayments against one target are recorded as separate settlement rows, given that over-repayment validation against a balance is SB-P-1.16 (`3-§9-12`) | SP-2 |
+| EQ14-03 | Material-field fingerprint content per destination and its interaction with `confirmation_bindings` expiry | SP-3, SP-2 |
+| EQ14-04 | Interpretation isolation that runs in the deployed runtime; whether the Lambda offload pattern is reused for heavy parsing | SP-3, SP-4 |
+| EQ14-05 | Retrieval mechanism (short-lived signed access versus proxy) and the acceptable revocation window for `25-§26-11` | SP-1, SP-4 |
+| EQ14-06 | Mechanism for `FPDR-2` discard before the SB-P-1.15 Scheduler (object-store lifecycle on a transient prefix plus reconciliation) and the provider capability it needs | SP-4 |
+| EQ14-07 | Policy shape for new tables under the SB-P-1.12 kernel, and the same-migration revoke pattern against current default privileges | SP-1, SP-5 |
+| EQ14-08 | Document fingerprint for duplicate detection (lease SHA-256) and its business scoping | SP-2, SP-4 |
+| EQ14-09 | Migration ordering of M14-1 relative to the SB-P-1.12 transactions-family cut-over migration | SP-5 |
+
+### 21.2 Engineering risks
+
+| Risk | Likelihood / impact | Mitigation | Specialist |
+|---|---|---|---|
+| Upstream SB-P-1.12/SB-P-1.13 stay suspended; 319 rows cannot be built | High / High | Dependency-ordered activation; documentary work continues; no interim authority path | — |
+| Widening mislabels or distorts existing history or totals | Medium / High | Regression baseline; one totals definition; no backfill | SP-2, SP-5 |
+| A second transaction-write path appears during coordination | Medium / High | Widen only the governed command in the same cut-over | SP-1, SP-2 |
+| New tables ship readable by `anon` | Medium / High | Same-migration RLS and revokes; negative tests | SP-1, SP-5 |
+| Repayment-target link permits cross-business or cross-counterparty linkage | Medium / High | Composite business-scoped references; integrity checks | SP-1, SP-2 |
+| Signed retrieval outlives revocation | Medium / Medium | Short expiry or proxy; stated window | SP-1, SP-4 |
+| `FPDR-2` discard not enforceable before the Scheduler | Low / Medium | Object-store lifecycle on transient prefix; return to Mission Control if not possible (would be T8) | SP-4 |
+| Interpretation cannot run isolated in the deployed runtime | Medium / Medium | Offload with enforced budget | SP-3, SP-4 |
+| Document-borne instruction or formula injection | Medium / High | Untrusted-data handling; export neutralization; fixtures | SP-3 |
+| Provider facts remain unknown | High / Medium | Separately authorized read-only evidence collection | SP-4 |
+| CI produces no runs | High / Low | Local gates recorded; run evidence when available | — |
+
+### 21.3 Recommendations
+
+1. Mission Control receives and dispositions the five independent specialist reports before any Section 20 finding marked `SP-n` is relied on.
+2. Mission Control authorizes separate read-only evidence collection for the `UNVERIFIED — ACCESS REQUIRED` facts in Section 20.2.
+3. The EIS carries EC14-01 to EC14-16 and the answers to EQ14-01 to EQ14-09 after specialist disposition.
+4. Implementation activation follows the Section 20.4 order and no earlier.
+5. A separately authorized migration mission plans and rehearses M14-1 to M14-4.
+
+### 21.4 Remaining holds by condition
+
+| Hold | Rows |
+|---|---|
+| `H-D12` SB-P-1.12 implementation/evidence | 225 |
+| `H-D13` SB-P-1.13 implementation/evidence | 92 |
+| `H-DTX` governed transaction command | 42 |
+| `H-PROV` AI provider evidence | 97 |
+| `H-STO` storage activation | 124 |
+| `H-LEG` retention basis | 11 |
+| `H-LATER` later-mission dependency | 13 |
+| `H-SP-1` Security/RLS report pending | 236 |
+| `H-SP-2` Transaction integrity report pending | 95 |
+| `H-SP-3` UDI/AI report pending | 135 |
+| `H-SP-4` Storage/provider report pending | 211 |
+| `H-SP-5` Migration report pending | 90 |
+
+A row may carry several holds.
+
+### 21.5 Trigger screen
+
+| Trigger | Result |
+|---|---|
+| T2 — source conflict | Not triggered |
+| T3 — new product decision | Not triggered. EQ14-02 (partial/multiple repayments) is treated as engineering within `FPDR-4`; if a specialist finds it needs a product rule, it would become T3 |
+| T6 — material derived constraint | Not triggered |
+| T7 — omission, deferral, pull-forward, reclassification | Not triggered; no row moved |
+| T8 — infeasibility or Product Truth / security conflict | Not triggered. `BLOCKED` rows are dependency-blocked, not infeasible. EC14-08 (`FPDR-2` timing) would become T8 only if no compliant mechanism exists |
+
+B6-01 stays resolved by `FPDR-4`; no new evidence reopens it.
+
+### 21.6 Findings held pending specialists
+
+| Specialist report | Held Section 20 items |
+|---|---|
+| S7-SP-1 Security/RLS | F1, F3, F5, F6, F7; EC14-03, EC14-07, EC14-09; EQ14-05, EQ14-07; 236 rows |
+| S7-SP-2 Transaction integrity | F1, F3, F7; EC14-01, EC14-02, EC14-03, EC14-05, EC14-10, EC14-13, EC14-14; EQ14-01, EQ14-02, EQ14-03, EQ14-08; 95 rows |
+| S7-SP-3 UDI/AI safety | F2, F3, F6; EC14-04, EC14-05, EC14-11; EQ14-03, EQ14-04; 135 rows |
+| S7-SP-4 Storage/provider | F2, F4, F5, F7; EC14-06, EC14-07, EC14-08, EC14-14; EQ14-04, EQ14-05, EQ14-06, EQ14-08; 211 rows |
+| S7-SP-5 Migration | F1, F4, F5, F8; EC14-01, EC14-09, EC14-15; EQ14-01, EQ14-07, EQ14-09; Section 20.4 migrations; 90 rows |
+
+### 21.7 Stage 7 readiness
+
+Sections 20–21 are drafted. Stage 7 cannot be completed until the five independent specialist reports are received and dispositioned by Mission Control and any resulting corrections are applied. No Stage 8, Blueprint lock, EIS, implementation or production authority follows.

@@ -251,3 +251,10 @@ FPDR-4, the reconciled 766-row FCTM and Blueprint v0.2 are canonical.
 Mission Control prepares Stage 7 Engineering Review plus mandatory independent specialist-review authorization.
 
 No Blueprint lock, EIS, implementation, provider activation or production authority follows.
+
+## D-17 — Stage 7 Engineering Review drafted (Sections 20–21)
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL REVIEW, SPECIALIST DISPOSITION AND HUMAN MERGE
+
+Under SB-P-1.14-MC-11 (PR #822, `main@cdb94b21`), Claude Code appended Sections 20–21 to the Blueprint on `mission/SB-P-1.14-stage7-engineering-review`. All 563 `IN SCOPE` rows have a finding: 319 `BLOCKED` (exactly the `D12`/`D13`/`DTX` rows; dependency-blocked, not infeasible), 176 `FOLLOW-UP`, 68 `PASS`. B6-01 stays resolved by `FPDR-4`; B6-02 to B6-19 are carried. No independent specialist report has been received, so all specialist-dependent findings are held. No T2/T3/T6/T7/T8 trigger. No decision is recorded by this entry.
