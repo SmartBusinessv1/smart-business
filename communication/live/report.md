@@ -1,77 +1,24 @@
-# SMART BUSINESS SPECIALIST REPORT
+# SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
-# Report
+**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
+**Current canonical baseline:** `main@d270befb9a0f2d9883e8d5f55677279616a404fa`  
+**Lifecycle:** Stage 8 — Founder Approval and Blueprint Lock  
+**Status:** FOUNDER APPROVED — LOCK CROSSING PENDING HUMAN MERGE
 
-**Mission ID:** SB-P-1.14
+Founder decision:
 
-**Mission Name:** Business Memory, Documents & Durable Media
+`SB-P-1.14 STAGE 8 — APPROVED`
 
-**From:** Claude Code — Stage 7 Engineering Review owner
+Stage 7 is COMPLETE / CANONICAL.
 
-**To:** Mission Control
+Mission Control has prepared the Stage 8 lock-only transition. Until that PR is human-merged and verified:
 
-**Status:** `DRAFT — STAGE 7 SECTIONS 20–21 RECONCILED WITH FIVE CANONICAL SPECIALIST REPORTS; AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION`
+- Blueprint is not canonically locked;
+- Stage 9 EIS drafting is NOT AUTHORIZED;
+- implementation is NOT AUTHORIZED;
+- migration execution is NOT AUTHORIZED;
+- provider activation is NOT AUTHORIZED;
+- production mutation is NOT AUTHORIZED;
+- delivery publication is NOT AUTHORIZED.
 
-**Date:** 2026-10-08
-
----
-
-# Executive Summary
-
-The Stage 7 branch is updated from canonical `main@ebe14b8720273d75281c96c0d1d9ed8b2a30168b`, which contains the five independent specialist reports. Sections 20–21 are reconciled with them under Mission Control's correction set on PR #823. The 563-row register now carries the residual holds the reports establish instead of "specialist pending": 319 `BLOCKED` (unchanged), 157 `FOLLOW-UP` (was 176), 87 `PASS` (was 68). No trigger fires. Stage 7 remains DRAFT.
-
----
-
-# Work Performed
-
-- Branch updated by merge from canonical main (no force push).
-- Sections 20–21 corrected per items A–I; register recomputed; hold counts recomputed.
-- Stage 7 report updated: `communication/missions/SB-P-1.14/claude-code/11-stage7-engineering-review-report.md`.
-
----
-
-# Findings
-
-**Confirmed:** 563 unique register rows equal to the FCTM `IN SCOPE` set; `BLOCKED` equals the `D12`/`D13`/`DTX` rows; no pending-specialist hold remains; Sections 1–19 unchanged except authorized lines.
-
-**Unknowns:** `UNVERIFIED — ACCESS REQUIRED` facts in Blueprint §20.2.
-
----
-
-# Changes Made
-
-- `docs/phase-1-mission-blueprint/active/SB-P-1.14.md`
-- `communication/missions/SB-P-1.14/claude-code/11-stage7-engineering-review-report.md`
-- `communication/missions/SB-P-1.14/README.md`, `decision-log.md`, `handover-log.md`
-- `communication/live/report.md`
-
----
-
-# Verification
-
-Register, scope and Sections 1–19 invariance checks by script; local Markdown Quality Gate and pre-commit gate. CI evidence is in the pull-request handover comment.
-
----
-
-# Risks and Limitations
-
-- Specialist acceptance is not implementation readiness; dependency, provider and migration holds remain.
-- SB-P-1.12 and SB-P-1.13 implementation remain suspended.
-
----
-
-# Founder or Mission Control Action Required
-
-Mission Control final Stage 7 disposition.
-
----
-
-# Recommended Next Step
-
-Mission Control reviews the reconciled PR #823.
-
----
-
-# Completion Status
-
-**STAGE 7 ENGINEERING REVIEW DRAFT RECONCILED — AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION; STAGE 8/BLUEPRINT LOCK/EIS/IMPLEMENTATION/PRODUCTION NOT AUTHORIZED.**
+Next: Founder / authorized-human merge of the Stage 8 lock PR, then Mission Control post-merge verification and separate Stage 9 authorization.

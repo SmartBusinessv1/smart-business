@@ -284,3 +284,28 @@ Next action: Mission Control obtains and dispositions the five independent speci
 Delivered: Sections 20–21 reconciled with the five canonical specialist reports; updated Stage 7 report.
 
 Next action: Mission Control final Stage 7 disposition. PR #823 stays DRAFT. Stage 8, Blueprint lock, EIS, implementation, provider activation and production remain not authorized.
+
+
+## H-19 — Founder Stage 8 approval → Blueprint lock human-merge gate
+
+**Date:** 2026-10-08  
+**From:** Mission Control / Founder  
+**To:** Founder / authorized-human merge  
+**Canonical Stage 7 main:** `d270befb9a0f2d9883e8d5f55677279616a404fa`
+
+Founder approved:
+
+`SB-P-1.14 STAGE 8 — APPROVED`
+
+Prepared:
+
+- Founder Stage 8 approval record;
+- SB-P-1.14-MC-12 Blueprint lock disposition;
+- locked Blueprint transition from `active/` to `completed/`;
+- mission status/log reconciliation.
+
+Next action: human merge of the Stage 8 lock PR at the Mission Control-reviewed head.
+
+After verified merge, Mission Control may prepare a separate Stage 9 EIS Creation authorization for Claude Code.
+
+No EIS drafting, implementation, migration execution, provider activation, production mutation or delivery publication is authorized by this handover.

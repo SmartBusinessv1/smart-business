@@ -43,8 +43,9 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 5 — Mission Control Product Review: **COMPLETE / CANONICAL — PR #817**
 - Stage 6 — Builder Review: **COMPLETE / CANONICAL — PR #819**
 - Post-Stage-6 B6-01 reconciliation (`FPDR-4`): **COMPLETE / CANONICAL — PR #821**
-- Stage 7 — Engineering Review: **AUTHORIZED (PR #822) — DRAFT SECTIONS 20–21 RECONCILED WITH S7-SP-1 TO S7-SP-5 (PRs #824–#828); AWAITING FINAL DISPOSITION**
-- Stage 8+ — **NOT AUTHORIZED**
+- Stage 7 — Engineering Review: **COMPLETE / CANONICAL — PR #823, `main@d270befb9a0f2d9883e8d5f55677279616a404fa`**
+- Stage 8 — Founder Approval & Blueprint Lock: **FOUNDER APPROVED — LOCK CROSSING PREPARED; EFFECTIVE ONLY AFTER HUMAN MERGE**
+- Stage 9+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
 
@@ -221,3 +222,24 @@ Sections 20–21 may be drafted only after that crossing. Blueprint lock, EIS an
 - `claude-code/11-stage7-engineering-review-report.md` — Stage 7 report
 
 The five independent specialist reports (S7-SP-1 to S7-SP-5) are canonical (PRs #824–#828) and dispositioned by Mission Control; their residual holds replace the former pending-specialist holds row by row. No Stage 8, Blueprint lock, EIS, implementation or production authority follows.
+
+
+## Stage 8 Founder approval and lock preparation — MC-12
+
+Stage 7 is canonical through PR #823 at `main@d270befb9a0f2d9883e8d5f55677279616a404fa`.
+
+Founder explicitly approved:
+
+`SB-P-1.14 STAGE 8 — APPROVED`
+
+Mission Control has prepared the lock-only transition:
+
+- Founder approval record;
+- Stage 8 Mission Control disposition;
+- Blueprint lifecycle/status metadata to `APPROVED — LOCKED`;
+- move from `active/SB-P-1.14.md` to `completed/SB-P-1.14.md`;
+- mission status/log reconciliation.
+
+Substantive Sections 1–21, FCTM, FPDR-1 through FPDR-4 and all specialist reports remain unchanged.
+
+Stage 9 EIS creation is NOT AUTHORIZED until this Stage 8 lock is human-merged, post-merge verified, and a separate Stage 9 authorization is issued.
