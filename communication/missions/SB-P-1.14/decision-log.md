@@ -267,3 +267,25 @@ Under SB-P-1.14-MC-11 (PR #822, `main@cdb94b21`), Claude Code appended Sections 
 The five independent specialist reports are canonical at `main@ebe14b8720273d75281c96c0d1d9ed8b2a30168b` (S7-SP-4 PR #824, S7-SP-3 PR #825, S7-SP-1 PR #826, S7-SP-2 PR #827, S7-SP-5 PR #828). Claude Code updated the Stage 7 branch from that main and applied Mission Control's consolidated correction set (PR #823 comment `6059252422`) to Sections 20–21.
 
 The 563-row register replaces "specialist pending" holds with the residual holds the reports establish. Classification moves from 319 / 176 / 68 to 319 / 157 / 87 (`BLOCKED` / `FOLLOW-UP` / `PASS`); `D12`=225, `D13`=92, `DTX`=42 preserved. EQ14-02 is resolved as Engineering, not T3. T2/T3/T6/T7/T8: not triggered. No row left `IN SCOPE`; no FCTM, Founder record, specialist report or Sections 1–19 substantive change. No decision is recorded by this entry.
+
+
+## D-19 — Stage 7 canonical; Founder Stage 8 approval granted; Blueprint lock prepared
+
+**Date:** 2026-10-08  
+**Status:** STAGE 8 FOUNDER APPROVAL GRANTED — LOCK EFFECTIVE ONLY AFTER HUMAN MERGE
+
+PR #823 is canonical at `main@d270befb9a0f2d9883e8d5f55677279616a404fa`.
+
+Stage 7 final state:
+
+- 563/563 `IN SCOPE` rows reviewed;
+- 319 `BLOCKED`, 157 `FOLLOW-UP`, 87 `PASS`;
+- all five specialist reports canonical and reconciled;
+- T2/T3/T6/T7/T8 not triggered;
+- no FCTM product-definition field changed.
+
+Founder explicitly approved `SB-P-1.14 STAGE 8 — APPROVED`.
+
+Mission Control accepts the approval and prepares the Stage 8 lock crossing under SB-P-1.14-MC-12. The lock freezes FCTM disposition, build commitment, commercial classification and mission assignment.
+
+No Stage 9 EIS work, implementation, migration, provider activation, production or delivery authority follows until the lock is canonical and separately authorized.
