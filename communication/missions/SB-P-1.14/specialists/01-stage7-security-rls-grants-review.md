@@ -1,16 +1,16 @@
 # SB-P-1.14 — Independent Stage 7 Security / Permissions / RLS & Grants Review
 
-**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Specialist:** S7-SP-1 — Security / Permissions / RLS & Grants  
-**Authority:** `communication/missions/SB-P-1.14/mission-control/14-stage7-security-rls-specialist-instruction.md` and SB-P-1.14-MC-11 / `mission-control/13-stage7-engineering-and-specialist-authorization.md`  
-**Canonical review baseline:** `main@cdb94b21284ba18d3bee523009eb4dbe3e8d7b11`  
-**Review type:** Independent read-only Stage 7 specialist review  
+**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media
+**Specialist:** S7-SP-1 — Security / Permissions / RLS & Grants
+**Authority:** `communication/missions/SB-P-1.14/mission-control/14-stage7-security-rls-specialist-instruction.md` and SB-P-1.14-MC-11 / `mission-control/13-stage7-engineering-and-specialist-authorization.md`
+**Canonical review baseline:** `main@cdb94b21284ba18d3bee523009eb4dbe3e8d7b11`
+**Review type:** Independent read-only Stage 7 specialist review
 **Status:** SUBMITTED TO MISSION CONTROL — FINDINGS ONLY / NO APPROVAL AUTHORITY
 
 ## 1. Actor, session, prior contribution and independence
 
-**Actual actor/model:** ChatGPT — GPT-5.6 Sol  
-**Provider:** OpenAI  
+**Actual actor/model:** ChatGPT — GPT-5.6 Sol
+**Provider:** OpenAI
 **Session / room:** Team LIPS Smart Business — Security & Permissions Architecture room
 
 ### Prior contribution to SB-P-1.14
@@ -96,8 +96,8 @@ The most important Stage 7 requirement is therefore **not to collapse design fea
 
 ### SEC14-S7-01 — D12 is a hard authority-consumption gate for all permission-sensitive SB-P-1.14 behavior
 
-**Severity:** HIGH  
-**Classification:** Dependency / evidence hold  
+**Severity:** HIGH
+**Classification:** Dependency / evidence hold
 **Stage 7 effect:** affected Engineering findings must remain held from runtime-ready acceptance
 
 #### Evidence
@@ -156,8 +156,8 @@ No Product Truth correction is required.
 
 ### SEC14-S7-02 — Broad default privileges make every new SB-P-1.14 table unsafe unless it is born hardened
 
-**Severity:** CRITICAL  
-**Classification:** Security architecture requirement / implementation hold  
+**Severity:** CRITICAL
+**Classification:** Security architecture requirement / implementation hold
 **Stage 7 effect:** any Engineering finding that assumes safe new-table defaults must remain held
 
 #### Evidence
@@ -224,7 +224,7 @@ This is not new Product Truth.
 
 ### SEC14-S7-03 — Owner / Manager / Employee permissions require action-and-object separation; upload/create must not widen read/export authority
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Security design requirement / D12 hold
 
 #### Evidence
@@ -290,8 +290,8 @@ UI visibility is never the enforcement boundary.
 
 ### SEC14-S7-04 — Current transaction and correction DML bypasses the governed command/audit model
 
-**Severity:** CRITICAL  
-**Classification:** Security/integrity hold  
+**Severity:** CRITICAL
+**Classification:** Security/integrity hold
 **Stage 7 effect:** all 42 DTX rows remain held
 
 #### Evidence
@@ -348,7 +348,7 @@ No new Founder decision is required.
 
 ### SEC14-S7-05 — Confirmation binding and execution-time revalidation must remain independent of material-target fingerprinting
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Security design / D12 evidence hold
 
 #### Evidence
@@ -400,7 +400,7 @@ No local SB-P-1.14 confirmation-token mechanism is allowed.
 
 ### SEC14-S7-06 — A plain signed retrieval URL cannot guarantee immediate revocation after permission changes
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Retrieval security design decision / implementation hold
 
 #### Evidence
@@ -459,7 +459,7 @@ Until the mechanism is defined and tested, the affected retrieval/revocation fin
 
 ### SEC14-S7-07 — Active-business isolation requires authoritative metadata scope; provider keys and client-supplied business IDs are never authority
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Security architecture / D12 hold
 
 #### Evidence
@@ -526,7 +526,7 @@ No provider-side path/key convention substitutes for kernel authorization.
 
 ### SEC14-S7-08 — Service-role / privileged handlers must inherit EIS-ISO-04; service_role is never document authority
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Privileged-boundary requirement / D12 hold
 
 #### Evidence
@@ -582,7 +582,7 @@ Any Engineering finding that treats "server-side" or "service_role" as sufficien
 
 ### SEC14-S7-09 — Audit/provenance must be authoritative, durable and independent of provider logs
 
-**Severity:** MEDIUM-HIGH  
+**Severity:** MEDIUM-HIGH
 **Classification:** Audit / D12 evidence hold
 
 #### Evidence
@@ -643,7 +643,7 @@ Affected Engineering findings remain held where they depend on unimplemented SB-
 
 ### SEC14-S7-10 — Exports must use the same permission truth as retrieval and must not become an access-escalation path
 
-**Severity:** HIGH  
+**Severity:** HIGH
 **Classification:** Security design / D12 hold
 
 #### Evidence
