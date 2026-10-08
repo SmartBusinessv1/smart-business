@@ -1,38 +1,22 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 9 EIS Creation Authorization
+# Instruction — SB-P-1.14 Stage 10 EIS Review
 
-**Mission ID:** SB-P-1.14  
-**Mission Name:** Business Memory, Documents & Durable Media  
-**From:** Smart Business Mission Control  
-**To:** Claude Code — Stage 9 EIS Creation owner  
-**Stage:** Source 18 v1.2 Stage 9 — Engineering Implementation Specification Creation  
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
-**Date:** 2026-10-08 IST  
-**Canonical Stage 8 baseline:** `main@e5d12aa773b57405c91be5f6aed42264459ae356`  
-**Locked Blueprint:** `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md`
+**Draft EIS:** PR #831 @ `254e40a723e4c74af69d425cb918bb03dc9817e2`
 
-Do not begin Stage 9 until this authorization is human-merged and Mission Control confirms the canonical crossing.
+After this authorization is human-merged and Mission Control verifies the crossing, run in parallel:
 
-After effectiveness, execute:
+- S10-SP-1 Security / Permissions / RLS & Grants
+- S10-SP-2 Transaction & Financial Integrity
+- S10-SP-3 UDI / AI Interpretation Safety
+- S10-SP-4 Storage / Provider Readiness
+- S10-SP-5 Migration / Data-Transition Safety
 
-`communication/missions/SB-P-1.14/mission-control/20-stage9-eis-creation-authorization.md`
+Use the corresponding instructions under `communication/missions/SB-P-1.14/mission-control/22` through `26`.
 
-Authorized branch:
+PR #831 remains DRAFT. Do not edit the EIS until Mission Control consolidates specialist findings and issues a refinement instruction.
 
-`mission/SB-P-1.14-stage9-eis-draft`
+No Stage 10 acceptance, EIS lock, implementation package, implementation, migration, provider or production authority.
 
-Writable paths only:
-
-- `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md`
-- `communication/missions/SB-P-1.14/claude-code/12-stage9-eis-creation-report.md`
-- `communication/live/report.md`
-- `communication/missions/SB-P-1.14/README.md`
-- `communication/missions/SB-P-1.14/decision-log.md`
-- `communication/missions/SB-P-1.14/handover-log.md`
-
-Locked Blueprint, FCTM, Founder records and specialist reports are READ ONLY.
-
-No Stage 10 acceptance, EIS lock, implementation package, implementation, SQL/schema/migration execution, provider activation, production access/mutation, delivery publication or self-merge.
-
-**STOP UNTIL HUMAN MERGE MAKES THIS AUTHORIZATION CANONICAL.**
+**STOP FOR HUMAN MERGE.**
