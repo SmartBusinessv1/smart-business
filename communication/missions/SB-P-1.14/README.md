@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 2 CANONICAL — STAGE 3 FOUNDER DECISION GATE AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE  
+**Current status:** STAGE 3 FOUNDER DECISIONS CAPTURED — DECISION RECONCILIATION AWAITING FOUNDER HUMAN MERGE  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -38,7 +38,7 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 
 - Stage 1 — Mission Initiation and Intake Pack: **CANONICAL — PR #811**
 - Stage 2 — Mission Truth and Delta Reconciliation: **CANONICAL — PR #813**
-- Stage 3 — Founder Decision Gate: **TRIGGERED; AUTHORIZATION PREPARED — NOT EFFECTIVE UNTIL HUMAN MERGE**
+- Stage 3 — Founder Decision Gate: **AUTHORIZED — PR #814; FOUNDER DECISIONS CAPTURED / RECONCILIATION AWAITING HUMAN MERGE**
 - Stage 4+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
@@ -64,3 +64,18 @@ Founder dialogue is limited to:
 No Stage 4 Blueprint work is authorized before the resulting Founder Product Decision Record is canonically reconciled.
 
 This README is an index, not an independent authority record.
+
+
+## Stage 3 Founder decisions — MC-04
+
+Founder approved FDB-1, FDB-2 and FDB-3.
+
+Draft decision IDs:
+
+- FPDR-1 — four-state Ledger / customer-credit boundary;
+- FPDR-2 — minimum retention for unconfirmed originals and raw voice;
+- FPDR-3 — material changed-target re-prompt rule.
+
+The FCTM remains 766 rows. The only T7 mission-assignment reconciliation is `3-§9-12` moving to SB-P-1.16 for authoritative customer-balance truth.
+
+Stage 4 remains NOT AUTHORIZED until this Stage 3 reconciliation is human-merged and verified.
