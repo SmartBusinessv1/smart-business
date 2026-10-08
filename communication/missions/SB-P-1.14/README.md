@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 7 AUTHORIZED (PR #822, `main@cdb94b21`) — DRAFT SECTIONS 20–21 PREPARED / AWAITING MISSION CONTROL AND FIVE INDEPENDENT SPECIALIST REPORTS  
+**Current status:** STAGE 7 DRAFT RECONCILED WITH FIVE CANONICAL SPECIALIST REPORTS (`main@ebe14b87`) / AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -43,7 +43,7 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 5 — Mission Control Product Review: **COMPLETE / CANONICAL — PR #817**
 - Stage 6 — Builder Review: **COMPLETE / CANONICAL — PR #819**
 - Post-Stage-6 B6-01 reconciliation (`FPDR-4`): **COMPLETE / CANONICAL — PR #821**
-- Stage 7 — Engineering Review: **AUTHORIZED (PR #822) — DRAFT SECTIONS 20–21 PREPARED; SPECIALIST-DEPENDENT FINDINGS HELD**
+- Stage 7 — Engineering Review: **AUTHORIZED (PR #822) — DRAFT SECTIONS 20–21 RECONCILED WITH S7-SP-1 TO S7-SP-5 (PRs #824–#828); AWAITING FINAL DISPOSITION**
 - Stage 8+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
@@ -217,7 +217,7 @@ Sections 20–21 may be drafted only after that crossing. Blueprint lock, EIS an
 
 ## Stage 7 draft outputs — Claude Code
 
-- Blueprint Sections 20–21 (v0.3): 563-row register — 319 `BLOCKED` (dependency), 176 `FOLLOW-UP`, 68 `PASS`; early delivery plan; B6-02 to B6-19 carried as EC14-01 to EC14-16
+- Blueprint Sections 20–21 (v0.3): 563-row register reconciled with specialist residual holds — 319 `BLOCKED` (dependency), 157 `FOLLOW-UP`, 87 `PASS` (draft was 319 / 176 / 68); early delivery plan; B6-02 to B6-19 carried as EC14-01 to EC14-16
 - `claude-code/11-stage7-engineering-review-report.md` — Stage 7 report
 
-The five independent specialist reports (S7-SP-1 to S7-SP-5) are not yet received; every specialist-dependent finding is held. No Stage 8, Blueprint lock, EIS, implementation or production authority follows.
+The five independent specialist reports (S7-SP-1 to S7-SP-5) are canonical (PRs #824–#828) and dispositioned by Mission Control; their residual holds replace the former pending-specialist holds row by row. No Stage 8, Blueprint lock, EIS, implementation or production authority follows.

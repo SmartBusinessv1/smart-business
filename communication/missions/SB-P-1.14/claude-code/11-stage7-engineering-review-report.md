@@ -3,91 +3,123 @@
 **Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media
 **From:** Claude Code, Stage 7 Engineering Review owner
 **To:** Mission Control
-**Status:** `DRAFT — STAGE 7 SECTIONS 20–21 PREPARED; AWAITING MISSION CONTROL REVIEW AND FIVE INDEPENDENT SPECIALIST REPORTS`
+**Status:** `DRAFT — STAGE 7 SECTIONS 20–21 RECONCILED WITH FIVE CANONICAL SPECIALIST REPORTS; AWAITING MISSION CONTROL FINAL STAGE 7 DISPOSITION`
 **Date:** 2026-10-08
 
 ## 1. Objective
 
-Append Sections 20–21 to the Blueprint under SB-P-1.14-MC-11: an Engineering Review with a feasibility and risk finding for every `IN SCOPE` row, an early delivery plan, the disposition of B6-02 to B6-19, and a trigger screen. No implementation.
+Append Sections 20–21 to the Blueprint under SB-P-1.14-MC-11, then reconcile them with the five independent specialist reports under Mission Control's consolidated correction set on PR #823 (comment `6059252422`). No implementation.
 
 ## 2. Authority and base
 
 | Check | Result |
 |---|---|
 | Authorization | PR #822 merged; `main@cdb94b21284ba18d3bee523009eb4dbe3e8d7b11` |
-| Branch | `mission/SB-P-1.14-stage7-engineering-review`, from that base |
-| Baseline | Blueprint v0.2 (blob `55adeb0f`); FCTM blob `01e9856aca0afdb1267230a1932fe34054449a4b` (766 rows; 563 `IN SCOPE`); `FPDR-1` to `FPDR-3` (blob `9717b29d`) and `FPDR-4` (blob `3f36c06d`) |
-| Specialist reports present | none (`communication/missions/SB-P-1.14/specialists/` does not exist at the base) |
+| Specialist baseline | five specialist PRs human-merged; canonical `main@ebe14b8720273d75281c96c0d1d9ed8b2a30168b` |
+| Branch update | `mission/SB-P-1.14-stage7-engineering-review` updated by a merge commit from `main@ebe14b87` (no force push); the Stage 7 draft preserved; no conflict |
+| Baseline sources | Blueprint v0.2 Sections 1–19; FCTM blob `01e9856aca0afdb1267230a1932fe34054449a4b` (766 rows; 563 `IN SCOPE`); `FPDR-1` to `FPDR-4` |
 
-## 3. Deliverables
+## 3. Canonical specialist references
 
-| Deliverable | Location |
+| Report | Path | Blob | Canonical |
+|---|---|---|---|
+| S7-SP-1 Security, Permissions, RLS & Grants | `communication/missions/SB-P-1.14/specialists/01-stage7-security-rls-grants-review.md` | `93252bba` | PR #826, `466b1bb5` |
+| S7-SP-2 Transaction & Financial Integrity | `communication/missions/SB-P-1.14/specialists/02-stage7-transaction-financial-integrity-review.md` | `157cbf0f` | PR #827, `121adfdc` |
+| S7-SP-3 UDI / AI Interpretation Safety | `communication/missions/SB-P-1.14/specialists/03-stage7-udi-ai-safety-review.md` | `3344bf58` | PR #825, `adb27545` |
+| S7-SP-4 Storage / Provider Readiness | `communication/missions/SB-P-1.14/specialists/04-stage7-storage-provider-readiness-review.md` | `dfcde0c7` | PR #824, `37b44b7a` |
+| S7-SP-5 Migration / Data-Transition Safety | `communication/missions/SB-P-1.14/specialists/05-stage7-migration-data-transition-review.md` | `74273b4b` | PR #828, `ebe14b87` |
+
+Claude Code did not author or edit any specialist report.
+
+## 4. Corrections applied (Mission Control comment `6059252422`)
+
+| Item | Applied in |
 |---|---|
-| Section 20 Engineering Review | `docs/phase-1-mission-blueprint/active/SB-P-1.14.md` §20.1–§20.7 |
-| Section 21 Questions, Risks & Recommendations | same file §21.1–§21.7 |
-| Metadata (Lifecycle Stage, Status, Engineering Review, Mission Control Review) | same file |
-| Section 18 change-log row 0.3 | same file |
-| This report | `communication/missions/SB-P-1.14/claude-code/11-stage7-engineering-review-report.md` |
+| A — specialist status | §20.1: canonical references and disposition; non-independence statement kept; specialist acceptance stated as not implementation readiness |
+| B — engineering assessments | §20.3 F1, F2, F3, F5, F7, F8 rewritten as specified |
+| C — delivery/migration plan | §20.4: M14-1 mandatory properties; pre-new-data rollback and post-new-data forward-fix/compatibility recovery; rehearsal assertions; provider/production facts `UNVERIFIED — ACCESS REQUIRED` |
+| D — Stage 6 carry-forward | §20.5: "Specialist disposition / residual hold" column; EC14 conclusions carried; B6-01 not reopened |
+| E — 563-row register | §20.6: `H-SP-*` removed; replaced row by row with residual holds established by the reports; reclassified |
+| F — engineering questions | §21.1: EQ14-01 to EQ14-09 updated; EQ14-02 resolved as Engineering, not T3; EQ14-05 requires a revocation-safe mechanism |
+| G — risks | §21.2: revocable, authorization-checked delivery; legacy RPC survival, post-new-data destructive rollback, type mismatch and content-hash-as-idempotency risks added |
+| H — recommendations and holds | §21.3, §21.4, §21.6 rewritten; hold counts recomputed from the reconciled register |
+| I — trigger screen | §21.5: final result and conditional reopeners |
+| J — report, README, logs, live report | this report; D-18; H-18 |
 
-## 4. Per-row register result
+## 5. Register result
 
-| Measure | Count |
-|---|---|
-| `IN SCOPE` rows with a finding | 563 of 563 |
-| `BLOCKED` | 319 — exactly the rows carrying `D12`, `D13` or `DTX`; all 42 `DTX` rows included |
-| `FOLLOW-UP` | 176 |
-| `PASS` | 68 |
-| `NOT APPLICABLE` | 0 |
-| Risk High / Medium / Low | 61 / 427 / 75 |
+**563-row uniqueness:** the §20.6 register contains exactly 563 row lines, 563 unique row IDs, and the set equals the FCTM `IN SCOPE` set; 0 duplicates; no row has left `IN SCOPE`.
 
-`BLOCKED` means dependency-blocked (upstream implementation and evidence not complete). Every blocked row remains `IN SCOPE`; none is infeasible, so no T8 arises. Each row records Blueprint section, source, feasibility code, implications, dependency status, risk, verification class, specialist dependency, classification and remaining hold (Blueprint §20.6).
+| Classification | Before (draft) | After (reconciled) | Delta |
+|---|---|---|---|
+| `BLOCKED` | 319 | 319 | 0 |
+| `FOLLOW-UP` | 176 | 157 | −19 |
+| `PASS` | 68 | 87 | +19 |
+| `NOT APPLICABLE` | 0 | 0 | 0 |
 
-## 5. Early delivery plan (summary)
+`BLOCKED` still equals exactly the rows carrying `D12`, `D13` or `DTX` (0 mismatches). Every `PASS` row has no hold; every `FOLLOW-UP` row has at least one.
 
-Environments (local; isolated test project; non-production storage and AI only after their gates); activation order behind the SB-P-1.12 and SB-P-1.13 prerequisites; expected migrations M14-1 to M14-4 with rehearsal and reverse plans, executed only by a separately authorized migration mission; CI tiers and new test suites; Stage 1 scope flags unchanged and `NOT AUTHORIZED`; `DR2` and `DAI` activation dependencies (Blueprint §20.4).
+Row movements (rule-based; Section 20.6), computed by comparing the draft and reconciled registers:
 
-## 6. Stage 6 findings
+- **24 rows `FOLLOW-UP` → `PASS`**, because their only prior hold was "specialist pending" and the reports leave no residual design or evidence hold: `3-§17-4`, `3-§17-5`, `3-§18-6`, `22-§23-7`, `25-§5-2`, `25-§6-2`, `25-§7-2`, `25-§11-2`, `25-§13-2`, `25-§14-7`, `25-§15-2`, `25-§15-3`, `25-§16-3`, `25-§17-4`, `25-§17-7`, `25-§19-6`, `25-§27-1` to `25-§27-8`.
+- **5 rows `PASS` → `FOLLOW-UP`**, because a report established a residual hold they did not previously carry: `5-§4-9` (`H-FIN`, S7-FI-07); `22-§19-1`, `22-§19-3`, `22-§19-4`, `22-§19-5` (`H-STATE`, UDI-AI-S7-06 / S7-SP4-07).
+- Two rows that would otherwise have moved to `PASS` keep a residual hold: `25-§11-4` (`H-STATE`, UDI-AI-S7-06) and `25-§19-8` (`H-UDI`, UDI-AI-S7-03).
+- No other row changed classification. Net: +19 `PASS`, −19 `FOLLOW-UP`.
 
-B6-01 is resolved by `FPDR-4` and not reopened. B6-02 to B6-19 are each dispositioned in Blueprint §20.5: sixteen become engineering constraints EC14-01 to EC14-16 (B6-15 and B6-16 are carried as the §20.2 evidence holds and the §20.4 activation order), each with its pending specialist.
+## 6. Residual-hold counts
 
-## 7. Findings held pending specialists
+| Hold | Before (draft) | After (reconciled) |
+|---|---|---|
+| `H-D12` | 225 | 225 |
+| `H-D13` | 92 | 92 |
+| `H-DTX` | 42 | 42 |
+| `H-PROV` | 97 | 97 |
+| `H-STO` | 124 | 124 |
+| `H-LEG` | 11 | 11 |
+| `H-LATER` | 13 | 13 |
+| `H-SP-1` | 236 | removed |
+| `H-SP-2` | 95 | removed |
+| `H-SP-3` | 135 | removed |
+| `H-SP-4` | 211 | removed |
+| `H-SP-5` | 90 | removed |
+| `H-BIRTH` | — | 60 |
+| `H-REVOKE` | — | 35 |
+| `H-PRIV` | — | 26 |
+| `H-FIN` | — | 48 |
+| `H-IDEM` | — | 17 |
+| `H-FPRINT` | — | 8 |
+| `H-UDI` | — | 116 |
+| `H-STATE` | — | 47 |
+| `H-DISCARD` | — | 10 |
+| `H-MIG` | — | 90 |
 
-No independent specialist report has been received. Every finding marked `SP-n` is held until Mission Control dispositions that report:
+`D12`=225, `D13`=92 and `DTX`=42 are preserved from the row data.
 
-| Report | Rows held |
-|---|---|
-| S7-SP-1 Security, Permissions, RLS & Grants | 236 |
-| S7-SP-2 Transaction & Financial Integrity | 95 |
-| S7-SP-3 UDI / AI Interpretation Safety | 135 |
-| S7-SP-4 Storage / Provider Readiness | 211 |
-| S7-SP-5 Migration / Data-Transition Safety | 90 |
+## 7. Trigger screen
 
-Held subsection assessments, engineering constraints and questions per report are listed in Blueprint §21.6. Claude Code did not author any specialist report.
+T2, T3, T6, T7, T8: NOT TRIGGERED. Conditional reopeners (Blueprint §21.5): T3 for an intentional non-zero post-revocation access window or a new merchant-visible rule; T7/T8 if SB-P-1.16 balance, ageing or reconciliation is pulled in or requirements are moved or narrowed; T8 if no compliant `FPDR-2` discard mechanism exists, a history rewrite or duplicate-credit backfill is required, a parallel protected write path cannot be eliminated, new objects cannot be born safely, or valid new-state data would require destructive rollback.
 
-## 8. Trigger screen
+## 8. `UNVERIFIED — ACCESS REQUIRED`
 
-T2, T3, T6, T7, T8: not triggered. EQ14-02 (partial or multiple repayments) is treated as engineering within `FPDR-4` and would become T3 only if a specialist finds a product rule is needed. EC14-08 (`FPDR-2` discard timing before the SB-P-1.15 Scheduler) would become T8 only if no compliant mechanism exists.
+Live hosting runtime; live grants, policies, function identities and ACLs; target migration ledger and constraint names; production `sale + payment_method=credit` population; backup/PITR and restore readiness; AWS non-production parser account; Cloudflare account, R2 availability, region and lifecycle-rule capability; AI provider document data controls, model, retention, region and quality; test-project state (Blueprint §20.2).
 
-## 9. `UNVERIFIED — ACCESS REQUIRED`
-
-Live hosting runtime; live grants and storage policies; AWS non-production parser account; Cloudflare account, R2 availability, region and lifecycle-rule capability; AI provider document data controls; test-project state; production `sale + payment_method=credit` rows (Blueprint §20.2).
-
-## 10. Verification performed
+## 9. Verification performed
 
 | Check | Result |
 |---|---|
-| Register covers exactly the 563 `IN SCOPE` rows, once each | PASS |
-| Only `PASS`, `FOLLOW-UP`, `BLOCKED` used; no `NOT APPLICABLE` | PASS |
-| `BLOCKED` exactly equals rows carrying `D12`, `D13` or `DTX` | PASS (0 mismatches) |
-| Sections 1–19 unchanged except the four authorized Metadata lines and one Section 18 row | PASS (line-level comparison with the base) |
-| FCTM and Founder records unchanged | PASS (`git diff` empty) |
+| Register: 563 lines, 563 unique, set equals FCTM `IN SCOPE` | PASS |
+| Only `PASS`, `FOLLOW-UP`, `BLOCKED` used | PASS |
+| `BLOCKED` exactly equals `D12`/`D13`/`DTX` rows | PASS (0 mismatches) |
+| No `H-SP-*` code remains; no "pending/not received" wording in Sections 20–21 | PASS |
+| Sections 1–19 identical to canonical `main@ebe14b87` except the four authorized Metadata lines and the single Section 18 row 0.3 | PASS (line-level comparison) |
+| FCTM, Founder records and specialist reports unchanged | PASS |
 
 Markdown Quality Gate, pre-commit gate and CI observations are recorded in the pull-request handover comment.
 
-## 11. Changes made
+## 10. Changes made
 
-Within the six writable paths: the Blueprint (Sections 20–21 appended; four Metadata fields; one Section 18 row), this report, the mission README, decision log (D-17), handover log (H-17) and the live report.
+Within the six writable paths: the Blueprint (Sections 20–21 replaced with the reconciled version; four Metadata fields; Section 18 row 0.3 text), this report, the mission README, decision log (D-18), handover log (H-18) and the live report. The merge commit from `main@ebe14b87` brings in only the five canonical specialist reports.
 
-## 12. Recommended next step
+## 11. Status
 
-Mission Control obtains the five independent specialist reports, dispositions them, and then reviews Sections 20–21 with the held findings.
+Stage 7 remains DRAFT pending Mission Control's final Stage 7 disposition. Stage 8, Blueprint lock, EIS, implementation, provider activation and production remain not authorized.
