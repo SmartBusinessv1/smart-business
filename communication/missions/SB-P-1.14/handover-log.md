@@ -410,3 +410,18 @@ PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration 
 Mission Control preliminarily verifies the MC-16 refinement and prepares five delta-only specialist confirmations. Each domain reviews only its previously blocking findings against the refined text; Stage 10 is not restarted.
 
 PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
+
+
+## H-26 — Canonical delta evidence → final Security residual refinement
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Canonical main:** `7477f83ce2acbc29c377b09bc58880fb22a33340`  
+**Target:** PR #831
+
+All five delta specialist reports are canonical. Only the narrow `EIS14-STO-03` Security authority-binding residual remains.
+
+MC-18 authorizes one exact replacement of that requirement text while preserving its ID and 26-row mapping. After refinement, only Security requires delta re-confirmation unless another domain is unexpectedly affected.
+
+PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
