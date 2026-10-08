@@ -1,17 +1,22 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 10 Final Review Acceptance
+# Instruction — SB-P-1.14 Stage 11 EIS Lock
 
 **Status:** HUMAN MERGE REQUIRED  
-**Reviewed PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
-**Reviewed EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
+**Canonical Stage 10 baseline:** `main@0527d30e779d93eda95dd19b48186269cecbbf49`  
+**Accepted PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
+**Accepted EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
 
-Mission Control's final Stage 10 completeness / traceability review has passed.
+MC-21 prepares the separate Stage 11 EIS Lock crossing.
 
-MC-20 records Stage 10 ACCEPTED once this disposition is merged to protected main.
+The lock changes lifecycle metadata/status only and carries the accepted EIS plus Claude reports 12–14 onto the canonical-main lineage.
 
-Do not merge PR #831 under this instruction. Do not start Stage 11 until the acceptance crossing is verified.
+Do not merge PR #831. Do not start Stage 12 until this lock PR is human-merged and Mission Control verifies the crossing.
 
-No Stage 12 package, implementation, SQL/migrations, provider activation, production or delivery is authorized.
+After verification:
+- close PR #831 unmerged as superseded;
+- activate Claude Code for Stage 12 Initial Implementation Package preparation only.
 
-**NEXT AFTER HUMAN MERGE:** Mission Control prepares the separate Stage 11 EIS Lock disposition.
+Implementation, SQL/migrations, provider activation, production and delivery remain NOT AUTHORIZED.
+
+**STOP FOR HUMAN MERGE.**
