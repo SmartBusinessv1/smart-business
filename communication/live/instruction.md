@@ -1,23 +1,23 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 10 Consolidated EIS Refinement
+# Instruction — SB-P-1.14 Stage 10 Refined-EIS Delta Specialist Confirmations
 
 **Status:** AUTHORIZATION PENDING HUMAN MERGE  
-**Canonical baseline:** `main@40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`  
-**Draft EIS:** PR #831 @ reviewed head `254e40a723e4c74af69d425cb918bb03dc9817e2`
+**Refined PR #831 head:** `e858a18e00719aed6464822d684c6580fce1f9bf`  
+**Refined EIS blob:** `d97d23048f0dda76f3f60b0b03569a928d9e45d1`
 
-After the authorization PR is human-merged and Mission Control verifies the crossing, Claude Code must execute:
+After this authorization is human-merged and Mission Control verifies the crossing, run in parallel:
 
-`communication/missions/SB-P-1.14/mission-control/28-stage10-consolidated-eis-refinement-authorization.md`
+- S10-D1 Security — instruction 30
+- S10-D2 Transaction/Financial — instruction 31
+- S10-D3 UDI/AI — instruction 32
+- S10-D4 Storage/Provider — instruction 33
+- S10-D5 Migration/Data Transition — instruction 34
 
-First synchronize PR #831's existing branch with the canonical `main` exactly as authorized. Then perform one finding-by-finding documentary EIS refinement pass covering the canonical S10-SP-1 through S10-SP-5 findings.
+under `communication/missions/SB-P-1.14/mission-control/`.
 
-Writable content is limited to:
-- `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md`
-- `communication/missions/SB-P-1.14/claude-code/13-stage10-eis-refinement-report.md`
+These are delta-only confirmations. Do not restart full Stage 10 review. Review only previously blocking findings and their corrected text.
 
-Conflict resolution needed solely for branch synchronization must preserve canonical `main` on overlapping governance/status files.
-
-PR #831 remains DRAFT. No implementation, SQL/schema/migration execution, provider activation, production, delivery, Stage 10 acceptance or EIS lock is authorized.
+PR #831 remains DRAFT. No Stage 10 acceptance, EIS lock, implementation, migration, provider or production authority.
 
 **STOP FOR HUMAN MERGE.**

@@ -350,3 +350,15 @@ PR #836 is canonical at `main@40bfe25cb9a0ca6bf84b9bdc4136f38b29d8d133`. The fin
 Mission Control prepares SB-P-1.14-MC-16 authorizing Claude Code to synchronize the existing PR #831 branch with current canonical main and perform one consolidated documentary refinement pass over the accepted findings from all five Stage 10 specialist reports.
 
 No implementation, SQL/schema/migration execution, provider activation, production, delivery, Stage 10 acceptance or EIS lock follows.
+
+
+## D-25 — Refined EIS submitted; Stage 10 delta confirmations prepared
+
+**Date:** 2026-10-08  
+**Status:** REFINEMENT PRELIMINARILY VERIFIED — DELTA CONFIRMATIONS PENDING HUMAN MERGE
+
+Claude Code synchronized PR #831 to canonical main under MC-16 and submitted refined EIS head `e858a18e00719aed6464822d684c6580fce1f9bf`, EIS blob `d97d23048f0dda76f3f60b0b03569a928d9e45d1`, plus report 13.
+
+Mission Control verified the exact head/blob, DRAFT state and authorized refinement scope. The refinement materially addresses the accepted Stage 10 findings on preliminary review.
+
+Because every specialist domain had blocking findings, Mission Control prepares delta-only confirmations for all five domains. Stage 10 is not restarted. No Stage 10 acceptance or EIS lock is granted yet.
