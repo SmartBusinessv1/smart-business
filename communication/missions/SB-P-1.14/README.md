@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 10 FINAL REVIEW PASSED / ACCEPTANCE PENDING HUMAN MERGE / STAGE 11 NOT YET AUTHORIZED
+**Current status:** STAGE 10 ACCEPTED / STAGE 11 EIS LOCK PENDING HUMAN MERGE / IMPLEMENTATION NOT AUTHORIZED
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -329,3 +329,10 @@ A final Security-only read-only re-confirmation is prepared. It is not effective
 Mission Control independently recomputed the exact refined EIS against the canonical FCTM: 563/563 rows mapped, 0 missing, 0 extra, 0 duplicate rows, 83/83 requirement IDs represented, and 2,282 row-to-requirement links. All documentary Stage 10 blocking findings are closed; runtime/evidence holds remain binding.
 
 MC-20 records Stage 10 acceptance for PR #831 head `7798c8ac03a4e8d3d833be6772a348dda53c6387` / EIS blob `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`, effective only after human merge. Stage 11 EIS Lock remains separate.
+
+
+## Stage 11 EIS Lock — MC-21
+
+Stage 10 acceptance is canonical. Mission Control has prepared the separate Stage 11 EIS Lock crossing for the exact accepted EIS. The crossing changes lifecycle metadata/status only and preserves all 83 requirement IDs, all §29 mappings and all evidence holds.
+
+Once human-merged and post-merge verified, the EIS becomes `APPROVED — LOCKED` and Claude Code may prepare the Stage 12 three-document draft implementation package. This does not authorize implementation.
