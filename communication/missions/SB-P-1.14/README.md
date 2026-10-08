@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 4 AUTHORIZED (PR #816, `main@6712fa52`) — DRAFT BLUEPRINT SECTIONS 1–19 PREPARED / AWAITING MISSION CONTROL STAGE 5 REVIEW  
+**Current status:** STAGE 5 SECTIONS 1–19 CONTENT ACCEPTED — CONDITIONAL UNTIL FOUNDER HUMAN MERGE OF PR #817  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -40,7 +40,8 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 - Stage 2 — Mission Truth and Delta Reconciliation: **CANONICAL — PR #813**
 - Stage 3 — Founder Decision Gate: **COMPLETE / CANONICAL — PR #815 (`FPDR-1` to `FPDR-3`)**
 - Stage 4 — Product Blueprint Sections 1–19: **AUTHORIZED (PR #816) — DRAFT PREPARED, NOT CANONICAL UNTIL MISSION CONTROL STAGE 5 REVIEW AND HUMAN MERGE**
-- Stage 5+ — **NOT AUTHORIZED**
+- Stage 5 — Mission Control Product Review: **CONTENT ACCEPTED — CONDITIONAL UNTIL HUMAN MERGE OF PR #817**
+- Stage 6+ — **NOT AUTHORIZED**
 
 ## Canonical Stage 2 outputs
 
@@ -100,3 +101,19 @@ No Sections 20/21, EIS, implementation, provider/storage, migration or productio
 - `claude-code/07-stage4-blueprint-drafting-report.md` — Stage 4 drafting report
 
 All 766 FCTM rows are accounted for (Section 19); 203 non-`IN SCOPE` rows in Section 11; `3-§9-12` stays SB-P-1.16. No Sections 20/21, EIS, implementation, provider/storage or production authority follows.
+
+
+## Stage 5 Product Review — MC-06
+
+Mission Control independently passed Gate 10 against the canonical 766-row FCTM:
+
+- Section 8: 563/563 `IN SCOPE` rows exactly once;
+- Section 11: 203/203 non-`IN SCOPE` rows exactly once;
+- Section 19: 766/766 mapped, with 0 disposition or owning-mission mismatches;
+- Institutional Learning Intake confirmed under dual-intake rules;
+- FPDR-1 through FPDR-3 preserved;
+- no new T3/T7/T8 condition.
+
+Sections 1–19 are content-accepted, conditional until Founder human merge of PR #817.
+
+Stage 6 Builder Review remains NOT AUTHORIZED until a separate post-merge authorization.
