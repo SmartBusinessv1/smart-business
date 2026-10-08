@@ -260,3 +260,16 @@ Mission Control has prepared the separate Stage 9 EIS Creation authorization for
 Stage 9 is not effective until that authorization PR is human-merged and Mission Control verifies the canonical crossing.
 
 No implementation, SQL/schema/migration execution, provider activation, production mutation or delivery authority follows.
+
+
+## Stage 9 EIS draft → Stage 10 review preparation — MC-14
+
+Stage 9 draft is PR #831 at head `254e40a723e4c74af69d425cb918bb03dc9817e2`.
+
+Mission Control preliminary completeness checks pass: 83 requirements, 563/563 `IN SCOPE` rows, 0 missing/extra rows, 0 orphan requirements, and Stage 7 holds reproduced.
+
+Two preliminary refinement candidates are open for specialist confirmation: MC10-PRE-01 (object-type-specific hardening semantics) and MC10-PRE-02 (truthful financial totals vocabulary).
+
+Mission Control has prepared Stage 10 review authorization plus five mandatory independent specialist confirmations. Stage 10 is not effective until this authorization PR is human-merged.
+
+EIS acceptance/lock, implementation package, implementation, migration, provider and production remain NOT AUTHORIZED.
