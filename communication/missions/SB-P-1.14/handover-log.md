@@ -91,3 +91,15 @@ After merge:
 Claude Code may prepare only Metadata, Mission Snapshot and Sections 1–19 in the SB-P-1.14 Blueprint.
 
 Stage 5 Mission Control review follows. No EIS or implementation authority is implied.
+
+## H-08 — Stage 4 draft Blueprint → Mission Control Stage 5 review
+
+**Date:** 2026-10-08
+**From:** Claude Code (Stage 2–4 Definition Actor)
+**To:** Mission Control
+**Base:** `main@6712fa5220731293daa0c53d9b3d7da6d52beeb8`
+**Branch:** `mission/SB-P-1.14-stage4-blueprint-draft` (DRAFT pull request to `main`)
+
+Delivered: draft Blueprint Metadata, Mission Snapshot and Sections 1–19, and the Stage 4 drafting report.
+
+Next action: Mission Control Stage 5 Product Review. Stage 6, Stage 7, EIS, implementation and production remain not authorized.
