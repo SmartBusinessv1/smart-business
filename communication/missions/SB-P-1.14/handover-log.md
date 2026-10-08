@@ -451,3 +451,15 @@ PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration,
 Final Security re-confirmation closes the last Stage 10 documentary residual. Mission Control's independent completeness test passes 563/563 with 83/83 requirements and 2,282 links.
 
 After the acceptance disposition is canonical, the next gate is a separate Stage 11 EIS Lock. No Stage 12 package, implementation, SQL/migrations, provider activation, production or delivery is authorized yet.
+
+
+## H-29 — Stage 10 accepted → Stage 11 EIS Lock
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Mission Control verification / Claude Code Stage 12 package preparation  
+**Canonical Stage 10 baseline:** `0527d30e779d93eda95dd19b48186269cecbbf49`
+
+MC-21 locks the accepted SB-P-1.14 EIS by changing lifecycle metadata/status only and carrying the exact Stage 9/10 evidence reports onto the canonical-main lineage.
+
+After merge and verification, PR #831 is to be closed unmerged as superseded. Then Claude Code may prepare the three-document Stage 12 Initial Implementation Package as DRAFT only. Implementation remains NOT AUTHORIZED.
