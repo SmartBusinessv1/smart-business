@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 3 FOUNDER DECISIONS CAPTURED — DECISION RECONCILIATION AWAITING FOUNDER HUMAN MERGE  
+**Current status:** STAGE 3 COMPLETE / CANONICAL — STAGE 4 BLUEPRINT AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE  
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -79,3 +79,16 @@ Draft decision IDs:
 The FCTM remains 766 rows. The only T7 mission-assignment reconciliation is `3-§9-12` moving to SB-P-1.16 for authoritative customer-balance truth.
 
 Stage 4 remains NOT AUTHORIZED until this Stage 3 reconciliation is human-merged and verified.
+
+
+## Stage 4 preparation — MC-05
+
+Stage 3 became canonical in PR #815 at `main@a719766d1d20c15437e150da66ba8778a06f773d`.
+
+FPDR-1 through FPDR-3 are effective. The reconciled FCTM remains 766 rows, with `3-§9-12` assigned to SB-P-1.16 under FPDR-1.
+
+Mission Control has prepared the separate Stage 4 authorization for Product Blueprint Metadata, Mission Snapshot and Sections 1–19 only.
+
+Stage 4 is not effective until the authorization PR is human-merged.
+
+No Sections 20/21, EIS, implementation, provider/storage, migration or production authority follows.

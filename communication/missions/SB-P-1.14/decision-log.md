@@ -90,3 +90,17 @@ FPDR-1 creates one explicit T7 reconciliation: `3-§9-12` authoritative customer
 Stage 3 remains non-canonical until Founder human merge of the reconciliation PR.
 
 Stage 4 remains NOT AUTHORIZED.
+
+
+## D-07 — Stage 3 canonical; Stage 4 Blueprint authorization prepared
+
+**Date:** 2026-10-08  
+**Status:** DRAFT UNTIL FOUNDER HUMAN MERGE
+
+Stage 3 is canonical at `a719766d1d20c15437e150da66ba8778a06f773d` through PR #815.
+
+FPDR-1 through FPDR-3 are effective. The FCTM remains 766 rows; `3-§9-12` is the only Stage 3 T7 mission-assignment reconciliation and now belongs to SB-P-1.16.
+
+Mission Control prepares Stage 4 Product Blueprint Metadata, Mission Snapshot and Sections 1–19 authorization for Claude Code.
+
+No Sections 20/21, EIS, implementation, provider/storage or runtime authority follows.
