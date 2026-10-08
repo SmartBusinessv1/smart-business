@@ -35,3 +35,21 @@ SB-P-1.12 and SB-P-1.13 are consumed as locked specification authority but not r
 Lovable/Resend recovery remains a parallel SB-P-1.12 continuity lane and is not a blocker for this documentary Stage 2.
 
 No Stage 3 decision, Blueprint drafting, implementation or provider/runtime/storage mutation is authorized.
+
+## D-03 — Stage 2 Truth Pack prepared (draft)
+
+**Date:** 2026-10-08
+**Status:** DRAFT UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE
+
+Stage 2 authorization became effective with PR #812 at `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`.
+
+Claude Code prepared the Stage 2 Mission Truth Pack on `mission/SB-P-1.14-stage2-truth-delta`. It records evidence only:
+
+- FCTM 766 rows (564 `IN SCOPE`, 0 `ESCALATED`, 2 non-critical `UNRESOLVED FOUNDER DECISION`);
+- independent coverage check PASS for every opened source;
+- Delta: D-19 and D-20 `PRODUCT-AFFECTING`;
+- candidate Stage 3 triggers T1, T2, T4 and material derived constraints for T6 judgment;
+- Founder questions FDB-1 (four-state credit/repayment versus SB-P-1.16 customer credit) and FDB-2 (retention purpose for unconfirmed originals and raw voice).
+
+The Definition Actor does not decide the Stage 3 gate. No decision is recorded by this entry.
+

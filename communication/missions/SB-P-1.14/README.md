@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 1 CANONICAL — STAGE 2 AUTHORIZATION PREPARED / AWAITING FOUNDER HUMAN MERGE  
+**Current status:** STAGE 2 AUTHORIZED (PR #812, `main@5a464e55`) — DRAFT STAGE 2 TRUTH PACK PREPARED / AWAITING MISSION CONTROL REVIEW  
 **Canonical Stage 1:** PR #811, `main@8747a1bcd0816e79fad7158e52a4113708664d2d`
 
 ## Mission outcome
@@ -37,7 +37,7 @@ Production, provider, schema/SQL, migration execution and delivery remain NOT AU
 ## Current lifecycle
 
 - Stage 1 — Mission Initiation and Intake Pack: **CANONICAL — PR #811**
-- Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZATION PREPARED — NOT EFFECTIVE UNTIL HUMAN MERGE**
+- Stage 2 — Mission Truth and Delta Reconciliation: **AUTHORIZED (PR #812) — DRAFT TRUTH PACK PREPARED, NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE**
 - Stage 3+ — **NOT AUTHORIZED**
 
 ## Stage 2 preparation — MC-02
@@ -47,5 +47,17 @@ Mission Control has prepared a separate Stage 2 Mission Truth & Delta Reconcilia
 Scope is documentary Mission Truth / FCTM / Delta / Institutional Learning Intake only.
 
 No Stage 3 decision, Blueprint drafting, EIS drafting, implementation, provider/storage mutation, migration execution, production or delivery authority follows.
+
+## Stage 2 draft outputs — Claude Code
+
+- `claude-code/01-stage2-mission-truth-pack.md` — Truth Pack (scope, derived constraints, upstream dependencies, unresolved items, T1–T8 evidence screen)
+- `claude-code/02-stage2-populated-fctm.md` — populated FCTM (766 rows; 564 `IN SCOPE`)
+- `claude-code/03-stage2-obligation-inventory.md` — independent obligation inventory and set-based coverage check
+- `claude-code/04-stage2-institutional-learning-intake.md` — Institutional Learning Intake Record
+- `claude-code/05-stage2-delta-evidence.md` — Delta evidence (2 `PRODUCT-AFFECTING`)
+- `claude-code/06-stage2-completion-report.md` — Stage 2 completion report
+- `founder/01-stage2-decision-brief.md` — open questions FDB-1, FDB-2 (questions only)
+
+Mission Control determines whether the Stage 3 gate is triggered. No Stage 3, Blueprint, EIS or implementation authority follows.
 
 This README is an index, not an independent authority record.
