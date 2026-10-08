@@ -4,7 +4,7 @@
 **Mission type:** Product Mission  
 **Founder:** Riyas PK  
 **Mission Control:** Smart Business Mission Control  
-**Current status:** STAGE 10 EIS REFINED / MISSION CONTROL PRELIMINARY REVIEW PASS / DELTA SPECIALIST CONFIRMATIONS PENDING
+**Current status:** STAGE 10 DELTA EVIDENCE CANONICAL / ONE FINAL SECURITY RESIDUAL OPEN / FINAL RESIDUAL REFINEMENT AUTHORIZATION PENDING
 **Canonical Stage 2:** PR #813, `main@44a89d3821e4864676f6c8609bb8ca8c32bbb815`
 
 ## Mission outcome
@@ -308,3 +308,10 @@ Claude Code refined PR #831 under MC-16. Exact refined head: `e858a18e00719aed64
 Mission Control preliminarily verifies the refinement and has prepared delta-only confirmations for all five specialist domains. Stage 10 is not restarted; each specialist reviews only its previously blocking findings and directly coupled corrected text.
 
 The delta-confirmation authorization is not effective until human-merged and post-merge verified. PR #831 remains DRAFT. Stage 10 acceptance and Stage 11 EIS lock remain NOT AUTHORIZED.
+
+
+## Stage 10 final Security residual — MC-18
+
+All five Stage 10 delta specialist reports are canonical through PR #840. Finance, UDI/AI, Storage and Migration are fully closed at the documentary EIS level. Security has one narrow residual in `EIS14-STO-03` concerning privileged-handler authority binding.
+
+Mission Control has prepared an exact-text correction authorization. It is not effective until human-merged and post-merge verified. PR #831 remains DRAFT. Stage 10 acceptance and Stage 11 EIS lock remain NOT AUTHORIZED.
