@@ -123,3 +123,27 @@ After verified merge:
 Mission Control may prepare a separate Stage 6 Builder Review authorization.
 
 No Stage 6/7, Sections 20/21, Blueprint lock, EIS or implementation authority is implied.
+
+
+## H-10 — Stage 5 canonical → Stage 6 Builder Review authorization
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then Claude Code  
+**Stage 5 canonical main:** `2c44945a3f9679632ea981a8144161c5403257a0`
+
+Prepared:
+
+- Stage 6 Builder Review authorization;
+- Stage 6 live instruction;
+- mission status/log reconciliation.
+
+Next action:
+
+Founder human merge of the Stage 6 authorization PR.
+
+After merge:
+
+Claude Code may conduct only Stage 6 Builder Review on the locked Stage 6 branch and return findings/recommendations.
+
+Stage 7, Sections 20–21, Blueprint lock, EIS and implementation remain NOT AUTHORIZED.
