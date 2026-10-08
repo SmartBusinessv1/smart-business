@@ -320,3 +320,21 @@ Mission Control records two non-triggering preliminary refinement candidates:
 All five Stage 10 specialist confirmations are mandatory and may run in parallel after authorization becomes canonical.
 
 No T2/T3/T6/T7/T8 trigger is recorded by this preliminary review.
+
+
+## D-23 — Stage 10 Security T7 Founder refinement approved
+
+**Date:** 2026-10-08  
+**Status:** FOUNDER APPROVED — EFFECTIVE AFTER HUMAN MERGE
+
+All five Stage 10 specialist reports are canonical through PR #835 at `main@512790427e995f91a3fd869a5792c66db1f23f38`.
+
+S10-SP-1 identified three finding-scoped T7 omissions/simplifications: object-type-specific birth hardening, authority-event/durable-denial separation from domain provenance, and complete effective-access/callable-surface/privileged-handler verification.
+
+Founder explicitly approved:
+
+`SB-P-1.14 STAGE 10 T7 SECURITY REFINEMENT — APPROVED`
+
+The decision restores already-approved security constraints only. It does not change Product Truth, the FCTM, build commitment, commercial classification, mission assignment or FPDR-1 through FPDR-4.
+
+PR #831 remains DRAFT. A separate Mission Control authorization is required before Claude Code may refine the EIS.
