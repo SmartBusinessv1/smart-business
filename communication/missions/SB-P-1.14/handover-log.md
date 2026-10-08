@@ -397,3 +397,16 @@ Prepared:
 After human merge and post-merge verification, Claude Code may synchronize the existing PR #831 branch to current main and refine only the EIS plus the authorized Stage 10 refinement report, finding-by-finding.
 
 PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration execution, provider activation, production and delivery remain NOT AUTHORIZED.
+
+
+## H-25 — Refined EIS → Stage 10 delta specialist confirmations
+
+**Date:** 2026-10-08  
+**From:** Claude Code / Mission Control  
+**To:** Founder human merge, then S10-D1 to S10-D5  
+**Refined PR #831 head:** `e858a18e00719aed6464822d684c6580fce1f9bf`  
+**Refined EIS blob:** `d97d23048f0dda76f3f60b0b03569a928d9e45d1`
+
+Mission Control preliminarily verifies the MC-16 refinement and prepares five delta-only specialist confirmations. Each domain reviews only its previously blocking findings against the refined text; Stage 10 is not restarted.
+
+PR #831 remains DRAFT. Stage 10 acceptance, EIS lock, implementation, migration, provider activation, production and delivery remain NOT AUTHORIZED.
