@@ -1,17 +1,17 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 10 Final Security Re-Confirmation
+# Instruction — SB-P-1.14 Stage 10 Final Review Acceptance
 
-**Status:** AUTHORIZATION PENDING HUMAN MERGE  
-**Target PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
-**Target EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
+**Status:** HUMAN MERGE REQUIRED  
+**Reviewed PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
+**Reviewed EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
 
-After human merge and Mission Control verification, execute:
+Mission Control's final Stage 10 completeness / traceability review has passed.
 
-`communication/missions/SB-P-1.14/mission-control/36-stage10-final-security-reconfirmation-authorization.md`
+MC-20 records Stage 10 ACCEPTED once this disposition is merged to protected main.
 
-Security reviews only the former `R10-SEC-03` residual and whether the Founder-approved restorative Security T7 is now fully realized.
+Do not merge PR #831 under this instruction. Do not start Stage 11 until the acceptance crossing is verified.
 
-No EIS edit, implementation, SQL/migration, provider activation, production, Stage 10 acceptance or EIS lock is authorized.
+No Stage 12 package, implementation, SQL/migrations, provider activation, production or delivery is authorized.
 
-**STOP FOR HUMAN MERGE.**
+**NEXT AFTER HUMAN MERGE:** Mission Control prepares the separate Stage 11 EIS Lock disposition.
