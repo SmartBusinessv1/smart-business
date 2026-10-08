@@ -214,3 +214,23 @@ Stage 7 remains NOT AUTHORIZED.
 Delivered: `FPDR-4` record, 13-row FCTM annotation, Blueprint v0.2 and the reconciliation report with before/after proof.
 
 Next action: Mission Control review; human merge makes `FPDR-4` canonical; Stage 7 authorization and specialist inputs follow separately. Stage 7, Sections 20–21, Blueprint lock, EIS, implementation and production remain not authorized.
+
+
+## H-15 — B6-01 reconciliation → Founder human merge gate
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge  
+**PR:** #821
+
+Mission Control accepts the B6-01 / FPDR-4 reconciliation after independent row-level and Blueprint verification.
+
+Next action:
+
+Founder human merge PR #821 at the final Mission Control-reviewed head.
+
+After verified merge:
+
+Mission Control may prepare a separate Stage 7 Engineering Review / mandatory specialist-review authorization package.
+
+No Stage 7, Sections 20–21, Blueprint lock, EIS or implementation authority is implied.
