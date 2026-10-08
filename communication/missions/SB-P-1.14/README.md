@@ -202,3 +202,14 @@ No expansion to `3-§10-2`, `3-§10-3` or `3-§10-9` is required.
 Reconciliation acceptance is conditional until Founder human merge of PR #821.
 
 Stage 7 remains NOT AUTHORIZED.
+
+
+## Stage 7 preparation — MC-11
+
+PR #821 is canonical at `main@feb0f522b7093bd1105d3acc8ffdf834465e9bba`. FPDR-4 and Blueprint v0.2 are canonical; B6-01 no longer blocks Stage 7.
+
+Mission Control has prepared a separate Stage 7 Engineering Review authorization for Claude Code plus five mandatory independent specialist domains.
+
+Stage 7 is not effective until this authorization PR is human-merged.
+
+Sections 20–21 may be drafted only after that crossing. Blueprint lock, EIS and implementation remain NOT AUTHORIZED.
