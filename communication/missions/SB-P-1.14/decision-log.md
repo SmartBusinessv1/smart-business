@@ -72,3 +72,21 @@ Mission Control prepares Stage 3 Founder dialogue limited to:
 - FDB-3 — Scenario A changed-target definition.
 
 No Stage 4, EIS, implementation, provider/storage or runtime authority follows.
+
+
+## D-06 — Founder approves all Stage 3 decision areas
+
+**Date:** 2026-10-08  
+**Founder response:** `FDB-1,FDB-2,FDB-3 Approved`
+
+Mission Control records:
+
+- FPDR-1 — four-state Ledger / customer-credit boundary;
+- FPDR-2 — minimum-retention policy for unconfirmed originals and raw voice;
+- FPDR-3 — material changed-target re-prompt rule.
+
+FPDR-1 creates one explicit T7 reconciliation: `3-§9-12` authoritative customer owed-balance truth is assigned to SB-P-1.16. The rest of the four-state Ledger remains SB-P-1.14.
+
+Stage 3 remains non-canonical until Founder human merge of the reconciliation PR.
+
+Stage 4 remains NOT AUTHORIZED.
