@@ -333,3 +333,23 @@ Founder / authorized-human merge of the Stage 9 authorization PR.
 After verified merge, Claude Code may create only the Stage 9 EIS draft and Stage 9 report on the authorized branch/paths.
 
 Stage 10 acceptance, EIS lock, implementation package, implementation, migration execution, provider activation, production mutation and delivery publication remain NOT AUTHORIZED.
+
+
+## H-22 — Stage 9 EIS draft → Stage 10 independent specialist confirmations
+
+**Date:** 2026-10-08  
+**From:** Mission Control  
+**To:** Founder human merge, then S10-SP-1 to S10-SP-5  
+**Draft EIS:** PR #831, head `254e40a723e4c74af69d425cb918bb03dc9817e2`
+
+Prepared:
+
+- Stage 10 EIS Review authorization;
+- five independent specialist confirmation instructions;
+- MC10-PRE-01 and MC10-PRE-02 preliminary findings.
+
+Next action: human merge of the Stage 10 authorization PR.
+
+After verified merge, the five specialist reviews may run in parallel. PR #831 remains DRAFT. Claude Code must not refine the EIS until Mission Control consolidates the specialist findings unless separately instructed.
+
+No EIS acceptance/lock or implementation authority follows.
