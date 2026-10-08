@@ -2,68 +2,43 @@
 
 ## H-01 — Stage 1 canonical
 
-PR #811 human-merged at `main@8747a1bcd0816e79fad7158e52a4113708664d2d`.
+PR #811.
 
 ## H-02 — Stage 2 authorization canonical
 
-PR #812 human-merged at `main@5a464e55f3365cbb4689d70f9c42dbe320ebb558`.
+PR #812.
 
-Claude Code was authorized to execute Source 18 Stage 2 only.
+## H-03 — Stage 2 Truth Pack canonical
 
-## H-03 — Stage 2 Truth Pack → Mission Control review
+PR #813.
 
-Claude Code prepared the Stage 2 Truth Pack on `mission/SB-P-1.14-stage2-truth-delta`.
+## H-04 — Stage 3 Founder Gate authorization canonical
 
-Mission Control reviewed the FCTM, Delta, independent inventory, Institutional Learning Intake and Founder brief.
+PR #814.
 
-## H-04 — Stage 2 correction round
+## H-05 — Stage 3 dialogue and decision reconciliation
 
-Mission Control determined Stage 3 TRIGGERED and resolved MC-Q1 to MC-Q6. Claude Code applied the correction pass without changing the 766-row FCTM.
+Founder approved FDB-1, FDB-2 and FDB-3. PR #815 canonically records FPDR-1 through FPDR-3 and the surgical FCTM reconciliation.
 
-PR #813 was then Founder human-merged.
-
-## H-05 — Stage 2 canonical → Stage 3 Founder Decision Gate
+## H-06 — Stage 3 canonical → Stage 4 Blueprint authorization
 
 **Date:** 2026-10-08  
 **From:** Mission Control  
-**To:** Founder human merge, then Founder/Mission Control dialogue  
-**Stage 2 canonical main:** `44a89d3821e4864676f6c8609bb8ca8c32bbb815`
+**To:** Founder human merge, then Claude Code  
+**Stage 3 canonical main:** `a719766d1d20c15437e150da66ba8778a06f773d`
 
 Prepared:
 
-- Stage 3 Founder Decision Gate authorization;
-- Stage 3 live instruction;
+- Stage 4 Blueprint drafting authorization;
+- Stage 4 live instruction;
 - mission status/log reconciliation.
 
 Next action:
 
-Founder human merge of the Stage 3 authorization PR.
+Founder human merge of the Stage 4 authorization PR.
 
 After merge:
 
-Mission Control conducts the Founder dialogue limited to FDB-1, FDB-2 and FDB-3.
+Claude Code may prepare only Metadata, Mission Snapshot and Sections 1–19 in the SB-P-1.14 Blueprint.
 
-No Stage 4 work is authorized.
-
-
-## H-06 — Stage 3 dialogue complete → decision reconciliation
-
-**Date:** 2026-10-08  
-**From:** Founder / Mission Control  
-**To:** Founder human merge gate
-
-Founder approved FDB-1, FDB-2 and FDB-3.
-
-Prepared for canonicalization:
-
-- Founder Product Decision Record FPDR-1 through FPDR-3;
-- surgical 766-row FCTM reconciliation;
-- Mission Control Stage 3 gate review.
-
-Next action:
-
-Founder human merge of the Stage 3 decision-reconciliation PR.
-
-After verified merge:
-
-Mission Control may prepare a separate Stage 4 Blueprint authorization.
+Stage 5 Mission Control review follows. No EIS or implementation authority is implied.
