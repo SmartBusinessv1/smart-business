@@ -1,12 +1,10 @@
 # SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
-**Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Canonical main:** `2b91877ed8b6d79ac99c35acc586f466c0b4b874`  
-**Stage 13:** APPROVED — LOCKED through human-merged PR #850; actual package blobs verified  
-**Draft package evidence:** PR #847 CLOSED — UNMERGED
+**Current gate:** MC-28 communication suspension and Lovable/Resend support-review boundary — pending human merge.  
+**Protected baseline:** `main@3ce7377cddf14873dadc779a55a4c095b0efef98`
 
-The separate MC-26 implementation-authorization disposition is being prepared for governed human merge with status **WITHHELD — IMPLEMENTATION NOT AUTHORIZED**. PQ-2 cut-over coordination, upstream SB-P-1.12/1.13 implementation, provider/storage/security/retention and 20 unverified facts remain unresolved. No implementation or runtime pass is claimed.
+SB-P-1.14's documentary/readiness checkpoint, exact resume register, communication preservation snapshots and nonterminal Partial OLE handoff were canonicalized in PR #852. Implementation Authorization MC-26 remains **WITHHELD — IMPLEMENTATION NOT AUTHORIZED**.
 
-The Founder-approved Phase 1 documentary pattern may support a separate partial checkpoint after this withheld decision is canonical; not yet completed. No Stage 23/24 acceptance or terminal OLE.
+MC-28 proposes to suspend the SB-P-1.14 active communication cycle with **FORMAL ARCHIVE DEFERRED**. The user-directed Lovable and Resend support response evaluation is the mandatory next gate before SB-P-1.15. Actual provider replies have not yet been assessed here. No SB-P-1.15 activation, implementation, runtime acceptance or formal OLE closure is claimed.
 
 **STOP FOR HUMAN MERGE.**
