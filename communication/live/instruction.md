@@ -1,17 +1,14 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 13 Package Lock Crossing
+# Instruction — SB-P-1.14 Implementation Authorization Withheld
 
-**Status:** HUMAN MERGE REQUIRED — NOT YET EFFECTIVE  
-**Canonical review baseline:** `main@95b1c3ef143c80f10b4414d4029ed724201c7542`  
-**MC-24:** canonical, PR #849  
-**Reviewed package:** DRAFT PR #847 @ `5c37a5d9ca0b0f4b5c438283e8f157d01a670d4a`  
-**MC-25:** `communication/missions/SB-P-1.14/mission-control/42-stage13-package-lock-disposition.md`
+**Status:** HUMAN MERGE REQUIRED — WITHHELD DISPOSITION PENDING CANONICALIZATION  
+**Canonical Stage 13 package lock:** `main@2b91877ed8b6d79ac99c35acc586f466c0b4b874` (PR #850)  
+**Mission Control decision:** SB-P-1.14-MC-26  
+**Record:** `communication/missions/SB-P-1.14/mission-control/implementation-authorization.md`
 
-This PR carries the exact reviewed v0.2 three-document package and the historical Stage 12 report onto canonical-main lineage, records Stage 13 lock metadata, and makes the status `APPROVED — LOCKED` **only after human merge and Mission Control post-merge verification**. The implementation package is not yet canonical.
+Stage 13 package is APPROVED — LOCKED. Superseded draft PR #847 is closed unmerged. Implementation authorization is WITHHELD: no builder, code branch, environment, provider, storage, migration or production authority is granted.
 
-No implementation, schema/SQL/migrations, provider activation, production mutation, delivery or self-merge.
-
-After human merge, Mission Control verifies locked files/blobs and closes DRAFT PR #847 unmerged as superseded. Then a **separate** Implementation Authorization disposition is required. PQ-2 and all provider/upstream/evidence holds remain open.
+Founder / authorized human: review and merge this MC-26 withheld-authorization record. After post-merge verification, Mission Control may separately prepare the Phase 1 partial documentary/readiness checkpoint, exact resume register, and nonterminal OLE handoff. No implementation, Stage 23/24 acceptance, terminal archival or delivery.
 
 **STOP FOR HUMAN MERGE.**
