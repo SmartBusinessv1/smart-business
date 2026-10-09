@@ -228,3 +228,102 @@ No application implementation was done, and none is claimed. The same applies to
 2. Mission Control performs the Source 18 Stage 13 Implementation Package Review, including PQ-1 to PQ-10.
 
 **STOP — STAGE 12 PACKAGE PREPARED; RETURNED TO MISSION CONTROL FOR STAGE 13 REVIEW.**
+
+## 13. Refinement Addendum — SB-P-1.14-MC-23 PQ-10 (package version 0.2)
+
+Sections 1 to 12 above are the original Stage 12 report and are kept as written. In particular, the "not committed, not pushed" statements in Sections 1 and 10 describe the state before publication. The package was later published under SB-P-1.14-MC-22 as draft PR #847, head `53dbe83acf0fe4371d2540039a60465602adb200`.
+
+### 13.1 Authority and pre-checks
+
+| Check | Result |
+|---|---|
+| Authority | SB-P-1.14-MC-23 (`mission-control/40-stage13-preliminary-review-pq10-refinement.md`), human-merged through PR #848; canonical `main@e9b88d8b74048e1e8d964e20f074494a8107fc93` |
+| PR #847 head before refinement | `53dbe83acf0fe4371d2540039a60465602adb200`, draft, open (matches MC-23) |
+| `main` changes since `8226027c` | `communication/live/instruction.md`, `communication/live/report.md` and the MC-23 record only; no change to the locked Blueprint, EIS, FCTM, Founder records or upstream packages |
+
+### 13.2 Determination
+
+Accountable builder workstreams **can** be assigned from the locked authorities without changing them:
+
+- every row has a locked Blueprint §8 placement (Blueprint §19 and §20.6);
+- the locked Blueprint §7 Stage 1 register maps each §8 subsection to one workstream;
+- the behaviour each row requires is its own `IN SCOPE` / `BUILD NOW` source item.
+
+Version 0.2 therefore records a package-level accountability assignment. It adds no obligation, no EIS §29 link and no FCTM change. The row's gate obligations still hold it.
+
+| FCTM row | Locked obligations (unchanged) | Before (0.1) | After (0.2) | Basis | Source behaviour | Locked EIS text cited as constraint | Verification added |
+|---|---|---|---|---|---|---|---|
+| `3-§17-7` | `EC14-HOLD-04`, `EC14-HOLD-11` | Gate only | WS-G accountable | Blueprint §8.7 → §7 register | Contract 3 §17 "failed downstream notification"; SB-P-1.14 slice only (delivery is SB-P-1.15, `D15`) | EIS14-FAIL-02 | NP-44 |
+| `3-§17-8` | `EC14-HOLD-01` | Gate only | WS-G accountable | Blueprint §8.7 → §7 register | Contract 3 §17 "stale linked records" | EIS14-CNF-03, EIS14-CNF-04, EIS14-LDG-03, EIS14-FAIL-02 | NP-43 |
+| `5-§18-8a` | `EC14-VER-02`, `EC14-HOLD-02` | Cross-cutting, Gate only | WS-B accountable | Blueprint §8.2 → §7 register | Contract 5 §18 acceptance 8, Workspace slice (WhatsApp slice is SB-P-1.20) | EIS14-UDI-01 | NP-41 (RS-23 already present) |
+| `BP-§10.3-W11` | `EC14-HOLD-01` | Gate only | WS-C accountable | Blueprint §8.3 → §7 register | Build Plan §10.3 "correction/audit continuity" | EIS14-CMD-02 (built by WS-A inside the cut-over) | NP-27, RS-11 |
+
+No other row was touched.
+
+The package changes are:
+
+- **Engineering Contract:** the four §11 workstream cells are annotated "(accountable; PQ-10)"; new §13.1 reconciliation table; PQ-10 text; one §12 measure.
+- **Build Prompt:**
+  - the four rows are added to their workstream row lists (WS-B 157 → 158, WS-C 47 → 48, WS-G 157 → 159);
+  - an accountable-rows table is added in each of those workstreams;
+  - the Gate note, §12 annotations and §13 sentence are updated.
+- **Verification Checklist:**
+  - checks NP-43 (stale linked record) and NP-44 (failed downstream notification) are added;
+  - NP-27, NP-41 and RS-11 are extended by one row each;
+  - four `VC-R` items are extended (111, 112, 271, 550);
+  - new item VC-PT-08.
+
+All three documents are version 0.2 and still `DRAFT — MISSION CONTROL REVIEW REQUIRED`.
+
+### 13.3 Residual deficit for Mission Control
+
+The locked EIS §29 maps none of these four rows to a mechanism requirement. Version 0.2 cites the governing locked EIS text as a constraint and labels it "not a §29 link". It does not add a link: that would change the locked 2,282-link mapping.
+
+- For `5-§18-8a` and `BP-§10.3-W11`, the cited text (EIS14-UDI-01, EIS14-CMD-02) specifies the mechanism directly.
+- For `3-§17-7` and `3-§17-8`, it is a general constraint: narrow failure, re-prompt or block at commit, target revalidation.
+
+**Recommendation:** Mission Control decides whether this package-level accountability is sufficient for Stage 13. If it requires each row to have a mechanism requirement in the EIS §29 mapping, that is a governed EIS reconciliation of the locked EIS, for Mission Control to assess under T6 (derived engineering constraint). It is not something this package can do. No Product Truth, FCTM disposition, mission assignment or Founder decision is affected, so T2, T3, T7 and T8 are not indicated.
+
+### 13.4 PQ-2
+
+PQ-2 is unchanged. It remains an Implementation Authorization prerequisite. No cut-over coordinator, migration mission, timing or runtime coordination was invented.
+
+### 13.5 Recheck
+
+An independent re-parse of the version 0.2 documents (43 checks) gives **43 / 43 PASS**:
+
+- **Traceability:**
+  - 563/563 `IN SCOPE` rows with obligations and checklist items;
+  - 83 obligations, one per locked EIS requirement;
+  - 2,282 links equal to the locked EIS;
+  - EC §11 obligations, findings and holds equal EIS §29.2 and Blueprint §20.6.
+- **Workstream checks:**
+  - workstream lists consistent across the three documents;
+  - the PQ-10 rows are exactly the four named rows;
+  - each one's accountable workstream equals the Blueprint §7 register entry for its §8 placement;
+  - accountability appears on no other row;
+  - no row lacks both a builder workstream and a cross-cutting builder obligation.
+- **Coverage:**
+  - all 431 permission/isolation/denial rows carry a negative-path check;
+  - all 261 experience rows and all 67 Blueprint §15 acceptance rows carry a runtime scenario;
+  - every NP/RS defined and used, with counts matching (44 NP, 23 RS);
+  - each PQ-10 row carries a named negative-path check.
+- **Holds:** every Stage 7 hold is carried; `D12` 225, `D13` 92, `DTX` 42.
+- **Status and other checks:** all documents `DRAFT`; VC-PT-06 lists all 20 `OUT OF BUILD SCOPE` rows.
+
+The Markdown Quality Gate passes for each file. All 20 `UNVERIFIED — ACCESS REQUIRED` facts are unchanged.
+
+**Process disclosure:** while updating the verifier, a command run in the repository included `git checkout -- .`. It discarded the uncommitted version 0.2 package files. No committed content, other file or stash was affected. The three files were regenerated from the same deterministic generator inputs, and all checks above were rerun on the regenerated files.
+
+### 13.6 Changed files and blobs (version 0.2)
+
+| File | Before (PR #847 @ `53dbe83a`) | After |
+|---|---|---|
+| `docs/implementation/SB-P-1.14/engineering-contract.md` | `eda6a3b0bf1a85b539b2c02a7b6326094f3271a9` | `aca5541f673f289ca9affdba2fa89347eeccc460` |
+| `docs/implementation/SB-P-1.14/lovable-build-prompt.md` | `e71c88bc415ed0b03f9e2848ceae24bc8a0e6758` | `25d0041a74ebb46f942e3df53b23631f946b60e4` |
+| `docs/implementation/SB-P-1.14/verification-checklist.md` | `462b133ef7fe9b3bb968e3d6014630cd4c0a75e6` | `3c93d24805fc103cc865ec9ac413251759544207` |
+| `communication/missions/SB-P-1.14/claude-code/15-stage12-initial-package-report.md` | `59db2106449dcc5fd6c1200b9d0ae4f780f9c10d` | Reported in the PR #847 handover comment, because a file cannot contain its own blob |
+
+**CI:** GitHub Actions has produced no runs since 2026-09-30. The absence of checks is not a pass.
+
+**STOP — PQ-10 REFINEMENT APPLIED; RETURNED TO MISSION CONTROL FOR STAGE 13 RE-REVIEW.**

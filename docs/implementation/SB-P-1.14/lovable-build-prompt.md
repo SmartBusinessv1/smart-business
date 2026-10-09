@@ -18,7 +18,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
@@ -115,9 +115,15 @@ Forbidden in this workstream, in addition to Section 8:
 | Expected schema | M14-3: intake, interpretation, preview and import-ledger state extending the parser lease (EC14-MIG-03) |
 | Verification | NP-08, NP-18, NP-19, NP-20, NP-21, NP-22, NP-23, NP-24, NP-25, NP-26, NP-38, NP-39, NP-41, RS-01, RS-07, RS-08, RS-10, RS-12, RS-16, RS-17; row items in Verification Checklist Section 13.4 |
 | Rollback and recovery | Additive; intake disabled without affecting manual entry; deterministic CSV/XLSX path independent of AI |
-| FCTM rows (157) | `3-§5-7`, `3-§5-8`, `3-§5-9`, `3-§7-7`, `3-§7-8`, `3-§10-6`, `3-§10-7`, `3-§10-9`, `3-§16-1`, `3-§16-2`, `3-§16-3`, `3-§16-4`, `3-§16-5`, `3-§16-6`, `3-§16-7`, `3-§16-8`, `3-§16-9`, `3-§16-10`, `3-§16-11`, `3-§16-12`, `3-§16-13`, `3-§16-14`, `3-§17-3`, `3-§19-4`, `5-§2-2`, `5-§3-1`, `5-§3-2`, `5-§3-3`, `5-§4-1`, `5-§4-2`, `5-§4-3`, `5-§4-4`, `5-§4-5`, `5-§4-6`, `5-§4-7`, `5-§4-8`, `5-§4-9`, `5-§4-14`, `5-§5-1`, `5-§5-2`, `5-§5-3`, `5-§5-4`, `5-§5-5`, `5-§5-6`, `5-§5-7`, `5-§5-8`, `5-§5-9`, `5-§7-2`, `5-§7-3`, `5-§7-4`, `5-§8-2`, `5-§8-3`, `5-§8-4`, `5-§9-1`, `5-§9-2`, `5-§9-3`, `5-§9-4`, `5-§9-5`, `5-§9-6`, `5-§9-7`, `5-§9-8`, `5-§10-1`, `5-§10-3`, `5-§10-4`, `5-§10-5`, `5-§10-8`, `5-§11-5`, `5-§12-5`, `5-§13-1`, `5-§13-2`, `5-§13-3`, `5-§13-4`, `5-§13-5`, `5-§13-6`, `5-§13-7`, `5-§13-8`, `5-§13-9`, `5-§13-10`, `5-§13-11`, `5-§13-12`, `5-§14-1`, `5-§14-2`, `5-§14-3`, `5-§14-4`, `5-§14-5`, `5-§14-6`, `5-§14-7`, `5-§14-8`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `5-§16-4`, `5-§16-5`, `5-§16-7`, `5-§17-1`, `5-§17-2`, `5-§17-3`, `5-§17-4`, `5-§17-6`, `5-§18-1`, `5-§18-2`, `5-§18-3`, `5-§18-4`, `5-§18-5`, `5-§19-2`, `22-§9-1`, `22-§9-2`, `22-§9-3`, `22-§19-7`, `22-§28-5`, `22-§29-5`, `22-§29-10`, `22-§29-13`, `25-§8-4`, `25-§8-8`, `25-§11-1`, `25-§19-8`, `25-§25-3`, `25-§26-5`, `24-§5-6`, `24-§7-3`, `24-§7-4`, `24-§14-1`, `24-§14-2`, `24-§14-3`, `24-§14-4`, `24-§14-5`, `24-§14-6`, `24-§14-7`, `24-§14-8`, `24-§14-9`, `24-§18-1a`, `24-§23-6`, `24-§31-8`, `10-§10-1`, `10-§10-3`, `10-§17-4`, `10-§23-3b`, `7-§6-2`, `7-§6-4`, `7-§6-5`, `7-§15-2a`, `BP-§10.3-O`, `BP-§10.3-W4`, `BP-§10.3-W6`, `BP-§10.3-W12`, `BP-§10.3-W13`, `BP-§10.3-SA1`, `BP-§10.3-X` |
+| FCTM rows (158) | `3-§5-7`, `3-§5-8`, `3-§5-9`, `3-§7-7`, `3-§7-8`, `3-§10-6`, `3-§10-7`, `3-§10-9`, `3-§16-1`, `3-§16-2`, `3-§16-3`, `3-§16-4`, `3-§16-5`, `3-§16-6`, `3-§16-7`, `3-§16-8`, `3-§16-9`, `3-§16-10`, `3-§16-11`, `3-§16-12`, `3-§16-13`, `3-§16-14`, `3-§17-3`, `3-§19-4`, `5-§2-2`, `5-§3-1`, `5-§3-2`, `5-§3-3`, `5-§4-1`, `5-§4-2`, `5-§4-3`, `5-§4-4`, `5-§4-5`, `5-§4-6`, `5-§4-7`, `5-§4-8`, `5-§4-9`, `5-§4-14`, `5-§5-1`, `5-§5-2`, `5-§5-3`, `5-§5-4`, `5-§5-5`, `5-§5-6`, `5-§5-7`, `5-§5-8`, `5-§5-9`, `5-§7-2`, `5-§7-3`, `5-§7-4`, `5-§8-2`, `5-§8-3`, `5-§8-4`, `5-§9-1`, `5-§9-2`, `5-§9-3`, `5-§9-4`, `5-§9-5`, `5-§9-6`, `5-§9-7`, `5-§9-8`, `5-§10-1`, `5-§10-3`, `5-§10-4`, `5-§10-5`, `5-§10-8`, `5-§11-5`, `5-§12-5`, `5-§13-1`, `5-§13-2`, `5-§13-3`, `5-§13-4`, `5-§13-5`, `5-§13-6`, `5-§13-7`, `5-§13-8`, `5-§13-9`, `5-§13-10`, `5-§13-11`, `5-§13-12`, `5-§14-1`, `5-§14-2`, `5-§14-3`, `5-§14-4`, `5-§14-5`, `5-§14-6`, `5-§14-7`, `5-§14-8`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `5-§16-4`, `5-§16-5`, `5-§16-7`, `5-§17-1`, `5-§17-2`, `5-§17-3`, `5-§17-4`, `5-§17-6`, `5-§18-1`, `5-§18-2`, `5-§18-3`, `5-§18-4`, `5-§18-5`, `5-§18-8a`, `5-§19-2`, `22-§9-1`, `22-§9-2`, `22-§9-3`, `22-§19-7`, `22-§28-5`, `22-§29-5`, `22-§29-10`, `22-§29-13`, `25-§8-4`, `25-§8-8`, `25-§11-1`, `25-§19-8`, `25-§25-3`, `25-§26-5`, `24-§5-6`, `24-§7-3`, `24-§7-4`, `24-§14-1`, `24-§14-2`, `24-§14-3`, `24-§14-4`, `24-§14-5`, `24-§14-6`, `24-§14-7`, `24-§14-8`, `24-§14-9`, `24-§18-1a`, `24-§23-6`, `24-§31-8`, `10-§10-1`, `10-§10-3`, `10-§17-4`, `10-§23-3b`, `7-§6-2`, `7-§6-4`, `7-§6-5`, `7-§15-2a`, `BP-§10.3-O`, `BP-§10.3-W4`, `BP-§10.3-W6`, `BP-§10.3-W12`, `BP-§10.3-W13`, `BP-§10.3-SA1`, `BP-§10.3-X` |
 
 30 of these rows enter WS-B only through the provider gate (`EC14-PRV-01`); for them WS-B builds no feature behaviour (Engineering Contract PQ-6).
+
+Accountable rows (PQ-10, version 0.2). WS-B builds the SB-P-1.14 slice of these rows to their source item, under the cited locked EIS text and behind their gates; no obligation or EIS link is added (Engineering Contract Section 13.1):
+
+| FCTM row | Source behaviour | Governing locked EIS text | Gates | Verification |
+|---|---|---|---|---|
+| `5-§18-8a` | Contract 5 §18 acceptance 8, Workspace slice: Conversation Workspace uses the same interpretation rules (the WhatsApp slice is SB-P-1.20) | EIS14-UDI-01 (one intake pipeline for visual upload and the SB-P-1.13 attachment handoff) | `EC14-VER-02`, `EC14-HOLD-02` | NP-41, RS-23; `VC-R` item |
 
 Forbidden in this workstream, in addition to Section 8:
 
@@ -137,7 +143,13 @@ Forbidden in this workstream, in addition to Section 8:
 | Expected schema | Uses SB-P-1.12 `confirmation_bindings`; no new binding table |
 | Verification | NP-16, NP-17, NP-18, RS-01, RS-02, RS-16; row items in Verification Checklist Section 13.4 |
 | Rollback and recovery | Additive; preview disabled leaves manual entry usable |
-| FCTM rows (47) | `3-§7-1`, `3-§7-2`, `3-§7-3`, `3-§7-4`, `3-§7-5`, `3-§7-6`, `3-§7-7`, `3-§7-8`, `3-§7-9`, `3-§17-4`, `3-§17-5`, `3-§19-4`, `3-§19-5`, `5-§3-2`, `5-§9-1`, `5-§9-2`, `5-§9-3`, `5-§9-4`, `5-§9-5`, `5-§9-6`, `5-§9-7`, `5-§9-8`, `5-§9-9`, `5-§10-1`, `5-§10-2`, `5-§10-3`, `5-§10-4`, `5-§10-5`, `5-§10-6`, `5-§10-7`, `5-§10-8`, `5-§10-9`, `5-§10-10`, `5-§17-7`, `5-§17-8`, `5-§18-1`, `5-§18-2`, `22-§29-7`, `24-§21-7`, `10-§10-3`, `10-§10-4`, `10-§10-5`, `10-§13-3`, `10-§17-4`, `12-§4-5`, `BP-§10.3-SA1`, `BP-§10.3-SA2` |
+| FCTM rows (48) | `3-§7-1`, `3-§7-2`, `3-§7-3`, `3-§7-4`, `3-§7-5`, `3-§7-6`, `3-§7-7`, `3-§7-8`, `3-§7-9`, `3-§17-4`, `3-§17-5`, `3-§19-4`, `3-§19-5`, `5-§3-2`, `5-§9-1`, `5-§9-2`, `5-§9-3`, `5-§9-4`, `5-§9-5`, `5-§9-6`, `5-§9-7`, `5-§9-8`, `5-§9-9`, `5-§10-1`, `5-§10-2`, `5-§10-3`, `5-§10-4`, `5-§10-5`, `5-§10-6`, `5-§10-7`, `5-§10-8`, `5-§10-9`, `5-§10-10`, `5-§17-7`, `5-§17-8`, `5-§18-1`, `5-§18-2`, `22-§29-7`, `24-§21-7`, `10-§10-3`, `10-§10-4`, `10-§10-5`, `10-§13-3`, `10-§17-4`, `12-§4-5`, `BP-§10.3-W11`, `BP-§10.3-SA1`, `BP-§10.3-SA2` |
+
+Accountable rows (PQ-10, version 0.2). WS-C builds the SB-P-1.14 slice of these rows to their source item, under the cited locked EIS text and behind their gates; no obligation or EIS link is added (Engineering Contract Section 13.1):
+
+| FCTM row | Source behaviour | Governing locked EIS text | Gates | Verification |
+|---|---|---|---|---|
+| `BP-§10.3-W11` | Build Plan §10.3 required work area "correction/audit continuity": the review, clarification and correction surfaces keep the existing correction audit continuous | EIS14-CMD-02 (governed append-only correction command, built by WS-A inside the transactions-family cut-over) | `EC14-HOLD-01` | NP-27, RS-11; `VC-R` item |
 
 Forbidden in this workstream, in addition to Section 8:
 
@@ -215,7 +227,14 @@ Forbidden in this workstream, in addition to Section 8:
 | Expected schema | Consumes SB-P-1.12 surfaces; no authority tables |
 | Verification | NP-01, NP-03, NP-04, NP-06, NP-08, NP-14, NP-15, NP-34, NP-35, RS-05, RS-06, RS-12, RS-13, RS-21; row items in Verification Checklist Section 13.4 |
 | Rollback and recovery | Not applicable beyond the owning objects' migration plans |
-| FCTM rows (157) | `3-§7-8`, `3-§9-8`, `3-§11-1`, `3-§11-2`, `3-§11-3`, `3-§11-4`, `3-§11-5`, `3-§11-7`, `3-§16-6`, `3-§17-1`, `3-§17-2`, `3-§17-9`, `3-§17-10`, `3-§17-11`, `3-§18-1`, `3-§18-2`, `3-§18-3`, `3-§18-5`, `3-§18-6`, `3-§19-6`, `3-§19-14`, `5-§6-1`, `5-§6-2`, `5-§9-7`, `5-§10-7`, `5-§10-10`, `5-§11-1`, `5-§11-2`, `5-§11-3`, `5-§11-4`, `5-§11-5`, `5-§12-1`, `5-§12-2`, `5-§12-3`, `5-§12-4`, `5-§12-5`, `5-§12-6`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `5-§16-1`, `5-§16-2`, `5-§16-3`, `5-§16-6`, `5-§17-1`, `5-§17-2`, `5-§17-3`, `5-§17-4`, `5-§17-5`, `5-§17-6`, `5-§17-7`, `5-§17-8`, `5-§17-9`, `5-§17-10`, `5-§17-11`, `5-§18-6`, `5-§18-9`, `5-§18-10`, `5-§18-11`, `22-§10-1`, `22-§10-2`, `22-§10-3`, `22-§10-4`, `22-§10-5`, `22-§10-6`, `22-§10-7`, `22-§19-1`, `22-§19-2`, `22-§19-3`, `22-§19-4`, `22-§19-5`, `22-§19-6`, `22-§19-7`, `22-§23-2`, `22-§23-3`, `22-§23-5`, `22-§29-3`, `22-§29-8`, `22-§29-10`, `22-§29-13`, `25-§4-2`, `25-§4-3`, `25-§4-4`, `25-§4-5`, `25-§4-6`, `25-§4-7`, `25-§4-8`, `25-§4-9`, `25-§4-10`, `25-§4-11`, `25-§8-11`, `25-§10-1`, `25-§10-2`, `25-§10-3`, `25-§10-4`, `25-§10-5`, `25-§10-6`, `25-§10-7`, `25-§10-8`, `25-§10-9`, `25-§10-10`, `25-§10-11`, `25-§10-12`, `25-§11-4`, `25-§14-2`, `25-§14-3`, `25-§14-4`, `25-§14-5`, `25-§20-1`, `25-§20-2`, `25-§20-3`, `25-§20-4`, `25-§20-5`, `25-§20-6`, `25-§20-7`, `25-§20-8`, `25-§20-9`, `25-§20-10`, `25-§20-11`, `25-§20-12`, `25-§20-13`, `25-§20-14`, `25-§21-1`, `25-§21-2`, `25-§21-3`, `25-§21-4`, `25-§21-5`, `25-§23-1`, `25-§23-2`, `25-§23-3`, `25-§23-4`, `25-§23-5`, `25-§23-6`, `25-§23-7`, `25-§23-8`, `25-§23-9`, `25-§23-10`, `25-§23-11`, `25-§23-12`, `25-§26-1`, `25-§26-6`, `25-§26-7`, `25-§26-8`, `25-§26-10`, `24-§23-6`, `17-§12-1`, `BP-§10.3-W5`, `BP-§10.3-W8`, `BP-§10.3-W10` |
+| FCTM rows (159) | `3-§7-8`, `3-§9-8`, `3-§11-1`, `3-§11-2`, `3-§11-3`, `3-§11-4`, `3-§11-5`, `3-§11-7`, `3-§16-6`, `3-§17-1`, `3-§17-2`, `3-§17-7`, `3-§17-8`, `3-§17-9`, `3-§17-10`, `3-§17-11`, `3-§18-1`, `3-§18-2`, `3-§18-3`, `3-§18-5`, `3-§18-6`, `3-§19-6`, `3-§19-14`, `5-§6-1`, `5-§6-2`, `5-§9-7`, `5-§10-7`, `5-§10-10`, `5-§11-1`, `5-§11-2`, `5-§11-3`, `5-§11-4`, `5-§11-5`, `5-§12-1`, `5-§12-2`, `5-§12-3`, `5-§12-4`, `5-§12-5`, `5-§12-6`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `5-§16-1`, `5-§16-2`, `5-§16-3`, `5-§16-6`, `5-§17-1`, `5-§17-2`, `5-§17-3`, `5-§17-4`, `5-§17-5`, `5-§17-6`, `5-§17-7`, `5-§17-8`, `5-§17-9`, `5-§17-10`, `5-§17-11`, `5-§18-6`, `5-§18-9`, `5-§18-10`, `5-§18-11`, `22-§10-1`, `22-§10-2`, `22-§10-3`, `22-§10-4`, `22-§10-5`, `22-§10-6`, `22-§10-7`, `22-§19-1`, `22-§19-2`, `22-§19-3`, `22-§19-4`, `22-§19-5`, `22-§19-6`, `22-§19-7`, `22-§23-2`, `22-§23-3`, `22-§23-5`, `22-§29-3`, `22-§29-8`, `22-§29-10`, `22-§29-13`, `25-§4-2`, `25-§4-3`, `25-§4-4`, `25-§4-5`, `25-§4-6`, `25-§4-7`, `25-§4-8`, `25-§4-9`, `25-§4-10`, `25-§4-11`, `25-§8-11`, `25-§10-1`, `25-§10-2`, `25-§10-3`, `25-§10-4`, `25-§10-5`, `25-§10-6`, `25-§10-7`, `25-§10-8`, `25-§10-9`, `25-§10-10`, `25-§10-11`, `25-§10-12`, `25-§11-4`, `25-§14-2`, `25-§14-3`, `25-§14-4`, `25-§14-5`, `25-§20-1`, `25-§20-2`, `25-§20-3`, `25-§20-4`, `25-§20-5`, `25-§20-6`, `25-§20-7`, `25-§20-8`, `25-§20-9`, `25-§20-10`, `25-§20-11`, `25-§20-12`, `25-§20-13`, `25-§20-14`, `25-§21-1`, `25-§21-2`, `25-§21-3`, `25-§21-4`, `25-§21-5`, `25-§23-1`, `25-§23-2`, `25-§23-3`, `25-§23-4`, `25-§23-5`, `25-§23-6`, `25-§23-7`, `25-§23-8`, `25-§23-9`, `25-§23-10`, `25-§23-11`, `25-§23-12`, `25-§26-1`, `25-§26-6`, `25-§26-7`, `25-§26-8`, `25-§26-10`, `24-§23-6`, `17-§12-1`, `BP-§10.3-W5`, `BP-§10.3-W8`, `BP-§10.3-W10` |
+
+Accountable rows (PQ-10, version 0.2). WS-G builds the SB-P-1.14 slice of these rows to their source item, under the cited locked EIS text and behind their gates; no obligation or EIS link is added (Engineering Contract Section 13.1):
+
+| FCTM row | Source behaviour | Governing locked EIS text | Gates | Verification |
+|---|---|---|---|---|
+| `3-§17-7` | Contract 3 §17 item "failed downstream notification" and its rule that an uncertain or failed write stops safely without blocking unrelated operations; the SB-P-1.14 slice only — notification delivery is SB-P-1.15 (`D15`, `EC14-HOLD-04`, `EC14-HOLD-11`) | EIS14-FAIL-02 (narrow failure) | `EC14-HOLD-04`, `EC14-HOLD-11` | NP-44; `VC-R` item |
+| `3-§17-8` | Contract 3 §17 item "stale linked records" and its rule that an uncertain or failed write stops safely without blocking unrelated operations | EIS14-CNF-03, EIS14-CNF-04 (re-prompt or block at commit), EIS14-LDG-03 (repayment-target revalidation), EIS14-FAIL-02 (narrow failure) | `EC14-HOLD-01` | NP-43; `VC-R` item |
 
 Forbidden in this workstream, in addition to Section 8:
 
@@ -250,7 +269,7 @@ Forbidden in this workstream, in addition to Section 8:
 
 No builder builds anything for a gate. A gate is satisfied only by Mission Control acceptance of the named evidence.
 
-4 rows are realized only by gate obligations in the locked mapping (`3-§17-7`, `3-§17-8`, `5-§18-8a`, `BP-§10.3-W11`). No builder builds them unless the Implementation Authorization assigns their SB-P-1.14 slice to a workstream (Engineering Contract PQ-10).
+The 4 rows that the locked mapping realizes only by gate obligations (`3-§17-7`, `3-§17-8`, `5-§18-8a`, `BP-§10.3-W11`) carry an accountable builder workstream from version 0.2 (Engineering Contract Section 13.1); the gates still hold them.
 
 ## 8. Behaviour Outside the Assigned Rows Is Forbidden
 
@@ -430,8 +449,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 108 | `3-§17-4` | WS-C | `EC14-CNF-01` |
 | 109 | `3-§17-5` | WS-C | `EC14-CNF-01` |
 | 110 | `3-§17-6` | WS-A, Gate | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` |
-| 111 | `3-§17-7` | Gate | `EC14-HOLD-04`, `EC14-HOLD-11` |
-| 112 | `3-§17-8` | Gate | `EC14-HOLD-01` |
+| 111 | `3-§17-7` | WS-G (accountable; PQ-10), Gate | `EC14-HOLD-04`, `EC14-HOLD-11` |
+| 112 | `3-§17-8` | WS-G (accountable; PQ-10), Gate | `EC14-HOLD-01` |
 | 113 | `3-§17-9` | WS-G, Gate | `EC14-SEC-01`, `EC14-HOLD-01` |
 | 114 | `3-§17-10` | WS-G, Gate | `EC14-SEC-01`, `EC14-HOLD-01` |
 | 115 | `3-§17-11` | WS-G | `EC14-IDM-03`, `EC14-FAIL-01`, `EC14-FAIL-02` |
@@ -590,7 +609,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 268 | `5-§18-5` | WS-B, Cross-cutting, Gate | `EC14-ADP-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-05` |
 | 269 | `5-§18-6` | WS-G, Cross-cutting, Gate | `EC14-IDM-01`, `EC14-IDM-02`, `EC14-VER-02`, `EC14-HOLD-01` |
 | 270 | `5-§18-7` | WS-D, WS-E, WS-F, Cross-cutting, Gate | `EC14-CAB-04`, `EC14-RTV-01`, `EC14-PRV-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-08` |
-| 271 | `5-§18-8a` | Cross-cutting, Gate | `EC14-VER-02`, `EC14-HOLD-02` |
+| 271 | `5-§18-8a` | WS-B (accountable; PQ-10), Cross-cutting, Gate | `EC14-VER-02`, `EC14-HOLD-02` |
 | 272 | `5-§18-9` | WS-G, Cross-cutting, Gate | `EC14-SEC-03`, `EC14-VER-02`, `EC14-HOLD-01` |
 | 273 | `5-§18-10` | WS-G, Cross-cutting, Gate | `EC14-SEC-01`, `EC14-VER-02`, `EC14-HOLD-01` |
 | 274 | `5-§18-11` | WS-G, Cross-cutting | `EC14-FAIL-02`, `EC14-VER-02` |
@@ -869,7 +888,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 547 | `BP-§10.3-W8` | WS-D, WS-E, WS-G, Cross-cutting, Gate | `EC14-CAB-04`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` |
 | 548 | `BP-§10.3-W9` | WS-E, Gate | `EC14-STO-01`, `EC14-PRV-02`, `EC14-HOLD-08` |
 | 549 | `BP-§10.3-W10` | WS-E, WS-G, Cross-cutting, Gate | `EC14-STO-01`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` |
-| 550 | `BP-§10.3-W11` | Gate | `EC14-HOLD-01` |
+| 550 | `BP-§10.3-W11` | WS-C (accountable; PQ-10), Gate | `EC14-HOLD-01` |
 | 551 | `BP-§10.3-W12` | WS-B | `EC14-UDI-01` |
 | 552 | `BP-§10.3-W13` | WS-B, Gate | `EC14-ADP-02`, `EC14-HOLD-01`, `EC14-HOLD-05` |
 | 553 | `BP-§10.3-C1` | WS-A, Cross-cutting, Gate | `EC14-LDG-01`, `EC14-CMD-01`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-HOLD-03` |
@@ -889,16 +908,16 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | Workstream | Obligations | Rows |
 |---|---|---|
 | WS-A | 13 | 109 |
-| WS-B | 13 | 157 |
-| WS-C | 4 | 47 |
+| WS-B | 13 | 158 |
+| WS-C | 4 | 48 |
 | WS-D | 4 | 67 |
 | WS-E | 14 | 171 |
 | WS-F | 6 | 55 |
-| WS-G | 9 | 157 |
+| WS-G | 9 | 159 |
 | Cross-cutting | 9 | 283 |
 | Gate | 11 | 457 |
 
-Every one of the 563 rows is assigned to at least one workstream; 488 rows are shared by two or more. 60 rows reach no builder workstream: 56 are realized by cross-cutting obligations (must-not, module-boundary, CI and disclosure rows) that apply to every builder workstream, and 4 are realized only by gate obligations (Engineering Contract PQ-10). No row is assigned outside SB-P-1.14.
+Every one of the 563 rows is assigned to at least one workstream; 491 rows are shared by two or more. 56 rows reach no builder workstream; all are realized by cross-cutting obligations (must-not, module-boundary, CI and disclosure rows) that apply to every builder workstream. The 4 rows realized in the locked mapping only by gate obligations carry an accountable builder workstream (Engineering Contract Section 13.1). No row is assigned outside SB-P-1.14.
 
 ## 14. Status
 
@@ -909,3 +928,4 @@ Every one of the 563 rows is assigned to at least one workstream; 488 rows are s
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
+| 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |

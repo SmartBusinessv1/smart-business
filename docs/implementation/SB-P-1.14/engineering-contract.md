@@ -19,7 +19,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission Name | Business Memory, Documents & Durable Media |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — Source 18 Stage 12 initial implementation package owner |
 | Authorizing record | SB-P-1.14-MC-21 (`mission-control/38-stage11-eis-lock-disposition.md`, blob `ce13f8a3`, §4), canonical through PR #844; Stage 12 activation by Mission Control against `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d` |
@@ -502,8 +502,8 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 108 | `3-§17-4` | §8.7 | `EC14-CNF-01` | WS-C | PASS | — |
 | 109 | `3-§17-5` | §8.7 | `EC14-CNF-01` | WS-C | PASS | — |
 | 110 | `3-§17-6` | §8.7 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 111 | `3-§17-7` | §8.7 | `EC14-HOLD-04`, `EC14-HOLD-11` | Gate | FOLLOW-UP | H-LATER |
-| 112 | `3-§17-8` | §8.7 | `EC14-HOLD-01` | Gate | BLOCKED | H-D12 |
+| 111 | `3-§17-7` | §8.7 | `EC14-HOLD-04`, `EC14-HOLD-11` | WS-G (accountable; PQ-10), Gate | FOLLOW-UP | H-LATER |
+| 112 | `3-§17-8` | §8.7 | `EC14-HOLD-01` | WS-G (accountable; PQ-10), Gate | BLOCKED | H-D12 |
 | 113 | `3-§17-9` | §8.7 | `EC14-SEC-01`, `EC14-HOLD-01` | WS-G, Gate | BLOCKED | H-D12 |
 | 114 | `3-§17-10` | §8.7 | `EC14-SEC-01`, `EC14-HOLD-01` | WS-G, Gate | BLOCKED | H-D12 |
 | 115 | `3-§17-11` | §8.7 | `EC14-IDM-03`, `EC14-FAIL-01`, `EC14-FAIL-02` | WS-G | FOLLOW-UP | H-STATE |
@@ -662,7 +662,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 268 | `5-§18-5` | §8.2 | `EC14-ADP-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-B, Cross-cutting, Gate | BLOCKED | H-D12, H-FIN |
 | 269 | `5-§18-6` | §8.7 | `EC14-IDM-01`, `EC14-IDM-02`, `EC14-VER-02`, `EC14-HOLD-01` | WS-G, Cross-cutting, Gate | BLOCKED | H-D12, H-IDEM |
 | 270 | `5-§18-7` | §8.4 | `EC14-CAB-04`, `EC14-RTV-01`, `EC14-PRV-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | WS-D, WS-E, WS-F, Cross-cutting, Gate | BLOCKED | H-D12, H-STO, H-REVOKE |
-| 271 | `5-§18-8a` | §8.2 | `EC14-VER-02`, `EC14-HOLD-02` | Cross-cutting, Gate | BLOCKED | H-D13 |
+| 271 | `5-§18-8a` | §8.2 | `EC14-VER-02`, `EC14-HOLD-02` | WS-B (accountable; PQ-10), Cross-cutting, Gate | BLOCKED | H-D13 |
 | 272 | `5-§18-9` | §8.7 | `EC14-SEC-03`, `EC14-VER-02`, `EC14-HOLD-01` | WS-G, Cross-cutting, Gate | BLOCKED | H-D12 |
 | 273 | `5-§18-10` | §8.7 | `EC14-SEC-01`, `EC14-VER-02`, `EC14-HOLD-01` | WS-G, Cross-cutting, Gate | BLOCKED | H-D12 |
 | 274 | `5-§18-11` | §8.7 | `EC14-FAIL-02`, `EC14-VER-02` | WS-G, Cross-cutting | PASS | — |
@@ -941,7 +941,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 547 | `BP-§10.3-W8` | §8.4 | `EC14-CAB-04`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | WS-D, WS-E, WS-G, Cross-cutting, Gate | BLOCKED | H-D12, H-STO, H-BIRTH |
 | 548 | `BP-§10.3-W9` | §8.5 | `EC14-STO-01`, `EC14-PRV-02`, `EC14-HOLD-08` | WS-E, Gate | FOLLOW-UP | H-STO |
 | 549 | `BP-§10.3-W10` | §8.5 | `EC14-STO-01`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | WS-E, WS-G, Cross-cutting, Gate | BLOCKED | H-D12, H-STO, H-BIRTH |
-| 550 | `BP-§10.3-W11` | §8.3 | `EC14-HOLD-01` | Gate | BLOCKED | H-D12 |
+| 550 | `BP-§10.3-W11` | §8.3 | `EC14-HOLD-01` | WS-C (accountable; PQ-10), Gate | BLOCKED | H-D12 |
 | 551 | `BP-§10.3-W12` | §8.2 | `EC14-UDI-01` | WS-B | PASS | — |
 | 552 | `BP-§10.3-W13` | §8.2 | `EC14-ADP-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-B, Gate | BLOCKED | H-D12, H-FIN |
 | 553 | `BP-§10.3-C1` | §8.1 | `EC14-LDG-01`, `EC14-CMD-01`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-HOLD-03` | WS-A, Cross-cutting, Gate | BLOCKED | H-DTX, H-MIG |
@@ -967,6 +967,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | Row-to-obligation links | 2282 |
 | Obligations with no FCTM row | 0 |
 | Behaviour-adding orphan obligations | 0 |
+| Rows with an accountable builder workstream (WS-A to WS-G) or realized only by cross-cutting obligations | 563 of 563; rows realized only by gate obligations without accountability: 0 (Section 13.1) |
 | Cross-cutting rules (Section 8) and process obligations (Section 9) | 14 and 8; non-behavioural |
 | Rows with Stage 7 finding `BLOCKED` / `FOLLOW-UP` / `PASS` | 319 / 157 / 87 |
 | Rows carrying `D12` / `D13` / `DTX` | 225 / 92 / 42 |
@@ -990,7 +991,18 @@ Observations raised at Stage 12 for Mission Control. None changes a row, require
 | PQ-7 | Scenario RS-20 | `22-§29-14` is a documentary acceptance scenario with no runtime surface. RS-20 is a documentary verification scenario (`DOC`), not runtime evidence, and cannot satisfy a runtime-verification requirement for another row. |
 | PQ-8 | Storage-dependent workstreams | WS-E and every `BUILD — PROVIDER GATED` storage obligation cannot be exercised against a real object store until `DR2` activation is separately authorized; until then only interfaces, metadata and local tests are possible, and no storage row can be demonstrated. |
 | PQ-9 | AI-dependent paths | WS-B AI interpretation (`EC14-UDI-07`, `-09`) depends on SB-P-1.13 gateway implementation and `DAI` evidence; the deterministic CSV/XLSX path (`EC14-UDI-03`) does not need AI but still needs `D12` and the governed command for Ledger writes. |
-| PQ-10 | Rows realized only by gate obligations | In the locked EIS mapping, 4 rows map only to gate requirements (and, for one, `EIS14-VER-02`): `3-§17-7` (HOLD-04, HOLD-11), `3-§17-8` (HOLD-01), `5-§18-8a` (VER-02, HOLD-02), `BP-§10.3-W11` (HOLD-01). They have an obligation and a checklist item, so Source 18 coverage holds, but no builder workstream is assigned to build their SB-P-1.14 behaviour. This package preserves the locked mapping and does not add a builder assignment. Mission Control decides at Stage 13 whether the Implementation Authorization assigns their builder slice to a workstream or whether a governed EIS path is needed; until then no builder builds them. |
+| PQ-10 | Rows realized only by gate obligations (refined in 0.2) | In the locked EIS mapping, 4 rows map only to gate requirements (and, for one, `EIS14-VER-02`): `3-§17-7` (HOLD-04, HOLD-11), `3-§17-8` (HOLD-01), `5-§18-8a` (VER-02, HOLD-02), `BP-§10.3-W11` (HOLD-01). A gate is not a builder. Version 0.2 assigns each row an accountable builder workstream from its locked Blueprint §8 placement and the Blueprint §7 register (Section 13.1). The locked obligations and EIS links are unchanged. Residual for Mission Control: the locked EIS §29 maps no mechanism requirement to these rows; the governing EIS text is cited as a constraint, not as a new link. |
+
+### 13.1 PQ-10 Reconciliation (version 0.2)
+
+Accountability is a package-level assignment of the row's builder slice. It adds no obligation, EIS requirement link, FCTM change or Product Truth. The row is built to its own source item; the cited locked EIS text constrains how; the row's gate obligations still hold it until their evidence is accepted.
+
+| FCTM row | Locked obligations (unchanged) | Before (0.1) | After (0.2) | Basis | Source behaviour (SB-P-1.14 slice) | Governing locked EIS text (constraint, not a §29 link) | Verification added |
+|---|---|---|---|---|---|---|---|
+| `3-§17-7` | `EC14-HOLD-04`, `EC14-HOLD-11` | Gate only; no builder | WS-G accountable | Blueprint §8.7 → Blueprint §7 register (§8.7 → WS-G) | Contract 3 §17 item "failed downstream notification" and its rule that an uncertain or failed write stops safely without blocking unrelated operations; the SB-P-1.14 slice only — notification delivery is SB-P-1.15 (`D15`, `EC14-HOLD-04`, `EC14-HOLD-11`) | EIS14-FAIL-02 (narrow failure) | NP-44 |
+| `3-§17-8` | `EC14-HOLD-01` | Gate only; no builder | WS-G accountable | Blueprint §8.7 → Blueprint §7 register (§8.7 → WS-G) | Contract 3 §17 item "stale linked records" and its rule that an uncertain or failed write stops safely without blocking unrelated operations | EIS14-CNF-03, EIS14-CNF-04 (re-prompt or block at commit), EIS14-LDG-03 (repayment-target revalidation), EIS14-FAIL-02 (narrow failure) | NP-43 |
+| `5-§18-8a` | `EC14-VER-02`, `EC14-HOLD-02` | Cross-cutting, Gate only; no builder | WS-B accountable | Blueprint §8.2 → Blueprint §7 register (§8.2 → WS-B) | Contract 5 §18 acceptance 8, Workspace slice: Conversation Workspace uses the same interpretation rules (the WhatsApp slice is SB-P-1.20) | EIS14-UDI-01 (one intake pipeline for visual upload and the SB-P-1.13 attachment handoff) | NP-41, RS-23 |
+| `BP-§10.3-W11` | `EC14-HOLD-01` | Gate only; no builder | WS-C accountable | Blueprint §8.3 → Blueprint §7 register (§8.3 → WS-C) | Build Plan §10.3 required work area "correction/audit continuity": the review, clarification and correction surfaces keep the existing correction audit continuous | EIS14-CMD-02 (governed append-only correction command, built by WS-A inside the transactions-family cut-over) | NP-27, RS-11 |
 
 ## 14. Status
 
@@ -1001,3 +1013,4 @@ Observations raised at Stage 12 for Mission Control. None changes a row, require
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
+| 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |

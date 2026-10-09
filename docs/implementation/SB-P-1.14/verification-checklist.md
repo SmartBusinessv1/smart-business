@@ -18,7 +18,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
 | Author | Claude Code — initial implementation package owner |
 | Canonical baseline | `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d` |
@@ -110,7 +110,7 @@ Each experience row has at least one named runtime scenario. Every scenario is a
 | RS-08 | Unsafe or unsupported file rejected with a clear recoverable state; a PDF with active content processed without execution or fetch | Blueprint §8.2, §8.7 | `RT` | 44 rows (Section 13.4) |
 | RS-09 | Receipt Cabinet: browse and find documents by period, party, amount, type and linked record; open the original; a replacement shows as a new version | Blueprint §8.4 | `RT` | 91 rows (Section 13.4) |
 | RS-10 | Export to CSV, Excel and PDF with distinct measures and safe cell values; export denied without the export capability | Blueprint §8.6 | `RT` | 8 rows (Section 13.4) |
-| RS-11 | Correct a recorded entry through the correction command; the prior values remain visible in the correction history | Blueprint §8.3 | `RT`, `DB` | 38 rows (Section 13.4) |
+| RS-11 | Correct a recorded entry through the correction command; the prior values remain visible in the correction history | Blueprint §8.3 | `RT`, `DB` | 39 rows (Section 13.4) |
 | RS-12 | Parser, AI, storage or provider outage: the affected operation fails narrowly with no false success; deterministic and unrelated paths keep working | Blueprint §8.7 | `RT` | 61 rows (Section 13.4) |
 | RS-13 | Timeout after dispatch: unknown outcome shown, then resolved by lookup; retry and re-upload produce no second write; a re-uploaded file is flagged as a possible duplicate | Blueprint §8.7 | `RT`, `DB` | 23 rows (Section 13.4) |
 | RS-14 | Four states shown as everyday actions (sold, bought, received, spent, owes, paid back) in the transaction list, dashboard and correction dialog; no storage, provider or AI internals shown | Blueprint §9 | `RT` | 23 rows (Section 13.4) |
@@ -173,7 +173,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-24 | Only the needed pages or regions and the business context the actor may read reach the gateway; Owner-only aggregates never enter context for non-Owner principals | `EC14-UDI-08` | `UNIT`, `INT` | 3 rows (Section 13.4) |
 | NP-25 | No merchant document reaches an AI provider without an accepted versioned configuration identity, or after a material provider, model, account, routing or data-control change until re-verification; no direct provider SDK exists in `udi` | `EC14-UDI-09`, `EC14-PRV-01` | `UNIT`, `INT`, `REPO` | 98 rows (Section 13.4) |
 | NP-26 | With AI unavailable or disabled, deterministic CSV/XLSX intake keeps working and AI never silently reinterprets cell values | `EC14-UDI-03`, `EC14-UDI-09` | `UNIT`, `INT` | 20 rows (Section 13.4) |
-| NP-27 | Original bytes are never modified; replacement appends a version; a correction records prior and new values append-only and never converts a credit-method sale into a `credit` row | `EC14-CMD-02`, `EC14-CAB-02` | `UNIT`, `DB` | 23 rows (Section 13.4) |
+| NP-27 | Original bytes are never modified; replacement appends a version; a correction records prior and new values append-only and never converts a credit-method sale into a `credit` row | `EC14-CMD-02`, `EC14-CAB-02`, PQ-10 accountable row `BP-§10.3-W11` (WS-C) | `UNIT`, `DB` | 24 rows (Section 13.4) |
 | NP-28 | Domain provenance, storage metrics and logs hold identifiers, security metadata and aggregates only, never document content; allow/deny evidence and durable denials are recorded through SB-P-1.12 `authority_events`, not copied into domain provenance | `EC14-CAB-03`, `EC14-STO-09` | `DB`, `AUDIT`, `INV` | 17 rows (Section 13.4) |
 | NP-29 | No public bucket or object; no guessable key confers access; provider keys and URLs are never business identity or authority; provider credentials stay server-side and least-privilege | `EC14-STO-01`, `EC14-STO-04` | `OBJ`, `INV` | 39 rows (Section 13.4) |
 | NP-30 | Nothing is presented as stored before `verified`; an upload to an unauthorized key, an oversize upload or an integrity mismatch never reaches `verified`; CORS is origin-limited | `EC14-STO-02` | `INT`, `OBJ` | 14 rows (Section 13.4) |
@@ -187,8 +187,10 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-38 | Opening-stock lines create no financial event and never overwrite an item that already has opening stock | `EC14-ADP-02` | `DB` | 8 rows (Section 13.4) |
 | NP-39 | A multi-row import revoked mid-run keeps committed rows and stops later rows with exact completed/failed/remaining counts; resumption skips committed rows by fingerprint and creates no duplicate Ledger or opening-stock write | `EC14-ADP-02`, `EC14-MIG-03` | `DB`, `CONC` | 23 rows (Section 13.4) |
 | NP-40 | Per-row must-not check: the behaviour the row prohibits is absent, by design inspection and a negative test where testable | `EC14-NG-01`, every `NEG`-kind row | `DOC`, `UNIT` | 96 rows (Section 13.4) |
-| NP-41 | No second parser stack, storage universe, Business Memory copy or channel-specific store exists (repository and catalog inventory) | `EC14-ARC-02`, `EC14-UDI-01`, `EC14-STO-08` | `INV`, `REPO` | 38 rows (Section 13.4) |
+| NP-41 | No second parser stack, storage universe, Business Memory copy or channel-specific store exists (repository and catalog inventory) | `EC14-ARC-02`, `EC14-UDI-01`, `EC14-STO-08`, PQ-10 accountable row `5-§18-8a` (WS-B) | `INV`, `REPO` | 39 rows (Section 13.4) |
 | NP-42 | A later-mission slice (SB-P-1.15 Scheduler and notifications, SB-P-1.17 stock effects, SB-P-1.19 lifecycle export, SB-P-1.20 WhatsApp) is not built here and returns dependency-blocked | `EC14-HOLD-04`, `EC14-HOLD-11` | `UNIT`, `DOC` | 13 rows (Section 13.4) |
+| NP-43 | A write against a linked record that has changed or been removed since it was reviewed (stale link) stops safely and returns to review or clarification; it never writes against the stale target and does not block unrelated work (Contract 3 §17) | PQ-10 accountable row `3-§17-8` (WS-G) | `DB`, `CONC` | 1 rows (Section 13.4) |
+| NP-44 | A failed downstream notification never rolls back, duplicates or blocks the committed Ledger record or unrelated operations; notification delivery itself (SB-P-1.15) is not built here (Contract 3 §17) | PQ-10 accountable row `3-§17-7` (WS-G) | `INT`, `DOC` | 1 rows (Section 13.4) |
 
 ## 7. Validation Verification
 
@@ -263,10 +265,10 @@ Each permission, isolation and denial row has at least one named negative-path c
 | Rows with a checklist item and planned evidence class | 563 of 563 |
 | Rows missing a checklist item | 0 |
 | Permission, isolation and denial rows (rule in 13.1) | 431; all 431 carry a named negative-path check |
-| Rows carrying at least one named negative-path check | 538 |
+| Rows carrying at least one named negative-path check | 541 |
 | Experience rows | 261; all 261 carry a named runtime scenario |
-| Rows carrying at least one named runtime scenario | 506 |
-| Named negative-path checks | 42, each used by at least one row |
+| Rows carrying at least one named runtime scenario | 507 |
+| Named negative-path checks | 44, each used by at least one row |
 | Named runtime scenarios | 23, each used by at least one row |
 | `ALREADY DEMONSTRATED` rows | 0 in the FCTM; no regression-only item is needed |
 | Rows `BLOCKED` / `FOLLOW-UP` / `PASS` (Stage 7 finding) | 319 / 157 / 87, all `IN SCOPE` |
@@ -284,6 +286,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-PT-06 | None of the 20 `OUT OF BUILD SCOPE` rows appears in the built product (must-not-appear checks). | `REPO`, `DOC` | `BP-§16-1`, `BP-§16-2`, `BP-§16-3`, `BP-§16-4`, `BP-§16-5`, `BP-§16-6`, `BP-§16-7`, `BP-§16-8`, `BP-§16-9`, `BP-§16-10`, `BP-§16-11`, `BP-§16-12`, `BP-§16-13`, `BP-§16-14`, `BP-§16-15`, `BP-§16-16`, `BP-§16-17`, `BP-§16-18`, `BP-§16-19`, `BP-§16-20` |
 | VC-PT-07 | No row assigned to a later mission or delegated is built here as hidden scope; no authoritative per-customer balance (`3-§9-12`). | `REPO`, `DOC` | 203 non-`IN SCOPE` rows |
 
+| VC-PT-08 | Each PQ-10 row is built by its accountable workstream to its source item under the cited locked EIS text, stays held by its gate obligations, and its named check passes (Engineering Contract Section 13.1). | `REPO`, `DOC`, `DB` | `3-§17-7`, `3-§17-8`, `5-§18-8a`, `BP-§10.3-W11` |
 ### 13.4 Row-keyed checklist items
 
 | Item | FCTM row | Obligations | Planned evidence class | Negative-path checks | Runtime scenarios | Finding | Holds |
@@ -398,8 +401,8 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-108 | `3-§17-4` | `EC14-CNF-01` | `UNIT`, `INT`, `RT` | NP-18 | RS-16 | PASS | — |
 | VC-R-109 | `3-§17-5` | `EC14-CNF-01` | `UNIT`, `INT`, `RT` | NP-18 | RS-16 | PASS | — |
 | VC-R-110 | `3-§17-6` | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | `UNIT`, `DB`, `CONC`, `INV`, `AUDIT`, `RT`, `PROV`, `DOC` | NP-07, NP-27 | RS-11 | BLOCKED | H-D12, H-FIN |
-| VC-R-111 | `3-§17-7` | `EC14-HOLD-04`, `EC14-HOLD-11` | `UNIT`, `DOC` | NP-42 | — | FOLLOW-UP | H-LATER |
-| VC-R-112 | `3-§17-8` | `EC14-HOLD-01` | `PROV`, `DOC` | — | — | BLOCKED | H-D12 |
+| VC-R-111 | `3-§17-7` | `EC14-HOLD-04`, `EC14-HOLD-11` | `UNIT`, `INT`, `DOC` | NP-42, NP-44 | — | FOLLOW-UP | H-LATER |
+| VC-R-112 | `3-§17-8` | `EC14-HOLD-01` | `DB`, `CONC`, `PROV`, `DOC` | NP-43 | — | BLOCKED | H-D12 |
 | VC-R-113 | `3-§17-9` | `EC14-SEC-01`, `EC14-HOLD-01` | `INT`, `DB`, `INV`, `RT`, `PROV`, `DOC` | NP-01, NP-08 | RS-06, RS-21 | BLOCKED | H-D12 |
 | VC-R-114 | `3-§17-10` | `EC14-SEC-01`, `EC14-HOLD-01` | `INT`, `DB`, `INV`, `RT`, `PROV`, `DOC` | NP-01, NP-08 | RS-06, RS-21 | BLOCKED | H-D12 |
 | VC-R-115 | `3-§17-11` | `EC14-IDM-03`, `EC14-FAIL-01`, `EC14-FAIL-02` | `UNIT`, `INT`, `DB`, `RT` | NP-15, NP-35 | RS-12, RS-13 | FOLLOW-UP | H-STATE |
@@ -558,7 +561,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-268 | `5-§18-5` | `EC14-ADP-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | `INT`, `DB`, `CONC`, `RT`, `FRT`, `PROV`, `DOC` | NP-38, NP-39 | RS-07 | BLOCKED | H-D12, H-FIN |
 | VC-R-269 | `5-§18-6` | `EC14-IDM-01`, `EC14-IDM-02`, `EC14-VER-02`, `EC14-HOLD-01` | `UNIT`, `DB`, `CONC`, `RT`, `FRT`, `PROV`, `DOC` | NP-14 | RS-13 | BLOCKED | H-D12, H-IDEM |
 | VC-R-270 | `5-§18-7` | `EC14-CAB-04`, `EC14-RTV-01`, `EC14-PRV-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | `INT`, `DB`, `CONC`, `OBJ`, `RT`, `FRT`, `PROV`, `DOC` | NP-01, NP-05, NP-36 | RS-05, RS-09, RS-18 | BLOCKED | H-D12, H-STO, H-REVOKE |
-| VC-R-271 | `5-§18-8a` | `EC14-VER-02`, `EC14-HOLD-02` | `DB`, `RT`, `FRT`, `PROV`, `DOC` | — | RS-23 | BLOCKED | H-D13 |
+| VC-R-271 | `5-§18-8a` | `EC14-VER-02`, `EC14-HOLD-02` | `DB`, `INV`, `RT`, `FRT`, `REPO`, `PROV`, `DOC` | NP-41 | RS-23 | BLOCKED | H-D13 |
 | VC-R-272 | `5-§18-9` | `EC14-SEC-03`, `EC14-VER-02`, `EC14-HOLD-01` | `INT`, `DB`, `RT`, `FRT`, `PROV`, `DOC` | NP-03, NP-04 | RS-05, RS-21 | BLOCKED | H-D12 |
 | VC-R-273 | `5-§18-10` | `EC14-SEC-01`, `EC14-VER-02`, `EC14-HOLD-01` | `INT`, `DB`, `INV`, `RT`, `FRT`, `PROV`, `DOC` | NP-01, NP-08 | RS-06, RS-21 | BLOCKED | H-D12 |
 | VC-R-274 | `5-§18-11` | `EC14-FAIL-02`, `EC14-VER-02` | `UNIT`, `INT`, `RT`, `FRT`, `DOC` | NP-35 | RS-12 | PASS | — |
@@ -837,7 +840,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-547 | `BP-§10.3-W8` | `EC14-CAB-04`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | `INT`, `DB`, `INV`, `OBJ`, `REH`, `RT`, `PROV`, `DOC` | NP-01, NP-06, NP-36 | RS-05, RS-09, RS-18 | BLOCKED | H-D12, H-STO, H-BIRTH |
 | VC-R-548 | `BP-§10.3-W9` | `EC14-STO-01`, `EC14-PRV-02`, `EC14-HOLD-08` | `UNIT`, `INT`, `DB`, `INV`, `OBJ`, `RT`, `PROV`, `DOC` | NP-29, NP-36 | RS-09 | FOLLOW-UP | H-STO |
 | VC-R-549 | `BP-§10.3-W10` | `EC14-STO-01`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | `UNIT`, `INT`, `DB`, `INV`, `OBJ`, `REH`, `RT`, `PROV`, `DOC` | NP-06, NP-29, NP-36 | RS-09 | BLOCKED | H-D12, H-STO, H-BIRTH |
-| VC-R-550 | `BP-§10.3-W11` | `EC14-HOLD-01` | `PROV`, `DOC` | — | — | BLOCKED | H-D12 |
+| VC-R-550 | `BP-§10.3-W11` | `EC14-HOLD-01` | `UNIT`, `DB`, `RT`, `PROV`, `DOC` | NP-27 | RS-11 | BLOCKED | H-D12 |
 | VC-R-551 | `BP-§10.3-W12` | `EC14-UDI-01` | `UNIT`, `INT`, `INV`, `RT`, `REPO` | NP-19, NP-41 | RS-08 | PASS | — |
 | VC-R-552 | `BP-§10.3-W13` | `EC14-ADP-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | `INT`, `DB`, `CONC`, `RT`, `PROV`, `DOC` | NP-38, NP-39 | RS-07 | BLOCKED | H-D12, H-FIN |
 | VC-R-553 | `BP-§10.3-C1` | `EC14-LDG-01`, `EC14-CMD-01`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-HOLD-03` | `UNIT`, `INT`, `DB`, `CONC`, `INV`, `AUDIT`, `REH`, `RT`, `FRT`, `REG`, `PROV`, `DOC` | NP-06, NP-07, NP-08, NP-09 | RS-03, RS-04, RS-06 | BLOCKED | H-DTX, H-MIG |
@@ -872,3 +875,4 @@ UNVERIFIED — ACCESS REQUIRED: 20 FACTS
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
+| 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
