@@ -1,10 +1,12 @@
 # SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
-**Current gate:** MC-28 communication suspension and Lovable/Resend support-review boundary — pending human merge.  
-**Protected baseline:** `main@3ce7377cddf14873dadc779a55a4c095b0efef98`
+**Current gate:** MC-29 Founder clarification of parallel Phase 1 documentary/readiness workflow — HUMAN MERGE REQUIRED.  
+**Canonical baseline:** `main@42bb32dec2856125be094d7be285bb80d5e0614c`
 
-SB-P-1.14's documentary/readiness checkpoint, exact resume register, communication preservation snapshots and nonterminal Partial OLE handoff were canonicalized in PR #852. Implementation Authorization MC-26 remains **WITHHELD — IMPLEMENTATION NOT AUTHORIZED**.
+MC-28 previously treated pending provider support review/recovery as an unconditional block on SB-P-1.15 activation. MC-29 supersedes that blocking condition, **only upon human merge and post-merge verification**, to follow the Founder-approved SB-P-1.12 → SB-P-1.20 operating pattern.
 
-MC-28 proposes to suspend the SB-P-1.14 active communication cycle with **FORMAL ARCHIVE DEFERRED**. The user-directed Lovable and Resend support response evaluation is the mandatory next gate before SB-P-1.15. Actual provider replies have not yet been assessed here. No SB-P-1.15 activation, implementation, runtime acceptance or formal OLE closure is claimed.
+GitHub, Supabase (including the paused Free test project), Lovable and Resend recovery remain active in parallel. No provider is claimed recovered; no implementation authorization granted.
+
+SB-P-1.14 remains partially completed/suspended, partial OLE canonical, communication suspended and formal archive deferred. SB-P-1.15 documentary entry still needs a separate Stage 1 governed instruction.
 
 **STOP FOR HUMAN MERGE.**
