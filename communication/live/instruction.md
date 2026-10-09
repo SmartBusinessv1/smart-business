@@ -1,22 +1,18 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 11 EIS Lock
+# Instruction — SB-P-1.14 Stage 12 Draft Publication Authorization
 
-**Status:** HUMAN MERGE REQUIRED  
-**Canonical Stage 10 baseline:** `main@0527d30e779d93eda95dd19b48186269cecbbf49`  
-**Accepted PR #831 head:** `7798c8ac03a4e8d3d833be6772a348dda53c6387`  
-**Accepted EIS blob:** `261ca7ac901f1dc6a9d6fcfb51616016a3a48bcf`
+**Status:** HUMAN MERGE REQUIRED — NOT YET EFFECTIVE  
+**Canonical baseline:** `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d`  
+**Stage 11 EIS lock:** canonical, PR #844; PR #831 closed unmerged  
+**Mission Control:** SB-P-1.14-MC-22, `communication/missions/SB-P-1.14/mission-control/39-stage12-draft-publication-authorization.md`
 
-MC-21 prepares the separate Stage 11 EIS Lock crossing.
+Claude Code reports three Stage 12 implementation-package draft documents plus report 15, all local/untracked, with no commit, push, PR, or tracked-file change. This is a report of local state, **not** independent inspection or Stage 13 acceptance.
 
-The lock changes lifecycle metadata/status only and carries the accepted EIS plus Claude reports 12–14 onto the canonical-main lineage.
+Founder / authorized human: review and human-merge this MC-22 authorization PR first. Mission Control must then verify the crossing on protected `main`.
 
-Do not merge PR #831. Do not start Stage 12 until this lock PR is human-merged and Mission Control verifies the crossing.
+**Only after effective authorization**, the named actor may verify and publish the four exact reported files on `mission/SB-P-1.14-stage12-implementation-package` under MC-22 §2, open one DRAFT PR and STOP for Mission Control Stage 13 review.
 
-After verification:
-- close PR #831 unmerged as superseded;
-- activate Claude Code for Stage 12 Initial Implementation Package preparation only.
-
-Implementation, SQL/migrations, provider activation, production and delivery remain NOT AUTHORIZED.
+Do not publish the package before the canonical crossing. No implementation, SQL/migration, provider activation, production mutation, delivery, package approval or self-merge is authorized.
 
 **STOP FOR HUMAN MERGE.**
