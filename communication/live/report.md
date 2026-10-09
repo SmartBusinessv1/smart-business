@@ -1,12 +1,12 @@
 # SMART BUSINESS MISSION CONTROL — LIVE REPORT
 
 **Mission:** SB-P-1.14 — Business Memory, Documents & Durable Media  
-**Lifecycle:** Stage 13 preliminary review — REFINEMENT REQUIRED  
-**Canonical main:** `8226027c8ac19340b4439b872167908ea651733e`  
-**Review target:** DRAFT PR #847 at `53dbe83acf0fe4371d2540039a60465602adb200`
+**Lifecycle:** Stage 13 content accepted; package lock crossing pending human merge  
+**Canonical main:** `95b1c3ef143c80f10b4414d4029ed724201c7542`  
+**Reviewed package:** PR #847 @ `5c37a5d9ca0b0f4b5c438283e8f157d01a670d4a`
 
-Publication and four authorized blobs verified. Package remains draft and unmerged. Mission Control independently identified four gate-only `IN SCOPE`/`BUILD NOW` rows with unassigned builder accountability (PQ-10), requiring narrow review/refinement or governed escalation. PQ-2 transactions-family cut-over remains an implementation prerequisite. No CI checks on PR #847 are treated as passed.
+MC-24 was human-merged in PR #849. MC-25 Stage 13 package lock is prepared on a separate governance branch. Three package documents and historical report are being carried to canonical main; substantive package v0.2 mappings remain unchanged. PQ-10 accountability is documented; PQ-2 cross-mission cut-over and all upstream/provider/runtime holds remain open.
 
-**MC-23 refinement authorization is prepared but pending human merge and post-merge verification.** No package lock, implementation authorization, runtime pass or provider evidence pass is claimed.
+**Stage 13 lock NOT YET CANONICAL. Implementation NOT AUTHORIZED. CI availability remains unverified.**
 
 **STOP FOR HUMAN MERGE.**
