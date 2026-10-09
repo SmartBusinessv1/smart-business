@@ -1,14 +1,15 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Implementation Authorization Withheld
+# Instruction — Provider Support Review Before SB-P-1.15
 
-**Status:** HUMAN MERGE REQUIRED — WITHHELD DISPOSITION PENDING CANONICALIZATION  
-**Canonical Stage 13 package lock:** `main@2b91877ed8b6d79ac99c35acc586f466c0b4b874` (PR #850)  
-**Mission Control decision:** SB-P-1.14-MC-26  
-**Record:** `communication/missions/SB-P-1.14/mission-control/implementation-authorization.md`
+**Status:** HUMAN MERGE REQUIRED — MC-28 NOT YET EFFECTIVE  
+**Baseline:** `main@3ce7377cddf14873dadc779a55a4c095b0efef98`  
+**Prior mission:** SB-P-1.14 — documentary/readiness partially complete; Implementation Authorization WITHHELD  
+**Gate:** Lovable + Resend support response review, prior to SB-P-1.15 activation  
+**Record:** `communication/missions/SB-P-1.14/mission-control/49-communication-suspension-provider-support-review-gate.md`
 
-Stage 13 package is APPROVED — LOCKED. Superseded draft PR #847 is closed unmerged. Implementation authorization is WITHHELD: no builder, code branch, environment, provider, storage, migration or production authority is granted.
+PR #852 canonicalized the partial OLE, exact resume register, partial completion, archive-deferment record and verbatim snapshots of the previous live pair.
 
-Founder / authorized human: review and merge this MC-26 withheld-authorization record. After post-merge verification, Mission Control may separately prepare the Phase 1 partial documentary/readiness checkpoint, exact resume register, and nonterminal OLE handoff. No implementation, Stage 23/24 acceptance, terminal archival or delivery.
+After this MC-28 PR is human-merged and verified, suspend SB-P-1.14's active communications (**FORMAL ARCHIVE DEFERRED**). Review actual Lovable and Resend support replies, preserve evidence and determine what is required before SB-P-1.15. Do not claim a support response has been assessed until its text is available and examined. A separate recorded Mission Control gate clearance is needed before SB-P-1.15 intake activation.
 
-**STOP FOR HUMAN MERGE.**
+**SB-P-1.15 ON HOLD — PROVIDER SUPPORT REVIEW PENDING. IMPLEMENTATION NOT AUTHORIZED. STOP FOR HUMAN MERGE.**
