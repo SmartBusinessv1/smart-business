@@ -1,18 +1,16 @@
 # SMART BUSINESS MISSION CONTROL
 
-# Instruction — SB-P-1.14 Stage 12 Draft Publication Authorization
+# Instruction — SB-P-1.14 Stage 13 PQ-10 Refinement Gate
 
 **Status:** HUMAN MERGE REQUIRED — NOT YET EFFECTIVE  
-**Canonical baseline:** `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d`  
-**Stage 11 EIS lock:** canonical, PR #844; PR #831 closed unmerged  
-**Mission Control:** SB-P-1.14-MC-22, `communication/missions/SB-P-1.14/mission-control/39-stage12-draft-publication-authorization.md`
+**Canonical main:** `8226027c8ac19340b4439b872167908ea651733e`  
+**Package:** DRAFT PR #847 @ `53dbe83acf0fe4371d2540039a60465602adb200`  
+**Mission Control record:** SB-P-1.14-MC-23, `communication/missions/SB-P-1.14/mission-control/40-stage13-preliminary-review-pq10-refinement.md`
 
-Claude Code reports three Stage 12 implementation-package draft documents plus report 15, all local/untracked, with no commit, push, PR, or tracked-file change. This is a report of local state, **not** independent inspection or Stage 13 acceptance.
+Mission Control independently examined the published draft package. Stage 13 is **REFINEMENT REQUIRED** due to PQ-10: four `IN SCOPE`/`BUILD NOW` rows are covered by gate/checklist records but have no accountable builder workstream. PQ-2 cut-over coordination remains an explicit Implementation Authorization hold.
 
-Founder / authorized human: review and human-merge this MC-22 authorization PR first. Mission Control must then verify the crossing on protected `main`.
+Founder/authorized human must merge this MC-23 governance PR before the narrow PQ-10 refinement authorization takes effect. Mission Control then verifies protected main and instructs Claude Code to correct the existing DRAFT PR #847 only within MC-23 §4. If locked-EIS mapping cannot support a truthful fix, STOP and escalate; do not edit locked artifacts.
 
-**Only after effective authorization**, the named actor may verify and publish the four exact reported files on `mission/SB-P-1.14-stage12-implementation-package` under MC-22 §2, open one DRAFT PR and STOP for Mission Control Stage 13 review.
-
-Do not publish the package before the canonical crossing. No implementation, SQL/migration, provider activation, production mutation, delivery, package approval or self-merge is authorized.
+**No Stage 13 package lock. No implementation, SQL/migration, provider activation, production or delivery authority.**
 
 **STOP FOR HUMAN MERGE.**
