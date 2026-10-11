@@ -1,0 +1,40 @@
+# SB-P-1.15 — MC-58 S7-PAR Checkpoint 5 Batch 08 Private Continuation Disposition
+
+**PROPOSED — operative only after Founder human merge and verified installation on protected main.**
+
+**Authority:** Source 18 Stage 7, canonical MC-39–MC-57.
+**Verified protected main:** `23f190b40850be12dd00ba9477fbf29ce698b886`.
+**MC-57 canonical blob:** `ffcd4c5b878c6ace9189b2ef5c84968789da6a1b`.
+**Challenged PR #870:** OPEN/DRAFT at `6e21b3de414cf33c25b848a7a93fcfc51c1d6e13`.
+**S7-PAR PR #898:** OPEN/DRAFT at `7371161b9cffca11932657c085cdca0e5285d964` with exactly 07b/07c/07d/07g; NOT FOR MERGE.
+
+## 1. Batch 08 return — procedural disposition
+
+The continuing conditionally independent S7-PAR reviewer returned **STOP — PRIVATE ASSESSMENT INCOMPLETE**. Daily Intelligence §8.5 canonical population remains **126**, original challenged result **120 BLOCKED / 6 FOLLOW-UP**, severity **102 High / 24 Medium**, no provisional PASS.
+
+The reviewer reports original 126-ID inventory and private immutable Batches 01–07 recovered/rehashed (70 previous assessments, aggregate 156,608 UTF-8 bytes), 20-record metadata alias audit intact (8,963 bytes), and Batch 07 continuation manifest intact (8,989 bytes). Latest Batch 08 was saved and separately reopened: **10 records, 21,426 UTF-8 bytes**, SHA-256 `172375f22950e9ea78bf2f6f6a67afa0e7d8df1d5057ef21f0a7dcb70adc1f33`; IDs `4-§10-8`, `4-§11-1` through `4-§11-7`, `4-§12-1`, `4-§12-2`. Private continuation manifest SHA-256 `c69e60f05831e7740eab5678ee15f6920224800a26baef7d41b2a5f5fc853fca`; next outstanding reported ID `4-§12-3`. **80/126 privately drafted requirements**, **46 still missing**, zero reviewer-reported cross-batch duplicates or batch structural errors. No 126-row source/substantive PASS, specialist-wide reconciliation, independently recomputed complete-population severity/status totals or executed tests.
+
+**Material private findings, not runtime proof:** stock risk is not proven stockout; drill-down authorizations must survive role/ownership changes; Ask CFO stays grounded and read-only; reminder snooze/create requires authorized human action; uncertain payment outcomes are not verified settlement and cannot bypass DTX/PQ-2; reorder intelligence cannot autonomously order; omitted/unknown sections cannot masquerade as no-risk. All proposed negative tests are **NOT EXECUTED**.
+
+**Evidence limitation:** Mission Control received narrative, not the actual raw private JSON, inventory, alias audit, or manifest bytes. The local sizes, SHA-256 and assessment quality are reviewer-reported and **not independently rehashed by Mission Control**. Mission Control independently verified protected main, MC-57 blob, unchanged PR #870/#898 states/heads and exactly four existing PR #898 annex paths. No 07e Git publication was evidenced.
+
+**MC-58 PROPOSED DECISION:** Accept procedural STOP; provisionally preserve private Batch 08 progress only; **Checkpoint 5 remains UNACCEPTED and 07e UNPUBLISHED**. Published documentary coverage remains **121/694**; no Stage 7 implementation acceptance.
+
+## 2. Private Batch 09 onward authority — effective after Founder merge only
+
+The same continuing conditionally eligible independent review conversation may privately assess the **46 remaining exact canonical §8.5 IDs**, with these controls:
+
+1. Verify newly human-merged MC-58/main, Source 18 blob `0945bda60a93c99909c3b7a247d5427ebe256011`, canonical FCTM `65eeaf8d31b81595b971c22895615a096555f84f`, challenged Blueprint `da1628804379cc58764a9adaa2819ce19884ab7a`, FPDR-01/02/03, six specialist reports and source contracts. Verify unchanged PR #870 and #898 frozen heads and blobs 07b `7e82e1b8b2a1eb5f8b3c831da23492d90b3f44f9`, 07c `2f5eaa28abda1ad9c24be492001e8efe878996dc`, 07d `8eb1f5a6f9f14208cc0825959208cae85334708c`, 07g `ce2a7d3756ee0d2c4157ce506bd8315aac6882de`. Reconfirm conditional conversation-level independent eligibility; shared-model and noncryptographic identity limitations remain. STOP on material drift.
+2. Reopen and recompute actual bytes/digests for **126-ID inventory, Batches 01–08, 20-record metadata alias audit and current manifest**. Validate **80 unique assessed IDs** and exact **46 missing IDs**; do not replace missing physical evidence with narrative. Preserve old batches unchanged, and reconcile `kind`/`requirement_kind` to canonical FCTM Kind and `scope`/`disposition` to FCTM Disposition—distinct from independent disposition. Version/diff any required corrections.
+3. Allocate only missing source IDs from the manifest in durable batches of approximately 8–12. Per ID faithfully preserve FCTM `Exact source pointer`, challenged Blueprint §20.6 `Finding`, owner, kind, canonical scope/disposition, original review status/severity, holds/dependency, specialist flags and §8.5/§19 provenance. Do not invent ranges or source facts.
+4. Individually author the required nine substantive independent fields: `canonical_id`, `finding_title`, `independent_disposition`, `independent_severity`, `source_grounded_assessment`, `harm_consequence`, `correction_or_accepted_direction`, `falsifiable_negative_test`, `applicable_specialist_findings`. Justify each technical consequence and severity distinctly; proposed negative tests must have falsifiable triggers/outcomes and state **PROPOSED — NOT EXECUTED**; never copy challenged conclusions mechanically.
+5. Preserve FPDR-03/T6 latest-valid native briefing with true scheduled/generated/source-as-of; never invent lateness/catch-up; merchant-local 07:00/10:30/22:00 where supported, with unresolved DC-03. Protect native financial Ledger/DTX/PQ-2, owner-vs-staff permissions and tenant isolation across briefing/chats/drilldowns/cache/jobs, AI read-only/zero-write, native-only authorized notifications, D17/D18 stock/order dependencies, no fabricated inventory/settlement/credit/outbound, standard POS bridge only, privacy/retention, audit, restoration and truthful unavailable-data indicators.
+6. Save each new batch privately, reopen in a separate operation, source-check its fields, nine substantive judgments and individually distinct proposed tests, exact IDs/no overlap, size/SHA-256 and all collector errors. Update durable manifest containing every missing ID. If limits force pause, STOP with precise partial completion; do not falsely declare a complete validation.
+7. Once **all 126** are authored, assemble/reopen a durable combined private dataset and perform exhaustive exact canonical ID-set/pointer/§20.6 Finding comparison, normalized metadata, original and independent status/severity counts, nine-field substantive and negative-test validation, six-specialist relevance, Founder/Source 18 compliance, and full-error collector. Report real evidence, size, SHA-256, re-read proof. Private validation PASS only if all mandatory checks actually pass.
+8. Return to Mission Control baseline, independence caveats, prior/new batch readbacks and hashes, completed/missing totals, source errors, relevant holds, collector logs, accessible private files if real, and one explicit verdict: **PRIVATE §8.5 ASSESSMENT VALIDATION PASS** or **STOP — PRIVATE ASSESSMENT INCOMPLETE/FAILED**.
+
+## 3. Absolute hold
+
+**NO reviewer GitHub writes, no 07e Markdown creation/publication.** Do not amend PR #870/#898, FCTM, Blueprint, Source 18, Founder decisions, source contracts, specialists, existing annexes or any app/SQL/Supabase/finance/provider/notification surface. No 07a/07f/07h/master annex, EIS, implementation, testing or production deployment. FPDR-01/02/03 and T1 prospective-only corrections/T6 latest-valid remain binding; DC-03 unresolved, FDB-1(d2) unassigned, U-3/U-5/DC-06 and D12/D13/D14/DTX/PQ-2 remain held. Source 18 T7 requires genuine scope modification and T8 demonstrated impossibility; private incompleteness alone meets neither. No Stage 7 acceptance, release or self-merge. Even a valid 126-row private dataset needs a **separate Founder-merged Mission Control authorization** before 07e publication.
+
+**STOP FOR FOUNDER HUMAN MERGE OF MC-58.**
