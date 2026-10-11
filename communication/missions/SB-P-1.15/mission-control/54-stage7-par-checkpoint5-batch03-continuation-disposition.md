@@ -1,0 +1,35 @@
+# SB-P-1.15 — MC-53 S7-PAR Checkpoint 5 Batch 03 Continuation Disposition
+
+**PROPOSED — operative only following Founder human merge and protected-main verification.**
+
+**Authority:** Source 18 Stage 7; canonical MC-39–MC-52. **Verified main:** `a14481042814cc67f7e95822b52edc0eca4b4655`. **MC-52 blob:** `fe87799749238544f1fd50346a6d49b966064645`. Challenged PR #870 OPEN/DRAFT `6e21b3de414cf33c25b848a7a93fcfc51c1d6e13`; S7-PAR PR #898 OPEN/DRAFT `7371161b9cffca11932657c085cdca0e5285d964` with exactly 07b, 07c, 07d, 07g (NOT FOR MERGE).
+
+## 1. Review return and disposition
+
+The same continuing conditionally independent S7-PAR reviewer reported **STOP — PRIVATE ASSESSMENT INCOMPLETE** and appropriately made no repository write. Canonical Daily Intelligence §8.5 scope stays **126 IN SCOPE**, original PR #870 **120 BLOCKED / 6 FOLLOW-UP; 102 High / 24 Medium; no provisional PASS**.
+
+Previously preserved ID inventory: **2,412 bytes**, SHA-256 `795f021d24c7f5cfbd810db3cc21efd6b828eee299d9215151899b464e0c2557`; Batch 01: **10 IDs, 22,181 bytes**, SHA-256 `fec9dcdb2db4946583f1e5edee9478016aad2d7c0dde8538be1009cce9e38fe3`; Batch 02: **10 IDs, 23,383 bytes**, SHA-256 `543e4bfe87e1378f195eb4e12d9e90ba6ef71509a655fbd08d2ad6d053585a27`. Reviewer reports **Batch 03: 10 independent records, 21,885 bytes**, SHA-256 `8eea75a9f5aaff96951ab475434fedea4f5085c3bb18eea201f1dd49ca23eb7e`, actual private separate-operation readback and zero batch structural errors. Batch 03 IDs: `4-§4-3` through `4-§4-8`, and `4-§5-1` through `4-§5-4`. Its updated private manifest digest is `d29f7913983cb2ce1f834e46555a0ca804a5922259afb73ce52cbb079f0afa2b`. The reviewer reports **30/126 privately assessed, 96 missing**; no full independent classification/severity reconciliation or full 126-row validation is possible.
+
+**Evidence qualification:** Mission Control received a narrative but not attached raw private batches/manifest, and did not independently hash or comprehensively inspect the individual records. Their integrity and assessment quality remain reviewer-reported/provisional.
+
+Mission Control independently verified protected main, canonical MC-52, unchanged PR #870/#898 frozen heads and the exact four published annex paths. No 07e publication. **MC-53 DISPOSITION: accept the correct procedural STOP and provisionally recognize Batch 03 as private progress, not publication/Stage 7 acceptance. Existing accepted documentary coverage stays 121/694.**
+
+## 2. Controlled private continuation after Founder merge
+
+Authorize only the **same continuing conditionally eligible S7-PAR Independent Engineering Review room** to complete the **96 remaining canonical §8.5 assessments** privately after MC-53 is human merged and verified.
+
+1. Verify merged MC-53 protected main, Source 18 blob `0945bda60a93c99909c3b7a247d5427ebe256011`, FCTM `65eeaf8d31b81595b971c22895615a096555f84f`, challenged Blueprint `da1628804379cc58764a9adaa2819ce19884ab7a`, frozen PR heads, approved Founder/contract evidence and six specialist reports. Verify unchanged annex blobs 07b `7e82e1b8b2a1eb5f8b3c831da23492d90b3f44f9`, 07c `2f5eaa28abda1ad9c24be492001e8efe878996dc`, 07d `8eb1f5a6f9f14208cc0825959208cae85334708c`, 07g `ce2a7d3756ee0d2c4157ce506bd8315aac6882de`. Disclose independence/shared GPT-6 limitation; STOP on drift.
+2. Reopen actual 126-ID inventory, three completed immutable private batches and the latest continuation manifest; recompute exact bytes, SHA-256, unique IDs, source pointers/original §20.6 `Finding`, nine fields; verify union has 30 unique IDs and remainder exactly **96 canonical IDs**. If any file absent, STOP without pretending restored recovery; any changes require versioned copies and diffs.
+3. Allocate only missing canonical IDs in batches of 8–12; preserve per-row precise FCTM `Exact source pointer`, challenged §20.6 `Finding`, kind, owner, scope, original status/risk/holds/dependency/specialist flags, §8.5/§19 mapping and source blobs. No paraphrased canonical fields or invented original reviewer claims.
+4. Produce nine independently reasoned fields (canonical ID, title, disposition, consequence-based severity, source-grounded assessment, harm consequence, actionable correction/held evidence direction, unique falsifiable negative test, applicable specialist findings). Tests remain **PROPOSED — NOT EXECUTED**; do not mechanically copy challenged PR #870 or use generic boilerplate. Honor FPDR-03 latest-valid native briefing truthful scheduled/generated/source-as-of, merchant-local calendar with unresolved DC-03, Owner/staff permission separation, DTX/PQ-2 native facts, RLS/grants/current owner changes, scheduler 07:00/10:30/22:00 where source-supported, no invented receivables/stock/delivery/alerts, no unauthorized outbound, AI zero-write, retries and idempotency, privacy/retention, migration/restore and isolated failures.
+5. Physically save each new batch and separately reopen, parse/validate exact IDs/fields/canonical source metadata, distinct negative tests, byte size and SHA-256, then update durable manifest and missing-ID ledger. If execution limits intervene, STOP honestly with completed batches preserved and a precise restatement of missing IDs; avoid single ephemeral giant payload.
+6. Only when all 126 are actually authored, combine a separate durable 126-row artifact and perform complete source-row equality, substantive per-field checks, exact ID set, original and independently recomputed status/severity/holds, six specialist applicability, Founder/Source 18 screening and collector of **all** actual errors/warnings. If not complete, do not claim a global PASS.
+7. Return to Mission Control evidence of inventory/Batch 01–03 integrity, new batch identities, completed/missing ID counts, source/assessment verification, revised manifest, substantive findings and unresolved dependencies, verdict **PRIVATE §8.5 ASSESSMENT VALIDATION PASS** or **STOP — PRIVATE ASSESSMENT INCOMPLETE/FAILED**. Provide actual accessible files if available, never imaginary download links.
+
+**ABSOLUTE HOLD:** No reviewer GitHub writes, 07e Markdown/annex publication, new branch/commit/PR, other annex 07a/07f/07h/master, EIS, app/SQL/Supabase/finance/notification/provider changes, deployment, runtime acceptance or self-merge. A separately Founder-merged MC decision is required for final publication.
+
+## 3. Founder and governance preservation
+
+FPDR-01/02/03 binding; T1 prospective-only historical correction notification and T6 latest-valid native briefing remain resolved. DC-03 existing-business timezone unresolved; FDB-1(d2) integration owner unassigned; U-3/U-5/DC-06 retain canonical routing. D12/D13/D14/DTX/PQ-2, RLS, financial privacy, AI zero-write, scheduling, notifications, legal retention and restore, all real CI/runtime evidence holds remain. T7 only for genuine Product Truth/scope change; T8 only for demonstrated technical impossibility. No modifications to PR #870, FCTM, Blueprint, contracts, Source 18, Founder decisions, specialists or prior annexes.
+
+**STOP FOR FOUNDER HUMAN MERGE OF MC-53.**
