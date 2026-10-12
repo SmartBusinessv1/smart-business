@@ -1,10 +1,10 @@
 # SB-P-1.15 — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: DRAFT — STAGE 13 REVIEW REQUIRED
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (MC-87; effective on Founder merge and post-merge verification)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 SCHEDULER / AI PROVIDER / EXTERNAL CHANNEL ACTIVATION: NOT AUTHORIZED
@@ -20,12 +20,12 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Document | Lovable Build Prompt (Source 18 Stage 12; package template Phase B) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
 | Version | 0.1 |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` (MC-87; effective on Founder merge and post-merge verification) |
 | Author | Claude Code — Source 18 Stage 12 initial implementation package owner |
 | Authorizing record | SB-P-1.15-MC-86 (`communication/missions/SB-P-1.15/mission-control/86-stage11-eis-lock-and-stage12-documentary-authority.md`, blob `2d625f32`, §4), canonical through PR #948; Stage 12 handoff by Mission Control against `main@5c485ebb2c037047bf9fbd7d5a6470b0c7dba57d` |
 | Canonical baseline | `main@5c485ebb2c037047bf9fbd7d5a6470b0c7dba57d` |
 | Date | 2026-10-12 |
-| Next gate | Source 18 Stage 13 — Implementation Package Review by Mission Control; Implementation Authorization is a separate later disposition and remains WITHHELD |
+| Next gate | Separate Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED; Phase 1 documentary readiness and suspension controls follow after canonical package lock |
 
 ## 2. Builder Identity and Artifact Name
 
