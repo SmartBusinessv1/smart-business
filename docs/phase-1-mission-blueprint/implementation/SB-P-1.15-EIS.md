@@ -134,8 +134,8 @@ Implements MC-74 (DC-03) and MC-75 D2/D3. Merchant-visible states are specified 
 
 | Requirement | Specification | Specialist findings | FCTM rows |
 |---|---|---|---|
-| `EIS15-SCH-01` | **Fixed slot registry.** A versioned registry (database table `sched_slot_registry` seeded by migration, with `CHECK (slot_code IN ('0700','1030','2200'))`) defines the only Daily Intelligence slots: 07:00 morning briefing, 10:30 pulse check, 22:00 closing intelligence, business-local. The dispatcher derives slots only from this registry and ignores any time carried by an external trigger. Historical 06:00 and 09:15 times are invalid (`EIS15-VER-LEG`). | SP2-08 | 13 |
-| `EIS15-SCH-02` | **Logical work identity.** Table `sched_work(id, business_id, kind, logical_key, due_at, state, fence bigint, created_at)` with unique `(business_id, kind, logical_key)`. Logical keys: briefing `(local_date, slot_code)`; reminder occurrence `(reminder_id, rule_version, local_datetime, tz_version)`; standing-rule run `(rule_id, rule_version, trigger_ref)`. Identity never derives from attempt time. | SP2-02, MIG15-S7-04 | 287 |
+| `EIS15-SCH-01` | **Fixed slot registry.** A versioned registry (database table `sched_slot_registry(slot_code PRIMARY KEY, local_time, label, registry_version)` seeded by migration, with `CHECK (slot_code IN ('0700','1030','2200'))`) defines the only Daily Intelligence slots: 07:00 morning briefing, 10:30 pulse check, 22:00 closing intelligence, business-local. The dispatcher derives slots only from this registry and ignores any slot or time carried by an external trigger, payload or application configuration. Historical 06:00 and 09:15 times are invalid. Enforcement points per artifact are listed in Section 24.2 (`EIS15-VER-LEG`). | SP2-08 | 13 |
+| `EIS15-SCH-02` | **Logical work identity.** Table `sched_work(id, business_id, kind, logical_key, di_slot_id, due_at, state, fence bigint, created_at)` with unique `(business_id, kind, logical_key)`. Logical keys are built only by typed constructor functions owned by the scheduler planner: briefing `(local_date, slot_code)`; reminder occurrence `(reminder_id, rule_version, local_datetime, tz_version)`; standing-rule run `(rule_id, rule_version, trigger_ref)`. Briefing work carries no free-standing slot column: `CHECK (kind <> 'di_briefing' OR di_slot_id IS NOT NULL)` plus a composite foreign key `(business_id, di_slot_id)` to `di_slots`, so briefing work can exist only for a slot row that already passed the slot check. Identity never derives from attempt time. | SP2-02, MIG15-S7-04 | 287 |
 | `EIS15-SCH-03` | **Attempts and leases.** Table `sched_attempts(work_id, attempt_no, worker_id, lease_expires_at, fence, started_at, finished_at, outcome)`. A worker claims due work with `SELECT … FOR UPDATE SKIP LOCKED` (or the selected runtime's equivalent), sets a bounded lease and increments `sched_work.fence`. An expired lease may be reclaimed by another worker. | SP2-02 | 268 |
 | `EIS15-SCH-04` | **Fencing.** Every write and every effect performed for a work item presents its fence token; the write is rejected if the token is lower than `sched_work.fence`. A stale worker therefore cannot commit after its lease has passed to another worker. | SP2-02, SP2-07 | 268 |
 | `EIS15-SCH-05` | **Effect keys.** Table `sched_effects(effect_key unique, work_id, command_ref, outcome, recorded_at)`. The effect key is derived from the logical work key and effect type and is passed as the idempotency key to the downstream governed command (`EIS-CNF-04`, `EIS14-IDM-01`), so retries cannot duplicate briefings, occurrences, notifications or financial effects. | SP2-03, FIN15-S7-02, MIG15-S7-04, NTF15-04 | 59 |
@@ -194,7 +194,7 @@ FPDR-03 latest valid native briefing with scheduled, generated and source-as-of 
 | Requirement | Specification | Specialist findings | FCTM rows |
 |---|---|---|---|
 | `EIS15-DI-01` | **Three business-local slots.** Daily Intelligence runs only for confirmed-timezone businesses at the registry slots 07:00 (Morning Business Briefing), 10:30 (Business Pulse Check) and 22:00 (Night Closing Intelligence) in business-local time (`EIS15-SCH-01`). | SP2-08, SP2-05 | 126 |
-| `EIS15-DI-02` | **Slot identity and revisions.** Tables `di_slots(business_id, local_date, slot_code, tz_version, scheduled_at)` unique `(business_id, local_date, slot_code)` and `di_briefing_revisions(slot_id, revision, generated_at, …)`. A regeneration is a new revision of the same slot, never a new briefing. | SP2-01, SP2-02 | 180 |
+| `EIS15-DI-02` | **Slot identity and revisions.** Tables `di_slots(id, business_id, local_date, slot_code, tz_version, scheduled_at)` unique `(business_id, local_date, slot_code)`, with `CHECK (slot_code IN ('0700','1030','2200'))` and a foreign key `slot_code` → `sched_slot_registry`, and `di_briefing_revisions(slot_id, revision, generated_at, …)`. A regeneration is a new revision of the same slot, never a new briefing. | SP2-01, SP2-02 | 180 |
 | `EIS15-DI-03` | **Immutable provenance.** Each revision stores scheduled local slot, scheduled UTC instant, timezone version, actual `generated_at`, per-source `source_as_of`, correction watermark, calculation version, validity (`VALID`, `PARTIAL`, `UNAVAILABLE`) and limitations. Revisions are immutable. | SP2-01, AI15-S7-05, NTF15-06 | 22 |
 | `EIS15-DI-04` | **FPDR-03 latest-valid display.** The display shows the latest `VALID` revision of the current slot. If none exists it says so truthfully and shows the prior valid briefing labelled with its own slot and generation time. No duplicate, no invented staleness cutoff, no late outbound send. | SP2-01, AI15-S7-01, NTF15-06 | 126 |
 | `EIS15-DI-05` | **Empty, partial and unavailable states.** Missing or unauthorized sources produce honest empty sections ("no sales recorded yet"), never invented content. | AI15-S7-05 | 8 |
@@ -269,7 +269,7 @@ FPDR-03 latest valid native briefing with scheduled, generated and source-as-of 
 | `EIS15-MIG-01` | **Dependency order.** Migrations apply only after SB-P-1.12, SB-P-1.13 and SB-P-1.14 (including the DTX cut-over) migrations exist and are verified: D12 → D13 → D14/DTX → this mission. `docs/migration/README.md` default-deny applies; no migration is self-authorizing. | MIG15-S7-07 | 62 |
 | `EIS15-MIG-02` | **Migration groups.** M1 timezone tables; M2 slot registry and scheduler tables; M3 reminder tables; M4 standing-rule tables; M5 notification tables and activation boundary; M6 Daily Intelligence tables; M7 read-only roles, views and aggregation functions; M8 capability registrations. Each group is birth-safe (`EIS15-SEC-01`) and reversible before data. | MIG15-S7-03, MIG15-S7-04 | 265 |
 | `EIS15-MIG-03` | **Rollback versus forward-fix.** Before production data exists, a failed group is rolled back by its down migration. After data exists, failures are fixed forward; no destructive rollback of merchant data. | MIG15-S7-06 | 62 |
-| `EIS15-MIG-04` | **Restore reconciliation.** After a backup or PITR restore, open `sched_work` is re-fenced (fence incremented), `UNKNOWN` effects are reconciled by effect-key lookup before any retry, and notification requests are re-derived by dedupe key, so restored work repeats no effect. | MIG15-S7-06, NTF15-08 | 62 |
+| `EIS15-MIG-04` | **Restore reconciliation.** After a backup or PITR restore, open `sched_work` is re-fenced (fence incremented), `UNKNOWN` effects are reconciled by effect-key lookup before any retry, and notification requests are re-derived by dedupe key, so restored work repeats no effect. Artifacts from an older or foreign source (legacy dumps, earlier schema versions, external schedules) are never loaded into live tables directly: they are staged in an isolated, unconstrained `legacy_staging` schema with no grants to application or worker roles, and `sched.reconcile_restored_artifacts()` validates each staged item against the slot registry, constructor-built logical keys and confirmed timezone. Valid items enter live tables only through governed commands; invalid items are recorded in `sched_quarantine(id, source, artifact_kind, artifact_ref, reason, payload_hash, quarantined_at)` with a `LEGACY_ARTIFACT_QUARANTINED` audit event and are never activated. | MIG15-S7-06, NTF15-08 | 62 |
 | `EIS15-MIG-05` | **Legacy notification_status quarantine.** The legacy `transactions.notification_status` column (default `'pending'`, no consumer) is left untouched, exposed only through a read-only quarantine view and never replayed, backfilled or bulk-updated (FPDR-02). | MIG15-S7-01, FIN15-S7-06 | 3 |
 | `EIS15-MIG-06` | **Timezone without default.** M1 adds no default, `NOT NULL` or backfill on `businesses`; existing businesses start `UNSET` (MC-74). | MIG15-S7-02, SP2-06 | 6 |
 | `EIS15-MIG-07` | **Rehearsal.** Every group is rehearsed on the isolated test project against the real migration ledger before any production consideration; production migration is NOT AUTHORIZED. | MIG15-S7-07 | 62 |
@@ -297,7 +297,7 @@ Every test in this section is **PROPOSED — NOT EXECUTED**. Execution requires 
 | `EIS15-VER-09` | **Migration and restore.** Rehearsal on the test project; rollback before data; forward-fix after; PITR restore then resume: no repeated effect. | MIG15-S7-06, MIG15-S7-07 | 62 |
 | `EIS15-VER-10` | **Scenario, acceptance and experience runtime verification.** Every SCN, FRV, EXP and WORK row has a named runtime scenario in the Stage 12 Verification Checklist, executed at Stage 17 (Founder scenarios A and B reserved to the Founder) and independently verified at Stage 19. | — | 120 |
 | `EIS15-VER-11` | **Evidence classes and no premature PASS.** Each test records environment, commit, data set, command and output. Nothing is PASS until executed in an authorized environment; documentary design acceptance (`H-EVID`) is not runtime evidence. | — | 11 |
-| `EIS15-VER-LEG` | **Obsolete 06:00 and 09:15 schedule regression (mandatory).** See Section 24.2 for the full contract. Proves obsolete 06:00 and 09:15 artifacts cannot activate, generate, request or dispatch, with positive 07:00 / 10:30 / 22:00 controls. **Not executed.** | SP2-08 | 13 |
+| `EIS15-VER-LEG` | **Obsolete 06:00 and 09:15 schedule regression (mandatory).** See Section 24.2 for the full contract: hardened-schema rejection tests, legacy artifacts staged in an isolated `legacy_staging` schema and processed by restore reconciliation, external trigger and configuration tests. Proves obsolete 06:00 and 09:15 artifacts cannot activate, generate, request or dispatch, with positive 07:00 / 10:30 / 22:00 controls. **Not executed.** | SP2-08 | 13 |
 
 ### 24.1 Test ownership and stages
 
@@ -325,27 +325,59 @@ Carried forward as proposed tests: SP2-T01 to SP2-T18 (`specialists/02`) and the
 
 **Preconditions.** Migrations M1–M8 applied; one business confirmed in `Asia/Kolkata`, one in a non-IST zone with daylight saving (for example `Europe/London`); one business `UNSET`.
 
-**Fixture — restore the obsolete artifacts:**
+**Constraint facts relied on.** PostgreSQL enforces `CHECK` and `NOT NULL` constraints on every insert and update, including under `session_replication_role = replica` and during `pg_restore` data loading; `replica` mode suppresses only ordinary triggers, which include the triggers that enforce foreign keys. No test may assume that an invalid slot code can be placed in a constrained live table. Invalid legacy data is therefore staged **outside** the live tables, and the scheduler and restore paths must reject or quarantine it.
 
-| ID | Artifact restored | Detail |
+**Enforcement points by artifact:**
+
+| Artifact | Live location | Enforcement point | Kind |
+|---|---|---|---|
+| Slot registry entry | `sched_slot_registry` | `CHECK (slot_code IN ('0700','1030','2200'))`; primary key | Database constraint |
+| Daily Intelligence slot | `di_slots` | Same `CHECK`, plus foreign key `slot_code` → `sched_slot_registry` | Database constraint |
+| Briefing work item | `sched_work` (`kind = 'di_briefing'`) | No slot column; `CHECK (kind <> 'di_briefing' OR di_slot_id IS NOT NULL)` and composite foreign key to `di_slots`; `logical_key` built only by the planner's typed constructor from a registry slot | Validated logical key through a constrained parent |
+| Reminder and standing-rule work | `sched_work` (other kinds) | Constructor-built logical keys; no Daily Intelligence slot concept | Validated logical key |
+| `pg_cron` job | `cron.job` (extension-owned; cannot carry project constraints) | The wake-up function ignores any slot or time in its arguments and selects only due work derived from the registry; `sched.audit_external_triggers()` inventories `cron.job` and records any job outside the approved set | Scheduler eligibility validation and inventory |
+| Platform cron trigger | Runtime configuration | Same wake-up rule; the payload slot is not trusted | Scheduler eligibility validation |
+| Application configuration | Deployment configuration | Startup validation refuses any slot time not in the registry; the scheduler module does not start with nonconforming configuration | Startup validation |
+| Restored legacy rows | `legacy_staging` schema (test environment only) | `sched.reconcile_restored_artifacts()` (`EIS15-MIG-04`) validates and quarantines into `sched_quarantine` | Restore reconciliation |
+
+**Fixture — obsolete artifacts (exact legacy times from Source 02 §7):**
+
+| ID | Artifact | Detail |
 |---|---|---|
-| LEG-F1 | `pg_cron` job, 06:00 IST | `cron.schedule('legacy_morning_pulse', '0 6 * * *', …)` with the server timezone at UTC and again at `Asia/Kolkata`; plus `'30 0 * * *'` (06:00 IST expressed in UTC) |
-| LEG-F2 | `pg_cron` job, 09:15 IST | `'15 9 * * *'` under both server timezones; plus `'45 3 * * *'` (09:15 IST in UTC) |
-| LEG-F3 | Platform cron trigger | If the selected runtime supports cron triggers, triggers at the same four expressions, invoking the scheduler wake-up endpoint with a payload naming slot `0600` or `0915` |
-| LEG-F4 | Restored slot rows | `di_slots` rows with `slot_code` `0600` and `0915`, loaded through a restore path that bypasses commands (`session_replication_role = replica` or `pg_restore` of a crafted dump) |
-| LEG-F5 | Restored work rows | `sched_work` rows with logical keys naming `0600`/`0915`, state `PENDING`, due now |
-| LEG-F6 | Registry configuration | `sched_slot_registry` entries `0600` and `0915` inserted through the same bypass path, and an application configuration naming those times |
+| LEG-F1 | `pg_cron` job, 06:00 IST | `cron.schedule('legacy_morning_pulse', '0 6 * * *', …)` evaluated with `cron.timezone` at `GMT` (the `pg_cron` default) and, where the installed `pg_cron` version supports `cron.timezone`, at `Asia/Kolkata`; plus `'30 0 * * *'` (06:00 IST expressed in UTC). Each job calls the scheduler wake-up function with an argument naming slot `0600` |
+| LEG-F2 | `pg_cron` job, 09:15 IST | `'15 9 * * *'` under the same two settings; plus `'45 3 * * *'` (09:15 IST in UTC); argument naming slot `0915` |
+| LEG-F3 | Platform cron trigger | If the selected runtime supports cron triggers, triggers at the same four expressions, calling the wake-up endpoint with a payload naming `0600` or `0915` |
+| LEG-F4 | Legacy slot rows | Rows shaped like `di_slots` with `slot_code` `0600` and `0915`, loaded into `legacy_staging.di_slots` (same columns, no constraints) as the output of restoring a legacy dump into the isolated test environment |
+| LEG-F5 | Legacy work rows | Rows shaped like `sched_work` with logical keys naming `0600`/`0915`, state `PENDING` and due now, loaded into `legacy_staging.sched_work` |
+| LEG-F6 | Legacy registry and configuration | Rows `0600` and `0915` in `legacy_staging.sched_slot_registry`, and a deployment configuration naming 06:00 and 09:15 |
 
-**Assertions (all must hold):**
+The `legacy_staging` schema exists only in the isolated, authorized test environment. It has no grants to application, worker or `anon`/`authenticated` roles, is never read by the scheduler or Daily Intelligence, and is never created in production.
 
-1. Normal inserts of `0600`/`0915` into `di_slots`, `sched_work` and `sched_slot_registry` are rejected by the `CHECK (slot_code IN ('0700','1030','2200'))` constraint.
-2. Rows restored through the bypass path fail the scheduler eligibility predicate (registry membership, confirmed timezone, valid slot code), are moved to `QUARANTINED` with a reason, and an audit event is written.
-3. The dispatcher derives slots only from validated registry entries; LEG-F1 to LEG-F3 wake-ups carrying `0600`/`0915` create no work and record a rejected wake-up.
-4. **Zero** `di_briefing_revisions`, `notification_requests`, `sched_effects`, outbound sends or merchant-visible "current" briefings result from any LEG fixture, measured by before/after counts.
-5. Nothing displays 06:00 or 09:15 as a current schedule.
-6. **Positive control:** 07:00, 10:30 and 22:00 slots generate exactly one slot each per local date for the `Asia/Kolkata` and `Europe/London` businesses, including across a daylight-saving transition; the `UNSET` business generates none.
+**Part A — hardened-schema rejection (database constraints):**
 
-**Evidence.** Before/after row counts, quarantine and audit rows, dispatcher logs, UI capture, environment and commit identity. Owner: SB-P-1.15 at Stages 17–19; SB-P-1.19 consumes the evidence for onboarding first-value acceptance (MC-80). **Not executed; no PASS claimed.**
+1. Inserting `0600` or `0915` into `sched_slot_registry` or `di_slots` fails with a `CHECK` violation, as the table owner and again with `session_replication_role = replica`. This also proves the replica setting does not bypass the constraint.
+2. Inserting `di_briefing` work with no `di_slot_id`, or with a `di_slot_id` from another business, fails on the `CHECK` or the composite foreign key. With `replica` set the foreign key is not enforced, so the test also asserts that the planner's constructor, the only code path that creates work, refuses to build the key.
+
+**Part B — legacy staging and restore reconciliation:**
+
+1. Running `sched.reconcile_restored_artifacts()` on LEG-F4 to LEG-F6 inserts **no** row into `sched_slot_registry`, `di_slots` or `sched_work`.
+2. Each staged artifact produces exactly one `sched_quarantine` row (source, artifact kind, reference, reason `SLOT_NOT_IN_REGISTRY`, payload hash) and one `LEGACY_ARTIFACT_QUARANTINED` audit event.
+3. Control rows staged alongside with valid codes (`0700`, `1030`, `2200`) for the confirmed businesses are imported through governed commands and produce live slots; the same control rows for the `UNSET` business are quarantined with reason `TIMEZONE_UNCONFIRMED`.
+
+**Part C — external triggers and configuration:**
+
+1. LEG-F1 to LEG-F3 wake-ups at 06:00 and 09:15 (both interpretations) create no `sched_work`, generate nothing, and do not bring forward the 07:00 or 10:30 slot. A wake-up whose argument or payload names a non-registry slot writes one `WAKEUP_REJECTED` audit event.
+2. `sched.audit_external_triggers()` lists every LEG-F1 and LEG-F2 job as `NONCONFORMING` in its inventory output and audit. Removing the job is a separate operations action.
+3. Starting the scheduler module with the LEG-F6 configuration fails startup validation with a logged error naming the invalid times, and no slots are registered from configuration.
+
+**Part D — zero effects and truthful display:**
+
+1. Before-and-after counts across Parts A to C show **Zero** new `di_briefing_revisions`, `notification_requests`, `notification_states`, `sched_attempts`, `sched_effects`, outbound sends or merchant-visible "current" briefings attributable to any LEG fixture.
+2. No surface displays 06:00 or 09:15 as a current schedule.
+
+**Positive control:** 07:00, 10:30 and 22:00 slots generate exactly one slot each per local date for the `Asia/Kolkata` and `Europe/London` businesses, including across a daylight-saving transition; the `UNSET` business generates none.
+
+**Evidence.** Constraint-violation outputs, `sched_quarantine` and audit rows, trigger inventory, startup log, before-and-after row counts, dispatcher logs, UI capture, environment and commit identity. Owner: SB-P-1.15 at Stages 17–19; SB-P-1.19 consumes the evidence for onboarding first-value acceptance (MC-80, U-3). **Not executed; no PASS claimed.**
 
 ## 25. Critical Consequence Mapping
 
