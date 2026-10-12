@@ -1,6 +1,6 @@
 # SB-P-1.15 — Engineering Implementation Specification
 
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 
 **IMPLEMENTATION NOT AUTHORIZED.** This EIS specifies how the locked SB-P-1.15 Blueprint is to be built. It authorizes no code, SQL, migration, scheduler or provider activation, negative-test execution, deployment or release.
 
@@ -10,8 +10,8 @@ STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
 |---|---|
 | Mission | SB-P-1.15 — Reminder, Daily Intelligence & Ask CFO |
 | Document | Engineering Implementation Specification (EIS) |
-| Lifecycle stage | Source 18 v1.2 Stage 10 — EIS Review: corrective revision (C1 = IR15-10-01, C2 = IR15-10-02; Security Room DC-06 reconciliation SR-1 to SR-6; targeted security correction S10-DC06-01 to 04, S10-C1-01, S10-DOC-01) |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Lifecycle stage | Source 18 v1.2 Stage 11 — EIS Lock, following Stage 10 review: corrective revision (C1 = IR15-10-01, C2 = IR15-10-02; Security Room DC-06 reconciliation SR-1 to SR-6; targeted security correction S10-DC06-01 to 04, S10-C1-01, S10-DOC-01) |
+| Status | `APPROVED — LOCKED` (Source 18 Stage 11, MC-86; effective after Founder merge and Mission Control post-merge verification) |
 | Author | Claude Code (Stage 9 EIS drafter; also author of Stages 2–7; not independent review) |
 | Authorization | SB-P-1.15-MC-84, `communication/missions/SB-P-1.15/mission-control/84-stage9-eis-source-pack-disposition-and-documentation-authority.md` (blob `8e6b0088`), canonical at `main@2bce2d634ac3a6e8375e732ddadb966266bd643a` (PR #944) |
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.15.md`, blob `0ab2ad6f12cedc54836d766bac7a2e9c0e1e03e5` (`APPROVED — LOCKED`, Stage 8, MC-81) |
@@ -20,7 +20,7 @@ STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
 | Requirements | 147 (`EIS15-*`) |
 | Date | 2026-10-12 |
 | Revision | Stage 10 corrective revision of the canonical Stage 9 EIS (blob `6bee0a013ceca4d4a3d68d36bce913d93997deb7`, PR #945, `main@d78df021`); the 141 Stage 9 requirement IDs are preserved and 6 are added; the Security Room reconciliation (SR-1 to SR-6) strengthens existing requirements and adds Section 8.2 without new IDs |
-| Next gate | Mission Control Stage 10 re-review (with DC-06 security review), then Stage 11 — EIS Lock |
+| Next gate | Stage 12 — Initial Implementation Package, only after this Stage 11 lock is human-merged and verified on canonical main; implementation remains NOT AUTHORIZED |
 
 ## 2. Purpose and Authority
 
