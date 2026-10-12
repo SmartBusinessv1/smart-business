@@ -500,10 +500,10 @@ All 44 Stage 7 specialist findings remain mapped through the obligations that re
 | Critical row | Obligation | Proof gate |
 |---|---|---|
 | `4-§16-1` | `EC15-CRIT-01` and the obligations it names | Verification Checklist NP-01, NP-06, NP-07, NP-08, NP-13, NP-14, RS-09, RS-10, RS-11; Stages 17–19; no runtime proof claimed |
-| `24-§16-1` | `EC15-CRIT-02` and the obligations it names | Verification Checklist NP-01, NP-07, NP-08, NP-10, NP-11, NP-13, RS-04, RS-11, RS-12; Stages 17–19; no runtime proof claimed |
+| `24-§16-1` | `EC15-CRIT-02` and the obligations it names | Verification Checklist NP-01, NP-07, NP-08, NP-10, NP-11, NP-13, RS-11, RS-12, RS-14; Stages 17–19; no runtime proof claimed |
 | `22-§23-2` | `EC15-CRIT-03` and the obligations it names | Verification Checklist NP-01, NP-07, NP-24, SR6-09, SR6-10, SR6-11; Stages 17–19; no runtime proof claimed |
-| `22-§28-9` | `EC15-CRIT-04` and the obligations it names | Verification Checklist NP-01, NP-02, NP-06, NP-09, NP-10, NP-20, RS-04, RS-05, RS-14; Stages 17–19; no runtime proof claimed |
-| `22-§29-3` | `EC15-CRIT-05` and the obligations it names | Verification Checklist NP-01, NP-09, NP-10, NP-15, NP-23, NP-24, RS-04, RS-05, RS-08; Stages 17–19; no runtime proof claimed |
+| `22-§28-9` | `EC15-CRIT-04` and the obligations it names | Verification Checklist NP-01, NP-02, NP-06, NP-09, NP-10, NP-20, RS-14; Stages 17–19; no runtime proof claimed |
+| `22-§29-3` | `EC15-CRIT-05` and the obligations it names | Verification Checklist NP-01, NP-09, NP-10, NP-15, NP-23, NP-24, RS-08, RS-14, RS-17; Stages 17–19; no runtime proof claimed |
 
 ## 12. Row-to-Obligation Map
 
