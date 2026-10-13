@@ -1,15 +1,15 @@
-# SMART BUSINESS MISSION CONTROL
+# SMART BUSINESS MISSION CONTROL — SB-P-1.16 STAGE 1 DOCUMENTARY ENTRY
 
-# Instruction — MC-29 Parallel Recovery / SB-P-1.15 Documentary Transition
+**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
+**Mission:** SB-P-1.16 — Financial Integrity & Credit  
+**Entry authority:** `communication/missions/SB-P-1.16/mission-control/01-stage1-documentary-entry-and-communication-activation.md` (MC-96)  
+**Canonical entry baseline:** `main@2eb71766194fe6817bd6d00529eda84cdabccdf9`  
+**Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
 
-**Status:** HUMAN MERGE REQUIRED — NOT YET EFFECTIVE  
-**Canonical baseline:** `main@42bb32dec2856125be094d7be285bb80d5e0614c`  
-**Mission Control:** MC-29 — `communication/missions/SB-P-1.14/mission-control/50-provider-recovery-parallel-lane-correction.md`
+Mission Control activates **Stage 1 documentary intake only** after the Founder merges MC-96 and protected-main file identities are checked. Read Source 18 v1.2, Phase 1 Operating Pattern, Founder-approved Build Plan §10.5, all governing product/feature contracts, locked SB-P-1.12–1.15 specifications and SB-P-1.15 nonterminal Partial OLE.
 
-The Founder has clarified that SB-P-1.15 documentary/readiness work must progress in parallel with ongoing GitHub, Supabase, Lovable and Resend recovery, as directed by the canonical Phase 1 Operating Pattern. MC-29 narrowly corrects the MC-28 provider-review gate: **provider account recovery is NOT an automatic blocker for SB-P-1.15 documentary activation**. MC-28's preservation, provider evidence and implementation-access holds remain intact.
+Inventory Financial Integrity & Credit scope and exact numbered contract obligations before advancing to Stage 2 Truth Pack/FCTM. Examine customer-credit balances, repayment, ageing, warn-not-block, payment evidence, bank reconciliation, deterministic/ambiguous candidate matching, idempotency, discrepancies and auditable corrections; preserve both Founder scenarios without automated Owner judgment. Separate design from unavailable D12/D13/D14/DTX runtime dependencies. Apply dual OLE intake until backfill verified.
 
-**After authorized-human merge and Mission Control post-merge verification**, Mission Control may separately authorize SB-P-1.15 Stage 1 intake under Source 18. Do not start implementation, build actions, SQL/migrations, providers, production or delivery. Carry upstream dependencies; stop for genuine trigger or feasibility blockers.
+Do not execute the Stage 1 specialist task until Mission Control confirms the conditional entry merge. No implementation, SQL, migration, provider activation, production change or runtime proof.
 
-SB-P-1.14 remains partially suspended with nonterminal Partial OLE and formal archive deferred.
-
-**STOP FOR HUMAN MERGE OF MC-29.**
+**STOP — MISSION CONTROL STAGE 1 INTAKE DISPOSITION REQUIRED.**
