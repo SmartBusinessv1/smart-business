@@ -91,14 +91,14 @@ Changes since each source was approved, at baseline `e4e382c7`. Evidence class: 
 
 | ID | Item | Source evidence | Candidate trigger | Blocks product-definition critical path? | Decision or specialist fact needed | Dependent artifacts | Disposition authority | Status |
 |---|---|---|---|---|---|---|---|---|
-| U-01 | Shared customer identity ownership | BP §10.3 vs SB-P-1.12 EIS-ID-03 / FCTM-12 `22-§5-5` vs C14 §4; FCTM-14 `3-§15-7`; Δ-09; DC-15 (historical credit-method sales) | **T2**, T4; T7 only if a reassignment is proposed | **Yes.** 18 `IN SCOPE` rows carry `ESC-U01` (C14 §4, balances, `3-§9-12`, acceptance 1 and 3) | Founder: which mission establishes the customer identity record SB-P-1.16 links credit to, and whether historical credit-method sales are attributed | Blueprint §§8, 10, 12; EIS identity design; WS-A | Founder through Mission Control | **OPEN — `ESCALATED` row `BP-§10.3-S2`** |
+| U-01 | Shared customer identity ownership | BP §10.3 vs SB-P-1.12 EIS-ID-03 / FCTM-12 `22-§5-5` vs C14 §4; FCTM-14 `3-§15-7`; Δ-09; DC-15 (historical credit-method sales) | **T2**, T4; T7 only if a reassignment is proposed | **Yes.** 19 rows carry `ESC-U01`: 18 `IN SCOPE` plus the `DELEGATED` row `22-§5-5` (C14 §4, balances, `3-§9-12`, acceptance 1 and 3) | Founder: which mission establishes the customer identity record SB-P-1.16 links credit to, and whether historical credit-method sales are attributed | Blueprint §§8, 10, 12; EIS identity design; WS-A | Founder through Mission Control | **OPEN — `ESCALATED` row `BP-§10.3-S2`** |
 | U-02 | "Partially matched" payment terminology | BP §10.5 E2 vs C15 §4 states; DC-03 | T2 / T6 | Yes for C15 §4 state model and Scenario B experience | Founder: meaning of "partially matched" | Blueprint §§8, 12; EIS state machine | Founder | OPEN |
 | U-03 | Factual risk/ageing vs prohibited risk scoring | BP §10.5 Scenario A clause 2 vs C14 §3 b7, §19 b5, §21 b2; DC-01 | T6 | Yes for Scenario A experience | Founder confirmation of DC-01 | Blueprint §§10, 13; EVM seed | Founder | OPEN |
 | U-04 | Overdue status when no due date exists | BP §10.5 Scenario A clause 1 vs C14 §5 b6; DC-02 | T1 / T6 | Yes for Scenario A | Founder: whether due dates are captured and how "overdue" is defined without one | Blueprint §§8, 10; credit data model | Founder | OPEN |
 | U-05 | Customer credit-communication authority and channel | S11 Customer list (no credit item) vs C14 §14 p4, C21 §13 b2; SB-P-1.15 FDB-2 native-only; DC-10 | T2 screen; T6 for DC-10 | Partly: customer-facing collection rows only | Mission Control: confirm no S11 conflict; Founder: confirm DC-10 | Blueprint §§10, 12; notification design | Mission Control, then Founder for DC-10 | OPEN |
 | U-06 | Minimum Phase 1 payment-evidence channels | C15 §5 "such as" list; C15 §28 completion gate requires authenticated ingestion; BP §5.4; DC-13 | T1 / T3 | **Yes** for C15 completion gate and 41 `DPAY` rows | Founder: which evidence sources Phase 1 must support; specialist: provider feasibility (read-only, when authorized) | Blueprint §§8, 20–21; EIS adapter; activation plan | Founder; payment/integration specialist | OPEN |
 | U-07 | Manager delegation granularity | C14 §14 p2, C15 §17 p2; SB-P-1.15 DC-06 (proposed only), R15-11; DC-09 | T3 / T6 | Yes for Manager rows; no for Owner flows | Founder T3/T6 decision already pending from SB-P-1.15 | Blueprint §§9, 12; permission design | Founder; Security | OPEN |
-| U-08 | Legal/privacy/retention critical path for payment evidence | C15 §6 p2; C25 §17; BP §15 item 6 (U-5); 14:FPDR-2; DC-11 | T3 if critical path | **Not judged critical** for non-destructive retention (GPCV §8 example); critical only for any deletion rule | Mission Control: confirm the critical-path judgement; legal specialist when authorized | EIS retention; Stage 7 security review | Mission Control; Founder for the duration | OPEN |
+| U-08 | Legal/privacy/retention critical path for payment evidence | C15 §6 p2; C25 §17; BP §15 item 6 (U-5); 14:FPDR-2; DC-11 | T3 for any evidence-lifecycle element a Blueprint lock depends on | **MC-112: conditionally noncritical** for Stage 2 documentary reconciliation and non-destructive payment-evidence workflow definition (Section D.5). Any Blueprint lock depending on retention, deletion eligibility, cancellation/non-payment treatment, backup/restoration or other evidence-lifecycle behaviour requires the applicable Founder/legal governance decision | Founder/legal governance decision on the evidence-lifecycle elements in Section D.5, before any Blueprint lock that depends on them | Blueprint §§8, 12, 20–21 evidence lifecycle; EIS retention and deletion; Stage 7 security and legal review | Founder; legal governance; Mission Control | **OPEN** |
 | U-09 | Reversal / chargeback scope | C15 §4 b7, §13, §21 b10, §25 n12 ("where applicable", "where relevant") | T1 (depends on U-06) | No, once U-06 is decided | Which evidence sources carry reversals | EIS state machine | Founder via U-06 | OPEN — carried with existing scope context |
 | U-10 | Third-party underwriting/lending ecosystem | BP §15 item 9; GPCV §9 `REJECT FOR CURRENT CORE`; C14 §21 b2 | None for this mission | No — rejected for current core and not needed | None for SB-P-1.16 | — | Founder (broader ecosystem only) | OPEN — not on critical path |
 
@@ -106,7 +106,7 @@ Changes since each source was approved, at baseline `e4e382c7`. Evidence class: 
 
 | Conflict | Sources | Treatment |
 |---|---|---|
-| Customer identity establishment (U-01, Δ-09) | Build Plan §10.3 (SB-P-1.17 / SB-P-1.18) vs SB-P-1.12 EIS-ID-03 / `22-§5-5` (SB-P-1.12) vs C14 §4 (SB-P-1.16) | `ESCALATED` row `BP-§10.3-S2`; dependent work stopped on 18 rows (`ESC-U01`); inherited assignment kept verbatim |
+| Customer identity establishment (U-01, Δ-09) | Build Plan §10.3 (SB-P-1.17 / SB-P-1.18) vs SB-P-1.12 EIS-ID-03 / `22-§5-5` (SB-P-1.12) vs C14 §4 (SB-P-1.16) | `ESCALATED` row `BP-§10.3-S2`; dependent work stopped on the 19 rows marked `ESC-U01` (18 `IN SCOPE`, 1 `DELEGATED`); inherited assignment kept verbatim |
 | "Partially matched" (U-02) | BP §10.5 E2 vs C15 §4 | Not marked `ESCALATED`: C15 §4 lists states "such as" and leaves enum names open, so the sources are not contradictory, but the term is undefined. Stage 3 candidate |
 | Customer authority list (U-05) | S11 Customer list vs C14 §14, C21 §13 | No contradiction found: S11 does not prohibit it and the contracts are reconciled from S11. Mission Control to confirm |
 
@@ -118,7 +118,7 @@ No conflict was found between the Phase 1 guide, an OLE promotion and a governin
 |---|---|---|
 | T1 unresolved product question no approved source answers | **Fires** | U-04, U-06, U-09 |
 | T2 conflict among approved sources | **Fires** | U-01 (escalated); U-02 and U-05 screened |
-| T3 new decision or approved-unresolved decision the mission needs | **Fires** | U-06, U-07; U-08 only if Mission Control finds it critical |
+| T3 new decision or approved-unresolved decision the mission needs | **Fires** | U-06, U-07; U-08 for any evidence-lifecycle element a Blueprint lock depends on (MC-112, Section D.5) |
 | T4 `PRODUCT-AFFECTING` Delta | **Fires** | Δ-09 |
 | T5 Founder request | Not observed | — |
 | T6 derived constraint materially affecting behaviour | **Fires** | DC-01, DC-02, DC-03, DC-09, DC-10, DC-11, DC-15 |
@@ -138,9 +138,36 @@ Questions for the Founder, through Mission Control (preparation only; Stage 3 is
 5. **U-06.** Which payment-evidence sources must Phase 1 support for C15 to be complete?
 6. **U-07 / DC-09.** Manager delegation granularity for credit and reconciliation (pending from SB-P-1.15).
 7. **U-05 / DC-10.** Confirm no customer-facing credit message before an approved channel, and merchant approval for every message.
-8. **U-08 / DC-11.** Mission Control to confirm that the U-5 retention duration is off this mission's critical path for non-destructive evidence retention.
+8. **U-08 / DC-11.** Mission Control has recorded U-08 as conditionally noncritical (MC-112, Section D.5). The Founder/legal governance decision is still needed for any evidence-lifecycle element a Blueprint lock depends on: retention duration, deletion eligibility, cancellation/non-payment treatment, backup/restoration.
 
 Dependent work is stopped only on the rows these questions govern. Non-dependent documentary work (other C14/C15 rows, delegates, Build Plan rows) is complete in this pack.
+
+### D.5 MC-112 determination for U-08
+
+**MC-112 U-08 disposition: Conditionally noncritical for Stage 2 documentary reconciliation and non-destructive payment-evidence workflow definition. U-08 remains OPEN.**
+
+This does not approve indefinite retention, a retention duration or destructive deletion. Any Blueprint lock depending on unresolved retention, deletion eligibility, cancellation/non-payment treatment, backup/restoration or other evidence-lifecycle behaviour requires the applicable Founder/legal governance decision.
+
+No policy is set here and no approved requirement moves out of scope. Every row below keeps its disposition. The table identifies where the open decision bites.
+
+| Row or item | What depends on the open U-08 decision |
+|---|---|
+| `15-§6-12` | Evidence follows current privacy/security/retention rules: the retention rule itself |
+| `15-§6-8` | Raw evidence/reference kept for audit: how long, and what survives deletion |
+| `15-§5-5` | Merchant-uploaded evidence via UDI storage: lifecycle of uploads, including 14:FPDR-2 bounded grace for unconfirmed uploads |
+| `15-§10-1`, `15-§11-2`, `15-§20-2` | Preserving both facts, unlinked evidence and evidence during outages: preservation is in scope; its end-of-life is not decided |
+| `15-§13-1`, `15-§13-2` | Reversal history preserved, prior verified state not erased: duration of that history |
+| `15-§22-2`, `15-§22-5` | Protection of sensitive financial evidence; audit without unnecessary disclosure: minimization over time |
+| `14-§17-1` | Credit/repayment corrections preserve prior truth: audit-trail lifetime |
+| `5-§6-1`, `25-§17-1`, `25-§17-4`, `25-§17-5` | Original retention per approved policy; the unresolved duration; no destructive deletion on cancellation/non-payment; domain-specific legal retention |
+| `BP-§15-6` | The approved-unresolved Founder decision itself (U-5) |
+| DC-11 | Derived constraint (non-destructive retention until decided), still DERIVED — REQUIRES CONFIRMATION |
+
+Evidence-lifecycle design elements a Blueprint lock may not settle without that decision: retention duration per evidence class; deletion eligibility and who may delete; treatment of evidence on cancellation or non-payment; backup, restoration and restored-copy deletion; export of evidence; grace period for unconfirmed uploads beyond 14:FPDR-2.
+
+**Stage 3 trigger screening preserved.** T3 applies to these elements (Section D.3). The Founder decision dialogue has not been started.
+
+The FCTM's existing wording (row `BP-§15-6` and Section F, "Mission Control confirmation requested") predates MC-112. This section records the Mission Control determination; the FCTM row and its disposition are unchanged.
 
 ## Part D-2 — Dependency, implementation and provider-hold register
 

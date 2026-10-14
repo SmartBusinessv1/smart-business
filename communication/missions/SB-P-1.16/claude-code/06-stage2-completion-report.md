@@ -8,6 +8,8 @@
 
 This report follows MC-106 §11. It does not approve the Truth Pack, open Stage 3 or begin Stage 4.
 
+**Revision (MC-112 bounded correction).** Row `14-§9-2` is qualified as an illustrative, non-fixed worked example (Section 13). Mission Control's U-08 determination is recorded (Section 6; Truth Pack Part D.5). The MC-111 review limits are recorded (Section 11). No other row, total, disposition or assignment changed.
+
 ## 1. Repository baseline and changed files
 
 | Item | Value |
@@ -134,14 +136,14 @@ Fifteen Delta items (Truth Pack Part C): six `NO PRODUCT EFFECT`, eight `ENGINEE
 
 | ID | Status | Blocks product-definition critical path |
 |---|---|---|
-| U-01 Customer identity ownership | OPEN — `ESCALATED` (`BP-§10.3-S2`; 18 dependent `IN SCOPE` rows marked `ESC-U01`) | Yes |
+| U-01 Customer identity ownership | OPEN — `ESCALATED` (`BP-§10.3-S2`; 19 rows marked `ESC-U01`: 18 `IN SCOPE` and the `DELEGATED` `22-§5-5`) | Yes |
 | U-02 "Partially matched" | OPEN | Yes (C15 state model, Scenario B) |
 | U-03 Factual risk vs scoring | OPEN | Yes (Scenario A) |
 | U-04 Overdue without due date | OPEN | Yes (Scenario A) |
 | U-05 Customer credit-communication authority and channel | OPEN | Partly (customer-facing rows) |
 | U-06 Minimum evidence channels | OPEN | Yes (C15 completion gate) |
 | U-07 Manager delegation granularity | OPEN | Yes for Manager rows |
-| U-08 Retention / U-5 | OPEN | Not judged critical for non-destructive retention; Mission Control to confirm |
+| U-08 Retention / U-5 | **OPEN.** MC-112 U-08 disposition: Conditionally noncritical for Stage 2 documentary reconciliation and non-destructive payment-evidence workflow definition. U-08 remains OPEN. | Not for Stage 2 or non-destructive workflow definition. Yes for any Blueprint lock that depends on retention, deletion eligibility, cancellation/non-payment treatment, backup/restoration or other evidence-lifecycle behaviour (Founder/legal governance decision required; dependent rows in Truth Pack Part D.5) |
 | U-09 Reversal scope | OPEN — carried with existing scope context | No, once U-06 is decided |
 | U-10 Underwriting/lending ecosystem | OPEN — not on critical path | No |
 
@@ -166,17 +168,36 @@ Local Team LIPS Markdown Quality Gate and pre-commit results for all five files,
 - **Not independent.** Claude Code authored the Stage 1 return, earlier missions' FCTMs and this pack. It cannot approve the Truth Pack or verify its own findings (MC-107 §13.1). Upstream FCTMs it authored are used for identifiers and assignments only, not as evidence of implementation.
 - **Same parser on both sides.** The C14 and C15 inventory and matrix come from one deterministic parser, so the set comparison proves internal consistency, not an independent reading. The C03 comparison against SB-P-1.14's rows is the only cross-authored check.
 - **Parser judgements.** A prose paragraph ending in `:` is treated as a lead-in. Multi-obligation paragraphs (for example C14 §14 role paragraphs, C15 §13 p1) are one row each; an independent reviewer may split them further.
-- **Disposition judgements.** These are mine, written as data in the generator configuration and reviewable row by row. In particular: `ESCALATED` is used only for U-01; U-02 and U-05 are judged not contradictory; U-08 is judged not critical.
+- **Disposition judgements.** These are mine, written as data in the generator configuration and reviewable row by row. In particular: `ESCALATED` is used only for U-01; U-02 and U-05 are judged not contradictory. U-08 is now governed by the MC-112 determination (conditionally noncritical, still OPEN), not by my earlier judgement.
 - **Delegated coverage is keyword-led** (Section 3.5).
-- **Remaining independent-review needs.** Mission Control Stage 5 testing of the inventory against the source text; a non-author re-derivation of the C14 and C15 unit split; the Stage 7 security and financial-integrity reviews; and the Stage 19 independent inventory.
+- **MC-111 bounded independent documentary review.** Mission Control accepted the MC-111 Independent Engineering Review as bounded documentary review evidence (MC-112). That review record is not in the repository; this report relies only on MC-112's description of it. What has and has not been established:
+  - **555 FCTM rows internally reconciled.** The set comparisons in Section 3 are internal consistency checks by the authoring actor.
+  - **23 numbered acceptance scenarios structurally verified.** C14 §22 (11) and C15 §25 (12) each have exactly one row.
+  - **Focused independent source-passage review.** MC-111 reviewed selected source passages against their rows. It did not review every row.
+  - **Exhaustive semantic certification: not complete.** No actor has certified that every row's pointer, kind and disposition is semantically correct across the full corpus.
+  - **Inherited-identifier reconciliation not independently reproduced** across all predecessor sources. The 21-identifier mapping (Section 3.4) is the author's reconciliation.
+  - **MC-111 finding retained:** no widespread omission was established. This is not an independent full-corpus certification and is not claimed as one.
+- **Remaining independent-review needs.** Mission Control Stage 5 testing of the inventory against the source text; a non-author re-derivation of the C14 and C15 unit split and of the inherited-identifier mapping; exhaustive semantic review of row pointers and dispositions; the Stage 7 security and financial-integrity reviews; and the Stage 19 independent inventory.
 
 ## 12. Recommendation to Mission Control
 
 **Can safely advance (after Mission Control review and human merge):** acceptance of the FCTM structure and of the 249 Contract 14 and 15 `IN SCOPE` rows (of 301) that cite no open question or escalation, the Delta, the derived-constraint register as candidates, and the Institutional Learning Intake.
 
-**Must stop for Founder disposition (Stage 3, when Mission Control authorizes it):** U-01 (escalated; blocks 18 rows), U-02, U-03, U-04, U-06 and U-07, and the seven DERIVED — REQUIRES CONFIRMATION constraints. Mission Control to confirm the U-05 and U-08 screen results.
+**Must stop for Founder disposition (Stage 3, when Mission Control authorizes it):** U-01 (escalated; 19 rows marked `ESC-U01`, 18 of them `IN SCOPE`), U-02, U-03, U-04, U-06 and U-07, and the seven DERIVED — REQUIRES CONFIRMATION constraints. Mission Control to confirm the U-05 screen result. U-08 stays OPEN under the MC-112 determination: a Founder/legal governance decision is needed before any Blueprint lock that depends on evidence-lifecycle behaviour.
 
 **Not to begin:** Stage 3 dialogue, Stage 4 Blueprint drafting, any external provider read or activation, or any implementation.
+
+## 13. MC-112 correction to row `14-§9-2`
+
+| | Before (head `8b450afc`) | After |
+|---|---|---|
+| Row ID, kind | `14-§9-2`, `SCN` | Unchanged |
+| Build commitment, commercial, owner, disposition, dependency | BUILD NOW, CORE-LM, SB-P-1.16, `IN SCOPE`, `D12` | Unchanged |
+| Pointer | `§9 p3:` followed by the example's own text (customer name and rupee amounts) | `§9 p3 (introduced by lead-in p2 'Example:'): worked example of a merchant-facing threshold warning — ILLUSTRATIVE, NON-FIXED` |
+| Evidence / citation | `illustrative wording, not a fixed limit (see 14-§8 p4)` | States that the customer name, rupee amounts and wording are not requirements, and names the binding requirements by row: factual balance and context against an Owner threshold (`14-§8-1`–`14-§8-6`); Owner decision authority and choices (`14-§9-3`–`14-§9-8`), decision recorded (`14-§9-9`); no automatic hard block (`14-§9-1`, `14-§21-1`); no invented customer-risk judgement (`14-§3-7`, `14-§19-5`, U-03); no universal ₹5,000 limit (`14-§8-7`, `14-§21-5`) |
+
+`SCN` is retained, so no row-kind correction is needed: the explicit qualification states the illustrative, non-fixed status, and the binding requirements are already separate rows.
+
 
 **STOP FOR MISSION CONTROL STAGE 2 REVIEW.**
 
