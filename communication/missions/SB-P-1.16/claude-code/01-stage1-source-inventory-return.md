@@ -7,6 +7,7 @@
 **Date:** 2026-10-14 (Asia/Kolkata)  
 **Status:** DISCOVERY RECORD — FINDINGS ONLY, NO AUTHORITY EFFECT. Not a Truth Pack, not an FCTM, not a disposition of any row.  
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.  
+**Revision:** MC-101 documentary correction. Sections A–K are the original return, kept as historical evidence. Section L adds MC-101 accepted S5 supplementary evidence and a supplemental reclassification of Section C.3.
 
 `Historical OLE backfill: NOT VERIFIED COMPLETE — dual intake in force.`
 
@@ -174,6 +175,8 @@ INF: none of the above establishes runtime state. The SB-P-1.14 four-state widen
 | C19 Super Admin | §15 merchant-content access boundary | C15 §17 (platform/support) |
 
 ### C.3 Contracts screened and not found to be delegated (candidate `NOT APPLICABLE`, for Mission Control confirmation)
+
+> **MC-101 correction.** The classifications of C13, C17, C18 and C20 below are superseded by the supplemental reclassification in Section L.3. The original table is kept unchanged as historical evidence.
 
 | Contract | Reason (INF) |
 |---|---|
@@ -528,5 +531,102 @@ I am Claude Code acting as Definition Actor. I am not the independent Engineerin
 No evidence establishes any other authorized gate. Stage 2 Truth Pack and FCTM population are not authorized by the instruction and have not been started. The FCTM scaffold is unchanged and unpopulated.
 
 **STOP FOR MISSION CONTROL REVIEW.**
+
+**Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+
+## L. MC-101 accepted S5 supplementary evidence — source record supplied in conversation
+
+### L.1 Provenance and limits
+
+- **Source.** "SB-P-1.16 — MC-101 Accepted Bounded S5 Source/Section Evidence Return", prepared by Mission Control on 2026-10-14 through GitHub connector reads and supplied to Claude Code in conversation. It is not in the repository, on a PR branch or in PR comments. Under MC-101 it is not committed here.
+- **Standing.** Mission Control documentary evidence accepted by MC-101 for Stage 1 convergence. It is not Product Truth, not a Founder decision and not FCTM population. Its own scope note: "Read" means bounded examination of the named numbered sections plus relevance scans, not a complete re-inventory.
+- **Attribution.** The section readings and classifications in L.2 to L.4 are Mission Control's S5 findings. They are not new reading claims by the Definition Actor. Section K.2 states what the Definition Actor itself read and remains accurate.
+- **Definition Actor verification.**
+  - Every blob in L.2 and L.4 was checked with `git rev-parse origin/main:<path>` at `main@0ba98e6ab2ccdf4975f1ba8deda0214b2ce9b414`: all 27 match.
+  - The cited section headings exist: C13 §§4, 6, 10; C17 §§4, 6, 13, 14; C18 §§15, 18; C20 §§11, 12, 21.
+  - The text of C13 §10 (Closing Cash) was read and is consistent with the S5 finding in L.3.
+  - Nothing else was re-read.
+- No runtime, deployment, Supabase, provider or CI behaviour was tested by S5 or by this correction.
+
+### L.2 S5 delegated-contract source and section ledger
+
+| Contract | Blob (verified) | Sections examined by S5 | S5 finding |
+|---|---|---|---|
+| C01 Smart Order & Delivery | `b392c8cb851683ea7bba1d6351c565a4c0c555ed` | §16 | COD collection and payment evidence consume the shared financial-integrity foundation; no duplicate Ledger income |
+| C02 Ask CFO | `53635557fb2907e0e9011613511c9f34b8548edf` | §§5, 11, 12 | Authorized consumer of customer-credit and payment facts; not an independent financial source of truth |
+| C04 Daily Intelligence | `ce940d258b036c5e93da5de5eaeaa8ce99c3b9fd` | §§3–6 | Consumer of credit balances, repayment movement and payment exceptions; must not fabricate missing facts |
+| C05 Universal Document & Receipt Intelligence | `80ac648e6764f0288f04a4591902ba029d01ab58` | §§4, 6 | Document input and receipt storage dependencies. That retaining evidence does not itself verify payment is an interpretive boundary from C15 |
+| C07 Stock / Supplier / Reorder | `65ad91b202def9cb4f42b97383bcc58475f59015` | §§3–4 | Supplier payment/credit is an adjacent workflow; shared identity remains relevant |
+| C09 Human Language Layer | `649c55f396e3cd53f31e95bbafbd6af5fc7550a7` | §12 | Smart Credit reuses common language interpretation; no feature-specific language fork |
+| C10 Conversation Workspace | `5c145ed72677800893954602d403cc73e957731a` | §§14, 17 | Multiple plausible payment matches require clarification, exact-action confirmation and execution-time authority revalidation |
+| C11 Reminder Engine | `e802745a93c3bacaebba5099aacfadbe52212bc8` | §§8, 10 | Credit follow-up and "Mark customer payment received" reuse the shared reminder foundation; consequential action runs through the authoritative feature service |
+| C12 Voice | `6d48feff8f9fddffbbc98ee23a71a541299e48ba` | §§4, 7, 21 | Credit/repayment voice input; clarify uncertain identity, payment or amount; no duplicate consequential write |
+| C13 POS / Counter / Closing Cash | `4426e8b1f9e856047759bdb03e2f5b83820f8cc0` | §§4–10, 19; §10 specifically | Adjacent, not direct SB-P-1.16 ownership (L.3) |
+| C16 Compliance Shield | `420269d8407485fc659072242fff03cd27f023e4` | Contract-wide relevance screen and text scan | No new direct feature delegation found. Does not waive legal or privacy requirements and is not a full C16 inventory |
+| C17 Operational Dashboard & Manager Workspace | `7943f74a88c2922acc697115f336b68baf7a503a` | §§4, 6, 13–14 | Downstream consumer (L.3) |
+| C18 Subscription, Payment & Account Lifecycle | `6b96b10aee35036b18afb3bba7a4950e7b36b7fb` | §§15, 18 | Separate adjacent domain (L.3) |
+| C19 Super Admin | `94aa6f2422a3ef5c1b41fca4e17b07a098261cb5` | §15 | Merchant financial-record access is purpose-limited, authorized, scoped and audited; routine inspection rejected |
+| C20 Onboarding & First Experience | `56ed4d11d2719abb83e6f9e862a51ffc5ebdf005` | §§11–12, 21 | Downstream consumer (L.3) |
+| C21 Permissions, Business Isolation & Role Authority | `f4a05d5c3aa76f70f0bdea0a83acdb7d7e61b36d` | §§13–14 | Customer credit communication is purpose-limited; support access is narrowly authorized and audited |
+| C22 Shared Product Foundations | `61e1bb91970be410e9daf1d3b80875c35f29db04` | §§5, 11–12, 14–15, 17–18 | Identity reuse, follow-up, notifications, audit, replay protection, payment/bank adapters and jobs reuse shared foundations |
+| C23 WhatsApp Intelligence & Channel Adapter | `2430e1c6191908bb23a5971405b8214d8d98d7ff` | §§16, 20–21 | Payment/credit awareness messaging follows recipient and privacy rules; retries must not duplicate financial writes; payment services continue independently of WhatsApp |
+| C24 AI Orchestration | `0c1dcbb21a3d90e5ba2710200578ca4eb8f7b109` | §§9, 21 | AI uses minimum authorized context; credit overrides and payment matches require human confirmation or valid stored delegation |
+| C25 Document, Media Storage & Retention | `406ce0892451d2a71e28687fd53ad5f818085242` | §§6, 17, 19 | Financial evidence depends on governed storage; retention duration remains unresolved; sensitive payment evidence needs least privilege and privacy controls |
+
+Direct contracts C03, C14 and C15 were read by the Definition Actor in the original return (Section A.3); S5 did not re-inventory them. The ledger does not claim every paragraph of each delegated contract was read.
+
+### L.3 Supplemental reclassification of Section C.3
+
+This supersedes the C.3 entries for these four contracts. It is a classification of how SB-P-1.16 relates to each contract. It authorizes no change of mission assignment, build commitment or feature ownership, and no FCTM disposition.
+
+| Contract | Original C.3 entry | Corrected classification (MC-101 S5) | Basis |
+|---|---|---|---|
+| C13 POS / Counter / Closing Cash | Candidate `NOT APPLICABLE` | **ADJACENT / SHARED DEPENDENCY — not directly owned by SB-P-1.16.** POS closing cash (§10: POS cash sales, other payment methods, cash count, variance) is a different reconciliation domain from C15 merchant bank/payment evidence matching. Shared bridge, dedupe, audit, permission and transaction-integrity boundaries still apply; the contract is not labelled unrelated | C13 §§4–10, 19; C15 §§1, 7 |
+| C17 Operational Dashboard & Manager Workspace | Candidate `NOT APPLICABLE` / Stage 2 question | **DOWNSTREAM CONSUMER — not wholly `NOT APPLICABLE`.** §4 lists credit awareness; §6 outstanding credit and payment/reconciliation state; §§13–14 restrict visibility and enforce backend permissions. No SB-P-1.16 dashboard ownership (C17 stays with its BP §9 missions) | C17 §§4, 6, 13–14 |
+| C18 Subscription, Payment & Account Lifecycle | Candidate `NOT APPLICABLE` | **SEPARATE ADJACENT DOMAIN — no direct merchant-payment feature ownership.** §15 covers Smart Business's own billing-provider events, entitlement state and reconciliation; §18 subscription failure and ambiguous billing. Shared idempotency and provider-resilience principles remain relevant | C18 §§15, 18 |
+| C20 Onboarding & First Experience | Candidate `NOT APPLICABLE` | **DOWNSTREAM CONSUMER — not wholly `NOT APPLICABLE`.** §11 allows payment verification/reconciliation as a first win where applicable; §12 a first reminder/credit/payment/operational action. No SB-P-1.16 onboarding ownership | C20 §§11–12, 21 |
+
+C07 and C16 keep their original C.3 treatment, with the S5 notes in L.2: C07 supplier credit is adjacent with shared identity relevance, and the C16 screen is not a full inventory and waives no legal or privacy requirement.
+
+Effect on Section K.4: **Q-04** now has MC-101 S5 evidence for these four classifications. Their FCTM treatment (row level and disposition) remains a Stage 2 matter and is not decided here.
+
+### L.4 Predecessor residual and partial-learning evidence (S5)
+
+| Predecessor | Residual register (blob verified) | Partial learning (blob verified) | S5 conclusion |
+|---|---|---|---|
+| SB-P-1.12 | `mission-control/71_residual_work_and_exact_resume_register.md` — `a3ec7d362454aa80731785ff7dc1a284079d24bd` | `organizational-learning/01_partial_mission_learning_handoff.md` — `6447f815a8614c81d635b3c5f7f19749ffa17b5e` | Preserves the withheld implementation and assurance gate; learning is candidate context only. No additional explicit SB-P-1.16-owned row found |
+| SB-P-1.13 | `mission-control/39-residual-work-and-exact-resume-register.md` — `e5320b8206035b9a1ad182cf8334efb8d3b8df2c` | `organizational-learning/01_partial_mission_learning_handoff.md` — `2d4a5e24faa0597d076734efc3a8c20372322b7a` | Holds coordinated cross-mission transaction cut-over, D12/DTX, provider evidence, migration and runtime dependencies; no operational completion. No additional explicit SB-P-1.16-owned row found |
+| SB-P-1.14 | `mission-control/45-residual-work-exact-resume-register.md` — `c5e4cc70e0f6b0348daa3c37018ba6c91e965be2` | `mission-control/47-partial-mission-learning-ole-handoff.md` — `ae8008f797855a42fce735ee95dc16b62cde5767` | Post-Stage 13 Implementation Authorization remains withheld; learning preserves the one transactions-family cut-over and successor documentary dependencies, not runtime implementation. No additional explicit SB-P-1.16-owned row found |
+| SB-P-1.15 | MC-90 and MC-91 already inspected in the original return (Section A.6) | `mission-control/92-partial-mission-learning-ole-handoff.md` — `53736999dc6700b03d444eb75c6761ca265d5bd7` | Unclosed partial-learning context. SB-P-1.15 consumer rows cannot be promoted into SB-P-1.16 assignment; reminder, Ask CFO and AI capabilities cannot be assumed implemented |
+
+Paths are relative to `communication/missions/<predecessor>/`. All partial OLE records remain nonterminal candidate context, not formally promoted closed-mission evidence. This supplements Sections H.3 and K.2. The Institutional Learning Intake dispositions in Section H.2 are unchanged.
+
+### L.5 Unchanged by this correction
+
+- **Inherited intake (Section D.5):** 21 unique inherited identifiers from SB-P-1.13 and SB-P-1.14, with `22-§17-3` repeated in SB-P-1.15. S5 found no contradictory assignment and no recount was made. `3-§11-6` remains jointly assigned to SB-P-1.16 / SB-P-1.17 / SB-P-1.18.
+- **Contract 14 acceptance split (Sections D.5, I.2 D-03):** SB-P-1.14 row `14-§22` bundles C14 acceptance scenarios 1 and 2. They must become separate rows during later authorized traceability population. The predecessor row is not altered retroactively.
+- **Uncertainty register (Section I.1):** all items remain **OPEN**. Neither S5 nor this correction decides any of them.
+
+| ID | Item | Status | Candidate Source 18 trigger |
+|---|---|---|---|
+| U-01 | Shared customer identity ownership | OPEN | T2; T7 only if reassignment is proposed |
+| U-02 | "Partially matched" vocabulary | OPEN | T2 / T6 |
+| U-03 | Scenario A "risk" without invented risk scoring | OPEN | T6 |
+| U-04 | "Overdue" when no due date exists | OPEN | T1 / T6 |
+| U-05 | Customer credit-communication authority list | OPEN | T2 screen |
+| U-06 | Minimum payment-evidence source channels | OPEN | T1 / T3 |
+| U-07 | Manager delegation granularity | OPEN | T3 / T6 |
+| U-08 | Retention / legal U-5 critical path | OPEN | T3 if critical path |
+
+- **Triggers:** S5 established no T7 reassignment and no T8 Product Truth conflict or infeasibility. The T1/T2/T3/T6 candidates remain for governed screening.
+- **Everything else in Sections A–K is unchanged.** That includes the authority map, inherited holds, the Institutional Learning Intake screen, the draft workstreams and the independence limitation.
+
+### L.6 Boundary
+
+This correction introduces no Founder product decision, no mission reassignment, no change of build commitment or commercial classification, no FCTM population and no implementation claim. Stage 2 is not started.
+
+**DO NOT MERGE. DO NOT START STAGE 2. DO NOT POPULATE THE FCTM.**
+
+**STOP FOR MISSION CONTROL PR REVIEW.**
 
 **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
