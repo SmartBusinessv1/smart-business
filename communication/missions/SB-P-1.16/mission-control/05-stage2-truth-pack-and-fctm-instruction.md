@@ -352,3 +352,57 @@ Do not self-approve the Truth Pack or advance to Stage 3/4.
 **Delivery/publication sync: NOT AUTHORIZED.**
 
 **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+
+## 13. MC-107 — Stage 2 Activation Clarifications
+
+**Source:** MC-107, PR #959 final instruction clarification; reviewed head `f38fdfb5b84f97d944e31e2ce9b6bcec50194138`. MC-106 instruction accepted subject to this narrow clarification. Sections 1–12 are preserved verbatim.
+
+### 13.1 Definition Actor appointment
+
+Claude Code is confirmed as the Stage 2 Definition Actor under Source 18 §4.3.
+
+Competence basis: prior repository-based source inventory, obligation tracing, and FCTM preparation.
+
+Prior contribution: Claude Code authored the Stage 1 source-inventory report and participated in predecessor mission definition work.
+
+Separation: Claude Code's Stage 2 outputs require Mission Control review and the applicable later independent reviews. Claude Code may not approve its own Truth Pack, independently verify its own findings, or treat previous authored FCTMs as independent implementation evidence.
+
+Codex is the named alternate candidate. Substitution requires a separate Mission Control appointment and documented separation assessment.
+
+No builder, implementation, runtime-verification or independent-verifier appointment is created here.
+
+### 13.2 Populated FCTM location
+
+The Stage 1 scaffold remains unchanged at:
+
+`communication/missions/SB-P-1.16/mission-control/03-stage1-fctm-opened.md`
+
+Blob: `466780f0db6a5097204596063a7011452b3c7dc2`
+
+Create the populated Stage 2 FCTM at:
+
+`communication/missions/SB-P-1.16/claude-code/02-stage2-populated-fctm.md`
+
+The populated matrix must cite the Stage 1 scaffold and reconcile its source identities. Do not overwrite the Mission Control opening record.
+
+Other Stage 2 supporting deliverables must remain inside the approved `claude-code/` mission path unless Mission Control separately authorizes another location.
+
+### 13.3 Documentation-only assurance
+
+MC-107 accepts the reported local Markdown Quality Gate and pre-commit checks as limited documentary publication evidence for this instruction, under SB-P-1.12 MC-160 §5 item 6 and the MC-103 precedent.
+
+GitHub Actions CI remains UNVERIFIED, not PASSED.
+
+This disposition is limited to publication of this documentary instruction. It is not general substitute assurance for application code, security, migrations, provider mutations, releases or runtime implementation.
+
+### 13.4 Activation boundary
+
+This addendum remains draft preparation until Founder human merge and Mission Control post-merge verification.
+
+Stage 2 must not begin merely because this addendum is committed or pushed.
+
+Following canonical activation, Claude Code may prepare the five-part Stage 2 Truth Pack under MC-106 Sections 2–12.
+
+Any genuine T1–T8 trigger must be recorded and escalated as Source 18 requires.
+
+**Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
