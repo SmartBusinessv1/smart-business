@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.16 — Financial Integrity & Credit  
 **Lifecycle stage:** Source 18 v1.2, Stage 2 — Mission Truth and Delta Reconciliation (Section 3.2, Section 6)  
-**Status:** `DRAFT STAGE 2 OUTPUT — NOT CANONICAL UNTIL MISSION CONTROL REVIEW AND HUMAN MERGE`  
+**Status:** Stage 2 baseline canonical since PR #960 (`main@59730d67`, blob `5e1794c5`); Stage 3 reconciliation to canonical Founder decisions `16:FPDR-1` to `16:FPDR-9` proposed in PR #964 (MC-156/MC-157) — `NOT CANONICAL UNTIL FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION`  
 **Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-106 (`communication/missions/SB-P-1.16/mission-control/05-stage2-truth-pack-and-fctm-instruction.md`, blob `49996ffefb2049036ca8b522069be5389f07ace8`) as activated by MC-109  
 **Baseline:** `main@e4e382c73824f02e83ad4ee2497e5e046fd74086` (PR #959 merge), 2026-10-14  
 **Opened by:** `communication/missions/SB-P-1.16/mission-control/03-stage1-fctm-opened.md` (blob `466780f0db6a5097204596063a7011452b3c7dc2`); that record is not modified  
@@ -30,7 +30,7 @@ This matrix is an accounting of approved truth. It adds no product decision and 
 | Disposition | Source 18 Section 3.2 item 3 vocabulary only. |
 | Dependency / hold | Dependency or blocking code (Section 0.6). A dependency never moves a row (Source 18 §3.2 item 5). |
 | Evidence / citation | Implementation-evidence code and disposition citation (Section 0.7). |
-| Founder decision | Founder Decision ID where a row rests on one, namespaced by mission: `14:FPDR-n` is SB-P-1.14's record, `12:FPDR-1` SB-P-1.12's, `15:FDB-3` SB-P-1.15's. |
+| Founder decision | Founder Decision ID where a row rests on one, namespaced by mission: `14:FPDR-n` is SB-P-1.14's record, `12:FPDR-1` SB-P-1.12's, `15:FDB-3` SB-P-1.15's, and `16:FPDR-n` (`16:FPDR-1` to `16:FPDR-9`) SB-P-1.16's canonical Founder Product Decision Record (`09-stage3-founder-product-decision-record-draft.md`, canonical at `main@bb695255`). |
 
 The scaffold's `Downstream trace` column is not populated at Stage 2. Under Source 18 §3.2 item 7 each later deliverable (Blueprint from Stage 4) carries its own mapping keyed by these row IDs.
 
