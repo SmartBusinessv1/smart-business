@@ -6,7 +6,7 @@
 **Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-115  
 **Canonical baseline:** `main@59730d67a7efbb3014e63937e56e5b2a17994b2a`  
 **Companion:** `07-stage3-founder-decision-brief-draft.md`  
-**Revision:** MC-116 clarifications to Q1 (contested reading, possible T7, separate Q1(b)) and Q3(b) (proposed new product choice; no invented overdue date)  
+**Revision:** MC-116 clarifications to Q1 (contested reading, possible T7, separate Q1(b)) and Q3(b) (proposed new product choice; no invented overdue date). MC-117 clarifications to Q1(b) (no re-recording of historical sales), Q2 (four distinct situations; verified part-payments are legitimate) and Q6 (preparation and approval are not delivery; Source 11 screen)  
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
 ## 1. Baseline and trigger verification
@@ -26,17 +26,17 @@ Fully stated, with options, consequences, principles and affected rows, in the b
 | Q | Covers | Separate decisions | Kind | Ready to ask |
 |---|---|---|---|---|
 | Q1 | U-01 (escalated), DC-15 | (a) which mission owns the customer record credit links to; (b) whether and how past credit-method sales enter customer balances | Founder product choice resolving a source conflict. Option A's narrow reading of Build Plan §10.3 is contested; Option B is a possible T7 trigger | Yes, after Mission Control's view on whether Option A's contested reading is an interpretation or a change |
-| Q2 | U-02, DC-03 | Meaning of "partially matched" | Founder product choice | Yes |
+| Q2 | U-02, DC-03 | Which situation the merchant-facing words "partially matched" name: verified part-payment, mismatch, or two separate labels. Not whether verified part-payments are legitimate | Founder product choice | Yes |
 | Q3 | U-03, U-04, DC-01, DC-02 | (a) "risk" means factual context only; (b) how "overdue" is decided without a due date | (a) confirmation, one source-supported option; (b) Founder choice. Option B (Owner default period) is a proposed new product choice, not an existing requirement | Yes |
 | Q4 | U-06 (and U-09 follows) | Minimum payment-evidence sources for Phase 1 | Founder product choice | **No.** Payment/integration specialist evidence first |
 | Q5 | U-07, DC-09; SB-P-1.15 R15-11 | Manager delegation granularity for credit and reconciliation | Founder product choice | **No.** Security specialist capability model first |
-| Q6 | U-05 (DC-10 part) | Prepare customer messages for merchant approval, with no delivery before an approved channel | Confirmation only | Yes |
+| Q6 | U-05 (DC-10 part) | Prepare customer messages for merchant approval, with no delivery before an approved channel. Preparation and approval are not delivery; the seven `DNTF` rows stay `IN SCOPE`, are not marked complete and do not move | Confirmation only | Yes |
 
 ## 3. Screened items
 
 | Item | Screen result |
 |---|---|
-| U-05 | Founder dependency reduced to Q6. Mission Control still to confirm that Source 11's Customer list does not conflict with C14 §14 and C21 §13 |
+| U-05 | Screened by Mission Control (MC-117): no direct textual prohibition of merchant-approved credit communication in Source 11; no outbound delivery authorization follows. Founder dependency reduced to Q6 |
 | U-08 | MC-112 determination preserved verbatim: conditionally noncritical for Stage 2 documentary reconciliation and non-destructive payment-evidence workflow definition; U-08 remains OPEN. The remaining dependency is a Founder/legal determination on the lifecycle elements in Truth Pack Part D.5, needed before any lifecycle-dependent Blueprint lock. Legal specialist evidence is needed first; not proposed for the first dialogue |
 | U-09 | Unchanged: OPEN, follows Q4 |
 | U-10 | Unchanged: OPEN, not on this mission's critical path (GPCV §9 `REJECT FOR CURRENT CORE`) |

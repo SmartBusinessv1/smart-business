@@ -61,12 +61,14 @@ Six consolidated questions. Q1 and Q3 each hold two separate decisions, shown as
 
 Q1(b) is a **separate choice**, decided on its own whatever the answer to Q1(a).
 
-**Q1(b) — Plain-language question:** *Past sales already recorded "on credit" only carry a typed name or reference, not a customer record. Should they count in a customer's outstanding balance, and if so how are they matched to the customer?*
+**Q1(b) — Plain-language question:** *Past sales already recorded "on credit" only carry a typed name or reference, not a customer record. Should that existing unattributed credit count in a customer's authoritative outstanding balance, and if so how is it linked to the customer?*
+
+**Fixed under every option (MC-117):** a historical credit-method sale is never recorded again as a new sale, or as any new financial entry, merely to establish which customer it belongs to. Any later attribution is a link to the existing record. It preserves the original Ledger identity and its audit history, and keeps exactly-once financial meaning: the sale counts once, and repayments settle it (14:FPDR-1, 14:FPDR-4; C15 §8).
 
 | Option | Supported by | Consequence |
 |---|---|---|
-| **i.** Show them as unattributed credit, clearly disclosed, until the Owner links each one to a customer through a confirmed, audited action | 14:FPDR-1 (no reinterpretation), 14:FPDR-4 (repayment may settle a credit-method sale), C14 §4 (ask rather than assign), C15 §16 / 15:FDB-3 (disclose uncertainty) | Balances are accurate but may start incomplete; Owners do some one-time linking |
-| **ii.** Keep them outside authoritative customer balances, shown separately as historical credit | 14:FPDR-1 | Simpler. Older credit is not part of "who owes what" unless the Owner records it again |
+| **i.** Count it once attributed: show it as unattributed credit, clearly disclosed, until the Owner links each existing record to a customer through a confirmed, audited action; once linked, it contributes to that customer's authoritative balance | 14:FPDR-1 (no reinterpretation), 14:FPDR-4 (repayment may settle a credit-method sale), C14 §4 (ask rather than assign), C15 §16 / 15:FDB-3 (disclose uncertainty) | Balances are accurate but may start incomplete; Owners do some one-time linking |
+| **ii.** Keep existing unattributed credit outside authoritative customer balances, shown separately as historical credit | 14:FPDR-1 | Simpler. Older credit is not part of "who owes what" in authoritative balances. It is still never re-recorded as a new sale |
 | Excluded: automatic matching by name | — | C14 §4: "ask rather than silently assigning credit to the wrong customer"; C14 §16 |
 
 **Lighthouse principles:** customers are people, not transactions (Constitution Ch. 4); trust is a responsibility (Ch. 6); never guess a financial link (C14 §16).
@@ -81,17 +83,28 @@ Q1(b) is a **separate choice**, decided on its own whatever the answer to Q1(a).
 
 **Status:** T2/T6. Not `ESCALATED`: Contract 15 §4 lists states "such as" and leaves names open, so the sources do not contradict each other, but the Build Plan term is undefined.
 
-**Plain-language question:** *The approved experience says payment evidence may be "verified, unmatched, partially matched, or ambiguous". When Smart Business says "partially matched", what situation should that describe?*
+**Four different situations (MC-117).** Approved sources already distinguish them; the Founder decides only which one the merchant-facing words "partially matched" name.
+
+| Situation | What it is | Approved treatment |
+|---|---|---|
+| Verified part-payment | Authentic evidence that matches a record, for an amount smaller than what is owed | A legitimate payment that can be verified. It reduces the balance by the verified amount only (C14 §7; C15 §§8, 14) |
+| Remaining unpaid balance | What is still owed after a verified part-payment | Stays owed and visible; never treated as paid (C14 §§5, 7) |
+| Amount or reference mismatch | Evidence that conflicts with the recorded amount or reference | Both facts preserved, variance shown, nothing overwritten; review and correction through normal workflows (C15 §10) |
+| Ambiguous evidence | Evidence that plausibly matches more than one record | Never chosen silently; a human reviews and confirms (C15 §§9, 19) |
+
+**Plain-language question:** *The approved experience says payment evidence may be "verified, unmatched, partially matched, or ambiguous". When Smart Business shows the words "partially matched" to a merchant, which situation should they describe?*
+
+The Founder decides the merchant-facing meaning of the term. Whether verified part-payments are legitimate is not in question; they are.
 
 | Option | Supported by | Consequence |
 |---|---|---|
-| **A.** A payment smaller than what is owed (a part-payment against a balance) | C14 §7 (repayment reduces the balance); BP §10.5 E2 | Part-payments are expected; the balance updates and the rest stays owed |
-| **B.** Evidence whose amount or reference differs from the recorded transaction | C15 §10 ("mismatch": preserve both, show the variance) | Treated as a discrepancy needing review |
-| **C.** Both, as two separately named situations | C14 §7; C15 §10 | The merchant sees two distinct labels |
+| **A.** A verified part-payment: the evidence is authentic and matched, and covers part of what is owed | C14 §7 (repayment reduces the balance); C15 §§8, 14; BP §10.5 E2 | The payment is verified for its amount; the balance falls by that amount and the remainder stays owed |
+| **B.** An amount or reference mismatch | C15 §10 (preserve both facts, show the variance) | Treated as a discrepancy needing review; not shown as verified |
+| **C.** Neither alone: use two separately named labels for the verified part-payment and the mismatch | C14 §7; C15 §§8, 10 | The merchant sees two distinct labels |
 
-Either way, "partially matched" is never shown as verified (C15 §3, BP §10.5 exit principle).
+**C15 safeguards unchanged under every option:** a mismatch or ambiguous evidence is never shown as verified (C15 §§3, 9, 10); verification never creates a duplicate sale, income or payment (C15 §8); unauthenticated evidence never verifies by itself (C15 §§5, 22); a verified part-payment never clears more than its verified amount (C14 §7).
 
-**Lighthouse principle:** never pretend uncertain money is settled (BP §10.5 exit principle; C15 §3).
+**Lighthouse principle:** never pretend uncertain money is settled, and never deny money that was genuinely paid (BP §10.5 exit principle; C15 §3).
 
 **Affected rows:** `15-§4-1`–`15-§4-8`, `BP-§10.5-E2`, `BP-§10.5-W10`. **Blueprint-lock consequence:** the payment-state model (Sections 8, 12) and the Scenario B experience. **Specialist evidence:** none needed.
 
@@ -160,7 +173,11 @@ Two separate decisions on the same screen.
 
 **Already settled:** messages are respectful, merchant-controlled and never sent autonomously in a confrontational way (C14 §10); customers see only their own credit communication (C14 §14; C21 §13); WhatsApp delivery is SB-P-1.20 (BP §9 row 9). SB-P-1.15 FDB-2 covers Owner reach only, not messages to customers.
 
-**Consequence of confirming:** customer-communication rows (`14-§10-*`, `14-§14-4`, `14-§22-9`) are demonstrated in SB-P-1.16 up to merchant approval. Delivery is demonstrated in SB-P-1.20. No requirement moves.
+**Consequence of confirming (MC-117):** native preparation of a message and the merchant's approval of it are documentary or functional scope boundaries for this mission. They are **not** proof that delivery to a customer was demonstrated. Delivering any message to a customer requires an approved channel, the appropriate customer authority (C14 §14; C21 §13) and the applicable permissions.
+
+The delivery-dependent Contract 14 rows stay `IN SCOPE` with their recorded `DNTF` dependency: `14-§10-2`–`14-§10-6`, `14-§14-4`, `14-§22-9`. They are **not** marked complete on the basis of preparation or approval. They are **not** moved to another mission: any change of assignment for delivery needs an approved authority, and is a possible Source 18 T7 trigger.
+
+**Mission Control's Source 11 screen (MC-117):** no direct textual prohibition of merchant-approved credit communication was found in Source 11. No outbound delivery authorization follows from that finding.
 
 **Specialist evidence:** none.
 
@@ -168,7 +185,7 @@ Two separate decisions on the same screen.
 
 | Item | Remaining dependency | Recommendation to Mission Control |
 |---|---|---|
-| U-05 — Source 11 Customer authority list | Mission Control confirmation that Source 11 (which lists Customer abilities without credit communication) does not conflict with C14 §14 and C21 §13 | Mission Control screen. The Founder is asked only Q6 |
+| U-05 — Source 11 Customer authority list | **Screened by Mission Control (MC-117):** no direct textual prohibition of merchant-approved credit communication found in Source 11; no outbound delivery authorization follows. Remaining Founder dependency: Q6 confirmation only | The Founder is asked only Q6 |
 | U-08 — Evidence retention (MC-112) | **MC-112 U-08 disposition: Conditionally noncritical for Stage 2 documentary reconciliation and non-destructive payment-evidence workflow definition. U-08 remains OPEN.** A Founder/legal determination is still required before any Blueprint lock that depends on retention duration, deletion eligibility, cancellation/non-payment treatment, backup/restoration or other evidence-lifecycle behaviour (Truth Pack Part D.5) | Not ready for the Founder. Needs **legal specialist evidence** first. Ask only when a Blueprint lock would depend on lifecycle behaviour |
 | U-09 — Reversal / chargeback scope | Follows Q4 (which evidence sources exist) | Status unchanged: OPEN, carried with Q4 |
 | U-10 — Underwriting/lending ecosystem | None for SB-P-1.16: rejected for current core (GPCV §9); Build Plan §15 item 9 is a wider ecosystem question | Status unchanged: OPEN, not on this mission's critical path |
