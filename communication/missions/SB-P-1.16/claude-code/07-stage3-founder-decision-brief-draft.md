@@ -3,7 +3,7 @@
 **DRAFT — STAGE 3 PREPARATION — NOT A FOUNDER DECISION**
 
 **Mission:** SB-P-1.16 — Financial Integrity & Credit  
-**Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-115  
+**Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-115; amended under MC-116, MC-117 and MC-120  
 **Authority:** Source 18 v1.2, Stage 3 preparation only  
 **Canonical baseline:** `main@59730d67a7efbb3014e63937e56e5b2a17994b2a` (PR #960 merge)  
 **Status:** For Mission Control review. Not to be shown to the Founder as a request until Mission Control authorizes the dialogue. No question here has an answer, and no answer is assumed.
@@ -133,37 +133,84 @@ Two separate decisions on the same screen.
 
 **Affected rows:** Q3(a) `14-§3-7`, `14-§9-3`–`14-§9-7`, `14-§19-5`, `BP-§10.5-W4`, `BP-§10.5-A2`; Q3(b) `14-§5-6`, `BP-§10.5-W3`, `BP-§10.5-A1`. **Blueprint-lock consequence:** the credit data model, the warning experience and the Experience Verification Matrix seed for Founder Scenario A (Founder-reserved). **Specialist evidence:** none needed.
 
+### Specialist evidence used for Q4 and Q5
+
+**Evidence provenance.** The Finance & Payments Specialist report (MC-118-A) was accepted by Mission Control as provisional feasibility evidence (MC-119); the Security / Permissions Review report (MC-118-B) was accepted as provisional capability evidence (MC-120). Neither report is a merged repository record, and the Definition Actor has not seen either report. Everything below that comes from them is taken from Mission Control's MC-120 summary. They are evidence for Founder deliberation, not Product Truth, implementation verification or approval of any new capability. External provider, availability, cost, legal and merchant-coverage facts have not been independently validated by Mission Control and are **provisional specialist assessments**, not certified compliance or guaranteed support.
+
 ### Q4 — Which payment evidence must Phase 1 accept? (U-06; U-09 follows)
 
-**Status:** T1/T3. **Specialist evidence needed before asking.**
+**Status:** T1/T3. Specialist evidence received (MC-118-A, accepted as provisional feasibility evidence by MC-119). Conditional feasibility and legal dependencies remain (below).
 
-**Plain-language question:** *To confirm that a customer really paid, which kinds of proof must Smart Business be able to receive in this phase: bank or UPI provider feeds, bank emails, payment-gateway records, settlement files, or only photos and screenshots that the Owner reviews?*
+**Plain-language question:** *To confirm that a customer really paid, which combination of proof should Smart Business be able to receive in Phase 1?*
 
-**Why it is open.** Contract 15 §5 lists approved evidence sources "such as" those, and its completion gate requires "authenticated evidence ingestion" (C15 §28). No source names the minimum set. Uploaded evidence alone always needs review and is never authoritative by itself (C15 §5).
+**Why it is open.** Contract 15 §5 lists approved evidence sources "such as" gateway records, settlement files, authenticated bank email and bank or payment-provider APIs, and its completion gate requires "authenticated evidence ingestion" (C15 §28). No source names the Phase 1 minimum.
 
-**Options:** any non-empty subset of the C15 §5 list. The sources do not rank them. What each requires (provider availability for small Kerala merchants, authentication, consent, cost, credentials) is not yet known, so presenting options now would invite a decision without the facts.
+**Candidate Phase 1 combinations (from MC-120).** Every option keeps merchant upload as a reviewed fallback only.
 
-**Consequence:** without at least one authenticated source, C15's completion gate cannot be met. The 41 `IN SCOPE` rows that carry `DPAY` depend on this decision, and so does the scope of reversals and chargebacks (U-09: `15-§4-7`, `15-§13-1`, `15-§21-10`, `15-§25-12`). Each external source is a new infrastructure activation under Build Plan §5.4.
+| Option | Evidence received | Coverage | Authentication | Operational complexity | Evidence confidence |
+|---|---|---|---|---|---|
+| **A. Gateway-first** | Authenticated gateway evidence; settlement evidence; merchant-upload fallback | Payments made through the merchant's gateway. Does **not** automatically cover the merchant's direct bank/UPI receipts | Provider-authenticated records (provisional) | One gateway relationship per merchant; provider onboarding and credentials (provisional) | Provider payment status is strong for that payment but is not a Ledger match. Settlement processing does not necessarily prove final bank credit |
+| **B. Bank-alert-first** | Authenticated bank email; merchant-upload fallback | Credits for which the merchant's bank sends alerts (provisional; varies by bank) | Email authenticity must be established for each message | Ingestion of bank alerts; authenticity checks (provisional) | Authenticated bank email does not universally establish final payment |
+| **C. Broader Phase 1** | Gateway evidence; authenticated bank email; merchant-upload fallback | Widest of the four: gateway payments plus bank-alerted credits | Both of the above | Highest: two source types, and the same payment may arrive from both, so duplicate evidence must be handled idempotently (C15 §12) | Combines the limits of A and B; cross-source agreement may raise confidence, but never replaces matching |
+| **D. Direct-bank priority** | Bank API evidence; merchant-upload fallback | Accounts reachable through bank API access (provisional; availability and access uncertain) | Bank-authenticated API (provisional) | Depends on bank API access arrangements (provisional) | Status depends on the bank evidence received; still not a Ledger match |
+
+The Coverage, Authentication, Complexity and Confidence cells are the Definition Actor's reading of MC-120's boundaries and Contract 15. The cells marked provisional rely on the specialist assessment. None is a guarantee of availability, cost or merchant coverage.
+
+**Not offered:** Account Aggregator is **not** presented as an established direct integration option for Team LIPS (MC-120).
+
+**Binding boundaries under every option (MC-120; Contract 15):**
+
+- Receiving evidence does not prove payment.
+- Merchant screenshots alone cannot satisfy Contract 15's authenticated-ingestion completion requirement (C15 §§5, 28).
+- Provider payment status is distinct from matching that payment to a particular Ledger record (C15 §§7–9).
+- Gateway evidence does not automatically cover a merchant's direct bank/UPI receipts.
+- Settlement processing does not necessarily prove final bank credit.
+- Authenticated bank email does not universally establish final payment.
+- Ambiguous evidence requires authorized human resolution (C15 §§9, 19).
+- No duplicate income, sale or repayment may be created (C15 §§8, 12).
+- U-09 reversal and chargeback obligations follow the evidence categories selected.
+- Provider selection and external activation are separate later authorizations (Build Plan §5.4; C15 §3).
+
+**Consequence:** without at least one authenticated source, C15's completion gate cannot be met. The 41 `IN SCOPE` rows that carry `DPAY` depend on this decision, and so does U-09's scope (`15-§4-7`, `15-§13-1`, `15-§21-10`, `15-§25-12`). Each external source is a new infrastructure activation under Build Plan §5.4.
+
+**Remaining conditional dependencies:** provider availability and access for small merchants, cost, consent and legal requirements for each source, and credential handling are provisional. They need validation before provider selection or activation, which are separate later authorizations. The Founder's choice of a combination does not validate them.
 
 **Lighthouse principles:** never fabricate payment certainty (C15 §3); simplicity without sacrificing integrity (C03 §3).
 
 **Affected rows:** `15-§1-2`, `15-§3-7`, `15-§5-1`–`15-§5-7`, `BP-§5.4-1`, `BP-§10.5-W5`, plus the `DPAY` rows (FCTM Part D-2). **Blueprint-lock consequence:** Sections 8, 20–21 (evidence ingestion and its feasibility) and the activation plan.
 
-**Specialist evidence required first:** a read-only payment and integration review of which listed sources are available, how each is authenticated, and their consent and legal requirements. Its authorization is a Mission Control decision.
+### Q5 — How far can an Owner delegate credit and reconciliation work to a Manager? (U-07; DC-09)
 
-### Q5 — How finely can an Owner delegate credit and reconciliation work to a Manager? (U-07; DC-09)
+**Status:** T3/T6. Consolidated with the decision pending from SB-P-1.15 (R15-11: "separate Founder T6/T3 for merchant-facing grants, no Manager role inference"). R15-11 **remains pending** and is not treated as approved Manager Product Truth. Specialist evidence received (MC-118-B, accepted as provisional capability evidence by MC-120). Enforcement depends on SB-P-1.12 kernel specifications that are not deployed (below).
 
-**Status:** T3/T6. Consolidated with the decision already pending from SB-P-1.15 (R15-11: "separate Founder T6/T3 for merchant-facing grants, no Manager role inference"). **Specialist evidence needed before asking.**
+**Plain-language question:** *When an Owner chooses to delegate credit and payment work to a Manager, how far may that delegation go?*
 
-**Plain-language question:** *A Manager has no access to customer credit or payment reconciliation unless the Owner delegates it. When the Owner delegates, what choices should the Owner have: for example, see balances only, record repayments, resolve payment matches, or change limits?*
+**Candidate models (from MC-120):**
 
-**Supported starting point (not a decision):** Manager access only by explicit Owner delegation (C14 §14; C15 §17; S11 Manager). Contract 21 §5 lists the dimensions a delegation may use (role, explicit delegated capability, object scope, action type) and warns against "a simplistic role-only model where a capability needs finer delegation".
+| Model | What the Owner may delegate | What the Owner always keeps | Consequence |
+|---|---|---|---|
+| **A. Operational Manager** | Explicitly delegated, scoped operational capabilities | Ambiguous-match resolution, threshold management, credit overrides and consequential financial approvals | Narrowest; every financial judgement stays with the Owner |
+| **B. Scoped Reconciliation Manager** | Model A, plus specifically authorized, confirmed resolution of assigned ambiguous payment matches | Policy and financial-approval authority | The Manager may resolve only matches assigned to them, each with exact confirmation |
+| **C. Bounded Financial Decision Delegation** | Selected additional threshold or financial-decision capabilities, each separately defined and expressly authorized by the Founder | Everything not expressly defined and authorized | **Materially greater financial authority.** It cannot create a blanket Manager approval privilege: each capability must be defined and authorized on its own |
+
+**Security requirements under every model (MC-120; Contracts 14, 15, 21):**
+
+- The Manager role alone grants no financial intelligence and no financial action (C14 §14; C15 §17; C21 §§4, 5).
+- Owner delegation is explicit and scope-bound.
+- Reading, proposing, recording, reviewing, matching, threshold management and approving are distinct capabilities (C21 §5: "avoid a simplistic role-only model").
+- Grant, revoke, protected read and consequential commit use current server-side authorization (C21 §§7, 17).
+- Ambiguous financial matches require exact confirmation (C15 §§9, 19).
+- Manager access does not expose unrelated customer balances, bank evidence or Owner-wide intelligence (C14 §§12, 19; C15 §17).
+- Employee and Customer authority is unchanged.
+- The SB-P-1.12 kernel specifications are architectural prerequisites, not evidence of a deployed permission system (Truth Pack Δ-03).
+
+Specific permission names and the grant UX are later design matters unless they introduce a new Founder-level choice.
 
 **Consequence:** Owner flows are unaffected. Manager rows (`14-§14-2`, `15-§17-2`) and the related Owner-intelligence boundary cannot lock until decided.
 
-**Lighthouse principle:** human decision ownership stays visible and real (BP §3).
+**Remaining conditional dependencies:** every model depends on the SB-P-1.12 authority kernel (`D12`), which is specified but not implemented. Model C would additionally need each Founder-authorized capability defined before any Blueprint lock relies on it.
 
-**Specialist evidence required first:** the security specialist's model of grantable capabilities from the SB-P-1.12 kernel, so that the Founder chooses among options that can be enforced (SB-P-1.15 DC-06 treats this as a security design question).
+**Lighthouse principle:** human decision ownership stays visible and real (BP §3).
 
 ### Q6 — Customer-facing credit messages before a delivery channel exists (U-05; DC-10) — confirmation only
 
@@ -199,8 +246,8 @@ The delivery-dependent Contract 14 rows stay `IN SCOPE` with their recorded `DNT
 | Q2 "partially matched" | Yes | Yes | — |
 | Q3(a) factual risk | Yes (confirmation; one source-supported option) | Yes | — |
 | Q3(b) overdue definition | Yes (Option B would be a new product choice) | Yes | — |
-| Q4 minimum evidence sources | Yes | **No** | Read-only payment/integration specialist review |
-| Q5 Manager delegation | Yes | **No** | Security specialist capability model |
+| Q4 Phase 1 evidence combination | Yes | **Yes, conditionally**: specialist evidence received (MC-118-A, provisional) | Provider availability, cost, consent and legal requirements still provisional; provider selection and activation are separate later authorizations |
+| Q5 Manager delegation model | Yes | **Yes, conditionally**: specialist evidence received (MC-118-B, provisional) | Enforcement depends on the undeployed SB-P-1.12 kernel; R15-11 still pending; Model C needs each capability separately defined |
 | Q6 customer messages | Confirmation | Yes | — |
 | U-08 retention lifecycle | Yes (with legal) | **No** | Legal specialist evidence |
 

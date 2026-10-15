@@ -6,7 +6,7 @@
 **Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-115  
 **Canonical baseline:** `main@59730d67a7efbb3014e63937e56e5b2a17994b2a`  
 **Companion:** `07-stage3-founder-decision-brief-draft.md`  
-**Revision:** MC-116 clarifications to Q1 (contested reading, possible T7, separate Q1(b)) and Q3(b) (proposed new product choice; no invented overdue date). MC-117 clarifications to Q1(b) (no re-recording of historical sales), Q2 (four distinct situations; verified part-payments are legitimate) and Q6 (preparation and approval are not delivery; Source 11 screen)  
+**Revision:** MC-116 clarifications to Q1 (contested reading, possible T7, separate Q1(b)) and Q3(b) (proposed new product choice; no invented overdue date). MC-117 clarifications to Q1(b) (no re-recording of historical sales), Q2 (four distinct situations; verified part-payments are legitimate) and Q6 (preparation and approval are not delivery; Source 11 screen). MC-120 amendments to Q4 (four candidate evidence combinations and binding boundaries) and Q5 (three delegation models and security requirements), using the MC-118-A/MC-118-B specialist evidence as summarized by Mission Control  
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
 ## 1. Baseline and trigger verification
@@ -28,8 +28,8 @@ Fully stated, with options, consequences, principles and affected rows, in the b
 | Q1 | U-01 (escalated), DC-15 | (a) which mission owns the customer record credit links to; (b) whether and how past credit-method sales enter customer balances | Founder product choice resolving a source conflict. Option A's narrow reading of Build Plan §10.3 is contested; Option B is a possible T7 trigger | Yes, after Mission Control's view on whether Option A's contested reading is an interpretation or a change |
 | Q2 | U-02, DC-03 | Which situation the merchant-facing words "partially matched" name: verified part-payment, mismatch, or two separate labels. Not whether verified part-payments are legitimate | Founder product choice | Yes |
 | Q3 | U-03, U-04, DC-01, DC-02 | (a) "risk" means factual context only; (b) how "overdue" is decided without a due date | (a) confirmation, one source-supported option; (b) Founder choice. Option B (Owner default period) is a proposed new product choice, not an existing requirement | Yes |
-| Q4 | U-06 (and U-09 follows) | Minimum payment-evidence sources for Phase 1 | Founder product choice | **No.** Payment/integration specialist evidence first |
-| Q5 | U-07, DC-09; SB-P-1.15 R15-11 | Manager delegation granularity for credit and reconciliation | Founder product choice | **No.** Security specialist capability model first |
+| Q4 | U-06 (and U-09 follows) | Which Phase 1 evidence combination: A gateway-first, B bank-alert-first, C broader, D direct-bank priority (merchant upload is fallback in all) | Founder product choice | **Yes, conditionally.** Specialist evidence received (MC-118-A, provisional); provider, cost and legal facts unvalidated |
+| Q5 | U-07, DC-09; SB-P-1.15 R15-11 | Which delegation model: A operational, B scoped reconciliation, C bounded financial decision delegation | Founder product choice | **Yes, conditionally.** Specialist evidence received (MC-118-B, provisional); R15-11 still pending |
 | Q6 | U-05 (DC-10 part) | Prepare customer messages for merchant approval, with no delivery before an approved channel. Preparation and approval are not delivery; the seven `DNTF` rows stay `IN SCOPE`, are not marked complete and do not move | Confirmation only | Yes |
 
 ## 3. Screened items
@@ -52,13 +52,13 @@ Fully stated, with options, consequences, principles and affected rows, in the b
 - **Already answered by approved sources, not reopened:** brief Section 2 (no hard block, no fixed limit, no scoring, human resolution of ambiguity, no authoritative unauthenticated evidence, no duplicate financial writes, no reinterpretation of past sales, WhatsApp in SB-P-1.20, provider choice as implementation detail).
 - **No silent scope reduction or reassignment is recommended.** Q1 Option B would be a reassignment (T7). It is shown as an option the sources support, with its consequences stated, and is not recommended. No option is recommended over another.
 
-## 6. Specialist evidence needed before asking
+## 6. Specialist evidence
 
-| For | Specialist | Evidence needed |
+| For | Specialist | Status |
 |---|---|---|
-| Q4 (and U-09) | Payment / integration specialist, read-only, when Mission Control authorizes | Which C15 §5 sources are available to small merchants; authentication; consent and legal requirements; credentials and activation needs under Build Plan §5.4 |
-| Q5 | Security specialist | Grantable Manager capabilities that the SB-P-1.12 kernel can enforce (SB-P-1.15 DC-06) |
-| U-08 | Legal specialist | Retention, deletion and backup obligations for payment evidence |
+| Q4 (and U-09) | Finance & Payments Specialist (MC-118-A) | **Received.** Accepted as provisional feasibility evidence by MC-119. Not a merged repository record; used through Mission Control's MC-120 summary. Remaining: provider availability, cost, consent, legal and credential facts are provisional and unvalidated |
+| Q5 | Security / Permissions Review (MC-118-B) | **Received.** Accepted as provisional capability evidence by MC-120. Not a merged repository record. Remaining: enforcement depends on the undeployed SB-P-1.12 kernel; R15-11 still pending |
+| U-08 | Legal specialist | **Not received.** Retention, deletion and backup obligations for payment evidence; U-08 stays OPEN under MC-112 |
 
 ## 7. What was not done
 
