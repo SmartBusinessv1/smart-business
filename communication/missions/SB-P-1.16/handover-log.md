@@ -119,3 +119,38 @@ This handover **has not happened**. It completes only when the repository record
 - **Git authorization reference:** none issued for the publication set
 - **Stage Ledger row updated:** Stage 3 shown as pending canonical Gate Record publication (`README.md`)
 - **Mission Control approval reference:** MC-160 (conditional publication adoption; not yet effective)
+
+## H-10 — Stage 3 → Stage 4 (completed)
+
+H-09 above records the pre-merge state and is kept unchanged. This entry records that the handover it proposed completed.
+
+- **Date:** 2026-10-15 (PR #965 `merged_at`). The date of the MC-163 verification is not recorded in the repository
+- **Mission:** SB-P-1.16
+- **From:** Mission Control (Stage 3 Gate Record)
+- **To:** Claude Code, Definition Actor (Stage 4)
+- **Stage completed:** Stage 3 — Founder Decision Gate (MC-163)
+- **Work and files:** `mission-control/08-stage3-founder-decision-gate-record.md` (blob `a83c1589292a33d489fdbfac8065835b6a28591f`); `README.md`; `handover-log.md`; `decision-log.md`
+- **Commit SHA:** PR #965, merge `a0db230181807386d5684bfb5638a1ad1fee917a`
+- **Verification performed:** Mission Control post-merge verification (MC-163, conversation-source). CI UNVERIFIED
+- **Open issues:** U-08 / DC-11; U-10; R15-11 (F-4); seven `DNTF` rows (F-5); 41 `DPAY` rows; F-7; O-1; CI UNVERIFIED
+- **Next authorized action at the time:** Stage 4 bounded local documentary drafting (MC-164)
+- **Mission Control approval reference:** MC-163; MC-164
+
+## H-11 — Stage 4 → Stage 5 → publication (PROPOSED — NOT COMPLETE)
+
+This handover **is not complete**. It completes only when the publication PR is human-merged and Mission Control has verified it (Source 18 §12).
+
+- **Date:** not yet
+- **Mission:** SB-P-1.16
+- **From:** Claude Code, Definition Actor (Stage 4 draft and stage report)
+- **To:** Mission Control (Stage 5 review, completed by approval in MC-171); then, only if Mission Control authorizes it, Claude Code for Stage 6 Builder Review
+- **Stage reviewed:** Stage 5 — Mission Control Product Review: Blueprint v0.2 Sections 1–19 approved (MC-171)
+- **Work and files:** `docs/phase-1-mission-blueprint/active/SB-P-1.16.md` (blob `8e79636f856bbfbb3c1ed08c717e2fda8b0b44bc`, SHA-256 `b191d8b690626fc5130923286e075aac9303d531fd108fdd7ddff25554fae91d`); `claude-code/15-stage4-blueprint-drafting-report.md`; `mission-control/09-stage5-product-review-gate-10-approval-record.md`; `README.md`; `handover-log.md`; `decision-log.md`
+- **Commit SHA:** the MC-171 publication PR (branch `mission/SB-P-1.16-stage5-blueprint-publication`); merge not yet
+- **Verification performed:** seven-part raw transfer, each part's SHA-256 verified by Mission Control (MC-166 to MC-171); FCTM traceability check, 11 of 11 PASS; Markdown Quality Gate; scoped secret scan. CI UNVERIFIED
+- **Open issues carried forward:** U-08 / DC-11; U-10; R15-11 (F-4); seven `DNTF` rows (F-5); 41 `DPAY` rows; F-7; O-1; O-S5-1; CI UNVERIFIED
+- **Next authorized action:** Mission Control review of the publication PR; Founder human merge; Mission Control post-merge verification
+- **Action not yet authorized:** self-merge; Blueprint lock; Stage 6 Builder Review (needs the verified merge and an exact Builder Review authorization); Stage 7; EIS; SQL; migration; provider activation; implementation
+- **Git authorization reference:** MC-171 (one documentation-only publication PR)
+- **Stage Ledger row updated:** Stage 3 COMPLETE; Stage 4 SUBMITTED; Stage 5 APPROVED, publication pending (`README.md`)
+- **Mission Control approval reference:** MC-171
