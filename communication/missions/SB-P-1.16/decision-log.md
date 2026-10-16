@@ -23,7 +23,12 @@ Paths are relative to `communication/missions/SB-P-1.16/`. A decision marked **c
 | D-11 | MC-154: PR #963 merge verified; the nine Founder decisions are canonical | Conversation-source verification of a canonical merge | PR #963, `main@bb695255` |
 | D-12 | MC-156 / MC-157: adoption of the 72-row FCTM mapping, then legend and status-line corrections | CANONICAL — PR #964, `main@ec87d4a6` | `claude-code/02-stage2-populated-fctm.md` §F |
 | D-13 | MC-159: PR #964 merge verified; FCTM canonical with 0 `ESCALATED` and 0 `ESC-U01` | Conversation-source verification of a canonical merge | PR #964, `main@ec87d4a6` |
-| D-14 | MC-160: Stage 3 Gate Record conditionally adopted for publication. U-08 and U-10 are non-blocking for bounded Stage 4 drafting only, not for dependent Blueprint locks. B-1 confirmed | **PENDING** — effective only after Founder human merge and Mission Control post-merge verification | `mission-control/08-stage3-founder-decision-gate-record.md` (not yet canonical) |
+| D-14 | MC-160: Stage 3 Gate Record conditionally adopted for publication. U-08 and U-10 are non-blocking for bounded Stage 4 drafting only, not for dependent Blueprint locks. B-1 confirmed | CANONICAL — PR #965, `main@a0db2301`; made effective by MC-163 (D-15) | `mission-control/08-stage3-founder-decision-gate-record.md` |
+| D-15 | MC-163: PR #965 merge verified; Stage 3 COMPLETE; B-1 resolved | Conversation-source verification of a canonical merge | PR #965, `main@a0db2301` |
+| D-16 | MC-164: Stage 4 bounded local documentary drafting authorized; Stage 5 and implementation not authorized | Conversation-source | `claude-code/15-stage4-blueprint-drafting-report.md` §1 |
+| D-17 | MC-165: Stage 5 intake clarifications (§15.4 Scenario B; §12.2 `DPAY`); no FCTM, decision or behaviour change | Conversation-source | Blueprint §18, v0.2 |
+| D-18 | MC-166 to MC-170: artifact delivery rejected (616-byte loading shell); raw seven-part transfer, each part verified by SHA-256 | Conversation-source | `mission-control/09-stage5-product-review-gate-10-approval-record.md` §2 |
+| D-19 | MC-171: Blueprint v0.2 Sections 1–19 independently authenticated and approved under Stage 5 (blob `8e79636f`); one documentation-only publication PR authorized; no lock, no Stage 6 | **PENDING** — effective only after Founder human merge and Mission Control post-merge verification | `mission-control/09-stage5-product-review-gate-10-approval-record.md` (not yet canonical) |
 
 ## Part B — Canonical Founder decisions
 
