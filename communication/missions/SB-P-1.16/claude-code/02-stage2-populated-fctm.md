@@ -2,7 +2,7 @@
 
 **Mission:** SB-P-1.16 — Financial Integrity & Credit  
 **Lifecycle stage:** Source 18 v1.2, Stage 2 — Mission Truth and Delta Reconciliation (Section 3.2, Section 6)  
-**Status:** Stage 2 baseline canonical since PR #960 (`main@59730d67`, blob `5e1794c5`); Stage 3 reconciliation to canonical Founder decisions `16:FPDR-1` to `16:FPDR-9` proposed in PR #964 (MC-156/MC-157) — `NOT CANONICAL UNTIL FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION`  
+**Status:** Stage 2 baseline canonical since PR #960 (`main@59730d67`, blob `5e1794c5`); Stage 3 reconciliation to canonical Founder decisions `16:FPDR-1` to `16:FPDR-9` canonical since PR #964 (`main@ec87d4a6`; verified MC-159); Stage 7 citation amendment for the Founder-approved `16:FPDR-10` (26 Founder-decision cells; MC-215) — `NOT CANONICAL UNTIL FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION`  
 **Prepared by:** Claude Code, Definition Actor (MC-107 §13.1), under MC-106 (`communication/missions/SB-P-1.16/mission-control/05-stage2-truth-pack-and-fctm-instruction.md`, blob `49996ffefb2049036ca8b522069be5389f07ace8`) as activated by MC-109  
 **Baseline:** `main@e4e382c73824f02e83ad4ee2497e5e046fd74086` (PR #959 merge), 2026-10-14  
 **Opened by:** `communication/missions/SB-P-1.16/mission-control/03-stage1-fctm-opened.md` (blob `466780f0db6a5097204596063a7011452b3c7dc2`); that record is not modified  
@@ -30,7 +30,7 @@ This matrix is an accounting of approved truth. It adds no product decision and 
 | Disposition | Source 18 Section 3.2 item 3 vocabulary only. |
 | Dependency / hold | Dependency or blocking code (Section 0.6). A dependency never moves a row (Source 18 §3.2 item 5). |
 | Evidence / citation | Implementation-evidence code and disposition citation (Section 0.7). |
-| Founder decision | Founder Decision ID where a row rests on one, namespaced by mission: `14:FPDR-n` is SB-P-1.14's record, `12:FPDR-1` SB-P-1.12's, `15:FDB-3` SB-P-1.15's, and `16:FPDR-n` (`16:FPDR-1` to `16:FPDR-9`) SB-P-1.16's canonical Founder Product Decision Record (`09-stage3-founder-product-decision-record-draft.md`, canonical at `main@bb695255`). |
+| Founder decision | Founder Decision ID where a row rests on one, namespaced by mission: `14:FPDR-n` is SB-P-1.14's record, `12:FPDR-1` SB-P-1.12's, `15:FDB-3` SB-P-1.15's, and `16:FPDR-n` SB-P-1.16's: `16:FPDR-1` to `16:FPDR-9` in the canonical Founder Product Decision Record (`09-stage3-founder-product-decision-record-draft.md`, canonical at `main@bb695255`), and `16:FPDR-10` in `22-stage7-founder-product-decision-record-16-fpdr-10.md` (blob `bd5a5f0c`, canonical at `main@2c5be64b`; registered at `main@47df4714`). |
 
 The scaffold's `Downstream trace` column is not populated at Stage 2. Under Source 18 §3.2 item 7 each later deliverable (Blueprint from Stage 4) carries its own mapping keyed by these row IDs.
 
@@ -229,12 +229,12 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§2-6 | C14@16914a83 | §2 b5: collection follow-up becomes awkward | NARR | BUILD NOW | CORE-LM | SB-P-1.16 | NOT APPLICABLE | — | L-NARR (problem statement; obligations carried by §§3, 4, 7, 9, 10, 21) | — |
 | 14-§2-7 | C14@16914a83 | §2 b6: the system treats a trusted relationship like a bank underwriting model | NARR | BUILD NOW | CORE-LM | SB-P-1.16 | NOT APPLICABLE | — | L-NARR (problem statement; obligations carried by §§3, 4, 7, 9, 10, 21) | — |
 | 14-§2-8 | C14@16914a83 | §2 p3: Smart Business should create clarity without humiliating customers or taking the Owner's… | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
-| 14-§3-1 | C14@16914a83 | §3 b1: AI Assistant, Not AI Judge | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
+| 14-§3-1 | C14@16914a83 | §3 b1: AI Assistant, Not AI Judge | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | 16:FPDR-10 |
 | 14-§3-2 | C14@16914a83 | §3 b2: Credit relationship belongs to merchant and customer | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
 | 14-§3-3 | C14@16914a83 | §3 b3: Warn, do not automatically block by default | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
 | 14-§3-4 | C14@16914a83 | §3 b4: Preserve dignity in collection language | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
-| 14-§3-5 | C14@16914a83 | §3 b5: Human override/decision is explicit and auditable | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | — |
-| 14-§3-6 | C14@16914a83 | §3 b6: Repayment must reduce the correct credit relationship | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | A-BP105 | 14:FPDR-4 |
+| 14-§3-5 | C14@16914a83 | §3 b5: Human override/decision is explicit and auditable | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | A-BP105 | 16:FPDR-10 |
+| 14-§3-6 | C14@16914a83 | §3 b6: Repayment must reduce the correct credit relationship | PRIN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | A-BP105 | 14:FPDR-4; 16:FPDR-10 |
 | 14-§3-7 | C14@16914a83 | §3 b7: Do not fabricate customer risk scores | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | L-NEG; A-BP105; U-03 | 16:FPDR-4 |
 | 14-§4-1 | C14@16914a83 | §4 p1: Credit is linked to the correct merchant-scoped customer identity | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105; I-14 (14-§4) | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
 | 14-§4-2 | C14@16914a83 | §4 b1: name spelling variations | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105; I-14 (14-§4) | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
@@ -248,8 +248,8 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§5-4 | C14@16914a83 | §5 b4: date/time | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
 | 14-§5-5 | C14@16914a83 | §5 b5: description/items where relevant | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
 | 14-§5-6 | C14@16914a83 | §5 b6: due/expected follow-up information if used | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5); U-04 | 14:FPDR-1; 16:FPDR-5 |
-| 14-§5-7 | C14@16914a83 | §5 b7: outstanding balance | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5); I-14 (3-§9-12) | 14:FPDR-1 |
-| 14-§5-8 | C14@16914a83 | §5 b8: repayment events | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
+| 14-§5-7 | C14@16914a83 | §5 b7: outstanding balance | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5); I-14 (3-§9-12) | 14:FPDR-1; 16:FPDR-10 |
+| 14-§5-8 | C14@16914a83 | §5 b8: repayment events | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1; 16:FPDR-10 |
 | 14-§5-9 | C14@16914a83 | §5 b9: owner-defined threshold/limit where configured | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
 | 14-§5-10 | C14@16914a83 | §5 b10: owner decisions/overrides | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
 | 14-§5-11 | C14@16914a83 | §5 b11: reminder/collection history | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; D15 | NI-CRD; A-BP105; I-14 (14-§5) | 14:FPDR-1 |
@@ -262,11 +262,11 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§6-5 | C14@16914a83 | §6 b5: order/delivery workflow where credit is permitted | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX; D18 | NI-CRD; A-BP105; I-14 (14-§6); order workflow SB-P-1.18 (A-BP107) | 14:FPDR-1 |
 | 14-§6-6 | C14@16914a83 | §6 p2: A credit entry must be confirmed accurately when consequential facts are ambiguous | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13; D14 | NI-CRD; A-BP105; I-14 (14-§6) | 14:FPDR-3 |
 | 14-§7-1 | C14@16914a83 | §7 p1: Repayment is a distinct current Ledger state | RULE | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-LDG4; A-BP105; I-14 (14-§7); four-state widening owned by SB-P-1.14 (I-14 (BP-§10.3-C1)) | 14:FPDR-1 |
-| 14-§7-2 | C14@16914a83 | §7 b1: identify the correct customer/credit relationship | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4 |
-| 14-§7-3 | C14@16914a83 | §7 b2: preserve repayment amount/date/source | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4 |
-| 14-§7-4 | C14@16914a83 | §7 b3: update outstanding balance consistently | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4 |
-| 14-§7-5 | C14@16914a83 | §7 b4: avoid creating duplicate income/credit facts | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§7) | 14:FPDR-4 |
-| 14-§7-6 | C14@16914a83 | §7 b5: preserve correction/audit linkage | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4 |
+| 14-§7-2 | C14@16914a83 | §7 b1: identify the correct customer/credit relationship | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-3 | C14@16914a83 | §7 b2: preserve repayment amount/date/source | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-4 | C14@16914a83 | §7 b3: update outstanding balance consistently | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-5 | C14@16914a83 | §7 b4: avoid creating duplicate income/credit facts | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§7) | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-6 | C14@16914a83 | §7 b5: preserve correction/audit linkage | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-4; 16:FPDR-10 |
 | 14-§7-7 | C14@16914a83 | §7 p3: If multiple plausible balances/credits could receive the payment, require human confirmat… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13; D14; DTX | NI-CRD; A-BP105; I-14 (14-§7) | 14:FPDR-3 |
 | 14-§8-1 | C14@16914a83 | §8 p1: An Owner may configure a credit comfort threshold or limit | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105 | — |
 | 14-§8-2 | C14@16914a83 | §8 p2: The threshold is an awareness input | RULE | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | NI-CRD; A-BP105 | — |
@@ -304,7 +304,7 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§13-1 | C14@16914a83 | §13 b1: credit status must link to the same customer identity | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D18 | NI-CRD; A-BP105; credit-side rule here, order-side demonstration needs SB-P-1.18 (A-BP107); BP §11 | 16:FPDR-1 |
 | 14-§13-2 | C14@16914a83 | §13 b2: one order event must not create duplicate credit facts | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D18; DTX | L-NEG; A-BP105; BP §11 | — |
 | 14-§13-3 | C14@16914a83 | §13 b3: delivery completion and payment/credit state remain distinct facts where necessary | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D18 | NI-CRD; A-BP105; BP §11 | — |
-| 14-§14-1 | C14@16914a83 | §14 <Owner> p1: Can view/manage credit awareness, thresholds, decisions and history | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105; C21 §§4, 11 | — |
+| 14-§14-1 | C14@16914a83 | §14 <Owner> p1: Can view/manage credit awareness, thresholds, decisions and history | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105; C21 §§4, 11 | 16:FPDR-10 |
 | 14-§14-2 | C14@16914a83 | §14 <Manager> p2: Only Owner-delegated credit operations/visibility | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105; U-07; SB-P-1.15 DC-06 (proposed only) | 16:FPDR-7 |
 | 14-§14-3 | C14@16914a83 | §14 <Employee> p3: May record permitted credit transactions or repayments if explicitly allowed, but does no… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105; C21 §§4, 11 | — |
 | 14-§14-4 | C14@16914a83 | §14 <Customer> p4: May receive only merchant-approved communications relevant to their own relationship | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D15; DNTF | NI-CRD; A-BP105; C21 §13; U-05 | 16:FPDR-8 |
@@ -317,14 +317,14 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§16-4 | C14@16914a83 | §16 b4: repayment could match multiple customers/credits | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13 | NI-CRD; A-BP105 | 14:FPDR-3 |
 | 14-§16-5 | C14@16914a83 | §16 b5: a threshold override is unclear | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13 | NI-CRD; A-BP105 | 14:FPDR-3 |
 | 14-§16-6 | C14@16914a83 | §16 p2: Never guess a financial link to keep the flow moving | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13 | L-NEG; A-BP105; C03 §16 (row 3-§16; I-14 (3-§16-10)) | — |
-| 14-§17-1 | C14@16914a83 | §17 p1: Consequential credit/repayment corrections must preserve prior truth through the Ledger c… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§17); correction model owned by SB-P-1.14 (3-§8) | — |
+| 14-§17-1 | C14@16914a83 | §17 p1: Consequential credit/repayment corrections must preserve prior truth through the Ledger c… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-CRD; A-BP105; I-14 (14-§17); correction model owned by SB-P-1.14 (3-§8) | 16:FPDR-10 |
 | 14-§17-2 | C14@16914a83 | §17 b1: original amount | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§17) | — |
-| 14-§17-3 | C14@16914a83 | §17 b2: repayment linkage | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§17) | — |
+| 14-§17-3 | C14@16914a83 | §17 b2: repayment linkage | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§17) | 16:FPDR-10 |
 | 14-§17-4 | C14@16914a83 | §17 b3: Owner override | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§17) | — |
 | 14-§17-5 | C14@16914a83 | §17 b4: reminder/collection history | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; I-14 (14-§17) | — |
 | 14-§18-1 | C14@16914a83 | §18 b1: duplicate customer identity | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12 | NI-CRD; A-BP105 | 16:FPDR-1 |
 | 14-§18-2 | C14@16914a83 | §18 b2: duplicate credit entry | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
-| 14-§18-3 | C14@16914a83 | §18 b3: repayment greater than expected balance | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
+| 14-§18-3 | C14@16914a83 | §18 b3: repayment greater than expected balance | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | 16:FPDR-10 |
 | 14-§18-4 | C14@16914a83 | §18 b4: missing/ambiguous customer | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
 | 14-§18-5 | C14@16914a83 | §18 b5: stale balance during confirmation | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
 | 14-§18-6 | C14@16914a83 | §18 b6: permission revoked before write | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
@@ -351,9 +351,9 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 14-§21-3 | C14@16914a83 | §21 b3: public customer reputation system | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | L-NEG; A-BP105 | — |
 | 14-§21-4 | C14@16914a83 | §21 b4: confrontational automated collection | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | L-NEG; A-BP105 | — |
 | 14-§21-5 | C14@16914a83 | §21 b5: fixed universal ₹5,000 limit | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | — | L-NEG; A-BP105 | — |
-| 14-§21-6 | C14@16914a83 | §21 b6: duplicate customer-credit database separate from Ledger/customer identity | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | L-NEG; A-BP105; I-14 (14-§21) | 14:FPDR-1 |
+| 14-§21-6 | C14@16914a83 | §21 b6: duplicate customer-credit database separate from Ledger/customer identity | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | L-NEG; A-BP105; I-14 (14-§21) | 14:FPDR-1; 16:FPDR-10 |
 | 14-§22-1 | C14@16914a83 | §22 n1: Credit entry creates correct customer balance | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14; DTX | NI-CRD; A-BP105; I-14 (14-§22, bundled 1 and 2: split here) | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
-| 14-§22-2 | C14@16914a83 | §22 n2: Repayment reduces correct balance without duplicate revenue | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14; DTX | NI-CRD; A-BP105; I-14 (14-§22, bundled 1 and 2: split here) | 14:FPDR-4 |
+| 14-§22-2 | C14@16914a83 | §22 n2: Repayment reduces correct balance without duplicate revenue | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14; DTX | NI-CRD; A-BP105; I-14 (14-§22, bundled 1 and 2: split here) | 14:FPDR-4; 16:FPDR-10 |
 | 14-§22-3 | C14@16914a83 | §22 n3: Ambiguous customer triggers clarification | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13 | NI-CRD; A-BP105 | 16:FPDR-1 |
 | 14-§22-4 | C14@16914a83 | §22 n4: Owner-configured threshold produces warning/context, not automatic block | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
 | 14-§22-5 | C14@16914a83 | §22 n5: Owner can approve/decline/adjust/grant grace | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105 | — |
@@ -433,7 +433,7 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 15-§8-1 | C15@632f3402 | §8 b1: link the evidence to that record | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105; A-BP105-FRV | 14:FPDR-1 |
 | 15-§8-2 | C15@632f3402 | §8 b2: mark/derive verification state appropriately | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105; A-BP105-FRV | 14:FPDR-1 |
 | 15-§8-3 | C15@632f3402 | §8 b3: preserve the original transaction identity | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105; A-BP105-FRV | 14:FPDR-1 |
-| 15-§8-4 | C15@632f3402 | §8 b4: do not create a duplicate sale/income/payment | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; A-BP105-FRV | 14:FPDR-1 |
+| 15-§8-4 | C15@632f3402 | §8 b4: do not create a duplicate sale/income/payment | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; A-BP105-FRV | 14:FPDR-1; 16:FPDR-10 |
 | 15-§8-5 | C15@632f3402 | §8 b5: preserve source/reference/audit history | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105; A-BP105-FRV | 14:FPDR-1 |
 | 15-§8-6 | C15@632f3402 | §8 b6: notify/surface success where useful | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D15 | NI-PAY; A-BP105 | — |
 | 15-§8-7 | C15@632f3402 | §8 p2: Verification is a property/link of the existing business truth, not a second financial tr… | RULE | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-PAY; A-BP105; BP-§10.5-E4 | 14:FPDR-1 |
@@ -451,8 +451,8 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 15-§11-1 | C15@632f3402 | §11 p1: Authoritative evidence may arrive without a corresponding Ledger transaction | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-PAY; A-BP105 | — |
 | 15-§11-2 | C15@632f3402 | §11 b1: preserve it as unlinked evidence | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-PAY; A-BP105 | — |
 | 15-§11-3 | C15@632f3402 | §11 b2: surface it to the Owner/authorized user | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D15 | NI-PAY; A-BP105 | — |
-| 15-§11-4 | C15@632f3402 | §11 b3: allow classification/linking or creation through a governed flow | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14; DTX | NI-PAY; A-BP105 | — |
-| 15-§11-5 | C15@632f3402 | §11 b4: do not auto-create income/expense if business meaning is ambiguous | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | L-NEG; A-BP105 | — |
+| 15-§11-4 | C15@632f3402 | §11 b3: allow classification/linking or creation through a governed flow | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D12; D14; DTX | NI-PAY; A-BP105 | 16:FPDR-10 |
+| 15-§11-5 | C15@632f3402 | §11 b4: do not auto-create income/expense if business meaning is ambiguous | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | L-NEG; A-BP105 | 16:FPDR-10 |
 | 15-§12-1 | C15@632f3402 | §12 p1: The same bank/provider event may arrive more than once | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | DPAY | NI-PAY; A-BP105 | — |
 | 15-§12-2 | C15@632f3402 | §12 b1: duplicate evidence records where avoidable | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; A-BP105-FRV (Scenario B replay) | — |
 | 15-§12-3 | C15@632f3402 | §12 b2: duplicate verification actions | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105; A-BP105-FRV (Scenario B replay) | — |
@@ -462,9 +462,9 @@ C14 and C15 are expanded completely: every bullet, numbered item and non-lead-in
 | 15-§13-1 | C15@632f3402 | §13 p1: If authoritative evidence later changes (for example reversal/failure/chargeback where ap… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DPAY | NI-PAY; A-BP105; U-09 | 16:FPDR-6 |
 | 15-§13-2 | C15@632f3402 | §13 p2: Do not silently erase the prior verified state | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | L-NEG; A-BP105 | — |
 | 15-§13-3 | C15@632f3402 | §13 p3: Ledger correction rules continue to apply to consequential business-record changes | RULE | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105; C03 §8 (SB-P-1.14) | — |
-| 15-§14-1 | C15@632f3402 | §14 p1: Repayments/customer credit may use Payment Verification to support whether money was actu… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-PAY; NI-CRD; A-BP105 | 14:FPDR-4 |
-| 15-§14-2 | C15@632f3402 | §14 b1: duplicating income | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105 | 14:FPDR-4 |
-| 15-§14-3 | C15@632f3402 | §14 b2: reducing the wrong customer's balance | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105 | 14:FPDR-4; 16:FPDR-1 |
+| 15-§14-1 | C15@632f3402 | §14 p1: Repayments/customer credit may use Payment Verification to support whether money was actu… | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | NI-PAY; NI-CRD; A-BP105 | 14:FPDR-4; 16:FPDR-10 |
+| 15-§14-2 | C15@632f3402 | §14 b1: duplicating income | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105 | 14:FPDR-4; 16:FPDR-10 |
+| 15-§14-3 | C15@632f3402 | §14 b2: reducing the wrong customer's balance | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14; DTX | L-NEG; A-BP105 | 14:FPDR-4; 16:FPDR-1; 16:FPDR-10 |
 | 15-§14-4 | C15@632f3402 | §14 b3: guessing when multiple matches exist | NEG | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D13 | L-NEG; A-BP105 | — |
 | 15-§15-1 | C15@632f3402 | §15 p1: COD collection and delivery completion are related but distinct facts | RULE | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D18 | NI-PAY; A-BP105; BP §11 | — |
 | 15-§15-2 | C15@632f3402 | §15 b1: expected amount | OBL | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D18; D14 | NI-PAY; A-BP105; BP §11 (SB-P-1.16 underpins COD/payment closure); 1-§16 (SB-P-1.18) | — |
@@ -573,7 +573,7 @@ SB-P-1.14 owns the four-state Ledger foundation (14:FPDR-1, 14:FPDR-4). SB-P-1.1
 | 3-§9-9 | C3@d8c26c07 | §9 retrieve by product or stock relationship where available | OBL | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (3-§9-9) | — |
 | 3-§9-10 | C3@d8c26c07 | §9 example: spend on bakery supplies last month (purpose + period) | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (3-§9-10) | — |
 | 3-§9-11 | C3@d8c26c07 | §9 example: payments to ABC Traders in August (counterparty + period) | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (3-§9-11) | — |
-| 3-§9-12 | C3@d8c26c07 | §9 example: what does Shameer still owe me (authoritative customer owed-balance truth) | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | I-14 (3-§9-12); A-BP105 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
+| 3-§9-12 | C3@d8c26c07 | §9 example: what does Shameer still owe me (authoritative customer owed-balance truth) | SCN | BUILD NOW | CORE-LM | SB-P-1.16 | IN SCOPE | D14 | I-14 (3-§9-12); A-BP105 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2; 16:FPDR-10 |
 | 3-§9-13 | C3@d8c26c07 | §9 example: find the receipt for that mixer purchase (linked document) | SCN | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (3-§9-13) | — |
 | 3-§9-14 | C3@d8c26c07 | §9 conversational and dashboard/report retrieval read the same underlying truth | RULE | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (3-§9-14) | — |
 | 3-§10 | C3@d8c26c07 | §10 Reports and Exports (whole section: b1, b2, b3, b4, b5, p2) | SEC | BUILD NOW | CORE-LM | SB-P-1.14 | DELEGATED | D14 | L-DEL14; I-14 (FCTM-14 rows 3-§10-1…3-§10-9: SB-P-1.14 9) | — |
@@ -726,7 +726,7 @@ SB-P-1.14 owns the four-state Ledger foundation (14:FPDR-1, 14:FPDR-4). SB-P-1.1
 | BP-§5.3-1 | BP@9dfdd924 | §5.3 canonical repository vs delivery divergence: mission accounts for delivery path; merge is not production proof | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | — | BP §5.3; delivery sync NOT AUTHORIZED (MC-106 §12) | — |
 | BP-§5.4-1 | BP@9dfdd924 | §5.4 genuinely new external infrastructure (payment/bank evidence provider) needs activation, credentials, failure, rollback and verification identified in Blueprint/EIS | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | DPAY | BP §5.4; 22-§17-3; U-06 | 16:FPDR-6 |
 | BP-§6.1-1 | BP@9dfdd924 | §6.1 no UI, AI model, reminder, scheduler, document pipeline or channel may invent authority | NEG | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12 | L-NEG; BP §6.1 | — |
-| BP-§6.2-1 | BP@9dfdd924 | §6.2 consequential credit/repayment/link writes use the one Business Command path ending in a deterministic domain command, authoritative write and audit | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D13; DTX | BP §6.2; PQ-2 | — |
+| BP-§6.2-1 | BP@9dfdd924 | §6.2 consequential credit/repayment/link writes use the one Business Command path ending in a deterministic domain command, authoritative write and audit | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D13; DTX | BP §6.2; PQ-2 | 16:FPDR-10 |
 | BP-§6.3-1 | BP@9dfdd924 | §6.3 Supabase/Postgres remains authoritative for structured business truth | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14 | BP §6.3 | — |
 | BP-§6.5-1 | BP@9dfdd924 | §6.5 credit follow-up reuses the one Reminder / Automation kernel | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D15 | BP §6.5; 22-§11-4 | — |
 | BP-§8-1 | BP@9dfdd924 | §8 Smart Business must work without WhatsApp: credit and payment flows usable natively | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D13 | BP §8; L-X20 for WhatsApp slices | — |
@@ -749,14 +749,14 @@ SB-P-1.14 owns the four-state Ledger foundation (14:FPDR-1, 14:FPDR-4). SB-P-1.1
 | BP-§10.5-E1 | BP@9dfdd924 | §10.5 Founder-approved experience p1: Smart Credit warns the Owner but does not automatically refuse a sale or customer relatio… | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12 | A-BP105; S11 Smart Credit Awareness | — |
 | BP-§10.5-E2 | BP@9dfdd924 | §10.5 Founder-approved experience p2: Payment evidence may be verified, unmatched, partially matched, or ambiguous | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14; DPAY | A-BP105; U-02 ('partially matched' has no C15 §4 counterpart; Stage 3 candidate) | 16:FPDR-3 |
 | BP-§10.5-E3 | BP@9dfdd924 | §10.5 Founder-approved experience p3: Ambiguous matches require review | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D13 | A-BP105 | — |
-| BP-§10.5-E4 | BP@9dfdd924 | §10.5 Founder-approved experience p4: Reconciliation cannot duplicate income or repayment | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14; DTX | A-BP105; 14:FPDR-1; 14:FPDR-4 | — |
+| BP-§10.5-E4 | BP@9dfdd924 | §10.5 Founder-approved experience p4: Reconciliation cannot duplicate income or repayment | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14; DTX | A-BP105; 14:FPDR-1; 14:FPDR-4 | 16:FPDR-10 |
 | BP-§10.5-A1 | BP@9dfdd924 | §10.5 Founder Scenario A clause 1: customer has overdue balance; Owner attempts another credit sale | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105-FRV; U-04 (overdue without due date); Founder-reserved (BP §13 item 9) | 16:FPDR-5 |
 | BP-§10.5-A2 | BP@9dfdd924 | §10.5 Founder Scenario A clause 2: shows ageing/risk clearly | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D14 | NI-CRD; A-BP105-FRV; U-03 (factual risk only; no fabricated score, C14 §3 b7); Founder-reserved | 16:FPDR-4 |
 | BP-§10.5-A3 | BP@9dfdd924 | §10.5 Founder Scenario A clause 3: allows the Owner to proceed, override, or decline | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; DTX | NI-CRD; A-BP105-FRV; Founder-reserved | — |
 | BP-§10.5-B1 | BP@9dfdd924 | §10.5 Founder Scenario B clause 1: one payment-evidence item plausibly matches multiple open transactions; candidates shown | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14; DPAY | NI-PAY; A-BP105-FRV; Founder-reserved | — |
 | BP-§10.5-B2 | BP@9dfdd924 | §10.5 Founder Scenario B clause 2: system requires review | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D13 | NI-PAY; A-BP105-FRV; Founder-reserved | — |
 | BP-§10.5-B3 | BP@9dfdd924 | §10.5 Founder Scenario B clause 3: repeating the confirmed link creates no duplicate financial entries | FRV | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D14; DTX | NI-PAY; A-BP105-FRV; Founder-reserved | — |
-| BP-§10.5-X | BP@9dfdd924 | §10.5 exit principle: know who owes what and what was actually paid; never pretend uncertain money is settled or make credit decisions for the Owner | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D14 | A-BP105 | — |
+| BP-§10.5-X | BP@9dfdd924 | §10.5 exit principle: know who owes what and what was actually paid; never pretend uncertain money is settled or make credit decisions for the Owner | EXP | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D12; D14 | A-BP105 | 16:FPDR-10 |
 | BP-§11-1 | BP@9dfdd924 | §11 SB-P-1.16 Financial Integrity underpins COD/payment closure and trustworthy credit/payment behaviour (adapter-ready for SB-P-1.18) | RULE | BUILD NOW | per contract | SB-P-1.16 | IN SCOPE | D18 | BP §11; A-BP105 | — |
 | BP-§11-2 | BP@9dfdd924 | §11 SB-P-1.12 Authority/Identity underpins all later role/permission behaviour | RULE | BUILD NOW | per contract | SB-P-1.12 | DELEGATED | D12 | L-DEL12; BP §11 | — |
 | BP-§11-3 | BP@9dfdd924 | §11 SB-P-1.14 Business Memory/UDI underpins later financial integrity | RULE | BUILD NOW | per contract | SB-P-1.14 | DELEGATED | D14 | L-DEL14; BP §11 | — |
@@ -850,5 +850,9 @@ SB-P-1.14 owns the four-state Ledger foundation (14:FPDR-1, 14:FPDR-4). SB-P-1.1
 **Unresolved Founder decision rows:** `25-§17-1`, `BP-§15-6`, `BP-§15-9`. None is judged on the SB-P-1.16 product-definition critical path; Mission Control confirmation requested (Truth Pack Part D, U-08 and U-10).
 
 Stage 3 reconciliation (MC-154/MC-155 proposals, as adopted by Mission Control in MC-156): `BP-§10.3-S2` moves from `ESCALATED` to `ASSIGNED TO LATER MISSION` (SB-P-1.17 / SB-P-1.18) under `16:FPDR-1`; `ESC-U01` is removed from 19 rows and `16:FPDR-1` added to their Founder-decision cells; `15-§1-2`, `15-§5-1` and `15-§5-2` cite `16:FPDR-9`; `16:FPDR-2` to `16:FPDR-8` are cited on the rows listed in the decision-citation coverage report. 72 rows change; no row is added or removed. Owning missions, build commitments, commercial classifications and kinds are unchanged. Totals remain 555.
+
+Stage 7 `16:FPDR-10` citation amendment (MC-215; proposals in `24-stage7-fpdr10-fctm-reconciliation-preparation.md` and `26-stage7-fpdr10-fctm-citation-amendment-proposal.md`): `16:FPDR-10` is appended to the Founder-decision cell of 26 `IN SCOPE` rows where the decision determines how the row is satisfied: `14-§18-3`, `14-§7-2`, `14-§7-3`, `14-§7-4`, `14-§7-5`, `14-§7-6`, `14-§5-7`, `14-§5-8`, `3-§9-12`, `14-§21-6`, `15-§11-5`, `15-§14-1`, `15-§14-2`, `15-§14-3`, `14-§22-2`, `BP-§10.5-E4`, `BP-§10.5-X`, `14-§3-1`, `14-§3-5`, `14-§3-6`, `14-§14-1`, `14-§17-1`, `14-§17-3`, `15-§8-4`, `15-§11-4`, `BP-§6.2-1`. No existing citation is removed. No row is added or removed; dispositions, owners, build commitments, commercial classifications, kinds and dependency codes are unchanged; totals remain 555 (349 `IN SCOPE`; 41 `DPAY`; 7 `DNTF`).
+
+**Decision-sourced obligations of `16:FPDR-10` with no contract or Build Plan section** (traceability note, not rows; Source 18 §3.2 item 1 anchors row IDs to a contract or Build Plan section): M-1 persistence of a retained advance and its single remaining-advance calculation; M-2 explicit Owner-authorized application of an advance to a later credit; M-3 explicit Owner-authorized refund of an advance; M-4 the acceptance cases for retention, application, refund, correction-created excess, reversal, retry and non-automation. Each is traced to the `16:FPDR-10` anchor rows above and to the obligation-level acceptance cases in Blueprint §15.6 (proposed v0.3). The objective completeness test of Source 18 §3.2 item 6 is unaffected: every numbered section of Contracts 14 and 15 has a row, and each numbered acceptance item (C14 §22: 11; C15 §25: 12) has its own row. FIN-01's credit subtype, `owed_by_business` representation, application relation and refund-as-repayment semantics are provisional engineering recommendations and are not recorded here as approved.
 
 **STOP FOR MISSION CONTROL STAGE 2 REVIEW. Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
