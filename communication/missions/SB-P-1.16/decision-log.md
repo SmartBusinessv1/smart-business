@@ -28,11 +28,14 @@ Paths are relative to `communication/missions/SB-P-1.16/`. A decision marked **c
 | D-16 | MC-164: Stage 4 bounded local documentary drafting authorized; Stage 5 and implementation not authorized | Conversation-source | `claude-code/15-stage4-blueprint-drafting-report.md` §1 |
 | D-17 | MC-165: Stage 5 intake clarifications (§15.4 Scenario B; §12.2 `DPAY`); no FCTM, decision or behaviour change | Conversation-source | Blueprint §18, v0.2 |
 | D-18 | MC-166 to MC-170: artifact delivery rejected (616-byte loading shell); raw seven-part transfer, each part verified by SHA-256 | Conversation-source | `mission-control/09-stage5-product-review-gate-10-approval-record.md` §2 |
-| D-19 | MC-171: Blueprint v0.2 Sections 1–19 independently authenticated and approved under Stage 5 (blob `8e79636f`); one documentation-only publication PR authorized; no lock, no Stage 6 | **PENDING** — effective only after Founder human merge and Mission Control post-merge verification | `mission-control/09-stage5-product-review-gate-10-approval-record.md` (not yet canonical) |
+| D-19 | MC-171: Blueprint v0.2 Sections 1–19 independently authenticated and approved under Stage 5 (blob `8e79636f`); one documentation-only publication PR authorized; no lock, no Stage 6 | CANONICAL — PR #966, `main@3c9a7743`; post-merge verification MC-173 | `mission-control/09-stage5-product-review-gate-10-approval-record.md` |
+| D-20 | MC-206: Founder approved D-1 to D-6 as the formal product-behaviour decision `16:FPDR-10` (OQ-01 excess repayment and customer advance). The Founder replied "yes" to MC-205's explicit question approving D-1 to D-6 while leaving the technical model and implementation unapproved (MC-207 AC-1). T3 triggered; Founder disposition received. MC-208: Mission Control review of PR #971. MC-209: PR #971 Founder merge independently verified | CANONICAL — decision record merged by PR #971, `main@2c5be64b`; decision log registration by this entry (MC-210) | `claude-code/22-stage7-founder-product-decision-record-16-fpdr-10.md`; proposal `claude-code/21-…` (PR #970) |
 
 ## Part B — Canonical Founder decisions
 
-The Founder approved all nine on 2026-10-15. They are canonical since PR #963 (`main@bb695255`). The full wording is in `claude-code/09-stage3-founder-product-decision-record-draft.md` (blob `30b19a80352b100e79cadc216daae14b07e24f9a`), entries 2.1 to 2.9.
+The Founder approved the first nine on 2026-10-15. They are canonical since PR #963 (`main@bb695255`). The full wording is in `claude-code/09-stage3-founder-product-decision-record-draft.md` (blob `30b19a80352b100e79cadc216daae14b07e24f9a`), entries 2.1 to 2.9.
+
+The tenth, `16:FPDR-10`, was approved by the Founder as recorded in MC-206: the Founder replied "yes" to MC-205's explicit question approving D-1 to D-6. Its full wording, including both Founder statements, is in `claude-code/22-stage7-founder-product-decision-record-16-fpdr-10.md` (blob `bd5a5f0c2049b056c84722a513a086ac48d9086f`, PR #971), entry 2.10. **It approves product behaviour only.** The technical model, including FIN-01's recommended representation, and implementation are not approved.
 
 | ID | Subject | Option | FPDR entry | Founder source | Mission Control acknowledgement |
 |---|---|---|---|---|---|
@@ -45,8 +48,9 @@ The Founder approved all nine on 2026-10-15. They are canonical since PR #963 (`
 | `16:FPDR-7` | Q5 Manager delegation (Scoped Reconciliation Manager) | B | 2.7 | MC-136 | MC-137 |
 | `16:FPDR-8` | Q6 Merchant-controlled customer credit communication | A | 2.8 | MC-138 | MC-139 |
 | `16:FPDR-9` | F-1 Source 18 T7 bounded payment-evidence channel deferral | A | 2.9 | MC-146 | MC-147 |
+| `16:FPDR-10` | OQ-01 Excess repayment and customer advance (product behaviour D-1 to D-6) | A + B combination | 2.10 (record `22-…`) | Founder statements: "a combination of options A and B" and the MC-199 clarification (both supplied in MC-202); approval "yes" to MC-205 (MC-206; MC-207 AC-1) | MC-206 |
 
-FCTM citations (blob `5ff7742f`): `16:FPDR-1` 20, `16:FPDR-2` 8, `16:FPDR-3` 10, `16:FPDR-4` 13, `16:FPDR-5` 3, `16:FPDR-6` 15, `16:FPDR-7` 2, `16:FPDR-8` 10, `16:FPDR-9` 3.
+FCTM citations (blob `5ff7742f`): `16:FPDR-1` 20, `16:FPDR-2` 8, `16:FPDR-3` 10, `16:FPDR-4` 13, `16:FPDR-5` 3, `16:FPDR-6` 15, `16:FPDR-7` 2, `16:FPDR-8` 10, `16:FPDR-9` 3. `16:FPDR-10` is **not yet cited** in the FCTM. The 18 citations proposed in `claude-code/23-…` §2.5 have not been applied.
 
 ## Part C — Unresolved decisions
 
@@ -70,5 +74,6 @@ These are recorded so they are not lost. None is decided here.
 | Delivery channel for the seven `DNTF` rows | `16:FPDR-8` §§6–7; Build Plan (SB-P-1.20) | No reassignment made |
 | `3-§15-7` (Ledger integration with Customer/Supplier identity) | MC-145 | Stays with SB-P-1.17 / SB-P-1.18; not reallocated |
 | Administrative status-line correction of the canonical FPDR and report (O-1) | Gate Record §10 | Only if Mission Control directs it |
+| Optional customer-advance expansions: Manager delegation of retain, apply or refund; one action applying an advance across several debts; customer-facing display; any wallet, expiry, automatic refund or automatic application behaviour | `16:FPDR-10` §2.10 (not decided) | Undecided; Founder decision only if wanted. Automatic application, expiry and automatic refund are excluded by D-3 and D-4 |
 
 **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
