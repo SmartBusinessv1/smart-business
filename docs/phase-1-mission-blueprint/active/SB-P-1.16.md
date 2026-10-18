@@ -17,8 +17,8 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; Stage 3 COMPLETE (MC-163, conversation-source), on the Gate Record `communication/missions/SB-P-1.16/mission-control/08-stage3-founder-decision-gate-record.md` (blob `a83c1589292a33d489fdbfac8065835b6a28591f`, PR #965, `main@a0db2301`) |
 | Governing Build Plan section | Build Plan §10.5 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 14 Smart Credit Awareness (`16914a83`); Contract 15 Payment Verification & Bank Reconciliation (`632f3402`); Contract 03 Ledger & Business Memory, credit-specific completion (`d8c26c07`); Global Product Completion View (`ee76d920`) |
-| Canonical FCTM | `communication/missions/SB-P-1.16/claude-code/02-stage2-populated-fctm.md`, blob `5ff7742f6d3849ffab8767333a54eda07be268ab`: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISSION`, 32 `NOT APPLICABLE`, 22 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.16/claude-code/09-stage3-founder-product-decision-record-draft.md`, blob `30b19a80352b100e79cadc216daae14b07e24f9a`: `16:FPDR-1` to `16:FPDR-9`, canonical (PR #963, `main@bb695255`; MC-154). Distinct from `12:FPDR-n`, `14:FPDR-n` and `15:FDB-n`, which are cited with their mission namespace |
+| Canonical FCTM | `communication/missions/SB-P-1.16/claude-code/02-stage2-populated-fctm.md`, blob `94dd52202ad040f64394f07f95389d02ffcc5dd0` at `main@955351a6` (PR #973: the `16:FPDR-10` citation amendment of 26 Founder-decision cells, MC-215; post-merge verified MC-236); Stage 5 baseline blob `5ff7742f6d3849ffab8767333a54eda07be268ab`: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISSION`, 32 `NOT APPLICABLE`, 22 `OUT OF BUILD SCOPE`, 3 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Founder Product Decision Record | `communication/missions/SB-P-1.16/claude-code/09-stage3-founder-product-decision-record-draft.md`, blob `30b19a80352b100e79cadc216daae14b07e24f9a`: `16:FPDR-1` to `16:FPDR-9`, canonical (PR #963, `main@bb695255`; MC-154); and `communication/missions/SB-P-1.16/claude-code/22-stage7-founder-product-decision-record-16-fpdr-10.md`, blob `bd5a5f0c2049b056c84722a513a086ac48d9086f`: `16:FPDR-10`, canonical (PR #971, `main@2c5be64b`; registered PR #972, `main@47df4714`; MC-206, MC-213). Distinct from `12:FPDR-n`, `14:FPDR-n` and `15:FDB-n`, which are cited with their mission namespace |
 | Upstream dependencies | SB-P-1.12, SB-P-1.13, SB-P-1.14 and SB-P-1.15: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
 | Date | 2026-10-16 |
 | Builder Review | Not started (Stage 6; not authorized) |
@@ -32,7 +32,7 @@
 |---|---|
 | Product problem | Smart Business records credit-method sales but has no customer-credit balance, repayment, ageing, threshold, payment-evidence, verification-state, matching or reconciliation capability (Truth Pack Δ-01). Merchants cannot see who owes what, or tell claimed payment from verified payment (C14 §2; C15 §2). |
 | Primary users | Owner (all credit and reconciliation decisions); Manager only within explicit, scoped Owner delegation (`16:FPDR-7`); Employee only as existing transaction permissions allow; Customer only as a purpose-limited participant receiving merchant-approved communication (`14-§14-*`, `15-§17-*`, `3-§11-6`). |
-| Build Now in this mission | Credit-specific customer identification and linking on the shared SB-P-1.12 identity (`16:FPDR-1`); authoritative per-customer balances from Ledger facts; repayment; Owner-configured thresholds with warn-not-block; factual ageing and follow-up; merchant-controlled preparation of credit communication; gateway-first payment-evidence ingestion with merchant-upload review; deterministic, idempotent matching with ambiguity review; visible discrepancies; auditable correction and reconciliation decisions; credit-specific Contract 03 completion. |
+| Build Now in this mission | Credit-specific customer identification and linking on the shared SB-P-1.12 identity (`16:FPDR-1`); authoritative per-customer balances from Ledger facts; repayment; Owner-configured thresholds with warn-not-block; factual ageing and follow-up; merchant-controlled preparation of credit communication; gateway-first payment-evidence ingestion with merchant-upload review; deterministic, idempotent matching with ambiguity review; visible discrepancies; auditable correction and reconciliation decisions; Owner-controlled handling of excess repayment, including an optional separate customer advance kept until explicitly applied or refunded (`16:FPDR-10`); credit-specific Contract 03 completion. |
 | Core boundary | Consumes SB-P-1.12 identity and authority, SB-P-1.13 conversation and AI, SB-P-1.14 Business Memory and SB-P-1.15 reminders and notifications as specifications; builds no parallel version. Every consequential financial write uses the one governed transactions-family path (`DTX`, PQ-2). No provider is selected or activated (`DPAY`). No out-of-app customer delivery before an approved channel (`DNTF`). |
 | Assigned to later missions (Build Now, not Build Later) | 20 rows: SB-P-1.20 7, SB-P-1.17 / SB-P-1.18 3, SB-P-1.17 5, SB-P-1.18 3, SB-P-1.19 2 (Section 11.1). |
 | Deferred from the initial channel set | Generic direct-bank API ingestion and standalone authenticated bank-email ingestion (`16:FPDR-9`): recorded on `IN SCOPE` rows `15-§5-1` (branch), `15-§5-2`, `15-§1-2`, with no mission assigned (Section 11.6). |
@@ -85,18 +85,18 @@ Neighborhood merchants extend informal credit on trust and memory; small balance
 | Principle | Source | Realized by |
 |---|---|---|
 | AI Assistant, Not AI Judge; warn, do not block | Source 11 Smart Credit Awareness; C14 §3, §9, §21; Build Plan §16; GPCV §9 | `16:FPDR-4`; Sections 8.3, 10.3 |
-| Human decision ownership; Owner-reserved credit authority | C14 §9, §14; C15 §19; Build Plan §10.5 Scenario A | `16:FPDR-7`; Sections 8.3, 8.7 |
+| Human decision ownership; Owner-reserved credit authority | C14 §9, §14; C15 §19; Build Plan §10.5 Scenario A | `16:FPDR-7`, `16:FPDR-10`; Sections 8.3, 8.7 |
 | Evidence is not payment truth; never guess | C15 §1, §3, §5 p2, §9, §24 | `16:FPDR-3`, `16:FPDR-6`, `16:FPDR-9`; Sections 8.4, 8.5 |
-| No duplicate revenue or repayment; exactly-once financial meaning | C15 §8, §12; C14 §7; Build Plan §10.5 Scenario B | Section 8.5; DC-04, DC-05 |
+| No duplicate revenue or repayment; exactly-once financial meaning | C15 §8, §12; C14 §7; Build Plan §10.5 Scenario B | Section 8.5; DC-04, DC-05; `16:FPDR-10` (an advance is neither revenue nor repayment) |
 | Dignity and privacy for customers | C14 §19; C15 §22 | `16:FPDR-8`; Section 8.8 |
 | One foundation, reused | C14 §20; C15 §23; Build Plan §6 | Section 8.9 |
 | Smart Business works without WhatsApp | Build Plan §8 | `BP-§8-1`; Section 8.7 |
 
 ## 6. User Value
 
-- **Owner:** knows who owes how much and since when, with factual context against the Owner's own threshold; can proceed, override or decline a credit sale; sees which payments are verified, mismatched, unlinked or ambiguous, and decides ambiguous matches (C14 §5, §8, §9; C15 §4, §9; Build Plan §10.5 Scenarios A and B).
-- **Manager:** only the credit and reconciliation capabilities the Owner explicitly delegates, within assigned scope (`16:FPDR-7`).
-- **Employee:** records only what existing transaction permissions allow; gains no credit, reconciliation or intelligence authority from this mission (`16:FPDR-7` §5).
+- **Owner:** knows who owes how much and since when, with factual context against the Owner's own threshold; can proceed, override or decline a credit sale; sees which payments are verified, mismatched, unlinked or ambiguous, and decides ambiguous matches (C14 §5, §8, §9; C15 §4, §9; Build Plan §10.5 Scenarios A and B). Decides what happens to an excess payment, including keeping it as a separate customer advance that the Owner later applies or refunds explicitly (`16:FPDR-10`).
+- **Manager:** only the credit and reconciliation capabilities the Owner explicitly delegates, within assigned scope (`16:FPDR-7`). No customer-advance authority (`16:FPDR-10`).
+- **Employee:** records only what existing transaction permissions allow; gains no credit, reconciliation or intelligence authority from this mission (`16:FPDR-7` §5), and no authority over excess payments or customer advances (`16:FPDR-10`).
 - **Customer:** respectful, merchant-approved communication only, with no disclosure to unrelated people (C14 §10, §14, §19; `16:FPDR-8`).
 
 ## 7. Core Deliverables
@@ -134,9 +134,9 @@ Mission design: Credit links to the shared merchant-scoped customer identity tha
 
 ### 8.2 Credit Facts, Recording, Repayment and Authoritative Balances
 
-Sources: Contract 14 §§5–7; Contract 03 §9, §15 (credit slices); Build Plan §10.3 engineering correction, §10.5 work areas 1–2; `14:FPDR-1`, `14:FPDR-4`; `16:FPDR-2`.
+Sources: Contract 14 §§5–7; Contract 03 §9, §15 (credit slices); Build Plan §10.3 engineering correction, §10.5 work areas 1–2; `14:FPDR-1`, `14:FPDR-4`; `16:FPDR-2`; `16:FPDR-10`.
 
-Mission design: Credit facts, recording and repayment live in the SB-P-1.14 four-state Ledger; the authoritative per-customer balance is computed from them, with no separate customer-credit database (`14-§5-*`, `14-§6-*`, `14-§7-*`; DC-07). A repayment reduces the correct credit relationship and may settle a credit-method sale (`14:FPDR-4`). Historical credit-method sales stay visibly unattributed until an explicit, audited Owner attribution, and are never reinterpreted (`16:FPDR-2`; `14:FPDR-1`). Authoritative owed-balance truth (`3-§9-12`) is this mission's.
+Mission design: Credit facts, recording and repayment live in the SB-P-1.14 four-state Ledger; the authoritative per-customer balance is computed from them, with no separate customer-credit database (`14-§5-*`, `14-§6-*`, `14-§7-*`; DC-07). A repayment reduces the correct credit relationship and may settle a credit-method sale (`14:FPDR-4`). Historical credit-method sales stay visibly unattributed until an explicit, audited Owner attribution, and are never reinterpreted (`16:FPDR-2`; `14:FPDR-1`). Authoritative owed-balance truth (`3-§9-12`) is this mission's. An excess repayment never commits automatically: the Owner is asked, and may keep the excess as a separate customer advance. The advance is a Ledger fact for the same customer, is not sales or income, is never silently netted against outstanding credit, and persists until the Owner explicitly applies it to a later credit or refunds it (`16:FPDR-10` D-1 to D-4). Received amounts are conserved: what was received equals what settled credit plus what is held (D-6). The advance's Ledger representation, application mechanism and refund semantics are engineering matters for Sections 20–21 and the EIS (Section 12.3).
 
 **FCTM rows realized here (31 `IN SCOPE`):**
 
@@ -204,9 +204,9 @@ Mission design: Verified repayment evidence links to the correct customer credit
 
 ### 8.7 Users, Permissions, Confirmation, Language and Channels
 
-Sources: Contract 14 §§14–16; Contract 15 §§17–19; Contract 24 §21; Contract 9 §12; Contract 03 §11; Build Plan §8; `16:FPDR-7`, `16:FPDR-8`.
+Sources: Contract 14 §§14–16; Contract 15 §§17–19; Contract 24 §21; Contract 9 §12; Contract 03 §11; Build Plan §8; `16:FPDR-7`, `16:FPDR-8`, `16:FPDR-10`.
 
-Mission design: The Owner holds consequential credit and financial authority; a Manager acts only within explicit, scoped, revocable Owner delegation checked at execution, and Employees and Customers gain no additional authority (`14-§14-*`, `15-§17-*`; `16:FPDR-7`). Credit overrides and payment-match resolution require exact confirmation (`24-§21-4`, `24-§21-5`; `15-§19-*`). Interactions use the shared Human Language Layer and work natively without WhatsApp (`9-§12-11`, `14-§15-*`, `15-§18-*`, `BP-§8-1`). Customers participate only in purpose-limited workflows (`3-§11-6`).
+Mission design: Keeping, applying or refunding a customer advance is an explicit Owner decision; no Manager or Employee authority over advances follows from this Blueprint (`16:FPDR-10`). The Owner holds consequential credit and financial authority; a Manager acts only within explicit, scoped, revocable Owner delegation checked at execution, and Employees and Customers gain no additional authority (`14-§14-*`, `15-§17-*`; `16:FPDR-7`). Credit overrides and payment-match resolution require exact confirmation (`24-§21-4`, `24-§21-5`; `15-§19-*`). Interactions use the shared Human Language Layer and work natively without WhatsApp (`9-§12-11`, `14-§15-*`, `15-§18-*`, `BP-§8-1`). Customers participate only in purpose-limited workflows (`3-§11-6`).
 
 **FCTM rows realized here (28 `IN SCOPE`):**
 
@@ -221,9 +221,9 @@ Mission design: The Owner holds consequential credit and financial authority; a 
 
 ### 8.8 Corrections, Audit, Errors, Failure Containment, Privacy and Dignity
 
-Sources: Contract 14 §§17–19; Contract 15 §§20–22; `16:FPDR-8` §4.
+Sources: Contract 14 §§17–19; Contract 15 §§20–22; `16:FPDR-8` §4; `16:FPDR-10`.
 
-Mission design: Corrections preserve original records and audit history (`14-§17-*`). Errors and exceptions fail narrowly: uncertainty blocks only the uncertain link or write, never unrelated work (`14-§18-*`, `15-§20-*`, `15-§21-*`). Customer information is not disclosed to unrelated people and collection language preserves dignity (`14-§19-*`, `15-§22-*`). Evidence handling is non-destructive in definition; no retention or deletion rule is set (U-08; Section 12.3).
+Mission design: Corrections preserve original records and audit history (`14-§17-*`). A repayment greater than the expected balance (`14-§18-3`) stops the uncertain write and asks the Owner; a correction that would leave a credit overpaid raises an exception and never creates an advance, refund or offset automatically (`16:FPDR-10` D-1, D-5). Errors and exceptions fail narrowly: uncertainty blocks only the uncertain link or write, never unrelated work (`14-§18-*`, `15-§20-*`, `15-§21-*`). Customer information is not disclosed to unrelated people and collection language preserves dignity (`14-§19-*`, `15-§22-*`). Evidence handling is non-destructive in definition; no retention or deletion rule is set (U-08; Section 12.3).
 
 **FCTM rows realized here (41 `IN SCOPE`):**
 
@@ -267,6 +267,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 - **Factual credit context.** Credit warnings show recorded outstanding balance, supported repayment history, credit age and comparison with the Owner-configured threshold, and disclose missing or uncertain information. No risk score, moral label or good/bad classification (`16:FPDR-4`; `14-§3-7`, `14-§19-5`, `14-§21-2`).
 - **Warn, do not block.** The Owner can proceed, override, adjust or decline; the product does not refuse the sale by default (`14-§9-*`; `BP-§10.5-A3`; `BP-§10.5-E1`).
+- **Excess is the Owner's choice.** When a payment exceeds the selected outstanding amount, the product shows the applicable amount and the excess and asks the Owner. A kept advance is shown as a separate fact for that customer, never as a reduced, negative or netted balance and never as income. Nothing applies, refunds or offsets it automatically (`16:FPDR-10`).
 - **Overdue wording.** "Overdue" appears only where a due or expected payment date was explicitly recorded and has passed; otherwise the credit's age is shown (`16:FPDR-5`; `14-§5-6`).
 - **Verification states are distinguishable.** A verified part-payment and a payment-evidence mismatch never share one label; the exact label that carries the Build Plan's "partially matched" wording is a design matter (`16:FPDR-3`; `BP-§10.5-E2`; `15-§4-*`).
 - **Ambiguity is shown, not guessed.** Candidate matches are presented for authorized human review with the exact evidence and candidates bound to the confirmation (`15-§9-*`; `BP-§10.5-B1`, `-B2`).
@@ -278,7 +279,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 ### 10.1 Founder decisions (by reference)
 
-The nine decisions are canonical in the Founder Product Decision Record (blob `30b19a80`), entries 2.1 to 2.9, and govern this Blueprint. Their full wording is not reproduced. The quoted sentences below are verbatim; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision.
+The ten decisions govern this Blueprint: `16:FPDR-1` to `16:FPDR-9` are canonical in the Founder Product Decision Record (blob `30b19a80`), entries 2.1 to 2.9, and `16:FPDR-10` in its own record (blob `bd5a5f0c`), entry 2.10. Their full wording is not reproduced. The quoted sentences below are verbatim; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision.
 
 **`16:FPDR-1` — Q1(a) Shared customer identity ownership** (Option A; decision record entry 2.1)
 
@@ -355,6 +356,23 @@ Applied in: Sections 8.3, 8.7, 9, 15.4. Rows citing it (10): `14-§10-1`, `14-§
 > Contract 15 §28 remains fully binding for the selected gateway-first delivery.
 
 Applied in: Sections 8.4, 11.6, 12.3, 16. Rows citing it (3): `15-§1-2`, `15-§5-1`, `15-§5-2`.
+
+**`16:FPDR-10` — OQ-01 Excess repayment and customer advance** (combination of options A and B; decision record entry 2.10)
+
+> a combination of options A and B
+>
+> MC-199 Founder clarification for OQ-01: Retain Owner-confirmed excess as a separate customer advance until explicitly applied or refunded. Record the Founder direction with T3 and upstream Ledger-contract screening; do not change canonical files yet.
+
+Approved product behaviour (the Founder answered "yes" to MC-205's question approving D-1 to D-6; the technical model and implementation are not approved):
+
+> D-1 Excess repayment stops automatic financial commitment and requests Owner clarification
+> D-2 The Owner may explicitly retain the excess as a separate customer advance
+> D-3 The advance persists until explicit Owner-authorized application or refund
+> D-4 No automatic income recognition, offset, refund or AI decision
+> D-5 No automatic advance resulting from historical corrections
+> D-6 Permission, audit, idempotency and amount-conservation requirements are preserved
+
+Applied in: Sections 5, 6, 8.2, 8.7, 8.8, 9, 12.3, 13, 14, 15.4, 15.5, 15.6, 16. Rows citing it (26): `14-§18-3`, `14-§7-2`, `14-§7-3`, `14-§7-4`, `14-§7-5`, `14-§7-6`, `14-§5-7`, `14-§5-8`, `3-§9-12`, `14-§21-6`, `15-§11-5`, `15-§14-1`, `15-§14-2`, `15-§14-3`, `14-§22-2`, `BP-§10.5-E4`, `BP-§10.5-X`, `14-§3-1`, `14-§3-5`, `14-§3-6`, `14-§14-1`, `14-§17-1`, `14-§17-3`, `15-§8-4`, `15-§11-4`, `BP-§6.2-1`. FIN-01's recommended representation (a customer-scoped `credit` with direction `owed_by_business`, an advance-application relation, refund as `repayment`) is provisional engineering and is not part of this decision.
 
 Upstream decisions applied by reference, unchanged: `14:FPDR-1`, `14:FPDR-3`, `14:FPDR-4` (SB-P-1.14) and `15:FDB-3` (SB-P-1.15), as cited in the FCTM Founder-decision and evidence cells.
 
@@ -725,6 +743,7 @@ Counts are taken from the canonical FCTM Dependency column. A row may carry seve
 | U-10: third-party underwriting and lending ecosystem | `BP-§15-9` | OPEN; not needed for this mission | Lending and underwriting stay rejected for current core (`GPCV-§9-10`, `14-§21-2`) |
 | R15-11: SB-P-1.15 merchant-facing grant granularity (F-4) | `14-§14-2`, `15-§17-2` (`16:FPDR-7`) | OPEN | The capability boundary is decided by `16:FPDR-7`; the merchant-facing grant experience is not. One SB-P-1.12 grant model must serve both missions |
 | F-7: Contract 15 feature-completion assessment and residual allocation for the `16:FPDR-9` deferred branches | `15-§5-1` (direct-bank branch), `15-§5-2`, `15-§1-2`, `15-§28-1` | OPEN | This Blueprint neither declares Contract 15 feature completion impossible nor treats it as satisfied by gateway-first delivery |
+| `16:FPDR-10` engineering representation: customer-advance Ledger representation, advance-application mechanism, refund semantics, concurrency and reversal handling (FIN-01 recommendations; Stage 7 C-24 to C-28) | `14-§18-3` and the 26 rows citing `16:FPDR-10` | PROVISIONAL — not approved. Stage 7, EIS and independent validation; SB-P-1.14-owner compatibility question open | This Blueprint states the approved product behaviour only (Sections 8.2, 15.6). No representation, schema, command or provider mechanism is fixed here |
 
 ### 12.4 Execution gates
 
@@ -757,6 +776,7 @@ SB-P-1.17 and SB-P-1.18 (supplier identity, directory-indexed search, the genera
 | Retention or deletion behaviour invented before a decision | U-08; DC-11 | No lifecycle rule in this Blueprint; dependent lock blocked (Section 12.3) |
 | Contract 15 completeness overstated after the deferral | F-7 | Deferred branches traced on their rows (Section 11.6); no completion claim |
 | A second financial write path appears | DTX / PQ-2; Build Plan §6.2 | All consequential writes through the governed path (`BP-§6.2-1`) |
+| Customer advance treated as income, silently offset, automatically refunded or created by a correction | `16:FPDR-10` D-1 to D-5 | Owner-only keep, apply and refund; correction exception; conservation and one remaining-advance calculation; acceptance cases ADV-01 to ADV-10 (Section 15.6) |
 | Correlated assumptions by the same Definition Actor across Stages 2–4 | MC-97 §3 | Mission Control independent checks at Stages 5 and 8; non-author specialist reviews |
 
 Mandatory specialist reviews before Implementation Authorization (Source 18 §4.8, which makes review mandatory where a mission touches authority or permissions, RLS or grants, migrations, idempotency or concurrency, financial integrity, or a new external provider): financial integrity; security, RLS, grants and permissions (including Manager delegation and Customer participation); concurrency and idempotency (evidence events, matching, linking); migration and data transition (including historical credit-method sales, `16:FPDR-2`); new external provider (payment gateway, once Mission Control authorizes provider evaluation). Mission Control decides whether further specialist reviews are required, for example AI behaviour for drafting and match suggestions, or legal and privacy for U-08 (Source 18 §4.8).
@@ -768,6 +788,7 @@ Mandatory specialist reviews before Implementation Authorization (Source 18 §4.
 - No Section 10.3 must-not row or Section 11.3 rejection appears.
 - Authoritative per-customer balances are demonstrated for the data this mission covers, and the SB-P-1.15 qualified Ask CFO answer is replaced only for that data (DC-16).
 - No duplicate financial entry results from repeated evidence, uploads, links or reconciliation actions.
+- No customer advance is created, applied or refunded without an explicit Owner action, and every received amount is conserved across settled credit, held advance and refunds (`16:FPDR-10`).
 - The `16:FPDR-9` deferred branches remain visibly traced and are never reported as delivered.
 
 ## 15. Acceptance Criteria
@@ -826,6 +847,7 @@ Acceptance items not in scope remain in Section 11 with their owning missions.
   Rows: `BP-§10.5-B1` to `-B3`, `15-§25-*`, `24-§21-5`, `10-§17-5`.
 - **`16:FPDR-8` — customer communication.** Acceptance covers merchant-controlled preparation and approval. The seven `DNTF` rows are not complete until an approved delivery channel exists. Rows: `14-§10-2` to `14-§10-6`, `14-§14-4`, `14-§22-9`.
 - **`16:FPDR-1` and `16:FPDR-2` — identity and historical credit.** Authoritative balances use the shared SB-P-1.12 identity; historical credit-method sales enter a customer's balance only after explicit, audited Owner attribution. Rows: `3-§9-12`, `14-§4-*`, `14-§22-1`.
+- **`16:FPDR-10` — excess repayment and customer advance.** Acceptance covers the Owner-controlled behaviour only: an excess stops and asks the Owner; a kept advance is separate, applied and refunded only by the Owner; nothing is automatic; corrections raise an exception. The engineering representation is not accepted at this level. Cases ADV-01 to ADV-10 (Section 15.6). Rows: `14-§18-3`, `14-§7-2` to `14-§7-6`, `14-§3-5`, `14-§14-1`, `14-§17-1`, `14-§17-3`, `BP-§10.5-E4`, `BP-§10.5-X`.
 
 ### 15.5 Experience Verification Matrix seed (Build Plan §13)
 
@@ -837,6 +859,24 @@ Acceptance items not in scope remain in Section 11 with their owning missions.
 | Verification states distinguishable (`BP-§10.5-E2`) | Owner | Not yet run | — | `D14`, `DPAY`; `16:FPDR-3` |
 | Ambiguous matches require review (`BP-§10.5-E3`) | Owner; Manager only if delegated | Not yet run | — | `D12`, `D13`; `16:FPDR-7` |
 | Reconciliation never duplicates income or repayment (`BP-§10.5-E4`) | Owner | Not yet run | — | `D14`, `DTX` |
+| Excess payment handled by Owner choice; advance shown separately (`16:FPDR-10`) | Owner | Not yet run | — | `D12`, `D14`, `DTX`; representation provisional |
+
+### 15.6 `16:FPDR-10` acceptance cases
+
+Decision-sourced acceptance cases for `16:FPDR-10`. Each is measurable, maps to existing FCTM anchor rows and to the decision-sourced obligations M-1 to M-4 recorded in the FCTM, and is independent of the engineering representation, which stays provisional (Section 12.3). Amounts are examples.
+
+| Case | Decision elements | Measurable condition | FCTM anchor rows | Obligation |
+|---|---|---|---|---|
+| ADV-01 Excess stops | D-1 | With ₹800 outstanding and ₹1,000 received, no repayment or advance is committed until the Owner chooses; the Owner sees the applicable ₹800 and the ₹200 excess | `14-§18-3`, `15-§11-4`, `BP-§10.5-X` | M-4 |
+| ADV-02 Retention | D-2, D-6 | When the Owner keeps the excess: repayments total ₹800 against that customer's credit; one advance of ₹200 for the same customer; sales and income unchanged; no negative balance | `14-§7-3`, `14-§7-4`, `14-§7-5`, `14-§3-5`, `14-§14-1`, `15-§14-2` | M-1, M-4 |
+| ADV-03 Persistence and display | D-3, D-4 | The ₹200 advance remains after later credit sales and time passing; "what does the customer still owe" excludes it; it is shown as a separate fact | `3-§9-12`, `14-§5-7`, `14-§3-6` | M-1 |
+| ADV-04 Application | D-3, D-6 | The Owner applies A, not more than the remaining advance or the target's outstanding: the remaining advance falls by A, the target's outstanding falls by A, and no new sale, income or payment receipt is recorded. An amount above either limit is refused | `14-§7-4`, `14-§3-5`, `14-§14-1`, `BP-§6.2-1` | M-2, M-4 |
+| ADV-05 Refund | D-3, D-6 | The Owner refunds R, not more than the remaining advance: the remaining advance falls by R; no expense or negative income is recorded; a failed refund does not reduce the advance | `14-§7-5`, `15-§8-4`, `14-§14-1` | M-3, M-4 |
+| ADV-06 Correction-created excess | D-5 | Correcting a ₹1,000 credit to ₹800 after ₹1,000 was repaid raises an exception; no advance, refund or offset is created until the Owner decides; prior truth is preserved | `14-§17-1`, `14-§17-3`, `14-§7-6` | M-4 |
+| ADV-07 Reversal of the source payment | D-4, D-6 | A reversal of the payment that funded the repayment and the advance flags both for Owner review; nothing is deleted; no negative advance is created. Engineering treatment is open (AC-3) | `14-§17-1`, `14-§7-6` | M-4 |
+| ADV-08 Retry and replay | D-6 | Repeating a keep, apply or refund request, or a provider event, with the same identity produces exactly one effect: no duplicate repayment, advance, application or refund | `14-§7-5`, `15-§8-4`, `BP-§10.5-E4` | M-4 |
+| ADV-09 Non-automation | D-4 | No path applies, refunds or offsets an advance or recognizes income without an Owner command; Ask CFO may describe an advance but cannot act; Manager and Employee requests are denied by default | `14-§3-1`, `14-§3-5`, `14-§14-1`, `15-§11-5` | M-4 |
+| ADV-10 Conservation | D-6 | For every source payment, received = applied to credit + held as advance + refunded at all times; the remaining advance comes from one calculation | `14-§7-3`, `BP-§10.5-E4` | M-1 |
 
 ## 16. Future Evolution
 
@@ -844,6 +884,7 @@ Acceptance items not in scope remain in Section 11 with their owning missions.
 - **SB-P-1.17 / SB-P-1.18:** directory-indexed customer and supplier search; the general Ledger–identity integration (`3-§15-7`); order-side credit linkage and COD evidence.
 - **SB-P-1.20:** approved delivery of merchant-approved customer credit communication through WhatsApp.
 - **Retention and lifecycle:** set only after the U-08 determination.
+- **Customer-advance expansions:** not authorized by `16:FPDR-10`; each needs its own decision. They include Manager delegation of keeping, applying or refunding an advance; applying one advance across several debts in one action; showing advances to customers; and any wallet, expiry, automatic refund or automatic application behaviour.
 
 ## 17. Product Philosophy Summary
 
@@ -855,6 +896,7 @@ Know who owes what and what has actually been paid; show uncertainty honestly; n
 |---|---|---|---|
 | 0.1 | 2026-10-16 | Claude Code (Definition Actor, MC-164) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical 555-row FCTM (blob `5ff7742f`) and `16:FPDR-1` to `16:FPDR-9` |
 | 0.2 | 2026-10-16 | Claude Code (Definition Actor, MC-165) | Stage 5 intake clarifications: §15.4 Scenario B keeps merchant-reviewed uploads distinct from provider-authenticated evidence and keeps evidence verification distinct from matching; §12.2 `DPAY` state clarified (channel set decided by `16:FPDR-6`; provider selection, credentials, integration and activation unresolved and not authorized). No FCTM disposition, owning mission, Founder decision or approved product behaviour changed |
+| 0.3 (proposed) | 2026-10-18 | Claude Code (Definition Actor, MC-215) | Targeted `16:FPDR-10` reconciliation (Founder approval MC-206): Metadata decision index and FCTM note; Snapshot; Sections 5, 6, 8.2, 8.7, 8.8, 9, 10.1, 12.3, 13, 14, 15.4, 15.5; new Section 15.6 acceptance cases; Section 16; Section 19 Founder-decision column for 26 rows. No FCTM row, disposition, owner or other Founder decision changed; FIN-01's engineering representation not adopted. Subject to a targeted Stage 5 review and a scoped Gate 10 re-run |
 
 ## 19. Governance History
 
@@ -891,12 +933,12 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§2-6 | NOT APPLICABLE | SB-P-1.16 | C14@16914a83 | §2 b5: collection follow-up becomes awkward | §11.4 | — |
 | 14-§2-7 | NOT APPLICABLE | SB-P-1.16 | C14@16914a83 | §2 b6: the system treats a trusted relationship like a bank underwriting model | §11.4 | — |
 | 14-§2-8 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §2 p3: Smart Business should create clarity without humiliating customers or taking the Owner's… | §8.1, §10.2 | — |
-| 14-§3-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b1: AI Assistant, Not AI Judge | §8.1, §10.2 | — |
+| 14-§3-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b1: AI Assistant, Not AI Judge | §8.1, §10.2 | 16:FPDR-10 |
 | 14-§3-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b2: Credit relationship belongs to merchant and customer | §8.1, §10.2 | — |
 | 14-§3-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b3: Warn, do not automatically block by default | §8.1, §10.2 | — |
 | 14-§3-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b4: Preserve dignity in collection language | §8.1, §10.2 | — |
-| 14-§3-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b5: Human override/decision is explicit and auditable | §8.1, §10.2 | — |
-| 14-§3-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b6: Repayment must reduce the correct credit relationship | §8.1, §10.2, §12 | 14:FPDR-4 |
+| 14-§3-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b5: Human override/decision is explicit and auditable | §8.1, §10.2 | 16:FPDR-10 |
+| 14-§3-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b6: Repayment must reduce the correct credit relationship | §8.1, §10.2, §12 | 14:FPDR-4; 16:FPDR-10 |
 | 14-§3-7 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §3 b7: Do not fabricate customer risk scores | §8.1, §10.1, §10.3 | 16:FPDR-4 |
 | 14-§4-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §4 p1: Credit is linked to the correct merchant-scoped customer identity | §8.1, §10.1, §12 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
 | 14-§4-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §4 b1: name spelling variations | §8.1, §10.1, §12 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
@@ -910,8 +952,8 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§5-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b4: date/time | §8.2, §12 | 14:FPDR-1 |
 | 14-§5-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b5: description/items where relevant | §8.2, §12 | 14:FPDR-1 |
 | 14-§5-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b6: due/expected follow-up information if used | §8.2, §10.1, §12 | 14:FPDR-1; 16:FPDR-5 |
-| 14-§5-7 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b7: outstanding balance | §8.2, §12 | 14:FPDR-1 |
-| 14-§5-8 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b8: repayment events | §8.2, §12 | 14:FPDR-1 |
+| 14-§5-7 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b7: outstanding balance | §8.2, §12 | 14:FPDR-1; 16:FPDR-10 |
+| 14-§5-8 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b8: repayment events | §8.2, §12 | 14:FPDR-1; 16:FPDR-10 |
 | 14-§5-9 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b9: owner-defined threshold/limit where configured | §8.2, §12 | 14:FPDR-1 |
 | 14-§5-10 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b10: owner decisions/overrides | §8.2, §12 | 14:FPDR-1 |
 | 14-§5-11 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §5 b11: reminder/collection history | §8.2, §12 | 14:FPDR-1 |
@@ -924,11 +966,11 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§6-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §6 b5: order/delivery workflow where credit is permitted | §8.2, §12 | 14:FPDR-1 |
 | 14-§6-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §6 p2: A credit entry must be confirmed accurately when consequential facts are ambiguous | §8.2, §12 | 14:FPDR-3 |
 | 14-§7-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 p1: Repayment is a distinct current Ledger state | §8.2, §10.2, §12 | 14:FPDR-1 |
-| 14-§7-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b1: identify the correct customer/credit relationship | §8.2, §12 | 14:FPDR-4 |
-| 14-§7-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b2: preserve repayment amount/date/source | §8.2, §12 | 14:FPDR-4 |
-| 14-§7-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b3: update outstanding balance consistently | §8.2, §12 | 14:FPDR-4 |
-| 14-§7-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b4: avoid creating duplicate income/credit facts | §8.2, §10.3, §12 | 14:FPDR-4 |
-| 14-§7-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b5: preserve correction/audit linkage | §8.2, §12 | 14:FPDR-4 |
+| 14-§7-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b1: identify the correct customer/credit relationship | §8.2, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b2: preserve repayment amount/date/source | §8.2, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b3: update outstanding balance consistently | §8.2, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b4: avoid creating duplicate income/credit facts | §8.2, §10.3, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 14-§7-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 b5: preserve correction/audit linkage | §8.2, §12 | 14:FPDR-4; 16:FPDR-10 |
 | 14-§7-7 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §7 p3: If multiple plausible balances/credits could receive the payment, require human confirmat… | §8.2, §12 | 14:FPDR-3 |
 | 14-§8-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §8 p1: An Owner may configure a credit comfort threshold or limit | §8.3, §12 | — |
 | 14-§8-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §8 p2: The threshold is an awareness input | §8.3, §10.2 | — |
@@ -966,7 +1008,7 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§13-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §13 b1: credit status must link to the same customer identity | §8.1, §10.1, §12 | 16:FPDR-1 |
 | 14-§13-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §13 b2: one order event must not create duplicate credit facts | §8.1, §10.3, §12 | — |
 | 14-§13-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §13 b3: delivery completion and payment/credit state remain distinct facts where necessary | §8.1, §12 | — |
-| 14-§14-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §14 <Owner> p1: Can view/manage credit awareness, thresholds, decisions and history | §8.7, §12 | — |
+| 14-§14-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §14 <Owner> p1: Can view/manage credit awareness, thresholds, decisions and history | §8.7, §12 | 16:FPDR-10 |
 | 14-§14-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §14 <Manager> p2: Only Owner-delegated credit operations/visibility | §8.7, §10.1, §12 | 16:FPDR-7 |
 | 14-§14-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §14 <Employee> p3: May record permitted credit transactions or repayments if explicitly allowed, but does no… | §8.7, §12 | — |
 | 14-§14-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §14 <Customer> p4: May receive only merchant-approved communications relevant to their own relationship | §8.7, §10.1, §12 | 16:FPDR-8 |
@@ -979,14 +1021,14 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§16-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §16 b4: repayment could match multiple customers/credits | §8.7, §12 | 14:FPDR-3 |
 | 14-§16-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §16 b5: a threshold override is unclear | §8.7, §12 | 14:FPDR-3 |
 | 14-§16-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §16 p2: Never guess a financial link to keep the flow moving | §8.7, §10.3, §12 | — |
-| 14-§17-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 p1: Consequential credit/repayment corrections must preserve prior truth through the Ledger c… | §8.8, §12 | — |
+| 14-§17-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 p1: Consequential credit/repayment corrections must preserve prior truth through the Ledger c… | §8.8, §12 | 16:FPDR-10 |
 | 14-§17-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 b1: original amount | §8.8, §10.3, §12 | — |
-| 14-§17-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 b2: repayment linkage | §8.8, §10.3, §12 | — |
+| 14-§17-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 b2: repayment linkage | §8.8, §10.3, §12 | 16:FPDR-10 |
 | 14-§17-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 b3: Owner override | §8.8, §10.3, §12 | — |
 | 14-§17-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §17 b4: reminder/collection history | §8.8, §10.3, §12 | — |
 | 14-§18-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b1: duplicate customer identity | §8.8, §10.1, §12 | 16:FPDR-1 |
 | 14-§18-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b2: duplicate credit entry | §8.8, §12 | — |
-| 14-§18-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b3: repayment greater than expected balance | §8.8, §12 | — |
+| 14-§18-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b3: repayment greater than expected balance | §8.8, §12 | 16:FPDR-10 |
 | 14-§18-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b4: missing/ambiguous customer | §8.8, §12 | — |
 | 14-§18-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b5: stale balance during confirmation | §8.8, §12 | — |
 | 14-§18-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §18 b6: permission revoked before write | §8.8, §12 | — |
@@ -1013,9 +1055,9 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 14-§21-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §21 b3: public customer reputation system | §8.9, §10.3 | — |
 | 14-§21-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §21 b4: confrontational automated collection | §8.9, §10.3 | — |
 | 14-§21-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §21 b5: fixed universal ₹5,000 limit | §8.9, §10.3 | — |
-| 14-§21-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §21 b6: duplicate customer-credit database separate from Ledger/customer identity | §8.9, §10.3, §12 | 14:FPDR-1 |
+| 14-§21-6 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §21 b6: duplicate customer-credit database separate from Ledger/customer identity | §8.9, §10.3, §12 | 14:FPDR-1; 16:FPDR-10 |
 | 14-§22-1 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n1: Credit entry creates correct customer balance | §8.10, §10.1, §12, §15 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
-| 14-§22-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n2: Repayment reduces correct balance without duplicate revenue | §8.10, §12, §15 | 14:FPDR-4 |
+| 14-§22-2 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n2: Repayment reduces correct balance without duplicate revenue | §8.10, §12, §15 | 14:FPDR-4; 16:FPDR-10 |
 | 14-§22-3 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n3: Ambiguous customer triggers clarification | §8.10, §10.1, §12, §15 | 16:FPDR-1 |
 | 14-§22-4 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n4: Owner-configured threshold produces warning/context, not automatic block | §8.10, §12, §15 | — |
 | 14-§22-5 | IN SCOPE | SB-P-1.16 | C14@16914a83 | §22 n5: Owner can approve/decline/adjust/grant grace | §8.10, §12, §15 | — |
@@ -1090,7 +1132,7 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 15-§8-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b1: link the evidence to that record | §8.5, §12 | 14:FPDR-1 |
 | 15-§8-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b2: mark/derive verification state appropriately | §8.5, §12 | 14:FPDR-1 |
 | 15-§8-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b3: preserve the original transaction identity | §8.5, §12 | 14:FPDR-1 |
-| 15-§8-4 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b4: do not create a duplicate sale/income/payment | §8.5, §10.3, §12 | 14:FPDR-1 |
+| 15-§8-4 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b4: do not create a duplicate sale/income/payment | §8.5, §10.3, §12 | 14:FPDR-1; 16:FPDR-10 |
 | 15-§8-5 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b5: preserve source/reference/audit history | §8.5, §12 | 14:FPDR-1 |
 | 15-§8-6 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 b6: notify/surface success where useful | §8.5, §12 | — |
 | 15-§8-7 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §8 p2: Verification is a property/link of the existing business truth, not a second financial tr… | §8.5, §10.2, §12 | 14:FPDR-1 |
@@ -1108,8 +1150,8 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 15-§11-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 p1: Authoritative evidence may arrive without a corresponding Ledger transaction | §8.5, §12 | — |
 | 15-§11-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b1: preserve it as unlinked evidence | §8.5, §12 | — |
 | 15-§11-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b2: surface it to the Owner/authorized user | §8.5, §12 | — |
-| 15-§11-4 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b3: allow classification/linking or creation through a governed flow | §8.5, §12 | — |
-| 15-§11-5 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b4: do not auto-create income/expense if business meaning is ambiguous | §8.5, §10.3, §12 | — |
+| 15-§11-4 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b3: allow classification/linking or creation through a governed flow | §8.5, §12 | 16:FPDR-10 |
+| 15-§11-5 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §11 b4: do not auto-create income/expense if business meaning is ambiguous | §8.5, §10.3, §12 | 16:FPDR-10 |
 | 15-§12-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §12 p1: The same bank/provider event may arrive more than once | §8.5, §12 | — |
 | 15-§12-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §12 b1: duplicate evidence records where avoidable | §8.5, §10.3, §12 | — |
 | 15-§12-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §12 b2: duplicate verification actions | §8.5, §10.3, §12 | — |
@@ -1119,9 +1161,9 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 15-§13-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §13 p1: If authoritative evidence later changes (for example reversal/failure/chargeback where ap… | §8.5, §10.1, §12 | 16:FPDR-6 |
 | 15-§13-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §13 p2: Do not silently erase the prior verified state | §8.5, §10.3, §12 | — |
 | 15-§13-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §13 p3: Ledger correction rules continue to apply to consequential business-record changes | §8.5, §10.2, §12 | — |
-| 15-§14-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 p1: Repayments/customer credit may use Payment Verification to support whether money was actu… | §8.6, §12 | 14:FPDR-4 |
-| 15-§14-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 b1: duplicating income | §8.6, §10.3, §12 | 14:FPDR-4 |
-| 15-§14-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 b2: reducing the wrong customer's balance | §8.6, §10.1, §10.3, §12 | 14:FPDR-4; 16:FPDR-1 |
+| 15-§14-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 p1: Repayments/customer credit may use Payment Verification to support whether money was actu… | §8.6, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 15-§14-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 b1: duplicating income | §8.6, §10.3, §12 | 14:FPDR-4; 16:FPDR-10 |
+| 15-§14-3 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 b2: reducing the wrong customer's balance | §8.6, §10.1, §10.3, §12 | 14:FPDR-4; 16:FPDR-1; 16:FPDR-10 |
 | 15-§14-4 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §14 b3: guessing when multiple matches exist | §8.6, §10.3, §12 | — |
 | 15-§15-1 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §15 p1: COD collection and delivery completion are related but distinct facts | §8.6, §10.2, §12 | — |
 | 15-§15-2 | IN SCOPE | SB-P-1.16 | C15@632f3402 | §15 b1: expected amount | §8.6, §12 | — |
@@ -1223,7 +1265,7 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | 3-§9-9 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §9 retrieve by product or stock relationship where available | §11.2 | — |
 | 3-§9-10 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §9 example: spend on bakery supplies last month (purpose + period) | §11.2 | — |
 | 3-§9-11 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §9 example: payments to ABC Traders in August (counterparty + period) | §11.2 | — |
-| 3-§9-12 | IN SCOPE | SB-P-1.16 | C3@d8c26c07 | §9 example: what does Shameer still owe me (authoritative customer owed-balance truth) | §8.2, §10.1, §12, §15 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2 |
+| 3-§9-12 | IN SCOPE | SB-P-1.16 | C3@d8c26c07 | §9 example: what does Shameer still owe me (authoritative customer owed-balance truth) | §8.2, §10.1, §12, §15 | 14:FPDR-1; 16:FPDR-1; 16:FPDR-2; 16:FPDR-10 |
 | 3-§9-13 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §9 example: find the receipt for that mixer purchase (linked document) | §11.2 | — |
 | 3-§9-14 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §9 conversational and dashboard/report retrieval read the same underlying truth | §11.2 | — |
 | 3-§10 | DELEGATED | SB-P-1.14 | C3@d8c26c07 | §10 Reports and Exports (whole section: b1, b2, b3, b4, b5, p2) | §11.2 | — |
@@ -1366,7 +1408,7 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | BP-§5.3-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §5.3 canonical repository vs delivery divergence: mission accounts for delivery path; merge is not production proof | §8.9, §10.2 | — |
 | BP-§5.4-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §5.4 genuinely new external infrastructure (payment/bank evidence provider) needs activation, credentials, failure, rollback and verification identified in Blueprint/EIS | §8.4, §10.1, §10.2, §12 | 16:FPDR-6 |
 | BP-§6.1-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §6.1 no UI, AI model, reminder, scheduler, document pipeline or channel may invent authority | §8.9, §10.3, §12 | — |
-| BP-§6.2-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §6.2 consequential credit/repayment/link writes use the one Business Command path ending in a deterministic domain command, authoritative write and audit | §8.9, §10.2, §12 | — |
+| BP-§6.2-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §6.2 consequential credit/repayment/link writes use the one Business Command path ending in a deterministic domain command, authoritative write and audit | §8.9, §10.2, §12 | 16:FPDR-10 |
 | BP-§6.3-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §6.3 Supabase/Postgres remains authoritative for structured business truth | §8.9, §10.2, §12 | — |
 | BP-§6.5-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §6.5 credit follow-up reuses the one Reminder / Automation kernel | §8.3, §10.2, §12 | — |
 | BP-§8-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §8 Smart Business must work without WhatsApp: credit and payment flows usable natively | §8.7, §10.2, §12 | — |
@@ -1389,14 +1431,14 @@ Counts: 555 rows — 349 `IN SCOPE`, 129 `DELEGATED`, 20 `ASSIGNED TO LATER MISS
 | BP-§10.5-E1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder-approved experience p1: Smart Credit warns the Owner but does not automatically refuse a sale or customer relatio… | §8.10, §12, §15 | — |
 | BP-§10.5-E2 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder-approved experience p2: Payment evidence may be verified, unmatched, partially matched, or ambiguous | §8.10, §10.1, §12, §15 | 16:FPDR-3 |
 | BP-§10.5-E3 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder-approved experience p3: Ambiguous matches require review | §8.10, §12, §15 | — |
-| BP-§10.5-E4 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder-approved experience p4: Reconciliation cannot duplicate income or repayment | §8.10, §12, §15 | — |
+| BP-§10.5-E4 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder-approved experience p4: Reconciliation cannot duplicate income or repayment | §8.10, §12, §15 | 16:FPDR-10 |
 | BP-§10.5-A1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario A clause 1: customer has overdue balance; Owner attempts another credit sale | §8.10, §10.1, §12, §15 | 16:FPDR-5 |
 | BP-§10.5-A2 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario A clause 2: shows ageing/risk clearly | §8.10, §10.1, §12, §15 | 16:FPDR-4 |
 | BP-§10.5-A3 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario A clause 3: allows the Owner to proceed, override, or decline | §8.10, §12, §15 | — |
 | BP-§10.5-B1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario B clause 1: one payment-evidence item plausibly matches multiple open transactions; candidates shown | §8.10, §12, §15 | — |
 | BP-§10.5-B2 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario B clause 2: system requires review | §8.10, §12, §15 | — |
 | BP-§10.5-B3 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 Founder Scenario B clause 3: repeating the confirmed link creates no duplicate financial entries | §8.10, §12, §15 | — |
-| BP-§10.5-X | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 exit principle: know who owes what and what was actually paid; never pretend uncertain money is settled or make credit decisions for the Owner | §8.10, §12, §15 | — |
+| BP-§10.5-X | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §10.5 exit principle: know who owes what and what was actually paid; never pretend uncertain money is settled or make credit decisions for the Owner | §8.10, §12, §15 | 16:FPDR-10 |
 | BP-§11-1 | IN SCOPE | SB-P-1.16 | BP@9dfdd924 | §11 SB-P-1.16 Financial Integrity underpins COD/payment closure and trustworthy credit/payment behaviour (adapter-ready for SB-P-1.18) | §8.6, §10.2, §12 | — |
 | BP-§11-2 | DELEGATED | SB-P-1.12 | BP@9dfdd924 | §11 SB-P-1.12 Authority/Identity underpins all later role/permission behaviour | §11.2 | — |
 | BP-§11-3 | DELEGATED | SB-P-1.14 | BP@9dfdd924 | §11 SB-P-1.14 Business Memory/UDI underpins later financial integrity | §11.2 | — |
