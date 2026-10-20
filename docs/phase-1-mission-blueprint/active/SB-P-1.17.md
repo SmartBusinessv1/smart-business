@@ -194,14 +194,26 @@ Mission design:
   - No universal numeric default exists.
   - Independently authorized manual reorder workflows are unaffected.
 
-**Proposed operational definition of "sufficient evidence"** (Stage 4 definition prose for Mission Control review; not a Founder decision; parameters REQUIRE VALIDATION at the EIS). A suggestion may be generated for an item only when all of these hold:
+**Evidence sufficiency — open at the EIS boundary** (Stage 4 definition prose for Mission Control review; not a Founder decision; MC-320).
 
-1. The item has recorded outward movements (sales or decreases) from the merchant's own data, across an observation window and a minimum count of movement records. The window and count are configurable product parameters fixed at the EIS and validated against merchant data; they are not Product Truth constants.
-2. The movements are not under an open source conflict (DC-08) or a pending correction.
-3. The item's unit and current quantity are known.
-4. The suggestion states its basis: the observation period, the movement count and the derived consumption figure.
+*Fixed by `17:FPDR-6`, and not open:*
+- a suggestion is explained and evidence-backed;
+- it is identified as unconfirmed;
+- where evidence is insufficient, no value is invented and the configuration gap is shown;
+- only explicit Owner confirmation, or an Owner change, activates threshold-driven alerts or threshold-driven reorder actions;
+- no universal numeric default exists;
+- manual reorder workflows stay available where authorized.
 
-If any condition fails, no suggestion is made and the gap is shown. Whether this definition needs Founder confirmation is a Mission Control T6 judgement (Section 12.3).
+*Not fixed here:* what counts as sufficient evidence. **The EIS must determine and justify operational evidence sufficiency**, considering sparse merchant data, irregular and seasonal sales patterns and new items. No numerical threshold, window or count is set by this Blueprint.
+
+*Candidate technical safeguards for the EIS to evaluate* (not locked eligibility policy):
+
+1. the merchant's own recorded outward movements for the item support the suggestion;
+2. those movements are not under an open source conflict (DC-08) or a pending correction;
+3. the item's unit and current quantity are known;
+4. the suggestion states its basis (the data period and the movements it relies on).
+
+The EIS may adopt, change or replace these safeguards, with justification. If the resulting sufficiency policy would materially affect when suggestions are available to merchants, it requires Mission Control T6 screening (Source 18 Stage 3) and Founder confirmation where triggered, before it is relied on.
 
 **FCTM rows realized here (7 `IN SCOPE`):**
 
@@ -899,7 +911,7 @@ Derived constraints are **not** Product Truth unless a Founder decision adopts t
 | Item | Status | Effect on this Blueprint |
 |---|---|---|
 | DC-05 supplier prices | Superseded by `17:FPDR-4` (cost classification; arithmetic rationale withdrawn) | Sections 8.3, 8.4, 9 |
-| DC-06 thresholds | Amended by `17:FPDR-6` | Section 8.2; the "sufficient evidence" definition is proposed for Mission Control review |
+| DC-06 thresholds | Amended by `17:FPDR-6` | Section 8.2; evidence sufficiency stays open at the EIS boundary, with candidate safeguards only; T6 screening if the policy materially affects suggestion availability |
 | DC-14 operator detail | Corrected by `17:FPDR-1`: Owner-only, not delegable | Sections 8.7, 8.10 |
 | DC-03 standing rules | Engineering constraint; Owner-only creation is source text (C7 §5 p3) | Section 8.4 |
 | DC-11 delivery is not acceptance | Unchanged; consistent with `17:FPDR-3` | Section 8.4 |

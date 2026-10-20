@@ -81,7 +81,7 @@ All checks were scripted against FCTM blob `a335b040`.
 **Row gaps:** none.
 
 **Unsupported new behaviour:** none intended. New Stage 4 prose is limited to:
-- the proposed operational definition of "sufficient evidence" (§8.2);
+- the evidence-sufficiency boundary in §8.2: fixed `17:FPDR-6` behaviour, an open sufficiency question for the EIS, and candidate technical safeguards (refined at MC-320);
 - the four-kind closing-view table (§8.8);
 - the capability table restating `17:FPDR-1` (§8.10);
 - the Scenario A and B mapping tables (§15.1).
@@ -142,11 +142,11 @@ All four are flagged for Mission Control review in Section 8.
 
 | Trigger | Result |
 |---|---|
-| T1 / T3 | None. No new product question was answered by drafting. The §8.2 "sufficient evidence" definition is operational prose under `17:FPDR-6` with unfixed parameters. **Mission Control may judge it a T6 item needing Founder confirmation**; it is flagged, not decided |
+| T1 / T3 | None. No new product question was answered by drafting. Evidence sufficiency for threshold suggestions is left open for the EIS to determine and justify (§8.2, refined at MC-320); the four conditions are candidate technical safeguards, not policy |
 | T2 | None. No conflict among C7, C13, C17, Build Plan §10.6, Source 11 and the six decisions was found while drafting |
 | T4 | No new Delta item |
 | T5 | None recorded |
-| T6 | The §8.2 definition (above). The §8.8 closing-view distinction and §8.10 capability table restate approved sources and decisions |
+| T6 | Not triggered at Stage 4, because no sufficiency policy is set. **A future EIS sufficiency policy that materially affects suggestion availability requires Mission Control T6 screening and Founder confirmation where triggered** (MC-320). The §8.8 closing-view distinction and §8.10 capability table restate approved sources and decisions |
 | T7 | None. No row was omitted, deferred, moved or reclassified, and no scenario was added |
 | T8 | None established. Scenario B feasibility remains a watch under `DPOS` |
 
@@ -170,7 +170,7 @@ No existing file was modified.
   - CI results are recorded against the PR head SHA in the pull-request conversation and the return to Mission Control.
 - **How the row sections were produced.** They come from a deterministic generator over the FCTM blob. The section assignment rules, and the judgements in Section 8, are this actor's and are open to Mission Control review. The same Definition Actor authored Stages 2–4, so correlated-assumption risk applies; independent checks remain Mission Control's at Stages 5 and 8.
 - **Recommendation: READY FOR MISSION CONTROL STAGE 4 SUBSTANTIVE REVIEW.** Specific review asks:
-  1. accept or return the §8.2 "sufficient evidence" definition, including whether it needs Founder confirmation;
+  1. confirm the §8.2 evidence-sufficiency boundary as refined at MC-320: the question stays open at the EIS, the four conditions are candidate safeguards only, and T6 screening applies to the eventual policy;
   2. confirm the §8 subsection assignment of rows;
   3. confirm the Scenario A and B mappings.
 
