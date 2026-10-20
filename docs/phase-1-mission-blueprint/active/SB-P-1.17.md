@@ -128,7 +128,7 @@ This mission turns that into evidence-backed, explained suggestions. Every conse
   - enter a cash count;
   - view the variance.
 
-  Never by role: operator-attributed counter detail, standing-rule creation, Reference Cost or margin (unless separately granted under `12:FR-09`), or closing-cash policy.
+  Never by role, and not grantable under `17:FPDR-1`: operator-attributed counter detail, standing-rule creation and closing-cash policy, all Owner-reserved. Reference Cost and margin are not granted by role either. Each is Owner-only by default and becomes visible to a Manager only through its own explicit Owner grant; granting one never grants the other (`12:FR-04` F-03). Supplier purchase prices are Reference Cost information and need the Reference Cost grant (`17:FPDR-4`). Margin intelligence is governed separately by `12:FR-09`: without the margin grant, Smart Business computes, labels or exposes no margin or margin-derived output.
 - **Employee:** permitted operational stock tasks only, with actor identity preserved; no anomaly analysis about other staff and no Owner intelligence (C13 §13 p3; `21-§11-1`).
 - **Supplier:** receives only the merchant-sent request the workflow needs; no merchant intelligence (C7 §3 p3, §10 p4; `17:FPDR-3`).
 
@@ -1089,6 +1089,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-20 | Claude Code (Definition Actor, MC-318 / MC-319) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `a335b040`), `17:FPDR-1` to `17:FPDR-6` and the Stage 3 reconciliation |
+| 0.2 | 2026-10-20 | Claude Code (Definition Actor, MC-323 / MC-324) | Stage 5 finding: §6 Manager permission wording clarified (Reference Cost and margin separately grantable under `12:FR-04` F-03; `12:FR-09` cited for margin intelligence; `17:FPDR-4` retained). No row, decision, scenario or other definition changed |
 
 ## 19. Governance History
 
