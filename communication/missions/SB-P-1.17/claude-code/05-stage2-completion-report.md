@@ -107,20 +107,40 @@ A file cannot record the checks of the commit that contains it. CI conclusions f
 
 **Recommendation: Stage 3 Founder Decision Gate — TRIGGERED, narrowly.** A `NOT TRIGGERED` record is not available, because T4 fires on two `PRODUCT-AFFECTING` Delta items and the register holds genuine T1 and T3 candidates.
 
-| Item | Trigger | Why the Founder, not Mission Control | Rows held until decided |
+| Item | Trigger | Why the Founder, not Mission Control | Rows held until decided (exact rows in Section 12) |
 |---|---|---|---|
-| U-01 Manager delegation for Manager Operations | T3 (R15-11) | Merchant-facing permission scope; SB-P-1.16 needed `16:FPDR-7` for its own domain | Manager paths of WS17-B, D and E |
-| U-02 Phase 1 standard POS bridge scope | T1 (T8 watch) | No source names the POS products or interface; Founder Scenario B depends on it | WS17-C, D; `FRV-B` |
-| U-05 Supplier communication before SB-P-1.20 | T3 | Source 11 gives suppliers communication, but no native channel exists before SB-P-1.20 | `7-§3-6`, `7-§5-1` action step, `7-§10-4` |
-| U-06 Supplier prices versus `12:FR-09` | T4 (Δ-03) | Extends an approved Founder boundary to a new surface | `7-§3-5`, `7-§4-5`, `17-§4-14` |
-| U-13 Historical purchase attribution | T1 / T4 (Δ-13) | Behaviour for existing merchant data; analogous to `16:FPDR-2` | `7-§3-4`, `7-§15-6` |
+| U-01 Manager delegation for Manager Operations | T3 (R15-11) | Merchant-facing permission scope; SB-P-1.16 needed `16:FPDR-7` for its own domain | Manager-delegated paths only (Section 12) |
+| U-02 Phase 1 standard POS bridge scope | T1 (T8 watch) | No source names the POS products or interface; Founder Scenario B depends on it | POS-dependent behaviours only (Section 12) |
+| U-05 Supplier communication before SB-P-1.20 | T3 | Source 11 gives suppliers communication, but no native channel exists before SB-P-1.20 | Supplier-dispatch step only (Section 12) |
+| U-06 Supplier prices versus `12:FR-09` | T4 (Δ-03) | Extends an approved Founder boundary to a new surface | Manager-visible supplier price only (Section 12) |
+| U-13 Historical purchase attribution | T1 / T4 (Δ-13) | Behaviour for existing merchant data; analogous to `16:FPDR-2` | Historical purchases only (Section 12) |
 
 **Mission Control items (no Founder decision expected):** confirm or return DC-04, DC-05, DC-06, DC-08, DC-09, DC-12, DC-14, DC-15 (T6 screen); U-03, U-04, U-09, U-10, U-12; and the U-14 housekeeping.
 
 **Unaffected work.** Every row not listed above can proceed to Stage 4 drafting once Mission Control authorizes it. That covers stock facts, thresholds, expiry and wastage, the Owner path of Scenario A, the POS-independent parts of closing cash, workspace layering and isolation, and the reuse rules. Stage 3 preparation (Founder Brief and Decision Record drafts) is not started, because the authorization does not permit it.
 
-## 12. Stop
+## 12. Reconciliation of the five Stage 3 candidates
 
-**STOP FOR MISSION CONTROL STAGE 2 REVIEW.**
+**These five are not `UNRESOLVED FOUNDER DECISION` rows.** Under Source 18 §3.2 item 3, that disposition is reserved for items on the approved unresolved list (Build Plan §15). The FCTM has five such rows: `BP-§15-4`, `18-§4-4`, `18-§25-2`, `BP-§15-6` and `BP-§15-8`. They concern prices, retention duration and marketplace scope, and none is on this mission's critical path.
+
+U-01, U-02, U-05, U-06 and U-13 are different. They are mission-specific Stage 3 trigger candidates from Truth Pack Part D. They appear in the FCTM only as `U-nn` citations. Every row they touch keeps its approved disposition, mostly `IN SCOPE` (Source 18 §3.2 item 5: a pending question never moves a row). No row is `ESCALATED`, because no conflict or proposed change has been put to the Founder. If Mission Control runs Stage 3 and the Founder decides, the decision ID is cited in the rows below; their dispositions do not change.
+
+"Rows citing" lists every FCTM row whose citation names the item. "Also reached" lists rows touched only through a hold or derived constraint, without a `U-nn` citation.
+
+| Item | Rows citing the item (disposition, owner) | Also reached | Unresolved product choice | Boundary against premature Blueprint commitment | Blocks |
+|---|---|---|---|---|---|
+| **U-01** Manager delegation for Manager Operations | `7-§5-1`, `13-§13-2`, `BP-§10.6-W5`, `BP-§10.6-A3` (`IN SCOPE`, SB-P-1.17); `7-§10-2`, `17-§22-2`, `21-§4-2`, `21-§24-3` (`DELEGATED`, SB-P-1.12); `11-§13-3` (`DELEGATED`, SB-P-1.15) | DC-03 (who may create a standing rule: `7-§5-2`); DC-14 (operator-level counter detail) | Which Manager Operations capabilities the Owner may delegate, at what scope, and which stay Owner-reserved. The candidates are reorder confirmation, standing-rule creation, supplier management, counter-signal and operator-detail visibility, and cash-count entry and variance view | The Blueprint states the Owner path and the approved principle: Managers act only within Owner-delegated scope (C7 §10, C13 §13, C17 §13). It names no capability as delegable or Owner-reserved, and it does not infer a Manager grant from the role (R15-11) | **Only specified behaviours:** Manager-delegated paths. Owner paths, including Owner confirmation in Founder Scenario A, are unaffected |
+| **U-02** Phase 1 standard POS bridge scope | `13-§5-6`, `BP-§5.4-1`, `BP-§10.6-W7`, `BP-§10.6-B1` (`IN SCOPE`, SB-P-1.17) | All rows carrying the `DPOS` hold (FCTM Part F: 102 rows), incl. `13-§4-*`, `13-§8-*`, `13-§21-*`, `BP-§10.6-B2` | Which POS products, or which interface standard (vendor API, webhook, export file), the Phase 1 standard bridge covers, and which minimum fields it needs (discount, void, operator) | The Blueprint specifies the vendor-neutral adapter edge, source identity, dedupe, no-guessing and neutral review (C13 §§4–8, §21). It names no vendor, interface or field guarantee, and it asserts no feasibility for Founder Scenario B (T8 watch) | **Only specified behaviours:** POS-dependent ingestion, counter signals and `FRV-B`. Stock, supplier, reorder, manual closing cash and the workspace are unaffected |
+| **U-05** Supplier communication before SB-P-1.20 | `7-§3-6`, `7-§5-1`, `7-§13-8`, `17-§7-7` (`IN SCOPE`, SB-P-1.17); `23-§4-4`, `23-§16-5` (`ASSIGNED TO LATER MISSION`, SB-P-1.20) | `DNTF` hold; DC-11 | Whether Phase 1 natively records a purchase request that the merchant sends personally (copy, share or print), or whether supplier dispatch waits for SB-P-1.20 | The Blueprint ends the native flow at a confirmed, recorded reorder linked to the Product & Price Master item. It specifies no system-sent supplier message and no out-of-app channel | **Only specified behaviours:** the supplier-dispatch step of `7-§5-1` and supplier communication history and failure handling. Founder Scenario A is not blocked |
+| **U-06** Supplier prices versus `12:FR-09` | `7-§3-5`, `7-§4-5` (`IN SCOPE`, SB-P-1.17; Founder decision cell `12:FR-09`) | Through DC-05, without a U-06 citation: `17-§4-14`, `7-§11-2.5` (`IN SCOPE`) | Whether a supplier purchase price shown to a Manager in reorder or supplier context falls under the Reference Cost and margin boundary | The Blueprint applies the stricter reading as a provisional hold: no Manager-visible supplier price without the cost capability. It marks that reading DC-05 (**DERIVED — NOT APPROVED PRODUCT TRUTH**), not a decision | **Only specified behaviours:** Manager-visible price context. Owner views and all quantity-based reorder logic are unaffected |
+| **U-13** Historical purchase attribution | `7-§3-4`, `7-§15-6` (`IN SCOPE`, SB-P-1.17) | Δ-13 (free-text "Supplier name" on existing purchases) | Whether, and how, existing free-text supplier names on historical purchases are attributed to new supplier identities, for example by merchant confirmation and without destructive rewrites | The Blueprint specifies supplier history for purchases recorded against a supplier identity. It defines no backfill, automatic matching or rewrite of existing transactions | **Only specified behaviours:** supplier history for historical purchases. New supplier identity and new purchase history are unaffected |
+
+**No item blocks the complete mission.** Each one holds only the behaviours named in its row. Stage 4 drafting of everything else depends only on Mission Control's Stage 2 acceptance and Stage 4 authorization.
+
+**Correction recorded in this revision.** The previous §11 table listed `7-§10-4` under U-05; that row cites U-09. It also omitted the four further rows that cite U-05 (`7-§13-8`, `17-§7-7`, `23-§4-4`, `23-§16-5`). Under U-06 it listed `17-§4-14`, which reaches U-06 only through DC-05. The row lists above are taken directly from the FCTM citations at this head. No FCTM row, identifier or disposition changed.
+
+## 13. Stop
+
+**STOP FOR MISSION CONTROL FINAL STAGE 2 ACCEPTANCE.**
 
 **IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.** No Stage 3, Blueprint drafting, coding, migrations, provider mutations or production changes.
