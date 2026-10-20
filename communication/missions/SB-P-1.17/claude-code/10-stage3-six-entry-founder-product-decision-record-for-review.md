@@ -48,6 +48,11 @@ Dialogue order (addendum §2): U-01, U-06, U-05, U-13, U-15, U-02. Collective co
 
 The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modify or reject reorder suggestions; 3 manage supplier records; 4 view counter review signals; 5 view operator-attributed counter detail; 6 enter a cash count; 7 view the variance.
 
+**Capability 5 clarification (MC-300).**
+- Capability 5 is **operator-attributed counter detail**, and it is Owner-reserved under Option A.
+- Standing-rule creation is also Owner-only (C7 §5 p3), but it is **not** capability 5. It is a separate Owner-only boundary.
+- The quoted annex text is retained unmodified. Its phrase "Capability 5, standing-rule creation, Reference Cost and margin …, and closing-cash policy" can be misread as equating capability 5 with standing-rule creation. That is a numbering and wording inconsistency in the annex, and the intended reading is the four separate Owner-reserved items above.
+
 **Operational elaboration (faithful interpretation, not a Founder quotation):**
 
 - No capability arises from the Manager role. Each is an explicit, scoped, revocable Owner grant, checked server-side and revalidated at execution.
@@ -202,10 +207,11 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 | `7-§16-6` | `IN SCOPE` | `L-NEG; DC-06` |
 | `BP-§10.6-A1` | `IN SCOPE` | `NI-RO; A-BP106-FRV; Founder-reserved; DC-06 (threshold merchant-configured)` |
 
-**Acceptance condition (authored from the addendum constraints; for Mission Control review):**
+**Acceptance condition (as clarified by Mission Control, MC-300):**
 - Without sufficient evidence, no threshold is suggested and the configuration gap is shown.
-- A suggestion never activates an alert or a reorder until the Owner confirms or changes it.
-- No universal numeric default exists anywhere.
+- No **threshold-driven** alert and no **threshold-driven** reorder action becomes active from a proposed threshold until the Owner confirms or changes it.
+- This condition does not prohibit independently authorized manual reorder workflows (C7 §5, `17:FPDR-1`).
+- No universal numeric default threshold exists anywhere.
 
 ## 7. Carried holds and unchanged boundaries
 
@@ -231,12 +237,10 @@ FCTM decision IDs are **not** populated by this record. Once the record is canon
 
 ## 9. Findings for Mission Control review
 
-1. **Verbatim Founder text absent.** MC-297 is not in the repository, and this record quotes no Founder words. If verbatim approval statements are required, as in the SB-P-1.16 records, Mission Control should supply them for insertion before merge.
-2. **Two authored elaborations need confirmation:**
-   - U-13: linking is Owner-only, with delegation not decided.
-   - U-15: who may confirm a threshold beyond the Owner is not decided.
-   Both follow the literal outcome wording in record 08.
-3. **U-15 acceptance condition** is authored from the addendum constraints, because the addendum gives none.
-4. **Status lines.** Records 07 and 08 still read "PROPOSED" although they are merged. No post-merge verification records are in the repository. This publication relies on the relayed instruction.
+1. **Verbatim Founder text still absent — OPEN.** MC-300 directs insertion of the six exact Founder decision-bearing statements and the collective confirmation "supplied by Mission Control". No such text reached the Definition Actor: it was not in the MC-300 message, the repository or the PR #994 conversation at `main@22456637`. None is invented. The record remains without Founder quotations until Mission Control supplies the text.
+2. **Resolved (MC-300).** The U-13 Owner-only linking interpretation and the U-15 Owner-confirmation boundary are retained as written. Delegation of either remains undecided.
+3. **Resolved (MC-300).** The U-15 acceptance condition is clarified to threshold-driven alerts and actions, and manual reorder workflows are excluded from it.
+4. **Resolved (MC-300).** The U-01 capability 5 numbering inconsistency in the quoted annex text is identified in entry 1. The quote itself is unchanged.
+5. **Status lines — OPEN.** Records 07 and 08 still read "PROPOSED" although they are merged. No post-merge verification records are in the repository. This publication relies on the relayed instruction.
 
 **STOP FOR MISSION CONTROL SUBSTANTIVE REVIEW.** No FCTM population, Stage 3 lock, Stage 4, implementation, provider operation or SB-P-1.16 reopening.
