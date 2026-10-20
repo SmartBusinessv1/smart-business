@@ -24,7 +24,16 @@
 ### 0.2 Decision evidence and its limits
 
 - **Decision evidence:** Mission Control record 08 states: "The Founder expressly selected Option A for U-01, U-06, U-05, U-13, U-15 and U-02, then collectively confirmed all six in MC-297." Its table gives the Founder-confirmed outcome for each identifier. Mission Control's publication instruction relays the same six Option A answers and collective confirmation as confirmed decision evidence.
-- **Verbatim Founder text: NOT AVAILABLE to the Definition Actor.** The MC-297 dialogue is not in the repository. This record therefore quotes no Founder words. Each entry records (a) the selection as Mission Control recorded it, (b) the canonical option text the Founder selected, quoted from the annex or the U-15 addendum, and (c) authored operational elaboration, labelled as a faithful interpretation, not a Founder quotation. If Mission Control requires the Founder's own words, they should be inserted from MC-297 before merge (Section 9, finding 1).
+- **Verbatim Founder text (supplied by Mission Control in MC-301).** Each entry quotes the Founder's own decision-bearing message from the Stage 3 Founder dialogue. The Founder's collective confirmation (MC-297 summary) is:
+
+  > I confirm all six SB-P-1.17 Stage 3 Founder decisions exactly as summarized in MC-297. Proceed only to preparing the formal six-entry Founder Product Decision Record for review; do not publish, merge, lock, start Stage 4, or implement.
+
+- **Four kinds of text, kept separate in every entry:**
+  1. **Founder statement (verbatim):** the Founder's own words, quoted exactly as supplied by Mission Control.
+  2. **Selected option text:** canonical text of the chosen option, quoted verbatim from annex `07-…` or addendum `mission-control/07-…`. It is not Founder wording.
+  3. **Operational elaboration:** interpretation authored by the Definition Actor under record 08's safeguards, and Mission Control clarifications marked MC-300. It is not a Founder quotation.
+  4. **Acceptance condition:** a proposed verification condition, not a Founder quotation.
+- **Founder text not received:** the MC-297 summary text that the collective confirmation refers to is not in the repository. Record 08's outcome table is used as Mission Control's statement of that summary.
 - **Effect:** This publication is review-only. Every decision becomes canonically effective only after Mission Control substantive review, Founder human merge and Mission Control post-merge verification (Source 18 §3.3 items 4 and 6).
 - **No decision here authorizes** implementation, provider activation, permission or schema changes, FCTM edits, Stage 3 lock or Stage 4.
 - **Option letters** refer to annex `07-…` (U-01, U-02, U-05, U-06, U-13) and addendum `mission-control/07-…` §1 (U-15).
@@ -43,6 +52,10 @@
 Dialogue order (addendum §2): U-01, U-06, U-05, U-13, U-15, U-02. Collective confirmation of all six: MC-297.
 
 ## 1. `17:FPDR-1` — U-01 Manager delegation in Manager Operations
+
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 1 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-01, my Founder decision is Option A. Record this as my answer and proceed to the next question without publishing or locking the Founder Decision Record.
 
 **Selected option text (annex `07-…`, U-01 Option A, "Scoped Operations Manager"):** "The Owner may grant capabilities 1, 2, 3, 4, 6 and 7 separately, each limited to assigned items, suppliers or counters. A reorder grant may carry an Owner-set value ceiling. Capability 5, standing-rule creation, Reference Cost and margin (`12:FR-04`, `12:FR-09`), and closing-cash policy stay Owner-reserved"
 
@@ -81,6 +94,10 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 
 ## 2. `17:FPDR-2` — U-02 Phase 1 standard POS bridge scope
 
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 6 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-02, my Founder decision is Option A. Capture this as my sixth answer. Then present a complete six-decision confirmation summary without publishing or locking the Founder Decision Record.
+
 **Selected option text (annex, U-02 Option A, "Vendor-neutral bridge contract, two interface classes"):** "Phase 1 commits to one Smart Business bridge contract fed by (i) an authenticated API or webhook adapter, where a POS offers one, or (ii) a structured export file through UDI. Both carry stable source identity and dedupe. Minimum fields: external transaction ID, time, POS item reference, quantity, price, payment method. Discount, void and operator are optional. Counter signals appear only for data the source supplies; otherwise the product says the signal is unavailable from this POS. Founder Scenario B is verified against the first source with evidence that it supplies discount or void data"
 
 **Operational elaboration (faithful interpretation):**
@@ -110,6 +127,10 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 
 ## 3. `17:FPDR-3` — U-05 Supplier communication before SB-P-1.20
 
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 3 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-05, my Founder decision is Option A. Record this as my answer and proceed to the next question without publishing or locking the Founder Decision Record.
+
 **Selected option text (annex, U-05 Option A, "Merchant-controlled purchase request"):** "A confirmed reorder creates a recorded purchase request. Smart Business prepares a factual message for the supplier, which the merchant copies, shares or prints and sends personally. Nothing is shown as "sent" or "accepted" unless the merchant records it. Supplier replies are recorded by the merchant. SB-P-1.20 later adds system dispatch"
 
 **Operational elaboration (faithful interpretation):** The prepared message contains only what the supplier workflow needs and no merchant-internal intelligence (C7 §3 p3, §10 p4). Communication history holds merchant-reported events only (DC-11). The pattern mirrors `16:FPDR-8`.
@@ -133,6 +154,10 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 - No external message is sent by the system.
 
 ## 4. `17:FPDR-4` — U-06 Supplier purchase prices
+
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 2 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-06, my Founder decision is Option A. Record this as my answer and proceed to the next question without publishing or locking the Founder Decision Record.
 
 **Selected option text (annex, U-06 Option A, "Cost-class"):** "Supplier purchase prices in reorder and supplier contexts count as cost information. A Manager sees them only with the explicit Reference Cost permission; without it, suggestions show quantities and dates only"
 
@@ -161,6 +186,10 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 
 ## 5. `17:FPDR-5` — U-13 Historical purchase attribution
 
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 4 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-13, my Founder decision is Option A. Record this as my answer and proceed to the next question without publishing or locking the Founder Decision Record.
+
 **Selected option text (annex, U-13 Option A, "Owner-confirmed attribution"):** "The Owner may link historical purchases to a supplier identity by explicit, audited confirmation. Smart Business may show possible matches clearly labelled unconfirmed, but never links on its own. The original transaction and its audit history are unchanged; no duplicate purchase is created. Unlinked purchases stay visibly unlinked"
 
 **Operational elaboration (faithful interpretation):** "Owner" means the Owner. Whether linking can later be delegated is not decided here; `17:FPDR-1` grants supplier-record management, not historical attribution. The pattern mirrors `16:FPDR-2`.
@@ -181,6 +210,10 @@ The capabilities are: 1 view stock, supplier and reorder state; 2 confirm, modif
 - An unconfirmed suggestion has no effect.
 
 ## 6. `17:FPDR-6` — U-15 Suggested starting low-stock threshold
+
+**Founder statement (verbatim; Stage 3 Founder dialogue, answer 5 of 6; supplied by Mission Control in MC-301):**
+
+> For SB-P-1.17 Stage 3 U-15, my Founder decision is Option A. Record this as my answer and proceed to the final question without publishing or locking the Founder Decision Record.
 
 **Question (addendum `mission-control/07-…` §1):** "When no low-stock threshold has been configured, may Smart Business suggest an evidence-backed starting threshold requiring Owner confirmation, or should it wait for the Owner to set a threshold manually?"
 
@@ -237,10 +270,10 @@ FCTM decision IDs are **not** populated by this record. Once the record is canon
 
 ## 9. Findings for Mission Control review
 
-1. **Verbatim Founder text still absent — OPEN.** MC-300 directs insertion of the six exact Founder decision-bearing statements and the collective confirmation "supplied by Mission Control". No such text reached the Definition Actor: it was not in the MC-300 message, the repository or the PR #994 conversation at `main@22456637`. None is invented. The record remains without Founder quotations until Mission Control supplies the text.
+1. **Resolved (MC-301).** All seven Founder quotations, the six decision statements and the collective confirmation, are inserted verbatim as supplied by Mission Control and attributed to the Stage 3 Founder dialogue. Each decision statement sits in its matching entry: U-01 `17:FPDR-1`, U-06 `17:FPDR-4`, U-05 `17:FPDR-3`, U-13 `17:FPDR-5`, U-15 `17:FPDR-6`, U-02 `17:FPDR-2`. The collective confirmation is in Section 0.2. The MC-297 summary text it refers to remains outside the repository; record 08's outcome table stands in for it.
 2. **Resolved (MC-300).** The U-13 Owner-only linking interpretation and the U-15 Owner-confirmation boundary are retained as written. Delegation of either remains undecided.
 3. **Resolved (MC-300).** The U-15 acceptance condition is clarified to threshold-driven alerts and actions, and manual reorder workflows are excluded from it.
 4. **Resolved (MC-300).** The U-01 capability 5 numbering inconsistency in the quoted annex text is identified in entry 1. The quote itself is unchanged.
-5. **Status lines — OPEN.** Records 07 and 08 still read "PROPOSED" although they are merged. No post-merge verification records are in the repository. This publication relies on the relayed instruction.
+5. **Status lines (administrative observation).** Records 07 and 08 still read "PROPOSED" although they are merged. No post-merge verification records are in the repository. This publication relies on the relayed instruction.
 
 **STOP FOR MISSION CONTROL SUBSTANTIVE REVIEW.** No FCTM population, Stage 3 lock, Stage 4, implementation, provider operation or SB-P-1.16 reopening.
