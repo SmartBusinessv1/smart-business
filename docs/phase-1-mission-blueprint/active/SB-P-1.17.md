@@ -19,7 +19,7 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; closed and verified (MC-316, relayed). Records: `mission-control/09-stage3-founder-decision-gate-record.md` (blob `4820485e`), `mission-control/10-stage3-completion-and-handover-record.md` (blob `f250e9eb`; PR #996) |
 | Governing Build Plan section | Build Plan §10.6 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 7 Stock, Supplier & Reorder Intelligence (`65ad91b2`); Contract 13 POS Connection, Counter Intelligence & Closing Cash (`4426e8b1`); Contract 17 Operational Dashboard & Manager Workspace (`7943f74a`); Global Product Completion View (`ee76d920`) |
-| Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `82dea143` (PR #995, with the `17:FPDR-7` row citations added at MC-368A): 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISSION`, 24 `NOT APPLICABLE`, 31 `OUT OF BUILD SCOPE`, 5 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d` (PR #995, with the `17:FPDR-7` row citations added at MC-368A and the G10-07 traceability corrections at MC-380A): 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISSION`, 24 `NOT APPLICABLE`, 31 `OUT OF BUILD SCOPE`, 5 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
 | Founder Product Decision Record | `communication/missions/SB-P-1.17/claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md`, blob `90b7ca1d` (PR #994): `17:FPDR-1` to `17:FPDR-6`. `17:FPDR-7`: `communication/missions/SB-P-1.17/claude-code/15-stage5-founder-product-decision-record-17-fpdr-7.md`, blob `e9f2cacb` (PR #1002). Upstream decisions are cited with their mission namespace (`12:FR-04`, `12:FR-06`, `12:FR-09`, `14:FPDR-1`, `16:FPDR-1`) |
 | Stage 3 reconciliation | `communication/missions/SB-P-1.17/claude-code/11-stage3-decision-integration-and-reconciliation.md`, blob `d333ce6e` |
 | Mission Truth Pack | `communication/missions/SB-P-1.17/claude-code/03-stage2-mission-truth-pack.md`, blob `8d541153` (Parts A–D), read with the derived-constraint corrections of the reconciliation Section C |
@@ -508,7 +508,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 ### 10.1 Founder decisions (by reference)
 
-The six decisions in the Founder Product Decision Record (blob `90b7ca1d`) govern this Blueprint. Each carries the Founder's verbatim statement selecting Option A, and the collective confirmation is in the record's Section 0.2. `17:FPDR-7` is recorded separately (blob `e9f2cacb`, PR #1002) and carries the Founder's verbatim direction. For the six, the text quoted below is the **canonical selected option text** the record quotes from the annex or the U-15 addendum, not new Founder wording; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (43 rows, 45 references in total, verified on FCTM blob `82dea143`; before MC-368A, 21 rows and 22 references). Consequential, cross-mission and no-citation rows are mapped in the Stage 3 reconciliation Section B without FCTM citations.
+The six decisions in the Founder Product Decision Record (blob `90b7ca1d`) govern this Blueprint. Each carries the Founder's verbatim statement selecting Option A, and the collective confirmation is in the record's Section 0.2. `17:FPDR-7` is recorded separately (blob `e9f2cacb`, PR #1002) and carries the Founder's verbatim direction. For the six, the text quoted below is the **canonical selected option text** the record quotes from the annex or the U-15 addendum, not new Founder wording; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (43 rows, 45 references in total, verified on FCTM blob `cb79088d`; before MC-368A, 21 rows and 22 references). Consequential, cross-mission and no-citation rows are mapped in the Stage 3 reconciliation Section B without FCTM citations.
 
 **`17:FPDR-1` — U-01 Manager delegation** (record entry 1)
 
@@ -731,7 +731,7 @@ Owned by another contract or another mission's canonical FCTM. This mission cons
 | 7-§15-2a | C7@65ad91b2 | §15 b2: document/CSV import with preview and idempotency (opening-stock slice) | DELEGATED | SB-P-1.14 | L-DEL14; I-14 (7-§15-2a IN SCOPE SB-P-1.14) | — |
 | 17-§12-1 | C17@7943f74a | §12 p1: browse/search permitted documents through the shared UDI/Receipt foundation | DELEGATED | SB-P-1.14 | L-DEL14; I-14 (17-§12-1 IN SCOPE SB-P-1.14) | — |
 | 17-§12-2 | C17@7943f74a | §12 p2: richer visual filtering preserves the same storage/permission truth | DELEGATED | SB-P-1.14 | L-DEL14; I-14 (17-§12-2 IN SCOPE SB-P-1.14) | — |
-| 22-§4 | C22@61e1bb91 | §4 Business Memory Foundation incl. suppliers (b3) and inventory/catalog (b4) | DELEGATED | SB-P-1.14 | L-DEL14; I-12 (22-§4 ASSIGNED SB-P-1.14); I-14 (22-§4-4) | — |
+| 22-§4 | C22@61e1bb91 | §4 Business Memory Foundation incl. suppliers (b3) and inventory/catalog (b4) | DELEGATED | SB-P-1.14 | L-DEL14; I-12 (22-§4 ASSIGNED SB-P-1.14); I-14 (22-§4-2, linked domain facts; the no-second-truth prohibition 22-§4-4 stays IN SCOPE SB-P-1.14) | — |
 | 25-§6-1 | C25@406ce089 | §6 the storage foundation serves listed dependent features incl. Stock/Supplier/Reorder documents (b8) | DELEGATED | SB-P-1.14 | L-DEL14; I-14 (25-§6-1; 'others reuse in their missions') | — |
 | BP-§11-3 | BP@9dfdd924 | §11 SB-P-1.14 Business Memory/UDI underpins onboarding imports and document inputs | DELEGATED | SB-P-1.14 | L-DEL14; BP §11 | — |
 | GPCV-§11-1 | GPCV@ee76d920 | §11 opening-stock disposition: product capability PRESERVE — STILL CURRENT / BUILD NOW | DELEGATED | SB-P-1.14 | L-DEL14; GPCV §11; I-14 (7-§6-2); consumed by BP-§10.6-W12 | — |
@@ -741,7 +741,7 @@ Owned by another contract or another mission's canonical FCTM. This mission cons
 | FCTM row | Source @ blob | Exact source pointer | Disposition | Owning mission | Citation | Founder decision |
 |---|---|---|---|---|---|---|
 | 2-§3-5 | C2@53635557 | §3 b4 <Owner>: ask about cash, expenses, credits, stock, supplier history, operations | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§3-5 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
-| 2-§5-13 | C2@53635557 | §5.2 b9: advisory example — can I safely consider a large stock purchase? | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§5-13 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
+| 2-§5-12 | C2@53635557 | §5.2 b9: advisory example — can I safely consider a large stock purchase? | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§5-12 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
 | 2-§7-10 | C2@53635557 | §7 b6: Ask CFO must not modify stock merely because a question was asked | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§7-10 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
 | 2-§10-4 | C2@53635557 | §10 b2: business context — low stock is intentional | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§10-4 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
 | 2-§10-6 | C2@53635557 | §10 b4: business context — an unusual discount was authorized for a customer relationship | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (2-§10-6 IN SCOPE SB-P-1.15); SB-P-1.17 supplies the governed reader | — |
@@ -772,7 +772,7 @@ Owned by another contract or another mission's canonical FCTM. This mission cons
 | 11-§8-3 | C11@e802745a | §8 b3: cross-feature reuse — supplier/reorder follow-up | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§8-3 IN SCOPE SB-P-1.15); consumer here: 7-§12-4 | — |
 | 11-§8-5 | C11@e802745a | §8 b5: cross-feature reuse — stock/expiry review | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§8-5 IN SCOPE SB-P-1.15); consumer here: 7-§12-4 | — |
 | 11-§9-2 | C11@e802745a | §9 b2: reminder vs business event — 'supplier order was placed' is a business event | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§9-2 IN SCOPE SB-P-1.15); consumer here: 7-§5-1 | — |
-| 11-§10-3 | C11@e802745a | §10 b3: reminder → consequential action 'Approve reorder' | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§10-3 IN SCOPE SB-P-1.15); consumer here: 7-§5-1; BP-§10.6-A3 | — |
+| 11-§10-4 | C11@e802745a | §10 b3: reminder → consequential action 'Approve reorder' | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§10-4 IN SCOPE SB-P-1.15); consumer here: 7-§5-1; BP-§10.6-A3 | — |
 | 11-§12-1 | C11@e802745a | §12 p2: reorder example — low stock → suggest → Owner reviews/approves/edits/defers/cancels | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§12-1 IN SCOPE SB-P-1.15); consumer here: 7-§5-1; BP-§10.6-A1–A4 | — |
 | 11-§12-2 | C11@e802745a | §12 p3: automatic reorder only within a valid bounded standing rule's exact scope | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§12-2 IN SCOPE SB-P-1.15); consumer here: 7-§5-2; 7-§15-8 | — |
 | 11-§12-3 | C11@e802745a | §12 p4: a historical background trigger is not authority by itself | DELEGATED | SB-P-1.15 | L-DEL15; I-15 (11-§12-3 IN SCOPE SB-P-1.15); consumer here: 7-§5-3 | — |
@@ -906,7 +906,7 @@ SB-P-1.12, SB-P-1.13, SB-P-1.14, SB-P-1.15 and SB-P-1.16 provide locked specific
 
 ### 12.2 Dependency codes on `IN SCOPE` rows
 
-Counts are taken from the canonical FCTM Dependency column (blob `82dea143`); a row may carry several codes. 76 `IN SCOPE` rows carry no dependency.
+Counts are taken from the canonical FCTM Dependency column (blob `cb79088d`); a row may carry several codes. 76 `IN SCOPE` rows carry no dependency.
 
 | Code | Dependency | `IN SCOPE` rows | State |
 |---|---|---|---|
@@ -1134,6 +1134,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.2 | 2026-10-20 | Claude Code (Definition Actor, MC-323 / MC-324) | Stage 5 finding: §6 Manager permission wording clarified (Reference Cost and margin separately grantable under `12:FR-04` F-03; `12:FR-09` cited for margin intelligence; `17:FPDR-4` retained). No row, decision, scenario or other definition changed |
 | 0.3 | 2026-10-21 | Claude Code (Definition Actor, MC-353) | Gate 10 documentary corrections C-1 to C-5 for the 25 MC-349 findings: §8.3, §8.7, §8.9 permissive-list notes (annex §C-2); §12.4 Build Plan §5.1 gate, §5.3 delivery chain and §6.3 storage pointer; §14 GPCV update rule; §15.5 Build Plan §13 evidence rules. C-1 and C-3 mappings in the annex. No row, disposition, owner, commitment, classification, decision, scenario, seed or hold changed |
 | 0.4 | 2026-10-21 | Claude Code (Definition Actor, MC-368A) | `17:FPDR-7` synchronization with the FCTM: Metadata decision and FCTM references; §10.1 `17:FPDR-7` entry and citation totals (43 rows, 45 references); the 23 §19 lines regenerated from the FCTM (Founder-decision cell, verification seed, §10.1 location) and the §19 FCTM blob. No row ID, disposition, owner, commitment, classification, source pointer, mandatory capability or Founder scenario changed |
+| 0.5 | 2026-10-21 | Claude Code (Definition Actor, MC-380A) | G10-07 traceability corrections synchronized with the FCTM: §11.2 and §19 now use the SB-P-1.15 identifiers `2-§5-12` (was `2-§5-13`) and `11-§10-4` (was `11-§10-3`) for the same source units; the §11.2 `22-§4` citation now names SB-P-1.14 `22-§4-2`; the §19 `24-§18-3` locator now covers n13–n18; current FCTM blob references updated. No source unit, disposition, owner, commitment, classification, decision, seed, mandatory capability or Founder scenario changed |
 
 ## 19. Governance History
 
@@ -1157,7 +1158,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
-This is a complete accounting of all FCTM rows (blob `82dea143`), in FCTM order. Each line gives:
+This is a complete accounting of all FCTM rows (blob `cb79088d`), in FCTM order. Each line gives:
 
 - the disposition and owning mission, exactly as in the FCTM;
 - the source and exact pointer, exactly as in the FCTM;
@@ -1607,7 +1608,7 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 1-§26-5 | DELEGATED | SB-P-1.18 | C1@b392c8cb | §26 n5: out-of-stock item → respectful substitution flow | §11.2 | — | — |
 | 1-§27-8 | DELEGATED | SB-P-1.18 | C1@b392c8cb | §27 b8: dependency on Inventory/Catalog for availability-aware flows | §11.2 | — | — |
 | 2-§3-5 | DELEGATED | SB-P-1.15 | C2@53635557 | §3 b4 <Owner>: ask about cash, expenses, credits, stock, supplier history, operations | §11.2 | — | — |
-| 2-§5-13 | DELEGATED | SB-P-1.15 | C2@53635557 | §5.2 b9: advisory example — can I safely consider a large stock purchase? | §11.2 | — | — |
+| 2-§5-12 | DELEGATED | SB-P-1.15 | C2@53635557 | §5.2 b9: advisory example — can I safely consider a large stock purchase? | §11.2 | — | — |
 | 2-§7-10 | DELEGATED | SB-P-1.15 | C2@53635557 | §7 b6: Ask CFO must not modify stock merely because a question was asked | §11.2 | — | — |
 | 2-§10-4 | DELEGATED | SB-P-1.15 | C2@53635557 | §10 b2: business context — low stock is intentional | §11.2 | — | — |
 | 2-§10-6 | DELEGATED | SB-P-1.15 | C2@53635557 | §10 b4: business context — an unusual discount was authorized for a customer relationship | §11.2 | — | — |
@@ -1663,7 +1664,7 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 11-§8-3 | DELEGATED | SB-P-1.15 | C11@e802745a | §8 b3: cross-feature reuse — supplier/reorder follow-up | §11.2 | — | — |
 | 11-§8-5 | DELEGATED | SB-P-1.15 | C11@e802745a | §8 b5: cross-feature reuse — stock/expiry review | §11.2 | — | — |
 | 11-§9-2 | DELEGATED | SB-P-1.15 | C11@e802745a | §9 b2: reminder vs business event — 'supplier order was placed' is a business event | §11.2 | — | — |
-| 11-§10-3 | DELEGATED | SB-P-1.15 | C11@e802745a | §10 b3: reminder → consequential action 'Approve reorder' | §11.2 | — | — |
+| 11-§10-4 | DELEGATED | SB-P-1.15 | C11@e802745a | §10 b3: reminder → consequential action 'Approve reorder' | §11.2 | — | — |
 | 11-§12-1 | DELEGATED | SB-P-1.15 | C11@e802745a | §12 p2: reorder example — low stock → suggest → Owner reviews/approves/edits/defers/cancels | §11.2 | — | — |
 | 11-§12-2 | DELEGATED | SB-P-1.15 | C11@e802745a | §12 p3: automatic reorder only within a valid bounded standing rule's exact scope | §11.2 | — | — |
 | 11-§12-3 | DELEGATED | SB-P-1.15 | C11@e802745a | §12 p4: a historical background trigger is not authority by itself | §11.2 | — | — |
@@ -1713,7 +1714,7 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 24-§6-2 | DELEGATED | SB-P-1.13 | C24@0c1dcbb2 | §6 distinguish intent classes (illustrative list incl. inventory/stock update, supplier/reorder action) | §11.2 | — | — |
 | 24-§9-2 | DELEGATED | SB-P-1.13 | C24@0c1dcbb2 | §9 possible context sources (illustrative; incl. suppliers, inventory/catalog, POS/counter) | §11.2 | — | — |
 | 24-§10-10 | DELEGATED | SB-P-1.13 | C24@0c1dcbb2 | §10 example: supplier/customer conversation must not expose internal merchant data | §11.2 | — | — |
-| 24-§18-3 | IN SCOPE | SB-P-1.17 | C24@0c1dcbb2 | §18 example Stock → Reorder → Supplier → Reminder (n13–n17; follow-up uses the shared Reminder Engine) | §8.4, §12, §15 | RT; FRV-A | — |
+| 24-§18-3 | IN SCOPE | SB-P-1.17 | C24@0c1dcbb2 | §18 example Stock → Reorder → Supplier → Reminder (n13–n18; n18: follow-up uses the shared Reminder Engine) | §8.4, §12, §15 | RT; FRV-A | — |
 | 24-§21-3 | IN SCOPE | SB-P-1.17 | C24@0c1dcbb2 | §21 confirmation required for supplier orders | §8.4, §12 | RT; NEG | — |
 | 25-§6-1 | DELEGATED | SB-P-1.14 | C25@406ce089 | §6 the storage foundation serves listed dependent features incl. Stock/Supplier/Reorder documents (b8) | §11.2 | — | — |
 | BP-§3-1 | IN SCOPE | SB-P-1.17 | BP@9dfdd924 | §3 core philosophy: respect existing merchant habits; enrich rather than replace; human decision ownership visible | §8.7, §10.2 | EXP | — |
