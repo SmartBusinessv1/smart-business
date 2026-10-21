@@ -48,6 +48,13 @@ Five lists are introduced by permissive wording ("may include", "may identify �
 | **Conditionally mandatory** | Required once the original source's own stated condition is met ("where authorized", a connected source supplying the field, an enabled add-on). | Verified when the condition holds; otherwise the honest-absence or limitation behaviour is verified. |
 | **Permissive implementation example** | An optional presentation, signal or adaptation approach. **Supporting data alone does not make it mandatory.** | Verified only if the EIS adopts it. The governing mandatory rule of the same section (truthfulness, authorization, entitlement, no accusation, useful-work priority) is verified in every case. |
 
+**Canonical Founder decision `17:FPDR-7`.** The Founder confirmed this reading in `17:FPDR-7`:
+- examples introduced permissively remain optional implementation approaches unless another approved source, Founder decision or acceptance requirement independently makes them mandatory;
+- the decision must not weaken required stock, supplier, POS, counter intelligence, closing-cash, authorization, financial privacy or Founder Runtime Verification capabilities;
+- the mere availability of supporting data is not an obligation to implement every optional presentation or adaptation.
+
+The record is `communication/missions/SB-P-1.17/claude-code/15-stage5-founder-product-decision-record-17-fpdr-7.md` (blob `e9f2cacb`), merged to `main` by the Founder in PR #1002 (`a3f4b8f1`). Its Section 1 holds the verbatim direction and prevails over this summary. This annex applies `17:FPDR-7` by reference and does not extend it.
+
 **Rules of this annotation (MC-358):**
 
 - **FCTM unchanged.** No FCTM row is removed or edited. Every row keeps its kind, disposition, owner, commitment, classification and verification seed as recorded.
@@ -145,7 +152,12 @@ The five lists hold 41 items: 40 classified (12 + 5 + 23) and 1 unchanged later-
   - Every `NEG` row and every authorization rule is unchanged.
 - **FCTM untouched.** The FCTM is not edited: kinds, dispositions and seeds stay as recorded.
 - **Precedent:** SB-P-1.13 treated illustrative lists the same way (`24-§6-2`, `24-§9-2`), accepted canonically.
-- **Open T7 question for Mission Control.** The FCTM still records the 23 permissive examples as `OBL` with runtime seeds, while this annex reads them as optional approaches. No acceptance obligation changes, so I did not stop. But if Mission Control or the Founder considers that the reading itself narrows an approved obligation, it is a Source 18 T7 matter and should go to the Founder before Gate 10 relies on it. Any later FCTM annotation of these rows would need its own authorization.
+- **T7 interpretation question: resolved by the Founder.** At MC-358 this annex asked whether reading the 23 permissive examples as optional approaches narrows an approved obligation. The Founder has resolved that question by `17:FPDR-7`: the examples remain optional unless independently made mandatory, and the required capabilities are not weakened.
+- **Still pending.** The FCTM still records the 23 rows as `OBL` with runtime seeds and without a `17:FPDR-7` citation. Two steps remain before Gate 10 acceptance (`17:FPDR-7` Section 1, paragraph 3):
+  - FCTM row-level reconciliation of the 23 rows through Source 18;
+  - independent verification.
+
+  This annex neither performs nor pre-approves that reconciliation, which needs its own authorization.
 
 ## C-3. Build Plan §3 Lighthouse principles — existing coverage
 
