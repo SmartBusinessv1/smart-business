@@ -183,11 +183,12 @@ Implementation evidence is **repository text at `main@44895d2c` only** (Truth Pa
 | `L-X20` | Native slice here; WhatsApp-channel slice belongs to SB-P-1.20 (BP §9 row 9) |
 | `L-NEG` | Contract's own non-goal or must-not, checked as must-not-appear |
 | `L-NARR`, `L-HIST`, `L-PROV`, `L-DEP` | Narrative, historical, provenance or dependency cross-reference content |
+| `PERM-EX (17:FPDR-7)` | Permissive implementation example. The source introduces the item permissively, and no other approved source, Founder decision or acceptance requirement makes it mandatory (`17:FPDR-7`). Optional; verified only if the EIS adopts it. The section's mandatory rules (truthfulness, authorization, entitlement, financial privacy, neutral non-accusatory review, useful-work priority) are verified in every case. Kind, disposition, owner, commitment and classification are unchanged. Applied at MC-368A to the 23 rows classified in the Gate 10 annex `14-stage5-gate10-documentary-corrections.md` §C-2.6 |
 | `U-nn`, `Δ-nn`, `DC-nn` | Truth Pack Part D unresolved item, Part C Delta item, Part B derived constraint (`03-stage2-mission-truth-pack.md`) |
 
 ### 0.8 Founder decision IDs
 
-Namespaced by mission. `12:FR-04` and `12:FR-09`: SB-P-1.12 Founder Decision Records 04 (F-02 multiple strictly isolated memberships; F-03 Reference Cost and margin individually delegable, Owner-only by default) and 09 (Reference Cost and margin output boundary). `14:FPDR-1`: SB-P-1.14 decision underlying `EIS14-LDG-02` credit direction (`owed_to_business` / `owed_by_business`). `16:FPDR-1`: SB-P-1.16 shared customer identity; "SB-P-1.17 and SB-P-1.18 retain their approved later directory, search and related capabilities". No SB-P-1.17 Founder decision exists.
+Namespaced by mission. `12:FR-04` and `12:FR-09`: SB-P-1.12 Founder Decision Records 04 (F-02 multiple strictly isolated memberships; F-03 Reference Cost and margin individually delegable, Owner-only by default) and 09 (Reference Cost and margin output boundary). `14:FPDR-1`: SB-P-1.14 decision underlying `EIS14-LDG-02` credit direction (`owed_to_business` / `owed_by_business`). `16:FPDR-1`: SB-P-1.16 shared customer identity; "SB-P-1.17 and SB-P-1.18 retain their approved later directory, search and related capabilities". SB-P-1.17 decisions: `17:FPDR-1` to `17:FPDR-6` (`communication/missions/SB-P-1.17/claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md`, PR #994; row citations added at PR #995) and `17:FPDR-7`, permissive implementation examples (`communication/missions/SB-P-1.17/claude-code/15-stage5-founder-product-decision-record-17-fpdr-7.md`, PR #1002; row citations added at MC-368A). The records prevail over any summary here. At the Stage 2 baseline no SB-P-1.17 Founder decision existed; this legend was updated at MC-368A.
 
 ### 0.9 Identifier preservation and inherited-row reconciliation
 
@@ -218,7 +219,7 @@ The five upstream FCTMs hold 157 lines naming SB-P-1.17 or a C7, C13 or C17 iden
 
 ### 0.10 Verification target seeds
 
-`RT` functional runtime test; `NEG` negative or denial test; `IDEM` duplicate, retry and replay test; `INSP` design or document inspection (reuse and rule rows); `EXP` experience and language review; `FRV-A`, `FRV-B` Founder-reserved Build Plan §10.6 Scenarios A and B; `GATE` completion accounting. These are planning seeds for the Stage 4 Verification mapping, not tests, results or evidence.
+`RT` functional runtime test; `NEG` negative or denial test; `IDEM` duplicate, retry and replay test; `INSP` design or document inspection (reuse and rule rows); `EXP` experience and language review; `FRV-A`, `FRV-B` Founder-reserved Build Plan §10.6 Scenarios A and B; `GATE` completion accounting. These are planning seeds for the Stage 4 Verification mapping, not tests, results or evidence. On a `PERM-EX` row (`17:FPDR-7`, MC-368A), `RT if adopted` and `EXP if adopted` apply only to an approach the EIS adopts, and `FRV-B only if used as the Scenario B signal` keeps the Scenario B seed for a permissive signal used to demonstrate Scenario B. Scenario B itself stays carried, unqualified, by `BP-§10.6-B1`, `BP-§10.6-B2`, `13-§8-1`, `13-§8-2`, `13-§21-5` and the neutral-language rows `13-§8-8` to `13-§8-10`, `17-§8-3`, `17-§8-6` and `BP-§10.6-E2`.
 
 ### 0.11 Expansion method
 
@@ -246,10 +247,10 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 7-§3-2 | C7@65ad91b2 | §3 b1: supplier name/contact; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12 | NI-SUP; I-12 (7-§3); I-16 (7-§3); A-BP106 | — | A | RT |
 | 7-§3-3 | C7@65ad91b2 | §3 b2: supplied products/items; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12 | NI-SUP; I-12 (7-§3); I-16 (7-§3); A-BP106 | — | A | RT |
 | 7-§3-4 | C7@65ad91b2 | §3 b3: purchase history; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D14 | NI-SUP; F-TXN (free-text party only); I-12 (7-§3); U-13 | 17:FPDR-5 | A | RT |
-| 7-§3-5 | C7@65ad91b2 | §3 b4: recent/typical prices where supported; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D14 | NI-SUP; I-12 (7-§3); DC-05; U-06 | 12:FR-09; 17:FPDR-4 | A | RT |
+| 7-§3-5 | C7@65ad91b2 | §3 b4: recent/typical prices where supported; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D14 | NI-SUP; I-12 (7-§3); DC-05; U-06; PERM-EX (17:FPDR-7) | 12:FR-09; 17:FPDR-4; 17:FPDR-7 | A | RT if adopted |
 | 7-§3-6 | C7@65ad91b2 | §3 b5: order/communication history; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; DNTF | NI-SUP; I-12 (7-§3); U-05 | 17:FPDR-3 | A | RT |
 | 7-§3-7 | C7@65ad91b2 | §3 b6: payment/credit relationship where authorized; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D14; DTX; D16 | NI-SUP; I-16 (7-§3; supplier-side owed_by_business); DC-04; U-07 | 14:FPDR-1 | A | RT |
-| 7-§3-8 | C7@65ad91b2 | §3 b7: preferred/alternate supplier context. | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12 | NI-SUP; I-12 (7-§3); I-16 (7-§3); A-BP106 | — | A | RT |
+| 7-§3-8 | C7@65ad91b2 | §3 b7: preferred/alternate supplier context. | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12 | NI-SUP; I-12 (7-§3); I-16 (7-§3); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | A | RT if adopted |
 | 7-§3-9 | C7@65ad91b2 | §3 p3: Suppliers do not receive merchant business intelligence. | NEG | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12 | L-NEG; I-12 (7-§3); 21-§13-1 (SB-P-1.12) | — | A | NEG |
 | 7-§4-1 | C7@65ad91b2 | §4 p1: Smart Business may suggest that stock needs replenishment based on authorized data. | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D13; D14 | NI-RO; I-12 (7-§4); A-BP106 | — | B | RT; FRV-A |
 | 7-§4-2 | C7@65ad91b2 | §4 b1: current stock; | OBL | BUILD NOW | MGR/ADDON | SB-P-1.17 | IN SCOPE | D12; D13; D14 | NI-RO; I-12 (7-§4); A-BP106 | — | B | RT; FRV-A |
@@ -394,11 +395,11 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 13-§7-5 | C13@4426e8b1 | §7 p2: Conflicts between POS, manual stock, imports or documents must not be silently guessed. The… | RULE | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS; D14 | NI-POS; DC-08; 7-§7-4 | — | C | RT; NEG |
 | 13-§8-1 | C13@4426e8b1 | §8 b1: voids; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
 | 13-§8-2 | C13@4426e8b1 | §8 b2: unusually high discount activity; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
-| 13-§8-3 | C13@4426e8b1 | §8 b3: repeated reversals; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
-| 13-§8-4 | C13@4426e8b1 | §8 b4: unexpected price overrides; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
-| 13-§8-5 | C13@4426e8b1 | §8 b5: unusual transaction timing/frequency; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
+| 13-§8-3 | C13@4426e8b1 | §8 b3: repeated reversals; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review'); PERM-EX (17:FPDR-7) | 17:FPDR-7 | D | RT if adopted; FRV-B only if used as the Scenario B signal |
+| 13-§8-4 | C13@4426e8b1 | §8 b4: unexpected price overrides; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review'); PERM-EX (17:FPDR-7) | 17:FPDR-7 | D | RT if adopted; FRV-B only if used as the Scenario B signal |
+| 13-§8-5 | C13@4426e8b1 | §8 b5: unusual transaction timing/frequency; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review'); PERM-EX (17:FPDR-7) | 17:FPDR-7 | D | RT if adopted; FRV-B only if used as the Scenario B signal |
 | 13-§8-6 | C13@4426e8b1 | §8 b6: closing-cash variance; | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS; D14 | NI-CC; A-BP106 | — | D | RT; FRV-B |
-| 13-§8-7 | C13@4426e8b1 | §8 b7: other evidence-backed counter signals. | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | RT; FRV-B |
+| 13-§8-7 | C13@4426e8b1 | §8 b7: other evidence-backed counter signals. | OBL | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review'); PERM-EX (17:FPDR-7) | 17:FPDR-7 | D | RT if adopted; FRV-B only if used as the Scenario B signal |
 | 13-§8-8 | C13@4426e8b1 | §8 p2: The product should present these as review signals, not accusations. | RULE | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | DPOS | NI-POS; A-BP106 ('neutral counter review') | — | D | EXP; FRV-B |
 | 13-§8-9 | C13@4426e8b1 | §8 p4: Please review this counter activity. These voids/discounts are higher than the recent patte… | EXP | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | — | A-BP106; illustrative wording, not fixed copy | — | D | EXP; FRV-B |
 | 13-§8-10 | C13@4426e8b1 | §8 p6: This employee is stealing. | NEG | BUILD NOW | MGR-CORE | SB-P-1.17 | IN SCOPE | — | L-NEG; BP-§16-2; GPCV-§9-2 | — | D | NEG; FRV-B |
@@ -532,11 +533,11 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 17-§3-5 | C17@7943f74a | §3 b5: Same Business Memory/permissions across every surface. | PRIN | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | I-12 (17-§3, expanded here); A-BP106 | — | E | EXP; INSP |
 | 17-§3-6 | C17@7943f74a | §3 b6: Stable/testable UI where practical. | PRIN | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | — | I-12 (17-§3, expanded here); A-BP106 | — | E | EXP; INSP |
 | 17-§3-7 | C17@7943f74a | §3 b7: No form clutter merely because backend fields exist. | PRIN | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | — | I-12 (17-§3, expanded here); A-BP106 | — | E | EXP; INSP |
-| 17-§4-1 | C17@7943f74a | §4 b1: business identity; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH (business identity cards); I-12 (17-§4) | — | E | RT |
-| 17-§4-2 | C17@7943f74a | §4 b2: transaction/business-memory views; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
-| 17-§4-3 | C17@7943f74a | §4 b3: credit awareness; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
+| 17-§4-1 | C17@7943f74a | §4 b1: business identity; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH (business identity cards); I-12 (17-§4); PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§4-2 | C17@7943f74a | §4 b2: transaction/business-memory views; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§4-3 | C17@7943f74a | §4 b3: credit awareness; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
 | 17-§4-4 | C17@7943f74a | §4 b4: document/receipt memory; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
-| 17-§4-5 | C17@7943f74a | §4 b5: reminders; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D15 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
+| 17-§4-5 | C17@7943f74a | §4 b5: reminders; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D15 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
 | 17-§4-6 | C17@7943f74a | §4 b6: Ask CFO access; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D15 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
 | 17-§4-7 | C17@7943f74a | §4 b7: Daily Intelligence; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D15 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
 | 17-§4-8 | C17@7943f74a | §4 b8: enabled add-ons. | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; DENT | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
@@ -544,8 +545,8 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 17-§4-10 | C17@7943f74a | §4 b10: suppliers/reorder; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | B | RT |
 | 17-§4-11 | C17@7943f74a | §4 b11: POS/counter intelligence; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; DPOS | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | C | RT |
 | 17-§4-12 | C17@7943f74a | §4 b12: closing cash; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | D | RT |
-| 17-§4-13 | C17@7943f74a | §4 b13: operational trends; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | RT |
-| 17-§4-14 | C17@7943f74a | §4 b14: deeper role-appropriate analytics; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§4); DC-05 | 12:FR-09 | E | RT |
+| 17-§4-13 | C17@7943f74a | §4 b13: operational trends; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§4-14 | C17@7943f74a | §4 b14: deeper role-appropriate analytics; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§4); DC-05; PERM-EX (17:FPDR-7) | 12:FR-09; 17:FPDR-7 | E | RT if adopted |
 | 17-§4-15 | C17@7943f74a | §4 b15: staff/HR/order-delivery views when add-ons are enabled. | OBL | BUILD NOW | MGR+LDG | SB-P-1.18 | ASSIGNED TO LATER MISSION | D18 | A-BP107; I-12 (17-§9, 17-§10 ASSIGNED SB-P-1.18) | — | — | — |
 | 17-§4-16 | C17@7943f74a | §4 p4: The exact navigation may evolve; capability truth remains governed by feature contracts. | RULE | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§4); I-16 (17-§4); A-BP106 | — | E | INSP |
 | 17-§5-1 | C17@7943f74a | §5 p1: Conversation Workspace is an explicit first-class app component | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | DELEGATED | D13 | L-DEL13; I-13 (17-§5-1 IN SCOPE SB-P-1.13) | — | E | — |
@@ -556,12 +557,12 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 17-§5-6 | C17@7943f74a | §5 b4: shared Human Language Layer | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | DELEGATED | D13 | L-DEL13; I-13 (17-§5-6 IN SCOPE SB-P-1.13) | — | E | — |
 | 17-§5-7 | C17@7943f74a | §5 b5: shared feature action services | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | DELEGATED | D13 | L-DEL13; I-13 (17-§5-7 IN SCOPE SB-P-1.13) | — | E | — |
 | 17-§5-8 | C17@7943f74a | §5 b6: shared document/reminder/intelligence foundations | OBL | BUILD NOW | MGR+LDG | SB-P-1.13 | DELEGATED | D13 | L-DEL13; I-13 (17-§5-8 IN SCOPE SB-P-1.13) | — | E | — |
-| 17-§6-1 | C17@7943f74a | §6 b1: today/period sales/income; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106 | — | E | RT |
-| 17-§6-2 | C17@7943f74a | §6 b2: expenses/purchases; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106 | — | E | RT |
-| 17-§6-3 | C17@7943f74a | §6 b3: outstanding credit; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16 | NI-CRD; I-16 (17-§6 downstream consumer of SB-P-1.16 data); A-BP106 | — | E | RT |
-| 17-§6-4 | C17@7943f74a | §6 b4: recent activity; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106 | — | E | RT |
-| 17-§6-5 | C17@7943f74a | §6 b5: payment/reconciliation state; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16; DPAY | NI-PAY; I-16 (17-§6); A-BP106 | — | E | RT |
-| 17-§6-6 | C17@7943f74a | §6 b6: relevant comparisons/trends. | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106 | — | E | RT |
+| 17-§6-1 | C17@7943f74a | §6 b1: today/period sales/income; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§6-2 | C17@7943f74a | §6 b2: expenses/purchases; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§6-3 | C17@7943f74a | §6 b3: outstanding credit; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16 | NI-CRD; I-16 (17-§6 downstream consumer of SB-P-1.16 data); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§6-4 | C17@7943f74a | §6 b4: recent activity; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§6-5 | C17@7943f74a | §6 b5: payment/reconciliation state; | CONS | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D16; DPAY | NI-PAY; I-16 (17-§6); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§6-6 | C17@7943f74a | §6 b6: relevant comparisons/trends. | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
 | 17-§6-7 | C17@7943f74a | §6 p2: Exact metric availability depends on product plan, enabled add-ons and reliable data. | RULE | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; DENT | F-DASH (daily totals); I-12 (17-§6); I-14 (17-§6); I-16 (17-§6); A-BP106 | — | E | INSP; NEG |
 | 17-§6-8 | C17@7943f74a | §6 p3: Do not display fabricated derived metrics when underlying data is insufficient. | NEG | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | L-NEG; I-12 (17-§6); 2-§12-15 (SB-P-1.15) | — | E | NEG |
 | 17-§7-1 | C17@7943f74a | §7 b1: inventory quantity/state; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; D14 | F-INV; I-12 (17-§7); A-BP106 | — | A | RT |
@@ -597,12 +598,12 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 | 17-§14-6 | C17@7943f74a | §14 b5: enforce object/action scope | OBL | BUILD NOW | MGR+LDG | SB-P-1.12 | DELEGATED | D12 | L-DEL12; I-12 (17-§14-6 IN SCOPE SB-P-1.12); I-16 (17-§14); U-09 | — | E | — |
 | 17-§14-7 | C17@7943f74a | §14 p3: changing a UI component never widens backend access | NEG | BUILD NOW | MGR+LDG | SB-P-1.12 | DELEGATED | D12 | L-DEL12; I-12 (17-§14-7 IN SCOPE SB-P-1.12); I-16 (17-§14); U-09 | — | E | — |
 | 17-§15-1 | C17@7943f74a | §15 p1: The dashboard should prioritize useful work rather than display every possible module equal… | RULE | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | EXP |
-| 17-§15-2 | C17@7943f74a | §15 b1: Ledger vs Manager; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | RT |
-| 17-§15-3 | C17@7943f74a | §15 b2: enabled add-ons; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; DENT | F-DASH; I-12 (17-§15); A-BP106 | — | E | RT |
+| 17-§15-2 | C17@7943f74a | §15 b1: Ledger vs Manager; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§15-3 | C17@7943f74a | §15 b2: enabled add-ons; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12; DENT | F-DASH; I-12 (17-§15); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
 | 17-§15-4 | C17@7943f74a | §15 b3: role; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | RT |
-| 17-§15-5 | C17@7943f74a | §15 b4: unresolved tasks/exceptions; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | RT |
-| 17-§15-6 | C17@7943f74a | §15 b5: merchant business type; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | RT |
-| 17-§15-7 | C17@7943f74a | §15 b6: recently used features. | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106 | — | E | EXP |
+| 17-§15-5 | C17@7943f74a | §15 b4: unresolved tasks/exceptions; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§15-6 | C17@7943f74a | §15 b5: merchant business type; | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | RT if adopted |
+| 17-§15-7 | C17@7943f74a | §15 b6: recently used features. | OBL | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | D12 | F-DASH; I-12 (17-§15); A-BP106; PERM-EX (17:FPDR-7) | 17:FPDR-7 | E | EXP if adopted |
 | 17-§15-8 | C17@7943f74a | §15 p3: Avoid manipulative engagement design or fear-based upsell. | NEG | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | — | L-NEG; I-12 (17-§15); 18-§17-2 (SB-P-1.19) | — | E | NEG; EXP |
 | 17-§16-1 | C17@7943f74a | §16 p1: stable IDs/test hooks — for the §13/§14 permission surface (SB-P-1.12 slice) | RULE | BUILD NOW | MGR+LDG | SB-P-1.12 | DELEGATED | D12 | L-DEL12; I-12 (17-§16-1) | — | F | — |
 | 17-§16-2 | C17@7943f74a | §16 p1: stable IDs/test hooks — for the remaining Manager-depth workspace surface | RULE | BUILD NOW | MGR+LDG | SB-P-1.17 | IN SCOPE | — | F-DASH; I-12 (17-§16-2 ASSIGNED SB-P-1.17); A-BP106 | — | F | INSP |
@@ -960,9 +961,16 @@ C7, C13 and C17 are expanded completely: every bullet, numbered item and non-lea
 
 | Founder decision cited | Rows |
 |---|---|
+| `17:FPDR-7` | 23 |
+| `17:FPDR-2` | 11 |
 | `16:FPDR-1` | 5 |
 | `12:FR-09` | 4 |
+| `17:FPDR-1` | 3 |
+| `17:FPDR-3` | 3 |
 | `14:FPDR-1` | 2 |
+| `17:FPDR-4` | 2 |
+| `17:FPDR-6` | 2 |
+| `17:FPDR-5` | 1 |
 
 **Escalated rows:** none. **`ALREADY DEMONSTRATED` rows:** none. **`DEMONSTRATED` rows:** none.
 
