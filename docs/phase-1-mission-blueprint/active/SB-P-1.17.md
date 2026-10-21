@@ -19,8 +19,8 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; closed and verified (MC-316, relayed). Records: `mission-control/09-stage3-founder-decision-gate-record.md` (blob `4820485e`), `mission-control/10-stage3-completion-and-handover-record.md` (blob `f250e9eb`; PR #996) |
 | Governing Build Plan section | Build Plan §10.6 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 7 Stock, Supplier & Reorder Intelligence (`65ad91b2`); Contract 13 POS Connection, Counter Intelligence & Closing Cash (`4426e8b1`); Contract 17 Operational Dashboard & Manager Workspace (`7943f74a`); Global Product Completion View (`ee76d920`) |
-| Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `a335b040` (PR #995): 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISSION`, 24 `NOT APPLICABLE`, 31 `OUT OF BUILD SCOPE`, 5 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
-| Founder Product Decision Record | `communication/missions/SB-P-1.17/claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md`, blob `90b7ca1d` (PR #994): `17:FPDR-1` to `17:FPDR-6`. Upstream decisions are cited with their mission namespace (`12:FR-04`, `12:FR-06`, `12:FR-09`, `14:FPDR-1`, `16:FPDR-1`) |
+| Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `82dea143` (PR #995, with the `17:FPDR-7` row citations added at MC-368A): 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISSION`, 24 `NOT APPLICABLE`, 31 `OUT OF BUILD SCOPE`, 5 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Founder Product Decision Record | `communication/missions/SB-P-1.17/claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md`, blob `90b7ca1d` (PR #994): `17:FPDR-1` to `17:FPDR-6`. `17:FPDR-7`: `communication/missions/SB-P-1.17/claude-code/15-stage5-founder-product-decision-record-17-fpdr-7.md`, blob `e9f2cacb` (PR #1002). Upstream decisions are cited with their mission namespace (`12:FR-04`, `12:FR-06`, `12:FR-09`, `14:FPDR-1`, `16:FPDR-1`) |
 | Stage 3 reconciliation | `communication/missions/SB-P-1.17/claude-code/11-stage3-decision-integration-and-reconciliation.md`, blob `d333ce6e` |
 | Mission Truth Pack | `communication/missions/SB-P-1.17/claude-code/03-stage2-mission-truth-pack.md`, blob `8d541153` (Parts A–D), read with the derived-constraint corrections of the reconciliation Section C |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.16: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
@@ -508,7 +508,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 ### 10.1 Founder decisions (by reference)
 
-The six decisions in the Founder Product Decision Record (blob `90b7ca1d`) govern this Blueprint. Each carries the Founder's verbatim statement selecting Option A, and the collective confirmation is in the record's Section 0.2. The text quoted below is the **canonical selected option text** the record quotes from the annex or the U-15 addendum, not new Founder wording; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (21 rows, 22 references in total, verified on FCTM blob `a335b040`). Consequential, cross-mission and no-citation rows are mapped in the Stage 3 reconciliation Section B without FCTM citations.
+The six decisions in the Founder Product Decision Record (blob `90b7ca1d`) govern this Blueprint. Each carries the Founder's verbatim statement selecting Option A, and the collective confirmation is in the record's Section 0.2. `17:FPDR-7` is recorded separately (blob `e9f2cacb`, PR #1002) and carries the Founder's verbatim direction. For the six, the text quoted below is the **canonical selected option text** the record quotes from the annex or the U-15 addendum, not new Founder wording; where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (43 rows, 45 references in total, verified on FCTM blob `82dea143`; before MC-368A, 21 rows and 22 references). Consequential, cross-mission and no-citation rows are mapped in the Stage 3 reconciliation Section B without FCTM citations.
 
 **`17:FPDR-1` — U-01 Manager delegation** (record entry 1)
 
@@ -545,6 +545,16 @@ Applied in: Sections 8.3, 9. Rows citing it (1): `7-§3-4`.
 > An explained item-level threshold suggestion may appear. Nothing is activated until the Owner explicitly confirms or changes it.
 
 As clarified in the record's acceptance condition (MC-300), no threshold-driven alert and no threshold-driven reorder action becomes active before Owner confirmation; manual reorder workflows are unaffected; no universal numeric default. Applied in: Sections 8.2, 8.4, 9, 15. Rows citing it (2): `7-§2-6`, `7-§16-6`.
+
+**`17:FPDR-7` — Permissive implementation examples** (record `15-stage5-founder-product-decision-record-17-fpdr-7.md`, Section 1)
+
+> I confirm that examples introduced permissively in approved source contracts remain optional implementation approaches unless another approved source, Founder decision or acceptance requirement independently makes them mandatory.
+>
+> This decision must not weaken required stock, supplier, POS, counter intelligence, closing-cash, authorization, financial privacy, or Founder Runtime Verification capabilities.
+>
+> Avoid unnecessary feature expansion. Do not treat the mere availability of supporting data as an obligation to implement every optional presentation or adaptation.
+
+These are paragraphs 1, 2 and 4 of the Founder's verbatim direction. Paragraphs 3 and 5 (Source 18 reconciliation with independent verification before Gate 10 acceptance; no approval of PR #1001, Gate 10, Stage 6 or implementation) are in the record, which prevails. On the cited rows the FCTM evidence cell carries `PERM-EX (17:FPDR-7)` and the verification seed is qualified (`RT if adopted`, `EXP if adopted`, or `FRV-B only if used as the Scenario B signal`; FCTM §0.10). The 12 independently mandatory and 5 conditionally mandatory rows of the same lists, and Founder Scenarios A and B, are unchanged (Gate 10 annex §C-2.6). Applied in: Sections 8.3, 8.7, 8.9. Rows citing it (23): `7-§3-5`, `7-§3-8`, `13-§8-3`, `13-§8-4`, `13-§8-5`, `13-§8-7`, `17-§4-1`, `17-§4-2`, `17-§4-3`, `17-§4-5`, `17-§4-13`, `17-§4-14`, `17-§6-1`, `17-§6-2`, `17-§6-3`, `17-§6-4`, `17-§6-5`, `17-§6-6`, `17-§15-2`, `17-§15-3`, `17-§15-5`, `17-§15-6`, `17-§15-7`.
 
 ### 10.2 Standing rules by reference
 
@@ -1123,6 +1133,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.1 | 2026-10-20 | Claude Code (Definition Actor, MC-318 / MC-319) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `a335b040`), `17:FPDR-1` to `17:FPDR-6` and the Stage 3 reconciliation |
 | 0.2 | 2026-10-20 | Claude Code (Definition Actor, MC-323 / MC-324) | Stage 5 finding: §6 Manager permission wording clarified (Reference Cost and margin separately grantable under `12:FR-04` F-03; `12:FR-09` cited for margin intelligence; `17:FPDR-4` retained). No row, decision, scenario or other definition changed |
 | 0.3 | 2026-10-21 | Claude Code (Definition Actor, MC-353) | Gate 10 documentary corrections C-1 to C-5 for the 25 MC-349 findings: §8.3, §8.7, §8.9 permissive-list notes (annex §C-2); §12.4 Build Plan §5.1 gate, §5.3 delivery chain and §6.3 storage pointer; §14 GPCV update rule; §15.5 Build Plan §13 evidence rules. C-1 and C-3 mappings in the annex. No row, disposition, owner, commitment, classification, decision, scenario, seed or hold changed |
+| 0.4 | 2026-10-21 | Claude Code (Definition Actor, MC-368A) | `17:FPDR-7` synchronization with the FCTM: Metadata decision and FCTM references; §10.1 `17:FPDR-7` entry and citation totals (43 rows, 45 references); the 23 §19 lines regenerated from the FCTM (Founder-decision cell, verification seed, §10.1 location) and the §19 FCTM blob. No row ID, disposition, owner, commitment, classification, source pointer, mandatory capability or Founder scenario changed |
 
 ## 19. Governance History
 
@@ -1146,7 +1157,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
-This is a complete accounting of all FCTM rows (blob `a335b040`), in FCTM order. Each line gives:
+This is a complete accounting of all FCTM rows (blob `82dea143`), in FCTM order. Each line gives:
 
 - the disposition and owning mission, exactly as in the FCTM;
 - the source and exact pointer, exactly as in the FCTM;
@@ -1188,10 +1199,10 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 7-§3-2 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b1: supplier name/contact; | §8.3, §12 | RT | — |
 | 7-§3-3 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b2: supplied products/items; | §8.3, §12 | RT | — |
 | 7-§3-4 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b3: purchase history; | §8.3, §10.1, §12 | RT | 17:FPDR-5 |
-| 7-§3-5 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b4: recent/typical prices where supported; | §8.3, §10.1, §12 | RT | 12:FR-09; 17:FPDR-4 |
+| 7-§3-5 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b4: recent/typical prices where supported; | §8.3, §10.1, §12 | RT if adopted | 12:FR-09; 17:FPDR-4; 17:FPDR-7 |
 | 7-§3-6 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b5: order/communication history; | §8.3, §10.1, §12 | RT | 17:FPDR-3 |
 | 7-§3-7 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b6: payment/credit relationship where authorized; | §8.3, §12 | RT | 14:FPDR-1 |
-| 7-§3-8 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b7: preferred/alternate supplier context. | §8.3, §12 | RT | — |
+| 7-§3-8 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 b7: preferred/alternate supplier context. | §8.3, §10.1, §12 | RT if adopted | 17:FPDR-7 |
 | 7-§3-9 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §3 p3: Suppliers do not receive merchant business intelligence. | §8.3, §10.3, §12 | NEG | — |
 | 7-§4-1 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §4 p1: Smart Business may suggest that stock needs replenishment based on authorized data. | §8.4, §12 | RT; FRV-A | — |
 | 7-§4-2 | IN SCOPE | SB-P-1.17 | C7@65ad91b2 | §4 b1: current stock; | §8.4, §12 | RT; FRV-A | — |
@@ -1331,11 +1342,11 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 13-§7-5 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §7 p2: Conflicts between POS, manual stock, imports or documents must not be silently guessed. The… | §8.6, §10.2, §12 | RT; NEG | — |
 | 13-§8-1 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b1: voids; | §8.7, §12 | RT; FRV-B | — |
 | 13-§8-2 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b2: unusually high discount activity; | §8.7, §12 | RT; FRV-B | — |
-| 13-§8-3 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b3: repeated reversals; | §8.7, §12 | RT; FRV-B | — |
-| 13-§8-4 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b4: unexpected price overrides; | §8.7, §12 | RT; FRV-B | — |
-| 13-§8-5 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b5: unusual transaction timing/frequency; | §8.7, §12 | RT; FRV-B | — |
+| 13-§8-3 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b3: repeated reversals; | §8.7, §10.1, §12 | RT if adopted; FRV-B only if used as the Scenario B signal | 17:FPDR-7 |
+| 13-§8-4 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b4: unexpected price overrides; | §8.7, §10.1, §12 | RT if adopted; FRV-B only if used as the Scenario B signal | 17:FPDR-7 |
+| 13-§8-5 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b5: unusual transaction timing/frequency; | §8.7, §10.1, §12 | RT if adopted; FRV-B only if used as the Scenario B signal | 17:FPDR-7 |
 | 13-§8-6 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b6: closing-cash variance; | §8.7, §12 | RT; FRV-B | — |
-| 13-§8-7 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b7: other evidence-backed counter signals. | §8.7, §12 | RT; FRV-B | — |
+| 13-§8-7 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 b7: other evidence-backed counter signals. | §8.7, §10.1, §12 | RT if adopted; FRV-B only if used as the Scenario B signal | 17:FPDR-7 |
 | 13-§8-8 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 p2: The product should present these as review signals, not accusations. | §8.7, §10.2, §12 | EXP; FRV-B | — |
 | 13-§8-9 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 p4: Please review this counter activity. These voids/discounts are higher than the recent patte… | §8.7, §15 | EXP; FRV-B | — |
 | 13-§8-10 | IN SCOPE | SB-P-1.17 | C13@4426e8b1 | §8 p6: This employee is stealing. | §8.7, §10.3 | NEG; FRV-B | — |
@@ -1464,11 +1475,11 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 17-§3-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §3 b5: Same Business Memory/permissions across every surface. | §8.9, §10.2, §12 | EXP; INSP | — |
 | 17-§3-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §3 b6: Stable/testable UI where practical. | §8.9, §10.2 | EXP; INSP | — |
 | 17-§3-7 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §3 b7: No form clutter merely because backend fields exist. | §8.9, §10.2 | EXP; INSP | — |
-| 17-§4-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b1: business identity; | §8.9, §12 | RT | — |
-| 17-§4-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b2: transaction/business-memory views; | §8.9, §12 | RT | — |
-| 17-§4-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b3: credit awareness; | §8.9, §12 | RT | — |
+| 17-§4-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b1: business identity; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§4-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b2: transaction/business-memory views; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§4-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b3: credit awareness; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
 | 17-§4-4 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b4: document/receipt memory; | §8.9, §12 | RT | — |
-| 17-§4-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b5: reminders; | §8.9, §12 | RT | — |
+| 17-§4-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b5: reminders; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
 | 17-§4-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b6: Ask CFO access; | §8.9, §12 | RT | — |
 | 17-§4-7 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b7: Daily Intelligence; | §8.9, §12 | RT | — |
 | 17-§4-8 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b8: enabled add-ons. | §8.9, §12 | RT | — |
@@ -1476,8 +1487,8 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 17-§4-10 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b10: suppliers/reorder; | §8.9, §12 | RT | — |
 | 17-§4-11 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b11: POS/counter intelligence; | §8.9, §12 | RT | — |
 | 17-§4-12 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b12: closing cash; | §8.9, §12 | RT | — |
-| 17-§4-13 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b13: operational trends; | §8.9, §12 | RT | — |
-| 17-§4-14 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b14: deeper role-appropriate analytics; | §8.9, §12 | RT | 12:FR-09 |
+| 17-§4-13 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b13: operational trends; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§4-14 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 b14: deeper role-appropriate analytics; | §8.9, §10.1, §12 | RT if adopted | 12:FR-09; 17:FPDR-7 |
 | 17-§4-15 | ASSIGNED TO LATER MISSION | SB-P-1.18 | C17@7943f74a | §4 b15: staff/HR/order-delivery views when add-ons are enabled. | §11.1 | — | — |
 | 17-§4-16 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §4 p4: The exact navigation may evolve; capability truth remains governed by feature contracts. | §8.9, §10.2, §12 | INSP | — |
 | 17-§5-1 | DELEGATED | SB-P-1.13 | C17@7943f74a | §5 p1: Conversation Workspace is an explicit first-class app component | §11.2 | — | — |
@@ -1488,12 +1499,12 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 17-§5-6 | DELEGATED | SB-P-1.13 | C17@7943f74a | §5 b4: shared Human Language Layer | §11.2 | — | — |
 | 17-§5-7 | DELEGATED | SB-P-1.13 | C17@7943f74a | §5 b5: shared feature action services | §11.2 | — | — |
 | 17-§5-8 | DELEGATED | SB-P-1.13 | C17@7943f74a | §5 b6: shared document/reminder/intelligence foundations | §11.2 | — | — |
-| 17-§6-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b1: today/period sales/income; | §8.9, §12 | RT | — |
-| 17-§6-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b2: expenses/purchases; | §8.9, §12 | RT | — |
-| 17-§6-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b3: outstanding credit; | §8.9, §12 | RT | — |
-| 17-§6-4 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b4: recent activity; | §8.9, §12 | RT | — |
-| 17-§6-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b5: payment/reconciliation state; | §8.9, §12 | RT | — |
-| 17-§6-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b6: relevant comparisons/trends. | §8.9, §12 | RT | — |
+| 17-§6-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b1: today/period sales/income; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§6-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b2: expenses/purchases; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§6-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b3: outstanding credit; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§6-4 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b4: recent activity; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§6-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b5: payment/reconciliation state; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§6-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 b6: relevant comparisons/trends. | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
 | 17-§6-7 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 p2: Exact metric availability depends on product plan, enabled add-ons and reliable data. | §8.9, §10.2, §12 | INSP; NEG | — |
 | 17-§6-8 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §6 p3: Do not display fabricated derived metrics when underlying data is insufficient. | §8.9, §10.3, §12 | NEG | — |
 | 17-§7-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §7 b1: inventory quantity/state; | §8.9, §12 | RT | — |
@@ -1529,12 +1540,12 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | 17-§14-6 | DELEGATED | SB-P-1.12 | C17@7943f74a | §14 b5: enforce object/action scope | §11.2 | — | — |
 | 17-§14-7 | DELEGATED | SB-P-1.12 | C17@7943f74a | §14 p3: changing a UI component never widens backend access | §11.2 | — | — |
 | 17-§15-1 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 p1: The dashboard should prioritize useful work rather than display every possible module equal… | §8.9, §10.2, §12 | EXP | — |
-| 17-§15-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b1: Ledger vs Manager; | §8.9, §12 | RT | — |
-| 17-§15-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b2: enabled add-ons; | §8.9, §12 | RT | — |
+| 17-§15-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b1: Ledger vs Manager; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§15-3 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b2: enabled add-ons; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
 | 17-§15-4 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b3: role; | §8.9, §12 | RT | — |
-| 17-§15-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b4: unresolved tasks/exceptions; | §8.9, §12 | RT | — |
-| 17-§15-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b5: merchant business type; | §8.9, §12 | RT | — |
-| 17-§15-7 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b6: recently used features. | §8.9, §12 | EXP | — |
+| 17-§15-5 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b4: unresolved tasks/exceptions; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§15-6 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b5: merchant business type; | §8.9, §10.1, §12 | RT if adopted | 17:FPDR-7 |
+| 17-§15-7 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 b6: recently used features. | §8.9, §10.1, §12 | EXP if adopted | 17:FPDR-7 |
 | 17-§15-8 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §15 p3: Avoid manipulative engagement design or fear-based upsell. | §8.9, §10.3 | NEG; EXP | — |
 | 17-§16-1 | DELEGATED | SB-P-1.12 | C17@7943f74a | §16 p1: stable IDs/test hooks — for the §13/§14 permission surface (SB-P-1.12 slice) | §11.2 | — | — |
 | 17-§16-2 | IN SCOPE | SB-P-1.17 | C17@7943f74a | §16 p1: stable IDs/test hooks — for the remaining Manager-depth workspace surface | §8.9, §10.2 | INSP | — |
