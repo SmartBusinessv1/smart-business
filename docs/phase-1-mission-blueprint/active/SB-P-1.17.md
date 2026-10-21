@@ -233,7 +233,7 @@ Mission design:
 - **Historical attribution** (`17:FPDR-5`). Historical purchases carrying a free-text "Supplier name" may be linked to a supplier identity only by explicit, audited Owner confirmation. Smart Business may show possible matches labelled unconfirmed, but never links on its own. Original transactions are unchanged, no duplicate is created, and unlinked purchases stay visibly unlinked. Whether linking can be delegated is undecided (N-1).
 - **Directory search** is read as supplier side here; the customer side stays joint with SB-P-1.18 (U-12; `16:FPDR-1`).
 - **Suppliers never receive merchant intelligence** (`7-§3-9`).
-- **Supplier memory list (C7 §3 p2, "may include").** Items independently required elsewhere (name/contact, supplied items, purchase history, communication history) are mandatory. Prices, credit relationship and preferred/alternate context are evidence-dependent: demonstrated whenever their prerequisite exists, with honest absence verified otherwise. No row, seed or scenario is reduced (Gate 10 annex `communication/missions/SB-P-1.17/claude-code/14-stage5-gate10-documentary-corrections.md` §C-2.1).
+- **Supplier memory list (C7 §3 p2, "may include").** Name/contact, supplied items, purchase history and communication history are independently mandatory. The payment/credit relationship is conditionally mandatory where authorized. Prices and preferred/alternate context are permissive examples: optional, and if prices are shown, `17:FPDR-4` applies. Supporting data alone does not make an example mandatory. No row, seed or scenario is reduced (Gate 10 annex `communication/missions/SB-P-1.17/claude-code/14-stage5-gate10-documentary-corrections.md` §C-2.1).
 
 **FCTM rows realized here (16 `IN SCOPE`):**
 
@@ -335,7 +335,7 @@ Mission design:
 - **They are neutral review items, never accusations** (`13-§8-*`; `BP-§10.6-E2`). Illustrative wording is from C13 §8 and is not fixed copy.
 - **Authorized human context** (festival discount, damaged product, Owner instruction) is added without deleting the original event (`13-§9-*`).
 - **The product never autonomously** locks a register, suspends anyone, reverses a transaction, changes prices, blocks checkout, deducts wages or accuses a person (`13-§15-*`).
-- **Signal list (C13 §8 p1, "may identify … such as").** Voids and discounts are mandatory on an evidenced source (Founder Scenario B; `17:FPDR-2`), and closing-cash variance is mandatory (`13-§10-7`). The other listed signals are evidence-dependent, demonstrated whenever the source supplies their data. No row, seed or scenario is reduced (annex §C-2.2).
+- **Signal list (C13 §8 p1, "may identify … such as").** Closing-cash variance is independently mandatory (`13-§10-7`). Voids and discounts are conditionally mandatory on a connected source evidenced to supply them (Founder Scenario B; `13-§21-5`; `17:FPDR-2`). Reversals, price overrides, timing and other signals are permissive examples, not required merely because data exists. Neutral, non-accusatory review governs every signal shown (annex §C-2.2).
 - **Visibility:**
   - Signals are shown at counter and period level.
   - Operator-attributed detail is **Owner-only** (`17:FPDR-1` capability 5; DC-14 corrected) and appears only where the POS exposes it and use is permitted.
@@ -402,7 +402,15 @@ Mission design:
   - No manipulative engagement (`17-§15-8`).
   - The Conversation Workspace stays first-class (`17-§21-5`; `17-§5-*`, SB-P-1.13).
 - **Stable identifiers** exist for critical governed flows (`17-§16-2`, `17-§16-3`, `17-§22-10b`).
-- **Permissive surface lists** (C17 §4 "may present / may include / may add", §6 "may present … such as", §15 "may adapt to"). Stock, supplier, reorder, POS and closing-cash surfaces, business identity, role adaptation and the §6 p2–p3 and §15 p1/p3 rules are mandatory. The remaining listed surfaces, summaries and adaptations are evidence-dependent on their owning feature, data, plan or entitlement: demonstrated whenever the prerequisite exists, with honest absence verified otherwise. Permission enforcement is unchanged. No row, seed or scenario is reduced (annex §C-2.3 to §C-2.5).
+- **Permissive surface lists** (C17 §4 "may present / may include / may add", §6 "may present … such as", §15 "may adapt to"). Required operational capabilities stay mandatory:
+  - stock, supplier/reorder and closing-cash surfaces;
+  - POS/counter once a source is connected;
+  - workspace exposure of Ask CFO, Daily Intelligence and documents (owned upstream);
+  - the accurate Owner summary (`17-§22-1`);
+  - truthfulness and authorization (§6 p2–p3);
+  - role enforcement and useful-work priority (§15 p1, p3).
+
+  Other visual surfaces, summary metrics and navigation adaptations are permissive examples: optional, and supporting data alone does not make them mandatory. No row, seed or scenario is reduced (annex §C-2.3 to §C-2.5).
 
 **FCTM rows realized here (80 `IN SCOPE`):**
 

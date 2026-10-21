@@ -38,87 +38,114 @@ This annex records the equivalent mappings and annotations authorized as C-1 to 
 | C17 §14 p2 "Every protected read/write must enforce:" | `17-§14-2`…`17-§14-6` (DELEGATED, SB-P-1.12) |
 | C17 §22 p1 "A future Blueprint/EIS must verify at least:" | `17-§22-1`…`17-§22-10b` |
 
-## C-2. Permissive source lists — annotation without reduction
+## C-2. Permissive source lists — three-class annotation (corrected at MC-358)
 
-Five lists are introduced by permissive wording ("may include", "may identify … such as", "may present", "may add", "may adapt to").
+Five lists are introduced by permissive wording ("may include", "may identify … such as", "may present", "may add", "may adapt to"). Each listed item belongs to exactly one class:
 
-**Rules of this annotation:**
+| Class | Meaning | How it is verified |
+|---|---|---|
+| **Independently mandatory** | A separate approved source, Founder decision or acceptance scenario requires the capability. | As any `IN SCOPE` obligation; its acceptance requirements are preserved. |
+| **Conditionally mandatory** | Required once the original source's own stated condition is met ("where authorized", a connected source supplying the field, an enabled add-on). | Verified when the condition holds; otherwise the honest-absence or limitation behaviour is verified. |
+| **Permissive implementation example** | An optional presentation, signal or adaptation approach. **Supporting data alone does not make it mandatory.** | Verified only if the EIS adopts it. The governing mandatory rule of the same section (truthfulness, authorization, entitlement, no accusation, useful-work priority) is verified in every case. |
 
-1. **Nothing is reduced.** Every listed row keeps its FCTM kind (`OBL`), disposition, owner, commitment and verification seed exactly as recorded.
-2. **Two classes are distinguished:**
-   - **Independently mandatory:** another approved source, Founder decision or acceptance scenario requires the item unconditionally. It is demonstrated as for any `IN SCOPE` obligation.
-   - **Evidence-dependent:** the source makes the item depend on data, plan, authorization or POS capability. It is **demonstrated wherever its prerequisite exists**. Where the prerequisite is absent, the honest-absence behaviour is verified instead: no fabricated value, and the gap or limitation shown (C17 §6 p3; `7-§4-7`; `13-§5-6`; `17:FPDR-2`).
-3. **No acceptance scenario, Founder Runtime Verification clause or negative-path test is removed or weakened.** The prerequisites for each evidence-dependent item are named so that verification can be planned whenever they exist.
+**Rules of this annotation (MC-358):**
+
+- **FCTM unchanged.** No FCTM row is removed or edited. Every row keeps its kind, disposition, owner, commitment, classification and verification seed as recorded.
+- **Seeds kept.** For a permissive example, the seed applies to the approach if adopted. No seed is deleted.
+- **Nothing weakened.** No acceptance scenario, Founder Runtime Verification clause or negative-path test is removed or weakened.
+- **Nothing added or moved.** No commercial commitment or mission ownership changes, and no product functionality is added.
 
 ### C-2.1 C7 §3 p2 "Useful supplier memory may include:" (MC333-C7-02)
 
-| Row | Item | Class | Basis | Prerequisite for demonstration |
-|---|---|---|---|---|
-| `7-§3-2` | supplier name/contact | Independently mandatory | `7-§3-1` supplier identity; `7-§15-6` supplier identity/history | — |
-| `7-§3-3` | supplied products/items | Independently mandatory | `BP-§10.6-W1` supplier-product relationships | — |
-| `7-§3-4` | purchase history | Independently mandatory | `7-§15-6`; `17:FPDR-5` (historical linking) | — |
-| `7-§3-5` | recent/typical prices where supported | Evidence-dependent | Own qualifier "where supported"; `17:FPDR-4` | Recorded supplier purchase prices; Manager visibility only with Reference Cost permission |
-| `7-§3-6` | order/communication history | Independently mandatory | `17:FPDR-3` (DIRECT citation) | — |
-| `7-§3-7` | payment/credit relationship where authorized | Evidence-dependent | Own qualifier "where authorized"; `D16`; W-1 FIN-01 PROVISIONAL | Authorized supplier credit facts on the governed Ledger |
-| `7-§3-8` | preferred/alternate supplier context | Evidence-dependent | "may include" | More than one supplier relationship recorded for an item |
+| Row | Item | Class | Basis |
+|---|---|---|---|
+| `7-§3-2` | supplier name/contact | Independently mandatory | `7-§3-1` supplier identity; `7-§15-6` supplier identity/history |
+| `7-§3-3` | supplied products/items | Independently mandatory | `BP-§10.6-W1` supplier-product relationships |
+| `7-§3-4` | purchase history | Independently mandatory | `7-§15-6`; `17:FPDR-5` |
+| `7-§3-5` | recent/typical prices where supported | Permissive implementation example | "may include … where supported". **If presented**, `17:FPDR-4` is mandatory: Reference Cost permission for Managers, and no Smart Business-computed margin (`12:FR-09`) |
+| `7-§3-6` | order/communication history | Independently mandatory | `17:FPDR-3` (merchant-recorded requests and replies); `7-§13-8` |
+| `7-§3-7` | payment/credit relationship where authorized | Conditionally mandatory | Own condition "where authorized"; supplier payment state is distinct from goods receipt (`7-§8-5`); `D16`; W-1 FIN-01 PROVISIONAL |
+| `7-§3-8` | preferred/alternate supplier context | Permissive implementation example | "may include" |
+
+`7-§3-1` (business-scoped identity) and `7-§3-9` (suppliers receive no merchant intelligence) are outside the list and stay mandatory.
 
 ### C-2.2 C13 §8 p1 "Smart Business may identify factual patterns such as:" (MC334-C13-03)
 
-| Row | Item | Class | Basis | Prerequisite for demonstration |
-|---|---|---|---|---|
-| `13-§8-1` | voids | **Mandatory on an evidenced source** | Founder Scenario B (`BP-§10.6-B1`); `17:FPDR-2` | A connected source evidenced to supply void data |
-| `13-§8-2` | unusually high discount activity | **Mandatory on an evidenced source** | Founder Scenario B; `17:FPDR-2` | A connected source evidenced to supply discount data |
-| `13-§8-3` | repeated reversals | Evidence-dependent | "such as" | Source supplies reversal events |
-| `13-§8-4` | unexpected price overrides | Evidence-dependent | "such as" | Source supplies override data |
-| `13-§8-5` | unusual transaction timing/frequency | Evidence-dependent | "such as" | Source supplies timestamps (a minimum field under `17:FPDR-2`) and enough history |
-| `13-§8-6` | closing-cash variance | Independently mandatory | C13 §10 b7 (`13-§10-7`) | — |
-| `13-§8-7` | other evidence-backed counter signals | Evidence-dependent | "other evidence-backed" | Supporting source evidence |
+| Row | Item | Class | Basis |
+|---|---|---|---|
+| `13-§8-1` | voids | Conditionally mandatory | Required on a connected source evidenced to supply void data (`17:FPDR-2`); Founder Scenario B (`BP-§10.6-B1`); acceptance `13-§21-5` |
+| `13-§8-2` | unusually high discount activity | Conditionally mandatory | As above, for discount data |
+| `13-§8-3` | repeated reversals | Permissive implementation example | "such as" |
+| `13-§8-4` | unexpected price overrides | Permissive implementation example | "such as" |
+| `13-§8-5` | unusual transaction timing/frequency | Permissive implementation example | "such as" |
+| `13-§8-6` | closing-cash variance | Independently mandatory | C13 §10 b7 (`13-§10-7`) |
+| `13-§8-7` | other evidence-backed counter signals | Permissive implementation example | "other evidence-backed" |
 
-`13-§8-8` (review signals, not accusations), `13-§8-9` (preferred wording) and `13-§8-10` (no accusation) are not part of the list and stay mandatory for every signal.
+**Counter intelligence on evidenced sources is preserved.** Founder Scenario B and `13-§21-5` remain mandatory on the first evidenced source. `13-§8-8` (review signals, not accusations), `13-§8-9` (preferred wording) and `13-§8-10` (no accusation) govern every signal that is presented.
 
 ### C-2.3 C17 §4 p1–p3 "may present … May include: … May add:" (MC336-C17-01)
 
-| Rows | Items | Class | Basis | Prerequisite |
-|---|---|---|---|---|
-| `17-§4-1` | business identity | Independently mandatory | Existing foundation (`F-DASH`); `17-§22-1` | — |
-| `17-§4-2`…`17-§4-8` | transaction views, credit awareness, documents, reminders, Ask CFO, Daily Intelligence, enabled add-ons | Evidence-dependent (consumer surfaces) | Each depends on its owning feature (`D14`, `D16`, `D15`, `DENT`) | The owning feature is available and the role is authorized |
-| `17-§4-9`…`17-§4-12` | inventory/stock, suppliers/reorder, POS/counter, closing cash | Independently mandatory | C17 §7, §8; `BP-§10.6-W10`; C7, C13 | POS surface also needs a connected source (`DPOS`) |
-| `17-§4-13`, `17-§4-14` | operational trends; deeper role-appropriate analytics | Evidence-dependent | "May add" | Sufficient reliable data; role authorization (`17:FPDR-4` for cost) |
-| `17-§4-15` | staff/HR/order-delivery views | `ASSIGNED TO LATER MISSION` (SB-P-1.18), unchanged | `A-BP107` | — |
+This list separates **required operational capabilities** from **optional visual surfaces**.
+
+| Rows | Items | Class | Basis |
+|---|---|---|---|
+| `17-§4-9`, `17-§4-10` | inventory/stock intelligence; suppliers/reorder | Independently mandatory | C17 §7 p1 ("Manager surfaces should connect to the shared Stock/Supplier/Reorder contract"); `BP-§10.6-W1`–`W6`, `W10` |
+| `17-§4-11` | POS/counter intelligence | Conditionally mandatory | Required once a standard POS source is connected (`BP-§10.6-W7`, `W8`; `17:FPDR-2`; `DPOS`) |
+| `17-§4-12` | closing cash | Independently mandatory | `BP-§10.6-W9`; C13 §10 |
+| `17-§4-6`, `17-§4-7` | Ask CFO access; Daily Intelligence | Independently mandatory (owned by SB-P-1.15) | `17-§11-1` (`DELEGATED`): the workspace exposes Ask CFO and Daily Intelligence |
+| `17-§4-4` | document/receipt memory | Independently mandatory (owned by SB-P-1.14) | `17-§12-1` (`DELEGATED`) |
+| `17-§4-8` | enabled add-ons | Conditionally mandatory | When an add-on is enabled and entitled (`DENT`; `17-§14-5`) |
+| `17-§4-1`, `17-§4-2`, `17-§4-3`, `17-§4-5` | business identity; transaction/business-memory views; credit awareness; reminders | Permissive implementation examples (visual surfaces) | "May include". The underlying capabilities are owned by their own contracts and missions |
+| `17-§4-13`, `17-§4-14` | operational trends; deeper role-appropriate analytics | Permissive implementation examples | "May add". **If presented**, `17:FPDR-4` and `12:FR-09` are mandatory |
+| `17-§4-15` | staff/HR/order-delivery views | `ASSIGNED TO LATER MISSION` (SB-P-1.18), unchanged | `A-BP107` |
 
 `17-§4-16` ("capability truth remains governed by feature contracts") stays mandatory.
 
 ### C-2.4 C17 §6 p1 "For authorized users, the workspace may present clear summaries such as:" (MC336-C17-03)
 
-| Rows | Items | Class | Basis | Prerequisite |
-|---|---|---|---|---|
-| `17-§6-1`…`17-§6-6` | sales/income; expenses/purchases; outstanding credit; recent activity; payment/reconciliation state; comparisons/trends | Evidence-dependent | C17 §6 p2 (`17-§6-7`): "Exact metric availability depends on product plan, enabled add-ons and reliable data" | Reliable underlying data, plan and add-on entitlement, role authorization (`D12`, `D14`, `D16`, `DPAY`) |
+This list separates **optional summary presentation** from **mandatory truthfulness, authorization and the required Owner summary**.
 
-**Unchanged mandatory rows:**
-- `17-§6-7` (availability rule) and `17-§6-8` (no fabricated metrics) apply to every summary.
-- Acceptance `17-§22-1` (Owner sees an accurate role-authorized summary) is mandatory.
-- **Permission leakage stays fully governed** by `17-§13-*` and `17-§14-*` (DELEGATED to SB-P-1.12), `17:FPDR-1`, `17:FPDR-4`, `12:FR-04` and `12:FR-09`.
+| Rows | Items | Class | Basis |
+|---|---|---|---|
+| `17-§6-1`…`17-§6-6` | sales/income; expenses/purchases; outstanding credit; recent activity; payment/reconciliation state; comparisons/trends | Permissive implementation examples | "may present … such as"; availability depends on plan, add-ons and reliable data (`17-§6-7`) |
+| `17-§6-7` | metric availability depends on plan, add-ons and reliable data | Independently mandatory rule | C17 §6 p2 |
+| `17-§6-8` | no fabricated derived metrics | Independently mandatory rule | C17 §6 p3 |
+| `17-§22-1` | Owner sees an accurate role-authorized summary from shared Business Memory | Independently mandatory acceptance | C17 §22 n1. At least the Owner summary must be delivered and verified; which example metrics it contains is the permissive part |
+
+**Authorization is unchanged and mandatory for every summary presented:** `17-§13-*`, `17-§14-*` (`DELEGATED`, SB-P-1.12), `17:FPDR-1`, `17:FPDR-4`, `12:FR-04`, `12:FR-09`.
 
 ### C-2.5 C17 §15 p2 "It may adapt to:" (MC336-C17-04)
 
-| Rows | Items | Class | Basis | Prerequisite |
-|---|---|---|---|---|
-| `17-§15-4` | role | Independently mandatory | `17-§13-*`/`17-§14-*`; `17:FPDR-1` | — |
-| `17-§15-2`, `17-§15-3` | Ledger vs Manager; enabled add-ons | Evidence-dependent | Entitlement state (`DENT`) | Entitlement facts available |
-| `17-§15-5`, `17-§15-6`, `17-§15-7` | unresolved tasks/exceptions; merchant business type; recently used features | Evidence-dependent | "may adapt to" | The signal exists for the merchant |
+This list separates **optional navigation adaptations** from **mandatory role enforcement and useful-work prioritization**.
 
-`17-§15-1` (prioritize useful work) and `17-§15-8` (no manipulative engagement or fear-based upsell) stay mandatory.
+| Rows | Items | Class | Basis |
+|---|---|---|---|
+| `17-§15-1` | prioritize useful work rather than every module equally | Independently mandatory rule | C17 §15 p1 |
+| `17-§15-4` | role | Independently mandatory | Role-appropriate visibility (`17-§3-3`); server-side role enforcement (`17-§13-*`, `17-§14-*`, SB-P-1.12); `17:FPDR-1` |
+| `17-§15-2`, `17-§15-3` | Ledger vs Manager; enabled add-ons | Permissive implementation examples (navigation adaptation) | "may adapt to". Entitlement enforcement (`17-§14-5`) and unavailable-add-on handling (`17-§17-4`) stay mandatory regardless |
+| `17-§15-5`, `17-§15-6`, `17-§15-7` | unresolved tasks/exceptions; merchant business type; recently used features | Permissive implementation examples | "may adapt to" |
+| `17-§15-8` | no manipulative engagement or fear-based upsell | Independently mandatory rule | C17 §15 p3 |
 
 ### C-2.6 Source-fidelity and no-reduction assessment
 
-- **Fidelity:** each class follows the source's own words (permissive lead-ins and "where supported", "where authorized", "such as", "may add") or another approved source that makes an item mandatory. Nothing is classified by convenience.
-- **No reduction:**
-  - No row's kind, disposition, owner, commitment or verification seed changes.
-  - Every evidence-dependent item is still demonstrated whenever its prerequisite exists.
-  - Honest-absence behaviour is verified when it does not.
-  - Founder Scenarios A and B and every `SCN`, `FRV`, `GATE` and `NEG` row are unchanged.
-- **Precedent:** SB-P-1.13 recorded illustrative lists the same way (`24-§6-2`, `24-§9-2`), and Mission Control accepted that canonically.
-- **T7 screen:** no omission, deferral, pull-forward, simplification or reclassification is made, so **Source 18 T7 is not crossed**. If Mission Control nevertheless judges the evidence-dependent class to narrow what must be demonstrated, this annotation should be withdrawn and the question taken to the Founder under T7.
+| Class | Rows | Count |
+|---|---|---|
+| Independently mandatory | `7-§3-2`, `7-§3-3`, `7-§3-4`, `7-§3-6`; `13-§8-6`; `17-§4-4`, `-6`, `-7`, `-9`, `-10`, `-12`; `17-§15-4` | 12 |
+| Conditionally mandatory | `7-§3-7`; `13-§8-1`, `13-§8-2`; `17-§4-8`, `17-§4-11` | 5 |
+| Permissive implementation examples | `7-§3-5`, `7-§3-8`; `13-§8-3`, `-4`, `-5`, `-7`; `17-§4-1`, `-2`, `-3`, `-5`, `-13`, `-14`; `17-§6-1`…`-6`; `17-§15-2`, `-3`, `-5`, `-6`, `-7` | 23 |
+| Outside the list, mandatory rules or acceptance | `7-§3-1`, `7-§3-9`; `13-§8-8`, `-9`, `-10`; `17-§4-16`; `17-§6-7`, `-8`; `17-§15-1`, `-8`; `17-§22-1` | 11 |
+| Unchanged later-mission row | `17-§4-15` | 1 |
+
+The five lists hold 41 items: 40 classified (12 + 5 + 23) and 1 unchanged later-mission row.
+
+- **Fidelity:** each class follows the source's own words, or a separate approved source, Founder decision or acceptance scenario that requires the item. Supporting data alone never turns an example into an obligation.
+- **No reduction of approved acceptance obligations:**
+  - Every acceptance and Founder scenario touching these lists stays mandatory: `7-§15-6`, `13-§21-5`, `17-§22-1`, `BP-§10.6-B1`, `BP-§10.6-B2`.
+  - So do the delegated acceptance rows `17-§22-2`, `17-§22-3` and `17-§22-9`.
+  - Every `NEG` row and every authorization rule is unchanged.
+- **FCTM untouched.** The FCTM is not edited: kinds, dispositions and seeds stay as recorded.
+- **Precedent:** SB-P-1.13 treated illustrative lists the same way (`24-§6-2`, `24-§9-2`), accepted canonically.
+- **Open T7 question for Mission Control.** The FCTM still records the 23 permissive examples as `OBL` with runtime seeds, while this annex reads them as optional approaches. No acceptance obligation changes, so I did not stop. But if Mission Control or the Founder considers that the reading itself narrows an approved obligation, it is a Source 18 T7 matter and should go to the Founder before Gate 10 relies on it. Any later FCTM annotation of these rows would need its own authorization.
 
 ## C-3. Build Plan §3 Lighthouse principles — existing coverage
 
