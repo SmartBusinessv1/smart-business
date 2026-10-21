@@ -233,6 +233,7 @@ Mission design:
 - **Historical attribution** (`17:FPDR-5`). Historical purchases carrying a free-text "Supplier name" may be linked to a supplier identity only by explicit, audited Owner confirmation. Smart Business may show possible matches labelled unconfirmed, but never links on its own. Original transactions are unchanged, no duplicate is created, and unlinked purchases stay visibly unlinked. Whether linking can be delegated is undecided (N-1).
 - **Directory search** is read as supplier side here; the customer side stays joint with SB-P-1.18 (U-12; `16:FPDR-1`).
 - **Suppliers never receive merchant intelligence** (`7-§3-9`).
+- **Supplier memory list (C7 §3 p2, "may include").** Items independently required elsewhere (name/contact, supplied items, purchase history, communication history) are mandatory. Prices, credit relationship and preferred/alternate context are evidence-dependent: demonstrated whenever their prerequisite exists, with honest absence verified otherwise. No row, seed or scenario is reduced (Gate 10 annex `communication/missions/SB-P-1.17/claude-code/14-stage5-gate10-documentary-corrections.md` §C-2.1).
 
 **FCTM rows realized here (16 `IN SCOPE`):**
 
@@ -334,6 +335,7 @@ Mission design:
 - **They are neutral review items, never accusations** (`13-§8-*`; `BP-§10.6-E2`). Illustrative wording is from C13 §8 and is not fixed copy.
 - **Authorized human context** (festival discount, damaged product, Owner instruction) is added without deleting the original event (`13-§9-*`).
 - **The product never autonomously** locks a register, suspends anyone, reverses a transaction, changes prices, blocks checkout, deducts wages or accuses a person (`13-§15-*`).
+- **Signal list (C13 §8 p1, "may identify … such as").** Voids and discounts are mandatory on an evidenced source (Founder Scenario B; `17:FPDR-2`), and closing-cash variance is mandatory (`13-§10-7`). The other listed signals are evidence-dependent, demonstrated whenever the source supplies their data. No row, seed or scenario is reduced (annex §C-2.2).
 - **Visibility:**
   - Signals are shown at counter and period level.
   - Operator-attributed detail is **Owner-only** (`17:FPDR-1` capability 5; DC-14 corrected) and appears only where the POS exposes it and use is permitted.
@@ -400,6 +402,7 @@ Mission design:
   - No manipulative engagement (`17-§15-8`).
   - The Conversation Workspace stays first-class (`17-§21-5`; `17-§5-*`, SB-P-1.13).
 - **Stable identifiers** exist for critical governed flows (`17-§16-2`, `17-§16-3`, `17-§22-10b`).
+- **Permissive surface lists** (C17 §4 "may present / may include / may add", §6 "may present … such as", §15 "may adapt to"). Stock, supplier, reorder, POS and closing-cash surfaces, business identity, role adaptation and the §6 p2–p3 and §15 p1/p3 rules are mandatory. The remaining listed surfaces, summaries and adaptations are evidence-dependent on their owning feature, data, plan or entitlement: demonstrated whenever the prerequisite exists, with honest absence verified otherwise. Permission enforcement is unchanged. No row, seed or scenario is reduced (annex §C-2.3 to §C-2.5).
 
 **FCTM rows realized here (80 `IN SCOPE`):**
 
@@ -940,6 +943,16 @@ The following are not row dependencies, and this Blueprint does not authorize th
 - CI as a configured-checks signal only.
 - A named test and runtime-verification environment.
 - Mandatory specialist reviews (Section 13).
+- **Security precondition owned by SB-P-1.12:** the Build Plan §5.1 residual `anon`-grant gate on `businesses`, `transactions` and `transaction_correction_events`. Its remediation stays with SB-P-1.12; SB-P-1.17 surfaces that read those tables rely on it being closed and verified first. No transfer of remediation.
+- **Delivery chain (Build Plan §5.3):** each release needs five verification stages:
+  1. canonical repository implementation;
+  2. delivery-repository synchronization where still required;
+  3. Lovable publication or deployment where still current;
+  4. Supabase migration and runtime alignment;
+  5. production verification after synchronization.
+
+  A canonical merge is never proof that production contains the accepted application. Delivery synchronization, publication and production migration are release actions needing their own separate authorization (Source 18 §9.1); none is authorized by this Blueprint.
+- **Durable media (Build Plan §6.3):** stock documents use the SB-P-1.14 storage foundation (`25-§6-1`, `DELEGATED`); no separate storage engine.
 
 ### 12.5 Downstream
 
@@ -983,6 +996,7 @@ These missions consume this mission's stock, supplier, reorder, POS and closing 
 - No Manager sees operator-attributed detail, supplier prices without Reference Cost permission, or any capability not granted.
 - No duplicate revenue or stock results from POS replays, documents or manual entries.
 - No counter signal or variance is presented as an accusation.
+- Global Product Completion View rows 7, 13 and 17 are updated only by Mission Control at acceptance, from the Contract Reconciliation and counting only demonstrated rows (GPCV §12; Build Plan §11). This mission never edits the register.
 
 ## 15. Acceptance Criteria
 
@@ -1069,6 +1083,16 @@ These follow the acceptance conditions in the Founder Product Decision Record en
 | Product and price management in context (`BP-§10.6-E3`) | Owner; Manager if granted | Not yet run | — | `D12` |
 | Useful operations without heavy ERP (`BP-§10.6-O`, `BP-§10.6-X`) | Owner; Manager | Not yet run | — | — |
 
+**Evidence rules governing this matrix and the Contract Reconciliation (Build Plan §13):**
+
+| Build Plan §13 rule | Applied here through |
+|---|---|
+| 1–4: a merged PR, green CI, a working backend or a visually similar screen is not sufficient proof | Every row stays undemonstrated until runtime evidence exists (Section 14); CI is a configured-checks signal only (Section 12.4) |
+| 5: Founder Runtime Verification tests the mission's UX anchors | Section 15.1 (`BP-§10.6-A1`–`A4`, `B1`, `B2`), Founder-reserved (`BP-§13-9`) |
+| 6: independent verification tests protected and denied behaviour | `NEG` verification seeds on the must-not rows (Section 10.3); `17:FPDR-1` and `17:FPDR-4` denial conditions (Section 15.4); mandatory specialist reviews (Section 13); Source 18 Stage 19 |
+| 7–8: `DEFERRED` only with an approved later owner; no erasing earlier accountability | Section 11 (owners preserved; exclusion cancels no responsibility); `BP-§11-7` |
+| 10: the matrix is the experience subset of the Contract Reconciliation, and both cite FCTM row IDs | The matrix above cites row IDs; the Contract Reconciliation is compiled at Stage 22 over every FCTM row (Source 18 §3.2 item 11) |
+
 ## 16. Future Evolution
 
 - **SB-P-1.18:** order availability and substitution on this mission's stock truth; Staff/HR and Order workspace views; the customer side of directory-indexed search (U-12).
@@ -1090,6 +1114,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 |---|---|---|---|
 | 0.1 | 2026-10-20 | Claude Code (Definition Actor, MC-318 / MC-319) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `a335b040`), `17:FPDR-1` to `17:FPDR-6` and the Stage 3 reconciliation |
 | 0.2 | 2026-10-20 | Claude Code (Definition Actor, MC-323 / MC-324) | Stage 5 finding: §6 Manager permission wording clarified (Reference Cost and margin separately grantable under `12:FR-04` F-03; `12:FR-09` cited for margin intelligence; `17:FPDR-4` retained). No row, decision, scenario or other definition changed |
+| 0.3 | 2026-10-21 | Claude Code (Definition Actor, MC-353) | Gate 10 documentary corrections C-1 to C-5 for the 25 MC-349 findings: §8.3, §8.7, §8.9 permissive-list notes (annex §C-2); §12.4 Build Plan §5.1 gate, §5.3 delivery chain and §6.3 storage pointer; §14 GPCV update rule; §15.5 Build Plan §13 evidence rules. C-1 and C-3 mappings in the annex. No row, disposition, owner, commitment, classification, decision, scenario, seed or hold changed |
 
 ## 19. Governance History
 
