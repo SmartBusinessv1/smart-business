@@ -13,7 +13,7 @@ This annex records the equivalent mappings and annotations authorized as C-1 to 
 
 ## C-1. Normative contract lead-ins — equivalent mappings
 
-**Correction to the inventory method statement.** Inventory §1 says a colon-ending lead-in "carries no separately verifiable obligation". That holds for list introductions, but not for the 13 lead-ins with normative wording in C7, C13 and C17. Each of those is carried by the rows below. Nine only pass their force to the listed units. **Four add their own standard or qualifier**, and these are mapped explicitly so that the standard or qualifier is preserved and verified. No new row is created.
+**Proposed clarification of the inventory method statement.** Inventory §1 says a colon-ending lead-in "carries no separately verifiable obligation". That holds for list introductions, but not for the 13 lead-ins with normative wording in C7, C13 and C17. Each of those is carried by the rows below. Nine only pass their force to the listed units. **Four add their own standard or qualifier**, and these are mapped explicitly so that the standard or qualifier is preserved and verified. No new row is created.
 
 ### C-1.1 Lead-ins with an independent standard or qualifier (4)
 
