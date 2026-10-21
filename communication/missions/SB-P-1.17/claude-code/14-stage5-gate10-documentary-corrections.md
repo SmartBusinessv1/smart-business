@@ -9,7 +9,7 @@
 **Findings source:** `communication/missions/SB-P-1.17/mission-control/11-mc349-independent-findings-evidence-packet.md` (blob `b3e13bd3`)\
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-This annex records the equivalent mappings and annotations authorized as C-1 to C-3. C-4 and C-5 are applied in the Blueprint (`docs/phase-1-mission-blueprint/active/SB-P-1.17.md`). **No FCTM row, inventory entry, source contract, Founder decision, disposition, owner, commercial classification, build commitment, verification seed or acceptance scenario is changed.** The FCTM (blob `a335b040`, 630 rows) and the obligation inventory (blob `422e99d8`) are not edited. Where this annex corrects a statement in them, it says so and the annex governs that statement.
+This annex records the equivalent mappings and annotations authorized as C-1 to C-3. C-4 and C-5 are applied in the Blueprint (`docs/phase-1-mission-blueprint/active/SB-P-1.17.md`). **No FCTM row, inventory entry, source contract, Founder decision, disposition, owner, commercial classification, build commitment, verification seed or acceptance scenario is changed.** The FCTM (blob `a335b040`, 630 rows) and the obligation inventory (blob `422e99d8`) are not edited. Where this annex identifies an overbroad method statement in the Stage 2 inventory, it documents the source-faithful clarification proposed for Stage 5 reconciliation. The original inventory and FCTM remain unchanged; this annex does not independently amend their authority, and the clarification remains subject to Mission Control acceptance and independent verification.
 
 ## C-1. Normative contract lead-ins — equivalent mappings
 
