@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.17 |
 | Mission Name | Manager Operations |
 | Mission Type | Product Mission: stock, supplier and reorder intelligence; standard POS bridge, counter intelligence and closing cash; operational dashboard and Manager workspace (Contracts 7, 13, 17) |
-| Lifecycle Stage | Source 18 v1.2 Stage 4 — Product Blueprint Sections 1–19 (draft) |
-| Status | `DRAFT — FOR MISSION CONTROL REVIEW — NOT APPROVED OR LOCKED`. Stage 5 not started |
+| Lifecycle Stage | Source 18 v1.2 Stage 5 — Mission Control review and independent Gate 10 verification (OPEN). The Stage 4 Product Blueprint Sections 1–19 draft exists; it is not approved or locked |
+| Status | `DRAFT — FOR MISSION CONTROL REVIEW — NOT APPROVED OR LOCKED`. Stage 5 OPEN; Gate 10 NOT PASSED. Stage 6, EIS and implementation WITHHELD |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (Stage 1 Intake Pack §4, `communication/missions/SB-P-1.17/mission-control/02-stage1-intake-pack-and-definition-actor-appointment.md`, blob `79c684e8`) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -27,7 +27,7 @@
 | Date | 2026-10-20 |
 | Builder Review | Not started |
 | Engineering Review (Sections 20–21) | Not started; Claude Code owns Sections 20–21 at Stage 7 (Source 18 §4.4) |
-| Mission Control Review | Not started (Stage 5) |
+| Mission Control Review | Begun (Stage 5). Independent Gate 10 verification OPEN; Gate 10 NOT PASSED |
 | Blueprint Lock | Not locked; determined solely by a later Stage 8 Founder approval record |
 
 ## Mission Snapshot
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 authority, identity and delegated-automation kernel, the SB-P-1.13 conversation and AI kernel, SB-P-1.14 Business Memory and UDI, SB-P-1.15 reminders, Ask CFO and Daily Intelligence, and SB-P-1.16 financial truth, all as specifications; builds no parallel version. No POS vendor is named or activated (`DPOS`). No system-sent supplier message before an approved channel (`DNTF`; SB-P-1.20). |
 | Assigned to later missions (Build Now, not Build Later) | 15 rows: SB-P-1.18 3, SB-P-1.19 2, SB-P-1.20 10 (Section 11.1). |
 | Rejected | Blind supplier procurement; custom POS core modification; AI accusation, verdicts or punishment; register lockout; fixed universal thresholds; duplicate stock engines; dashboard-only business logic; and every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-6`. |
+| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. The Stage 4 draft exists and is not approved or locked. Stage 5 independent Gate 10 verification is OPEN; Gate 10 NOT PASSED. Stage 6, EIS and implementation WITHHELD. |
 
 ## 1. Mission Overview
 
@@ -906,7 +906,7 @@ SB-P-1.12, SB-P-1.13, SB-P-1.14, SB-P-1.15 and SB-P-1.16 provide locked specific
 
 ### 12.2 Dependency codes on `IN SCOPE` rows
 
-Counts are taken from the canonical FCTM Dependency column (blob `a335b040`); a row may carry several codes. 76 `IN SCOPE` rows carry no dependency.
+Counts are taken from the canonical FCTM Dependency column (blob `82dea143`); a row may carry several codes. 76 `IN SCOPE` rows carry no dependency.
 
 | Code | Dependency | `IN SCOPE` rows | State |
 |---|---|---|---|
