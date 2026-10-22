@@ -1,0 +1,97 @@
+"""MC-385A: link every R0 unit to a carrier row in an upstream FCTM (read-only, main@fc144110)."""
+import csv
+import difflib
+import json
+import re
+import subprocess
+
+REV = 'fc1441101d42b881e74757dea38eb1617387c791'
+REPO = r'PATH/TO/smart-business'  # set to your checkout
+FUP = {'12': 'communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md',
+       '13': 'communication/missions/SB-P-1.13/claude-code/02-stage2-populated-fctm.md',
+       '14': 'communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md',
+       '15': 'communication/missions/SB-P-1.15/claude-code/03-stage2-populated-fctm.md',
+       '16': 'communication/missions/SB-P-1.16/claude-code/02-stage2-populated-fctm.md'}
+OWNM = {'SB-P-1.12': '12', 'SB-P-1.13': '13', 'SB-P-1.14': '14', 'SB-P-1.15': '15', 'SB-P-1.16': '16'}
+
+
+def show(p):
+    return subprocess.run(['git', '-C', REPO, 'show', f'{REV}:{p}'], capture_output=True).stdout.decode('utf-8')
+
+
+ROWS = {}  # mission -> list of rows
+for m, p in FUP.items():
+    out = []
+    for ln, l in enumerate(show(p).split('\n'), 1):
+        mm = re.match(r'\|\s*`?(\d+)-§(\d+)(?:-([\w.]+))?`?\s*\|', l)
+        if not mm:
+            continue
+        cells = [x.strip() for x in l.strip().strip('|').split(' | ')]
+        rid = cells[0].strip('`')
+        label = next((c for c in cells[1:4] if c.startswith('§')), cells[1] if len(cells) > 1 else '')
+        own = next((c.replace('`', '') for c in cells if re.match(r'`?SB-P-1\.\d+', c)), '')
+        disp = next((c for c in cells if re.match(r'(IN SCOPE|DELEGATED|ASSIGNED TO LATER MISSION|NOT APPLICABLE|OUT OF BUILD SCOPE|UNRESOLVED)', c)), '')
+        out.append(dict(m=m, ln=ln, id=rid, c=mm.group(1), s=mm.group(2), sub=mm.group(3), label=label, own=own, disp=disp))
+    ROWS[m] = out
+
+
+def norm(t):
+    return re.sub(r'[^a-z0-9 ]', ' ', t.lower())
+
+
+def match(c, s, loc, text, owner):
+    order = [OWNM[owner]] if owner in OWNM else []
+    order += [m for m in FUP if m not in order]
+    best = None
+    for m in order:
+        cand = [r for r in ROWS[m] if r['c'] == c and r['s'] == s]
+        if not cand:
+            continue
+        # 1. locator match in label
+        for r in cand:
+            if r['sub'] and re.search(rf'(^|[\s—;(]){loc}(:|\b)', r['label']):
+                return dict(type='LOC', **r)
+        # 2. text similarity
+        nt = norm(text)
+        sc = []
+        for r in cand:
+            lab = norm(re.sub(r'^§[\d.]+\s*(\w+\s*)?(—|-)?', '', r['label']))
+            ratio = difflib.SequenceMatcher(None, nt[:160], lab[:160]).ratio()
+            if nt[:40] and nt[:40].strip() and nt[:40].strip() in lab:
+                ratio = max(ratio, 0.95)
+            sc.append((ratio, r))
+        sc.sort(key=lambda x: -x[0])
+        if sc and sc[0][0] >= 0.6 and sc[0][1]['sub']:
+            r = sc[0][1]
+            cand_best = dict(type=f'TEXT {sc[0][0]:.2f}', **r)
+            if not best or best['type'].startswith('SECTION'):
+                best = cand_best
+            if m == order[0]:
+                return best
+        sec = [r for r in cand if not r['sub']]
+        if sec and not best:
+            best = dict(type='SECTION', **sec[0])
+        elif cand and not best:
+            best = dict(type=f'SECTION-ROWS {len(cand)}', **cand[0])
+    return best
+
+
+if __name__ == '__main__':
+    rows = list(csv.DictReader(open('coverage.csv', encoding='utf-8', newline='')))
+    r0 = [r for r in rows if r['class'] == 'R0']
+    res = []
+    from collections import Counter
+    cnt = Counter()
+    for r in r0:
+        c = r['contract'][1:]
+        mt = match(c, r['section'], r['locator'], r['text'], r['owner'])
+        t = mt['type'].split()[0] if mt else 'NONE'
+        cnt[(r['contract'], t)] += 1
+        res.append(dict(key=r['key'], match=mt))
+    json.dump(res, open('carriers.json', 'w', encoding='utf-8'), ensure_ascii=False)
+    tot = Counter()
+    for (c, t), v in cnt.items():
+        tot[t] += v
+    print(tot)
+    for c in sorted({k[0] for k in cnt}, key=lambda x: int(x[1:])):
+        print(c, {t: v for (cc, t), v in cnt.items() if cc == c})

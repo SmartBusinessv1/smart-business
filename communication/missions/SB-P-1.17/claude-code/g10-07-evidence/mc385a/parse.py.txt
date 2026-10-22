@@ -1,0 +1,78 @@
+"""Deterministic contract parser (same method as SB-P-1.16 Stage 2).
+
+`## N.` headings are sections; `### ` headings are subsection labels.
+b<k> k-th bullet, n<k> k-th numbered item, p<k> k-th prose paragraph
+(blockquotes count as prose) within the section. A prose paragraph whose
+last character is ':' is a lead-in.
+"""
+import json
+import re
+import subprocess
+import sys
+
+
+def blob_text(rev, path):
+    return subprocess.run(["git", "show", f"{rev}:{path}"], capture_output=True,
+                          check=True).stdout.decode("utf-8")
+
+
+def parse(text):
+    sections = []
+    cur = None
+    sub = None
+    para = []
+    counters = {}
+
+    def flush_para():
+        nonlocal para
+        if para and cur is not None:
+            t = " ".join(s.strip() for s in para).strip()
+            counters["p"] += 1
+            cur["units"].append({"loc": f"p{counters['p']}", "kind": "p", "text": t,
+                                 "sub": sub, "leadin": t.endswith(":")})
+        para = []
+
+    for line in text.splitlines():
+        m = re.match(r"^## (\d+)\. (.*)$", line)
+        if m:
+            flush_para()
+            cur = {"num": int(m.group(1)), "title": m.group(2).strip(), "units": []}
+            sections.append(cur)
+            sub = None
+            counters = {"b": 0, "n": 0, "p": 0}
+            continue
+        if line.startswith("# ") or (line.startswith("## ") and not m):
+            flush_para()
+            cur = None
+            continue
+        if cur is None:
+            continue
+        if line.startswith("### "):
+            flush_para()
+            sub = line[4:].strip()
+            continue
+        if line.strip() in ("---", ""):
+            flush_para()
+            continue
+        bm = re.match(r"^\s*[-*] (.*)$", line)
+        nm = re.match(r"^\s*(\d+)\. (.*)$", line)
+        if bm:
+            flush_para()
+            counters["b"] += 1
+            cur["units"].append({"loc": f"b{counters['b']}", "kind": "b",
+                                 "text": bm.group(1).strip(), "sub": sub, "leadin": False})
+            continue
+        if nm:
+            flush_para()
+            counters["n"] += 1
+            cur["units"].append({"loc": f"n{counters['n']}", "kind": "n",
+                                 "text": nm.group(2).strip(), "sub": sub, "leadin": False})
+            continue
+        para.append(line.lstrip("> ").rstrip())
+    flush_para()
+    return sections
+
+
+if __name__ == "__main__":
+    rev, path = sys.argv[1], sys.argv[2]
+    print(json.dumps(parse(blob_text(rev, path)), ensure_ascii=False, indent=1))

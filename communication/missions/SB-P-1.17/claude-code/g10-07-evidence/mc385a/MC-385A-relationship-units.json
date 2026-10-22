@@ -1,0 +1,242 @@
+{
+"1-§5-b9": [
+"JUSTIFIED GROUPING",
+"Employee permission to review item availability is the role form of rowed `1-§10-2` (DELEGATED SB-P-1.18; SB-P-1.17 supplies stock data). Local: `7-§10-3`"
+],
+"2-§5-b4": [
+"JUSTIFIED GROUPING",
+"Ask CFO data question over expiry reads SB-P-1.17 stock data; equivalent to rowed consumers `2-§11-5`, `2-§25-8` (DELEGATED SB-P-1.15). Local expiry rows `7-§2-8`"
+],
+"3-§22-p2": [
+"JUSTIFIED GROUPING",
+"Second sentence of the C3 §22 reuse rule carried by rowed `3-§22-1` (DELEGATED SB-P-1.14); applied here by DC-01 (F-INV/F-PPM reuse)"
+],
+"4-§15-b2": [
+"JUSTIFIED EXCLUSION",
+"Daily Intelligence must not accuse from anomaly signals (SB-P-1.15). SB-P-1.17 carries the equivalent for its own signals: `13-§8-10`, `17-§8-6`"
+],
+"4-§16-b11": [
+"JUSTIFIED EXCLUSION",
+"Daily Intelligence acceptance (SB-P-1.15). SB-P-1.17 equivalents: `13-§21-5`, `BP-§10.6-B2`"
+],
+"5-§7-p3": [
+"JUSTIFIED GROUPING",
+"Destination-feature responsibility for permission, validation and write rules; SB-P-1.17 is the destination for other stock documents and carries it in `7-§6-4b`, `7-§6-5b` (IN SCOPE) and `5-§4-10`"
+],
+"5-§11-p2": [
+"JUSTIFIED GROUPING",
+"Per-destination idempotency; the SB-P-1.17 stock-document slice is `7-§6-5b`, `7-§15-2b` (IN SCOPE)"
+],
+"5-§12-p3": [
+"JUSTIFIED EXCLUSION",
+"UDI Manager document access (SB-P-1.14). Manager stock-document access is governed locally by `17:FPDR-1` capabilities and `7-§10-2`"
+],
+"9-§11-b3": [
+"JUSTIFIED EXCLUSION",
+"Human Language quantity normalization (SB-P-1.13); local reuse `9-§12-8`, `13-§19-5`"
+],
+"9-§11-b4": [
+"JUSTIFIED EXCLUSION",
+"Human Language weight/unit normalization (SB-P-1.13); local reuse `9-§12-8`, `7-§2-5`"
+],
+"10-§13-b7": [
+"JUSTIFIED GROUPING",
+"Workspace business-action condition governing the rowed example `10-§13-6` (approve a reorder)"
+],
+"10-§13-b8": [
+"JUSTIFIED GROUPING",
+"As `10-§13-b7`; local confirmation rule `7-§5-1`"
+],
+"10-§13-b9": [
+"JUSTIFIED GROUPING",
+"As `10-§13-b7`; local idempotency `7-§8-1`"
+],
+"10-§13-b10": [
+"JUSTIFIED GROUPING",
+"As `10-§13-b7`"
+],
+"10-§17-b5": [
+"JUSTIFIED EXCLUSION",
+"Workspace clarification of item/quantity (SB-P-1.13); local `7-§11-1.6`, `9-§9-6` (Part D)"
+],
+"11-§10-n1": [
+"JUSTIFIED GROUPING",
+"Governed execution step for every reminder action, including the rowed `11-§10-4` (Approve reorder, DELEGATED SB-P-1.15); local `7-§5-1`"
+],
+"11-§10-n2": [
+"JUSTIFIED GROUPING",
+"Governed execution step for every reminder action, including the rowed `11-§10-4` (Approve reorder, DELEGATED SB-P-1.15); local `7-§5-1`"
+],
+"11-§10-n3": [
+"JUSTIFIED GROUPING",
+"Governed execution step for every reminder action, including the rowed `11-§10-4` (Approve reorder, DELEGATED SB-P-1.15); local `7-§5-1`"
+],
+"11-§10-n5": [
+"JUSTIFIED GROUPING",
+"Governed execution step for every reminder action, including the rowed `11-§10-4` (Approve reorder, DELEGATED SB-P-1.15); local `7-§5-1`"
+],
+"11-§10-n6": [
+"JUSTIFIED GROUPING",
+"Governed execution step for every reminder action, including the rowed `11-§10-4` (Approve reorder, DELEGATED SB-P-1.15); local `7-§5-1`"
+],
+"11-§11-b1": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b2": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b3": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b4": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b5": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b6": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b7": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b8": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b9": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b10": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b11": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-b12": [
+"JUSTIFIED EXCLUSION",
+"Standing-rule field (SB-P-1.15, consumed through `D15`); SB-P-1.17 standing reorder rules carried locally by `7-§5-2`, `7-§15-8`, `7-§13-12`"
+],
+"11-§11-p3": [
+"JUSTIFIED EXCLUSION",
+"Rule never expands beyond stored authority (SB-P-1.15); local `7-§15-8`"
+],
+"11-§13-p2": [
+"JUSTIFIED EXCLUSION",
+"Manager automation only within delegated authority (SB-P-1.15); `17:FPDR-1` keeps standing-rule creation Owner-reserved for this mission (consistent, stricter)"
+],
+"11-§22-n7": [
+"JUSTIFIED EXCLUSION",
+"Reminder acceptance (SB-P-1.15); local `7-§5-1`, `7-§15-7`"
+],
+"11-§22-n9": [
+"JUSTIFIED EXCLUSION",
+"Reminder acceptance (SB-P-1.15); local `7-§13-12`"
+],
+"12-§7-b4": [
+"JUSTIFIED EXCLUSION",
+"Voice quantity/unit clarification (SB-P-1.13); stock/reorder slice is `12-§7-7` (Part D); local `7-§11-1.6`"
+],
+"12-§14-p2": [
+"JUSTIFIED EXCLUSION",
+"Voice Manager scope (SB-P-1.13); Manager capabilities here are `17:FPDR-1`"
+],
+"18-§5-p1": [
+"JUSTIFIED EXCLUSION",
+"Entitlement model (SB-P-1.19, consumed through `DENT`); Smart Stock add-on path carried locally by `GPCV-R7`, `17-§4-8`, `17-§15-3`, `17-§17-4`; enforcement `17-§14-5`"
+],
+"18-§5-p2": [
+"JUSTIFIED EXCLUSION",
+"Entitlement model (SB-P-1.19, consumed through `DENT`); Smart Stock add-on path carried locally by `GPCV-R7`, `17-§4-8`, `17-§15-3`, `17-§17-4`; enforcement `17-§14-5`"
+],
+"18-§5-p4": [
+"JUSTIFIED EXCLUSION",
+"Entitlement model (SB-P-1.19, consumed through `DENT`); Smart Stock add-on path carried locally by `GPCV-R7`, `17-§4-8`, `17-§15-3`, `17-§17-4`; enforcement `17-§14-5`"
+],
+"18-§9-b1": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"18-§9-b2": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"18-§9-b3": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"18-§9-b4": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"18-§9-b5": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"18-§9-b6": [
+"JUSTIFIED EXCLUSION",
+"Add-on removal behaviour (SB-P-1.19, `DENT`); SB-P-1.17 unavailable-add-on handling is `17-§17-4`; historical stock records follow `7-§2-5` auditability"
+],
+"21-§17-b4": [
+"JUSTIFIED EXCLUSION",
+"Runtime revalidation covers automation rules (SB-P-1.12 `21-§17`); local `7-§13-12`, Part D `21-§12-5`"
+],
+"21-§19-b8": [
+"JUSTIFIED EXCLUSION",
+"Automation authority provenance (SB-P-1.12 `21-§19-8`); local `7-§5-2`; Part D `21-§12-*`"
+],
+"22-§5-b9": [
+"JUSTIFIED EXCLUSION",
+"Shared external integration/provider reference identity (SB-P-1.12 `22-§5-9`); POS source/reference identity carried locally by `13-§4-3`, `13-§17-2`"
+],
+"22-§17-p3": [
+"JUSTIFIED EXCLUSION",
+"Core customization rejected (SB-P-1.12 C22 §17); POS slice carried locally by `7-§7-3`, `13-§3-7`, `13-§20-1`, `BP-§16-7`, `GPCV-§9-6`"
+],
+"22-§28-b10": [
+"JUSTIFIED EXCLUSION",
+"As `22-§17-p3`; local `13-§22-3`, `7-§16-3`"
+],
+"22-§20-b3": [
+"JUSTIFIED EXCLUSION",
+"Entitlements control capability (SB-P-1.12); local `17-§14-5`, `GPCV-R7`"
+],
+"22-§11-p2": [
+"JUSTIFIED EXCLUSION",
+"Standing automation is stored delegated authority (SB-P-1.12/SB-P-1.15); local `7-§5-2`"
+],
+"22-§22-b1": [
+"JUSTIFIED EXCLUSION",
+"Stable identifiers/test hooks (SB-P-1.12); Manager-depth slice carried locally by `17-§16-2`, `17-§22-10b`"
+],
+"24-§21-p3": [
+"JUSTIFIED GROUPING",
+"Confirmation binding governs the rowed `24-§21-3` (confirmation for supplier orders, IN SCOPE SB-P-1.17)"
+],
+"24-§21-p4": [
+"JUSTIFIED GROUPING",
+"Execution-time revalidation governs the rowed `24-§21-3`; local `7-§13-12`"
+],
+"24-§21-b6": [
+"JUSTIFIED EXCLUSION",
+"Confirmation for consequential imports (SB-P-1.13); SB-P-1.17 stock-import slice is `7-§6-4b`, `5-§4-10`"
+],
+"25-§6-p2": [
+"JUSTIFIED GROUPING",
+"Reuse rule of C25 §6 governing the rowed SB-P-1.17 storage slice `25-§6-1` (b8 Stock/Supplier/Reorder documents)"
+],
+"21-§22-p2": [
+"JUSTIFIED EXCLUSION",
+"Domain-specific permissions must compose with the shared model (SB-P-1.12 `21-§22`); SB-P-1.17 Manager capabilities (`17:FPDR-1`) are carried locally by `7-§12-3` (Permission Engine reuse). Found by the lexicon probe"
+]
+}
