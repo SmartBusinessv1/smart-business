@@ -1140,6 +1140,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.8 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-399A) | Stage 7 refinement for the independent review findings ENG17-01 to ENG17-03 (MC-398A, MC-399): §20.9 added (transaction atomicity and identity invariants, closing-cash decision table, POS architecture versus source feasibility and the minimum source evidence dossier); pointers in §20.4.1, §20.4.6, §20.4.8 and §20.7.10; EQ17-13 to EQ17-16, R17-10 and R17-11 added; T8 watch row refined; metadata and §19 updated. Sections 1–19 substantive content, §20.8 register, FCTM, Founder decisions and holds unchanged |
 | 0.9 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-403A) | SA-01-F01 correction (MC-402A, MC-403): §20.4.10 now identifies capability 5 as viewing operator-attributed counter detail (Owner-reserved, per §8.10 and `17:FPDR-1`) and states standing-rule creation as a separate Owner-only boundary; Reference Cost and margin wording aligned with §8.10 (separate SB-P-1.12 permissions, MC-404A); §19 updated. No other Sections 20–21 text carried the misidentification. Sections 1–19 substantive content, capability numbering, FCTM, Founder decisions, ENG17 refinements and holds unchanged |
 | 0.10 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-411A) | Cross-specialist corrections (MC-410A, MC-411): MC410-R01 / SA-01-F02 — the unsupported integration-principal assertion removed from the §20.3 component map, §20.4.6, §20.5 and the B6-05 approach, replaced by verified source authentication, business binding and a held kernel authorization path; MC410-R03 / SA03-FI-07 — INV-A9 corrected to governed atomic effects with Ledger classification owned by SB-P-1.14; §21.3 records the R01 hold and MC410-R02 as OPEN; §19 updated. INV-A8, Sections 1–19 substantive content, FCTM, Founder decisions and upstream contracts unchanged |
+| 0.11 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-415A) | INV-A8 source-contract reconciliation (MC-411B Finance interpretation, MC-415): INV-A8 in §20.9.1 now separates financial trust from inventory eligibility and holds the posting timing of trusted-but-inventory-unmapped events for the EIS; the MC410-R02 hold in §21.3 records the accepted interpretation with the execution decision still open; §19 updated. INV-A1 to INV-A7, INV-A9, Sections 1–19 substantive content, FCTM, Founder decisions and upstream contracts unchanged |
 
 ## 19. Governance History
 
@@ -1178,7 +1179,9 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | Specialist assurance finding SA-01-F01 (MC-402A) and disposition (MC-403) | Conversation-source | — |
 | Stage 7 capability 5 mapping correction, §20.4.10 (MC-403A, MC-404A) | this file | PR #1012, `739c5fb3` |
 | Independent reconciliation MC-410A and disposition (MC-411) | Conversation-source | — |
-| Stage 7 cross-specialist corrections, POS intake authority and INV-A9 (MC-411A) | this file | PENDING (review PR) |
+| Stage 7 cross-specialist corrections, POS intake authority and INV-A9 (MC-411A, MC-412A) | this file | PR #1013, `e27f9e15` |
+| Finance interpretation of Contract 13 §§4–7 (MC-411B) and disposition (MC-415) | Conversation-source | — |
+| INV-A8 source-contract reconciliation (MC-415A) | this file | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -2860,7 +2863,7 @@ This section answers the independent Stage 7 review findings ENG17-01 to ENG17-0
 | INV-A5 | A source correction, reversal or void is a new linked event: originals are never mutated, and movements stay append-only [R]. A stock correction never creates a financial transaction | `13-§6-3`, `13-§16-6`, `13-§17-7`, `7-§8-4` |
 | INV-A6 | An out-of-order event (for example, a reversal before its original) is held as pending review. It is never applied to a missing target | `13-§16-5` |
 | INV-A7 | Cross-source overlap is detected, never resolved automatically. A manual record and a POS event that may be the same sale (same business, close in time, same amount and payment method, similar items) become a review candidate. Neither side is suppressed, merged or deleted; resolution is an authorized human decision recorded as a governed correction | `13-§7-5`, `13-§16-11`, `13-§6-1`, `13-§6-2`; DC-12 |
-| INV-A8 | POS-originated revenue reaches the Ledger only through the governed command, once per source event. Unmapped or untrusted events create no movement and no revenue until resolved | `13-§6-6`, `13-§7-1` to `-4`, `13-§21-3`, `13-§21-4` |
+| INV-A8 | POS-originated revenue reaches the Ledger only through the single SB-P-1.14 governed command, once per source event; there is no second POS Ledger or shadow revenue total. Financial trust and inventory eligibility are distinct. An event whose POS source identity or financial evidence is untrusted creates no authoritative Ledger or inventory effect. An unresolved item mapping prevents only an inventory movement that requires that mapping; it does not by itself make the financial evidence untrusted. For a financially trusted event that is not yet inventory-mapped, the timing of Ledger posting is an EIS engineering hold (MC410-R02, §21.3): this Blueprint selects neither automatic posting nor mandatory financial suppression. Suspected POS/manual overlap is never automatically merged, suppressed or double-posted (INV-A7). Where one authorized command legitimately requires both Ledger and stock effects, they commit atomically, all or nothing (INV-A2) | `13-§4-2` to `-4`, `13-§6-6`, `13-§7-1` to `-5`, `13-§21-3`, `13-§21-4` |
 | INV-A9 | Where a confirmed business event legitimately requires both a stock-receipt movement and a Ledger financial event, the approved effects must commit atomically through their governed domain commands. The Ledger classification is determined by SB-P-1.14. Goods receipt does not establish supplier payment, and no duplicate purchase, expense or settlement fact may be created | `7-§8-2`, `7-§8-5` |
 
 **What the EIS must prove (verification evidence, T2 unless stated):**
@@ -3000,7 +3003,7 @@ These are engineering questions for the EIS. None is a product decision.
 
 Holds added at Stage 7 (MC-411):
 - **POS intake authority binding (MC410-R01):** the kernel-binding design for POS intake is unresolved. It requires coordination with the SB-P-1.12 owner before EIS approval (§20.5).
-- **Trusted-but-unmapped POS revenue (MC410-R02): OPEN.** Whether such an event posts to the Ledger or is withheld is not decided here. Mission Control resolves it under Contract 13 and SB-P-1.14 authority. INV-A8 is unchanged pending that decision.
+- **Trusted-but-inventory-unmapped POS revenue (MC410-R02): source interpretation accepted (MC-411B, MC-415); execution decision OPEN.** Contract 13 §§4–7 distinguishes sales ingestion from product mapping, so a missing inventory mapping does not by itself make financial evidence untrusted (INV-A8). When such an event posts to the Ledger remains an EIS engineering hold, to be resolved with SB-P-1.14 authority. Neither automatic posting nor mandatory financial suppression is selected here.
 
 No hold is converted to PASS.
 
