@@ -103,9 +103,9 @@
 - **Not authorized:** closure, archive, Blueprint Lock, EIS and implementation
 - **Mission Control reference:** MC-422A (conversation-source)
 
-## H-11 — Stage 8 Founder approval → canonical Blueprint Lock (PROPOSED)
+## H-11 — Stage 8 Founder approval → canonical Blueprint Lock
 
-- **Date:** 2026-10-22 (lock PR not yet merged)
+- **Date:** 2026-10-22
 - **From:** Founder and Mission Control (MC-425 readiness PASS; MC-426 approval accepted; conversation-source). **To:** Claude Code (Documentation Actor) for lock publication; then Mission Control and the Founder for merge
 - **Stage completed:** Stage 8 Founder approval
 - **Work and files:**
@@ -118,3 +118,25 @@
 - **Next authorized action:** Mission Control review, Founder human merge and Mission Control post-merge verification
 - **Not authorized:** Stage 9 actor, EIS, implementation, migration, production, delivery, provider action, external POS connection, staff or operator-data processing, runtime testing, closure and archive
 - **Mission Control reference:** MC-426A
+- **Merged:** PR #1017, merge `5fadee63bfa7e99c49ddf717f17e09bf1d44a71a`
+
+## H-12 — Stage 8 locked → Stage 9 EIS creation
+
+- **Date:** 2026-10-22
+- **From:** Mission Control. **To:** Claude Code (Stage 9 EIS actor)
+- **Work and files:** `mission-control/13-stage9-eis-creation-authorization.md` (MC-429); `communication/live/instruction.md` and `report.md`, the Stage 9 handoff
+- **Commit:** PR #1018, merge `d3155ac99ade96d3d7fdd739eaa2a6003406961a`; merge verified in MC-430 (conversation-source)
+- **Not authorized:** Stage 10 approval, Stage 11 EIS Lock, implementation, SQL, migration, deployment, production, runtime testing and external POS
+
+## H-13 — Stage 9 draft EIS → Mission Control Stage 10 review (PROPOSED)
+
+- **Date:** 2026-10-22 (PR not yet merged)
+- **From:** Claude Code (Stage 9 EIS actor). **To:** Mission Control
+- **Work and files:** `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`; `claude-code/20-stage9-eis-draft-completion-report.md`; this log, `decision-log.md`, `README.md`; `communication/live/report.md`
+- **Base:** `main@d3155ac99ade96d3d7fdd739eaa2a6003406961a`. Branch `mission/SB-P-1.17-stage9-eis-draft`
+- **Commit and PR:** recorded in the PR itself
+- **Verification:** 404 of 404 rows mapped both ways; 157 requirements; 0 orphans; FCTM and Blueprint unchanged
+- **Open issues:** EIS blockers MC410-R01, MC410-R02, EQ17-13, MC410-R04A and MC410-R04B; U-11; SA-04 and DPOS; T6 and T8 watches
+- **Next authorized action:** Mission Control Stage 10 review
+- **Not authorized:** Stage 10 approval, EIS Lock, implementation and every execution act
+- **Mission Control reference:** MC-429, MC-430
