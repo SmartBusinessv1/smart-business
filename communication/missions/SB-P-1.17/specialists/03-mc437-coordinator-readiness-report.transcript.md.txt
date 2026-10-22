@@ -1,0 +1,153 @@
+# MC-437 — Stage 10 Independent Review Coordination Readiness Report
+
+Mission: SB-P-1.17 — Manager Operations Recipient: Smart Business Mission Control Coordinator: Independent Engineering Review Room 2 Mode: READ-ONLY — Coordination Intake Only
+
+COORDINATOR READY — REVIEWER HANDOFFS PENDING
+
+## 1. Canonical baseline verification
+
+PR [#1021](https://github.com/SmartBusinessv1/smart-business/pull/1021?utm_source=chatgpt.com) is confirmed merged.
+
+| Item                   | Verified canonical state                        |
+| ---------------------- | ----------------------------------------------- |
+| Repository             | `SmartBusinessv1/smart-business`                |
+| Merge commit           | `148b67b68f74e568730155157c8fe8c6b63bd140`      |
+| Live instruction       | Blob `332487ef67e2ba331ef6b2952e11f6f32821b2d5` |
+| Durable dispatch       | Blob `6084f8085cf02dfa9d40f38ff9a4899a9c9a56f2` |
+| MC-432 review contract | Blob `fad5a75a3f81009c563c9b47459be246fc610490` |
+| Source 18 v1.2         | Blob `0945bda60a93c99909c3b7a247d5427ebe256011` |
+
+The prior Stage 9 live instruction and report are preserved in the mission's communication-preservation directory.
+
+The new live report remains an awaiting-coordinator placeholder. No specialist appointment or report is implied by that placeholder.
+
+## 2. Exact Stage 10 review target
+
+IMMUTABLE REVIEW TARGET
+
+`docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`
+
+Blob SHA
+
+`8280967f2805cfed17778da3fc76c90b2f2f5ead`
+
+157 EIS requirements
+
+DRAFT
+
+Stage 10 documentary review only. No EIS approval or EIS Lock.
+
+| Supporting authority                        | Verified blob                               |
+| ------------------------------------------- | ------------------------------------------- |
+| Locked Blueprint — `completed/SB-P-1.17.md` | `bc4615f84959a79e6b242f622aae928901fbe959`  |
+| Canonical FCTM                              | `cb79088d3fa59a79e6b242f622aae928901fbe959` |
+
+Correction to the second table: the canonical FCTM's verified blob is `cb79088d3fa59f8b3226fd9d11ff9c9573666670`. The Blueprint blob shown is correct.
+
+The EIS is present on canonical `main` with the exact target blob required by MC-432 and MC-436. The earlier draft PR #1019 head is historical context; reviewers should use the immutable EIS blob, not an unspecified moving branch.
+
+## 3. Reviewer availability, qualifications and independence
+
+I reviewed the published Stage 7 specialist provenance and the current dispatch records.
+
+| Domain                     | Established review responsibility                                | Prior actor evidence                                    | Actual Stage 10 availability | Qualification / independence                                                        |
+| -------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------- |
+| SA-01 Security             | Security & Permissions Architecture                              | Prior OpenAI specialist review, non-author of Blueprint | UNCONFIRMED                  | Documentary expertise precedent; new Stage 10 independence check required           |
+| SA-02 Indian privacy/legal | Research Intelligence / Legal & Privacy                          | Provisional legal research exists                       | UNCONFIRMED                  | Qualified human Indian legal/privacy validation OPEN                                |
+| SA-03 Financial            | Finance & Payments                                               | Prior OpenAI finance specialist review                  | UNCONFIRMED                  | Documentary financial-integrity precedent; appointment/independence not established |
+| SA-04 POS                  | AI, WhatsApp & Integration / POS technical review responsibility | AI-assisted SA-04 report published                      | UNCONFIRMED                  | Qualified independent POS practitioner OPEN                                         |
+| SA-05 Supabase/migration   | Supabase Backend Architecture                                    | Prior migration assurance record                        | UNCONFIRMED                  | Documentary technical expertise precedent; new independence assessment required     |
+
+No Stage 10 specialist is presently confirmed appointed through the authority records inspected. Historical reviews establish experience and reusable findings, not current availability or qualified independence.
+
+The same Claude Code actor authored the SB-P-1.17 Blueprint and draft EIS. It must not be accepted as their independent reviewer.
+
+A qualified legal/privacy opinion and qualified independent POS assurance cannot be manufactured by assigning an AI a specialist title.
+
+## 4. Proposed five-domain review sequence
+
+The durable dispatch calls for separate, sequential repository-based handoffs, each with its own authorized reviewer and immutable target.
+
+1. SA-01 — Security & Permissions
+
+   First resolve the principal-binding and authorization architecture. Review `EIS17-POS-02`, `EIS17-HOLD-15`, delegated capabilities, field-level protection and revocation. The result informs POS and migration reviews.
+2. SA-03 — Financial Integrity
+
+   Review Ledger ownership, `EIS17-TXN-03`, `TXN-06`, `TXN-09`, unknown outcomes, revenue timing, dual-domain reversals and closing completeness. Establish any disagreement with locked SB-P-1.14.
+3. SA-05 — Supabase / Migration
+
+   Challenge the security and financial interface assumptions through PostgreSQL/Supabase architectural feasibility, grants, atomic RPC composition, migration sequencing, rollback and CI. Do not execute migrations.
+4. SA-04 — POS Integration
+
+   Review the vendor-neutral bridge and source-capability dossier using earlier security/financial conclusions. Actual qualified appointment remains a prerequisite; no provider selection or live source evidence is authorized.
+5. SA-02 — India Privacy / Legal
+
+   Reconcile U-11, operator identity, lawful purpose, retention, minimization and indirect identifiability. This can be scheduled earlier if a qualified reviewer is available, but it must have its own handoff and professional-validation status.
+
+The sequential ordering is intended to minimize duplicated dependency findings. Mission Control may amend the order based on actual reviewer availability, but no specialist should begin without an independent, explicit handoff.
+
+## 5. Required per-review handoff contract
+
+Each Mission Control-authorized handoff should specify the following minimum information:
+
+| Required field         | Contents                                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------- |
+| Reviewer               | Actual identified actor, provider/room and relevant expertise                                   |
+| Independence           | Prior contribution and correlated-assumption disclosure                                         |
+| Review target          | Exact immutable EIS blob `8280967f...`                                                          |
+| Authorities            | Locked Blueprint, Source 18, MC-432, relevant upstream EIS and source clauses                   |
+| Scope                  | One specialist domain only                                                                      |
+| Review requirements    | Exact `EIS17-*` controls and corresponding holds                                                |
+| Deliverable            | Finding-scoped specialist report, severity, evidence, correction owner and limitation statement |
+| Repository destination | Separately authorized mission specialist-report path                                            |
+| Communication          | Dedicated live instruction/report exchange, with predecessor preserved before reuse             |
+| Prohibitions           | No approval, implementation, mutation, provider access or unauthorized publication              |
+
+A reviewer may identify a source contradiction, technical design risk, held dependency, optional control or no finding. These categories must not be collapsed into a generic PASS.
+
+## 6. Priority Stage 10 holds
+
+These remain the central review targets:
+
+| Hold                                        | EIS requirements             | Required review lead |
+| ------------------------------------------- | ---------------------------- | -------------------- |
+| MC410-R01 — POS intake principal            | `EIS17-POS-02`, `HOLD-15`    | SA-01                |
+| MC410-R02 — Trusted/unmapped revenue timing | `EIS17-TXN-09`, `HOLD-16`    | SA-03                |
+| EQ17-13 / MC410-R05 — Atomicity             | `EIS17-TXN-03`, `HOLD-17`    | SA-03 + SA-05        |
+| MC410-R04A — Reversal atomicity             | `EIS17-TXN-06`, `HOLD-18`    | SA-03                |
+| MC410-R04B — Closing completeness           | `EIS17-CC-03`, `HOLD-19`     | SA-03 + SA-04        |
+| U-11 — Operator privacy                     | Privacy requirements/holds   | SA-02                |
+| DPOS — Real POS-source capability           | POS requirements and dossier | SA-04                |
+
+The T6 and T8 watches remain watches. No new Founder decision or confirmed infeasibility is established by this coordination intake.
+
+## 7. Communication workflow and publication status
+
+The repository communication protocol requires distinct authorized live handoffs and durable preservation before the active pair is reused.
+
+The current `communication/live/report.md` is a placeholder, not a completed coordination submission. The MC-436 dispatch explicitly grants no blanket Git writing authority to the coordinator or reviewers.
+
+Accordingly, this report is returned directly to Mission Control through the conversation. I have not modified the live pair or committed a durable coordinator report to the repository. That publication requires a separate mission-scoped Git authorization specifying the exact writable files and branch/PR workflow.
+
+## 8. Coordinator readiness recommendation
+
+| Decision                                           | Status         |
+| -------------------------------------------------- | -------------- |
+| PR #1021 merged baseline verified                  | PASS           |
+| EIS immutable target verified                      | PASS           |
+| Locked Blueprint and FCTM identified               | PASS           |
+| Existing specialist evidence inventoried           | PASS           |
+| Five-domain sequence proposed                      | READY          |
+| Actual reviewer availability confirmed             | OPEN           |
+| New reviewer independence/qualification determined | OPEN           |
+| Qualified Indian legal/privacy assurance           | OPEN           |
+| Qualified independent POS assurance                | OPEN           |
+| Specialist reviews activated                       | NO             |
+| Stage 10 EIS approval                              | NOT AUTHORIZED |
+| EIS Lock / implementation                          | NOT AUTHORIZED |
+
+Recommendation to Mission Control: Accept this as the Stage 10 coordination intake, confirm actual SA-01 reviewer eligibility first, and issue one specific authorized repository-based handoff. Continue sequentially, preserving each specialist's original report and qualifications before proceeding to the next. Arrange qualified legal and POS review rather than substituting an AI sign-off.
+
+No branch, commit, PR, SQL, migration, deployment, POS connection or implementation was performed.
+
+STOP FOR MISSION CONTROL DISPOSITION.
