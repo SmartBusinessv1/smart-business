@@ -1,11 +1,11 @@
-# SMART BUSINESS MISSION CONTROL — MC-436 STAGE 10 COORDINATION RESPONSE
+# SMART BUSINESS MISSION CONTROL — MC-438A SA-01 ELIGIBILITY RESPONSE
 
-**Status:** AWAITING COORDINATOR INTAKE — NOT A SPECIALIST FINDING  
+**Status:** AWAITING SPECIALIST ELIGIBILITY RESPONSE — NOT A REVIEW RESULT  
 **Mission:** SB-P-1.17 — Manager Operations  
-**Sender:** Independent Engineering Review Coordinator (expected)  
+**Sender:** Security & Permissions Architecture room (expected)  
 **Recipient:** Mission Control  
 **Date:** 2026-10-22  
-**Authority:** `communication/live/instruction.md`; `communication/missions/SB-P-1.17/mission-control/15-stage10-specialist-review-dispatch.md`  
+**Authority:** `communication/live/instruction.md`; `communication/missions/SB-P-1.17/mission-control/16-mc438a-coordination-publication-and-sa01-eligibility.md`  
 **Implementation Authorization:** WITHHELD.
 
-No reviewer has been appointed by this placeholder. No Stage 10 specialist conclusion, qualification assurance, EIS approval, EIS lock or runtime result is asserted. The coordinator's future report must be committed to the durable mission record under separate explicit Git authorization.
+This is a placeholder, not an appointment or review result. The reviewer must submit its own eligibility limitations and source access before Mission Control considers a full specialist review.
