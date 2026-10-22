@@ -39,7 +39,9 @@
 | D-23 | MC-411B Finance interpretation; MC-415 disposition; MC-415A INV-A8 reconciliation | Conversation-source — PR #1014, `ad85e151`. MC-411B original published by PR #1015 | Blueprint §20.9.1, §21.3 |
 | D-24 | **MC-418: Stage 7 documentary review accepted** | Conversation-source. The text is not in the repository; its effect is recorded in the Blueprint status (PR #1015) | Blueprint metadata, §18 v0.12 |
 | D-25 | MC-419 and MC-419A: Stage 8 preparation; evidence inventory, Founder Brief and readiness record published | Conversation-source — PR #1015, `4a0047ab` | `claude-code/18-…`, `claude-code/19-…`, `founder/01-stage8-founder-brief.md` |
-| D-26 | MC-422 and MC-422A: live-communication reconciliation; mission README and logs created | Conversation-source — **PROPOSED** (this PR) | `communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md` |
+| D-26 | MC-422 and MC-422A: live-communication reconciliation; mission README and logs created | Conversation-source — PR #1016, `b3b52c6b` | `communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md` |
+| D-27 | MC-425: Stage 8 readiness PASS | Conversation-source. Text not in the repository | `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` §1 |
+| D-28 | **MC-426: Founder Stage 8 approval accepted; Blueprint Lock to be published.** MC-426A: lock record and relocation to `completed/`; no EIS or implementation authorization | Conversation-source — **PROPOSED** (MC-426A lock PR); effective on human merge and post-merge verification | `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` |
 
 ## Part B — Founder decisions
 
@@ -47,7 +49,7 @@
 |---|---|---|---|
 | F-01 | `17:FPDR-1` to `17:FPDR-6` (U-01, U-02, U-05, U-06, U-13, U-15) | APPROVED — PR #994, `9c9bce82`; gate record D-07 | `claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md` |
 | F-02 | `17:FPDR-7`: permissive implementation examples | APPROVED — PR #1002, `a3f4b8f1` | `claude-code/15-stage5-founder-product-decision-record-17-fpdr-7.md` |
-| F-03 | Stage 8 Founder approval and Blueprint Lock | **PENDING** | `founder/01-stage8-founder-brief.md` |
+| F-03 | Stage 8 Founder approval and Blueprint Lock | **APPROVED** (conversation-source, quoted in MC-426A). The lock is canonical on human merge of the lock PR | `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` §1; brief `founder/01-stage8-founder-brief.md` |
 
 ## Part C — Open items carried (not decisions)
 

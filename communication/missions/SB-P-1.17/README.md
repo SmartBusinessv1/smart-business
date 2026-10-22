@@ -4,9 +4,9 @@
 **Mission type:** Product Mission (Source 18 v1.2)\
 **Mission Control:** Smart Business Mission Control\
 **Definition, Builder Review and Engineering Review Actor:** Claude Code (Stage 1 Intake Pack §4; MC-396A)\
-**Current stage and owner:** Stage 8 — Founder Approval and Blueprint Lock. Mission Control owns it, and the Founder approves\
-**Current status:** STAGE 7 DOCUMENTARY REVIEW ACCEPTED (MC-418) — STAGE 8 FOUNDER APPROVAL PENDING — BLUEPRINT NOT LOCKED\
-**Latest relevant commit:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce` (PR #1015, Stage 8 preparation package)\
+**Current stage and owner:** Stage 8 — Founder Approval and Blueprint Lock. The Founder approved (MC-426). The lock-publication PR is awaiting Mission Control review and Founder human merge. Stage 9 (EIS) is not authorized\
+**Current status:** STAGE 8 — FOUNDER APPROVED — BLUEPRINT APPROVED — LOCKED (MC-426), effective canonically only on human merge of the Stage 8 lock PR and Mission Control post-merge verification\
+**Latest relevant commit:** `main@b3b52c6b72ea1ec50f48c8e55a134df569944f4c` (PR #1016, live-communication reconciliation)\
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
 Created under MC-422A on 2026-10-22. SB-P-1.17 had no mission README before this; the Stage 1 entry record noted the absence. Conversation-source Mission Control decisions are labelled as such, and their text is not reproduced.
@@ -19,11 +19,13 @@ Build Plan §10.6: useful day-to-day operational management without becoming a h
 - Contract 13 — POS Connection, Counter Intelligence & Closing Cash;
 - Contract 17 — Operational Dashboard & Manager Workspace.
 
-The Product Blueprint is `docs/phase-1-mission-blueprint/active/SB-P-1.17.md`.
+The Product Blueprint is `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, relocated from `active/` by the Stage 8 lock PR (MC-426A). Until that PR merges, `main` holds it at `active/`.
 
 ## Last completed action
 
-PR #1015 (merge `4a0047ab`) published the Stage 8 preparation package, under MC-419A:
+The Founder approved Stage 8 (MC-426; readiness PASS in MC-425). Both are conversation-source. The decision is quoted in `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md`, which is published by the MC-426A lock PR together with the relocation of the Blueprint.
+
+Earlier, PR #1016 (merge `b3b52c6b`) preserved and reconciled the live pair (MC-422A). Before that, PR #1015 (merge `4a0047ab`) published the Stage 8 preparation package, under MC-419A:
 
 - the evidence inventory;
 - the Founder Brief;
@@ -33,13 +35,14 @@ PR #1015 (merge `4a0047ab`) published the Stage 8 preparation package, under MC-
 
 ## Next authorized action
 
-1. Mission Control review of the Stage 8 package and of the MC-422A reconciliation PR.
-2. The Founder's Stage 8 decision (`founder/01-stage8-founder-brief.md`).
-3. Mission Control's lock record, only if the Founder approves.
+1. Mission Control review of the MC-426A lock PR.
+2. Founder human merge.
+3. Mission Control post-merge verification of the lock.
+4. Stage 9 (EIS) only under a separate later authorization.
 
 ## Not authorized
 
-- Blueprint Lock until the Founder approves;
+- appointment of a Stage 9 actor;
 - the EIS;
 - implementation;
 - migration execution;
@@ -56,7 +59,7 @@ PR #1015 (merge `4a0047ab`) published the Stage 8 preparation package, under MC-
 
 | Item | Blocks | State |
 |---|---|---|
-| Founder Stage 8 decision | Blueprint Lock | PENDING |
+| Human merge of the Stage 8 lock PR and Mission Control post-merge verification | Canonical effect of the lock | PENDING. Founder approval given (MC-426) |
 | Missing conversation-source texts (MC-418 and others) | Evidence completeness | EVIDENCE NOT AVAILABLE; listed in `claude-code/18` |
 | Specialist qualification and independence (SA-01 to SA-05) | Treating specialist reports as qualified assurance | OPEN |
 | `D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DSCH`, `DPOS`, `DSEC` and the other holds in Blueprint §21.3 | EIS approval, implementation and runtime evidence | Specifications locked upstream; not implemented |
@@ -71,7 +74,9 @@ These are canonical on `main@4a0047ab`.
 
 | Record | Path | Blob |
 |---|---|---|
-| Product Blueprint, Sections 1–21 | `docs/phase-1-mission-blueprint/active/SB-P-1.17.md` | `967840bb2c5a02cc0cb054d97816880a4bd9ece8` |
+| Product Blueprint, Sections 1–21 (Founder-approved content) | `docs/phase-1-mission-blueprint/active/SB-P-1.17.md` on `main@b3b52c6b` | `967840bb2c5a02cc0cb054d97816880a4bd9ece8` |
+| Product Blueprint, locked file (after merge of the lock PR) | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md` | `bc4615f84959a79e6b242f622aae928901fbe959` |
+| Stage 8 Founder approval and Blueprint Lock record (after merge) | `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` | — |
 | Populated FCTM (630 rows) | `claude-code/01-stage2-populated-fctm.md` | `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
 | Mission Truth Pack | `claude-code/03-stage2-mission-truth-pack.md` | `8d541153bd1af6741586937be9e42398b798dbb8` |
 | Founder Product Decision Record, `17:FPDR-1` to `-6` | `claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md` | `90b7ca1d43fd1d89fa5b8fd4cce30320fb7c00d4` |
@@ -94,6 +99,7 @@ All paths are relative to `communication/missions/SB-P-1.17/`.
 - `mission-control/10-stage3-completion-and-handover-record.md` — MC-314, PR #996
 - `mission-control/11-mc349-independent-findings-evidence-packet.md` — MC-349, PR #1000
 - `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md` — MC-393, PR #1009
+- `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` — MC-426, MC-426A (lock PR)
 
 **Claude Code:**
 
@@ -122,8 +128,8 @@ Number 12 is unused on `main`.
 
 **Communication preservation:**
 
-- `communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md` — MC-422A (this PR)
-- `communication-preservation/legacy-live-instruction-stage1-entry.snapshot.md`, `legacy-live-report-stage1-entry.snapshot.md` — byte-exact former live pair (MC-422A)
+- `communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md` — MC-422A, PR #1016
+- `communication-preservation/legacy-live-instruction-stage1-entry.snapshot.md`, `legacy-live-report-stage1-entry.snapshot.md` — byte-exact former live pair (MC-422A, PR #1016)
 
 **Logs:**
 
@@ -132,7 +138,7 @@ Number 12 is unused on `main`.
 
 ## Live communication
 
-`communication/live/instruction.md` and `report.md` are assigned to SB-P-1.17. They are in a **current-pointer state with no active instruction** (MC-422A).
+`communication/live/instruction.md` and `report.md` are assigned to SB-P-1.17. They are in a **current-pointer state with no active instruction** (MC-422A, PR #1016). Their state line ("Stage 8 Founder approval pending") predates MC-426. MC-426A does not authorize changing them, so they stay as merged; this README and the lock record prevail.
 
 `communication/live/instruction1.51.md` and `report1.51.md` (MC-329, PR #999) are SB-P-1.17's only numbered pair. Their provisional report is reconciled at closure, not before.
 
@@ -153,7 +159,7 @@ This is an index only. It is never an authority record and cannot approve, lock,
 | 5 — Mission Control Product Review (Gate 10) | APPROVED — Gate 10 PASS; Sections 1–19 | Mission Control | `mission-control/MC-393-…` | PRs #998 to #1009; `da53e1c9d7a84960532318a89cf27236b040694e` | MC-393 | 2026-10-20 to 2026-10-22 |
 | 6 — Builder Review | APPROVED | Claude Code; Mission Control | `claude-code/16-…` | PR #1010; `fc11821d56ca5406315b899e0d958660a0548561` | MC-396 (conversation-source, recorded in `claude-code/16`) | 2026-10-22 |
 | 7 — Engineering Review | ACCEPTED — documentary only; no runtime verification | Claude Code; Mission Control | Blueprint Sections 20–21; `claude-code/17-…`; specialist evidence | PRs #1010 to #1015; `4a0047ab526c76129607dda31b2da357ea3dd7ce` | MC-418 (conversation-source) | 2026-10-22 |
-| 8 — Founder Approval and Blueprint Lock | PENDING — preparation package published | Mission Control with Founder approval | `founder/01-…`; `claude-code/18-…`, `19-…` | PR #1015 (preparation only) | — | — |
+| 8 — Founder Approval and Blueprint Lock | FOUNDER APPROVED — APPROVED — LOCKED; effective on human merge of the lock PR and Mission Control post-merge verification | Mission Control with Founder approval | `founder/01-…`; `claude-code/18-…`, `19-…`; `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md`; `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md` | PRs #1015, #1016 (preparation); lock PR pending | MC-425, MC-426 (conversation-source) | 2026-10-22 (approval) |
 | 9–24 | Not yet reached — NOT AUTHORIZED | — | — | — | — | — |
 
-**BLUEPRINT NOT LOCKED. Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+**BLUEPRINT APPROVED — LOCKED (effective on human merge and Mission Control post-merge verification). No EIS. Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
