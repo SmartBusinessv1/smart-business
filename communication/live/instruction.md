@@ -1,14 +1,14 @@
-# SMART BUSINESS MISSION CONTROL — MC-436 STAGE 10 REVIEW COORDINATION
+# SMART BUSINESS MISSION CONTROL — MC-438A SA-01 ELIGIBILITY INTAKE
 
-**Status:** PROPOSED — EFFECTIVE AFTER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
+**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
 **Mission:** SB-P-1.17 — Manager Operations  
 **Sender:** Mission Control  
-**Recipient:** Independent Engineering Review Coordinator  
+**Recipient:** Security & Permissions Architecture specialist room — eligibility intake ONLY  
 **Date:** 2026-10-22  
-**Baseline:** `main@1f3e5402f6eba8487902b8ef861c057f074ce1a2`  
-**Authority:** `communication/missions/SB-P-1.17/mission-control/15-stage10-specialist-review-dispatch.md`  
+**Authority:** `communication/missions/SB-P-1.17/mission-control/16-mc438a-coordination-publication-and-sa01-eligibility.md`  
+**Baseline:** `main@148b67b68f74e568730155157c8fe8c6b63bd140`  
 **Implementation Authorization:** WITHHELD.
 
-Read and execute the authority record above after merge verification. FIRST report actual reviewer availability/qualification, confirm current EIS and locked Blueprint blobs, and propose a sequential specialist dispatch plan under MC-432. This is a **review-coordination intake**, not five automatic reviewer appointments. Do not approve EIS, run tests, change code/SQL, migrate or connect a POS.
+Read the authority record. Confirm availability, relevant expertise, independent eligibility, prior work, actual qualifications/limitations, and ability to review immutable EIS blob `8280967f2805cfed17778da3fc76c90b2f2f5ead`. Return an **eligibility response only**, through the repository communication protocol.
 
-Preserved predecessor live exchange: `communication/missions/SB-P-1.17/communication-preservation/stage9-live-instruction-mc429.snapshot.md` and `communication/missions/SB-P-1.17/communication-preservation/stage9-live-report-mc430.snapshot.md`.
+Do NOT conduct substantive SA-01 security review until a separate authorization. Do not approve or lock the EIS, change code or schema, run migrations, access providers, connect a POS or perform runtime operations.
