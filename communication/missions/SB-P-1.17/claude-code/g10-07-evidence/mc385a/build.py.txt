@@ -1,0 +1,117 @@
+"""MC-385A: build the R0 reconciliation ledger and the Workstream B sample (read-only, main@fc144110)."""
+import csv
+import hashlib
+import json
+import random
+import re
+import subprocess
+from collections import Counter, defaultdict
+
+REV = 'fc1441101d42b881e74757dea38eb1617387c791'
+REPO = r'PATH/TO/smart-business'  # set to your checkout
+FCTM17 = 'communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md'
+
+rows = list(csv.DictReader(open('coverage.csv', encoding='utf-8', newline='')))
+r0 = [r for r in rows if r['class'] == 'R0']
+assert len(r0) == 3820
+U = json.load(open('units.json', encoding='utf-8'))
+TITLE = {(str(c), u['s']): u['title'] for c in U for u in U[c]['units']}
+BLOB = {str(c): U[c]['blob'] for c in U}
+CAR = {x['key']: x['match'] for x in json.load(open('carriers.json', encoding='utf-8'))}
+FLAGS = json.load(open('flags.json', encoding='utf-8'))
+F17 = subprocess.run(['git', '-C', REPO, 'show', f'{REV}:{FCTM17}'], capture_output=True).stdout.decode('utf-8')
+VT = {}
+for l in F17.split('\n'):
+    m = re.match(r'\| (\S+) \| \S+@[0-9a-f]{8} \|', l)
+    if m:
+        c = [x.strip() for x in l.strip().strip('|').split(' | ')]
+        VT[c[0]] = (c[7], c[6], c[12])
+
+# reproducible screens (evidence only; disposition comes from the full read)
+CONTROL = re.compile(r'permission|authori|role|owner|manager|employee|confirm|approv|audit|idempot|duplicat|retry|delegat|automat|security|privacy|isolat|entitle|revo|access|scope|secret|credential|threshold|alert|reconcil|correct|reversal|override|limit|policy', re.I)
+LEXICON = re.compile(r'\bitems?\b|product|goods|quantit|\bunits?\b|\bsales?\b|\bcash\b|price|\bcost|\border|\bbill|shop|store\b|availab|catalog|counter|stock|supplier|inventor|POS|wastage|expir|reorder|closing', re.I)
+NARR = re.compile(r'Feature Identity|Founder Problem|Lighthouse|Historical|Provenance|Hydration|Completion Gate|Unresolved|Dependencies|Shared Foundations|Non-goals|Rejected', re.I)
+
+
+def section_kind(title):
+    if re.search(r'Provenance|Hydration|Historical', title, re.I):
+        return 'provenance/history'
+    if re.search(r'Feature Identity|Founder Problem|Lighthouse', title, re.I):
+        return 'narrative/principle'
+    if re.search(r'Acceptance', title, re.I):
+        return 'acceptance'
+    if re.search(r'Completion Gate', title, re.I):
+        return 'completion synthesis'
+    if re.search(r'Non-goal|Rejected', title, re.I):
+        return 'non-goal'
+    if re.search(r'Unresolved', title, re.I):
+        return 'unresolved question'
+    return 'operative obligation'
+
+
+def local_vt(text):
+    out = []
+    for rid in re.findall(r'`([\w.]+-§[\w.]+(?:-[\w.]+)?|GPCV-[\w§.-]+|BP-§[\w.-]+)`', text):
+        if rid in VT:
+            out.append(f'{rid}: {VT[rid][0]} {VT[rid][1]}; seed {VT[rid][2]}')
+    return '; '.join(dict.fromkeys(out))
+
+
+ledger = []
+for r in r0:
+    k = r['key']
+    c = r['contract'][1:]
+    s = int(r['section'])
+    title = TITLE[(c, s)]
+    mt = CAR.get(k)
+    if mt:
+        carrier = f"SB-P-1.{mt['m']} FCTM `{mt['id']}` L{mt['ln']} ({mt['type']}): {mt['own'] or '—'} / {mt['disp'] or '—'}"
+        owner = mt['own'] or r['owner']
+    else:
+        carrier = f"None: the owning mission ({r['owner']}) has no FCTM yet; Build Plan §9 assigns C{c} to it"
+        owner = r['owner']
+    owner = re.sub(r'\s+', ' ', owner.replace('`', '')).strip()
+    if k in FLAGS:
+        disp, basis = FLAGS[k]
+        appl = 'Applicable to SB-P-1.17 as consumer or equivalent (see basis)'
+        acc = local_vt(basis) or 'Through the carrying row named in the basis'
+    else:
+        disp = 'JUSTIFIED EXCLUSION'
+        kind = section_kind(title)
+        appl = (f'Not an SB-P-1.17 obligation: {kind} unit of C{c} "{title}"; it concerns that contract\'s own domain '
+                f'(no stock, supplier, reorder, POS/counter, closing-cash or Manager-workspace obligation)')
+        basis = f'Read in full at MC-385A; owner {owner}; carried by its owning mission (see carrier)'
+        acc = 'Not applicable to SB-P-1.17; acceptance belongs to the owning mission'
+    ledger.append(dict(key=k, contract=r['contract'], section=s, locator=r['locator'], subsection=r['subsection'],
+                       section_title=title, source_blob=BLOB[c], text=r['text'],
+                       text_sha256_12=hashlib.sha256(r['text'].encode('utf-8')).hexdigest()[:12],
+                       owning_mission=owner, applicability=appl, fctm_carrier=carrier,
+                       acceptance_relationship=acc, disposition=disp, evidence=basis,
+                       control_term_screen=bool(CONTROL.search(r['text'])), lexicon_screen=bool(LEXICON.search(r['text'])),
+                       review='read in full (MC-385A)'))
+
+assert len({x['key'] for x in ledger}) == 3820
+assert set(FLAGS) <= {x['key'] for x in ledger}, set(FLAGS) - {x['key'] for x in ledger}
+
+with open('MC-385A-r0-ledger.csv', 'w', encoding='utf-8', newline='') as f:
+    w = csv.DictWriter(f, fieldnames=list(ledger[0].keys()), lineterminator='\n')
+    w.writeheader()
+    w.writerows(ledger)
+
+# Workstream B: seeded stratified sample over all R0 units (3 % per contract, minimum 3)
+rng = random.Random(385)
+by_c = defaultdict(list)
+for x in ledger:
+    by_c[x['contract']].append(x)
+sample = []
+for c in sorted(by_c, key=lambda z: int(z[1:])):
+    pop = sorted(by_c[c], key=lambda x: (x['section'], x['locator']))
+    n = max(3, round(len(pop) * 0.03))
+    sample += rng.sample(pop, n)
+json.dump([x['key'] for x in sample], open('sample_keys.json', 'w', encoding='utf-8'), ensure_ascii=False)
+print('ledger', len(ledger), Counter(x['disposition'] for x in ledger))
+print('control-term screen', sum(x['control_term_screen'] for x in ledger), 'lexicon screen', sum(x['lexicon_screen'] for x in ledger))
+print('sample', len(sample), dict(Counter(x['contract'] for x in sample)))
+print('carrier types', Counter((CAR.get(x['key']) or {}).get('type', 'NONE').split()[0] for x in ledger))
+for x in sample:
+    print(f"{x['key']} | {x['section_title'][:24]} | {x['text'][:110]}")

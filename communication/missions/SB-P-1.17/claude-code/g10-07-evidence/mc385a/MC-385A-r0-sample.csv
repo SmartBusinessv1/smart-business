@@ -1,0 +1,116 @@
+key,contract,section_title,text,ledger_disposition,second_pass_rationale,false_negative
+1-§5-b14,C1,Users and Permission Boundaries,customer name/contact where required;,JUSTIFIED EXCLUSION,Delivery-staff data scope (SB-P-1.18); no stock or supplier data involved.,no
+1-§28-b2,C1,Historical Corrections / Superseded Behaviour,customer silence automatically becoming a failure/rollback;,JUSTIFIED EXCLUSION,Historical correction about delivery proof (SB-P-1.18).,no
+1-§23-b10,C1,Shared Foundations to Reuse,point-in-time location primitive;,JUSTIFIED EXCLUSION,Location primitive reuse for delivery (SB-P-1.18/1.12); not a Manager Operations foundation.,no
+1-§30-b1,C1,Unresolved Founder Questions,Exact current Smart Order & Delivery add-on price remains unresolved.,JUSTIFIED EXCLUSION,Unresolved Order & Delivery price (SB-P-1.18/1.19); Smart Stock price is separately rowed (18-§4-4).,no
+1-§17-b3,C1,"Merchant, Customer and Staff Notifications",assignment;,JUSTIFIED EXCLUSION,Order assignment notification (SB-P-1.18).,no
+1-§2-b6,C1,Founder Problem Statement,COD collection can be difficult to reconcile;,JUSTIFIED EXCLUSION,COD reconciliation problem statement (SB-P-1.18/1.16).,no
+1-§22-b4,C1,Business Memory and Data Requirements,order and order lines;,JUSTIFIED EXCLUSION,"Order and order-line data (SB-P-1.18). Order lines reference product identity (PPM / 22-§5-8), not SB-P-1.17 stock; stock consumption is rowed at 1-§10-2, 1-§23-7.",no
+1-§10-p1,C1,"Availability, Substitution and Customer Confirmation",A requested order is not automatically final.,JUSTIFIED EXCLUSION,"Order is not final until confirmed (SB-P-1.18). Availability data supply is already rowed (1-§10-2, 1-§10-9).",no
+2-§22-b8,C2,Performance Expectations,merchant isolation;,JUSTIFIED EXCLUSION,Ask CFO performance must keep merchant isolation (SB-P-1.15); platform rule via D12.,no
+2-§22-b7,C2,Performance Expectations,RLS/authorization;,JUSTIFIED EXCLUSION,Ask CFO RLS/authorization (SB-P-1.15); D12.,no
+2-§29-b4,C2,Unresolved Engineering Questions,conversation context windowing;,JUSTIFIED EXCLUSION,Ask CFO engineering question (SB-P-1.15).,no
+2-§7-b4,C2,Read-only Intelligence Boundary,change payroll;,JUSTIFIED EXCLUSION,Ask CFO must not change payroll (SB-P-1.15); stock slice is rowed (2-§7-10).,no
+2-§13-b2,C2,WhatsApp Experience,voice;,JUSTIFIED EXCLUSION,Ask CFO WhatsApp voice (SB-P-1.15/1.20).,no
+2-§24-b8,C2,Error and Uncertainty Behavior,unsupported prediction requests;,JUSTIFIED EXCLUSION,Ask CFO unsupported predictions (SB-P-1.15). SB-P-1.17 has its own no-invented-forecast rules (C7 §4/§16).,no
+2-§4-n3,C2,Core Experience,calculate or retrieve facts correctly;,JUSTIFIED EXCLUSION,Ask CFO calculation correctness (SB-P-1.15).,no
+2-§7-p2,C2,Read-only Intelligence Boundary,It may retrieve and analyse authorized data.,JUSTIFIED EXCLUSION,Ask CFO read-only analysis of authorized data (SB-P-1.15); SB-P-1.17 supplies readers via 2-§11-*.,no
+3-§2-b2,C3,Founder Problem Statement,notebooks;,JUSTIFIED EXCLUSION,Ledger problem statement (SB-P-1.14).,no
+3-§8-b3,C3,Correction and Audit History,wrong payment method;,JUSTIFIED EXCLUSION,Ledger correction field (SB-P-1.14).,no
+3-§6-b4,C3,Immediate Confirmation,date/time;,JUSTIFIED EXCLUSION,Ledger confirmation field (SB-P-1.14).,no
+3-§17-b10,C3,Failure and Exception Principles,cross-business access attempts.,JUSTIFIED EXCLUSION,Ledger cross-business access handling (SB-P-1.14 / D12).,no
+4-§9-b2,C4,Tone and Attention Design,calm;,JUSTIFIED EXCLUSION,Daily Intelligence tone (SB-P-1.15).,no
+4-§1-p1,C4,Feature Identity,Daily Intelligence is the proactive scheduled clarity layer of Smart Business.,JUSTIFIED EXCLUSION,Daily Intelligence identity narrative (SB-P-1.15).,no
+4-§6-b2,C4,Source-of-Truth Rule,Smart Credit Awareness;,JUSTIFIED EXCLUSION,"DI source: Smart Credit (SB-P-1.16 data); the stock/POS sources are rowed (4-§6-5, 4-§6-6).",no
+5-§5-b4,C5,Receipt Intelligence,tax where available;,JUSTIFIED EXCLUSION,Receipt tax field (SB-P-1.14).,no
+5-§11-p2,C5,Duplicate and Idempotency Protection,The EIS should define practical fingerprint/idempotency behavior for each destination workflow.,JUSTIFIED GROUPING,"Per-destination idempotency: applies to SB-P-1.17 stock-document imports. Carried locally by 7-§6-5b, 7-§15-2b (flagged JUSTIFIED GROUPING).",no
+5-§7-b1,C5,Cross-Feature Reuse,Ledger receipt → preview → Ledger update;,JUSTIFIED EXCLUSION,Ledger receipt reuse example (SB-P-1.14); the stock example is rowed (5-§7-4).,no
+5-§1-p3,C5,Feature Identity,Receipt Intelligence and the Receipt Cabinet are part of this broader shared foundation.,JUSTIFIED EXCLUSION,UDI identity narrative (SB-P-1.14).,no
+6-§8-p2,C6,Payroll Support,Smart Business may help calculate or prepare payroll-support information based on approved records and rules.,JUSTIFIED EXCLUSION,Payroll support (SB-P-1.18). Supports the C6 zero-row determination.,no
+6-§4-b4,C6,Role and Permission Model,submit approved attendance/leave context.,JUSTIFIED EXCLUSION,Employee attendance context (SB-P-1.18).,no
+6-§14-b1,C6,Acceptance Scenarios,Owner creates staff profile and scoped permissions;,JUSTIFIED EXCLUSION,Staff profile acceptance (SB-P-1.18).,no
+8-§4-b10,C8,100+ FAQ Direction,order/delivery where enabled;,JUSTIFIED EXCLUSION,"Support FAQ topic, order/delivery (SB-P-1.19).",no
+8-§7-b1,C8,AI Escalation,interpret the user's question;,JUSTIFIED EXCLUSION,Support AI interpretation (SB-P-1.19).,no
+8-§9-b11,C8,Ticket Data,timestamps.,JUSTIFIED EXCLUSION,Ticket data field (SB-P-1.19).,no
+8-§4-b6,C8,100+ FAQ Direction,Ask CFO behavior and boundaries;,JUSTIFIED EXCLUSION,"Support FAQ topic, Ask CFO (SB-P-1.19).",no
+9-§12-b12,C9,Cross-Feature Behavior,Compliance and other conversational features.,JUSTIFIED EXCLUSION,HLL reuse by compliance (SB-P-1.13); the stock reuse slice is rowed (9-§12-8).,no
+9-§9-b2,C9,Clarification Rules,ambiguous amount or unit;,JUSTIFIED EXCLUSION,HLL clarification of amount/unit (SB-P-1.13). Stock-item clarification is rowed (9-§9-6); local 7-§11-1.6.,no
+9-§3-b2,C9,Core Language Principle,mixed Malayalam-English sentences;,JUSTIFIED EXCLUSION,HLL mixed-language principle (SB-P-1.13).,no
+10-§21-b4,C10,Shared Foundations to Reuse,Universal Document Intelligence;,JUSTIFIED EXCLUSION,Workspace reuse of UDI (SB-P-1.13).,no
+10-§22-b2,C10,Explicit Non-goals,a generic unrestricted AI chatbot;,JUSTIFIED EXCLUSION,Workspace non-goal: generic chatbot (SB-P-1.13).,no
+10-§7-p1,C10,Channel Continuity,A user should be able to begin a valid workflow in one approved channel and continue in another without duplicating the underlying business record.,JUSTIFIED EXCLUSION,Channel continuity (SB-P-1.13/1.20).,no
+10-§12-p1,C10,Human Language,"English, Malayalam and Manglish are first-class.",JUSTIFIED EXCLUSION,Workspace language support (SB-P-1.13).,no
+10-§21-b6,C10,Shared Foundations to Reuse,Voice foundation;,JUSTIFIED EXCLUSION,Workspace reuse of voice (SB-P-1.13).,no
+11-§2-b2,C11,Founder Problem Statement,customer credit collection;,JUSTIFIED EXCLUSION,"Reminder problem statement, credit collection (SB-P-1.15).",no
+11-§25-p1,C11,Completion Gate,"Complete only when reminder creation, recurrence, interaction, cross-channel continuity, notifications, delegated rules, confirmation/revalidation, audit/idempotency, privacy, failure recovery and runtime acceptance are proven together.",JUSTIFIED EXCLUSION,Reminder completion gate (SB-P-1.15).,no
+11-§20-b2,C11,Shared Foundations to Reuse,identities;,JUSTIFIED EXCLUSION,Reminder reuse of identities (SB-P-1.15).,no
+11-§4-b6,C11,Core Reminder Model,recurrence;,JUSTIFIED EXCLUSION,Reminder recurrence field (SB-P-1.15).,no
+12-§16-b2,C12,Business Memory and Audit,business scope;,JUSTIFIED EXCLUSION,Voice audit field (SB-P-1.13).,no
+12-§21-n4,C12,Acceptance Scenarios,Voice reminder creation.,JUSTIFIED EXCLUSION,Voice reminder acceptance (SB-P-1.13).,no
+12-§13-p3,C12,Reminder Relationship,Voice must not create a separate reminder engine.,JUSTIFIED EXCLUSION,Voice must not create a separate reminder engine (SB-P-1.13).,no
+12-§6-b2,C12,Input Journey,informational request;,JUSTIFIED EXCLUSION,Voice input class (SB-P-1.13).,no
+14-§20-b4,C14,Shared Foundations to Reuse,Human Language Layer;,JUSTIFIED EXCLUSION,Credit reuse of HLL (SB-P-1.16).,no
+14-§14-p4,C14,Users and Permissions,May receive only merchant-approved communications relevant to their own relationship.,JUSTIFIED EXCLUSION,Customer communication scope (SB-P-1.16).,no
+14-§2-p3,C14,Founder Problem Statement,Smart Business should create clarity without humiliating customers or taking the Owner's decision away.,JUSTIFIED EXCLUSION,Credit problem statement (SB-P-1.16).,no
+14-§9-b2,C14,Warn — Do Not Block by Default,decline;,JUSTIFIED EXCLUSION,"Owner decision option on a credit warning (SB-P-1.16). Customer credit, not supplier credit (D16 / 7-§3-7). Supports the C14 zero-row determination.",no
+15-§17-p3,C15,Users and Permissions,May record permitted operational payment information but should not automatically receive business-wide bank/reconciliation intelligence.,JUSTIFIED EXCLUSION,Employee payment recording scope (SB-P-1.16).,no
+15-§6-b10,C15,Evidence Ingestion,authenticity/validation state;,JUSTIFIED EXCLUSION,Payment evidence field (SB-P-1.16).,no
+15-§16-b2,C15,Ask CFO and Daily Intelligence,mismatches;,JUSTIFIED EXCLUSION,Reconciliation surfaced in Ask CFO / DI (SB-P-1.16/1.15).,no
+15-§6-b2,C15,Evidence Ingestion,source/provider;,JUSTIFIED EXCLUSION,Payment evidence field (SB-P-1.16).,no
+15-§14-b2,C15,Smart Credit Relationship,reducing the wrong customer's balance;,JUSTIFIED EXCLUSION,Credit/payment relationship (SB-P-1.16).,no
+16-§16-b9,C16,Error and Exception Behavior,missing document but known deadline;,JUSTIFIED EXCLUSION,Compliance exception (SB-P-1.18).,no
+16-§17-b3,C16,Privacy and Trust,no unnecessary staff exposure;,JUSTIFIED EXCLUSION,Compliance privacy (SB-P-1.18).,no
+16-§5-b1,C16,Document Intake,photo/image;,JUSTIFIED EXCLUSION,Compliance intake modality (SB-P-1.18).,no
+16-§3-b5,C16,Lighthouse Principles,Ask when document dates/identity are uncertain.,JUSTIFIED EXCLUSION,Compliance principle (SB-P-1.18).,no
+18-§21-b2,C18,Explicit Non-goals,using old historical add-on prices as current truth;,JUSTIFIED EXCLUSION,Commercial non-goal: historical add-on prices (SB-P-1.19). Smart Stock price is rowed as UFD (18-§4-4).,no
+18-§18-b7,C18,Error and Exception Behavior,reactivation after restricted state;,JUSTIFIED EXCLUSION,Lifecycle exception (SB-P-1.19).,no
+18-§7-b6,C18,Activation,provide clear confirmation.,JUSTIFIED EXCLUSION,Activation confirmation (SB-P-1.19).,no
+18-§7-p2,C18,Activation,Payment success alone should not duplicate business/account records.,JUSTIFIED EXCLUSION,No duplicate account on payment (SB-P-1.19).,no
+18-§9-b4,C18,Downgrade / Add-on Removal,preserve references needed for financial/audit integrity;,JUSTIFIED EXCLUSION,"Add-on removal keeps financial/audit references: relevant to the Smart Stock add-on. Flagged JUSTIFIED EXCLUSION with local 17-§17-4, 7-§2-5 (DENT).",no
+19-§17-b2,C19,Auditability,role/capability;,JUSTIFIED EXCLUSION,Super Admin audit field (SB-P-1.19).,no
+19-§22-n8,C19,Acceptance Scenarios,Backup/storage failure is visible and actionable.,JUSTIFIED EXCLUSION,Super Admin acceptance (SB-P-1.19).,no
+19-§19-b1,C19,Error and Exception Behavior,admin authorization failure;,JUSTIFIED EXCLUSION,Super Admin exception (SB-P-1.19).,no
+19-§12-b5,C19,Product / Adoption Analytics,support volume;,JUSTIFIED EXCLUSION,Platform analytics metric (SB-P-1.19).,no
+19-§7-b8,C19,Support Operations,mutual agreement/authorized support purpose where applicable;,JUSTIFIED EXCLUSION,Support access condition (SB-P-1.19).,no
+19-§3-b7,C19,Lighthouse Principles,Support investigation requires a real support/security purpose.,JUSTIFIED EXCLUSION,Super Admin principle (SB-P-1.19).,no
+20-§22-b5,C20,Explicit Non-goals,hardcoded trial assumption before Founder decision;,JUSTIFIED EXCLUSION,Onboarding non-goal: trial assumption (SB-P-1.19).,no
+20-§4-b7,C20,Lighthouse Principles,First success should arrive early.,JUSTIFIED EXCLUSION,Onboarding principle (SB-P-1.19).,no
+20-§11-b1,C20,First Practical Win,record first transaction accurately by text/voice;,JUSTIFIED EXCLUSION,First-win transaction (SB-P-1.19 / SB-P-1.14). Import-related onboarding slices are rowed (20-§9).,no
+20-§23-n8,C20,Acceptance Scenarios,Trial/no-trial behavior is driven by explicit current commercial policy.,JUSTIFIED EXCLUSION,Onboarding acceptance (SB-P-1.19).,no
+21-§8-p2,C21,Conversation / AI Permission Boundary,A natural-language prompt cannot widen access.,JUSTIFIED EXCLUSION,NL prompt cannot widen access (SB-P-1.12); platform rule via D12.,no
+21-§10-p3,C21,Employee Self-service,Self-service must not expose unrelated staff or Owner intelligence.,JUSTIFIED EXCLUSION,Employee self-service scope (SB-P-1.12/1.18).,no
+21-§6-b2,C21,Business Isolation,cross-business writes;,JUSTIFIED EXCLUSION,"Cross-business writes denied (SB-P-1.12); local 7-§15-12, 17-§22-9 (DELEGATED).",no
+22-§24-b8,C22,AI Authority Foundation,prepare drafts/actions.,JUSTIFIED EXCLUSION,AI may prepare drafts/actions (SB-P-1.13/1.12); stock-AI slice is local 7-§11-1.6.,no
+22-§22-p2,C22,Platform Quality / Testability,Green CI alone is not feature acceptance.,JUSTIFIED EXCLUSION,Green CI is not acceptance (SB-P-1.12); platform verification rule.,no
+22-§33-p15,C22,Personal Identity Lifecycle and Governed Deletion,"Smart Business may retain bounded deletion-proof evidence where required for accountability, provided that the proof does not become a substitute copy of the deleted live profile and follows the applicable retention/privacy rule.",JUSTIFIED EXCLUSION,Personal-identity deletion proof (SB-P-1.12/1.19).,no
+22-§8-b2,C22,Human Language Foundation,mixed-language text/voice;,JUSTIFIED EXCLUSION,HLL foundation (SB-P-1.13).,no
+22-§7-b6,C22,Conversation / Intent-Action Foundation,action dispatch;,JUSTIFIED EXCLUSION,Intent-action dispatch foundation (SB-P-1.13).,no
+22-§8-b4,C22,Human Language Foundation,clarification of consequential ambiguity;,JUSTIFIED EXCLUSION,HLL clarification foundation (SB-P-1.13).,no
+22-§2-b4,C22,Founder Problem Statement,separate reminder tables per module;,JUSTIFIED EXCLUSION,Problem statement: duplicate reminder tables (SB-P-1.12).,no
+22-§16-b6,C22,Location Foundation,who may see it;,JUSTIFIED EXCLUSION,Location foundation question (SB-P-1.12).,no
+23-§29-b7,C23,Explicit Non-goals,skipping permission checks because a user previously interacted;,JUSTIFIED EXCLUSION,WhatsApp non-goal (SB-P-1.20).,no
+23-§10-p1,C23,Text Experience,"Text should support natural English, Malayalam and Manglish business interaction.",JUSTIFIED EXCLUSION,WhatsApp text language (SB-P-1.20).,no
+23-§28-b9,C23,Backend / Data Obligations,audit/observability;,JUSTIFIED EXCLUSION,WhatsApp backend audit (SB-P-1.20).,no
+23-§6-p2,C23,Webhook Boundary,`/api/whatsapp-webhook`,JUSTIFIED EXCLUSION,WhatsApp webhook route (SB-P-1.20).,no
+23-§30-n6,C23,Acceptance Expectations,receipt/photo → UDI preview/confirm flow;,JUSTIFIED EXCLUSION,WhatsApp acceptance: receipt UDI (SB-P-1.20). Stock-document WhatsApp slice is rowed (23-§12-4).,no
+23-§8-p3,C23,Permission and Entitlement Gate,"Where a request is blocked, the response should be useful and respectful without revealing sensitive data.",JUSTIFIED EXCLUSION,WhatsApp denial behaviour (SB-P-1.20).,no
+23-§23-b5,C23,Security and Privacy,media/document access;,JUSTIFIED EXCLUSION,WhatsApp media security (SB-P-1.20).,no
+23-§30-n8,C23,Acceptance Expectations,exact confirmation binding/revalidation;,JUSTIFIED EXCLUSION,WhatsApp confirmation binding (SB-P-1.20).,no
+24-§20-b3,C24,Structured Outputs and Validation,enumerated domain states where appropriate;,JUSTIFIED EXCLUSION,AI structured-output validation (SB-P-1.13).,no
+24-§4-b3,C24,OpenAI Role in the Architecture,entity/value extraction;,JUSTIFIED EXCLUSION,OpenAI role (SB-P-1.13).,no
+24-§20-p1,C24,Structured Outputs and Validation,"Where AI output drives business workflows, prefer validated structured output over free-form parsing.",JUSTIFIED EXCLUSION,AI structured-output rule (SB-P-1.13).,no
+24-§22-b3,C24,AI Safety / Business Boundary,protect merchant/user/platform interests;,JUSTIFIED EXCLUSION,AI safety (SB-P-1.13).,no
+24-§23-b9,C24,AI Failure and Recovery,stale context;,JUSTIFIED EXCLUSION,AI failure case (SB-P-1.13).,no
+24-§27-b4,C24,Frontend / Channel Experience,voice;,JUSTIFIED EXCLUSION,AI channel experience (SB-P-1.13).,no
+24-§14-p4,C24,Universal Document Intelligence / OCR Integration,**interpret → preview → clarify where needed → confirm → validated update**.,JUSTIFIED EXCLUSION,UDI safety pattern via AI (SB-P-1.13/1.14); stock-import slice is local 7-§6-4b.,no
+24-§11-b8,C24,Controlled Tool / Function Calling,preserve audit/provenance;,JUSTIFIED EXCLUSION,Tool-call audit (SB-P-1.13).,no
+24-§2-b6,C24,Founder Problem Statement,OCR/document intelligence;,JUSTIFIED EXCLUSION,AI problem statement (SB-P-1.13).,no
+24-§11-b1,C24,Controlled Tool / Function Calling,have explicit schemas;,JUSTIFIED EXCLUSION,Tool schema rule (SB-P-1.13).,no
+25-§1-p2,C25,Feature Identity,"It exists because Smart Business cannot reliably predict how many receipts, invoices, photos, voice notes, documents and other media objects subscribers may create each day.",JUSTIFIED EXCLUSION,Storage identity narrative (SB-P-1.14).,no
+25-§22-b1,C25,Backup and Durability,provider durability assumptions;,JUSTIFIED EXCLUSION,Storage backup consideration (SB-P-1.14).,no
+25-§5-p1,C25,Why R2 Is a First-Class Infrastructure Decision,Cloudflare R2 is not merely historical trivia.,JUSTIFIED EXCLUSION,R2 rationale (SB-P-1.14).,no
+25-§2-b1,C25,Founder Problem Statement,receipt photos;,JUSTIFIED EXCLUSION,Storage problem statement (SB-P-1.14).,no
+25-§2-b2,C25,Founder Problem Statement,invoices and bills;,JUSTIFIED EXCLUSION,Storage problem statement (SB-P-1.14).,no
+25-§9-n4,C25,Retrieval Flow,a controlled retrieval path is issued to the client;,JUSTIFIED EXCLUSION,Storage retrieval step (SB-P-1.14).,no
+25-§14-p3,C25,Object Identity and Deduplication,A changing provider URL must not silently create a new business document identity.,JUSTIFIED EXCLUSION,Storage object identity (SB-P-1.14).,no
+25-§8-n6,C25,Upload / Ingest Flow,authoritative metadata record in Smart Business/Supabase;,JUSTIFIED EXCLUSION,Storage metadata step (SB-P-1.14).,no
