@@ -1,13 +1,25 @@
-# SMART BUSINESS MISSION CONTROL — SB-P-1.17 STAGE 1 DOCUMENTARY ENTRY
+# SMART BUSINESS MISSION CONTROL — LIVE INSTRUCTION (CURRENT POINTER)
 
-**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND POST-MERGE VERIFICATION  
-**Mission:** SB-P-1.17 — Manager Operations  
-**Authority:** `communication/missions/SB-P-1.17/mission-control/01-stage1-documentary-entry-and-communication-activation.md`  
-**Baseline:** `main@7b0b88d8bc5fabf7873ef56f2c6884763b3f5bcb`  
-**Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+**Status:** NO ACTIVE INSTRUCTION — CURRENT-POINTER STATE\
+**Mission:** SB-P-1.17 — Manager Operations\
+**Sender:** Mission Control. Recorded by Claude Code under MC-422A\
+**Recipient:** None. No AI actor is instructed by this file\
+**Date:** 2026-10-22\
+**Baseline:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce` (PR #1015 merge)\
+**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-Following verified merge, undertake **Stage 1 documentary intake only**. Read Source 18 v1.2, Founder-approved Phase 1 operating pattern, Build Plan §10.6, Contracts 7/13/17 and actually touched cross-contract surfaces, locked upstream SB-P-1.12–1.16 specifications, SB-P-1.16 partial OLE, and canonical four-provider recovery record.
+This file activates no work. It points to the durable mission record, where the current state is kept: `communication/missions/SB-P-1.17/README.md`.
 
-Inventory supplier/product identities, stock/reorder, expiry/wastage when evidenced, standard POS bridge, neutral counter review, closing cash, contextual Product & Price Master, scoped Manager operations and UDI opening-stock path. Preserve Founder Scenarios A (Owner-confirmed evidence-backed reorder) and B (non-accusatory POS anomaly review). Trace numbered obligations and holds. Never mistake approved upstream specs or support recovery for implemented/verified behavior.
+**Current state:** Stage 7 documentary review accepted (MC-418, conversation-source). Stage 8 Founder approval is pending; the Blueprint is **not locked**.
 
-Return bounded Stage 1 source/scope/dependency inventory, genuine trigger questions and Definition Actor recommendation. **STOP for Mission Control Stage 1 disposition.** No Stage 2 or builder work, code, SQL, provider mutation or production authorization.
+**Next action:**
+1. Mission Control review of the Stage 8 preparation package (PR #1015).
+2. The Founder's Stage 8 decision (`communication/missions/SB-P-1.17/founder/01-stage8-founder-brief.md`).
+
+Neither is requested by this file.
+
+**Previous content.** This file previously held the proposed SB-P-1.17 Stage 1 documentary entry (PR #985). It is preserved byte-for-byte at `communication/missions/SB-P-1.17/communication-preservation/legacy-live-instruction-stage1-entry.snapshot.md` (blob `74882b22be3e564afe67e843c05b4a9f9b837841`).
+
+**Other live files.** `instruction1.51.md` and `report1.51.md` (SB-P-1.17, MC-329) and the SB-P-1.12 pairs `1.1` to `1.50` stay unchanged as historical evidence until their missions' closure and archive (protocol §26, §27).
+
+Not authorized: Blueprint Lock, EIS, implementation, migration, production or provider action.

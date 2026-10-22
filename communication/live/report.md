@@ -1,12 +1,17 @@
-# SMART BUSINESS MISSION CONTROL — SB-P-1.17 LIVE REPORT
+# SMART BUSINESS MISSION CONTROL — LIVE REPORT (CURRENT POINTER)
 
-**Status:** PROPOSED STAGE 1 DOCUMENTARY ENTRY — FOUNDER MERGE / POST-MERGE VERIFICATION PENDING  
-**Mission:** SB-P-1.17 — Manager Operations  
-**Baseline:** `main@7b0b88d8bc5fabf7873ef56f2c6884763b3f5bcb`  
-**Authority:** proposed SB-P-1.17 Stage 1 entry; Source 18 v1.2; Phase 1 operating pattern
+**Status:** NO ACTIVE REPORT — CURRENT-POINTER STATE\
+**Mission:** SB-P-1.17 — Manager Operations\
+**Sender:** Claude Code, Documentation Actor, under MC-422A\
+**Recipient:** Mission Control\
+**Date:** 2026-10-22\
+**Baseline:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce` (PR #1015 merge)\
+**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-SB-P-1.16 remains **PARTIAL COMPLETION — DOCUMENTATION / EXECUTION-READINESS COMPLETE — IMPLEMENTATION SUSPENDED**, with **IMPLEMENTATION AUTHORIZATION WITHHELD**, communication **SUSPENDED — FORMAL ARCHIVE DEFERRED**, and **NO FORMAL OLE CLOSURE ENVELOPE**. Its prior reusable live pair was historically stale; pre-replacement exact text has been proposed for preservation as provenance snapshots, without invented retrospective reports.
+No instruction is active in `communication/live/instruction.md`, so no report is pending against it. Stage reports for SB-P-1.17 live in `communication/missions/SB-P-1.17/`, and the mission state is in its `README.md`.
 
-SB-P-1.17 is NOT yet activated while this proposal remains unmerged. No Stage 1 specialist return, Stage 2 Truth Pack/FCTM, EIS, package or implementation evidence exists. GitHub account restriction provider-cleared and Supabase Founder-accessible, while provider integration/independent recovery assurance remain distinct.
+**Mission state:** STAGE 7 DOCUMENTARY REVIEW ACCEPTED (MC-418) — STAGE 8 FOUNDER APPROVAL PENDING — NOT LOCKED.
 
-**NEXT:** Founder merges conditional-entry PR → Mission Control independently verifies canonical file blobs and preserved live-pair provenance → issue bounded Stage 1 intake request → stop for Stage 1 disposition. No implementation authorization.
+**Previous content.** This file previously held the proposed SB-P-1.17 Stage 1 live report (PR #985). It is preserved byte-for-byte at `communication/missions/SB-P-1.17/communication-preservation/legacy-live-report-stage1-entry.snapshot.md` (blob `f7c2500285cafb7521f87025491672acfc9dfd1e`).
+
+**Provisional report not yet reconciled.** `communication/live/report1.51.md` still reads "AWAITING SPECIALIST EXECUTION". It is not reconciled here, because reconciliation belongs to closure (protocol §27, Closure-State Reconciliation). Its lineage is recorded in `communication/missions/SB-P-1.17/communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md`.
