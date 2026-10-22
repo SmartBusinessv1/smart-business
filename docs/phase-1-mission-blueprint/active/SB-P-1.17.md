@@ -1139,6 +1139,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.7 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-396A) | Stage 7 draft: Sections 20–21 appended (engineering review, component designs, B6-01 to B6-21 dispositions, early delivery plan, 404-row feasibility register, engineering questions, risks, holds and trigger screen); Stage 6 approval and Stage 7 status recorded in the banner, metadata, Mission Snapshot and §19. Sections 1–19 substantive content unchanged |
 | 0.8 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-399A) | Stage 7 refinement for the independent review findings ENG17-01 to ENG17-03 (MC-398A, MC-399): §20.9 added (transaction atomicity and identity invariants, closing-cash decision table, POS architecture versus source feasibility and the minimum source evidence dossier); pointers in §20.4.1, §20.4.6, §20.4.8 and §20.7.10; EQ17-13 to EQ17-16, R17-10 and R17-11 added; T8 watch row refined; metadata and §19 updated. Sections 1–19 substantive content, §20.8 register, FCTM, Founder decisions and holds unchanged |
 | 0.9 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-403A) | SA-01-F01 correction (MC-402A, MC-403): §20.4.10 now identifies capability 5 as viewing operator-attributed counter detail (Owner-reserved, per §8.10 and `17:FPDR-1`) and states standing-rule creation as a separate Owner-only boundary; Reference Cost and margin wording aligned with §8.10 (separate SB-P-1.12 permissions, MC-404A); §19 updated. No other Sections 20–21 text carried the misidentification. Sections 1–19 substantive content, capability numbering, FCTM, Founder decisions, ENG17 refinements and holds unchanged |
+| 0.10 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-411A) | Cross-specialist corrections (MC-410A, MC-411): MC410-R01 / SA-01-F01 — the unsupported integration-principal assertion removed from the §20.3 component map, §20.4.6, §20.5 and the B6-05 approach, replaced by verified source authentication, business binding and a held kernel authorization path; MC410-R03 / SA03-FI-07 — INV-A9 corrected to governed atomic effects with Ledger classification owned by SB-P-1.14; §21.3 records the R01 hold and MC410-R02 as OPEN; §19 updated. INV-A8, Sections 1–19 substantive content, FCTM, Founder decisions and upstream contracts unchanged |
 
 ## 19. Governance History
 
@@ -1175,7 +1176,9 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | Independent Stage 7 review findings ENG17-01 to ENG17-03 (MC-398A) and refinement disposition (MC-399) | Conversation-source | — |
 | Stage 7 refinement, §20.9 (MC-399A) | this file; `claude-code/17` | PR #1011, `4a3e9420` |
 | Specialist assurance finding SA-01-F01 (MC-402A) and disposition (MC-403) | Conversation-source | — |
-| Stage 7 capability 5 mapping correction, §20.4.10 (MC-403A) | this file | PENDING (review PR) |
+| Stage 7 capability 5 mapping correction, §20.4.10 (MC-403A, MC-404A) | this file | PR #1012, `739c5fb3` |
+| Independent reconciliation MC-410A and disposition (MC-411) | Conversation-source | — |
+| Stage 7 cross-specialist corrections, POS intake authority and INV-A9 (MC-411A) | this file | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -1889,7 +1892,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
 | C-SUP Supplier memory and protected prices | §8.3 | EIS-ID-03 participant [S]; `catalog_products` [R] | D12, D14, D16 |
 | C-RO Reorder, purchase requests, standing rules | §8.4 | C-STK, C-SIG, C-SUP | D12 (EIS-AUT-01, CNF-01), D13, D15, DSCH |
 | C-DOC Stock documents through UDI | §8.5 | parser-lease and import foundation [R] via EIS14-MIG-03 [S] | D14 |
-| C-POS Standard POS bridge | §8.6 | none [R] | DPOS, DSEC; D12 integration principal; D14 for export files |
+| C-POS Standard POS bridge | §8.6 | none [R] | DPOS, DSEC; D12 POS intake authority binding (hold, §20.5); D14 for export files |
 | C-CTR Neutral counter review | §8.7 | C-POS | D12; U-11 |
 | C-CC Closing cash | §8.8 | C-POS, Ledger cash [R] | D12, D14, DSCH timezone, D15 |
 | C-WS Manager workspace | §8.9 | dashboard shell [R] | D12, D15, all feature readers |
@@ -1940,7 +1943,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
 #### 20.4.6 C-POS — standard POS bridge (B6-05, B6-06, B6-11)
 
 - One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`):
-  - an authenticated API or webhook adapter, under an integration principal on `EIS-KER-02`;
+  - an authenticated API or webhook adapter, with verified source authentication and business binding; its authorization path is an open hold (§20.5);
   - a structured export file through UDI (C-DOC).
 - Proposed records:
   - POS source, with a declared field capability per source;
@@ -1997,7 +2000,11 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
   - Revocation stops prepared reorders, standing-rule runs and queued imports.
 - **Idempotency.** Each write path has a scoped key: POS events, purchase requests, rule runs, import rows and closing sessions. Retries create no duplicate stock, revenue or request.
 - **Neutral intelligence.** No signal names wrongdoing. Operator detail is Owner-only, under the U-11 hold.
-- **Integration principal.** POS adapters authenticate as a verified integration principal. Credentials stay server-side (`DSEC`) and are never logged.
+- **POS intake authority (hold, MC410-R01).** SB-P-1.12 `EIS-KER-02` defines four verified-principal types: signed-in person, support operator, participant and automation run. It provides no integration or service principal. The `integration` value of `EIS-KER-06` is a channel input to the kernel, not a principal. Before EIS approval, the POS design must:
+  - verify POS source authentication, with credentials kept server-side (`DSEC`) and never logged;
+  - bind each authenticated source to exactly one business, holding external provider and business references as business-scoped identity records (`EIS-ID-05`);
+  - establish, in coordination with the SB-P-1.12 owner, a separate authorization path compatible with the locked kernel for each permitted intake action, including the privileged-operation decision record for any service-role path (`EIS-ISO-04`).
+- **Four distinct facts.** Authenticated POS source identity, external provider or business references, integration channel, and authorized principal with its permitted business action are not interchangeable; none implies another. No principal is selected here. If the path needs an SB-P-1.12 amendment, it is escalated to Mission Control, not assumed.
 
 ### 20.6 Stage 6 finding dispositions (B6-01 to B6-21)
 
@@ -2055,7 +2062,7 @@ MC-396 accepted all 21 findings for Stage 7 treatment. The seven high-priority f
 
 - **Rows affected in the register:** 101
 - **Blueprint and FCTM:** §8.6; `13-§4-*`, `13-§5-6`, `13-§17-*`, `BP-§10.6-W7`, `BP-§10.6-B1`; `17:FPDR-2`
-- **Approach:** Vendor-neutral contract; integration principal; per-source capability declaration and dedupe
+- **Approach:** Vendor-neutral contract; verified source authentication and business binding, with the kernel authorization path held (§20.5); per-source capability declaration and dedupe
 - **Dependency and sequencing:** Contract design now; adapter only after a source is evidenced and authorized
 - **Security and integrity:** Credentials in `DSEC`; no vendor named; unsupported signals shown as unavailable
 - **Feasibility:** SOURCE-HELD; **T8 watch**
@@ -2854,7 +2861,7 @@ This section answers the independent Stage 7 review findings ENG17-01 to ENG17-0
 | INV-A6 | An out-of-order event (for example, a reversal before its original) is held as pending review. It is never applied to a missing target | `13-§16-5` |
 | INV-A7 | Cross-source overlap is detected, never resolved automatically. A manual record and a POS event that may be the same sale (same business, close in time, same amount and payment method, similar items) become a review candidate. Neither side is suppressed, merged or deleted; resolution is an authorized human decision recorded as a governed correction | `13-§7-5`, `13-§16-11`, `13-§6-1`, `13-§6-2`; DC-12 |
 | INV-A8 | POS-originated revenue reaches the Ledger only through the governed command, once per source event. Unmapped or untrusted events create no movement and no revenue until resolved | `13-§6-6`, `13-§7-1` to `-4`, `13-§21-3`, `13-§21-4` |
-| INV-A9 | A confirmed purchase writes the movement and the Ledger expense in one command. Supplier payment state stays a separate fact from goods receipt | `7-§8-2`, `7-§8-5` |
+| INV-A9 | Where a confirmed business event legitimately requires both a stock-receipt movement and a Ledger financial event, the approved effects must commit atomically through their governed domain commands. The Ledger classification is determined by SB-P-1.14. Goods receipt does not establish supplier payment, and no duplicate purchase, expense or settlement fact may be created | `7-§8-2`, `7-§8-5` |
 
 **What the EIS must prove (verification evidence, T2 unless stated):**
 - replay of the same source event, including two concurrent deliveries, yields one outcome;
@@ -2990,6 +2997,10 @@ These are engineering questions for the EIS. None is a product decision.
 - R15-11 / N-6 (no merchant-facing grant interface assumed);
 - the five `UNRESOLVED FOUNDER DECISION` rows, which are off the critical path;
 - the delivery-topology unknown (Δ-06).
+
+Holds added at Stage 7 (MC-411):
+- **POS intake authority binding (MC410-R01):** the kernel-binding design for POS intake is unresolved. It requires coordination with the SB-P-1.12 owner before EIS approval (§20.5).
+- **Trusted-but-unmapped POS revenue (MC410-R02): OPEN.** Whether such an event posts to the Ledger or is withheld is not decided here. Mission Control resolves it under Contract 13 and SB-P-1.14 authority. INV-A8 is unchanged pending that decision.
 
 No hold is converted to PASS.
 
