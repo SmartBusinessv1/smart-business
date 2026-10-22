@@ -1,0 +1,2237 @@
+# **SMART BUSINESS — POS INTEGRATION SPECIALIST ASSURANCE REPORT**
+
+REFINEMENT REQUIRED
+
+SA-04 · SB-P-1.17 Manager Operations · 22 October 2026
+
+Submitted for: Smart Business Mission Control Repository: `SmartBusinessv1/smart-business` Lifecycle authority: Source 18 v1.2 Review scope: POS integration, transaction interoperability, Ledger and inventory integrity, and Founder Scenario B Implementation authority: WITHHELD — NOT AUTHORIZED Independent specialist assurance: SPECIALIST ASSURANCE OPEN
+
+## **1\. Executive determination**
+
+The approved Smart Business POS strategy is technically credible at the architecture-design level. A vendor-neutral integration boundary can support both authenticated API/webhook connections and structured POS exports through Universal Document Intelligence (UDI), without replacing merchant POS systems or creating a second Ledger.
+
+However, architecture feasibility is not evidence that a particular POS vendor, version, or merchant installation can supply the necessary data. Actual source compatibility, financial integrity under retries and corrections, and Founder Scenario B remain subject to evidence.
+
+The principal assurance distinction is:
+
+| Assurance subject | Finding |
+| ----- | ----- |
+| Approved two-class integration architecture | Feasible at design level |
+| Actual vendor/source compatibility | UNKNOWN — source evidence required |
+| Duplicate and retry protection | Design controls identified; runtime unproven |
+| Governed Ledger and inventory atomicity | Critical EIS dependency unresolved |
+| Discount/void review intelligence | Conditional on source-provided signals |
+| Employee/operator privacy | Specialist and legal clearance outstanding |
+| Founder Scenario B runtime verification | NOT VERIFIED |
+| Independent qualified specialist sign-off | OPEN |
+
+Recommendation: REFINEMENT REQUIRED before unconditional specialist acceptance. This does not mean the POS architecture is infeasible or that design-stage work must cease. It means specific controls and cross-domain dependencies must be resolved through the governed EIS process, and specialist competence and independence must be established separately.
+
+### **Repository baseline**
+
+The GitHub repository was read directly. At inspection, the `main` ref resolved to:
+
+`739c5fb3ebbdc312da4ef2ce70d7de2f11006003`
+
+This is the same SHA identified in the assignment as the MC-409 historical reference checkpoint. It is reported as the observed current GitHub ref, not assumed current merely because the assignment provided it. Evidence is anchored to this commit rather than to unmerged work or conversation-only decisions.
+
+## **2\. Canonical evidence reviewed**
+
+The following repository evidence was inspected from the verified `main` baseline.
+
+| Evidence | Canonical reference | Finding |
+| ----- | ----- | ----- |
+| Repository and governance | `README.md`, `mission-control/mission_memory.md`, Phase 1 Operating Pattern, Source 18 v1.2 | Repository-first lifecycle and documentary versus runtime separation established |
+| Specialist authority | `founder-room/03_Specialist_Room_Creation_and_Authority.md` | Specialist findings do not independently confer approval or authority |
+| Mission-specific governance | `communication/missions/SB-P-1.17/mission-control/` | Stage 5 approval and Stage 6 handover evidenced |
+| Product contracts | Contracts 7, 13, 17; Founder-approved Build Plan §10.6 | POS bridge, stock relationship, counter review, closing cash and permissions |
+| Founder decisions | `17:FPDR-1` and `17:FPDR-2` | Scoped Manager authority and two-class vendor-neutral POS bridge |
+| Traceability | Stage 2 FCTM and Obligation Inventory | 630 obligations accounted for, including 404 `IN SCOPE` |
+| Product Blueprint | SB-P-1.17 §§8.6–8.7, 20.4.6–20.4.7, 20.9.1–20.9.3, 21.4 | Approved product design and draft engineering refinements examined |
+| Engineering review | ENG17-01, ENG17-02, ENG17-03; EQ17-05, EQ17-13–16 | Technical dependencies and source-evidence requirements identified |
+| Existing code and tests | `src/integrations/supabase/transactions.ts`, `tests/inventory/trusted-event-link.test.ts` | Current direct Ledger write path and intentionally limited inventory event-link validation confirmed |
+
+Primary source links:
+
+* [SB-P-1.17 Product Blueprint](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/docs/phase-1-mission-blueprint/active/SB-P-1.17.md?utm_source=chatgpt.com)  
+* [Contract 13 — POS, Counter Intelligence and Closing Cash](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/docs/phase-1-mission-blueprint/smart-business-features/13_POS_Counter_Intelligence_and_Closing_Cash.md?utm_source=chatgpt.com)  
+* [Founder Decision Record — 17:FPDR-2](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/communication/missions/SB-P-1.17/claude-code/10-stage3-six-entry-founder-product-decision-record-for-review.md?utm_source=chatgpt.com)  
+* [Stage 7 Engineering Review](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md?utm_source=chatgpt.com)
+
+### **Verified mission state**
+
+At the inspected baseline:
+
+| Stage | Status |
+| ----- | ----- |
+| Stage 5 — Blueprint §§1–19 | APPROVED |
+| Stage 6 — Builder Review | APPROVED |
+| Stage 7 — Engineering Review §§20–21 | DRAFT — Mission Control review pending |
+| Stage 8 — Founder Blueprint Lock | NOT AUTHORIZED |
+| Stage 9 — EIS | NOT AUTHORIZED |
+| Implementation | WITHHELD |
+
+ENG17-01–03 appear in the current Stage 7 draft. They provide an appropriate basis for specialist analysis, but their presence on `main` does not itself constitute approval of Sections 20–21.
+
+The MC-409 role definition is treated as Founder-provided assignment context. A separate, qualified specialist appointment and independence determination were not established by the repository evidence reviewed.
+
+## **3\. Approved POS adapter-class assessments**
+
+Class A — Authenticated API / webhook
+
+Design feasible · source unverified
+
+Supports a vendor-neutral adapter receiving authenticated POS transaction events where the POS offers an appropriate interface.
+
+Authority: 17:FPDR-2; Blueprint §§8.6, 20.4.6 and 20.9.3.
+
+The EIS must define source authentication, server-side integration identity, permission scope, payload validation, stable event identity, transport replay protection, retries, ordering, corrections, credential rotation and failure recovery. Vendor signatures must be verified if applicable; signature support must not be assumed universally.
+
+Architectural risk: webhook delivery success is not equivalent to a successfully committed Ledger transaction. Receipt, normalization and business posting require separately traceable states.
+
+Class B — Structured export through UDI
+
+Design feasible · source unverified
+
+Supports POS-originated structured records through the existing Universal Document Intelligence pathway, rather than a new import engine.
+
+Authority: 17:FPDR-2; Blueprint §§8.6, 20.4.5–20.4.6 and 20.9.1.
+
+The EIS must specify validated schema, file provenance, encoding, source and row identities, re-export treatment, completeness indicators, preview/confirmation where applicable, failed-row handling and governed posting.
+
+Important: A content fingerprint can contribute duplicate evidence but cannot substitute for a stable source-event identity. The approved draft explicitly preserves this distinction.
+
+Architectural risk: daily exports can contain repeated sales, revised sales, incomplete periods or summary data. None may silently become independent revenue.
+
+### **Comparative conclusion**
+
+Both classes are necessary to preserve the Founder decision. Neither may be silently removed because the first merchant POS happens to support the other class.
+
+The integration should use one normalized bridge contract and one governed posting path. The adapters may vary; Ledger, stock, permissions and audit authority must not.
+
+An export-capable POS may qualify for normal sales ingestion without supporting Scenario B. Conversely, evidence of a discount field alone does not establish safe financial ingestion.
+
+## **4\. Eleven-item POS-source evidence dossier**
+
+Assessment against Blueprint §20.9.3, applied to the available evidence.
+
+| \# | Required evidence | SA-04 finding and required disposition |
+| ----- | ----- | ----- |
+| 1 | POS identity and interface class | OPEN. No specific product/version, merchant authorization or vendor interface documentation evidenced. Record the precise deployment identity before source eligibility review |
+| 2 | Minimum transaction fields | OPEN. Contract-defined fields known; actual source schema not evidenced. Validate external transaction ID, time, item reference, quantity, price and payment method |
+| 3 | Discount and void fields | OPEN. No real source field names or semantics demonstrated. Scenario B cannot be proven from this baseline |
+| 4 | Operator attribution | OPEN — PRIVACY HOLD. Operator identity is optional, not a Scenario B prerequisite. Any use requires a demonstrated lawful and permissioned basis |
+| 5 | Stable event identifiers | OPEN. Source-defined uniqueness, retry stability, re-export stability and correction linkage must be evidenced before trusted posting |
+| 6 | Interface characteristics | OPEN. API/webhook delivery, ordering, limits and failure semantics or file schema, encoding and completeness markers must be documented per source |
+| 7 | Authentication and credentials | OPEN — DSEC. No source credentials or approved credential arrangement evidenced. Server-side storage and lifecycle require security approval |
+| 8 | Timestamps and timezone | OPEN. Occurrence time, export/ingestion time and timezone semantics must be distinguished; otherwise closing-period attribution is unreliable |
+| 9 | Retry, dedupe and correction behavior | OPEN. Real-source duplicate, reversal, out-of-order, re-export and post-close correction scenarios are untested |
+| 10 | Privacy and access limits | OPEN — U-11. Source terms, personal-data exposure, permitted processing, access control and retention require specialist clearance |
+| 11 | Real-source evidence | OPEN. Neither authorized vendor sandbox evidence nor merchant-approved real-source samples were demonstrated. FRV-B remains unavailable |
+
+### **Dossier decision**
+
+0 of 11 dossier items has been independently verified for an identified real POS source.
+
+This is not an architecture failure. The dossier is source-specific, and no source has yet been approved for evaluation.
+
+The minimum transaction fields are required for eligibility under the current Founder decision. Discount, void and operator information are optional for general integration, but a discount or void signal must be evidenced from the source chosen for Scenario B.
+
+For source-specific admission, Mission Control should require actual vendor or merchant evidence rather than relying on marketing feature descriptions.
+
+## **5\. Transaction-integrity assurance — INV-A1–A9**
+
+All nine invariants are present in Blueprint §20.9.1. Their design is suitable as the starting point, but not yet proven as an implemented, integrated transaction pathway.
+
+| Invariant | Assessment | Verification requirement |
+| ----- | ----- | ----- |
+| INV-A1 — One committed outcome per source event | Design appropriate | Duplicate delivery, concurrent replay and same-key/different-payload rejection |
+| INV-A2 — Atomic Ledger, movement, source state and link | Critical open dependency | One database transaction or no writes; fault injection at every write boundary |
+| INV-A3 — Domain-owned event-link validation | Design appropriate, implementation incomplete | Existence, same-business ownership, correct type and non-reversed status |
+| INV-A4 — Unknown-outcome recovery | Design appropriate | Lookup committed outcome before retry; no guessed success |
+| INV-A5 — Append-only correction/reversal | Design appropriate | Linked reversal and corrected movement; original history preserved |
+| INV-A6 — Out-of-order events held | Design appropriate | Reversal preceding original never posts against a missing target |
+| INV-A7 — Manual/POS overlap review | Refinement required | Candidate detection, no automatic merge, audited human resolution |
+| INV-A8 — Governed revenue once, trusted mapping | Critical execution dependency | Source event reaches governed Ledger path only; unresolved/untrusted input does not post |
+| INV-A9 — Purchase movement \+ expense, payment distinct | Design appropriate | Atomic purchase posting; supplier payment remains independently evidenced |
+
+### **5.1 Critical finding SA04-F01 — Atomic composition**
+
+Severity: HIGH
+
+EQ17-13 is not a cosmetic implementation detail.
+
+The governed Ledger command `create_transaction_governed`, specified under SB-P-1.14, and `create_inventory_movement`, from the inventory foundation, must compose into a single atomic business transaction where a command produces both effects.
+
+Two successful API calls are not equivalent to one database transaction. If the movement commits and the financial write fails, later retries can produce discrepancies even if each operation is independently idempotent.
+
+Proposed control: The EIS must establish an approved transactional composition mechanism, demonstrate rollback under injected failure, and show that no alternate direct-write path bypasses the governed command.
+
+The existing `src/integrations/supabase/transactions.ts` contains a direct `transactions` insert path. This is current pre-cutover implementation evidence, not proof that the future governed `DTX` cutover has occurred. It must be included in the cutover and regression review rather than misreported as already closed.
+
+### **5.2 Finding SA04-F02 — Event-link trust boundary**
+
+Severity: HIGH
+
+The inspected `tests/inventory/trusted-event-link.test.ts` explicitly documents that the existing movement foundation validates the event-type/ID pairing but does not validate whether a referenced future-domain event exists or belongs to the same business.
+
+The test permits a well-formed, presently unvalidated event reference within its approved scope.
+
+This is not, by itself, a defect in the inventory foundation. It is precisely why INV-A3 must be implemented by the owning POS/business-event domain before POS-linked movements are trusted.
+
+Required negative tests include nonexistent reference, cross-business reference, wrong event type, reversed reference and unauthorized principal.
+
+### **5.3 Finding SA04-F03 — POS/manual overlap**
+
+Severity: HIGH
+
+A Kerala merchant might record a sale through a POS and later enter it manually through WhatsApp or the dashboard. These are different source identities for what may be the same commercial event.
+
+Event-ID deduplication alone cannot identify that overlap.
+
+The approved INV-A7 design requires a review candidate rather than an automatic merge, suppression or deletion.
+
+The EIS must settle matching rules, confidence presentation, authoritative user confirmation, correction provenance, and the way unresolved overlap affects financial and closing reports.
+
+The particularly important distinction is that keeping both original records for evidence must not cause the reporting experience to silently present potentially duplicated revenue as verified business truth.
+
+No autonomous duplicate judgment should replace the Owner's determination.
+
+## **6\. Financial, inventory, security and privacy risk matrix**
+
+| ID | Domain and risk | Impact | Proposed mitigation | Escalation |
+| ----- | ----- | ----- | ----- | ----- |
+| R-POS-01 | Duplicate sale posted by retries or re-export | High | Source-scoped idempotency, command fingerprint, concurrency tests | Ledger / Finance |
+| R-POS-02 | Partial financial/stock commit | Critical | INV-A2 single-transaction design and injected-failure tests | SB-P-1.14 / Engineering |
+| R-POS-03 | Wrong product mapping or unit conversion | High | Authoritative item mapping, conversion validation, unresolved-event hold | Inventory / Product Master |
+| R-POS-04 | Void, return or discount double-adjusts revenue | High | Explicit event semantics and append-only links; per-source reconciliation | Finance / POS |
+| R-POS-05 | Export contains incomplete or repeated periods | High | Completeness markers, cursor/period reconciliation, no silent gap-filling | POS / UDI |
+| R-POS-06 | Forged webhook, leaked credentials or replay | Critical | Verified source identity, least privilege, secret-home controls, replay rejection | Security / DSEC |
+| R-POS-07 | Cross-tenant transaction or operator-data exposure | Critical | Business-scoped identifiers, RLS, principal checks, negative tests | Security / SB-P-1.12 |
+| R-POS-08 | Unauthorized staff surveillance or operator attribution | High | Owner-only access, minimization, lawful-purpose and retention review | Privacy / Legal / U-11 |
+| R-POS-09 | Unreliable closing cash from incomplete POS or manual data | High | UNKNOWN / PARTIAL / REVIEW-REQUIRED states and input provenance | Finance / Closing Cash |
+| R-POS-10 | POS outage or offline backlog creates inaccurate activity | High | Reconciliation checkpoints, bounded retry, backlog visibility, unaffected manual operation | POS / Reliability |
+| R-POS-11 | Future connector change breaks established inventory or Ledger behavior | High | Versioned adapter contract and regression suite | Engineering / Migration |
+
+### **Financial-specific review concerns**
+
+The first real POS dossier should establish how the source represents gross and net amounts, GST/tax treatment, line-level versus invoice-level discounts, returns, voided bills, partial cancellations, split payments, store credit, cash refunds, offline settlement and corrected receipts.
+
+These are validation questions, not assertions that any specific POS supplies those fields. Where missing semantics would make a transaction ambiguous, the source must be constrained or held rather than inventing interpretation.
+
+A review signal must also distinguish a legitimate cancelled bill from a completed sale followed by a refund. Treating both as identical can corrupt sales totals, stock and closing cash.
+
+### **Privacy-specific review concerns**
+
+Operator-attributed detail remains Owner-reserved under `17:FPDR-1`; ordinary Manager permissions do not confer it.
+
+The U-11 legal/privacy hold must cover collection necessity, permitted purpose, source/vendor terms, staff notice where required, minimization, retention, export exposure and deletion handling.
+
+A real POS source may be used for business-level Scenario B verification without requiring employee identification. That is preferable when it supplies sufficient business-level discount or void evidence.
+
+## **7\. Founder Scenario B — source evidence and verification plan**
+
+Governing requirement: Build Plan §10.6, Scenario B.
+
+> Standard POS bridge surfaces an unusual discount/counter anomaly. UI language remains neutral and asks for review; it must not accuse staff of wrongdoing.
+
+### **7.1 Preconditions**
+
+Before FRV-B, Mission Control should confirm:
+
+1. The Founder has selected the first evidenced source through EQ17-05.  
+2. The source satisfies the applicable eleven-item dossier criteria.  
+3. Actual discount or void semantics have been demonstrated from that source.  
+4. POS identity and ingestion integrity pass the relevant INV-A1, INV-A5 and INV-A6 tests.  
+5. Security and privacy restrictions for the chosen data are cleared.  
+6. A controlled runtime environment and test authorization exist.
+
+### **7.2 Proposed scenario matrix**
+
+| Scenario | Expected result |
+| ----- | ----- |
+| Evidenced discount or void event arrives | Event is authenticated, normalized, deduplicated and linked to the correct source |
+| Evidence-backed review condition is met | Neutral counter review item appears with source, period and reason |
+| No discount/void fields available | Unsupported signal explicitly shown as unavailable |
+| Identical event delivered again | No duplicate Ledger or inventory outcome |
+| Void or correction arrives after original | Append-only linked correction, no destructive replacement |
+| Correction arrives before original | Event held; no guessed target |
+| Legitimate Owner-approved discount | Authorized context added without erasing event |
+| Manager lacks relevant grant | No unauthorized counter review detail |
+| Employee requests another employee's anomaly data | Access denied |
+| Operator identity missing or legally restricted | Business-level signal only; no inferred operator |
+| POS connection interrupted | Manual Smart Business operation remains safely available |
+| AI response suggests misconduct, punishment or checkout lock | Negative test fails; the output is unacceptable |
+
+### **7.3 Review wording**
+
+An acceptable example, subject to actual source evidence, is:
+
+> Please review this counter activity. The recorded discount is higher than the recent pattern. There may be a valid business reason.
+
+The message must not imply that unusually high discounts establish fraud, dishonesty or misconduct.
+
+No universal discount percentage, such as 15%, should be introduced as Product Truth. A practical threshold or comparison baseline is an engineering and evidence question, not a replacement for human decision ownership.
+
+### **7.4 Evidence needed for FRV-B acceptance**
+
+The runtime evidence package should preserve the source identity and version, authorized sample provenance, raw-to-normalized field mapping, event and command correlation IDs, test execution result, review-item explanation, permission denials and the Owner's observed experience.
+
+Synthetic fixtures can validate transformation and failure paths at T1/T2. They must never be represented as Founder Runtime Verification B.
+
+## **8\. Architecture feasibility versus source feasibility**
+
+| Question | Current determination |
+| ----- | ----- |
+| Can the approved architecture accommodate an API/webhook adapter? | Yes, at design level |
+| Can it accommodate structured exports through UDI? | Yes, at design level |
+| Can these converge on the same Ledger and inventory authorities? | Architecturally intended; atomic composition requires EIS proof |
+| Is a particular POS API available? | Not evidenced |
+| Does a particular POS export stable source IDs? | Not evidenced |
+| Does any selected source provide reliable discount/void signals? | Not evidenced |
+| Can actual corrections and offline replay be processed safely? | Not runtime verified |
+| Is POS-origin financial processing ready for merchants? | No |
+| Is the T8 trigger established? | No — remains a watch on the current evidence |
+
+T8 interpretation: No demonstrated source does not equal demonstrated infeasibility. Preserve the watch and escalate only if new evidence shows a material requirement cannot be met, the approved architecture must be changed, or the source-dependent mission path cannot be safely specified.
+
+## **9\. Known limitations and outstanding questions**
+
+The following are substantive unresolved matters, not assumptions to be filled silently:
+
+| ID | Outstanding matter | Required owner |
+| ----- | ----- | ----- |
+| EQ17-05 | First evidenced POS source and minimum export schema | Founder / Mission Control, then EIS |
+| EQ17-13 | Single-transaction composition across Ledger and inventory authorities | Ledger / Engineering |
+| EQ17-14 | POS/manual overlap detection parameters | Engineering / Finance |
+| EQ17-15 | Shift-closing attribution of date-only manual records | Ledger / Closing Cash |
+| EQ17-16 | Post-close correction and reopening semantics | Engineering / Finance |
+| U-03 | Day-versus-shift closing and related inputs | Approved EIS process |
+| U-11 | Staff/operator privacy, lawful basis and retention | Privacy / Legal specialists |
+| DPOS | Real vendor/source and interface evidence | POS / Founder |
+| DSEC | Credential home and integration-secret lifecycle | Security |
+| DTX | Governed Ledger cutover and write-authority enforcement | SB-P-1.14 / Engineering |
+
+Additionally, the current repository does not demonstrate a completed SB-P-1.17 POS adapter, live merchant POS connection, tested real-source reconciliation, completed EIS or runtime acceptance.
+
+The absence of those capabilities is consistent with the mission's current documentary stage and withheld implementation authority.
+
+## **10\. Proposed downstream EIS controls**
+
+These are proposed SA-04 control identifiers for Mission Control disposition. They are not approved EIS provisions.
+
+| Proposed control | Specification / acceptance requirement | Priority |
+| ----- | ----- | ----- |
+| SA04-EIS-01 — Adapter contract | One canonical normalized bridge with two distinct approved interface classes | Mandatory |
+| SA04-EIS-02 — Source capability register | Explicit per-source field and feature capabilities; no fabricated signals | Mandatory |
+| SA04-EIS-03 — Ingestion state machine | Recorded receipt, validation, held state, committed outcome, correction and failure provenance | Mandatory |
+| SA04-EIS-04 — Identity and dedupe | Source-scoped stable identity, payload fingerprint validation, concurrent replay protection and unknown-outcome lookup | Critical |
+| SA04-EIS-05 — Atomic posting | Governed Ledger, movement, event state and links commit together or not at all | Critical |
+| SA04-EIS-06 — Product mapping | Existing Product & Price Master identity and movement authority reused; no guessed unit conversion | Critical |
+| SA04-EIS-07 — Manual overlap | Review-only candidate detection and authorized correction, with truthful totals pending resolution | Critical |
+| SA04-EIS-08 — Corrections / offline replay | Linked events, out-of-order hold, safe restart, backlog and gap visibility | Mandatory |
+| SA04-EIS-09 — Security boundary | Authenticated integration principal, server-side secrets, tenant isolation and field-level access enforcement | Critical |
+| SA04-EIS-10 — Closing reconciliation | Evidence-completeness states, occurrence-time semantics, no zero-fill and no double counting | Critical |
+| SA04-EIS-11 — Counter intelligence | Supported source facts only; neutral review; authorized human context; no automated punitive action | Mandatory |
+| SA04-EIS-12 — Vendor evidence and runtime gate | Eleven-item dossier, source selection, authorized real samples and independent FRV-B evidence | Required before source-specific runtime acceptance |
+
+### **EIS sequencing recommendation**
+
+Design-specification readiness
+
+Confirm both adapter contracts, formalize the normalization and source-capability rules, and resolve the atomic transaction composition before EIS lock.
+
+Specialist review
+
+Route Ledger/Finance, security/RLS, privacy/legal and migration findings to their respective qualified specialists, preserving each domain's authority.
+
+Source-specific readiness
+
+Require the chosen source's evidence dossier, field mapping, real samples and approved integration boundaries before source-specific acceptance.
+
+Runtime acceptance
+
+Verify invariants, closing integrity, permission denials and FRV-B in an authorized environment; retain the implementation and release gates.
+
+No new POS vendor, commercial commitment, core POS modification, Ledger authority or infrastructure activation is proposed here.
+
+## **11\. Reviewer competence and independence**
+
+| Criterion | Assessment |
+| ----- | ----- |
+| Ability to analyze POS adapter patterns | Demonstrated through this documentary review and its source-grounded technical findings |
+| Ability to review event identity, concurrency, idempotency and reconciliation concepts | Demonstrated analytically; no executed test evidence |
+| Actual experience operating the selected POS product | NOT DEMONSTRATED |
+| Vendor certification or practitioner credentials | NOT DEMONSTRATED |
+| Access to authorized merchant POS evidence | NONE |
+| Prior authorship of SB-P-1.17 Blueprint | No authorship established for this reviewer from the inspected record |
+| Independence from Blueprint author | Cannot be formally certified from a conversation role alone |
+| Mission Control-appointed qualified specialist status | NOT VERIFIED |
+
+This report is an AI-assisted, source-grounded technical review. It does not claim human professional qualifications, vendor certification, personal field experience or an independent organizational appointment.
+
+A separate AI conversation cannot independently establish reviewer competence or structural independence. Mission Control should record reviewer provenance, any design involvement, competence evidence and a proper separation assessment before treating an SA-04 sign-off as qualified independent assurance.
+
+Classification: SPECIALIST ASSURANCE OPEN.
+
+The report remains useful as a traceable specialist finding and EIS refinement input, but it should not be promoted into final qualified assurance without the required evidence and governance determination.
+
+## **12\. Final Mission Control recommendation**
+
+REFINEMENT REQUIRED
+
+Basis: The current architecture contains no demonstrated contradiction requiring rejection of the vendor-neutral bridge. However, EQ17-13 atomic composition, domain-owned event-link validation, POS/manual financial overlap treatment, source-dependent correction semantics, privacy holds and reviewer qualification require further governed disposition.
+
+This recommendation does not downgrade any approved Build Now requirement, close the T8 watch, select a vendor or treat the absence of a real source as proof of infeasibility.
+
+### **Proposed Mission Control disposition**
+
+| Item | Proposed disposition |
+| ----- | ----- |
+| Two interface classes | PRESERVE |
+| Contract 13 Build Now commitment | PRESERVE |
+| ENG17-03 source dossier | RETAIN AND APPLY |
+| INV-A1–A9 | RETAIN; REQUIRE EIS PROOF |
+| INV-A2 and EQ17-13 | CRITICAL ENGINEERING REFINEMENT |
+| INV-A7 and EQ17-14 | RECONCILIATION REFINEMENT |
+| Founder Scenario B | PRESERVE — RUNTIME EVIDENCE OPEN |
+| DPOS, DSEC, U-11 and T8 | REMAIN OPEN |
+| Specialist qualifications and independence | SPECIALIST ASSURANCE OPEN |
+| Stage 8, EIS lock and implementation | NO AUTHORITY CONFERRED |
+
+Recommended next action: Mission Control should accept this report as a specialist fact-finding submission, disposition the proposed controls and cross-domain escalations, and obtain the required qualified independent review before treating SA-04 as closed. Stage 7 and Stage 8 decisions remain with their authorized owners.
+
+No repository files, FCTM entries, Blueprint provisions, source contracts, schemas, credentials or external POS systems were changed. No live transaction, merchant data or production environment was accessed. This report is delivered here for Mission Control handoff; it has not been published to the repository.
+
+SA-04 REPORT SUBMITTED — STOP FOR MISSION CONTROL DISPOSITION.
+
+Humans serving humans. AI Assistant, Not AI Judge.
+
+**MC-408A / SA-05 — SB-P-1.17 Migration Assurance**  
+**Baseline reviewed:** `main@739c5fb3ebbdc312da4ef2ce70d7de2f11006003`  
+**Mode:** READ-ONLY. No SQL, CLI, provider access, migration execution, or environment mutation occurred.
+
+I reviewed the Stage 7 SB-P-1.17 Blueprint at blob `9a6335e1a2bda780363f9981e8a4d4d5cffd421d`, especially §§20.4, 20.7, 20.9 and 21.1, together with the Stage 7 completion report and the migration-safety precedents from SB-P-1.12, SB-P-1.14 and SB-P-1.16.
+
+## **Overall assurance finding**
+
+**The M17-1–M17-9 architecture is migration-feasible, but it is not migration-ready.**
+
+I found no need to change Product Truth or remove an M17 class. The principal blockers are engineering/EIS and evidence gates:
+
+1. **SB-P-1.17 has no locked EIS yet.** Sections 20–21 are explicitly draft engineering material; the nine migration classes are planning constructs, not executable migration packages.  
+2. **Upstream implementation is not available at this baseline.** The Blueprint records SB-P-1.12 through SB-P-1.16 as specification-locked with Implementation Authorization withheld. M17 must not create interim substitutes for `D12`, `D14`, `DTX`, `D15/DSCH` or `D16`.  
+3. **`EQ17-13` / INV-A2 is a hard blocker for M17-9 activation:** atomic composition of the governed Ledger command and `create_inventory_movement` is unresolved. Partial stock/Ledger commits are expressly unacceptable.  
+4. **The database privilege contract is not yet exact enough.** “Revoke anon” is insufficient given repository default-grant history. The EIS must define effective privilege neutralization for `PUBLIC`, `anon`, `authenticated`, `service_role`, functions, schemas, sequences where applicable, and creator-role defaults.  
+5. **`smart-business-test` requires fresh readiness evidence before rehearsal.** Historic evidence cannot satisfy §20.7.1's explicit “fresh verification” requirement.  
+6. **M17-6/M17-7 remain source/privacy held.** No POS source is evidenced or authorized, and U-11 remains open.  
+7. **No exact rollback/forward-fix package exists yet for M17.** §20.7.3 states the right principle, but each class needs a class-specific reversal boundary once the EIS fixes physical structures.
+
+## **Migration assurance matrix**
+
+| Class | Assurance result | Dependency/order finding | Required EIS / migration assurance |
+| ----- | ----- | ----- | ----- |
+| **M17-1 Stock extension** | **REFINEMENT REQUIRED** | Correctly first among M17 classes. Must preserve SB-P-1.10 append-only movement and quantity invariants. | Define exact enum/type widening strategy, live-lock behavior, batch/expiry representation, unit-conversion tenant keys, RLS/grants, and pre/post inventory regression. Do not reinterpret historical movements. |
+| **M17-2 Thresholds/signals** | **SUPPORTED WITH CONDITIONS** | Correct after M17-1. | Threshold state transitions must be immutable/auditable enough to distinguish suggested vs confirmed/changed; only confirmed/changed drives effects. Business/actor authority must be kernel-derived. No “suggestion” row may itself grant authority. |
+| **M17-3 Supplier memory** | **BLOCKED — UPSTREAM \+ EIS** | Must wait for SB-P-1.12 participant identity `EIS-ID-03`. | Composite business binding, participant FK/delete semantics, supplier-product uniqueness, append-only price/history treatment and attribution links. Historical transaction rows must never be rewritten for supplier attribution. |
+| **M17-4 Cost projection** | **BLOCKED — EQ17-02 / D12** | Correct after permission implementation; must not be approximated locally. | Permissioned field projection must prevent row-level cost leakage. EIS must resolve the existing Owner-only `authority_basis` constraint and prove Reference Cost and margin remain separate grants. |
+| **M17-5 Reorder** | **BLOCKED — D12/D15/DSCH** | Correct after confirmation/delegated automation/scheduler foundations. | Confirmation binding, standing-rule identity, replay/idempotency, revocation-at-commit and rule-run outcome identity. Purchase requests must not imply “sent” without merchant evidence. |
+| **M17-6 POS bridge** | **SOURCE-HELD** | Physical schema may be designed, but operational activation must wait for `DPOS`/`DSEC`. | Stable per-source event identity, composite business/source uniqueness, raw→normalized linkage, correction/reversal identity, dedupe, pending/out-of-order state, overlap-candidate semantics, server-only credentials. INV-A1/A5/A6 must be source-provable before activation. |
+| **M17-7 Counter/closing** | **BLOCKED — M17-6 \+ DSCH \+ U-11** | Counter depends on M17-6; closing additionally depends on timezone/period model. | Closing-session state machine implementing §20.9.2 exactly; no zero-fill, invented occurrence times, double counting, or fabricated operator attribution. Operator store must remain Owner-only and legally held until U-11. |
+| **M17-8 Readers** | **SUPPORTED WITH CONDITIONS** | Must follow the feature tables each reader consumes. It need not become authority. | Readers must be kernel-scoped, business-explicit and field-filtered. No dashboard-only logic. Read functions must have exact `EXECUTE` and RLS/definer/invoker treatment and must not expose cost/operator fields indirectly. |
+| **M17-9 Ledger linkage** | **BLOCKED — LOAD-BEARING** | Correctly dependent on `DTX` and SB-P-1.14 Ledger. It must be installed/activated before any M17 path is allowed to create coupled stock+Ledger effects. | Resolve EQ17-13. One DB transaction or none for governed Ledger event, movements, source-event state and event link; deterministic command/source identity; outcome lookup; no direct `transactions` DML; event-link tenant/type validation; fault-injection and concurrency proof. |
+
+### **Ordering refinement**
+
+The numbered order is safe as a **schema-planning order**, but the EIS must distinguish **installation from activation**.
+
+In particular, M17-6 can install POS-support structures before M17-9, but **no mapped POS event may create stock or revenue** until the DTX/M17-9 atomic path is proven and cut over. Similarly, feature tables may exist before M17-8 readers are exposed.
+
+That activation distinction should be binding, not left to application convention.
+
+## **Database grants, RLS and default-deny**
+
+The repository history makes this a material migration concern.
+
+`20260727000000_reconcile_default_grants.sql` established broad defaults for objects created by `postgres`, including broad table rights for `authenticated`/`service_role` and function `EXECUTE`. Later migrations demonstrate the safer pattern: explicit `REVOKE` first, RLS, then narrow re-grant. The parser migration also shows why granting a narrow privilege without first removing an inherited broader one does not narrow effective privilege.
+
+For M17, the EIS should require:
+
+* every new table to start effectively unusable by browser roles;  
+* explicit `REVOKE ALL` from **PUBLIC, anon and authenticated**, not merely `anon`;  
+* explicit treatment of `service_role` rather than accepting inherited `ALL`;  
+* RLS enabled before any browser-facing grant is usable;  
+* no broad `USING (true)` / `WITH CHECK (true)` merchant policy;  
+* Manager access through the SB-P-1.12 kernel, not new `owner_id` convenience policies;  
+* explicit sequence privileges where generated sequences exist;  
+* function `PUBLIC EXECUTE` neutralized before intended grants;  
+* effective-ACL verification, including creator-role default privileges, rather than migration-text inspection alone.
+
+This directly reuses the SB-P-1.12 readiness finding that **effective state, not source text, is the security evidence**.
+
+## **SECURITY INVOKER / function security**
+
+Blueprint §20.4.11 says new functions use `SECURITY INVOKER`, RLS and fixed `search_path`. That is a good default for ordinary M17 readers and domain operations, but the EIS should not treat the words `SECURITY INVOKER` as sufficient proof.
+
+Required physical contract:
+
+* fixed/empty hardened `search_path` and schema-qualified references;  
+* explicit owner;  
+* explicit `EXECUTE` matrix;  
+* no reliance on session-local state or transaction-pool connection affinity;  
+* every invoker path still reaches the required kernel/RLS enforcement;  
+* any function that must cross a protected boundary cannot silently be converted to a broad definer merely to “make it work.”
+
+If a narrow `SECURITY DEFINER` becomes unavoidable for a kernel-owned/privileged boundary, it needs the existing SB-P-1.12 narrow-executor pattern: `NOLOGIN` owner, minimum object rights, hardened search path, no public execution and internal authorization. That would need explicit EIS treatment rather than being inferred from M17's current blanket INVOKER statement.
+
+## **DTX cut-over**
+
+This is the most important cross-mission migration condition.
+
+SB-P-1.14 already established the safety rule: do not leave direct transaction DML and the governed command simultaneously usable as competing protected write paths.
+
+For SB-P-1.17:
+
+* M17 must not recreate or bypass the DTX cut-over;  
+* M17-9 must consume the **single existing governed transaction command**;  
+* no second Ledger writer is acceptable;  
+* POS revenue must enter once through that command;  
+* purchase movement \+ Ledger expense must either commit atomically or both disappear;  
+* unknown outcomes must be resolved by stable command identity before retry;  
+* cut-over verification must prove direct `transactions` mutation is unavailable after DTX.
+
+**`EQ17-13` must be resolved before the EIS can claim M17-9 implementation-ready.**
+
+## **`smart-business-test` readiness**
+
+The Blueprint explicitly says the environment is **not freshly verified**.
+
+Before an M17 rehearsal, later authorized evidence must establish at least:
+
+* exact project identity and non-production classification;  
+* current migration ledger;  
+* schema baseline relevant to Inventory, Catalog, Transactions and upstream D12–D16 objects;  
+* effective grants, default privileges and function execution state;  
+* RLS/policy state;  
+* creator-role differences relevant to fresh M17 objects;  
+* no unexpected migration drift;  
+* sufficient representative fixtures/data shape for lock and concurrency testing.
+
+Prior SB-P-1.12 evidence can define **how** to check this but cannot substitute for §20.7.1's fresh checkpoint.
+
+Production parity does not mean copying merchant data. For locking/volume-sensitive changes, a governed synthetic or otherwise authorized production-shaped dataset is sufficient where the property under test is size/concurrency rather than business content.
+
+## **Test assurance — T1 through T4**
+
+**T1 — static/unit/fixture CI**
+
+Required:
+
+* migration/source lint and exact migration ordering checks;  
+* unit tests for state machines and normalization;  
+* POS vendor-neutral fixtures;  
+* source-event identity/dedupe tests that do not require a live POS;  
+* no live-provider claim from fixture results.
+
+The Blueprint correctly puts the POS fixture suite in T1.
+
+**T2 — Supabase-backed integration/concurrency/security**
+
+This is the load-bearing migration tier. It should include:
+
+* effective privilege matrices, not only successful happy-path RPCs;  
+* cross-business denial;  
+* Manager grant/no-grant/revocation;  
+* Reference Cost and margin negative tests;  
+* concurrent source-event replay;  
+* same idempotency key / different payload rejection;  
+* fault injection around M17-9 atomic writes;  
+* out-of-order correction/reversal;  
+* inventory regression;  
+* one test for every closing-cash decision-table row;  
+* migration forward \+ compensating/rollback rehearsal;  
+* verification that old and new function signatures do not coexist unintentionally.
+
+**T3 — runtime**
+
+Only after migration rehearsal and upstream dependencies pass. It proves application behavior, not migration correctness by itself.
+
+**T4 — Founder Runtime Verification**
+
+FRV-A requires the full threshold→suggestion→confirmation→purchase-request path.
+
+FRV-B remains unavailable until a real evidenced POS source satisfies §20.9.3. Synthetic POS fixtures can never upgrade themselves into T4 evidence.
+
+### **CI blocker**
+
+Blueprint §20.7.7 says SB-P-1.17 code and migration paths must enter the Full Assurance path filter and new Supabase-backed tests must enter `vitest.full.config.ts`.
+
+That is an **EIS/package requirement**. CI T1/T2 evidence must be green on the exact candidate SHA before migration activation. A missing workflow result is missing evidence, not a pass.
+
+## **Rollback and compensating-migration conditions**
+
+The generic §20.7.3 requirement is sound but needs class-specific treatment.
+
+A future M17 migration package should classify each change as one of:
+
+* **pre-data reversible:** structural addition can be removed because no accepted new data relies on it;  
+* **forward-fix only after use:** once merchants/test scenarios have produced records under the new schema, dropping the structure would destroy or reinterpret valid history;  
+* **cut-over reversal:** authority path may be restored only if rehearsed and no new incompatible state has been committed;  
+* **disaster recovery:** PITR/restore is a last-resort environment recovery mechanism, not normal logical rollback.
+
+Specific examples:
+
+* M17-1 movement-type/batch data becomes forward-fix territory once new movements exist.  
+* M17-3 supplier attribution/history must never be “rolled back” by deleting historical links/data after accepted use.  
+* M17-6 raw POS/source events require preservation after ingestion; fixes should be additive/corrective.  
+* M17-7 historical closing results/corrections are append/history-oriented.  
+* M17-9 cannot roll back into a dual-write or direct-DML state after governed effects have been created.
+
+Every compensating migration must itself be independently reviewed and rehearsed.
+
+## **Exact blockers to migration-plan activation**
+
+I would not recommend activation of an M17 migration plan until these are closed:
+
+1. **Blueprint/EIS authority:** Stage 8+ must produce the locked architecture/EIS; current M17 classes are draft.  
+2. **Upstream foundations:** required D12/D14/DTX/D15/DSCH/D16 implementations and acceptance must exist for their dependent classes.  
+3. **M17-9 / EQ17-13:** atomic Ledger \+ Inventory composition resolved and proven technically possible.  
+4. **Privilege specification:** effective-ACL/default-privilege neutralization and narrow re-grant contract fully specified.  
+5. **RLS/function contract:** exact Manager/Owner/Employee policy and invocation path fixed without interim owner-based authority.  
+6. **M17-4 / EQ17-02:** cost projection and `authority_basis` transition resolved.  
+7. **Fresh test readiness:** `smart-business-test` re-identified and current ledger/schema/grant baseline collected before rehearsal.  
+8. **Rollback package:** per-class rollback/forward-fix boundaries written.  
+9. **CI integration:** M17 migration/code paths and T2 test files wired into required assurance tiers.  
+10. **M17-6 source hold:** no POS activation/FRV-B until the §20.9.3 dossier passes.  
+11. **M17-7 U-11/U-03:** operator-data/legal hold and closing-period engineering decisions closed before those surfaces activate.
+
+## **EIS requirements I recommend Mission Control carry forward**
+
+The SB-P-1.17 EIS should make the following explicit and testable:
+
+* physical table/key/FK/delete-action contract for every M17 class;  
+* composite tenant binding on every business-scoped cross-table relationship;  
+* exact transition/state invariants rather than application-only state discipline;  
+* explicit immutable source/event identity and idempotency rules;  
+* install-before-activate sequencing for every class;  
+* effective privilege neutralization before any application use;  
+* exact RLS policy/function execution model;  
+* exact function security mode, owner, `search_path`, overload/signature retirement and `EXECUTE`;  
+* one governed Stock+Ledger transaction boundary for INV-A2;  
+* no historical reinterpretation/backfill unless explicitly authorized by Product Truth;  
+* live-safe index/constraint strategy based on observed target characteristics;  
+* old-app/new-schema and new-app/final-schema compatibility wherever such a deployment interval can exist;  
+* generated/application type synchronization for new enum/state/column surfaces;  
+* rollback point-of-no-return and post-use forward-fix strategy;  
+* machine-checkable pre/post inventories for grants, policies, functions, FKs, constraints and migration ledger.
+
+## **Reviewer competence and independence**
+
+**Competence:** this review is within the Supabase Backend Architecture / migration-safety remit: PostgreSQL/Supabase schema sequencing, RLS, effective grants, functions, idempotency, concurrency, migration rehearsal and data-transition integrity.
+
+**Limitations:** this was deliberately repository-only. I did not verify live Supabase state, table sizes, current ACLs, migration ledgers, backups/PITR, lock duration, current CI execution, POS-provider capability, or production data populations. Those cannot be converted into PASS from repository design.
+
+On independence, I did **not** author the SB-P-1.17 Stage 7 Blueprint or its M17-1–M17-9 proposal. However, this same specialist lineage has contributed prior SB-P-1.12 migration-readiness/Supabase reviews, so this is not a substitute for the later Source 18 independent verification actor. The Blueprint itself also records that same-actor authorship is a correlated-error risk and requires specialist plus Stage 19 independent verification.
+
+### **Disposition**
+
+**MIGRATION ARCHITECTURE: FEASIBLE WITH BLOCKING PRECONDITIONS.**  
+**MIGRATION-PLAN ACTIVATION: NOT READY.**  
+**IMPLEMENTATION / EXECUTION: NOT AUTHORIZED.**
+
+No SQL execution, CLI operation, provider access, migration application, repository mutation, or environment mutation occurred.
+
+**STOP FOR MISSION CONTROL DISPOSITION.**
+
+**SB-P-1.17 — SA-03 Financial Integrity Specialist Review**
+
+**Mission:** SB-P-1.17 — Stock, Supplier, POS, Counter Intelligence & Closing Cash  
+**Authority:** MC-408A / SA-03  
+**Mode:** READ-ONLY  
+**Baseline verified:** `main@739c5fb3ebbdc312da4ef2ce70d7de2f11006003`  
+**Blueprint reviewed:** `docs/phase-1-mission-blueprint/active/SB-P-1.17.md` @ blob `9a6335e1a2bda780363f9981e8a4d4d5cffd421d`  
+**Runtime accounting verification:** NOT PERFORMED
+
+## **1\. Reviewer expertise and limitations**
+
+**Reviewer:** ChatGPT / GPT-5.6 Sol / OpenAI, Finance & Payments specialist room.
+
+Relevant prior specialist work reused:
+
+* SB-P-1.14 Stage 7 Transaction & Financial Integrity review, blob `157cbf0fa219bfb1b2b87c3a753053756993810a`.  
+* SB-P-1.14 Stage 10 EIS Transaction & Financial Integrity review, blob `56ce53c4a5fdc196b19cd81ab31f4dbfd974ed5a`.  
+* SB-P-1.16 SR-01 Financial Integrity review, blob `c1152cd16cc5294a9e04815f049a7fb34ed41640`.  
+* SB-P-1.16 FIN-01 customer-advance financial-integrity review, blob `1ccb95f37b77083ba18a00b81dde7b6ac1b2c6ca`.  
+* Locked SB-P-1.16 EIS, blob `46fffd7b140940854c9b2b847517dde2f17584df`.
+
+This room has substantial prior experience with:
+
+* single governed Ledger ownership;  
+* request idempotency versus duplicate-content detection;  
+* unknown-outcome reconciliation;  
+* correction and reversal integrity;  
+* repayment/link atomicity;  
+* exactly-once financial effects;  
+* customer/supplier credit direction;  
+* financial totals and no-double-counting rules.
+
+This review is documentary only. I did **not** execute SQL, inspect a live Supabase database, exercise POS integrations, inject transaction faults, inspect production merchant records, or establish actual runtime atomicity.
+
+---
+
+# **2\. Overall disposition**
+
+## **REFINEMENT REQUIRED**
+
+The core direction is financially sound and no fundamental infeasibility is established.
+
+In particular, the Blueprint correctly preserves:
+
+* SB-P-1.14 as the sole Ledger owner;  
+* no direct transaction writes from SB-P-1.17;  
+* one source event → one financial outcome;  
+* unknown-outcome lookup before retry;  
+* no automatic POS/manual merge;  
+* supplier receipt/payment distinction;  
+* append-only correction/reversal history;  
+* non-zero-filled closing calculations.
+
+However, four financial-design refinements are required before I would return PASS:
+
+1. **EQ17-13 / INV-A2 must be resolved as an actual single database transaction boundary, not merely two individually governed commands called sequentially.**  
+2. **INV-A5 needs explicit dual-domain reversal semantics when a posted POS event affected both Ledger and stock.**  
+3. **INV-A8 is too restrictive: a trusted POS sale with unresolved item mapping should not necessarily suppress valid Ledger revenue merely because stock movement cannot yet be posted.**  
+4. **INV-A9 must not equate goods receipt with mandatory Ledger `expense` or supplier payment; exact SB-P-1.14 classification must remain authoritative.**
+
+Closing cash also needs one narrower integrity refinement: **COMPLETE requires affirmative completeness evidence or attestation for every applicable source, not merely the absence of a detected missing record.**
+
+No T8 infeasibility is established.
+
+---
+
+# **3\. Single Ledger ownership**
+
+### **Finding SA03-FI-01 — Ledger ownership is correctly preserved**
+
+**Severity:** HIGH  
+**Disposition:** PASS WITH EIS CONSTRAINT
+
+Blueprint §§8.1, 20.4.1 and 20.9.1 correctly preserve:
+
+> Ledger writes are owned by SB-P-1.14.
+
+SB-P-1.17 explicitly:
+
+* creates no parallel Ledger;  
+* does not write `transactions` directly;  
+* routes revenue and financial facts through `create_transaction_governed`;  
+* relies on `EIS14-CMD-03` direct-mutation closure.
+
+This is consistent with prior SB-P-1.14 findings:
+
+* `S7-FI-02` — one governed transaction path is mandatory;  
+* `S7-FI-06` — financial corrections preserve original identity/audit atomically;  
+* `S10-FI-03` — every alternate direct mutation path must be closed.
+
+### **EIS constraint**
+
+SB-P-1.17 may orchestrate a **composite business event**, but it must not become a second Ledger writer.
+
+The composite command may invoke/compose the SB-P-1.14 governed financial command contract, but cannot:
+
+* directly insert/update/delete `transactions`;  
+* maintain a shadow sale total;  
+* independently classify revenue;  
+* create a POS-specific Ledger truth system.
+
+---
+
+# **4\. INV-A1–INV-A9 assessment**
+
+| Invariant | Finance disposition | Finding |
+| ----- | ----- | ----- |
+| **INV-A1** | **PASS** | Correct exactly-once source-event → command-outcome model |
+| **INV-A2** | **REFINEMENT / HARD PRECONDITION** | Must prove one actual DB transaction across all related writes |
+| **INV-A3** | **CONDITIONAL PASS** | Event eligibility check must be commit-time serialized, not preflight-only |
+| **INV-A4** | **PASS** | Correct unknown-outcome reconciliation |
+| **INV-A5** | **REFINEMENT REQUIRED** | POS financial reversals need coordinated Ledger \+ stock compensation semantics |
+| **INV-A6** | **PASS** | Out-of-order event held; no missing-target application |
+| **INV-A7** | **CONDITIONAL PASS** | Correct no-auto-merge principle; duplicate resolution itself must be governed/atomic |
+| **INV-A8** | **REFINEMENT REQUIRED** | Unmapped stock identity must not automatically suppress otherwise valid financial truth |
+| **INV-A9** | **REFINEMENT REQUIRED** | Goods receipt must remain distinct from payment and exact Ledger classification |
+
+---
+
+# **5\. INV-A1 — Source event idempotency**
+
+**PASS.**
+
+The invariant:
+
+> one source event ID produces at most one committed business-command outcome
+
+is consistent with:
+
+* SB-P-1.12 `EIS-CNF-04`;  
+* SB-P-1.14 `EIS14-IDM-01`;  
+* SB-P-1.14 `EIS14-IDM-03`;  
+* prior `S7-FI-03`.
+
+The distinction between identities is financially correct:
+
+* external/source event ID;  
+* business-command request key;  
+* Ledger event ID;  
+* inventory-movement ID.
+
+### **Important constraint**
+
+A content fingerprint must remain **duplicate evidence**, not transaction identity.
+
+For export rows with no stable external row ID, the system may prevent same-import replay using the governed import ledger/fingerprint pattern, but must not pretend that identical content across separate exports proves one business event.
+
+---
+
+# **6\. INV-A2 / EQ17-13 — atomic stock \+ Ledger commit**
+
+## **Finding SA03-FI-02 — Atomicity wording is correct, but this remains the dominant financial hold**
+
+**Severity:** CRITICAL/HIGH  
+**Disposition:** REFINEMENT REQUIRED / EIS BLOCKING CONDITION
+
+The intended invariant is correct:
+
+> Ledger event \+ inventory movement(s) \+ source-event state \+ event linkage must all commit in one database transaction or none commit.
+
+This is the correct financial design.
+
+A sequence such as:
+
+1. post inventory;  
+2. call Ledger RPC;  
+3. second call fails;
+
+is **not acceptable**, even when both individual calls are idempotent.
+
+Idempotency is not a substitute for atomicity.
+
+### **Minimum acceptable EIS architecture**
+
+There must be one transaction-owning composite command for each event that requires both domains.
+
+That transaction must:
+
+1. establish source-event/request idempotency;  
+2. lock/revalidate source state;  
+3. authorize the actor/principal;  
+4. create the SB-P-1.14 Ledger effect through its governed interface;  
+5. create every required inventory movement;  
+6. validate links;  
+7. write source-event outcome/provenance;  
+8. commit all effects together;  
+9. store one committed command outcome.
+
+If any sub-step fails, **everything rolls back**.
+
+### **What is not sufficient**
+
+* two HTTP/RPC calls with compensating cleanup;  
+* “eventual consistency” between stock and Ledger;  
+* committing stock first and retrying finance later;  
+* committing finance first and retrying stock later;  
+* independent idempotency keys with no common committed outcome;  
+* background reconciliation presented as equivalent to atomic commit.
+
+### **Ownership constraint**
+
+The composite transaction must preserve domain ownership:
+
+* SB-P-1.14 remains owner of Ledger semantics;  
+* inventory command remains owner of movement semantics;  
+* SB-P-1.17 owns orchestration/business-event linkage.
+
+If the currently locked command interfaces cannot be safely composed within one database transaction, **EQ17-13 remains unresolved and the dependent EIS path must stop**.
+
+If engineering proves composition impossible without changing a locked upstream command contract, Mission Control must determine whether an upstream amendment/T8 screen is required.
+
+At present, infeasibility has **not** been demonstrated.
+
+---
+
+# **7\. INV-A3 — event-link validity and reversal race**
+
+## **Finding SA03-FI-03**
+
+**Severity:** HIGH  
+**Disposition:** CONDITIONAL PASS
+
+Checking that a referenced event:
+
+* exists;  
+* belongs to the same business;  
+* has the expected type;  
+* is not reversed;
+
+is necessary.
+
+It is not sufficient if performed before the transaction and then relied upon after a concurrent change.
+
+### **EIS constraint**
+
+The eligibility check must be part of the same serialization as the movement commit.
+
+The EIS must prevent:
+
+1. transaction A checks “source event not reversed”;  
+2. transaction B commits reversal;  
+3. transaction A then commits stock movement against the now-invalid source state.
+
+Use a lock, immutable version/state predicate, or equivalent database serialization.
+
+Cross-business and wrong-type links must fail at commit.
+
+---
+
+# **8\. INV-A4 — unknown outcome**
+
+**PASS.**
+
+The Blueprint correctly reuses `EIS14-IDM-03`:
+
+> resolve the committed outcome by request key before retry.
+
+This directly matches the prior SB-P-1.14/SB-P-1.16 finance findings.
+
+Required later tests:
+
+* response lost after commit;  
+* client retries;  
+* same outcome is returned;  
+* no second sale;  
+* no second stock movement.
+
+---
+
+# **9\. INV-A5 / reversals**
+
+## **Finding SA03-FI-04 — Reversal semantics need explicit financial coordination**
+
+**Severity:** HIGH  
+**Disposition:** REFINEMENT REQUIRED
+
+INV-A5 correctly says:
+
+* original source events are preserved;  
+* reversal/correction is a new linked event;  
+* inventory movements remain append-only;  
+* stock correction does not fabricate finance.
+
+But there are **two different concepts** that must not be merged.
+
+### **A. Pure stock correction**
+
+Example:
+
+> physical count was wrong.
+
+This must not fabricate a Ledger transaction.
+
+Correct.
+
+### **B. Reversal of a previously posted POS sale**
+
+Example:
+
+* original POS sale created revenue;  
+* original POS sale reduced stock;  
+* later authenticated source event says that sale was voided/reversed.
+
+That is **not merely a stock correction**.
+
+Financially, the resulting compensating treatment must preserve both domains:
+
+* governed Ledger reversal/correction/void;  
+* compensating inventory movement where applicable;  
+* source reversal linkage;  
+* original financial and stock history intact.
+
+### **EIS constraint**
+
+Where a reversal affects an event whose original outcome wrote both domains, the reversal command itself must preserve the same cross-domain atomicity principle:
+
+> either all required reversal effects commit together, or none do.
+
+No direct negative sale, destructive deletion, or unaudited stock adjustment should be invented.
+
+If the locked SB-P-1.14 command family lacks the required governed sale-void/reversal semantic, that must be resolved with the SB-P-1.14 owner rather than improvised in SB-P-1.17.
+
+This mirrors the SB-P-1.16 SR01-03 lesson: a reversal cannot be declared solved merely because evidence can be marked reversed; the financial Ledger effect must have an approved governed representation.
+
+---
+
+# **10\. INV-A6 — out-of-order reversal**
+
+**PASS.**
+
+Holding an out-of-order reversal/correction as pending review rather than applying it to a missing target is financially safe.
+
+Later test:
+
+* reversal arrives before original;  
+* no revenue reversal;  
+* no stock compensation;  
+* original arrives later;  
+* correlation/review occurs exactly once;  
+* no duplicate application.
+
+---
+
+# **11\. INV-A7 / EQ17-14 — POS/manual overlap**
+
+## **Finding SA03-FI-05**
+
+**Severity:** HIGH  
+**Disposition:** CONDITIONAL PASS
+
+The no-auto-merge rule is correct and should remain firm.
+
+A similarity match such as:
+
+* same amount;  
+* nearby time;  
+* same payment method;  
+* similar items;
+
+is **candidate evidence**, not identity.
+
+This correctly reuses the SB-P-1.14 rule that content similarity cannot substitute for command identity.
+
+### **Mandatory financial rule**
+
+Before human resolution, both facts remain visible and neither is silently suppressed.
+
+### **If both events already created financial/stock effects**
+
+The eventual authorized duplicate resolution must itself use governed correction/reversal semantics.
+
+The product cannot simply mark one row `duplicate` while leaving:
+
+* duplicate revenue;  
+* duplicated stock reduction;  
+* conflicting closing-cash totals.
+
+### **EQ17-14**
+
+The exact window/field scoring is engineering design.
+
+It may tune which pairs are surfaced, but it may never become an auto-merge rule.
+
+---
+
+# **12\. INV-A8 — unmapped POS events**
+
+## **Finding SA03-FI-06 — “unmapped \= no revenue” is too broad**
+
+**Severity:** MEDIUM/HIGH  
+**Disposition:** REFINEMENT REQUIRED
+
+Current INV-A8 says:
+
+> “Unmapped or untrusted events create no movement and no revenue until resolved.”
+
+The **untrusted** half is correct.
+
+The **unmapped** half is not necessarily financially correct.
+
+Contract 13 §7 says POS sales may drive stock where:
+
+* product mapping exists;  
+* quantity/unit is reliable;  
+* event is trusted;  
+* stock path is configured.
+
+That makes stock eligibility conditional.
+
+It does **not** establish that valid POS revenue ceases to be a financial fact merely because an item cannot yet be mapped into Smart Business inventory.
+
+### **Required distinction**
+
+#### **Untrusted financial event**
+
+No Ledger effect.  
+No stock effect.  
+Review first.
+
+#### **Trusted financial event, but stock mapping unresolved**
+
+The EIS must decide explicitly whether:
+
+* Ledger financial truth may commit once while stock remains unresolved; or  
+* the whole source event must wait.
+
+From a financial-integrity perspective, suppressing authenticated revenue solely because inventory identity is unresolved risks understating sales and closing cash.
+
+A safer interpretation is:
+
+> if the financial identity/amount/status are independently trustworthy, the Ledger may record the valid sale once while the stock side remains visibly mapping-held; INV-A2 applies whenever both stock and Ledger effects are actually eligible for that business event.
+
+This needs EIS reconciliation because the current INV-A8 wording over-couples financial truth to stock mapping.
+
+It is not a request for a second Ledger path.
+
+---
+
+# **13\. INV-A9 — supplier receipt versus payment**
+
+## **Finding SA03-FI-07 — Supplier receipt/payment distinction is correct; “Ledger expense” needs precision**
+
+**Severity:** HIGH  
+**Disposition:** REFINEMENT REQUIRED
+
+Blueprint §8.1 correctly says:
+
+> supplier payment state is distinct from goods-receipt state.
+
+That distinction is mandatory.
+
+Contract 7 §8 says a confirmed purchase **may create/associate** an inventory movement and a Ledger expense.
+
+INV-A9 currently strengthens that into:
+
+> “A confirmed purchase writes the movement and the Ledger expense in one command.”
+
+There are two risks.
+
+### **Risk 1 — `purchase` versus generic `expense`**
+
+SB-P-1.14 explicitly preserves distinct measures:
+
+* `purchase`;  
+* `expense`.
+
+A stock purchase must not be casually collapsed into generic `expense` if the canonical Ledger semantics classify it as `purchase`.
+
+### **Risk 2 — goods receipt versus cash settlement**
+
+Receipt of goods does not prove the supplier has been paid.
+
+A purchase may be:
+
+* paid now;  
+* payable/credit;  
+* partly paid;  
+* settled later.
+
+The stock-receipt event must not create an implied supplier payment.
+
+### **Required EIS wording**
+
+Where one confirmed business event legitimately produces both:
+
+* an inventory receipt movement; and  
+* its associated SB-P-1.14 purchase/financial fact,
+
+those required writes commit atomically.
+
+But:
+
+* exact Ledger classification comes from SB-P-1.14;  
+* goods receipt never means supplier payment;  
+* supplier-side `owed_by_business` credit remains distinct;  
+* later payment/repayment remains a separate governed event;  
+* no duplicate purchase/expense/payment is created.
+
+---
+
+# **14\. Closing cash — complete / partial / unknown**
+
+## **Finding SA03-FI-08 — Decision table is strong but COMPLETE needs affirmative completeness evidence**
+
+**Severity:** MEDIUM  
+**Disposition:** CONDITIONAL PASS WITH REFINEMENT
+
+§§8.8 and 20.9.2 correctly reject:
+
+* zero-filling missing inputs;  
+* guessed timestamps;  
+* invented operator attribution;  
+* double-counted POS/manual cash;  
+* final variance where actual count is missing.
+
+The severity precedence:
+
+> UNKNOWN → REVIEW-REQUIRED → PARTIAL → COMPLETE
+
+is financially sensible.
+
+### **UNKNOWN**
+
+Appropriate when:
+
+* period cannot be defined;  
+* timezone unavailable;  
+* no actual count exists for variance.
+
+No final closing variance may be asserted.
+
+### **REVIEW-REQUIRED**
+
+Appropriate where:
+
+* POS/manual overlap remains unresolved;  
+* post-close correction/reversal reopens the period.
+
+A review-required result must not feed anomaly conclusions as a settled final figure.
+
+### **PARTIAL**
+
+Correct where:
+
+* configured source data is incomplete;  
+* opening float is required but absent;  
+* shift attribution is impossible because manual records have no time.
+
+### **COMPLETE — required refinement**
+
+“Every configured source has data” is not always enough.
+
+For a complete result, the system needs evidence that the source is **complete for the period**, not merely that at least one row arrived.
+
+Examples:
+
+* POS API says sync watermark/cursor is current;  
+* import/export declares the full interval;  
+* merchant explicitly confirms manual cash entry is complete for the period;  
+* no unresolved source conflict remains.
+
+Without a completeness marker or authorized attestation, absence of another manual record is not proof that none occurred.
+
+### **Financial presentation constraint**
+
+Where expected cash is PARTIAL, any arithmetic against the actual count should be labelled something equivalent to:
+
+> **difference against known inputs**
+
+or unmistakably **partial/provisional variance**.
+
+It must not be displayed or consumed as the same final variance used when completeness is proven.
+
+---
+
+# **15\. EQ17-13 to EQ17-16**
+
+## **EQ17-13 — transaction composition**
+
+**Disposition:** MUST RESOLVE BEFORE EIS APPROVAL.
+
+Required answer:
+
+> One composite database transaction owns the full business outcome. SB-P-1.14 remains Ledger owner and SB-P-1.17 remains inventory/business-event owner. Sequential application calls are insufficient.
+
+If the locked interfaces cannot satisfy this, return to Mission Control; do not accept partial writes.
+
+---
+
+## **EQ17-14 — overlap detection**
+
+**Disposition:** Engineering choice with hard boundary.
+
+The EIS may select:
+
+* matching fields;  
+* time windows;  
+* confidence/similarity criteria.
+
+But these produce **review candidates only**.
+
+They must never:
+
+* merge;  
+* delete;  
+* suppress;  
+* reverse;  
+* alter Ledger totals;
+
+without authorized governed resolution.
+
+---
+
+## **EQ17-15 — occurrence time for shift closing**
+
+**Disposition:** Genuine upstream design dependency.
+
+A date-only manual Ledger record cannot honestly be assigned to a specific shift.
+
+The current PARTIAL treatment is financially correct.
+
+If product design requires manual records to participate in exact shift closing, an occurrence-time capability is needed upstream.
+
+Until then:
+
+* exclude date-only records from shift expected cash;  
+* identify their amount separately;  
+* mark closing PARTIAL;  
+* never infer entry time from `created_at`.
+
+This is preferable to manufacturing timestamp precision.
+
+---
+
+## **EQ17-16 — post-close correction/reopen semantics**
+
+**Disposition:** EIS must define.
+
+Minimum financial rules:
+
+* prior closing result remains immutable/auditable;  
+* relevant correction/reversal opens a new calculated version;  
+* old result is not silently overwritten;  
+* new result links to the triggering event;  
+* any previous “complete” status is visibly superseded/reopened;  
+* notifications must not imply misconduct;  
+* duplicate correction notifications/actions must be idempotent.
+
+Whether a merchant receives a notification and by which channel is separate from the accounting recomputation.
+
+---
+
+# **16\. EIS constraints required from SA-03**
+
+The SB-P-1.17 EIS should carry at least these financial constraints:
+
+1. **Single Ledger owner:** all Ledger effects remain SB-P-1.14 governed effects.  
+2. **Atomic composite command:** if one event requires stock \+ Ledger \+ source-state/link effects, one DB transaction commits all or none.  
+3. **Shared outcome identity:** the composite event has one stable idempotency identity and committed outcome.  
+4. **Unknown outcome:** lookup before retry.  
+5. **Commit-time source validation:** same business, correct type, current eligibility/reversal state.  
+6. **No financial fabrication from stock corrections.**  
+7. **Financial reversal coordination:** POS void/reversal affecting both domains produces governed compensating effects atomically.  
+8. **Manual/POS candidate only:** similarity never creates identity.  
+9. **Duplicate resolution is governed:** removing duplicate financial/stock effect must preserve history.  
+10. **Untrusted versus unmapped distinction:** do not conflate invalid financial evidence with missing product mapping.  
+11. **Canonical Ledger classification:** preserve sale/purchase/income/expense distinctions from SB-P-1.14.  
+12. **Goods receipt ≠ supplier payment.**  
+13. **Supplier credit/payment events remain separate from receipt.**  
+14. **Closing completeness provenance:** every source has a completeness status/watermark/attestation.  
+15. **Partial closing is not final financial variance.**  
+16. **Post-close corrections version/reopen rather than overwrite.**
+
+---
+
+# **17\. Later test obligations**
+
+No tests were executed in this review.
+
+### **Atomicity**
+
+* fail after Ledger write / before stock write → neither persists;  
+* fail after stock write / before Ledger write → neither persists;  
+* fail after both domain writes / before source-event outcome → entire transaction rolls back;  
+* concurrent same-source event → one committed outcome;  
+* lost response after commit → outcome lookup returns original result.
+
+### **Reversals**
+
+* posted POS sale reversal compensates stock and Ledger together;  
+* out-of-order reversal creates no financial/stock effect;  
+* duplicate reversal creates one outcome;  
+* pure stock correction creates no Ledger event.
+
+### **POS/manual overlap**
+
+* manual \+ POS same-looking sale → both preserved \+ review candidate;  
+* no automatic merge;  
+* human duplicate resolution removes duplicate economic effect through governed history-preserving correction;  
+* resolution retry is idempotent.
+
+### **Supplier receipt/payment**
+
+* cash purchase;  
+* credit purchase;  
+* goods received but unpaid;  
+* later supplier payment;  
+* partial payment;  
+* retry of goods receipt;  
+* retry of payment;  
+* prove no receipt creates duplicate/implicit payment.
+
+### **Closing cash**
+
+Test all §20.9.2 rows plus:
+
+* source has one row but incomplete sync → not COMPLETE;  
+* manual source lacks completeness attestation → not COMPLETE;  
+* trusted complete POS \+ manual attestation \+ count → COMPLETE;  
+* missing opening float → PARTIAL;  
+* date-only manual entry in shift → PARTIAL and excluded;  
+* unresolved POS/manual cash overlap → REVIEW-REQUIRED;  
+* no count → no variance;  
+* post-close reversal → prior version retained, new result reopened.
+
+---
+
+# **18\. Final finding**
+
+**SA-03 RESULT: REFINEMENT REQUIRED — NOT BLOCKED.**
+
+The architecture is fundamentally compatible with the prior SB-P-1.14 and SB-P-1.16 financial-integrity findings.
+
+The strongest elements are:
+
+* one Ledger owner;  
+* exactly-once source identity;  
+* no auto-merge;  
+* unknown-outcome resolution;  
+* atomicity explicitly treated as non-negotiable;  
+* truthful partial/unknown closing states.
+
+Before financial-design approval, the EIS must resolve:
+
+* **EQ17-13** with a real one-transaction composition boundary;  
+* reversal atomicity for previously posted dual-domain events;  
+* the over-broad INV-A8 treatment of trusted-but-unmapped POS sales;  
+* INV-A9's purchase/expense/payment classification boundary;  
+* affirmative closing-source completeness before `COMPLETE`.
+
+If EQ17-13 proves technically impossible under the locked upstream command contracts, the dependent path should return immediately to Mission Control for upstream-governance/T8 screening rather than accepting partial consistency.
+
+No runtime financial correctness is claimed.
+
+**STOP FOR MISSION CONTROL DISPOSITION.**
+
+**MC-408A/SA-02 — Operator-Data Privacy Assessment**  
+Provisional legal research — qualified validation OPEN
+
+Product: Smart Business Mission: SB-P-1.17 — Operator-Data Privacy Repository baseline: `main@739c5fb3ebbdc312da4ef2ce70d7de2f11006003` Assessment date: 22 October 2026 Review mode: Read-only; no implementation authority Handover authority: Mission Control
+
+## **1\. Executive determination**
+
+Finding: Neutral POS counter review and identifiable employee-performance analysis must be treated as distinct processing activities, even when both originate from the same POS transaction.
+
+The approved SB-P-1.17 Blueprint supports counter-level and period-level review without knowing which employee operated the POS. Operator identity is an optional source field, not a prerequisite for Founder Scenario B.
+
+Identifiable operator analysis presents additional privacy and employment-law risks. The fact that a merchant owns its POS system and can view its reports does not, by itself, establish unrestricted authority to process identifiable employee data for every purpose.
+
+### **Provisional determinations**
+
+| Question | Finding |
+| ----- | ----- |
+| Can Scenario B operate without operator identity? | YES — supported by the approved Blueprint. |
+| Does a POS transaction become personal data when linked to an identifiable employee? | YES — where the individual can be identified directly or indirectly. |
+| Is merchant ownership of POS data sufficient legal authority for employee surveillance? | NO — a valid processing purpose and applicable legal justification remain necessary. |
+| Can identifiable operator information be collected for legitimate operational accountability? | CONDITIONALLY — purpose, notice, necessity, access and retention must be established. |
+| Can it automatically become a disciplinary score or fraud finding? | NO — unsupported by current Product Truth and inconsistent with Lighthouse's human-decision principles. |
+| Is a universal retention period for operator attribution established? | NO. |
+| Can a historical operator reference survive account deletion? | CONDITIONALLY — only where the underlying record has a defensible surviving purpose, with minimization. |
+| Has professional Indian legal/privacy validation been completed? | NO — OPEN. |
+
+Recommended provisional boundary: Scenario B may remain a non-attributed, neutral business-event review. Identifiable operator details should not be enabled or used until the U-11 lawful-purpose, notice, permitted-use and retention questions have been independently validated.
+
+This is a research recommendation, not an authorization to alter approved Product Truth or the Blueprint.
+
+## **2\. Repository evidence and Blueprint interpretation**
+
+Reviewed at the stated baseline:
+
+* [SB-P-1.17 active Blueprint](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/docs/phase-1-mission-blueprint/active/SB-P-1.17.md?utm_source=chatgpt.com)  
+* [Existing India Legal / Privacy / Retention Deep Research Report](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/docs/research/India-Legal-Privacy-Retention-Deep-Research-Report.md?utm_source=chatgpt.com)  
+* [SB-P-1.17 Stage 2 Truth Pack — U-11](https://github.com/SmartBusinessv1/smart-business/blob/739c5fb3ebbdc312da4ef2ce70d7de2f11006003/communication/missions/SB-P-1.17/claude-code/03-stage2-mission-truth-pack.md?utm_source=chatgpt.com)
+
+| Blueprint reference | Confirmed requirement / boundary |
+| ----- | ----- |
+| §8.7 | Neutral counter signals; source-supported voids, discounts and other business patterns; original events preserved; authorized human context; no automatic accusation or sanction |
+| §8.10 | Counter/period review may be explicitly delegated to scoped Managers. Operator-attributed detail is Owner-reserved and not Manager-delegable |
+| §20.4.7 | Operator identifiers are separately stored and Owner-readable only; U-11 legal and retention review precedes their use |
+| §20.5 | Single permission authority; server-side checks; neutral intelligence; operator detail subject to hold |
+| §20.9.2 | Missing operator identity does not affect business-level closing completeness; missing attribution must not be fabricated |
+| §20.9.3 | Operator is not a required POS integration field; absence does not block Scenario B; privacy and access limitations remain an evidence requirement |
+| §21.1, EQ17-11 | Retention and lawful basis for operator identifiers remain specialist/legal-review questions |
+
+No Product Truth conflict is established. The Blueprint already separates non-attributed Scenario B from identifiable attribution. U-11 is an unresolved legal constraint, not an implicit approval to collect or use employee identity.
+
+## **3\. Scenario B versus identifiable performance analysis**
+
+Scenario B — neutral review
+
+POS event
+
+Discount / void / period evidence
+
+Neutral counter review
+
+Authorized human interpretation
+
+Business-event investigation without identifying the operator.
+
+Identifiable operator analysis
+
+POS operator ID
+
+Link to a person or staff roster
+
+Individual activity history
+
+Additional privacy and employment-law review
+
+Identifiable employee processing, even when presented as factual activity.
+
+Even a counter-level signal may remain indirectly identifiable personal data where a merchant can readily identify the only employee assigned to a particular counter or shift. Consequently, non-attributed is not automatically anonymous.
+
+A neutral signal such as “Counter 2 recorded three voids during the evening period” is materially different from “Employee X has an unusually high void rate.” The second statement introduces an individualized behavioural assessment. Human confirmation of any eventual workplace decision does not eliminate the legal requirements governing the preceding data processing.
+
+## **4\. Applicable Indian legal/privacy framework**
+
+### **4.1 Current and future-effective law**
+
+| Legal instrument | Position on 22 October 2026 | Relevance |
+| ----- | ----- | ----- |
+| Information Technology Act, 2000, s.43A and applicable SPDI Rules, 2011 | Current transitional regime, subject to applicability | Reasonable security practices; notice, purpose and disclosure rules where sensitive personal data is involved |
+| CERT-In Directions, 28 April 2022 | Operative | Covered organizations must maintain ICT logs securely for a rolling 180 days within India |
+| DPDP Act, 2023, main processing provisions | Future-effective | Lawful processing, employment-related legitimate uses, Data Fiduciary responsibilities, erasure and individual rights |
+| DPDP Rules, 2025, principal notice/security/erasure rules | Future-effective | Notice, security, processing records and retention controls |
+| Applicable Kerala/central employment and wage-record requirements | Regime-dependent | Employee register, attendance, wage evidence and employment disputes; exact coverage requires verification |
+
+The DPDP commencement notification schedules its principal substantive processing provisions 18 months after Gazette publication in November 2025\. Conservative planning uses 13 May 2027, with the publication-date interpretation remaining subject to final confirmation. They should not be incorrectly represented as already enforceable in October 2026\.
+
+![]()  
+egazette.gov.in  
+\+2
+
+### **4.2 Lawful basis and employment purposes**
+
+The future DPDP Act recognizes consent-based processing and specified legitimate uses. Section 7(i) expressly addresses processing for employment purposes and purposes connected with protecting an employer against loss or liability.
+
+![]()  
+meity.gov.in
+
+Provisional interpretation: ordinary POS accountability for a genuine business operation could potentially fall within an employment-related legitimate-use purpose when the employer is the relevant Data Fiduciary. However, the provision should not be construed as unrestricted authorization for employee surveillance, undisclosed profiling, punitive inference, or unlimited retention.
+
+A new purpose such as ranking cashier productivity, investigating individual conduct, or supporting discipline requires separate legal assessment. Even where section 7(i) may eventually apply, the processing must remain necessary, proportionate and consistent with the wider statutory framework.
+
+Merchant consent to connect a POS is not employee consent. Nor does employment automatically make consent freely given or appropriate for every processing purpose.
+
+### **4.3 Notices and transparency**
+
+Provisional minimum disclosure to affected workers should identify the relevant employer/merchant, the role of Smart Business and any POS vendor, categories collected, why counter events are reviewed, whether individual operators can be identified, authorized recipients, retention principles, rights/contact arrangements and whether outputs may be used in employment decisions.
+
+This is a recommended transparency control, not a claim that every field is currently mandated by an already-operative DPDP notice provision.
+
+An employer could use a concise, understandable staff notice in the worker's preferred language. Smart Business should not imply that employees have agreed to surveillance merely because they use an existing billing machine.
+
+### **4.4 Responsibility allocation**
+
+Merchant/employer: ordinarily determines the employment and business purposes, who may use information for workplace decisions, the authenticity of employee records, and applicable employer notices.
+
+Team LIPS: processes data to deliver the subscribed service within the merchant's instructions and approved Product Truth. Depending on its independent determination of purposes, it may also hold Data Fiduciary responsibilities for certain processing. A processor classification cannot simply be assumed for every data flow.
+
+POS vendor: may independently collect, retain and process operator data. Its role and disclosures require examination of the real integration contract.
+
+Under the future DPDP regime, engagement of a processor requires an appropriate contractual basis, while Data Fiduciary responsibility remains with the relevant Data Fiduciary.
+
+![]()  
+meity.gov.in
+
+## **5\. Data minimization and retention findings**
+
+| Data category | Provisional disposition | Condition |
+| ----- | ----- | ----- |
+| Sale, discount, void, amount, timestamp and counter | Retain for legitimate business/accounting purposes | According to merchant and record-class requirements |
+| Operator display name, phone, email, employee profile | Do not import merely for Scenario B | Separate documented necessity required |
+| POS operator ID linked to staff identity | Conditional processing | U-11 purpose/notice/retention validation |
+| Neutral counter signal | May be retained for a documented business-review period | Avoid unnecessary linkability |
+| Individual operator behavioural summaries | Separate purpose review required | No automatic employment profiling inferred from Scenario B |
+| Historical actor attribution | Preserve only where necessary | Pseudonymized or minimized, access restricted, expiration defined |
+| Security/ICT logs | Retain according to applicable security requirements | CERT-In 180-day rule where applicable |
+| Employment, payroll or wage-related evidence | Preserve where applicable employment-law or dispute duty requires | No universal period established for Kerala merchants |
+| Deleted employee's authentication/profile data | Erase when no surviving lawful purpose exists | Separate active identity from retained statutory/audit records |
+
+CERT-In's 180-day ICT logging requirement should not be repurposed into a blanket 180-day retention rule for employee-performance histories. Likewise, a tax record's statutory life does not automatically justify indefinite staff profiling.
+
+![]()  
+cert-in.org.in
+
+A pseudonymous operator identifier remains personal data if re-identification is reasonably possible through retained mapping or related information.
+
+Retention conclusion: No authoritative, generally applicable Indian statutory period was established specifically for Smart Business POS operator-attribution analytics. The applicable period must be determined by the processing purpose and surviving record obligations, not by the Founder-approved business lifecycle or a default technical TTL.
+
+## **6\. Minimum EIS controls recommended for specialist handover**
+
+These are provisional design constraints for EIS consideration, not instructions to implement and not newly approved product requirements.
+
+| ID | Minimum control | Evidence EIS should define |
+| ----- | ----- | ----- |
+| PRIV-01 | Purpose separation | Distinct business-event review and identifiable operator-attribution purposes |
+| PRIV-02 | Default non-attribution | Scenario B functions with operator identity absent |
+| PRIV-03 | Data minimization | Explicit POS-field allowlist; no unnecessary name/phone/email imports |
+| PRIV-04 | Operator-data gate | No identifiable operator processing for counter intelligence until U-11 legal disposition and authorization |
+| PRIV-05 | Access restriction | Owner-only operator detail, server-enforced; no implied Manager grant |
+| PRIV-06 | Staff transparency | Merchant responsibility and evidence of applicable notice/process |
+| PRIV-07 | Retention classification | Separate event, attribution mapping, employee record and security-log retention decisions |
+| PRIV-08 | Erasure/preservation | Remove no-longer-needed identity linkage without corrupting legally retained event history |
+| PRIV-09 | Review integrity | Original POS event preserved; corrections and human context recorded separately |
+| PRIV-10 | No AI disciplinary authority | No generated fraud accusation, employee guilt score, automatic wage deduction or sanction |
+| PRIV-11 | Restricted exports/logs | No operator data leaked through conversation, dashboard, API, error logs or ordinary exports |
+| PRIV-12 | Test evidence | Negative permission tests; absent-operator Scenario B; deletion, retention, revocation and audit tests |
+
+The EIS should also distinguish an actual POS operator ID from an integration credential, register ID, terminal ID, cashier role label, and employee identity. These are different attribution concepts; mapping one to another without evidence creates both privacy and factual-integrity risks.
+
+## **7\. Uncertainty register**
+
+| ID | Open uncertainty | Consequence | Required validation |
+| ----- | ----- | ----- | ----- |
+| U11-01 | Correct Data Fiduciary/processor allocation among merchant, Team LIPS and POS vendor | Liability and notice allocation | Legal/privacy practitioner and contracts |
+| U11-02 | Applicability of future DPDP s.7(i) to merchant POS operator analysis | Lawful-purpose determination | Indian privacy counsel |
+| U11-03 | Whether employee consent is needed or appropriate for any additional purpose | Invalid or excessive processing risk | Privacy/employment counsel |
+| U11-04 | Whether neutral counter/shift signals are indirectly identifiable | Hidden profiling risk | Contextual identifiability assessment |
+| U11-05 | Applicable Kerala/central employee record-retention periods | Premature deletion or over-retention | Kerala employment-law practitioner |
+| U11-06 | Whether operator mapping must survive for particular GST/accounting records | Audit attribution and minimization | GST/accounting adviser plus privacy counsel |
+| U11-07 | Specific retention for operator-level analytical signals | Indefinite analytics retention | Purpose-specific legal validation |
+| U11-08 | Data-subject rights, employment disputes and legitimate holds | Improper deletion or access | Counsel and operational policy review |
+| U11-09 | POS vendor onward-processing and contract restrictions | Unauthorized secondary use | Contract and vendor due diligence |
+| U11-10 | Precise DPDP commencement anniversary and transitional obligations | Incorrect compliance-date treatment | Updated Gazette/practitioner confirmation |
+
+All ten uncertainties remain OPEN. None is silently resolved by this assessment.
+
+## **8\. Exact questions for qualified Indian legal/privacy practitioner**
+
+1\. Under the current Indian legal regime and the forthcoming DPDP provisions, can a Kerala merchant lawfully process POS operator IDs for neutral void/discount review without obtaining separate employee consent? What specific lawful grounds apply?
+
+2\. Does DPDP Act §7(i) cover operator-attributed POS investigation, and where does ordinary employer accountability end and a distinct employee-monitoring purpose begin?
+
+3\. What notices are legally required before operator identity is imported into a third-party SaaS product, and must the merchant notify employees about potential individual attribution or performance-related use?
+
+4\. Who is the Data Fiduciary for each stage of this flow—POS collection, Smart Business ingestion, counter review, employer access and retained audit history? Which processing terms and contracts are required?
+
+5\. Does linking counter/shift-level POS activity to an employee through a staff roster constitute identifiable processing even when Smart Business suppresses an explicit operator ID?
+
+6\. Under current Kerala Shops and Commercial Establishments requirements, applicable central labour/wage laws, GST law and income-tax law, which exact employee/operator records must be retained, by which entity, for how long, and from which triggering event?
+
+7\. May transaction-level operator attribution be retained for accounting/audit purposes after an employee leaves or their Smart Business identity is deleted? What minimum identity or pseudonymous mapping is permissible?
+
+8\. Must identifiable counter-review or employee-performance analytics have a shorter retention period than underlying financial transactions? What purpose-specific periods are legally defensible?
+
+9\. What rights to notice, access, correction, erasure, grievance and dispute evidence apply to workers under the current regime and after the relevant DPDP provisions commence?
+
+10\. Does the proposed default non-attributed Scenario B, with separately restricted Owner-only identifiable detail, satisfy current and forthcoming privacy obligations? What additional conditions, if any, are necessary before deployment?
+
+11\. Can a merchant use POS operator analytics when making disciplinary, wage or employment decisions, and what distinct employment-law procedural safeguards would be required?
+
+12\. What are the precise current compliance duties of Team LIPS as an independent SaaS provider, including CERT-In applicability, security logging, vendor contracts, cross-border data transfers and processor obligations?
+
+## **9\. Primary legal sources**
+
+The following were consulted or used as the authoritative legal starting points:
+
+* [Digital Personal Data Protection Act, 2023 — MeitY](https://www.meity.gov.in/writereaddata/files/Digital%20Personal%20Data%20Protection%20Act%202023.pdf?utm_source=chatgpt.com), particularly sections 3, 4, 5, 6, 7(i), 8 and 12\.  
+   ![]()  
+  4-GISTERED NO. DL—(N)04/0007/2003—23  
+* [DPDP Act Commencement Notification G.S.R. 843(E), 13 November 2025](https://egazette.gov.in/WriteReadData/2025/267647.pdf?utm_source=chatgpt.com).  
+   ![]()  
+  egazette.gov.in  
+* [Digital Personal Data Protection Rules, 2025 — G.S.R. 846(E)](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf?utm_source=chatgpt.com), particularly Rules 3, 6 and 8 and their staged commencement.  
+   ![]()  
+  meity.gov.in  
+* [Information Technology Act, 2000 — India Code](https://www.indiacode.nic.in/bitstream/123456789/13116/1/it_act_2000_updated.pdf?utm_source=chatgpt.com), including s.43A and related current transitional requirements.  
+   ![]()  
+  indiacode.nic.in  
+* [CERT-In Directions under IT Act s.70B(6), 28 April 2022](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf?utm_source=chatgpt.com).  
+   ![]()  
+  cert-in.org.in
+
+The existing R-2 deep-research report supplies the provisional record-class and jurisdictional retention framework; it does not constitute professional validation of employee-specific operator-data processing.
+
+## **10\. Mission Control disposition request**
+
+Assessment: Provisional research complete, with legal uncertainties outstanding.
+
+Scenario B: Supported as neutral, non-attributed review, subject to source evidence, indirect-identifiability precautions and existing dependencies.
+
+Identifiable operator use: Legal/privacy hold remains OPEN.
+
+Minimum EIS controls: Twelve recommendations submitted for Mission Control review; none independently authorized.
+
+Qualified Indian legal/privacy validation: OPEN — NOT COMPLETED.
+
+Product Truth / Blueprint / schema / implementation: No changes made.
+
+Repository: Read-only examination at supplied baseline; no commit, pull request, or database mutation.
+
+Final assessment: The available legal evidence supports progressing the neutral business-event design independently of operator attribution, but does not support declaring identifiable operator analysis legally cleared. Any subsequent use of employee-identifiable counter intelligence should remain conditional on a documented legal basis, transparent employment context, minimum necessary fields, restricted access, defensible retention and qualified practitioner validation.
+
+STOP FOR MISSION CONTROL DISPOSITION — MC-408A/SA-02.
+
+**SMART BUSINESS — SECURITY & PERMISSIONS ARCHITECTURE**
+
+## **MC-408A / SA-01 — SB-P-1.17 Security Assurance**
+
+**Mission:** SB-P-1.17 — Manager Operations  
+**Mode:** READ-ONLY independent documentary security review  
+**Return To:** Mission Control  
+**Repository baseline reviewed:** `SmartBusinessv1/smart-business`  
+**Exact protected-main baseline:** `739c5fb3ebbdc312da4ef2ce70d7de2f11006003`  
+**Blueprint:** `docs/phase-1-mission-blueprint/active/SB-P-1.17.md`  
+**Blueprint blob:** `9a6335e1a2bda780363f9981e8a4d4d5cffd421d`  
+**Implementation:** NOT AUTHORIZED
+
+## **1\. Reviewer qualification and independence**
+
+Reviewer: **GPT-5.6 Sol / OpenAI**, operating in the Security & Permissions Architecture specialist role.
+
+I did not author the SB-P-1.17 Stage 2–7 Blueprint, FCTM, Founder Decision Records or Claude Code engineering review.
+
+The repository identifies Claude Code as the Definition/Engineering Review Actor and explicitly records that its Stage 7 engineering review is not independent because Claude Code also authored earlier mission material.
+
+This review is therefore non-author assurance relative to the Blueprint author.
+
+Limitations:
+
+* I cannot cryptographically prove session identity or provider-session continuity.  
+* The repository changelog records prior specialist finding `SA-01-F01`; Mission Control instructs that it is already corrected and closed. I independently checked the present text for regression but do not claim cryptographic identity with the reviewer who originally raised F01.  
+* No live Supabase, POS provider, production, migration or runtime test access was used.  
+* Findings below are documentary architecture findings, not deployed-security evidence.
+
+---
+
+# **2\. Overall disposition**
+
+## **REFINEMENT REQUIRED**
+
+The current SB-P-1.17 Blueprint is substantially aligned with the locked SB-P-1.12 and SB-P-1.13 security architecture.
+
+The following are security-sound at documentary level:
+
+* all seven `17:FPDR-1` capability identities;  
+* capability 5 as Owner-only operator-attributed counter detail;  
+* standing-rule creation as a distinct Owner-only authority;  
+* independent Reference Cost and margin permissions;  
+* field-level cost protection rather than relying on row RLS;  
+* supplier participant isolation;  
+* confirmation binding for reorder decisions;  
+* commit-time authorization revalidation;  
+* revocation of prepared work;  
+* typed-tool / AI authorization outside the model;  
+* no role-based Manager escalation.
+
+`SA-01-F01` is confirmed **closed with no regression**.
+
+One new material architecture conflict prevents a PASS:
+
+### **`SA-01-F02 — POS “integration principal” is not defined by locked EIS-KER-02`**
+
+**Severity: HIGH — architecture refinement required before EIS approval.**
+
+Blueprint §§20.4.6 and 20.5 say an API/webhook POS adapter operates under an **“integration principal on EIS-KER-02.”**
+
+But locked SB-P-1.12 `EIS-KER-02` defines exactly four verified-principal classes:
+
+1. signed-in person;  
+2. support operator;  
+3. governed participant;  
+4. automation run derived from a stored rule and its grantor.
+
+It defines **no integration/service/provider principal**.
+
+`EIS-KER-06` recognizes `integration` as a **channel**, not a principal type.
+
+`EIS-ID-05` allows business-scoped external integration/provider references, but those references are identity records; it does not make them authorization principals.
+
+Therefore the Blueprint currently attributes a principal type to `EIS-KER-02` that the approved upstream architecture does not contain.
+
+This must be resolved explicitly. SB-P-1.17 must not silently invent a fifth authority principal.
+
+---
+
+# **3\. Required-area assurance matrix**
+
+| Area | Result | Security assessment |
+| ----- | ----- | ----- |
+| Seven capability identities | **PASS** | §8.10 accurately enumerates 1–7 and matches `17:FPDR-1`. Capabilities 1,2,3,4,6,7 are separately delegable; 5 is Owner-reserved. |
+| Capability 5 | **PASS — F01 CLOSED** | Capability 5 is now correctly “view operator-attributed counter detail”; §8.7, §8.10 and §20.4.10 agree. |
+| Standing-rule authority | **PASS** | Clearly separate from capability 5 and all seven capabilities; creation is Owner-only. Runtime execution consumes `EIS-AUT-01`. |
+| Capability independence | **PASS** | §20.4.10 says one capability never implies another; consistent with `EIS-KER-08`. |
+| Scope constraints | **PASS / EIS DETAIL REQUIRED** | Items, suppliers and counters are explicitly named. Exact registry encoding remains EQ17-01/EIS work. |
+| Optional reorder value ceiling | **PASS / EIS DETAIL REQUIRED** | Founder-approved. Must be kernel-enforced at confirmation and commit, not UI-only. |
+| Reference Cost | **PASS** | Supplier purchase prices are cost information under `17:FPDR-4`; separate explicit Reference Cost permission required. |
+| Margin | **PASS** | Separate from Reference Cost; Smart Business may not compute/label/expose margin without margin permission. Granting either does not grant the other. |
+| Cost-field protection | **PASS / EIS PROOF REQUIRED** | §20.4.3 correctly requires column-filtered views/RPC projection because row-level RLS alone cannot protect cost fields. |
+| Cost protection across channels | **PASS** | Founder record and Blueprint traceability require no supplier cost in response/card/export/AI answer without permission. EIS must extend the same rule to direct RPC, cache/context and background readers. |
+| Supplier isolation | **PASS** | Supplier is an SB-P-1.12 participant; `EIS-EXT-02` permits only own bounded object data, no dashboard or cross-object reads. |
+| POS integration principal | **FAIL — F02** | Blueprint names a principal type absent from `EIS-KER-02`. |
+| Confirmation binding | **PASS / EIS OBLIGATION** | Reorder confirmation explicitly uses `EIS-CNF-01`; SB-P-1.13 typed conversational paths preserve frozen proposals and exact confirmation. |
+| Execution-time revocation | **PASS** | §§8.10/20.5 require server-side checks, `EIS-CNF-02` and `EIS-KER-09`; revocation stops prepared reorders/rule runs/imports. |
+| Conversation/AI | **PASS** | Compatible with `EIS13-AUTH-01/-02`, `CTX-02/-03`, `TOOL-01/-02`, `CNF-01/-02`. |
+| Owner financial intelligence | **PASS** | No Manager entitlement by role; Owner-wide intelligence remains separately gated. |
+| Operator privacy | **CONDITIONAL HOLD** | Owner-only security boundary is correct, but U-11 lawful-basis/retention review remains open. |
+
+---
+
+# **4\. Seven capability identities**
+
+The present Blueprint correctly represents the Founder-approved catalogue:
+
+| \# | Capability | Security disposition |
+| ----- | ----- | ----- |
+| 1 | View stock, supplier and reorder state | Separately delegable, scoped |
+| 2 | Confirm, modify or reject reorder suggestions | Separately delegable, scoped; optional Owner-set value ceiling |
+| 3 | Manage supplier records | Separately delegable, scoped |
+| 4 | View counter review signals at counter/period level | Separately delegable, scoped |
+| 5 | View operator-attributed counter detail | **Owner-reserved / non-delegable** |
+| 6 | Enter a cash count | Separately delegable, scoped |
+| 7 | View the variance | Separately delegable, scoped |
+
+This conforms to `17:FPDR-1`.
+
+The EIS must not collapse these into a broad `manager.operations` permission.
+
+`EIS-KER-03`, `EIS-KER-04` and `EIS-KER-08` already support the required architecture:
+
+`capability + action + object/scope + current grant`.
+
+### **Mandatory EIS rule**
+
+Capability 5 must be registered so that **no Manager grant can be created for it**, including by malformed direct RPC or manipulated grant data.
+
+An Owner possessing capability 5 must not imply that the Owner has a right to delegate capability 5\.
+
+That non-delegability must exist server-side.
+
+---
+
+# **5\. Standing reorder rules**
+
+The present separation is correct.
+
+A standing rule is **not capability 5 and is not one of the seven Manager capabilities**.
+
+The Blueprint correctly delegates its execution mechanics to `EIS-AUT-01` while preserving Owner-only rule creation.
+
+The EIS must require every run to re-establish:
+
+* stored rule is enabled;  
+* Owner/grantor still has the required authority;  
+* business matches;  
+* item/supplier target matches;  
+* quantity/value/frequency/validity limits match;  
+* relevant entitlement remains valid;  
+* no intervening revocation invalidates execution.
+
+A trigger must never create authority.
+
+A revoked/expired/out-of-scope rule fails closed to a suggestion.
+
+---
+
+# **6\. Reference Cost and margin assurance**
+
+`17:FPDR-4` is represented correctly.
+
+Supplier purchase prices are **Reference Cost information because the Founder classified them as cost**. Their protection does not depend on whether margin can be arithmetically inferred.
+
+The Blueprint also correctly preserves the SB-P-1.12 distinction:
+
+* Reference Cost permission permits the protected cost value;  
+* margin permission controls Smart Business-computed/labeled margin;  
+* Reference Cost does not imply margin;  
+* margin does not imply raw Reference Cost.
+
+## **Required EIS enforcement**
+
+The cost decision must be enforced **before protected fields leave the data layer**.
+
+Do not:
+
+`SELECT full product/supplier row → send to app → remove cost field`
+
+for a Manager lacking Reference Cost.
+
+Use an authorized projection/read function that never returns the protected column.
+
+This requirement applies to:
+
+* workspace/dashboard;  
+* direct authenticated API/RPC;  
+* supplier/reorder readers;  
+* Ask CFO;  
+* conversational retrieval;  
+* Daily Intelligence;  
+* exports;  
+* background readers;  
+* cached results;  
+* conversation/history reuse.
+
+The SB-P-1.13 rules are particularly important:
+
+* authorization before retrieval (`EIS13-CTX-02`);  
+* no unauthorized facts in model context;  
+* current permission controls cached/history reuse (`EIS13-CTX-03`);  
+* tool schemas cannot create authority (`EIS13-TOOL-01`).
+
+---
+
+# **7\. Supplier isolation**
+
+**Documentary design: PASS.**
+
+The supplier model correctly uses the existing SB-P-1.12 participant architecture.
+
+Supplier-facing access must inherit:
+
+* `EIS-ID-03` business-scoped participant identity;  
+* `EIS-KER-02` governed principal binding;  
+* `EIS-EXT-02` own-object-only access;  
+* `EIS-ISO-07` business/reference isolation.
+
+A supplier must not receive:
+
+* supplier directory access;  
+* other supplier records;  
+* merchant stock;  
+* reorder intelligence;  
+* Reference Cost history except exact content deliberately placed into a merchant-sent request;  
+* counter or cash information;  
+* dashboard capability;  
+* another business's request.
+
+The merchant-prepared purchase request remains a presentation/output object, not a portal into merchant memory.
+
+---
+
+# **8\. Finding SA-01-F02 — integration-principal mismatch**
+
+## **Evidence**
+
+SB-P-1.17 §20.4.6:
+
+> authenticated API/webhook adapter, under an integration principal on `EIS-KER-02`
+
+§20.5 repeats:
+
+> POS adapters authenticate as a verified integration principal.
+
+But SB-P-1.12 `EIS-KER-02` says all authorization begins from exactly one of its four defined principal classes. No integration principal exists.
+
+`integration` appears only as a channel under `EIS-KER-06`.
+
+External provider references under `EIS-ID-05` are business-scoped references, not authorization principals.
+
+## **Risk**
+
+If left unresolved, an implementation could improvise:
+
+* service-role-as-authority;  
+* caller-supplied business identity;  
+* provider credential → merchant authority;  
+* an unversioned fifth principal class;  
+* a parallel POS permission engine.
+
+All would violate the locked authority architecture.
+
+## **Required correction**
+
+The SB-P-1.17 EIS must not proceed on the assertion that `EIS-KER-02` already supplies an integration principal.
+
+Mission Control must choose the architecture-governed resolution path:
+
+**Path A:** a separately governed amendment to SB-P-1.12 formally adds an integration principal, including verification, business binding, authorization inputs, serialization, revocation, audit and negative tests;
+
+**or**
+
+**Path B:** SB-P-1.17 models the POS intake using already-approved principal/authority primitives without inventing a new principal class.
+
+Security Room does **not** choose Path A or B here.
+
+The important invariant is:
+
+> authentication of a provider proves source identity; it does not itself prove merchant authority.
+
+A POS credential or webhook signature must never become Owner/Manager permission.
+
+---
+
+# **9\. Confirmation and execution-time authority**
+
+The design is aligned with SB-P-1.12/1.13.
+
+For capability 2 reorder confirmation:
+
+1. authorized user obtains scoped suggestion;  
+2. server canonicalizes item/supplier/quantity/value/current state;  
+3. `confirmation_bindings` records exact actor, business, action, target, fingerprint, authority epochs and expiry;  
+4. user confirms;  
+5. commit re-evaluates authorization under `EIS-CNF-02`;  
+6. material changes or revocation reject the stale confirmation;  
+7. successful consumption is atomic and idempotent.
+
+SB-P-1.13 adds the necessary AI protection: after confirmation the model cannot silently rewrite the proposal.
+
+### **Additional EIS obligation**
+
+The same binding principle must be used for any other SB-P-1.17 action that the EIS classifies as consequential.
+
+In particular, explicit Owner historical supplier attribution must bind:
+
+* Owner principal;  
+* business;  
+* original transaction;  
+* proposed supplier identity;  
+* reviewed transaction/supplier state;  
+* expiry/version.
+
+The words “Owner confirmation” are not sufficient implementation authority by themselves.
+
+---
+
+# **10\. Required negative-test contract**
+
+At minimum, the SB-P-1.17 EIS must require the following.
+
+### **Capability isolation**
+
+1. Manager with no grants → deny capabilities 1–7.  
+2. Grant capability 1 only → capabilities 2,3,4,6,7 remain denied.  
+3. Repeat isolation test for every delegable capability.  
+4. Item-scoped grant cannot access another item.  
+5. Supplier-scoped grant cannot access another supplier.  
+6. Counter-scoped grant cannot access another counter.  
+7. Grant valid in Business A cannot be used in Business B.  
+8. Expired/revoked grant denies at next read and cannot commit prepared work.
+
+### **Owner-reserved capability 5**
+
+9. Manager role alone → deny operator detail.  
+10. Manager with capability 4 → still deny operator detail.  
+11. Direct attempt to create a Manager capability-5 grant → deny.  
+12. Direct RPC/query for operator-attributed detail → deny.  
+13. Ask CFO/conversation prompt requesting operator attribution → no retrieval.  
+14. Employee → no operator anomaly analysis about another staff member.
+
+### **Standing-rule separation**
+
+15. Capability 2 Manager attempts rule creation → deny.  
+16. Manager possessing every six delegable capabilities attempts rule creation → deny.  
+17. Expired/revoked rule → no execution.  
+18. Rule whose Owner/grantor lost authority → no execution.  
+19. Rule exceeding item/supplier/value/frequency limit → deny/fallback.  
+20. Trigger payload attempting to widen limits → ignored/denied.
+
+### **Reference Cost and margin**
+
+21. Manager with capability 1/2/3 but no Reference Cost → supplier cost absent.  
+22. Same denial through direct RPC.  
+23. Same denial through export.  
+24. Same denial through Ask CFO.  
+25. Same denial through conversation/voice context.  
+26. Same denial through cached/history content after Reference Cost revocation.  
+27. Reference Cost grant → cost may appear only within object scope.  
+28. Reference Cost without margin → no computed/labeled margin.  
+29. Margin grant without Reference Cost → no raw cost disclosure.  
+30. Neither grant → neither cost nor margin-derived output.  
+31. Employee → no cost/margin.  
+32. Supplier → no merchant cost history except exact merchant-authored request content if intentionally included.
+
+### **Supplier isolation**
+
+33. Supplier A cannot access Supplier B objects.  
+34. Supplier in Business A cannot access same identifier in Business B.  
+35. Supplier cannot reach dashboard endpoints/readers.  
+36. Supplier cannot enumerate stock, customer, counter or closing records.  
+37. Unbound supplier participant record exercises zero capability.
+
+### **Confirmation and revocation**
+
+38. Confirmation by another actor fails.  
+39. Confirmation in another business fails.  
+40. Changed item/supplier/quantity/value requires new binding.  
+41. Changed reorder state invalidates old binding.  
+42. Revocation after preview but before commit rejects the action.  
+43. Concurrent confirmations commit exactly once.  
+44. Stale conversational “yes” cannot execute.  
+45. Historical supplier-link confirmation cannot be replayed against a different transaction/supplier.
+
+### **POS / integration boundary**
+
+46. Invalid webhook/API authentication → reject before business mutation.  
+47. Valid provider credential with forged `business_id` → reject.  
+48. Source mapped to Business A cannot write/read Business B.  
+49. Duplicate external event → one committed outcome.  
+50. Provider payload cannot specify Owner/Manager/capability/authorization decision.  
+51. `service_role` possession alone creates no merchant authority.  
+52. Unknown/unbound integration source cannot create stock or Ledger effects.  
+53. Any future integration-principal implementation must have its own negative matrix against all human/participant businesses and scopes.
+
+---
+
+# **11\. EIS obligations**
+
+The next EIS must explicitly resolve or specify:
+
+### **`SA17-EIS-01 — Capability registry`**
+
+Define seven stable capability identities with:
+
+* action type;  
+* scope type;  
+* delegable/non-delegable status;  
+* optional value ceiling where applicable;  
+* Owner default;  
+* Manager default deny.
+
+Capability 5 must be non-delegable to Manager.
+
+### **`SA17-EIS-02 — Separate automation authority`**
+
+Standing-rule creation must be a separate Owner-only command.
+
+Standing-rule execution must consume `EIS-AUT-01`; no human capability grant or trigger becomes equivalent to a rule.
+
+### **`SA17-EIS-03 — Reference Cost/margin projection`**
+
+Define field-level projections/functions so protected cost never enters an unauthorized caller's result.
+
+Map protection across dashboard/API/export/AI/background/cache paths.
+
+### **`SA17-EIS-04 — Supplier participant isolation`**
+
+Define supplier binding, own-request predicates and direct-RPC negative paths using `EIS-ID-03`, `EIS-EXT-02` and composite business references.
+
+### **`SA17-EIS-05 — POS intake authority — BLOCKING F02 obligation`**
+
+Resolve the “integration principal” incompatibility with locked `EIS-KER-02`.
+
+No implementation may invent the missing principal.
+
+### **`SA17-EIS-06 — Confirmation bindings`**
+
+Specify exact confirmation payloads for reorder and every other consequential operation, including historical supplier attribution.
+
+### **`SA17-EIS-07 — Revocation serialization`**
+
+Every consequential SB-P-1.17 commit and protected privileged read must satisfy `EIS-CNF-02` / `EIS-KER-09`.
+
+Prepared reorder, queued import and standing-rule execution must not survive authority revocation.
+
+### **`SA17-EIS-08 — AI/tool isolation`**
+
+Every SB-P-1.17 conversational tool must identify:
+
+* read/write class;  
+* required capability;  
+* object scope;  
+* consequential status;  
+* confirmation requirement.
+
+No principal/business/grant field may come from model output.
+
+### **`SA17-EIS-09 — Effective-access verification`**
+
+For every new table, view, sequence and function, verify effective access for at least:
+
+* `PUBLIC`;  
+* `anon`;  
+* `authenticated`;  
+* service role;  
+* executor roles;  
+* actual creator-role default privileges.
+
+Include exact function overload/signature EXECUTE tests.
+
+---
+
+# **12\. Reuse of prior SB-P-1.12 / SB-P-1.13 security findings**
+
+This review does not reopen those findings.
+
+The relevant locked conclusions remain applicable:
+
+* one kernel only;  
+* verified principal before authorization;  
+* no service-role authority;  
+* capability/action/object separation;  
+* deny-default Manager/Employee access;  
+* Owner intelligence not inherited;  
+* protected reads bound to business/object predicates;  
+* exact confirmation binding;  
+* serialization with revocation;  
+* authorization before AI retrieval;  
+* prompt/model output never creates permission;  
+* prior protected conversation/cache data must be reauthorized before reuse;  
+* direct-RPC and effective-grant paths require negative testing.
+
+SB-P-1.17 is a **consumer** of those controls, not an alternate implementation.
+
+---
+
+# **13\. Holds and evidence limitations**
+
+No runtime security conclusion is available.
+
+The Blueprint itself preserves:
+
+* `D12` — authorization/kernel dependency;  
+* `D13` — conversation/AI kernel dependency;  
+* `D14` / `DTX`;  
+* `D15`;  
+* `D16`;  
+* `DPOS`;  
+* `DSEC`;  
+* `DENT`;  
+* `DSCH`;  
+* `DAI`;  
+* `DV`;  
+* `DNTF`;  
+* `DPAY`;  
+* `DR2`;  
+* U-03 closing cadence;  
+* U-11 operator/staff privacy and lawful-basis review;  
+* W-1 / FIN-01 PROVISIONAL.
+
+Therefore none of the following is claimed:
+
+* live RLS PASS;  
+* effective grants PASS;  
+* integration authentication PASS;  
+* POS isolation PASS;  
+* cost projection runtime PASS;  
+* capability revocation PASS;  
+* standing-rule runtime PASS;  
+* supplier isolation runtime PASS;  
+* AI prompt-injection runtime PASS;  
+* migration PASS;  
+* production security PASS.
+
+The 404-row engineering register and documentary verification requirements are design evidence only.
+
+---
+
+# **14\. Exact findings**
+
+| Finding | Severity | Status | Required disposition |
+| ----- | ----- | ----- | ----- |
+| `SA-01-F01` Capability 5 misidentification | HIGH previously | **CLOSED — NO REGRESSION** | None. Current §20.4.10 correctly identifies capability 5 and separates standing-rule creation. |
+| `SA-01-F02` Undefined POS integration principal | **HIGH** | **OPEN — REFINEMENT REQUIRED** | Remove the false attribution to `EIS-KER-02` or obtain a governed upstream architecture amendment defining the principal. EIS cannot silently invent it. |
+
+No other finding in the assigned security scope currently requires Blueprint product redesign.
+
+---
+
+# **15\. Final recommendation**
+
+## **REFINEMENT REQUIRED**
+
+SB-P-1.17's Manager permissions, cost protection, supplier isolation, confirmation and revocation model are otherwise suitable to proceed toward EIS design.
+
+The one blocking documentary security defect is narrow but foundational:
+
+> **The Blueprint cannot claim a POS “integration principal on EIS-KER-02” when the locked SB-P-1.12 verified-principal model contains no such principal type.**
+
+Mission Control should require a finding-scoped correction/architecture disposition for `SA-01-F02`.
+
+No Founder Product Truth decision is implied by this review unless the chosen resolution would alter the already-approved authority model; that determination belongs to Mission Control under Source 18\.
+
+**SA-01-F01 remains closed.**
+
+**NO IMPLEMENTATION OR REPOSITORY CHANGE PERFORMED.**
+
+**STOP FOR MISSION CONTROL DISPOSITION.**
+
+Clarify the final disposition hierarchySeparate F02 from PASS scope  

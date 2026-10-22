@@ -1,6 +1,6 @@
 # SB-P-1.17 — Manager Operations
 
-**SECTIONS 1–19 APPROVED AT STAGE 5 (MC-393) — STAGE 6 BUILDER REVIEW APPROVED (MC-396) — SECTIONS 20–21 DRAFT FOR MISSION CONTROL REVIEW — NOT LOCKED.**
+**STAGE 7 DOCUMENTARY REVIEW ACCEPTED (MC-418) — STAGE 8 FOUNDER APPROVAL PENDING — NOT LOCKED.** Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396).
 
 ## Metadata
 
@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.17 |
 | Mission Name | Manager Operations |
 | Mission Type | Product Mission: stock, supplier and reorder intelligence; standard POS bridge, counter intelligence and closing cash; operational dashboard and Manager workspace (Contracts 7, 13, 17) |
-| Lifecycle Stage | Source 18 v1.2 Stage 7 — Engineering Review: Sections 20–21 DRAFT for Mission Control review (MC-396A). Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396) |
-| Status | `SECTIONS 1–19 APPROVED — SECTIONS 20–21 DRAFT — NOT LOCKED`. Stage 5 record `communication/missions/SB-P-1.17/mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`; Stage 6 record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`. Stage 8 Blueprint Lock, EIS and implementation not authorized |
+| Lifecycle Stage | Source 18 v1.2 Stage 8 — Founder Approval and Blueprint Lock: PENDING. Stage 7 documentary review accepted (MC-418); Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396) |
+| Status | `STAGE 7 DOCUMENTARY REVIEW ACCEPTED — STAGE 8 FOUNDER APPROVAL PENDING — NOT LOCKED`. Stage 5 record `communication/missions/SB-P-1.17/mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`; Stage 6 record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`. Stage 8 Blueprint Lock, EIS and implementation not authorized |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (Stage 1 Intake Pack §4, `communication/missions/SB-P-1.17/mission-control/02-stage1-intake-pack-and-definition-actor-appointment.md`, blob `79c684e8`) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -26,8 +26,8 @@
 | Upstream dependencies | SB-P-1.12 to SB-P-1.16: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
 | Date | 2026-10-20 |
 | Builder Review | Complete — approved by MC-396 (record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`); findings B6-01 to B6-21 accepted for Stage 7 |
-| Engineering Review (Sections 20–21) | DRAFT — Sections 20–21 below (MC-396A, PR #1010), refined for findings ENG17-01 to ENG17-03 (MC-399A, §20.9), for Mission Control review; not approved. Completion report `communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md` |
-| Mission Control Review | Stage 5 complete: Gate 10 PASS; G10-07 closed on acceptance of MC-392A; Sections 1–19 approved for Stage 6 Builder Review (MC-393) |
+| Engineering Review (Sections 20–21) | ACCEPTED at Stage 7 (MC-418, conversation-source) — Sections 20–21 below (MC-396A, PR #1010), refined for findings ENG17-01 to ENG17-03 (MC-399A, §20.9) and corrected after specialist assurance (PRs #1012 to #1014). Acceptance is documentary; no row is runtime-verified and every hold stays open. Specialist evidence: `communication/missions/SB-P-1.17/specialists/02-stage7-specialist-assurance-provenance-record.md`. Completion report `communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md` |
+| Mission Control Review | Stage 5 complete: Gate 10 PASS; G10-07 closed on acceptance of MC-392A; Sections 1–19 approved for Stage 6 Builder Review (MC-393). Stage 7 documentary review accepted (MC-418). Stage 8 readiness record `communication/missions/SB-P-1.17/claude-code/19-stage8-readiness-record.md` prepared for review (MC-419A) |
 | Blueprint Lock | Not locked; determined solely by a later Stage 8 Founder approval record |
 
 ## Mission Snapshot
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 authority, identity and delegated-automation kernel, the SB-P-1.13 conversation and AI kernel, SB-P-1.14 Business Memory and UDI, SB-P-1.15 reminders, Ask CFO and Daily Intelligence, and SB-P-1.16 financial truth, all as specifications; builds no parallel version. No POS vendor is named or activated (`DPOS`). No system-sent supplier message before an approved channel (`DNTF`; SB-P-1.20). |
 | Assigned to later missions (Build Now, not Build Later) | 15 rows: SB-P-1.18 3, SB-P-1.19 2, SB-P-1.20 10 (Section 11.1). |
 | Rejected | Blind supplier procurement; custom POS core modification; AI accusation, verdicts or punishment; register lockout; fixed universal thresholds; duplicate stock engines; dashboard-only business logic; and every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396); Sections 20–21 drafted for Mission Control review (MC-396A); not locked. Stage 8 Blueprint Lock, EIS and implementation not authorized. |
+| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396); Sections 20–21 accepted at Stage 7 (MC-418); Stage 8 Founder approval pending; not locked. Stage 8 Blueprint Lock, EIS and implementation not authorized. |
 
 ## 1. Mission Overview
 
@@ -1141,6 +1141,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.9 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-403A) | SA-01-F01 correction (MC-402A, MC-403): §20.4.10 now identifies capability 5 as viewing operator-attributed counter detail (Owner-reserved, per §8.10 and `17:FPDR-1`) and states standing-rule creation as a separate Owner-only boundary; Reference Cost and margin wording aligned with §8.10 (separate SB-P-1.12 permissions, MC-404A); §19 updated. No other Sections 20–21 text carried the misidentification. Sections 1–19 substantive content, capability numbering, FCTM, Founder decisions, ENG17 refinements and holds unchanged |
 | 0.10 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-411A) | Cross-specialist corrections (MC-410A, MC-411): MC410-R01 / SA-01-F02 — the unsupported integration-principal assertion removed from the §20.3 component map, §20.4.6, §20.5 and the B6-05 approach, replaced by verified source authentication, business binding and a held kernel authorization path; MC410-R03 / SA03-FI-07 — INV-A9 corrected to governed atomic effects with Ledger classification owned by SB-P-1.14; §21.3 records the R01 hold and MC410-R02 as OPEN; §19 updated. INV-A8, Sections 1–19 substantive content, FCTM, Founder decisions and upstream contracts unchanged |
 | 0.11 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-415A) | INV-A8 source-contract reconciliation (MC-411B Finance interpretation, MC-415): INV-A8 in §20.9.1 now separates financial trust from inventory eligibility and holds the posting timing of trusted-but-inventory-unmapped events for the EIS; the MC410-R02 hold in §21.3 records the accepted interpretation with the execution decision still open; §19 updated. INV-A1 to INV-A7, INV-A9, Sections 1–19 substantive content, FCTM, Founder decisions and upstream contracts unchanged |
+| 0.12 | 2026-10-22 | Claude Code (Documentation Actor, MC-419A) | Status reconciliation for the MC-418 Stage 7 acceptance: banner, Lifecycle Stage, Status, Engineering Review and Mission Control Review metadata, Mission Snapshot stage result, a historical-context note in §21.5 pointing to the published specialist evidence, and §19 governance rows. No Product Truth, FCTM row, Founder decision, engineering invariant, feasibility disposition or hold changed; nothing is marked runtime PASS; not locked |
 
 ## 19. Governance History
 
@@ -1181,7 +1182,10 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | Independent reconciliation MC-410A and disposition (MC-411) | Conversation-source | — |
 | Stage 7 cross-specialist corrections, POS intake authority and INV-A9 (MC-411A, MC-412A) | this file | PR #1013, `e27f9e15` |
 | Finance interpretation of Contract 13 §§4–7 (MC-411B) and disposition (MC-415) | Conversation-source | — |
-| INV-A8 source-contract reconciliation (MC-415A) | this file | PENDING (review PR) |
+| INV-A8 source-contract reconciliation (MC-415A) | this file | PR #1014, `ad85e151` |
+| Specialist assurance SA-01 to SA-05 (MC-408A) and independent reconciliation (MC-410A) | `specialists/stage7-assurance/`; `specialists/02-stage7-specialist-assurance-provenance-record.md` | Published under MC-419A, PENDING (review PR) |
+| Stage 7 documentary review accepted (MC-418) and Stage 8 preparation authorized (MC-419) | Conversation-source | — |
+| Stage 8 evidence inventory, Founder Brief and readiness record; status reconciliation (MC-419A) | `claude-code/18`, `claude-code/19`, `founder/01-stage8-founder-brief.md`; this file | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -3021,6 +3025,8 @@ No hold is converted to PASS.
 No trigger fired. Nothing was decided on the Founder's behalf.
 
 ### 21.5 Specialist reviews
+
+**Historical draft context.** This subsection was written for the MC-396A draft, before any specialist review existed, and is kept as written. The five reviews it recommends were later submitted as SA-01 to SA-05 (MC-408A) and reconciled by MC-410A. They are published unedited, with provenance and finding dispositions, in `communication/missions/SB-P-1.17/specialists/02-stage7-specialist-assurance-provenance-record.md` (MC-419A). Their qualification and independence remain OPEN.
 
 No specialist review was performed for this draft. The following specialist reviews are recommended before Stage 8, as mandatory domain inputs under Source 18 §4.8:
 - security and authorization;
