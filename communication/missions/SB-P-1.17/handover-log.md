@@ -88,17 +88,33 @@
 - **Next authorized action:** Mission Control review, then the Founder's Stage 8 decision
 - **Not authorized:** Blueprint Lock, EIS, implementation, migration and production
 
-## H-10 — Live-communication reconciliation (PROPOSED)
+## H-10 — Live-communication reconciliation
 
-- **Date:** 2026-10-22 (PR not yet merged)
+- **Date:** 2026-10-22
 - **From:** Claude Code (Documentation Actor). **To:** Mission Control
 - **Work and files:**
   - `communication/live/instruction.md` and `report.md`, changed to a current-pointer state;
   - `communication-preservation/`, with two byte-exact snapshots and the MC-422 record;
   - this log, `decision-log.md` and `README.md`, each created.
 - **Base:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce`. Branch `mission/SB-P-1.17-live-communication-reconciliation`
-- **Commit and PR:** recorded in the PR itself
+- **Commit and PR:** PR #1016, merge `b3b52c6b72ea1ec50f48c8e55a134df569944f4c`
 - **Open issues:** live pair 1.51 still has a provisional report (closure-time reconciliation); the SB-P-1.12 numbered chain is still in `communication/live/`
 - **Next authorized action:** Mission Control review and Founder merge
 - **Not authorized:** closure, archive, Blueprint Lock, EIS and implementation
 - **Mission Control reference:** MC-422A (conversation-source)
+
+## H-11 — Stage 8 Founder approval → canonical Blueprint Lock (PROPOSED)
+
+- **Date:** 2026-10-22 (lock PR not yet merged)
+- **From:** Founder and Mission Control (MC-425 readiness PASS; MC-426 approval accepted; conversation-source). **To:** Claude Code (Documentation Actor) for lock publication; then Mission Control and the Founder for merge
+- **Stage completed:** Stage 8 Founder approval
+- **Work and files:**
+  - `mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` (created);
+  - `docs/phase-1-mission-blueprint/active/SB-P-1.17.md` moved to `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, with lock metadata;
+  - `README.md`, `decision-log.md` and this log updated.
+- **Base:** `main@b3b52c6b72ea1ec50f48c8e55a134df569944f4c`. Branch `mission/SB-P-1.17-stage8-blueprint-lock`
+- **Commit and PR:** recorded in the PR itself
+- **Open issues:** every hold in the lock record §7. The live pointer pair's state line predates MC-426
+- **Next authorized action:** Mission Control review, Founder human merge and Mission Control post-merge verification
+- **Not authorized:** Stage 9 actor, EIS, implementation, migration, production, delivery, provider action, external POS connection, staff or operator-data processing, runtime testing, closure and archive
+- **Mission Control reference:** MC-426A
