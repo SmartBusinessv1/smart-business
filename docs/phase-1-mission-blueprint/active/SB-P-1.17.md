@@ -26,7 +26,7 @@
 | Upstream dependencies | SB-P-1.12 to SB-P-1.16: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
 | Date | 2026-10-20 |
 | Builder Review | Complete — approved by MC-396 (record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`); findings B6-01 to B6-21 accepted for Stage 7 |
-| Engineering Review (Sections 20–21) | DRAFT — Sections 20–21 below (MC-396A), for Mission Control review; not approved. Completion report `communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md` |
+| Engineering Review (Sections 20–21) | DRAFT — Sections 20–21 below (MC-396A, PR #1010), refined for findings ENG17-01 to ENG17-03 (MC-399A, §20.9), for Mission Control review; not approved. Completion report `communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md` |
 | Mission Control Review | Stage 5 complete: Gate 10 PASS; G10-07 closed on acceptance of MC-392A; Sections 1–19 approved for Stage 6 Builder Review (MC-393) |
 | Blueprint Lock | Not locked; determined solely by a later Stage 8 Founder approval record |
 
@@ -1137,6 +1137,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.5 | 2026-10-21 | Claude Code (Definition Actor, MC-380A) | G10-07 traceability corrections synchronized with the FCTM: §11.2 and §19 now use the SB-P-1.15 identifiers `2-§5-12` (was `2-§5-13`) and `11-§10-4` (was `11-§10-3`) for the same source units; the §11.2 `22-§4` citation now names SB-P-1.14 `22-§4-2`; the §19 `24-§18-3` locator now covers n13–n18; current FCTM blob references updated. No source unit, disposition, owner, commitment, classification, decision, seed, mandatory capability or Founder scenario changed |
 | 0.6 | 2026-10-22 | Claude Code (Definition Actor, MC-393A) | Stage 5 Gate 10 approval recorded: status banner, lifecycle metadata, Builder Review and Mission Control Review fields, Mission Snapshot status and §19 governance history updated for MC-393 (Gate 10 PASS; Sections 1–19 approved for Stage 6 Builder Review). The approved content is blob `8265f7ce`. No requirement, acceptance criterion, classification, FCTM ID, Founder decision, verification seed or Sections 1–19 scope changed |
 | 0.7 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-396A) | Stage 7 draft: Sections 20–21 appended (engineering review, component designs, B6-01 to B6-21 dispositions, early delivery plan, 404-row feasibility register, engineering questions, risks, holds and trigger screen); Stage 6 approval and Stage 7 status recorded in the banner, metadata, Mission Snapshot and §19. Sections 1–19 substantive content unchanged |
+| 0.8 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-399A) | Stage 7 refinement for the independent review findings ENG17-01 to ENG17-03 (MC-398A, MC-399): §20.9 added (transaction atomicity and identity invariants, closing-cash decision table, POS architecture versus source feasibility and the minimum source evidence dossier); pointers in §20.4.1, §20.4.6, §20.4.8 and §20.7.10; EQ17-13 to EQ17-16, R17-10 and R17-11 added; T8 watch row refined; metadata and §19 updated. Sections 1–19 substantive content, §20.8 register, FCTM, Founder decisions and holds unchanged |
 
 ## 19. Governance History
 
@@ -1168,8 +1169,10 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | R0 completeness evidence (MC-385A, MC-387A) | `claude-code/g10-07-evidence/mc385a/` | PR #1008, `d8ad626c` |
 | Institutional learning approval (MC-385B; PASS under MC-386) and independent G10-07 PASS (MC-392A) | Conversation-source | — |
 | Stage 5 Gate 10 PASS and Stage 6 handover (MC-393) | `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md` | PR #1009, `da53e1c9` |
-| Stage 6 Builder Review (MC-395A) and approval (MC-396) | `claude-code/16` | PENDING (review PR) |
-| Stage 7 Engineering Review draft, Sections 20–21 (MC-396A) | this file; `claude-code/17` | PENDING (review PR) |
+| Stage 6 Builder Review (MC-395A) and approval (MC-396) | `claude-code/16` | PR #1010, `fc11821d` |
+| Stage 7 Engineering Review draft, Sections 20–21 (MC-396A) | this file; `claude-code/17` | PR #1010, `fc11821d` |
+| Independent Stage 7 review findings ENG17-01 to ENG17-03 (MC-398A) and refinement disposition (MC-399) | Conversation-source | — |
+| Stage 7 refinement, §20.9 (MC-399A) | this file; `claude-code/17` | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -1900,6 +1903,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
 - Stock–Ledger linkage: one business command (`BP-§6.2-1`) writes the movement and the Ledger event atomically, after the `DTX` cut-over decision.
 - The owning domain validates every `business_event_type` / `business_event_id` it writes: same business, existing event, matching type. The movement layer does not validate it by design [R].
 - A stock correction never fabricates a financial transaction (`7-§8-*`).
+- Identities, atomicity invariants and EIS proofs: §20.9.1 (ENG17-01).
 
 #### 20.4.2 C-SIG — signals and thresholds (B6-07, B6-09)
 
@@ -1944,6 +1948,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
   - manual-versus-POS review candidates (no auto-merge, DC-12).
 - Mapped events drive stock only through `create_inventory_movement`. Revenue goes through the governed Ledger path (`DTX`), never duplicated (`13-§6-6`).
 - Credentials live only in an approved server-side secret home (`DSEC`). No vendor is named or assumed (`DPOS` UNKNOWN). **T8 watch:** feasibility of any specific POS is unproven until a source is evidenced.
+- Event identity, deduplication and cross-source overlap: §20.9.1. Architecture versus source feasibility and the minimum source evidence dossier: §20.9.3 (ENG17-03).
 
 #### 20.4.7 C-CTR — counter review (B6-14)
 
@@ -1957,6 +1962,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
 - The period definition (day or shift, opening float) is an EIS decision under U-03.
 - Ledger `transaction_date` has no time [R], so expected cash is computed only for periods whose inputs can be placed in time. Otherwise the result is partial, with the unknown named (DC-09).
 - Source precedence between manual cash sales and POS cash sales is explicit and shown.
+- Completeness states and the closing decision table: §20.9.2 (ENG17-02).
 
 #### 20.4.9 C-WS — Manager workspace (B6-15, B6-16)
 
@@ -2373,6 +2379,7 @@ These flags stand until a separate authorization changes them. Stage 8 Founder a
     - an unsupported signal is shown as unavailable;
     - a staff member does not see analysis about other staff.
   - **Fixture rehearsal (T1/T2) is not FRV-B.** **T8 watch:** Scenario B cannot be demonstrated until a source is evidenced and authorized.
+  - Source eligibility for FRV-B: the minimum evidence dossier in §20.9.3.
 
 ### 20.8 Per-row feasibility and risk register (404 `IN SCOPE` rows)
 
@@ -2805,9 +2812,135 @@ These flags stand until a separate authorization changes them. Stage 8 Founder a
 | `GPCV-R13` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] NI-POS; [R] NI-CC | B6-11 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
 | `GPCV-R17` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] F-DASH | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
 
+### 20.9 Stage 7 refinement (MC-399A): atomicity, closing integrity and POS source evidence
+
+This section answers the independent Stage 7 review findings ENG17-01 to ENG17-03 (MC-398A, disposition MC-399).
+
+- **No product change.** It changes no Sections 1–19 content, FCTM row, verification seed or Founder decision.
+- **Holds stay open.** `DTX`, `D14`, `D12`, `DSCH`, `DPOS`, `DSEC`, U-03, U-11 and the T8 watch remain open.
+- **Not authority.** Every statement is a proposed engineering invariant for the EIS. None is an implementation claim.
+
+#### 20.9.1 ENG17-01 — Transaction atomicity, identity and event ownership
+
+**Authorities preserved.** These are unchanged and not re-specified here:
+- Ledger writes are owned by SB-P-1.14 and go through the single governed create command `create_transaction_governed` (`EIS14-CMD-01`, built on `EIS13-CMD-02`). Direct-mutation closure applies after the `DTX` cut-over (`EIS14-CMD-03`).
+- Inventory writes go through `create_inventory_movement` [R].
+
+`DTX` is **not implemented** and its cut-over is undecided. SB-P-1.17 adds no Ledger service and never writes `transactions` directly.
+
+**Identities.**
+
+| Identity | Definition | Uniqueness and dedupe scope | Owner | Source |
+|---|---|---|---|---|
+| Source event ID (API/webhook) | The POS's own stable external event or transaction ID | Unique per `(business_id, pos_source_id, external_event_id)`; a source correction is a new event linked to the original | SB-P-1.17 (C-POS) | `13-§4-3`, `13-§17-1`, `13-§17-2`, `13-§21-1` |
+| Source event ID (export file) | The file's own row identifier where the source supplies one; otherwise no trusted identity | A row is unique per `(business_id, pos_source_id, external_row_id)`. The content fingerprint of `EIS14-IDM-02` is duplicate **evidence** only, never identity | SB-P-1.17 with the SB-P-1.14 UDI row ledger (`EIS-CNF-05`) | `13-§4-10`, `13-§7-3` |
+| Business command ID | Request key of the shared idempotency pattern: business, actor or verified principal, operation, key, payload fingerprint, committed outcome | One committed outcome per key; for a POS-originated command the key is derived deterministically from the source event ID | SB-P-1.12 pattern (`EIS-CNF-04`; `EIS14-IDM-01`) | `13-§6-4`, `13-§21-2` |
+| Ledger event ID | `transactions.id` created by the governed create command | Created once per committed command | SB-P-1.14 | `EIS14-CMD-01` |
+| Inventory movement ID | `inventory_movements.id` from `create_inventory_movement`, with its own idempotency key and payload fingerprint [R] | `(business_id, operation, idempotency_key)` [R] | SB-P-1.10 foundation, consumed here | `7-§8-1` to `-3` |
+| Event link | `business_event_type` / `business_event_id` on the movement [R] | Validated by the owning domain before the write | SB-P-1.17 (domain-owned) | `7-§8-1`; scope note in `tests/inventory/trusted-event-link.test.ts` [R] |
+
+**Invariants the EIS must specify and prove.**
+
+| ID | Invariant | Source rows |
+|---|---|---|
+| INV-A1 | One source event ID produces at most one committed business-command outcome. A replay with the same key returns the committed outcome. The same key with a different payload fingerprint is rejected | `13-§6-4`, `13-§16-2`, `13-§21-2`; `EIS-CNF-04` |
+| INV-A2 | The related writes of one business command commit in **one database transaction** or not at all: the governed Ledger event, the inventory movement(s), the source-event state and the event link. A failure after any write rolls back all of them | `7-§8-1` to `-3`, `13-§6-6`, `13-§17-6` |
+| INV-A3 | Before a movement is written, the owning domain checks that the referenced event exists, belongs to the same business, has the declared type and is not reversed. The movement layer does not perform this check [R] | `7-§8-1`, `13-§17-7` |
+| INV-A4 | A command whose outcome is unknown is resolved by outcome lookup on its key before any retry. The merchant sees "unknown, then resolved", never a guessed success | `EIS14-IDM-03` |
+| INV-A5 | A source correction, reversal or void is a new linked event: originals are never mutated, and movements stay append-only [R]. A stock correction never creates a financial transaction | `13-§6-3`, `13-§16-6`, `13-§17-7`, `7-§8-4` |
+| INV-A6 | An out-of-order event (for example, a reversal before its original) is held as pending review. It is never applied to a missing target | `13-§16-5` |
+| INV-A7 | Cross-source overlap is detected, never resolved automatically. A manual record and a POS event that may be the same sale (same business, close in time, same amount and payment method, similar items) become a review candidate. Neither side is suppressed, merged or deleted; resolution is an authorized human decision recorded as a governed correction | `13-§7-5`, `13-§16-11`, `13-§6-1`, `13-§6-2`; DC-12 |
+| INV-A8 | POS-originated revenue reaches the Ledger only through the governed command, once per source event. Unmapped or untrusted events create no movement and no revenue until resolved | `13-§6-6`, `13-§7-1` to `-4`, `13-§21-3`, `13-§21-4` |
+| INV-A9 | A confirmed purchase writes the movement and the Ledger expense in one command. Supplier payment state stays a separate fact from goods receipt | `7-§8-2`, `7-§8-5` |
+
+**What the EIS must prove (verification evidence, T2 unless stated):**
+- replay of the same source event, including two concurrent deliveries, yields one outcome;
+- a fault injected after the movement and before the Ledger write leaves neither row;
+- event-link negative tests: cross-business, non-existent and wrong-type references are rejected;
+- out-of-order reversal handling;
+- an overlap pair becomes a review candidate with both records intact;
+- no direct `transactions` write path exists after the cut-over (inspection plus a negative test);
+- unknown-outcome resolution.
+
+**Open engineering questions:**
+- **EQ17-13:** whether the governed Ledger command and `create_inventory_movement` can be composed in one database transaction across the SB-P-1.14 and SB-P-1.17 boundaries.
+- **EQ17-14:** the overlap-detection window and matching fields.
+
+If composition in one transaction is not possible, INV-A2 is not met. That raises a Stage 7 finding back to Mission Control; it is never accepted as a partial write.
+
+#### 20.9.2 ENG17-02 — Closing-cash period and source-completeness integrity
+
+**Fixed points.**
+- The closing period is a day or a shift. Which one is the open U-03 decision; this section does not select it.
+- A period is resolved in the business timezone from the versioned timezone record (`EIS15-TZ-01`, `tz.version_at` in `EIS15-TZ-04`; `DSCH`).
+- Manual Ledger records carry `transaction_date` (a date with no time) [R]. Entry time (`created_at`) is never treated as occurrence time.
+
+**Input attribution rules:**
+- **Attributable to a day period:** any input with an occurrence date or timestamp.
+- **Attributable to a shift period:** only inputs with an occurrence timestamp. Manual records with a date only are not shift-attributable.
+- **POS events:** attributable only where the source's timestamp and timezone semantics are evidenced (20.9.3, item 8).
+
+**Decision table.** Each closing result takes the most severe state that applies, in the order UNKNOWN, REVIEW-REQUIRED, PARTIAL, COMPLETE.
+
+| # | Condition | Result state | What is shown | Source rows |
+|---|---|---|---|---|
+| 1 | No active business timezone version, or no defined period model | UNKNOWN | No expected cash and no variance; the missing configuration is named | `13-§10-*`; `EIS15-TZ-04`; U-03 |
+| 2 | No cash count for the period | UNKNOWN (variance) | Expected cash may be shown as a partial figure; no variance | `13-§10-6`, `13-§16-9` |
+| 3 | Every configured source has data for the period; every input is attributable; no unresolved overlap; opening float known where the model requires it; count present | COMPLETE | Expected cash, count and variance, with each input listed by source | `13-§10-1` to `-7`, `13-§21-7` |
+| 4 | A configured source has no or incomplete data for the period (POS connection unavailable, partial sync, missing manual records) | PARTIAL | Variance labelled partial; the missing source named | `13-§16-1`, `13-§16-7`; DC-09 |
+| 5 | Shift period, and some manual cash records have a date but no time | PARTIAL | Those records excluded from expected cash and listed with their total; never assigned to a shift by guess | `13-§10-4`; DC-09 |
+| 6 | An unresolved POS/manual overlap candidate (INV-A7) touches cash in the period | REVIEW-REQUIRED | Expected cash shown **excluding** the unresolved items, with the overlap amount shown separately; the duplicated cash is never counted twice; no final variance until resolved | `13-§7-5`, `13-§16-11`; DC-12 |
+| 7 | The period model requires an opening float and none is recorded | PARTIAL | The float named as unknown; never zero-filled | `13-§10-3`; DC-09 |
+| 8 | Operator evidence is absent from the source | No effect on the business-level state | Operator breakdown shown as unavailable from this source; never fabricated; operator detail is Owner-only in any case | `13-§4-7`, `13-§17-8`; `17:FPDR-1` capability 5; U-11 |
+| 9 | A source correction, reversal or Ledger correction affecting the period arrives after the result was produced | REVIEW-REQUIRED (reopened) | The earlier result kept in history; the new result recomputed and linked | `13-§17-7`, `13-§17-11`, `13-§17-12` |
+| 10 | A variance remains unresolved | Unchanged state, review open | Neutral review item; never proof of misconduct | `13-§10-8`, `13-§16-10` |
+
+**Invariants:**
+- no zero-fill (DC-09);
+- no invented timestamp;
+- no silent choice of day or shift cadence;
+- no fabricated operator attribution;
+- no double-counted cash;
+- every result lists its inputs, their source and their attribution status.
+
+**What the EIS must prove:** one T2 test per decision-table row, including the precedence rule, and an experience review of the wording.
+
+**Dependencies preserved:** U-03, `DSCH` (`EIS15-TZ-*`), `D14` and `DTX` (Ledger cash records), `DPOS` (POS cash).
+
+**Open engineering questions:**
+- **EQ17-15:** whether manual cash records need an occurrence-time field to support shift closing. That would be an upstream request to SB-P-1.14, not a product decision here.
+- **EQ17-16:** reopen semantics and notification for post-close corrections.
+
+#### 20.9.3 ENG17-03 — POS feasibility and Founder Scenario B evidence
+
+| Level | Determination | Basis |
+|---|---|---|
+| **Architecture feasibility** | **Feasible at design level.** A vendor-neutral bridge can support both approved interface classes (an authenticated API or webhook adapter; a structured export file through UDI) on the identities and invariants of 20.9.1 | `17:FPDR-2`; 20.4.6; `EIS-KER-02`, `EIS-CNF-04`, `EIS-CNF-05`. No bridge code exists [R] |
+| **Source-specific feasibility** | **UNKNOWN.** No actual POS source has been shown to provide every signal Founder Scenario B needs (an unusual discount or counter anomaly, surfaced neutrally) | `DPOS`; `BP-§10.6-B1`, `BP-§10.6-B2`; `13-§21-5`. **T8 watch, not established** |
+
+**Minimum evidence dossier for a future POS source.** Mission Control reviews the dossier, and the Founder selects the source (EQ17-05). No provider is selected here.
+
+| # | Evidence item | What must be shown | If absent | Source rows |
+|---|---|---|---|---|
+| 1 | Identity and interface class | Product and version; interface class; vendor documentation; merchant authorization to connect | Source not eligible | `13-§4-1`, `13-§17-1`; `BP-§5.4-1` |
+| 2 | Minimum fields | External transaction ID, time, item reference, quantity, price, payment method | Source not eligible; limitation shown | `17:FPDR-2`; `13-§4-2` to `-6`, `13-§5-6` |
+| 3 | Discount and void fields | Field names and meaning (line or ticket level, amount or percentage), how voids and reversals are represented | Scenario B **not demonstrable** from this source; signal shown as unavailable | `13-§4-5`, `13-§8-1`, `13-§8-2`, `13-§21-5` |
+| 4 | Operator attribution | Whether and how operators are identified, lawful basis and permitted use | Operator detail not shown; not required for Scenario B | `13-§4-7`, `13-§17-8`; U-11 |
+| 5 | Stable event identifiers | Uniqueness scope, persistence across retries and re-exports, correction linkage | No trusted ingestion; review only | `13-§17-2`, `13-§7-3`, `13-§21-1` |
+| 6 | Interface characteristics | API/webhook: authentication, signature, delivery guarantee, ordering, rate limits, retry behaviour. Export: format, schema, encoding, per-row identifiers, completeness markers | Adapter cannot be designed | `13-§4-1`, `13-§4-10` |
+| 7 | Authentication and credentials | Credential type, scope, rotation, storage in the approved server-side secret home | No adapter | `DSEC`; `13-§16-8` |
+| 8 | Timestamps and timezone | Occurrence time versus export time; timezone or offset semantics | Events not attributable to closing periods (20.9.2) | `13-§4-7`, `13-§17-5` |
+| 9 | Retry, deduplication and correction behaviour | Duplicate deliveries, post-close voids and edits, out-of-order delivery | INV-A1, A5 and A6 cannot be proved for the source | `13-§16-2`, `13-§16-5`, `13-§16-6` |
+| 10 | Privacy and access limits | Personal-data fields, terms of use, data location, retention | Use blocked pending specialist review | U-11; `13-§18-*` |
+| 11 | Real-source evidence | Real events from a sandbox or a merchant-approved sample, obtained under authorization | No FRV-B | `BP-§10.6-B1`; `17:FPDR-2` |
+
+**Rule.** Synthetic fixtures may test the bridge at T1 and T2, but they never satisfy Founder Runtime Verification B. FRV-B runs only against the first source evidenced to supply discount or void data (`17:FPDR-2`).
+
+`DPOS`, `DSEC`, U-11 and the T8 watch stay open. Founder Scenario B is unchanged.
+
 ## 21. Engineering Questions, Risks & Recommendations
 
-### 21.1 Engineering questions (EQ17-01 to EQ17-12)
+### 21.1 Engineering questions (EQ17-01 to EQ17-16)
 
 These are engineering questions for the EIS. None is a product decision.
 
@@ -2825,6 +2958,10 @@ These are engineering questions for the EIS. None is a product decision.
 | EQ17-10 | Precedence between manual and POS cash when both exist | B6-11 | EIS |
 | EQ17-11 | Retention and lawful basis for operator identifiers | B6-14 | Specialist and legal review (U-11) |
 | EQ17-12 | Required CI tier and path filters for SB-P-1.17 code and migrations | B6-21 | EIS; Mission Control (environments) |
+| EQ17-13 | Whether `create_transaction_governed` and `create_inventory_movement` compose in one database transaction across the SB-P-1.14 and SB-P-1.17 boundaries (INV-A2) | B6-04; ENG17-01 | EIS with SB-P-1.14 (`DTX`) |
+| EQ17-14 | Overlap-detection window and matching fields for POS/manual review candidates (INV-A7) | B6-11; ENG17-01 | EIS |
+| EQ17-15 | Whether manual cash records need an occurrence-time field for shift closing; an upstream request to SB-P-1.14, not a product decision | B6-10; ENG17-02 | EIS with SB-P-1.14; U-03 |
+| EQ17-16 | Reopen semantics and notification for corrections arriving after a closing result | B6-10; ENG17-02 | EIS |
 
 ### 21.2 Engineering risks
 
@@ -2839,6 +2976,8 @@ These are engineering questions for the EIS. None is a product decision.
 | R17-07 | Operator data processed without a settled lawful basis | Medium / High | U-11 specialist hold before use (B6-14) |
 | R17-08 | Test environment state unknown (Δ-06) | Medium / Medium | Fresh readiness verification before any rehearsal |
 | R17-09 | Same-actor authorship hides correlated errors | Medium / Medium | Mission Control review; mandatory specialist and Stage 19 independent verification |
+| R17-10 | The governed Ledger command and the movement write cannot be composed atomically across mission boundaries | Unknown / High | EQ17-13 resolved before the EIS is approved; no partial-write acceptance (INV-A2) |
+| R17-11 | Date-only manual cash records cannot be attributed to shifts | High under shift cadence / Medium | Excluded and named as PARTIAL (§20.9.2 row 5); EQ17-15 |
 
 ### 21.3 Dependencies and holds (preserved)
 
@@ -2860,7 +2999,7 @@ No hold is converted to PASS.
 | T4 / T5 | None |
 | T6 | **Watch (B6-09, EQ17-08):** the evidence-sufficiency rule, if it materially affects when threshold suggestions are available |
 | T7 | None. No row, scenario or obligation narrowed; all 404 rows stay `IN SCOPE` |
-| T8 | **Watch, not established (B6-05, EQ17-05, R17-04):** POS source capability is UNKNOWN. Scenario B and the API/webhook class cannot be demonstrated until a source is evidenced and authorized. No row is found infeasible |
+| T8 | **Watch, not established (B6-05, ENG17-03, EQ17-05, R17-04):** architecture feasibility of the vendor-neutral bridge is established at design level; source-specific feasibility is UNKNOWN (§20.9.3). Scenario B and the API/webhook class cannot be demonstrated until a source passes the minimum evidence dossier and is authorized. No row is found infeasible |
 
 No trigger fired. Nothing was decided on the Founder's behalf.
 
