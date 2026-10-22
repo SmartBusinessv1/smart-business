@@ -1,6 +1,6 @@
 # SB-P-1.17 — Manager Operations
 
-**DRAFT — FOR MISSION CONTROL REVIEW — NOT APPROVED OR LOCKED.**
+**SECTIONS 1–19 APPROVED AT STAGE 5 (MC-393; GATE 10 PASS) — FOR STAGE 6 BUILDER REVIEW — NOT LOCKED.**
 
 ## Metadata
 
@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.17 |
 | Mission Name | Manager Operations |
 | Mission Type | Product Mission: stock, supplier and reorder intelligence; standard POS bridge, counter intelligence and closing cash; operational dashboard and Manager workspace (Contracts 7, 13, 17) |
-| Lifecycle Stage | Source 18 v1.2 Stage 5 — Mission Control review and independent Gate 10 verification (OPEN). The Stage 4 Product Blueprint Sections 1–19 draft exists; it is not approved or locked |
-| Status | `DRAFT — FOR MISSION CONTROL REVIEW — NOT APPROVED OR LOCKED`. Stage 5 OPEN; Gate 10 NOT PASSED. Stage 6, EIS and implementation WITHHELD |
+| Lifecycle Stage | Source 18 v1.2 Stage 5 complete: Gate 10 PASS; Sections 1–19 approved by Mission Control for Stage 6 Builder Review (MC-393). Next: Stage 6 Builder Review |
+| Status | `SECTIONS 1–19 APPROVED AT STAGE 5 — NOT LOCKED`. Approval record `communication/missions/SB-P-1.17/mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`, effective on Founder merge. Stage 7, Stage 8 Blueprint Lock, EIS and implementation not authorized |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (Stage 1 Intake Pack §4, `communication/missions/SB-P-1.17/mission-control/02-stage1-intake-pack-and-definition-actor-appointment.md`, blob `79c684e8`) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -25,9 +25,9 @@
 | Mission Truth Pack | `communication/missions/SB-P-1.17/claude-code/03-stage2-mission-truth-pack.md`, blob `8d541153` (Parts A–D), read with the derived-constraint corrections of the reconciliation Section C |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.16: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
 | Date | 2026-10-20 |
-| Builder Review | Not started |
+| Builder Review | Not started. Stage 6 Builder Review (Claude Code) is the next authorized activity; it may begin only after Founder merge of the MC-393 record |
 | Engineering Review (Sections 20–21) | Not started; Claude Code owns Sections 20–21 at Stage 7 (Source 18 §4.4) |
-| Mission Control Review | Begun (Stage 5). Independent Gate 10 verification OPEN; Gate 10 NOT PASSED |
+| Mission Control Review | Stage 5 complete: Gate 10 PASS; G10-07 closed on acceptance of MC-392A; Sections 1–19 approved for Stage 6 Builder Review (MC-393) |
 | Blueprint Lock | Not locked; determined solely by a later Stage 8 Founder approval record |
 
 ## Mission Snapshot
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 authority, identity and delegated-automation kernel, the SB-P-1.13 conversation and AI kernel, SB-P-1.14 Business Memory and UDI, SB-P-1.15 reminders, Ask CFO and Daily Intelligence, and SB-P-1.16 financial truth, all as specifications; builds no parallel version. No POS vendor is named or activated (`DPOS`). No system-sent supplier message before an approved channel (`DNTF`; SB-P-1.20). |
 | Assigned to later missions (Build Now, not Build Later) | 15 rows: SB-P-1.18 3, SB-P-1.19 2, SB-P-1.20 10 (Section 11.1). |
 | Rejected | Blind supplier procurement; custom POS core modification; AI accusation, verdicts or punishment; register lockout; fixed universal thresholds; duplicate stock engines; dashboard-only business logic; and every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. The Stage 4 draft exists and is not approved or locked. Stage 5 independent Gate 10 verification is OPEN; Gate 10 NOT PASSED. Stage 6, EIS and implementation WITHHELD. |
+| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. Sections 1–19 approved at Stage 5 (MC-393; Gate 10 PASS); not locked. Next: Stage 6 Builder Review. Stage 7, Stage 8 Blueprint Lock, EIS and implementation not authorized. |
 
 ## 1. Mission Overview
 
@@ -1135,6 +1135,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.3 | 2026-10-21 | Claude Code (Definition Actor, MC-353) | Gate 10 documentary corrections C-1 to C-5 for the 25 MC-349 findings: §8.3, §8.7, §8.9 permissive-list notes (annex §C-2); §12.4 Build Plan §5.1 gate, §5.3 delivery chain and §6.3 storage pointer; §14 GPCV update rule; §15.5 Build Plan §13 evidence rules. C-1 and C-3 mappings in the annex. No row, disposition, owner, commitment, classification, decision, scenario, seed or hold changed |
 | 0.4 | 2026-10-21 | Claude Code (Definition Actor, MC-368A) | `17:FPDR-7` synchronization with the FCTM: Metadata decision and FCTM references; §10.1 `17:FPDR-7` entry and citation totals (43 rows, 45 references); the 23 §19 lines regenerated from the FCTM (Founder-decision cell, verification seed, §10.1 location) and the §19 FCTM blob. No row ID, disposition, owner, commitment, classification, source pointer, mandatory capability or Founder scenario changed |
 | 0.5 | 2026-10-21 | Claude Code (Definition Actor, MC-380A) | G10-07 traceability corrections synchronized with the FCTM: §11.2 and §19 now use the SB-P-1.15 identifiers `2-§5-12` (was `2-§5-13`) and `11-§10-4` (was `11-§10-3`) for the same source units; the §11.2 `22-§4` citation now names SB-P-1.14 `22-§4-2`; the §19 `24-§18-3` locator now covers n13–n18; current FCTM blob references updated. No source unit, disposition, owner, commitment, classification, decision, seed, mandatory capability or Founder scenario changed |
+| 0.6 | 2026-10-22 | Claude Code (Definition Actor, MC-393A) | Stage 5 Gate 10 approval recorded: status banner, lifecycle metadata, Builder Review and Mission Control Review fields, Mission Snapshot status and §19 governance history updated for MC-393 (Gate 10 PASS; Sections 1–19 approved for Stage 6 Builder Review). The approved content is blob `8265f7ce`. No requirement, acceptance criterion, classification, FCTM ID, Founder decision, verification seed or Sections 1–19 scope changed |
 
 ## 19. Governance History
 
@@ -1154,7 +1155,18 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | Stage 3 completion and handover record | `mission-control/10` | PR #996, `df55e277` |
 | Stage 3 closure verification (MC-316) | Conversation-source | — |
 | Stage 4 drafting authorization (MC-317, MC-318) and path correction (MC-319) | Conversation-source | — |
-| Stage 4 Blueprint Sections 1–19 draft | this file | PENDING (review PR) |
+| Stage 4 Blueprint Sections 1–19 draft and preparation report | this file; `claude-code/13` | PR #997, `f4088bcd` |
+| Stage 5 §6 permission-wording correction (MC-323, MC-324) | this file | PR #998, `709f29d2` |
+| Independent Gate 10 review dispatch (MC-329) | `communication/live/instruction1.51.md`, `report1.51.md` | PR #999, `4802e34c` |
+| MC-349 independent findings evidence packet | `mission-control/11` | PR #1000, `2806c1fa` |
+| Gate 10 documentary corrections C-1 to C-5 | `claude-code/14`; this file | PR #1001, `ef52cff7` |
+| Founder decision `17:FPDR-7` | `claude-code/15` | PR #1002, `a3f4b8f1` |
+| 23-row FCTM reconciliation with `17:FPDR-7`; metadata correction (MC-368A, MC-370) | `claude-code/01`; this file | PR #1004, `ed62d81b` |
+| G10-07 source evidence package (MC-375A, MC-376B) | `claude-code/g10-07-evidence/` | PR #1005, `3c7bf8ea` |
+| G10-07 traceability corrections (MC-380A) | `claude-code/01`, `claude-code/02`; this file | PR #1007, `fc144110` |
+| R0 completeness evidence (MC-385A, MC-387A) | `claude-code/g10-07-evidence/mc385a/` | PR #1008, `d8ad626c` |
+| Institutional learning approval (MC-385B; PASS under MC-386) and independent G10-07 PASS (MC-392A) | Conversation-source | — |
+| Stage 5 Gate 10 PASS and Stage 6 handover (MC-393) | `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md` | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
