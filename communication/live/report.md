@@ -1,17 +1,14 @@
-# SMART BUSINESS MISSION CONTROL — LIVE REPORT (CURRENT POINTER)
+# SMART BUSINESS MISSION CONTROL — SB-P-1.17 STAGE 9 LIVE REPORT
 
-**Status:** NO ACTIVE REPORT — CURRENT-POINTER STATE\
-**Mission:** SB-P-1.17 — Manager Operations\
-**Sender:** Claude Code, Documentation Actor, under MC-422A\
-**Recipient:** Mission Control\
-**Date:** 2026-10-22\
-**Baseline:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce` (PR #1015 merge)\
+**Status:** AWAITING AUTHORIZED STAGE 9 ACTOR RESPONSE — NOT A RESULT  
+**Mission:** SB-P-1.17 — Manager Operations  
+**Sender:** Claude Code — Stage 9 EIS Actor (expected)  
+**Recipient:** Mission Control  
+**Date:** 2026-10-22  
+**Authority:** `communication/live/instruction.md` and `communication/missions/SB-P-1.17/mission-control/13-stage9-eis-creation-authorization.md`  
+**Activation:** Conditional on human merge and Mission Control post-merge verification.  
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-No instruction is active in `communication/live/instruction.md`, so no report is pending against it. Stage reports for SB-P-1.17 live in `communication/missions/SB-P-1.17/`, and the mission state is in its `README.md`.
+No Stage 9 work or verification is asserted by this placeholder. The assigned actor must place its substantive Stage 9 report in the durable SB-P-1.17 mission record, and update this transient report/pointer under the approved communication protocol when returning its work.
 
-**Mission state:** STAGE 7 DOCUMENTARY REVIEW ACCEPTED (MC-418) — STAGE 8 FOUNDER APPROVAL PENDING — NOT LOCKED.
-
-**Previous content.** This file previously held the proposed SB-P-1.17 Stage 1 live report (PR #985). It is preserved byte-for-byte at `communication/missions/SB-P-1.17/communication-preservation/legacy-live-report-stage1-entry.snapshot.md` (blob `f7c2500285cafb7521f87025491672acfc9dfd1e`).
-
-**Provisional report not yet reconciled.** `communication/live/report1.51.md` still reads "AWAITING SPECIALIST EXECUTION". It is not reconciled here, because reconciliation belongs to closure (protocol §27, Closure-State Reconciliation). Its lineage is recorded in `communication/missions/SB-P-1.17/communication-preservation/01-mc422-live-communication-preservation-and-reconciliation-record.md`.
+**Previous live pointer:** blob `3abd42bcb20aa005599af6c7e06ca6d680da07c7` was the no-active-report Stage 8 pointer, recorded under MC-422A; Git history preserves its exact bytes.

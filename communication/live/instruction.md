@@ -1,25 +1,16 @@
-# SMART BUSINESS MISSION CONTROL — LIVE INSTRUCTION (CURRENT POINTER)
+# SMART BUSINESS MISSION CONTROL — SB-P-1.17 STAGE 9 EIS HANDOFF
 
-**Status:** NO ACTIVE INSTRUCTION — CURRENT-POINTER STATE\
-**Mission:** SB-P-1.17 — Manager Operations\
-**Sender:** Mission Control. Recorded by Claude Code under MC-422A\
-**Recipient:** None. No AI actor is instructed by this file\
-**Date:** 2026-10-22\
-**Baseline:** `main@4a0047ab526c76129607dda31b2da357ea3dd7ce` (PR #1015 merge)\
+**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
+**Mission:** SB-P-1.17 — Manager Operations  
+**Sender:** Mission Control  
+**Recipient:** Claude Code — Stage 9 EIS Actor  
+**Date:** 2026-10-22  
+**Baseline:** `main@5fadee63bfa7e99c49ddf717f17e09bf1d44a71a`  
+**Authority:** `communication/missions/SB-P-1.17/mission-control/13-stage9-eis-creation-authorization.md`  
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-This file activates no work. It points to the durable mission record, where the current state is kept: `communication/missions/SB-P-1.17/README.md`.
+After human merge and verified activation, read and execute the mission-control authorization record above. Read the locked completed Blueprint, FCTM, Truth Pack, Founder decisions, Source 18, and published specialist findings from the canonical repository. Draft the Stage 9 EIS and bidirectional traceability only, then STOP for Mission Control review.
 
-**Current state:** Stage 7 documentary review accepted (MC-418, conversation-source). Stage 8 Founder approval is pending; the Blueprint is **not locked**.
+No Stage 10 approval, EIS lock, implementation, SQL, migration, deployment, production, runtime testing or external POS authorization.
 
-**Next action:**
-1. Mission Control review of the Stage 8 preparation package (PR #1015).
-2. The Founder's Stage 8 decision (`communication/missions/SB-P-1.17/founder/01-stage8-founder-brief.md`).
-
-Neither is requested by this file.
-
-**Previous content.** This file previously held the proposed SB-P-1.17 Stage 1 documentary entry (PR #985). It is preserved byte-for-byte at `communication/missions/SB-P-1.17/communication-preservation/legacy-live-instruction-stage1-entry.snapshot.md` (blob `74882b22be3e564afe67e843c05b4a9f9b837841`).
-
-**Other live files.** `instruction1.51.md` and `report1.51.md` (SB-P-1.17, MC-329) and the SB-P-1.12 pairs `1.1` to `1.50` stay unchanged as historical evidence until their missions' closure and archive (protocol §26, §27).
-
-Not authorized: Blueprint Lock, EIS, implementation, migration, production or provider action.
+**Previous live pointer:** blob `c7910100e1a2c44548e38fbc749f2e6eb1cf8840` was a no-active-instruction Stage 8 pointer under MC-422A, recorded in the mission communication-preservation record; Git history retains its exact bytes. This handoff replaces the transient pointer, not an active specialist exchange.
