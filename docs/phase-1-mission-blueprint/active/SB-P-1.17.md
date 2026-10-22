@@ -1,6 +1,6 @@
 # SB-P-1.17 — Manager Operations
 
-**SECTIONS 1–19 APPROVED AT STAGE 5 (MC-393; GATE 10 PASS) — FOR STAGE 6 BUILDER REVIEW — NOT LOCKED.**
+**SECTIONS 1–19 APPROVED AT STAGE 5 (MC-393) — STAGE 6 BUILDER REVIEW APPROVED (MC-396) — SECTIONS 20–21 DRAFT FOR MISSION CONTROL REVIEW — NOT LOCKED.**
 
 ## Metadata
 
@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.17 |
 | Mission Name | Manager Operations |
 | Mission Type | Product Mission: stock, supplier and reorder intelligence; standard POS bridge, counter intelligence and closing cash; operational dashboard and Manager workspace (Contracts 7, 13, 17) |
-| Lifecycle Stage | Source 18 v1.2 Stage 5 complete: Gate 10 PASS; Sections 1–19 approved by Mission Control for Stage 6 Builder Review (MC-393). Next: Stage 6 Builder Review |
-| Status | `SECTIONS 1–19 APPROVED AT STAGE 5 — NOT LOCKED`. Approval record `communication/missions/SB-P-1.17/mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`, effective on Founder merge. Stage 7, Stage 8 Blueprint Lock, EIS and implementation not authorized |
+| Lifecycle Stage | Source 18 v1.2 Stage 7 — Engineering Review: Sections 20–21 DRAFT for Mission Control review (MC-396A). Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396) |
+| Status | `SECTIONS 1–19 APPROVED — SECTIONS 20–21 DRAFT — NOT LOCKED`. Stage 5 record `communication/missions/SB-P-1.17/mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`; Stage 6 record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`. Stage 8 Blueprint Lock, EIS and implementation not authorized |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (Stage 1 Intake Pack §4, `communication/missions/SB-P-1.17/mission-control/02-stage1-intake-pack-and-definition-actor-appointment.md`, blob `79c684e8`) |
 | Lifecycle Authority | Source 18 v1.2 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011`) |
@@ -25,8 +25,8 @@
 | Mission Truth Pack | `communication/missions/SB-P-1.17/claude-code/03-stage2-mission-truth-pack.md`, blob `8d541153` (Parts A–D), read with the derived-constraint corrections of the reconciliation Section C |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.16: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence |
 | Date | 2026-10-20 |
-| Builder Review | Not started. Stage 6 Builder Review (Claude Code) is the next authorized activity; it may begin only after Founder merge of the MC-393 record |
-| Engineering Review (Sections 20–21) | Not started; Claude Code owns Sections 20–21 at Stage 7 (Source 18 §4.4) |
+| Builder Review | Complete — approved by MC-396 (record `communication/missions/SB-P-1.17/claude-code/16-stage6-builder-review-approved-record.md`); findings B6-01 to B6-21 accepted for Stage 7 |
+| Engineering Review (Sections 20–21) | DRAFT — Sections 20–21 below (MC-396A), for Mission Control review; not approved. Completion report `communication/missions/SB-P-1.17/claude-code/17-stage7-engineering-review-completion-report.md` |
 | Mission Control Review | Stage 5 complete: Gate 10 PASS; G10-07 closed on acceptance of MC-392A; Sections 1–19 approved for Stage 6 Builder Review (MC-393) |
 | Blueprint Lock | Not locked; determined solely by a later Stage 8 Founder approval record |
 
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 authority, identity and delegated-automation kernel, the SB-P-1.13 conversation and AI kernel, SB-P-1.14 Business Memory and UDI, SB-P-1.15 reminders, Ask CFO and Daily Intelligence, and SB-P-1.16 financial truth, all as specifications; builds no parallel version. No POS vendor is named or activated (`DPOS`). No system-sent supplier message before an approved channel (`DNTF`; SB-P-1.20). |
 | Assigned to later missions (Build Now, not Build Later) | 15 rows: SB-P-1.18 3, SB-P-1.19 2, SB-P-1.20 10 (Section 11.1). |
 | Rejected | Blind supplier procurement; custom POS core modification; AI accusation, verdicts or punishment; register lockout; fixed universal thresholds; duplicate stock engines; dashboard-only business logic; and every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. Sections 1–19 approved at Stage 5 (MC-393; Gate 10 PASS); not locked. Next: Stage 6 Builder Review. Stage 7, Stage 8 Blueprint Lock, EIS and implementation not authorized. |
+| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 630-row canonical FCTM and `17:FPDR-1` to `17:FPDR-7`. Sections 1–19 approved at Stage 5 (MC-393); Stage 6 Builder Review approved (MC-396); Sections 20–21 drafted for Mission Control review (MC-396A); not locked. Stage 8 Blueprint Lock, EIS and implementation not authorized. |
 
 ## 1. Mission Overview
 
@@ -1136,6 +1136,7 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | 0.4 | 2026-10-21 | Claude Code (Definition Actor, MC-368A) | `17:FPDR-7` synchronization with the FCTM: Metadata decision and FCTM references; §10.1 `17:FPDR-7` entry and citation totals (43 rows, 45 references); the 23 §19 lines regenerated from the FCTM (Founder-decision cell, verification seed, §10.1 location) and the §19 FCTM blob. No row ID, disposition, owner, commitment, classification, source pointer, mandatory capability or Founder scenario changed |
 | 0.5 | 2026-10-21 | Claude Code (Definition Actor, MC-380A) | G10-07 traceability corrections synchronized with the FCTM: §11.2 and §19 now use the SB-P-1.15 identifiers `2-§5-12` (was `2-§5-13`) and `11-§10-4` (was `11-§10-3`) for the same source units; the §11.2 `22-§4` citation now names SB-P-1.14 `22-§4-2`; the §19 `24-§18-3` locator now covers n13–n18; current FCTM blob references updated. No source unit, disposition, owner, commitment, classification, decision, seed, mandatory capability or Founder scenario changed |
 | 0.6 | 2026-10-22 | Claude Code (Definition Actor, MC-393A) | Stage 5 Gate 10 approval recorded: status banner, lifecycle metadata, Builder Review and Mission Control Review fields, Mission Snapshot status and §19 governance history updated for MC-393 (Gate 10 PASS; Sections 1–19 approved for Stage 6 Builder Review). The approved content is blob `8265f7ce`. No requirement, acceptance criterion, classification, FCTM ID, Founder decision, verification seed or Sections 1–19 scope changed |
+| 0.7 | 2026-10-22 | Claude Code (Engineering Review Actor, MC-396A) | Stage 7 draft: Sections 20–21 appended (engineering review, component designs, B6-01 to B6-21 dispositions, early delivery plan, 404-row feasibility register, engineering questions, risks, holds and trigger screen); Stage 6 approval and Stage 7 status recorded in the banner, metadata, Mission Snapshot and §19. Sections 1–19 substantive content unchanged |
 
 ## 19. Governance History
 
@@ -1166,7 +1167,9 @@ Know what is in the shop and what needs attention. Suggest with evidence, and le
 | G10-07 traceability corrections (MC-380A) | `claude-code/01`, `claude-code/02`; this file | PR #1007, `fc144110` |
 | R0 completeness evidence (MC-385A, MC-387A) | `claude-code/g10-07-evidence/mc385a/` | PR #1008, `d8ad626c` |
 | Institutional learning approval (MC-385B; PASS under MC-386) and independent G10-07 PASS (MC-392A) | Conversation-source | — |
-| Stage 5 Gate 10 PASS and Stage 6 handover (MC-393) | `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md` | PENDING (review PR) |
+| Stage 5 Gate 10 PASS and Stage 6 handover (MC-393) | `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md` | PR #1009, `da53e1c9` |
+| Stage 6 Builder Review (MC-395A) and approval (MC-396) | `claude-code/16` | PENDING (review PR) |
+| Stage 7 Engineering Review draft, Sections 20–21 (MC-396A) | this file; `claude-code/17` | PENDING (review PR) |
 
 ### FCTM Row-ID to Blueprint Section and Source Traceability
 
@@ -1824,3 +1827,1063 @@ Counts: 630 rows — 404 `IN SCOPE`, 151 `DELEGATED`, 15 `ASSIGNED TO LATER MISS
 | GPCV-R7 | IN SCOPE | SB-P-1.17 | GPCV@ee76d920 | §5 row 7 assignment: Stock/Supplier/Reorder — Manager core; Smart Stock add-on path for Ledger; BUILD NOW; IMPLEMENTED BUT INCOMPLETE | §8.1, §10.2 | GATE | — |
 | GPCV-R13 | IN SCOPE | SB-P-1.17 | GPCV@ee76d920 | §5 row 13 assignment: POS/Counter/Closing Cash — Manager core / standard integration layer; BUILD NOW; NOT IMPLEMENTED | §8.6, §10.2 | GATE | — |
 | GPCV-R17 | IN SCOPE | SB-P-1.17 | GPCV@ee76d920 | §5 row 17 assignment: Operational Dashboard & Manager Workspace — Manager core; role-appropriate Ledger surfaces; BUILD NOW; IMPLEMENTED BUT INCOMPLETE | §8.9, §10.2 | GATE | — |
+
+## 20. Engineering Review
+
+**Status:** DRAFT — Stage 7 Engineering Review (MC-396A) for Mission Control review. Not approved. Not a Blueprint Lock. No EIS, migration, integration or implementation is authorized by this section.
+
+### 20.1 Scope, baseline and independence
+
+- **Inputs:**
+  - approved Sections 1–19 (approved content blob `8265f7ce`; Stage 5 record `mission-control/MC-393-stage5-gate10-approval-and-stage6-handover.md`, PR #1009, `da53e1c9`);
+  - the approved Stage 6 Builder Review (`claude-code/16-stage6-builder-review-approved-record.md`; 21 findings accepted by MC-396);
+  - the canonical FCTM (blob `cb79088d`, 630 rows, 404 `IN SCOPE`);
+  - `17:FPDR-1` to `17:FPDR-7`;
+  - the locked SB-P-1.12 to SB-P-1.16 EIS documents.
+- **Repository state:**
+  - Application code, schema, tests, workflows and configuration are unchanged from the SB-P-1.16 Stage 6 base `3c9a7743` to `main@da53e1c9`. Every change in that range is documentation.
+  - The verified repository facts are those recorded in the Stage 6 review, Section 3.
+- **Independence:**
+  - Claude Code wrote Sections 1–19 (Stages 2–4) and the Stage 6 review, and now writes Sections 20–21. Same-actor authorship is a correlated-assumption risk.
+  - No specialist review was performed for this draft (21.5).
+  - Stage 19 independent verification by another actor remains mandatory (Source 18 §4.9).
+- **Access.** No production system, Supabase test project, POS vendor, provider dashboard, CLI, deployment or merchant record was accessed. No SQL, migration, rehearsal, profiling or integration was executed.
+
+### 20.2 Evidence categories
+
+| Category | Marker | Use in this section |
+|---|---|---|
+| Verified repository fact | **[R]** | Text at `main@da53e1c9`: schema, functions, policies, tests and workflows. Repository code is not runtime or deployment evidence |
+| Locked upstream specification, not implemented | **[S]** | SB-P-1.12 `EIS-KER-01` to `-09`, `EIS-CNF-01`/`-02`, `EIS-ID-03`, `EIS-AUT-01`, `EIS-EXT-02`; SB-P-1.14 `EIS14-MIG-03`, `EIS14-ADP-02`; SB-P-1.15 native notification and reminder foundations (`EIS15-*`) |
+| Actor inference | "proposed" | The logical designs in 20.4 and 20.5; confirmed or replaced at the EIS |
+| Unknown or unavailable | **[U]** | Live grants and policies, test-project state, delivery topology (Truth Pack Δ-06), POS vendor capability (`DPOS`), credential home (`DSEC`), scheduler and AI providers. Never treated as PASS |
+
+### 20.3 Current architecture and target component map
+
+**Current architecture [R].** Owner-only authority:
+- `businesses.owner_id` is `UNIQUE`;
+- there is no membership, role or grant table;
+- RLS uses `owner_id = auth.uid()` or `catalog_internal.resolve_owner_business`.
+
+On top of that sit:
+- the SB-P-1.10 inventory foundation (append-only movements, idempotency, explicit negative-stock flag, unvalidated business-event link);
+- the SB-P-1.11 Product & Price Master (audited price, cost, tax and link events with Owner-only authority basis);
+- a two-type Ledger with free-text party;
+- the catalog-import and parser-lease stack;
+- an Owner-only dashboard.
+
+Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing cash, timezone or entitlement.
+
+**Target components (proposed).** Each component consumes the shared foundations and creates no second authority:
+
+| Component | Blueprint | Builds on | Consumes |
+|---|---|---|---|
+| C-STK Stock foundation extension | §8.1 | `inventory_items`, `inventory_movements`, `create_inventory_movement` [R] | D12 kernel; D14/DTX for Ledger linkage |
+| C-SIG Thresholds, low/slow, expiry, wastage | §8.2 | C-STK | D12; D15 for alerts |
+| C-SUP Supplier memory and protected prices | §8.3 | EIS-ID-03 participant [S]; `catalog_products` [R] | D12, D14, D16 |
+| C-RO Reorder, purchase requests, standing rules | §8.4 | C-STK, C-SIG, C-SUP | D12 (EIS-AUT-01, CNF-01), D13, D15, DSCH |
+| C-DOC Stock documents through UDI | §8.5 | parser-lease and import foundation [R] via EIS14-MIG-03 [S] | D14 |
+| C-POS Standard POS bridge | §8.6 | none [R] | DPOS, DSEC; D12 integration principal; D14 for export files |
+| C-CTR Neutral counter review | §8.7 | C-POS | D12; U-11 |
+| C-CC Closing cash | §8.8 | C-POS, Ledger cash [R] | D12, D14, DSCH timezone, D15 |
+| C-WS Manager workspace | §8.9 | dashboard shell [R] | D12, D15, all feature readers |
+| C-AUTH Users, permissions, conversation, channels | §8.10 | none [R] | D12, D13, DAI, DV, D15 |
+| C-FDN Failure handling, audit, shared foundations | §8.11 | audit and idempotency precedents [R] | D12, D14 |
+| C-ACC Acceptance and completion accounting | §8.12 | — | all of the above |
+
+### 20.4 Component designs (proposed logical designs, for the EIS)
+
+#### 20.4.1 C-STK — stock foundation extension (B6-04, B6-07, B6-08)
+
+- Extend additively: new movement types for wastage and spoilage; a batch and expiry attribute captured only where the merchant records it; a unit-conversion table between supplier pack, stock base unit and selling unit.
+- Keep the existing type-direction, correction-link and audit-completeness invariants. All 17 inventory test files are regression gates for any change.
+- Stock–Ledger linkage: one business command (`BP-§6.2-1`) writes the movement and the Ledger event atomically, after the `DTX` cut-over decision.
+- The owning domain validates every `business_event_type` / `business_event_id` it writes: same business, existing event, matching type. The movement layer does not validate it by design [R].
+- A stock correction never fabricates a financial transaction (`7-§8-*`).
+
+#### 20.4.2 C-SIG — signals and thresholds (B6-07, B6-09)
+
+- An item-level threshold record holds value, state (`suggested`, `confirmed`, `changed`), basis (data period and movements) and the confirming actor.
+- Only `confirmed` or `changed` values drive alerts or reorder triggers (`17:FPDR-6`).
+- The evidence-sufficiency rule is an EIS decision: the candidate safeguards are in §8.2. **T6 watch:** if the rule materially affects when suggestions appear, it goes to Mission Control screening and Founder confirmation first.
+- Expiry and wastage signals read only recorded batch, expiry and wastage facts; nothing is inferred (DC-07).
+
+#### 20.4.3 C-SUP — suppliers and protected prices (B6-02, B6-03, B6-20)
+
+- A supplier is the SB-P-1.12 `EIS-ID-03` participant (one per business). Proposed records:
+  - a supplier–product relation keyed to `catalog_products`;
+  - a supplier purchase-price history.
+- Historical attribution (`17:FPDR-5`) is a separate audited link from a `transactions` row to the supplier, created only by explicit Owner confirmation. The original row is never edited, and unlinked rows stay visibly unlinked.
+- Protected prices (`17:FPDR-4`): cost is exposed only through a permissioned read path (column-filtered views or RPC projections), never by row-level RLS alone. Today `current_reference_cost` is on the same row as non-cost fields [R]. The Owner-only `authority_basis` CHECK on cost and link events needs a coordinated SB-P-1.12 change before a Manager acts under the Reference Cost permission.
+- Supplier payment and credit (`owed_by_business`) are built only where authorized, on the SB-P-1.16 balance contract (`D16`, FIN-01 PROVISIONAL).
+
+#### 20.4.4 C-RO — reorder, purchase requests and standing rules (B6-12, B6-13)
+
+- A reorder suggestion record (item, quantity, basis, state) is confirmed, modified or rejected through an SB-P-1.12 `confirmation_bindings` entry (`EIS-CNF-01`).
+- The approved result is a purchase-request record linked to item and supplier.
+- Share and print outputs carry only the request content. "Sent" and "accepted" states exist only when the merchant records them (`17:FPDR-3`; `DNTF`).
+- Standing rules are `EIS-AUT-01` delegated-automation rules created only by the Owner. Each run is re-authorized (`21-§12-1` to `-5`) and fails closed to a suggestion. The trigger comes from the SB-P-1.15 scheduler (`DSCH`).
+- Follow-ups use the shared Reminder Engine (`D15`).
+
+#### 20.4.5 C-DOC — stock documents (B6-06)
+
+- Stock lists, other stock documents and the inventory side of supplier invoices use SB-P-1.17 adapters on the SB-P-1.14 UDI foundation (`EIS14-MIG-03`). They are modelled on `EIS14-ADP-02`: row-by-row commits, per-row fingerprints, writes only through `create_inventory_movement`.
+- No third import stack (`7-§6-5b`).
+
+#### 20.4.6 C-POS — standard POS bridge (B6-05, B6-06, B6-11)
+
+- One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`):
+  - an authenticated API or webhook adapter, under an integration principal on `EIS-KER-02`;
+  - a structured export file through UDI (C-DOC).
+- Proposed records:
+  - POS source, with a declared field capability per source;
+  - raw event with source identity and dedupe key;
+  - normalized sale line;
+  - item mapping to the Product & Price Master;
+  - unmapped or conflict queue;
+  - manual-versus-POS review candidates (no auto-merge, DC-12).
+- Mapped events drive stock only through `create_inventory_movement`. Revenue goes through the governed Ledger path (`DTX`), never duplicated (`13-§6-6`).
+- Credentials live only in an approved server-side secret home (`DSEC`). No vendor is named or assumed (`DPOS` UNKNOWN). **T8 watch:** feasibility of any specific POS is unproven until a source is evidenced.
+
+#### 20.4.7 C-CTR — counter review (B6-14)
+
+- Signals are derived only from fields the source declares.
+- Each signal is a neutral review item with authorized human context attached, never altering the original event (`13-§9-*`). No autonomous action (`13-§15-*`).
+- Operator identifiers are stored separately and readable only by the Owner (`17:FPDR-1` capability 5). Retention and lawful basis need the U-11 specialist and legal review before operator detail is used.
+
+#### 20.4.8 C-CC — closing cash (B6-10, B6-11)
+
+- A closing session record holds period, business timezone, inputs present, cash count (actor, time), expected cash, variance and state. Corrections are linked, never overwritten.
+- The period definition (day or shift, opening float) is an EIS decision under U-03.
+- Ledger `transaction_date` has no time [R], so expected cash is computed only for periods whose inputs can be placed in time. Otherwise the result is partial, with the unknown named (DC-09).
+- Source precedence between manual cash sales and POS cash sales is explicit and shown.
+
+#### 20.4.9 C-WS — Manager workspace (B6-15, B6-16)
+
+- Role-aware cards read feature services through governed, batched readers (precedent `inventory_current_stock_batch` [R]). No dashboard-only logic (`17-§7-8`).
+- Totals name their source.
+- Readers for Ask CFO, Daily Intelligence and reminders are contracts that SB-P-1.17 exposes and SB-P-1.15 consumes (`D17` rows).
+
+#### 20.4.10 C-AUTH — permissions, conversation and channels (B6-01, B6-17)
+
+- Each of the seven `17:FPDR-1` capabilities becomes an `EIS-KER-03` registry capability with a scope constraint (items, suppliers or counters) and an optional value ceiling. Capability 5, standing-rule creation, Reference Cost, margin and closing policy stay Owner-reserved.
+- Every SB-P-1.17 read and write calls `authz.authorize` (`EIS-KER-01`). No new owner-resolver policies are added, and no interim Manager model is built.
+- Conversation and voice use SB-P-1.13 typed tools with confirmation binding. The WhatsApp slice stays SB-P-1.20.
+
+#### 20.4.11 C-FDN — failure, audit and grants (B6-18)
+
+- Every new table and function revokes `anon`, runs SECURITY INVOKER behind RLS with a fixed `search_path`, and gets privilege tests, following the default-grant reconciliation migration [R].
+- Failures block only the uncertain update. Audit preserves source identity, raw and normalized facts, dedupe state and human context (`13-§17-*`).
+
+### 20.5 Permission and security design boundaries (proposed)
+
+- **Single authority.** The SB-P-1.12 kernel is the only permission authority. SB-P-1.17 adds registry capabilities, not policies keyed to `owner_id`.
+- **Owner financial privacy.**
+  - Reference Cost, margin and Owner financial intelligence are separate permissions (`12:FR-04`, `12:FR-09`).
+  - Supplier prices are cost (`17:FPDR-4`).
+  - Field-level projection prevents a Manager row read from leaking cost.
+- **Supplier isolation.** Suppliers reach only their own request content (`EIS-EXT-02`; `7-§3-9`). Suppliers get no dashboard capability.
+- **Execution-time authority.**
+  - Every consequential action revalidates authority epochs at commit (`EIS-CNF-02`, `EIS-KER-09`).
+  - Revocation stops prepared reorders, standing-rule runs and queued imports.
+- **Idempotency.** Each write path has a scoped key: POS events, purchase requests, rule runs, import rows and closing sessions. Retries create no duplicate stock, revenue or request.
+- **Neutral intelligence.** No signal names wrongdoing. Operator detail is Owner-only, under the U-11 hold.
+- **Integration principal.** POS adapters authenticate as a verified integration principal. Credentials stay server-side (`DSEC`) and are never logged.
+
+### 20.6 Stage 6 finding dispositions (B6-01 to B6-21)
+
+MC-396 accepted all 21 findings for Stage 7 treatment. The seven high-priority findings are B6-01, B6-02, B6-03, B6-04, B6-05, B6-10 and B6-21. **No finding changes Sections 1–19, an FCTM row or a Founder decision.**
+
+#### B6-01 — No delegated authority model (HIGH)
+
+- **Rows affected in the register:** 214
+- **Blueprint and FCTM:** §6, §8.10, §12.1; `13-§13-2`, `7-§10-*`, `17-§13-*`, `17-§14-*`, `21-§4-2`
+- **Approach:** Map the seven `17:FPDR-1` capabilities to `EIS-KER-03` registry capabilities; call `authz.authorize` everywhere; no interim Manager model
+- **Dependency and sequencing:** After SB-P-1.12 kernel implementation (`D12`)
+- **Security and integrity:** Owner-reserved items stay Owner-only; revocation epochs apply
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** EQ17-01: scope-constraint shape for items, suppliers and counters
+- **Owner:** SB-P-1.12 (kernel); SB-P-1.17 EIS (capability catalogue)
+- **Recommended disposition:** Accept for EIS
+
+#### B6-02 — Row-level cost exposure; Owner-only authority basis (HIGH)
+
+- **Rows affected in the register:** 4
+- **Blueprint and FCTM:** §8.3, §8.10; `7-§3-5`, `7-§4-5`, `17-§4-14`; `17:FPDR-4`, `12:FR-04`, `12:FR-09`
+- **Approach:** Permissioned field-level read path for supplier prices and catalog cost; coordinated authority-basis change
+- **Dependency and sequencing:** With SB-P-1.12 permission implementation
+- **Security and integrity:** Negative tests: Manager without Reference Cost permission sees quantities and dates only; no margin computed
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** EQ17-02: view or RPC projection; change path for the `authority_basis` CHECK
+- **Owner:** SB-P-1.12 with SB-P-1.17 EIS
+- **Recommended disposition:** Accept for EIS
+
+#### B6-03 — No supplier identity (HIGH)
+
+- **Rows affected in the register:** 16
+- **Blueprint and FCTM:** §8.3; `7-§3-1`, `7-§3-4`, `22-§5-6`; `17:FPDR-5`
+- **Approach:** EIS-ID-03 participant; supplier–product relation; audited attribution link
+- **Dependency and sequencing:** After `D12` participant identity
+- **Security and integrity:** Original transactions never edited; no silent merge (DC-02)
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** EQ17-03: attribution link table placement (SB-P-1.14 Ledger or SB-P-1.17)
+- **Owner:** SB-P-1.12 identity; SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-04 — Stock–Ledger linkage unvalidated; one write path absent (HIGH)
+
+- **Rows affected in the register:** 19
+- **Blueprint and FCTM:** §8.1, §8.11; `7-§8-1` to `-5`, `3-§15-10`, `3-§15-11`, `13-§6-6`
+- **Approach:** Owning-domain event-reference validation; atomic movement plus Ledger command
+- **Dependency and sequencing:** After the `DTX` cut-over decision and `D14`
+- **Security and integrity:** No duplicate revenue or stock; no fabricated financial event
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** EQ17-04: transaction item lines or event linkage only
+- **Owner:** SB-P-1.14 (DTX, Ledger); SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-05 — No POS bridge; vendor capability unknown (HIGH)
+
+- **Rows affected in the register:** 101
+- **Blueprint and FCTM:** §8.6; `13-§4-*`, `13-§5-6`, `13-§17-*`, `BP-§10.6-W7`, `BP-§10.6-B1`; `17:FPDR-2`
+- **Approach:** Vendor-neutral contract; integration principal; per-source capability declaration and dedupe
+- **Dependency and sequencing:** Contract design now; adapter only after a source is evidenced and authorized
+- **Security and integrity:** Credentials in `DSEC`; no vendor named; unsupported signals shown as unavailable
+- **Feasibility:** SOURCE-HELD; **T8 watch**
+- **Open question:** EQ17-05: first evidenced source; export-file minimum schema
+- **Owner:** Mission Control / Founder (source selection); SB-P-1.17
+- **Recommended disposition:** Accept for EIS; carry T8 watch
+
+#### B6-06 — Import path must reuse UDI (MEDIUM)
+
+- **Rows affected in the register:** 9
+- **Blueprint and FCTM:** §8.5, §8.6; `7-§6-4b`, `7-§6-5b`, `5-§4-10`, `13-§4-10`, `13-§20-7`
+- **Approach:** Adapters on `EIS14-MIG-03`, modelled on `EIS14-ADP-02`
+- **Dependency and sequencing:** After `D14`
+- **Security and integrity:** Row fingerprints; writes only through `create_inventory_movement`
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.14; SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-07 — No wastage, spoilage, batch or expiry (MEDIUM)
+
+- **Rows affected in the register:** 11
+- **Blueprint and FCTM:** §8.1, §8.2; `7-§2-7`, `7-§2-9`, `7-§2-12`
+- **Approach:** Additive enum and attribute extension
+- **Dependency and sequencing:** Before C-SIG
+- **Security and integrity:** Regression of 17 inventory test files
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** EQ17-06: batch granularity
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-08 — No unit conversion (MEDIUM)
+
+- **Rows affected in the register:** 7
+- **Blueprint and FCTM:** §8.1; `7-§2-12`, `7-§13-*`
+- **Approach:** Conversion table between pack, base and selling units
+- **Dependency and sequencing:** With C-STK
+- **Security and integrity:** A mismatch blocks only the uncertain update
+- **Feasibility:** Feasible
+- **Open question:** EQ17-07: conversion authority (Owner or Manager grant)
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-09 — Threshold sufficiency open (MEDIUM)
+
+- **Rows affected in the register:** 7
+- **Blueprint and FCTM:** §8.2; `7-§2-6`, `7-§16-6`; `17:FPDR-6`
+- **Approach:** EIS defines and justifies sufficiency, using the §8.2 candidate safeguards
+- **Dependency and sequencing:** With C-SIG
+- **Security and integrity:** No universal default; unconfirmed values never activate alerts
+- **Feasibility:** Feasible; **T6 watch**
+- **Open question:** EQ17-08: sufficiency rule
+- **Owner:** SB-P-1.17 EIS; Mission Control T6 screening
+- **Recommended disposition:** Accept for EIS; carry T6 watch
+
+#### B6-10 — No business timezone; date-only Ledger (HIGH)
+
+- **Rows affected in the register:** 16
+- **Blueprint and FCTM:** §8.8; `13-§10-*`; U-03; DC-09; `DSCH`
+- **Approach:** Closing period with timezone; partial results where inputs cannot be placed in time
+- **Dependency and sequencing:** After SB-P-1.15 timezone and scheduler (`DSCH`)
+- **Security and integrity:** Never zero-fill; variance is not proof of misconduct
+- **Feasibility:** Feasible, DEPENDENCY-HELD; EIS-open (U-03)
+- **Open question:** EQ17-09: day versus shift; opening float
+- **Owner:** SB-P-1.15; SB-P-1.17 EIS
+- **Recommended disposition:** Accept for EIS
+
+#### B6-11 — Manual and POS cash both feed totals (MEDIUM)
+
+- **Rows affected in the register:** 18
+- **Blueprint and FCTM:** §8.6, §8.8, §8.9; DC-12; `13-§10-1`
+- **Approach:** Explicit source precedence; review candidates; labelled totals
+- **Dependency and sequencing:** With C-POS and C-CC
+- **Security and integrity:** No auto-merge
+- **Feasibility:** Feasible
+- **Open question:** EQ17-10: precedence when both exist
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-12 — Standing rules need automation and scheduler (MEDIUM)
+
+- **Rows affected in the register:** 10
+- **Blueprint and FCTM:** §8.4; `7-§5-2`, `7-§15-8`, `7-§13-12`, `21-§12-*`
+- **Approach:** Rules on `EIS-AUT-01`; each run re-authorized; fail closed
+- **Dependency and sequencing:** After `D12` and `DSCH`
+- **Security and integrity:** Owner-only creation; ceiling and validity enforced
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.12, SB-P-1.15; SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-13 — No purchase-request object (MEDIUM)
+
+- **Rows affected in the register:** 7
+- **Blueprint and FCTM:** §8.4; `7-§5-1`, `7-§13-8`; `17:FPDR-3`; `DNTF`
+- **Approach:** Request record; share and print; merchant-recorded states
+- **Dependency and sequencing:** With C-RO
+- **Security and integrity:** Content check for internal data
+- **Feasibility:** Feasible (native); system dispatch excluded
+- **Open question:** —
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-14 — Operator data under U-11 (MEDIUM)
+
+- **Rows affected in the register:** 5
+- **Blueprint and FCTM:** §8.7; `13-§4-7`, `13-§13-2`
+- **Approach:** Separate Owner-only operator store; retention design
+- **Dependency and sequencing:** Before operator detail is used
+- **Security and integrity:** Privacy and lawful basis
+- **Feasibility:** Feasible; specialist hold
+- **Open question:** EQ17-11: retention period
+- **Owner:** Specialist / legal; SB-P-1.17
+- **Recommended disposition:** Accept; specialist review required
+
+#### B6-15 — Owner-only daily-totals dashboard (MEDIUM)
+
+- **Rows affected in the register:** 80
+- **Blueprint and FCTM:** §8.9; `17-§7-8`, `17-§17-*`, `17-§19-*`
+- **Approach:** Role-aware cards over governed batched readers
+- **Dependency and sequencing:** After `D12` and feature services
+- **Security and integrity:** No dashboard-only logic; stale state labelled
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-16 — Readers for Ask CFO, Daily Intelligence and reminders (MEDIUM)
+
+- **Rows affected in the register:** 15
+- **Blueprint and FCTM:** §8.10, §11.2; `2-§11-*`, `4-§*`, `11-§*`
+- **Approach:** Governed read contracts exposed by SB-P-1.17
+- **Dependency and sequencing:** Before SB-P-1.15 consumption
+- **Security and integrity:** Readers respect the same permissions
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.17 with SB-P-1.15
+- **Recommended disposition:** Accept for EIS
+
+#### B6-17 — Conversation and voice wait on SB-P-1.13 (MEDIUM)
+
+- **Rows affected in the register:** 49
+- **Blueprint and FCTM:** §8.10; `10-§13-6`, `12-§4-4`, `12-§7-7`, `24-§21-3`
+- **Approach:** Typed tools with confirmation binding
+- **Dependency and sequencing:** After `D13`, `DAI`, `DV`
+- **Security and integrity:** Natural language never widens access
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.13; SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-18 — Grant and SECURITY INVOKER pattern (MEDIUM)
+
+- **Rows affected in the register:** 93
+- **Blueprint and FCTM:** §8.11; `BP-§6.3-*`
+- **Approach:** Grant checklist and privilege tests for every object
+- **Dependency and sequencing:** Every migration
+- **Security and integrity:** Revoke `anon`; fixed `search_path`
+- **Feasibility:** Feasible
+- **Open question:** —
+- **Owner:** SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-19 — Entitlement state for the Smart Stock add-on (LOW)
+
+- **Rows affected in the register:** 4
+- **Blueprint and FCTM:** §8.1; `GPCV-R7`, `17-§14-5`; `DENT`
+- **Approach:** Gate on `EIS-KER-05`
+- **Dependency and sequencing:** After `D12` entitlement primitive
+- **Security and integrity:** Role and entitlement both required
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.12 / SB-P-1.19
+- **Recommended disposition:** Accept for EIS
+
+#### B6-20 — Supplier credit on a provisional balance truth (LOW)
+
+- **Rows affected in the register:** 5
+- **Blueprint and FCTM:** §8.3; `7-§3-7`; `D16`; FIN-01
+- **Approach:** Build only where authorized, on the SB-P-1.16 contract
+- **Dependency and sequencing:** After `D16` implementation
+- **Security and integrity:** Never netted with customer advances (DC-04)
+- **Feasibility:** Feasible, DEPENDENCY-HELD
+- **Open question:** —
+- **Owner:** SB-P-1.16; SB-P-1.17
+- **Recommended disposition:** Accept for EIS
+
+#### B6-21 — No runtime, test or POS harness evidence (HIGH)
+
+- **Rows affected in the register:** 48
+- **Blueprint and FCTM:** §14, §15.5; `BP-§13-*`
+- **Approach:** Verification plan (20.7.6 to 20.7.10)
+- **Dependency and sequencing:** Before Stage 17
+- **Security and integrity:** Evidence only from approved environments
+- **Feasibility:** UNKNOWN until evidenced
+- **Open question:** EQ17-12: required CI tier for SB-P-1.17 paths
+- **Owner:** SB-P-1.17; Mission Control (environments)
+- **Recommended disposition:** Accept; assurance plan required
+
+### 20.7 Early delivery plan (planning only; nothing executed)
+
+#### 20.7.1 Environments and readiness evidence
+
+| Environment | Purpose | Readiness evidence required before use | State |
+|---|---|---|---|
+| Local development | Build, lint, typecheck, environment-independent tests | None beyond the repository | Available [R] |
+| `smart-business-test` (isolated Supabase test project) | Supabase-backed integration tests, migration rehearsal, privilege tests | Fresh verification of project state, schema parity with production and access (Truth Pack Δ-06) | [U] not freshly verified |
+| POS fixture harness | Recorded, vendor-neutral fixture events and export files for bridge tests | Fixtures derived only from an evidenced source contract | Absent |
+| Evidenced POS source (sandbox or merchant-approved) | FRV-B and the API/webhook class | Source selection, credentials in `DSEC`, authorization | [U] `DPOS` |
+| Production (Team LIPS Supabase) | None in this mission | A separate authorized execution mission (`docs/migration/README.md`) | NOT AUTHORIZED |
+
+#### 20.7.2 Expected migration classes (default-deny; none authorized)
+
+Every class is additive, reviewed against the repository grant pattern, and sequenced after its upstream foundation:
+
+| Class | Content | Prerequisite |
+|---|---|---|
+| M17-1 Stock extension | Wastage and spoilage movement types; batch and expiry attributes; unit conversion | Regression plan for SB-P-1.10 invariants |
+| M17-2 Thresholds and signals | Threshold records and states; suggestion basis | M17-1 |
+| M17-3 Supplier memory | Supplier–product relation; purchase-price history; attribution links | SB-P-1.12 `EIS-ID-03` |
+| M17-4 Cost projection | Permissioned field-level read path; authority-basis change coordination | SB-P-1.12 permission implementation |
+| M17-5 Reorder | Suggestions, purchase requests, standing-rule bindings | SB-P-1.12 `EIS-AUT-01`, `EIS-CNF-01`; SB-P-1.15 scheduler |
+| M17-6 POS bridge | Sources and capability declarations, raw events, mappings, dedupe keys, review candidates | Evidenced source (`DPOS`); `DSEC` |
+| M17-7 Counter and closing | Review signals, human context, Owner-only operator store, closing sessions, cash counts, variance | M17-6 (counter); SB-P-1.15 timezone (closing); U-11 review |
+| M17-8 Readers | Governed reader functions for workspace and SB-P-1.15 | Feature tables |
+| M17-9 Ledger linkage | Validated event links; atomic stock and Ledger command | `DTX` cut-over; SB-P-1.14 Ledger |
+
+#### 20.7.3 Migration and rollback rehearsal requirements
+
+- **Default deny.** Each class is rehearsed only under a separate authorized mission (`docs/migration/README.md`). Rehearsal runs on `smart-business-test` after that project's state is freshly verified.
+- **Rehearsal content.** Every rehearsal includes:
+  - forward migration;
+  - privilege verification (revoke `anon`, SECURITY INVOKER, `search_path`);
+  - regression of the inventory and catalog suites;
+  - a written rollback or compensating migration, itself rehearsed.
+- **Schema evidence.** Use `pg_class` and `pg_namespace` rather than `information_schema.tables`.
+- **Destructive statements.** Any destructive or `DROP` statement needs an explicit environment breadcrumb check first. This lesson is carried from incident SB-INC-2026-001.
+- **Tooling.** The Supabase CLI runs only through the repository wrapper `scripts/supabase-cli.mjs`, never bare.
+- **Production.** Production execution is never part of this Product Mission (Source 18 §9.1).
+
+#### 20.7.4 Cross-mission dependency order
+
+1. **SB-P-1.12 kernel** — authorization, capability registry, grants, confirmation bindings, participant identity, delegated automation and entitlement (`D12`, `DENT`).
+2. **SB-P-1.13** — conversation, AI and voice kernel (`D13`, `DAI`, `DV`).
+3. **SB-P-1.14** — four-state Ledger, UDI, storage, and the `DTX` cut-over (`D14`, `DTX`, `DR2`).
+4. **SB-P-1.15** — Reminder Engine, scheduler and business timezone, native notifications, Ask CFO, Daily Intelligence (`D15`, `DSCH`).
+5. **SB-P-1.16** — balance truth and supplier-side credit direction (`D16`, `DPAY`).
+6. **SB-P-1.17** classes M17-1 to M17-9, in the order of 20.7.2. M17-1, M17-2 and M17-6 contract design can start in parallel with steps 1–5; their execution waits on the named prerequisites.
+
+All five upstream missions are specification-locked with Implementation Authorization WITHHELD [R].
+
+#### 20.7.5 Integration boundaries
+
+- **POS (`17:FPDR-2`):** vendor-neutral, edge-only; no client-specific core change (`13-§5-1`, `GPCV-§9-6`).
+- **Supplier communication (`17:FPDR-3`):** merchant-sent only until SB-P-1.20 supplies an approved channel (`DNTF`).
+- **Later missions:**
+  - SB-P-1.18 consumes stock and availability readers.
+  - SB-P-1.19 owns entitlement lifecycle and the add-on price (`BP-§15-4`).
+  - SB-P-1.20 owns WhatsApp slices and system dispatch.
+
+#### 20.7.6 Verification tiers and test requirements
+
+| Tier | Content | Where it runs |
+|---|---|---|
+| T1 | Static checks and environment-independent unit tests | PR CI (`build-assurance`) |
+| T2 | Supabase-backed integration, negative and replay tests, including privilege tests | `full-assurance` on `smart-business-test` |
+| T3 | End-to-end runtime on an approved environment | Stage 17 runtime verification |
+| T4 | Founder Runtime Verification (`FRV-A`, `FRV-B`) | Founder-reserved |
+| DR / EXP | Design inspection; experience and language review | Stage 19 independent verification |
+
+**Required test families:**
+- authority: allow and deny for each of the seven capabilities, revocation before commit, cross-business denial;
+- cost: no cost without permission; no margin;
+- idempotency: POS events, requests, rule runs, imports, closing;
+- inventory invariants: regression;
+- neutral language: experience review;
+- partial closing: unknowns named.
+
+#### 20.7.7 Continuous-integration tiers
+
+- **Current tiers [R]:**
+  - PR CI (`build-assurance`) runs lint, typecheck, build and the 8 environment-independent test files.
+  - `full-assurance` runs the 20 Supabase-dependent files against `smart-business-test`, filtered by path.
+  - The Markdown Quality Gate checks changed `.md` files.
+- **Requirements for this mission:**
+  - SB-P-1.17 code and migration paths join the `full-assurance` path filter.
+  - New Supabase-backed test files are added to `vitest.full.config.ts`.
+  - The POS fixture suite runs in T1, because fixtures need no live source.
+
+#### 20.7.8 Runtime assurance and acceptance strategy
+
+- **Stage order:** Stage 17 runtime verification, Stage 18 Mission Control runtime review, Stage 19 independent verification, Stage 23 acceptance.
+- **Evidence rule:** each `IN SCOPE` row is accepted only on the evidence named in its verification seed (20.8). A missing evidence item is not a pass.
+- **Optional approaches:** `17:FPDR-7` examples are verified only if adopted, and the mandatory rules of the same section are verified in every case.
+
+#### 20.7.9 Scope flags carried from Stage 1
+
+Carried from the Stage 1 Intake Pack §6:
+- **NOT AUTHORIZED:** production mutation, migration execution, delivery sync and publication, provider account or configuration action, runtime and production tests, deployment, external POS connection.
+- **Builder assignment and writable implementation paths:** none authorized.
+
+These flags stand until a separate authorization changes them. Stage 8 Founder approval confirms the production and migration scope flags.
+
+#### 20.7.10 Founder Scenario verification plans
+
+- **Scenario A (`BP-§10.6-A1` to `A4`) — `FRV-A`, Owner path:**
+  - **Positive path:**
+    1. An Owner-confirmed threshold.
+    2. A stock movement takes the item below it.
+    3. An explained suggestion appears.
+    4. The Owner confirms through a confirmation binding.
+    5. A purchase request results, linked to the same Product & Price Master item.
+  - **Negative paths:**
+    - an unconfirmed threshold raises no alert;
+    - a trigger without authority executes nothing;
+    - an expired or revoked standing rule falls back to a suggestion;
+    - no "sent" state without merchant entry.
+  - **Prerequisites:** `D12`, `D13`, `D14`, `D15` and an approved T3 environment.
+- **Scenario B (`BP-§10.6-B1`, `B2`) — `FRV-B`:**
+  - Run against the first POS source evidenced to supply discount or void data (`17:FPDR-2`).
+  - **Positive path:** an evidenced anomaly appears as a neutral review item.
+  - **Negative paths:**
+    - no accusation, lock, reversal or punishment;
+    - an unsupported signal is shown as unavailable;
+    - a staff member does not see analysis about other staff.
+  - **Fixture rehearsal (T1/T2) is not FRV-B.** **T8 watch:** Scenario B cannot be demonstrated until a source is evidenced and authorized.
+
+### 20.8 Per-row feasibility and risk register (404 `IN SCOPE` rows)
+
+**Status meanings** (documentary feasibility only; not implementation, runtime or specialist evidence):
+
+| Status | Meaning | Rows |
+|---|---|---|
+| `DESIGN ACCEPTED — EVIDENCE HOLD` | No upstream dependency code; the design is acceptable and is checked by review and later verification evidence | 76 |
+| `DEPENDENCY-HELD` | Feasible design held by an unbuilt upstream foundation (`D12`, `D13`, `D14`, `DTX`, `D15`, `DSCH`, `DAI`, `DV`, `D16`, `DPAY`, `DENT`) | 227 |
+| `SOURCE-HELD` | Feasible contract design held by `DPOS` (and `DSEC`): no POS source is evidenced, selected or authorized | 101 |
+
+"Held" means waiting on an identified, recorded dependency. It is **not** a Source 18 T8 infeasibility finding. No row is found infeasible or unsafe, no row is narrowed, moved or deferred, and no row is `ESCALATED` or `PASS`.
+
+**Columns:**
+- **Component** refers to 20.3 and 20.4.
+- **Risk** (H, M or L) follows a stated rule:
+  - H: source-held, `DTX`, a `FRV` row, or a row citing `17:FPDR-1`, `-2` or `-4`;
+  - M: any other dependency-held row;
+  - L: design-only.
+- **Verification** maps the FCTM seed to the tiers in 20.7.6. `if adopted` qualifiers are preserved.
+- **Evidence:** [R] repository code from the FCTM evidence cell; [S] upstream specification; [U] unknown.
+- **Findings** lists up to four applicable Stage 6 findings.
+
+**Totals:** 76 design-accepted, 227 dependency-held, 101 source-held; risk H 118, M 210, L 76.
+
+| Row | Component | Feasibility | Foundations and dependencies | Risk | Verification | Blocking condition | Evidence | Findings | Stage 7 disposition |
+|---|---|---|---|---|---|---|---|---|---|
+| `7-§1-1` | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§1-2` | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§2-1` | C-STK | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-INV; [R] F-PPM; [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-2` | C-STK | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-08 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-3` | C-STK | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-4` | C-STK | DEPENDENCY-HELD | D14 | M | RT → T2+T3 | Until D14 implemented and verified | [R] F-INV; [S] D14 | — | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-5` | C-STK | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-6` | C-SIG | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-09 | IN SCOPE — DEPENDENCY-HELD (T6 watch: evidence sufficiency); design accepted for the EIS |
+| `7-§2-7` | C-SIG | DEPENDENCY-HELD | D14 | M | RT → T2+T3 | Until D14 implemented and verified | [R] NI-EXP; [S] D14 | B6-07, B6-09 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-8` | C-SIG | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-09 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-9` | C-SIG | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-EXP; [S] D12, D14 | B6-01, B6-07, B6-09 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-10` | C-STK | DEPENDENCY-HELD | D12, D14, DTX | H | RT → T2+T3 | Until D12, D14, DTX implemented and verified | [R] F-PPM; [S] D12, D14, DTX | B6-01, B6-04 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-11` | C-STK | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3 | Until D12, D13 implemented and verified | [R] NI-ROLE; [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§2-12` | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-07, B6-08 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§3-1` | C-SUP | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-2` | C-SUP | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-3` | C-SUP | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-4` | C-SUP | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-SUP; [R] F-TXN; [S] D12, D14 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-5` | C-SUP | DEPENDENCY-HELD | D12, D14 | H | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] NI-SUP; [S] D12, D14 | B6-01, B6-02, B6-03 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `7-§3-6` | C-SUP | DEPENDENCY-HELD | D12, DNTF | M | RT → T2+T3 | Until D12 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [R] NI-SUP; [S] D12 | B6-01, B6-03, B6-13 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-7` | C-SUP | DEPENDENCY-HELD | D12, D14, DTX, D16 | H | RT → T2+T3 | Until D12, D14, DTX, D16 implemented and verified | [R] NI-SUP; [S] D12, D14, DTX, D16 | B6-01, B6-03, B6-04, B6-20 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§3-8` | C-SUP | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `7-§3-9` | C-SUP | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-1` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-2` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-3` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-4` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-5` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | H | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-02, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-6` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-07, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§4-7` | C-RO | DEPENDENCY-HELD | D12, D13, D14 | M | NEG → T2 neg | Until D12, D13, D14 implemented and verified | [S] D12, D13, D14 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§5-1` | C-RO | DEPENDENCY-HELD | D12, D13, DNTF | H | RT → T2+T3; NEG → T2 neg; FRV-A → T4 FRV-A | Until D12, D13 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [R] NI-RO; [S] D12, D13 | B6-01, B6-13, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§5-2` | C-RO | DEPENDENCY-HELD | D12, D15, DSCH | M | RT → T2+T3; NEG → T2 neg; FRV-A → T4 FRV-A | Until D12, D15, DSCH implemented and verified | [R] NI-RO; [S] D12, D15, DSCH | B6-01, B6-12 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§5-3` | C-RO | DEPENDENCY-HELD | D12, D15 | M | NEG → T2 neg | Until D12, D15 implemented and verified | [S] D12, D15 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§5-4` | C-RO | DEPENDENCY-HELD | D12, D15 | M | INSP → DR; NEG → T2 neg | Until D12, D15 implemented and verified | [S] D12, D15 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§6-1` | C-DOC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-UDI; [S] D12, D14 | B6-01, B6-06 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§6-3` | C-DOC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-UDI; [R] NI-SUP; [S] D12, D14 | B6-01, B6-06 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§6-4b` | C-DOC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; IDEM → T2 replay | Until D12, D14 implemented and verified | [R] NI-UDI; [S] D12, D14 | B6-01, B6-06, B6-08 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§6-5b` | C-DOC | DEPENDENCY-HELD | D14 | M | NEG → T2 neg; IDEM → T2 replay | Until D14 implemented and verified | [S] D14 | B6-06 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§7-1` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | RT → T2+T3 | None for design; evidence at Stages 17–19 | [R] F-INV | B6-11 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§7-2` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§7-3` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§7-4` | C-POS | SOURCE-HELD | DPOS, D14 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§8-1` | C-STK | DEPENDENCY-HELD | D14, DTX | H | INSP → DR; IDEM → T2 replay | Until D14, DTX implemented and verified | [R] NI-LDG; [S] D14, DTX | B6-04 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§8-2` | C-STK | DEPENDENCY-HELD | D14, DTX | H | RT → T2+T3; IDEM → T2 replay | Until D14, DTX implemented and verified | [R] NI-LDG; [R] F-INV; [S] D14, DTX | B6-04 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§8-3` | C-STK | SOURCE-HELD | D14, DTX, DPOS | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14, DTX | [R] NI-LDG; [S] D14, DTX; [U] DPOS | B6-04, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§8-4` | C-STK | DEPENDENCY-HELD | D14 | M | NEG → T2 neg | Until D14 implemented and verified | [R] F-INV; [S] D14 | — | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§8-5` | C-STK | DEPENDENCY-HELD | D14, DTX, D16 | H | RT → T2+T3; INSP → DR | Until D14, DTX, D16 implemented and verified | [R] NI-SUP; [S] D14, DTX, D16 | B6-04, B6-20 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§9-1` | C-STK | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-INV; [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§9-2` | C-STK | DEPENDENCY-HELD | D12, DENT | M | RT → T2+T3 | Until D12, DENT implemented and verified | [R] NI-ENT; [S] D12, DENT | B6-01, B6-04, B6-19 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§9-3` | C-STK | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-04, B6-08 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.1` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.2` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-07, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.3` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.4` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.5` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-1.6` | C-RO | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-RO; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-2.1` | C-RO | DEPENDENCY-HELD | D13, D12 | M | NEG → T2 neg | Until D13, D12 implemented and verified | [S] D13, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-2.2` | C-RO | DEPENDENCY-HELD | D13, D12 | M | NEG → T2 neg | Until D13, D12 implemented and verified | [S] D13, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-2.3` | C-RO | DEPENDENCY-HELD | D13, D12 | M | NEG → T2 neg | Until D13, D12 implemented and verified | [S] D13, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-2.4` | C-RO | DEPENDENCY-HELD | D13, D12 | M | NEG → T2 neg | Until D13, D12 implemented and verified | [S] D13, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§11-2.5` | C-RO | DEPENDENCY-HELD | D13, D12 | M | NEG → T2 neg | Until D13, D12 implemented and verified | [S] D13, D12 | B6-01, B6-02, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-1` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-PPM; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-2` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-3` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-4` | C-FDN | DEPENDENCY-HELD | D15, DSCH | M | INSP → DR | Until D15, DSCH implemented and verified | [S] D15, DSCH | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-5` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-6` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-7` | C-FDN | DEPENDENCY-HELD | D13, D15, DNTF | M | INSP → DR | Until D13, D15 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [S] D13, D15 | B6-13, B6-17, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-8` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-INV; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§12-9` | C-FDN | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§13-1` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | IDEM → T2 replay | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-04, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-2` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-3` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-4` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-08, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-5` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-6` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-7` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-8` | C-FDN | DEPENDENCY-HELD | D14, DNTF | M | RT → T2+T3; NEG → T2 neg | Until D14 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [R] NI-SUP; [S] D14 | B6-13, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-9` | C-FDN | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§13-10` | C-FDN | DEPENDENCY-HELD | D14 | M | RT → T2+T3; NEG → T2 neg | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-11` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | IDEM → T2 replay | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-12` | C-FDN | DEPENDENCY-HELD | D12, D15 | M | RT → T2+T3; NEG → T2 neg | Until D12, D15 implemented and verified | [R] NI-RO; [S] D12, D15 | B6-01, B6-07, B6-12, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§13-13` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§14-1` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§14-2` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-07 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§15-1` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-2b` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; IDEM → T2 replay | Until D12, D14 implemented and verified | [R] NI-UDI; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-3` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-4` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-5` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-EXP; [R] NI-RO; [S] D12, D14 | B6-01, B6-07, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-6` | C-ACC | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-7` | C-ACC | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13 implemented and verified | [R] NI-RO; [S] D12, D13 | B6-01, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-8` | C-ACC | DEPENDENCY-HELD | D12, D15, DSCH | M | RT → T2+T3; NEG → T2 neg | Until D12, D15, DSCH implemented and verified | [R] NI-RO; [S] D12, D15, DSCH | B6-01, B6-12, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§15-9` | C-ACC | SOURCE-HELD | DPOS | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `7-§15-11` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | NEG → T2 neg; EXP → EXP | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `7-§16-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-12, B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§16-2` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-04, B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§16-3` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§16-4` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§16-5` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `7-§16-6` | C-SIG | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-09 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD (T6 watch: evidence sufficiency); design accepted for the EIS |
+| `7-§18-1` | C-ACC | SOURCE-HELD | D12, D13, D14, D15, DPOS | H | GATE → GATE | No evidenced POS source or interface (DPOS); also D12, D13, D14, D15 | [S] D12, D13, D14, D15; [U] DPOS | B6-01, B6-05, B6-17, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§1-1` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] NI-POS | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§1-2` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] NI-POS | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§2-6` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-1` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-2` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-3` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-4` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-5` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-6` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§3-7` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§4-1` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-2` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-3` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-4` | C-POS | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [R] F-PPM; [S] D12; [U] DPOS | B6-01, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-5` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-6` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-7` | C-POS | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-14 | IN SCOPE — SOURCE-HELD (specialist hold: U-11); design accepted for the EIS |
+| `13-§4-8` | C-POS | SOURCE-HELD | DPOS, D14, DTX | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14, DTX | [R] NI-POS; [S] D14, DTX; [U] DPOS | B6-04, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-9` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§4-10` | C-POS | SOURCE-HELD | DPOS, D14 | H | INSP → DR | No evidenced POS source or interface (DPOS); also D14 | [S] D14; [U] DPOS | B6-05, B6-06, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-1` | C-POS | SOURCE-HELD | DPOS | H | NEG → T2 neg; INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-2` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-3` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-06 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-4` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-5` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§5-6` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-1` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-2` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-3` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-4` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-5` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§6-6` | C-POS | SOURCE-HELD | DPOS, D14, DTX | H | IDEM → T2 replay; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D14, DTX | [S] D14, DTX; [U] DPOS | B6-04, B6-05, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§7-1` | C-POS | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [R] F-PPM; [S] D12; [U] DPOS | B6-01, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§7-2` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [R] F-INV; [S] D14; [U] DPOS | B6-05, B6-08 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§7-3` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [R] F-INV; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§7-4` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [R] F-INV; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§7-5` | C-POS | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D14 | [R] NI-POS; [S] D14; [U] DPOS | B6-05, B6-06, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§8-1` | C-CTR | SOURCE-HELD | DPOS | H | RT → T2+T3; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§8-2` | C-CTR | SOURCE-HELD | DPOS | H | RT → T2+T3; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§8-3` | C-CTR | SOURCE-HELD | DPOS | H | RT if adopted → T2+T3; FRV-B only if used as the Scenario B signal → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source; optional approach (17:FPDR-7)); design accepted for the EIS |
+| `13-§8-4` | C-CTR | SOURCE-HELD | DPOS | H | RT if adopted → T2+T3; FRV-B only if used as the Scenario B signal → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source; optional approach (17:FPDR-7)); design accepted for the EIS |
+| `13-§8-5` | C-CTR | SOURCE-HELD | DPOS | H | RT if adopted → T2+T3; FRV-B only if used as the Scenario B signal → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source; optional approach (17:FPDR-7)); design accepted for the EIS |
+| `13-§8-6` | C-CTR | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS); also D14 | [R] NI-CC; [S] D14; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§8-7` | C-CTR | SOURCE-HELD | DPOS | H | RT if adopted → T2+T3; FRV-B only if used as the Scenario B signal → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source; optional approach (17:FPDR-7)); design accepted for the EIS |
+| `13-§8-8` | C-CTR | SOURCE-HELD | DPOS | H | EXP → EXP; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§8-9` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; FRV-B → T4 FRV-B | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§8-10` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; FRV-B → T4 FRV-B | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§9-1` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§9-2` | C-CTR | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§9-3` | C-CTR | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§9-4` | C-CTR | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§9-5` | C-CTR | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§9-6` | C-CTR | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§9-7` | C-CTR | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; NEG → T2 neg | Until D12, D14 implemented and verified | [R] NI-POS; [S] D12, D14 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§10-1` | C-CC | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-CC; [S] D14; [U] DPOS | B6-05, B6-10, B6-11 | IN SCOPE — SOURCE-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-2` | C-CC | SOURCE-HELD | DPOS, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D14 | [R] NI-CC; [S] D14; [U] DPOS | B6-05, B6-10, B6-11 | IN SCOPE — SOURCE-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-3` | C-CC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-10, B6-11 | IN SCOPE — DEPENDENCY-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-4` | C-CC | DEPENDENCY-HELD | D14, DTX | H | RT → T2+T3 | Until D14, DTX implemented and verified | [R] NI-CC; [S] D14, DTX | B6-04, B6-10, B6-11 | IN SCOPE — DEPENDENCY-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-5` | C-CC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-10, B6-11 | IN SCOPE — DEPENDENCY-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-6` | C-CC | DEPENDENCY-HELD | D12 | H | RT → T2+T3 | Until D12 implemented and verified | [R] NI-CC; [S] D12 | B6-01, B6-10, B6-11 | IN SCOPE — DEPENDENCY-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-7` | C-CC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-10 | IN SCOPE — DEPENDENCY-HELD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§10-8` | C-CC | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-10, B6-12 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD (EIS-open: closing cadence (U-03)); design accepted for the EIS |
+| `13-§11-1` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-11, B6-16 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-2` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-16, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-3` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-11, B6-16, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-4` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-16, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-5` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-16, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-6` | C-CC | DEPENDENCY-HELD | D15, DSCH | M | RT → T2+T3 | Until D15, DSCH implemented and verified | [R] NI-CC; [S] D15, DSCH | B6-10, B6-16, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§11-7` | C-CC | DEPENDENCY-HELD | D12, D15 | M | NEG → T2 neg | Until D12, D15 implemented and verified | [S] D12, D15 | B6-01, B6-10, B6-16 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§12-1` | C-AUTH | DEPENDENCY-HELD | D13, D15 | M | RT → T2+T3 | Until D13, D15 implemented and verified | [S] D13, D15 | B6-16, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§12-2` | C-AUTH | DEPENDENCY-HELD | D13, D15 | M | RT → T2+T3 | Until D13, D15 implemented and verified | [S] D13, D15 | B6-16, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§12-3` | C-AUTH | DEPENDENCY-HELD | D13, D15 | M | RT → T2+T3 | Until D13, D15 implemented and verified | [S] D13, D15 | B6-16, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§12-4` | C-AUTH | DEPENDENCY-HELD | D13, D15 | M | RT → T2+T3 | Until D13, D15 implemented and verified | [S] D13, D15 | B6-16, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§12-5` | C-AUTH | DEPENDENCY-HELD | D12, D15 | M | NEG → T2 neg | Until D12, D15 implemented and verified | [S] D12, D15 | B6-01, B6-16 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§13-1` | C-AUTH | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] NI-ROLE; [R] F-INV; [R] F-DASH; [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§13-2` | C-AUTH | DEPENDENCY-HELD | D12 | H | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] NI-ROLE; [S] D12 | B6-01, B6-12 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§13-3` | C-AUTH | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [R] NI-ROLE; [S] D12 | B6-01, B6-14 | IN SCOPE — DEPENDENCY-HELD (specialist hold: U-11); design accepted for the EIS |
+| `13-§13-4` | C-AUTH | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§14-1a` | C-AUTH | DEPENDENCY-HELD | D13, DAI, D12 | M | RT → T2+T3 | Until D13, DAI, D12 implemented and verified | [R] NI-POS; [S] D13, DAI, D12 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§14-2` | C-AUTH | DEPENDENCY-HELD | D12, D13 | M | INSP → DR; NEG → T2 neg | Until D12, D13 implemented and verified | [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§15-1` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-2` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-3` | C-CTR | DEPENDENCY-HELD | D14 | M | NEG → T2 neg | Until D14 implemented and verified | [S] D14 | — | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§15-4` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-5` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-6` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-7` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§15-8` | C-CTR | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3 | Until D12, D13 implemented and verified | [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§16-1` | C-FDN | SOURCE-HELD | DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-2` | C-FDN | SOURCE-HELD | DPOS | H | IDEM → T2 replay | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-04, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-3` | C-FDN | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-4` | C-FDN | SOURCE-HELD | DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-08, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-5` | C-FDN | SOURCE-HELD | DPOS | H | IDEM → T2 replay | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-6` | C-FDN | SOURCE-HELD | DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-7` | C-FDN | SOURCE-HELD | DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-8` | C-FDN | SOURCE-HELD | DPOS, DSEC | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS, DSEC) | [R] NI-POS; [U] DPOS, DSEC | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-9` | C-FDN | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] NI-CC; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§16-10` | C-FDN | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] NI-CC; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§16-11` | C-FDN | SOURCE-HELD | DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§16-12` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | RT → T2+T3; NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] F-INV | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§17-1` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-2` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-3` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-4` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-5` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-6` | C-FDN | SOURCE-HELD | DPOS, D12 | H | IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-7` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-8` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-14, B6-18 | IN SCOPE — SOURCE-HELD (specialist hold: U-11); design accepted for the EIS |
+| `13-§17-9` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-10` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§17-11` | C-FDN | DEPENDENCY-HELD | D12, D14 | M | INSP → DR; RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§17-12` | C-FDN | SOURCE-HELD | DPOS, D12 | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§18-1` | C-CTR | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§18-2` | C-CTR | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§18-3` | C-CTR | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01, B6-14 | IN SCOPE — DEPENDENCY-HELD (specialist hold: U-11); design accepted for the EIS |
+| `13-§18-4` | C-CTR | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§18-5` | C-CTR | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-1` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-2` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-PPM; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-3` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-INV; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-4` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-5` | C-FDN | DEPENDENCY-HELD | D13 | M | INSP → DR | Until D13 implemented and verified | [S] D13 | B6-17, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-6` | C-FDN | DEPENDENCY-HELD | D15 | M | INSP → DR | Until D15 implemented and verified | [S] D15 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-7` | C-FDN | DEPENDENCY-HELD | D15 | M | INSP → DR | Until D15 implemented and verified | [S] D15 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-8` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§19-9` | C-FDN | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§19-10` | C-FDN | DEPENDENCY-HELD | D15, DNTF | M | INSP → DR | Until D15 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [S] D15 | B6-13, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§20-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-2` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-3` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-4` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-5` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-6` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§20-7` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§21-1` | C-ACC | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§21-2` | C-ACC | SOURCE-HELD | DPOS, D14, DTX | H | IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14, DTX | [R] NI-POS; [S] D14, DTX; [U] DPOS | B6-04, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§21-3` | C-ACC | SOURCE-HELD | DPOS, D12, D14 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12, D14 | [R] NI-POS; [S] D12, D14; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§21-4` | C-ACC | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§21-5` | C-ACC | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `13-§21-6` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-POS; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§21-7` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§21-8` | C-ACC | DEPENDENCY-HELD | D13, D15 | M | NEG → T2 neg | Until D13, D15 implemented and verified | [R] NI-POS; [S] D13, D15 | B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§21-9` | C-ACC | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [R] NI-POS; [S] D12 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `13-§21-10` | C-ACC | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] F-INV; [R] NI-POS; [U] DPOS | B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§21-11` | C-ACC | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `13-§22-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§22-2` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§22-3` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§22-4` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§22-5` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `13-§24-1` | C-ACC | SOURCE-HELD | D12, D13, D14, D15, DPOS | H | GATE → GATE | No evidenced POS source or interface (DPOS); also D12, D13, D14, D15 | [S] D12, D13, D14, D15; [U] DPOS | B6-01, B6-05, B6-17, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§1-1` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] F-DASH | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§1-2` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] F-DASH | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§2-9` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§3-1` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§3-2` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§3-3` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§3-4` | C-WS | DEPENDENCY-HELD | D12 | M | EXP → EXP; INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§3-5` | C-WS | DEPENDENCY-HELD | D12, D14 | M | EXP → EXP; INSP → DR | Until D12, D14 implemented and verified | [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§3-6` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§3-7` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP; INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§4-1` | C-WS | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-2` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-3` | C-WS | DEPENDENCY-HELD | D12, D16 | M | RT if adopted → T2+T3 | Until D12, D16 implemented and verified | [R] F-DASH; [S] D12, D16 | B6-01, B6-15, B6-20 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-4` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-5` | C-WS | DEPENDENCY-HELD | D12, D15 | M | RT if adopted → T2+T3 | Until D12, D15 implemented and verified | [R] F-DASH; [S] D12, D15 | B6-01, B6-15, B6-16 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-6` | C-WS | DEPENDENCY-HELD | D12, D15 | M | RT → T2+T3 | Until D12, D15 implemented and verified | [R] F-DASH; [S] D12, D15 | B6-01, B6-15, B6-16 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-7` | C-WS | DEPENDENCY-HELD | D12, D15 | M | RT → T2+T3 | Until D12, D15 implemented and verified | [R] F-DASH; [S] D12, D15 | B6-01, B6-15, B6-16 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-8` | C-WS | DEPENDENCY-HELD | D12, DENT | M | RT → T2+T3 | Until D12, DENT implemented and verified | [R] F-DASH; [S] D12, DENT | B6-01, B6-15, B6-19 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-9` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-10` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-11` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] F-DASH; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§4-12` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§4-13` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-14` | C-WS | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-02, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§4-16` | C-WS | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§6-1` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-2` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-3` | C-WS | DEPENDENCY-HELD | D12, D16 | M | RT if adopted → T2+T3 | Until D12, D16 implemented and verified | [R] NI-CRD; [S] D12, D16 | B6-01, B6-12, B6-15, B6-20 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-4` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-5` | C-WS | DEPENDENCY-HELD | D12, D16, DPAY | M | RT if adopted → T2+T3 | Until D12, D16, DPAY implemented and verified | [R] NI-PAY; [S] D12, D16, DPAY | B6-01, B6-15, B6-20 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-6` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT if adopted → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§6-7` | C-WS | DEPENDENCY-HELD | D12, DENT | M | INSP → DR; NEG → T2 neg | Until D12, DENT implemented and verified | [R] F-DASH; [S] D12, DENT | B6-01, B6-15, B6-19 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§6-8` | C-WS | DEPENDENCY-HELD | D12, D14 | M | NEG → T2 neg | Until D12, D14 implemented and verified | [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-1` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-INV; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-2` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-3` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-EXP; [S] D12, D14 | B6-01, B6-07, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-4` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-EXP; [R] NI-RO; [S] D12, D14 | B6-01, B6-07, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-5` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-SUP; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-6` | C-WS | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-7` | C-WS | DEPENDENCY-HELD | D12, D14, DNTF | M | RT → T2+T3 | Until D12, D14 implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [R] NI-SUP; [S] D12, D14 | B6-01, B6-13, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§7-8` | C-WS | DEPENDENCY-HELD | D12, D14 | M | NEG → T2 neg; INSP → DR | Until D12, D14 implemented and verified | [S] D12, D14 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§8-1` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§8-2` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§8-3` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `17-§8-4` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-CC; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§8-5` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-CC; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§8-6` | C-WS | SOURCE-HELD | D12, DPOS | H | NEG → T2 neg; EXP → EXP; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `17-§15-1` | C-WS | DEPENDENCY-HELD | D12 | M | EXP → EXP | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§15-2` | C-WS | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§15-3` | C-WS | DEPENDENCY-HELD | D12, DENT | M | RT if adopted → T2+T3 | Until D12, DENT implemented and verified | [R] F-DASH; [S] D12, DENT | B6-01, B6-15, B6-19 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§15-4` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§15-5` | C-WS | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§15-6` | C-WS | DEPENDENCY-HELD | D12 | M | RT if adopted → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§15-7` | C-WS | DEPENDENCY-HELD | D12 | M | EXP if adopted → EXP | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD (optional approach (17:FPDR-7)); design accepted for the EIS |
+| `17-§15-8` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | NEG → T2 neg; EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§16-2` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] F-DASH | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§16-3` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§17-1` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-2` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-3` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-4` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-5` | C-WS | SOURCE-HELD | D12, DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D12 | [R] F-DASH; [S] D12; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§17-6` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-7` | C-WS | SOURCE-HELD | D12, D14, DPOS | H | RT → T2+T3; NEG → T2 neg | No evidenced POS source or interface (DPOS); also D12, D14 | [R] NI-POS; [S] D12, D14; [U] DPOS | B6-01, B6-05, B6-15 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§17-8` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§17-9` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3; NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§18-3` | C-WS | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§18-5` | C-WS | DEPENDENCY-HELD | D12 | M | NEG → T2 neg; EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01, B6-14, B6-15 | IN SCOPE — DEPENDENCY-HELD (specialist hold: U-11); design accepted for the EIS |
+| `17-§19-1` | C-WS | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-DASH; [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§19-2` | C-WS | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-1` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-2` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-3` | C-FDN | DEPENDENCY-HELD | D13 | M | INSP → DR | Until D13 implemented and verified | [S] D13 | B6-17, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-4` | C-FDN | DEPENDENCY-HELD | D13 | M | INSP → DR | Until D13 implemented and verified | [S] D13 | B6-17, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-5` | C-FDN | DEPENDENCY-HELD | D15 | M | INSP → DR | Until D15 implemented and verified | [S] D15 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-6` | C-FDN | DEPENDENCY-HELD | D15 | M | INSP → DR | Until D15 implemented and verified | [S] D15 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-7` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-8` | C-FDN | DEPENDENCY-HELD | D15 | M | INSP → DR | Until D15 implemented and verified | [S] D15 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-9` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [R] F-INV; [R] F-PPM; [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-10` | C-FDN | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05, B6-18 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§20-11` | C-FDN | DEPENDENCY-HELD | D12 | M | INSP → DR | Until D12 implemented and verified | [S] D12 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§20-12` | C-FDN | DEPENDENCY-HELD | D12, D15 | M | INSP → DR | Until D12, D15 implemented and verified | [S] D12, D15 | B6-01, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§21-1` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§21-2` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§21-3` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR; NEG → T2 neg | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§21-5` | C-WS | DEPENDENCY-HELD | D13 | M | INSP → DR | Until D13 implemented and verified | [S] D13 | B6-15, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§22-1` | C-ACC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] F-DASH; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§22-5` | C-ACC | SOURCE-HELD | D12, D14, DPOS | H | INSP → DR; RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12, D14 | [R] NI-RO; [R] NI-POS; [S] D12, D14; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§22-6` | C-ACC | SOURCE-HELD | D12, DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [S] D12; [U] DPOS | B6-01, B6-05, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `17-§22-10b` | C-ACC | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR; RT → T2+T3 | None for design; evidence at Stages 17–19 | [R] source text only | B6-21 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§23-2` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `17-§23-3` | C-WS | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01, B6-15 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§23-4` | C-WS | DEPENDENCY-HELD | D13 | M | INSP → DR | Until D13 implemented and verified | [S] D13 | B6-15, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `17-§25-1` | C-ACC | SOURCE-HELD | D12, D13, D14, D15, DPOS | H | GATE → GATE | No evidenced POS source or interface (DPOS); also D12, D13, D14, D15 | [S] D12, D13, D14, D15; [U] DPOS | B6-01, B6-05, B6-17, B6-21 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `3-§9-3` | C-SUP | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-SUP; [S] D12, D14 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `3-§11-6` | C-SUP | DEPENDENCY-HELD | D12, D14 | M | NEG → T2 neg | Until D12, D14 implemented and verified | [S] D12, D14 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `3-§15-7` | C-SUP | DEPENDENCY-HELD | D12, D14 | M | INSP → DR | Until D12, D14 implemented and verified | [R] NI-SUP; [S] D12, D14 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `3-§15-10` | C-STK | DEPENDENCY-HELD | D14, DTX | H | INSP → DR; IDEM → T2 replay | Until D14, DTX implemented and verified | [S] D14, DTX | B6-04 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `3-§15-11` | C-POS | SOURCE-HELD | D14, DTX, DPOS | H | INSP → DR; IDEM → T2 replay | No evidenced POS source or interface (DPOS); also D14, DTX | [S] D14, DTX; [U] DPOS | B6-04, B6-05, B6-11 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `5-§4-10` | C-DOC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-UDI; [S] D12, D14 | B6-01, B6-06 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `9-§12-8` | C-AUTH | DEPENDENCY-HELD | D13, DAI | M | RT → T2+T3 | Until D13, DAI implemented and verified | [S] D13, DAI | B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `10-§13-6` | C-RO | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D12, D13 implemented and verified | [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `12-§4-4` | C-AUTH | DEPENDENCY-HELD | D13, DV | M | RT → T2+T3 | Until D13, DV implemented and verified | [S] D13, DV | B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `12-§7-7` | C-RO | DEPENDENCY-HELD | D13, DV | M | RT → T2+T3 | Until D13, DV implemented and verified | [S] D13, DV | B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `22-§17-2` | C-POS | SOURCE-HELD | DPOS, D12 | H | INSP → DR | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `24-§18-3` | C-RO | DEPENDENCY-HELD | D13, D15, DSCH, DNTF | M | RT → T2+T3; FRV-A → T4 FRV-A | Until D13, D15, DSCH implemented and verified; system dispatch excluded (DNTF, 17:FPDR-3) | [S] D13, D15, DSCH | B6-12, B6-13, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `24-§21-3` | C-RO | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3; NEG → T2 neg | Until D12, D13 implemented and verified | [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§3-1` | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§5.3-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§5.4-1` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `BP-§6.1-1` | C-AUTH | DEPENDENCY-HELD | D12 | M | NEG → T2 neg | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§6.2-1` | C-FDN | DEPENDENCY-HELD | D12, D13, DTX | H | INSP → DR; RT → T2+T3 | Until D12, D13, DTX implemented and verified | [S] D12, D13, DTX | B6-01, B6-04, B6-17, B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§6.3-1` | C-FDN | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-18 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§6.5-1` | C-RO | DEPENDENCY-HELD | D15, DSCH | M | INSP → DR | Until D15, DSCH implemented and verified | [S] D15, DSCH | B6-12 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§6.6-1` | C-POS | SOURCE-HELD | DPOS | H | INSP → DR | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `BP-§8-1` | C-AUTH | DEPENDENCY-HELD | D13 | M | RT → T2+T3 | Until D13 implemented and verified | [S] D13 | B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§9-6` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§9-AL` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§10.3-S2` | C-SUP | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-SUP; [S] D12, D14 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-O` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§10.6-W1` | C-SUP | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-SUP; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W2` | C-SIG | DEPENDENCY-HELD | D14 | M | RT → T2+T3 | Until D14 implemented and verified | [R] NI-RO; [S] D14 | B6-09 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W3` | C-SIG | DEPENDENCY-HELD | D14 | M | RT → T2+T3 | Until D14 implemented and verified | [R] NI-EXP; [S] D14 | B6-07, B6-09 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W4` | C-RO | DEPENDENCY-HELD | D13, D14 | M | RT → T2+T3 | Until D13, D14 implemented and verified | [R] NI-RO; [S] D13, D14 | B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W5` | C-RO | DEPENDENCY-HELD | D12, D13 | M | RT → T2+T3 | Until D12, D13 implemented and verified | [R] NI-RO; [S] D12, D13 | B6-01, B6-17 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W6` | C-RO | DEPENDENCY-HELD | D12, D15, DSCH | M | RT → T2+T3 | Until D12, D15, DSCH implemented and verified | [R] NI-RO; [S] D12, D15, DSCH | B6-01, B6-12 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W7` | C-POS | SOURCE-HELD | DPOS | H | RT → T2+T3 | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `BP-§10.6-W8` | C-CTR | SOURCE-HELD | DPOS, D12 | H | RT → T2+T3 | No evidenced POS source or interface (DPOS); also D12 | [R] NI-POS; [S] D12; [U] DPOS | B6-01, B6-05 | IN SCOPE — SOURCE-HELD; design accepted for the EIS |
+| `BP-§10.6-W9` | C-CC | DEPENDENCY-HELD | D12, D14 | M | RT → T2+T3 | Until D12, D14 implemented and verified | [R] NI-CC; [S] D12, D14 | B6-01, B6-10, B6-11 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W10` | C-SUP | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] NI-MGR; [R] NI-ROLE; [S] D12 | B6-01, B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W11` | C-STK | DEPENDENCY-HELD | D12 | M | RT → T2+T3 | Until D12 implemented and verified | [R] F-PPM; [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-W12` | C-SUP | DEPENDENCY-HELD | D14 | M | RT → T2+T3 | Until D14 implemented and verified | [R] NI-UDI; [R] F-INV; [S] D14 | B6-03 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-E1` | C-POS | SOURCE-HELD | DPOS | H | EXP → EXP; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `BP-§10.6-E2` | C-CTR | SOURCE-HELD | DPOS | H | EXP → EXP; FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [U] DPOS | B6-05 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `BP-§10.6-E3` | C-STK | DEPENDENCY-HELD | D12 | M | EXP → EXP | Until D12 implemented and verified | [S] D12 | B6-01 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-A1` | C-ACC | DEPENDENCY-HELD | D12, D14 | H | FRV-A → T4 FRV-A | Until D12, D14 implemented and verified | [R] NI-RO; [S] D12, D14 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-A2` | C-ACC | DEPENDENCY-HELD | D12, D13, D14 | H | FRV-A → T4 FRV-A | Until D12, D13, D14 implemented and verified | [R] NI-RO; [S] D12, D13, D14 | B6-01, B6-17, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-A3` | C-ACC | DEPENDENCY-HELD | D12, D15 | H | FRV-A → T4 FRV-A | Until D12, D15 implemented and verified | [R] NI-RO; [S] D12, D15 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-A4` | C-ACC | DEPENDENCY-HELD | D12 | H | FRV-A → T4 FRV-A | Until D12 implemented and verified | [R] F-PPM; [R] NI-RO; [S] D12 | B6-01, B6-21 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `BP-§10.6-B1` | C-ACC | SOURCE-HELD | DPOS | H | FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-21 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `BP-§10.6-B2` | C-ACC | SOURCE-HELD | DPOS | H | FRV-B → T4 FRV-B | No evidenced POS source or interface (DPOS) | [R] NI-POS; [U] DPOS | B6-05, B6-21 | IN SCOPE — SOURCE-HELD (T8 watch: evidenced POS source); design accepted for the EIS |
+| `BP-§10.6-X` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | EXP → EXP | None for design; evidence at Stages 17–19 | [R] source text only | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§11-6` | C-RO | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§11-7` | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | — | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§13-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§13-9` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `BP-§14-1` | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | INSP → DR | None for design; evidence at Stages 17–19 | [R] source text only | B6-18 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `GPCV-§11-2` | C-DOC | DEPENDENCY-HELD | D14 | M | INSP → DR | Until D14 implemented and verified | [S] D14 | B6-06 | IN SCOPE — DEPENDENCY-HELD; design accepted for the EIS |
+| `GPCV-R7` | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] F-INV; [R] F-PPM | B6-04 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `GPCV-R13` | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] NI-POS; [R] NI-CC | B6-11 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+| `GPCV-R17` | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | L | GATE → GATE | None for design; evidence at Stages 17–19 | [R] F-DASH | B6-15 | IN SCOPE — DESIGN ACCEPTED — EVIDENCE HOLD; design accepted for the EIS |
+
+## 21. Engineering Questions, Risks & Recommendations
+
+### 21.1 Engineering questions (EQ17-01 to EQ17-12)
+
+These are engineering questions for the EIS. None is a product decision.
+
+| ID | Question | Finding | Resolves at |
+|---|---|---|---|
+| EQ17-01 | Shape of capability scope constraints (items, suppliers, counters) and value ceilings in the SB-P-1.12 registry | B6-01 | EIS with SB-P-1.12 |
+| EQ17-02 | Field-level cost projection mechanism, and the change path for the Owner-only `authority_basis` CHECK | B6-02 | EIS with SB-P-1.12 |
+| EQ17-03 | Where the historical-attribution link lives (Ledger domain or SB-P-1.17) | B6-03 | EIS with SB-P-1.14 |
+| EQ17-04 | Transaction item lines versus event linkage only, for stock–Ledger linkage | B6-04 | EIS with SB-P-1.14 (`DTX`) |
+| EQ17-05 | First evidenced POS source, and the minimum export-file schema | B6-05 | Mission Control / Founder for source; EIS for schema |
+| EQ17-06 | Batch granularity for expiry | B6-07 | EIS |
+| EQ17-07 | Who may change unit conversions (Owner or a scoped grant) | B6-08 | EIS; Mission Control if it changes a grant |
+| EQ17-08 | Evidence-sufficiency rule for threshold suggestions | B6-09 | EIS; T6 screening if availability changes |
+| EQ17-09 | Closing period: day or shift; opening-float capture | B6-10 | EIS (U-03) |
+| EQ17-10 | Precedence between manual and POS cash when both exist | B6-11 | EIS |
+| EQ17-11 | Retention and lawful basis for operator identifiers | B6-14 | Specialist and legal review (U-11) |
+| EQ17-12 | Required CI tier and path filters for SB-P-1.17 code and migrations | B6-21 | EIS; Mission Control (environments) |
+
+### 21.2 Engineering risks
+
+| ID | Risk | Likelihood / impact | Mitigation |
+|---|---|---|---|
+| R17-01 | Upstream kernels remain unimplemented, holding 227 rows and the Manager experience | High / High | Strict dependency order (20.7.4); no interim authority model |
+| R17-02 | Cost leaks to Managers through row-level reads | Medium / High | Field-level projection; negative tests (B6-02) |
+| R17-03 | Duplicate revenue or stock from POS retries or manual overlap | Medium / High | Per-source dedupe; review candidates; atomic command (B6-04, B6-05, B6-11) |
+| R17-04 | No POS source can be evidenced in Phase 1 | Unknown / High | Vendor-neutral contract; export-file class; T8 watch for Scenario B |
+| R17-05 | Closing figures misread as complete when inputs are missing | Medium / Medium | Partial results with unknowns named (DC-09) |
+| R17-06 | Schema changes break SB-P-1.10 inventory invariants | Low / High | Additive migrations; full inventory regression (B6-07) |
+| R17-07 | Operator data processed without a settled lawful basis | Medium / High | U-11 specialist hold before use (B6-14) |
+| R17-08 | Test environment state unknown (Δ-06) | Medium / Medium | Fresh readiness verification before any rehearsal |
+| R17-09 | Same-actor authorship hides correlated errors | Medium / Medium | Mission Control review; mandatory specialist and Stage 19 independent verification |
+
+### 21.3 Dependencies and holds (preserved)
+
+`D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DPOS`, `DSEC`, `DENT`, `DSCH`, `DAI`, `DV`, `DNTF`, `DPAY`, `DR2`, `D17` to `D20`, `DUF6` are unchanged (FCTM §0.6). Also unchanged:
+- U-03 (closing cadence) and U-11 (staff privacy and legal research);
+- W-1 / FIN-01 PROVISIONAL;
+- R15-11 / N-6 (no merchant-facing grant interface assumed);
+- the five `UNRESOLVED FOUNDER DECISION` rows, which are off the critical path;
+- the delivery-topology unknown (Δ-06).
+
+No hold is converted to PASS.
+
+### 21.4 Source 18 T1–T8 screen
+
+| Trigger | Result |
+|---|---|
+| T1 / T3 | None. No product question was answered; the EQ17 items are engineering questions |
+| T2 | None. No Product Truth conflict found |
+| T4 / T5 | None |
+| T6 | **Watch (B6-09, EQ17-08):** the evidence-sufficiency rule, if it materially affects when threshold suggestions are available |
+| T7 | None. No row, scenario or obligation narrowed; all 404 rows stay `IN SCOPE` |
+| T8 | **Watch, not established (B6-05, EQ17-05, R17-04):** POS source capability is UNKNOWN. Scenario B and the API/webhook class cannot be demonstrated until a source is evidenced and authorized. No row is found infeasible |
+
+No trigger fired. Nothing was decided on the Founder's behalf.
+
+### 21.5 Specialist reviews
+
+No specialist review was performed for this draft. The following specialist reviews are recommended before Stage 8, as mandatory domain inputs under Source 18 §4.8:
+- security and authorization;
+- privacy and staff data (U-11);
+- financial integrity (Ledger linkage, closing cash);
+- POS integration;
+- migration safety.
+
+Mission Control determines which are required.
+
+### 21.6 Recommendations
+
+1. **Approve Sections 20–21 as the engineering basis for the EIS.** All 21 Stage 6 findings and all 404 rows are treated.
+2. **Sequence SB-P-1.17 after the upstream kernels** (20.7.4) and build no interim authority, Ledger, import, AI or reminder path.
+3. **Keep the T6 and T8 watches with Mission Control,** and bring EQ17-05 (first evidenced POS source) to the Founder before Scenario B planning relies on a source.
+4. **Commission the specialist reviews of 21.5** and freshly verify `smart-business-test` before any rehearsal.
+
+### 21.7 Actor separation
+
+Claude Code authored Sections 1–19, the Stage 6 review and Sections 20–21. This draft is not independent assurance. Mission Control review, specialist reviews and Stage 19 independent verification by another actor remain required.
+
+**STOP FOR MISSION CONTROL STAGE 7 REVIEW.** Stage 8 Founder approval, Blueprint Lock, EIS and implementation: NOT AUTHORIZED.
