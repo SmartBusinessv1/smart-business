@@ -1,14 +1,13 @@
-# SMART BUSINESS MISSION CONTROL — MC-438A SA-01 ELIGIBILITY INTAKE
+# SMART BUSINESS MISSION CONTROL — MC-441A STAGE 10 SA-01 SECURITY REVIEW
 
-**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
-**Mission:** SB-P-1.17 — Manager Operations  
-**Sender:** Mission Control  
-**Recipient:** Security & Permissions Architecture specialist room — eligibility intake ONLY  
-**Date:** 2026-10-22  
-**Authority:** `communication/missions/SB-P-1.17/mission-control/16-mc438a-coordination-publication-and-sa01-eligibility.md`  
-**Baseline:** `main@148b67b68f74e568730155157c8fe8c6b63bd140`  
+**Status:** PROPOSED — EFFECTIVE AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION
+**Mission:** SB-P-1.17 — Manager Operations
+**Sender:** Mission Control
+**Recipient:** Security & Permissions Architecture specialist room
+**Date:** 2026-10-22
+**Authority:** communication/missions/SB-P-1.17/mission-control/18-mc441a-sa01-security-review-authorization.md
 **Implementation Authorization:** WITHHELD.
 
-Read the authority record. Confirm availability, relevant expertise, independent eligibility, prior work, actual qualifications/limitations, and ability to review immutable EIS blob `8280967f2805cfed17778da3fc76c90b2f2f5ead`. Return an **eligibility response only**, through the repository communication protocol.
+After merge verification, read and execute the durable authority above and MC-432. Complete SA-01 **read-only documentary security review** of immutable EIS blob 8280967f2805cfed17778da3fc76c90b2f2f5ead. Examine MC410-R01 POS intake principal, scoped grants, manager and staff isolation, financial-field protection, RLS, authorization at commit, revocation, prompt-injection / retrieval boundaries, and negative tests.
 
-Do NOT conduct substantive SA-01 security review until a separate authorization. Do not approve or lock the EIS, change code or schema, run migrations, access providers, connect a POS or perform runtime operations.
+Publish evidence-linked SA-01 findings through separately authorized repository protocol. No code, runtime testing, provider connection, EIS approval or implementation. STOP for Mission Control.
