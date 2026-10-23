@@ -8,7 +8,7 @@
 **Immutable EIS reviewed:** `8280967f2805cfed17778da3fc76c90b2f2f5ead`  
 **Implementation Authorization:** WITHHELD.
 
-Durable report: `communication/missions/SB-P-1.17/specialists/07-stage10-sa03-documentary-financial-review.md` (blob `a140ffa5bc87c8179bac83a0ed59671f2c799403`).
+Durable report: `communication/missions/SB-P-1.17/specialists/07-stage10-sa03-documentary-financial-review.md` (blob `ec4403a6ee31c50b3b91030a1c229ce8a37fd587`).
 
 Overall disposition: **REFINEMENT REQUIRED**. Existing holds MC410-R02 / HOLD-16, EQ17-13 / HOLD-17, MC410-R04A / HOLD-18 and MC410-R04B / HOLD-19 remain substantive. Additional findings require explicit dual-domain duplicate-resolution handling in `EIS17-TXN-08` and correction of `EIS17-SUP-06`'s unsupported reuse of the SB-P-1.16 customer-balance contract for supplier-side `owed_by_business` balances. The latter is screened as a narrow documentary T8 conflict for Mission Control disposition.
 
