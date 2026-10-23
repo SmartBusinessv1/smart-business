@@ -347,7 +347,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | ID | Matter | Owner | EIS requirement | Effect on Stage 10 |
 |---|---|---|---|---|
 | MC410-R01 | Kernel-compatible authorization route for POS intake | SB-P-1.12 owner with SB-P-1.17 | POS-02, HOLD-15 | **Blocker** for approving the API/webhook intake path; escalate if an SB-P-1.12 amendment is needed |
-| MC410-R02 | Posting timing for financially trusted, inventory-unmapped POS events | SB-P-1.14 Ledger authority via Mission Control | TXN-09, HOLD-16 | **Blocker** for that path only; a broad rule either way needs governance screening (MC-411B §10) |
+| MC410-R02 | Posting timing for financially trusted, inventory-unmapped POS events | SB-P-1.14 Ledger authority via Mission Control | TXN-09, HOLD-16 | **Policy decided by the Founder (GA-03 Option A, MC-499):** financially trusted revenue posts once through the governed Ledger while mapping-dependent inventory is held. The technical contract remains open (`HOLD-16` open); **blocker** for that path until it is accepted |
 | EQ17-13 / MC410-R05 | Atomic composition of the governed Ledger command and movements | SB-P-1.14 and SB-P-1.17; Supabase architecture | TXN-03, HOLD-17 | **Blocker** for M17-9 and every dual-domain path; demonstrated impossibility returns to Mission Control (T8 screen) |
 | MC410-R04A | Dual-domain reversal semantics | SB-P-1.14 and SB-P-1.17 | TXN-06, HOLD-18 | Blocker for reversal of dual-domain events |
 | MC410-R04B | Affirmative closing completeness evidence per source | SB-P-1.17; DPOS, DSCH and Ledger owners | CC-03, HOLD-19 | Blocker for any COMPLETE closing result |
@@ -382,7 +382,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | SA03-FI-03 commit-time link validation | SA-03 | TXN-04, TXN-11 | Proposal |
 | SA03-FI-04 dual-domain reversal | SA-03; MC410-R04A | TXN-06, HOLD-18 | Hold |
 | SA03-FI-05 overlap | SA-03 | TXN-08 | Proposal |
-| SA03-FI-06 unmapped POS revenue | SA-03; MC410-R02; MC-411B | TXN-09, HOLD-16 | Hold |
+| SA03-FI-06 unmapped POS revenue | SA-03; MC410-R02; MC-411B | TXN-09, HOLD-16 | Founder Product Truth decided (GA-03 Option A, MC-499); technical `HOLD-16` open |
 | SA03-FI-07 purchase classification | SA-03; MC410-R03 | TXN-10 | Corrected in the Blueprint (PR #1013) |
 | SA03-FI-08 closing completeness | SA-03; MC410-R04B | CC-03, HOLD-19 | Hold |
 | SA04-F01 to F03 | SA-04 | TXN-03, TXN-04, TXN-08 | Proposals; F01 is a hold |
