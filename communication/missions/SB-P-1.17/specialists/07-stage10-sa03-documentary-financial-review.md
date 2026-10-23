@@ -2,11 +2,11 @@
 
 **Mission:** SB-P-1.17 — Manager Operations  
 **Stage:** Source 18 Stage 10  
-**Authority:** MC-450; durable authority \`20-mc448a-sa03-financial-review-authorization.md\`  
+**Authority:** MC-450; durable authority `20-mc448a-sa03-financial-review-authorization.md`  
 **Reviewer:** Finance & Payments / Financial Integrity specialist room — ChatGPT, GPT-5.6 Sol, OpenAI  
 **Mode:** documentary financial-integrity review only  
-**Baseline reviewed:** \`main@ff41b9c8901b2efdf9f079d27b1ceec05c52ff77\`  
-**Immutable EIS target:** \`docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md\`, blob \`8280967f2805cfed17778da3fc76c90b2f2f5ead\`  
+**Baseline reviewed:** `main@ff41b9c8901b2efdf9f079d27b1ceec05c52ff77`  
+**Immutable EIS target:** `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `8280967f2805cfed17778da3fc76c90b2f2f5ead`  
 **Implementation authorization:** WITHHELD  
 **EIS approval / lock:** NOT AUTHORIZED and NOT GIVEN
 
@@ -33,16 +33,16 @@ No SQL, live Supabase, merchant data, executed transactions, POS/provider connec
 
 | Source | Blob |
 |---|---|
-| SB-P-1.17 EIS target | \`8280967f2805cfed17778da3fc76c90b2f2f5ead\` |
-| Locked SB-P-1.17 Blueprint | \`bc4615f84959a79e6b242f622aae928901fbe959\` |
-| SB-P-1.17 FCTM | \`cb79088d3fa59f8b3226fd9d11ff9c9573666670\` |
-| SB-P-1.14 EIS | \`899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3\` |
-| SB-P-1.16 EIS | \`46fffd7b140940854c9b2b847517dde2f17584df\` |
-| MC-410A reconciliation | \`efd5ead00d21f360882a1dab2ab50e4a0a0f2acf\` |
-| MC-411B POS revenue interpretation | \`94f005fc643fd14d79d836e023f081731662b317\` |
-| Stage 10 SA-01 documentary security review | \`457c6a369d2983016fe0230bd6f0355bf2cbb4e5\` |
-| SA-03 eligibility record | \`07ed0ff1c30637dae97a4e1081a47f34e996b630\` |
-| Source 18 v1.2 | \`0945bda60a93c99909c3b7a247d5427ebe256011\` |
+| SB-P-1.17 EIS target | `8280967f2805cfed17778da3fc76c90b2f2f5ead` |
+| Locked SB-P-1.17 Blueprint | `bc4615f84959a79e6b242f622aae928901fbe959` |
+| SB-P-1.17 FCTM | `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
+| SB-P-1.14 EIS | `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` |
+| SB-P-1.16 EIS | `46fffd7b140940854c9b2b847517dde2f17584df` |
+| MC-410A reconciliation | `efd5ead00d21f360882a1dab2ab50e4a0a0f2acf` |
+| MC-411B POS revenue interpretation | `94f005fc643fd14d79d836e023f081731662b317` |
+| Stage 10 SA-01 documentary security review | `457c6a369d2983016fe0230bd6f0355bf2cbb4e5` |
+| SA-03 eligibility record | `07ed0ff1c30637dae97a4e1081a47f34e996b630` |
+| Source 18 v1.2 | `0945bda60a93c99909c3b7a247d5427ebe256011` |
 
 ## 3. Overall disposition
 
@@ -52,15 +52,15 @@ The EIS is materially faithful on single Ledger ownership, source-event idempote
 
 It is not financially ready for Stage 11 lock because four named Stage 10 holds remain substantive:
 
-- \`HOLD-16\` / MC410-R02 — trusted financial but inventory-unmapped POS posting timing;
-- \`HOLD-17\` / EQ17-13 — physical one-transaction Ledger/stock composition;
-- \`HOLD-18\` / MC410-R04A — governed dual-domain reversal;
-- \`HOLD-19\` / MC410-R04B — affirmative source completeness for closing.
+- `HOLD-16` / MC410-R02 — trusted financial but inventory-unmapped POS posting timing;
+- `HOLD-17` / EQ17-13 — physical one-transaction Ledger/stock composition;
+- `HOLD-18` / MC410-R04A — governed dual-domain reversal;
+- `HOLD-19` / MC410-R04B — affirmative source completeness for closing.
 
 Two additional financial refinements are required:
 
-- \`EIS17-TXN-08\` must state how duplicate resolution preserves atomic dual-domain truth when both candidate records already produced effects;
-- \`EIS17-SUP-06\` incorrectly implies reuse of the SB-P-1.16 customer-balance contract for supplier-side \`owed_by_business\` balances.
+- `EIS17-TXN-08` must state how duplicate resolution preserves atomic dual-domain truth when both candidate records already produced effects;
+- `EIS17-SUP-06` incorrectly implies reuse of the SB-P-1.16 customer-balance contract for supplier-side `owed_by_business` balances.
 
 The latter is a documentary cross-EIS conflict and is the only new T8 trigger established by this review.
 
@@ -85,13 +85,13 @@ The latter is a documentary cross-EIS conflict and is the only new T8 trigger es
 ## 5. SA03-S10-F01 — MC410-R02 remains unresolved; MC-411B was too permissive
 
 **Severity:** HIGH for the affected POS-revenue path  
-**EIS IDs:** \`EIS17-TXN-09\`, \`EIS17-HOLD-16\`  
+**EIS IDs:** `EIS17-TXN-09`, `EIS17-HOLD-16`  
 **Evidence quality:** HIGH documentary source comparison  
 **Disposition:** HOLD / no posting rule selected
 
 ### Evidence
 
-\`EIS17-TXN-09\` correctly separates:
+`EIS17-TXN-09` correctly separates:
 
 - governed Ledger ownership;
 - untrusted financial evidence, which creates no authoritative effect;
@@ -116,7 +116,7 @@ The inverse broad rule — always suppress revenue until mapping — is also not
 
 ### Minimum correction
 
-Keep \`HOLD-16\`. Refine \`TXN-09\` wording so that “unresolved mapping blocks only the movement that needs it” cannot be read as permission to post revenue. State instead:
+Keep `HOLD-16`. Refine `TXN-09` wording so that “unresolved mapping blocks only the movement that needs it” cannot be read as permission to post revenue. State instead:
 
 - mapping status alone does not determine financial-posting timing;
 - the Ledger path remains held until SB-P-1.14 authority / Mission Control resolves MC410-R02;
@@ -135,13 +135,13 @@ SB-P-1.14 Ledger authority via Mission Control, with SB-P-1.17 EIS owner.
 ## 6. SA03-S10-F02 — EQ17-13 atomicity is correctly non-negotiable but unresolved
 
 **Severity:** HIGH / blocking  
-**EIS IDs:** \`EIS17-TXN-03\`, \`EIS17-HOLD-17\`, \`EIS17-DOC-04\`  
+**EIS IDs:** `EIS17-TXN-03`, `EIS17-HOLD-17`, `EIS17-DOC-04`  
 **Evidence quality:** HIGH documentary architecture evidence  
 **Disposition:** BLOCKED until concrete composition contract exists
 
 ### Evidence
 
-\`EIS17-TXN-03\` correctly requires the Ledger effect, inventory movements, source-event state and event link to commit in one database transaction or not at all.
+`EIS17-TXN-03` correctly requires the Ledger effect, inventory movements, source-event state and event link to commit in one database transaction or not at all.
 
 It correctly rejects:
 
@@ -186,16 +186,16 @@ No current T1–T7 trigger. **T8 WATCH** remains appropriate; T8 becomes establi
 ## 7. SA03-S10-F03 — Dual-domain reversal remains under-specified and must stay held
 
 **Severity:** HIGH  
-**EIS IDs:** \`EIS17-TXN-06\`, \`EIS17-HOLD-18\`, \`EIS17-TXN-07\`  
-**Upstream:** SB-P-1.14 CMD-02 / IDM-01/-03; SB-P-1.16 \`EIS16-RVS-04\`  
+**EIS IDs:** `EIS17-TXN-06`, `EIS17-HOLD-18`, `EIS17-TXN-07`  
+**Upstream:** SB-P-1.14 CMD-02 / IDM-01/-03; SB-P-1.16 `EIS16-RVS-04`  
 **Evidence quality:** HIGH documentary  
 **Disposition:** BLOCKED for dual-domain reversals
 
 ### Evidence
 
-\`TXN-06\` correctly says reversals and voids are new linked events and that an event which wrote both Ledger and stock needs governed compensating effects in both atomically.
+`TXN-06` correctly says reversals and voids are new linked events and that an event which wrote both Ledger and stock needs governed compensating effects in both atomically.
 
-The missing piece is an approved governed financial reversal representation. SB-P-1.14 provides governed correction, but does not establish a generic POS sale-void command. SB-P-1.16 independently demonstrates the same gap for repayment reversal: \`EIS16-RVS-04\` remains unresolved pending an upstream governed void.
+The missing piece is an approved governed financial reversal representation. SB-P-1.14 provides governed correction, but does not establish a generic POS sale-void command. SB-P-1.16 independently demonstrates the same gap for repayment reversal: `EIS16-RVS-04` remains unresolved pending an upstream governed void.
 
 ### Failure scenarios
 
@@ -207,7 +207,7 @@ The missing piece is an approved governed financial reversal representation. SB-
 
 ### Minimum correction
 
-Keep \`HOLD-18\` and define, with SB-P-1.14 ownership:
+Keep `HOLD-18` and define, with SB-P-1.14 ownership:
 
 - the exact governed financial reversal/void primitive;
 - original-event identity and reversal-event identity;
@@ -230,13 +230,13 @@ No new product decision established. **T8 WATCH** remains because a faithful gov
 ## 8. SA03-S10-F04 — POS/manual duplicate resolution must explicitly restore dual-domain truth
 
 **Severity:** HIGH  
-**EIS IDs:** \`EIS17-TXN-08\`, with \`TXN-03\`, \`TXN-06\`, \`TXN-02\`  
+**EIS IDs:** `EIS17-TXN-08`, with `TXN-03`, `TXN-06`, `TXN-02`  
 **Evidence quality:** HIGH documentary  
 **Disposition:** REFINEMENT REQUIRED
 
 ### Evidence
 
-\`TXN-08\` correctly prohibits automatic merge, suppression and deletion and requires an authorized human decision recorded as a governed correction.
+`TXN-08` correctly prohibits automatic merge, suppression and deletion and requires an authorized human decision recorded as a governed correction.
 
 That is sufficient when neither candidate has produced consequential effects. It is incomplete when both candidates have already produced economic effects.
 
@@ -252,10 +252,10 @@ A metadata “duplicate” flag is not financial correction.
 
 ### Minimum correction
 
-Refine \`TXN-08\`:
+Refine `TXN-08`:
 
 - if either candidate has already produced Ledger or inventory effects, duplicate resolution must call the applicable domain-owned governed correction/reversal path;
-- where both domains must change, \`TXN-03\` atomicity applies;
+- where both domains must change, `TXN-03` atomicity applies;
 - resolution must preserve both original source records and the human decision;
 - one economic sale remains in canonical sales totals;
 - no content similarity becomes identity;
@@ -272,15 +272,15 @@ No T1–T8 trigger established. This is engineering completion of the approved n
 ## 9. SA03-S10-F05 — Closing COMPLETE state needs exact period-bounded completeness proof
 
 **Severity:** MEDIUM/HIGH  
-**EIS IDs:** \`EIS17-CC-02\`, \`EIS17-CC-03\`, \`EIS17-CC-04\`, \`EIS17-HOLD-19\`  
+**EIS IDs:** `EIS17-CC-02`, `EIS17-CC-03`, `EIS17-CC-04`, `EIS17-HOLD-19`  
 **Evidence quality:** HIGH documentary; source-specific proof unavailable  
 **Disposition:** REFINEMENT REQUIRED / COMPLETE state held
 
 ### Evidence
 
-\`CC-02\` correctly binds the Blueprint decision table and rejects zero-fill, invented timestamps and double-counted cash.
+`CC-02` correctly binds the Blueprint decision table and rejects zero-fill, invented timestamps and double-counted cash.
 
-\`CC-03\` correctly states:
+`CC-03` correctly states:
 
 - COMPLETE requires affirmative evidence;
 - absence of a detected gap is not completeness;
@@ -324,44 +324,44 @@ No new trigger established. HOLD-19 remains correct. Existing U-03 and source-ev
 ## 10. SA03-S10-F06 — Supplier-side balance incorrectly cites the SB-P-1.16 customer-balance contract
 
 **Severity:** HIGH  
-**EIS ID:** \`EIS17-SUP-06\`  
-**Upstream:** \`EIS14-LDG-02\`; \`EIS16-LDG-02\`; \`EIS16-BAL-01\`; \`EIS16-CAD-03\` to \`-07\`  
+**EIS ID:** `EIS17-SUP-06`  
+**Upstream:** `EIS14-LDG-02`; `EIS16-LDG-02`; `EIS16-BAL-01`; `EIS16-CAD-03` to `-07`  
 **Evidence quality:** HIGH exact cross-EIS comparison  
 **Disposition:** CORRECTION REQUIRED; supplier balance/payable derivation stops
 
 ### Evidence
 
-\`EIS17-SUP-06\` says supplier-side \`owed_by_business\` credit and payment state use the SB-P-1.14 direction model **and the SB-P-1.16 balance contract**.
+`EIS17-SUP-06` says supplier-side `owed_by_business` credit and payment state use the SB-P-1.14 direction model **and the SB-P-1.16 balance contract**.
 
 The first part is supported:
 
-- SB-P-1.14 \`EIS14-LDG-02\` defines \`owed_to_business\` / \`owed_by_business\` direction.
+- SB-P-1.14 `EIS14-LDG-02` defines `owed_to_business` / `owed_by_business` direction.
 
 The second part is not supported:
 
-- SB-P-1.16 \`EIS16-LDG-02\` explicitly says customer credit uses \`owed_to_business\` and supplier-side \`owed_by_business\` belongs to SB-P-1.17.
-- \`EIS16-BAL-01\` defines **customer balance** only from credit-method sales and \`owed_to_business\` credit.
-- SB-P-1.16 customer advance is a separate provisional \`owed_by_business\` representation under \`EIS16-CAD-03\`; it is expressly a customer advance, not a supplier payable.
+- SB-P-1.16 `EIS16-LDG-02` explicitly says customer credit uses `owed_to_business` and supplier-side `owed_by_business` belongs to SB-P-1.17.
+- `EIS16-BAL-01` defines **customer balance** only from credit-method sales and `owed_to_business` credit.
+- SB-P-1.16 customer advance is a separate provisional `owed_by_business` representation under `EIS16-CAD-03`; it is expressly a customer advance, not a supplier payable.
 - Customer advances must not be silently netted with supplier obligations.
 
 Therefore SB-P-1.16 does not supply a ready-made supplier-balance contract.
 
 ### Failure scenario
 
-If \`SUP-06\` is implemented literally, engineering may:
+If `SUP-06` is implemented literally, engineering may:
 
 - reuse a customer receivable view for supplier payables;
-- exclude supplier liabilities because BAL-01 filters \`owed_to_business\`;
+- exclude supplier liabilities because BAL-01 filters `owed_to_business`;
 - or broaden BAL-01 beyond its approved customer scope and accidentally mix customer advances with supplier obligations.
 
 Any of those creates false financial totals.
 
 ### Minimum correction
 
-Change \`SUP-06\` so that:
+Change `SUP-06` so that:
 
-- supplier credit direction reuses SB-P-1.14 \`EIS14-LDG-02\`;
-- supplier payable/balance semantics remain owned by SB-P-1.17 and are not claimed to come from \`EIS16-BAL-01\`;
+- supplier credit direction reuses SB-P-1.14 `EIS14-LDG-02`;
+- supplier payable/balance semantics remain owned by SB-P-1.17 and are not claimed to come from `EIS16-BAL-01`;
 - no customer advance or customer-balance measure is reused or netted;
 - exact repayment/payment-target semantics remain held where upstream governed support is unresolved;
 - if Mission Control intends a shared generic balance kernel, that requires an explicit upstream contract rather than inference.
@@ -381,7 +381,7 @@ No Founder product decision is required merely to remove the unsupported SB-P-1.
 ## 11. SA03-S10-F07 — Ledger ownership, idempotency and unknown outcomes are directionally correct
 
 **Severity:** INFO / assurance finding  
-**EIS IDs:** \`EIS17-TXN-01\`, \`TXN-02\`, \`TXN-05\`, \`TXN-11\`, \`TXN-12\`  
+**EIS IDs:** `EIS17-TXN-01`, `TXN-02`, `TXN-05`, `TXN-11`, `TXN-12`  
 **Disposition:** SATISFIED DOCUMENTARILY, subject to runtime proof and open holds
 
 The EIS correctly preserves:
@@ -395,7 +395,7 @@ The EIS correctly preserves:
 - narrow failure;
 - SB-P-1.14 as the sole Ledger semantic owner.
 
-These are compatible with SB-P-1.14 \`EIS14-CMD-01\`, \`EIS14-IDM-01\` and \`EIS14-IDM-03\`.
+These are compatible with SB-P-1.14 `EIS14-CMD-01`, `EIS14-IDM-01` and `EIS14-IDM-03`.
 
 No runtime pass is claimed.
 
@@ -410,7 +410,7 @@ The EIS must retain these boundaries:
 5. Any command that touches a protected financial operand must preserve authority-at-commit, idempotency, correction audit and unknown-outcome handling.
 6. No customer and supplier obligations are silently netted.
 
-\`EIS17-SUP-06\` needs correction under F06; the remainder of these boundaries is compatible with the current EIS.
+`EIS17-SUP-06` needs correction under F06; the remainder of these boundaries is compatible with the current EIS.
 
 ## 13. SA-01 intersection — no security findings are closed by this review
 
@@ -493,18 +493,18 @@ No tests were executed. At later authorized stages, financial assurance needs at
 | T5 | No separate Founder request introduced by this review. |
 | T6 | Existing WATCH remains; no new T6 established by SA-03. |
 | T7 | Not triggered; no omission, deferral, reassignment or commercial reclassification proposed. |
-| T8 | **ESTABLISHED for F06 only**: \`EIS17-SUP-06\` claims reuse of an SB-P-1.16 balance contract whose locked specification is customer/\`owed_to_business\` scoped and assigns supplier-side \`owed_by_business\` to SB-P-1.17. Existing T8 WATCH remains for EQ17-13 / POS feasibility and reversal paths; no infeasibility is otherwise demonstrated. |
+| T8 | **ESTABLISHED for F06 only**: `EIS17-SUP-06` claims reuse of an SB-P-1.16 balance contract whose locked specification is customer/`owed_to_business` scoped and assigns supplier-side `owed_by_business` to SB-P-1.17. Existing T8 WATCH remains for EQ17-13 / POS feasibility and reversal paths; no infeasibility is otherwise demonstrated. |
 
 ## 16. Required Mission Control disposition
 
 Before SA-03 can support an EIS-lock decision:
 
-1. dispose MC410-R02 and retain \`HOLD-16\` until then;
-2. require an executable single-database-transaction solution for EQ17-13 / \`HOLD-17\`;
-3. define or upstream-own the governed dual-domain reversal primitive under \`HOLD-18\`;
-4. make per-source, period-bounded closing-completeness evidence concrete under \`HOLD-19\`;
-5. refine \`TXN-08\` so duplicate resolution invokes atomic financial/stock correction when effects already exist;
-6. correct \`SUP-06\` and dispose the narrow T8 conflict without inventing supplier-balance semantics;
+1. dispose MC410-R02 and retain `HOLD-16` until then;
+2. require an executable single-database-transaction solution for EQ17-13 / `HOLD-17`;
+3. define or upstream-own the governed dual-domain reversal primitive under `HOLD-18`;
+4. make per-source, period-bounded closing-completeness evidence concrete under `HOLD-19`;
+5. refine `TXN-08` so duplicate resolution invokes atomic financial/stock correction when effects already exist;
+6. correct `SUP-06` and dispose the narrow T8 conflict without inventing supplier-balance semantics;
 7. preserve all four SA-01 Stage 10 open dispositions.
 
 ## 17. Recommendation
