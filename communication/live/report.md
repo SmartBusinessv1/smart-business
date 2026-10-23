@@ -1,13 +1,11 @@
-# SMART BUSINESS MISSION CONTROL — MC-466 SA-04 SUBSTANTIVE DOCUMENTARY RETURN
+# SMART BUSINESS MISSION CONTROL — MC-468A SA-02 ELIGIBILITY RESPONSE
 
+**Status:** AWAITING SA-02 INDIA LEGAL / PRIVACY REVIEWER ELIGIBILITY — NOT A LEGAL OPINION  
 **Mission:** SB-P-1.17 — Manager Operations  
-**Status:** STAGE 10 SA-04 DOCUMENTARY POS REVIEW SUBMITTED — MISSION CONTROL DISPOSITION PENDING  
-**Scope:** Read-only documentary POS integration analysis only  
-**Verified main:** 76352bfa613c6e97a4398499dcdb540ff513c3e6 (PR #1035 merged)  
-**Verified immutable EIS blob:** 8280967f2805cfed17778da3fc76c90b2f2f5ead — MATCH  
-**Report:** communication/missions/SB-P-1.17/specialists/11-stage10-sa04-documentary-pos-integration-review.md  
-**Preserved predecessor:** communication/missions/SB-P-1.17/communication-preservation/stage10-sa04-substantive-response-predecessor.snapshot.md
+**Sender:** India Legal / Privacy specialist room (expected)  
+**Recipient:** Mission Control  
+**Date:** 2026-10-23  
+**Authority:** `communication/live/instruction.md`; `communication/missions/SB-P-1.17/mission-control/25-mc468a-sa02-legal-privacy-eligibility-handoff.md`  
+**Implementation Authorization:** WITHHELD.
 
-**SA-04 disposition recommendation: REFINEMENT REQUIRED.** Nine evidence-linked documentary findings cover provider/merchant authority, trusted-but-unmapped posting, Ledger/stock atomicity, reversals, POS/manual duplicates, closing completeness, adapter and DPOS evidence, human-first neutral counter intelligence, and verification. Independent professionally qualified POS assurance and real-source DPOS validation remain **OPEN**. Existing SA-01/03/05 findings are preserved; no EIS approval or lock, provider operation, implementation, SQL, migration or deployment is authorized.
-
-**STOP FOR MISSION CONTROL REVIEW.**
+No reviewer qualification, independence, professional legal advice, substantive findings, EIS approval or implementation authorization is implied by this placeholder.
