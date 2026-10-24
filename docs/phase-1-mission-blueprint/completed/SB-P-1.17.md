@@ -1936,7 +1936,7 @@ Nothing exists for suppliers, thresholds, reorder, POS, counter signals, closing
   - a supplier purchase-price history.
 - Historical attribution (`17:FPDR-5`) is a separate audited link from a `transactions` row to the supplier, created only by explicit Owner confirmation. The original row is never edited, and unlinked rows stay visibly unlinked.
 - Protected prices (`17:FPDR-4`): cost is exposed only through a permissioned read path (column-filtered views or RPC projections), never by row-level RLS alone. Today `current_reference_cost` is on the same row as non-cost fields [R]. The Owner-only `authority_basis` CHECK on cost and link events needs a coordinated SB-P-1.12 change before a Manager acts under the Reference Cost permission.
-- Supplier payment and credit (`owed_by_business`) are built only where authorized, on the SB-P-1.16 balance contract (`D16`, FIN-01 PROVISIONAL).
+- Supplier payment and credit (`owed_by_business`) are built only where authorized, under the SB-P-1.17 supplier-side contract and SB-P-1.14 governed Ledger credit-direction boundary (`EIS14-LDG-02`; `EIS16-LDG-02`; `D16`, FIN-01 PROVISIONAL). The SB-P-1.16 customer-balance contract (`EIS16-BAL-01`) does not define supplier payable or repayment calculations; those supplier-specific rules remain provisional and are not established by this attribution correction.
 
 #### 20.4.4 C-RO — reorder, purchase requests and standing rules (B6-12, B6-13)
 
