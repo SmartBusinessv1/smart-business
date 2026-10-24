@@ -30,25 +30,29 @@
 
 **GA-04 no-go:** If a necessary change contradicts unamendable locked Source18/kernel invariants, raise the exact T8 conflict to Founder. No T8 established yet.
 
-## C. Part 2 — GA-05 proposed reversal interface; CONDITIONAL on T3 screen
+## C. Part 2 — GA-05 proposed original-linked reversal interface (representation-neutral)
 
-**Current gap:** `EIS14-CMD-02` is a governed correction applying changes to the original row while recording an append-only correction event. It does not, by itself, specify a full original-preserving reversal/void or refund; current six transaction types and positive amounts cannot be repurposed into fake offset income/expense. This proposal does **not** presume a seventh type, status, refund semantics, or an implemented reversal command.
+**Current gap:** `EIS14-CMD-02` governs corrections by appending an audit event and applying a change to the original row; it does not itself specify an original-linked reversal/void effect. The approved six transaction types and positive amounts cannot be repurposed into fabricated offset income/expense. No new type, merchant-facing status, refund semantics or implemented reversal command is presumed.
 
-**Proposed required semantics, subject to Founder Product Truth decision if necessary:**
-- One Ledger-owned governed reversal representation: stable distinct reversal event identity; linked original financial/source identity; documented effect on authoritative balances and readers; original business event and attribution retained in immutable history; operation authority and audit rechecked; idempotent same-intent replay and outcome lookup.
-- If the original event committed stock movements, linked compensating movements of *those actual committed movements only* must commit with the governed financial reversal in the same PostgreSQL transaction. Ledger-only original means no invented stock compensation. Refund does not automatically imply physical return/restock; return eligibility follows an independently approved policy. Negative stock follows existing `EIS17-STK-09`; if required compensation is blocked, the dual-domain reversal fails atomically and remains reviewable.
-- Reversal arriving before original stays held with no financial or stock effect; correlate exactly once after original becomes valid. No direct Ledger DML, alternate public writer, overwrite of prior history, or fabricated positive income/expense offset.
-- Exact operation name/signature, reversal vs correction applicability, monetary/accounting balance treatment, public merchant-visible status/wording, and permission/confirmation mapping are **NOT SELECTED** by this proposal.
+**Accepted source-aligned constraints (not an approved new interface):**
+- **Ordinary correction:** governed correction of an erroneously recorded fact with append-only audit history; it does not itself prove that the underlying economic event ceased.
+- **Reversal / void:** a distinct governed, original-linked financial effect neutralizing or invalidating the original event's authoritative active financial effect while preserving both original and reversal audit history. Void is a cancellation/invalidation reversal semantic, not an ordinary field edit. Authoritative readers must not continue counting the reversed original as active.
+- **Refund:** distinct money-return evidence/business action; neither automatic Ledger reversal nor an invented transaction type, and subject to owning financial/settlement authority.
+- **Physical return/restock:** distinct inventory fact requiring approved evidence of actual stock return; neither refund nor void automatically restocks.
+- A Ledger-owned governed representation must carry stable original/reversal identity and cross-domain links, enforce current authority/audit and replay/idempotency/unknown-outcome lookup, with no second Ledger writer or direct protected DML. If the original committed inventory movements, compensate only those actually committed, atomically with required financial effects. A Ledger-only original produces no invented stock compensation. `EIS17-STK-09` governs negative-stock failures; no partial dual-domain reversal is permitted. Reversal before original remains held and correlates exactly once.
+- **Unselected engineering-contract matters:** exact operation/signature, reversal-versus-correction applicability, storage representation of linked reversal effect, accounting computation in governed readers, and permission/confirmation mapping. The requirement to neutralize reversed active effect and preserve linked immutable history is a constraint, not evidence that the upstream primitive exists. No new merchant-facing Ledger status/label, refund behavior or restock policy is authorized here.
 
-### C1. Required Product Truth T3 screen — separate and prior to technical amendment acceptance
+### C1. Product Truth boundary — no new merchant-facing state authorized by this proposal
 
-**Question for Founder:** “Should Smart Business Phase 1 recognize a merchant-visible **reversed/voided** financial-event state as a governed, original-linked effect, distinct from editing corrections and refunds, with no automatic physical restock? Or must GA-05 be restricted to an already approved correction representation pending a separate reversal feature decision?”
+The governed reversal contract may represent an original-linked financial reversal/void internally and in authoritative financial readers without creating a new Ledger `transaction_type`, fabricated offset income/expense, or a new merchant-facing lifecycle label. Existing approved `reversed/invalidated` evidence/review semantics remain available where applicable; exact enum names and presentation remain governed by their existing owning contracts.
 
-Until answered through Source18 governance, no new merchant-visible reversal state or broadened refund policy may enter a locked upstream EIS. A T3 *screen is required*; this proposal does not declare a trigger automatically satisfied or force a feature decision when a narrower contract-compatible representation is independently demonstrated.
+This proposal does **not** introduce a merchant-visible `reversed` or `voided` Ledger status. Refund and physical return/restock remain distinct facts; neither implies the other.
+
+**SA-03 advisory finding:** Source 18 T3 need not be triggered by this bounded, representation-neutral engineering proposal alone. **Mission Control/Founder governance still must screen** whether any eventual normative change actually alters approved Product Truth. If a later proposal introduces a first-class merchant-visible Ledger status/label or broadens refund/restock behavior, route that specific change through T3 before adoption.
 
 ### C2. Conditional upstream acceptance path
 
-If the Founder confirms the proposed reversal behavior is already encompassed by approved Product Truth, the Ledger owner must propose the smallest approved upstream contract language and prove compatibility with `EIS14-CMD-01/02/03`, positive amount/types and authoritative readers. If the screen finds new product behavior, obtain separate explicit Founder Product Truth decision first; then narrowly amend affected SB-P-1.14/SB-P-1.13/SB-P-1.12 clauses as necessary and reconcile SB-P-1.17 EIS only after acceptance.
+Prepare the smallest SB-P-1.14-owned upstream interface amendment establishing governed original-linked reversal and its authoritative reader effect, without changing the six transaction types, positive amount rule or Ledger sole-writer boundary. Confirm precise compatibility with `EIS14-CMD-01/02/03`, `EIS16-RVS-01/04`, SB-P-1.17 `TXN-06/07`, and existing approval/confirmation boundaries through a separately authorized, reviewed and human-merged locked-contract change. If that exact proposal requires new merchant-visible state or broadened payment/refund behavior, stop for Founder T3 disposition first. The upstream representation, including `14-Q6(a)`, remains subject to its separate governing decision.
 
 ## D. Authority, review and stop conditions
 
