@@ -1,6 +1,6 @@
 # MC-507C — GA-08 Permission Representation Acceptance: Human-Governance Ratification Docket
 
-**Status:** DRAFT — NOT AUTHORIZED; pending accountable human acceptance, independent scope review, Founder human merge, and Mission Control post-merge verification.
+**Status:** DRAFT — FOUNDER REPRESENTATION ACCEPTANCE RECORDED IN PR COMMENT; pending genuinely independent scope/governance review, Founder human merge, and Mission Control post-merge verification. Not yet canonical authority.
 **Mission:** SB-P-1.17, Stage 10; Source 18 v1.2.
 **Prepared under:** Founder MC-507 direction, MC-502, and MC-507B verification.
 **Baseline:** `main@64d5a6e78361bffd4652bb8dbfc05759c8347fcf`.
@@ -21,18 +21,19 @@
 
 Enforce one qualifying grant for each required action/object predicate, with no stitching together partial grants into broader authority. Capability 2's optional Owner-set value ceiling belongs to its qualifying grant; verify at preview and consequential commit. Changes, expiry and revocation participate in `EIS-KER-09` epoch handling and `EIS-CNF-02` commit-time reauthorization. Preserve capability 5 and standing-rule creation as Owner-only. No Manager operational grant implies `catalog.cost.read`, `catalog.cost.write`, `catalog.margin.read`, Ask CFO or Owner financial projections. Employee own-attendance access remains separately permitted and own-record only. No new principal, grant class or RLS privilege is introduced.
 
-**Proposed disposition:** Approve this as the faithful Phase 1 *representation* of already approved scope constraints under the locked SB-P-1.12 kernel and `17:FPDR-1`; not an upstream kernel amendment and not a new Founder Product Truth choice. This is a proposal pending attribution and recorded human authorization.
+**Proposed disposition:** Approve this as the faithful Phase 1 *representation* of already approved scope constraints under the locked SB-P-1.12 kernel and `17:FPDR-1`; not an upstream kernel amendment and not a new Founder Product Truth choice. Founder bounded human-governance ratification has now been recorded in PR #1053 comment `#6383980959`, subject to independent review, human merge and Mission Control verification; it does not establish historical SB-P-1.12 room-owner acceptance.
 
-## 3. Human-governed acceptance required — NOT YET GIVEN IN THIS RECORD
+## 3. Founder human-governance ratification — RECORDED, NOT YET CANONICAL
 
-Before the proposed representation becomes effective as the GA-08 accountable-owner decision, an authorized human decision maker must record:
-1. their identity, current accountable source-contract authority or explicit Founder delegation, and its canonical source;
-2. `ACCEPT`, `REJECT` or `ESCALATE` for the exact §2 representation;
-3. SB-P-1.17 operational concurrence, with separate accountable provenance where needed;
-4. whether the choice stays within locked SB-P-1.12 normative meaning (no upstream amendment), and T1–T8 screening;
-5. the exact permitted correction boundary and retained constraints.
+**Founder decision evidence:** PR #1053 Conversation comment [#6383980959](https://github.com/SmartBusinessv1/smart-business/pull/1053#issuecomment-6383980959), posted by `SmartBusinessv1` on 2026-10-24. The Founder states **ACCEPT — bounded technical representation** for the exact normalized server-owned scoped grant representation in §2, expressly within SB-P-1.12, `17:FPDR-1` and MC-502. This is **current Founder-governance ratification**, not an assertion of historic SB-P-1.12 owner approval.
 
-**Approval outcome:** PENDING. This draft PR is a review vehicle, not an attestation by its author that all items above have been satisfied. A Founder human merge alone cannot fabricate a missing source-domain decision; reviewers should provide the required authority evidence or record a bounded Founder-governance ratification under Source 18 before merge.
+**SB-P-1.17 operational concurrence:** The Founder decision explicitly names SB-P-1.17 Stage 10 and accepts the representation within its existing Manager-operational boundaries. Mission Control proposes to recognize this as Founder-level operational concurrence under the Source 18 authority hierarchy, subject to independent reviewer confirmation; no separate AI-room approval is invented.
+
+**Normative / T1–T8 screen:** The proposal implements existing `EIS-KER-04` scope constraints, without adding capabilities or privileges, altering the locked SB-P-1.12 kernel or changing merchant-facing Product Truth. T5 Founder decision is recorded; no T1–T4 or T6–T8 substantive trigger is presently evidenced for this representation. The independent reviewer must confirm this finding and report any precise counterevidence.
+
+**Authority status:** Founder decision **GIVEN** in the PR discussion; **canonical acceptance remains pending** independent SA-01/security-governance review of the corrected exact head, Founder human merge and Mission Control post-merge verification. The earlier specialist's `ACCEPT WITH EXACT CORRECTION` expressly disclosed prior GA-08 design participation and **does not satisfy independent SA-01 review**. Green CI does not substitute for independence.
+
+**Future edit boundary:** This decision permits only a subsequent, separately issued, MC-502-bounded `EIS17-AUTH-02` documentary correction after canonical acceptance. It neither edits the EIS nor closes EQ17-01, alters actual grants/RLS/SQL or authorizes implementation/Stage 11.
 
 ## 4. Conditional next EIS-only correction instruction — NOT EFFECTIVE YET
 
@@ -46,4 +47,4 @@ Do not alter `EIS17-AUTH-03`, upstream SB-P-1.12 EIS, locked Blueprint/FCTM, cap
 
 GA-02 `POS-02/HOLD-15`, GA-04 `TXN-03/HOLD-17`, GA-05 `TXN-06/07/HOLD-18`, GA-06 `CC-03/04/06/HOLD-19/23` and residual Blueprint T8-03 retain independent evidence and authorization conditions. This proposal neither blocks ready rows nor permits their unapproved editing.
 
-**STOP FOR HUMAN SOURCE-AUTHORITY ACCEPTANCE, INDEPENDENT GOVERNANCE REVIEW, FOUNDER HUMAN MERGE AND MC POST-MERGE VERIFICATION.** No EIS edit, self-merge, hold closure, Stage 11 or implementation authority.
+**STOP FOR GENUINELY INDEPENDENT GOVERNANCE/SA-01 REVIEW, FOUNDER HUMAN MERGE AND MC POST-MERGE VERIFICATION.** No EIS edit, self-merge, hold closure, Stage 11 or implementation authority.
