@@ -31,7 +31,7 @@ Enforce one qualifying grant for each required action/object predicate, with no 
 
 **Normative / T1–T8 screen:** The proposal implements existing `EIS-KER-04` scope constraints, without adding capabilities or privileges, altering the locked SB-P-1.12 kernel or changing merchant-facing Product Truth. T5 Founder decision is recorded; no T1–T4 or T6–T8 substantive trigger is presently evidenced for this representation. The independent reviewer must confirm this finding and report any precise counterevidence.
 
-**Authority status:** Founder decision **GIVEN** in the PR discussion; **canonical acceptance remains pending** independent SA-01/security-governance review of the corrected exact head, Founder human merge and Mission Control post-merge verification. The earlier specialist's `ACCEPT WITH EXACT CORRECTION` expressly disclosed prior GA-08 design participation and **does not satisfy independent SA-01 review**. Green CI does not substitute for independence.
+**Authority status:** Founder decision **GIVEN** in the PR discussion; **canonical acceptance remains pending** independent security/governance review by an eligible Mission Control-appointed reviewer of the corrected exact head, Founder human merge and Mission Control post-merge verification. The earlier specialist's `ACCEPT WITH EXACT CORRECTION` expressly disclosed prior GA-08 design participation and **does not satisfy the required independent review**. Green CI does not substitute for independence.
 
 **Future edit boundary:** This decision permits only a subsequent, separately issued, MC-502-bounded `EIS17-AUTH-02` documentary correction after canonical acceptance. It neither edits the EIS nor closes EQ17-01, alters actual grants/RLS/SQL or authorizes implementation/Stage 11.
 
@@ -41,10 +41,10 @@ Enforce one qualifying grant for each required action/object predicate, with no 
 
 Only after that trigger, Mission Control may issue a *separate*, precise EIS-only correction instruction against the then-current main blob to replace the `EIS17-AUTH-02` EQ17-01 encoding sentence with the accepted normalized-row representation and necessary non-union, ceiling, commit-time/revocation and protected-finance boundaries.
 
-Do not alter `EIS17-AUTH-03`, upstream SB-P-1.12 EIS, locked Blueprint/FCTM, capabilities, grants, RLS, SQL or implementation. Retain open holds and all existing independent security tests and owner protections. Require exact diff and SHA, independent SA-01 security review, Founder human merge and Mission Control post-merge verification. Do not close EQ17-01 solely on PR preparation.
+Do not alter `EIS17-AUTH-03`, upstream SB-P-1.12 EIS, locked Blueprint/FCTM, capabilities, grants, RLS, SQL or implementation. Retain open holds and all existing independent security tests and owner protections. Require exact diff and SHA, independent finding-scoped security review by an eligible Mission Control-appointed reviewer, Founder human merge and Mission Control post-merge verification. Do not close EQ17-01 solely on PR preparation.
 
 ## 5. Parallel lanes and STOP
 
 GA-02 `POS-02/HOLD-15`, GA-04 `TXN-03/HOLD-17`, GA-05 `TXN-06/07/HOLD-18`, GA-06 `CC-03/04/06/HOLD-19/23` and residual Blueprint T8-03 retain independent evidence and authorization conditions. This proposal neither blocks ready rows nor permits their unapproved editing.
 
-**STOP FOR GENUINELY INDEPENDENT GOVERNANCE/SA-01 REVIEW, FOUNDER HUMAN MERGE AND MC POST-MERGE VERIFICATION.** No EIS edit, self-merge, hold closure, Stage 11 or implementation authority.
+**STOP FOR GENUINELY INDEPENDENT SECURITY/GOVERNANCE REVIEW, FOUNDER HUMAN MERGE AND MC POST-MERGE VERIFICATION.** No EIS edit, self-merge, hold closure, Stage 11 or implementation authority.
