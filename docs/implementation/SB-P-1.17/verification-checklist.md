@@ -87,7 +87,9 @@ Every item is **NOT VERIFIED**. An item becomes evidenced only through the plann
 | `NP-34` | Historical supplier attribution is never automatic; the original transaction is unchanged | SUP-04 | 2 |
 | `NP-35` | A purchase request is never shown as sent or accepted without a merchant record; no system dispatch | RO-04 | 2 |
 | `NP-36` | No dashboard-only logic or second truth; caches never bypass authorization | WS-01, WS-06 | 24 |
-| `NP-37` | Must-not rows and rejected approaches are absent (blind procurement, custom POS core, fixed thresholds, duplicate engines, CSV-only downgrade, AI verdicts) | NEG-01, NEG-02, POS-10, POS-08 | 73 |
+| `NP-37` | Per mapped row, test its exact FCTM must-not / negative prohibition (including blind procurement, custom POS core, fixed thresholds, duplicate engines, CSV-only downgrade and AI verdicts where applicable). The verifier records a row-specific prohibited action, entry surface, attempted actor/input, expected denial or absence, observed outcome and linked negative evidence; one generic screenshot or aggregate NP-37 PASS cannot satisfy multiple different clauses. | NEG-01, NEG-02, POS-10, POS-08 | 73 |
+
+**Stage 13 specificity rule — NP-01 and NP-37.** A named check ID is a reusable test family, not blanket evidence or a blanket PASS. For each row mapped to `NP-01`, verify the specific forbidden capability and its relevant UI, RPC, export, conversation or background entry points for a no-grant Manager and record row-keyed denial evidence; where a row specifies another authority condition, apply its narrower `NP-02`–`NP-36` check as well. For each row mapped to `NP-37`, derive the exact prohibited behavior from that FCTM row and its linked EIS requirements and record a distinct row-keyed negative assertion and observation. If the original row is too ambiguous to derive a test, mark `FOLLOW-UP` and do not mark it PASS; resolve against the locked source contract without inventing Product Truth. No check is performed or passed by this document.
 
 ## 5. Named Human-Runtime Scenarios
 
