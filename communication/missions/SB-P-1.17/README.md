@@ -4,10 +4,13 @@
 **Mission type:** Product Mission (Source 18 v1.2)\
 **Mission Control:** Smart Business Mission Control\
 **Definition, Builder Review and Engineering Review Actor:** Claude Code (Stage 1 Intake Pack §4; MC-396A)\
-**Current stage and owner:** Stage 9 — EIS Creation. Claude Code is the Stage 9 EIS actor (MC-429). The draft EIS is awaiting Mission Control Stage 10 review\
-**Current status:** BLUEPRINT APPROVED — LOCKED (Stage 8, PR #1017) — STAGE 9 EIS DRAFT SUBMITTED FOR STAGE 10 REVIEW — EIS NOT LOCKED\
-**Latest relevant commit:** `main@d3155ac99ade96d3d7fdd739eaa2a6003406961a` (PR #1018, Stage 9 EIS authorization)\
-**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
+**Current stage and owner:** Stage 13 APPROVED — LOCKED; Mission Control Phase 1 documentary suspension / SB-P-1.18 handoff pending Founder merge.  
+**Current status:** PARTIAL COMPLETION — DOCUMENTATION / EXECUTION-READINESS COMPLETE — IMPLEMENTATION SUSPENDED (proposed until handoff PR merges and is verified).  
+**Communication:** COMMUNICATION SUSPENDED — FORMAL ARCHIVE DEFERRED (post-merge conditional).  
+**Closure:** FORMAL OLE CLOSURE ENVELOPE NOT CREATED — MISSION NOT FORMALLY CLOSED.  
+**Canonical Stage 13 merge:** `main@1e4911362458045c6e3b3ae68d4dc9d0f9deb139` (PR #1066); locked Blueprint `f65ddd2a`, EIS `5d681b0c`, three-document package `2728fa68`/`4cc20b08`/`e4f775e5`.  
+**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED. See `mission-control/implementation-authorization.md`.  
+**Transition documents:** `mission-control/14-` to `18-`, with exact resume register and durable communication snapshots. The older stage-by-stage ledger below is historical and does not override this current-state declaration.
 
 Created under MC-422A on 2026-10-22. SB-P-1.17 had no mission README before this; the Stage 1 entry record noted the absence. Conversation-source Mission Control decisions are labelled as such, and their text is not reproduced.
 
