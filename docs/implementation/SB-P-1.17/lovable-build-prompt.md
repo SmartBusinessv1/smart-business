@@ -1,11 +1,11 @@
 # SB-P-1.17 — Lovable Build Prompt
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a)
 EIS: APPROVED — LOCKED (UNCHANGED, blob 5d681b0c)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
-IMPLEMENTATION PACKAGE: DRAFT — MISSION CONTROL REVIEW REQUIRED (Stage 13)
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (Stage 13)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 POS, AI, VOICE AND MESSAGING PROVIDER ACTIVATION: NOT AUTHORIZED
@@ -19,7 +19,7 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Lovable Build Prompt (documentary planning) |
 | Lifecycle stage | Source 18 v1.2 Stage 12 — Initial Implementation Package |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
@@ -601,4 +601,4 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 9. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. Documentary planning only. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`APPROVED — LOCKED`. Documentary planning only. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
