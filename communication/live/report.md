@@ -1,13 +1,10 @@
-# SMART BUSINESS MISSION CONTROL — MC-474 SA-02 SUBSTANTIVE INDIA LEGAL / PRIVACY REVIEW
+# SMART BUSINESS — SB-P-1.18 STAGE 1 INTAKE RETURN POINTER
 
-**Status:** PROVISIONAL DOCUMENTARY REVIEW SUBMITTED — REFINEMENT REQUIRED — MISSION CONTROL DISPOSITION PENDING  
-**Mission:** SB-P-1.17 — Manager Operations  
-**Sender:** India Legal / Privacy specialist room (ChatGPT / OpenAI AI research assistant)  
-**Recipient:** Mission Control  
-**Date:** 2026-10-23  
-**Authority:** MC-474; `communication/live/instruction.md`; `communication/missions/SB-P-1.17/mission-control/26-mc472a-sa02-substantive-legal-privacy-review-authorization.md`  
-**Implementation Authorization:** WITHHELD.
+**Status:** INTAKE OPENED — NOT YET EXECUTED (conditional on Founder merge and post-merge verification)  
+**Mission:** SB-P-1.18  
+**Sender:** Mission Control activation record  
+**Recipient:** SB-P-1.18 documentary intake actor (not yet appointed)  
+**Date:** 2026-10-25 (Asia/Kolkata)  
+**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-Full SA-02 research, ten findings, source manifest, effective-date/retention/disposition matrices, T1–T8 screen and counsel questions: [`communication/missions/SB-P-1.17/specialists/13-stage10-sa02-documentary-india-legal-privacy-review.md`](../missions/SB-P-1.17/specialists/13-stage10-sa02-documentary-india-legal-privacy-review.md).
-
-Immutable EIS `8280967f2805cfed17778da3fc76c90b2f2f5ead`; no EIS edits. **U-11 and qualified Indian legal/privacy validation OPEN.** No EIS approval, lock, implementation or legal certification. **STOP FOR MISSION CONTROL DISPOSITION.**
+No Stage 1 Intake Pack, source inventory, Definition Actor appointment, FCTM or substantive mission report has yet been submitted. This placeholder is not a specialist return or evidence of execution. Await a genuine Stage 1 report through this reusable live pair under Source 18. Prior SB-P-1.17 live contents are preserved byte-for-byte in `communication/missions/SB-P-1.17/communication-preservation/`, merged through PR #1067. No archive/closure claim.
