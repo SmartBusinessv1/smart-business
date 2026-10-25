@@ -1,11 +1,11 @@
 # SB-P-1.17 — Engineering Contract
 
 ```text
-STATUS: DRAFT — MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a)
 EIS: APPROVED — LOCKED (UNCHANGED, blob 5d681b0c)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
-IMPLEMENTATION PACKAGE: DRAFT — MISSION CONTROL REVIEW REQUIRED (Stage 13)
+IMPLEMENTATION PACKAGE: APPROVED — LOCKED (Stage 13)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 POS, AI, VOICE AND MESSAGING PROVIDER ACTIVATION: NOT AUTHORIZED
@@ -19,7 +19,7 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Engineering Contract |
 | Lifecycle stage | Source 18 v1.2 Stage 12 — Initial Implementation Package |
-| Status | `DRAFT — MISSION CONTROL REVIEW REQUIRED` |
+| Status | `APPROVED — LOCKED` |
 | Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
@@ -66,7 +66,7 @@ No hold is closed, and no open question becomes approved, because it appears in 
 ## 5. System Boundaries and Exclusions
 
 - **In scope:** the 404 `IN SCOPE` rows through the obligations below.
-- **Not authorized by this package:** implementation, application code, SQL, migrations, deployment, production change, POS, AI, voice or messaging provider activation, staff or operator-data processing, runtime testing, Lovable or other builder execution, hold closure and Stage 13 approval.
+- **Not authorized by this package:** implementation, application code, SQL, migrations, deployment, production change, POS, AI, voice or messaging provider activation, staff or operator-data processing, runtime testing, Lovable or other builder execution, hold closure and implementation authorization.
 - **Ownership boundaries:** SB-P-1.12 owns authority, identity, confirmation and delegated automation; SB-P-1.13 the gateway, tools and language; SB-P-1.14 the Ledger, governed commands, UDI and storage; SB-P-1.15 timezone, scheduler, reminders, standing-rule runtime, Ask CFO and Daily Intelligence; SB-P-1.16 customer balances. SB-P-1.17 consumes them and re-specifies none.
 
 ## 6. Obligation Types
@@ -797,4 +797,4 @@ Verification references name the Verification Checklist negative-path checks (`N
 
 ## 11. Status
 
-`DRAFT — MISSION CONTROL REVIEW REQUIRED`. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`APPROVED — LOCKED`. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
