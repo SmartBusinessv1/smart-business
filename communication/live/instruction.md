@@ -1,11 +1,12 @@
-# SMART BUSINESS MISSION CONTROL — MC-472A SA-02 INDIA LEGAL / PRIVACY DOCUMENTARY REVIEW
+# SMART BUSINESS MISSION CONTROL — SB-P-1.18 STAGE 1 DOCUMENTARY INTAKE
 
-**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION  
-**Mission:** SB-P-1.17 — Manager Operations  
+**Status:** PROPOSED — EFFECTIVE ONLY AFTER FOUNDER HUMAN MERGE AND MISSION CONTROL MAIN VERIFICATION  
+**Mission:** SB-P-1.18 — next Phase 1 Product Mission  
 **Sender:** Mission Control  
-**Recipient:** India Legal / Privacy specialist room  
-**Date:** 2026-10-23  
-**Authority:** `communication/missions/SB-P-1.17/mission-control/26-mc472a-sa02-substantive-legal-privacy-review-authorization.md`  
-**Implementation Authorization:** WITHHELD.
+**Recipient:** SB-P-1.18 Stage 1 documentary intake room  
+**Authority:** `communication/missions/SB-P-1.18/mission-control/01-stage1-documentary-entry-and-communication-activation.md`; Source 18 v1.2; Founder-approved Phase 1 operating pattern  
+**Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-After activation, execute the bounded Stage 10 SA-02 provisional documentary India Legal / Privacy review against immutable EIS blob `8280967f2805cfed17778da3fc76c90b2f2f5ead`. Evaluate U-11, scoped staff/attendance, privacy/retention/deletion, merchant and Team LIPS responsibilities, audit attribution, financial records and India legal effective-date uncertainty using current authoritative sources. Revalidate prior R-2/MC-408A assumptions and reuse SA-01/03/05/04 evidence. Return a finding-scoped report through exact paths/branch in durable authority; maintain legal-counsel validation OPEN. No EIS modification, licensed legal opinion, SQL, migration, provider activity, implementation or lock. STOP for Mission Control.
+Carry out only Stage 1 source-scope intake. Read canonical Build Plan, Product Truth, roadmap and upstream locked contracts, then SB-P-1.17's partial OLE handoff and exact resume register. Establish the precise SB-P-1.18 scope and exclusions without guessing its mission definition; prepare a source allocation / dependency inventory and a proposed qualified Definition Actor appointment with prior-contribution and separation assessment. Screen T1–T8 and record held unimplemented upstream dependencies.
+
+No Stage 2 execution, Blueprint, FCTM finalization, SQL, provider activation, implementation, migration, production change or Stage 23/24 closure. STOP and return Stage 1 Intake Pack proposal for Mission Control review.
