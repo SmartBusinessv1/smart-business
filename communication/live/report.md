@@ -25,6 +25,6 @@ This report replaces the activation placeholder, which is preserved in Git at bl
 
 ## Git scope
 
-No Git authority was granted. The three files are prepared uncommitted on a detached worktree at `06855599`. Nothing has been committed or pushed, and no PR has been opened.
+Founder-merged PR #1075 (`main@9f472d5394a94051271bf9c5bca9f39b030b8f9f`) granted a bounded three-file publication authorization, and that grant has been used. Under it, `mission/SB-P-1.18-stage1-intake` was branched from the PR #1075 merge. The three authorized files were committed and pushed, and draft PR #1076 was opened, OPEN/DRAFT, with original submission head `0b2631b8b0bf3981e810822a360b79946c2e794e`. The grant expired when PR #1076 was first submitted. The content was prepared at `06855599cd83862cc5a4bcaf25d4aeb8a159a852`. That commit remains the historic intake baseline and is not the base of the publication branch.
 
 **STOP:** Mission Control Stage 1 Intake Pack review and formal Definition Actor appointment disposition (Source 18 §4.3).
