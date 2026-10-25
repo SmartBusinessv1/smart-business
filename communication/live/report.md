@@ -22,7 +22,7 @@ This report replaces the Stage 1 return pointer, which is preserved in Git at bl
 
 ## Headline findings
 
-1. **FCTM:** 764 rows: 590 `IN SCOPE`, 12 `ASSIGNED TO LATER MISSION` (all WhatsApp legs, SB-P-1.20), 77 `DELEGATED`, 26 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 9 `UNRESOLVED FOUNDER DECISION` (none critical), 2 `ESCALATED`. No row was moved, deferred or reclassified.
+1. **FCTM:** 764 rows: 590 `IN SCOPE`, 12 `ASSIGNED TO LATER MISSION` (all WhatsApp legs, SB-P-1.20), 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION` (none critical), 2 `ESCALATED`. No `BUILD NOW` row was moved, deferred or reclassified. MC-510 correction (MC508-F01, MC508-F02): eight permissive-example rows re-kinded `EX` (still `IN SCOPE`); `1-§4-7` moved to `NOT APPLICABLE`; `1-§30-2` commitment corrected.
 2. **Completeness:** sections, units, scenarios, dispositions and orphan checks all pass against a parser-generated inventory. All 33 inherited identifiers and all 21 inbound C1 unit identifiers reconcile.
 3. **Reverse dependencies:** 41, not 20. They include 15 SB-P-1.16 and 3 SB-P-1.13 rows carrying `D18`, and 3 SB-P-1.15 event triggers that carry no `D18`.
 4. **Stage 3 is triggered.** Founder candidates:

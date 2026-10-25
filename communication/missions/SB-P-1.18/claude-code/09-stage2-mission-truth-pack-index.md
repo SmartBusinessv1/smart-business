@@ -29,16 +29,24 @@ Every source blob equals the Stage 1 manifest (`02-stage1-…` §2): Contracts 0
 
 | Part | `IN SCOPE` | `ASSIGNED TO LATER MISSION` | `DELEGATED` | `NOT APPLICABLE` | `OUT OF BUILD SCOPE` | `UNRESOLVED FOUNDER DECISION` | `ESCALATED` | Rows |
 |---|---|---|---|---|---|---|---|---|
-| A. Contract 01 | 248 | 8 | 0 | 14 | 9 | 3 | 1 | 283 |
+| A. Contract 01 | 248 | 8 | 0 | 15 | 9 | 2 | 1 | 283 |
 | B. Contract 06 | 91 | 1 | 0 | 1 | 6 | 1 | 0 | 100 |
 | C. Contract 16 | 138 | 3 | 0 | 4 | 7 | 0 | 0 | 152 |
 | D. Inherited units owned here (C22 §16, C17 §9/§10, C3, C5, C9, C10, C12, C24) | 49 | 0 | 0 | 0 | 0 | 0 | 1 | 50 |
 | E. Delegated touch points | 0 | 0 | 36 | 0 | 0 | 0 | 0 | 36 |
 | F. Reverse dependencies | 0 | 0 | 41 | 0 | 0 | 0 | 0 | 41 |
 | G. Build Plan and GPCV | 64 | 0 | 0 | 7 | 26 | 5 | 0 | 102 |
-| **Total** | **590** | **12** | **77** | **26** | **48** | **9** | **2** | **764** |
+| **Total** | **590** | **12** | **77** | **27** | **48** | **8** | **2** | **764** |
 
 No row is `ALREADY DEMONSTRATED` or `DEMONSTRATED`. All 12 `ASSIGNED TO LATER MISSION` rows are WhatsApp legs owned by SB-P-1.20 (BP §8.4, §9 row 9, §10.9). No `BUILD NOW` row was deferred, simplified or reclassified.
+
+**MC-510 correction (MC508-F01, MC508-F02).**
+
+- Eight permissive-example rows (`1-§10-7`, `1-§15-2` to `1-§15-7`, `6-§5-2`) changed kind from `OBL` to `EX`. Each now names the rows that carry the mandatory outcome and the open Founder determination (F-4; DC-14 for `6-§5-2`), and each stays `IN SCOPE`.
+- `1-§4-7` changed from `UNRESOLVED FOUNDER DECISION` to `NOT APPLICABLE`.
+- `1-§30-2` keeps its disposition; its commitment now quotes C1 §30 b2 ("not part of this contract").
+
+The broader marketplace decision stays recorded as `BP-§15-8`, `1-§30-2` and `GPCV-§9-11`, and it is not an SB-P-1.18 acceptance dependency.
 
 ## 4. Completeness findings (`07-…` §3)
 

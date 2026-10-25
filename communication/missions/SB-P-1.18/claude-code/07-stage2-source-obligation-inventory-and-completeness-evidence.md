@@ -904,7 +904,7 @@ Source 18 §3.2 item 6 requires an obligation inventory taken from the source te
 | C16 | 150 | 18 | 23 | 152 | 138 |
 | BP | 91 | 9 | 6 | 89 | 58 |
 
-Totals across all parts: 764 rows (590 `IN SCOPE`, 48 `OUT OF BUILD SCOPE`, 9 `UNRESOLVED FOUNDER DECISION`, 2 `ESCALATED`, 12 `ASSIGNED TO LATER MISSION`, 26 `NOT APPLICABLE`, 77 `DELEGATED`). Effort reading: Contract 01 carries the largest load, with lifecycle, delivery staff, COD and location; Contract 16 is the most self-contained; the Location Foundation (WS-D) is small but cross-cuts WS-A and WS-B, and both `ESCALATED` rows concern location (`1-§14-5` in WS-A, `22-§16-6` in WS-D).
+Totals across all parts: 764 rows (590 `IN SCOPE`, 48 `OUT OF BUILD SCOPE`, 27 `NOT APPLICABLE`, 2 `ESCALATED`, 12 `ASSIGNED TO LATER MISSION`, 8 `UNRESOLVED FOUNDER DECISION`, 77 `DELEGATED`). Effort reading: Contract 01 carries the largest load, with lifecycle, delivery staff, COD and location; Contract 16 is the most self-contained; the Location Foundation (WS-D) is small but cross-cuts WS-A and WS-B, and both `ESCALATED` rows concern location (`1-§14-5` in WS-A, `22-§16-6` in WS-D).
 
 ## 3. Completeness test (Source 18 §3.2 item 6)
 
@@ -914,7 +914,7 @@ Totals across all parts: 764 rows (590 `IN SCOPE`, 48 `OUT OF BUILD SCOPE`, 9 `U
 | (b) Every non-lead-in unit is covered by its own row (or the single row of a wholly non-`IN SCOPE` section) | inventory units minus covered units | **PASS — 0 uncovered** across 627 full-inventory units and 67 touched delegated units |
 | (c) Every acceptance scenario is its own `SCN` row | C1 §26, C6 §14, C16 §20 bullets lacking an `SCN` row | **PASS — 0 missing** (§3.1) |
 | (d) Exactly one disposition, from the Source 18 vocabulary, with a citation | rows with an invalid or empty disposition or citation; duplicate IDs | **PASS** — 0 invalid, 0 uncited, 0 duplicate IDs |
-| (d) No `ESCALATED` or critical-path `UNRESOLVED FOUNDER DECISION` row at lock | rows with those dispositions | **NOT MET — 2 `ESCALATED`** (`1-§14-5`, `22-§16-6`); 9 `UNRESOLVED FOUNDER DECISION`, none on the critical path. This is a lock condition, not a Stage 2 failure: Stage 3 is triggered (`05-…`) |
+| (d) No `ESCALATED` or critical-path `UNRESOLVED FOUNDER DECISION` row at lock | rows with those dispositions | **NOT MET — 2 `ESCALATED`** (`1-§14-5`, `22-§16-6`); 8 `UNRESOLVED FOUNDER DECISION`, none on the critical path. This is a lock condition, not a Stage 2 failure: Stage 3 is triggered (`05-…`) |
 | (d) Classification and assignment equal the source | rows whose commitment, commercial class or owner differs from the source without a Founder Decision ID | **PASS** — every `ADD-ON + BUILD NOW` value is verbatim from GPCV rows 1, 6, 16; every `ASSIGNED TO LATER MISSION` row cites BP §8.4, §9 row 9 or §10.9 (SB-P-1.20); no row moved between commitments |
 | (e) Downstream mapping | not applicable before Stage 4 | — |
 | Matrix → inventory | C1/C6/C16/D/G rows whose pointer is not an inventory locator | **PASS — 0 orphans** |
