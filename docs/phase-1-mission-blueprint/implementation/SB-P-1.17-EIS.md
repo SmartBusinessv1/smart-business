@@ -1,8 +1,8 @@
 # SB-P-1.17 — Engineering Implementation Specification
 
-STATUS: DRAFT — STAGE 10 MISSION CONTROL REVIEW REQUIRED
+STATUS: APPROVED — LOCKED
 
-**IMPLEMENTATION NOT AUTHORIZED.** This EIS specifies how the locked SB-P-1.17 Blueprint is to be built. It authorizes no code, SQL, migration, provider or POS activation, test execution, deployment or production change. It is not locked.
+**IMPLEMENTATION NOT AUTHORIZED.** This EIS specifies how the locked SB-P-1.17 Blueprint is to be built. It authorizes no code, SQL, migration, provider or POS activation, test execution, deployment or production change. Stage 11 documentary lock becomes effective only after Founder human merge of this administrative alignment and Mission Control verification on protected `main`.
 
 ## 1. Document Metadata
 
@@ -10,8 +10,8 @@ STATUS: DRAFT — STAGE 10 MISSION CONTROL REVIEW REQUIRED
 |---|---|
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Engineering Implementation Specification (EIS) |
-| Lifecycle stage | Source 18 v1.2 Stage 9 — EIS Creation |
-| Status | `DRAFT — STAGE 10 MISSION CONTROL REVIEW REQUIRED` |
+| Lifecycle stage | Source 18 v1.2 Stage 11 — EIS Lock, following Stage 10 accepted disposition MC-507CT and separate Stage 11 disposition MC-507CU |
+| Status | `APPROVED — LOCKED` (Stage 11 approved on reviewed content; canonical status effective after Founder merge of this metadata alignment and Mission Control post-merge verification) |
 | Author | Claude Code (Stage 9 EIS actor; also author of Stages 2–7 and the Stage 8 package; not independent review) |
 | Authorization | MC-429 (`communication/missions/SB-P-1.17/mission-control/13-stage9-eis-creation-authorization.md`), effective at PR #1018; MC-430 execution instruction (conversation-source) |
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, current canonical blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` (Stage 8 approved/locked; later bounded Founder amendment PR #1059; original Stage 8 blob `bc4615f8…` is historical) |
@@ -20,7 +20,7 @@ STATUS: DRAFT — STAGE 10 MISSION CONTROL REVIEW REQUIRED
 | Founder decisions | `17:FPDR-1` to `-6` (`claude-code/10-…`, blob `90b7ca1d`); `17:FPDR-7` (`claude-code/15-…`, blob `e9f2cacb`); Stage 8 approval (MC-426) |
 | Requirements | 157 (`EIS17-*`) |
 | Baseline | `main@d3155ac99ade96d3d7fdd739eaa2a6003406961a` (PR #1018) |
-| Next gate | Stage 10 — Mission Control EIS review; implementation remains NOT AUTHORIZED |
+| Next gate | Stage 12 — Initial Implementation Package, only after Stage 11 metadata alignment is human-merged and its canonical `main` blob verified; implementation remains NOT AUTHORIZED |
 
 ## 2. Purpose and Authority
 
