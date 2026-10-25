@@ -102,3 +102,48 @@ The repository's current live numbered filenames are historic under SB-P-1.12 (1
 - **Gate P3:** **OPEN**; code search results are preliminary, not a complete reference impact audit. No link changes or removals authorized.
 - **Gate P4:** independent evidence review, CI and Founder human merge pending.
 - **Gate D:** **NOT AUTHORIZED**. All 90 numbered live files retained.
+
+
+---
+
+## Assessment follow-up — PR #1071 authorized baseline, 7368f16b249a60fa3745f88991c93d4abe27401c
+
+**Proven reproducible source enumeration:** GitHub Git Trees recursive listing of canonical base commit: 2514 tracked files; 90 exact `communication/live` numbered files. Every source-to-snapshot SHA checked equal (90/90). Index-only search is not an exhaustive reference audit.
+
+**Coverage gap — GATE P3 NOT MET:** This environment has no working GitHub network access for a full local checkout; the connected GitHub code-search results are bounded and cannot establish all line-level references, false positives and active runtime reliance across every tracked file. The earlier candidate table remains explicitly provisional. No claims of exhaustive reference safety or individual deletion clearance.
+
+### Reproducible mandatory full-tree scan for independent assessment
+Execute in an authorized full checked-out repository at the exact immutable baseline (not on an unrelated current branch):
+
+```bash
+git fetch origin 7368f16b249a60fa3745f88991c93d4abe27401c
+# Use a detached read-only worktree outside any active mission worktree.
+git worktree add --detach /tmp/sb-legacy-refscan 7368f16b249a60fa3745f88991c93d4abe27401c
+cd /tmp/sb-legacy-refscan
+python3 - <<'PY'
+import subprocess, re, pathlib, csv
+paths = [p for p in subprocess.check_output(['git','ls-files','-z']).split(b'\\x00') if p]
+legacy = [p.decode() for p in paths if re.fullmatch(rb'communication/live/(?:instruction|report)1\\.\\d+\\.md',p)]
+assert len(legacy)==90, len(legacy)
+items=[]
+for bp in paths:
+ try: data=pathlib.Path(bp.decode()).read_bytes()
+ except (UnicodeError, OSError): continue
+ if b'\\x00' in data[:4096]: continue
+ for n,line in enumerate(data.decode('utf-8','replace').splitlines(),1):
+  for name in legacy:
+   base=name.rsplit('/',1)[-1]
+   # Exact live path and standalone basename, not substring of longer numbers.
+   if name in line or re.search(r'(?<![\\w.])'+re.escape(base)+r'(?![\\w.])',line):
+    items.append((bp.decode(),n,name,'exact path' if name in line else 'basename',line[:500]))
+with open('/tmp/sb-legacy-refscan-results.tsv','w') as f:
+ for x in items:f.write('\\t'.join(map(str,x)).replace('\\n',' ')+ '\\n')
+print('tracked-files=',len(paths),'legacy-files=',len(legacy),'candidate-hits=',len(items))
+PY
+```
+
+Scan result requires manual independent classification: active executable dependence / historical citation / artifact-link / self-reference / ambiguous / false-positive, with stable destination and line-level evidence. A textual match is not necessarily a live dependency. Active SB-P-1.18 base pair must remain unchanged. Never rewrite immutable historical documents merely to modernize links.
+
+**Outcome register:** `historical-outcome-evidence-register.md` distinguishes the twelve unmatched instructions and expressly preserves the NOT EXECUTED state of `report1.51.md`.
+
+**Removal matrix:** `legacy-live-removal-readiness-matrix.md` retains all 90 files pending full-scan findings, outcome checks, and the later independently granted deletion authority.
