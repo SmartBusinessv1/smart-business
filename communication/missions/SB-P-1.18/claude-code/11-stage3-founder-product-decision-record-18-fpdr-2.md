@@ -63,7 +63,7 @@ The brief is published byte-identical to the accepted version. Its header still 
 
 | Source | Consequence |
 |---|---|
-| Source 09 (pilot scope "live tracking") | For SB-P-1.18, the pilot-scope requirement is met by live order/delivery status plus point-in-time location at destination and proof. Location-based live tracking is not a Phase 1 pilot commitment |
+| Source 09 (pilot scope "live tracking") | For SB-P-1.18, the Founder-approved Option A reduces the original pilot-scope live-tracking commitment to live order/delivery status plus point-in-time location at destination and proof. Location-based live tracking is no longer a Phase 1 pilot commitment. This is a reduction, not satisfaction of the original requirement. |
 | Source 11 (flow step "Live tracking") | For SB-P-1.18, the step is reduced in the same way. The reduction is made by this decision, not by reinterpreting Source 11 |
 | Both | **Neither source is amended.** Their text is unchanged. Any wording note or amendment to Source 09 or 11 is a separate governance action, outside this record and not authorized here |
 
