@@ -1,32 +1,17 @@
-# SMART BUSINESS — SB-P-1.18 STAGE 3 F-2 DECISION RECORD RETURN POINTER
+# SMART BUSINESS — SB-P-1.18 CURRENT REPORT POINTER
 
-**Status:** STAGE 3 F-2 DOCUMENTARY PUBLICATION RETURNED — DRAFT PR — NOT CANONICAL — AWAITING MISSION CONTROL REVIEW AND FOUNDER HUMAN MERGE
+**Status:** NO ACTIVE REPORT — CURRENT-POINTER STATE
 **Mission:** SB-P-1.18 — Controlled Business Add-ons
 **Sender:** Claude Code, SB-P-1.18 Definition Actor
 **Recipient:** Mission Control
-**Responds to:** MC-528, executing §8 of `communication/missions/SB-P-1.18/mission-control/06-stage3-founder-decision-gate-and-f2-record-publication-authorization.md` (blob `da541d46`, Founder-merged in PR #1081, `main@e1e39482a8801063f0564ee67100dc87b26f9624`). `communication/live/instruction.md` still carries the Stage 1 instruction and was not edited (Δ-14)
+**Current-state index:** `communication/missions/SB-P-1.18/README.md` (Stage Ledger)
 **Date:** 2026-10-26 (Asia/Kolkata)
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
-This report replaces the Stage 2 return pointer, which is preserved in Git at blob `2745b0ba4ae1fac529d6c5ce54c15077878a5545` (PR #1080). Execution status: the documentary publication of the F-2 decision only. Stage 3 remains open.
+No report is pending.
 
-## Records in this pull request
+- **`18:FPDR-2` (F-2):** APPROVED — canonical. Founder human-merged in PR #1082 (`959f5099`); Mission Control verification MC-533. The decision-log status was reconciled in PR #1083 (`3f519a81`, MC-534; verification MC-536).
+- **Stage 3:** OPEN. F-1, F-3, F-4 and F-5 are unresolved. FCTM reconciliation for `1-§14-5` and `22-§16-11` is not authorized.
+- **Administrative reconciliation (MC-537):** README and Stage Ledger, handover log, and preservation of the live pair. See `communication/missions/SB-P-1.18/communication-preservation/01-mc537-live-communication-preservation-and-reconciliation-record.md`.
 
-- `communication/missions/SB-P-1.18/claude-code/10-stage3-founder-decision-brief-and-annex.md`: the accepted Founder Brief, byte-identical (SHA-256 `372e81f97e9c6e19a23c644996bfaca526a6b244fe19642654c01079a1eff52d`).
-- `…/claude-code/11-stage3-founder-product-decision-record-18-fpdr-2.md`: Founder Product Decision Record `18:FPDR-2` (`SB-P-1.18 / F-2`), for review.
-- `communication/missions/SB-P-1.18/decision-log.md`: new; registers `18:FPDR-2` only, as PROPOSED.
-
-## What the record says
-
-1. The Founder selected **F-2 Option A** (MC-520). The verbatim statement is quoted in §1.1 and kept apart from the brief's fuller Option A wording in §1.2.
-2. It resolves a **T2** conflict between Source 09/11 and Contract 01 §14 and Contract 22 §16. It is a **T7** commitment reduction: mandatory Phase 1 location-based live GPS tracking is removed; order and delivery status and point-in-time location at destination and proof are kept; and default continuous staff surveillance stays rejected. Sources 09 and 11 are not amended.
-3. `1-§14-5` (`ESCALATED`) and `22-§16-11` are affected, as accounting only. **No FCTM row is changed;** reconciliation needs a separate authorization.
-4. **F-1, F-3, F-4 and F-5 remain unresolved.** F-1 still requires qualified Indian legal/privacy advice. Stage 3 remains open.
-
-`18:FPDR-2` becomes effective only on Founder human merge and Mission Control post-merge verification.
-
-## Git scope
-
-Branch `mission/SB-P-1.18-stage3-f2-decision-record`, created from verified `main@e1e39482`. Exactly four paths are staged: the three new files above and this report. The grant expires at first submission of the draft PR.
-
-**STOP:** Mission Control PR review. No self-merge, no FCTM change, no Stage 4, no implementation.
+The previous report (F-2 return pointer, blob `3c40ce63`) is preserved byte-for-byte at `communication/missions/SB-P-1.18/communication-preservation/live-report-f2-return.snapshot.md`. The mission records prevail over this pointer.
