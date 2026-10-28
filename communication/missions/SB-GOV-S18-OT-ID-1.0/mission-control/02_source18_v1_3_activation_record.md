@@ -6,15 +6,15 @@
 
 **Record:** 02 — v1.3 activation record
 
-**Status:** `CONDITIONAL — TAKES EFFECT ONLY ON THE HUMAN MERGE OF THE v1.3 FINALIZATION PULL REQUEST. PREPARED FOR INDEPENDENT VERIFICATION`
+**Status:** `ACTIVATED AT THE HUMAN MERGE OF THE v1.3 FINALIZATION PULL REQUEST (PR #1091) ON 2026-10-28T14:52:55Z. POST-ACTIVATION FACTUAL EVIDENCE RECORDED`
 
-**Activation Confirmation (Section 7):** `CONDITIONAL — EFFECTIVE ONLY ON THE HUMAN MERGE OF THE v1.3 FINALIZATION PULL REQUEST`
+**Activation Confirmation (Section 7):** `EFFECTIVE FROM 2026-10-28T14:52:55Z UTC (2026-10-28 20:22:55 IST). IT TOOK EFFECT AT THE HUMAN MERGE OF PR #1091, MERGE COMMIT 3b0992cc05dce469bd5e9192d19146c6957aa3b4`
 
-**Post-merge factual evidence (Section 7.2):** `NOT YET RECORDED`
+**Post-merge factual evidence (Section 7.2):** `RECORDED IN SECTION 7.2. MANDATORY EVIDENCE, NOT A SECOND ACTIVATION EVENT`
 
 **Prepared by:** Claude Code — Governance Documentation Implementation. The author of this record may not verify, approve, merge or activate it.
 
-**Prepared under:** Mission Control MC-589 (PR #1089 comment `6464632087`), preparation only. Section 7.1 was completed under Mission Control's decision in PR #1090 comment `6466623163`
+**Prepared under:** Mission Control MC-589 (PR #1089 comment `6464632087`), preparation only. Section 7.1 was completed under Mission Control's decision in PR #1090 comment `6466623163`. Section 7.2 was prepared under Mission Control MC-600-A (PR #1091 comment `6472329432`)
 
 **Repository:** `SmartBusinessv1/smart-business`
 
@@ -32,7 +32,7 @@ It does three things:
 2. It records, in Section 7.1, Mission Control's conditional decision, and it makes the effect of Version 1.3 conditional on one event, the human merge of the A2 finalization pull request.
 3. It lists the exact fields that remain as mandatory post-merge factual evidence (A3).
 
-The decision in Section 7.1 is conditional. It takes effect only at the actual `merged_at` UTC instant of the human merge of the A2 finalization pull request, which is the single activation event. Nothing in this record, and no earlier step, activates Version 1.3. Section 7.2 records facts that exist only after that merge, and it is `NOT YET RECORDED`.
+The decision in Section 7.1 was conditional. It took effect at the actual `merged_at` UTC instant of the human merge of the A2 finalization pull request, PR #1091, `2026-10-28T14:52:55Z`, which is the single activation event. No earlier step activated Version 1.3. Section 7.2 records facts that exist only after that merge. Recording them is not a second activation event, and it does not change the effective instant.
 
 ## 2. Approval, verification and publication evidence
 
@@ -87,8 +87,9 @@ Source Set row 18 records 108750 bytes and SHA-256 `615cd4a5…`, equal to Sourc
 | P1 | Publication of the approved text, marked pending (PR #1089) | Complete: merged at `dd5baf2f` |
 | A1 | This record: draft pull request, independent verification by a non-author, Mission Control review, human merge. **Not activation** | Complete: PR #1090 merged at `b8651120b7a871809f1144a4283ae09f00bef8e3` |
 | A1+ | Mission Control verifies the merged `main` after A1 | Complete: PR #1090 comment `6466623163` |
-| A2 | A separate, separately authorized finalization pull request carries Mission Control's completed Section 7.1 decision and the prospective Section 6 wording. It is independently verified and reviewed by Mission Control. **Its approved human merge is the single activation event**, effective at the actual GitHub `merged_at` UTC instant | This pull request (the A2 finalization pull request) |
-| A3 | Mandatory append-only factual reconciliation of the A2 merge commit and `merged_at` into Section 7.2 and the Section 6 fields, with Source Set row 18 recomputed and re-verified against `main`. **Not a second activation event**, and it never moves the effective instant | Not started |
+| A2 | A separate, separately authorized finalization pull request carries Mission Control's completed Section 7.1 decision and the prospective Section 6 wording. It is independently verified and reviewed by Mission Control. **Its approved human merge is the single activation event**, effective at the actual GitHub `merged_at` UTC instant | Complete: PR #1091 merged by a human at `3b0992cc05dce469bd5e9192d19146c6957aa3b4`, `merged_at` 2026-10-28T14:52:55Z. This is the activation event |
+| A2+ | Mission Control verifies the A2 merge and the observed instant | Complete: PR #1091 comment `6472329432` (MC-600) |
+| A3 | Mandatory append-only factual reconciliation of the A2 merge commit and `merged_at` into Section 7.2 and the Section 6 fields, with Source Set row 18 recomputed and re-verified against `main`. **Not a second activation event**, and it never moves the effective instant | This pull request (the A3 factual reconciliation pull request), prepared under MC-600-A (PR #1091 comment `6472329432`) |
 
 **Boundary:**
 - **Until the A2 merge:** Source 18 Version 1.2 is operative. No Product Mission may rely on the Version 1.3 clauses. The identifiers `S11-L443-1` to `S11-L443-5` have no authority.
@@ -111,13 +112,15 @@ The record 01 and README rows are listed so that the fields are not lost. Includ
 
 ## 7. Activation Confirmation
 
-**Status:** `CONDITIONAL — EFFECTIVE ONLY ON THE HUMAN MERGE OF THE v1.3 FINALIZATION PULL REQUEST`
+**Status:** `EFFECTIVE FROM 2026-10-28T14:52:55Z. THE CONDITIONAL DECISION IN SECTION 7.1 TOOK EFFECT AT THE HUMAN MERGE OF PR #1091`
 
 Section 7.1 is completed in the A2 finalization pull request. The completed section is Mission Control's activation decision, and it is conditional until a human merges that pull request into canonical `main`. That merge is the activation event, and the effective instant is the actual `merged_at` UTC instant that GitHub records for it. The merge commit and that instant exist only after the merge; they are recorded in Section 7.2 by A3 as mandatory, append-only evidence, which is not a second activation event and never changes the effective instant.
 
+**Outcome.** The conditional decision in Section 7.1 took effect at the human merge of PR #1091. GitHub recorded the merge at `2026-10-28T14:52:55Z` with merge commit `3b0992cc05dce469bd5e9192d19146c6957aa3b4`, and Mission Control verified it (Section 7.2). Source 18 Version 1.3, Section 3.2 items 1, 2, 6 and 7, has been operative from that instant, and Version 1.2 was operative until it. Section 7.1 is preserved below as the historical conditional decision.
+
 ### 7.1 Decision fields
 
-Mission Control's decision, transcribed by Claude Code from PR #1090 comment `6466623163`. It takes effect only on the human merge of the A2 finalization pull request.
+Historical record of Mission Control's conditional decision as merged in PR #1091, transcribed by Claude Code from PR #1090 comment `6466623163`. It took effect only on the human merge of the A2 finalization pull request, and it did so at the instant recorded in Section 7.2.
 
 > **Conditional decision.** Acting under the Founder's decisions MC-577-F and MC-579-F, Mission Control conditionally confirms activation of exactly Source 18 Version 1.3, Section 3.2 items 1, 2, 6 and 7, as published at `dd5baf2f60fb75886c5c37edd1b8a1557c7e6dce`, only on an authorized human merge of the independently verified A2 finalization pull request from branch `mission/SB-GOV-S18-OT-ID-1.0-finalization` into canonical `main`. The effective instant is the actual GitHub `merged_at` UTC instant of that merge. Mission Control verified that canonical `main` is the A1 merge commit `b8651120b7a871809f1144a4283ae09f00bef8e3` (PR #1090, merged 2026-10-28T09:41:07Z). Until the activation event, Source 18 Version 1.2 is operative. This decision activates no other instrument, and it authorizes no FCTM reconciliation, no use of the `S11-L443-*` identifiers before the activation event, and no implementation.
 
@@ -138,11 +141,11 @@ Recorded in A3 from what GitHub records for the A2 merge. They are mandatory and
 
 | Field | Value |
 |---|---|
-| A2 pull request number | `NOT YET RECORDED` |
-| Independent verifier of the A2 pull request | `NOT YET RECORDED` |
-| A2 merge commit on `main` | `NOT YET RECORDED` |
-| Effective instant: GitHub `merged_at` (UTC) | `NOT YET RECORDED` |
-| Mission Control verification of the merge and of the observed instant | `NOT YET RECORDED` |
+| A2 pull request number | PR #1091, from branch `mission/SB-GOV-S18-OT-ID-1.0-finalization` into `main`, opened as a draft on 2026-10-28T11:33:14Z under the MC-597 grant (PR #1090 comment `6467803455`). One commit, final reviewed head `ef7ea71b4d77464f304e6a64c4fa7889db492f78`, base `b8651120b7a871809f1144a4283ae09f00bef8e3`, exactly three changed files |
+| Independent verifier of the A2 pull request | Independent Engineering Review Actor (self-identified as ChatGPT, GPT-6), PR #1091 comment `6468436338` (MC-598-A, 2026-10-28T12:01:14Z): PASS at head `ef7ea71b4d77464f304e6a64c4fa7889db492f78`; assigned by Mission Control in comment `6468095641` (MC-598) and accepted in comment `6472171035` (MC-599). It is not a GitHub review, and PR #1091 carries no review objects |
+| A2 merge commit on `main` | `3b0992cc05dce469bd5e9192d19146c6957aa3b4`, a single-parent merge commit (parent `b8651120b7a871809f1144a4283ae09f00bef8e3`) whose tree equals the tree of the final reviewed head `ef7ea71b4d77464f304e6a64c4fa7889db492f78`. GitHub records it as merged through the account `SmartBusinessv1`; Mission Control determined it to be the human merge in comment `6472329432` |
+| Effective instant: GitHub `merged_at` (UTC) | `2026-10-28T14:52:55Z` (2026-10-28 20:22:55 IST) |
+| Mission Control verification of the merge and of the observed instant | PR #1091 comment `6472329432` (MC-600, 2026-10-28T14:54:10Z). Mission Control verified from live GitHub the merge, the merge commit, the instant, the reviewed head, the locked base, the three files and the canonical `main` result. Claude Code re-read the same values from GitHub when preparing this record. That is author evidence and is not independent verification |
 
 ## 8. External reference copies
 
@@ -167,9 +170,19 @@ The verifier must not be Claude Code, the author of this record, or Founder Acco
 5. **No fabricated future facts.** No A2 merge commit, A2 pull request number, `merged_at` time or statement that Version 1.3 is already active appears in any changed file. Section 7.2 stays `NOT YET RECORDED`.
 6. **Boundary.** The human merge of the A2 pull request is the single activation event at its `merged_at` instant, and A3 is evidence only.
 
+For the A3 factual reconciliation pull request, the same independence rule applies:
+
+1. **Scope.** The branch starts at `3b0992cc05dce469bd5e9192d19146c6957aa3b4`. Its diff changes exactly three files: this record, Source 18 and the Canonical Source Set.
+2. **Activation facts.** Read PR #1091 from GitHub: merge commit `3b0992cc05dce469bd5e9192d19146c6957aa3b4`, `merged_at` `2026-10-28T14:52:55Z`, final reviewed head `ef7ea71b4d77464f304e6a64c4fa7889db492f78`. Confirm each value in Section 7.2, the header, Section 5, the Source 18 Activation Date and Repository publication lines, and Source 18 Change Log row 1.3.
+3. **No second activation event.** The effective instant is unchanged. The Section 7.1 decision is byte-identical. No file presents the A3 pull request, Mission Control's post-merge comment or the reconciliation as activating anything.
+4. **Commits not swapped.** The PR #1089 commit `dd5baf2f60fb75886c5c37edd1b8a1557c7e6dce` is described as publication, the PR #1090 commit `b8651120b7a871809f1144a4283ae09f00bef8e3` as preparation, and the PR #1091 commit as the activation merge.
+5. **Source 18 limits and register.** Only the v1.3 Activation Date value, the final v1.3 sentences of Repository publication, the end of the v1.3 row Change cell, the v1.3 row Status and the new note 11 change. Section 3.2 and every v1.0 to v1.2 value are byte-identical. Recompute the bytes and SHA-256 of Source 18 and compare them with Source Set row 18.
+6. **No future facts.** No A3 pull request number, merge commit or `merged_at` time appears in any changed file.
+
 ## 11. Revision history
 
 | Revision | State | Change |
 |---|---|---|
 | Initial publication | The A1 pull request's first commit | First version of this record |
 | Section 7.1 completion (A2) | The A2 pull request's commit | Record label, Status, Activation Confirmation and Prepared under fields, and a Section 7.2 status line in the header; Section 1 rewritten for the conditional decision; Section 5 states updated; Section 7 status, mechanism and 7.1 completed, with the A2 pull request number and its independent verifier moved to Section 7.2 for A3; Section 10 rewritten for the A2 verifier. Sections 2 to 4, 6, 8 and 9 are unchanged |
+| Section 7.2 completion (A3) | The A3 pull request's commit | Header Status, Activation Confirmation, Post-merge factual evidence and Prepared under fields; the final paragraph of Section 1; Section 5 A2 state, a new A2+ row and the A3 state; Section 7 status and an Outcome paragraph; the Section 7.1 introduction (the decision and its table unchanged); Section 7.2 completed; an A3 verifier guide added to Section 10. Sections 2 to 4, 6, 8 and 9 are unchanged |
