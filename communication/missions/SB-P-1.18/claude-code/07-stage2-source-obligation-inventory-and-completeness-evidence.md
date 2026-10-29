@@ -5,6 +5,7 @@
 **Prepared by:** Claude Code, Definition Actor, under `mission-control/05-stage2-mission-truth-and-delta-authorization.md`
 **Baseline:** `main@ccfdd28a322073be67a0ea7c3658ec8685b7d2cc`
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
+**Current status note:** The Status line above is kept unchanged as history. Sections 1.7 and 3.2 were added by the FCTM reconciliation applying `18:FPDR-2`, `18:FPDR-3` and `18:FPDR-5` and the Source 18 v1.3 §3.2 item 1 exception; no other part changed.
 
 Source 18 §3.2 item 6 requires an obligation inventory taken from the source text and independent of the matrix, and a set-based test of the matrix against it. Section 1 is that inventory: a list of pointers produced by a deterministic parser from the source blobs, before any disposition is assigned. It restates no requirement and is not a second matrix. Sections 3 to 5 compare the FCTM (`03-…`) with it.
 
@@ -895,6 +896,22 @@ Source 18 §3.2 item 6 requires an obligation inventory taken from the source te
 | `GPCV` | `§9.b9` | public marketplace behavior for current Smart Order & Delivery — REJECT; |
 | `GPCV` | `§9.b11` | future wholesaler/marketplace expansion — not current core; requires separate Founder deci |
 
+### 1.7 Source 11 L443 obligation key (Source 18 v1.3 §3.2 item 1 exception)
+
+Added in the FCTM reconciliation under the Source 18 v1.3 §3.2 item 1 and item 6 exception, operative from the PR #1091 merge (2026-10-28T14:52:55Z). The key and the expected-facet set are derived from the pinned Source 11 blob, the exception text and canonical `18:FPDR-5`, not copied from the FCTM. The key is outside the 627 full-inventory and 67 delegated units of Section 3 (b): it adds no contract-section obligation and no acceptance scenario.
+
+| Obligation key | Source pointer | Founder decision | Expected-facet set |
+|---|---|---|---|
+| `Source11@16897d6c875bb3e45e26cd32a99bc0510c4bdea1:L443` | `merge/active/11_Smart_Business_Product_Truth_Map.md` line 443, Staff / HR Assistant Add-on, Includes: overtime records | `18:FPDR-5` (PR #1085, merge `c86afd9b`) | `{S11-L443-1, S11-L443-2, S11-L443-3, S11-L443-4, S11-L443-5}` |
+
+| Facet ID | Facet, in the order of Source 18 v1.3 §3.2 item 1 | `18:FPDR-5` basis |
+|---|---|---|
+| `S11-L443-1` | Record creation, including manual, system-proposed, manager-entered and disputed origins | §4 does item 2; §6 new row (a) |
+| `S11-L443-2` | Authorized human review | §4 does items 2 and 4; §6 new row (b) |
+| `S11-L443-3` | Auditable correction and dispute | §4 does items 2 and 4; §6 new row (c) |
+| `S11-L443-4` | Role-scoped visibility, including the employee's own record | §4 does item 4; §6 new row (d) |
+| `S11-L443-5` | Audit attribution and provenance | §4 does item 4; §6 new row (e) |
+
 ## 2. Row volume and effort per contract
 
 | Contract / source | Inventory units | Lead-ins | Sections | FCTM rows | `IN SCOPE` rows |
@@ -957,6 +974,21 @@ Totals across all parts: 764 rows (590 `IN SCOPE`, 48 `OUT OF BUILD SCOPE`, 27 `
 | C16 | `§20.b8` | 16-§20-8 |
 | C16 | `§20.b9` | 16-§20-9 |
 | C16 | `§20.b10` | 16-§20-10 |
+
+### 3.2 FCTM reconciliation re-run (`18:FPDR-2`, `18:FPDR-3`, `18:FPDR-5`; Source 18 v1.3)
+
+The Stage 2 results above are kept as recorded. After the reconciliation, the matrix has 769 rows (591 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 1 `ESCALATED`).
+
+| Check | Test | Result |
+|---|---|---|
+| Exception: expected minus actual | Section 1.7 expected-facet set minus FCTM `S11-L443-*` IDs | **PASS — empty** |
+| Exception: actual minus expected | FCTM IDs of the exception form minus the Section 1.7 set | **PASS — empty** |
+| Exception: row integrity | each facet ID appears exactly once, cites `S11@16897d6c` line 443 and `18:FPDR-5`, has one valid disposition and a distinct planned evidence target | **PASS — 5 of 5** |
+| Exception: downstream mapping | every `IN SCOPE` facet ID mapped by each applicable deliverable, with no orphan | Not applicable before Stage 4 |
+| Ordinary counts | full-inventory and delegated unit counts | **Unchanged** — 627 and 67 |
+| (d) No `ESCALATED` or critical-path `UNRESOLVED FOUNDER DECISION` row at lock | rows with those dispositions | **NOT MET — 1 `ESCALATED`** (`22-§16-6`); 8 `UNRESOLVED FOUNDER DECISION`, none on the critical path. A lock condition |
+| (d) Classification and assignment equal the source | rows that differ from the source without a Founder Decision ID | **PASS** — the five rows newly `ASSIGNED TO LATER MISSION` (`1-§7-3`, `1-§8-2`, `1-§8-3`, `1-§8-4`, `1-§8-5`) cite `18:FPDR-3`; every other value is as at Stage 2 |
+| Matrix → inventory | rows whose pointer is not an inventory locator | **PASS — 0 orphans**; the five `S11-L443-*` pointers resolve to Section 1.7 |
 
 ## 4. Inherited, inbound and delegated identifier checks
 
