@@ -69,7 +69,7 @@ None of these is an `ESCALATED` row or a critical-path `UNRESOLVED FOUNDER DECIS
 
 - **On Founder human merge of this pull request and Mission Control post-merge verification** recorded in the same pull request conversation, Stage 3 is **COMPLETE**. No further Stage 3 record is required.
 - **Until then:** Stage 3 PENDING RECONCILIATION.
-- **Stage 4** (Product Blueprint Sections 1–19, documentary planning) is **NOT YET AUTHORIZED** by this record. Under MC-649, "Any later blueprint/engineering stage needs its own normal source gate".
+- **Stage 4 handover (Source 18 Stage 3: "Repository record authorizes Blueprint drafting"; MC-651).** Before Founder-human merge of PR #1100 and Mission Control post-merge verification, Stage 3 remains pending and Stage 4 Blueprint drafting is not yet authorized. Upon that merge and verification, the canonical Stage 3 repository closure itself completes Source 18 Stage 3 and authorizes the ordinary handover to Stage 4 Product Blueprint Sections 1–19 drafting by the appointed Definition Actor, subject to Source 18's normal Stage 4 review and subsequent gates. No additional discretionary stage-activation permission is required for this drafting. Blueprint drafting is not Blueprint approval, Blueprint lock, EIS authorization or engineering implementation. Implementation Authorization remains WITHHELD. Existing DC-14, DLEG, DNTF and other dependency holds remain in force for their appropriate downstream treatment.
 - Stage 4 is separate from product engineering implementation. Implementation stays behind Source 18 §9 gates 3 to 5 and the Implementation Authorization.
 
 **STOP — INDEPENDENT REVIEW, FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION REQUIRED.** Implementation Authorization: WITHHELD.
