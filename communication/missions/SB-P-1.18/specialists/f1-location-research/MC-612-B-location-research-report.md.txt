@@ -1,0 +1,224 @@
+# MC-613 — Research & Intelligence provisional legal/privacy report
+
+**Mission:** MC-612-B — location-specific Indian legal/privacy research  
+**Date:** 29 October 2026  
+**Status:** **PROVISIONAL, NON-LAWYER RESEARCH — READ ONLY**  
+**Scope:** employee attendance location; delivery-proof location; customer delivery destinations.  
+**Boundary:** no Product Truth change, no retention duration adopted, no FCTM edit, no implementation advice, no Git write.
+
+## Executive conclusion
+
+The strongest supportable position is that the three location-data classes should **not be treated as one retention class**.
+
+Employee attendance geolocation, delivery-proof geolocation, and customer delivery destinations serve different purposes, have different legal anchors, and should have different access-expiry and storage logic. Current Indian/Kerala law provides some clear record-retention duties around employment, GST/accounting, delivery and disputes, but I found **no current Indian or Kerala rule that generally requires a merchant SaaS product to retain raw GPS coordinates for a fixed period for any of these three classes**.
+
+The most important forward-looking constraint is the DPDP regime. As of 29 October 2026, the core private-sector processing, notice, consent/legitimate-use, security, erasure and Data Principal-right provisions of the Digital Personal Data Protection Act, 2023 are **not yet in force**. The commencement notification brings the main substantive provisions into force only after the 18-month tranche; a smaller one-year tranche also has not yet commenced as of today. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf?utm_source=chatgpt.com)
+
+That means Phase One design should distinguish:
+
+| Layer | Finding |
+|---|---|
+| Current legal duty | Existing IT Act/SPDI, labour, GST, consumer, contract/limitation and CERT-In obligations apply now where relevant. |
+| Future DPDP design | Smart Business should prepare now for purpose limitation, notice, minimization, erasure and lawful-retention exceptions that will become operative with the substantive DPDP tranche. |
+| Product design | Raw location should not be kept merely because the system can keep it. |
+| Qualified review | Exact lawful basis, merchant/Data Fiduciary role allocation, employment notice/consent wording, and final retention periods still require professional legal/privacy validation. |
+
+## 1. Current-law / staged-commencement position
+
+The DPDP Act was enacted in 2023, but commencement is staged. The 13 November 2025 Gazette notification immediately commenced only the institutional/administrative provisions identified in paragraph (a); the one-year tranche covers section 6(9) and section 27(1)(d); the main substantive processing regime, including sections 3–17 and most enforcement provisions, comes into force 18 months after publication. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf?utm_source=chatgpt.com)
+
+Accordingly, on **29 October 2026**:
+
+| Provision group | Current position |
+|---|---|
+| DPDP core lawful-processing, notice, consent, employment legitimate-use, general Data Fiduciary obligations, erasure, Data Principal rights | **Not yet operative** |
+| One-year tranche | **Not yet operative** |
+| DPDP institutional/Board-related provisions in first tranche | Operative |
+| IT Act section 43A / 2011 SPDI framework | Still materially relevant until the DPDP amendment removing/replacing that framework becomes operative |
+| CERT-In 2022 logging direction | Operative |
+| Labour / GST / consumer / limitation law | Operative subject to applicability |
+
+The current IT/SPDI rules define “personal information” broadly as information capable of identifying a natural person directly or indirectly. They separately list the narrower categories treated as “sensitive personal data or information”; ordinary location data is not expressly listed among those sensitive categories, although identifiable geolocation can still be personal information. Rule 4 also requires a body corporate handling personal information to publish a privacy policy describing data types, purpose and disclosure practices. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf?utm_source=chatgpt.com)
+
+## 2. Employee attendance location
+
+### Legal findings
+
+Kerala labour materials require employers to maintain employment-related records. Kerala Labour Commissionerate guidance identifies, among other records, the **Register of Employment**, service record and leave/holiday registers. [Labour Commissionerate](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf?utm_source=chatgpt.com)
+
+I found **no Kerala statutory source requiring raw GPS coordinates to be retained as part of an attendance record**.
+
+That distinction matters. The legal requirement to maintain evidence of employment/attendance does not automatically create a legal requirement to preserve:
+
+- latitude/longitude;
+- a precise location trail;
+- continuous employee movement;
+- a device-location history.
+
+The Founder direction against continuous tracking is therefore consistent with the evidence reviewed.
+
+The DPDP Act's future substantive regime is especially relevant here because section 7 includes processing for employment purposes among the “certain legitimate uses”; this can potentially support narrowly necessary attendance processing without treating every employment-data flow as consent-dependent. The same future regime also imposes purpose-linked processing, security and erasure requirements. The substantive sections are not yet operative. [India Code](https://www.indiacode.nic.in/bitstream/123456789/22037/2/a2023-22.pdf?utm_source=chatgpt.com)
+
+The Supreme Court has separately treated location tracking as privacy-significant. In *Frank Vitus v. Narcotics Control Bureau*, the Court rejected a condition effectively enabling tracking of a person's movements and linked such tracking to Article 21 privacy concerns. That case is not an employment case and does not itself create a private-employer retention rule, but it strongly supports caution against continuous or disproportionate location surveillance. [sci.gov.in](https://www.sci.gov.in/landmark-judgment-summaries/?judgment_year=2024\&utm_source=chatgpt.com)
+
+### Evidence-supported design options
+
+| Option | Description | Legal/privacy posture |
+|---|---|---|
+| A | Use location only momentarily to evaluate whether the employee is inside the permitted attendance geofence; store no raw coordinates | Strongest minimization position |
+| B | Store attendance time + business/site ID + “inside/outside permitted area” result; discard raw coordinates after validation | Strong balance between auditability and minimization |
+| C | Retain raw coordinates only for a defined exception, such as a disputed attendance event, fraud/security investigation or legal hold | Potentially defensible but needs tightly scoped access and qualified review |
+| D | Retain raw coordinates routinely with attendance for a long period | **Not supported by a specific retention requirement found in this research** |
+
+### Worker notice finding
+
+Even before the future DPDP notice regime becomes operative, the current SPDI privacy-policy framework supports transparent disclosure of personal-information collection and purpose. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf?utm_source=chatgpt.com)
+
+For Phase One, a worker-facing notice should therefore be treated as the safer design assumption: disclose that location is collected **only at the attendance event**, its purpose, whether exact coordinates are stored, who can access the result, and when access/storage ends.
+
+**Uncertainty:** I found no Kerala labour rule that specifically prescribes the wording or consent mechanism for geofence attendance. Qualified counsel should determine whether employment-law fairness/contract, standing-order, union/industrial relations, or future DPDP requirements require additional notice/consent mechanisms for particular employer classes.
+
+## 3. Delivery-proof location
+
+### Legal findings
+
+Delivery proof can support several independent business/legal purposes:
+
+- proof that goods were delivered;
+- resolution of non-delivery or delayed-delivery disputes;
+- COD reconciliation;
+- GST/accounting records;
+- consumer complaints;
+- contractual claims.
+
+The Limitation Act gives several relevant contract/carriage claims a three-year limitation period, including carrier claims for non-delivery/delay and claims for the price of goods sold and delivered. This does **not** create a universal “retain location for three years” obligation, but it demonstrates why evidence may need preservation when a live or reasonably anticipated dispute exists. [India Code](https://www.indiacode.nic.in/bitstream/123456789/1565/5/A1963-36.pdf?utm_source=chatgpt.com)
+
+Consumer Affairs guidance states that a consumer complaint is ordinarily to be filed within two years from the cause of action. Again, that is a litigation/complaint window, not a statutory GPS-retention command. [Consumer Affairs](https://consumeraffairs.nic.in/sites/default/files/file-uploads/latestnews/FAQ.pdf?utm_source=chatgpt.com)
+
+GST law can independently require underlying transaction and delivery-related records. Section 36 of the CGST Act requires registered persons to retain books/accounts and relevant records for 72 months from the due date of the annual return, with longer retention where specified proceedings/investigations remain pending. [CBIC](https://cbic-gst.gov.in/pdf/CGST-Act-Updated-31082021.pdf?utm_source=chatgpt.com) The GST rules also require invoices, delivery challans and related delivery records to be preserved under that section. [CBIC](https://cbic-gst.gov.in/hindi/accnt-record-rules.html?utm_source=chatgpt.com)
+
+But the important distinction is:
+
+**delivery record ≠ raw geolocation coordinate.**
+
+Nothing in the GST sources reviewed requires latitude/longitude to be stored merely because a delivery occurred.
+
+### Evidence-supported design options
+
+| Option | Description | Assessment |
+|---|---|---|
+| A | After completion, preserve only a delivery event: order ID, timestamp, delivery status, authorized actor and merchant/customer confirmation where applicable | Strong minimization baseline |
+| B | Preserve a coarse proof such as site/address match or a cryptographic/hash-backed proof event, without retaining raw GPS | Strong candidate where stronger evidence is needed |
+| C | Retain exact point-in-time delivery coordinate only where the merchant expressly enables it for proof/dispute purposes, with restricted access and defined deletion/hold rules | Plausible, but requires later legal/privacy validation |
+| D | Continuous delivery-staff route tracking or permanent route history | **Material privacy concern; not supported by the reviewed law and inconsistent with the Founder boundary** |
+
+For COD, the financial/payment fact and the location fact should remain separate. A merchant may need to preserve the COD/payment record even after exact delivery coordinates are no longer justified.
+
+## 4. Customer delivery destinations
+
+### Legal findings
+
+A customer's delivery address is directly necessary to fulfil a delivery transaction. Under GST invoicing rules, recipient and delivery addresses are required in specified circumstances; for example, Rule 46 requires the recipient name/address and delivery address in specified unregistered-recipient transactions. [CBIC](https://cbic-gst.gov.in/gst-invoice-rules.html?utm_source=chatgpt.com)
+
+Therefore some delivery-address data may lawfully need to survive as part of a statutory invoice or business record where GST requirements apply.
+
+However, the **operational delivery destination** can be broader than the statutory invoice address. Examples include:
+
+- precise map pin;
+- building entrance;
+- floor/door instructions;
+- temporary landmark;
+- live location;
+- gate or pickup point.
+
+Those extra details do not automatically inherit the retention period of the tax invoice simply because they were used during delivery.
+
+The future DPDP regime points toward erasure when the specified purpose ends unless retention is required by law. The final DPDP Rules also include a future one-year minimum retention requirement for specified processing records/logs under Rule 8(3), subject to the Seventh Schedule and other-law exceptions; that rule belongs to the future-effective tranche and is not yet operative today. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf?utm_source=chatgpt.com)
+
+### Evidence-supported design options
+
+| Destination element | Strongest provisional treatment |
+|---|---|
+| Invoice-required postal address | Retain where applicable statutory/accounting records require it |
+| Customer's reusable saved address | Retain while the customer/merchant still needs it for the specified service, subject to future DPDP rights/erasure framework |
+| One-time delivery address | Separate from reusable profile data; expire access once delivery/dispute need ends |
+| Exact GPS/map pin | Treat as higher-sensitivity operational location data; do not automatically retain with the invoice |
+| Delivery instructions / landmarks | Minimize and expire separately unless genuinely needed for a live order, complaint or claim |
+
+## 5. Access expiry versus retention
+
+MC-612 correctly requires these to be separated.
+
+A record can remain lawfully stored while ordinary operational access expires. For all three location classes, a defensible architecture should distinguish at least:
+
+| State | Meaning |
+|---|---|
+| Active operational access | Needed to perform attendance/delivery/order task |
+| Restricted post-purpose retention | Data retained only for a defined statutory, audit, dispute or security basis |
+| Legal hold | Ordinary deletion suspended because a concrete proceeding, claim, investigation or notice requires preservation |
+| Erased / anonymized | No continuing lawful/product purpose supports identifiable retention |
+
+That model is more strongly supported than treating “retained” as meaning “visible forever to normal users.”
+
+## 6. CERT-In and security logs
+
+CERT-In's 2022 directions require service providers, intermediaries, data centres, body corporates and government organisations to enable logs of ICT systems and retain them securely for a rolling **180 days within India**. [CERT-IN](https://cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf?utm_source=chatgpt.com)
+
+This does **not** mean Smart Business must place employee/customer GPS data into logs. It means that if location-related activity is represented in covered ICT logs, the logging requirement may affect that logged representation.
+
+Design implication: avoid writing unnecessary raw geolocation into broad application/security logs. A minimally necessary event identifier or action result is preferable where sufficient.
+
+## 7. Material STOP findings
+
+No absolute legal prohibition on point-in-time employee attendance geofencing, delivery-proof location, or delivery-destination processing was found in the authoritative sources reviewed.
+
+However, the following **would require STOP / escalation before a provisional F-1 design decision**:
+
+| Trigger | Why |
+|---|---|
+| Continuous employee tracking or route surveillance proposed | Material privacy/proportionality concern; not supported by the identified attendance-record duties |
+| Exact GPS proposed as a universally retained attendance record | No statutory requirement found; minimization question unresolved |
+| One retention period proposed for all three classes | Evidence shows different legal purposes and records |
+| GST retention used to justify keeping all location metadata | GST supports specified business records, not every operational location field |
+| Consumer/limitation periods treated as automatic retention mandates | They are claim windows/evidence considerations, not universal location-retention statutes |
+| Future DPDP requirements treated as already operative | Core provisions remain staged |
+| Future Rule 8 one-year processing-log rule treated as authority for a present retention policy | It is not yet operative and its exact application to Smart Business/location fields needs qualified interpretation |
+| Merchant/employer role versus Team LIPS Data Fiduciary/Data Processor role remains undefined for a processing flow | Role allocation affects obligations |
+| Location used for punishment, scoring or automatic adverse employee decisions | Raises heightened accuracy, fairness, employment and privacy risk beyond simple attendance verification |
+
+## 8. Questions requiring qualified legal/privacy review
+
+Qualified review remains necessary on: whether individual merchants or Team LIPS are Data Fiduciary/joint Data Fiduciary/Data Processor for each flow; whether future section 7 employment legitimate-use fully covers point-in-time geofence processing and what notice is still required; whether exact coordinates may be retained for attendance disputes and under what conditions; whether merchant employee contracts/standing orders require location-monitoring disclosure; how Rule 8(3)'s future one-year processing-log requirement applies to location events and processors; what precise customer-address components must remain with GST/statutory records; and how long defensible claims/legal-hold retention should persist once a specific dispute exists.
+
+## 9. Provisional recommendation to MC-613
+
+The evidence supports carrying **three separate F-1 product-design decisions**, not one generalized retention number:
+
+**Employee attendance:** prefer point-in-time geofence verification with raw-coordinate minimization; retain the attendance fact rather than movement history.
+
+**Delivery proof:** retain the delivery-proof event necessary for merchant, dispute, COD and audit purposes; treat exact location as optional, narrowly justified evidence rather than a universal record.
+
+**Customer delivery destination:** retain statutory/order address information only to the extent required for the relevant transaction/record; separate operational map pins and delivery instructions from the long-lived customer/invoice record.
+
+No duration should be selected from this research alone.
+
+## 10. Principal authoritative sources used
+
+| Source | Relevance |
+|---|---|
+| DPDP Act, 2023 — India Code | Future lawful-processing, legitimate-use, security, erasure and rights framework. [India Code](https://www.indiacode.nic.in/bitstream/123456789/22037/2/a2023-22.pdf?utm_source=chatgpt.com) |
+| MeitY G.S.R. 843(E), 13 Nov 2025 | Staged commencement of DPDP Act. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf?utm_source=chatgpt.com) |
+| DPDP Rules, 2025 — MeitY / Gazette | Future Rule 8 retention/erasure architecture. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf?utm_source=chatgpt.com) |
+| IT (Reasonable Security Practices and SPDI) Rules, 2011 — MeitY | Current personal-information definition/privacy-policy regime. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf?utm_source=chatgpt.com) |
+| IT Act, 2000 — India Code / MeitY | Current data-security/confidentiality framework, including s.43A/72A while operative. [India Code](https://www.indiacode.nic.in/bitstream/123456789/13116/1/it_act_2000_updated.pdf?src_trk=em67c47af2b4e124.230028931484852138\&utm_source=chatgpt.com) |
+| CERT-In Directions, 28 Apr 2022 | 180-day ICT-log requirement. [CERT-IN](https://cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf?utm_source=chatgpt.com) |
+| Kerala Labour Commissionerate — Shops & Commercial Establishments materials | Employment/service-record obligations; no GPS-record requirement identified. [Labour Commissionerate](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf?utm_source=chatgpt.com) |
+| CGST Act s.35–36 / CBIC rules | Business, invoice and delivery-related record retention. [CBIC](https://cbic-gst.gov.in/pdf/CGST-Act-Updated-31082021.pdf?utm_source=chatgpt.com) |
+| CGST Invoice Rule 46 | Recipient/delivery-address requirements in specified cases. [CBIC](https://cbic-gst.gov.in/gst-invoice-rules.html?utm_source=chatgpt.com) |
+| Limitation Act, 1963 | Contract, delivery and carrier claim periods; evidence/hold context, not automatic GPS retention. [India Code](https://www.indiacode.nic.in/bitstream/123456789/1565/5/A1963-36.pdf?utm_source=chatgpt.com) |
+| Consumer Affairs — Consumer Protection guidance | Consumer complaint limitation and evidence context. [Consumer Affairs](https://consumeraffairs.nic.in/sites/default/files/file-uploads/latestnews/FAQ.pdf?utm_source=chatgpt.com) |
+| Supreme Court — *Puttaswamy* and *Frank Vitus* | Privacy, dignity, proportionality and location-tracking caution. [Sci API](https://api.sci.gov.in/supremecourt/2012/35071/35071_2012_Judgement_24-Aug-2017.pdf?utm_source=chatgpt.com) |
+
+**MC-613 DISPOSITION:** Research supports a **class-specific, purpose-limited, access-expiring, minimization-first design**, but does **not** support adoption of any final retention duration.
+
+**STOP — provisional legal/privacy research complete. No Git writes, Product Truth changes, FCTM edits or implementation performed.**

@@ -1,0 +1,209 @@
+# MC-614 — Research & Intelligence Independent Legal-Evidence Validation
+
+**Assignment:** MC-613-B  
+**Date:** 29 October 2026  
+**Status:** **READ-ONLY / PROVISIONAL / NON-LAWYER RESEARCH**  
+**Scope:** attendance location, delivery-proof location, customer delivery destinations.  
+**Authority boundary:** no Product Truth decision, no retention duration adoption, no FCTM/source edits, no implementation.
+
+## 1. Independent validation result
+
+The earlier MC-612-B report is **substantially supported**, but one legal point needs narrowing.
+
+I independently confirm that I found **no Indian central or Kerala authority requiring Smart Business or a Kerala merchant to retain raw GPS coordinates for a prescribed period merely because those coordinates were used for attendance, delivery proof, or customer delivery navigation**.
+
+The law more clearly supports preservation of the **underlying statutory/business record**—for example an employment register, tax invoice, delivery challan, transaction record, security log, or dispute record—than preservation of the exact latitude/longitude that may have helped create or validate that record.
+
+The important correction is this: under the current 2011 IT/SPDI Rules, Rule 4's privacy-policy requirement expressly covers **personal information**, but Rule 5's necessity, collection and retention restrictions are drafted for **sensitive personal data or information (SPDI)**. Ordinary identifiable location is capable of being “personal information,” but location is not itself listed in the Rule 3 SPDI categories. The earlier report should therefore **not** be read as saying that current Rule 5 independently imposes a general statutory location-data erasure rule. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf)
+
+The stronger general purpose-limitation/erasure framework comes from the DPDP Act and Rules, but the core provisions relevant here are **future-effective as of 29 October 2026**, not operative today. G.S.R. 843(E) places most substantive processing provisions, including sections 3–17, into the 18-month tranche from 13 November 2025; that points to **13 May 2027**. The one-year tranche does not begin until **13 November 2026**. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf)
+
+## 2. Current-law versus staged-law position
+
+| Area | 29 Oct 2026 position | Research consequence |
+|---|---|---|
+| Kerala employment registers | Current | Employer recordkeeping is real; raw GPS requirement not identified |
+| GST accounts/invoices/delivery records | Current | Statutory records can require long retention; raw GPS does not automatically inherit it |
+| IT Act / SPDI Rules | Current | Privacy policy/security framework applies; current general raw-location retention rule is not established |
+| CERT-In logging directions | Current | ICT logs have a 180-day rule; this does **not** require creating or preserving raw GPS |
+| DPDP core processing, employment legitimate-use, general erasure rights | Future — principal tranche | Strong design signal, not yet current operative rule |
+| DPDP Rules 6–16, including Rule 8 | Future — 18-month tranche | Cannot presently be used as a current raw-GPS mandate |
+
+Kerala's Labour Commissionerate states that covered employers maintain a **Register of Employment (Form A), Service Record (Form BB), holiday/leave registers and other employment records**. The source does not identify latitude/longitude as a required field. [Labour Commissionerate](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf)
+
+GST section 36 requires applicable registered persons to retain prescribed books/accounts and records for 72 months from the annual-return trigger, with longer preservation for specified proceedings. CBIC's rules also preserve invoices and delivery challans under that statutory regime. That is strong authority for the **business/tax record**, but not for raw geolocation unless raw geolocation is independently part of a legally required record—which I did not establish. [CBIC](https://cbic-gst.gov.in/hindi/CGST-bill-e.html?utm_source=chatgpt.com)
+
+CERT-In requires covered entities to enable ICT-system logs and keep them for a rolling 180 days in India. Its text does not say “collect location,” nor does it turn GPS coordinates into mandatory log fields. [CERT-IN](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf)
+
+## 3. F-1 decision-options matrix
+
+### A. Employee attendance location
+
+| Candidate | Operational access | Raw-coordinate disposition | Lawful held record | Authority strength | Uncertainty |
+|---|---|---|---|---|---|
+| **A1 — No raw GPS stored** | Use location transiently only to test attendance/geofence | Erase/discard once validation completes | Attendance event, employee, timestamp, business/site, validation result | **Strong product-design support**; no raw-GPS statutory mandate found | Whether particular employment contracts/policies require extra notice needs counsel |
+| **A2 — Validation/event fact only** | Staff/owner sees attendance result, not exact historical coordinates | Raw coordinate discarded after event | “attendance accepted/rejected”, timestamp, site/geofence ID, actor/audit fact | **Strongest provisional option** | Exact notice/employee communication requirements remain unresolved |
+| **A3 — Precise coordinate retained only for a specific dispute/hold** | Restricted to authorized dispute/security/legal personnel | Preserve only while the identified dispute/hold purpose genuinely continues | Attendance case record plus exact coordinate if specifically necessary evidence | **Conditionally supportable** | Need counsel on proportionality, employment-law process, and hold termination |
+| **A4 — Routine long-term exact GPS history** | Broad historical access | Persistent | Full coordinate history | **Not supported by authority found** | High privacy/proportionality risk; requires re-escalation |
+
+**Duration:** **NOT ESTABLISHED** for raw attendance coordinates.
+
+The Kerala employment record obligation supports preserving attendance/employment facts, not continuous or historical location trails. [Labour Commissionerate](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf)
+
+Future DPDP section 7 includes employment-related processing among legitimate uses, but that provision belongs to the future 18-month commencement tranche. It can guide architecture, but it is not a current-law authorization on 29 October 2026. [MeitY](https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf?utm_source=chatgpt.com)
+
+### B. Delivery-proof location
+
+| Candidate | Operational access | Raw-coordinate disposition | Lawful held record | Authority strength | Uncertainty |
+|---|---|---|---|---|---|
+| **B1 — No raw GPS stored** | Use location only while completing delivery validation | Discard after validation | Delivery completed event, order, timestamp, delivery actor, customer/merchant confirmation | **Strong provisional option** | Whether some merchant workflows need stronger evidence is factual/product-specific |
+| **B2 — Event fact only** | Merchant sees delivery status/proof result | No exact coordinate retained | Delivery event and related COD/payment/audit facts | **Strong** | Exact evidentiary sufficiency depends on dispute type |
+| **B3 — Precise point retained for a specific claim/dispute/hold** | Restricted archival access only | Retained only while specifically justified | Case/dispute record + coordinate when genuinely material to proof | **Conditionally supportable** | Qualified review needed for legal-hold trigger and termination |
+| **B4 — Routine exact GPS retained with every completed delivery** | Historical merchant/staff access | Persistent | Exact location for all completed orders | **No statutory mandate identified** | Requires separate product/privacy justification |
+
+**Duration:** **NOT ESTABLISHED** for raw delivery-proof coordinates.
+
+GST law strongly supports preserving invoices, delivery challans, transaction/account records and related prescribed records. It does **not** say that point-in-time GPS must be kept for the GST 72-month period. [CBIC](https://cbic-gst.gov.in/hindi/CGST-bill-e.html?utm_source=chatgpt.com)
+
+The same distinction applies to dispute limitation periods: they can make preservation of relevant evidence prudent or necessary once a concrete claim exists, but a limitation period is **not automatically a general retention command for every GPS coordinate**. The Limitation Act is a statute governing time limits for suits/proceedings, not a location-retention schedule. [India Code](https://www.indiacode.nic.in/indiacode/handle/123456789/1565?col=123456789%2F1362\&view_type=search\&utm_source=chatgpt.com)
+
+### C. Customer delivery destinations
+
+| Candidate | Operational access | Raw-coordinate / pin disposition | Lawful held record | Authority strength | Uncertainty |
+|---|---|---|---|---|---|
+| **C1 — Statutory/postal address retained; temporary pin discarded** | Address available for order fulfilment/accounting as needed | Temporary navigation pin erased when delivery purpose ends | Invoice/delivery address where legally required | **Strongest class separation** | Need exact merchant/GST applicability |
+| **C2 — Saved reusable customer address** | Available while customer/merchant actively uses it | Exact GPS need not be retained merely because postal address is saved | Saved address/profile record | **Product option, future DPDP-sensitive** | Future lawful basis/erasure rights require counsel-ready design |
+| **C3 — One-time destination pin** | Available during active delivery | Erase after delivery purpose completes unless dispute/hold | Order/delivery event; statutory address separately retained if required | **Strong provisional minimization option** | No numeric erasure period established |
+| **C4 — Temporary pin retained because of live dispute/legal hold** | Restricted case access | Preserve until hold ends | Case record + necessary pin evidence | **Conditionally supportable** | Hold criteria and termination need qualified review |
+
+**Duration:** **NOT ESTABLISHED** for temporary navigation pins or exact customer coordinates.
+
+CBIC's invoice rules require recipient/address/delivery-address particulars in specified cases. That gives strong support for retaining the **statutory address where applicable**; it does not transform a map pin, landmark, gate instruction or live-location coordinate into a statutory invoice record. [CBIC](https://cbic-gst.gov.in/gst-invoice-rules.html)
+
+## 4. Can an event-triggered erasure rule be framed without inventing days?
+
+**Yes, provisionally.**
+
+A legally cautious product-design option can be framed around **events and purposes**, not arbitrary numeric periods:
+
+> Raw precise location is available only while necessary to perform or validate the attendance, delivery or navigation event. Once that operational purpose is complete, the raw coordinate is erased unless a specifically identified statutory requirement, live dispute, investigation, security incident or legal hold requires that coordinate itself to remain. Any surviving statutory/business record is retained separately from the raw location.
+
+That is a **product-design option**, not a declaration of current statutory law.
+
+Its strength is that it avoids inventing a duration and keeps five concepts separate:
+
+| Concept | Treatment |
+|---|---|
+| Operational access | Ends with the task or validation need |
+| Raw-coordinate storage | Ends with purpose unless specifically justified |
+| Statutory record | Survives according to its own law |
+| Dispute/legal hold | Temporarily overrides normal erasure only for identified evidence |
+| Erasure | Applies to the raw location when no continuing basis remains |
+
+This pattern is consistent with the future DPDP architecture. Section 12 will require erasure on request unless retention remains necessary for the specified purpose or compliance with law, once that section commences. [MeitY](https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf?utm_source=chatgpt.com)
+
+Rule 8 of the 2025 DPDP Rules also introduces future retention/erasure mechanics, including a one-year processing/log rule for specified purposes and classes, but Rules 5–16 do **not** commence until the 18-month tranche. Therefore the rule cannot be treated as current authority for selecting a Phase One raw-GPS duration today. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf)
+
+## 5. Important narrowing of numeric legal periods
+
+Mission Control should **not** use any of the following numbers as an F-1 raw-location retention choice:
+
+| Number | What it actually governs | Why it does not answer F-1 |
+|---|---|---|
+| **72 months** | GST books/accounts/records for applicable registered persons | Does not expressly require raw GPS |
+| **180 days** | CERT-In ICT-system logs | Does not require location to be logged |
+| **1 year** under future DPDP Rules | Future processing/security/log provisions, subject to the Rules and schedules | Not operative on 29 Oct 2026 and not automatically equivalent to raw-coordinate retention |
+| Limitation periods | Time windows for legal proceedings/claims | Do not automatically compel ordinary GPS retention |
+
+Accordingly, for all three F-1 classes:
+
+**PRECISE NUMERIC RAW-LOCATION RETENTION PERIOD: NOT ESTABLISHED.**
+
+## 6. Current SPDI framework — corrected interpretation
+
+The current 2011 Rules define personal information broadly enough to cover information capable of identifying a person. Rule 4 requires a body corporate handling personal information to publish a privacy policy that states the information collected, purpose, disclosure practices and security framework. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf)
+
+But the stronger Rule 5 requirements—necessity, collection notice and “not longer than required” retention—are drafted around **sensitive personal data or information**. The enumerated SPDI categories include passwords, financial data, health, sexual orientation, medical records and biometrics; ordinary location is not expressly enumerated. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf)
+
+Therefore:
+
+**Current-law claim:** location can be personal information.
+
+**Not established:** every raw-location record is SPDI merely because it is precise.
+
+**Not established:** current SPDI Rule 5 by itself creates a general statutory raw-location deletion deadline.
+
+This is a material qualification for MC-614.
+
+## 7. Material STOP findings
+
+There is **no discovered universal prohibition** on point-in-time attendance geofencing, point-in-time delivery proof, or processing a customer destination for delivery.
+
+That is different from saying all designs are safe.
+
+A **material STOP / Founder re-escalation** exists if the proposed F-1 choice requires any of the following: routine continuous employee tracking; persistent route surveillance; automatic retention of exact coordinates merely because statutory attendance/GST records survive; treating CERT-In logs as a mandate to store GPS; assigning one numeric retention period to all three data classes; treating future DPDP provisions as operative today; keeping raw location indefinitely “for audit”; or using exact location for punitive/automated employment decisions beyond the already-authorized attendance purpose.
+
+Those designs lack support from the primary authorities reviewed and raise materially greater privacy/proportionality issues.
+
+## 8. Qualified-counsel questions that remain open
+
+The following remain unresolved and should stay under DLEG/professional validation:
+
+| Question | Status |
+|---|---|
+| Merchant vs Team LIPS Data Fiduciary / Processor allocation for each location flow | **UNRESOLVED** |
+| Exact worker notice/consent/contract requirements for geofence attendance | **UNRESOLVED** |
+| Whether any Kerala establishment category has a more specific attendance-record rule not surfaced in the reviewed sources | **UNRESOLVED** |
+| When a raw coordinate is genuinely necessary evidence for an attendance or delivery dispute | **UNRESOLVED** |
+| Formal legal-hold trigger, reviewer, termination and deletion process | **UNRESOLVED** |
+| Exact application of future DPDP Rule 8(3) to Smart Business and its processors | **UNRESOLVED** |
+| Whether Smart Business could fall within any Third Schedule class/threshold in future | **UNRESOLVED / fact-dependent** |
+| Final numeric retention durations | **NOT ESTABLISHED — counsel + Founder product decision required** |
+
+## 9. MC-613-B source-sufficiency assessment
+
+The evidence is sufficient to give the Founder **non-numeric, class-specific F-1 design choices**.
+
+It is **not sufficient** to give the Founder a legally validated number of days/months/years for raw location.
+
+For F1-R, Mission Control can truthfully say the research supports these bounded option families:
+
+**Attendance:** no raw GPS, validation/event fact only, or precise coordinate only under a specific justified hold.
+
+**Delivery proof:** no raw GPS, delivery-event fact only, or exact coordinate retained only for a specific evidentiary case.
+
+**Customer destination:** preserve statutory/postal address where legally applicable; separate temporary navigation pin and erase it on purpose completion unless a specific hold exists.
+
+The evidence does **not** support a positive universal retention duration.
+
+## 10. Principal authoritative sources
+
+[DPDP Act commencement notification — G.S.R. 843(E), 13 November 2025](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf?utm_source=chatgpt.com) — establishes the staged commencement dates. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf)
+
+[Digital Personal Data Protection Act, 2023 — official Gazette copy](https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf?utm_source=chatgpt.com) — future personal-data, employment-use and erasure framework. [MeitY](https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf?utm_source=chatgpt.com)
+
+[Digital Personal Data Protection Rules, 2025 — official Gazette copy](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf?utm_source=chatgpt.com) — future Rules 6–8 and schedules. [MeitY](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf)
+
+[CERT-In Directions under section 70B, 28 April 2022](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf?utm_source=chatgpt.com) — ICT-system log obligations, including 180-day logging. [CERT-IN](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf)
+
+[Kerala Labour Commissionerate — Shops and Commercial Establishments FAQ](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf?utm_source=chatgpt.com) — current Kerala employer-register requirements. [Labour Commissionerate](https://lc.kerala.gov.in/sites/default/files/inline-files/FAQ%20under%20Kerala%20Shops%20and%20Commercial%20Establishments%20Act_1.pdf)
+
+[CBIC — Central GST Act, sections 35–36](https://cbic-gst.gov.in/hindi/CGST-bill-e.html?utm_source=chatgpt.com) — accounts/records and 72-month statutory retention for applicable registered persons. [CBIC](https://cbic-gst.gov.in/hindi/CGST-bill-e.html?utm_source=chatgpt.com)
+
+[CBIC — Tax Invoice rules](https://cbic-gst.gov.in/gst-invoice-rules.html?utm_source=chatgpt.com) — recipient and delivery-address particulars in applicable invoices. [CBIC](https://cbic-gst.gov.in/gst-invoice-rules.html)
+
+[MeitY — IT Reasonable Security Practices and SPDI Rules, 2011](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf?utm_source=chatgpt.com) — current personal-information/privacy-policy and SPDI framework. [MeitY](https://www.meity.gov.in/sites/upload_files/dit/files/RNUS_CyberLaw_15411.pdf)
+
+## MC-614 handback
+
+**Independent source-sufficiency result: PASS WITH MATERIAL QUALIFICATIONS.**
+
+Class-specific, non-numeric options are evidence-supported.
+
+A precise raw-coordinate retention duration for **attendance, delivery proof, or temporary customer destination pins is NOT ESTABLISHED**.
+
+The most defensible provisional option family is **event-triggered access expiry + raw-coordinate erasure after purpose completion + separate preservation of statutory/event records + exception only for a documented live dispute/legal/security hold**.
+
+That remains a **provisional product-design option**, not legal advice or a final compliance position.
+
+**STOP — MC-613-B complete. No Git edits, FCTM changes, Product Truth changes, retention-duration adoption or implementation performed.**
