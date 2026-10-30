@@ -6,3 +6,4 @@
 # Binary asset types present in the repository: no EOL conversion or text diff.
 *.png binary
 *.ico binary
+communication/missions/SB-P-1.18/specialists/f1-location-research/*.md.txt -text
