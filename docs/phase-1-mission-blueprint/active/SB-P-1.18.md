@@ -1,6 +1,6 @@
 # SB-P-1.18 — Controlled Business Add-ons
 
-**STAGE 4 DRAFT — FOR MISSION CONTROL REVIEW — NOT APPROVED — NOT LOCKED.** Sections 1–19 only. Builder Review, Engineering Review (Sections 20–21), EIS and implementation are not started and not authorized. Implementation Authorization: WITHHELD.
+**STAGE 7 ENGINEERING REVIEW — DRAFT / MISSION CONTROL AND INDEPENDENT REVIEW PENDING — NOT APPROVED — NOT LOCKED.** Sections 1–19 were approved at Stage 5 (MC-660). Stage 6 Builder Review is complete as an author-performed review accepted by MC-661; it is not independent assurance. Sections 20–21 are a Stage 7 draft. Not Stage 8 approved; EIS and implementation are not authorized. Implementation Authorization: WITHHELD.
 
 ## Metadata
 
@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.18 |
 | Mission Name | Controlled Business Add-ons |
 | Mission Type | Product Mission: three separately verifiable add-on workstreams under one mission identity (Build Plan §10.7 p1, `BP-§10.7-W`): Smart Order & Delivery (Contract 1), Staff / HR (Contract 6) and Compliance Shield (Contract 16), plus the Shared Location Foundation workstream inherited from Contract 22 §16 (`12:FPDR-2`) |
-| Lifecycle Stage | Source 18 v1.3 Stage 4 — Product Blueprint Sections 1–19 — **DRAFT** for Stage 5 Mission Control Product Review |
-| Status | `DRAFT — REVIEW REQUIRED` (Source 18 §13). Not approved, not locked. EIS and implementation not authorized |
+| Lifecycle Stage | Source 18 v1.3 Stage 7 — Engineering Review, open and gated. Sections 1–19 approved at Stage 5 (MC-660); Sections 20–21 are a **Stage 7 DRAFT** for independent non-author and Mission Control review |
+| Status | `DRAFT — REVIEW REQUIRED` (Source 18 §13) for Sections 20–21. **Not Blueprint locked and not Stage 8 approved.** EIS and implementation not authorized |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (`communication/missions/SB-P-1.18/mission-control/04-stage1-intake-disposition-and-definition-actor-appointment.md`, PR #1078) |
 | Lifecycle Authority | Source 18 v1.3 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `f3b01b608c4b64df186d4278ba6468ed0419630f`) |
@@ -24,11 +24,11 @@
 | Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `52cc6b94`: F-01 to F-06 APPROVED — canonical |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.17: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence (`04-…` Δ-02, Δ-03) |
-| Date | 2026-10-30 |
-| Builder Review | Not started (Stage 6) |
-| Engineering Review (Sections 20–21) | Not started (Stage 7) |
-| Mission Control Review | Pending (Stage 5) |
-| Blueprint Lock | Not locked (Stage 8) |
+| Date | 2026-10-31 |
+| Builder Review | Stage 6 complete: author-performed review (PR #1101 comment 6531991849), accepted PASS WITH ACTIONABLE FINDINGS by MC-661; not independent assurance |
+| Engineering Review (Sections 20–21) | Stage 7 draft in this file (MC-661-A, reconciled to `18:FPDR-6` under MC-678). Independent non-author review and mandatory specialist fact-finding pending |
+| Mission Control Review | Stage 5 complete (MC-660); Stage 7 pending |
+| Blueprint Lock | Not locked; Stage 8 not authorized |
 
 ## Mission Snapshot
 
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 to SB-P-1.17 kernels as specifications and builds no parallel version. No public marketplace (C1 §4). No location-based live tracking in Phase 1 (`18:FPDR-2`). No continuous employee surveillance. No out-of-app customer channel before SB-P-1.20 (`DNTF`; `18:FPDR-3`). No POS source is used or needed (Section 12.5). No legal authority claim (C16 §15). |
 | Assigned to later missions (Build Now, not Build Later) | 17 rows, all to SB-P-1.20 (Section 11.1). |
 | Rejected | Marketplace behaviour; AI accusation, verdicts or punishment; continuous staff GPS surveillance; automated wage punishment; customer silence as automatic failure; legal certification; duplicate channel-specific memory, permissions or AI; every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A Mission Control-reviewable, source-traceable Product Blueprint through Section 19, assembled by reference to the 769-row canonical FCTM and `18:FPDR-1` to `18:FPDR-5`, for Stage 5 review. |
+| Stage result sought | A complete, source-traceable Product Blueprint, Sections 1–21: `18:FPDR-1` to `18:FPDR-6` (F-01 to F-06), all 769 FCTM mappings and the 592 `IN SCOPE` engineering feasibility and risk rows, for independent non-author and Mission Control Stage 7 review. **DRAFT, NOT LOCKED.** No Stage 7 approval, EIS, implementation or runtime evidence is claimed. |
 
 ## 1. Mission Overview
 
@@ -1087,6 +1087,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 |---|---|---|---|
 | 0.1 | 2026-10-30 | Claude Code (Definition Actor, MC-654) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `b00603ec`), `18:FPDR-1` to `18:FPDR-5` and the Stage 2 Truth Pack |
 | 0.2 | 2026-10-31 | Claude Code (Stage 7 actor, MC-674) | `18:FPDR-6` reconciliation by reference: Metadata, Sections 8.4, 8.5, 10.1, 12.2, 12.3, 15.4 and 19 (32 map rows), against FCTM blob `3402735e`. No requirement text, disposition, commitment or total changed |
+| 0.3 | 2026-10-31 | Claude Code (Stage 7 actor, MC-678) | Sections 20–21 Stage 7 Engineering Review draft added (MC-661-A, reconciled to `18:FPDR-6`); Metadata lifecycle and review fields corrected. Sections 1–19 otherwise unchanged |
 
 ## 19. Governance History
 
@@ -1112,7 +1113,9 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | Stage 3 complete and Stage 4 handover (MC-654) | Conversation-source, PR #1100 comment 6528495929 | — |
 | Stage 4 Blueprint Sections 1–19 draft | this file | PR #1101, `02bdfd51` |
 | `18:FPDR-6`; F-06 log reconciliation | `claude-code/16`; `decision-log.md` | PR #1102, `ac68f9ed`; PR #1103, `8edb839f` |
-| `18:FPDR-6` FCTM and Blueprint reconciliation | `claude-code/03`; this file | PENDING (not published) |
+| `18:FPDR-6` FCTM and Blueprint reconciliation | `claude-code/03`; this file | PR #1104, `f226fcdf` |
+| Stage 5 Sections 1–19 approved and complete (MC-660); Stage 6 Builder Review accepted and Stage 7 opened (MC-661) | Conversation-source, PR #1101 comments 6531811347, 6531991849 and 6532202305 | — |
+| Stage 7 Sections 20–21 draft | this file | PENDING (not published) |
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
@@ -1891,3 +1894,1104 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | GPCV-§9-8 | OUT OF BUILD SCOPE | SB-P-1.18 | §11.3 | — | — |
 | GPCV-§9-9 | OUT OF BUILD SCOPE | SB-P-1.18 | §11.3 | — | — |
 | GPCV-§9-11 | UNRESOLVED FOUNDER DECISION | SB-P-1.18 | §11.5 | — | — |
+
+## 20. Engineering Review
+
+**Status:** DRAFT — Stage 7 Engineering Review (MC-661-A; reconciled to `18:FPDR-6` under MC-678) for independent non-author review and Mission Control review. Not approved. Not a Blueprint Lock and not Stage 8 approval. No EIS, migration, integration or implementation is authorized by this section.
+
+**Review outcome: PASS WITH GATED FINDINGS.** Every `IN SCOPE` row has a feasible design path. **Gated** means that some rows cannot be accepted until a named dependency or hold clears. The two product questions raised at Stage 7 are decided by `18:FPDR-6` (PR #1102):
+- **External delivery staff (B6-01): decided, D1-A.** The design is feasible; the external part is held on an **open SB-P-1.12 interface** (binding issuance and acceptance, and participant-aware first run), which needs separate upstream acceptance and change control (B6-01, 21.3).
+- **Stock timing (B6-05): decided, D2-P.** Stock decreases at packing, per line; restock only after a confirmed physical return; the negative-stock override is Owner or explicitly delegated Manager only.
+
+The remaining gates are that upstream interface, DC-14, the holds in 20.7.9 and the specialist fact-finding in 21.5.
+
+No row is found infeasible or unsafe. No row is narrowed, deferred or reclassified.
+
+### 20.1 Scope, baseline and independence
+
+- **Inputs:**
+  - approved Sections 1–19 (Stage 5 complete, MC-660; Blueprint blob `59d414e5`, reconciled to `18:FPDR-6` at blob `138d4721`, PR #1104);
+  - the Stage 6 Builder Review ([PR #1101 comment 6531991849](https://github.com/SmartBusinessv1/smart-business/pull/1101#issuecomment-6531991849); 24 findings accepted by MC-661);
+  - the canonical FCTM (blob `3402735e`, 769 rows, 592 `IN SCOPE`; PR #1104);
+  - `18:FPDR-1` to `18:FPDR-6`;
+  - the locked SB-P-1.12 to SB-P-1.17 EIS documents.
+- **Repository state:** `main@f226fcdf`. Since `02bdfd51` only the `18:FPDR-6` record, the decision log, the FCTM and this Blueprint changed. Application code, schema, tests, workflows and configuration are unchanged since the SB-P-1.17 Builder Review base `da53e1c9`; the last product-code change is #588 (2026-09-17). Repository facts are those in the Stage 6 review, Section 3.
+- **Independence:** Claude Code wrote Sections 1–19, the Stage 6 review and these sections. Same-actor authorship is a correlated-assumption risk. No specialist review was performed (21.5), and this draft is not independent assurance (21.7). Stage 19 independent verification by another actor stays mandatory (Source 18 §4.9).
+- **Access.** No production system, Supabase test project, provider dashboard, CLI, deployment, device or merchant record was accessed. No SQL, migration, rehearsal or integration was executed.
+
+### 20.2 Evidence categories
+
+| Category | Marker | Use in this section |
+|---|---|---|
+| Verified repository fact | **[R]** | Text at `main@f226fcdf`. Repository code is not runtime or deployment evidence |
+| Locked upstream specification, not implemented | **[S]** | SB-P-1.12 `EIS-ID-*`, `EIS-KER-*`, `EIS-CNF-*`, `EIS-EXT-02`, `EIS-SUP-01`; SB-P-1.13 `EIS13-*`; SB-P-1.14 `EIS14-UDI-01`, `EIS14-ADP-*`, `EIS14-CAB-*`; SB-P-1.15 `EIS15-REM-*`, `EIS15-NTF-*`, `EIS15-TZ-01`, `EIS15-SCH-*`; SB-P-1.16 `EIS16-ORD-01`, `EIS16-ID-*`; SB-P-1.17 `EIS17-RO-08`. **None is a running service** |
+| Actor inference | "proposed" | The logical designs in 20.4 to 20.6, confirmed or replaced at the EIS |
+| Unknown or unavailable | **[U]** | Live grants and policies, test-project state, delivery topology (Δ-06, Δ-07), platform log and backup behaviour, device geolocation behaviour, scheduler and AI providers. Never treated as PASS |
+
+### 20.3 Current architecture and target component map
+
+**Current architecture [R].** Owner-only authority:
+- `businesses.owner_id` is `UNIQUE`;
+- there is no membership, role, participant, grant or entitlement table;
+- RLS resolves through `owner_id = auth.uid()` or `resolve_owner_business(current_actor_uid())`.
+
+On that sit the inventory foundation (append-only movements with an unvalidated `business_event_type` / `business_event_id` pair), the Product & Price Master, a two-type Ledger with free-text party and date-only `transaction_date`, the catalog-import and parser-lease stack, and an Owner-only dashboard. Nothing exists for customers, orders, delivery, staff, attendance, compliance, location, reminders or notifications.
+
+**Target components (proposed).** One component per Section 8 subsection. Each consumes the shared foundations and creates no second authority, memory, scheduler, notification store, import stack or AI:
+
+| Component | Blueprint | Builds on | Consumes |
+|---|---|---|---|
+| C-CUS Customer network, identity and consent | §8.1 | Shared customer identity `16:FPDR-1` (`EIS16-ID-*`) [S] | `D12` participant identity (`EIS-ID-03`); `D14` UDI for CSV import |
+| C-OAU Order & Delivery role capabilities | §8.2 | — | `D12` kernel, registry, `EIS-EXT-02` |
+| C-ORD Order intake, drafts and clarification | §8.3 | — | `D13`, `DAI`, `DV` (typed tools, language, voice); `D14` UDI adapters |
+| C-AVL Availability and change approval | §8.4 | — | `D17` availability reader (`EIS17-RO-08`); `D12` confirmation binding |
+| C-DLV Lifecycle, assignment and delivery actor | §8.5 | — | `D12`; `DMAP` (EIS item U-13) |
+| C-PRF Proof, completion and COD facts | §8.6 | — | `D14` governed storage; `D16` `EIS16-ORD-01`; `DTX` |
+| C-OFD Order notifications, AI, memory, exceptions | §8.7 | — | `D15` native notifications (`EIS15-NTF-*`); `D13` |
+| C-HR Staff records, roles and permissions | §8.8 | — | `D12` memberships (`EIS-ID-02`), optional link only (B6-02) |
+| C-ATT Attendance, roster, leave and context | §8.9 | — | `D12` self-service (`21-§10-*`); `D14` UDI; C-LOC; DC-14 |
+| C-PAY Payroll support and overtime records | §8.10 | — | `D12` confirmation binding (`21-§18-1`); `DLEG` |
+| C-HRF Staff AI, channels, foundations, exceptions | §8.11 | — | `D13`, `D12` |
+| C-CMP Compliance records, intake and dates | §8.12 | Parser and import precedent [R] via UDI [S] | `D14` UDI and Cabinet |
+| C-REN Reminders, renewal, retrieval, channels | §8.13 | — | `D15` Reminder Engine (`EIS15-REM-07` lists compliance, HR, order and delivery), `DSCH`, timezone `EIS15-TZ-01` |
+| C-CMF Compliance permissions, legal boundary, exceptions | §8.14 | — | `D12`; `EIS-SUP-01` |
+| C-LOC Shared Location Foundation | §8.15 | — | `DLOC` (nothing exists); `D12`; `DSCH` for timed erasure |
+| C-VIEW Order and Staff/HR workspace views | §8.16 | Owner dashboard shell [R] via SB-P-1.17 shell [S] | `D17`, `D12`, `DENT` |
+| C-ACC Acceptance and completion accounting | §8.17 | — | all of the above |
+
+### 20.4 Component designs (proposed logical designs, for the EIS)
+
+#### 20.4.1 C-CUS — customer network, identity and consent (B6-16, B6-19)
+
+- Customer is the shared business-scoped participant identity (`EIS-ID-03`; `16:FPDR-1`). No order-local customer table.
+- **Consent state on the identity:** welcome sent-once flag, purpose, STOP state with time and source. A send-guard function is the single check that SB-P-1.20 must call before any channel send (DC-13 stays a Mission Control T6 matter).
+- **Duplicate detection** produces review candidates. Nothing is auto-merged (`1-§6-7`).
+- **Address classes** (B6-11): each address row carries `statutory_postal`, `saved_reusable` or `temporary_pin`, with its own disposition rule from `18:FPDR-1` C1–C3. A saved address holds text, not a coordinate.
+
+#### 20.4.2 C-OAU, C-HR, C-HRF, C-CMF — capabilities and staff records (B6-01, B6-02, B6-03)
+
+See 20.6 for the full B6-01 to B6-03 treatment. Every action in Sections 8.2, 8.8, 8.14 and 8.16 becomes a registry capability on the SB-P-1.12 kernel, with object scope where the Blueprint limits it. That covers: assigned delivery only, own records only, and specific compliance task only.
+
+#### 20.4.3 C-ORD — intake, drafts and clarification (B6-17)
+
+- **Draft object** holding every `1-§9-2` to `-12` fact, the source channel and actor, and an ambiguity list. A draft cannot move to Confirmed while any material ambiguity is open (`1-§9-19`; Scenario A).
+- **Capture paths** use the SB-P-1.13 typed tools for text and voice and the SB-P-1.14 UDI adapters for images, documents and sheets. The **merchant-forwarded WhatsApp text, screenshot and voice note** is a first-class merchant capture path: it is merchant-initiated, so it is native. It is not the SB-P-1.20 customer channel (`1-§8-2` to `-5` stay assigned there).
+- Interpretations are proposals bound to the draft version; a merchant confirmation binds to that exact version (`EIS-CNF-*`).
+
+#### 20.4.4 C-AVL — availability and change approval (B6-05)
+
+- Availability is read through `EIS17-RO-08` and shown as known, unknown or unavailable. No second stock record.
+- **Change proposals** (quantity, removal, substitute, partial, later where adopted) are versioned. Approval is recorded by the customer or an authorized merchant user, bound to the exact draft state (DC-02; `1-§10-8`).
+- **Stock timing (`18:FPDR-6` D2-P; B6-05).** Stock decreases when each applicable line quantity is packed, through one governed, idempotent, order-linked stock event; there is no confirmation-time reservation. A packed line that is cancelled, undelivered or brought back produces a compensating increase only after a confirmed physical return.
+- **Negative stock.** On these order-linked paths, a pack that would take stock below zero follows the approved `p_allow_negative_stock` policy (`EIS17-STK-09` [S], not amended). Any override is approved only by the Owner or an explicitly delegated Manager, with action confirmation and audit.
+
+#### 20.4.5 C-DLV — lifecycle, assignment and delivery actor (B6-01, B6-10)
+
+- **State machine:** Draft → Confirmed → Preparing → Ready/Assigned → Out for Delivery → Delivered/Closed, plus exception and cancel. Transitions are audited and authorized per capability (`1-§11-*`).
+- **Assignment** checks the six `1-§12-*` conditions server-side, with an idempotency key per assignment intent (`1-§12-6`).
+- **The delivery task view** projects only the seven `1-§5-15` to `-21` items for the assigned order.
+- **External Delivery Staff (`18:FPDR-6` D1-A).** The person is invited by the merchant, signs in with an existing method and explicitly accepts a governed participant binding; they then reach assigned deliveries only. Revocation takes effect at the next call, including mid-delivery. Binding issuance, acceptance and first run are consumed from SB-P-1.12 (B6-01) and are not built here.
+- **Address and map:** default to handing the text address to the device's maps application. A geocoding provider needs Build Plan §5.4 activation (B6-10).
+
+#### 20.4.6 C-PRF — proof, completion and COD (B6-06, B6-18)
+
+- **Proof records** are typed by mechanism: the `L-F4M` minimum always, and `L-F4A` mechanisms where adopted. Completion requires at least one configured positive proof. Customer silence never changes state (`1-§15-9`, `1-§15-10`).
+- **COD facts:** expected, collected, and discrepancy are separate records. See B6-06.
+- **Proof media** go to governed storage with retention state (`25-§4-1`, `25-§4-8`). The photo and signature privacy check comes before the EIS.
+
+#### 20.4.7 C-OFD — notifications, AI, memory and exceptions (B6-04)
+
+- **Notification requests** go through `EIS15-NTF-01` with the dedupe key. Customer-facing native legs are merchant-visible event records until SB-P-1.20 dispatches them (B6-04).
+- **AI** runs through SB-P-1.13 tools only. The `1-§21-8` to `-13` must-nots are enforced server-side by capability checks and state guards, not by prompt wording.
+- **Every `1-§24-*` exception is a named state or review item.** A narrow failure leaves unrelated operations working (`1-§24-15`).
+
+#### 20.4.8 C-ATT — attendance, roster, leave and context (B6-12)
+
+- **Attendance events are append-only**, each with mechanism, actor, time and result. Corrections and leave are linked context records; the original event is never edited (`6-§5-1`, `6-§7-6`).
+- **Mechanisms:** the adopted non-location method carries attendance until DC-14 is determined (B6-12). QR plus point-in-time geofence uses C-LOC, rotating QR tokens and an EIS-set radius (DC-04).
+- **Rosters** come in through a UDI adapter, previewed and confirmed (`6-§6-*`).
+
+#### 20.4.9 C-PAY — payroll support and overtime (B6-13, B6-14, B6-15)
+
+- **Overtime record:** an origin (manual, system-proposed or manager), a dispute state, a review decision with actor, a correction chain and provenance. No computed hours, threshold or pay effect (`S11-L443-1` to `-5`).
+- **Payroll-support drafts:** human confirmation is bound to the exact action and state. Calculation logic is **held for `DLEG`** and never stubbed with assumed rules (B6-13).
+- **No export format or file** until the MC-544 screening disposition (B6-14).
+
+#### 20.4.10 C-CMP, C-REN — compliance (B6-22)
+
+- **Compliance record** with typed dates, each holding a confirmation state. A reminder is created only from a confirmed date, through `EIS15-REM-07` with a typed relation to the record.
+- **Renewal** appends a new document and record version; history is never erased (`16-§8-9`). A due occurrence never completes the renewal (`16-§8-11`).
+
+#### 20.4.11 C-LOC — Shared Location Foundation (B6-07, B6-08, B6-09)
+
+See 20.6 for B6-07 to B6-09. The primitive is one server-side validation function per approved purpose (attendance, proof, destination). Its inputs are the coordinate and the purpose context; its output is a result. Only the C3 temporary pin is stored, and only until the delivery purpose ends.
+
+#### 20.4.12 C-VIEW — workspace views (B6-20, B6-21)
+
+Cards inside the SB-P-1.17 shell, fed by feature services, gated by role and entitlement (`EIS-KER-05`). No dashboard-only logic.
+
+### 20.5 Permission and security design boundaries (proposed)
+
+| Actor | Principal | Capabilities (object scope) | Never |
+|---|---|---|---|
+| Owner | Owner membership (`EIS-ID-02`) | All SB-P-1.18 capabilities within entitlement | — |
+| Manager | Manager membership plus explicit grants | Only granted capabilities, each scoped | Owner financial intelligence or Ask CFO by role (`1-§5-8`, `6-§4-2`) |
+| Employee | Employee membership | Permitted tasks; own attendance, corrections, leave, overtime records; assigned deliveries where granted (`21-§4-3`) | Other staff records, customer export, Owner profit, broad compliance documents (`1-§5-14`, `6-§4-7`, `16-§10-3`) |
+| External Delivery Staff | **Participant with a verified-principal binding (`EIS-ID-03`), issued by merchant invitation and accepted by the signed-in person (`18:FPDR-6` D1-A); issuance and acceptance are an open SB-P-1.12 interface** | Assigned delivery only (`21-§13-3`; `EIS-EXT-02`); revocable, audited | Dashboard capability; unrelated orders (`1-§5-22`); physical-return confirmation by default; negative-stock override |
+| Return confirmer | Owner, or a Manager or Employee expressly granted the return-confirmation capability (MC-665 A.4) | Confirm the physical return of a packed line | The negative-stock override, unless separately held |
+| Customer | Participant; no native principal in Phase 1 | None natively; decisions merchant-recorded | Merchant analytics or staff data (`1-§5-30`) |
+| Support | `EIS-SUP-01` grant | Purpose-limited, time-boxed modules | Routine browsing (`1-§25-8`, `6-§12-8`, `16-§10-4`) |
+
+**Cross-cutting rules:**
+- explicit active business on every call (`EIS-ID-06`);
+- negative-stock override on order-linked paths: Owner or explicitly delegated Manager only; never Employee, Delivery Staff, AI or a Manager without the grant (`18:FPDR-6`);
+- revalidation at execution (`21-§17`);
+- confirmation bindings for consequential writes (`21-§18-1`; `22-§13-1`);
+- source-scoped idempotency (`22-§15`);
+- the approved SB-P-1.12 security mode per object and command (`EIS-ISO-02`, `EIS-ISO-03`, `EIS-ISO-10` [S]): no direct client `INSERT`, `UPDATE` or `DELETE` on protected tables; `SECURITY INVOKER` only where the caller intentionally holds every underlying privilege; protected writes through kernel-checked commands whose narrowly granted `SECURITY DEFINER` function is owned by a per-command-group `NOLOGIN NOINHERIT` executor role, with an explicit hardened `search_path`, schema-qualified references and `EXECUTE` revoked from `PUBLIC` and `anon` in the creating migration; service-role paths only under the privileged-operation contract (`EIS-ISO-04`).
+
+### 20.6 Stage 6 finding dispositions
+
+#### B6-01 — Delivery-staff actor (HIGH) — **decided (`18:FPDR-6` D1-A); upstream-interface-held**
+
+- **Rows:** `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6`; consumed delegates `21-§4-3`, `21-§4-6`, `21-§13-3`, `22-§5-7`.
+- **Source authority:** C21 names both an Employee doing assigned deliveries (`21-§4-3`) and an external Delivery Staff participant (`21-§4-6`, `21-§13-3`). `EIS-ID-03` [S]: "A participant record without a verified-principal binding is data only and can exercise no capability" and "No new participant-authentication experience is defined here."
+- **Options:**
+  - (E) **Employee delivery**: an employee membership with object-scoped delivery capabilities. Feasible on the specified kernel. **It does not discharge the external Delivery Staff capability.**
+  - (P) **External participant binding**: SB-P-1.12 defines how a binding is issued, authenticated, scoped and revoked. **Selected by the Founder (D1-A):** merchant-issued invitation shared through a channel the merchant already controls, existing sign-in (email and password, or Google), explicit acceptance, no phone OTP and no new channel.
+  - (W) **WhatsApp participation** through SB-P-1.20 (`23-§4-5`, `DELEGATED`). This channel does not replace the native C1 §13 actions held here.
+- **Approach:** build (E) and consume (P). Do not accept the external-staff part of any row on employee evidence alone.
+- **Consuming-interface requirement (open; MC-675 ruling 5).** SB-P-1.18 consumes, and does not build, these SB-P-1.12 interfaces. They are not in the locked SB-P-1.12 EIS (`EIS-FRL-01` covers memberships; `EIS-FRL-02` memberships and invitations) and need SB-P-1.12 change control and explicit acceptance:
+
+  | Interface | Contract SB-P-1.18 needs | Proof required before the external part is accepted |
+  |---|---|---|
+  | G1 issue | A merchant with the capability issues a purpose-limited invitation for an identified person, with expiry and the business scope | Issue, expiry and wrong-business refusal are demonstrated on the test project |
+  | G1 accept | Only the verified signed-in person accepts; acceptance links the binding to the participant record (`EIS-ID-03`) | A different signed-in person, an expired or revoked invitation, and a replay are all refused |
+  | G1 revoke | Revocation ends every capability at the next call | A revoked participant is denied mid-delivery, and the revocation is audited |
+  | G2 first run | Sign-in with a pending or active binding lands on the participant path and never on business creation | No business row is created; an unbound person still gets ordinary first run |
+- **Gate:** the SB-P-1.12 disposition is recorded before the external part enters an EIS (EQ18-15). T8 is not fired: the binding is viable in specification. No runtime availability is assumed.
+
+#### B6-02 — Staff records without logins (HIGH) — gated on `D12`
+
+- **Rows:** `6-§3-1`, `6-§3-3` to `-5`, `6-§3-8`, `6-§5-1`, `6-§7-*`, `S11-L443-1` to `-5`, `17-§9-1` to `-4`; delegates `22-§5-4`, `22-§33-1`.
+- **Source authority:** C6 §3 needs profiles, rosters, attendance and leave. `EIS-ID-01` makes `persons` login-bound [S].
+- **Approach:** a business-scoped **staff record** independent of `persons`, with an optional link to an employee membership. Self-view and self-service only when linked (`6-§3-7`, `6-§4-4`). Minimum necessary fields, with no KYC or national ID (`6-§3-10` unresolved; `6-§15-6` rejected). Identity deletion is kept separate from employee and statutory records (`22-§33-1`).
+- **Open question:** EQ18-02, whether SB-P-1.12 accepts a non-login person record or this mission owns the HR record.
+- **Feasibility:** feasible, dependency-held.
+
+#### B6-03 — Delegated authority (HIGH) — gated on `D12`
+
+- **Rows:** every row with `D12` (280).
+- **Approach:** the capability catalogue in 20.5 as `EIS-KER-*` registry entries, with object scopes. Every read and write calls the kernel. **No interim role model**, no new owner-resolver policies, and no client-side permission checks as authority.
+- **Sequencing:** after the SB-P-1.12 kernel is implemented (20.7.4).
+- **Verification:** a `NEG` test per role per capability, on every channel and read path including AI answers (20.7.6).
+- **Feasibility:** feasible, dependency-held.
+
+#### B6-05 — Inventory effects, cancellation and partial fulfilment (HIGH) — **decided (`18:FPDR-6` D2-P); dependency-held; HIGH risk kept**
+
+- **Rows:** `1-§10-1` to `-9`, `1-§24-3`, `1-§24-8`, `BP-§10.7-A3`, `BP-§10.7-A4`; delegates `7-§2-1`, `7-§2-2`.
+- **Source authority:**
+  - C1 §10 p5 ("must not promise inventory that the product cannot support");
+  - C7 §8 (a sale affects stock only through the approved business-event path);
+  - `EIS17-RO-08` (availability is an interface only) [S];
+  - `inventory_movements.business_event_*`, which `create_inventory_movement` does not validate [R].
+- **Finding (Stage 7, before `18:FPDR-6`):** no approved source fixed the point at which a confirmed order changes stock or availability, or how a cancellation or partial fulfilment reverses it.
+- **Options:**
+  - (D) stock moves only at the sale event (delivered or closed). There is no reservation, and confirmed but undelivered orders do not reduce shown availability.
+  - (P) stock moves at packing. **Selected by the Founder (D2-P).**
+  - (R) reservation at confirmation. **R is a new Product Truth and is not proposed.**
+- **Engineering rules for any option:**
+  - one governed business event per stock-affecting state change, validated by the order domain;
+  - quantities from the delivered or packed lines only, so partial fulfilment is exact;
+  - a cancellation before the stock-affecting event has no stock effect;
+  - after it, a compensating movement linked to the same order event, and only after a confirmed physical return (`18:FPDR-6`); never automatically on cancellation or failed delivery alone;
+  - the return confirmation is a separately scoped capability; Delivery Staff do not hold it by default, and it does not grant the override (MC-665 A.4);
+  - repeated packing, retries and concurrent packers of the same line consume stock once (one idempotency key per order line and packing event);
+  - stock and COD or Ledger sale recognition stay separate events (`EIS16-ORD-01`);
+  - post-delivery returns beyond a confirmed physical return are not in C1 and are not designed.
+- **Gate:** decided; no confirmation-time reservation. The rows stay dependency-held on `D12` and `D17`. Risk stays **HIGH** pending the stock and concurrency specialist fact-finding (MC-675 ruling 4; 21.5). The override boundary applies to SB-P-1.18 order-linked paths only; `EIS17-STK-09` is not amended.
+
+#### B6-06 — COD and the single governed Ledger path (HIGH) — gated on `D16`, `DTX`
+
+- **Rows:** `1-§16-1` to `-6`, `1-§15-6`, `1-§13-6`, `1-§24-12`, `1-§24-14`, `1-§26-11`, `1-§26-14`, `3-§15-12`, `5-§6-10`, `BP-§10.7-A7`, `BP-§10.7-A10`, `17-§10-5`.
+- **Source authority:** C1 §16; DC-06; `EIS16-ORD-01` [S] ("demonstration with SB-P-1.18").
+- **Approach:**
+  - the order domain records expected COD, collected COD (amount, collector, time) and the discrepancy as separate facts;
+  - it never writes Ledger income;
+  - the Ledger link is created only through the SB-P-1.16 order adapter on the single `DTX` write path, with one idempotency key per delivery-and-collection event;
+  - payment verification uses SB-P-1.16 evidence (`DPAY`);
+  - a COD mismatch stays visible until a human resolves it.
+- **Gate:** acceptance needs the `DTX` cut-over decision (PQ-2) and the SB-P-1.16 implementation. Without both, COD rows are dependency-held and cannot be demonstrated.
+
+#### B6-07 — Raw location leakage (HIGH) — gated on a specialist check; `DLEG`
+
+- **Rows:** every `DLOC` row (42) and every row citing `18:FPDR-1`.
+- **Approach:**
+  - the coordinate is sent once, in a request body, never a URL, to a validation function that returns only the result;
+  - nothing stores A2 or B2 raw coordinates;
+  - coordinates are redacted from application error capture (`src/lib/error-capture.ts`, `src/lib/lovable-error-reporting.ts` [R]), server-function logs and analytics;
+  - no client-side persistence;
+  - database statement logging and API gateway logging behaviour for these calls is **[U]** and must be verified on the test project.
+- **Verification:** `NEG` log-scan probes that search every log sink for a planted test coordinate after each location event (20.7.6).
+- **Gate:** a privacy specialist reviews every logging path before the EIS (21.5).
+
+#### B6-24 — Runtime assurance (HIGH) — gated on environments
+
+- **Rows:** every `IN SCOPE` row. Founder scenarios A, B and C.
+- **Approach:** 20.7.1, 20.7.6, 20.7.7, 20.7.8 and 20.7.10. No row is accepted on repository, specification or green-CI evidence (`BP-§13-b1` to `-b4`).
+- **Gate:** fresh verification of `smart-business-test`, plus a device test matrix for geolocation.
+
+#### Medium and low findings
+
+| ID | Finding | Disposition | Gate |
+|---|---|---|---|
+| B6-04 | Notification recipients are memberships | C-OFD: customer native leg as merchant-visible event; delivery recipients follow B6-01, including a bound external participant; coordinate a participant recipient with SB-P-1.15 without channel states (EQ18-05) | `D15` |
+| B6-08 | Erasure mechanism and backups | Event-driven erasure at delivery close plus a scheduled sweep; backup and point-in-time-recovery position recorded as a `DLEG` question, with no new period (EQ18-06) | `DSCH`; `DLEG` |
+| B6-09 | Retention rows seeded `INSP` only | Verification plan adds runtime erasure and `NEG` probes beside the FCTM seed (20.7.6) | 20.7.6 |
+| B6-10 | Geocoding sends addresses to a provider | Device maps hand-off by default; any provider needs BP §5.4 | U-13; BP §5.4 |
+| B6-11 | Three address classes | C-CUS address class model | EIS |
+| B6-12 | Attendance source while DC-14 is open | Name the adopted non-location mechanism (`L-F4A`) in the EIS; QR plus geofence designed only as DC-14 is determined | DC-14 (Mission Control T6) |
+| B6-13 | Payroll calculation before `DLEG` | Calculation held; recording and review designed now | `DLEG` (`18:FPDR-5` §5) |
+| B6-14 | Payroll export semantics | View only; no export until the MC-544 disposition | MC-544 |
+| B6-15 | Overtime dispute and provenance | C-PAY record model | EIS |
+| B6-16 | Native consent and STOP state | C-CUS send-guard | DC-13 (Mission Control T6) |
+| B6-17 | Forwarded-WhatsApp capture | C-ORD first-class merchant path | EIS (UX) |
+| B6-18 | Proof media privacy | Governed storage with retention state; privacy check | `18:FPDR-4` §6 |
+| B6-19 | Duplicate customers | Review candidates; no auto-merge | EIS |
+| B6-20 | Entitlement gating | `EIS-KER-05`; no add-on acceptance before `DENT` | `DENT`; DC-07 |
+| B6-21 | Workspace shell | Feature-fed cards in the SB-P-1.17 shell | `D17` |
+| B6-22 | Compliance date copy | Clarification names the date type; Malayalam review | EIS (UX) |
+| B6-23 | New object grants | Grant checklist and privilege tests | 20.7.3 |
+
+### 20.7 Early delivery plan (planning only; nothing executed)
+
+#### 20.7.1 Environments and readiness evidence
+
+| Environment | Purpose | Readiness evidence required before use | State |
+|---|---|---|---|
+| Local development | Build, lint, typecheck, environment-independent tests | None beyond the repository | Available [R] |
+| `smart-business-test` | Supabase-backed integration, privilege and log-scan tests; migration rehearsal | Fresh verification of project state, schema parity and access (Δ-06, Δ-07); log sinks inventoried for B6-07 | [U] |
+| Device test matrix | Geolocation permission, accuracy, denial and offline behaviour on low-end Android browsers; QR scanning | Named devices and browsers; test-only geofence | Absent |
+| Production (Team LIPS Supabase) | None in this mission | A separate authorized execution mission (`docs/migration/README.md`) | NOT AUTHORIZED |
+
+#### 20.7.2 Expected migration classes (default-deny; none authorized)
+
+Each class is additive, follows the repository grant pattern, and comes after its upstream foundation:
+
+| Class | Content | Prerequisite |
+|---|---|---|
+| M18-1 Customer extensions | Consent and STOP state; address classes; duplicate candidates | SB-P-1.16 shared customer identity; SB-P-1.12 `EIS-ID-03` |
+| M18-2 Orders | Drafts, lines, state history, ambiguity items, change proposals and approvals; per-line packing events and their stock links; physical-return confirmations | SB-P-1.12 kernel and confirmation bindings; SB-P-1.17 movement path |
+| M18-3 Delivery | Assignment, delivery events, proof records, COD facts and discrepancies; external participant assignment scope | M18-2; SB-P-1.16 `EIS16-ORD-01`; `DTX` decision; SB-P-1.12 G1/G2 for the external part |
+| M18-4 Staff | Staff records, optional membership link, shifts and rosters, attendance events, leave, corrections, overtime records | SB-P-1.12 memberships; EQ18-02 |
+| M18-5 Compliance | Records, typed dates, versions and renewal history | SB-P-1.14 Cabinet; SB-P-1.15 Reminder Engine |
+| M18-6 Location | Validation functions; temporary-pin store with erasure; QR token store | Specialist review (B6-07); DC-14 for the attendance geofence |
+| M18-7 Capabilities and entitlements | Registry entries for SB-P-1.18 capabilities, including return confirmation and the negative-stock override grant with its audit; add-on entitlement features | SB-P-1.12 registry and `EIS-KER-05` |
+| M18-8 Readers | Governed readers for the views and SB-P-1.13, SB-P-1.15, SB-P-1.16 consumers (Part F) | Feature tables |
+
+#### 20.7.3 Migration and rollback rehearsal requirements
+
+- **Default deny.** Each class is rehearsed only under a separate authorized mission, on `smart-business-test` after fresh verification.
+- **Each rehearsal includes:**
+  - the forward migration;
+  - privilege verification against `EIS-ISO-03` and `EIS-ISO-10` [S]: effective grants for `PUBLIC`, `anon`, `authenticated`, `service_role` and executor roles; no unauthorized `anon` or `PUBLIC` access; each function's owner, security mode (invoker or narrow definer), hardened `search_path` and overloads; creator-role default privileges;
+  - regression of the inventory, catalog and Ledger suites;
+  - a written, rehearsed rollback or compensating migration.
+- **Schema evidence:** use `pg_class` and `pg_namespace`, not `information_schema.tables`.
+- **Destructive statements:** an environment breadcrumb check comes before any destructive statement (SB-INC-2026-001).
+- **Tooling:** the CLI runs only through `scripts/supabase-cli.mjs`.
+- **Production:** never part of this mission (Source 18 §9.1).
+
+#### 20.7.4 Cross-mission dependency order
+
+1. **SB-P-1.12:** kernel, memberships, participants and **the participant binding: issuance, acceptance and participant-aware first run (B6-01; open interface, not in the locked EIS)**, registry, confirmation bindings, self-service, support access, entitlement (`D12`, `DENT`).
+2. **SB-P-1.13:** conversation, language, voice, typed tools (`D13`, `DAI`, `DV`).
+3. **SB-P-1.14:** UDI adapters, Cabinet, governed storage, Business Memory (`D14`).
+4. **SB-P-1.15:** Reminder Engine, native notifications, timezone, scheduler (`D15`, `DSCH`).
+5. **SB-P-1.16:** shared customer identity, order and COD adapter, `DTX` cut-over (`D16`, `DPAY`, `DTX`).
+6. **SB-P-1.17:** availability reader and workspace shell (`D17`).
+7. **SB-P-1.18:**
+   - first, C-HR, C-CMP and C-REN, which need the fewest upstream services;
+   - then C-CUS, C-ORD, C-AVL and C-DLV;
+   - then C-PRF with COD;
+   - C-LOC last, behind its specialist gate.
+8. **SB-P-1.20** adapts the native engine afterwards.
+
+#### 20.7.5 Integration boundaries
+
+As Blueprint §12.5. In summary:
+- no POS row or custom POS change;
+- no second stock record (`EIS17-RO-08` reader only);
+- no Ledger income written by the order domain (`EIS16-ORD-01`);
+- no feature scheduler or notification store (`EIS15-REM-07`, `EIS15-NTF-*`);
+- no feature import stack (UDI adapters);
+- no channel states before SB-P-1.20 (`EIS15-NTF-02`).
+
+#### 20.7.6 Verification tiers and test requirements
+
+| Tier | Content | Rows or seeds |
+|---|---|---|
+| Unit (environment-independent) | Order state machine; ambiguity gate; proof sufficiency; COD fact separation; consent send-guard; address-class rules; coordinate redaction | `RT` and `NEG` seeds of 8.3–8.7, 8.15 |
+| Integration (Supabase-backed) | Kernel authorization per capability; idempotency of assignment, check-in, upload and COD; reminder creation from confirmed dates; UDI previews | `IDEM` and `RT` seeds |
+| Privilege and denial | Every `NEG` row per role and channel, including AI answers and readers; anonymous access denied on every new object | §10.3 rows; B6-03 |
+| Stock integrity (`18:FPDR-6`) | One decrease per packed line under retry and concurrency; no restock without a confirmed return; return confirmation refused to Delivery Staff by default and conferring no override; override refused to Employee, Delivery Staff, AI and a Manager without the grant | The 13 B6-05 rows |
+| External participant (`18:FPDR-6`) | Unbound, pending, expired and revoked participants denied; revocation mid-delivery; first run with a pending binding creates no business; only assigned deliveries visible | The 19 B6-01 rows, after the SB-P-1.12 interface |
+| Location privacy | Log-scan probes for a planted coordinate across every sink; erasure at delivery close; no A2/B2 raw coordinate in any table or backup-visible export | B6-07 to B6-09; `22-§16-6`, `1-§14-12`, `1-§22-11` |
+| Experience | Malayalam and Manglish capture; neutral staff language; calm compliance wording | `EXP` seeds; `1-§20-*`, `6-§14-9`, `16-§12-1` |
+| Founder runtime | Scenarios A, B and C (20.7.10) | `FRV-A`, `FRV-B`, `FRV-C` |
+
+#### 20.7.7 Continuous-integration tiers
+
+- **Fast Gate:** add the SB-P-1.18 environment-independent unit suites to the fast configuration, which today has 8 environment-independent files plus the organizational-learning contracts [R].
+- **Full Assurance:** add SB-P-1.18 paths to the path triggers so Supabase-backed integration, privilege and log-scan tests run on every change to this mission's code and migrations.
+- **CI is a configured-checks signal only, never acceptance evidence** (`BP-§13-b2`).
+
+#### 20.7.8 Runtime assurance and acceptance strategy
+
+- Every row is accepted only on runtime evidence in the test environment and, for `FRV` rows, Founder runtime verification.
+- Customer-channel legs report "customer channel: not demonstrated" until SB-P-1.20 accepts them (`18:FPDR-3` §6).
+- External-staff parts of the B6-01 rows are reported separately from employee-delivery evidence, and only after the SB-P-1.12 interface is accepted and demonstrated.
+
+#### 20.7.9 Holds carried into delivery planning
+
+| Hold | Rows affected | Planning effect |
+|---|---|---|
+| DC-14 (Mission Control T6; legal input before the Blueprint lock) | `6-§5-2` | QR plus geofence not committed in the EIS until determined |
+| MC-544 | `17-§9-5` | View only |
+| `DLEG` | 6 `DLEG` rows plus the `18:FPDR-1` rows | Calculation held; location under Founder Decision Record 06 §4; specialist checks |
+| `DNTF` | 17 rows | Native legs only; `1-§15-4` OTP unavailable |
+| `DENT` | 13 rows | No add-on acceptance |
+| SB-P-1.12 participant-binding interface (G1, G2) | The 19 B6-01 rows (external part) | Open; separate upstream acceptance and change control |
+| AEG-1, DC-13, C1 §17 screening, U-09 | As Blueprint §12.3 | Mission Control |
+
+#### 20.7.10 Founder Scenario verification plans
+
+- **A — ambiguous order stays a draft.**
+  - Positive: the merchant forwards an ambiguous order text, screenshot or voice note; a draft is created with its ambiguity items; Smart Business asks the smallest question; the merchant resolves it; the merchant confirms.
+  - Negative: confirmation with open ambiguity is refused; no guessed quantity or product.
+  - Needs: `D12`, `D13`, `DAI`, `D14`.
+- **B — own attendance correction.**
+  - Positive: a linked employee views their own attendance from the adopted mechanism and submits a correction; the original is kept; the Owner reviews it; the actor is audited.
+  - Negative: the employee cannot open another employee's record, payroll support or Ask CFO, on any channel or AI answer.
+  - Needs: `D12` (self-service `21-§10-2`), `D13` (`10-§13-7`), and an adopted attendance mechanism (B6-12).
+- **C — licence expiry reminder.**
+  - Positive: a licence photo is uploaded; the expiry date is confirmed; a reminder occurrence becomes due through the Reminder Engine with a link to the document.
+  - Negative: no legal-compliance claim; the due date passing does not mark the renewal complete.
+  - Needs: `D14`, `D15`, `DSCH`, `EIS15-TZ-01`.
+
+### 20.8 Per-row feasibility and risk register (592 `IN SCOPE` rows)
+
+**Status meanings** (documentary feasibility only; not implementation, runtime or specialist evidence). Precedence when several apply: `DI`, `HG`, `DH`, `DA`. The earlier `T3` and `T8` watch statuses are retired: `18:FPDR-6` decided both.
+
+| Status | Meaning | Rows |
+|---|---|---|
+| `DA` DESIGN ACCEPTED — EVIDENCE HOLD | No upstream dependency or hold; design acceptable, checked by later verification evidence | 115 |
+| `DH` DEPENDENCY-HELD | Feasible design held by an unbuilt upstream foundation (`D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DENT`) | 433 |
+| `HG` HOLD-GATED | Feasible design gated by a recorded hold: `DNTF`, `DLEG`, DC-14 (`6-§5-2`) or MC-544 (`17-§9-5`) | 25 |
+| `DI` DEPENDENCY-HELD — UPSTREAM INTERFACE | Decided by `18:FPDR-6` D1-A; feasible for employee delivery; the external Delivery Staff part waits on the open SB-P-1.12 binding interface (B6-01, EQ18-15). An engineering diagnostic subtype of `DH`, not an FCTM disposition and not readiness (MC-665 A.5) | 19 |
+
+"Held" means waiting on an identified, recorded dependency, hold or upstream interface. It is **not** a Source 18 T8 infeasibility finding. No row is found infeasible or unsafe, no row is narrowed, moved or deferred, and no row is `ESCALATED` or `PASS`.
+
+**Columns:**
+- **Component** refers to 20.3 and 20.4, one per Blueprint Section 8 subsection (taken from the canonical Blueprint §19 map).
+- **Risk** (H 101, M 381, L 110) follows a stated rule. H: status `DI` or `HG`, one of the 13 B6-05 stock rows (kept HIGH pending the stock-integrity fact-finding; MC-675 ruling 4), a `DTX` or `DLOC` dependency, an `FRV` row, or a row citing `18:FPDR-1`. M: any other dependency-held row. L: design-only.
+- **Verification** is the FCTM seed, unchanged; `if adopted` qualifiers are preserved.
+- **Evidence:** R, the FCTM evidence cell records repository absence (`NI-*`) or a repository rule; S, the row depends on a locked upstream specification.
+- **Findings** lists up to four applicable Stage 6 findings, HIGH first.
+
+| Row | Component | Status | Risk | Verification | Evidence | Findings |
+|---|---|---|---|---|---|---|
+| 1-§1-1 | C-CUS | DA | L | EXP | R | — |
+| 1-§1-2 | C-CUS | DA | L | EXP | R | — |
+| 1-§1-3 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-1 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-2 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-3 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-4 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-5 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-6 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-7 | C-CUS | DA | L | EXP | R | — |
+| 1-§2-8 | C-CUS | DA | L | EXP | R | — |
+| 1-§3-1 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-2 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-3 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-4 | C-CUS | DA | L | NEG | R | — |
+| 1-§3-5 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-6 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-7 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-8 | C-CUS | DA | L | NEG | R | — |
+| 1-§3-9 | C-CUS | DA | L | INSP | R | — |
+| 1-§3-10 | C-CUS | DA | L | INSP | R | — |
+| 1-§5-1 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-2 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-3 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-4 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-5 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-6 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-7 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-8 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-9 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-10 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-11 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-12 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-13 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-14 | C-OAU | DH | M | NEG | R,S | B6-03 |
+| 1-§5-15 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-16 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-17 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-18 | C-OAU | DI | H | RT | R,S | B6-01, B6-03, B6-07, B6-10 |
+| 1-§5-19 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-20 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-21 | C-OAU | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§5-22 | C-OAU | DI | H | NEG | R,S | B6-01, B6-03 |
+| 1-§5-23 | C-OAU | DH | M | RT | R,S | B6-03 |
+| 1-§5-24 | C-OAU | HG | H | RT | R,S | B6-03 |
+| 1-§5-25 | C-OAU | HG | H | RT | R,S | B6-03 |
+| 1-§5-26 | C-OAU | HG | H | RT | R,S | B6-03, B6-07, B6-11 |
+| 1-§5-27 | C-OAU | HG | H | RT | R,S | B6-03, B6-04 |
+| 1-§5-28 | C-OAU | HG | H | RT | R,S | B6-03 |
+| 1-§5-29 | C-OAU | HG | H | RT | R,S | B6-03, B6-16 |
+| 1-§5-30 | C-OAU | DH | M | NEG | R,S | B6-03 |
+| 1-§6-1 | C-CUS | DH | M | INSP | R,S | B6-03, B6-19 |
+| 1-§6-2 | C-CUS | DH | M | RT | R,S | B6-03, B6-19 |
+| 1-§6-3 | C-CUS | DH | M | RT | R,S | B6-03, B6-19 |
+| 1-§6-4 | C-CUS | DH | M | RT | R,S | B6-03, B6-19 |
+| 1-§6-5 | C-CUS | DH | M | RT | R,S | B6-03, B6-19 |
+| 1-§6-6 | C-CUS | DH | M | RT | R,S | B6-03, B6-19 |
+| 1-§6-7 | C-CUS | DH | M | IDEM | R,S | B6-03, B6-19 |
+| 1-§7-1 | C-CUS | HG | H | RT | R,S | B6-03, B6-16 |
+| 1-§7-2 | C-CUS | HG | H | RT | R,S | B6-03, B6-16 |
+| 1-§7-4 | C-CUS | HG | H | NEG | R,S | B6-03, B6-16 |
+| 1-§7-5 | C-CUS | HG | H | NEG | R,S | B6-03, B6-16 |
+| 1-§8-1 | C-ORD | DH | M | INSP | R,S | — |
+| 1-§8-6 | C-ORD | DH | M | RT | R,S | — |
+| 1-§8-7 | C-ORD | DH | M | RT | R,S | — |
+| 1-§8-8 | C-ORD | DH | M | RT | R,S | B6-17 |
+| 1-§8-9 | C-ORD | DH | M | RT | R,S | B6-17 |
+| 1-§8-10 | C-ORD | DH | M | RT | R,S | — |
+| 1-§8-11 | C-ORD | DH | M | INSP | R,S | — |
+| 1-§8-12 | C-ORD | DH | M | NEG | R,S | — |
+| 1-§9-1 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-2 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-3 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-4 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-5 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-6 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-7 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-8 | C-ORD | DH | M | RT | R,S | B6-11 |
+| 1-§9-9 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-10 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-11 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-12 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-13 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-14 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-15 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-16 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-17 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-18 | C-ORD | DH | M | RT | R,S | — |
+| 1-§9-19 | C-ORD | DH | M | NEG | R,S | — |
+| 1-§10-1 | C-AVL | DH | H | RT | R,S | B6-03, B6-05 |
+| 1-§10-2 | C-AVL | DH | H | RT | R,S | B6-05 |
+| 1-§10-3 | C-AVL | DH | H | RT | R,S | B6-05 |
+| 1-§10-4 | C-AVL | DH | H | RT | R,S | B6-05 |
+| 1-§10-5 | C-AVL | DH | H | RT | R,S | B6-05 |
+| 1-§10-6 | C-AVL | DH | H | RT | R,S | B6-05 |
+| 1-§10-7 | C-AVL | DH | H | RT (if adopted) | R,S | B6-05 |
+| 1-§10-8 | C-AVL | DH | H | RT | R,S | B6-03, B6-05 |
+| 1-§10-9 | C-AVL | DH | H | NEG | R,S | B6-05 |
+| 1-§11-1 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§11-2 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§11-3 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§11-4 | C-DLV | DA | L | INSP | R | — |
+| 1-§12-1 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§12-2 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§12-3 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§12-4 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§12-5 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§12-6 | C-DLV | DH | M | IDEM | R,S | B6-03 |
+| 1-§12-7 | C-DLV | DH | M | RT | R,S | B6-03 |
+| 1-§13-1 | C-DLV | DA | L | EXP | R | — |
+| 1-§13-2 | C-DLV | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§13-3 | C-DLV | DI | H | RT | R,S | B6-01, B6-03, B6-10 |
+| 1-§13-4 | C-DLV | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§13-5 | C-DLV | DI | H | RT | R,S | B6-01, B6-03, B6-07 |
+| 1-§13-6 | C-DLV | DI | H | RT | R,S | B6-01, B6-03, B6-06 |
+| 1-§13-7 | C-DLV | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§13-8 | C-DLV | DI | H | RT | R,S | B6-01, B6-03 |
+| 1-§13-9 | C-DLV | DA | L | INSP | R | — |
+| 1-§14-1 | C-LOC | DH | H | INSP | R,S | B6-03, B6-07 |
+| 1-§14-2 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-3 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-4 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-5 | C-LOC | DH | H | NEG; INSP | S | B6-07 |
+| 1-§14-6 | C-LOC | DH | H | NEG | R,S | B6-03, B6-07 |
+| 1-§14-7 | C-LOC | DH | H | NEG | R,S | B6-03, B6-07 |
+| 1-§14-8 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-9 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-10 | C-LOC | DH | H | RT | R,S | B6-03, B6-07, B6-08, B6-09 |
+| 1-§14-11 | C-LOC | DH | H | RT | R,S | B6-03, B6-07 |
+| 1-§14-12 | C-LOC | DH | H | INSP | R,S | B6-03, B6-07, B6-08, B6-09 |
+| 1-§14-13 | C-LOC | DA | L | NEG | R | — |
+| 1-§15-1 | C-PRF | DH | M | RT | R,S | B6-03 |
+| 1-§15-2 | C-PRF | DH | M | RT | R,S | B6-03 |
+| 1-§15-3 | C-PRF | DH | M | RT (if adopted) | R,S | B6-03, B6-18 |
+| 1-§15-4 | C-PRF | HG | H | RT (if adopted) | R,S | B6-03, B6-18 |
+| 1-§15-5 | C-PRF | DH | H | RT (if adopted) | R,S | B6-03, B6-07 |
+| 1-§15-6 | C-PRF | DH | M | RT (if adopted) | R,S | B6-03, B6-06 |
+| 1-§15-7 | C-PRF | DH | M | RT | R,S | B6-03 |
+| 1-§15-8 | C-PRF | DH | M | RT | R,S | B6-03 |
+| 1-§15-9 | C-PRF | DH | M | NEG | R,S | B6-03 |
+| 1-§15-10 | C-PRF | DH | M | NEG | R,S | B6-03 |
+| 1-§16-1 | C-PRF | DH | M | RT | R,S | B6-06 |
+| 1-§16-2 | C-PRF | DH | M | RT | R,S | B6-06 |
+| 1-§16-3 | C-PRF | DH | M | RT | R,S | B6-06 |
+| 1-§16-4 | C-PRF | DH | M | INSP | R,S | B6-06 |
+| 1-§16-5 | C-PRF | DH | H | NEG | R,S | B6-06 |
+| 1-§16-6 | C-PRF | DH | H | IDEM | R,S | B6-06 |
+| 1-§17-1 | C-OFD | DH | M | INSP | R,S | — |
+| 1-§17-2 | C-OFD | DH | M | RT | R,S | B6-04 |
+| 1-§17-3 | C-OFD | HG | H | RT | R,S | B6-04 |
+| 1-§17-4 | C-OFD | DI | H | RT | R,S | B6-01, B6-04 |
+| 1-§17-5 | C-OFD | HG | H | RT | R,S | B6-04 |
+| 1-§17-6 | C-OFD | HG | H | RT | R,S | B6-04 |
+| 1-§17-7 | C-OFD | DH | M | RT | R,S | B6-04 |
+| 1-§17-8 | C-OFD | DH | M | RT | R,S | B6-04 |
+| 1-§17-9 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§18-7 | C-ORD | DA | L | INSP | R | — |
+| 1-§19-1 | C-ORD | DH | M | RT | R,S | — |
+| 1-§19-2 | C-ORD | DH | M | RT | R,S | B6-17 |
+| 1-§19-3 | C-ORD | DH | M | RT | R,S | B6-17 |
+| 1-§19-4 | C-ORD | DH | M | RT | R,S | — |
+| 1-§19-5 | C-ORD | DH | M | RT | R,S | B6-03 |
+| 1-§20-1 | C-ORD | HG | H | EXP | R,S | B6-17 |
+| 1-§20-2 | C-ORD | DH | M | EXP | R,S | B6-17 |
+| 1-§21-1 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-2 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-3 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-4 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-5 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-6 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-7 | C-OFD | DH | M | RT | R,S | — |
+| 1-§21-8 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§21-9 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§21-10 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§21-11 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§21-12 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§21-13 | C-OFD | DH | M | NEG | R,S | — |
+| 1-§22-1 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-2 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-3 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-4 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-5 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-6 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-7 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-8 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-9 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-10 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-11 | C-OFD | DH | H | INSP | R,S | B6-03, B6-07, B6-08, B6-09 |
+| 1-§22-12 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-13 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-14 | C-OFD | DH | M | INSP | R,S | B6-03 |
+| 1-§22-15 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§23-1 | C-OFD | DH | M | INSP | S | B6-03 |
+| 1-§23-2 | C-OFD | DH | M | INSP | S | B6-03 |
+| 1-§23-3 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-4 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-5a | C-OFD | DH | M | INSP | S | — |
+| 1-§23-6 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-7 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-8 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-9 | C-OFD | DH | M | INSP | S | — |
+| 1-§23-10 | C-OFD | DH | H | INSP | S | B6-07 |
+| 1-§23-11 | C-OFD | DH | M | INSP | S | B6-03 |
+| 1-§23-12 | C-OFD | DH | M | INSP | S | — |
+| 1-§24-1 | C-OFD | DH | M | NEG | R,S | B6-03, B6-19 |
+| 1-§24-2 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-3 | C-OFD | DH | H | NEG | R,S | B6-03, B6-05 |
+| 1-§24-4 | C-OFD | DH | H | NEG | R,S | B6-03, B6-07, B6-11 |
+| 1-§24-5 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-6 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-7 | C-OFD | DH | M | IDEM | R,S | B6-03 |
+| 1-§24-8 | C-OFD | DH | H | NEG | R,S | B6-03, B6-05 |
+| 1-§24-9 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-10 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-11 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§24-12 | C-OFD | DH | M | NEG | R,S | B6-03, B6-06 |
+| 1-§24-13 | C-OFD | HG | H | NEG | R,S | B6-03 |
+| 1-§24-14 | C-OFD | DH | M | NEG | R,S | B6-03, B6-06 |
+| 1-§24-15 | C-OFD | DH | M | NEG | R,S | B6-03 |
+| 1-§25-1 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-2 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-3 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-4 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-5 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-6 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-7 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§25-8 | C-OFD | DH | M | NEG | S | B6-03 |
+| 1-§26-1 | C-ACC | HG | H | RT; separate full order test | R,S | B6-03, B6-24 |
+| 1-§26-2 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 1-§26-3 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 1-§26-4 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 1-§26-5 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 1-§26-6 | C-ACC | DH | H | RT | R,S | B6-03, B6-07, B6-24 |
+| 1-§26-7 | C-ACC | DI | H | NEG | R,S | B6-01, B6-03, B6-24 |
+| 1-§26-8 | C-ACC | DI | H | NEG | R,S | B6-01, B6-03, B6-24 |
+| 1-§26-9 | C-ACC | DH | H | NEG | R,S | B6-03, B6-07, B6-24 |
+| 1-§26-10 | C-ACC | DH | M | RT; NEG | R,S | B6-03, B6-24 |
+| 1-§26-11 | C-ACC | DH | H | RT; IDEM | R,S | B6-03, B6-06, B6-24 |
+| 1-§26-12a | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 1-§26-13 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 1-§26-14 | C-ACC | DH | M | IDEM | R,S | B6-03, B6-06, B6-24 |
+| 1-§28-1 | C-OFD | DA | L | INSP | R | — |
+| 1-§31-1 | C-ACC | DA | L | GATE | R | — |
+| 1-§31-2 | C-ACC | DA | L | GATE | R | — |
+| 6-§1-1 | C-HR | DA | L | EXP | R | — |
+| 6-§2-1 | C-HR | DA | L | EXP | R | — |
+| 6-§3-1 | C-HR | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§3-2 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§3-3 | C-HR | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§3-4 | C-HR | DH | H | RT | R,S | B6-02, B6-03, B6-07 |
+| 6-§3-5 | C-HR | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§3-6 | C-HR | HG | H | RT | R,S | B6-03, B6-13 |
+| 6-§3-7 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§3-8 | C-HR | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§3-9 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-1 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-2 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-3 | C-HR | DH | H | RT | R,S | B6-03 |
+| 6-§4-4 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-5 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-6 | C-HR | DH | M | RT | R,S | B6-03 |
+| 6-§4-7 | C-HR | DH | M | NEG | R,S | B6-03 |
+| 6-§5-1 | C-ATT | DH | M | RT | R,S | B6-02, B6-03, B6-12 |
+| 6-§5-2 | C-ATT | HG | H | RT (QR + point-in-time geofence per DC-14; other methods if adopted) | R,S | B6-03, B6-07, B6-12 |
+| 6-§5-3 | C-ATT | DH | H | NEG | R,S | B6-07, B6-12 |
+| 6-§5-4 | C-ATT | DH | H | NEG | R,S | B6-07, B6-12 |
+| 6-§5-5 | C-ATT | DH | H | INSP | S | B6-07, B6-12 |
+| 6-§6-1 | C-ATT | DH | M | RT | R,S | — |
+| 6-§6-2 | C-ATT | DH | M | INSP | R,S | — |
+| 6-§6-3 | C-ATT | DH | M | NEG | R,S | — |
+| 6-§7-1 | C-ATT | DH | M | INSP | R,S | B6-02, B6-03 |
+| 6-§7-2 | C-ATT | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§7-3 | C-ATT | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§7-4 | C-ATT | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§7-5 | C-ATT | DH | M | RT | R,S | B6-02, B6-03 |
+| 6-§7-6 | C-ATT | DH | M | INSP | R,S | B6-02, B6-03 |
+| 6-§8-1 | C-PAY | DH | M | NEG | R,S | B6-03, B6-13 |
+| 6-§8-2 | C-PAY | HG | H | RT | R,S | B6-03, B6-13 |
+| 6-§8-3 | C-PAY | DH | M | NEG | R,S | B6-03, B6-13 |
+| 6-§8-4 | C-PAY | DH | M | NEG | R,S | B6-03, B6-13 |
+| 6-§8-5 | C-PAY | DH | M | NEG | R,S | B6-03, B6-13 |
+| 6-§8-6 | C-PAY | DH | M | NEG | R,S | B6-03, B6-13 |
+| 6-§8-7 | C-PAY | DH | M | RT; INSP | R,S | B6-03, B6-13 |
+| 6-§9-1 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-2 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-3 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-4 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-5 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-6 | C-HRF | DH | M | RT | R,S | — |
+| 6-§9-7 | C-HRF | DH | M | NEG | R,S | — |
+| 6-§9-8 | C-HRF | DH | M | NEG | R,S | — |
+| 6-§9-9 | C-HRF | DH | M | NEG | R,S | — |
+| 6-§9-10 | C-HRF | DH | M | NEG | R,S | — |
+| 6-§9-11 | C-HRF | DH | M | NEG | R,S | — |
+| 6-§10-1a | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§10-2 | C-HRF | DH | M | NEG | R,S | B6-03 |
+| 6-§11-1 | C-HRF | DH | M | INSP | S | B6-03 |
+| 6-§11-2 | C-HRF | DH | M | INSP | S | B6-03 |
+| 6-§11-3 | C-HRF | DH | M | INSP | S | — |
+| 6-§11-4 | C-HRF | DH | M | INSP | S | — |
+| 6-§11-5 | C-HRF | DH | M | INSP | S | — |
+| 6-§11-6 | C-HRF | DH | M | INSP | S | — |
+| 6-§11-7 | C-HRF | DH | M | INSP | S | — |
+| 6-§11-8 | C-HRF | DH | H | INSP | S | B6-07 |
+| 6-§11-9 | C-HRF | DH | M | INSP | S | B6-03 |
+| 6-§12-1 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§12-2 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§12-3 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§12-4 | C-HRF | DH | H | NEG | S | B6-03, B6-07 |
+| 6-§12-5 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§12-6 | C-HRF | DH | H | NEG | S | B6-07 |
+| 6-§12-7 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§12-8 | C-HRF | DH | M | NEG | S | B6-03 |
+| 6-§13-1 | C-HRF | DH | M | IDEM | R,S | B6-03, B6-12 |
+| 6-§13-2 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-3 | C-HRF | DH | H | RT | R,S | B6-03, B6-07, B6-12 |
+| 6-§13-4 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-5 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-6 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-7 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-8 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-9 | C-HRF | DH | M | IDEM | R,S | B6-03 |
+| 6-§13-10 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§13-11 | C-HRF | DH | M | RT | R,S | B6-03 |
+| 6-§14-1 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 6-§14-2 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 6-§14-3 | C-ACC | DH | H | RT; NEG | R,S | B6-03, B6-07, B6-24 |
+| 6-§14-4 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 6-§14-5 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 6-§14-6 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 6-§14-7 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 6-§14-8 | C-ACC | DH | M | RT; INSP | R,S | B6-03, B6-24 |
+| 6-§14-9 | C-ACC | DH | M | EXP | R,S | B6-03, B6-24 |
+| 6-§14-10 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 6-§17-1 | C-ACC | DA | L | GATE | R | — |
+| S11-L443-1 | C-PAY | HG | H | RT: a record is created from each of the four origins; IDEM | R,S | B6-02, B6-03, B6-07, B6-15 |
+| S11-L443-2 | C-PAY | DH | M | RT: authorized review; NEG: unauthorized or autonomous review | R,S | B6-02, B6-03, B6-15 |
+| S11-L443-3 | C-PAY | HG | H | RT: correction and dispute preserve the original; NEG: destructive rewrite; IDEM | R,S | B6-02, B6-03, B6-15 |
+| S11-L443-4 | C-PAY | HG | H | RT: role-scoped and own-record views; NEG: another employee's record | R,S | B6-02, B6-03, B6-15 |
+| S11-L443-5 | C-PAY | DH | M | RT: each step attributed to actor, role, origin and time; INSP: audit trail | R,S | B6-02, B6-03, B6-15 |
+| 16-§1-1 | C-CMP | DA | L | EXP | R | — |
+| 16-§1-2 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-1 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-2 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-3 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-4 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-5 | C-CMP | DA | L | EXP | R | — |
+| 16-§2-6 | C-CMP | DA | L | EXP | R | — |
+| 16-§3-1 | C-CMP | DA | L | INSP | R | — |
+| 16-§3-2 | C-CMP | DA | L | INSP | R | — |
+| 16-§3-3 | C-CMP | DA | L | INSP | R | — |
+| 16-§3-4 | C-CMP | DA | L | INSP | R | — |
+| 16-§3-5 | C-CMP | DA | L | INSP | R | — |
+| 16-§3-6 | C-CMP | DA | L | NEG | R | — |
+| 16-§3-7 | C-CMP | DA | L | INSP | R | — |
+| 16-§4-1 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-2 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-3 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-4 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-5 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-6 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-7 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-8 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-9 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-10 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-11 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-12 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-13 | C-CMP | DH | M | RT | R,S | B6-03 |
+| 16-§4-14 | C-CMP | DA | L | INSP | R | — |
+| 16-§5-1 | C-CMP | DH | M | RT | R,S | — |
+| 16-§5-2 | C-CMP | DH | M | RT | R,S | — |
+| 16-§5-3 | C-CMP | DH | M | RT | R,S | — |
+| 16-§5-4 | C-CMP | DH | M | RT | R,S | — |
+| 16-§5-5a | C-CMP | DH | M | RT | R,S | — |
+| 16-§5-6 | C-CMP | DH | M | INSP | R,S | — |
+| 16-§5-7 | C-CMP | DH | M | NEG | R,S | — |
+| 16-§6-1 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-2 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-3 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-4 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-5 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-6 | C-CMP | DH | M | RT | R,S | B6-22 |
+| 16-§6-7 | C-CMP | DH | M | NEG | R,S | B6-22 |
+| 16-§7-1 | C-REN | DH | M | INSP | R,S | — |
+| 16-§7-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§7-3 | C-REN | DA | L | INSP | R | — |
+| 16-§7-4 | C-REN | DH | M | RT | R,S | — |
+| 16-§7-5 | C-REN | DH | M | RT | R,S | — |
+| 16-§7-6 | C-REN | DH | M | RT | R,S | — |
+| 16-§7-7 | C-REN | DH | M | RT | R,S | — |
+| 16-§7-8 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-1 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-3 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-4 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-5 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-6 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-7 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-8 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-9 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-10 | C-REN | DH | M | RT | R,S | — |
+| 16-§8-11 | C-REN | DH | M | NEG | R,S | — |
+| 16-§9-1 | C-REN | DH | M | INSP | R,S | — |
+| 16-§9-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§10-1 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§10-2 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§10-3 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§10-4 | C-CMF | DH | M | NEG | S | B6-03 |
+| 16-§11-1 | C-REN | DH | M | RT | R,S | — |
+| 16-§11-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§11-3 | C-REN | DH | M | RT | R,S | — |
+| 16-§11-4 | C-REN | DH | M | RT | R,S | — |
+| 16-§11-5 | C-REN | DH | M | RT | R,S | — |
+| 16-§11-6a | C-REN | DH | M | RT | R,S | — |
+| 16-§11-7 | C-REN | DH | M | NEG; IDEM | R,S | — |
+| 16-§12-1 | C-REN | DH | M | EXP | R,S | — |
+| 16-§12-2 | C-REN | DH | M | EXP | R,S | — |
+| 16-§13-1 | C-REN | DH | M | RT | R,S | — |
+| 16-§13-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§13-3 | C-REN | DH | M | RT | R,S | — |
+| 16-§13-4 | C-REN | DH | M | NEG | R,S | — |
+| 16-§14-1 | C-REN | DH | M | INSP | R,S | — |
+| 16-§14-2 | C-REN | DH | M | RT | R,S | — |
+| 16-§14-3 | C-REN | DH | M | RT | R,S | — |
+| 16-§14-4 | C-REN | DH | M | RT | R,S | — |
+| 16-§14-5 | C-REN | DH | M | RT | R,S | — |
+| 16-§14-6 | C-REN | DH | M | NEG | R,S | — |
+| 16-§15-1 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-2 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-3 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-4 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-5 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-6 | C-CMF | DH | M | RT | R,S | — |
+| 16-§15-7 | C-CMF | DH | M | NEG | R,S | — |
+| 16-§15-8 | C-CMF | DH | M | NEG | R,S | — |
+| 16-§15-9 | C-CMF | DH | M | NEG | R,S | — |
+| 16-§15-10 | C-CMF | DH | M | NEG | R,S | — |
+| 16-§15-11 | C-CMF | DH | M | NEG | R,S | — |
+| 16-§16-1 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-2 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-3 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-4 | C-CMF | DH | M | IDEM | R,S | B6-03 |
+| 16-§16-5 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-6 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-7 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-8 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§16-9 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-10 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§16-11 | C-CMF | DH | M | RT | R,S | B6-03 |
+| 16-§17-1 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§17-2 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§17-3 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§17-4 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§17-5 | C-CMF | DH | M | NEG | S | B6-03 |
+| 16-§17-6 | C-CMF | DH | M | INSP | R,S | — |
+| 16-§17-7 | C-CMF | DH | M | NEG | R,S | B6-03 |
+| 16-§18-1 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-2 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-3 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-4 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-5 | C-CMF | DH | M | INSP | S | B6-03 |
+| 16-§18-6 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-7 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-8 | C-CMF | DH | M | INSP | S | — |
+| 16-§18-9 | C-CMF | DH | M | INSP | S | B6-03 |
+| 16-§18-10 | C-CMF | DA | L | NEG | R | — |
+| 16-§20-1 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 16-§20-2 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 16-§20-3 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 16-§20-4 | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 16-§20-5 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 16-§20-6 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 16-§20-7a | C-ACC | DH | M | RT | R,S | B6-03, B6-24 |
+| 16-§20-8 | C-ACC | DH | M | IDEM | R,S | B6-03, B6-24 |
+| 16-§20-9 | C-ACC | DH | M | RT; NEG | R,S | B6-03, B6-24 |
+| 16-§20-10 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
+| 16-§21-1 | C-CMF | DA | L | INSP | R | — |
+| 16-§23-1 | C-ACC | DA | L | GATE | R | — |
+| 22-§16-1 | C-LOC | DH | M | INSP; NEG | R,S | B6-03 |
+| 22-§16-2 | C-LOC | DH | M | NEG | S | B6-03 |
+| 22-§16-3 | C-LOC | DH | H | INSP | S | B6-07 |
+| 22-§16-4 | C-LOC | DH | H | NEG | S | B6-03, B6-07 |
+| 22-§16-5 | C-LOC | DH | H | RT | S | B6-07 |
+| 22-§16-6 | C-LOC | HG | H | INSP | S | B6-07, B6-08, B6-09 |
+| 22-§16-7 | C-LOC | DH | H | NEG | S | B6-03, B6-07, B6-08, B6-09 |
+| 22-§16-8 | C-LOC | DH | H | RT | S | B6-07 |
+| 22-§16-9 | C-LOC | DH | H | RT | S | B6-07 |
+| 22-§16-10 | C-LOC | DH | H | RT | S | B6-07 |
+| 22-§16-11 | C-LOC | DH | H | INSP | S | B6-07 |
+| 22-§29-9 | C-LOC | DH | H | RT; NEG | S | B6-03, B6-07, B6-24 |
+| 17-§4-15 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§9-1 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
+| 17-§9-2 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
+| 17-§9-3 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
+| 17-§9-4 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
+| 17-§9-5 | C-VIEW | HG | H | RT | S | B6-03, B6-14, B6-20, B6-21 |
+| 17-§9-6 | C-VIEW | DH | M | RT; NEG | S | B6-03, B6-20, B6-21 |
+| 17-§9-7 | C-VIEW | DH | M | NEG | S | B6-03, B6-21 |
+| 17-§10-1 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§10-2 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§10-3 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§10-4 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§10-5 | C-VIEW | DH | M | RT | S | B6-03, B6-06, B6-20, B6-21 |
+| 17-§10-6 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
+| 17-§10-7 | C-VIEW | DH | M | NEG | S | B6-03, B6-21 |
+| 24-§18-4 | C-ATT | DH | M | RT | S | B6-24 |
+| 24-§21-6 | C-ATT | DH | M | RT | S | B6-03 |
+| 9-§12-7 | C-HRF | DH | M | EXP | S | — |
+| 9-§12-9 | C-ORD | DH | M | EXP | S | — |
+| 9-§12-12 | C-REN | DH | M | EXP | S | — |
+| 10-§13-5 | C-ORD | DH | M | RT | S | B6-03 |
+| 10-§13-7 | C-ATT | DH | M | RT; FRV-B | S | B6-03 |
+| 12-§4-4 | C-ORD | DH | M | RT | S | — |
+| 12-§7-7 | C-ORD | DH | M | RT | S | — |
+| 3-§9-3 | C-CUS | DH | M | RT | S | B6-03 |
+| 3-§11-6 | C-OAU | DH | M | NEG | S | B6-03 |
+| 3-§15-7 | C-CUS | DH | M | INSP | S | B6-03 |
+| 3-§15-12 | C-PRF | DH | H | INSP; IDEM | S | B6-06 |
+| 3-§15-13 | C-HR | DH | M | INSP | S | B6-03 |
+| 5-§4-11 | C-ATT | DH | M | RT | S | — |
+| 5-§4-12 | C-ORD | DH | M | RT | S | — |
+| 5-§4-13 | C-CMP | DH | M | RT | S | — |
+| 5-§6-10 | C-PRF | DH | M | RT | S | B6-06 |
+| 5-§6-12 | C-CMP | DH | M | RT | S | — |
+| 5-§7-5 | C-ATT | DH | M | RT | S | B6-24 |
+| 5-§7-6 | C-ORD | DH | M | RT | S | B6-24 |
+| 5-§7-7 | C-CMP | DH | M | RT | S | B6-24 |
+| BP-§10.3-S2 | C-CUS | DH | M | RT | S | B6-03 |
+| BP-§5.5-p1 | C-ACC | DA | L | GATE | R | — |
+| BP-§5.5-p2 | C-ACC | DA | L | GATE | R | — |
+| BP-§10.7-W | C-ACC | DA | L | INSP | R | — |
+| BP-§10.7-A1 | C-ORD | DA | L | RT | R | — |
+| BP-§10.7-A2 | C-ORD | DA | L | RT | R | — |
+| BP-§10.7-A3 | C-AVL | DA | H | RT | R | B6-05 |
+| BP-§10.7-A4 | C-AVL | DA | H | RT | R | B6-05 |
+| BP-§10.7-A5 | C-DLV | DA | L | RT | R | — |
+| BP-§10.7-A6 | C-DLV | DI | H | RT | R | B6-01 |
+| BP-§10.7-A7 | C-PRF | DA | L | RT | R | B6-06 |
+| BP-§10.7-A8 | C-LOC | DA | L | NEG | R | — |
+| BP-§10.7-A9 | C-PRF | DA | L | NEG | R | — |
+| BP-§10.7-A10 | C-PRF | DA | L | RT | R | B6-06 |
+| BP-§10.7-A11 | C-CUS | DA | L | NEG | R | — |
+| BP-§10.7-AS1 | C-ACC | DA | H | FRV-A | R | B6-24 |
+| BP-§10.7-B1 | C-HR | DA | L | RT | R | — |
+| BP-§10.7-B2 | C-ATT | DA | L | RT | R | — |
+| BP-§10.7-B3 | C-HR | DA | L | RT | R | — |
+| BP-§10.7-B4 | C-LOC | DA | L | NEG | R | — |
+| BP-§10.7-B5 | C-ATT | DA | L | RT | R | — |
+| BP-§10.7-B6 | C-HRF | DA | L | RT | R | — |
+| BP-§10.7-B7 | C-PAY | DA | L | NEG | R | — |
+| BP-§10.7-B8 | C-PAY | DA | L | NEG | R | — |
+| BP-§10.7-BS1 | C-ACC | DA | H | FRV-B | R | B6-24 |
+| BP-§10.7-C1 | C-CMP | DA | L | RT | R | — |
+| BP-§10.7-C2 | C-REN | DA | L | RT | R | — |
+| BP-§10.7-C3 | C-REN | DA | L | RT | R | — |
+| BP-§10.7-C4 | C-CMF | DA | L | RT | R | — |
+| BP-§10.7-C5 | C-CMF | DA | L | RT | R | — |
+| BP-§10.7-CS1 | C-ACC | DA | H | FRV-C | R | B6-24 |
+| BP-§10.7-X | C-ACC | DA | L | EXP | R | — |
+| BP-§11-p1 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b1 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b2 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b3 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b4 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b5 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b6 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b7 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-b9 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-p3 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-p4 | C-ACC | DA | L | INSP | R | — |
+| BP-§11-p5 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-p1 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-T | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b1 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b2 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b3 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b4 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b5 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b6 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b7 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b8 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b9 | C-ACC | DA | L | INSP | R | — |
+| BP-§13-b10 | C-ACC | DA | L | INSP | R | — |
+| BP-§15-p2 | C-ACC | DA | L | INSP | R | — |
+| BP-§15-p3 | C-ACC | DA | L | INSP | R | — |
+| BP-§16-p2 | C-ACC | DA | L | INSP | R | — |
+| GPCV-R1 | C-ACC | DA | L | GATE | R | — |
+| GPCV-R6 | C-ACC | DA | L | GATE | R | — |
+| GPCV-R16 | C-ACC | DA | L | GATE | R | — |
+| GPCV-§8-3 | C-HR | DA | L | INSP | R | — |
+| GPCV-§8-4 | C-ACC | DA | L | INSP | R | — |
+| GPCV-§8-5 | C-CUS | DA | L | INSP | R | — |
+
+## 21. Engineering Questions, Risks & Recommendations
+
+### 21.1 Engineering questions (EQ18-01 to EQ18-15)
+
+These are engineering questions for the EIS or for upstream owners. Items marked T3 or T8 are for Mission Control and are not decided here.
+
+| ID | Question | Finding | Resolves at |
+|---|---|---|---|
+| EQ18-01 | How SB-P-1.12 issues, authenticates, scopes and revokes a participant binding for external Delivery Staff, given `DNTF` and no phone OTP | B6-01 | **Product question decided** (`18:FPDR-6` D1-A); the interface stays open as EQ18-15 |
+| EQ18-02 | Whether the non-login staff record lives in SB-P-1.12 identity or in this mission's HR domain | B6-02 | EIS with SB-P-1.12 |
+| EQ18-03 | Object-scope shape for the delivery, own-record and compliance-task capabilities in the registry | B6-03 | EIS with SB-P-1.12 |
+| EQ18-04 | The point at which a confirmed order affects stock and shown availability (options D or P; R not proposed) | B6-05 | **Decided** (`18:FPDR-6` D2-P) |
+| EQ18-05 | A participant or customer recipient for native notification requests without channel states | B6-04 | EIS with SB-P-1.15 |
+| EQ18-06 | Backup and point-in-time-recovery handling of erased temporary pins | B6-08 | `DLEG`; specialist |
+| EQ18-07 | Platform log behaviour (database statements, API gateway, server functions) for location calls | B6-07 | Test-project verification; specialist |
+| EQ18-08 | Which non-location attendance mechanism the EIS adopts while DC-14 is open | B6-12 | EIS; DC-14 stays with Mission Control |
+| EQ18-09 | COD idempotency key composition across delivery and collection events | B6-06 | EIS with SB-P-1.16 (`DTX`) |
+| EQ18-10 | QR token rotation, scope and replay window | DC-04 | EIS |
+| EQ18-11 | Required CI tier and path filters for SB-P-1.18 code and migrations | B6-24 | EIS; Mission Control (environments) |
+| EQ18-12 | Device and browser matrix for geolocation and QR | B6-24 | EIS |
+| EQ18-13 | How the return-confirmation capability is granted, scoped and audited for the Owner, Manager and Employee | B6-05 | EIS with SB-P-1.12 registry |
+| EQ18-14 | How the order-linked override capability composes with the approved `p_allow_negative_stock` policy without amending `EIS17-STK-09` | B6-05 | EIS with SB-P-1.17 |
+| EQ18-15 | The vehicle and acceptance for the SB-P-1.12 G1/G2 interface (B6-01 table) | B6-01 | Mission Control with SB-P-1.12 change control |
+
+### 21.2 Engineering risks
+
+| ID | Risk | Likelihood / impact | Mitigation |
+|---|---|---|---|
+| R18-01 | Upstream kernels stay unimplemented, holding most rows | High / High | Strict dependency order (20.7.4); no interim authority, memory, scheduler or notification path |
+| R18-02 | The SB-P-1.12 binding interface is not accepted or built before SB-P-1.18 acceptance | Unknown / High | Employee delivery first; external part reported separately; EQ18-15 dispositioned before the EIS (B6-01) |
+| R18-03 | Raw coordinates leak through logs or backups | Medium / High | Validation-only primitive; redaction; log-scan probes; specialist review (B6-07, B6-08) |
+| R18-04 | Duplicate income or COD facts from retries | Medium / High | Single `DTX` path; idempotency keys; no Ledger write from orders (B6-06) |
+| R18-05 | Stock timing chosen silently in the EIS | Closed | Decided by `18:FPDR-6` (EQ18-04) |
+| R18-06 | Staff records conflated with logins | Medium / Medium | Separate staff record (B6-02) |
+| R18-07 | Assumed payroll rules enter code before validation | Low / High | Calculation held for `DLEG` (B6-13) |
+| R18-08 | Test environment state unknown (Δ-06, Δ-07) | Medium / Medium | Fresh readiness verification before any rehearsal |
+| R18-09 | Same-actor authorship hides correlated errors | Medium / Medium | Independent non-author review (21.7); specialist fact-finding (21.5); Stage 19 independent verification |
+| R18-10 | Double stock consumption, an unconfirmed restock or an unauthorized override | Medium / High | Per-line idempotency; confirmed-return gate; override capability checks; stock-integrity tests (20.7.6); specialist fact-finding (21.5) |
+
+### 21.3 Dependencies and holds (preserved)
+
+`D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DNTF`, `DENT` and `DLEG` are unchanged (FCTM §0.6).
+- **Also unchanged:** DC-14 (Mission Control T6, legal input before the Blueprint lock), DC-13, MC-544, AEG-1, the C1 §17 screening, U-09, the eight off-critical-path `UNRESOLVED FOUNDER DECISION` rows, and Δ-06 and Δ-07.
+- **Stage 7 holds:** the open SB-P-1.12 participant-binding interface (B6-01; EQ18-15) and the specialist fact-finding (21.5). B6-05 is decided and dependency-held. **No hold is converted to PASS.**
+
+### 21.4 Source 18 T1–T8 screen
+
+| Trigger | Result |
+|---|---|
+| T1 / T3 | **Fired and decided:** stock timing (D2-P), the external participant invitation experience (D1-A) and the override authority, all by `18:FPDR-6` (PR #1102). No other T3 found |
+| T2 | None. No Product Truth conflict found |
+| T4 / T5 | None |
+| T6 | DC-14 and DC-13 stay Mission Control matters, unchanged |
+| T7 | None. No row, scenario or obligation narrowed; all 592 rows stay `IN SCOPE` |
+| T8 | **Not fired.** The binding is viable in specification; its issuance, acceptance and first run are an open SB-P-1.12 interface (EQ18-15, R18-02). Employee delivery is feasible and does not discharge it |
+
+Only the T3 items above fired, and the Founder decided them. Nothing was decided on the Founder's behalf.
+
+### 21.5 Specialist reviews
+
+No specialist review has been performed. Mission Control ruled the following **mandatory**, as parallel fact-finding under Source 18 §4.8 (MC-675 ruling 6). Each reuses existing evidence where it applies, and each result is recorded before Stage 7 exit:
+
+| Fact-finding | Scope | Reusable evidence | Gaps and required confirmations |
+|---|---|---|---|
+| Supabase, security and RLS | The approved SB-P-1.12 security mode per object and command: invoker only where caller privileges intentionally suffice, protected writes through the narrow `SECURITY DEFINER` executor model; `anon` and `PUBLIC` revocation; hardened `search_path`; RLS on every new object; the Build Plan §5.1 residual grant gate | Repository migrations (both invoker and definer functions, `NOLOGIN` roles) [R]; SB-P-1.12 `EIS-KER-*`, `EIS-ISO-01` to `-04` and `EIS-ISO-10` [S] | Live grants and policies on `smart-business-test` [U]; effective grants, function owner, security mode, `search_path`, overloads and default privileges per object [U]; privilege tests per object |
+| Permissions | Capability catalogue (20.5), object scope, delegated Manager grants, return confirmation, override, external participant scope | 20.5; B6-03; `EIS-KER-*`, `EIS-EXT-02` [S] | The SB-P-1.12 G1/G2 contract (B6-01); EQ18-03, EQ18-13 |
+| Idempotency and concurrency | Assignment, check-in, upload, COD and per-line packing; retries and concurrent actors | `22-§15`; `EIS16-ORD-01` [S]; B6-06 | Key composition (EQ18-09); concurrent packing of one line |
+| Financial and stock integrity | COD facts, single `DTX` path, packing decrease, confirmed-return increase, override | B6-05, B6-06; `EIS17-STK-09`, `EIS17-RO-08` [S]; `create_inventory_movement` does not validate event links [R] | EQ18-14; the `DTX` cut-over (PQ-2); keeps the 13 B6-05 rows at HIGH risk until done |
+| Integration | SB-P-1.12 to SB-P-1.17 consumption; SB-P-1.20 hand-off; no POS | 20.7.4, 20.7.5; Blueprint §12.5 | Upstream implementation evidence [U] |
+| Migration safety (MC-680) | The M18-1 to M18-8 classes (20.7.2): additive and default-deny; RLS and grants on every new object; destructive and backfill risk; rehearsal and rollback (20.7.3); stage and environment protections, including the environment breadcrumb before any destructive statement and the CLI only through `scripts/supabase-cli.mjs` | 20.7.2, 20.7.3; `docs/migration/README.md` default-deny; SB-INC-2026-001 [R] | No migration is drafted, rehearsed or reviewed; `smart-business-test` state unverified (Δ-06, Δ-07) [U]; per-class rollback not yet written |
+| New external provider screening (conditionally mandatory; MC-680) | Any new external provider proposed or selected, including a U-13 map or geocoding provider: provider, privacy, security and availability boundaries, and Build Plan §5.4 activation | 20.4.5 and B6-10 (device maps hand-off by default); Blueprint §12.4 (none selected) | **Screening result: NOT APPLICABLE today.** No new provider is proposed or approved. This is a screening record, not a PASS; the review becomes mandatory if a provider is proposed |
+
+Also recommended, with Mission Control deciding whether each is mandatory:
+- location and privacy, covering every logging and backup path (B6-07, B6-08);
+- employment and payroll (`18:FPDR-5` §5).
+
+**DC-14 legal input is required before Stage 8.** No legal clearance is claimed.
+
+### 21.6 Recommendations
+
+1. **Review Sections 20–21 independently (21.7) before approving them as the engineering basis for the EIS.** All 24 Stage 6 findings and all 592 rows are treated.
+2. **Disposition the SB-P-1.12 G1/G2 interface (EQ18-15)** through separate upstream change control before the external part enters an EIS. EQ18-01 and EQ18-04 are decided by `18:FPDR-6`.
+3. **Sequence SB-P-1.18 after the upstream kernels** (20.7.4), and build no interim authority, memory, import, AI, scheduler or notification path.
+4. **Run the mandatory specialist fact-finding in 21.5,** and freshly verify `smart-business-test` before any rehearsal.
+5. **Determine DC-14,** with its legal input, before the Blueprint lock.
+
+### 21.7 Independent review plan and Stage 7 exit
+
+**Independent non-author review.** A reviewer who did not write Sections 1–21 checks, at minimum:
+- that every one of the 592 `IN SCOPE` rows appears once in 20.8, with status and risk that follow the stated rules;
+- that the `18:FPDR-6` treatment adds no Product Truth, no confirmation-time reservation and no new channel or provider;
+- that the SB-P-1.12 interface is stated as open and that no upstream EIS change is implied;
+- that every hold in 20.7.9 and 21.3 is carried and none is converted to PASS.
+
+**Stage 7 exit (proposed criterion).** Stage 7 is complete only when:
+- these sections are canonical;
+- the independent review has passed;
+- every mandatory specialist assessment under Source 18 §4.8 (authority and permissions, RLS and grants, migrations, idempotency and concurrency, financial integrity, and any new external provider where applicable; 21.5) is recorded, and its unresolved findings and limits are dispositioned by Mission Control. A deferral does not waive a mandatory assessment: an unresolved clearance or missing upstream evidence stays a held gate, and absent specialist evidence is never presumed PASS. Read-only parallel fact-finding is permitted;
+- the EQ18-15 vehicle is recorded as decided or as an explicit EIS precondition.
+
+DC-14 with legal input stays a Stage 8 lock precondition. This draft claims no Stage 7 completion.
