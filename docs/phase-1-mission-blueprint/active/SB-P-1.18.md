@@ -19,9 +19,9 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; **COMPLETE and CLOSED** (MC-654). Closure record `communication/missions/SB-P-1.18/mission-control/08-stage3-founder-gate-closure.md` (blob `90ea6ad6`; PR #1100) |
 | Governing Build Plan section | Build Plan §10.7 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 1 Smart Order & Delivery Assistant (`b392c8cb`); Contract 6 Staff / HR Assistant (`ebacd183`); Contract 16 Compliance Shield (`420269d8`); inherited Contract 22 §16 Location Foundation (`61e1bb91`); Global Product Completion View (`ee76d920`); Source 11 line 443 for `S11-L443-*` (`16897d6c`) |
-| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `b00603ec3489ca5e1c64a210a7c9f7fe773145b6` (PR #1100): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
-| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
-| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `6fa4b514`: F-01 to F-05 APPROVED — canonical |
+| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `3402735ecc0dfac1cec97ddf7abe4aa43690d1e3` (`18:FPDR-6` reconciliation, MC-674; earlier blob `b00603ec`, PR #1100): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
+| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `52cc6b94`: F-01 to F-06 APPROVED — canonical |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.17: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence (`04-…` Δ-02, Δ-03) |
 | Date | 2026-10-30 |
@@ -223,7 +223,7 @@ Mission design:
 
 ### 8.4 Availability, Substitution and Customer Confirmation
 
-Sources: Contract 1 §10; Build Plan §10.7 A b3–b4; `18:FPDR-4`; Contract 7 §2 (`DELEGATED`, SB-P-1.17).
+Sources: Contract 1 §10; Build Plan §10.7 A b3–b4; `18:FPDR-4`; `18:FPDR-6`; Contract 7 §2 (`DELEGATED`, SB-P-1.17).
 
 Mission design:
 
@@ -231,6 +231,7 @@ Mission design:
 - **Change proposals.** Under `18:FPDR-4`, quantity change (`1-§10-3`) and removal (`1-§10-6`) are the named minimum. Replacement or substitute (`1-§10-4`) and partial fulfilment (`1-§10-5`) are mandatory independently of F-4. Later fulfilment where supported (`1-§10-7`) is permitted and adoptable.
 - **Material changes need approval before Confirmed** by the customer or an authorized merchant user (`1-§10-8`; `BP-§10.7-A4`). Before SB-P-1.20 the merchant records the customer's decision, bound to the exact order state (DC-02; `18:FPDR-3` Package P for `1-§5-25`).
 - **No unsupported inventory promise** (`1-§10-9`). Availability is shown as known, unknown or unavailable from the SB-P-1.17 stock truth; this mission keeps no second stock record.
+- **Stock timing, return and override (`18:FPDR-6`, D2-P).** Stock decreases when each applicable line quantity is packed, through one governed, idempotent, order-linked event; there is no confirmation-time reservation. A packed line that is cancelled, undelivered or brought back is restocked only after authorized staff confirm the physical return, a separately scoped capability; there is no automatic restock. On these order-linked paths a negative-stock override needs the Owner or an explicitly delegated Manager (Section 10.1).
 
 **FCTM rows realized here (11 `IN SCOPE`):**
 
@@ -239,13 +240,14 @@ Mission design:
 
 ### 8.5 Order Lifecycle, Delivery Assignment and Delivery Staff Experience
 
-Sources: Contract 1 §§11–13; Build Plan §10.7 A b5–b6.
+Sources: Contract 1 §§11–13; Build Plan §10.7 A b5–b6; `18:FPDR-6`.
 
 Mission design:
 
 - **Lifecycle:** Draft → Confirmed → Preparing/Packing → Ready/Assigned → Out for Delivery → Delivered/Closed, with explicit exception and cancel states. Every transition is auditable and permission-scoped. State names are not fixed Product Truth (`1-§11-1` to `-4`; `BP-§10.7-A5`).
 - **Assignment checks before assignment:** assignable state, the customer belongs to the merchant, the delivery person exists and is permitted, a required address exists or has a resolution path, COD is reviewed, and the action is not a duplicate or retry. Natural-language assignment passes the same checks (`1-§12-1` to `-7`).
 - **Delivery staff experience is low-friction** and needs no heavy separate driver app: acknowledge, open address or map, mark started, record proof, record COD collected, mark delivered, report unable-to-deliver (`1-§13-1` to `-9`; `BP-§10.7-A6`). "Open address/map" may be a hand-off to the device's own maps application or a provider; the choice is an EIS item (`DMAP`; U-13).
+- **External Delivery Staff (`18:FPDR-6`, D1-A).** An external delivery person takes part only through a merchant-issued, purpose-limited invitation, existing sign-in (email and password, or Google) and explicit acceptance of a governed participant binding. First run does not divert them into business creation. They see assigned deliveries only, and the binding is revocable and audited. Issuance, acceptance and first run are an SB-P-1.12 interface (Section 12.3).
 
 **FCTM rows realized here (22 `IN SCOPE`):**
 
@@ -505,7 +507,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 ### 10.1 Founder decisions (by reference)
 
-The five SB-P-1.18 decisions govern this Blueprint. Each record carries the Founder's verbatim statement. The text quoted below is either the Founder's verbatim wording or, where marked, the accepted option text the record quotes. Where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (verified on FCTM blob `b00603ec`).
+The six SB-P-1.18 decisions govern this Blueprint. Each record carries the Founder's verbatim statement. The text quoted below is either the Founder's verbatim wording or, where marked, the accepted option text the record quotes. Where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (verified on FCTM blob `3402735e`).
 
 **`18:FPDR-2` — F-2 live tracking** (record `11-…`, PR #1082). Founder (MC-520): "Founder F-2 decision: I select Option A." Option A as worded in the accepted brief (not the Founder's words):
 
@@ -557,6 +559,16 @@ T3. FCTM codes `L-F4M` (minimum) and `L-F4A` (adoptable). Applied in: Sections 8
 > I approve these as provisional research-backed Phase One product-design assumptions only, subject to the MC-643 evidence qualifications, DLEG professional-validation hold, and separate canonical decision recording. No fixed numeric raw-GPS retention period, legal clearance or implementation authorization is approved. Proceed with the decision-record preparation through the official GitHub Communication Protocol.
 
 T1/T3. FCTM code `L-F1`. Applied in: Sections 8.2, 8.6, 8.9, 8.15, 9, 15.4. Rows citing `18:FPDR-1` (5): `1-§5-26`, `1-§14-12`, `1-§15-5`, `1-§22-11`, `22-§16-6`.
+
+**`18:FPDR-6` — D1 and D2, external Delivery Staff participation and order stock timing** (record `16-…`, PR #1102). Founder (MC-664), the whole statement:
+
+> FOUNDER DECISION — MC-663
+> D1: D1-A — Approve limited external Delivery Staff invitation and acceptance through existing sign-in and purpose-scoped participant binding.
+> D2: D2-P — Stock consumption at packing, with authorized staff confirmation of physical return before restocking.
+> Negative-stock override: Owner and explicitly delegated Manager only.
+> Record these selections against MC-663 on PR #1101; do not modify Git or treat as Blueprint lock.
+
+Three T3 decisions; no T7; T8 not fired. FCTM codes `L-F6A` (D1-A) and `L-F6P` (D2-P and the override). The override applies to SB-P-1.18 order-linked stock paths only (MC-665 A.3). Applied in: Sections 8.4, 8.5, 12.3, 15.4. Rows citing `18:FPDR-6` (32): `1-§5-15`, `1-§5-16`, `1-§5-17`, `1-§5-18`, `1-§5-19`, `1-§5-20`, `1-§5-21`, `1-§5-22`, `1-§13-2`, `1-§13-3`, `1-§13-4`, `1-§13-5`, `1-§13-6`, `1-§13-7`, `1-§13-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6`, `1-§10-1`, `1-§10-2`, `1-§10-3`, `1-§10-4`, `1-§10-5`, `1-§10-6`, `1-§10-7`, `1-§10-8`, `1-§10-9`, `1-§24-3`, `1-§24-8`, `BP-§10.7-A3`, `BP-§10.7-A4`.
 
 **Upstream decisions applied by reference:** `12:FPDR-1` (Notification Foundation, SB-P-1.15, native only); `12:FPDR-2` (Shared Location Foundation workstream inside SB-P-1.18); `12:FPDR-3` (each location-consuming feature defines purpose, audience, capture timing, retention and access end; no new retention period or capture mode); `16:FPDR-1` (basic shared customer identity, SB-P-1.16). Rows citing `12:FPDR-1` (13): `1-§17-1`, `1-§17-2`, `1-§17-4`, `1-§17-7`, `1-§17-8`, `1-§17-9`, `16-§14-1`, `16-§14-2`, `16-§14-3`, `16-§14-4`, `16-§14-5`, `16-§14-6`, `22-§12-1`. Rows citing `12:FPDR-2` (20): `1-§14-1`, `1-§14-2`, `1-§14-3`, `1-§14-4`, `1-§14-6`, `1-§14-7`, `1-§14-8`, `1-§14-9`, `1-§14-10`, `1-§14-11`, `1-§14-13`, `6-§5-3`, `22-§16-1`, `22-§16-2`, `22-§16-8`, `22-§16-9`, `22-§16-10`, `22-§16-11`, `22-§29-9`, `BP-§10.7-W`. Rows citing `12:FPDR-3` (6): `6-§5-3`, `22-§16-3`, `22-§16-4`, `22-§16-5`, `22-§16-6`, `22-§16-7`. Rows citing `16:FPDR-1` (9): `1-§6-1`, `1-§6-2`, `1-§6-3`, `1-§6-4`, `1-§6-5`, `1-§6-6`, `1-§6-7`, `3-§15-7`, `BP-§10.3-S2`.
 
@@ -855,7 +867,7 @@ SB-P-1.12 to SB-P-1.17 provide locked specifications only. Their Implementation 
 
 ### 12.2 Dependency codes on `IN SCOPE` rows
 
-Counts are taken from the canonical FCTM Dependency column (blob `b00603ec`); a row may carry several codes. 116 `IN SCOPE` rows carry no dependency.
+Counts are taken from the canonical FCTM Dependency column (blob `3402735e`); a row may carry several codes. 116 `IN SCOPE` rows carry no dependency.
 
 | Code | Dependency (FCTM §0.6) | `IN SCOPE` rows | State at the FCTM baseline |
 |---|---|---|---|
@@ -895,6 +907,7 @@ Derived constraints are **not** Product Truth unless a Founder decision adopts t
 | AEG-1 customer-receipt acceptance evidence | Mission Control acceptance hold (MC-558-R2) | Section 15.4 |
 | C1 §17 "may include" screening | Mission Control | Section 8.7 |
 | U-09 pilot sequencing | Mission Control release sequencing | Section 8.17 |
+| SB-P-1.12 participant-binding interface (`18:FPDR-6` D1-A) | **Open.** Binding issuance and acceptance, and participant-aware first run, are SB-P-1.12's and are not in its locked EIS. They need SB-P-1.12 change control and explicit acceptance (MC-665 A.2); this Blueprint does not amend SB-P-1.12 | Sections 8.2, 8.5. The external Delivery Staff part is not accepted before it; employee delivery evidence does not discharge it |
 | U-13 map or address provider | EIS item; a new external provider triggers BP §5.4 review | Section 8.5 (`DMAP`) |
 | U-06 KYC; U-07 prices | Off the critical path | Section 11.5 |
 | U-11 reverse dependencies | 41 Part F rows; three C11 §9 consumers for the SB-P-1.15 resume register | Section 11.2 |
@@ -1041,6 +1054,7 @@ Acceptance items owned elsewhere (the SB-P-1.20 legs `1-§26-12b`, `16-§20-7b`,
 | `18:FPDR-3` | Each Package P row passes its native test, and its channel leg is reported "customer channel: not demonstrated" until SB-P-1.20 accepts it; native STOP state blocks sending once recorded; no Package W intake engine is duplicated; L2-only evidence is reported as "provider accepted; customer delivery not independently confirmed" (AEG-1) | the 21 rows in Section 10.1 |
 | `18:FPDR-4` | Each named-minimum mechanism is demonstrated; each adopted mechanism is verified, and an unadopted one is neither required nor prohibited; `1-§10-4` and `1-§10-5` are always verified; the `6-§5-2` QR plus geofence element is verified only as DC-14 is determined | the ten F-4 rows |
 | `18:FPDR-1` | Attendance and proof keep the result and no ordinary raw coordinate after the event; a destination pin is erased when the delivery purpose ends; a saved address keeps no exact GPS because it is saved; a hold exists only with an individual reason, owner, restricted access and end condition; no numeric raw-GPS period is configured | `22-§16-6`, `1-§14-12`, `1-§22-11`, `1-§5-26`, `1-§15-5` |
+| `18:FPDR-6` | An external participant reaches assigned deliveries only after invitation and explicit acceptance, and an unbound, pending or revoked participant is denied; first run with a pending binding creates no business; packing a line decreases stock once, with no double consumption on retry; no restock happens without a confirmed physical return; a negative-stock override is refused to Employee, Delivery Staff, AI and a Manager without the grant | the 32 rows in Section 10.1 |
 
 ### 15.5 Experience Verification Matrix seed (Build Plan §13)
 
@@ -1072,6 +1086,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-30 | Claude Code (Definition Actor, MC-654) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `b00603ec`), `18:FPDR-1` to `18:FPDR-5` and the Stage 2 Truth Pack |
+| 0.2 | 2026-10-31 | Claude Code (Stage 7 actor, MC-674) | `18:FPDR-6` reconciliation by reference: Metadata, Sections 8.4, 8.5, 10.1, 12.2, 12.3, 15.4 and 19 (32 map rows), against FCTM blob `3402735e`. No requirement text, disposition, commitment or total changed |
 
 ## 19. Governance History
 
@@ -1095,11 +1110,13 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | `18:FPDR-1` | `claude-code/15`; `decision-log.md` | PR #1099, `d5a264fd` |
 | Stage 3 closeout: FCTM F-1 reconciliation, F-05 approved, gate closure | `claude-code/03`; `decision-log.md`; `mission-control/08` | PR #1100, `96d6aa87` |
 | Stage 3 complete and Stage 4 handover (MC-654) | Conversation-source, PR #1100 comment 6528495929 | — |
-| Stage 4 Blueprint Sections 1–19 draft | this file | PENDING (not published; returned for Mission Control review) |
+| Stage 4 Blueprint Sections 1–19 draft | this file | PR #1101, `02bdfd51` |
+| `18:FPDR-6`; F-06 log reconciliation | `claude-code/16`; `decision-log.md` | PR #1102, `ac68f9ed`; PR #1103, `8edb839f` |
+| `18:FPDR-6` FCTM and Blueprint reconciliation | `claude-code/03`; this file | PENDING (not published) |
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
-This is a complete accounting of all FCTM rows (blob `b00603ec`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
+This is a complete accounting of all FCTM rows (blob `3402735e`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
 
 Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a `18:FPDR` decision is cited, §10.2 for rule and principle rows, §10.3 for must-not rows, §12 where a dependency code is carried, and §15 for `SCN`, `FRV`, `EXP` and `GATE` rows. Every other row maps to its Section 11 subsection.
 
@@ -1147,14 +1164,14 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§5-12 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
 | 1-§5-13 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
 | 1-§5-14 | IN SCOPE | SB-P-1.18 | §8.2, §10.3, §12 | NEG | — |
-| 1-§5-15 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-16 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-17 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-18 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-19 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-20 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-21 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
-| 1-§5-22 | IN SCOPE | SB-P-1.18 | §8.2, §10.3, §12 | NEG | — |
+| 1-§5-15 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-16 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-17 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-18 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-19 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-20 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-21 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§5-22 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §10.3, §12 | NEG | 18:FPDR-6 |
 | 1-§5-23 | IN SCOPE | SB-P-1.18 | §8.2, §12 | RT | — |
 | 1-§5-24 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-3 |
 | 1-§5-25 | IN SCOPE | SB-P-1.18 | §8.2, §10.1, §12 | RT | 18:FPDR-3 |
@@ -1206,15 +1223,15 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§9-17 | IN SCOPE | SB-P-1.18 | §8.3, §12 | RT | — |
 | 1-§9-18 | IN SCOPE | SB-P-1.18 | §8.3, §12 | RT | — |
 | 1-§9-19 | IN SCOPE | SB-P-1.18 | §8.3, §10.3, §12 | NEG | — |
-| 1-§10-1 | IN SCOPE | SB-P-1.18 | §8.4, §10.2, §12 | RT | — |
-| 1-§10-2 | IN SCOPE | SB-P-1.18 | §8.4, §12 | RT | — |
-| 1-§10-3 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-4 |
-| 1-§10-4 | IN SCOPE | SB-P-1.18 | §8.4, §12 | RT | — |
-| 1-§10-5 | IN SCOPE | SB-P-1.18 | §8.4, §12 | RT | — |
-| 1-§10-6 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-4 |
-| 1-§10-7 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT (if adopted) | 18:FPDR-4 |
-| 1-§10-8 | IN SCOPE | SB-P-1.18 | §8.4, §12 | RT | — |
-| 1-§10-9 | IN SCOPE | SB-P-1.18 | §8.4, §10.3, §12 | NEG | — |
+| 1-§10-1 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §10.2, §12 | RT | 18:FPDR-6 |
+| 1-§10-2 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§10-3 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-4; 18:FPDR-6 |
+| 1-§10-4 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§10-5 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§10-6 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-4; 18:FPDR-6 |
+| 1-§10-7 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT (if adopted) | 18:FPDR-4; 18:FPDR-6 |
+| 1-§10-8 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§10-9 | IN SCOPE | SB-P-1.18 | §8.4, §10.1, §10.3, §12 | NEG | 18:FPDR-6 |
 | 1-§11-1 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
 | 1-§11-2 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
 | 1-§11-3 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
@@ -1227,13 +1244,13 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§12-6 | IN SCOPE | SB-P-1.18 | §8.5, §12 | IDEM | — |
 | 1-§12-7 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
 | 1-§13-1 | IN SCOPE | SB-P-1.18 | §8.5, §10.2 | EXP | — |
-| 1-§13-2 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-3 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-4 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-5 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-6 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-7 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
-| 1-§13-8 | IN SCOPE | SB-P-1.18 | §8.5, §12 | RT | — |
+| 1-§13-2 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-3 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-4 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-5 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-6 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-7 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
+| 1-§13-8 | IN SCOPE | SB-P-1.18 | §8.5, §10.1, §12 | RT | 18:FPDR-6 |
 | 1-§13-9 | IN SCOPE | SB-P-1.18 | §8.5, §10.2 | INSP | — |
 | 1-§14-1 | IN SCOPE | SB-P-1.18 | §8.15, §10.2, §12 | INSP | 12:FPDR-2 |
 | 1-§14-2 | IN SCOPE | SB-P-1.18 | §8.15, §12 | RT | 12:FPDR-2 |
@@ -1267,7 +1284,7 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§17-1 | IN SCOPE | SB-P-1.18 | §8.7, §10.2, §12 | INSP | 12:FPDR-1 |
 | 1-§17-2 | IN SCOPE | SB-P-1.18 | §8.7, §12 | RT | 12:FPDR-1 |
 | 1-§17-3 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | RT | 18:FPDR-3 |
-| 1-§17-4 | IN SCOPE | SB-P-1.18 | §8.7, §12 | RT | 12:FPDR-1 |
+| 1-§17-4 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | RT | 12:FPDR-1; 18:FPDR-6 |
 | 1-§17-5 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | RT | 18:FPDR-3 |
 | 1-§17-6 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | RT | 18:FPDR-3 |
 | 1-§17-7 | IN SCOPE | SB-P-1.18 | §8.7, §12 | RT | 12:FPDR-1 |
@@ -1330,12 +1347,12 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§23-12 | IN SCOPE | SB-P-1.18 | §8.7, §10.2, §12 | INSP | — |
 | 1-§24-1 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-2 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
-| 1-§24-3 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
+| 1-§24-3 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | NEG | 18:FPDR-6 |
 | 1-§24-4 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-5 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-6 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-7 | IN SCOPE | SB-P-1.18 | §8.7, §12 | IDEM | — |
-| 1-§24-8 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
+| 1-§24-8 | IN SCOPE | SB-P-1.18 | §8.7, §10.1, §12 | NEG | 18:FPDR-6 |
 | 1-§24-9 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-10 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
 | 1-§24-11 | IN SCOPE | SB-P-1.18 | §8.7, §12 | NEG | — |
@@ -1357,8 +1374,8 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 1-§26-4 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | RT | — |
 | 1-§26-5 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | RT | — |
 | 1-§26-6 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | RT | — |
-| 1-§26-7 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | NEG | — |
-| 1-§26-8 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | NEG | — |
+| 1-§26-7 | IN SCOPE | SB-P-1.18 | §8.17, §10.1, §12, §15 | NEG | 18:FPDR-6 |
+| 1-§26-8 | IN SCOPE | SB-P-1.18 | §8.17, §10.1, §12, §15 | NEG | 18:FPDR-6 |
 | 1-§26-9 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | NEG | — |
 | 1-§26-10 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | RT; NEG | — |
 | 1-§26-11 | IN SCOPE | SB-P-1.18 | §8.17, §12, §15 | RT; IDEM | — |
@@ -1777,10 +1794,10 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | BP-§10.7-W | IN SCOPE | SB-P-1.18 | §8.17, §10.2 | INSP | 12:FPDR-2 |
 | BP-§10.7-A1 | IN SCOPE | SB-P-1.18 | §8.3 | RT | — |
 | BP-§10.7-A2 | IN SCOPE | SB-P-1.18 | §8.3 | RT | — |
-| BP-§10.7-A3 | IN SCOPE | SB-P-1.18 | §8.4 | RT | — |
-| BP-§10.7-A4 | IN SCOPE | SB-P-1.18 | §8.4 | RT | — |
+| BP-§10.7-A3 | IN SCOPE | SB-P-1.18 | §8.4, §10.1 | RT | 18:FPDR-6 |
+| BP-§10.7-A4 | IN SCOPE | SB-P-1.18 | §8.4, §10.1 | RT | 18:FPDR-6 |
 | BP-§10.7-A5 | IN SCOPE | SB-P-1.18 | §8.5 | RT | — |
-| BP-§10.7-A6 | IN SCOPE | SB-P-1.18 | §8.5 | RT | — |
+| BP-§10.7-A6 | IN SCOPE | SB-P-1.18 | §8.5, §10.1 | RT | 18:FPDR-6 |
 | BP-§10.7-A7 | IN SCOPE | SB-P-1.18 | §8.6 | RT | — |
 | BP-§10.7-A8 | IN SCOPE | SB-P-1.18 | §8.15, §10.3 | NEG | — |
 | BP-§10.7-A9 | IN SCOPE | SB-P-1.18 | §8.6, §10.3 | NEG | — |
