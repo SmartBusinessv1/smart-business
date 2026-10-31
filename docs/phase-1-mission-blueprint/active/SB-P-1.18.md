@@ -2048,7 +2048,7 @@ Cards inside the SB-P-1.17 shell, fed by feature services, gated by role and ent
 - revalidation at execution (`21-§17`);
 - confirmation bindings for consequential writes (`21-§18-1`; `22-§13-1`);
 - source-scoped idempotency (`22-§15`);
-- the repository grant pattern for every new object: revoke `anon`, SECURITY INVOKER, fixed `search_path` [R].
+- the approved SB-P-1.12 security mode per object and command (`EIS-ISO-02`, `EIS-ISO-03`, `EIS-ISO-10` [S]): no direct client `INSERT`, `UPDATE` or `DELETE` on protected tables; `SECURITY INVOKER` only where the caller intentionally holds every underlying privilege; protected writes through kernel-checked commands whose narrowly granted `SECURITY DEFINER` function is owned by a per-command-group `NOLOGIN NOINHERIT` executor role, with an explicit hardened `search_path`, schema-qualified references and `EXECUTE` revoked from `PUBLIC` and `anon` in the creating migration; service-role paths only under the privileged-operation contract (`EIS-ISO-04`).
 
 ### 20.6 Stage 6 finding dispositions
 
@@ -2194,7 +2194,7 @@ Each class is additive, follows the repository grant pattern, and comes after it
 - **Default deny.** Each class is rehearsed only under a separate authorized mission, on `smart-business-test` after fresh verification.
 - **Each rehearsal includes:**
   - the forward migration;
-  - privilege verification (revoke `anon`, SECURITY INVOKER, `search_path`);
+  - privilege verification against `EIS-ISO-03` and `EIS-ISO-10` [S]: effective grants for `PUBLIC`, `anon`, `authenticated`, `service_role` and executor roles; no unauthorized `anon` or `PUBLIC` access; each function's owner, security mode (invoker or narrow definer), hardened `search_path` and overloads; creator-role default privileges;
   - regression of the inventory, catalog and Ledger suites;
   - a written, rehearsed rollback or compensating migration.
 - **Schema evidence:** use `pg_class` and `pg_namespace`, not `information_schema.tables`.
@@ -2958,7 +2958,7 @@ No specialist review has been performed. Mission Control ruled the following **m
 
 | Fact-finding | Scope | Reusable evidence | Gaps and required confirmations |
 |---|---|---|---|
-| Supabase, security and RLS | Grant pattern, `anon` revocation, SECURITY INVOKER, `search_path`, RLS on every new object; the Build Plan §5.1 residual grant gate | Repository grant pattern [R]; SB-P-1.12 `EIS-KER-*` [S] | Live grants and policies on `smart-business-test` [U]; privilege tests per object |
+| Supabase, security and RLS | The approved SB-P-1.12 security mode per object and command: invoker only where caller privileges intentionally suffice, protected writes through the narrow `SECURITY DEFINER` executor model; `anon` and `PUBLIC` revocation; hardened `search_path`; RLS on every new object; the Build Plan §5.1 residual grant gate | Repository migrations (both invoker and definer functions, `NOLOGIN` roles) [R]; SB-P-1.12 `EIS-KER-*`, `EIS-ISO-01` to `-04` and `EIS-ISO-10` [S] | Live grants and policies on `smart-business-test` [U]; effective grants, function owner, security mode, `search_path`, overloads and default privileges per object [U]; privilege tests per object |
 | Permissions | Capability catalogue (20.5), object scope, delegated Manager grants, return confirmation, override, external participant scope | 20.5; B6-03; `EIS-KER-*`, `EIS-EXT-02` [S] | The SB-P-1.12 G1/G2 contract (B6-01); EQ18-03, EQ18-13 |
 | Idempotency and concurrency | Assignment, check-in, upload, COD and per-line packing; retries and concurrent actors | `22-§15`; `EIS16-ORD-01` [S]; B6-06 | Key composition (EQ18-09); concurrent packing of one line |
 | Financial and stock integrity | COD facts, single `DTX` path, packing decrease, confirmed-return increase, override | B6-05, B6-06; `EIS17-STK-09`, `EIS17-RO-08` [S]; `create_inventory_movement` does not validate event links [R] | EQ18-14; the `DTX` cut-over (PQ-2); keeps the 13 B6-05 rows at HIGH risk until done |
