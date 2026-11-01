@@ -1,6 +1,6 @@
 # SB-P-1.18 — Controlled Business Add-ons
 
-**STAGE 7 ENGINEERING REVIEW — DRAFT / MISSION CONTROL AND INDEPENDENT REVIEW PENDING — NOT APPROVED — NOT LOCKED.** Sections 1–19 were approved at Stage 5 (MC-660). Stage 6 Builder Review is complete as an author-performed review accepted by MC-661; it is not independent assurance. Sections 20–21 are a Stage 7 draft. Not Stage 8 approved; EIS and implementation are not authorized. Implementation Authorization: WITHHELD.
+**STAGE 8 — FOUNDER APPROVED (MC-711) — BLUEPRINT APPROVED — LOCKED**, effective canonically only on Founder human merge of the Stage 8 lock PR and Mission Control post-merge verification. Sections 1–19 were approved at Stage 5 (MC-660). Stage 6 Builder Review is complete as an author-performed review accepted by MC-661; it is not independent assurance. Stage 7 documentary Engineering Review was accepted with explicit downstream held gates (MC-688). Stage 9 EIS is not authorized. Implementation Authorization: WITHHELD.
 
 ## Metadata
 
@@ -9,8 +9,8 @@
 | Mission ID | SB-P-1.18 |
 | Mission Name | Controlled Business Add-ons |
 | Mission Type | Product Mission: three separately verifiable add-on workstreams under one mission identity (Build Plan §10.7 p1, `BP-§10.7-W`): Smart Order & Delivery (Contract 1), Staff / HR (Contract 6) and Compliance Shield (Contract 16), plus the Shared Location Foundation workstream inherited from Contract 22 §16 (`12:FPDR-2`) |
-| Lifecycle Stage | Source 18 v1.3 Stage 7 — Engineering Review, open and gated. Sections 1–19 approved at Stage 5 (MC-660); Sections 20–21 are a **Stage 7 DRAFT** for independent non-author and Mission Control review |
-| Status | `DRAFT — REVIEW REQUIRED` (Source 18 §13) for Sections 20–21. **Not Blueprint locked and not Stage 8 approved.** EIS and implementation not authorized |
+| Lifecycle Stage | Source 18 v1.3 Stage 8 — Founder Approval and Blueprint Lock — **FOUNDER APPROVED — APPROVED — LOCKED** (Founder approval accepted by MC-711). Sections 1–19 approved at Stage 5 (MC-660); Stage 6 accepted (MC-661); Stage 7 accepted with held gates (MC-688). Stage 9 (EIS) not authorized |
+| Status | `APPROVED — LOCKED` (Source 18 §13; applied by Mission Control after the Founder Stage 8 approval), effective canonically only on Founder human merge of the Stage 8 lock PR and Mission Control post-merge verification. Stage 8 record `communication/missions/SB-P-1.18/mission-control/09-stage8-founder-approval-and-blueprint-lock-record.md` (`18:S8-FAR`). EIS and implementation not authorized |
 | Product Authority | Founder |
 | Product Discovery and Drafting | Claude Code, Definition Actor (`communication/missions/SB-P-1.18/mission-control/04-stage1-intake-disposition-and-definition-actor-appointment.md`, PR #1078) |
 | Lifecycle Authority | Source 18 v1.3 (`merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `f3b01b608c4b64df186d4278ba6468ed0419630f`) |
@@ -21,14 +21,14 @@
 | Primary contracts | Contract 1 Smart Order & Delivery Assistant (`b392c8cb`); Contract 6 Staff / HR Assistant (`ebacd183`); Contract 16 Compliance Shield (`420269d8`); inherited Contract 22 §16 Location Foundation (`61e1bb91`); Global Product Completion View (`ee76d920`); Source 11 line 443 for `S11-L443-*` (`16897d6c`) |
 | Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `2bbe6e227d714996bcead10385952c78283e20e8` (`18:FPDR-7` reconciliation of row `17-§9-5`; earlier blob `3402735e`, PR #1104): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
 | Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102); `claude-code/17-…-18-fpdr-4-a.md` (`1538c4d5`, PR #1106; clarifies `18:FPDR-4` for DC-14 timing); `claude-code/18-…-18-fpdr-7.md` (`f534e25e`, PR #1108). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
-| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `56cdd935`: F-01 to F-08 APPROVED — canonical |
+| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `8a7aa4b7`: F-01 to F-08 APPROVED — canonical, as Founder-approved at blob `56cdd935`; F-09 (`18:S8-FAR`, Stage 8 approval) added in the lock PR |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.17: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence (`04-…` Δ-02, Δ-03) |
 | Date | 2026-11-01 |
 | Builder Review | Stage 6 complete: author-performed review (PR #1101 comment 6531991849), accepted PASS WITH ACTIONABLE FINDINGS by MC-661; not independent assurance |
-| Engineering Review (Sections 20–21) | Stage 7 draft in this file (MC-661-A, reconciled to `18:FPDR-6` under MC-678). Independent non-author review and mandatory specialist fact-finding pending |
-| Mission Control Review | Stage 5 complete (MC-660); Stage 7 pending |
-| Blueprint Lock | Not locked; Stage 8 not authorized |
+| Engineering Review (Sections 20–21) | Stage 7 documentary Engineering Review COMPLETE — ACCEPTED WITH EXPLICIT DOWNSTREAM HELD GATES (MC-688, PR #1105 comment 6547358706). Independent non-author review and the specialist fact-finding were recorded and dispositioned HELD, not as security, financial, legal or runtime PASS. Sections 20–21 keep their published text (Section 19) |
+| Mission Control Review | Stage 5 complete (MC-660); Stage 7 accepted with held gates (MC-688); DC-14 and DC-13 T6 conditionally determined for documentary design (MC-699, MC-701); Stage 8 readiness found READY FOR FOUNDER STAGE 8 APPROVAL CONSIDERATION (MC-709-R); Founder Stage 8 approval accepted (MC-711) |
+| Blueprint Lock | APPROVED — LOCKED by the Founder Stage 8 approval (MC-711), applied by Mission Control under MC-712-A and recorded in `communication/missions/SB-P-1.18/mission-control/09-stage8-founder-approval-and-blueprint-lock-record.md`. Every FCTM row's disposition, build commitment, commercial classification and mission assignment is frozen (FCTM blob `2bbe6e22`). Effective canonically only on Founder human merge and Mission Control post-merge verification. Relocated from `active/` to `completed/` in the same PR |
 
 ## Mission Snapshot
 
@@ -40,7 +40,7 @@
 | Core boundary | Consumes the SB-P-1.12 to SB-P-1.17 kernels as specifications and builds no parallel version. No public marketplace (C1 §4). No location-based live tracking in Phase 1 (`18:FPDR-2`). No continuous employee surveillance. No out-of-app customer channel before SB-P-1.20 (`DNTF`; `18:FPDR-3`). No POS source is used or needed (Section 12.5). No legal authority claim (C16 §15). |
 | Assigned to later missions (Build Now, not Build Later) | 17 rows, all to SB-P-1.20 (Section 11.1). |
 | Rejected | Marketplace behaviour; AI accusation, verdicts or punishment; continuous staff GPS surveillance; automated wage punishment; customer silence as automatic failure; legal certification; duplicate channel-specific memory, permissions or AI; every Build Plan §16 and GPCV §9 rejection (Sections 10.3, 11.3). |
-| Stage result sought | A complete, source-traceable Product Blueprint, Sections 1–21: `18:FPDR-1` to `18:FPDR-6` (F-01 to F-06), all 769 FCTM mappings and the 592 `IN SCOPE` engineering feasibility and risk rows, for independent non-author and Mission Control Stage 7 review. **DRAFT, NOT LOCKED.** No Stage 7 approval, EIS, implementation or runtime evidence is claimed. |
+| Stage result sought | A complete, source-traceable Product Blueprint, Sections 1–21: `18:FPDR-1` to `18:FPDR-7` and `18:FPDR-4-A` (F-01 to F-08), all 769 FCTM mappings and the 592 `IN SCOPE` engineering feasibility and risk rows. **Stage 8 Founder approved (MC-711) and APPROVED — LOCKED**, effective on human merge. No EIS, implementation or runtime evidence is claimed. |
 
 ## 1. Mission Overview
 
@@ -1097,6 +1097,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | 0.3 | 2026-10-31 | Claude Code (Stage 7 actor, MC-678) | Sections 20–21 Stage 7 Engineering Review draft added (MC-661-A, reconciled to `18:FPDR-6`); Metadata lifecycle and review fields corrected. Sections 1–19 otherwise unchanged |
 | 0.4 | 2026-11-01 | Claude Code (Definition Actor, MC-692) | DC-14 timing reconciled to `18:FPDR-4-A`: Metadata, §§10.1, 12.3, 20.7.9, 21.3, 21.5, 21.6, 21.7 and 19. No requirement text, row, status, risk or hold changed |
 | 0.5 | 2026-11-01 | Claude Code (Definition Actor, MC-702) | MC-544 reconciled to `18:FPDR-7` for `17-§9-5` only: Metadata, §§8.16, 10.1, 15.4, 19 (one map row), 20.4.9, 20.6 B6-14, 20.7.9, 20.8 (one register row, HG/H to DH/M; totals DH 434, HG 24, risk H 100, M 382), 21.3 and 21.4. No requirement text, disposition, commitment, commercial classification or other row changed |
+| 1.0 | 2026-11-01 | Claude Code (Definition Actor, MC-712-A) | Stage 8 Founder approval (MC-711) and Blueprint Lock: banner; Metadata Lifecycle Stage, Status, Decision log, Date, Engineering Review, Mission Control Review and Blueprint Lock; Mission Snapshot stage result; Section 19 governance rows and historical-text note; file relocated from `docs/phase-1-mission-blueprint/active/` to `docs/phase-1-mission-blueprint/completed/`. Sections 1–17, the Section 19 row map, Sections 20–21, the FCTM, Founder decisions, the engineering register and every hold are unchanged. Effective on human merge and Mission Control post-merge verification |
 
 ## 19. Governance History
 
@@ -1125,10 +1126,16 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | `18:FPDR-6` FCTM and Blueprint reconciliation | `claude-code/03`; this file | PR #1104, `f226fcdf` |
 | Stage 5 Sections 1–19 approved and complete (MC-660); Stage 6 Builder Review accepted and Stage 7 opened (MC-661) | Conversation-source, PR #1101 comments 6531811347, 6531991849 and 6532202305 | — |
 | Stage 7 Sections 20–21 draft | this file | PR #1105, `d1baee33` |
+| Stage 7 documentary exit: COMPLETE — ACCEPTED WITH EXPLICIT DOWNSTREAM HELD GATES; specialist fact-finding dispositioned HELD, not PASS (MC-688) | Conversation-source, PR #1105 comment 6547358706 | — |
 | `18:FPDR-4-A` DC-14 timing clarification; F-07 log | `claude-code/17`; `decision-log.md` | PR #1106, `2fd0e5fc76c8c8ef08bea2cb9c30ca16fd295bfd` |
 | DC-14 timing reconciliation; F-07 APPROVED | this file; `decision-log.md` | PR #1107, `366f2dc6bb0fcaa4586f2e55f752a5f7ee072565` |
+| DC-14 T6 conditional documentary determination (MC-699); DC-13 T6 conditional documentary determination and MC-544 screening (MC-701) | Conversation-source, PR #1107 comments 6555696141 and 6555836784 | — |
 | `18:FPDR-7` MC-544 payroll support and export; F-08 log | `claude-code/18`; `decision-log.md` | PR #1108, `7e7af83e515c96b8bb92f3fbbdaeb77ed24a17d3` |
-| `18:FPDR-7` FCTM and Blueprint reconciliation; F-08 APPROVED | `claude-code/03`; this file; `decision-log.md` | PENDING (not published) |
+| `18:FPDR-7` FCTM and Blueprint reconciliation; F-08 APPROVED | `claude-code/03`; this file; `decision-log.md` | PR #1109, `0deafe2b2d694e1529b22a06207a96034e740cd9` |
+| Stage 8 readiness READY for Founder consideration (MC-709, MC-709-R); Founder decision request (MC-710); Founder Stage 8 approval accepted (MC-711) | Conversation-source, PR #1109 comments 6558341132, 6558534577, 6558589371 and 6558662107; Founder decision quoted verbatim in `mission-control/09` §1 | — |
+| `18:S8-FAR` Stage 8 Founder approval and Blueprint Lock record; F-09 log; relocation to `completed/` (MC-712-A) | `mission-control/09`; this file; `decision-log.md` | PENDING (review PR) |
+
+**Historical text.** Sections 20–21 keep their Stage 7 publication-time wording byte for byte, as the Founder approved it at blob `851d9e97`. In particular, “No specialist review has been performed” (21.5), the DC-13 and DC-14 “unchanged” T6 row (21.4), recommendations 1, 4 and 5 (21.6) and “This draft claims no Stage 7 completion” (21.7) describe the state before MC-688, MC-699 and MC-701. Those later events are recorded in the rows above and in `mission-control/09` §9. They convert no hold to PASS and claim no specialist, legal or runtime clearance.
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
