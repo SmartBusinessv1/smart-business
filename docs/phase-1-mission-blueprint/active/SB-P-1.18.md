@@ -20,8 +20,8 @@
 | Governing Build Plan section | Build Plan §10.7 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 1 Smart Order & Delivery Assistant (`b392c8cb`); Contract 6 Staff / HR Assistant (`ebacd183`); Contract 16 Compliance Shield (`420269d8`); inherited Contract 22 §16 Location Foundation (`61e1bb91`); Global Product Completion View (`ee76d920`); Source 11 line 443 for `S11-L443-*` (`16897d6c`) |
 | Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `3402735ecc0dfac1cec97ddf7abe4aa43690d1e3` (`18:FPDR-6` reconciliation, MC-674; earlier blob `b00603ec`, PR #1100): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
-| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
-| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `52cc6b94`: F-01 to F-06 APPROVED — canonical |
+| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102); `claude-code/17-…-18-fpdr-4-a.md` (`1538c4d5`, PR #1106; clarifies `18:FPDR-4` for DC-14 timing). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
+| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `197e4c57`: F-01 to F-07 APPROVED — canonical |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.17: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence (`04-…` Δ-02, Δ-03) |
 | Date | 2026-10-31 |
@@ -547,7 +547,7 @@ T7 mission assignment for 21 rows; no timeline change. Applied in: Sections 6, 8
 >
 > No continuous employee tracking or automatic punitive decision-making is authorized.
 
-T3. FCTM codes `L-F4M` (minimum) and `L-F4A` (adoptable). Applied in: Sections 8.4, 8.6, 8.9, 15.4. Rows citing `18:FPDR-4` (10): `1-§10-3`, `1-§10-6`, `1-§10-7`, `1-§15-2`, `1-§15-3`, `1-§15-4`, `1-§15-5`, `1-§15-6`, `1-§15-7`, `6-§5-2`.
+T3. FCTM codes `L-F4M` (minimum) and `L-F4A` (adoptable). Applied in: Sections 8.4, 8.6, 8.9, 15.4. Rows citing `18:FPDR-4` (10): `1-§10-3`, `1-§10-6`, `1-§10-7`, `1-§15-2`, `1-§15-3`, `1-§15-4`, `1-§15-5`, `1-§15-6`, `1-§15-7`, `6-§5-2`. **Clarified by `18:FPDR-4-A`** (record `17-…`, PR #1106) for DC-14 timing only: the accepted SA-02 research is the provisional DC-14 legal and privacy input for the documentary stages, and qualified validation comes before actual employee-location deployment or legal-policy reliance. DC-14 is **PROVISIONAL — PROFESSIONAL VALIDATION PENDING**.
 
 **`18:FPDR-1` — F-1 location retention and access expiry** (record `15-…`, PR #1099; F1-R pathway, `mission-control/07-…`). Founder (MC-645), the whole statement:
 
@@ -898,12 +898,12 @@ Derived constraints are **not** Product Truth unless a Founder decision adopts t
 
 | Item | Status | Effect on this Blueprint |
 |---|---|---|
-| DC-14 QR plus point-in-time geofence | **Open.** Mission Control T6 judgement; to the Founder only if Mission Control rejects it. Legal input is required before the Blueprint lock (`18:FPDR-4` §4) | Section 8.9. The `6-§5-2` minimum applies only as DC-14 is determined |
+| DC-14 QR plus point-in-time geofence | **Open; PROVISIONAL — PROFESSIONAL VALIDATION PENDING.** Mission Control T6 judgement; to the Founder only if Mission Control rejects it. The provisional legal and privacy input for the documentary Blueprint approval, the lock and the EIS is the accepted SA-02 research; qualified India and Kerala validation comes before actual employee-location deployment or legal-policy reliance (`18:FPDR-4-A`; Founder Decision Record 06 §4). `18:FPDR-4` §4 keeps the earlier pre-lock wording as history | Section 8.9. The `6-§5-2` minimum applies only as DC-14 is determined |
 | DC-13 consent and STOP state | Mission Control T6, pending (`18:FPDR-3` §7) | Section 8.1: native state recorded and enforced; A-STOP bridges to it |
 | DC-02 merchant-recorded customer approval | Applied through `18:FPDR-3` Package P (`1-§5-25`) | Sections 8.4, 9 |
 | DC-07 add-on enablement needs `DENT` | Dependency hold | No add-on acceptance before `DENT`; no schema simulation |
 | DC-01, DC-03, DC-04, DC-05, DC-06, DC-08, DC-09, DC-10, DC-11, DC-12 | Unchanged as recorded in `04-…` | As cited in Section 8 |
-| `DLEG` professional validation | **Location:** deferred, not waived, under Founder Decision Record 06 §4 (`18:FPDR-1` §7). **Payroll and overtime:** before the EIS specifies any calculation or legal rule (`18:FPDR-5` §5). **Photo and signature proof:** privacy check before the EIS (`18:FPDR-4` §6). **General (U-14):** the register records qualified validation before the Blueprint lock; how this reads with Founder Decision Record 06 is for Mission Control to state at Stage 5 | Sections 8.6, 8.9, 8.10, 8.15 |
+| `DLEG` professional validation | **Location:** deferred, not waived, under Founder Decision Record 06 §4 (`18:FPDR-1` §7). **Payroll and overtime:** before the EIS specifies any calculation or legal rule (`18:FPDR-5` §5). **Photo and signature proof:** privacy check before the EIS (`18:FPDR-4` §6). **General (U-14):** the register records qualified validation before the Blueprint lock; Mission Control stated at Stage 5 that Founder Decision Record 06 defers it, with no blanket external-opinion requirement before the lock (MC-657 item 1) | Sections 8.6, 8.9, 8.10, 8.15 |
 | AEG-1 customer-receipt acceptance evidence | Mission Control acceptance hold (MC-558-R2) | Section 15.4 |
 | C1 §17 "may include" screening | Mission Control | Section 8.7 |
 | U-09 pilot sequencing | Mission Control release sequencing | Section 8.17 |
@@ -1088,6 +1088,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | 0.1 | 2026-10-30 | Claude Code (Definition Actor, MC-654) | Initial Stage 4 draft: Metadata, Mission Snapshot, Sections 1–19 assembled by reference to the canonical FCTM (blob `b00603ec`), `18:FPDR-1` to `18:FPDR-5` and the Stage 2 Truth Pack |
 | 0.2 | 2026-10-31 | Claude Code (Stage 7 actor, MC-674) | `18:FPDR-6` reconciliation by reference: Metadata, Sections 8.4, 8.5, 10.1, 12.2, 12.3, 15.4 and 19 (32 map rows), against FCTM blob `3402735e`. No requirement text, disposition, commitment or total changed |
 | 0.3 | 2026-10-31 | Claude Code (Stage 7 actor, MC-678) | Sections 20–21 Stage 7 Engineering Review draft added (MC-661-A, reconciled to `18:FPDR-6`); Metadata lifecycle and review fields corrected. Sections 1–19 otherwise unchanged |
+| 0.4 | 2026-11-01 | Claude Code (Definition Actor, MC-692) | DC-14 timing reconciled to `18:FPDR-4-A`: Metadata, §§10.1, 12.3, 20.7.9, 21.3, 21.5, 21.6, 21.7 and 19. No requirement text, row, status, risk or hold changed |
 
 ## 19. Governance History
 
@@ -1115,7 +1116,9 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | `18:FPDR-6`; F-06 log reconciliation | `claude-code/16`; `decision-log.md` | PR #1102, `ac68f9ed`; PR #1103, `8edb839f` |
 | `18:FPDR-6` FCTM and Blueprint reconciliation | `claude-code/03`; this file | PR #1104, `f226fcdf` |
 | Stage 5 Sections 1–19 approved and complete (MC-660); Stage 6 Builder Review accepted and Stage 7 opened (MC-661) | Conversation-source, PR #1101 comments 6531811347, 6531991849 and 6532202305 | — |
-| Stage 7 Sections 20–21 draft | this file | PENDING (not published) |
+| Stage 7 Sections 20–21 draft | this file | PR #1105, `d1baee33` |
+| `18:FPDR-4-A` DC-14 timing clarification; F-07 log | `claude-code/17`; `decision-log.md` | PR #1106, `2fd0e5fc76c8c8ef08bea2cb9c30ca16fd295bfd` |
+| DC-14 timing reconciliation; F-07 APPROVED | this file; `decision-log.md` | PENDING (not published) |
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
@@ -2256,7 +2259,7 @@ As Blueprint §12.5. In summary:
 
 | Hold | Rows affected | Planning effect |
 |---|---|---|
-| DC-14 (Mission Control T6; legal input before the Blueprint lock) | `6-§5-2` | QR plus geofence not committed in the EIS until determined |
+| DC-14 (Mission Control T6; PROVISIONAL — PROFESSIONAL VALIDATION PENDING, `18:FPDR-4-A`) | `6-§5-2` | QR plus geofence not committed in the EIS until determined; no activation or employee-location processing before qualified validation |
 | MC-544 | `17-§9-5` | View only |
 | `DLEG` | 6 `DLEG` rows plus the `18:FPDR-1` rows | Calculation held; location under Founder Decision Record 06 §4; specialist checks |
 | `DNTF` | 17 rows | Native legs only; `1-§15-4` OTP unavailable |
@@ -2936,7 +2939,7 @@ These are engineering questions for the EIS or for upstream owners. Items marked
 ### 21.3 Dependencies and holds (preserved)
 
 `D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DNTF`, `DENT` and `DLEG` are unchanged (FCTM §0.6).
-- **Also unchanged:** DC-14 (Mission Control T6, legal input before the Blueprint lock), DC-13, MC-544, AEG-1, the C1 §17 screening, U-09, the eight off-critical-path `UNRESOLVED FOUNDER DECISION` rows, and Δ-06 and Δ-07.
+- **Also unchanged:** DC-14 (Mission Control T6; PROVISIONAL — PROFESSIONAL VALIDATION PENDING, `18:FPDR-4-A`), DC-13, MC-544, AEG-1, the C1 §17 screening, U-09, the eight off-critical-path `UNRESOLVED FOUNDER DECISION` rows, and Δ-06 and Δ-07.
 - **Stage 7 holds:** the open SB-P-1.12 participant-binding interface (B6-01; EQ18-15) and the specialist fact-finding (21.5). B6-05 is decided and dependency-held. **No hold is converted to PASS.**
 
 ### 21.4 Source 18 T1–T8 screen
@@ -2970,7 +2973,7 @@ Also recommended, with Mission Control deciding whether each is mandatory:
 - location and privacy, covering every logging and backup path (B6-07, B6-08);
 - employment and payroll (`18:FPDR-5` §5).
 
-**DC-14 legal input is required before Stage 8.** No legal clearance is claimed.
+**DC-14: the provisional legal and privacy input for Stage 8 and the EIS is the accepted SA-02 research (`18:FPDR-4-A`); status PROVISIONAL — PROFESSIONAL VALIDATION PENDING.** Qualified India and Kerala validation is required before actual employee-location deployment or legal-policy reliance. No legal clearance is claimed.
 
 ### 21.6 Recommendations
 
@@ -2978,7 +2981,7 @@ Also recommended, with Mission Control deciding whether each is mandatory:
 2. **Disposition the SB-P-1.12 G1/G2 interface (EQ18-15)** through separate upstream change control before the external part enters an EIS. EQ18-01 and EQ18-04 are decided by `18:FPDR-6`.
 3. **Sequence SB-P-1.18 after the upstream kernels** (20.7.4), and build no interim authority, memory, import, AI, scheduler or notification path.
 4. **Run the mandatory specialist fact-finding in 21.5,** and freshly verify `smart-business-test` before any rehearsal.
-5. **Determine DC-14,** with its legal input, before the Blueprint lock.
+5. **Determine DC-14** (Mission Control T6) before the Blueprint lock, on the provisional legal input recorded by `18:FPDR-4-A`. Obtain qualified validation before any actual employee-location deployment or legal-policy reliance.
 
 ### 21.7 Independent review plan and Stage 7 exit
 
@@ -2994,4 +2997,4 @@ Also recommended, with Mission Control deciding whether each is mandatory:
 - every mandatory specialist assessment under Source 18 §4.8 (authority and permissions, RLS and grants, migrations, idempotency and concurrency, financial integrity, and any new external provider where applicable; 21.5) is recorded, and its unresolved findings and limits are dispositioned by Mission Control. A deferral does not waive a mandatory assessment: an unresolved clearance or missing upstream evidence stays a held gate, and absent specialist evidence is never presumed PASS. Read-only parallel fact-finding is permitted;
 - the EQ18-15 vehicle is recorded as decided or as an explicit EIS precondition.
 
-DC-14 with legal input stays a Stage 8 lock precondition. This draft claims no Stage 7 completion.
+The DC-14 Mission Control T6 determination, on the provisional input recorded by `18:FPDR-4-A`, stays a Stage 8 lock precondition; qualified validation is a deployment gate, not a documentary-lock gate. This draft claims no Stage 7 completion.
