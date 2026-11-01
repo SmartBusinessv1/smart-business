@@ -19,12 +19,12 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; **COMPLETE and CLOSED** (MC-654). Closure record `communication/missions/SB-P-1.18/mission-control/08-stage3-founder-gate-closure.md` (blob `90ea6ad6`; PR #1100) |
 | Governing Build Plan section | Build Plan §10.7 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 1 Smart Order & Delivery Assistant (`b392c8cb`); Contract 6 Staff / HR Assistant (`ebacd183`); Contract 16 Compliance Shield (`420269d8`); inherited Contract 22 §16 Location Foundation (`61e1bb91`); Global Product Completion View (`ee76d920`); Source 11 line 443 for `S11-L443-*` (`16897d6c`) |
-| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `3402735ecc0dfac1cec97ddf7abe4aa43690d1e3` (`18:FPDR-6` reconciliation, MC-674; earlier blob `b00603ec`, PR #1100): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
-| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102); `claude-code/17-…-18-fpdr-4-a.md` (`1538c4d5`, PR #1106; clarifies `18:FPDR-4` for DC-14 timing). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
-| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `197e4c57`: F-01 to F-07 APPROVED — canonical |
+| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `2bbe6e227d714996bcead10385952c78283e20e8` (`18:FPDR-7` reconciliation of row `17-§9-5`; earlier blob `3402735e`, PR #1104): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102); `claude-code/17-…-18-fpdr-4-a.md` (`1538c4d5`, PR #1106; clarifies `18:FPDR-4` for DC-14 timing); `claude-code/18-…-18-fpdr-7.md` (`f534e25e`, PR #1108). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
+| Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `56cdd935`: F-01 to F-08 APPROVED — canonical |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
 | Upstream dependencies | SB-P-1.12 to SB-P-1.17: specifications locked; Implementation Authorization `WITHHELD`; no runtime evidence (`04-…` Δ-02, Δ-03) |
-| Date | 2026-10-31 |
+| Date | 2026-11-01 |
 | Builder Review | Stage 6 complete: author-performed review (PR #1101 comment 6531991849), accepted PASS WITH ACTIONABLE FINDINGS by MC-661; not independent assurance |
 | Engineering Review (Sections 20–21) | Stage 7 draft in this file (MC-661-A, reconciled to `18:FPDR-6` under MC-678). Independent non-author review and mandatory specialist fact-finding pending |
 | Mission Control Review | Stage 5 complete (MC-660); Stage 7 pending |
@@ -462,7 +462,7 @@ Sources: Contract 17 §4 b7, §9, §10 (inherited; SB-P-1.17 assigned them here)
 Mission design:
 
 - **Inside the SB-P-1.17 Manager workspace shell**, not a second workspace (DC-11; `D17`). Views appear only when the add-on is enabled and the user's role permits (`17-§4-15`; `DENT`).
-- **Staff/HR views:** roster, attendance, leave requests, correction and context review, payroll support, and role and permission administration where appropriate (`17-§9-1` to `-6`). The payroll view carries no export obligation beyond the C17 unit (`L-F5`). Employee self-service shows only explicitly permitted information and actions, using the SB-P-1.12 self-service mechanics (`17-§9-7`; 21-§10). Contract 17 §9 introduces its workspace views with “may include”; the “payroll support/export” unit (17-§9-5) remains IN SCOPE in the FCTM, but its OBL classification is subject to the open MC-544 source-semantics screening. Do not treat payroll export, any export format, overtime-derived export fields, calculation or automatic pay action as a new universally mandatory obligation from 18:FPDR-5 or this Blueprint; obtain the authoritative screening disposition before locking a firm export commitment.
+- **Staff/HR views:** roster, attendance, leave requests, correction and context review, payroll support, and role and permission administration where appropriate (`17-§9-1` to `-6`). The payroll view carries no export obligation beyond the C17 unit (`L-F5`). Employee self-service shows only explicitly permitted information and actions, using the SB-P-1.12 self-service mechanics (`17-§9-7`; 21-§10). Contract 17 §9 introduces its workspace views with “may include”. For the “payroll support/export” unit (`17-§9-5`, `IN SCOPE`, commitment unchanged), payroll-support viewing is the Phase One baseline and payroll export is permitted and adoptable, not mandatory (`18:FPDR-7`; `L-F7`). Neither `18:FPDR-5`, `18:FPDR-7` nor this Blueprint creates an export format, overtime-derived export field, calculation or automatic pay action.
 - **Order & Delivery views:** orders by state, pending confirmation, preparation and assignment, delivery exceptions, COD and payment issues, and delivery history and proof (`17-§10-1` to `-6`). The dashboard creates no marketplace and keeps delivery and privacy boundaries (`17-§10-7`).
 
 **FCTM rows realized here (15 `IN SCOPE`):**
@@ -507,7 +507,7 @@ By reference, not new design. Exact screens, labels and interaction design are l
 
 ### 10.1 Founder decisions (by reference)
 
-The six SB-P-1.18 decisions govern this Blueprint. Each record carries the Founder's verbatim statement. The text quoted below is either the Founder's verbatim wording or, where marked, the accepted option text the record quotes. Where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (verified on FCTM blob `3402735e`).
+The seven SB-P-1.18 decisions govern this Blueprint. Each record carries the Founder's verbatim statement. The text quoted below is either the Founder's verbatim wording or, where marked, the accepted option text the record quotes. Where a summary is given, the record prevails. "Rows citing it" lists the FCTM rows whose Founder-decision cell carries the decision (verified on FCTM blob `2bbe6e22`).
 
 **`18:FPDR-2` — F-2 live tracking** (record `11-…`, PR #1082). Founder (MC-520): "Founder F-2 decision: I select Option A." Option A as worded in the accepted brief (not the Founder's words):
 
@@ -569,6 +569,12 @@ T1/T3. FCTM code `L-F1`. Applied in: Sections 8.2, 8.6, 8.9, 8.15, 9, 15.4. Rows
 > Record these selections against MC-663 on PR #1101; do not modify Git or treat as Blueprint lock.
 
 Three T3 decisions; no T7; T8 not fired. FCTM codes `L-F6A` (D1-A) and `L-F6P` (D2-P and the override). The override applies to SB-P-1.18 order-linked stock paths only (MC-665 A.3). Applied in: Sections 8.4, 8.5, 12.3, 15.4. Rows citing `18:FPDR-6` (32): `1-§5-15`, `1-§5-16`, `1-§5-17`, `1-§5-18`, `1-§5-19`, `1-§5-20`, `1-§5-21`, `1-§5-22`, `1-§13-2`, `1-§13-3`, `1-§13-4`, `1-§13-5`, `1-§13-6`, `1-§13-7`, `1-§13-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6`, `1-§10-1`, `1-§10-2`, `1-§10-3`, `1-§10-4`, `1-§10-5`, `1-§10-6`, `1-§10-7`, `1-§10-8`, `1-§10-9`, `1-§24-3`, `1-§24-8`, `BP-§10.7-A3`, `BP-§10.7-A4`.
+
+**`18:FPDR-7` — MC-544 payroll support and export** (record `18-…`, PR #1108). Founder (MC-702), the whole statement:
+
+> FOUNDER DECISION — MC-701 / MC-544: I approve Option A. Payroll-support viewing remains the Phase One baseline; payroll export is permitted and adoptable, not mandatory. Authorize preparation of a narrow Founder-governed record and reconciliation proposal for FCTM row 17-§9-5 only. Preserve all other approved commitments, DLEG and permissions. No Git write, Blueprint lock, EIS or implementation is authorized by this selection alone.
+
+T3; T7 screened and not fired. FCTM code `L-F7`. On `17-§9-5` only, payroll-support viewing is the baseline and export is verified only if adopted; the row's kind, build commitment, commercial classification, owning mission and disposition are unchanged. No export format, file, calculation or automated wage decision is created, and `DLEG` stays. Applied in: Sections 8.16, 15.4, 20.4.9. Rows citing `18:FPDR-7` (1): `17-§9-5`.
 
 **Upstream decisions applied by reference:** `12:FPDR-1` (Notification Foundation, SB-P-1.15, native only); `12:FPDR-2` (Shared Location Foundation workstream inside SB-P-1.18); `12:FPDR-3` (each location-consuming feature defines purpose, audience, capture timing, retention and access end; no new retention period or capture mode); `16:FPDR-1` (basic shared customer identity, SB-P-1.16). Rows citing `12:FPDR-1` (13): `1-§17-1`, `1-§17-2`, `1-§17-4`, `1-§17-7`, `1-§17-8`, `1-§17-9`, `16-§14-1`, `16-§14-2`, `16-§14-3`, `16-§14-4`, `16-§14-5`, `16-§14-6`, `22-§12-1`. Rows citing `12:FPDR-2` (20): `1-§14-1`, `1-§14-2`, `1-§14-3`, `1-§14-4`, `1-§14-6`, `1-§14-7`, `1-§14-8`, `1-§14-9`, `1-§14-10`, `1-§14-11`, `1-§14-13`, `6-§5-3`, `22-§16-1`, `22-§16-2`, `22-§16-8`, `22-§16-9`, `22-§16-10`, `22-§16-11`, `22-§29-9`, `BP-§10.7-W`. Rows citing `12:FPDR-3` (6): `6-§5-3`, `22-§16-3`, `22-§16-4`, `22-§16-5`, `22-§16-6`, `22-§16-7`. Rows citing `16:FPDR-1` (9): `1-§6-1`, `1-§6-2`, `1-§6-3`, `1-§6-4`, `1-§6-5`, `1-§6-6`, `1-§6-7`, `3-§15-7`, `BP-§10.3-S2`.
 
@@ -1055,6 +1061,7 @@ Acceptance items owned elsewhere (the SB-P-1.20 legs `1-§26-12b`, `16-§20-7b`,
 | `18:FPDR-4` | Each named-minimum mechanism is demonstrated; each adopted mechanism is verified, and an unadopted one is neither required nor prohibited; `1-§10-4` and `1-§10-5` are always verified; the `6-§5-2` QR plus geofence element is verified only as DC-14 is determined | the ten F-4 rows |
 | `18:FPDR-1` | Attendance and proof keep the result and no ordinary raw coordinate after the event; a destination pin is erased when the delivery purpose ends; a saved address keeps no exact GPS because it is saved; a hold exists only with an individual reason, owner, restricted access and end condition; no numeric raw-GPS period is configured | `22-§16-6`, `1-§14-12`, `1-§22-11`, `1-§5-26`, `1-§15-5` |
 | `18:FPDR-6` | An external participant reaches assigned deliveries only after invitation and explicit acceptance, and an unbound, pending or revoked participant is denied; first run with a pending binding creates no business; packing a line decreases stock once, with no double consumption on retry; no restock happens without a confirmed physical return; a negative-stock override is refused to Employee, Delivery Staff, AI and a Manager without the grant | the 32 rows in Section 10.1 |
+| `18:FPDR-7` | The payroll-support view is demonstrated for a permitted role with the Staff/HR add-on enabled; an export is verified only if adopted, and an unadopted export is neither required nor prohibited; no payroll calculation, threshold or wage decision is applied | `17-§9-5` |
 
 ### 15.5 Experience Verification Matrix seed (Build Plan §13)
 
@@ -1089,6 +1096,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | 0.2 | 2026-10-31 | Claude Code (Stage 7 actor, MC-674) | `18:FPDR-6` reconciliation by reference: Metadata, Sections 8.4, 8.5, 10.1, 12.2, 12.3, 15.4 and 19 (32 map rows), against FCTM blob `3402735e`. No requirement text, disposition, commitment or total changed |
 | 0.3 | 2026-10-31 | Claude Code (Stage 7 actor, MC-678) | Sections 20–21 Stage 7 Engineering Review draft added (MC-661-A, reconciled to `18:FPDR-6`); Metadata lifecycle and review fields corrected. Sections 1–19 otherwise unchanged |
 | 0.4 | 2026-11-01 | Claude Code (Definition Actor, MC-692) | DC-14 timing reconciled to `18:FPDR-4-A`: Metadata, §§10.1, 12.3, 20.7.9, 21.3, 21.5, 21.6, 21.7 and 19. No requirement text, row, status, risk or hold changed |
+| 0.5 | 2026-11-01 | Claude Code (Definition Actor, MC-702) | MC-544 reconciled to `18:FPDR-7` for `17-§9-5` only: Metadata, §§8.16, 10.1, 15.4, 19 (one map row), 20.4.9, 20.6 B6-14, 20.7.9, 20.8 (one register row, HG/H to DH/M; totals DH 434, HG 24, risk H 100, M 382), 21.3 and 21.4. No requirement text, disposition, commitment, commercial classification or other row changed |
 
 ## 19. Governance History
 
@@ -1118,11 +1126,13 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | Stage 5 Sections 1–19 approved and complete (MC-660); Stage 6 Builder Review accepted and Stage 7 opened (MC-661) | Conversation-source, PR #1101 comments 6531811347, 6531991849 and 6532202305 | — |
 | Stage 7 Sections 20–21 draft | this file | PR #1105, `d1baee33` |
 | `18:FPDR-4-A` DC-14 timing clarification; F-07 log | `claude-code/17`; `decision-log.md` | PR #1106, `2fd0e5fc76c8c8ef08bea2cb9c30ca16fd295bfd` |
-| DC-14 timing reconciliation; F-07 APPROVED | this file; `decision-log.md` | PENDING (not published) |
+| DC-14 timing reconciliation; F-07 APPROVED | this file; `decision-log.md` | PR #1107, `366f2dc6bb0fcaa4586f2e55f752a5f7ee072565` |
+| `18:FPDR-7` MC-544 payroll support and export; F-08 log | `claude-code/18`; `decision-log.md` | PR #1108, `7e7af83e515c96b8bb92f3fbbdaeb77ed24a17d3` |
+| `18:FPDR-7` FCTM and Blueprint reconciliation; F-08 APPROVED | `claude-code/03`; this file; `decision-log.md` | PENDING (not published) |
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
-This is a complete accounting of all FCTM rows (blob `3402735e`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
+This is a complete accounting of all FCTM rows (blob `2bbe6e22`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
 
 Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a `18:FPDR` decision is cited, §10.2 for rule and principle rows, §10.3 for must-not rows, §12 where a dependency code is carried, and §15 for `SCN`, `FRV`, `EXP` and `GATE` rows. Every other row maps to its Section 11 subsection.
 
@@ -1685,7 +1695,7 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 17-§9-2 | IN SCOPE | SB-P-1.18 | §8.16, §12 | RT | — |
 | 17-§9-3 | IN SCOPE | SB-P-1.18 | §8.16, §12 | RT | — |
 | 17-§9-4 | IN SCOPE | SB-P-1.18 | §8.16, §12 | RT | — |
-| 17-§9-5 | IN SCOPE | SB-P-1.18 | §8.16, §10.1, §12 | RT | 18:FPDR-5 |
+| 17-§9-5 | IN SCOPE | SB-P-1.18 | §8.16, §10.1, §12 | RT (payroll-support view); RT (export, if adopted) | 18:FPDR-5; 18:FPDR-7 |
 | 17-§9-6 | IN SCOPE | SB-P-1.18 | §8.16, §12 | RT; NEG | — |
 | 17-§9-7 | IN SCOPE | SB-P-1.18 | §8.16, §10.3, §12 | NEG | — |
 | 17-§10-1 | IN SCOPE | SB-P-1.18 | §8.16, §12 | RT | — |
@@ -2018,7 +2028,7 @@ See 20.6 for the full B6-01 to B6-03 treatment. Every action in Sections 8.2, 8.
 
 - **Overtime record:** an origin (manual, system-proposed or manager), a dispute state, a review decision with actor, a correction chain and provenance. No computed hours, threshold or pay effect (`S11-L443-1` to `-5`).
 - **Payroll-support drafts:** human confirmation is bound to the exact action and state. Calculation logic is **held for `DLEG`** and never stubbed with assumed rules (B6-13).
-- **No export format or file** until the MC-544 screening disposition (B6-14).
+- **Payroll export** is permitted and adoptable, not mandatory (`18:FPDR-7`; B6-14). The payroll-support view is the baseline; no export format or file is specified unless export is separately adopted and authorized.
 
 #### 20.4.10 C-CMP, C-REN — compliance (B6-22)
 
@@ -2155,7 +2165,7 @@ Cards inside the SB-P-1.17 shell, fed by feature services, gated by role and ent
 | B6-11 | Three address classes | C-CUS address class model | EIS |
 | B6-12 | Attendance source while DC-14 is open | Name the adopted non-location mechanism (`L-F4A`) in the EIS; QR plus geofence designed only as DC-14 is determined | DC-14 (Mission Control T6) |
 | B6-13 | Payroll calculation before `DLEG` | Calculation held; recording and review designed now | `DLEG` (`18:FPDR-5` §5) |
-| B6-14 | Payroll export semantics | View only; no export until the MC-544 disposition | MC-544 |
+| B6-14 | Payroll export semantics | Decided: the payroll-support view is the baseline; export is adoptable, with no format or file specified unless it is separately adopted and authorized | `18:FPDR-7` |
 | B6-15 | Overtime dispute and provenance | C-PAY record model | EIS |
 | B6-16 | Native consent and STOP state | C-CUS send-guard | DC-13 (Mission Control T6) |
 | B6-17 | Forwarded-WhatsApp capture | C-ORD first-class merchant path | EIS (UX) |
@@ -2260,7 +2270,7 @@ As Blueprint §12.5. In summary:
 | Hold | Rows affected | Planning effect |
 |---|---|---|
 | DC-14 (Mission Control T6; PROVISIONAL — PROFESSIONAL VALIDATION PENDING, `18:FPDR-4-A`) | `6-§5-2` | QR plus geofence not committed in the EIS until determined; no activation or employee-location processing before qualified validation |
-| MC-544 | `17-§9-5` | View only |
+| `18:FPDR-7` (MC-544 decided) | `17-§9-5` | Payroll-support view is the baseline; export only if separately adopted and authorized |
 | `DLEG` | 6 `DLEG` rows plus the `18:FPDR-1` rows | Calculation held; location under Founder Decision Record 06 §4; specialist checks |
 | `DNTF` | 17 rows | Native legs only; `1-§15-4` OTP unavailable |
 | `DENT` | 13 rows | No add-on acceptance |
@@ -2289,15 +2299,15 @@ As Blueprint §12.5. In summary:
 | Status | Meaning | Rows |
 |---|---|---|
 | `DA` DESIGN ACCEPTED — EVIDENCE HOLD | No upstream dependency or hold; design acceptable, checked by later verification evidence | 115 |
-| `DH` DEPENDENCY-HELD | Feasible design held by an unbuilt upstream foundation (`D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DENT`) | 433 |
-| `HG` HOLD-GATED | Feasible design gated by a recorded hold: `DNTF`, `DLEG`, DC-14 (`6-§5-2`) or MC-544 (`17-§9-5`) | 25 |
+| `DH` DEPENDENCY-HELD | Feasible design held by an unbuilt upstream foundation (`D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DENT`) | 434 |
+| `HG` HOLD-GATED | Feasible design gated by a recorded hold: `DNTF`, `DLEG` or DC-14 (`6-§5-2`) | 24 |
 | `DI` DEPENDENCY-HELD — UPSTREAM INTERFACE | Decided by `18:FPDR-6` D1-A; feasible for employee delivery; the external Delivery Staff part waits on the open SB-P-1.12 binding interface (B6-01, EQ18-15). An engineering diagnostic subtype of `DH`, not an FCTM disposition and not readiness (MC-665 A.5) | 19 |
 
 "Held" means waiting on an identified, recorded dependency, hold or upstream interface. It is **not** a Source 18 T8 infeasibility finding. No row is found infeasible or unsafe, no row is narrowed, moved or deferred, and no row is `ESCALATED` or `PASS`.
 
 **Columns:**
 - **Component** refers to 20.3 and 20.4, one per Blueprint Section 8 subsection (taken from the canonical Blueprint §19 map).
-- **Risk** (H 101, M 381, L 110) follows a stated rule. H: status `DI` or `HG`, one of the 13 B6-05 stock rows (kept HIGH pending the stock-integrity fact-finding; MC-675 ruling 4), a `DTX` or `DLOC` dependency, an `FRV` row, or a row citing `18:FPDR-1`. M: any other dependency-held row. L: design-only.
+- **Risk** (H 100, M 382, L 110) follows a stated rule. H: status `DI` or `HG`, one of the 13 B6-05 stock rows (kept HIGH pending the stock-integrity fact-finding; MC-675 ruling 4), a `DTX` or `DLOC` dependency, an `FRV` row, or a row citing `18:FPDR-1`. M: any other dependency-held row. L: design-only.
 - **Verification** is the FCTM seed, unchanged; `if adopted` qualifiers are preserved.
 - **Evidence:** R, the FCTM evidence cell records repository absence (`NI-*`) or a repository rule; S, the row depends on a locked upstream specification.
 - **Findings** lists up to four applicable Stage 6 findings, HIGH first.
@@ -2799,7 +2809,7 @@ As Blueprint §12.5. In summary:
 | 17-§9-2 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
 | 17-§9-3 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
 | 17-§9-4 | C-VIEW | DH | M | RT | S | B6-02, B6-03, B6-20, B6-21 |
-| 17-§9-5 | C-VIEW | HG | H | RT | S | B6-03, B6-14, B6-20, B6-21 |
+| 17-§9-5 | C-VIEW | DH | M | RT (payroll-support view); RT (export, if adopted) | S | B6-03, B6-14, B6-20, B6-21 |
 | 17-§9-6 | C-VIEW | DH | M | RT; NEG | S | B6-03, B6-20, B6-21 |
 | 17-§9-7 | C-VIEW | DH | M | NEG | S | B6-03, B6-21 |
 | 17-§10-1 | C-VIEW | DH | M | RT | S | B6-03, B6-20, B6-21 |
@@ -2939,14 +2949,14 @@ These are engineering questions for the EIS or for upstream owners. Items marked
 ### 21.3 Dependencies and holds (preserved)
 
 `D12` to `D17`, `D19`, `D20`, `DTX`, `DSCH`, `DAI`, `DV`, `DLOC`, `DMAP`, `DPAY`, `DNTF`, `DENT` and `DLEG` are unchanged (FCTM §0.6).
-- **Also unchanged:** DC-14 (Mission Control T6; PROVISIONAL — PROFESSIONAL VALIDATION PENDING, `18:FPDR-4-A`), DC-13, MC-544, AEG-1, the C1 §17 screening, U-09, the eight off-critical-path `UNRESOLVED FOUNDER DECISION` rows, and Δ-06 and Δ-07.
+- **Also unchanged:** DC-14 (Mission Control T6; PROVISIONAL — PROFESSIONAL VALIDATION PENDING, `18:FPDR-4-A`), DC-13, AEG-1, the C1 §17 screening, U-09, the eight off-critical-path `UNRESOLVED FOUNDER DECISION` rows, and Δ-06 and Δ-07. MC-544 is decided by `18:FPDR-7` (`17-§9-5`).
 - **Stage 7 holds:** the open SB-P-1.12 participant-binding interface (B6-01; EQ18-15) and the specialist fact-finding (21.5). B6-05 is decided and dependency-held. **No hold is converted to PASS.**
 
 ### 21.4 Source 18 T1–T8 screen
 
 | Trigger | Result |
 |---|---|
-| T1 / T3 | **Fired and decided:** stock timing (D2-P), the external participant invitation experience (D1-A) and the override authority, all by `18:FPDR-6` (PR #1102). No other T3 found |
+| T1 / T3 | **Fired and decided:** stock timing (D2-P), the external participant invitation experience (D1-A) and the override authority, all by `18:FPDR-6` (PR #1102); and the `17-§9-5` payroll-support baseline with adoptable export, by `18:FPDR-7` (PR #1108). No other T3 found |
 | T2 | None. No Product Truth conflict found |
 | T4 / T5 | None |
 | T6 | DC-14 and DC-13 stay Mission Control matters, unchanged |
