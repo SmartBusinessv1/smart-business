@@ -1,11 +1,11 @@
 # SB-P-1.17 — Lovable Build Prompt
 
 ```text
-STATUS: APPROVED — LOCKED
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a)
-EIS: APPROVED — LOCKED (UNCHANGED, blob 5d681b0c)
+STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2 NOT YET DISPOSITIONED)
+EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
-IMPLEMENTATION PACKAGE: APPROVED — LOCKED (Stage 13)
+IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 POS, AI, VOICE AND MESSAGING PROVIDER ACTIVATION: NOT AUTHORIZED
@@ -19,12 +19,13 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Lovable Build Prompt (documentary planning) |
 | Lifecycle stage | Source 18 v1.2 Stage 12 — Initial Implementation Package |
-| Status | `APPROVED — LOCKED` |
-| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only |
+| Status | `DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL` (MC-739-S); no lock until review, Founder human merge and Mission Control re-lock |
+| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
 | Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
+| Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011` |
 | Companion documents | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md` in `docs/implementation/SB-P-1.17/` |
@@ -54,7 +55,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 - **Scope:** Stage 7 components C-STK, C-SIG, C-SUP; Blueprint §8.1, §8.2, §8.3; **46 `IN SCOPE` rows** (Section 7).
 - **Exact rows (46):** `7-§1-1`, `7-§1-2`, `7-§2-1`, `7-§2-2`, `7-§2-3`, `7-§2-4`, `7-§2-5`, `7-§2-6`, `7-§2-7`, `7-§2-8`, `7-§2-9`, `7-§2-10`, `7-§2-11`, `7-§2-12`, `7-§3-1`, `7-§3-2`, `7-§3-3`, `7-§3-4`, `7-§3-5`, `7-§3-6`, `7-§3-7`, `7-§3-8`, `7-§3-9`, `7-§8-1`, `7-§8-2`, `7-§8-3`, `7-§8-4`, `7-§8-5`, `7-§9-1`, `7-§9-2`, `7-§9-3`, `7-§16-6`, `3-§9-3`, `3-§11-6`, `3-§15-7`, `3-§15-10`, `BP-§10.3-S2`, `BP-§10.6-W1`, `BP-§10.6-W2`, `BP-§10.6-W3`, `BP-§10.6-W10`, `BP-§10.6-W11`, `BP-§10.6-W12`, `BP-§10.6-E3`, `BP-§11-7`, `GPCV-R7`.
-- **EIS / Engineering Contract references (61):** ARC-01, ARC-02, ARC-04, ARC-05, STK-01, STK-02, STK-03, STK-04, STK-05, STK-06, STK-07, STK-08, SIG-01, SIG-02, SIG-03, SIG-04, SUP-01, SUP-02, SUP-03, SUP-04, SUP-05, SUP-06, SUP-07, RO-04, DOC-01, POS-11, TXN-02, TXN-03, TXN-04, TXN-06, TXN-09, TXN-10, AUTH-01, AUTH-03, WS-08, WS-10, WS-11, AUD-01, MIG-01, MIG-02, VER-01, VER-02, VER-03, VER-04, VER-05, VER-06, VER-08, VER-12, NEG-01, NEG-02, OPT-01, HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-06, HOLD-07, HOLD-09, HOLD-13, HOLD-17, HOLD-22.
+- **EIS / Engineering Contract references (62):** ARC-01, ARC-02, ARC-04, ARC-05, STK-01, STK-02, STK-03, STK-04, STK-05, STK-06, STK-07, STK-08, STK-10, SIG-01, SIG-02, SIG-03, SIG-04, SUP-01, SUP-02, SUP-03, SUP-04, SUP-05, SUP-06, SUP-07, RO-04, DOC-01, POS-11, TXN-02, TXN-03, TXN-04, TXN-06, TXN-09, TXN-10, AUTH-01, AUTH-03, WS-08, WS-10, WS-11, AUD-01, MIG-01, MIG-02, VER-01, VER-02, VER-03, VER-04, VER-05, VER-06, VER-08, VER-12, NEG-01, NEG-02, OPT-01, HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-06, HOLD-07, HOLD-09, HOLD-13, HOLD-17, HOLD-22.
 - **Prerequisites:** dependency codes on its rows: `D12` 29, `D14` 25, `DTX` 7, `D16` 2, `D13` 1, `DNTF` 1, `DPOS` 1, `DENT` 1. Upstream foundations implemented and accepted before any row is built; Implementation Authorization naming this workstream.
 - **Retained holds:** HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-06, HOLD-07, HOLD-09, HOLD-13, HOLD-16, HOLD-17, HOLD-18, HOLD-21, HOLD-22.
 - **Architecture boundary:** Extend the single SB-P-1.10 stock foundation additively (`inventory_items`, `inventory_movements`, `create_inventory_movement`); suppliers are SB-P-1.12 participants (`EIS-ID-03`); product identity is `catalog_products`. Supplier purchase prices are Reference Cost information released only through permissioned projections.
@@ -67,15 +68,16 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - inferring expiry, wastage, demand or "healthy stock";
   - linking a historical purchase to a supplier without explicit Owner confirmation, editing the original transaction, or creating a duplicate purchase;
   - exposing supplier purchase prices without `catalog.cost.read`, or any supplier-payable balance or settlement logic beyond FIN-01 PROVISIONAL;
-- **Required verification before any later release:** row-keyed items for all 46 rows; negative checks NP-01, NP-06, NP-07, NP-08, NP-09, NP-14, NP-16, NP-21, NP-22, NP-26, NP-27, NP-34, NP-37; runtime scenarios RS-01, RS-11, RS-14; evidence classes T2 + T3 (32), DR (7), T2-NEG (5), T2-IDEM (4), EXP (3), T4 FRV-A (1), GATE (1).
+  - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
+- **Required verification before any later release:** row-keyed items for all 46 rows; negative checks NP-01, NP-06, NP-07, NP-08, NP-09, NP-14, NP-16, NP-21, NP-22, NP-26, NP-27, NP-34, NP-37, NP-39, NP-40, NP-42, NP-44, NP-45, NP-47; runtime scenarios RS-01, RS-11, RS-14; evidence classes T2 + T3 (32), DR (7), T2-NEG (5), T2-IDEM (4), EXP (3), T4 FRV-A (1), GATE (1).
 
 ### 5.2 SB-P-1.17/WS17-B — Reorder Intelligence, Standing Rules and Purchase Requests
 
 - **Scope:** Stage 7 components C-RO; Blueprint §8.4; **31 `IN SCOPE` rows** (Section 7).
 - **Exact rows (31):** `7-§4-1`, `7-§4-2`, `7-§4-3`, `7-§4-4`, `7-§4-5`, `7-§4-6`, `7-§4-7`, `7-§5-1`, `7-§5-2`, `7-§5-3`, `7-§5-4`, `7-§11-1.1`, `7-§11-1.2`, `7-§11-1.3`, `7-§11-1.4`, `7-§11-1.5`, `7-§11-1.6`, `7-§11-2.1`, `7-§11-2.2`, `7-§11-2.3`, `7-§11-2.4`, `7-§11-2.5`, `10-§13-6`, `12-§7-7`, `24-§18-3`, `24-§21-3`, `BP-§6.5-1`, `BP-§10.6-W4`, `BP-§10.6-W5`, `BP-§10.6-W6`, `BP-§11-6`.
-- **EIS / Engineering Contract references (43):** ARC-01, STK-03, STK-05, STK-07, SIG-01, SIG-02, SIG-03, SUP-02, SUP-03, SUP-07, RO-01, RO-02, RO-03, RO-04, RO-05, RO-06, RO-07, RO-08, CTR-02, CC-04, AUTH-01, AUTH-02, AUTH-03, AUTH-04, AI-03, AI-04, AI-05, AI-06, FLR-03, VER-01, VER-02, VER-03, VER-06, VER-09, NEG-01, HOLD-01, HOLD-02, HOLD-03, HOLD-05, HOLD-10, HOLD-11, HOLD-12, HOLD-13.
+- **EIS / Engineering Contract references (44):** ARC-01, STK-03, STK-05, STK-07, STK-10, SIG-01, SIG-02, SIG-03, SUP-02, SUP-03, SUP-07, RO-01, RO-02, RO-03, RO-04, RO-05, RO-06, RO-07, RO-08, CTR-02, CC-04, AUTH-01, AUTH-02, AUTH-03, AUTH-04, AI-03, AI-04, AI-05, AI-06, FLR-03, VER-01, VER-02, VER-03, VER-06, VER-09, NEG-01, HOLD-01, HOLD-02, HOLD-03, HOLD-05, HOLD-10, HOLD-11, HOLD-12, HOLD-13.
 - **Prerequisites:** dependency codes on its rows: `D12` 26, `D13` 25, `D14` 8, `D15` 6, `DAI` 6, `DSCH` 4, `DNTF` 2, `DV` 1. Upstream foundations implemented and accepted before any row is built; Implementation Authorization naming this workstream.
-- **Retained holds:** HOLD-01, HOLD-02, HOLD-03, HOLD-05, HOLD-10, HOLD-11, HOLD-12, HOLD-13, HOLD-19, HOLD-22, HOLD-23.
+- **Retained holds:** HOLD-01, HOLD-02, HOLD-03, HOLD-05, HOLD-10, HOLD-11, HOLD-12, HOLD-13, HOLD-17, HOLD-19, HOLD-22, HOLD-23.
 - **Architecture boundary:** Suggestions are records with evidence; confirmation uses SB-P-1.12 `confirmation_bindings` (`EIS-CNF-01/02`); standing rules are Owner-only stored delegations (`EIS-AUT-01`, `EIS15-RUL-01` to `-06`); follow-ups use the SB-P-1.15 Reminder Engine.
 - **Permission boundary:** Owner confirms by default; a Manager confirms, modifies or rejects only under capability 2 within item and supplier scope and any Owner-set value ceiling, revalidated at preview and commit. Standing-rule creation is Owner-only.
 - **Prohibited:**
@@ -84,7 +86,8 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - fabricating demand forecasts, supplier availability or stock quantities;
   - showing a purchase request as sent or accepted, or recording a supplier reply, unless the merchant records it; any system dispatch before SB-P-1.20;
   - a separate reminder or scheduler path;
-- **Required verification before any later release:** row-keyed items for all 31 rows; negative checks NP-01, NP-02, NP-04, NP-05, NP-06, NP-07, NP-08, NP-09, NP-11, NP-14, NP-15, NP-16, NP-26, NP-28, NP-30, NP-32, NP-35, NP-37; runtime scenarios RS-01, RS-05, RS-09; evidence classes T2 + T3 (21), T4 FRV-A (11), T2-NEG (11), DR (3).
+  - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
+- **Required verification before any later release:** row-keyed items for all 31 rows; negative checks NP-01, NP-02, NP-04, NP-05, NP-06, NP-07, NP-08, NP-09, NP-11, NP-14, NP-15, NP-16, NP-26, NP-28, NP-30, NP-32, NP-35, NP-37, NP-39; runtime scenarios RS-01, RS-05, RS-09; evidence classes T2 + T3 (21), T4 FRV-A (11), T2-NEG (11), DR (3).
 
 ### 5.3 SB-P-1.17/WS17-C — Standard POS Bridge, Intake Authority and Transaction Composition
 
@@ -146,7 +149,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 - **Scope:** Stage 7 components C-DOC, C-FDN; Blueprint §8.5, §8.11; **99 `IN SCOPE` rows** (Section 7).
 - **Exact rows (99):** `7-§6-1`, `7-§6-3`, `7-§6-4b`, `7-§6-5b`, `7-§12-1`, `7-§12-2`, `7-§12-3`, `7-§12-4`, `7-§12-5`, `7-§12-6`, `7-§12-7`, `7-§12-8`, `7-§12-9`, `7-§13-1`, `7-§13-2`, `7-§13-3`, `7-§13-4`, `7-§13-5`, `7-§13-6`, `7-§13-7`, `7-§13-8`, `7-§13-9`, `7-§13-10`, `7-§13-11`, `7-§13-12`, `7-§13-13`, `7-§16-1`, `7-§16-2`, `7-§16-3`, `7-§16-4`, `7-§16-5`, `13-§16-1`, `13-§16-2`, `13-§16-3`, `13-§16-4`, `13-§16-5`, `13-§16-6`, `13-§16-7`, `13-§16-8`, `13-§16-9`, `13-§16-10`, `13-§16-11`, `13-§16-12`, `13-§17-1`, `13-§17-2`, `13-§17-3`, `13-§17-4`, `13-§17-5`, `13-§17-6`, `13-§17-7`, `13-§17-8`, `13-§17-9`, `13-§17-10`, `13-§17-11`, `13-§17-12`, `13-§19-1`, `13-§19-2`, `13-§19-3`, `13-§19-4`, `13-§19-5`, `13-§19-6`, `13-§19-7`, `13-§19-8`, `13-§19-9`, `13-§19-10`, `13-§20-1`, `13-§20-2`, `13-§20-3`, `13-§20-4`, `13-§20-5`, `13-§20-6`, `13-§20-7`, `13-§22-1`, `13-§22-2`, `13-§22-3`, `13-§22-4`, `13-§22-5`, `17-§20-1`, `17-§20-2`, `17-§20-3`, `17-§20-4`, `17-§20-5`, `17-§20-6`, `17-§20-7`, `17-§20-8`, `17-§20-9`, `17-§20-10`, `17-§20-11`, `17-§20-12`, `5-§4-10`, `BP-§5.3-1`, `BP-§6.2-1`, `BP-§6.3-1`, `BP-§9-6`, `BP-§9-AL`, `BP-§13-1`, `BP-§13-9`, `BP-§14-1`, `GPCV-§11-2`.
-- **EIS / Engineering Contract references (90):** ARC-01, ARC-02, ARC-03, ARC-04, ARC-05, STK-01, STK-04, STK-05, STK-06, STK-09, SUP-01, RO-02, RO-04, RO-05, RO-06, DOC-01, DOC-02, DOC-03, DOC-04, POS-02, POS-03, POS-05, POS-06, POS-08, POS-09, POS-10, POS-11, TXN-01, TXN-02, TXN-03, TXN-04, TXN-05, TXN-06, TXN-07, TXN-08, TXN-11, TXN-12, CTR-02, CTR-03, CTR-04, CTR-05, CTR-06, CTR-07, CC-01, CC-02, CC-03, CC-04, CC-06, AUTH-01, AUTH-06, AUTH-08, AI-01, AI-02, WS-09, FLR-01, FLR-02, FLR-03, AUD-01, AUD-02, AUD-03, PRIV-02, PRIV-03, SEC-01, SEC-02, SEC-04, MIG-01, MIG-03, MIG-04, VER-01, VER-02, VER-03, VER-04, VER-08, VER-10, NEG-01, NEG-02, HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-07, HOLD-08, HOLD-10, HOLD-13, HOLD-15, HOLD-17, HOLD-18, HOLD-19, HOLD-20.
+- **EIS / Engineering Contract references (91):** ARC-01, ARC-02, ARC-03, ARC-04, ARC-05, STK-01, STK-04, STK-05, STK-06, STK-09, STK-10, SUP-01, RO-02, RO-04, RO-05, RO-06, DOC-01, DOC-02, DOC-03, DOC-04, POS-02, POS-03, POS-05, POS-06, POS-08, POS-09, POS-10, POS-11, TXN-01, TXN-02, TXN-03, TXN-04, TXN-05, TXN-06, TXN-07, TXN-08, TXN-11, TXN-12, CTR-02, CTR-03, CTR-04, CTR-05, CTR-06, CTR-07, CC-01, CC-02, CC-03, CC-04, CC-06, AUTH-01, AUTH-06, AUTH-08, AI-01, AI-02, WS-09, FLR-01, FLR-02, FLR-03, AUD-01, AUD-02, AUD-03, PRIV-02, PRIV-03, SEC-01, SEC-02, SEC-04, MIG-01, MIG-03, MIG-04, VER-01, VER-02, VER-03, VER-04, VER-08, VER-10, NEG-01, NEG-02, HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-07, HOLD-08, HOLD-10, HOLD-13, HOLD-15, HOLD-17, HOLD-18, HOLD-19, HOLD-20.
 - **Prerequisites:** dependency codes on its rows: `D12` 42, `D14` 25, `DPOS` 24, `D15` 10, `D13` 5, `DNTF` 3, `DSCH` 1, `DSEC` 1, `DTX` 1. Upstream foundations implemented and accepted before any row is built; Implementation Authorization naming this workstream.
 - **Retained holds:** HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-07, HOLD-08, HOLD-10, HOLD-13, HOLD-15, HOLD-17, HOLD-18, HOLD-19, HOLD-20, HOLD-21, HOLD-23.
 - **Architecture boundary:** Stock documents use SB-P-1.17 destination adapters on the single SB-P-1.14 UDI pipeline (modelled on `EIS14-ADP-02`). Failures fail narrowly with defined states; domain events are append-only; authority audit reuses SB-P-1.12.
@@ -156,7 +159,8 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - a failure that blocks unrelated operations or loses merchant input;
   - mutating or deleting originals; audit that captures operator surveillance data;
   - new objects that are usable by `PUBLIC`, `anon` or `authenticated` before RLS and intended grants, or `SECURITY DEFINER` without the SB-P-1.12 narrow-executor pattern;
-- **Required verification before any later release:** row-keyed items for all 99 rows; negative checks NP-01, NP-02, NP-03, NP-04, NP-10, NP-13, NP-14, NP-15, NP-17, NP-18, NP-19, NP-20, NP-21, NP-22, NP-24, NP-25, NP-26, NP-28, NP-30, NP-31, NP-32, NP-33, NP-35, NP-37; runtime scenarios none; evidence classes DR (49), T2-NEG (39), T2 + T3 (37), T2-IDEM (7), GATE (2).
+  - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
+- **Required verification before any later release:** row-keyed items for all 99 rows; negative checks NP-01, NP-02, NP-03, NP-04, NP-10, NP-13, NP-14, NP-15, NP-17, NP-18, NP-19, NP-20, NP-21, NP-22, NP-24, NP-25, NP-26, NP-28, NP-30, NP-31, NP-32, NP-33, NP-35, NP-37, NP-38, NP-40, NP-41, NP-42, NP-43, NP-44, NP-45, NP-46, NP-47, NP-48; runtime scenarios none; evidence classes DR (49), T2-NEG (39), T2 + T3 (37), T2-IDEM (7), GATE (2).
 
 ### 5.7 SB-P-1.17/WS17-G — Acceptance, Completion Gates and Founder Runtime Verification
 
@@ -175,7 +179,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 6. Holds the Builder Must Not Cross
 
-`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record.
+`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record. Gate C-2 on `EC17-STK-10` entry topology is NOT YET DISPOSITIONED, and no builder may treat either entry design as settled.
 
 ## 7. Workstream-to-FCTM-Row Map (404 rows)
 
@@ -601,4 +605,4 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 9. Status
 
-`APPROVED — LOCKED`. Documentary planning only. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Documentary planning only. Gate C-2 NOT YET DISPOSITIONED. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**

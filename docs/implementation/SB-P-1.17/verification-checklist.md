@@ -1,11 +1,11 @@
 # SB-P-1.17 — Verification Checklist
 
 ```text
-STATUS: APPROVED — LOCKED
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a)
-EIS: APPROVED — LOCKED (UNCHANGED, blob 5d681b0c)
+STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2 NOT YET DISPOSITIONED)
+EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
-IMPLEMENTATION PACKAGE: APPROVED — LOCKED (Stage 13)
+IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 POS, AI, VOICE AND MESSAGING PROVIDER ACTIVATION: NOT AUTHORIZED
@@ -19,12 +19,13 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Verification Checklist |
 | Lifecycle stage | Source 18 v1.2 Stage 12 — Initial Implementation Package |
-| Status | `APPROVED — LOCKED` |
-| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only |
+| Status | `DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL` (MC-739-S); no lock until review, Founder human merge and Mission Control re-lock |
+| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
 | Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
+| Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011` |
 | Companion documents | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md` in `docs/implementation/SB-P-1.17/` |
@@ -88,6 +89,17 @@ Every item is **NOT VERIFIED**. An item becomes evidenced only through the plann
 | `NP-35` | A purchase request is never shown as sent or accepted without a merchant record; no system dispatch | RO-04 | 2 |
 | `NP-36` | No dashboard-only logic or second truth; caches never bypass authorization | WS-01, WS-06 | 24 |
 | `NP-37` | Per mapped row, test its exact FCTM must-not / negative prohibition (including blind procurement, custom POS core, fixed thresholds, duplicate engines, CSV-only downgrade and AI verdicts where applicable). The verifier records a row-specific prohibited action, entry surface, attempted actor/input, expected denial or absence, observed outcome and linked negative evidence; one generic screenshot or aggregate NP-37 PASS cannot satisfy multiple different clauses. | NEG-01, NEG-02, POS-10, POS-08 | 73 |
+| `NP-38` | An Employee holding only the proposed `order.pack.line` is denied the public writer, direct `INSERT`, the raw child and inventory-history reads | STK-10 | 3 |
+| `NP-39` | Payload-supplied business, item, quantity, type, direction, reason, event link or negative-stock flag is ignored or rejected | STK-10 | 2 |
+| `NP-40` | The child has no `PUBLIC`, `anon` or `authenticated` `EXECUTE`, takes no principal, consumes no second confirmation and is refused outside the outer transaction. The consumer executor has no direct inventory DML | STK-10 | 3 |
+| `NP-41` | Movements created by other actors count in the projection: a packer who cannot read them still gets the correct under-lock decision | STK-10, STK-09 | 1 |
+| `NP-42` | Return after correction, correction after return, and concurrent attempts never exceed the original decrease | STK-10, STK-05 | 2 |
+| `NP-43` | The Employee path cannot override. Override and non-override are distinct intents. The public entry denies its flag without override authority | STK-10 | 2 |
+| `NP-44` | A block returns the typed outcome; an unrelated failure is not classified as one; nothing partial commits; the denial stays durable | STK-10 | 3 |
+| `NP-45` | Concurrent and lost-response replay yield one outcome. Another actor gains nothing by replaying a child key. A changed payload is rejected | STK-10, TXN-02, TXN-05 | 3 |
+| `NP-46` | The responsible actor is the verified Employee, never the executor. `service_role` without a decision record, forged claims and simulated claims gain nothing | STK-10 | 2 |
+| `NP-47` | Revocation at commit stops the pack. Pack, return and correction under contention cannot deadlock, under the shared order | STK-10, TXN-11 | 2 |
+| `NP-48` | After cut-over, `authenticated` direct `INSERT` is denied for every role including the Owner, and the Owner movement path still works through the public entry. Effective access is verified | STK-10, SEC-03 | 2 |
 
 **Stage 13 specificity rule — NP-01 and NP-37.** A named check ID is a reusable test family, not blanket evidence or a blanket PASS. For each row mapped to `NP-01`, verify the specific forbidden capability and its relevant UI, RPC, export, conversation or background entry points for a no-grant Manager and record row-keyed denial evidence; where a row specifies another authority condition, apply its narrower `NP-02`–`NP-36` check as well. For each row mapped to `NP-37`, derive the exact prohibited behavior from that FCTM row and its linked EIS requirements and record a distinct row-keyed negative assertion and observation. If the original row is too ambiguous to derive a test, mark `FOLLOW-UP` and do not mark it PASS; resolve against the locked source contract without inventing Product Truth. No check is performed or passed by this document.
 
@@ -115,11 +127,11 @@ Scenarios RS-01 and RS-02 are Founder-reserved (Source 18 §4.2; `BP-§13-9`). *
 
 ## 6. Already Demonstrated Rows
 
-The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward assessment applies and no row is marked PASS. Existing repository evidence that later work must not regress is a **regression / no-change** obligation, not a demonstration: the 17 `tests/inventory` files (`EC17-VER-12`) and the existing `create_inventory_movement` invariants (type-direction, correction link, idempotency).
+The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward assessment applies and no row is marked PASS. Existing repository evidence that later work must not regress is a **regression / no-change** obligation, not a demonstration: the 17 `tests/inventory` files (`EC17-VER-12`) and the existing `create_inventory_movement` invariants (type-direction, correction link, idempotency). Direct-write cases are re-baselined only as the candidate `EIS17-VER-12` allows; this checklist authorizes no test change or execution.
 
 ## 7. Preserved Holds
 
-`HOLD-01` to `HOLD-23`, FIN-01 PROVISIONAL, U-11, DPOS/SA-04, MC-507CM calibration (all parameters UNSET), T6 screening pending and T8 WATCH stay open. A row carrying a held dependency is never reported as passed.
+`HOLD-01` to `HOLD-23`, FIN-01 PROVISIONAL, U-11, DPOS/SA-04, MC-507CM calibration (all parameters UNSET), T6 screening pending and T8 WATCH stay open. A row carrying a held dependency is never reported as passed. Gate C-2 on `EIS17-STK-10` entry topology is NOT YET DISPOSITIONED.
 
 ## 8. Row-Keyed Checklist Items (404 rows)
 
@@ -131,7 +143,7 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-004` | `7-§2-2` | OBL | WS17-A | T2 + T3 | — | — | 7 | NOT VERIFIED |
 | `VC17-005` | `7-§2-3` | OBL | WS17-A | T2 + T3 | — | — | 9 | NOT VERIFIED |
 | `VC17-006` | `7-§2-4` | OBL | WS17-A | T2 + T3 | — | — | 6 | NOT VERIFIED |
-| `VC17-007` | `7-§2-5` | OBL | WS17-A | T2 + T3 | — | — | 9 | NOT VERIFIED |
+| `VC17-007` | `7-§2-5` | OBL | WS17-A | T2 + T3 | NP-42 | — | 10 | NOT VERIFIED |
 | `VC17-008` | `7-§2-6` | OBL | WS17-A | T2 + T3, T4 FRV-A | NP-16 | RS-01 | 9 | NOT VERIFIED |
 | `VC17-009` | `7-§2-7` | OBL | WS17-A | T2 + T3 | — | — | 6 | NOT VERIFIED |
 | `VC17-010` | `7-§2-8` | OBL | WS17-A | T2 + T3 | — | — | 5 | NOT VERIFIED |
@@ -167,9 +179,9 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-040` | `7-§7-2` | OBL | WS17-C | T2 + T3 | — | — | 7 | NOT VERIFIED |
 | `VC17-041` | `7-§7-3` | NEG | WS17-C | T2-NEG, DR | NP-37 | — | 6 | NOT VERIFIED |
 | `VC17-042` | `7-§7-4` | RULE | WS17-C | DR, T2 + T3 | — | — | 8 | NOT VERIFIED |
-| `VC17-043` | `7-§8-1` | RULE | WS17-A | DR, T2-IDEM | NP-21, NP-22 | — | 12 | NOT VERIFIED |
+| `VC17-043` | `7-§8-1` | RULE | WS17-A | DR, T2-IDEM | NP-21, NP-22, NP-40, NP-44 | — | 13 | NOT VERIFIED |
 | `VC17-044` | `7-§8-2` | OBL | WS17-A | T2 + T3, T2-IDEM | NP-22, NP-27 | — | 12 | NOT VERIFIED |
-| `VC17-045` | `7-§8-3` | OBL | WS17-A | T2 + T3, T2-IDEM | NP-22 | — | 14 | NOT VERIFIED |
+| `VC17-045` | `7-§8-3` | OBL | WS17-A | T2 + T3, T2-IDEM | NP-22, NP-39, NP-45, NP-47 | — | 15 | NOT VERIFIED |
 | `VC17-046` | `7-§8-4` | NEG | WS17-A | T2-NEG | NP-26, NP-37 | — | 7 | NOT VERIFIED |
 | `VC17-047` | `7-§8-5` | RULE | WS17-A | T2 + T3, DR | NP-22, NP-27 | — | 12 | NOT VERIFIED |
 | `VC17-048` | `7-§9-1` | OBL | WS17-A | T2 + T3 | — | — | 5 | NOT VERIFIED |
@@ -188,24 +200,24 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-061` | `7-§11-2.5` | NEG | WS17-B | T2-NEG | NP-01, NP-06, NP-09, NP-11, NP-32, NP-37 | — | 11 | NOT VERIFIED |
 | `VC17-062` | `7-§12-1` | RULE | WS17-F | DR | — | — | 7 | NOT VERIFIED |
 | `VC17-063` | `7-§12-2` | RULE | WS17-F | DR | — | — | 5 | NOT VERIFIED |
-| `VC17-064` | `7-§12-3` | RULE | WS17-F | DR | NP-01 | — | 7 | NOT VERIFIED |
+| `VC17-064` | `7-§12-3` | RULE | WS17-F | DR | NP-01, NP-38, NP-43, NP-46 | — | 8 | NOT VERIFIED |
 | `VC17-065` | `7-§12-4` | RULE | WS17-F | DR | — | — | 9 | NOT VERIFIED |
 | `VC17-066` | `7-§12-5` | RULE | WS17-F | DR | — | — | 6 | NOT VERIFIED |
 | `VC17-067` | `7-§12-6` | RULE | WS17-F | DR | — | — | 6 | NOT VERIFIED |
 | `VC17-068` | `7-§12-7` | RULE | WS17-F | DR | NP-14 | — | 9 | NOT VERIFIED |
-| `VC17-069` | `7-§12-8` | RULE | WS17-F | DR | NP-33 | — | 8 | NOT VERIFIED |
+| `VC17-069` | `7-§12-8` | RULE | WS17-F | DR | NP-33, NP-44, NP-45, NP-46 | — | 9 | NOT VERIFIED |
 | `VC17-070` | `7-§12-9` | RULE | WS17-F | DR | NP-18 | — | 7 | NOT VERIFIED |
 | `VC17-071` | `7-§13-1` | OBL | WS17-F | T2-IDEM | — | — | 8 | NOT VERIFIED |
 | `VC17-072` | `7-§13-2` | OBL | WS17-F | T2 + T3, T2-NEG | NP-19 | — | 8 | NOT VERIFIED |
 | `VC17-073` | `7-§13-3` | OBL | WS17-F | T2 + T3, T2-NEG | NP-19 | — | 8 | NOT VERIFIED |
 | `VC17-074` | `7-§13-4` | OBL | WS17-F | T2 + T3, T2-NEG | NP-37 | — | 8 | NOT VERIFIED |
-| `VC17-075` | `7-§13-5` | OBL | WS17-F | T2 + T3, T2-NEG | NP-37 | — | 8 | NOT VERIFIED |
-| `VC17-076` | `7-§13-6` | OBL | WS17-F | T2 + T3, T2-NEG | NP-13, NP-24, NP-26 | — | 10 | NOT VERIFIED |
+| `VC17-075` | `7-§13-5` | OBL | WS17-F | T2 + T3, T2-NEG | NP-37, NP-41, NP-43, NP-44 | — | 9 | NOT VERIFIED |
+| `VC17-076` | `7-§13-6` | OBL | WS17-F | T2 + T3, T2-NEG | NP-13, NP-24, NP-26, NP-42, NP-47 | — | 11 | NOT VERIFIED |
 | `VC17-077` | `7-§13-7` | OBL | WS17-F | T2 + T3, T2-NEG | NP-32 | — | 9 | NOT VERIFIED |
 | `VC17-078` | `7-§13-8` | OBL | WS17-F | T2 + T3, T2-NEG | NP-35 | — | 9 | NOT VERIFIED |
 | `VC17-079` | `7-§13-9` | OBL | WS17-F | T2 + T3, T2-NEG | NP-25 | — | 9 | NOT VERIFIED |
 | `VC17-080` | `7-§13-10` | OBL | WS17-F | T2 + T3, T2-NEG | NP-37 | — | 7 | NOT VERIFIED |
-| `VC17-081` | `7-§13-11` | OBL | WS17-F | T2-IDEM | — | — | 9 | NOT VERIFIED |
+| `VC17-081` | `7-§13-11` | OBL | WS17-F | T2-IDEM | NP-45 | — | 10 | NOT VERIFIED |
 | `VC17-082` | `7-§13-12` | OBL | WS17-F | T2 + T3, T2-NEG | NP-04, NP-13, NP-15 | — | 10 | NOT VERIFIED |
 | `VC17-083` | `7-§13-13` | RULE | WS17-F | T2 + T3, T2-NEG | NP-37 | — | 9 | NOT VERIFIED |
 | `VC17-084` | `7-§14-1` | PRIN | WS17-D | T2-NEG, EXP | NP-30 | RS-03 | 5 | NOT VERIFIED |
@@ -221,7 +233,7 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-094` | `7-§15-9` | SCN | WS17-G | DR, T2 + T3 | — | RS-04 | 7 | NOT VERIFIED |
 | `VC17-095` | `7-§15-11` | SCN | WS17-G | T2-NEG, EXP | NP-30 | RS-03 | 7 | NOT VERIFIED |
 | `VC17-096` | `7-§16-1` | NEG | WS17-F | T2-NEG | NP-37 | — | 5 | NOT VERIFIED |
-| `VC17-097` | `7-§16-2` | NEG | WS17-F | T2-NEG | NP-37 | — | 6 | NOT VERIFIED |
+| `VC17-097` | `7-§16-2` | NEG | WS17-F | T2-NEG | NP-37, NP-38, NP-40, NP-48 | — | 7 | NOT VERIFIED |
 | `VC17-098` | `7-§16-3` | NEG | WS17-F | T2-NEG | NP-37 | — | 6 | NOT VERIFIED |
 | `VC17-099` | `7-§16-4` | NEG | WS17-F | T2-NEG | NP-30, NP-37 | — | 6 | NOT VERIFIED |
 | `VC17-100` | `7-§16-5` | NEG | WS17-F | T2-NEG | NP-25, NP-37 | — | 6 | NOT VERIFIED |
@@ -489,7 +501,7 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-362` | `BP-§5.3-1` | RULE | WS17-F | DR | — | — | 8 | NOT VERIFIED |
 | `VC17-363` | `BP-§5.4-1` | RULE | WS17-C | DR | NP-17, NP-18 | — | 9 | NOT VERIFIED |
 | `VC17-364` | `BP-§6.1-1` | NEG | WS17-E | T2-NEG | NP-01, NP-14, NP-18, NP-37 | — | 7 | NOT VERIFIED |
-| `VC17-365` | `BP-§6.2-1` | RULE | WS17-F | DR, T2 + T3 | NP-22, NP-33 | — | 11 | NOT VERIFIED |
+| `VC17-365` | `BP-§6.2-1` | RULE | WS17-F | DR, T2 + T3 | NP-22, NP-33, NP-38, NP-40, NP-48 | — | 12 | NOT VERIFIED |
 | `VC17-366` | `BP-§6.3-1` | RULE | WS17-F | DR | NP-18, NP-33 | — | 8 | NOT VERIFIED |
 | `VC17-367` | `BP-§6.5-1` | RULE | WS17-B | DR | NP-01 | — | 9 | NOT VERIFIED |
 | `VC17-368` | `BP-§6.6-1` | RULE | WS17-C | DR | — | — | 6 | NOT VERIFIED |
@@ -520,7 +532,7 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | `VC17-393` | `BP-§10.6-B1` | FRV | WS17-G | T4 FRV-B | — | RS-02 | 7 | NOT VERIFIED |
 | `VC17-394` | `BP-§10.6-B2` | FRV | WS17-G | T4 FRV-B | — | RS-02, RS-03 | 6 | NOT VERIFIED |
 | `VC17-395` | `BP-§10.6-X` | EXP | WS17-E | EXP | NP-01 | RS-10 | 5 | NOT VERIFIED |
-| `VC17-396` | `BP-§11-6` | RULE | WS17-B | DR | NP-01 | — | 5 | NOT VERIFIED |
+| `VC17-396` | `BP-§11-6` | RULE | WS17-B | DR | NP-01, NP-39 | — | 6 | NOT VERIFIED |
 | `VC17-397` | `BP-§11-7` | RULE | WS17-A | DR | — | — | 5 | NOT VERIFIED |
 | `VC17-398` | `BP-§13-1` | RULE | WS17-F | GATE | — | — | 3 | NOT VERIFIED |
 | `VC17-399` | `BP-§13-9` | RULE | WS17-F | GATE | — | — | 3 | NOT VERIFIED |
@@ -548,9 +560,10 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 | Experience rows with a named human-runtime scenario | 44 / 44 |
 | FRV-A / FRV-B rows mapped to RS-01 / RS-02 | 18 / 17 |
 | `ALREADY DEMONSTRATED` rows | 0 (none marked PASS) |
-| Product behaviour or permissions added beyond the locked EIS | None: obligations realize EIS requirements one-to-one; negative checks and scenarios restate EIS requirements |
+| Product behaviour or permissions added beyond the locked EIS | None: obligations realize EIS requirements one-to-one; negative checks and scenarios restate EIS requirements (`EC17-STK-10` and `NP-38` to `NP-48` restate candidate text) |
 | Holds silently closed | None |
 | Dependency and authorization boundaries consistent across the three documents | Same locked references, hold list, status block and NOT AUTHORIZED flags in all three |
+| Status of these results | Author-calculated for this candidate; not an independent PASS |
 
 ## 10. Verification-Stage Ownership
 
@@ -558,4 +571,4 @@ Builder evidence never proves acceptance. Independent post-build verification (S
 
 ## 11. Status
 
-`APPROVED — LOCKED`. Every item NOT VERIFIED. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Every item NOT VERIFIED. Gate C-2 NOT YET DISPOSITIONED. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**

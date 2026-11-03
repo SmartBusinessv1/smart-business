@@ -1,8 +1,70 @@
 # SB-P-1.17 — Engineering Implementation Specification
 
-STATUS: APPROVED — LOCKED
+STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
 
 **IMPLEMENTATION NOT AUTHORIZED.** This EIS specifies how the locked SB-P-1.17 Blueprint is to be built. It authorizes no code, SQL, migration, provider or POS activation, test execution, deployment or production change. Stage 11 documentary lock becomes effective only after Founder human merge of this administrative alignment and Mission Control verification on protected `main`.
+
+## Post-Lock Amendment Candidate — Review Section (MC-739-S)
+
+**This candidate is noncanonical and has no approval.** It exists for review under [MC-739 §2](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754), from the author proposal [MC-738-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604114164). The canonical SB-P-1.17 EIS and package stay the locked predecessors on `main`: EIS blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982`, Engineering Contract `2728fa68bb1396e36c9ee4fe62ca66b905a553e1`, Build Prompt `4cc20b08fdfec3ecfa319a761b9f0372f96eba04`, Checklist `e4f775e5a7bb6e55951ad8f5d0a3e27afcd6b7e1`. No successor identity exists until independent review, Founder human merge and Mission Control re-lock. Earlier reviewers have not endorsed these bytes (MC-739 S17-K).
+
+### Candidate changes
+
+| Location | Change |
+|---|---|
+| Section 7, new `EIS17-STK-10` | One-writer stock interface, carrying the SA-03 and SB-P-1.12 conditions |
+| Section 5, stock baseline | Corrects the grant statement: the Owner-only effect comes from RLS, not from grants |
+| Section 4, stock principle | Locked wording kept, with a note pointing to gate C-2 |
+| `EIS17-VER-12` | S17-C1 re-baseline of direct-write cases; no test is dropped, changed or run by this candidate |
+| Sections 30.1, 30.2, 30.3 | `EIS17-STK-10` linked to 11 existing `IN SCOPE` rows; counts are author-calculated |
+| Metadata, Section 32 | Provisional status and the C-2 trigger row |
+
+**Direct-write test cases S17-C1 covers:** `audit-integrity.test.ts` L46 and L62, `correction-link-integrity.test.ts` L30, `shared-write-path.test.ts` L80.
+
+### Gate C-2 — NOT YET DISPOSITIONED
+
+**Question.** Does a second governed entry to one writer fit the locked Blueprint? MC-739 S17-C2 holds this as an unresolved Source 18 T3/T6/T8 interpretive screen for Mission Control and the Founder, before any final lock or merge. No incompatibility is demonstrated, so T8 is not established. Section 2 still applies: where the Blueprint and this EIS differ, the Blueprint prevails.
+
+| Blueprint line (blob `f65ddd2a`) | Locked wording | Scope |
+|---|---|---|
+| L1951, §20.4.5 | "writes only through `create_inventory_movement`" | Stock-document adapters |
+| L1966, §20.4.6 | "Mapped events drive stock only through `create_inventory_movement`." | POS mapped events |
+| L2090, B6-06 | "writes only through `create_inventory_movement`" | Import adapters |
+| L2848, §20.9.1 | "Inventory writes go through `create_inventory_movement` [R]." | General |
+| L2860, §20.9.1 | "`inventory_movements.id` from `create_inventory_movement`" | Identifier origin |
+
+MC-738-S omitted L1951; this table corrects that.
+
+**Alternative 1 — one governed entry, no Blueprint change.** `create_inventory_movement` stays the only entry, and privilege separation inside it keeps Employees from every caller-controlled parameter while a consumer executor passes server-derived values. Feasibility is **UNKNOWN**. This reading needs re-examination: the Owner path holds `authenticated` `EXECUTE` on that function, so K-C6 and SA-03 conditions 1 and 2, as written for a non-public child, would not be met without a change the kernel owner and SA-03 have not reviewed.
+
+**Alternative 2 — two governed entries, one writer, narrow Blueprint delta.** This is the shape `EIS17-STK-10` is drafted for, as an author proposal only. The exact wording below is **proposed, not applied**:
+
+```diff
+-- Inventory writes go through `create_inventory_movement` [R].
++- Inventory writes go through the one stock writer: `create_inventory_movement` [R] for existing callers, or the protected stock child of `EIS17-STK-10` for a separately accepted consumer command. Both use the same writer core, and no other stock-writing path exists.
+```
+
+```diff
+-| Inventory movement ID | `inventory_movements.id` from `create_inventory_movement`, with its own idempotency key and payload fingerprint [R] |
++| Inventory movement ID | `inventory_movements.id` from the one stock writer (`create_inventory_movement` or its protected child), with its own idempotency key and payload fingerprint [R] |
+```
+
+L1951, L1966 and L2090 name callers that stay on the public entry, so their wording could stay; Mission Control confirms or rejects that reading. A Blueprint change needs specific Founder approval of the exact delta under separate change control, and this candidate edits no Blueprint text and claims no Founder choice. FCTM and Product Truth stay unchanged under either alternative.
+
+### Retained unknowns
+
+**UNKNOWN, none proven:** subject resolution inside an executor, including `auth.uid()`; exact child signature; role and grant graph; lock primitives; return-to-movement link representation; stock-family capability name; archived-item return handling; rollback; which future authorization carries the family cut-over. No SQL, test or runtime evidence supports this candidate.
+
+### Future gates (none satisfied)
+
+1. Mission Control disposition of C-2, with specific Founder approval of any exact Blueprint delta.
+2. Independent SA-03 review of this exact text.
+3. SB-P-1.12 kernel-owner concurrence on this exact text, with K-C1 to K-C10 confirmed.
+4. Targeted independent reviewer of the EIS and the three-file package.
+5. Founder human merge. No AI actor merges this candidate.
+6. Mission Control post-merge verification and re-lock at successor identities.
+
+**Suspension (PR #1067) is unchanged:** this is narrow documentary reconciliation, not general mission reactivation. Implementation stays suspended, communication stays suspended, the resume point is unchanged and Implementation Authorization stays **WITHHELD**. Mission records reconcile append-only after merge, outside this candidate.
 
 ## 1. Document Metadata
 
@@ -11,14 +73,15 @@ STATUS: APPROVED — LOCKED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Engineering Implementation Specification (EIS) |
 | Lifecycle stage | Source 18 v1.2 Stage 11 — EIS Lock, following Stage 10 accepted disposition MC-507CT and separate Stage 11 disposition MC-507CU |
-| Status | `APPROVED — LOCKED` (Stage 11 approved on reviewed content; canonical status effective after Founder merge of this metadata alignment and Mission Control post-merge verification) |
+| Status | `DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL` (MC-739-S). Locked predecessor blob `5d681b0c` stays canonical; no lock until review, Founder human merge and Mission Control re-lock |
 | Author | Claude Code (Stage 9 EIS actor; also author of Stages 2–7 and the Stage 8 package; not independent review) |
 | Authorization | MC-429 (`communication/missions/SB-P-1.17/mission-control/13-stage9-eis-creation-authorization.md`), effective at PR #1018; MC-430 execution instruction (conversation-source) |
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, current canonical blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` (Stage 8 approved/locked; later bounded Founder amendment PR #1059; original Stage 8 blob `bc4615f8…` is historical) |
 | Stage 8 record | `communication/missions/SB-P-1.17/mission-control/12-stage8-founder-approval-and-blueprint-lock-record.md` |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670`: 630 rows, 404 `IN SCOPE` |
 | Founder decisions | `17:FPDR-1` to `-6` (`claude-code/10-…`, blob `90b7ca1d`); `17:FPDR-7` (`claude-code/15-…`, blob `e9f2cacb`); Stage 8 approval (MC-426) |
-| Requirements | 157 (`EIS17-*`) |
+| Amendment authorization | [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): draft preparation only; acceptance not granted |
+| Requirements | 158 (`EIS17-*`) in this candidate, author-calculated; locked predecessor 157 |
 | Baseline | `main@d3155ac99ade96d3d7fdd739eaa2a6003406961a` (PR #1018) |
 | Next gate | Stage 12 — Initial Implementation Package, only after Stage 11 metadata alignment is human-merged and its canonical `main` blob verified; implementation remains NOT AUTHORIZED |
 
@@ -51,7 +114,7 @@ This EIS turns the locked Blueprint Sections 1–21, including the Stage 7 refin
 
 - Consume the locked upstream foundations; build nothing parallel.
 - One governed write path per domain; no client DML on protected objects.
-- Stock moves only through `create_inventory_movement`; Ledger effects only through `create_transaction_governed`.
+- Stock moves only through `create_inventory_movement`; Ledger effects only through `create_transaction_governed`. (Candidate note: whether `EIS17-STK-10` may add a second governed entry to the one writer is gate C-2, **NOT YET DISPOSITIONED**; this locked wording is not reinterpreted.)
 - Atomicity is proven, not assumed; where it cannot be shown, the path stops.
 - Ambiguity, conflict and missing evidence fail narrowly and visibly; nothing is guessed.
 - The Owner decides by default; Manager authority is explicit, scoped and revocable; capability 5 is never delegated.
@@ -62,7 +125,7 @@ This EIS turns the locked Blueprint Sections 1–21, including the Stage 7 refin
 
 Application code, schema, tests and CI configuration are unchanged since the Truth Pack baseline `44895d2c`; every later change is documentation. Facts relied on [R]:
 
-- `inventory_items`, `inventory_movements` and `create_inventory_movement(p_idempotency_key, p_operation, p_item_id, p_movement_type, p_direction, p_quantity, p_reason, p_occurred_at, p_correcting_of, p_allow_negative_stock, p_business_event_type, p_business_event_id)`, `SECURITY INVOKER`, Owner-only.
+- `inventory_items`, `inventory_movements` and `create_inventory_movement(p_idempotency_key, p_operation, p_item_id, p_movement_type, p_direction, p_quantity, p_reason, p_occurred_at, p_correcting_of, p_allow_negative_stock, p_business_event_type, p_business_event_id)`, `SECURITY INVOKER`. `authenticated` holds `EXECUTE` on the function and `SELECT` and `INSERT` on `inventory_movements` and `inventory_movement_idempotency_keys`; the Owner-only effect comes from `owner_id`-scoped RLS policies written `TO authenticated`, not from the grants.
 - `business_event_type` / `business_event_id` on movements are well-formed but not validated against the referenced domain (`tests/inventory/trusted-event-link.test.ts`).
 - `inventory_movement_type` has no wastage, purchase-receipt or POS-sale value; no batch or expiry field (Δ-07).
 - `transactions.transaction_type` is `sale`/`purchase` only; `transaction_date` is a DATE; supplier is free text; direct client insert exists (`src/integrations/supabase/transactions.ts`).
@@ -93,6 +156,7 @@ Application code, schema, tests and CI configuration are unchanged since the Tru
 | `EIS17-STK-07` | PR/TR | **Governed stock readers.** Stock position, movement history, search and summaries come from batched, kernel-scoped read functions (precedent `inventory_current_stock_batch` [R]). Readers carry the source and freshness of every figure. | — | 7 |
 | `EIS17-STK-08` | AF | **Opening stock consumed from SB-P-1.14.** Opening stock arrives through the SB-P-1.14 opening-stock UDI slice (`EIS14-ADP-02`, `EIS14-MIG-03`); SB-P-1.17 does not re-specify it. Bulk and other stock documents use `EIS17-DOC-01`. | — | 3 |
 | `EIS17-STK-09` | AF/UQ | **Negative-stock policy.** Insufficient stock follows the approved policy exposed by `p_allow_negative_stock` [R]. Where policy blocks the movement, only that movement fails (`7-§13-13`); the reason is shown. The merchant-facing policy setting is not decided here. | — | 2 |
+| `EIS17-STK-10` | TR/UQ | **Cross-module stock-child interface.** (a) **One writer.** One stock writer core remains the sole authority under `EIS17-STK-01`. `create_inventory_movement` stays the public governed entry for existing callers. No consumer defines its own movement semantics. **Entry topology is NOT YET DISPOSITIONED (gate C-2):** this clause does not reinterpret the locked Blueprint wording on `create_inventory_movement`, and the Blueprint prevails until C-2 is decided. Clauses (b) and (d) are written for the author-proposed second, non-public, transaction-composable stock child on the same core; that design is not locked and is re-specified if C-2 selects one entry. (b) **Privileges.** Inventory-family tables are protected under `EIS-ISO-02` and `EIS17-SEC-02`; the `EIS-ISO-02` parenthetical is read as an example of then-listed families, not an inventory exemption (MC-739 S17-K). At family cut-over, `authenticated` direct `INSERT` on `inventory_movements` and `inventory_movement_idempotency_keys` closes; it is not kept to make an invoker work. An Employee has no inventory DML, no route to the raw writer and no inventory read from a feature capability. The child has no `PUBLIC`, `anon` or `authenticated` `EXECUTE` and runs under a stock-family `NOLOGIN NOINHERIT` executor hardened under `EIS-ISO-10`. A consumer executor holds only child `EXECUTE`, granted through a separately accepted consumer contract, and no direct inventory DML. An executor is never a principal and carries no merchant authority. (c) **Authorization.** The consumer command resolves the verified principal (`EIS-KER-02`) and calls `authz.authorize` for the exact business, capability and object under `EIS-CNF-02` and `EIS-KER-09` before any write. `authz.can` is not relied on inside the executor path; privileged reads and writes carry explicit server-derived business and object predicates. A feature capability never satisfies an inventory-family predicate. The public entry requires a separate stock-family capability, Owner by default (name **UNKNOWN**); this clause delegates none. (d) **Child contract.** The child runs only inside the outer command's transaction, accepts no principal parameter and consumes no second confirmation. Business, item, quantity, type, direction, reason code and event link are derived by the server from the consumer's validated object and are immutable for that call. A requested business is validated, never trusted (`EIS-ID-06`, `EIS-ISO-07`). The owning domain validates the event link under `EIS17-TXN-04`. (e) **Negative stock.** The decision is taken inside stock serialization from the complete authoritative movement set of the target item, never a caller-visible subset; that internal read gives the caller no inventory read. Preview is non-authoritative. `EIS17-STK-09` policy is unchanged. A consumer path without override authority, including the proposed SB-P-1.18 `order.pack.line`, fixes override to false. An override is only a distinct command and operation for the Owner or an explicitly delegated Manager, with its own fingerprint and child namespace. After cut-over the public entry gates its negative-stock flag by the same authority. (f) **Typed outcome.** A negative-stock block returns a stable machine-readable outcome (dedicated SQLSTATE or typed child result). Message text is never parsed as authority, and unrelated failures are never classified as a stock block. Security-relevant denials stay durable under `EIS-AUD-02`. (g) **Idempotency.** The outer `EIS-CNF-04` record is authoritative: business, verified actor, operation, key, complete material fingerprint (including quantity, line, item, event link and override intent) and committed outcome. The inner movement key is deterministic, server-derived, in a fixed namespace, never caller-selectable and never a replay or lookup boundary. Same-intent replay returns the outer committed outcome without re-running stock logic. An unknown outcome is looked up first (`EIS17-TXN-05`). Override and non-override intents never collapse. (h) **Lock order.** Every stock path follows one order: authority rows `FOR SHARE` (`EIS-CNF-02`); outer key; consumer domain rows by ascending ID; original movement or compensation target; target items by ascending ID under the stock-family item lock; then the confirmation binding where one applies. A path may skip a class but never acquires an earlier class after a later one, so no wait cycle can form across pack, return, correction or any other stock writer. This author-proposed order needs independent review; exact primitives are **UNKNOWN**. (i) **Compensation.** For one original decrease, committed opposing corrections plus committed confirmed physical returns never exceed its committed quantity. Correction and return paths both enforce this under lock through one combined read. A physical return remains a distinct `stock_increase`, never a `correction`; its link representation is **UNKNOWN** because `correcting_of` is correction-only [R]. There is no automatic restock, and archived-item behaviour is unchanged. (j) **Attribution.** Movement and consumer records carry the original verified person, and the consumer record carries the grant or decision identifier and authority epochs from `EIS-KER-01`. The executor is never the responsible actor. The actor is preserved through an unforgeable same-transaction context, which may prove same-operation composition but never carries a caller-chosen actor. `service_role` possession and forged or simulated JWT claims are prohibited. The subject-resolution mechanism inside the executor, including `auth.uid()`, is **UNKNOWN** and must be specified and proven by test. (k) **Atomicity.** Consumer event, movement, link, outer and inner idempotency outcome and audit commit together or none. The response is a safe projection only. This interface writes no Ledger effect and no shadow Ledger; where one command needs both domains, `EIS17-TXN-03` governs. (l) **Family cut-over.** SB-P-1.17 owns the writer security-mode and interface redesign. SB-P-1.12 WS-A3 governs the coordinated inventory-family cut-over and default-deny integration. Closing direct `INSERT` and changing the writer happen in the same family step, so no two authority paths are live and the Owner path keeps working. This is not an M17 class. A consumer activates only after `EIS-DEP-01` dependency acceptance. (m) **Open.** Exact SQL signatures, role and grant graph, lock primitives, link representation, subject resolution, rollback and all negative cases are **UNKNOWN** and belong to the package and test gates. `EIS17-HOLD-01`, `-HOLD-03`, `-HOLD-04` and `-HOLD-17` remain open. This clause authorizes no migration or implementation. | MC-736-S; MC-737-S; MC-737-K; MC-738-S; MC-739 | 11 |
 
 ## 8. Stock Signals and Owner-Confirmed Thresholds
 
@@ -297,7 +361,7 @@ These requirements realize the Blueprint §20.9.2 decision table (ENG17-02). Fou
 | `EIS17-VER-09` | PR | **Scenario tests (SCN).** Contract scenario rows each become a named acceptance scenario. | — | 39 |
 | `EIS17-VER-10` | TR | **CI tiers.** SB-P-1.17 code and migration paths join the Full Assurance path filter; new Supabase-backed tests join `vitest.full.config.ts` (EQ17-12). | B6-21 | 2 |
 | `EIS17-VER-11` | PR | **Closing decision-table tests.** One T2 test per §20.9.2 row and the precedence rule. | ENG17-02 | 9 |
-| `EIS17-VER-12` | AF | **Inventory regression.** All 17 `tests/inventory` files run unchanged against any stock extension. | B6-07 | 23 |
+| `EIS17-VER-12` | AF | **Inventory regression.** All 17 `tests/inventory` files remain regression gates for any stock extension and run unchanged, except that the direct `authenticated` write cases made unreachable by the `EIS17-STK-10` family cut-over are independently re-baselined to deny direct access, and their constraint or integrity assertions move to a privileged governed-path fixture. No other case changes, and direct DML is never retained to make a test pass. This requirement authorizes no test change or execution. | B6-07 | 23 |
 
 ## 25. Must-Not Checks
 
@@ -402,12 +466,13 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `IN SCOPE` FCTM rows | 404 |
 | Rows mapped to at least one EIS requirement | 404 / 404 |
 | Missing rows / IDs absent from the FCTM | 0 / 0 (every explicit row reference is validated against the FCTM) |
-| EIS requirements | 157 |
-| Requirements with FCTM rows | 157 |
+| EIS requirements | 158 |
+| Requirements with FCTM rows | 158 |
 | Requirements without FCTM rows (orphans) | 0 |
 | Orphan requirements adding product behaviour | 0 |
-| Row-to-requirement links | 3040 |
-| Requirements per row (minimum / maximum) | 3 / 14 |
+| Row-to-requirement links | 3051 |
+| Requirements per row (minimum / maximum) | 3 / 15 |
+| Status of these counts | Author-calculated for this candidate; not an independent PASS |
 | FCTM or Blueprint changes | 0 (FCTM blob `cb79088d`; Blueprint blob `bc4615f8`) |
 
 **Selection rules.** Each requirement carries its own selectors (Stage 7 component, explicit row IDs, row-ID patterns, FCTM dependency code, `17:FPDR` citation, FCTM kind, verification seed or evidence marker). The two tables below are generated from the same selectors, so they are exact inverses.
@@ -422,7 +487,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `7-§2-2` | OBL | C-STK | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-01, STK-04, VER-01, VER-12, HOLD-01, HOLD-03 |
 | `7-§2-3` | OBL | C-STK | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-01, STK-02, STK-07, MIG-02, VER-01, VER-12, HOLD-01, HOLD-03 |
 | `7-§2-4` | OBL | C-STK | DEPENDENCY-HELD | D14 | ARC-01, STK-01, STK-08, VER-01, VER-12, HOLD-03 |
-| `7-§2-5` | OBL | C-STK | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-01, STK-05, TXN-06, AUD-01, VER-01, VER-12, HOLD-01, HOLD-03 |
+| `7-§2-5` | OBL | C-STK | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-01, STK-05, STK-10, TXN-06, AUD-01, VER-01, VER-12, HOLD-01, HOLD-03 |
 | `7-§2-6` | OBL | C-SIG | DEPENDENCY-HELD | D12; D14 | ARC-01, SIG-01, SIG-02, SIG-03, VER-01, VER-06, HOLD-01, HOLD-03, HOLD-22 |
 | `7-§2-7` | OBL | C-SIG | DEPENDENCY-HELD | D14 | ARC-01, STK-03, SIG-03, SIG-04, VER-01, HOLD-03 |
 | `7-§2-8` | OBL | C-SIG | DEPENDENCY-HELD | D12; D14 | ARC-01, SIG-03, VER-01, HOLD-01, HOLD-03 |
@@ -458,9 +523,9 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `7-§7-2` | OBL | C-POS | SOURCE-HELD | DPOS | ARC-01, POS-01, POS-07, POS-11, POS-12, VER-01, HOLD-07 |
 | `7-§7-3` | NEG | C-POS | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, POS-01, POS-10, VER-02, VER-03, NEG-01 |
 | `7-§7-4` | RULE | C-POS | SOURCE-HELD | DPOS; D14 | ARC-01, POS-01, POS-11, TXN-08, VER-01, VER-03, HOLD-03, HOLD-07 |
-| `7-§8-1` | RULE | C-STK | DEPENDENCY-HELD | D14; DTX | ARC-01, ARC-04, STK-01, TXN-02, TXN-03, TXN-04, VER-03, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
+| `7-§8-1` | RULE | C-STK | DEPENDENCY-HELD | D14; DTX | ARC-01, ARC-04, STK-01, STK-10, TXN-02, TXN-03, TXN-04, VER-03, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
 | `7-§8-2` | OBL | C-STK | DEPENDENCY-HELD | D14; DTX | ARC-01, STK-01, STK-02, TXN-02, TXN-03, TXN-10, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
-| `7-§8-3` | OBL | C-STK | SOURCE-HELD | D14; DTX; DPOS | ARC-01, STK-01, STK-02, POS-11, TXN-02, TXN-03, TXN-09, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-07, HOLD-17 |
+| `7-§8-3` | OBL | C-STK | SOURCE-HELD | D14; DTX; DPOS | ARC-01, STK-01, STK-02, STK-10, POS-11, TXN-02, TXN-03, TXN-09, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-07, HOLD-17 |
 | `7-§8-4` | NEG | C-STK | DEPENDENCY-HELD | D14 | ARC-01, STK-01, STK-05, VER-02, VER-12, NEG-01, HOLD-03 |
 | `7-§8-5` | RULE | C-STK | DEPENDENCY-HELD | D14; DTX; D16 | ARC-01, STK-01, SUP-06, TXN-03, TXN-10, WS-11, VER-01, VER-03, VER-12, HOLD-03, HOLD-04, HOLD-06 |
 | `7-§9-1` | OBL | C-STK | DEPENDENCY-HELD | D12 | ARC-01, STK-01, VER-01, VER-12, HOLD-01 |
@@ -479,24 +544,24 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `7-§11-2.5` | NEG | C-RO | DEPENDENCY-HELD | D13; D12 | ARC-01, SUP-07, RO-01, AUTH-01, AUTH-04, AI-04, AI-05, VER-02, NEG-01, HOLD-01, HOLD-02 |
 | `7-§12-1` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, STK-01, STK-06, AUD-01, VER-03, HOLD-01 |
 | `7-§12-2` | RULE | C-FDN | DEPENDENCY-HELD | D14 | ARC-01, ARC-02, AUD-01, VER-03, HOLD-03 |
-| `7-§12-3` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, AUTH-01, AUD-01, AUD-02, VER-03, HOLD-01 |
+| `7-§12-3` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, STK-10, AUTH-01, AUD-01, AUD-02, VER-03, HOLD-01 |
 | `7-§12-4` | RULE | C-FDN | DEPENDENCY-HELD | D15; DSCH | ARC-01, ARC-02, RO-06, CC-04, FLR-03, AUD-01, VER-03, HOLD-05, HOLD-10 |
 | `7-§12-5` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, SUP-01, AUD-01, VER-03, HOLD-01 |
 | `7-§12-6` | RULE | C-FDN | DEPENDENCY-HELD | D14 | ARC-01, ARC-02, DOC-01, AUD-01, VER-03, HOLD-03 |
 | `7-§12-7` | RULE | C-FDN | DEPENDENCY-HELD | D13; D15; DNTF | ARC-01, ARC-02, AI-01, FLR-03, AUD-01, VER-03, HOLD-02, HOLD-05, HOLD-13 |
-| `7-§12-8` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, ARC-04, TXN-01, AUD-01, SEC-01, VER-03, HOLD-01 |
+| `7-§12-8` | RULE | C-FDN | DEPENDENCY-HELD | D12 | ARC-01, ARC-02, ARC-04, STK-10, TXN-01, AUD-01, SEC-01, VER-03, HOLD-01 |
 | `7-§12-9` | RULE | C-FDN | SOURCE-HELD | DPOS | ARC-01, ARC-02, ARC-03, POS-11, AUD-01, VER-03, HOLD-07 |
 | `7-§13-1` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, DOC-02, TXN-02, FLR-01, AUD-01, VER-04, HOLD-01, HOLD-03 |
 | `7-§13-2` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, POS-06, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | `7-§13-3` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, POS-06, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | `7-§13-4` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-04, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
-| `7-§13-5` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-09, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
-| `7-§13-6` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-05, TXN-06, TXN-11, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
+| `7-§13-5` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-09, STK-10, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
+| `7-§13-6` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-05, STK-10, TXN-06, TXN-11, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | `7-§13-7` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, RO-02, FLR-01, FLR-02, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | `7-§13-8` | OBL | C-FDN | DEPENDENCY-HELD | D14; DNTF | ARC-01, RO-04, FLR-01, FLR-02, AUD-01, VER-01, VER-02, HOLD-03, HOLD-13 |
 | `7-§13-9` | OBL | C-FDN | SOURCE-HELD | DPOS; D14 | ARC-01, POS-11, TXN-08, FLR-01, AUD-01, VER-01, VER-02, HOLD-03, HOLD-07 |
 | `7-§13-10` | OBL | C-FDN | DEPENDENCY-HELD | D14 | ARC-01, DOC-02, FLR-01, AUD-01, VER-01, VER-02, HOLD-03 |
-| `7-§13-11` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, TXN-02, TXN-05, FLR-01, FLR-03, AUD-01, VER-04, HOLD-01, HOLD-03 |
+| `7-§13-11` | OBL | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-10, TXN-02, TXN-05, FLR-01, FLR-03, AUD-01, VER-04, HOLD-01, HOLD-03 |
 | `7-§13-12` | OBL | C-FDN | DEPENDENCY-HELD | D12; D15 | ARC-01, RO-05, AUTH-06, FLR-01, FLR-03, AUD-01, VER-01, VER-02, HOLD-01, HOLD-05 |
 | `7-§13-13` | RULE | C-FDN | DEPENDENCY-HELD | D12; D14 | ARC-01, STK-09, TXN-12, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | `7-§14-1` | PRIN | C-CTR | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, CTR-01, CTR-02, VER-02, VER-05 |
@@ -512,7 +577,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `7-§15-9` | SCN | C-ACC | SOURCE-HELD | DPOS | ARC-01, POS-11, POS-12, VER-01, VER-03, VER-09, HOLD-07 |
 | `7-§15-11` | SCN | C-ACC | DEPENDENCY-HELD | D12; D14 | ARC-01, CTR-02, VER-02, VER-05, VER-09, HOLD-01, HOLD-03 |
 | `7-§16-1` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, AUD-01, VER-02, NEG-01, NEG-02 |
-| `7-§16-2` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, STK-01, AUD-01, VER-02, NEG-01, NEG-02 |
+| `7-§16-2` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, STK-01, STK-10, AUD-01, VER-02, NEG-01, NEG-02 |
 | `7-§16-3` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, POS-10, AUD-01, VER-02, NEG-01, NEG-02 |
 | `7-§16-4` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, CTR-02, AUD-01, VER-02, NEG-01, NEG-02 |
 | `7-§16-5` | NEG | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, TXN-08, AUD-01, VER-02, NEG-01, NEG-02 |
@@ -780,7 +845,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `BP-§5.3-1` | RULE | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, ARC-05, AUD-01, MIG-01, MIG-03, MIG-04, VER-03, VER-10 |
 | `BP-§5.4-1` | RULE | C-POS | SOURCE-HELD | DPOS | ARC-01, ARC-03, POS-01, POS-02, POS-03, POS-11, VER-03, HOLD-07, HOLD-15 |
 | `BP-§6.1-1` | NEG | C-AUTH | DEPENDENCY-HELD | D12 | ARC-01, ARC-03, AUTH-01, AI-01, VER-02, NEG-01, HOLD-01 |
-| `BP-§6.2-1` | RULE | C-FDN | DEPENDENCY-HELD | D12; D13; DTX | ARC-01, ARC-04, TXN-03, AUD-01, SEC-02, VER-01, VER-03, HOLD-01, HOLD-02, HOLD-04, HOLD-17 |
+| `BP-§6.2-1` | RULE | C-FDN | DEPENDENCY-HELD | D12; D13; DTX | ARC-01, ARC-04, STK-10, TXN-03, AUD-01, SEC-02, VER-01, VER-03, HOLD-01, HOLD-02, HOLD-04, HOLD-17 |
 | `BP-§6.3-1` | RULE | C-FDN | DEPENDENCY-HELD | D14 | ARC-01, ARC-03, AUD-01, SEC-01, SEC-04, MIG-04, VER-03, HOLD-03 |
 | `BP-§6.5-1` | RULE | C-RO | DEPENDENCY-HELD | D15; DSCH | ARC-01, RO-01, RO-06, CC-04, AUTH-01, FLR-03, VER-03, HOLD-05, HOLD-10 |
 | `BP-§6.6-1` | RULE | C-POS | SOURCE-HELD | DPOS | ARC-01, ARC-06, POS-01, POS-11, VER-03, HOLD-07 |
@@ -811,7 +876,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | `BP-§10.6-B1` | FRV | C-ACC | SOURCE-HELD | DPOS | ARC-01, POS-01, POS-11, VER-07, HOLD-07, HOLD-21, HOLD-22 |
 | `BP-§10.6-B2` | FRV | C-ACC | SOURCE-HELD | DPOS | ARC-01, POS-11, CTR-02, VER-07, HOLD-07, HOLD-22 |
 | `BP-§10.6-X` | EXP | C-WS | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, AUTH-01, WS-01, WS-08, VER-05 |
-| `BP-§11-6` | RULE | C-RO | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, RO-01, RO-08, AUTH-01, VER-03 |
+| `BP-§11-6` | RULE | C-RO | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, STK-10, RO-01, RO-08, AUTH-01, VER-03 |
 | `BP-§11-7` | RULE | C-STK | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, ARC-05, STK-01, VER-03, VER-12 |
 | `BP-§13-1` | RULE | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, AUD-01, VER-08 |
 | `BP-§13-9` | RULE | C-FDN | DESIGN ACCEPTED — EVIDENCE HOLD | — | ARC-01, AUD-01, VER-08 |
@@ -842,6 +907,7 @@ Rows are listed when 20 or fewer; larger sets are exactly the rows citing the re
 | `EIS17-STK-07` | 7 | 7 | `7-§1-1`, `7-§1-2`, `7-§2-3`, `7-§2-11`, `7-§11-1.1`, `7-§15-1`, `17-§7-1` |
 | `EIS17-STK-08` | 7 | 3 | `7-§2-4`, `7-§15-1`, `BP-§10.6-W12` |
 | `EIS17-STK-09` | 7 | 2 | `7-§13-5`, `7-§13-13` |
+| `EIS17-STK-10` | 7 | 11 | `7-§2-5`, `7-§8-1`, `7-§8-3`, `7-§12-3`, `7-§12-8`, `7-§13-5`, `7-§13-6`, `7-§13-11`, `7-§16-2`, `BP-§6.2-1`, `BP-§11-6` |
 | `EIS17-SIG-01` | 8 | 6 | `7-§2-6`, `7-§4-4`, `7-§15-4`, `7-§16-6`, `BP-§10.6-W2`, `BP-§10.6-A1` |
 | `EIS17-SIG-02` | 8 | 3 | `7-§2-6`, `7-§11-1.2`, `7-§16-6` |
 | `EIS17-SIG-03` | 8 | 12 | `7-§2-6`, `7-§2-7`, `7-§2-8`, `7-§2-9`, `7-§11-1.2`, `7-§15-4`, `7-§15-5`, `7-§16-6`, `17-§7-2`, `17-§7-4`, `BP-§10.6-W2`, `BP-§10.6-W3` |
@@ -1257,6 +1323,7 @@ Dispositions, owners and boundaries are unchanged and frozen by the Stage 8 lock
 | T6 | **WATCH** on the evidence-sufficiency rule (`EIS17-SIG-02`). |
 | T7 | None. No row, disposition, commitment or assignment changes. |
 | T8 | **WATCH, not established.** POS source capability is UNKNOWN; EQ17-13 impossibility is not demonstrated. Either would stop the affected path. |
+| C-2 (candidate) | **NOT YET DISPOSITIONED.** Unresolved T3/T6/T8 interpretive screen on `EIS17-STK-10` entry topology (MC-739 S17-C2); see the Review Section. No automatic T8. |
 
 **STOP FOR STAGE 10 MISSION CONTROL REVIEW.**
 
