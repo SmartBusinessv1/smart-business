@@ -1,10 +1,11 @@
 # SB-P-1.14 — Lovable Build Prompt
 
 ```text
-STATUS: APPROVED — LOCKED (EFFECTIVE ONLY AFTER STAGE 13 LOCK PR HUMAN MERGE AND POST-MERGE VERIFICATION)
+STATUS: POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (SB-P-1.14-MC-739-C)
+CURRENT LOCKED PACKAGE: MC-25 VERSION ON CANONICAL MAIN STAYS AUTHORITATIVE UNTIL RE-LOCK
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: APPROVED — LOCKED (CONDITIONAL ON HUMAN MERGE)
+EIS: POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL
+IMPLEMENTATION PACKAGE RE-LOCK: NOT GRANTED
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 AI PROVIDER / STORAGE PROVIDER SELECTION OR ACTIVATION: NOT AUTHORIZED
@@ -18,13 +19,14 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission ID | SB-P-1.14 |
 | Mission Name | Business Memory, Documents & Durable Media |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 0.2 |
-| Status | `APPROVED — LOCKED` — effective only after Stage 13 lock PR human merge and post-merge Mission Control verification |
+| Version | 0.3 candidate (locked predecessor 0.2, MC-25) |
+| Status | `POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the MC-25 locked version on canonical `main` stays authoritative until independent review, authorized human merge and Mission Control re-lock |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
 | Canonical baseline | `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d` |
 | Date | 2026-10-09 |
+| Post-lock candidate | SB-P-1.14-MC-739-C, PR #1111 comment `6604359754`; base `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`. Candidate date 2026-11-03 |
 
 ## 2. Builder Identity and Artifact Name
 
@@ -36,7 +38,7 @@ Read, in this order, and treat each as binding:
 
 1. `AGENTS.md` and `CLAUDE.md`;
 2. the locked Product Blueprint, blob `256828d2c26fba7dab6f52975efb8b574b1563f1`;
-3. the locked EIS, blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`;
+3. the EIS, current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; the final identity is fixed only at re-lock;
 4. Founder Product Decision Records `FPDR-1` to `FPDR-4` and the Founder restorative T7 Security approval;
 5. the SB-P-1.12 and SB-P-1.13 locked EIS consumption conditions (SB-P-1.12 EIS-DEP-01; SB-P-1.13 EIS13-CMD-02, EIS13-PRV-01, EIS13-ATT-01);
 6. the Engineering Contract (`engineering-contract.md`) once locked;
@@ -166,12 +168,13 @@ Forbidden in this workstream, in addition to Section 8:
 | Phase | P6 |
 | Depends on | `D12`; WS-E object control plane; WS-F search layer |
 | Expected schema | M14-2: `documents`, `document_versions`, `document_links` and domain-provenance tables, born hardened (EC14-MIG-02) |
-| Verification | NP-01, NP-27, NP-28, RS-05, RS-09, RS-18; row items in Verification Checklist Section 13.4 |
+| Verification | NP-01, NP-27, NP-28, NP-45, RS-05, RS-09, RS-18, RS-24; row items in Verification Checklist Section 13.4 |
 | Rollback and recovery | Additive; new tables kept or dropped only under a migration mission |
 | FCTM rows (67) | `3-§19-9`, `5-§6-1`, `5-§6-2`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§6-13`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `5-§18-7`, `22-§10-1`, `22-§10-2`, `22-§10-3`, `22-§10-4`, `22-§10-5`, `22-§10-6`, `22-§10-7`, `22-§29-12`, `25-§10-1`, `25-§10-2`, `25-§10-3`, `25-§10-4`, `25-§10-5`, `25-§10-6`, `25-§10-7`, `25-§10-8`, `25-§10-9`, `25-§10-10`, `25-§10-11`, `25-§10-12`, `25-§11-1`, `25-§11-2`, `25-§11-3`, `25-§11-4`, `25-§23-1`, `25-§23-2`, `25-§23-3`, `25-§23-4`, `25-§23-5`, `25-§23-6`, `25-§23-7`, `25-§23-8`, `25-§23-9`, `25-§23-10`, `25-§23-11`, `25-§23-12`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-W5`, `BP-§10.3-W8`, `BP-§10.3-X` |
 
 Forbidden in this workstream, in addition to Section 8:
 
+- any read path that discloses a classed document on generic Cabinet authority alone, or that leaks its existence, type or linked record;
 - modifying original bytes, or a correction that changes the original rather than the interpretation or record;
 - copying authority truth or allow/deny evidence into domain provenance, or storing document content in provenance;
 - a customer/supplier identity table or directory search (`3-§9-12` and directory search stay later).
@@ -206,12 +209,13 @@ Forbidden in this workstream, in addition to Section 8:
 | Phase | P7 |
 | Depends on | `D12`; WS-A classification; WS-D cabinet; WS-E retrieval path |
 | Expected schema | M14-4: search keys and indexes, live-safe (EC14-MIG-04) |
-| Verification | NP-01, NP-03, NP-05, NP-10, NP-13, NP-21, RS-03, RS-05, RS-10, RS-18, RS-19; row items in Verification Checklist Section 13.4 |
+| Verification | NP-01, NP-03, NP-05, NP-10, NP-13, NP-21, NP-45, RS-03, RS-05, RS-10, RS-18, RS-19, RS-24; row items in Verification Checklist Section 13.4 |
 | Rollback and recovery | Additive; indexes dropped only under a migration mission |
 | FCTM rows (55) | `3-§9-1`, `3-§9-2`, `3-§9-4`, `3-§9-5`, `3-§9-6`, `3-§9-7`, `3-§9-8`, `3-§9-9`, `3-§9-10`, `3-§9-11`, `3-§9-13`, `3-§9-14`, `3-§10-1`, `3-§10-5`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-2`, `3-§19-8`, `3-§19-9`, `3-§19-12`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§18-7`, `22-§21`, `25-§9-1`, `25-§9-2`, `25-§9-3`, `25-§9-4`, `25-§9-5`, `25-§9-6`, `25-§9-7`, `25-§9-8`, `25-§19-7`, `25-§20-7`, `25-§20-13`, `25-§24-1`, `25-§24-2`, `25-§24-3`, `25-§26-2`, `25-§26-3`, `25-§26-11`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-S1`, `BP-§10.3-X` |
 
 Forbidden in this workstream, in addition to Section 8:
 
+- any read path that discloses a classed document on generic Cabinet authority alone, or that leaks its existence, type or linked record;
 - a bearer signed URL used for delivery without provider evidence of immediate revocation or authorization indirection;
 - an export, summary or channel copy of Business Memory, or an export that bypasses the kernel;
 - any per-customer balance, ageing or reconciliation, or a customer directory;
@@ -294,7 +298,7 @@ Anything a builder believes is needed but not assigned is raised under Section 1
 | `DTX` / H-DTX | 42 rows; held | `EC14-HOLD-03`: held until the coordinated SB-P-1.12 WS-A3 / SB-P-1.13 EIS13-CMD-02 transactions-family cut-over is complete and effective-access verification shows one protected write path. `EC14-CMD-01` to `-03` and `EC14-MIG-01` are delivered inside that cut-over family under a separately authorized migration mission |
 | AI provider evidence / H-PROV (`DAI`) | 97 rows | `EC14-PRV-01`, `EC14-HOLD-09`: no merchant document reaches an AI provider until evidence is accepted for the versioned SB-P-1.13 configuration identity; a material change blocks merchant-document flow until re-verification. Provider selection, purchase and activation: NOT AUTHORIZED |
 | Storage activation / H-STO (`DR2`) | 124 rows | `EC14-PRV-02`, `EC14-HOLD-08`: no merchant object is stored in R2 or any durable object store until a separately authorized `DR2` evidence pack is accepted. Selection, purchase, configuration and activation: NOT AUTHORIZED |
-| Retention basis / H-LEG (`DLEG`, `DUF6`) | 11 rows | `EC14-RET-03`, `EC14-HOLD-10`: record classes reference the SB-P-1.12 registry; no duration is coded |
+| Retention basis / H-LEG (`DLEG`, `DUF6`) | 11 rows | `EC14-RET-03`, `EC14-HOLD-10`: record classes reference the SB-P-1.12 registry; no duration is coded. Post-deletion proof fields, duration and tombstone shape are `DLEG / retention policy pending`; no full-metadata survival is promised |
 | Later missions / H-LATER (`D15`, `D17`, `D19`, `D20`) | 13 rows | `EC14-HOLD-04`, `EC14-HOLD-11`: only the SB-P-1.14 slice is built |
 | Birth-safe objects / H-BIRTH | 60 rows | `EC14-SEC-02`: object-type-specific hardening in one migration boundary; effective-access inventory under `EC14-VER-01` |
 | Revocation-safe retrieval and export / H-REVOKE | 35 rows | `EC14-RTV-01`: server-mediated delivery by default; any non-zero post-revocation window returns to Mission Control as a T3 candidate |
@@ -322,6 +326,7 @@ Stop the dependent work, record what was found with evidence, and report to Miss
 - an intentional non-zero post-revocation access window is proposed (T3 candidate), or no compliant hold-aware `FPDR-2` mechanism exists, commit-time repayment-target revalidation proves infeasible, a protected write path cannot be closed or an object cannot be born safely (T8 candidates);
 - any Stage 3 trigger T1 to T8 fires, including any new Product Truth question;
 - a hold in Section 9 would be crossed;
+- a Cabinet read path cannot apply the `EIS14-CAB-01` feature-restricted predicate (T8 candidate), a link would block deletion, or a post-deletion field, duration or tombstone shape would be needed (`DLEG / retention policy pending`);
 - repository state differs from the baseline the authorization names.
 
 Do not resolve a conflict by dropping, narrowing or inventing behaviour. Resume only on a recorded Mission Control decision.
@@ -929,8 +934,31 @@ Every one of the 563 rows is assigned to at least one workstream; 491 rows are s
 |---|---|---|---|
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
 | 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
+| 0.3 candidate | 2026-11-03 | Claude Code (SB-P-1.14-MC-739-C) | NONCANONICAL post-lock candidate: feature-restricted Cabinet read predicate, separate `DLEG / retention policy pending` hold, and package-set EIS identity reconciliation. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
 
 
 ## Stage 13 Lock Crossing Note
 
 Mission Control MC-24 accepted package v0.2 content in PR #849; MC-25 carries that exact reviewed package into canonical `main` by a separate human-merge lock crossing. Only lifecycle/status metadata is changed from v0.2. The locked EIS mapping remains 2,282 links; PQ-10 builder accountability is package-level and PQ-2 remains an implementation prerequisite. This record is effective only after human merge of the Stage 13 lock PR and post-merge verification. Package lock is separate from Implementation Authorization.
+
+## Post-Lock Amendment Candidate Note (MC-739-C)
+
+This note is prospective review text. It is noncanonical and adds to the Stage 13 Lock Crossing Note above, which stays as the historical record. Nothing here asserts a final re-lock, merge or effectiveness.
+
+| Identity | Value |
+|---|---|
+| This document, locked predecessor (MC-25) | blob `1ba6d24a4c283ca84a5fefe6c2e1a907e374221b`, version 0.2 |
+| EIS cited by that predecessor | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (stale since MC-507BL, PR #1061) |
+| Current locked EIS on canonical `main` | blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` |
+| Proposed successor EIS candidate | blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; final identity fixed only at re-lock |
+
+**Outstanding before any effect:**
+
+1. SB-P-1.12 kernel-owner concurrence for this Cabinet use, including how multiple classes and object-scoped grants compose (`EIS-KER-04`, `EIS-KER-08`).
+2. Independent security and privacy review of the exact text and of the set of four files.
+3. Independent source and traceability verification (563 `IN SCOPE` rows, 83 requirements, 2,282 links are author-calculated here).
+4. Authorized human merge; no AI merge.
+5. Mission Control post-merge verification and canonical re-lock with final blobs.
+6. Append-only reconciliation of the SB-P-1.14 checkpoint and resume records after merge.
+
+`DLEG / retention policy pending` stays held as separate policy validation. SB-P-1.14 stays suspended and Implementation Authorization (MC-26) stays `WITHHELD`.
