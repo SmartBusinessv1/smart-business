@@ -15,11 +15,29 @@ STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
 | Section 7, new `EIS17-STK-10` | One-writer stock interface, carrying the SA-03 and SB-P-1.12 conditions |
 | Section 5, stock baseline | Corrects the grant statement: the Owner-only effect comes from RLS, not from grants |
 | Section 4, stock principle | Locked wording kept, with a note pointing to gate C-2 |
-| `EIS17-VER-12` | S17-C1 re-baseline of direct-write cases; no test is dropped, changed or run by this candidate |
+| `EIS17-VER-12` | S17-C1 re-baseline limited to named cases; no test is dropped, changed or run by this candidate |
 | Sections 30.1, 30.2, 30.3 | `EIS17-STK-10` linked to 11 existing `IN SCOPE` rows; counts are author-calculated |
 | Metadata, Section 32 | Provisional status and the C-2 trigger row |
 
-**Direct-write test cases S17-C1 covers:** `audit-integrity.test.ts` L46 and L62, `correction-link-integrity.test.ts` L30, `shared-write-path.test.ts` L80.
+**C-1 test-case inventory (MC-741-S).** Verified by file and exact test title against test sources at `tests/inventory` tree `c56e0513f0cbe84e9e7f4d7242971173d5361b97`. No test was changed or run.
+
+| Eligible case | Today's expectation | After cut-over |
+|---|---|---|
+| `audit-integrity.test.ts`, "a direct insert with neither responsible_user_id nor a business_event reference is rejected by the database" | Rejected by `audit_completeness` | Direct access denied; constraint moves to a privileged fixture |
+| `audit-integrity.test.ts`, "a direct insert with only a business_event reference (no responsible_user_id) is accepted" | Accepted | Direct access denied; acceptance rule moves to a privileged fixture |
+| `correction-link-integrity.test.ts`, "a movement cannot reference itself as correcting_of (self-reference)" | Rejected by `no_self_correction` | Direct access denied; constraint moves to a privileged fixture |
+| `shared-write-path.test.ts`, "records the actual behavior of a direct insert that bypasses create_inventory_movement's negative-stock guard" | Records either outcome | Asserts direct access denied |
+| `correction-behaviour.test.ts`, "an ordinary owner's UPDATE attempt never mutates the row (RLS defines no UPDATE policy, so zero rows match)" | No error; row unchanged | **Conditional:** only if direct `UPDATE` closes; then an access error, and the row must still be unchanged |
+
+| Inspected, not eligible | Why it stays |
+|---|---|
+| `rls-cross-business.test.ts`, "owner B cannot insert a movement against owner A's item even scoped to B's own business_id" | Requires only an error, so its expectation holds |
+| `rls-cross-business.test.ts`, "an unauthenticated (anon) caller sees nothing and cannot write" | `anon`, not ordinary `authenticated` |
+| `correction-behaviour.test.ts`, "defence-in-depth: the append-only trigger itself rejects mutation even for a caller RLS does not block (service_role)" | Privileged constraint probe |
+| `cross-business-consistency.test.ts`, "database-level, independent of RLS: service-role insert pairing item A with business B is rejected by the item/business FK" | Privileged constraint probe |
+| `cross-business-consistency.test.ts`, "database-level, independent of RLS: a correction referencing a movement from a different item/business is rejected by the correcting_of FK" | Privileged constraint probe |
+
+`inventory_items` direct writes, including the `createItem` and `updateItemStatus` fixtures in `tests/setup/inventory-rpc.ts`, are outside `EIS17-STK-10` (b) and are not eligible under this inventory. If a family cut-over ever closes them, the affected cases must be named first.
 
 ### Gate C-2 — NOT YET DISPOSITIONED
 
@@ -50,6 +68,8 @@ MC-738-S omitted L1951; this table corrects that.
 ```
 
 L1951, L1966 and L2090 name callers that stay on the public entry, so their wording could stay; Mission Control confirms or rejects that reading. A Blueprint change needs specific Founder approval of the exact delta under separate change control, and this candidate edits no Blueprint text and claims no Founder choice. FCTM and Product Truth stay unchanged under either alternative.
+
+**Hold status (MC-741-F).** C-2 stays NOT YET DISPOSITIONED and no alternative is selected. [MC-740-S](https://github.com/SmartBusinessv1/smart-business/pull/1113#issuecomment-6604976886) found a Blueprint change is needed for the two-entry form. [MC-741](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6605108090) puts the Founder decision: Option A approves the exact MC-740-S §2 wording, which would replace the Alternative 2 wording shown here; Option B returns a separately reviewed single-entry design. No Founder decision is recorded in this candidate.
 
 ### Retained unknowns
 
@@ -361,7 +381,7 @@ These requirements realize the Blueprint §20.9.2 decision table (ENG17-02). Fou
 | `EIS17-VER-09` | PR | **Scenario tests (SCN).** Contract scenario rows each become a named acceptance scenario. | — | 39 |
 | `EIS17-VER-10` | TR | **CI tiers.** SB-P-1.17 code and migration paths join the Full Assurance path filter; new Supabase-backed tests join `vitest.full.config.ts` (EQ17-12). | B6-21 | 2 |
 | `EIS17-VER-11` | PR | **Closing decision-table tests.** One T2 test per §20.9.2 row and the precedence rule. | ENG17-02 | 9 |
-| `EIS17-VER-12` | AF | **Inventory regression.** All 17 `tests/inventory` files remain regression gates for any stock extension and run unchanged, except that the direct `authenticated` write cases made unreachable by the `EIS17-STK-10` family cut-over are independently re-baselined to deny direct access, and their constraint or integrity assertions move to a privileged governed-path fixture. No other case changes, and direct DML is never retained to make a test pass. This requirement authorizes no test change or execution. | B6-07 | 23 |
+| `EIS17-VER-12` | AF | **Inventory regression.** All 17 `tests/inventory` files remain regression gates for any stock extension. Only these named ordinary-`authenticated` direct-DML cases may have expectations independently re-baselined, when the `EIS17-STK-10` family cut-over removes that access: (1) `tests/inventory/audit-integrity.test.ts`, "a direct insert with neither responsible_user_id nor a business_event reference is rejected by the database"; (2) `tests/inventory/audit-integrity.test.ts`, "a direct insert with only a business_event reference (no responsible_user_id) is accepted"; (3) `tests/inventory/correction-link-integrity.test.ts`, "a movement cannot reference itself as correcting_of (self-reference)"; (4) `tests/inventory/shared-write-path.test.ts`, "records the actual behavior of a direct insert that bypasses create_inventory_movement's negative-stock guard"; (5) `tests/inventory/correction-behaviour.test.ts`, "an ordinary owner's UPDATE attempt never mutates the row (RLS defines no UPDATE policy, so zero rows match)", only if the cut-over also removes direct `authenticated` `UPDATE`, and it must still prove the row is unchanged. A re-baselined case asserts that direct access is denied; any constraint or integrity assertion it carried continues through a privileged governed-path or dedicated constraint fixture. Any further case must be named by file and test title before its expectation changes. Every other case, including admin-client and service-role constraint probes, runs semantically unchanged, and the Owner movement path through the public entry keeps working (`NP-48`). Direct DML is never retained to make a test pass. This requirement authorizes no test change or execution. | B6-07 | 23 |
 
 ## 25. Must-Not Checks
 
@@ -473,7 +493,7 @@ Every hold below is preserved from Blueprint §21.3, the Stage 8 lock record §7
 | Row-to-requirement links | 3051 |
 | Requirements per row (minimum / maximum) | 3 / 15 |
 | Status of these counts | Author-calculated for this candidate; not an independent PASS |
-| FCTM or Blueprint changes | 0 (FCTM blob `cb79088d`; Blueprint blob `bc4615f8`) |
+| FCTM or Blueprint changes | 0 (FCTM blob `cb79088d`; current locked Blueprint blob `f65ddd2a3c499d278b83f6ae83487669ed75670c`; original Stage 8 blob `bc4615f8` is historical) |
 
 **Selection rules.** Each requirement carries its own selectors (Stage 7 component, explicit row IDs, row-ID patterns, FCTM dependency code, `17:FPDR` citation, FCTM kind, verification seed or evidence marker). The two tables below are generated from the same selectors, so they are exact inverses.
 
