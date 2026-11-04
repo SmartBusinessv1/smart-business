@@ -2,7 +2,7 @@
 
 ```text
 STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2: FOUNDER OPTION A APPROVED, BLUEPRINT EFFECTIVENESS HELD, #1114 NOT MERGED, SUCCESSOR UNKNOWN)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (blob ece64ef3, PR #1114 MERGED AT 20ae121a; PREDECESSOR f65ddd2a HISTORICAL; GATE C-2: BLUEPRINT EFFECTIVENESS SATISFIED; PROTECTED CHILD ACCEPTANCE, IMPLEMENTATION AND STAGE 12/13 PROOF HELD)
 EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
 IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
@@ -23,7 +23,7 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
 | Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
@@ -101,7 +101,7 @@ Every item is **NOT VERIFIED**. An item becomes evidenced only through the plann
 | `NP-47` | Revocation at commit stops the pack. Pack, return, correction and the Owner status command under contention cannot deadlock, under the shared order. **Future tests; none written or run:** pause an ordinary movement after any preliminary item read and before the item serialization point, archive concurrently, and prove one serial outcome: the movement committed before the archive, or the archive committed first and the movement is denied with no effect. Repeat for reactivation and for concurrent status and movement attempts. A correction on an archived item stays permitted, a negative-stock override cannot bypass archival, and no stale pre-lock status authorizes or denies the commit | STK-10, TXN-11 | 2 |
 | `NP-48` | **Future tests; none written or run.** After cut-over: (a) `authenticated` direct `INSERT`, `UPDATE` and `DELETE` on `inventory_items` and `inventory_movements` are denied for every role including the Owner, and target rows stay unchanged; (b) direct `SELECT`, `INSERT`, `UPDATE` and `DELETE` on `inventory_movement_idempotency_keys` are denied for `authenticated`; (c) effective grants are queried as state for `authenticated`, `anon` and `PUBLIC`: only `SELECT` on items and movements, nothing on keys, and no `TRUNCATE`, `REFERENCES`, `TRIGGER` or other table privilege; (d) each new family table and function has no `PUBLIC`, `anon` or `authenticated` privilege beyond its stated narrow grant; (e) an outsider and a non-Owner member are refused by both item commands and the writer, with the same stable, non-enumerating result; (f) Owner path continuity: item and movement reads, the movement path through the public entry, item create and item status change all work, and item commands return today's item row; (g) each item command replays a same-key retry without a second effect, rejects a changed payload, still fails a new duplicate name on `inventory_items_business_name_uniq`, and is denied durably on revocation at commit. Migration text is not evidence of live privilege | STK-10, SEC-03 | 2 |
 
-**Candidate scope of `NP-38` to `NP-48`.** Wording that names a protected child applies only if that child is accepted, which is **HELD until the Founder-approved PR #1114 amendment is merged and verified** (gate C-2). Existing POS, document and import callers stay on `create_inventory_movement`.
+**Candidate scope of `NP-38` to `NP-48`.** Wording that names a protected child applies only if that child is accepted. Gate C-2 Blueprint effectiveness is SATISFIED (PR #1114, blob `ece64ef3`), and **child acceptance, implementation and Stage 12/13 proof stay HELD**. Existing POS, document and import callers stay on `create_inventory_movement`.
 
 **Stage 13 specificity rule — NP-01 and NP-37.** A named check ID is a reusable test family, not blanket evidence or a blanket PASS. For each row mapped to `NP-01`, verify the specific forbidden capability and its relevant UI, RPC, export, conversation or background entry points for a no-grant Manager and record row-keyed denial evidence; where a row specifies another authority condition, apply its narrower `NP-02`–`NP-36` check as well. For each row mapped to `NP-37`, derive the exact prohibited behavior from that FCTM row and its linked EIS requirements and record a distinct row-keyed negative assertion and observation. If the original row is too ambiguous to derive a test, mark `FOLLOW-UP` and do not mark it PASS; resolve against the locked source contract without inventing Product Truth. No check is performed or passed by this document.
 
@@ -133,7 +133,7 @@ The canonical FCTM has **0** `ALREADY DEMONSTRATED` rows, so no carry-forward as
 
 ## 7. Preserved Holds
 
-`HOLD-01` to `HOLD-23`, FIN-01 PROVISIONAL, U-11, DPOS/SA-04, MC-507CM calibration (all parameters UNSET), T6 screening pending and T8 WATCH stay open. A row carrying a held dependency is never reported as passed. Gate C-2 on `EIS17-STK-10` entry topology: Founder Option A approved; Blueprint effectiveness HELD until PR #1114 is merged and verified. The item-state serialization rule of `EIS17-STK-10` (o) is accepted on paper and runtime untested. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
+`HOLD-01` to `HOLD-23`, FIN-01 PROVISIONAL, U-11, DPOS/SA-04, MC-507CM calibration (all parameters UNSET), T6 screening pending and T8 WATCH stay open. A row carrying a held dependency is never reported as passed. Gate C-2 on `EIS17-STK-10` entry topology: Blueprint effectiveness SATISFIED by the Founder human merge of PR #1114 (blob `ece64ef3`); protected child acceptance, implementation and Stage 12/13 proof HELD. The item-state serialization rule of `EIS17-STK-10` (o) is accepted on paper and runtime untested. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
 
 ## 8. Row-Keyed Checklist Items (404 rows)
 
@@ -573,4 +573,4 @@ Builder evidence never proves acceptance. Independent post-build verification (S
 
 ## 11. Status
 
-`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Every item NOT VERIFIED. Gate C-2: Founder Option A approved; Blueprint effectiveness HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Every item NOT VERIFIED. Gate C-2: Blueprint effectiveness SATISFIED (merge `20ae121a`); protected child acceptance, implementation and Stage 12/13 proof HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**

@@ -2,7 +2,7 @@
 
 ```text
 STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2: FOUNDER OPTION A APPROVED, BLUEPRINT EFFECTIVENESS HELD, #1114 NOT MERGED, SUCCESSOR UNKNOWN)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (blob ece64ef3, PR #1114 MERGED AT 20ae121a; PREDECESSOR f65ddd2a HISTORICAL; GATE C-2: BLUEPRINT EFFECTIVENESS SATISFIED; PROTECTED CHILD ACCEPTANCE, IMPLEMENTATION AND STAGE 12/13 PROOF HELD)
 EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
 IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
@@ -23,7 +23,7 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
 | Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
@@ -98,7 +98,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 - **EIS / Engineering Contract references (45):** ARC-01, ARC-02, ARC-03, ARC-05, ARC-06, STK-02, STK-04, POS-01, POS-02, POS-03, POS-04, POS-05, POS-06, POS-07, POS-08, POS-09, POS-10, POS-11, POS-12, TXN-01, TXN-02, TXN-03, TXN-06, TXN-08, TXN-09, CTR-06, PRIV-01, PRIV-02, VER-01, VER-02, VER-03, VER-04, VER-05, VER-07, VER-08, NEG-01, HOLD-01, HOLD-03, HOLD-04, HOLD-07, HOLD-15, HOLD-16, HOLD-18, HOLD-20, HOLD-21.
 - **Prerequisites:** dependency codes on its rows: `DPOS` 35, `D14` 14, `D12` 4, `DTX` 3. Upstream foundations implemented and accepted before any row is built; Implementation Authorization naming this workstream.
 - **Retained holds:** HOLD-01, HOLD-03, HOLD-04, HOLD-07, HOLD-15, HOLD-16, HOLD-17, HOLD-18, HOLD-20, HOLD-21.
-- **Architecture boundary:** One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`). API/webhook intake follows Founder MC-507R A1: Owner-authorized, source-scoped `EIS-AUT-01` delegation, server-derived automation-run principal, `channel = integration`, `EIS-ISO-04` for protected execution. Ledger effects only through the sole SB-P-1.14 governed writer; POS mapped stock effects continue through the named public entry `create_inventory_movement`, as locked Blueprint §20.4.6 requires, and a protected stock child is only a conditional path for a separately accepted cross-module consumer under `EIS17-STK-10`, **HELD until the Founder-approved PR #1114 amendment is merged and verified** (gate C-2); composition through the MC-507BT outer coordinator and SB-P-1.14 internal Ledger child (`EIS17-TXN-03`).
+- **Architecture boundary:** One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`). API/webhook intake follows Founder MC-507R A1: Owner-authorized, source-scoped `EIS-AUT-01` delegation, server-derived automation-run principal, `channel = integration`, `EIS-ISO-04` for protected execution. Ledger effects only through the sole SB-P-1.14 governed writer; POS mapped stock effects continue through the named public entry `create_inventory_movement`, as locked Blueprint §20.4.6 requires, and a protected stock child is only a conditional path for a separately accepted cross-module consumer under `EIS17-STK-10`, allowed by canonical Blueprint §20.9.1 (PR #1114; gate C-2 Blueprint effectiveness SATISFIED), with **its acceptance, implementation and Stage 12/13 proof HELD**; composition through the MC-507BT outer coordinator and SB-P-1.14 internal Ledger child (`EIS17-TXN-03`).
 - **Permission boundary:** No fifth principal; provider authentication, source identity, credentials and `service_role` are never merchant authority; payload-supplied business, source, principal, role or actor identifiers are ignored. Commit revalidates credentials, source binding, delegation, grantor authority, scope and epochs.
 - **Prohibited:**
   - custom client-specific POS modification in Smart Business core, or replacing the merchant's POS;
@@ -182,7 +182,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 6. Holds the Builder Must Not Cross
 
-`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record. Gate C-2 on `EC17-STK-10` entry topology: Founder Option A is approved and Blueprint effectiveness is HELD until PR #1114 is merged and verified, so no builder may treat the protected child as active. Every ordinary stock writer and the Owner status command use one target-item serialization point, and an ordinary movement re-reads item identity and status after that lock; the lock primitive is UNKNOWN. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
+`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record. Gate C-2 on `EC17-STK-10` entry topology: Blueprint effectiveness is SATISFIED by the Founder human merge of PR #1114 (blob `ece64ef3`), but protected child acceptance, implementation and Stage 12/13 proof stay HELD, so no builder may treat the protected child as active. Every ordinary stock writer and the Owner status command use one target-item serialization point, and an ordinary movement re-reads item identity and status after that lock; the lock primitive is UNKNOWN. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
 
 ## 7. Workstream-to-FCTM-Row Map (404 rows)
 
@@ -608,4 +608,4 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 9. Status
 
-`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Documentary planning only. Gate C-2: Founder Option A approved; Blueprint effectiveness HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Documentary planning only. Gate C-2: Blueprint effectiveness SATISFIED (merge `20ae121a`); protected child acceptance, implementation and Stage 12/13 proof HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**

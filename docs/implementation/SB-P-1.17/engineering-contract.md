@@ -2,7 +2,7 @@
 
 ```text
 STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2: FOUNDER OPTION A APPROVED, BLUEPRINT EFFECTIVENESS HELD, #1114 NOT MERGED, SUCCESSOR UNKNOWN)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (blob ece64ef3, PR #1114 MERGED AT 20ae121a; PREDECESSOR f65ddd2a HISTORICAL; GATE C-2: BLUEPRINT EFFECTIVENESS SATISFIED; PROTECTED CHILD ACCEPTANCE, IMPLEMENTATION AND STAGE 12/13 PROOF HELD)
 EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
 IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
@@ -23,7 +23,7 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
 | Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
@@ -38,7 +38,7 @@ This contract translates the locked EIS into explicit engineering obligations fo
 
 | Reference | Identity |
 |---|---|
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982`; Stage 11 disposition MC-507CU; metadata aligned in PR #1064. `EC17-STK-10` realizes the candidate `EIS17-STK-10`, not locked text |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` (630 rows; 404 `IN SCOPE`; 0 `ALREADY DEMONSTRATED`) |
 | Founder decisions | `17:FPDR-1` to `-7`; Stage 8 (MC-426); MC-499 GA-03 Option A; MC-507R A1, A2, B1; MC-507CG; MC-507CM — as recorded in the locked EIS and mission records |
@@ -61,7 +61,7 @@ This contract translates the locked EIS into explicit engineering obligations fo
 | DPOS / SA-04 | No real POS source activated; eleven-item dossier and independent qualified POS assurance outstanding (`EC17-POS-11`; `HOLD-21`) |
 | Dependency gates | `HOLD-01` to `HOLD-14` (`D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DPOS`, `DSEC`, `DENT`, `DSCH`, `DAI`, `DV`, `DNTF`, `DPAY`) |
 | T6 / T8 | T6 delegated under MC-507CM with screening pending; T8 WATCH, not established |
-| Stock interface candidate | Gate C-2: Founder Option A approved, Blueprint effectiveness HELD until #1114 is merged and verified; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; ordinary stock writers and the Owner status command share one item serialization point with an authoritative under-lock re-read (SA-03; runtime untested); inventory-family DML exposed today by migration text and revoked at cut-over; live privileges UNVERIFIED; `HOLD-17` remains open |
+| Stock interface candidate | Gate C-2: Blueprint effectiveness SATISFIED (blob `ece64ef3`), protected child acceptance, implementation and Stage 12/13 proof HELD; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; ordinary stock writers and the Owner status command share one item serialization point with an authoritative under-lock re-read (SA-03; runtime untested); inventory-family DML exposed today by migration text and revoked at cut-over; live privileges UNVERIFIED; `HOLD-17` remains open |
 
 No hold is closed, and no open question becomes approved, because it appears in this package.
 
@@ -801,4 +801,4 @@ Verification references name the Verification Checklist negative-path checks (`N
 
 ## 11. Status
 
-`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Gate C-2: Founder Option A approved; Blueprint effectiveness HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Gate C-2: Blueprint effectiveness SATISFIED (merge `20ae121a`); protected child acceptance, implementation and Stage 12/13 proof HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
