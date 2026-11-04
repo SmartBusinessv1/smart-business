@@ -1,11 +1,11 @@
 # SB-P-1.17 — Engineering Contract
 
 ```text
-STATUS: APPROVED — LOCKED
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a)
-EIS: APPROVED — LOCKED (UNCHANGED, blob 5d681b0c)
+STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (blob ece64ef3, PR #1114 MERGED AT 20ae121a; PREDECESSOR f65ddd2a HISTORICAL; GATE C-2: BLUEPRINT EFFECTIVENESS SATISFIED; PROTECTED CHILD ACCEPTANCE, IMPLEMENTATION AND STAGE 12/13 PROOF HELD)
+EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
-IMPLEMENTATION PACKAGE: APPROVED — LOCKED (Stage 13)
+IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 POS, AI, VOICE AND MESSAGING PROVIDER ACTIVATION: NOT AUTHORIZED
@@ -19,12 +19,13 @@ PRODUCTION MUTATION / DEPLOYMENT: NOT AUTHORIZED
 | Mission | SB-P-1.17 — Manager Operations |
 | Document | Engineering Contract |
 | Lifecycle stage | Source 18 v1.2 Stage 12 — Initial Implementation Package |
-| Status | `APPROVED — LOCKED` |
-| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only |
+| Status | `DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL` (MC-739-S); no lock until review, Founder human merge and Mission Control re-lock |
+| Authorization | Mission Control Stage 12 authorization (conversation-source): drafting only; [MC-739-S](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6604359754): this candidate only, acceptance not granted |
 | Author | Claude Code (also author of Stages 2–9, the Stage 9 EIS draft and several Stage 10 corrections; not independent review) |
 | Baseline | `main@ef3acbf5686fbb196efc0ee6d58f06d9bff78f42` (PR #1064 merge; PR #1063 merged at `8a4b19b1`) |
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
 | Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982` (157 requirements) |
+| Candidate EIS | Same path on this branch (158 requirements, author-calculated); no successor identity is set before re-lock |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `0945bda60a93c99909c3b7a247d5427ebe256011` |
 | Companion documents | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md` in `docs/implementation/SB-P-1.17/` |
@@ -37,8 +38,8 @@ This contract translates the locked EIS into explicit engineering obligations fo
 
 | Reference | Identity |
 |---|---|
-| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `f65ddd2a3c499d278b83f6ae83487669ed75670c` |
-| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982`; Stage 11 disposition MC-507CU; metadata aligned in PR #1064 |
+| Locked Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.17.md`, blob `ece64ef3964221aeb1760f0817cc3d86d2a07c68` (merge `20ae121a38ae40b7e1cd6d60f44c5104d5d499e3`, PR #1114; predecessor `f65ddd2a3c499d278b83f6ae83487669ed75670c` is historical) |
+| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.17-EIS.md`, blob `5d681b0c169dd12edc54a110a9fc9d54b87e2982`; Stage 11 disposition MC-507CU; metadata aligned in PR #1064. `EC17-STK-10` realizes the candidate `EIS17-STK-10`, not locked text |
 | Canonical FCTM | `communication/missions/SB-P-1.17/claude-code/01-stage2-populated-fctm.md`, blob `cb79088d3fa59f8b3226fd9d11ff9c9573666670` (630 rows; 404 `IN SCOPE`; 0 `ALREADY DEMONSTRATED`) |
 | Founder decisions | `17:FPDR-1` to `-7`; Stage 8 (MC-426); MC-499 GA-03 Option A; MC-507R A1, A2, B1; MC-507CG; MC-507CM — as recorded in the locked EIS and mission records |
 | Upstream locked EIS | SB-P-1.12, SB-P-1.13, SB-P-1.14 (with the MC-507BT bounded amendments, PR #1061), SB-P-1.15 and SB-P-1.16 — specified, not implemented |
@@ -60,6 +61,7 @@ This contract translates the locked EIS into explicit engineering obligations fo
 | DPOS / SA-04 | No real POS source activated; eleven-item dossier and independent qualified POS assurance outstanding (`EC17-POS-11`; `HOLD-21`) |
 | Dependency gates | `HOLD-01` to `HOLD-14` (`D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DPOS`, `DSEC`, `DENT`, `DSCH`, `DAI`, `DV`, `DNTF`, `DPAY`) |
 | T6 / T8 | T6 delegated under MC-507CM with screening pending; T8 WATCH, not established |
+| Stock interface candidate | Gate C-2: Blueprint effectiveness SATISFIED (blob `ece64ef3`), protected child acceptance, implementation and Stage 12/13 proof HELD; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; ordinary stock writers and the Owner status command share one item serialization point with an authoritative under-lock re-read (SA-03; runtime untested); inventory-family DML exposed today by migration text and revoked at cut-over; live privileges UNVERIFIED; `HOLD-17` remains open |
 
 No hold is closed, and no open question becomes approved, because it appears in this package.
 
@@ -114,6 +116,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | `EC17-STK-07` | `EIS17-STK-07` | Governed stock readers | PR/TR | `BUILD — DEPENDENCY GATED` | WS17-A, WS17-B, WS17-E, WS17-G | HOLD-01, HOLD-02, HOLD-03, HOLD-11 | RS-14 | `7-§1-1`, `7-§1-2`, `7-§2-3`, `7-§2-11`, `7-§11-1.1`, `7-§15-1`, `17-§7-1` |
 | `EC17-STK-08` | `EIS17-STK-08` | Opening stock consumed from SB-P-1.14 | AF | `BUILD — DEPENDENCY GATED` | WS17-A, WS17-G | HOLD-01, HOLD-03 | Row items (VC17-*) | `7-§2-4`, `7-§15-1`, `BP-§10.6-W12` |
 | `EC17-STK-09` | `EIS17-STK-09` | Negative-stock policy | AF/UQ | `BUILD — OPEN, FAIL-CLOSED` | WS17-F | HOLD-01, HOLD-03 | Row items (VC17-*) | `7-§13-5`, `7-§13-13` |
+| `EC17-STK-10` | `EIS17-STK-10` | Stock writer interface and inventory-family boundary | TR/UQ | `BUILD — OPEN, FAIL-CLOSED` | WS17-A, WS17-B, WS17-F | HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-07, HOLD-17 | NP-38 to NP-48 | `7-§2-5`, `7-§8-1`, `7-§8-3`, `7-§12-3`, `7-§12-8`, `7-§13-5`, `7-§13-6`, `7-§13-11`, `7-§16-2`, `BP-§6.2-1`, `BP-§11-6` |
 
 ### 7.3 Stock Signals and Owner-Confirmed Thresholds (EIS Section 8)
 
@@ -378,12 +381,13 @@ Verification references name the Verification Checklist negative-path checks (`N
 
 | Check | Result |
 |---|---|
-| Obligations (one per locked EIS requirement) | 157 / 157 |
+| Obligations (one per candidate EIS requirement) | 158 / 158 |
 | `IN SCOPE` rows covered by at least one obligation | 404 / 404 |
 | Missing / extra / non-`IN SCOPE` rows | 0 / 0 / 0 |
 | Obligations without rows (orphans) | 0 |
-| Row-to-obligation links | 3040 |
-| Obligations per row (min / max) | 3 / 14 |
+| Row-to-obligation links | 3051 |
+| Obligations per row (min / max) | 3 / 15 |
+| Status of these counts | Author-calculated for this candidate; not an independent PASS |
 | Product behaviour or permission added beyond the EIS | None (one-to-one realization) |
 
 ## 10. FCTM Row to Obligation (404 rows)
@@ -396,7 +400,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 4 | `7-§2-2` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-04, VER-01, VER-12, HOLD-01, HOLD-03 |
 | 5 | `7-§2-3` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-02, STK-07, MIG-02, VER-01, VER-12, HOLD-01, HOLD-03 |
 | 6 | `7-§2-4` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-08, VER-01, VER-12, HOLD-03 |
-| 7 | `7-§2-5` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-05, TXN-06, AUD-01, VER-01, VER-12, HOLD-01, HOLD-03 |
+| 7 | `7-§2-5` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-05, STK-10, TXN-06, AUD-01, VER-01, VER-12, HOLD-01, HOLD-03 |
 | 8 | `7-§2-6` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, SIG-01, SIG-02, SIG-03, VER-01, VER-06, HOLD-01, HOLD-03, HOLD-22 |
 | 9 | `7-§2-7` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-03, SIG-03, SIG-04, VER-01, HOLD-03 |
 | 10 | `7-§2-8` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, SIG-03, VER-01, HOLD-01, HOLD-03 |
@@ -432,9 +436,9 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 40 | `7-§7-2` | OBL | WS17-C | SOURCE-HELD | ARC-01, POS-01, POS-07, POS-11, POS-12, VER-01, HOLD-07 |
 | 41 | `7-§7-3` | NEG | WS17-C | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, POS-01, POS-10, VER-02, VER-03, NEG-01 |
 | 42 | `7-§7-4` | RULE | WS17-C | SOURCE-HELD | ARC-01, POS-01, POS-11, TXN-08, VER-01, VER-03, HOLD-03, HOLD-07 |
-| 43 | `7-§8-1` | RULE | WS17-A | DEPENDENCY-HELD | ARC-01, ARC-04, STK-01, TXN-02, TXN-03, TXN-04, VER-03, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
+| 43 | `7-§8-1` | RULE | WS17-A | DEPENDENCY-HELD | ARC-01, ARC-04, STK-01, STK-10, TXN-02, TXN-03, TXN-04, VER-03, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
 | 44 | `7-§8-2` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-02, TXN-02, TXN-03, TXN-10, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-17 |
-| 45 | `7-§8-3` | OBL | WS17-A | SOURCE-HELD | ARC-01, STK-01, STK-02, POS-11, TXN-02, TXN-03, TXN-09, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-07, HOLD-17 |
+| 45 | `7-§8-3` | OBL | WS17-A | SOURCE-HELD | ARC-01, STK-01, STK-02, STK-10, POS-11, TXN-02, TXN-03, TXN-09, VER-01, VER-04, VER-12, HOLD-03, HOLD-04, HOLD-07, HOLD-17 |
 | 46 | `7-§8-4` | NEG | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, STK-05, VER-02, VER-12, NEG-01, HOLD-03 |
 | 47 | `7-§8-5` | RULE | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, SUP-06, TXN-03, TXN-10, WS-11, VER-01, VER-03, VER-12, HOLD-03, HOLD-04, HOLD-06 |
 | 48 | `7-§9-1` | OBL | WS17-A | DEPENDENCY-HELD | ARC-01, STK-01, VER-01, VER-12, HOLD-01 |
@@ -453,24 +457,24 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 61 | `7-§11-2.5` | NEG | WS17-B | DEPENDENCY-HELD | ARC-01, SUP-07, RO-01, AUTH-01, AUTH-04, AI-04, AI-05, VER-02, NEG-01, HOLD-01, HOLD-02 |
 | 62 | `7-§12-1` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, STK-01, STK-06, AUD-01, VER-03, HOLD-01 |
 | 63 | `7-§12-2` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, AUD-01, VER-03, HOLD-03 |
-| 64 | `7-§12-3` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, AUTH-01, AUD-01, AUD-02, VER-03, HOLD-01 |
+| 64 | `7-§12-3` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, STK-10, AUTH-01, AUD-01, AUD-02, VER-03, HOLD-01 |
 | 65 | `7-§12-4` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, RO-06, CC-04, FLR-03, AUD-01, VER-03, HOLD-05, HOLD-10 |
 | 66 | `7-§12-5` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, SUP-01, AUD-01, VER-03, HOLD-01 |
 | 67 | `7-§12-6` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, DOC-01, AUD-01, VER-03, HOLD-03 |
 | 68 | `7-§12-7` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, AI-01, FLR-03, AUD-01, VER-03, HOLD-02, HOLD-05, HOLD-13 |
-| 69 | `7-§12-8` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, ARC-04, TXN-01, AUD-01, SEC-01, VER-03, HOLD-01 |
+| 69 | `7-§12-8` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-02, ARC-04, STK-10, TXN-01, AUD-01, SEC-01, VER-03, HOLD-01 |
 | 70 | `7-§12-9` | RULE | WS17-F | SOURCE-HELD | ARC-01, ARC-02, ARC-03, POS-11, AUD-01, VER-03, HOLD-07 |
 | 71 | `7-§13-1` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, DOC-02, TXN-02, FLR-01, AUD-01, VER-04, HOLD-01, HOLD-03 |
 | 72 | `7-§13-2` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, POS-06, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | 73 | `7-§13-3` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, POS-06, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | 74 | `7-§13-4` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-04, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
-| 75 | `7-§13-5` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-09, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
-| 76 | `7-§13-6` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-05, TXN-06, TXN-11, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
+| 75 | `7-§13-5` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-09, STK-10, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
+| 76 | `7-§13-6` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-05, STK-10, TXN-06, TXN-11, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | 77 | `7-§13-7` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, RO-02, FLR-01, FLR-02, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | 78 | `7-§13-8` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, RO-04, FLR-01, FLR-02, AUD-01, VER-01, VER-02, HOLD-03, HOLD-13 |
 | 79 | `7-§13-9` | OBL | WS17-F | SOURCE-HELD | ARC-01, POS-11, TXN-08, FLR-01, AUD-01, VER-01, VER-02, HOLD-03, HOLD-07 |
 | 80 | `7-§13-10` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, DOC-02, FLR-01, AUD-01, VER-01, VER-02, HOLD-03 |
-| 81 | `7-§13-11` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, TXN-02, TXN-05, FLR-01, FLR-03, AUD-01, VER-04, HOLD-01, HOLD-03 |
+| 81 | `7-§13-11` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, STK-10, TXN-02, TXN-05, FLR-01, FLR-03, AUD-01, VER-04, HOLD-01, HOLD-03 |
 | 82 | `7-§13-12` | OBL | WS17-F | DEPENDENCY-HELD | ARC-01, RO-05, AUTH-06, FLR-01, FLR-03, AUD-01, VER-01, VER-02, HOLD-01, HOLD-05 |
 | 83 | `7-§13-13` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, STK-09, TXN-12, FLR-01, AUD-01, VER-01, VER-02, HOLD-01, HOLD-03 |
 | 84 | `7-§14-1` | PRIN | WS17-D | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, CTR-01, CTR-02, VER-02, VER-05 |
@@ -486,7 +490,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 94 | `7-§15-9` | SCN | WS17-G | SOURCE-HELD | ARC-01, POS-11, POS-12, VER-01, VER-03, VER-09, HOLD-07 |
 | 95 | `7-§15-11` | SCN | WS17-G | DEPENDENCY-HELD | ARC-01, CTR-02, VER-02, VER-05, VER-09, HOLD-01, HOLD-03 |
 | 96 | `7-§16-1` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, AUD-01, VER-02, NEG-01, NEG-02 |
-| 97 | `7-§16-2` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, STK-01, AUD-01, VER-02, NEG-01, NEG-02 |
+| 97 | `7-§16-2` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, STK-01, STK-10, AUD-01, VER-02, NEG-01, NEG-02 |
 | 98 | `7-§16-3` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, POS-10, AUD-01, VER-02, NEG-01, NEG-02 |
 | 99 | `7-§16-4` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, CTR-02, AUD-01, VER-02, NEG-01, NEG-02 |
 | 100 | `7-§16-5` | NEG | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, TXN-08, AUD-01, VER-02, NEG-01, NEG-02 |
@@ -754,7 +758,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 362 | `BP-§5.3-1` | RULE | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, ARC-05, AUD-01, MIG-01, MIG-03, MIG-04, VER-03, VER-10 |
 | 363 | `BP-§5.4-1` | RULE | WS17-C | SOURCE-HELD | ARC-01, ARC-03, POS-01, POS-02, POS-03, POS-11, VER-03, HOLD-07, HOLD-15 |
 | 364 | `BP-§6.1-1` | NEG | WS17-E | DEPENDENCY-HELD | ARC-01, ARC-03, AUTH-01, AI-01, VER-02, NEG-01, HOLD-01 |
-| 365 | `BP-§6.2-1` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-04, TXN-03, AUD-01, SEC-02, VER-01, VER-03, HOLD-01, HOLD-02, HOLD-04, HOLD-17 |
+| 365 | `BP-§6.2-1` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-04, STK-10, TXN-03, AUD-01, SEC-02, VER-01, VER-03, HOLD-01, HOLD-02, HOLD-04, HOLD-17 |
 | 366 | `BP-§6.3-1` | RULE | WS17-F | DEPENDENCY-HELD | ARC-01, ARC-03, AUD-01, SEC-01, SEC-04, MIG-04, VER-03, HOLD-03 |
 | 367 | `BP-§6.5-1` | RULE | WS17-B | DEPENDENCY-HELD | ARC-01, RO-01, RO-06, CC-04, AUTH-01, FLR-03, VER-03, HOLD-05, HOLD-10 |
 | 368 | `BP-§6.6-1` | RULE | WS17-C | SOURCE-HELD | ARC-01, ARC-06, POS-01, POS-11, VER-03, HOLD-07 |
@@ -785,7 +789,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | 393 | `BP-§10.6-B1` | FRV | WS17-G | SOURCE-HELD | ARC-01, POS-01, POS-11, VER-07, HOLD-07, HOLD-21, HOLD-22 |
 | 394 | `BP-§10.6-B2` | FRV | WS17-G | SOURCE-HELD | ARC-01, POS-11, CTR-02, VER-07, HOLD-07, HOLD-22 |
 | 395 | `BP-§10.6-X` | EXP | WS17-E | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, AUTH-01, WS-01, WS-08, VER-05 |
-| 396 | `BP-§11-6` | RULE | WS17-B | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, RO-01, RO-08, AUTH-01, VER-03 |
+| 396 | `BP-§11-6` | RULE | WS17-B | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, STK-10, RO-01, RO-08, AUTH-01, VER-03 |
 | 397 | `BP-§11-7` | RULE | WS17-A | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, ARC-05, STK-01, VER-03, VER-12 |
 | 398 | `BP-§13-1` | RULE | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, AUD-01, VER-08 |
 | 399 | `BP-§13-9` | RULE | WS17-F | DESIGN ACCEPTED — EVIDENCE HOLD | ARC-01, AUD-01, VER-08 |
@@ -797,4 +801,4 @@ Verification references name the Verification Checklist negative-path checks (`N
 
 ## 11. Status
 
-`APPROVED — LOCKED`. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Gate C-2: Blueprint effectiveness SATISFIED (merge `20ae121a`); protected child acceptance, implementation and Stage 12/13 proof HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
