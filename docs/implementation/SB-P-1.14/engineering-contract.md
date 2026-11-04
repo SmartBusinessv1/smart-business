@@ -1,10 +1,11 @@
 # SB-P-1.14 — Engineering Contract
 
 ```text
-STATUS: APPROVED — LOCKED (EFFECTIVE ONLY AFTER STAGE 13 LOCK PR HUMAN MERGE AND POST-MERGE VERIFICATION)
+STATUS: POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (SB-P-1.14-MC-739-C)
+CURRENT LOCKED PACKAGE: MC-25 VERSION ON CANONICAL MAIN STAYS AUTHORITATIVE UNTIL RE-LOCK
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: APPROVED — LOCKED (CONDITIONAL ON HUMAN MERGE)
+EIS: POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL
+IMPLEMENTATION PACKAGE RE-LOCK: NOT GRANTED
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 AI PROVIDER / STORAGE PROVIDER SELECTION OR ACTIVATION: NOT AUTHORIZED
@@ -19,12 +20,13 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission Name | Business Memory, Documents & Durable Media |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.2 |
-| Status | `APPROVED — LOCKED` — effective only after Stage 13 lock PR human merge and post-merge Mission Control verification |
+| Version | 0.3 candidate (locked predecessor 0.2, MC-25) |
+| Status | `POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the MC-25 locked version on canonical `main` stays authoritative until independent review, authorized human merge and Mission Control re-lock |
 | Author | Claude Code — Source 18 Stage 12 initial implementation package owner |
 | Authorizing record | SB-P-1.14-MC-21 (`mission-control/38-stage11-eis-lock-disposition.md`, blob `ce13f8a3`, §4), canonical through PR #844; Stage 12 activation by Mission Control against `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d` |
 | Canonical baseline | `main@fe24264fbe01fed7abe5f7032b6eff2fc2b5825d` |
 | Date | 2026-10-09 |
+| Post-lock candidate | SB-P-1.14-MC-739-C, PR #1111 comment `6604359754`; base `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`. Candidate date 2026-11-03 |
 | Next gate | Source 18 Stage 13 — Implementation Package Review by Mission Control; Implementation Authorization is a separate later disposition |
 
 ## 2. Purpose and Authority
@@ -40,7 +42,7 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Reference | Path | Identity |
 |---|---|---|
 | Locked Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md` | blob `256828d2c26fba7dab6f52975efb8b574b1563f1` (`APPROVED — LOCKED`) |
-| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (`APPROVED — LOCKED`, 83 requirements; accepted Stage 10 substance blob `261ca7ac`) |
+| EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` | current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `8fb3e8d30cb71f2adcbae138dd3eaadb7c42830e`, provisional; the final identity is fixed only at re-lock (83 locked requirements, 84 in this candidate with `EIS14-REV-01`; accepted Stage 10 substance blob `261ca7ac`) |
 | Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md` | blob `01e9856aca0afdb1267230a1932fe34054449a4b` (766 rows; 563 `IN SCOPE`) |
 | Founder decisions `FPDR-1` to `FPDR-3` | `communication/missions/SB-P-1.14/founder/02-stage3-founder-product-decision-record.md` | blob `9717b29dbe08b6d115f512a90450c528d5212773` |
 | Founder decision `FPDR-4` | `communication/missions/SB-P-1.14/founder/03-post-stage6-founder-product-decision-record.md` | blob `3f36c06da8a7327766ada44248ce2953cd8e3a2c` |
@@ -66,7 +68,7 @@ Describing a mechanism does not satisfy a hold (EIS Section 27). Row-level holds
 | `DTX` / H-DTX | 42 rows; held | `EC14-HOLD-03`: held until the coordinated SB-P-1.12 WS-A3 / SB-P-1.13 EIS13-CMD-02 transactions-family cut-over is complete and effective-access verification shows one protected write path. `EC14-CMD-01` to `-03` and `EC14-MIG-01` are delivered inside that cut-over family under a separately authorized migration mission |
 | AI provider evidence / H-PROV (`DAI`) | 97 rows | `EC14-PRV-01`, `EC14-HOLD-09`: no merchant document reaches an AI provider until evidence is accepted for the versioned SB-P-1.13 configuration identity; a material change blocks merchant-document flow until re-verification. Provider selection, purchase and activation: NOT AUTHORIZED |
 | Storage activation / H-STO (`DR2`) | 124 rows | `EC14-PRV-02`, `EC14-HOLD-08`: no merchant object is stored in R2 or any durable object store until a separately authorized `DR2` evidence pack is accepted. Selection, purchase, configuration and activation: NOT AUTHORIZED |
-| Retention basis / H-LEG (`DLEG`, `DUF6`) | 11 rows | `EC14-RET-03`, `EC14-HOLD-10`: record classes reference the SB-P-1.12 registry; no duration is coded |
+| Retention basis / H-LEG (`DLEG`, `DUF6`) | 11 rows | `EC14-RET-03`, `EC14-HOLD-10`: record classes reference the SB-P-1.12 registry; no duration is coded. Post-deletion proof fields, duration and tombstone shape are `DLEG / retention policy pending`; no full-metadata survival is promised |
 | Later missions / H-LATER (`D15`, `D17`, `D19`, `D20`) | 13 rows | `EC14-HOLD-04`, `EC14-HOLD-11`: only the SB-P-1.14 slice is built |
 | Birth-safe objects / H-BIRTH | 60 rows | `EC14-SEC-02`: object-type-specific hardening in one migration boundary; effective-access inventory under `EC14-VER-01` |
 | Revocation-safe retrieval and export / H-REVOKE | 35 rows | `EC14-RTV-01`: server-mediated delivery by default; any non-zero post-revocation window returns to Mission Control as a T3 candidate |
@@ -173,6 +175,7 @@ Verification references point to the Verification Checklist: named negative-path
 | `EC14-CMD-01` | `EIS14-CMD-01` | Four states added to the one governed create-transaction command | `BUILD — MIGRATION / CUT-OVER GATED` | WS-A | P1 | `DB`, `CONC`, `INV`, `AUDIT` | NP-07, NP-08, RS-03, RS-06 | 42 rows: listed in Section 29.2 (Section 11) |
 | `EC14-CMD-02` | `EIS14-CMD-02` | Governed append-only correction command | `BUILD — MIGRATION / CUT-OVER GATED` | WS-A | P1 | `DB`, `CONC`, `AUDIT`, `RT` | NP-07, NP-27, RS-11 | `3-§8-1`, `3-§8-2`, `3-§8-3`, `3-§8-4`, `3-§8-5`, `3-§8-6`, `3-§8-7`, `3-§8-8`, `3-§8-9`, `3-§8-10`, `3-§8-11`, `3-§8-12`, `3-§8-13`, `3-§8-14`, `3-§8-15`, `3-§8-16`, `3-§17-6`, `3-§18-3`, `3-§19-7` (19) |
 | `EC14-CMD-03` | `EIS14-CMD-03` | Complete direct-mutation closure on `transactions` and correction events | `BUILD — MIGRATION / CUT-OVER GATED` | WS-A | P1 | `INV`, `DB` | NP-07, RS-06 | `3-§22-1`, `3-§22-2`, `22-§28-9`, `24-§14-9`, `BP-§6.1-1`, `BP-§6.2-1` (6) |
+| `EC14-REV-01` | `EIS14-REV-01` | Governed original-linked reversal per the EIS MC-507BL section, by reference; rows are constraint trace only | `BUILD — MIGRATION / CUT-OVER GATED` | WS-A | P1 | `DB`, `CONC`, `INV`, `AUDIT`, `RT` | NP-46, RS-25 | `3-§8-9`, `3-§8-10`, `3-§8-12`, `3-§8-13`, `3-§8-14`, `3-§8-15`, `3-§8-16`, `3-§18-3`, `3-§20-1`, `BP-§10.3-W11` (10) |
 
 ### 7.4 Idempotency, Content Fingerprint and Unknown Outcome (EIS Section 9)
 
@@ -221,10 +224,10 @@ Verification references point to the Verification Checklist: named negative-path
 
 | Obligation | Realizes | Title | Type | Workstream | Phase | Evidence | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
-| `EC14-CAB-01` | `EIS14-CAB-01` | Document memory model (`documents`, `document_versions`, `document_links`) | `BUILD` | WS-D | P6 | `DB`, `INV` | NP-01, RS-09 | `5-§6-1`, `5-§6-2`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `22-§10-1`, `22-§10-2`, `22-§10-3`, `22-§10-4`, `22-§10-5`, `22-§10-6`, `22-§10-7`, `25-§10-1`, `25-§10-2`, `25-§10-3`, `25-§10-4`, `25-§10-5`, `25-§10-6`, `25-§10-7`, `25-§10-8`, `25-§10-9`, `25-§10-10`, `25-§10-11`, `25-§10-12`, `25-§11-1`, `25-§11-2`, `25-§11-3`, `25-§11-4` (36) |
+| `EC14-CAB-01` | `EIS14-CAB-01` | Document memory model (`documents`, `document_versions`, `document_links`); feature-restricted access predicate | `BUILD` | WS-D | P6 | `INT`, `DB`, `CONC`, `INV` | NP-01, NP-45, RS-09 | `5-§6-1`, `5-§6-2`, `5-§15-1`, `5-§15-2`, `5-§15-3`, `5-§15-4`, `5-§15-5`, `5-§15-6`, `5-§15-7`, `5-§15-8`, `5-§15-9`, `5-§15-10`, `5-§15-11`, `22-§10-1`, `22-§10-2`, `22-§10-3`, `22-§10-4`, `22-§10-5`, `22-§10-6`, `22-§10-7`, `25-§10-1`, `25-§10-2`, `25-§10-3`, `25-§10-4`, `25-§10-5`, `25-§10-6`, `25-§10-7`, `25-§10-8`, `25-§10-9`, `25-§10-10`, `25-§10-11`, `25-§10-12`, `25-§11-1`, `25-§11-2`, `25-§11-3`, `25-§11-4` (36) |
 | `EC14-CAB-02` | `EIS14-CAB-02` | Immutable originals and versioning | `BUILD` | WS-D | P6 | `UNIT`, `DB` | NP-27, RS-09 | `22-§29-12`, `25-§10-12`, `25-§23-7`, `BP-§10.3-W5` (4) |
 | `EC14-CAB-03` | `EIS14-CAB-03` | Domain provenance separate from SB-P-1.12 authority audit | `BUILD` | WS-D | P6 | `DB`, `AUDIT` | NP-28, RS-05 | `5-§15-2`, `5-§15-3`, `5-§15-10`, `25-§23-1`, `25-§23-2`, `25-§23-3`, `25-§23-4`, `25-§23-5`, `25-§23-6`, `25-§23-7`, `25-§23-8`, `25-§23-9`, `25-§23-10`, `25-§23-11`, `25-§23-12` (15) |
-| `EC14-CAB-04` | `EIS14-CAB-04` | Receipt Cabinet retrieval through the shared search layer | `BUILD` | WS-D | P6 | `INT`, `DB`, `RT` | NP-01, RS-05, RS-09, RS-18 | `3-§19-9`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§6-13`, `5-§18-7`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-W8`, `BP-§10.3-X` (17) |
+| `EC14-CAB-04` | `EIS14-CAB-04` | Receipt Cabinet retrieval through the shared search layer | `BUILD` | WS-D | P6 | `INT`, `DB`, `INV`, `RT` | NP-01, NP-45, RS-05, RS-09, RS-18, RS-24 | `3-§19-9`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§6-13`, `5-§18-7`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-W8`, `BP-§10.3-X` (17) |
 
 ### 7.10 Durable Object Storage Control Plane (EIS Section 15)
 
@@ -252,9 +255,9 @@ Verification references point to the Verification Checklist: named negative-path
 
 | Obligation | Realizes | Title | Type | Workstream | Phase | Evidence | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
-| `EC14-RTV-01` | `EIS14-RTV-01` | Revocation-safe, server-mediated retrieval | `BUILD` | WS-F | P7 | `INT`, `DB`, `CONC`, `OBJ` | NP-01, NP-05, RS-05 | `3-§9-13`, `3-§10-1`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-9`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§18-7`, `25-§9-1`, `25-§9-2`, `25-§9-3`, `25-§9-4`, `25-§9-5`, `25-§9-6`, `25-§9-7`, `25-§9-8`, `25-§19-7`, `25-§20-7`, `25-§20-13`, `25-§26-2`, `25-§26-3`, `25-§26-11`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-X` (35) |
+| `EC14-RTV-01` | `EIS14-RTV-01` | Revocation-safe, server-mediated retrieval | `BUILD` | WS-F | P7 | `INT`, `DB`, `CONC`, `INV`, `OBJ` | NP-01, NP-05, NP-45, RS-05, RS-24 | `3-§9-13`, `3-§10-1`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-9`, `5-§6-3`, `5-§6-4`, `5-§6-5`, `5-§6-6`, `5-§6-7`, `5-§6-8`, `5-§6-9`, `5-§6-11`, `5-§18-7`, `25-§9-1`, `25-§9-2`, `25-§9-3`, `25-§9-4`, `25-§9-5`, `25-§9-6`, `25-§9-7`, `25-§9-8`, `25-§19-7`, `25-§20-7`, `25-§20-13`, `25-§26-2`, `25-§26-3`, `25-§26-11`, `10-§5-10`, `10-§10-7`, `17-§12-1`, `17-§12-2`, `BP-§10.3-X` (35) |
 | `EC14-SRC-01` | `EIS14-SRC-01` | Search keys and one query layer | `BUILD` | WS-F | P7 | `UNIT`, `DB`, `EVAL` | NP-01, NP-13, RS-18 | `3-§9-1`, `3-§9-2`, `3-§9-4`, `3-§9-5`, `3-§9-6`, `3-§9-7`, `3-§9-8`, `3-§9-9`, `3-§9-10`, `3-§9-11`, `3-§9-13`, `3-§9-14`, `3-§19-8`, `BP-§10.3-S1` (14) |
-| `EC14-SRC-02` | `EIS14-SRC-02` | Kernel-checked exports with distinct measures | `BUILD` | WS-F | P7 | `UNIT`, `INT`, `DB` | NP-03, NP-05, NP-10, NP-21, RS-10 | `3-§10-1`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-12` (6) |
+| `EC14-SRC-02` | `EIS14-SRC-02` | Kernel-checked exports with distinct measures | `BUILD` | WS-F | P7 | `UNIT`, `INT`, `DB`, `INV` | NP-03, NP-05, NP-10, NP-21, NP-45, RS-10 | `3-§10-1`, `3-§10-6`, `3-§10-7`, `3-§10-8`, `3-§10-9`, `3-§19-12` (6) |
 | `EC14-SRC-03` | `EIS14-SRC-03` | No authoritative per-customer balance | `BUILD` | WS-F | P7 | `UNIT`, `DB`, `RT` | NP-13, RS-03 | `3-§9-2`, `3-§9-7`, `3-§10-5`, `3-§19-2` (4) |
 
 ### 7.13 Security, Isolation and Birth-Safe Objects (EIS Section 18)
@@ -360,6 +363,7 @@ These rules restate engineering constraints already fixed by the locked EIS for 
 | X-12 | Migration governance | No migration file is created or executed under this package; each migration needs a separately authorized migration mission, rehearsed on the isolated test project, with pre-new-data rollback and post-new-data forward-fix (`EC14-MIG-01` to `-06`). |
 | X-13 | Evidence | Evidence follows package template Sections 12 and 13 under `docs/implementation/SB-P-1.14/evidence/`, created only when an authorized stage produces evidence. Evidence is never claimed from documentary review, CI success or feasibility labels. |
 | X-14 | Completion | The builder records a status per assigned FCTM row in `lovable-build-completion-report.md`. A builder never verifies, approves or accepts its own work. `DEMONSTRATED` is reserved for rows with independent Stage 19 evidence. |
+| X-15 | Feature-restricted disclosure | A generic Cabinet capability alone never discloses a classed document on any read path; the source predicate lives only in `EIS14-CAB-01`, a grant proves only the capability it was issued for, with no implication, union, stitching or wider scope; each predicate is a separate kernel evaluation; set reads filter per document, and a target-less helper never decides one for object-scoped authority; outward denials reveal no class; a class-set read failure denies; and a feature link is never authority (`EC14-CAB-01`, `EC14-CAB-04`, `EC14-RTV-01`, `EC14-SRC-02`). |
 
 ## 9. Process Obligations
 
@@ -437,14 +441,14 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 43 | `3-§8-6` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
 | 44 | `3-§8-7` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
 | 45 | `3-§8-8` | §8.3 | `EC14-LDG-03`, `EC14-CMD-01`, `EC14-CMD-02`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-HOLD-01`, `EC14-HOLD-03`, `EC14-HOLD-05` | WS-A, Cross-cutting, Gate | BLOCKED | H-D12, H-DTX, H-FIN, H-MIG |
-| 46 | `3-§8-9` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 47 | `3-§8-10` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 46 | `3-§8-9` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 47 | `3-§8-10` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
 | 48 | `3-§8-11` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 49 | `3-§8-12` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 50 | `3-§8-13` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 51 | `3-§8-14` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 52 | `3-§8-15` | §8.3 | `EC14-CMD-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
-| 53 | `3-§8-16` | §8.3 | `EC14-LDG-04`, `EC14-CMD-02`, `EC14-NG-01`, `EC14-HOLD-05` | WS-A, Cross-cutting, Gate | FOLLOW-UP | H-FIN |
+| 49 | `3-§8-12` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 50 | `3-§8-13` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 51 | `3-§8-14` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 52 | `3-§8-15` | §8.3 | `EC14-CMD-02`, `EC14-REV-01`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, Gate | BLOCKED | H-D12, H-FIN |
+| 53 | `3-§8-16` | §8.3 | `EC14-LDG-04`, `EC14-CMD-02`, `EC14-REV-01`, `EC14-NG-01`, `EC14-HOLD-05` | WS-A, Cross-cutting, Gate | FOLLOW-UP | H-FIN |
 | 54 | `3-§9-1` | §8.6 | `EC14-SRC-01`, `EC14-MIG-04`, `EC14-HOLD-01` | WS-F, Gate | BLOCKED | H-D12 |
 | 55 | `3-§9-2` | §8.6 | `EC14-SRC-01`, `EC14-SRC-03`, `EC14-MIG-04`, `EC14-HOLD-01` | WS-F, Gate | BLOCKED | H-D12 |
 | 56 | `3-§9-4` | §8.6 | `EC14-SRC-01`, `EC14-MIG-04`, `EC14-HOLD-01` | WS-F, Gate | BLOCKED | H-D12 |
@@ -509,7 +513,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 115 | `3-§17-11` | §8.7 | `EC14-IDM-03`, `EC14-FAIL-01`, `EC14-FAIL-02` | WS-G | FOLLOW-UP | H-STATE |
 | 116 | `3-§18-1` | §8.1 | `EC14-LDG-06`, `EC14-SEC-01`, `EC14-HOLD-01` | WS-A, WS-G, Gate | BLOCKED | H-D12 |
 | 117 | `3-§18-2` | §8.1 | `EC14-LDG-06`, `EC14-SEC-01`, `EC14-HOLD-01` | WS-A, WS-G, Gate | BLOCKED | H-D12 |
-| 118 | `3-§18-3` | §8.1 | `EC14-LDG-06`, `EC14-CMD-02`, `EC14-SEC-01`, `EC14-HOLD-01` | WS-A, WS-G, Gate | BLOCKED | H-D12 |
+| 118 | `3-§18-3` | §8.1 | `EC14-LDG-06`, `EC14-CMD-02`, `EC14-REV-01`, `EC14-SEC-01`, `EC14-HOLD-01` | WS-A, WS-G, Gate | BLOCKED | H-D12 |
 | 119 | `3-§18-5` | §8.1 | `EC14-LDG-06`, `EC14-SEC-01`, `EC14-SEC-04`, `EC14-NG-01`, `EC14-HOLD-01` | WS-A, WS-G, Cross-cutting, Gate | BLOCKED | H-D12 |
 | 120 | `3-§18-6` | §8.1 | `EC14-LDG-06`, `EC14-SEC-01`, `EC14-SEC-04`, `EC14-NG-01` | WS-A, WS-G, Cross-cutting | PASS | — |
 | 121 | `3-§19-1` | §8.1 | `EC14-LDG-01`, `EC14-LDG-05`, `EC14-CMD-01`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-VER-02`, `EC14-HOLD-02`, `EC14-HOLD-03`, `EC14-HOLD-05` | WS-A, Cross-cutting, Gate | BLOCKED | H-D13, H-DTX, H-FIN, H-MIG |
@@ -526,7 +530,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 132 | `3-§19-12` | §8.6 | `EC14-TOT-01`, `EC14-SRC-02`, `EC14-VER-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-A, WS-F, Cross-cutting, Gate | BLOCKED | H-D12, H-FIN |
 | 133 | `3-§19-13a` | §8.1 | `EC14-ARC-02`, `EC14-VER-02`, `EC14-HOLD-02` | WS-A, Cross-cutting, Gate | BLOCKED | H-D13 |
 | 134 | `3-§19-14` | §8.7 | `EC14-SEC-01`, `EC14-VER-02`, `EC14-HOLD-01` | WS-G, Cross-cutting, Gate | BLOCKED | H-D12 |
-| 135 | `3-§20-1` | §8.9 | `EC14-LDG-04`, `EC14-NG-01` | WS-A, Cross-cutting | PASS | — |
+| 135 | `3-§20-1` | §8.9 | `EC14-LDG-04`, `EC14-REV-01`, `EC14-NG-01` | WS-A, Cross-cutting | PASS | — |
 | 136 | `3-§20-2` | §8.9 | `EC14-LDG-04`, `EC14-NG-01` | WS-A, Cross-cutting | PASS | — |
 | 137 | `3-§20-3` | §8.9 | `EC14-NG-01` | Cross-cutting | PASS | — |
 | 138 | `3-§20-4` | §8.9 | `EC14-NG-01` | Cross-cutting | PASS | — |
@@ -941,7 +945,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | 547 | `BP-§10.3-W8` | §8.4 | `EC14-CAB-04`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | WS-D, WS-E, WS-G, Cross-cutting, Gate | BLOCKED | H-D12, H-STO, H-BIRTH |
 | 548 | `BP-§10.3-W9` | §8.5 | `EC14-STO-01`, `EC14-PRV-02`, `EC14-HOLD-08` | WS-E, Gate | FOLLOW-UP | H-STO |
 | 549 | `BP-§10.3-W10` | §8.5 | `EC14-STO-01`, `EC14-SEC-02`, `EC14-PRV-02`, `EC14-MIG-02`, `EC14-HOLD-01`, `EC14-HOLD-08` | WS-E, WS-G, Cross-cutting, Gate | BLOCKED | H-D12, H-STO, H-BIRTH |
-| 550 | `BP-§10.3-W11` | §8.3 | `EC14-HOLD-01` | WS-C (accountable; PQ-10), Gate | BLOCKED | H-D12 |
+| 550 | `BP-§10.3-W11` | §8.3 | `EC14-REV-01`, `EC14-HOLD-01` | WS-A, WS-C (accountable; PQ-10), Gate | BLOCKED | H-D12 |
 | 551 | `BP-§10.3-W12` | §8.2 | `EC14-UDI-01` | WS-B | PASS | — |
 | 552 | `BP-§10.3-W13` | §8.2 | `EC14-ADP-02`, `EC14-HOLD-01`, `EC14-HOLD-05` | WS-B, Gate | BLOCKED | H-D12, H-FIN |
 | 553 | `BP-§10.3-C1` | §8.1 | `EC14-LDG-01`, `EC14-CMD-01`, `EC14-MIG-01`, `EC14-MIG-05`, `EC14-HOLD-03` | WS-A, Cross-cutting, Gate | BLOCKED | H-DTX, H-MIG |
@@ -963,22 +967,22 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Finding is the Blueprint Sectio
 | `IN SCOPE` FCTM rows | 563 |
 | Rows mapped to at least one obligation | 563 of 563 |
 | Rows missing an obligation | 0 |
-| Obligations (one per locked EIS requirement) | 83 |
-| Row-to-obligation links | 2282 |
+| Obligations (one per EIS requirement; 83 locked, plus `EC14-REV-01` in this candidate) | 84 |
+| Row-to-obligation links | 2292 |
 | Obligations with no FCTM row | 0 |
 | Behaviour-adding orphan obligations | 0 |
 | Rows with an accountable builder workstream (WS-A to WS-G) or realized only by cross-cutting obligations | 563 of 563; rows realized only by gate obligations without accountability: 0 (Section 13.1) |
-| Cross-cutting rules (Section 8) and process obligations (Section 9) | 14 and 8; non-behavioural |
+| Cross-cutting rules (Section 8) and process obligations (Section 9) | 15 and 8; non-behavioural |
 | Rows with Stage 7 finding `BLOCKED` / `FOLLOW-UP` / `PASS` | 319 / 157 / 87 |
 | Rows carrying `D12` / `D13` / `DTX` | 225 / 92 / 42 |
 | `ALREADY DEMONSTRATED` rows | 0 in the FCTM (FCTM Section 0.2) |
-| FCTM, Blueprint, EIS and Founder decisions | Unchanged |
+| FCTM, Blueprint and Founder decisions | Unchanged; the EIS changes only as the 0.3 candidate records |
 
 Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 29.2; all three are identical. Each obligation's row list equals the EIS requirement-to-row mapping.
 
 ## 13. Package Observations
 
-Observations raised at Stage 12 for Mission Control. None changes a row, requirement or hold.
+Observations raised at Stage 12 for Mission Control. None changes a row, requirement or hold, except that PQ-13 records the one requirement the 0.3 candidate adds, which changes no FCTM row or hold.
 
 | ID | Topic | Observation |
 |---|---|---|
@@ -991,7 +995,12 @@ Observations raised at Stage 12 for Mission Control. None changes a row, require
 | PQ-7 | Scenario RS-20 | `22-§29-14` is a documentary acceptance scenario with no runtime surface. RS-20 is a documentary verification scenario (`DOC`), not runtime evidence, and cannot satisfy a runtime-verification requirement for another row. |
 | PQ-8 | Storage-dependent workstreams | WS-E and every `BUILD — PROVIDER GATED` storage obligation cannot be exercised against a real object store until `DR2` activation is separately authorized; until then only interfaces, metadata and local tests are possible, and no storage row can be demonstrated. |
 | PQ-9 | AI-dependent paths | WS-B AI interpretation (`EC14-UDI-07`, `-09`) depends on SB-P-1.13 gateway implementation and `DAI` evidence; the deterministic CSV/XLSX path (`EC14-UDI-03`) does not need AI but still needs `D12` and the governed command for Ledger writes. |
-| PQ-10 | Rows realized only by gate obligations (refined in 0.2) | In the locked EIS mapping, 4 rows map only to gate requirements (and, for one, `EIS14-VER-02`): `3-§17-7` (HOLD-04, HOLD-11), `3-§17-8` (HOLD-01), `5-§18-8a` (VER-02, HOLD-02), `BP-§10.3-W11` (HOLD-01). A gate is not a builder. Version 0.2 assigns each row an accountable builder workstream from its locked Blueprint §8 placement and the Blueprint §7 register (Section 13.1). The locked obligations and EIS links are unchanged. Residual for Mission Control: the locked EIS §29 maps no mechanism requirement to these rows; the governing EIS text is cited as a constraint, not as a new link. |
+| PQ-10 | Rows realized only by gate obligations (refined in 0.2) | In the locked EIS mapping, 4 rows map only to gate requirements (and, for one, `EIS14-VER-02`): `3-§17-7` (HOLD-04, HOLD-11), `3-§17-8` (HOLD-01), `5-§18-8a` (VER-02, HOLD-02), `BP-§10.3-W11` (HOLD-01). A gate is not a builder. Version 0.2 assigns each row an accountable builder workstream from its locked Blueprint §8 placement and the Blueprint §7 register (Section 13.1). The locked obligations and EIS links are unchanged. Residual for Mission Control: the locked EIS §29 maps no mechanism requirement to these rows; the governing EIS text is cited as a constraint, not as a new link. The 0.3 candidate links `BP-§10.3-W11` to `EIS14-REV-01` as constraint trace only (PQ-13); that adds no correction mechanism for the row and leaves its WS-C accountability unchanged. |
+| PQ-11 | Feature-restricted predicate proof (0.3 candidate) | SB-P-1.14 proves the predicate with a registered test class fixture; proof for the real compliance class belongs to SB-P-1.18. Exact class storage, its writer and the registry entry shape are `UNKNOWN` until package and migration design. No later-mission behaviour is added here. |
+| PQ-12 | Kernel composition (0.3 candidate) | SB-P-1.12 source-owner reading MC-741-K is `CONCUR WITH CORRECTIONS`: it accepts the MC-740-C object-grant wording verbatim and requires K-1 to K-7, which `EIS14-CAB-01`, `EIS14-CAB-04` and this package now carry under MC-745-C. It is not independent security approval. `UNKNOWN`, to be separately verified under SB-P-1.12 and not guessed: how an `authz.authorize` `action` value selects the capability evaluated, and so whether "same action" means the same argument value or the same action type. Earlier concurrence MC-737-K covered stock only. |
+| PQ-13 | MC-507BL reversal reconciliation (0.3 candidate) | `RECONCILED IN CANDIDATE — VALIDATION PENDING` (MC-743-R, MC-744 §C, MC-745-C). `EIS14-REV-01` gives the effective MC-507BL section a stable reference without restating it; `EC14-REV-01`, `NP-46`, `RS-25` and the WS-A instruction translate it. **Constraint trace only:** `3-§8-9`, `3-§8-10`, `3-§8-12`, `3-§8-13`, `3-§8-14`, `3-§8-15`, `3-§8-16`, `3-§18-3`, `3-§20-1`, `BP-§10.3-W11` constrain how the reversal behaves and do not originate it. Treating them as original reversal Product Truth fires T7 to the Founder. **Cross-mission product-origin provenance only:** SB-P-1.17 `13-§6-3`, `13-§16-6`, `13-§17-7`; `13-§6` stays `DELEGATED` and the FCTM is unchanged. `EIS14-CMD-03` and its mappings are unchanged. `3-§20-1` keeps Stage 7 finding `PASS` and `BP-§10.3-W11` keeps WS-C accountability; their cut-over gating comes from the obligation type. Schema, function identity, grants, lock order and reader implementation stay `UNKNOWN`. Dual-domain reversal stays under `EIS17-HOLD-18`, and `FIN-01 PROVISIONAL` and the SB-P-1.16 customer-advance and refund rules are unchanged. Requirement, obligation, link and check counts are author-calculated pending independent review. |
+| PQ-14 | Object-scoped set reads (0.3 candidate) | `HELD REQUIRED DELIVERABLE` (MC-745-C). Object-scoped search, listing and conversational retrieval stay required and need a target-aware helper specified and accepted under SB-P-1.12; none is specified or built here. The direct-request-only path is a fail-closed interim boundary, not acceptance of an omission and not a T7 narrowing of `5-§6-3`, `5-§6-4` or any other row. |
+| PQ-15 | T3 watches (0.3 candidate) | Routed to the owning feature and SB-P-1.19, undecided here: (1) a class capability gated on entitlement could, under `EIS-KER-05`, deny an Owner their own classed documents while an add-on is suspended; (2) a retired or unregistered class denies everyone, including the Owner. Both are merchant-visible. |
 
 ### 13.1 PQ-10 Reconciliation (version 0.2)
 
@@ -1014,8 +1023,35 @@ Accountability is a package-level assignment of the row's builder slice. It adds
 |---|---|---|---|
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
 | 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
+| 0.3 candidate | 2026-11-03 | Claude Code (SB-P-1.14-MC-739-C) | NONCANONICAL post-lock candidate: feature-restricted Cabinet read predicate, separate `DLEG / retention policy pending` hold, and package-set EIS identity reconciliation. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
+| 0.3 candidate, correction 1 | 2026-11-04 | Claude Code (SB-P-1.14-MC-741-C) | NONCANONICAL finding-scoped correction: object-grant wording replaced with the MC-740-C independent-predicate text and mirrored in the package; kernel concurrence (MC-741-K) recorded OPEN. PQ-13 confirmed as an omission and left unreconciled because of a requirement-ID collision; no reversal obligation, check or scenario added. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
+| 0.3 candidate, correction 2 | 2026-11-04 | Claude Code (SB-P-1.14-MC-745-C) | NONCANONICAL correction: kernel corrections K-1 to K-7 (MC-741-K) carried into `EIS14-CAB-01`, `EIS14-CAB-04` and the package, with object-scoped set reads recorded as a held required deliverable. PQ-13 reconciled in the candidate: `EIS14-REV-01` normalizes the effective MC-507BL section by reference, with ten existing rows as constraint trace only and cross-mission product-origin provenance in SB-P-1.17, plus `EC14-REV-01`, the WS-A instruction, `NP-46` and `RS-25`. Requirements and obligations 84, links 2,292, author-calculated pending independent review. No FCTM row, `EIS14-CMD-03` mapping, MC-507BL wording, hold or Founder decision changed. Not a re-lock |
 
 
 ## Stage 13 Lock Crossing Note
 
 Mission Control MC-24 accepted package v0.2 content in PR #849; MC-25 carries that exact reviewed package into canonical `main` by a separate human-merge lock crossing. Only lifecycle/status metadata is changed from v0.2. The locked EIS mapping remains 2,282 links; PQ-10 builder accountability is package-level and PQ-2 remains an implementation prerequisite. This record is effective only after human merge of the Stage 13 lock PR and post-merge verification. Package lock is separate from Implementation Authorization.
+
+## Post-Lock Amendment Candidate Note (MC-739-C)
+
+This note is prospective review text. It is noncanonical and adds to the Stage 13 Lock Crossing Note above, which stays as the historical record. Nothing here asserts a final re-lock, merge or effectiveness.
+
+| Identity | Value |
+|---|---|
+| This document, locked predecessor (MC-25) | blob `19be927759eb4925eebc63a0ed897db5cf91d0f0`, version 0.2 |
+| EIS cited by that predecessor | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (stale since MC-507BL, PR #1061) |
+| Current locked EIS on canonical `main` | blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` |
+| Proposed successor EIS candidate | blob `8fb3e8d30cb71f2adcbae138dd3eaadb7c42830e`, provisional; final identity fixed only at re-lock |
+
+**Outstanding before any effect:**
+
+1. Separate verification under SB-P-1.12 of the `authz.authorize` action-to-capability selector, which stays `UNKNOWN`. MC-741-K recorded source-owner concurrence with corrections K-1 to K-7, carried here (Engineering Contract PQ-12); it is not independent security approval.
+2. Independent security and privacy review of the exact text and of the set of four files.
+3. Independent source and traceability verification (563 `IN SCOPE` rows, 84 requirements, 2,292 links are author-calculated here).
+4. Authorized human merge; no AI merge.
+5. Mission Control post-merge verification and canonical re-lock with final blobs.
+6. Append-only reconciliation of the SB-P-1.14 checkpoint and resume records after merge.
+7. Independent validation of the PQ-13 reconciliation: `EIS14-REV-01`, `EC14-REV-01`, `NP-46`, `RS-25` and the ten constraint-trace links are proposals, not a pass (Engineering Contract PQ-13).
+8. The object-scoped search, listing and conversational retrieval deliverable stays held pending a target-aware helper accepted under SB-P-1.12 (Engineering Contract PQ-14).
+
+`DLEG / retention policy pending` stays held as separate policy validation. SB-P-1.14 stays suspended and Implementation Authorization (MC-26) stays `WITHHELD`.
