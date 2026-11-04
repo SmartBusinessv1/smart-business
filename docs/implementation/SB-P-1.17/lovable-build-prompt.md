@@ -2,7 +2,7 @@
 
 ```text
 STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2 NOT YET DISPOSITIONED)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2: FOUNDER OPTION A APPROVED, BLUEPRINT EFFECTIVENESS HELD, #1114 NOT MERGED, SUCCESSOR UNKNOWN)
 EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
 IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
@@ -69,7 +69,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - linking a historical purchase to a supplier without explicit Owner confirmation, editing the original transaction, or creating a duplicate purchase;
   - exposing supplier purchase prices without `catalog.cost.read`, or any supplier-payable balance or settlement logic beyond FIN-01 PROVISIONAL;
   - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
-  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, or an expand-then-contract window;
+  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, commit eligibility taken from a pre-lock item read, or an expand-then-contract window;
 - **Required verification before any later release:** row-keyed items for all 46 rows; negative checks NP-01, NP-06, NP-07, NP-08, NP-09, NP-14, NP-16, NP-21, NP-22, NP-26, NP-27, NP-34, NP-37, NP-39, NP-40, NP-42, NP-44, NP-45, NP-47; runtime scenarios RS-01, RS-11, RS-14; evidence classes T2 + T3 (32), DR (7), T2-NEG (5), T2-IDEM (4), EXP (3), T4 FRV-A (1), GATE (1).
 
 ### 5.2 SB-P-1.17/WS17-B — Reorder Intelligence, Standing Rules and Purchase Requests
@@ -88,7 +88,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - showing a purchase request as sent or accepted, or recording a supplier reply, unless the merchant records it; any system dispatch before SB-P-1.20;
   - a separate reminder or scheduler path;
   - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
-  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, or an expand-then-contract window;
+  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, commit eligibility taken from a pre-lock item read, or an expand-then-contract window;
 - **Required verification before any later release:** row-keyed items for all 31 rows; negative checks NP-01, NP-02, NP-04, NP-05, NP-06, NP-07, NP-08, NP-09, NP-11, NP-14, NP-15, NP-16, NP-26, NP-28, NP-30, NP-32, NP-35, NP-37, NP-39; runtime scenarios RS-01, RS-05, RS-09; evidence classes T2 + T3 (21), T4 FRV-A (11), T2-NEG (11), DR (3).
 
 ### 5.3 SB-P-1.17/WS17-C — Standard POS Bridge, Intake Authority and Transaction Composition
@@ -98,7 +98,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 - **EIS / Engineering Contract references (45):** ARC-01, ARC-02, ARC-03, ARC-05, ARC-06, STK-02, STK-04, POS-01, POS-02, POS-03, POS-04, POS-05, POS-06, POS-07, POS-08, POS-09, POS-10, POS-11, POS-12, TXN-01, TXN-02, TXN-03, TXN-06, TXN-08, TXN-09, CTR-06, PRIV-01, PRIV-02, VER-01, VER-02, VER-03, VER-04, VER-05, VER-07, VER-08, NEG-01, HOLD-01, HOLD-03, HOLD-04, HOLD-07, HOLD-15, HOLD-16, HOLD-18, HOLD-20, HOLD-21.
 - **Prerequisites:** dependency codes on its rows: `DPOS` 35, `D14` 14, `D12` 4, `DTX` 3. Upstream foundations implemented and accepted before any row is built; Implementation Authorization naming this workstream.
 - **Retained holds:** HOLD-01, HOLD-03, HOLD-04, HOLD-07, HOLD-15, HOLD-16, HOLD-17, HOLD-18, HOLD-20, HOLD-21.
-- **Architecture boundary:** One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`). API/webhook intake follows Founder MC-507R A1: Owner-authorized, source-scoped `EIS-AUT-01` delegation, server-derived automation-run principal, `channel = integration`, `EIS-ISO-04` for protected execution. Ledger effects only through the sole SB-P-1.14 governed writer; POS mapped stock effects continue through the named public entry `create_inventory_movement`, as locked Blueprint §20.4.6 requires, and a protected stock child is only a conditional path for a separately accepted cross-module consumer under `EIS17-STK-10`, **HELD for MC-741-F** and gate C-2; composition through the MC-507BT outer coordinator and SB-P-1.14 internal Ledger child (`EIS17-TXN-03`).
+- **Architecture boundary:** One vendor-neutral bridge contract with two interface classes (`17:FPDR-2`). API/webhook intake follows Founder MC-507R A1: Owner-authorized, source-scoped `EIS-AUT-01` delegation, server-derived automation-run principal, `channel = integration`, `EIS-ISO-04` for protected execution. Ledger effects only through the sole SB-P-1.14 governed writer; POS mapped stock effects continue through the named public entry `create_inventory_movement`, as locked Blueprint §20.4.6 requires, and a protected stock child is only a conditional path for a separately accepted cross-module consumer under `EIS17-STK-10`, **HELD until the Founder-approved PR #1114 amendment is merged and verified** (gate C-2); composition through the MC-507BT outer coordinator and SB-P-1.14 internal Ledger child (`EIS17-TXN-03`).
 - **Permission boundary:** No fifth principal; provider authentication, source identity, credentials and `service_role` are never merchant authority; payload-supplied business, source, principal, role or actor identifiers are ignored. Commit revalidates credentials, source binding, delegation, grantor authority, scope and epochs.
 - **Prohibited:**
   - custom client-specific POS modification in Smart Business core, or replacing the merchant's POS;
@@ -162,7 +162,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
   - mutating or deleting originals; audit that captures operator surveillance data;
   - new objects that are usable by `PUBLIC`, `anon` or `authenticated` before RLS and intended grants, or `SECURITY DEFINER` without the SB-P-1.12 narrow-executor pattern;
   - any Employee route to inventory DML or the raw stock writer, or movement semantics outside the one writer of `EC17-STK-10`;
-  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, or an expand-then-contract window;
+  - any `authenticated` inventory-family table privilege beyond `EC17-STK-10` (`SELECT` on items and movements, nothing on idempotency keys), any item write beyond its two Owner commands, commit eligibility taken from a pre-lock item read, or an expand-then-contract window;
 - **Required verification before any later release:** row-keyed items for all 99 rows; negative checks NP-01, NP-02, NP-03, NP-04, NP-10, NP-13, NP-14, NP-15, NP-17, NP-18, NP-19, NP-20, NP-21, NP-22, NP-24, NP-25, NP-26, NP-28, NP-30, NP-31, NP-32, NP-33, NP-35, NP-37, NP-38, NP-40, NP-41, NP-42, NP-43, NP-44, NP-45, NP-46, NP-47, NP-48; runtime scenarios none; evidence classes DR (49), T2-NEG (39), T2 + T3 (37), T2-IDEM (7), GATE (2).
 
 ### 5.7 SB-P-1.17/WS17-G — Acceptance, Completion Gates and Founder Runtime Verification
@@ -182,7 +182,7 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 6. Holds the Builder Must Not Cross
 
-`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record. Gate C-2 on `EC17-STK-10` entry topology is NOT YET DISPOSITIONED, and no builder may treat either entry design as settled. The SA-03 archived-item race gate is UNRESOLVED: no builder adds item-lock sharing or an under-lock status re-read unless SA-03 accepts it. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
+`HOLD-01` to `HOLD-23` of the locked EIS stay binding, including: MC410-R01 (`HOLD-15`), GA-03 assurance (`HOLD-16`), GA-04 atomicity (`HOLD-17`), GA-05 reversal (`HOLD-18`), closing source/time assurance (`HOLD-19`), U-11 (`HOLD-20`), DPOS/SA-04 (`HOLD-21`), MC-507CM calibration and T6/T8 (`HOLD-22`) and U-03 downstream assurance (`HOLD-23`). FIN-01 PROVISIONAL stands. A hold is crossed only by a separate Mission Control record. Gate C-2 on `EC17-STK-10` entry topology: Founder Option A is approved and Blueprint effectiveness is HELD until PR #1114 is merged and verified, so no builder may treat the protected child as active. Every ordinary stock writer and the Owner status command use one target-item serialization point, and an ordinary movement re-reads item identity and status after that lock; the lock primitive is UNKNOWN. Atomic activation and client coupling of the inventory-family release are a Stage 12/13 design HOLD. Live privileges are UNVERIFIED.
 
 ## 7. Workstream-to-FCTM-Row Map (404 rows)
 
@@ -608,4 +608,4 @@ Each `IN SCOPE` row belongs to exactly one workstream, by its Stage 7 component 
 
 ## 9. Status
 
-`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Documentary planning only. Gate C-2 NOT YET DISPOSITIONED. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Documentary planning only. Gate C-2: Founder Option A approved; Blueprint effectiveness HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**

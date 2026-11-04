@@ -2,7 +2,7 @@
 
 ```text
 STATUS: DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL (MC-739-S)
-PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2 NOT YET DISPOSITIONED)
+PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED, blob f65ddd2a; GATE C-2: FOUNDER OPTION A APPROVED, BLUEPRINT EFFECTIVENESS HELD, #1114 NOT MERGED, SUCCESSOR UNKNOWN)
 EIS: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSOR BLOB 5d681b0c STAYS CANONICAL)
 FCTM: LOCKED (UNCHANGED, blob cb79088d; 630 rows, 404 IN SCOPE)
 IMPLEMENTATION PACKAGE: DRAFT POST-LOCK AMENDMENT CANDIDATE (LOCKED PREDECESSORS 2728fa68, 4cc20b08, e4f775e5 STAY CANONICAL; NO RE-LOCK)
@@ -61,7 +61,7 @@ This contract translates the locked EIS into explicit engineering obligations fo
 | DPOS / SA-04 | No real POS source activated; eleven-item dossier and independent qualified POS assurance outstanding (`EC17-POS-11`; `HOLD-21`) |
 | Dependency gates | `HOLD-01` to `HOLD-14` (`D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DPOS`, `DSEC`, `DENT`, `DSCH`, `DAI`, `DV`, `DNTF`, `DPAY`) |
 | T6 / T8 | T6 delegated under MC-507CM with screening pending; T8 WATCH, not established |
-| Stock interface candidate | Gate C-2 NOT YET DISPOSITIONED; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; SA-03 archived-item race gate UNRESOLVED; live privileges UNVERIFIED; `HOLD-17` remains open |
+| Stock interface candidate | Gate C-2: Founder Option A approved, Blueprint effectiveness HELD until #1114 is merged and verified; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; ordinary stock writers and the Owner status command share one item serialization point with an authoritative under-lock re-read (SA-03; runtime untested); inventory-family DML exposed today by migration text and revoked at cut-over; live privileges UNVERIFIED; `HOLD-17` remains open |
 
 No hold is closed, and no open question becomes approved, because it appears in this package.
 
@@ -116,7 +116,7 @@ Verification references name the Verification Checklist negative-path checks (`N
 | `EC17-STK-07` | `EIS17-STK-07` | Governed stock readers | PR/TR | `BUILD — DEPENDENCY GATED` | WS17-A, WS17-B, WS17-E, WS17-G | HOLD-01, HOLD-02, HOLD-03, HOLD-11 | RS-14 | `7-§1-1`, `7-§1-2`, `7-§2-3`, `7-§2-11`, `7-§11-1.1`, `7-§15-1`, `17-§7-1` |
 | `EC17-STK-08` | `EIS17-STK-08` | Opening stock consumed from SB-P-1.14 | AF | `BUILD — DEPENDENCY GATED` | WS17-A, WS17-G | HOLD-01, HOLD-03 | Row items (VC17-*) | `7-§2-4`, `7-§15-1`, `BP-§10.6-W12` |
 | `EC17-STK-09` | `EIS17-STK-09` | Negative-stock policy | AF/UQ | `BUILD — OPEN, FAIL-CLOSED` | WS17-F | HOLD-01, HOLD-03 | Row items (VC17-*) | `7-§13-5`, `7-§13-13` |
-| `EC17-STK-10` | `EIS17-STK-10` | Cross-module stock-child interface | TR/UQ | `BUILD — OPEN, FAIL-CLOSED` | WS17-A, WS17-B, WS17-F | HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-07, HOLD-17 | NP-38 to NP-48 | `7-§2-5`, `7-§8-1`, `7-§8-3`, `7-§12-3`, `7-§12-8`, `7-§13-5`, `7-§13-6`, `7-§13-11`, `7-§16-2`, `BP-§6.2-1`, `BP-§11-6` |
+| `EC17-STK-10` | `EIS17-STK-10` | Stock writer interface and inventory-family boundary | TR/UQ | `BUILD — OPEN, FAIL-CLOSED` | WS17-A, WS17-B, WS17-F | HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-07, HOLD-17 | NP-38 to NP-48 | `7-§2-5`, `7-§8-1`, `7-§8-3`, `7-§12-3`, `7-§12-8`, `7-§13-5`, `7-§13-6`, `7-§13-11`, `7-§16-2`, `BP-§6.2-1`, `BP-§11-6` |
 
 ### 7.3 Stock Signals and Owner-Confirmed Thresholds (EIS Section 8)
 
@@ -801,4 +801,4 @@ Verification references name the Verification Checklist negative-path checks (`N
 
 ## 11. Status
 
-`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Gate C-2 NOT YET DISPOSITIONED. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+`DRAFT POST-LOCK AMENDMENT CANDIDATE — NONCANONICAL`; the locked predecessor stays canonical. Gate C-2: Founder Option A approved; Blueprint effectiveness HELD. **Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
