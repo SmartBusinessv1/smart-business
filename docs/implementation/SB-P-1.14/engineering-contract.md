@@ -42,7 +42,7 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Reference | Path | Identity |
 |---|---|---|
 | Locked Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.14.md` | blob `256828d2c26fba7dab6f52975efb8b574b1563f1` (`APPROVED — LOCKED`) |
-| EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` | current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; the final identity is fixed only at re-lock (83 requirements; accepted Stage 10 substance blob `261ca7ac`) |
+| EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.14-EIS.md` | current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; the final identity is fixed only at re-lock (83 requirements; accepted Stage 10 substance blob `261ca7ac`) |
 | Canonical FCTM | `communication/missions/SB-P-1.14/claude-code/02-stage2-populated-fctm.md` | blob `01e9856aca0afdb1267230a1932fe34054449a4b` (766 rows; 563 `IN SCOPE`) |
 | Founder decisions `FPDR-1` to `FPDR-3` | `communication/missions/SB-P-1.14/founder/02-stage3-founder-product-decision-record.md` | blob `9717b29dbe08b6d115f512a90450c528d5212773` |
 | Founder decision `FPDR-4` | `communication/missions/SB-P-1.14/founder/03-post-stage6-founder-product-decision-record.md` | blob `3f36c06da8a7327766ada44248ce2953cd8e3a2c` |
@@ -362,7 +362,7 @@ These rules restate engineering constraints already fixed by the locked EIS for 
 | X-12 | Migration governance | No migration file is created or executed under this package; each migration needs a separately authorized migration mission, rehearsed on the isolated test project, with pre-new-data rollback and post-new-data forward-fix (`EC14-MIG-01` to `-06`). |
 | X-13 | Evidence | Evidence follows package template Sections 12 and 13 under `docs/implementation/SB-P-1.14/evidence/`, created only when an authorized stage produces evidence. Evidence is never claimed from documentary review, CI success or feasibility labels. |
 | X-14 | Completion | The builder records a status per assigned FCTM row in `lovable-build-completion-report.md`. A builder never verifies, approves or accepts its own work. `DEMONSTRATED` is reserved for rows with independent Stage 19 evidence. |
-| X-15 | Feature-restricted disclosure | A generic Cabinet capability alone never discloses a classed document on any read path; the source predicate lives only in `EIS14-CAB-01`, and a feature link is never authority (`EC14-CAB-01`, `EC14-CAB-04`, `EC14-RTV-01`, `EC14-SRC-02`). |
+| X-15 | Feature-restricted disclosure | A generic Cabinet capability alone never discloses a classed document on any read path; the source predicate lives only in `EIS14-CAB-01`, a grant proves only the capability it was issued for, with no implication, union, stitching or wider scope, and a feature link is never authority (`EC14-CAB-01`, `EC14-CAB-04`, `EC14-RTV-01`, `EC14-SRC-02`). |
 
 ## 9. Process Obligations
 
@@ -996,8 +996,8 @@ Observations raised at Stage 12 for Mission Control. None changes a row, require
 | PQ-9 | AI-dependent paths | WS-B AI interpretation (`EC14-UDI-07`, `-09`) depends on SB-P-1.13 gateway implementation and `DAI` evidence; the deterministic CSV/XLSX path (`EC14-UDI-03`) does not need AI but still needs `D12` and the governed command for Ledger writes. |
 | PQ-10 | Rows realized only by gate obligations (refined in 0.2) | In the locked EIS mapping, 4 rows map only to gate requirements (and, for one, `EIS14-VER-02`): `3-§17-7` (HOLD-04, HOLD-11), `3-§17-8` (HOLD-01), `5-§18-8a` (VER-02, HOLD-02), `BP-§10.3-W11` (HOLD-01). A gate is not a builder. Version 0.2 assigns each row an accountable builder workstream from its locked Blueprint §8 placement and the Blueprint §7 register (Section 13.1). The locked obligations and EIS links are unchanged. Residual for Mission Control: the locked EIS §29 maps no mechanism requirement to these rows; the governing EIS text is cited as a constraint, not as a new link. |
 | PQ-11 | Feature-restricted predicate proof (0.3 candidate) | SB-P-1.14 proves the predicate with a registered test class fixture; proof for the real compliance class belongs to SB-P-1.18. Exact class storage, its writer and the registry entry shape are `UNKNOWN` until package and migration design. No later-mission behaviour is added here. |
-| PQ-12 | Kernel composition (0.3 candidate) | How multiple classes and object-scoped grants compose under `EIS-KER-04` and `EIS-KER-08` needs SB-P-1.12 kernel-owner concurrence for this Cabinet use. Earlier concurrence MC-737-K covered stock only. `NOT OBTAINED`. |
-| PQ-13 | MC-507BL content in the package (0.3 candidate) | The candidate corrects the stale EIS pointer only. The package still has no obligation or check specific to the MC-507BL governed reversal text; adding one is outside MC-739-C. The independent reviewer should determine whether a separate reconciliation is needed. |
+| PQ-12 | Kernel composition (0.3 candidate) | The object-grant wording in `EIS14-CAB-01` is the MC-740-C proposal: the generic capability and every class capability are independent predicates, and a grant proves only its own capability. SB-P-1.12 kernel-owner concurrence for this Cabinet use is requested under MC-741-K and is `OPEN`; the wording is not approved. Earlier concurrence MC-737-K covered stock only. |
+| PQ-13 | MC-507BL reversal omission (0.3 candidate) | `CONFIRMED OMISSION — RECONCILIATION HELD` (MC-740-C §5, MC-741 §IV). The package has no reversal obligation, check, scenario or build instruction for the MC-507BL governed reversal section of the EIS. The proposed `EC14-REV-01` is blocked by a requirement-ID collision: Section 6 requires each `EC14-<suffix>` to realize exactly one `EIS14-<suffix>`, Section 12 counts one obligation per EIS requirement, and no `EIS14-REV-*` exists because the MC-507BL section has no requirement ID and no Section 29 row mapping. Under MC-741 §IV the reversal sub-edit stopped; `EC14-REV-01`, `NP-46`, `RS-25` and the WS-A instruction are not added and no EIS requirement is invented. Mission Control disposition is required. No builder builds reversal from this package meanwhile. |
 
 ### 13.1 PQ-10 Reconciliation (version 0.2)
 
@@ -1021,6 +1021,7 @@ Accountability is a package-level assignment of the row's builder slice. It adds
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
 | 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
 | 0.3 candidate | 2026-11-03 | Claude Code (SB-P-1.14-MC-739-C) | NONCANONICAL post-lock candidate: feature-restricted Cabinet read predicate, separate `DLEG / retention policy pending` hold, and package-set EIS identity reconciliation. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
+| 0.3 candidate, correction 1 | 2026-11-04 | Claude Code (SB-P-1.14-MC-741-C) | NONCANONICAL finding-scoped correction: object-grant wording replaced with the MC-740-C independent-predicate text and mirrored in the package; kernel concurrence (MC-741-K) recorded OPEN. PQ-13 confirmed as an omission and left unreconciled because of a requirement-ID collision; no reversal obligation, check or scenario added. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
 
 
 ## Stage 13 Lock Crossing Note
@@ -1036,7 +1037,7 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 | This document, locked predecessor (MC-25) | blob `19be927759eb4925eebc63a0ed897db5cf91d0f0`, version 0.2 |
 | EIS cited by that predecessor | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (stale since MC-507BL, PR #1061) |
 | Current locked EIS on canonical `main` | blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` |
-| Proposed successor EIS candidate | blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; final identity fixed only at re-lock |
+| Proposed successor EIS candidate | blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; final identity fixed only at re-lock |
 
 **Outstanding before any effect:**
 
@@ -1046,5 +1047,6 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 4. Authorized human merge; no AI merge.
 5. Mission Control post-merge verification and canonical re-lock with final blobs.
 6. Append-only reconciliation of the SB-P-1.14 checkpoint and resume records after merge.
+7. Reconciliation of PQ-13, the confirmed MC-507BL reversal omission, which is held on a requirement-ID collision (Engineering Contract PQ-13). This package cannot be re-locked as complete until Mission Control disposes of it.
 
 `DLEG / retention policy pending` stays held as separate policy validation. SB-P-1.14 stays suspended and Implementation Authorization (MC-26) stays `WITHHELD`.

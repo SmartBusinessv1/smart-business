@@ -38,7 +38,7 @@ Read, in this order, and treat each as binding:
 
 1. `AGENTS.md` and `CLAUDE.md`;
 2. the locked Product Blueprint, blob `256828d2c26fba7dab6f52975efb8b574b1563f1`;
-3. the EIS, current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; the final identity is fixed only at re-lock;
+3. the EIS, current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; the final identity is fixed only at re-lock;
 4. Founder Product Decision Records `FPDR-1` to `FPDR-4` and the Founder restorative T7 Security approval;
 5. the SB-P-1.12 and SB-P-1.13 locked EIS consumption conditions (SB-P-1.12 EIS-DEP-01; SB-P-1.13 EIS13-CMD-02, EIS13-PRV-01, EIS13-ATT-01);
 6. the Engineering Contract (`engineering-contract.md`) once locked;
@@ -175,6 +175,7 @@ Forbidden in this workstream, in addition to Section 8:
 Forbidden in this workstream, in addition to Section 8:
 
 - any read path that discloses a classed document on generic Cabinet authority alone, or that leaks its existence, type or linked record;
+- treating a grant for one capability as satisfying another, or combining grants by implication, union, stitching or wider scope;
 - modifying original bytes, or a correction that changes the original rather than the interpretation or record;
 - copying authority truth or allow/deny evidence into domain provenance, or storing document content in provenance;
 - a customer/supplier identity table or directory search (`3-§9-12` and directory search stay later).
@@ -216,6 +217,7 @@ Forbidden in this workstream, in addition to Section 8:
 Forbidden in this workstream, in addition to Section 8:
 
 - any read path that discloses a classed document on generic Cabinet authority alone, or that leaks its existence, type or linked record;
+- treating a grant for one capability as satisfying another, or combining grants by implication, union, stitching or wider scope;
 - a bearer signed URL used for delivery without provider evidence of immediate revocation or authorization indirection;
 - an export, summary or channel copy of Business Memory, or an export that bypasses the kernel;
 - any per-customer balance, ageing or reconciliation, or a customer directory;
@@ -935,6 +937,7 @@ Every one of the 563 rows is assigned to at least one workstream; 491 rows are s
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
 | 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
 | 0.3 candidate | 2026-11-03 | Claude Code (SB-P-1.14-MC-739-C) | NONCANONICAL post-lock candidate: feature-restricted Cabinet read predicate, separate `DLEG / retention policy pending` hold, and package-set EIS identity reconciliation. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
+| 0.3 candidate, correction 1 | 2026-11-04 | Claude Code (SB-P-1.14-MC-741-C) | NONCANONICAL finding-scoped correction: object-grant wording replaced with the MC-740-C independent-predicate text and mirrored in the package; kernel concurrence (MC-741-K) recorded OPEN. PQ-13 confirmed as an omission and left unreconciled because of a requirement-ID collision; no reversal obligation, check or scenario added. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
 
 
 ## Stage 13 Lock Crossing Note
@@ -950,7 +953,7 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 | This document, locked predecessor (MC-25) | blob `1ba6d24a4c283ca84a5fefe6c2e1a907e374221b`, version 0.2 |
 | EIS cited by that predecessor | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (stale since MC-507BL, PR #1061) |
 | Current locked EIS on canonical `main` | blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` |
-| Proposed successor EIS candidate | blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; final identity fixed only at re-lock |
+| Proposed successor EIS candidate | blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; final identity fixed only at re-lock |
 
 **Outstanding before any effect:**
 
@@ -960,5 +963,6 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 4. Authorized human merge; no AI merge.
 5. Mission Control post-merge verification and canonical re-lock with final blobs.
 6. Append-only reconciliation of the SB-P-1.14 checkpoint and resume records after merge.
+7. Reconciliation of PQ-13, the confirmed MC-507BL reversal omission, which is held on a requirement-ID collision (Engineering Contract PQ-13). This package cannot be re-locked as complete until Mission Control disposes of it.
 
 `DLEG / retention policy pending` stays held as separate policy validation. SB-P-1.14 stays suspended and Implementation Authorization (MC-26) stays `WITHHELD`.

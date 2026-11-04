@@ -58,7 +58,7 @@ Sections 1 to 14 follow package template Phase C. Each item names its planned ev
 | Item | Check | Planned evidence class | Supports |
 |---|---|---|---|
 | VC-AUTH-01 | The locked Blueprint on canonical `main` is blob `256828d2c26fba7dab6f52975efb8b574b1563f1` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
-| VC-AUTH-02 | The EIS on canonical `main` is the blob the locked package names at every checkpoint: current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; the final identity is fixed only at re-lock. All three package documents cite one identity. | `REPO` | Process item; no FCTM row; adds no behaviour |
+| VC-AUTH-02 | The EIS on canonical `main` is the blob the locked package names at every checkpoint: current locked blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` (MC-507BL; the MC-25 package cited predecessor `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3`). Proposed successor candidate blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; the final identity is fixed only at re-lock. All three package documents cite one identity. | `REPO` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-03 | The canonical FCTM is blob `01e9856aca0afdb1267230a1932fe34054449a4b`; its `IN SCOPE` set is the same 563 rows as Section 13.4, by set difference. | `REPO` | 563 rows via ALL |
 | VC-AUTH-04 | Founder records `founder/02` (blob `9717b29d`), `founder/03` (blob `3f36c06d`) and `founder/05` (blob `7e41d483`) are unchanged and applied exactly (Engineering Contract Section 10). | `REPO`, `DOC` | `EC14-LDG-03`, `EC14-LDG-04`, `EC14-TOT-01`, `EC14-RET-01`, `EC14-CNF-03`, `EC14-STO-03` |
 | VC-AUTH-05 | The three package documents are `APPROVED — LOCKED` (Stage 13) and an Implementation Authorization names the builder, workstreams, paths, environments and Git authority before any build. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
@@ -125,7 +125,7 @@ Each experience row has at least one named runtime scenario. Every scenario is a
 | RS-21 | Role-scoped Ledger and document access: Owner, Manager and Employee defaults applied; participants have no access; no platform or support browsing | Blueprint §8.7 | `RT`, `DB` | 32 rows (Section 13.4) |
 | RS-22 | Storage operations: UDI interprets an authorized stored object without holding storage permissions; a provider key or URL migration keeps domain links intact; a backup/restore check reports metadata/object consistency; capacity and cost metrics show no private content | Contract 25 §26 acceptances 5, 9, 13, 14 | `INT`, `OBJ`, `PROV`, `RT` | 11 rows (Section 13.4) |
 | RS-23 | The same document entering through the SB-P-1.13 Workspace attachment handoff and through visual upload follows the same interpretation, preview and confirmation rules (Workspace slice) | Contract 5 §18 acceptance 8 (Workspace slice) | `RT`, `DB` | 1 rows (Section 13.4) |
-| RS-24 | With test class fixtures, in workspace and conversation: an actor holding the generic Cabinet capability and every applicable class capability finds and opens the document; an actor with only the generic capability does not see it; an actor holding one of two classes does not see a document carrying both; a single-document grant opens only that document and version; a document with no class behaves as before | Contract 25 §9 step 2, §19; Contract 5 §6, §12 | `RT`, `DB` | 37 rows (Section 13.4) |
+| RS-24 | With test class fixtures, in workspace and conversation: an actor holding the generic Cabinet capability and every applicable class capability finds and opens the document; an actor with only the generic capability does not see it; an actor holding one of two classes does not see a document carrying both; separate single-document grants for the generic capability and for each class capability open only that document or version, and a grant for one capability alone opens nothing; a document with no class behaves as before | Contract 25 §9 step 2, §19; Contract 5 §6, §12 | `RT`, `DB` | 37 rows (Section 13.4) |
 
 ## 5. Database Verification
 
@@ -195,7 +195,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-42 | A later-mission slice (SB-P-1.15 Scheduler and notifications, SB-P-1.17 stock effects, SB-P-1.19 lifecycle export, SB-P-1.20 WhatsApp) is not built here and returns dependency-blocked | `EC14-HOLD-04`, `EC14-HOLD-11` | `UNIT`, `DOC` | 13 rows (Section 13.4) |
 | NP-43 | A write against a linked record that has changed or been removed since it was reviewed (stale link) stops safely and returns to review or clarification; it never writes against the stale target and does not block unrelated work (Contract 3 §17) | PQ-10 accountable row `3-§17-8` (WS-G) | `DB`, `CONC` | 1 rows (Section 13.4) |
 | NP-44 | A failed downstream notification never rolls back, duplicates or blocks the committed Ledger record or unrelated operations; notification delivery itself (SB-P-1.15) is not built here (Contract 3 §17) | PQ-10 accountable row `3-§17-7` (WS-G) | `INT`, `DOC` | 1 rows (Section 13.4) |
-| NP-45 | With a classed document: an actor with generic Cabinet authority but no class authority finds nothing in search, listing, counts, summaries or previews; is denied direct document, version and byte access and reverse lookup without existence, type or linked-record leakage; and gets no export item. A document with two classes requires authority for both. An object-scoped grant reaches only its exact document or version and action, and only for the class it was issued under. Revocation between search and delivery denies delivery. An unregistered class denies. A support path without `EIS-SUP-01` is denied. A document with no class is unaffected | `EC14-CAB-01`, `EC14-CAB-04`, `EC14-RTV-01`, `EC14-SRC-02` | `DB`, `INT`, `INV` | 74 rows (Section 13.4) |
+| NP-45 | With a classed document: an actor with generic Cabinet authority but no class authority finds nothing in search, listing, counts, summaries or previews; is denied direct document, version and byte access and reverse lookup without existence, type or linked-record leakage; and gets no export item. The generic capability and every class capability are independent predicates: on a document with two classes, both class predicates must pass for the same business, action and target. A grant proves only the capability it was issued for, for its exact action and document or version; a grant for one capability alone opens nothing, and no implication, union, stitching or wider scope is inferred. Revocation between search and delivery denies delivery. An unregistered class denies. A support path without `EIS-SUP-01` is denied. A document with no class is unaffected | `EC14-CAB-01`, `EC14-CAB-04`, `EC14-RTV-01`, `EC14-SRC-02` | `DB`, `INT`, `INV` | 74 rows (Section 13.4) |
 
 ## 7. Validation Verification
 
@@ -884,6 +884,7 @@ UNVERIFIED — ACCESS REQUIRED: 20 FACTS
 | 0.1 | 2026-10-09 | Claude Code (SB-P-1.14-MC-21 §4) | Initial Stage 12 draft |
 | 0.2 | 2026-10-09 | Claude Code (SB-P-1.14-MC-23 §4) | Stage 13 PQ-10 refinement: package-level builder accountability for `3-§17-7`, `3-§17-8` (WS-G), `5-§18-8a` (WS-B) and `BP-§10.3-W11` (WS-C) from their locked Blueprint §8 placement and the Blueprint §7 register; checks NP-43 and NP-44 added and four row items extended. No obligation, EIS link, FCTM row, hold or Founder decision changed; PQ-2 unchanged |
 | 0.3 candidate | 2026-11-03 | Claude Code (SB-P-1.14-MC-739-C) | NONCANONICAL post-lock candidate: feature-restricted Cabinet read predicate, separate `DLEG / retention policy pending` hold, and package-set EIS identity reconciliation. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
+| 0.3 candidate, correction 1 | 2026-11-04 | Claude Code (SB-P-1.14-MC-741-C) | NONCANONICAL finding-scoped correction: object-grant wording replaced with the MC-740-C independent-predicate text and mirrored in the package; kernel concurrence (MC-741-K) recorded OPEN. PQ-13 confirmed as an omission and left unreconciled because of a requirement-ID collision; no reversal obligation, check or scenario added. No FCTM row, EIS mapping, requirement ID or Founder decision changed. Not a re-lock |
 
 
 ## Stage 13 Lock Crossing Note
@@ -899,7 +900,7 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 | This document, locked predecessor (MC-25) | blob `29d292d353fa2ab50a72870c0a649bb4627ba846`, version 0.2 |
 | EIS cited by that predecessor | blob `899a0fe1f98c62bbdfa621c97cdc5e8ee3ce65d3` (stale since MC-507BL, PR #1061) |
 | Current locked EIS on canonical `main` | blob `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe` |
-| Proposed successor EIS candidate | blob `98cbb6659902cd400dc66cb6ce5dec5889bb37c8`, provisional; final identity fixed only at re-lock |
+| Proposed successor EIS candidate | blob `b122b83c5f3357cc31eed85b6039c0cafc114331`, provisional; final identity fixed only at re-lock |
 
 **Outstanding before any effect:**
 
@@ -909,5 +910,6 @@ This note is prospective review text. It is noncanonical and adds to the Stage 1
 4. Authorized human merge; no AI merge.
 5. Mission Control post-merge verification and canonical re-lock with final blobs.
 6. Append-only reconciliation of the SB-P-1.14 checkpoint and resume records after merge.
+7. Reconciliation of PQ-13, the confirmed MC-507BL reversal omission, which is held on a requirement-ID collision (Engineering Contract PQ-13). This package cannot be re-locked as complete until Mission Control disposes of it.
 
 `DLEG / retention policy pending` stays held as separate policy validation. SB-P-1.14 stays suspended and Implementation Authorization (MC-26) stays `WITHHELD`.
