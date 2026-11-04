@@ -61,7 +61,7 @@ This contract translates the locked EIS into explicit engineering obligations fo
 | DPOS / SA-04 | No real POS source activated; eleven-item dossier and independent qualified POS assurance outstanding (`EC17-POS-11`; `HOLD-21`) |
 | Dependency gates | `HOLD-01` to `HOLD-14` (`D12`, `D13`, `D14`, `DTX`, `D15`, `D16`, `DPOS`, `DSEC`, `DENT`, `DSCH`, `DAI`, `DV`, `DNTF`, `DPAY`) |
 | T6 / T8 | T6 delegated under MC-507CM with screening pending; T8 WATCH, not established |
-| Stock interface candidate | Gate C-2 NOT YET DISPOSITIONED; one writer through `EC17-STK-10`; no Employee inventory DML; `HOLD-17` remains open |
+| Stock interface candidate | Gate C-2 NOT YET DISPOSITIONED; one writer through `EC17-STK-10`; no Employee inventory DML; after cut-over `authenticated` holds only `SELECT` on items and movements and nothing on idempotency keys; two Owner item commands; one coordinated logical release, with atomic activation and client coupling a Stage 12/13 design HOLD; SA-03 archived-item race gate UNRESOLVED; live privileges UNVERIFIED; `HOLD-17` remains open |
 
 No hold is closed, and no open question becomes approved, because it appears in this package.
 
