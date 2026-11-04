@@ -149,7 +149,7 @@ These replacements supersede the earlier C-2 alternatives. FCTM and Product Trut
 1. **Satisfied (MC-748), for the Blueprint text only:** Founder human merge of PR #1114 and Mission Control verification of the successor Blueprint blob. This candidate's Blueprint references are reconciled here, for targeted review under MC-748-SR.
 2. SA-03 boundary accepted on paper (MC-744-SA, MC-745); conformity of this exact text goes to gate 4.
 3. SB-P-1.12 kernel-owner concurrence on this exact text, with K-C1 to K-C10 confirmed.
-4. Independent exact-head stock privilege, regression and SA-03 conformity review (MC-745-P), then the targeted independent reviewer of the EIS and the three-file package.
+4. Independent exact-head stock privilege, regression and SA-03 conformity review (MC-746-P — completed PASS ON PAPER at 944ee8b3, accepted by MC-747), then the targeted independent reviewer of the EIS and the three-file package.
 5. Founder human merge. No AI actor merges this candidate.
 6. Mission Control post-merge verification and re-lock at successor identities.
 
