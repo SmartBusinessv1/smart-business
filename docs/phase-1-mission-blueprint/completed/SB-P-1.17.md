@@ -2845,7 +2845,7 @@ This section answers the independent Stage 7 review findings ENG17-01 to ENG17-0
 
 **Authorities preserved.** These are unchanged and not re-specified here:
 - Ledger writes are owned by SB-P-1.14 and go through the single governed create command `create_transaction_governed` (`EIS14-CMD-01`, built on `EIS13-CMD-02`). Direct-mutation closure applies after the `DTX` cut-over (`EIS14-CMD-03`).
-- Inventory writes go through `create_inventory_movement` [R].
+- Inventory writes go through the single SB-P-1.17 stock authority. Existing direct stock callers use `create_inventory_movement` [R]. A separately accepted cross-module consumer may use the protected transaction-composable stock child defined by the governed stock interface, provided both entries execute the same stock-writer invariants and no other stock-writing path exists.
 
 `DTX` is **not implemented** and its cut-over is undecided. SB-P-1.17 adds no Ledger service and never writes `transactions` directly.
 
@@ -2857,7 +2857,7 @@ This section answers the independent Stage 7 review findings ENG17-01 to ENG17-0
 | Source event ID (export file) | The file's own row identifier where the source supplies one; otherwise no trusted identity | A row is unique per `(business_id, pos_source_id, external_row_id)`. The content fingerprint of `EIS14-IDM-02` is duplicate **evidence** only, never identity | SB-P-1.17 with the SB-P-1.14 UDI row ledger (`EIS-CNF-05`) | `13-§4-10`, `13-§7-3` |
 | Business command ID | Request key of the shared idempotency pattern: business, actor or verified principal, operation, key, payload fingerprint, committed outcome | One committed outcome per key; for a POS-originated command the key is derived deterministically from the source event ID | SB-P-1.12 pattern (`EIS-CNF-04`; `EIS14-IDM-01`) | `13-§6-4`, `13-§21-2` |
 | Ledger event ID | `transactions.id` created by the governed create command | Created once per committed command | SB-P-1.14 | `EIS14-CMD-01` |
-| Inventory movement ID | `inventory_movements.id` from `create_inventory_movement`, with its own idempotency key and payload fingerprint [R] | `(business_id, operation, idempotency_key)` [R] | SB-P-1.10 foundation, consumed here | `7-§8-1` to `-3` |
+| Inventory movement ID | `inventory_movements.id` from the single SB-P-1.17 stock authority — `create_inventory_movement` for existing callers or an accepted protected stock child for a governed cross-module consumer — with the governed idempotency identity and payload fingerprint of that path. | `(business_id, operation, idempotency_key)` [R] | SB-P-1.10 foundation, consumed here | `7-§8-1` to `-3` |
 | Event link | `business_event_type` / `business_event_id` on the movement [R] | Validated by the owning domain before the write | SB-P-1.17 (domain-owned) | `7-§8-1`; scope note in `tests/inventory/trusted-event-link.test.ts` [R] |
 
 **Invariants the EIS must specify and prove.**
