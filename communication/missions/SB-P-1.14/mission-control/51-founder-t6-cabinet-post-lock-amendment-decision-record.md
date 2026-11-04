@@ -12,8 +12,8 @@
 
 | Part | Content | Authority |
 |---|---|---|
-| Section 1.1 | Literal fragments of the Founder's decision | Founder |
-| Section 1.2 | Mission Control's recorded summary of that decision | Mission Control; not Founder wording |
+| Section 1.1 | The complete original text of the Founder's decision, as supplied by Mission Control in MC-763 | Founder |
+| Section 1.2 | Reference to Mission Control's recorded summary of that decision | Mission Control; not Founder wording |
 | Sections 2 and 3 | Mission Control's routing and interpretation | Mission Control, within the Founder's decision |
 | Sections 4 to 9 | Identities, evidence, holds and limits, assembled by the scribe | None |
 
@@ -23,36 +23,67 @@ The Founder's original decision prevails over every other part of this record. A
 
 ## 1. Founder decision
 
-### 1.1 Founder's words: verified literal fragments
+### 1.1 Founder's words: complete original
 
-MC-762 identifies the Founder's original as a user-given text titled:
+The complete original Founder decision follows, transcribed exactly from the text Mission Control supplied in [MC-763](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6640337146).
 
-> SMART BUSINESS — FOUNDER DECISION MC-760 / SB-P-1.14 Cabinet — T6 Substantive Approval
-
-MC-762 gives its authentic opening as:
-
-> MY DECISION: APPROVE THE FOUR-FILE DOCUMENTARY AMENDMENT IN PRINCIPLE, WITH ALL EXPLICIT HOLDS PRESERVED.
+> # SMART BUSINESS — FOUNDER DECISION MC-760
+>
+> ## SB-P-1.14 Cabinet — T6 Substantive Approval
+>
+> Mission Control,
+>
+> **MY DECISION: APPROVE THE FOUR-FILE DOCUMENTARY AMENDMENT IN PRINCIPLE, WITH ALL EXPLICIT HOLDS PRESERVED.**
+>
+> I approve the reviewed SB-P-1.14 Cabinet post-lock documentary amendment under Source 18 T6, at PR #1112 exact head:
+>
+> `429d6a76c0c6e2d3c4b7832a86a6eabfb2ea3d94`
+>
+> This approval is limited to the documented class-scoped, fail-closed Cabinet read-security constraints and corresponding EIS/package reconciliation.
+>
+> The amendment must preserve:
+>
+> - Independent authorization for each required document-class capability.
+> - Exact business, action, document and version scope.
+> - No implied permissions or cross-capability stitching.
+> - Fail-closed search, retrieval, export and conversational access.
+> - Revocation enforcement and protection against information leakage.
+> - Existing Product Truth, FCTM commitments, mission ownership and governed reversal behavior.
+>
+> **The following remain explicitly HELD or UNKNOWN:**
+>
+> PQ-14 target-aware retrieval; `authz.authorize` selector; DLEG and retention; entitlement-suspension and retired-class Owner-access watches; physical storage and reader implementation; SQL, RLS, migration and runtime verification.
+>
+> This decision does not introduce a new merchant-facing feature, establish new retention policy, or resolve the outstanding T3 policy watches.
+>
+> **Governance conditions**
+>
+> Record the Founder substantive decision through the required canonical authority process.
+>
+> Separately verify current GitHub state, exact approved diff, applicable CI, reviewer evidence and preservation of canonical Stock/Blueprint documents.
+>
+> Any PR #1112 human merge requires a separate explicit authorization.
+>
+> After an authorized human merge, Mission Control must verify the canonical successor identities and record the exceptional post-lock re-lock provenance.
+>
+> I also support the parallel read-only MC-760-KG, MC-760-N and MC-760-SC assessments under their published scope, without reopening the completed Stock documentary review.
+>
+> **Implementation Authorization: WITHHELD.**
+>
+> **NEXT ACTION:** Mission Control — canonical Founder decision recording, separate Cabinet merge-readiness process and consolidation of the three source-owner findings.
+>
+> No merge, SQL, migration, implementation or deployment is authorized by this message alone.
 
 **Provenance:**
 
-- **Conversation-source.** The Founder gave the decision in Mission Control conversation. It was not in the repository before this record.
-- **Time.** Given between MC-760 (2026-11-04 18:37:45 UTC) and MC-761 (2026-11-04 18:55:58 UTC). Mission Control dates both 5 November 2026 in its own conversation. No more exact time is held.
-- **Full original not held.** The scribe searched this repository, the Mission Control comments on the open Cabinet-related pull requests and local session records, and could not retrieve the complete original. Under MC-762 Disposition 1, only the two fragments above are quoted as Founder words, and nothing has been reconstructed.
+- **Conversation-source.** The Founder gave the decision in Mission Control conversation, in the message immediately preceding MC-761 (MC-763). It was not in the repository before this record.
+- **Supply.** Mission Control recovered the original from that conversation and supplied it in MC-763. The scribe holds it only through MC-763 and has not seen the conversation itself. It is not retranslated from MC-761.
+- **Time.** Given between MC-760 (2026-11-04 18:37:45 UTC) and MC-761 (2026-11-04 18:55:58 UTC), as observed from those comments. Mission Control dates both 5 November 2026 in its own conversation. No more exact time is held.
 - **No signature.** This record carries no Founder signature, and none is implied.
 
-### 1.2 Mission Control's recorded summary: not verbatim Founder text
+### 1.2 Mission Control's recorded summary: secondary
 
-The following is [MC-761](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6639303361)'s text, reproduced exactly as Mission Control recorded it. MC-762 Disposition 1 describes it as Mission Control's recorded summary and a third-person paraphrase. It is a faithful, non-verbatim decision summary on Mission Control's authority and must not be read as the Founder's own wording, apart from the opening line matching Section 1.1.
-
-> **MY DECISION: APPROVE THE FOUR-FILE DOCUMENTARY AMENDMENT IN PRINCIPLE, WITH ALL EXPLICIT HOLDS PRESERVED.**
->
-> I approve the reviewed SB-P-1.14 Cabinet post-lock documentary amendment under Source 18 T6, at PR #1112 exact head `429d6a76c0c6e2d3c4b7832a86a6eabfb2ea3d94`.
->
-> This approval is limited to the documented class-scoped, fail-closed Cabinet read-security constraints and corresponding EIS/package reconciliation. Independent authorization for each required document-class capability, exact business/action/document/version scope, no implied permissions or cross-capability stitching, fail-closed search/retrieval/export/conversation, revocation and anti-leakage, existing Product Truth/FCTM/mission/reversal behavior remain mandatory.
->
-> PQ-14 target-aware retrieval, `authz.authorize` selector, DLEG/retention, entitlement-suspension and retired-class Owner-access watches, physical storage/reader implementation, SQL/RLS/migration/runtime verification remain HELD/UNKNOWN.
->
-> This creates no new merchant feature, retention rule, T3 policy disposition or implementation authority. **A separate Cabinet human merge authorization is required.** The Founder directs canonical decision recording, fresh GitHub checks and, after a separately authorized human merge, post-merge identity/provenance verification. Supports parallel read-only MC-760-KG, MC-760-N, MC-760-SC. **Implementation Authorization WITHHELD.** No merge, SQL, migration, implementation or deployment authorized by this message.
+[MC-761](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6639303361) records Mission Control's summary of this decision. It is Mission Control's narration and interpretation, not Founder wording, and Section 1.1 prevails over it.
 
 ### 1.3 Nature of the decision
 
