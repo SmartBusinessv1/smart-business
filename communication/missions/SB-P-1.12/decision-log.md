@@ -452,3 +452,17 @@ Mission Control records:
 - the numbered SB-P-1.12 live chain remains frozen pending eventual archive reconciliation.
 
 Open PR #774 (SB-P-1.13 Stage 1) remains a follow-up and must not be merged until this suspension package is canonical.
+
+## MC-779 — G1/G2 participant-binding Founder decisions recorded
+
+**Date:** 2026-11-06
+**Status:** DRAFT UNTIL HUMAN MERGE
+
+Founder Decision Record 10 (`founder/10-g1g2-participant-binding-founder-product-decision-record.md`) records four already selected Founder decisions for the G1/G2 participant binding:
+
+- P-1 Option A — intended-person email before invitation, matched to a verified identity; conditional on identity evidence ([MC-725](https://github.com/SmartBusinessv1/smart-business/pull/1105#issuecomment-6576233814));
+- SR-09 Option X — an accepted binding continues after the inviter loses authority ([MC-725](https://github.com/SmartBusinessv1/smart-business/pull/1105#issuecomment-6576233814));
+- F-OVL Option B — explicit authority path per request for a person holding a membership and a binding in the same business ([MC-778](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6681291486));
+- P-3 — 168 hours from server-recorded invitation issuance ([MC-778](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6681291486)).
+
+P-1 identity evidence and ENT-1 stay HELD. No EIS, Blueprint, FCTM or Product Truth change; SB-P-1.12 EIS v0.4 stays authoritative. Effective only on Founder human merge and Mission Control post-merge verification. Prepared under [MC-779](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6681551862).
