@@ -77,15 +77,9 @@ For traceability, the recommendation that [MC-787](https://github.com/SmartBusin
 
 > “I reaffirm P-1 Option A without changing its security design, intended-email method, single-use matching, fail-closed controls or verified-identity threshold. SA-05's existing documentary provider-capability findings may satisfy the feasibility evidence needed to approve and lock the conditional Kernel v0.5 source specification. Current project-specific email/password and Google verified-identity claim proof, together with actual G1/G2 negative tests, remain mandatory **before the respective method or external participant route is activated/used**, under separately authorized non-production tests, implementation verification and release gates. An unverified method must stay disabled/fail closed. This is an approval to **move the timing of runtime evidence**, not an assertion that it exists, not an EIS exact-text approval, not an implementation/release authorization, and not a waiver of any test.”
 
-### 4.3 Preparer note on the two texts
+### 4.3 Mission Control provenance determination (MC-789)
 
-The Founder's sentence approves the clarification "exactly as presented in MC-787". The text MC-788 quotes as the accepted clarification (Section 4.1) is worded differently from the recommendation posted in the MC-787 GitHub comment (Section 4.2); MC-788 says the accepted text was drafted in the Mission Control conversation. The preparer does not choose between them. Both keep P-1 Option A, fail-closed handling of unverified methods and mandatory runtime proof and negative tests before activation. Visible wording differences include:
-
-- Section 4.2 says the documentary findings may support approving "and lock[ing]" the conditional specification; Section 4.1 says "approving".
-- Section 4.1 names "secure invitation matching" and "independent implementation verification"; Section 4.2 names "email/password and Google verified-identity claim proof" and "separately authorized non-production tests, implementation verification and release gates".
-- Section 4.1 states that the ENT-1 hold and all Source 18 security and human-approval gates stay unchanged; Section 4.2 does not mention ENT-1.
-
-**Mission Control should confirm which text is the accepted clarification** before any Founder merge of this record. Until then this record does not treat either difference as resolved.
+The Founder approved the complete **in-chat displayed “Founder Decision — P-1 Evidence Timing Only” clarification**, reproduced in Section 4.1, through the MC-787 choice accompanying that text. The Founder response says “exactly as presented in MC-787” and was made in that in-chat context. Section 4.1 is **Mission Control-authored wording accepted by the Founder by reference**, not independently Founder-authored prose. Section 4.2 preserves a **different Mission Control-authored recommendation** posted on GitHub under MC-787; it is included for the historical comparison but is **not the separately approved referent**. These texts are not byte-identical: Section 4.2 mentions “approve and lock” and differently specifies tests; Section 4.1 is the full selected clarification and expressly preserves ENT-1 and Source 18 gates. No broader lock permission or waiver is inferred from the GitHub recommendation. This classification does not invent a second Founder decision, authorize the EIS, or close an evidence hold. P-1 Option A and the fail-closed, before-activation proof requirement remain unchanged.
 
 ## 5. Mission Control Interpretations and Effect
 
