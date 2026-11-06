@@ -466,3 +466,12 @@ Founder Decision Record 10 (`founder/10-g1g2-participant-binding-founder-product
 - P-3 — 168 hours from server-recorded invitation issuance ([MC-778](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6681291486)).
 
 P-1 identity evidence and ENT-1 stay HELD. No EIS, Blueprint, FCTM or Product Truth change; SB-P-1.12 EIS v0.4 stays authoritative. Effective only on Founder human merge and Mission Control post-merge verification. Prepared under [MC-779](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6681551862).
+
+## MC-788 — P-1 evidence-timing Founder clarification recorded
+
+**Date:** 2026-11-06
+**Status:** DRAFT UNTIL HUMAN MERGE
+
+Founder Decision Record 11 (`founder/11-p1-verified-identity-evidence-timing-founder-clarification.md`) records the Founder's approval of the proposed P-1 evidence-timing clarification ([MC-787](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6688098967), received in [MC-788](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6688312914)). The Founder's sentence is recorded verbatim; the accepted clarification is recorded separately as Mission Control-authored text accepted by reference.
+
+Timing only: SA-05 documentary provider-capability evidence may support approving a conditional Kernel v0.5 specification, while project-specific runtime identity proof and negative tests remain mandatory before any sign-in method or participant route is activated. P-1 Option A and Founder Decision Record 10 are unchanged; unverified methods fail closed; ENT-1 stays HELD; no evidence is marked PASS. No EIS, Blueprint, FCTM or Product Truth change; SB-P-1.12 EIS v0.4 stays authoritative. Effective only on Founder human merge and Mission Control post-merge verification. Prepared under [MC-788](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6688312914).
