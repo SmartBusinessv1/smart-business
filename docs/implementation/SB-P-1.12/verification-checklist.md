@@ -1,10 +1,10 @@
 # SB-P-1.12 — Verification Checklist
 
 ```text
-STATUS: APPROVED — LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) DRAFT — NOT APPROVED, NOT LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+EIS: v0.5 APPROVED — LOCKED (BLOB 7a5f4918; RECORDS 73 AND 74, VERIFIED IN MC-802); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
+IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -17,11 +17,12 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
-| Version | 0.2 |
-| Status | `APPROVED — LOCKED` |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (EIS v0.5 G1/G2 delta, MC-803) |
+| Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
 | Author | Claude Code — initial implementation package owner |
-| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` |
-| Date | 2026-10-01 |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a` |
+| Date | 2026-10-01; version 1.1-D: 2026-11-07 |
+| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`) |
 | Execution state | **Not executed.** Every item is a planned check. Nothing here is evidence |
 | `EC-DEP-01` | Cross-cutting Governance / Consumer Gate; verified by Mission Control dependency evidence, not by builder checks |
 
@@ -53,11 +54,13 @@ After lock, criteria are never edited to fit a result. Results go in an appended
 | Item | Check | Planned evidence class | FCTM rows |
 |---|---|---|---|
 | VC-AUTH-01 | The locked Blueprint on canonical `main` is blob `77d52096c020668311b039721a4de9248ddd460e` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
-| VC-AUTH-02 | The locked EIS on canonical `main` is blob `c444f7509477d0e8b997af538440d93bf2ca4d72` at every checkpoint. | `REPO` | Process item; no FCTM row; adds no behaviour |
+| VC-AUTH-02 | The locked EIS on canonical `main` is blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (version 0.5) at every checkpoint. Version 1.0-L of this checklist was locked against version 0.4 blob `c444f7509477d0e8b997af538440d93bf2ca4d72`. | `REPO` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-03 | The canonical FCTM is blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259`; its `IN SCOPE` set is the same 267 rows as Section 13, by set difference. | `REPO` | 267 rows via ALL; each listed against its row in Section 13 |
 | VC-AUTH-04 | The three package documents are `APPROVED — LOCKED` (Stage 13) and an Implementation Authorization names the builder, workstreams, paths and Git authority before any build. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-05 | Every migration written or executed is covered by an explicit migration mission that meets `docs/migration/README.md`. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
 | VC-AUTH-06 | Founder Decision Record 09 (blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9`) is unchanged and applied exactly by `EC-PPM-03` and `EC-PPM-04`. | `REPO`, `DOC` | `21-§5-4`, `21-§24-3`, `17-§18-2`, `17-§21-4`, `17-§22-2` |
+| VC-AUTH-07 | Founder Decision Records 10 (blob `c93ca933ea014447516505c9427e278e0c24ce26`) and 11 (blob `c77f8a5f906d242248bfdb81f19cec025802ef9b`) are unchanged and applied exactly by `EC-ID-07` to `EC-ID-09` and `EC-FRL-06`. | `REPO`, `DOC` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
+| VC-AUTH-08 | The EIS v0.5 Stage 10 and Stage 11 records 73 (blob `41a71bca9a918cd629550614f48ead1330981d92`) and 74 (blob `34aea8001aaf56c714e241f75c3767ab2ac5f6cb`) are canonical, and the version 1.1-D delta is re-locked at Stage 13 before any G1/G2 build. | `REPO`, `DOC` | Process item; no FCTM row; adds no behaviour |
 
 ## 2. Repository Verification
 
@@ -115,6 +118,16 @@ Each experience row has at least one named runtime scenario. Every scenario is a
 | RS-13 | Product & Price Master in context: entry under business operations, `/catalog` routes resolve, no data loss | Blueprint section 9 bullet 7; section 15 Product & Price Master Reclassification | `RT`, `REG` | `7-§15-10`, `BP-§10.1-11`, `BP-§10.1-12`, `BP-§10.1-13`, `BP-§7-1`, `BP-§7-2`, `BP-§7-3`, `BP-§7-5` |
 | RS-14 | External participant boundary (labelled harness; no participant surface built) | Blueprint section 15 External Participants; Contract 21 scenario 7 | `HARNESS` | `21-§13-1`, `21-§13-2`, `21-§13-3`, `21-§24-7`, `17-§13-4` |
 | RS-15 | Support access consent, scope, expiry and revocation (labelled harness for the operator side) | Blueprint section 15 Auditability; Contract 21 scenario 10 | `HARNESS`, `AUDIT` | `21-§14-2`, `21-§24-10` |
+
+### 4.2 Named Runtime Scenarios — Version 1.1-D G1/G2 Delta (DRAFT)
+
+Planned only; not executed and no result is claimed. Each runs on a labelled harness, claims nothing for SB-P-1.18 end-to-end delivery, and runs only for a sign-in method with a Mission Control P-1 evidence record and after PC-07 readiness. Rows are the scenario's requirement rows that are already experience rows.
+
+| Scenario | Name | Source anchor | Planned evidence class | FCTM rows |
+|---|---|---|---|---|
+| RS-16 | Participant invitation issue and acceptance on a labelled SB-P-1.18 harness: a capability holder issues, the merchant shares the reference through its own channel, the intended verified person accepts, and only the assigned object is reachable. Runs only for a sign-in method with a Mission Control P-1 evidence record and after PC-07 readiness; not SB-P-1.18 end-to-end delivery | EIS Section 13 G1 interface; EIS-ID-07, EIS-ID-08 | `HARNESS`, `RT`, `DB` | `21-§13-3`, `21-§6-7`, `21-§15-1`, `22-§15`, `17-§13-4`, `21-§18-5`, `21-§20-1` |
+| RS-17 | Participant revocation and reissue on a labelled harness: revocation stops the binding at the next evaluation, a revoked reference is refused, and reissue creates a new invitation and 168-hour period | EIS Section 13 G1 interface; EIS-ID-09 | `HARNESS`, `RT`, `CONC` | `21-§17`, `21-§24-7`, `22-§15` |
+| RS-18 | Participant-aware first run (G2) on a labelled harness: a person with a pending participant invitation or binding receives a participant route decision and no business is created; a person with both a membership and participant state receives both contexts; an unbound person receives ordinary first run | EIS Section 13 G2 decision; EIS-FRL-06 | `HARNESS`, `RT`, `UNIT` | `20-§16-4`, `21-§15-1`, `21-§6-7`, `21-§20-1`, `21-§24-7` |
 
 ## 5. Database Verification
 
@@ -193,6 +206,30 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-45 | `authority_events` rejects update and delete for every role; an authority change without its event is a failure | EIS-AUD-01 | Denial audit | `DB`, `AUDIT` | `21-§14-6`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `21-§19-6`, `21-§19-7`, `21-§19-8`, `22-§14-5`, `22-§29-12` |
 | NP-46 | Invited person never silently made Owner of a new empty business; `returnTo` outside the allowlist rejected | EIS-FRL-02 | Active business | `DB`, `UNIT` | `20-§16-1`, `20-§16-4` |
 
+### 6.2 Named Negative-Path Checks — Version 1.1-D G1/G2 Delta (DRAFT)
+
+Planned only; not executed, and no `PASS` or numerical result is claimed. Each realizes locked EIS v0.5 requirements and the Section 13 controls PC-01 to PC-12 they cite. `HARNESS` proves only the SB-P-1.12 boundary; SB-P-1.18 end-to-end proof is separate. `PROV` marks the separately authorized P-1 project-specific evidence, never inferred from repository files.
+
+| Check | Name | Realizes | EIS 18.1 suite | Planned evidence class | FCTM rows |
+|---|---|---|---|---|---|
+| NP-47 | Participant invitation issue only by a capability holder in the explicitly requested business: non-holder, Employee, participant, support and automation defaults denied; foreign requested business, caller actor substitution, participant record of another business and caller-supplied issuer or expiry refused | EIS-ID-07 | Participant binding; Role matrix | `DB`, `AUDIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15` |
+| NP-48 | Invitation secret stored only as a digest, returned once in the successful issue response, absent from logs, audit, traces and query strings; a lost-response retry under the same key returns no plaintext and no second invitation, and no recoverable or encrypted secret exists; a changed fingerprint under the same key is `idempotency_conflict` (PC-02, PC-03) | EIS-ID-07, EIS-ID-08 | Participant binding; Idempotency | `DB`, `AUDIT`, `INV` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1` |
+| NP-49 | P-1 verified-email gate per sign-in method: email and password accepted only with a confirmed email in a project that enforces confirmation; an auto-confirmed email refused; Google accepted only with provider data stating the email is verified; token claims beyond the subject and editable metadata ignored; a method without a Mission Control P-1 evidence record returns `participant_path_not_ready` and creates no binding; no substitute method | EIS-ID-08, EIS-FRL-06 | Participant binding; Verified principals | `DB`, `HARNESS`, `PROV` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `20-§16-4`, `21-§6-7`, `21-§24-7` |
+| NP-50 | Intended email matched in canonical form only (surrounding whitespace removed, lowercased): dot, `+` tag, alias and cross-domain variants refused; a mismatch does not consume; an email change before acceptance makes the invitation unmatched; an email change after acceptance keeps the binding | EIS-ID-07, EIS-ID-08 | Participant binding | `DB`, `UNIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1` |
+| NP-51 | Acceptance refusals and single use: wrong person, wrong business, inactive business, invalid, expired, revoked and consumed references refused with a committed audited outcome and one outward shape; wrong-person attempts neither consume nor alter authority state; a replay returns the stored outcome with no second binding; no membership, grant or dashboard capability created | EIS-ID-08 | Participant binding; Denial audit | `DB`, `CONC`, `AUDIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15` |
+| NP-52 | Fixed 168-hour expiry from the database-recorded issuance instant: acceptance before the instant succeeds and at or after it is refused; client values and local calendar days ignored; expiry leaves an accepted binding active; reissue creates a new invitation and period; suspension neither pauses nor extends expiry; no test asserts that a pending invitation is retained or ended during suspension (ENT-1 HELD) | EIS-ID-07, EIS-ID-08, EIS-ID-09 | Participant binding | `DB`, `UNIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7` |
+| NP-53 | Entitlement and readiness: missing, expired, suspended or unverified entitlement fails issue, acceptance, participant route and assigned-object actions closed (PC-06); before readiness, issue and acceptance return committed audited denials and the first-run decision returns `participant_path_not_ready`, creating no business, Owner membership or participant authority (PC-07) | EIS-ID-07, EIS-ID-08, EIS-FRL-06 | Participant binding; Revocation and concurrency | `DB`, `HARNESS`, `AUDIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `20-§16-4`, `21-§24-7` |
+| NP-54 | PC-01 lock order: serialization rows before invitation then binding rows; acceptance racing revocation settles in one serial order and no active binding survives a committed revocation; an in-flight participant action commits before revocation or returns a committed audited rejection; authority epoch increments | EIS-ID-08, EIS-ID-09 | Participant binding; Revocation and concurrency | `CONC`, `DB` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `21-§17`, `21-§24-7` |
+| NP-55 | Revocation and SR-09 Option X: issuer loses the capability before acceptance and the invitation is refused; after acceptance the binding continues; a revoked invitation or binding is never reactivated; revoking the binding leaves a membership of the same person and ending the membership leaves the binding; history stays attributed | EIS-ID-09 | Participant binding; Revocation and concurrency | `DB`, `CONC`, `AUDIT` | `21-§17`, `21-§24-7`, `21-§5-5`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `22-§15` |
+| NP-56 | One authority path per decision (F-OVL Option B): a person holding a membership and a binding in the same business who names no path gets `authority_path_required` and no write; a path the person does not hold is denied uniformly; the membership path never reaches binding-only scope and the binding path never reaches membership or Owner capabilities; no union, fallback or retry on the other path; a single-path person is evaluated without naming a path; a client-remembered path is never authority; audit records the path relied on | EIS-ID-07, EIS-ID-08, EIS-ID-09, EIS-FRL-06 | Participant binding; Kernel unit and DB suite | `DB`, `UNIT`, `AUDIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
+| NP-57 | Object-specific assigned scope and no enumeration: a binding authorizes only a currently assigned object for the business, action and channel; unassigned and nonexistent targets are indistinguishable; set reads only through the governed read function with a per-target decision; totals, cursors, ordering and metadata reflect only own assignments; no Owner intelligence, merchant financial data, unrelated customers or orders, export or support access | EIS-ID-08, EIS-ID-09 | Participant binding; Multi-business isolation | `DB`, `HARNESS` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `21-§17`, `21-§24-7` |
+| NP-58 | Target-less helpers never allow on a binding: `authz.can(business_id, capability)` and every target-less policy helper derive no allow from a participant binding or object assignment (EIS Section 8.1 step 3, source (c)) | EIS-ID-08, EIS-ID-09 | Participant binding; Kernel unit and DB suite | `DB`, `INV` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `21-§17`, `21-§24-7` |
+| NP-59 | Cross-business participant isolation: a person who is Owner of business A and bound in business B gets no B Owner capability; an A object in B and a B object in A are denied uniformly; client-chosen business or role ignored; revocation in B leaves A, and deletion or transfer of A leaves B | EIS-ID-08, EIS-FRL-06 | Participant binding; Multi-business isolation | `DB` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `20-§16-4`, `21-§6-7`, `21-§24-7` |
+| NP-60 | Access, grants and command class: no direct table DML and no existence-enumerating read on invitation or binding state; RLS before any client grant; no `PUBLIC` or `anon` `EXECUTE`; `service_role` never the principal; effective and default privileges and overloads inventoried; each command classified under PC-11 before implementation | EIS-ID-07, EIS-ID-08, EIS-ID-09 | Participant binding; Effective access inventory | `INV`, `DB` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7` |
+| NP-61 | PC-08 audit: issue, acceptance, refusal, binding activation and revocation each record one event with the stable fields; the intended email, secrets and unrelated customer data never appear; events stay attributable after revocation; an expired attempt is a refusal | EIS-ID-07, EIS-ID-08, EIS-ID-09 | Participant binding; Denial audit | `AUDIT`, `DB` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7` |
+| NP-62 | Participant-aware first run (G2): an associated or presented participant state creates no business or Owner membership and business creation is not the default; an unresolved reference discloses nothing; an expired, revoked or consumed invitation gives no participant route; an unbound person keeps ordinary first run; a person with both contexts receives every context without a silent switch; `participant_path_not_ready` has the same shape with or without a presented reference | EIS-FRL-06 | Participant binding; Active business | `DB`, `UNIT`, `HARNESS` | `20-§16-4`, `21-§15-1`, `21-§6-7`, `21-§16-1`, `21-§20-1`, `21-§24-7` |
+| NP-63 | Scope exclusions: the kernel sends no invitation, notification or message and adds no channel (PC-09; SMS, WhatsApp and other channels excluded); no new authentication method; no merchant-visible lockout or cooldown from abuse throttling (PC-11); no merchant recovery screen | EIS-ID-07, EIS-ID-08 | Participant binding; Effective access inventory | `REPO`, `INV`, `DOC` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1` |
+
 ## 7. Validation Verification
 
 | Item | Check | Planned evidence class | FCTM rows |
@@ -240,6 +277,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-TEST-13 | Executable acceptance scenarios (Contract 21 scenarios 1 to 12, Contract 22, 17 and 7 scenarios, Founder Scenarios A and B, F-04(c)). | `DB`, `HARNESS` | 27 rows via EC-TST-02; each listed against its row in Section 13 |
 | VC-TEST-14 | Existing suites (catalog import 9, inventory 17, parser lease 2) green at every checkpoint, re-run with non-Owner fixtures where they touch authority. | `REG` | `BP-§10.1-9`, `BP-§10.1-13` |
 | VC-TEST-15 | Rows `IN SCOPE — PARTIALLY DEMONSTRATED` in the FCTM: the existing partial behaviour is re-verified by regression, never assumed, and the remainder is built and verified. | `REG`, `DB` | 32 rows via PARTIAL; each listed against its row in Section 13 |
+| VC-TEST-16 | Participant binding suite (EIS Section 18.1; version 1.1-D delta, DRAFT), including the amended Section 8.1 authority-path and target-less rules: `NP-47` to `NP-63`. Planned only; runs after the Stage 13 re-lock and an Implementation Authorization, with method-specific checks only after the P-1 evidence for that method. | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
 
 ## 11. Evidence Verification
 
@@ -251,6 +289,9 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-EVD-04 | Separately authorized G-7 evidence exists before relying on storage or provider behaviour. | `PROV` | `21-§6-4`, `21-§6-5`, `22-§6-8`, `22-§20-2`, `22-§33-22`, `22-§33-30`, `22-§33-39` |
 | VC-EVD-05 | Exact GitHub Actions state recorded for every reviewed head; a missing run or status is recorded as missing, never as a pass. | `REPO` | Process item; no FCTM row; adds no behaviour |
 | VC-EVD-06 | The `EC-ESC-07` evidence bundle is complete before any proposal to unblock `22-§20-2`; unblocking is a Mission Control decision. | `DB`, `INV`, `DOC` | `22-§20-2`, `22-§29-11`, `22-§29-12` |
+| VC-EVD-07 | A Mission Control P-1 evidence record exists for each sign-in method relied on (email and password; Google) in this configured project before that method or any participant route is enabled; SA-05 documentary capability is not method readiness; an unproven method stays disabled or fail-closed and is returned to the Founder, with no substitute. | `PROV`, `DOC` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15`, `20-§16-4`, `21-§6-7`, `21-§24-7` |
+| VC-EVD-08 | ENT-1 stays visible as HELD in every report; no evidence, test or scenario selects whether a pending invitation is retained or ended during suspension. | `DOC` | Process item; no FCTM row; adds no behaviour |
+| VC-EVD-09 | Harness evidence for the G1/G2 delta is labelled; no SB-P-1.18 end-to-end, merchant-surface or notification claim is made; `DENT`, `DLEG`, `EQ18-05`, `EQ18-15`, PQ-14, the unknown selector, the 19 `DI` rows and five `DH` legs stay visible until their owners dispose them. | `DOC` | Process item; no FCTM row; adds no behaviour |
 
 ## 12. Completion Verification
 
@@ -277,11 +318,11 @@ Each permission, isolation and denial row has at least one named negative-path c
 | `IN SCOPE` FCTM rows | 267 |
 | Rows with a checklist item and planned evidence class | 267 of 267 |
 | Rows missing a checklist item | 0 |
-| Permission, isolation and denial rows (rule in 13.1) | 201; all 201 carry a named negative-path check |
-| Rows carrying at least one named negative-path check | 226 |
-| Experience rows | 85; all 85 carry a named runtime scenario |
-| Named negative-path checks | 46, each used by at least one row |
-| Named runtime scenarios | 15 |
+| Permission, isolation and denial rows (rule in 13.1) | 202; all 202 carry a named negative-path check. Version 1.1-D adds exactly one row to the locked 1.0-L classification (201): `20-§16-4` through participant obligation `EC-FRL-06`. The already-classified `22-§15` had confirmation obligations `EC-CNF-04` and `EC-CNF-05` before this delta. |
+| Rows carrying at least one named negative-path check | 226 (unchanged; all 27 rows touched by the version 1.1-D delta already carried one) |
+| Experience rows | 85; all 85 carry a named runtime scenario. Rows carrying a named runtime scenario: 85. `RS-16` to `RS-18` are assigned only to rows that were already experience rows |
+| Named negative-path checks | 63, each used by at least one row: 46 in locked version 1.0-L, plus `NP-47` to `NP-63` in the version 1.1-D draft delta |
+| Named runtime scenarios | 18: 15 in locked version 1.0-L, plus `RS-16` to `RS-18` in the version 1.1-D draft delta |
 | `ALREADY DEMONSTRATED` rows | 0 in the FCTM; no regression-only item is needed. Rows `IN SCOPE — PARTIALLY DEMONSTRATED` carry `VC-TEST-15` |
 | Rows `BLOCKED` | 1 (`22-§20-2`), `IN SCOPE` |
 | Rows `CONDITIONAL` | 87, `IN SCOPE` |
@@ -300,6 +341,8 @@ Each permission, isolation and denial row has at least one named negative-path c
 
 ### 13.4 Row-keyed checklist items
 
+Version 1.1-D delta obligations, checks and scenarios appended to 27 rows are `DRAFT` and planned only; appending them changes no row, Status or Holds value.
+
 | Item | FCTM row | Obligations | Planned evidence class | Negative-path checks | Runtime scenarios | Status | Holds |
 |---|---|---|---|---|---|---|---|
 | VC-R-001 | `21-§4-1` | `EC-ID-02`, `EC-ID-04`, `EC-FRL-04` | `DB`, `CONC`, `HARNESS`, `INV`, `UNIT`, `RT` | NP-09, NP-36, NP-37 | RS-07 | CONDITIONAL | — |
@@ -307,24 +350,24 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-003 | `21-§4-3` | `EC-ID-02`, `EC-KER-03` | `DB`, `CONC`, `UNIT`, `RT` | NP-09 | RS-07 | FEASIBLE | — |
 | VC-R-004 | `21-§4-4` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
 | VC-R-005 | `21-§4-5` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
-| VC-R-006 | `21-§4-6` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
+| VC-R-006 | `21-§4-6` | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` | `DB`, `HARNESS`, `CONC`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-08, NP-23, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
 | VC-R-007 | `21-§5-1` | `EC-ID-01`, `EC-KER-01` | `DB`, `INV`, `REG` | NP-07, NP-08 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-008 | `21-§5-2` | `EC-ID-02`, `EC-KER-01`, `EC-FRL-03` | `DB`, `CONC`, `UNIT`, `RT` | NP-01, NP-02, NP-06, NP-36 | RS-03 | CONDITIONAL | — |
 | VC-R-009 | `21-§5-3` | `EC-ID-02`, `EC-KER-01` | `DB`, `CONC` | NP-09 | — | FEASIBLE | — |
 | VC-R-010 | `21-§5-4` | `EC-KER-01`, `EC-KER-04`, `EC-PPM-03`, `EC-PPM-04` | `DB`, `AUDIT`, `RT` | NP-09, NP-14 | RS-04 | CONDITIONAL | FDR-09, SEC-EIS10-12 |
-| VC-R-011 | `21-§5-5` | `EC-KER-01`, `EC-KER-08` | `DB`, `INV`, `REG` | NP-03, NP-10 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| VC-R-011 | `21-§5-5` | `EC-KER-01`, `EC-KER-08`, `EC-ID-08`, `EC-ID-09` | `DB`, `INV`, `REG`, `CONC`, `HARNESS`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-03, NP-10, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-012 | `21-§5-6` | `EC-KER-01`, `EC-KER-08` | `DB` | NP-10 | — | FEASIBLE | — |
 | VC-R-013 | `21-§5-7` | `EC-KER-01`, `EC-KER-05` | `DB` | NP-11 | — | FEASIBLE | — |
 | VC-R-014 | `21-§5-8` | `EC-KER-01`, `EC-KER-06` | `DB`, `HARNESS` | NP-12 | — | FEASIBLE | — |
 | VC-R-015 | `21-§5-9` | `EC-KER-01` | `DB`, `HARNESS` | NP-09, NP-22 | — | FEASIBLE | — |
 | VC-R-016 | `21-§5-10` | `EC-KER-01`, `EC-KER-05`, `EC-FRL-05` | `DB`, `HARNESS` | NP-11, NP-43 | — | CONDITIONAL | — |
-| VC-R-017 | `21-§6-1` | `EC-ISO-01` | `DB`, `INV`, `REG` | NP-01 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
+| VC-R-017 | `21-§6-1` | `EC-ISO-01`, `EC-ID-08` | `DB`, `INV`, `REG`, `CONC`, `HARNESS`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-01, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | VC-R-018 | `21-§6-2` | `EC-ISO-01` | `DB`, `INV`, `REG` | NP-02 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | VC-R-019 | `21-§6-3` | `EC-ISO-06` | `HARNESS` | NP-05 | — | FEASIBLE | — |
 | VC-R-020 | `21-§6-4` | `EC-ISO-05`, `EC-ENV-01` | `DB`, `REG`, `PROV` | NP-04 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4, G-7, SEC-EIS10-13 |
 | VC-R-021 | `21-§6-5` | `EC-ISO-05` | `DB`, `PROV` | NP-04 | — | FEASIBLE | G-7 |
 | VC-R-022 | `21-§6-6` | `EC-ID-05`, `EC-ISO-04`, `EC-ISO-07` | `DB`, `INV` | NP-03 | — | FEASIBLE | — |
-| VC-R-023 | `21-§6-7` | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02` | `DB`, `INV`, `UNIT`, `RT`, `REG` | NP-06 | RS-03 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| VC-R-023 | `21-§6-7` | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02`, `EC-ID-07`, `EC-FRL-06` | `DB`, `INV`, `UNIT`, `RT`, `REG`, `HARNESS`, `AUDIT`, `REPO`, `PROV`, `DOC` | NP-06, NP-47, NP-48, NP-49, NP-50, NP-52, NP-53, NP-56, NP-59, NP-60, NP-61, NP-62, NP-63 | RS-03, RS-16, RS-18 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-024 | `21-§7` | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` | `DB`, `INV`, `REG` | NP-15, NP-28 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | VC-R-025 | `21-§8` | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` | `DB`, `HARNESS`, `DOC` | NP-05, NP-08, NP-12 | — | FEASIBLE | — |
 | VC-R-026 | `21-§9` | `EC-KER-06`, `EC-KER-07` | `DB`, `HARNESS`, `RT` | NP-13 | RS-11 | FEASIBLE | — |
@@ -343,7 +386,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-039 | `21-§12-5` | `EC-KER-09`, `EC-AUT-01` | `DB`, `CONC`, `HARNESS` | NP-16, NP-21 | — | FEASIBLE | — |
 | VC-R-040 | `21-§13-1` | `EC-EXT-02` | `DB`, `HARNESS` | NP-23 | RS-14 | FEASIBLE | — |
 | VC-R-041 | `21-§13-2` | `EC-EXT-02` | `DB`, `HARNESS` | NP-23 | RS-14 | FEASIBLE | — |
-| VC-R-042 | `21-§13-3` | `EC-EXT-02` | `DB`, `HARNESS` | NP-23 | RS-14 | FEASIBLE | — |
+| VC-R-042 | `21-§13-3` | `EC-EXT-02`, `EC-ID-07`, `EC-ID-08` | `DB`, `HARNESS`, `CONC`, `INV`, `AUDIT`, `UNIT`, `RT`, `REPO`, `PROV`, `DOC` | NP-23, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | RS-14, RS-16 | FEASIBLE | — |
 | VC-R-043 | `21-§14-1` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT` | NP-22 | — | FEASIBLE | — |
 | VC-R-044 | `21-§14-2` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT` | NP-22 | RS-15 | FEASIBLE | — |
 | VC-R-045 | `21-§14-3` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT` | NP-22 | — | FEASIBLE | — |
@@ -351,29 +394,29 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-047 | `21-§14-5` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT` | NP-22 | — | FEASIBLE | — |
 | VC-R-048 | `21-§14-6` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT`, `REG` | NP-22, NP-45 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-049 | `21-§14-7` | `EC-SUP-01` | `DB`, `HARNESS`, `AUDIT` | NP-22 | — | FEASIBLE | — |
-| VC-R-050 | `21-§15-1` | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02` | `DB`, `UNIT`, `RT` | NP-07 | RS-03 | FEASIBLE | — |
-| VC-R-051 | `21-§15-2` | `EC-KER-02` | `DB` | NP-07 | — | FEASIBLE | — |
+| VC-R-050 | `21-§15-1` | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` | `DB`, `UNIT`, `RT`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `REPO`, `PROV`, `DOC` | NP-07, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-62, NP-63 | RS-03, RS-16, RS-18 | FEASIBLE | — |
+| VC-R-051 | `21-§15-2` | `EC-KER-02`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-07, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
 | VC-R-052 | `21-§15-3` | `EC-ID-06`, `EC-KER-02` | `DB`, `UNIT`, `RT`, `REG` | NP-01, NP-07 | RS-03 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | VC-R-053 | `21-§15-4` | `EC-KER-02` | `DB` | NP-07 | — | FEASIBLE | — |
 | VC-R-054 | `21-§15-5` | `EC-KER-02`, `EC-SUP-01`, `EC-ISO-04` | `DB`, `HARNESS`, `INV`, `AUDIT` | NP-07, NP-08, NP-25 | — | FEASIBLE | — |
-| VC-R-055 | `21-§16-1` | `EC-KER-05` | `DB` | NP-11 | — | FEASIBLE | — |
+| VC-R-055 | `21-§16-1` | `EC-KER-05`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-11, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-62, NP-63 | — | FEASIBLE | — |
 | VC-R-056 | `21-§16-2` | `EC-KER-05`, `EC-GOV-03` | `DB`, `INV`, `REPO` | NP-41 | — | FEASIBLE | — |
-| VC-R-057 | `21-§17` | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03` | `DB`, `CONC`, `RT`, `FRT` | NP-16, NP-19 | RS-02, RS-05 | CONDITIONAL | — |
-| VC-R-058 | `21-§18-1` | `EC-CNF-01`, `EC-FRL-04` | `DB`, `CONC`, `HARNESS` | NP-17, NP-37 | — | FEASIBLE | — |
-| VC-R-059 | `21-§18-2` | `EC-CNF-01`, `EC-FRL-04` | `DB`, `CONC`, `HARNESS` | NP-17, NP-37 | — | FEASIBLE | — |
-| VC-R-060 | `21-§18-3` | `EC-CNF-01` | `DB`, `CONC` | NP-17 | — | FEASIBLE | — |
-| VC-R-061 | `21-§18-4` | `EC-CNF-01` | `DB`, `CONC` | NP-17 | — | FEASIBLE | — |
-| VC-R-062 | `21-§18-5` | `EC-CNF-01` | `DB`, `CONC`, `RT`, `FRT` | NP-17 | RS-02 | FEASIBLE | — |
-| VC-R-063 | `21-§18-6` | `EC-CNF-01` | `DB`, `CONC` | NP-17, NP-18 | — | FEASIBLE | — |
-| VC-R-064 | `21-§19-1` | `EC-AUD-01` | `DB`, `AUDIT` | NP-45 | — | CONDITIONAL | ESC-1 |
-| VC-R-065 | `21-§19-2` | `EC-AUD-01` | `DB`, `AUDIT` | NP-45 | — | CONDITIONAL | ESC-1 |
-| VC-R-066 | `21-§19-3` | `EC-AUD-01` | `DB`, `AUDIT` | NP-45 | — | CONDITIONAL | ESC-1 |
-| VC-R-067 | `21-§19-4` | `EC-AUD-01` | `DB`, `AUDIT` | NP-45 | — | CONDITIONAL | ESC-1 |
-| VC-R-068 | `21-§19-5` | `EC-AUD-01` | `DB`, `AUDIT`, `REG` | NP-45 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | ESC-1 |
-| VC-R-069 | `21-§19-6` | `EC-AUD-01`, `EC-AUD-02` | `DB`, `AUDIT` | NP-26, NP-45 | — | CONDITIONAL | ESC-1 |
+| VC-R-057 | `21-§17` | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03`, `EC-ID-09` | `DB`, `CONC`, `RT`, `FRT`, `HARNESS`, `INV`, `AUDIT`, `UNIT` | NP-16, NP-19, NP-52, NP-54, NP-55, NP-56, NP-57, NP-58, NP-60, NP-61 | RS-02, RS-05, RS-17 | CONDITIONAL | — |
+| VC-R-058 | `21-§18-1` | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-37, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
+| VC-R-059 | `21-§18-2` | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-37, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
+| VC-R-060 | `21-§18-3` | `EC-CNF-01`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
+| VC-R-061 | `21-§18-4` | `EC-CNF-01`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
+| VC-R-062 | `21-§18-5` | `EC-CNF-01`, `EC-ID-08` | `DB`, `CONC`, `RT`, `FRT`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | RS-02, RS-16 | FEASIBLE | — |
+| VC-R-063 | `21-§18-6` | `EC-CNF-01`, `EC-ID-08` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-17, NP-18, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
+| VC-R-064 | `21-§19-1` | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | `DB`, `AUDIT`, `CONC`, `HARNESS`, `INV`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-45, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | CONDITIONAL | ESC-1 |
+| VC-R-065 | `21-§19-2` | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | `DB`, `AUDIT`, `CONC`, `HARNESS`, `INV`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-45, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | CONDITIONAL | ESC-1 |
+| VC-R-066 | `21-§19-3` | `EC-AUD-01`, `EC-ID-07` | `DB`, `AUDIT`, `HARNESS`, `INV`, `UNIT`, `REPO`, `DOC` | NP-45, NP-47, NP-48, NP-50, NP-52, NP-53, NP-56, NP-60, NP-61, NP-63 | — | CONDITIONAL | ESC-1 |
+| VC-R-067 | `21-§19-4` | `EC-AUD-01`, `EC-ID-07` | `DB`, `AUDIT`, `HARNESS`, `INV`, `UNIT`, `REPO`, `DOC` | NP-45, NP-47, NP-48, NP-50, NP-52, NP-53, NP-56, NP-60, NP-61, NP-63 | — | CONDITIONAL | ESC-1 |
+| VC-R-068 | `21-§19-5` | `EC-AUD-01`, `EC-ID-07` | `DB`, `AUDIT`, `REG`, `HARNESS`, `INV`, `UNIT`, `REPO`, `DOC` | NP-45, NP-47, NP-48, NP-50, NP-52, NP-53, NP-56, NP-60, NP-61, NP-63 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | ESC-1 |
+| VC-R-069 | `21-§19-6` | `EC-AUD-01`, `EC-AUD-02`, `EC-ID-08`, `EC-ID-09` | `DB`, `AUDIT`, `CONC`, `HARNESS`, `INV`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-26, NP-45, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | CONDITIONAL | ESC-1 |
 | VC-R-070 | `21-§19-7` | `EC-SUP-01`, `EC-AUD-01` | `DB`, `HARNESS`, `AUDIT` | NP-22, NP-45 | — | CONDITIONAL | ESC-1 |
 | VC-R-071 | `21-§19-8` | `EC-AUT-01`, `EC-AUD-01`, `EC-AUD-03` | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT` | NP-21, NP-45 | — | CONDITIONAL | ESC-1 |
-| VC-R-072 | `21-§20-1` | `EC-UX-01` | `UNIT`, `RT` | NP-27 | RS-06 | FEASIBLE | — |
+| VC-R-072 | `21-§20-1` | `EC-UX-01`, `EC-ID-08`, `EC-FRL-06` | `UNIT`, `RT`, `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `REPO`, `PROV`, `DOC` | NP-27, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-62, NP-63 | RS-06, RS-16, RS-18 | FEASIBLE | — |
 | VC-R-073 | `21-§20-2` | `EC-UX-01` | `UNIT`, `RT` | NP-27 | RS-06 | FEASIBLE | — |
 | VC-R-074 | `21-§20-3` | `EC-UX-01`, `EC-UX-02` | `UNIT`, `RT` | NP-27 | RS-06 | FEASIBLE | — |
 | VC-R-075 | `21-§20-4` | `EC-UX-01` | `UNIT`, `RT` | NP-27 | RS-06 | FEASIBLE | — |
@@ -397,7 +440,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-093 | `21-§24-4` | `EC-KER-08`, `EC-ISO-02`, `EC-TST-02` | `DB`, `HARNESS`, `INV`, `RT` | NP-10 | RS-10 | CONDITIONAL | — |
 | VC-R-094 | `21-§24-5` | `EC-EXT-01`, `EC-TST-02` | `DB`, `HARNESS`, `RT` | NP-24 | RS-10 | FEASIBLE | — |
 | VC-R-095 | `21-§24-6` | `EC-KER-06`, `EC-KER-07`, `EC-TST-02` | `DB`, `HARNESS`, `RT` | NP-12, NP-13 | RS-11 | FEASIBLE | — |
-| VC-R-096 | `21-§24-7` | `EC-EXT-02`, `EC-TST-02` | `DB`, `HARNESS` | NP-23 | RS-14 | FEASIBLE | — |
+| VC-R-096 | `21-§24-7` | `EC-EXT-02`, `EC-TST-02`, `EC-ID-09`, `EC-FRL-06` | `DB`, `HARNESS`, `CONC`, `INV`, `AUDIT`, `UNIT`, `RT`, `PROV` | NP-23, NP-49, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-62 | RS-14, RS-17, RS-18 | FEASIBLE | — |
 | VC-R-097 | `21-§24-8` | `EC-KER-09`, `EC-CNF-02`, `EC-TST-02` | `DB`, `CONC`, `HARNESS`, `RT`, `FRT` | NP-16 | RS-02 | CONDITIONAL | — |
 | VC-R-098 | `21-§24-9` | `EC-KER-05`, `EC-TST-02` | `DB`, `HARNESS` | NP-11 | — | FEASIBLE | — |
 | VC-R-099 | `21-§24-10` | `EC-SUP-01`, `EC-TST-02` | `DB`, `HARNESS`, `AUDIT` | NP-22 | RS-15 | FEASIBLE | — |
@@ -409,7 +452,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-105 | `22-§5-4` | `EC-ID-01`, `EC-ID-02` | `DB`, `CONC`, `INV` | NP-09 | — | FEASIBLE | — |
 | VC-R-106 | `22-§5-5` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
 | VC-R-107 | `22-§5-6` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
-| VC-R-108 | `22-§5-7` | `EC-ID-03` | `DB`, `HARNESS` | NP-08, NP-23 | — | FEASIBLE | — |
+| VC-R-108 | `22-§5-7` | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` | `DB`, `HARNESS`, `CONC`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-08, NP-23, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | — | FEASIBLE | — |
 | VC-R-109 | `22-§5-8` | `EC-ID-05`, `EC-PPM-01` | `DB`, `INV`, `REG` | NP-03 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-110 | `22-§5-9` | `EC-ID-05`, `EC-ISO-07` | `DB`, `INV` | NP-03 | — | FEASIBLE | — |
 | VC-R-111 | `22-§6-1` | `EC-UX-02` | `DB`, `INV`, `UNIT`, `RT`, `REG` | NP-15 | RS-07 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
@@ -436,7 +479,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-132 | `22-§14-7` | `EC-CNF-01` | `DB`, `CONC` | NP-17, NP-18 | — | FEASIBLE | — |
 | VC-R-133 | `22-§14-8` | `EC-AUD-04` | `DB`, `AUDIT`, `REG` | — | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-134 | `22-§14-9` | `EC-AUD-03` | `DB`, `INV`, `REG` | — | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
-| VC-R-135 | `22-§15` | `EC-CNF-04`, `EC-CNF-05` | `DB`, `CONC`, `RT`, `REG` | NP-19, NP-20 | RS-05 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| VC-R-135 | `22-§15` | `EC-CNF-04`, `EC-CNF-05`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | `DB`, `CONC`, `RT`, `REG`, `HARNESS`, `INV`, `AUDIT`, `UNIT`, `REPO`, `PROV`, `DOC` | NP-19, NP-20, NP-47, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-55, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | RS-05, RS-16, RS-17 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-136 | `22-§16-2` | `EC-AUD-05` | `INV`, `REPO` | NP-42 | — | FEASIBLE | — |
 | VC-R-137 | `22-§17` | `EC-CNF-06` | `DB` | NP-44 | — | FEASIBLE | — |
 | VC-R-138 | `22-§19` | `EC-CNF-06` | `DB` | NP-44 | — | FEASIBLE | — |
@@ -520,12 +563,12 @@ Each permission, isolation and denial row has at least one named negative-path c
 | VC-R-216 | `20-§16-1` | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` | `DB`, `CONC`, `INV`, `UNIT`, `RT` | NP-36, NP-46 | RS-08, RS-09 | CONDITIONAL | — |
 | VC-R-217 | `20-§16-2` | `EC-KER-04`, `EC-FRL-01` | `DB`, `AUDIT`, `RT` | NP-09 | RS-09 | FEASIBLE | — |
 | VC-R-218 | `20-§16-3` | `EC-KER-03`, `EC-FRL-01` | `DB`, `HARNESS`, `RT` | NP-13 | RS-09, RS-11 | FEASIBLE | — |
-| VC-R-219 | `20-§16-4` | `EC-FRL-01`, `EC-FRL-02` | `DB`, `UNIT`, `RT` | NP-46 | RS-08 | FEASIBLE | — |
+| VC-R-219 | `20-§16-4` | `EC-FRL-01`, `EC-FRL-02`, `EC-FRL-06` | `DB`, `UNIT`, `RT`, `HARNESS`, `AUDIT`, `PROV` | NP-46, NP-49, NP-53, NP-56, NP-59, NP-62 | RS-08, RS-18 | FEASIBLE | — |
 | VC-R-220 | `20-§23-11` | `EC-KER-03`, `EC-FRL-01` | `DB`, `HARNESS`, `RT` | NP-13 | RS-09 | FEASIBLE | — |
 | VC-R-221 | `17-§13-1` | `EC-ID-02` | `DB`, `CONC`, `UNIT`, `RT` | NP-09 | RS-07 | FEASIBLE | — |
 | VC-R-222 | `17-§13-2` | `EC-ID-02`, `EC-KER-03`, `EC-PPM-03` | `DB`, `CONC`, `RT`, `FRT` | NP-09, NP-14 | RS-01 | CONDITIONAL | FDR-09, SEC-EIS10-12 |
 | VC-R-223 | `17-§13-3` | `EC-ID-02`, `EC-KER-03` | `DB`, `CONC`, `UNIT`, `RT` | NP-09 | RS-07 | FEASIBLE | — |
-| VC-R-224 | `17-§13-4` | `EC-ID-03`, `EC-EXT-02` | `DB`, `HARNESS` | NP-23 | RS-14 | FEASIBLE | — |
+| VC-R-224 | `17-§13-4` | `EC-ID-03`, `EC-EXT-02`, `EC-ID-08` | `DB`, `HARNESS`, `CONC`, `INV`, `AUDIT`, `UNIT`, `RT`, `REPO`, `PROV`, `DOC` | NP-23, NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63 | RS-14, RS-16 | FEASIBLE | — |
 | VC-R-225 | `17-§14-1` | `EC-ISO-02`, `EC-UX-02` | `DB`, `INV`, `UNIT`, `RT` | NP-15 | RS-07 | FEASIBLE | — |
 | VC-R-226 | `17-§14-2` | `EC-KER-01` | `DB`, `REG` | NP-07 | — | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | VC-R-227 | `17-§14-3` | `EC-KER-01` | `DB`, `REG` | NP-01, NP-02 | — | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
@@ -581,6 +624,9 @@ ESC-1: OPEN T8
 22-§20-2: BLOCKED / IN SCOPE
 G-6/T4: UNVERIFIED
 LEGAL, PRIVACY AND RETENTION VALIDATION: DEFERRED
+VERSION 1.1-D G1/G2 DELTA: DRAFT — NOT APPROVED, NOT LOCKED, NOT EFFECTIVE
+P-1 RUNTIME IDENTITY EVIDENCE: HELD FOR ACTIVATION
+ENT-1: HELD
 ```
 
 ## Change Log
@@ -589,5 +635,5 @@ LEGAL, PRIVACY AND RETENTION VALIDATION: DEFERRED
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `NP-35` test or migration context with synthetic fixtures; `VC-TEST-11` runtime-gated verification; identity-deletion rows shown as execution-gated, not deferred; evidence classes of the gated identity-deletion obligations updated to build evidence. No row, item or mapping changed |
-
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
+| 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved, locked or executed: `VC-AUTH-02` cites locked EIS v0.5 blob `7a5f4918`; `VC-AUTH-07`, `VC-AUTH-08`; `RS-16` to `RS-18` (Section 4.2); `NP-47` to `NP-63` (Section 6.2); `VC-TEST-16`; `VC-EVD-07` to `VC-EVD-09`; 27 row items gain delta obligations, checks and evidence classes; counts updated. No existing check, scenario, row or criterion changed |

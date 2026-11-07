@@ -1,10 +1,10 @@
 # SB-P-1.12 — Lovable Build Prompt
 
 ```text
-STATUS: APPROVED — LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) DRAFT — NOT APPROVED, NOT LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+EIS: v0.5 APPROVED — LOCKED (BLOB 7a5f4918; RECORDS 73 AND 74, VERIFIED IN MC-802); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
+IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -17,13 +17,14 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 0.2 |
-| Status | `APPROVED — LOCKED` |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (EIS v0.5 G1/G2 delta, MC-803) |
+| Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
-| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` |
-| Date | 2026-10-01 |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a` |
+| Date | 2026-10-01; version 1.1-D: 2026-11-07 |
+| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`) |
 
 ## 2. Builder Identity and Artifact Name
 
@@ -35,8 +36,8 @@ Read, in this order, and treat each as binding:
 
 1. `AGENTS.md` and `CLAUDE.md`;
 2. the locked Product Blueprint, blob `77d52096c020668311b039721a4de9248ddd460e`;
-3. the locked EIS, blob `c444f7509477d0e8b997af538440d93bf2ca4d72`;
-4. Founder Decision Record 09;
+3. the locked EIS, blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (version 0.5; version 1.0-L of this prompt was locked against version 0.4 blob `c444f7509477d0e8b997af538440d93bf2ca4d72`);
+4. Founder Decision Records 09, 10 and 11, and the EIS v0.5 Stage 10 and Stage 11 records 73 and 74;
 5. the Engineering Contract (`engineering-contract.md`) once locked;
 6. this Build Prompt once locked;
 7. the Verification Checklist (`verification-checklist.md`) once locked;
@@ -47,7 +48,7 @@ This prompt references the Engineering Contract and does not restate or alter it
 
 ## 4. What This Prompt Does Not Authorize
 
-This draft authorizes no build. It does not authorize code, schema, SQL, migrations, Lovable execution or publication, provider or production mutation, identity-deletion runtime, unblocking `22-§20-2`, closing ESC-1, claiming G-6/T4 evidence, or SB-P-1.13 consumption.
+This draft authorizes no build. It does not authorize code, schema, SQL, migrations, Lovable execution or publication, provider or production mutation, identity-deletion runtime, unblocking `22-§20-2`, closing ESC-1, claiming G-6/T4 evidence, or SB-P-1.13 consumption. The version 1.1-D G1/G2 slice (Section 7.10.1) is `DRAFT` and **not executable**: no builder starts it, no schema is changed and no live action is taken without a Stage 13 re-lock of the amended package **and** a distinct Implementation Authorization. The artifact name `lovable-build-prompt.md` does not designate the eventual builder.
 
 ## 5. Repository Scope and Paths
 
@@ -260,6 +261,34 @@ Forbidden in this workstream, in addition to Section 8:
 - removing the active Owner membership outside transfer completion or governed business deletion;
 - producing SB-P-1.19 lifecycle evidence (this mission only consumes it).
 
+#### 7.10.1 SB-P-1.12/WS-G — Delivery Staff participant binding slice (G1/G2) — version 1.1-D delta, DRAFT, GATED, NOT EXECUTABLE
+
+| Field | Value |
+|---|---|
+| Obligations | `EC-ID-07`, `EC-ID-08`, `EC-ID-09`, `EC-FRL-06` (Engineering Contract Section 7.13) |
+| Type | `BUILD-HARNESS — ACTIVATION GATED` |
+| Depends on | WS-A1 (`EC-ID-03` participant records), WS-A2 (kernel Section 8.1 as amended), WS-A3 (enforcement), WS-D (binding and integrity), WS-E (audit), WS-H (tests) |
+| Migration class | M1, M3 |
+| Verification | `NP-47` to `NP-63`, `RS-16` to `RS-18`, `VC-TEST-16`, `VC-EVD-07` to `VC-EVD-09` |
+| Rollback and recovery | Additive |
+| FCTM rows (27; 6 already in WS-G) | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
+| Execution state | **Not executable.** Starts only after a Stage 13 re-lock of the amended package and a distinct Implementation Authorization naming the builder, paths and environment |
+
+Prerequisites before any build: the Stage 13 re-lock; the Implementation Authorization; a migration mission for schema work; the dependent WS-A1, WS-A2, WS-A3, WS-D and WS-E obligations. Prerequisites before any activation: a Mission Control P-1 evidence record for each sign-in method relied on (email and password; Google), exact intended-person matching, the negative tests and independent implementation verification; PC-06 entitlement; PC-07 readiness (SB-P-1.18 M18-7 then M18-3); PC-10 consumption acceptance. Before activation, issue and acceptance return committed audited denials and the first-run decision returns `participant_path_not_ready`.
+
+Ownership: SB-P-1.12 builds the issue, accept and revoke commands, the binding state, the kernel representation and the server-side first-run route decision. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof. SB-P-1.19 owns the ENT-1 policy. SB-P-1.15 owns any notification recipient (`EQ18-05`). The standard integration layer boundaries stay unchanged.
+
+Forbidden in this slice, in addition to Section 8:
+
+- any new authentication method, OTP, phone-number identity matching or second merchant confirmation;
+- sending an invitation, notification or message, or adding a channel (SMS, WhatsApp or other); the merchant shares the reference through its own channel;
+- any participant or merchant surface, recovery screen, lockout or cooldown policy;
+- creating a membership, role default, grant, dashboard capability or Owner capability from an invitation or binding;
+- combining authority paths, falling back between them, or trusting a client-remembered path, an editable identity claim or a token claim beyond the subject;
+- any cross-business access, merchant financial intelligence or unrelated customer or order access;
+- selecting whether a pending invitation is retained or ended during suspension (ENT-1);
+- treating SA-05 documentary capability as method readiness, or any POS custom core work.
+
 ### 7.11 SB-P-1.12/WS-H — Tests and CI
 
 | Field | Value |
@@ -356,6 +385,10 @@ Anything a builder believes is needed but not assigned is raised under Section 1
 | Security design findings SEC-EIS10-01 to SEC-EIS10-11 | Closed at design level (MC-164) | Realized through the obligations that implement the EIS sections named in EIS Section 20 |
 | Security implementation and evidence gates SEC-EIS10-12 to SEC-EIS10-14 | Open as implementation and evidence gates | Carried as verification items: projection on every read path (12); live effective-access evidence (13); provider, backup, PITR and legal-hold evidence (14) |
 | Implementation and runtime Security proof | Not yet established | Nothing in this package is runtime, implementation or production evidence |
+| P-1 runtime identity evidence (version 1.1-D delta) | **HELD for activation** | For each sign-in method relied on (email and password; Google): verified-email evidence for this configured project, exact intended-person match, negative security tests and independent implementation verification before that method or any participant route is enabled. Unverified methods stay disabled or fail closed with `participant_path_not_ready`. SA-05 documentary capability (Founder Decision Record 11) does not establish method readiness. No substitute method |
+| ENT-1 (version 1.1-D delta) | **HELD** (SB-P-1.19) | Whether a pending invitation is retained or ended during entitlement suspension is not decided. No acceptance or protected action while entitlement fails; the database-time 168-hour expiry continues without pause. No obligation, check or scenario selects either outcome |
+| G1/G2 consumption and readiness (PC-07, PC-10) | Gate | No consumer uses the participant interface before this package is re-locked at Stage 13, the workstreams are implemented and verified under separate authorization, and Mission Control accepts the dependency evidence. Before readiness, commands return committed audited denials |
+| SB-P-1.18 and other consumer dependencies | Open | SB-P-1.18 Stage 9 PARTIAL/HELD and Stages 10 to 13 not authorized; Cabinet PQ-14 and the unknown action-to-capability selector; SB-P-1.15 non-member notification recipient (`EQ18-05`); `DENT`; `DLEG`; `EQ18-15`; all 19 `DI` rows and five `DH` legs. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof |
 
 ## 10. Pause-and-Escalate Rule
 
@@ -380,7 +413,7 @@ Do not resolve a conflict by dropping, narrowing or inventing behaviour. Resume 
 
 ## 12. Workstream-to-FCTM-Row Map
 
-One line per `IN SCOPE` FCTM row, in FCTM order.
+One line per `IN SCOPE` FCTM row, in FCTM order. Version 1.1-D delta obligations appended to rows are `DRAFT` and not executable (Section 7.10.1).
 
 | # | FCTM row | Workstreams | Obligations |
 |---|---|---|---|
@@ -389,24 +422,24 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 3 | `21-§4-3` | WS-A1, WS-A2 | `EC-ID-02`, `EC-KER-03` |
 | 4 | `21-§4-4` | WS-A1 | `EC-ID-03` |
 | 5 | `21-§4-5` | WS-A1 | `EC-ID-03` |
-| 6 | `21-§4-6` | WS-A1 | `EC-ID-03` |
+| 6 | `21-§4-6` | WS-A1, WS-G | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` |
 | 7 | `21-§5-1` | WS-A1, WS-A2 | `EC-ID-01`, `EC-KER-01` |
 | 8 | `21-§5-2` | WS-A1, WS-A2, WS-G | `EC-ID-02`, `EC-KER-01`, `EC-FRL-03` |
 | 9 | `21-§5-3` | WS-A1, WS-A2 | `EC-ID-02`, `EC-KER-01` |
 | 10 | `21-§5-4` | WS-A2, WS-C | `EC-KER-01`, `EC-KER-04`, `EC-PPM-03`, `EC-PPM-04` |
-| 11 | `21-§5-5` | WS-A2 | `EC-KER-01`, `EC-KER-08` |
+| 11 | `21-§5-5` | WS-A2, WS-G | `EC-KER-01`, `EC-KER-08`, `EC-ID-08`, `EC-ID-09` |
 | 12 | `21-§5-6` | WS-A2 | `EC-KER-01`, `EC-KER-08` |
 | 13 | `21-§5-7` | WS-A2 | `EC-KER-01`, `EC-KER-05` |
 | 14 | `21-§5-8` | WS-A2 | `EC-KER-01`, `EC-KER-06` |
 | 15 | `21-§5-9` | WS-A2 | `EC-KER-01` |
 | 16 | `21-§5-10` | WS-A2, WS-G | `EC-KER-01`, `EC-KER-05`, `EC-FRL-05` |
-| 17 | `21-§6-1` | WS-A3 | `EC-ISO-01` |
+| 17 | `21-§6-1` | WS-A3, WS-G | `EC-ISO-01`, `EC-ID-08` |
 | 18 | `21-§6-2` | WS-A3 | `EC-ISO-01` |
 | 19 | `21-§6-3` | WS-A3 | `EC-ISO-06` |
 | 20 | `21-§6-4` | WS-A3, WS-0 | `EC-ISO-05`, `EC-ENV-01` |
 | 21 | `21-§6-5` | WS-A3 | `EC-ISO-05` |
 | 22 | `21-§6-6` | WS-A1, WS-A3 | `EC-ID-05`, `EC-ISO-04`, `EC-ISO-07` |
-| 23 | `21-§6-7` | WS-A1, WS-A3, WS-G | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02` |
+| 23 | `21-§6-7` | WS-A1, WS-A3, WS-G | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02`, `EC-ID-07`, `EC-FRL-06` |
 | 24 | `21-§7` | WS-A2, WS-A3 | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` |
 | 25 | `21-§8` | WS-A2, Consumer gate | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` |
 | 26 | `21-§9` | WS-A2 | `EC-KER-06`, `EC-KER-07` |
@@ -425,7 +458,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 39 | `21-§12-5` | WS-A2 | `EC-KER-09`, `EC-AUT-01` |
 | 40 | `21-§13-1` | WS-A2 | `EC-EXT-02` |
 | 41 | `21-§13-2` | WS-A2 | `EC-EXT-02` |
-| 42 | `21-§13-3` | WS-A2 | `EC-EXT-02` |
+| 42 | `21-§13-3` | WS-A2, WS-G | `EC-EXT-02`, `EC-ID-07`, `EC-ID-08` |
 | 43 | `21-§14-1` | WS-A2 | `EC-SUP-01` |
 | 44 | `21-§14-2` | WS-A2 | `EC-SUP-01` |
 | 45 | `21-§14-3` | WS-A2 | `EC-SUP-01` |
@@ -433,29 +466,29 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 47 | `21-§14-5` | WS-A2 | `EC-SUP-01` |
 | 48 | `21-§14-6` | WS-A2 | `EC-SUP-01` |
 | 49 | `21-§14-7` | WS-A2 | `EC-SUP-01` |
-| 50 | `21-§15-1` | WS-A1, WS-A2, WS-G | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02` |
-| 51 | `21-§15-2` | WS-A2 | `EC-KER-02` |
+| 50 | `21-§15-1` | WS-A1, WS-A2, WS-G | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` |
+| 51 | `21-§15-2` | WS-A2, WS-G | `EC-KER-02`, `EC-ID-08` |
 | 52 | `21-§15-3` | WS-A1, WS-A2 | `EC-ID-06`, `EC-KER-02` |
 | 53 | `21-§15-4` | WS-A2 | `EC-KER-02` |
 | 54 | `21-§15-5` | WS-A2, WS-A3 | `EC-KER-02`, `EC-SUP-01`, `EC-ISO-04` |
-| 55 | `21-§16-1` | WS-A2 | `EC-KER-05` |
+| 55 | `21-§16-1` | WS-A2, WS-G | `EC-KER-05`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` |
 | 56 | `21-§16-2` | WS-A2, Cross-cutting | `EC-KER-05`, `EC-GOV-03` |
-| 57 | `21-§17` | WS-A2, WS-D, WS-G | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03` |
-| 58 | `21-§18-1` | WS-D, WS-G | `EC-CNF-01`, `EC-FRL-04` |
-| 59 | `21-§18-2` | WS-D, WS-G | `EC-CNF-01`, `EC-FRL-04` |
-| 60 | `21-§18-3` | WS-D | `EC-CNF-01` |
-| 61 | `21-§18-4` | WS-D | `EC-CNF-01` |
-| 62 | `21-§18-5` | WS-D | `EC-CNF-01` |
-| 63 | `21-§18-6` | WS-D | `EC-CNF-01` |
-| 64 | `21-§19-1` | WS-E | `EC-AUD-01` |
-| 65 | `21-§19-2` | WS-E | `EC-AUD-01` |
-| 66 | `21-§19-3` | WS-E | `EC-AUD-01` |
-| 67 | `21-§19-4` | WS-E | `EC-AUD-01` |
-| 68 | `21-§19-5` | WS-E | `EC-AUD-01` |
-| 69 | `21-§19-6` | WS-E | `EC-AUD-01`, `EC-AUD-02` |
+| 57 | `21-§17` | WS-A2, WS-D, WS-G | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03`, `EC-ID-09` |
+| 58 | `21-§18-1` | WS-D, WS-G | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` |
+| 59 | `21-§18-2` | WS-D, WS-G | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` |
+| 60 | `21-§18-3` | WS-D, WS-G | `EC-CNF-01`, `EC-ID-08` |
+| 61 | `21-§18-4` | WS-D, WS-G | `EC-CNF-01`, `EC-ID-08` |
+| 62 | `21-§18-5` | WS-D, WS-G | `EC-CNF-01`, `EC-ID-08` |
+| 63 | `21-§18-6` | WS-D, WS-G | `EC-CNF-01`, `EC-ID-08` |
+| 64 | `21-§19-1` | WS-E, WS-G | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` |
+| 65 | `21-§19-2` | WS-E, WS-G | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` |
+| 66 | `21-§19-3` | WS-E, WS-G | `EC-AUD-01`, `EC-ID-07` |
+| 67 | `21-§19-4` | WS-E, WS-G | `EC-AUD-01`, `EC-ID-07` |
+| 68 | `21-§19-5` | WS-E, WS-G | `EC-AUD-01`, `EC-ID-07` |
+| 69 | `21-§19-6` | WS-E, WS-G | `EC-AUD-01`, `EC-AUD-02`, `EC-ID-08`, `EC-ID-09` |
 | 70 | `21-§19-7` | WS-A2, WS-E | `EC-SUP-01`, `EC-AUD-01` |
 | 71 | `21-§19-8` | WS-A2, WS-E | `EC-AUT-01`, `EC-AUD-01`, `EC-AUD-03` |
-| 72 | `21-§20-1` | WS-E | `EC-UX-01` |
+| 72 | `21-§20-1` | WS-E, WS-G | `EC-UX-01`, `EC-ID-08`, `EC-FRL-06` |
 | 73 | `21-§20-2` | WS-E | `EC-UX-01` |
 | 74 | `21-§20-3` | WS-E | `EC-UX-01`, `EC-UX-02` |
 | 75 | `21-§20-4` | WS-E | `EC-UX-01` |
@@ -479,7 +512,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 93 | `21-§24-4` | WS-A2, WS-A3, WS-H | `EC-KER-08`, `EC-ISO-02`, `EC-TST-02` |
 | 94 | `21-§24-5` | WS-A2, WS-H | `EC-EXT-01`, `EC-TST-02` |
 | 95 | `21-§24-6` | WS-A2, WS-H | `EC-KER-06`, `EC-KER-07`, `EC-TST-02` |
-| 96 | `21-§24-7` | WS-A2, WS-H | `EC-EXT-02`, `EC-TST-02` |
+| 96 | `21-§24-7` | WS-A2, WS-H, WS-G | `EC-EXT-02`, `EC-TST-02`, `EC-ID-09`, `EC-FRL-06` |
 | 97 | `21-§24-8` | WS-A2, WS-D, WS-H | `EC-KER-09`, `EC-CNF-02`, `EC-TST-02` |
 | 98 | `21-§24-9` | WS-A2, WS-H | `EC-KER-05`, `EC-TST-02` |
 | 99 | `21-§24-10` | WS-A2, WS-H | `EC-SUP-01`, `EC-TST-02` |
@@ -491,7 +524,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 105 | `22-§5-4` | WS-A1 | `EC-ID-01`, `EC-ID-02` |
 | 106 | `22-§5-5` | WS-A1 | `EC-ID-03` |
 | 107 | `22-§5-6` | WS-A1 | `EC-ID-03` |
-| 108 | `22-§5-7` | WS-A1 | `EC-ID-03` |
+| 108 | `22-§5-7` | WS-A1, WS-G | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` |
 | 109 | `22-§5-8` | WS-A1, WS-C | `EC-ID-05`, `EC-PPM-01` |
 | 110 | `22-§5-9` | WS-A1, WS-A3 | `EC-ID-05`, `EC-ISO-07` |
 | 111 | `22-§6-1` | WS-E | `EC-UX-02` |
@@ -518,7 +551,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 132 | `22-§14-7` | WS-D | `EC-CNF-01` |
 | 133 | `22-§14-8` | WS-E | `EC-AUD-04` |
 | 134 | `22-§14-9` | WS-E | `EC-AUD-03` |
-| 135 | `22-§15` | WS-D | `EC-CNF-04`, `EC-CNF-05` |
+| 135 | `22-§15` | WS-D, WS-G | `EC-CNF-04`, `EC-CNF-05`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` |
 | 136 | `22-§16-2` | WS-E | `EC-AUD-05` |
 | 137 | `22-§17` | WS-D | `EC-CNF-06` |
 | 138 | `22-§19` | WS-D | `EC-CNF-06` |
@@ -602,12 +635,12 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | 216 | `20-§16-1` | WS-A1, WS-G | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` |
 | 217 | `20-§16-2` | WS-A2, WS-G | `EC-KER-04`, `EC-FRL-01` |
 | 218 | `20-§16-3` | WS-A2, WS-G | `EC-KER-03`, `EC-FRL-01` |
-| 219 | `20-§16-4` | WS-G | `EC-FRL-01`, `EC-FRL-02` |
+| 219 | `20-§16-4` | WS-G | `EC-FRL-01`, `EC-FRL-02`, `EC-FRL-06` |
 | 220 | `20-§23-11` | WS-A2, WS-G | `EC-KER-03`, `EC-FRL-01` |
 | 221 | `17-§13-1` | WS-A1 | `EC-ID-02` |
 | 222 | `17-§13-2` | WS-A1, WS-A2, WS-C | `EC-ID-02`, `EC-KER-03`, `EC-PPM-03` |
 | 223 | `17-§13-3` | WS-A1, WS-A2 | `EC-ID-02`, `EC-KER-03` |
-| 224 | `17-§13-4` | WS-A1, WS-A2 | `EC-ID-03`, `EC-EXT-02` |
+| 224 | `17-§13-4` | WS-A1, WS-A2, WS-G | `EC-ID-03`, `EC-EXT-02`, `EC-ID-08` |
 | 225 | `17-§14-1` | WS-A3, WS-E | `EC-ISO-02`, `EC-UX-02` |
 | 226 | `17-§14-2` | WS-A2 | `EC-KER-01` |
 | 227 | `17-§14-3` | WS-A2 | `EC-KER-01` |
@@ -665,17 +698,17 @@ One line per `IN SCOPE` FCTM row, in FCTM order.
 | WS-D | 6 | 21 |
 | WS-E | 7 | 34 |
 | WS-F | 9 | 20 |
-| WS-G | 5 | 20 |
+| WS-G | 9: 5 locked, plus 4 in the version 1.1-D draft slice | 41: 20 locked, plus 21 added by the version 1.1-D slice |
 | WS-H | 4 | 34 |
 | Identity deletion | 9 | 36 |
 | Cross-cutting | 3 | 24 |
 | Consumer gate | 1 | 4 |
 
-Every one of the 267 rows is assigned to at least one workstream; 104 rows are shared by two or more workstreams. No row is assigned outside SB-P-1.12.
+Every one of the 267 rows is assigned to at least one workstream; 123 rows are shared by two or more workstreams (104 in locked version 1.0-L). No row is assigned outside SB-P-1.12.
 
 ## 14. Status
 
-`APPROVED — LOCKED`. No builder is named and no build is authorized.
+Version 1.0-L content: `APPROVED — LOCKED` (MC-168; historical, EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`; the combined package is `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main`. No builder is named and no build is authorized; the G1/G2 slice is not executable.
 
 ## 15. Change Log
 
@@ -684,3 +717,4 @@ Every one of the 267 rows is assigned to at least one workstream; 104 rows are s
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `EC-ISO-10` in WS-A3; `EC-DEP-01` shown as a consumer gate, not a builder workstream; `EC-LEG-02` in WS-F; identity-deletion obligations reclassified as gated builds. No row or mapping changed |
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
+| 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved or locked: locked EIS v0.5 blob `7a5f4918` and Founder Decision Records 10 and 11 added to Section 3; Section 4 non-executable note; gated slice 7.10.1 (`EC-ID-07` to `EC-ID-09`, `EC-FRL-06`); four delta holds; 27 rows gain WS-G and delta obligations; WS-G 5/20 to 9/41; shared rows 104 to 123. No existing workstream obligation, row or assignment changed |
