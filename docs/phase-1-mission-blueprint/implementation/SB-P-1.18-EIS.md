@@ -4,7 +4,7 @@
 
 **Stage 9 authoring in progress. Stage 10 NOT AUTHORIZED. Stage 11 LOCK NOT AUTHORIZED. Implementation Authorization WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
 
-This is a Source 18 Stage 9 working artifact under MC-734-D. It is not a reviewed or locked EIS, and Stage 9 is not complete. It authorizes no code, SQL, migration, provider activation, test execution, deployment or production change. `PRODUCTION MUTATION: NOT AUTHORIZED`. `MIGRATION EXECUTION: NOT AUTHORIZED`. `DELIVERY SYNC AND PUBLICATION: NOT AUTHORIZED`.
+This is a Source 18 Stage 9 working artifact under MC-734-D, amended in place under MC-809 (Section 22). It is not a reviewed or locked EIS, and Stage 9 is not complete. It authorizes no code, SQL, migration, provider activation, test execution, deployment or production change. `PRODUCTION MUTATION: NOT AUTHORIZED`. `MIGRATION EXECUTION: NOT AUTHORIZED`. `DELIVERY SYNC AND PUBLICATION: NOT AUTHORIZED`.
 
 No test named here has been run. Every positive and negative test is **FUTURE**. Nothing in this file is runtime, CI, provider or specialist PASS evidence.
 
@@ -17,13 +17,13 @@ No test named here has been run. Every positive and negative test is **FUTURE**.
 | Lifecycle stage | Source 18 v1.3 Stage 9 — EIS Creation, in progress |
 | Status | `PARTIAL DRAFT — MISSION CONTROL REVIEW REQUIRED — NOT CANONICAL` |
 | Author | Claude Code (Stage 9 EIS author; also author of Stages 2–7 and the Stage 8 lock PR; not independent review) |
-| Authorization | MC-734-D ([PR #1110 comment 6602278637](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602278637)), single-use, one draft file; MC-733 authoring basis ([comment 6602204422](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602204422)) |
+| Authorization | MC-734-D ([PR #1110 comment 6602278637](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602278637)), single-use, one draft file; MC-733 authoring basis ([comment 6602204422](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602204422)); amended under MC-809 ([PR #1111 comment 6706451975](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6706451975)), single-use, this file only |
 | Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.18.md`, blob `a7e0266e5e3bf2e2e2c6abce1ecd4f7b98b44d33` (Stage 8 `APPROVED — LOCKED`) |
 | Stage 8 record | `communication/missions/SB-P-1.18/mission-control/09-stage8-founder-approval-and-blueprint-lock-record.md` (`18:S8-FAR`) |
 | Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `2bbe6e227d714996bcead10385952c78283e20e8`: 769 rows, 592 `IN SCOPE` (frozen) |
-| Founder decisions | `18:FPDR-1` to `-7` and `18:FPDR-4-A` (F-01 to F-08); P-1 A and SR-09 X recorded in MC-725 for the SB-P-1.12 interface |
-| Candidate requirements | 130 (`EIS18-*`). Planning identifiers, renumberable until lock |
-| Baseline | `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69` |
+| Founder decisions | `18:FPDR-1` to `-7` and `18:FPDR-4-A` (F-01 to F-08); consumed through SB-P-1.12 EIS v0.5: SB-P-1.12 Founder Decision Record 10 (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours; blob `c93ca933`) and Founder Decision Record 11 (P-1 evidence timing; blob `c77f8a5f`) |
+| Candidate requirements | 137 (`EIS18-*`). Planning identifiers, renumberable until lock |
+| Baseline | Drafted at `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`; reconciled under MC-809 against `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`. The PR #1111 base stays pinned to the older `main` (Section 22) |
 | Next gate | Mission Control inspection. Stage 10 only by separate authorization, once the conditions in Section 19 are met |
 
 ## 2. Purpose, Authority and How to Read
@@ -66,11 +66,14 @@ Requirement text stays in the source contracts; this draft cites rows (Source 18
 | Source 18 v1.3 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `f3b01b608c4b64df186d4278ba6468ed0419630f` |
 | Operating pattern | `mission-control/SB-P-Phase 1 operating pattern.md`, blob `39b1bc366d7a2e31c80dc22c63aab007a3f5afd6` |
 | Migration authority | `docs/migration/README.md`: default-deny; no active migration mission |
-| Locked upstream EIS (all `AF` [S]) | SB-P-1.12 `8b0aaa79acee8ec1930292bde9b22d87fd489025` (v0.4); SB-P-1.13 `58199842319abc78cc50d2b65e18a2eb948b01c4`; SB-P-1.14 `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe`; SB-P-1.15 `75dcf38593f79e17e101e0efa80bef20fe24b31f`; SB-P-1.16 `46fffd7b140940854c9b2b847517dde2f17584df`; SB-P-1.17 `5d681b0c169dd12edc54a110a9fc9d54b87e2982` |
+| Locked upstream EIS (all `AF` [S]) | SB-P-1.12 **v0.5** `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (`APPROVED — LOCKED`, effective at `main@6a5b8b83` and verified by MC-802; v0.4 `8b0aaa79` is historical); SB-P-1.13 `58199842319abc78cc50d2b65e18a2eb948b01c4`; SB-P-1.14 `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe`; SB-P-1.15 `75dcf38593f79e17e101e0efa80bef20fe24b31f`; SB-P-1.16 `46fffd7b140940854c9b2b847517dde2f17584df`; SB-P-1.17 `5d681b0c169dd12edc54a110a9fc9d54b87e2982` |
 | Source contracts (FCTM pins) | C1 `b392c8cb`; C3 `d8c26c07`; C5 `80ac648e`; C6 `ebacd183`; C9 `649c55f3`; C10 `5c145ed7`; C12 `6d48feff`; C16 `420269d8`; C17 `7943f74a`; C22 `61e1bb91`; C24 `0c1dcbb2`; Build Plan `9dfdd924`; GPCV `ee76d920`; Source 11 `16897d6c` |
 | Stage 7 specialist findings [SP] | SA-05 #6545596757; SA-03 #6545608601; SA-04 #6545771183; migration #6545872629; SA-02 #6545771818; dispositioned `HELD` by MC-688 (#6547358706) |
 | T6 determinations [MC] | DC-14: MC-699 (#6555696141). DC-13: MC-701 (#6555836784). Both conditional and documentary |
-| Rulings | MC-734 R1–R5 (Section 15) |
+| SB-P-1.12 v0.5 provenance [F] [MC] | Founder Decision Record 10 `communication/missions/SB-P-1.12/founder/10-g1g2-participant-binding-founder-product-decision-record.md` (`c93ca933ea014447516505c9427e278e0c24ce26`); Founder Decision Record 11 `…/11-p1-verified-identity-evidence-timing-founder-clarification.md` (`c77f8a5f906d242248bfdb81f19cec025802ef9b`); Stage 10 Record 73 (`41a71bca`) and Stage 11 Record 74 (`34aea800`); MC-802 ([PR #1111 comment 6704673906](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6704673906)) |
+| Upstream candidates **not relied on** [NC] | SB-P-1.14 post-lock candidate on `main` (blob `8fb3e8d3`, MC-739-C) and SB-P-1.17 candidate (blob `6f85e404`, MC-739-S, `EIS17-STK-10`). Each header keeps its locked predecessor authoritative: `7dfad7b5` and `5d681b0c`, cited above |
+| SB-P-1.12 package | v1.1-D draft at PR #1120: not a source for this EIS and not evidence of package readiness (C-4, PK-0) |
+| Rulings | MC-734 R1–R5 (Section 15); MC-809 (Section 22) |
 
 ## 4. Implementation Principles
 
@@ -89,7 +92,7 @@ From Blueprint §20.3 and the Stage 6 review, rechecked where stated. Repository
 
 - **Authority is Owner-only:** `businesses.owner_id` is `UNIQUE`; RLS resolves through `owner_id = auth.uid()` or `resolve_owner_business(current_actor_uid())`. No membership, role, participant, grant or entitlement object exists.
 - **No domain objects** exist for customers, orders, delivery, staff, attendance, compliance, location, reminders or notifications.
-- **Stock:** `inventory_movement_type` holds `opening_stock`, `stock_increase`, `stock_decrease`, `adjustment_increase`, `adjustment_decrease` and `correction`. `create_inventory_movement` is `SECURITY INVOKER` and Owner-only, and does not validate `business_event_type` / `business_event_id` against the referenced domain.
+- **Stock:** `inventory_movement_type` holds `opening_stock`, `stock_increase`, `stock_decrease`, `adjustment_increase`, `adjustment_decrease` and `correction`. `create_inventory_movement` is `SECURITY INVOKER` and Owner-only in effect (through RLS; live privilege unverified), and does not validate `business_event_type` / `business_event_id` against the referenced domain.
 - **Auth:** `src/routes/auth.tsx` uses `signInWithPassword`, `signUp` and `signInWithOAuth`. No application code implements intended-email matching or verified-email enforcement (MC-728-S).
 - **Error capture paths** `src/lib/error-capture.ts` and `src/lib/lovable-error-reporting.ts` exist and are in scope for coordinate redaction.
 - **Layout:** server logic lives under `src/server-functions`; routes under `src/routes`. Later feature-module paths follow the `EIS17-ARC-02` pattern and are `TBD` at implementation.
@@ -101,7 +104,7 @@ From Blueprint §20.3 and the Stage 6 review, rechecked where stated. Repository
 | C-HR, C-ATT, C-PAY, C-HRF | `features/staff` | B | `EIS-ID-02`, `EIS-KER-*`, `EIS14-UDI-*`, C-LOC | First (C-HR); C-ATT and C-PAY after |
 | C-CMP, C-REN, C-CMF | `features/compliance` | C | `EIS14-UDI-*`, `EIS14-CAB-*`, `EIS15-REM-*`, `EIS15-NTF-*`, `EIS15-TZ-01` | First |
 | C-CUS, C-OAU | `features/customers`, registry entries | A | `EIS-ID-03`, `EIS16-ID-*`, `EIS-KER-*` | Second |
-| C-ORD, C-AVL, C-DLV | `features/orders` | A | `EIS13-TOOL-*`, `EIS13-CNF-*`, `EIS14-UDI-*`, `EIS17-RO-08`, `EIS17-STK-09`, `EIS17-TXN-04` | Second |
+| C-ORD, C-AVL, C-DLV | `features/orders` | A, P | `EIS13-TOOL-*`, `EIS13-CNF-*`, `EIS14-UDI-*`, `EIS17-RO-08`, `EIS17-STK-09`, `EIS17-TXN-04`; participant path `EIS-ID-07` to `-09`, `EIS-FRL-06` | Second; participant path after PC-07 readiness |
 | C-PRF | `features/orders` | A | `EIS16-ORD-01`, `DTX` | Third |
 | C-OFD | `features/orders` | A | `EIS15-NTF-*`, `EIS13-*` | Second and third |
 | C-LOC | `features/location` | D | `EIS-KER-*`, `EIS15-SCH-*` | Last, behind its specialist gate |
@@ -113,7 +116,8 @@ From Blueprint §20.3 and the Stage 6 review, rechecked where stated. Repository
 - **Server function to database:** commands are the only write boundary (`EIS-ISO-02`). Service-role paths follow `EIS-ISO-04`.
 - **Model to tools:** model output is untrusted and validated (`EIS13-TOOL-02`). Document content is untrusted data (`EIS14-UDI-06`). A later OCR read never changes a confirmed date.
 - **Device to location validator:** a coordinate crosses once, in a request body, and only a result returns.
-- **Out of bounds in this draft:** any external participant path (Section 14) and any out-of-app channel (`DNTF`).
+- **Participant boundary:** a Delivery Staff participant enters only as an SB-P-1.12 participant principal on one named authority path (Section 7.1; `EIS18-EXT-07`), with authority from binding, registered capability and object assignment only.
+- **Out of bounds in this draft:** any out-of-app channel (`DNTF`) and any participant notification (`EQ18-05`).
 
 ## 7. Capability Catalogue
 
@@ -132,7 +136,7 @@ Registry entries under `EIS-KER-03`, with object scope as a kernel input (`EIS-K
 | `order.return.confirm` | Packing event | Grant | Grant | Delivery Staff by default; confers no override |
 | `order.stock.override_negative` | Packing event | **Explicit grant only** | **Never** | Employee, Delivery Staff, AI, Manager without the grant |
 | `delivery.assign` | Order | Grant | Only where explicitly granted | — |
-| `delivery.task.read`, `delivery.task.act` | **Assigned delivery only** | Grant | Grant | Unassigned orders; external principal (held) |
+| `delivery.task.read`, `delivery.task.act` | **Assigned delivery only** | Grant | Grant | Unassigned orders |
 | `delivery.proof.record` | Assigned delivery | Grant | Grant | — |
 | `delivery.proof.review` | Delivery | Grant | No | — |
 | `cod.expected.set`, `cod.discrepancy.resolve` | Order | Grant | No | — |
@@ -155,8 +159,26 @@ Registry entries under `EIS-KER-03`, with object scope as a kernel input (`EIS-K
 
 **Rules.**
 - `EIS-KER-07` Owner-intelligence capabilities are never inferred from any entry above.
-- `EIS-KER-04` grants attach to a **membership**. No entry extends to a participant. Participant scope waits for a source-owned binding and capability contract (`EIS18-EXT-01`; MC-734 §2).
+- `EIS-KER-04` grants attach to a **membership** and are not extended. The membership catalogue above gives a participant nothing.
 - A grant validator refuses `order.stock.override_negative` for an Employee role. **EQ18-13** (`order.return.confirm`) and **EQ18-14** (override composition) are proposals for SA-03 and the SB-P-1.12 owner at Stage 10.
+- The mapping from these names to an `authz.authorize` `action` value is `UNKNOWN` upstream (`EIS18-CAP-01`).
+
+### 7.1 Delivery Staff participant capabilities (SB-P-1.12 v0.5 PC-05)
+
+SB-P-1.12 owns the participant capability source (Section 8.1 step 3(c)) and its kernel representation. SB-P-1.18 registers the versioned capabilities below for participant type `delivery_staff` (`EIS18-EXT-03`). Each allows only when **all** hold: a current governed binding; the registered capability; a current object assignment for that business, action and delivery; entitlement (PC-06); channel; and current epochs. A target-less helper never allows on this source. Names are `TR`.
+
+| Capability | Object scope | Source rows | Never |
+|---|---|---|---|
+| `delivery.task.read` | The assigned delivery only | `1-§5-15` to `-21`, `BP-§10.7-A6` | Unassigned or foreign orders; customer lists; Owner intelligence; export |
+| `delivery.task.act` (acknowledge, start, complete, report unable) | The assigned delivery only | `1-§13-2`, `-4`, `-7`, `-8`; `1-§15-2` | Any state change outside the assigned delivery |
+| `delivery.proof.record` (named minimum only) | The assigned delivery only | `1-§13-5` | Photo, signature or OTP (R2); proof review |
+| `cod.collected.record` | The assigned delivery only | `1-§13-6` | Setting the expected amount; resolving a discrepancy; any Ledger effect. Records a fact and confers no financial authority. For SA-03 confirmation at Stage 10 |
+
+**Not registered for a participant:** `order.return.confirm`, `order.stock.override_negative`, `delivery.assign`, any `customer.*`, `order.*`, `staff.*`, `payroll_support.*`, `compliance.*` or support capability. A binding never gives Owner intelligence, unrelated customers or orders, export or support access (`EIS-ID-08`, `EIS-EXT-02`).
+
+**Merchant participant management (consumed, SB-P-1.12 registry).** Issue and revoke are SB-P-1.12 capabilities: Owner by default and any other holder by explicit grant (`EIS-ID-07`, `EIS-ID-09`). SB-P-1.18 supplies only the merchant surfaces (`EIS18-EXT-05`).
+
+**Authority path (F-OVL Option B).** A person holding a membership and a binding in one business names exactly one path per request; the server never infers it and never falls back (`EIS18-EXT-07`; SB-P-1.12 Section 8.1).
 
 ## 8. Logical Object Model
 
@@ -183,7 +205,7 @@ Every object has `business_id`, composite references `(business_id, id)`, `creat
 
 | Object | Key fields | Rules | Realizes |
 |---|---|---|---|
-| `delivery_assignments` | `order_id`, `assignee_kind`, `assignee_membership_id`, `state`, `idempotency_key`, `assigned_by` | `assignee_kind` admits only `employee_membership` here. A participant value is **not created** until the upstream contract is effective | `EIS18-DLV-02`, `-EXT-02` |
+| `delivery_assignments` | `order_id`, `assignee_kind`, `assignee_membership_id`, `assignee_binding_id`, `state`, `idempotency_key`, `assigned_by` | `assignee_kind` in `employee_membership`, `participant_binding`; exactly one assignee reference matches the kind. This is the PC-05 object assignment: a change serializes under `EIS-CNF-02` and ends authority at the next evaluation (`EIS-ID-09`). The participant value activates only after PC-07 readiness | `EIS18-DLV-02`, `-EXT-04` |
 | `delivery_events` | `assignment_id`, `event`, `actor`, `at`, `idempotency_key` | `acknowledged`, `started`, `delivered`, `unable_to_deliver`. Append-only | `EIS18-DLV-03`, `-OFD-05` |
 | `delivery_proof_records` | `assignment_id`, `proof_type`, `result`, `recorded_by`, `recorded_at` | `proof_type` in `staff_completion`, `merchant_confirmation`, and if adopted `recipient_ack`, `location_result`, `cod_evidence`. **No `photo`, `signature` or `otp` value and no media reference** (R2) | `EIS18-PRF-01`, `-PRF-02`, `-PRF-03` |
 | `order_proof_policy` | `business_id`, `required_types`, `version` | Per-business configuration. Minimum set is non-empty | `EIS18-PRF-01` |
@@ -249,7 +271,7 @@ Each command is a kernel-checked feature command (`EIS13-CMD-01`, `EIS-ISO-02`).
 | `order.pack_line` | `order.pack.line` | Yes | Line, packing intent | `STK_NEGATIVE_BLOCKED`, `STK_DEPENDENCY_HELD`; one decrease | `EIS18-STK-01`, `-STK-04` |
 | `order.pack_line_override` | `order.stock.override_negative` | Yes | Line, packing intent | `STK_OVERRIDE_DENIED` | `EIS18-STK-03` |
 | `order.confirm_return` | `order.return.confirm` | Yes | Packing event, return intent | `RET_EXCEEDS_PACKED` | `EIS18-STK-02` |
-| `delivery.assign` | `delivery.assign` | Yes | Order, assignment intent | `ASG_NOT_ASSIGNABLE`, `ASG_CUSTOMER_MISMATCH`, `ASG_ASSIGNEE_NOT_PERMITTED`, `ASG_ADDRESS_UNRESOLVED`, `ASG_COD_UNREVIEWED`, `ASG_DUPLICATE`, `ASG_EXTERNAL_HELD` | `EIS18-DLV-02` |
+| `delivery.assign` | `delivery.assign` | Yes | Order, assignment intent | `ASG_NOT_ASSIGNABLE`, `ASG_CUSTOMER_MISMATCH`, `ASG_ASSIGNEE_NOT_PERMITTED`, `ASG_ADDRESS_UNRESOLVED`, `ASG_COD_UNREVIEWED`, `ASG_DUPLICATE`; kernel `participant_path_not_ready` for a participant before readiness | `EIS18-DLV-02`, `-EXT-04` |
 | `delivery.acknowledge`, `delivery.start`, `delivery.report_unable` | `delivery.task.act` | No | Assignment, event | `DLV_NOT_ASSIGNED` | `EIS18-DLV-03` |
 | `delivery.complete` | `delivery.task.act` | No | Assignment, event | `PROOF_INSUFFICIENT` | `EIS18-DLV-03`, `-PRF-01` |
 | `delivery.record_proof` | `delivery.proof.record` | No | Assignment, proof type | `MECHANISM_NOT_ADOPTED` | `EIS18-PRF-01`, `-PRF-02` |
@@ -272,6 +294,9 @@ Each command is a kernel-checked feature command (`EIS13-CMD-01`, `EIS-ISO-02`).
 | `compliance.record_renewal` | `compliance.renewal.record` | Yes | Record, document version | New version; `REN_NOT_CONFIRMED` | `EIS18-RNW-01` |
 | `location.set_destination_pin` | `location.pin.set` | No | Order, intent | `temporary_pin` under C3 | `EIS18-LOC-04` |
 | `location.erase_for_order` | System, on delivery close | No | Order close event | Idempotent erasure | `EIS18-LOC-04` |
+| SB-P-1.12 `EIS-ID-07` issue (consumed) | SB-P-1.12 invite capability | Kernel | `EIS-CNF-04` per SB-P-1.12 | Reference shown once (PC-02); lost response → revoke and reissue (PC-03) | `EIS18-EXT-05` |
+| SB-P-1.12 `EIS-ID-09` revoke (consumed) | SB-P-1.12 revoke capability | Kernel | Per SB-P-1.12 | Binding and derived capabilities stop at the next evaluation | `EIS18-EXT-05` |
+| SB-P-1.12 `EIS-ID-08` accept (consumed, participant surface) | Signed-in person | Invitation is its own binding | Per SB-P-1.12 | Kernel denial codes rendered under PC-12 | `EIS18-EXT-06` |
 
 ### 9.1 Governed readers (M18-8)
 
@@ -280,6 +305,7 @@ Kernel-scoped, batched and minimized. Each returns source and freshness, and no 
 | Reader | Capability | Returns | Never returns | Realizes |
 |---|---|---|---|---|
 | `order.availability_for_lines` | `order.read` | `known`, `unknown` or `unavailable` per line, from `EIS17-RO-08` | A promise beyond the reader; a second stock figure | `EIS18-AVL-01` |
+| `delivery.tasks_for_participant` | `delivery.task.read` (participant path) | Each assigned delivery after a per-target decision; empty, count and cursor shapes reflect only own assignments (PC-05) | Unassigned, foreign or non-existent orders, indistinguishably (PC-12) | `EIS18-EXT-04` |
 | `delivery.task_for_assignee` | `delivery.task.read` | The `1-§5-15` to `-21` fields for the caller's assigned delivery only; a text address for device hand-off | Owner-wide data; unrelated orders; a stored coordinate outside its purpose | `EIS18-DLV-03`, `-DLV-04`, `-OFD-07` |
 | `order.board` | `order.read` | Orders by state, pending confirmation, preparation and assignment, exceptions, COD issues, history and proof | Owner intelligence | `EIS18-VW-02` |
 | `staff.roster_view`, `attendance.review_view`, `leave.review_view` | `staff.record.read`, `attendance.read` | Roster, attendance results, leave and context within scope | Coordinates (A2); accusation or score | `EIS18-VW-01` |
@@ -311,7 +337,7 @@ No feature scheduler or notification store (DC-08). A request records that somet
 | Source event | Mechanism | Recipient | Customer or non-member leg | Realizes |
 |---|---|---|---|---|
 | Draft needs action; change request; delivery started or completed; COD or unable-to-deliver exception | `notification_requests` with a `EIS15-NTF-04` dedupe key | Eligible membership | Merchant-visible event. "Customer channel: not demonstrated" | `EIS18-OFD-01`, `-CUS-06` |
-| Delivery assigned | Same | **Employee assignee's membership** | Non-member: `NTF_NO_VERIFIED_RECIPIENT`, no send (`EIS18-NTF-01`) | `EIS18-OFD-01`, `-NTF-01` |
+| Delivery assigned | Same | **Employee assignee's membership** | Participant: `NTF_NO_VERIFIED_RECIPIENT`, no send (`EIS18-NTF-01`; SB-P-1.12 PC-09) | `EIS18-OFD-01`, `-NTF-01` |
 | Shift or staff reminder | `EIS15-REM-07` | Linked membership | Unlinked staff record: no recipient, no send | `EIS18-HR-03` |
 | Confirmed compliance date | `EIS15-REM-07`, typed `related_type` | Responsible membership | — | `EIS18-REM-01`, `-CNT-01` |
 
@@ -328,7 +354,7 @@ Kernel denials keep the `EIS-UX-01` contract. Feature codes below are `TR` names
 | `ORD_CHANGE_UNAPPROVED` | Material change lacks recorded approval | `1-§10-8` |
 | `MECHANISM_NOT_ADOPTED` | Adoptable mechanism is not enabled | `1-§10-7`, `1-§15-3`, `1-§15-4`, `1-§15-5` |
 | `ASG_*` | One named `1-§12-*` condition failed | `1-§12-1` to `-6` |
-| `ASG_EXTERNAL_HELD` | An external assignee is held under `EQ18-15`; not a product refusal | `1-§12-3` |
+| Kernel `participant_path_not_ready`, `authority_path_required`, `invitation_unavailable` (consumed) | SB-P-1.12 v0.5 outcomes rendered under PC-12; precise reason in audit only. Code names are working names until the SB-P-1.12 package (PC-10). Replaces the retired `ASG_EXTERNAL_HELD` | `1-§12-3`, `1-§24-6`, `1-§25-3` |
 | `DLV_NOT_ASSIGNED` | Target is not the caller's assigned delivery | `1-§25-3` |
 | `PROOF_INSUFFICIENT` | No configured positive proof | `1-§15-1`, `1-§21-10` |
 | `STK_NEGATIVE_BLOCKED`, `STK_OVERRIDE_DENIED` | Policy blocks, or override not held | `1-§10-9`, `1-§24-3` |
@@ -351,8 +377,8 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `1-§24-2` | Ambiguous item or quantity | `order_ambiguities`; `ORD_AMBIGUITY_OPEN` |
 | `1-§24-3` | Out of stock or substitution | Availability state; change proposal |
 | `1-§24-4` | Missing address or location | `ASG_ADDRESS_UNRESOLVED`; asked only when operationally required |
-| `1-§24-5` | Unavailable delivery staff | Reassign; `ASG_ASSIGNEE_NOT_PERMITTED`. External leg held |
-| `1-§24-6` | Revoked permission mid-workflow | Kernel denial at next evaluation; pending action rejected only. External leg held |
+| `1-§24-5` | Unavailable delivery staff | Reassign; `ASG_ASSIGNEE_NOT_PERMITTED`. Participant: reassignment ends authority over the order (`EIS-ID-09`) |
+| `1-§24-6` | Revoked permission mid-workflow | Kernel denial at next evaluation; pending action rejected only. Participant: binding revocation commits before or rejects the in-flight action (`EIS-ID-09`) |
 | `1-§24-7` | Duplicate assignment or retry | Stored outcome; `ASG_DUPLICATE` |
 | `1-§24-8` | Customer modification or cancellation | Merchant-recorded proposal; stock only on confirmed return |
 | `1-§24-9` | Delivery delay | Review item. No fixed universal threshold |
@@ -431,8 +457,8 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-STK-02` | PR/TR | Compensating increase only after a separately granted physical-return confirmation, and only against a committed packed quantity. Never on cancellation alone. Delivery Staff do not hold it by default (EQ18-13). | 4 |
 | `EIS18-STK-03` | PR/UQ | Negative-stock override: Owner or explicitly delegated Manager, with confirmation and audit. Proposed composition (EQ18-14): the capability gate precedes the `EIS17-STK-09` policy path and does not amend it. For SA-03 at Stage 10. | 2 |
 | `EIS18-DLV-01` | PR/TR | Audited, capability-scoped order state machine with exception and cancel states. State names are not Product Truth. | 7 |
-| `EIS18-DLV-02` | PR/TR | Server-side checks of all `1-§12-*` conditions, with one idempotency key per assignment intent. Natural-language assignment passes the same checks. In this draft the only normative assignee is an employee membership; an external assignee is refused with `ASG_EXTERNAL_HELD` (`EIS18-EXT-02`). | 10 |
-| `EIS18-DLV-03` | PR/TR | Assigned-delivery task projection and native actions for an **employee** membership (`21-§4-3`), with deny-by-default for unassigned orders and a low-friction flow. Employee evidence never discharges an external part (`EIS18-EXT-01`, `-EXT-02`). | 19 |
+| `EIS18-DLV-02` | PR/TR | Server-side checks of all `1-§12-*` conditions, with one idempotency key per assignment intent. Natural-language assignment passes the same checks. The assignee is an employee membership, or a Delivery Staff participant under `EIS18-EXT-04` (`1-§12-3` external leg). Before readiness an external assignee is refused with the kernel outcome `participant_path_not_ready` (SB-P-1.12 PC-07). | 10 |
+| `EIS18-DLV-03` | PR/TR | Assigned-delivery task projection and native actions, for an employee membership (`21-§4-3`) or a Delivery Staff participant (`EIS18-EXT-03`, `-EXT-04`). Deny by default for unassigned orders; low-friction flow. Each path is evidenced separately: employee evidence never discharges the participant path. | 19 |
 | `EIS18-DLV-04` | TR/PD | U-13 default: hand the text address to the device maps application. No provider. Any provider needs Build Plan §5.4 and specialist review. | 2 |
 | `EIS18-PRF-01` | PR/TR | Completion needs at least one configured positive proof. Named minimum: delivery staff completion action and merchant confirmation (`18:FPDR-4`). | 8 |
 | `EIS18-PRF-02` | TR | Adoptable proof types are typed records, verified only if adopted: recipient acknowledgement, and point-in-time location under B2. | 2 |
@@ -440,7 +466,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-PRF-04` | PR | Customer silence never fails or rolls back a delivery. | 3 |
 | `EIS18-COD-01` | PR/TR | Expected, collected (amount, collector, time) and discrepancy are separate facts. Mismatch stays visible until a human resolves it. | 6 |
 | `EIS18-COD-02` | PR/AF | The order domain never writes Ledger income. The link goes only through `EIS16-ORD-01` on the single `DTX` path, with one key per delivery-and-collection event (EQ18-09, proposal). Replay creates one outcome (SA-03 F4). | 8 |
-| `EIS18-OFD-01` | AF/TR | Order notifications are `EIS15-NTF-01` requests to **membership** recipients with a `EIS15-NTF-04` dedupe key and `EIS15-NTF-03` revalidation. The customer native leg is a merchant-visible event. No channel states (`EIS15-NTF-02`). No order-only infrastructure. | 10 |
+| `EIS18-OFD-01` | AF/TR | Order notifications are `EIS15-NTF-01` requests to **membership** recipients with a `EIS15-NTF-04` dedupe key and `EIS15-NTF-03` revalidation. The customer native leg is a merchant-visible event. A Delivery Staff participant is not a recipient (`EIS18-NTF-01`; SB-P-1.12 PC-09). No channel states (`EIS15-NTF-02`). No order-only infrastructure. | 10 |
 | `EIS18-OFD-02` | PR | AI assists through SB-P-1.13 typed tools only (`EIS13-TOOL-01`). | 7 |
 | `EIS18-OFD-03` | PR | AI must-nots are enforced server-side by capability checks and state guards, not prompt wording. | 4 |
 | `EIS18-OFD-04` | TR | Order data model carries the remaining `1-§22-*` entities, including confirmation and audit events, as business-scoped objects. | 2 |
@@ -517,6 +543,19 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-ACC-04` | FC | Founder-reserved scenarios A, B and C are future plans; none is demonstrated. | 4 |
 | `EIS18-ACC-05` | PR | Mission sequencing, cumulative-mission, evidence-sufficiency and unresolved-decision rules govern downstream records; no row accepted on repository, specification or CI evidence. | 34 |
 
+### P. External Delivery Staff consumer path (SB-P-1.12 EIS v0.5; MC-809)
+
+| Requirement | Basis | Specification | Rows |
+|---|---|---|---:|
+| `EIS18-EXT-01` | AF | **Consumed kernel contract, specified and locked, not implemented.** SB-P-1.12 EIS v0.5 (`7a5f4918`, effective per MC-802) owns G1 issue, accept and revoke (`EIS-ID-07` to `-09`), the G2 read-only first-run decision (`EIS-FRL-06`), the participant capability source (Section 8.1 step 3(c)) and controls PC-01 to PC-12. SB-P-1.18 consumes them and redefines none of them. Supersedes the v0.4 interface hold (Section 14.1). | 19 |
+| `EIS18-EXT-02` | PR/TR | **The five overlapping `DH` external legs are specified** through `EIS18-EXT-03` to `-EXT-08` (Section 14.2). Their status and the census are unchanged. Each external leg is activation-gated (`EIS18-EXT-08`) and is evidenced separately from the employee leg. | 5 |
+| `EIS18-EXT-03` | PR/TR | **Participant capability registration (PC-05).** For participant type `delivery_staff`, SB-P-1.18 registers versioned capabilities limited to the `1-§13-*` delivery actions and the `1-§5-15` to `-21` task data (Section 7.1). Registration creates no membership, role default, grant, dashboard or Owner capability, and does not extend `EIS-KER-04`. | 21 |
+| `EIS18-EXT-04` | PR/TR | **Object assignment and governed set read (PC-05).** Authority needs a current binding, the registered capability, a current object assignment for that business, action and delivery, entitlement and channel, and current epochs. Task lists come only from a governed read that derives candidates from the participant's own assignments and decides each target. Omitted objects are not disclosed in counts, cursors, ordering or metadata. Assignment change serializes under `EIS-CNF-02` (`EIS-ID-09`). | 23 |
+| `EIS18-EXT-05` | PR/TR | **Merchant invitation surfaces.** The merchant enters the intended email (P-1 Option A), calls issue (`EIS-ID-07`), and shares the reference once, through a channel the merchant already controls (PC-02). Revocation and reissue go through `EIS-ID-09`. A lost issue response is handled by revoke and reissue, never by reconstructing the reference (PC-03). The UI states the fixed 168-hour validity (P-3) and that an accepted binding survives the issuer's departure (SR-09 Option X). Nothing is sent by Smart Business. | 19 |
+| `EIS18-EXT-06` | PR/TR | **Participant first-run rendering.** SB-P-1.18 renders the `participant_route` decision of `EIS-FRL-06`, the accept step (`EIS-ID-08`) and the assigned-delivery experience. `participant_path_not_ready` is shown calmly, with no business-creation default (PC-07). A person with several contexts sees each, with no silent switch. | 19 |
+| `EIS18-EXT-07` | PR/TR | **One authority path per request (F-OVL Option B).** Where a person holds a membership and a Delivery Staff binding in one business, every SB-P-1.18 command and governed read sends exactly one named path in `p_context`. The client may remember a choice; the server never infers it. A denial on one path is final: no retry on the other path and no combining. | 22 |
+| `EIS18-EXT-08` | UQ | **Activation gate (PC-07, PC-10).** No participant route, issue or acceptance is usable until: the SB-P-1.12 interface is implemented and verified; SB-P-1.18 capability, entitlement and object registration (M18-7); external route readiness (M18-3); and, for each sign-in method, recorded P-1 identity evidence (`EIS-ID-08`). Until then every step fails closed with `participant_path_not_ready`. This is runtime evidence, not a documentary gap. | 24 |
+
 ### X. Cross-cutting (selector-mapped)
 
 | Requirement | Basis | Specification | Rows |
@@ -528,7 +567,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-AUD-01` | AF | Audit and provenance through `EIS-AUD-01/02/03` and `EIS13-AUD-01`. | 6 |
 | `EIS18-MIG-01` | TR | M18-1 to M18-8 design only, `DRAFT OR PROPOSAL — NON-EXECUTABLE`. Each class gets an object birth matrix, backfill statement and rollback boundary (M18-MIG-02/03/04). External slice of M18-3 excluded. | 290 |
 | `EIS18-VER-01` | PR | Each row gets a planned test and evidence class from its FCTM seed, unchanged. Runtime evidence decides acceptance (B6-24; Blueprint §20.7.6). Nothing is PASS now. | 592 |
-| `EIS18-CAP-01` | TR | Capability catalogue (Section 7) as `EIS-KER-03` registry entries, with object scope as kernel input (`EIS-KER-08`). A tool definition never grants a capability (`EIS13-TOOL-01`). | 280 |
+| `EIS18-CAP-01` | TR | Capability catalogue (Section 7) as `EIS-KER-03` registry entries, with object scope as kernel input (`EIS-KER-08`). A tool definition never grants a capability (`EIS13-TOOL-01`). How an `authz.authorize` `action` value selects the evaluated capability is `UNKNOWN` upstream (SB-P-1.14 PQ-12); the names bind to it once SB-P-1.12 determines it. | 280 |
 | `EIS18-OBJ-01` | TR | Logical object model (Section 8). Every object is business-scoped with composite references. Names are engineering choices, not Product Truth. | 290 |
 | `EIS18-CMD-01` | TR | Command catalogue (Section 9). Consequential writes follow `EIS13-CMD-01` under `EIS-ISO-02`, with a confirmation binding where marked and `EIS-CNF-04` idempotency. | 308 |
 | `EIS18-ERR-01` | TR | Feature outcome codes (Section 10) sit under the `EIS-UX-01` denial contract: calm, non-leaking, non-accusing, and narrow (`EIS-CNF-06`). | 101 |
@@ -548,7 +587,6 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 
 | Requirement | Basis | Specification | Rows |
 |---|---|---|---:|
-| `EIS18-EXT-01` | UQ | **UPSTREAM INTERFACE HELD / NOT INCLUDED IN AUTHORITATIVE EIS CONTRACT (`EQ18-15`).** See Section 14.1. Participant scope must come from a source-owned binding and capability contract, never from `EIS-KER-04` membership grants or a global delivery role. | 19 |
 | `EIS18-HLD-D12` | UQ | `D12` kernel gate. | 280 |
 | `EIS18-HLD-D13` | UQ | `D13` conversation and tools gate. | 116 |
 | `EIS18-HLD-D14` | UQ | `D14` Memory, UDI and storage gate. | 119 |
@@ -569,8 +607,8 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-HLD-DLEG` | UQ | `DLEG`: no legal or calculation claim; recording only. | 6 |
 | `EIS18-HLD-DC13` | FC | DC-13: conditional documentary T6 only (MC-701). | 5 |
 | `EIS18-HLD-DC14` | FC | DC-14: conditional documentary T6 only (MC-699); PROVISIONAL — PROFESSIONAL VALIDATION PENDING. | 1 |
-| `EIS18-EXT-02` | UQ | **The external execution leg of five overlapping `DH` rows is held under `EQ18-15`** (Section 14.2). Their status and the census are unchanged; the employee leg is specified and claims no external acceptance. | 5 |
 | `EIS18-NTF-01` | UQ | **`EQ18-05` hold (MC-734 R4).** Locked `EIS15-NTF-01` has no non-member recipient. `no verified recipient = no send` is a fail-closed safety condition, **not** a reduction of `1-§17-4`. Employee membership recipient only. No membership, channel, OTP or provider workaround (Section 14.3). | 1 |
+| `EIS18-HLD-PQ14` | UQ | `PQ-14`: object-scoped Cabinet set reads (search, listing, conversational retrieval) need a target-aware helper accepted under SB-P-1.12; until then a direct request for one document is the fail-closed interim path. Not a narrowing. | 8 |
 
 ## 13. Attendance Mechanism Under MC-699 (DC-14)
 
@@ -586,66 +624,76 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 
 ## 14. Interface Hold Registers
 
-### 14.1 `EQ18-15` register: the 19 external Delivery Staff `DI` rows
+### 14.1 `EQ18-15` register: the 19 external Delivery Staff `DI` rows (reconciled to SB-P-1.12 v0.5)
 
-> **UPSTREAM INTERFACE HELD / NOT INCLUDED IN AUTHORITATIVE EIS CONTRACT.** Key: `EQ18-15`. Dependency: a canonical, source-owned SB-P-1.12 G1 issue, accept and revoke and G2 first-run contract, with P-3, ENT-1, G2 response and denial code and audit enumeration incorporated. It is not in locked EIS v0.4 (`8b0aaa79`). Founder: `18:FPDR-6` D1-A [F]; P-1 A, conditional on verified-identity proof, and SR-09 X, recorded in MC-725 [F]. Owner: SB-P-1.12 source owner under Mission Control change control. This applies to every row below.
+> **INTERFACE SPECIFIED — LOCKED SB-P-1.12 EIS v0.5 (`7a5f49182463ec79ecf221d7dd13dfebbc517e3e`, MC-802) — NOT IMPLEMENTED — CONSUMPTION GATED (PC-07, PC-10).** The v0.4 record "upstream interface held / not included in authoritative EIS contract" is superseded at the documentary level. `EQ18-15` asked for the vehicle and acceptance of the G1/G2 contract; the locked v0.5 supplies the contract. What remains is implementation, verification and per-method P-1 evidence, which `EIS18-EXT-08` holds fail-closed. Founder: `18:FPDR-6` D1-A; SB-P-1.12 Founder Decision Records 10 and 11 [F].
 
-All 19 stay `IN SCOPE`, status `DI`, risk H; none is deferred or reassigned. Each needs the whole contract, because an external person reaches any of them only through G1 issue and accept and G2 first run, and loses them through G1 revoke. Employee evidence discharges none of them.
+All 19 stay `IN SCOPE`, Blueprint §20.8 status `DI` and risk H, unchanged; none is deferred, reassigned or marked complete. The `DI` label is frozen Blueprint text; whether it should later read `DH` is for Mission Control, not this EIS. Each row needs the whole contract, because an external person reaches it only through G1 issue and accept and G2 first run, and loses it through G1 revoke. Each path is evidenced separately; employee evidence discharges none of them.
 
-**Evidence class for all 19:** interface [NC] until canonical; Founder product decision [F]; identity proof [FUT]; end-to-end proof [FUT].
+**Evidence class:** kernel contract [S]; Founder decisions [F]; per-method identity proof and end-to-end proof [FUT].
 
-| Row | Source unit | SB-P-1.18-owned and specifiable now (employee path) | Additional hold |
-|---|---|---|---|
-| `1-§5-15` | Merchant identity | Field in assigned-task projection | — |
-| `1-§5-16` | Customer name or contact where required | Field, only where the task requires it | — |
-| `1-§5-17` | Order or item summary | Field in projection | — |
-| `1-§5-18` | Delivery address or location | Text address; `temporary_pin` under C3 (`EIS18-CUS-05`, `-DLV-04`) | `DLOC` |
-| `1-§5-19` | Delivery timing or instructions | Field in projection | — |
-| `1-§5-20` | COD amount where applicable | Read-only expected amount (`EIS18-COD-01`) | `D16` |
-| `1-§5-21` | Permitted delivery actions | Actions derived from capability and state | — |
-| `1-§5-22` | Must-not: no Owner-wide business view | NT-ASG-01 and NT-FIN-01, employee variants | External variant needs a bound participant |
-| `1-§13-2` | Acknowledge assignment | `delivery.acknowledge` | — |
-| `1-§13-3` | Open address or map | Device maps hand-off (`EIS18-DLV-04`) | `DMAP` |
-| `1-§13-4` | Mark started | `delivery.start` | — |
-| `1-§13-5` | Record delivery proof | Named-minimum proof only (`EIS18-PRF-01`) | `D14`, `DLOC`; photo and signature not adopted (`EIS18-PRF-03`) |
-| `1-§13-6` | Record COD collected | `cod.record_collected`; no Ledger write | `D16` |
-| `1-§13-7` | Mark delivered | `delivery.complete`, gated on configured proof | — |
-| `1-§13-8` | Report unable to deliver | `delivery.report_unable` | — |
-| `1-§17-4` | Assignment notification | `EIS15-NTF-01` request to an employee membership (`EIS18-OFD-01`) | `D15`; **`EQ18-05`** for a non-member (Section 14.3) |
-| `1-§26-7` | Scoped assignment scenario | NT-ASG-01, employee variant | `D13`; external variant NT-EXT-01 |
-| `1-§26-8` | Required-information scenario | NT-ASG-01, employee variant | `D13`; external variant NT-EXT-01 |
-| `BP-§10.7-A6` | Purpose-limited task data | Projection rule | — |
+| Row | Source unit | Classification | SB-P-1.18 consumer specification | Still held |
+|---|---|---|---|---|
+| `1-§5-15` | Merchant identity | Spec now; activation-gated | Field in the participant task projection (`EIS18-EXT-04`) | — |
+| `1-§5-16` | Customer name or contact where required | Spec now; activation-gated | Field only where the task requires it | SA02-18-F03 device-data question [SP] |
+| `1-§5-17` | Order or item summary | Spec now; activation-gated | Field in projection | — |
+| `1-§5-18` | Delivery address or location | Spec now; activation-gated | Text address; `temporary_pin` under C3 for the active order (`EIS18-CUS-05`) | `DLOC`; SA02-18-F03 [SP] |
+| `1-§5-19` | Delivery timing or instructions | Spec now; activation-gated | Field in projection | — |
+| `1-§5-20` | COD amount where applicable | Spec now; activation-gated | Read-only expected amount | `D16` |
+| `1-§5-21` | Permitted delivery actions | Spec now; activation-gated | Actions derived from the registered capabilities (Section 7.1) and state | — |
+| `1-§5-22` | Must-not: no Owner-wide business view | Spec now; activation-gated | PC-05 and PC-12; `EIS-ID-08` never grants Owner intelligence, export or support. NT-EXT-04 | — |
+| `1-§13-2` | Acknowledge assignment | Spec now; activation-gated | `delivery.acknowledge` on the participant path | — |
+| `1-§13-3` | Open address or map | Spec now; activation-gated | Device maps hand-off (`EIS18-DLV-04`) | `DMAP` |
+| `1-§13-4` | Mark started | Spec now; activation-gated | `delivery.start` | — |
+| `1-§13-5` | Record delivery proof | Spec now; activation-gated | Named-minimum proof (`EIS18-PRF-01`) | `D14`, `DLOC`; photo and signature not adopted (R2) |
+| `1-§13-6` | Record COD collected | Spec now; activation-gated | `cod.record_collected` on the assigned delivery: a fact, no Ledger write, no financial authority | `D16`; SA-03 confirmation at Stage 10 |
+| `1-§13-7` | Mark delivered | Spec now; activation-gated | `delivery.complete`, gated on configured proof | — |
+| `1-§13-8` | Report unable to deliver | Spec now; activation-gated | `delivery.report_unable` | — |
+| `1-§17-4` | Assignment notification | Spec now (employee); external leg held | Employee recipient only (`EIS18-OFD-01`) | **External leg HELD: `EQ18-05`** (Section 14.3); fail-closed, not a reduction |
+| `1-§26-7` | Scoped assignment scenario | Spec now; activation-gated | NT-EXT-02 and NT-ASG-01 test design | `D13` |
+| `1-§26-8` | Required-information scenario | Spec now; activation-gated | NT-EXT-04 test design | `D13` |
+| `BP-§10.7-A6` | Purpose-limited task data | Spec now; activation-gated | Projection rule (`EIS18-EXT-04`) | — |
 
-**Non-normative consuming expectations.** These state what SB-P-1.18 would need if a contract becomes effective. They bind nothing, are not source text and do not predict that contract's shape. No requirement here rests on them.
-- A participant principal that `authz.authorize` can resolve (`EIS-KER-01/02`), with assignment-level object scope from a source-owned binding, not `EIS-KER-04`.
-- Revocation effective at the next evaluation, including mid-delivery (`EIS-KER-09`), and no business row created for a pending or bound person.
-- P-1 A: the intended person is identified by email before invitation, conditional on proof. MC-728-S records email and password as configuration-ready, not live-verified, and Google as configuration-unverified. No OTP, phone matching, new provider or second merchant confirmation.
-- SR-09 X: an accepted binding belongs to the business and continues after the issuer loses authority. A pending invitation is revalidated against the issuer's current authority.
+**Result: 18 of 19 rows are normative consumer specification, activation-gated. `1-§17-4` is normative for its employee leg; its participant leg stays held on `EQ18-05`.** None is runtime-ready.
+
+**Consumer obligations under the locked controls.**
+
+| Control | SB-P-1.18 obligation |
+|---|---|
+| PC-02, PC-03 | Show the reference once, from the issue response only; never log, store or reconstruct it. Lost response → revoke and reissue (`EIS18-EXT-05`) |
+| PC-04, PC-12 | No direct table read of invitation or binding state. Render one outward denial shape for not found, wrong business, unassigned, revoked, unregistered and wrong path |
+| PC-05 | Capability registration (Section 7.1), object assignment (`delivery_assignments`) and the governed set read (`delivery.tasks_for_participant`) |
+| PC-06 | Entitlement-gated (`DENT`); fails closed. ENT-1 retain or end is SB-P-1.12 and SB-P-1.19 business, not decided here |
+| PC-07 | Readiness order: kernel implemented and verified → M18-7 registration → M18-3 route → G1 activation |
+| PC-09 | No participant notification (`EQ18-05`) |
+| PC-10 | No consumption before the SB-P-1.12 package is re-locked (C-4, PK-0; PR #1120 is draft) and implemented under separate authorization |
+| PC-11 | Any merchant-visible lockout or cooldown from throttling needs a separate product screen |
+| Section 8.1 (F-OVL) | One named authority path per request; `authority_path_required` rendered without guessing (`EIS18-EXT-07`) |
 
 **Ownership boundary.**
 
-| SB-P-1.18 (specified here) | SB-P-1.12 (held; not specified here) |
+| SB-P-1.18 (specified here) | SB-P-1.12 (specified in v0.5; not restated here) |
 |---|---|
-| Delivery task object, projection, commands and state guards | Invitation issue, acceptance, binding record and token handling |
-| Merchant assignment UI; delivery task UI for employees | Verified-principal resolution and identity matching for participants |
-| Assigned-order negative tests, employee variants now; external variants planned | Route and first-run decision; denial and error contract; binding revocation |
-| M18-3 employee assignment objects | M18-3 external slice stays excluded until the contract is effective |
+| Participant capability registration, object assignment and governed set read | Commands, binding state, kernel representation and server-side route decision |
+| Merchant invite, share, revoke and reissue surfaces; participant accept and task surfaces | Invitation secret, digest, expiry (168 hours, database clock) and identity matching |
+| Participant end-to-end negative tests (Section 16.2) | Participant binding suite (SB-P-1.12 Section 18) |
+| M18-3 external slice and M18-7 registration, activation-gated | Its own migrations and package |
 
 ### 14.2 Five overlapping external execution legs
 
-These rows stay `DH`; the census stays at 19 `DI`. Their employee leg is specified. Their external leg is held under `EQ18-15` and claims no acceptance.
+These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (`EIS18-EXT-02`). The external leg is activation-gated (`EIS18-EXT-08`) and is evidenced separately; it claims no acceptance.
 
-| Row | Source unit | Employee leg (specified) | External leg (held) |
+| Row | Source unit | Employee leg (specified) | External leg (specified; activation-gated) |
 |---|---|---|---|
-| `1-§12-3` | Delivery person exists and has permission | `EIS18-DLV-02`: membership and capability check | Participant binding predicate. `ASG_EXTERNAL_HELD` |
-| `1-§15-2` | Delivery staff completion action (`18:FPDR-4` named minimum) | `EIS18-PRF-01` | Completion by a bound external participant |
-| `1-§24-5` | Unavailable delivery staff | `EIS18-DLV-02` | External availability state |
-| `1-§24-6` | Revoked permission during workflow | `EIS-KER-09` on membership | Binding revocation mid-delivery |
-| `1-§25-3` | Delivery staff sees only task-required information | `EIS18-OFD-07`, `-DLV-03` | Same rule for a bound participant |
+| `1-§12-3` | Delivery person exists and has permission | `EIS18-DLV-02`: membership and capability check | Current binding, registered capability and entitlement before assignment (`EIS18-EXT-04`); `participant_path_not_ready` before readiness |
+| `1-§15-2` | Delivery staff completion action (`18:FPDR-4` named minimum) | `EIS18-PRF-01` | `delivery.task.act` complete on the assigned delivery (Section 7.1) |
+| `1-§24-5` | Unavailable delivery staff | `EIS18-DLV-02` | Reassignment; authority over the order ends at the next evaluation (`EIS-ID-09`) |
+| `1-§24-6` | Revoked permission during workflow | `EIS-KER-09` on membership | Binding revocation mid-delivery: commit before, or committed rejection with no write (`EIS-ID-09`) |
+| `1-§25-3` | Delivery staff sees only task-required information | `EIS18-OFD-07`, `-DLV-03` | PC-05 governed set read and PC-12 equivalent denials (`EIS18-EXT-04`) |
 
 ### 14.3 `EQ18-05` non-member notification interface hold
 
-- **Gap [S].** `EIS15-NTF-01` defines `notification_requests(... recipient_membership_id ...)`, and `EIS15-NTF-03` revalidates current membership. A business-scoped non-member participant is not a membership. G1/G2 acceptance alone does not create a recipient.
+- **Gap [S].** `EIS15-NTF-01` defines `notification_requests(... recipient_membership_id ...)`, and `EIS15-NTF-03` revalidates current membership. A business-scoped non-member participant is not a membership. Locked SB-P-1.12 v0.5 confirms the gap: PC-09 defines no notification, and a participant recipient exists only if separately verified under SB-P-1.15 and `EQ18-05`. G1/G2 alone does not create a recipient.
 - **Specified now.** Employee membership recipient only (`EIS18-OFD-01`).
 - **Fail-closed.** A non-member recipient produces `NTF_NO_VERIFIED_RECIPIENT`. `no verified recipient = no send` is a **safety condition, not an unapproved reduction** of `1-§17-4` or of any participant notification obligation (MC-734 R4).
 - **Not permitted as a workaround.** Adding a membership; a new channel, OTP or provider; or a reduced row.
@@ -663,9 +711,13 @@ These rows stay `DH`; the census stays at 19 `DI`. Their employee leg is specifi
 | DC-14 (MC-699) | `6-§5-2` | [MC] conditional; legal [Q] | Mission Control; counsel | Before real employee-location use or policy reliance | Section 13 |
 | DC-13 (MC-701) | `1-§7-*`, `1-§5-29` | [MC] conditional | Mission Control | Channel acceptance at SB-P-1.20 | Native state only; no send |
 | `18:FPDR-1` retention | `22-§16-6`, `1-§14-12`, `1-§22-11` | [F] provisional; [Q] open | Founder; counsel | Before legal-policy reliance | No numeric period |
-| P-1 A identity proof (R3) | 19 `DI` rows | [FUT]; email configuration [MC] reported, Google unverified | SA-05; Founder | Not a Stage 9 gate. Later boundary reviewed by Mission Control under C-1 | Conditional note only |
-| P-3 TTL; ENT-1; G2 codes; audit enumeration | 19 `DI` rows | Open within [NC] | SB-P-1.12 owner; SB-P-1.19 for ENT-1 | Inside the upstream contract | Not specified here |
-| C-1, C-4, PK-0 | Upstream | Open | Mission Control; Founder | Before re-lock; before package reliance | Retained |
+| P-1 per-method identity proof (R3; Founder Decision Record 11) | 19 `DI` rows; five legs | [FUT]; email configuration-ready but unverified, Google unverified (MC-728-S); zero signups (MC-732) | SA-05; Founder; Mission Control | Before each sign-in method or participant route is enabled. Not a Stage 9 or Stage 10 documentary gate | `EIS18-EXT-08`; unverified method returns `participant_path_not_ready` |
+| ENT-1 pending-invitation retain or end during suspension | 19 `DI` rows | [S] `HELD` in PC-06 | Mission Control; SB-P-1.19 | Before suspension behaviour is relied on | Acceptance and actions fail closed; 168-hour expiry not paused |
+| P-3, G2 codes, F-OVL, SR-09 | 19 `DI` rows | [S] [F] decided in v0.5 | SB-P-1.12 | — | Consumed. Field and code names are working names until the SB-P-1.12 package (PC-10) |
+| SB-P-1.12 package and consumption gate (C-4, PK-0, PC-10) | 19 `DI` rows; five legs | Package v1.1-D draft (PR #1120); [U] | Mission Control | Before any consumer implementation | `EIS18-EXT-08` |
+| Cabinet object-scoped set reads (`PQ-14`) | `EIS18-HLD-PQ14` rows | [S] held in the SB-P-1.14 package | SB-P-1.12 with SB-P-1.14 | Before compliance listing and search are accepted | Direct single-document request only meanwhile; not a narrowing |
+| Action-to-capability selector | `D12` rows | [U] `UNKNOWN` | SB-P-1.12 | Before capability names are bound | Recorded on `EIS18-CAP-01` |
+| C-1 | Upstream | Met for v0.5 (Records 73, 74; MC-802) | Mission Control; Founder | — | Applies again to any later SB-P-1.12 amendment |
 | `DENT` / DC-07 | 13 `DENT` rows | [S] primitive; lifecycle open | SB-P-1.12; SB-P-1.19 | Add-on acceptance | No schema simulation |
 | `DNTF`, `D20` | 17 `DNTF` rows | None before SB-P-1.20 | SB-P-1.20 | Channel acceptance | Native legs; "customer channel: not demonstrated" |
 | AEG-1, U-09, C1 §17 screening | As Blueprint §12.3 | [MC] | Mission Control | Acceptance and release | Retained |
@@ -682,7 +734,7 @@ These rows stay `DH`; the census stays at 19 `DI`. Their employee leg is specifi
 |---|---|---|
 | R1 | Bounded held representation; `S11-L443-1` not complete | `EIS18-PAY-03`, `-OVT-02`; `overtime.propose_system` not specified. All five facets stay mapped |
 | R2 | Conditional partial accept; no waiver | `EIS18-PRF-03`; no photo, signature or OTP value or media object. Named minimum proceeds. Privacy assessment precedes Stage 10 claiming this dispositioned |
-| R3 | Auth runtime proof is not a Stage 9 gate; Founder condition preserved | Section 14.1 note; no claim of identity proof. No permission to re-lock SB-P-1.12 |
+| R3 | Auth runtime proof is not a Stage 9 gate; Founder condition preserved | Section 14.1; `EIS18-EXT-08`. No claim of identity proof. SB-P-1.12 v0.5 was re-locked separately (MC-802), not by this EIS |
 | R4 | `EQ18-05` needs source-owner reconciliation | Section 14.3; `EIS18-NTF-01`; `NTF_NO_VERIFIED_RECIPIENT` |
 | R5 | `SA02-18-F01` admissible for design only | `EIS18-LOC-05`; negative tests in Section 16.2. No blanket PASS |
 
@@ -731,7 +783,12 @@ These rows stay `DH`; the census stays at 19 `DI`. Their employee leg is specifi
 | NT-CMP-01 | Compliance | No legal assurance; a due reminder never completes a renewal; later OCR never changes a confirmed date | `16-§15-*`, `16-§8-11`, `16-§20-5` | FUTURE |
 | NT-NTF-01 | Notification | Non-member recipient: no send, `NTF_NO_VERIFIED_RECIPIENT` | `1-§17-4`; `EQ18-05` | FUTURE |
 | NT-FRL-01 | First run (consumed) | Invited employee follows `EIS-FRL-02`: not silently made Owner of a new business | Consumed from SB-P-1.12 | FUTURE; upstream |
-| NT-EXT-01 | First run and external (**held**) | Unbound, pending, expired and revoked participant denied; mid-delivery revocation; wrong person; replay; pending binding creates no business; assigned deliveries only | 19 `DI` rows; five legs | **FUTURE and HELD** on `EQ18-15`; test design final only with the contract |
+| NT-EXT-01 | First run | Participant with a pending or bound state: no business or Owner membership created; `participant_path_not_ready` before readiness; several contexts shown without a silent switch; unbound person keeps ordinary first run (`EIS-FRL-06`) | 19 `DI` rows | FUTURE; activation-gated |
+| NT-EXT-02 | Assignment and capability | Participant without a current binding, registered capability or assignment denied; reassignment and revocation end access at the next evaluation, including mid-delivery; return confirmation and override refused | `1-§12-3`, `1-§24-5`, `1-§24-6`, `1-§26-7` | FUTURE |
+| NT-EXT-03 | Authority path (F-OVL) | Person with a membership and a binding in one business: no named path → `authority_path_required` and no write; membership path never reaches binding scope and the reverse; no retry or combining; audit records the path | Five legs; `1-§5-21` | FUTURE |
+| NT-EXT-04 | No enumeration, no Owner data | Zero assignments give the same empty shape; counts, cursors and ordering reflect own assignments only; unassigned and non-existent orders indistinguishable; no Owner intelligence, customer list or export | `1-§5-22`, `1-§25-3`, `1-§26-8`, `BP-§10.7-A6` | FUTURE |
+| NT-EXT-05 | Invitation surfaces | Reference shown once and absent from logs, analytics and stores; lost response leads to revoke and reissue; UI states 168 hours; issuer departure leaves an accepted binding active and pending invitations unacceptable (SR-09) | 19 `DI` rows | FUTURE; kernel behaviour itself is SB-P-1.12's suite |
+| NT-EXT-06 | Notification | Assignment to a participant creates no `notification_requests` row and states no-send (`EQ18-05`) | `1-§17-4` | FUTURE |
 
 ## 17. Migration Design (Design Only; Not Executed)
 
@@ -743,11 +800,11 @@ These rows stay `DH`; the census stays at 19 `DI`. Their employee leg is specifi
 |---|---|---|---|---|---|
 | M18-1 | `customer_messaging_state`, `customer_addresses`, `customer_duplicate_candidates` | SB-P-1.16 identity; `EIS-ID-03` | None; existing rows unaffected | Pre-data drop; after data, forward-fix | — |
 | M18-2 | `orders`, `order_lines`, `order_ambiguities`, `order_state_events`, `order_change_*`, `order_packing_events`, `order_return_confirmations` | Kernel; confirmation; SB-P-1.17 movement path | None | Pre-data drop; history never deleted after data | No stock effect until the movement path and per-line contract are accepted |
-| M18-3 | `delivery_*`, `order_proof_policy`, `cod_*`, `order_ledger_links` | M18-2; `EIS16-ORD-01`; `DTX` decision | None | Same | **External slice excluded (`EQ18-15`)**. No COD-to-finance before `DTX` |
+| M18-3 | `delivery_*`, `order_proof_policy`, `cod_*`, `order_ledger_links` | M18-2; `EIS16-ORD-01`; `DTX` decision; SB-P-1.12 interface verified for the participant slice | None | Same | **Participant slice designed; activates only after M18-7 (PC-07)**. No COD-to-finance before `DTX` |
 | M18-4 | `staff_records`, `staff_shifts`, `attendance_*`, `leave_records`, `overtime_*`, `payroll_support_drafts` | Memberships; EQ18-02 | None. No staff inferred from Auth users | Same | `DLEG` fields absent |
 | M18-5 | `compliance_*` | Cabinet; Reminder Engine | None | Same | — |
 | M18-6 | Validation functions, `delivery_destination_pins`, `location_holds`, QR tokens | Specialist review; DC-14 for the geofence | None | Pre-data drop; erasure unaffected | Hold authority `TBD` |
-| M18-7 | Capability and entitlement entries | Registry; `EIS-KER-05` | Registry rows only | Versioned registry | Override and return wait for EQ18-13 and EQ18-14 |
+| M18-7 | Capability and entitlement entries, including the Section 7.1 participant capabilities | Registry; `EIS-KER-05`; SB-P-1.12 participant capability source | Registry rows only | Versioned registry | Override and return wait for EQ18-13 and EQ18-14 |
 | M18-8 | Governed readers | Feature tables | None | Drop reader | Never widens ownership |
 
 ### 17.2 Object birth matrix (every class)
@@ -784,11 +841,11 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 | EQ18-11 | Proposed: SB-P-1.18 unit suites join the Fast Gate; code and migration paths join Full Assurance. Stage 10 |
 | EQ18-12 | `TBD`: named devices and browsers, low-end Android first, before device tests |
 | EQ18-13, EQ18-14 | Proposed (Section 7, `EIS18-STK-03`). SA-03 and owners at Stage 10 |
-| EQ18-15 | **Held** (Section 14.1) |
+| EQ18-15 | **Documentary contract supplied** by locked SB-P-1.12 v0.5 (MC-802). Implementation, verification and per-method P-1 evidence held (`EIS18-EXT-08`) |
 
 ## 19. Converting This Draft to a Reviewable Full Stage 9 EIS
 
-1. **SB-P-1.12:** a canonical G1/G2 contract exists through C-1, Founder substantive approval, human merge and Mission Control re-lock. Then replace each `EIS18-EXT-01` record with requirements citing the effective contract; re-test the five legs; add the M18-3 external slice.
+1. **SB-P-1.12: done at documentary level (MC-809).** v0.5 is locked; Section 14 now specifies the consumer path. Remaining: field and code names fixed by the SB-P-1.12 package (C-4, PK-0, PC-10) and ENT-1.
 2. **SB-P-1.15:** `EQ18-05` is dispositioned by its source owner after a T3/T7 screen. Then update `EIS18-NTF-01` and `1-§17-4`.
 3. **Qualified inputs:**
    - Payroll and overtime validation settles `EIS18-PAY-03` and `EIS18-OVT-02`, including the `S11-L443-1` trigger.
@@ -797,18 +854,18 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 5. **Depth:** physical schema, exact command signatures and per-capability role defaults.
 6. **Completeness:** Mission Control runs its own §3.2 item 6 test. Stage 10 is requested only then, by separate authorization.
 
-Steps 1 to 3 are not SB-P-1.18 acts. No step here authorizes editing an upstream contract.
+Steps 2 and 3 are not SB-P-1.18 acts. No step here authorizes editing an upstream contract.
 
 ## 20. Source 18 Trigger Screen
 
 | Trigger | Result in this draft |
 |---|---|
-| T1, T3 | No new product choice. Screens flagged: EQ18-08 mechanisms; EQ18-05 resolution (T3/T7) |
+| T1, T3 | No new product choice. SB-P-1.12 Founder decisions P-1, SR-09, F-OVL and P-3 are consumed as recorded. Screens flagged: EQ18-08 mechanisms; EQ18-05 resolution (T3/T7); any throttling lockout (PC-11) |
 | T2 | No new Product Truth conflict |
 | T4, T5 | None |
 | T6 | DC-13 and DC-14 unchanged and conditional |
 | T7 | No row narrowed, moved or deferred. All 592 stay `IN SCOPE` |
-| T8 | Not fired. The binding is viable in specification, and every open interface is representable as a hold |
+| T8 | Not fired. The binding is specified and locked upstream, and every open item is representable as a hold |
 
 ## 21. Traceability
 
@@ -820,19 +877,19 @@ Generated from the requirement selectors and validated against FCTM blob `2bbe6e
 |---|---|
 | `IN SCOPE` FCTM rows; rows mapped to at least one requirement | 592; 592 |
 | IDs absent from the FCTM; rows duplicated in the matrix | 0; 0 |
-| Candidate requirements; requirements with no FCTM row (orphans) | 130; 0 |
-| Row-to-requirement links; per row minimum / maximum | 5455; 2 / 19 |
+| Candidate requirements; requirements with no FCTM row (orphans) | 137; 0 |
+| Row-to-requirement links; per row minimum / maximum | 5591; 2 / 22 |
 | §20.8 census from the row data | DA 115, DH 434, HG 24, DI 19; H 100, M 382, L 110 |
-| Drafting class | `NOW` 441; `RUN` 128; `DOC` 23 (19 `DI` plus 4); `BLK` 0. Plus 5 held external legs (flag `X`) inside `NOW` and `RUN` |
+| Drafting class | `NOW` 441; `RUN` 146; `DOC` 5 (`1-§17-4` participant leg plus 4); `BLK` 0. Plus 5 activation-gated external legs (flag `X`) inside `NOW` and `RUN` |
 | Source pointers checked against pinned blobs (mechanical text match) | 587 of 592 match; the 5 `S11-L443-*` facets use descriptive pointers and were checked at Source 11 line 443 (`- overtime records`) |
 | FCTM, Blueprint, Founder-record or upstream changes | 0 |
-| Workstream requirements with no dedicated object, command, reader or tool (principle or acceptance-record requirements, enforced by rule and test) | 15: `PRN-01`, `PRF-04`, `OFD-04`, `OFD-06`, `PRN-02`, `HFD-01`, `HPR-01`, `PRN-03`, `CPR-01`, `CFD-01`, `ACC-01`, `ACC-02`, `ACC-03`, `ACC-04`, `ACC-05` |
+| Workstream requirements with no dedicated object, command, reader or tool (principle or acceptance-record requirements, enforced by rule and test) | 18: `PRN-01`, `PRF-04`, `OFD-04`, `OFD-06`, `PRN-02`, `HFD-01`, `HPR-01`, `PRN-03`, `CPR-01`, `CFD-01`, `ACC-01`, `ACC-02`, `ACC-03`, `ACC-04`, `ACC-05`, `EXT-01`, `EXT-02`, `EXT-08` |
 
 **Limits.** This is an author's set check, plus a mechanical text match of pointers. It is **not** the independent source-text obligation inventory (Source 18 §3.2 item 6), which Mission Control runs at Stage 10. It proves a pointer's text exists in its source, not that the coverage of that source is complete. The Stage 2 inventory is `claude-code/07-…`.
 
 **Class key.**
 - `NOW`: can specify now.
-- `RUN`: runtime evidence deferred; a named fact (Kind `FRV`; `DLOC`, `DSCH`, `DAI` or `DV`; or finding B6-05, B6-06, B6-08) decides acceptance.
+- `RUN`: runtime evidence deferred; a named fact (status `DI`, through `EIS18-EXT-08`; Kind `FRV`; `DLOC`, `DSCH`, `DAI` or `DV`; or finding B6-05, B6-06, B6-08) decides acceptance.
 - `DOC`: documentary contract or qualified input required for part of the row.
 - `BLK`: genuine source or truth blocker (none).
 
@@ -840,7 +897,7 @@ Every row also needs runtime acceptance later (B6-24). No row is PASS.
 
 ### 21.2 FCTM row to EIS requirement (592 rows)
 
-Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `X`: held external leg.
+Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `X`: activation-gated external leg (Section 14.2).
 
 | Row | Kind | Component | Status | Risk | Seed | Class | Flag | Requirements |
 |---|---|---|---|---|---|---|---|---|
@@ -879,14 +936,14 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§5-12` | OBL | C-OAU | DH | M | RT | NOW |  | OAU-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§5-13` | OBL | C-OAU | DH | M | RT | NOW |  | OAU-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§5-14` | NEG | C-OAU | DH | M | NEG | NOW |  | OAU-02, SEC-01, SEC-02, SEC-03, CAP-01, ERR-01, NEG-01, VER-03, HLD-D12 |
-| `1-§5-15` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§5-16` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§5-17` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§5-18` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, DLV-04, LOC-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12, HLD-DLOC |
-| `1-§5-19` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§5-20` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-03, MIG-04, VER-02, EXT-01, HLD-D12, HLD-D16 |
-| `1-§5-21` | OBL | C-OAU | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§5-22` | NEG | C-OAU | DI | H | NEG | DOC |  | DLV-03, SEC-01, SEC-02, SEC-03, CAP-01, ERR-01, NEG-01, VER-03, EXT-01, HLD-D12 |
+| `1-§5-15` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§5-16` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§5-17` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§5-18` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, DLV-04, LOC-05, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-DLOC |
+| `1-§5-19` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§5-20` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-03, MIG-04, VER-02, HLD-D12, HLD-D16 |
+| `1-§5-21` | OBL | C-OAU | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§5-22` | NEG | C-OAU | DI | H | NEG | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, SEC-03, CAP-01, ERR-01, NEG-01, VER-03, HLD-D12 |
 | `1-§5-23` | OBL | C-OAU | DH | M | RT | NOW |  | CUS-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§5-24` | OBL | C-OAU | HG | H | RT | NOW |  | CUS-06, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-D20, HLD-DNTF |
 | `1-§5-25` | OBL | C-OAU | HG | H | RT | NOW |  | CUS-06, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-D20, HLD-DNTF |
@@ -948,19 +1005,19 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§11-4` | RULE | C-DLV | DA | L | INSP | NOW |  | DLV-01, SEC-02, VER-04 |
 | `1-§12-1` | OBL | C-DLV | DH | M | RT | NOW |  | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§12-2` | OBL | C-DLV | DH | M | RT | NOW |  | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
-| `1-§12-3` | OBL | C-DLV | DH | M | RT | NOW | X | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, EXT-02 |
+| `1-§12-3` | OBL | C-DLV | DH | M | RT | NOW | X | DLV-02, EXT-02, EXT-04, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§12-4` | OBL | C-DLV | DH | M | RT | NOW |  | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§12-5` | OBL | C-DLV | DH | M | RT | NOW |  | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§12-6` | OBL | C-DLV | DH | M | IDEM | NOW |  | DLV-02, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-05, HLD-D12 |
 | `1-§12-7` | OBL | C-DLV | DH | M | RT | NOW |  | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-D13 |
 | `1-§13-1` | RULE | C-DLV | DA | L | EXP | NOW |  | DLV-03, SEC-02, VER-06 |
-| `1-§13-2` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§13-3` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-04, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12, HLD-DMAP |
-| `1-§13-4` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§13-5` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, LOC-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12, HLD-D14, HLD-DLOC |
-| `1-§13-6` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-03, MIG-04, VER-02, EXT-01, HLD-D12, HLD-D16 |
-| `1-§13-7` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
-| `1-§13-8` | OBL | C-DLV | DI | H | RT | DOC |  | DLV-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D12 |
+| `1-§13-2` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§13-3` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-04, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-DMAP |
+| `1-§13-4` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§13-5` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, LOC-05, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-D14, HLD-DLOC |
+| `1-§13-6` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-03, MIG-04, VER-02, HLD-D12, HLD-D16 |
+| `1-§13-7` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
+| `1-§13-8` | OBL | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12 |
 | `1-§13-9` | RULE | C-DLV | DA | L | INSP | NOW |  | DLV-03, SEC-02, VER-04 |
 | `1-§14-1` | PRIN | C-LOC | DH | H | INSP | RUN |  | LOC-01, LOC-05, SEC-01, CAP-01, VER-04, HLD-D12, HLD-DLOC |
 | `1-§14-2` | OBL | C-LOC | DH | H | RT | RUN |  | LOC-01, LOC-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-DLOC |
@@ -976,7 +1033,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§14-12` | RULE | C-LOC | DH | H | INSP | RUN |  | LOC-04, LOC-05, SEC-01, SEC-02, CAP-01, VER-04, HLD-D12, HLD-DLOC |
 | `1-§14-13` | RULE | C-LOC | DA | L | NEG | NOW |  | LOC-04, SEC-02, VER-03 |
 | `1-§15-1` | OBL | C-PRF | DH | M | RT | NOW |  | PRF-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D12, HLD-D14 |
-| `1-§15-2` | EX | C-PRF | DH | M | RT | NOW | X | PRF-01, SEC-01, CAP-01, VER-02, HLD-D12, HLD-D14, EXT-02 |
+| `1-§15-2` | EX | C-PRF | DH | M | RT | NOW | X | PRF-01, EXT-02, EXT-03, EXT-07, EXT-08, SEC-01, CAP-01, VER-02, HLD-D12, HLD-D14 |
 | `1-§15-3` | EX | C-PRF | DH | M | RT (if adopted) | NOW |  | PRF-02, SEC-01, CAP-01, VER-02, HLD-D12, HLD-D14 |
 | `1-§15-4` | EX | C-PRF | HG | H | RT (if adopted) | DOC |  | PRF-03, SEC-01, CAP-01, VER-02, HLD-D12, HLD-D14, HLD-DNTF |
 | `1-§15-5` | EX | C-PRF | DH | H | RT (if adopted) | RUN |  | PRF-02, LOC-05, SEC-01, CAP-01, VER-02, HLD-D12, HLD-DLOC |
@@ -994,7 +1051,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§17-1` | RULE | C-OFD | DH | M | INSP | NOW |  | OFD-01, SEC-02, VER-04, HLD-D15 |
 | `1-§17-2` | OBL | C-OFD | DH | M | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15 |
 | `1-§17-3` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
-| `1-§17-4` | OBL | C-OFD | DI | H | RT | DOC |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, EXT-01, HLD-D15, NTF-01 |
+| `1-§17-4` | OBL | C-OFD | DI | H | RT | DOC |  | OFD-01, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, NTF-01 |
 | `1-§17-5` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
 | `1-§17-6` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
 | `1-§17-7` | OBL | C-OFD | DH | M | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15 |
@@ -1052,8 +1109,8 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§24-2` | OBL | C-OFD | DH | M | NEG | NOW |  | ORD-04, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12 |
 | `1-§24-3` | OBL | C-OFD | DH | H | NEG | RUN |  | AVL-02, STK-01, STK-02, STK-03, STK-04, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-03, MIG-04, VER-03, HLD-D12, HLD-D17 |
 | `1-§24-4` | OBL | C-OFD | DH | H | NEG | RUN |  | CUS-05, LOC-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12, HLD-DLOC |
-| `1-§24-5` | OBL | C-OFD | DH | M | NEG | NOW | X | DLV-02, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12, EXT-02 |
-| `1-§24-6` | OBL | C-OFD | DH | M | NEG | NOW | X | OFD-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12, EXT-02 |
+| `1-§24-5` | OBL | C-OFD | DH | M | NEG | NOW | X | DLV-02, EXT-02, EXT-04, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12 |
+| `1-§24-6` | OBL | C-OFD | DH | M | NEG | NOW | X | OFD-05, EXT-02, EXT-04, EXT-08, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12 |
 | `1-§24-7` | OBL | C-OFD | DH | M | IDEM | NOW |  | DLV-02, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-05, HLD-D12 |
 | `1-§24-8` | OBL | C-OFD | DH | H | NEG | RUN |  | AVL-02, STK-01, STK-02, STK-04, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12 |
 | `1-§24-9` | OBL | C-OFD | DH | M | NEG | NOW |  | OFD-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, ERR-01, MIG-02, MIG-04, VER-03, HLD-D12 |
@@ -1065,7 +1122,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§24-15` | RULE | C-OFD | DH | M | NEG | NOW |  | OFD-05, SEC-01, SEC-02, CAP-01, ERR-01, VER-03, HLD-D12 |
 | `1-§25-1` | PRIN | C-OFD | DH | M | NEG | NOW |  | OFD-07, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `1-§25-2` | PRIN | C-OFD | DH | M | NEG | NOW |  | OFD-07, SEC-01, CAP-01, VER-03, HLD-D12 |
-| `1-§25-3` | PRIN | C-OFD | DH | M | NEG | NOW | X | OFD-07, SEC-01, CAP-01, VER-03, HLD-D12, EXT-02 |
+| `1-§25-3` | PRIN | C-OFD | DH | M | NEG | NOW | X | OFD-07, EXT-02, EXT-03, EXT-04, EXT-07, EXT-08, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `1-§25-4` | PRIN | C-OFD | DH | M | NEG | NOW |  | OFD-07, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `1-§25-5` | PRIN | C-OFD | DH | M | NEG | NOW |  | OFD-07, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `1-§25-6` | PRIN | C-OFD | DH | M | NEG | NOW |  | OFD-07, SEC-01, SEC-03, CAP-01, VER-03, HLD-D12 |
@@ -1077,8 +1134,8 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§26-4` | SCN | C-ACC | DH | M | RT | NOW |  | ACC-01, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-D13 |
 | `1-§26-5` | SCN | C-ACC | DH | M | RT | NOW |  | ACC-01, SEC-01, CAP-01, MIG-03, VER-02, VER-07, HLD-D12, HLD-D17 |
 | `1-§26-6` | SCN | C-ACC | DH | H | RT | RUN |  | LOC-05, ACC-01, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-DLOC |
-| `1-§26-7` | SCN | C-ACC | DI | H | NEG | DOC |  | DLV-03, ACC-01, SEC-01, CAP-01, VER-03, VER-07, EXT-01, HLD-D12, HLD-D13 |
-| `1-§26-8` | SCN | C-ACC | DI | H | NEG | DOC |  | DLV-03, ACC-01, SEC-01, CAP-01, VER-03, VER-07, EXT-01, HLD-D12, HLD-D13 |
+| `1-§26-7` | SCN | C-ACC | DI | H | NEG | RUN |  | DLV-03, ACC-01, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D13 |
+| `1-§26-8` | SCN | C-ACC | DI | H | NEG | RUN |  | DLV-03, ACC-01, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D13 |
 | `1-§26-9` | SCN | C-ACC | DH | H | NEG | RUN |  | LOC-05, ACC-01, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-DLOC |
 | `1-§26-10` | SCN | C-ACC | DH | M | RT; NEG | NOW |  | ACC-01, SEC-01, CAP-01, VER-02, VER-03, VER-07, HLD-D12, HLD-D13 |
 | `1-§26-11` | SCN | C-ACC | DH | H | RT; IDEM | RUN |  | ACC-01, SEC-01, IDM-01, CAP-01, MIG-03, VER-02, VER-05, VER-07, HLD-D12, HLD-D16, HLD-DTX |
@@ -1249,12 +1306,12 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `16-§9-1` | RULE | C-REN | DH | M | INSP | NOW |  | CAB-01, CAB-02, SEC-02, VER-04, HLD-D14 |
 | `16-§9-2` | OBL | C-REN | DH | M | RT | NOW |  | CAB-01, CAB-02, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
 | `16-§10-1` | OBL | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-03, HLD-D12 |
-| `16-§10-2` | OBL | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-03, HLD-D12 |
-| `16-§10-3` | NEG | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, CAP-01, ERR-01, NEG-01, VER-03, HLD-D12 |
+| `16-§10-2` | OBL | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-03, HLD-D12, HLD-PQ14 |
+| `16-§10-3` | NEG | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, CAP-01, ERR-01, NEG-01, VER-03, HLD-D12, HLD-PQ14 |
 | `16-§10-4` | NEG | C-CMF | DH | M | NEG | NOW |  | CAU-01, SEC-01, SEC-02, CAP-01, ERR-01, NEG-01, VER-03, HLD-D12, HLD-D19 |
 | `16-§11-1` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
-| `16-§11-2` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, RDR-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
-| `16-§11-3` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, RDR-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
+| `16-§11-2` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, RDR-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14, HLD-PQ14 |
+| `16-§11-3` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, RDR-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14, HLD-PQ14 |
 | `16-§11-4` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
 | `16-§11-5` | OBL | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D13, HLD-D14 |
 | `16-§11-6a` | RULE | C-REN | DH | M | RT | NOW |  | CCH-01, SEC-02, VER-02, HLD-D13, HLD-D14 |
@@ -1262,7 +1319,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `16-§12-1` | OBL | C-REN | DH | M | EXP | NOW |  | CCH-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-06, HLD-D13 |
 | `16-§12-2` | RULE | C-REN | DH | M | EXP | NOW |  | CCH-01, SEC-02, VER-06, HLD-D13 |
 | `16-§13-1` | CONS | C-REN | DH | M | RT | NOW |  | CCO-01, RDR-01, VER-02, HLD-D15 |
-| `16-§13-2` | CONS | C-REN | DH | M | RT | NOW |  | CCO-01, RDR-01, VER-02, HLD-D15 |
+| `16-§13-2` | CONS | C-REN | DH | M | RT | NOW |  | CCO-01, RDR-01, VER-02, HLD-D15, HLD-PQ14 |
 | `16-§13-3` | CONS | C-REN | DH | M | RT | NOW |  | CCO-01, RDR-01, VER-02, HLD-D15 |
 | `16-§13-4` | NEG | C-REN | DH | M | NEG | NOW |  | CCO-01, SEC-02, ERR-01, RDR-01, NEG-01, VER-03, HLD-D15 |
 | `16-§14-1` | RULE | C-REN | DH | M | INSP | NOW |  | CNT-01, SEC-02, VER-04, HLD-D15 |
@@ -1295,7 +1352,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `16-§16-11` | RULE | C-CMF | DH | M | RT | NOW |  | CEX-01, SEC-01, SEC-02, CAP-01, ERR-01, VER-02, HLD-D12 |
 | `16-§17-1` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `16-§17-2` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12 |
-| `16-§17-3` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12 |
+| `16-§17-3` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12, HLD-PQ14 |
 | `16-§17-4` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12 |
 | `16-§17-5` | PRIN | C-CMF | DH | M | NEG | NOW |  | CPR-01, SEC-01, CAP-01, VER-03, HLD-D12, HLD-D19 |
 | `16-§17-6` | RULE | C-CMF | DH | M | INSP | NOW |  | CPR-01, SEC-02, VER-04, HLD-D14 |
@@ -1315,8 +1372,8 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `16-§20-3` | SCN | C-ACC | DH | M | RT | RUN |  | ACC-03, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-D15, HLD-DSCH |
 | `16-§20-4` | SCN | C-ACC | DH | M | RT | NOW |  | ACC-03, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-D14 |
 | `16-§20-5` | SCN | C-ACC | DH | M | NEG | NOW |  | ACC-03, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D15 |
-| `16-§20-6` | SCN | C-ACC | DH | M | NEG | NOW |  | ACC-03, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D14 |
-| `16-§20-7a` | SCN | C-ACC | DH | M | RT | NOW |  | ACC-03, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-D13, HLD-D14 |
+| `16-§20-6` | SCN | C-ACC | DH | M | NEG | NOW |  | ACC-03, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D14, HLD-PQ14 |
+| `16-§20-7a` | SCN | C-ACC | DH | M | RT | NOW |  | ACC-03, SEC-01, CAP-01, VER-02, VER-07, HLD-D12, HLD-D13, HLD-D14, HLD-PQ14 |
 | `16-§20-8` | SCN | C-ACC | DH | M | IDEM | NOW |  | ACC-03, SEC-01, IDM-01, CAP-01, VER-05, VER-07, HLD-D12, HLD-D14 |
 | `16-§20-9` | SCN | C-ACC | DH | M | RT; NEG | NOW |  | ACC-03, SEC-01, CAP-01, VER-02, VER-03, VER-07, HLD-D12, HLD-D15 |
 | `16-§20-10` | SCN | C-ACC | DH | M | NEG | NOW |  | ACC-03, SEC-01, CAP-01, VER-03, VER-07, HLD-D12, HLD-D19 |
@@ -1380,7 +1437,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `BP-§10.7-A3` | WORK | C-AVL | DA | H | RT | RUN |  | AVL-01, STK-01, STK-04, CMD-01, VER-02 |
 | `BP-§10.7-A4` | WORK | C-AVL | DA | H | RT | RUN |  | AVL-02, STK-01, STK-04, CMD-01, VER-02 |
 | `BP-§10.7-A5` | WORK | C-DLV | DA | L | RT | NOW |  | DLV-01, CMD-01, VER-02 |
-| `BP-§10.7-A6` | WORK | C-DLV | DI | H | RT | DOC |  | DLV-03, CMD-01, VER-02, EXT-01 |
+| `BP-§10.7-A6` | WORK | C-DLV | DI | H | RT | RUN |  | DLV-03, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, CMD-01, VER-02 |
 | `BP-§10.7-A7` | WORK | C-PRF | DA | L | RT | RUN |  | PRF-01, CMD-01, VER-02 |
 | `BP-§10.7-A8` | NEG | C-LOC | DA | L | NEG | NOW |  | LOC-02, SEC-02, ERR-01, NEG-01, VER-03 |
 | `BP-§10.7-A9` | NEG | C-PRF | DA | L | NEG | NOW |  | PRF-04, SEC-02, ERR-01, NEG-01, VER-03 |
@@ -1526,6 +1583,14 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `EIS18-ACC-03` | PR | 11 | `16-§20-1` to `-6`, `16-§20-7a`, `16-§20-8` to `-10`, `16-§23-1` |
 | `EIS18-ACC-04` | FC | 4 | `BP-§10.7-AS1`, `BP-§10.7-BS1`, `BP-§10.7-CS1`, `BP-§10.7-X` |
 | `EIS18-ACC-05` | PR | 34 | `BP-§5.5-p1`, `BP-§5.5-p2`, `BP-§10.7-W`, `BP-§11-p1`, `BP-§11-b1`, `BP-§11-b2`, `BP-§11-b3`, `BP-§11-b4`, `BP-§11-b5`, `BP-§11-b6`, `BP-§11-b7`, `BP-§11-b9`, `BP-§11-p3`, `BP-§11-p4`, `BP-§11-p5`, `BP-§13-p1`, `BP-§13-T`, `BP-§13-b1`, `BP-§13-b2`, `BP-§13-b3`, `BP-§13-b4`, `BP-§13-b5`, `BP-§13-b6`, `BP-§13-b7`, `BP-§13-b8`, `BP-§13-b9`, `BP-§13-b10`, `BP-§15-p2`, `BP-§15-p3`, `BP-§16-p2`, `GPCV-R1`, `GPCV-R6`, `GPCV-R16`, `GPCV-§8-4` |
+| `EIS18-EXT-01` | AF | 19 | `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-02` | PR/TR | 5 | `1-§12-3`, `1-§15-2`, `1-§24-5`, `1-§24-6`, `1-§25-3` |
+| `EIS18-EXT-03` | PR/TR | 21 | `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§15-2`, `1-§17-4`, `1-§25-3`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-04` | PR/TR | 23 | `1-§5-15` to `-22`, `1-§12-3`, `1-§13-2` to `-8`, `1-§17-4`, `1-§24-5`, `1-§24-6`, `1-§25-3`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-05` | PR/TR | 19 | `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-06` | PR/TR | 19 | `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-07` | PR/TR | 22 | `1-§5-15` to `-22`, `1-§12-3`, `1-§13-2` to `-8`, `1-§15-2`, `1-§17-4`, `1-§25-3`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
+| `EIS18-EXT-08` | UQ | 24 | `1-§5-15` to `-22`, `1-§12-3`, `1-§13-2` to `-8`, `1-§15-2`, `1-§17-4`, `1-§24-5`, `1-§24-6`, `1-§25-3`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
 | `EIS18-SEC-01` | AF | 280 | `1-§5-1` to `-30`, `1-§6-1` to `-7`, `1-§7-1`, `1-§7-2`, `1-§7-4`, `1-§7-5`, `1-§10-1`, `1-§10-8`, `1-§11-1` to `-3`, `1-§12-1` to `-7`, `1-§13-2` to `-8`, `1-§14-1` to `-4`, `1-§14-6` to `-12`, `1-§15-1` to `-10`, `1-§19-5`, `1-§22-1` to `-15`, `1-§23-1`, `1-§23-2`, `1-§23-11`, `1-§24-1` to `-15`, `1-§25-1` to `-8`, `1-§26-1` to `-11`, `1-§26-12a`, `1-§26-13`, `1-§26-14`, `6-§3-1` to `-9`, `6-§4-1` to `-7`, `6-§5-1`, `6-§5-2`, `6-§7-1` to `-6`, `6-§8-1` to `-7`, `6-§10-1a`, `6-§10-2`, `6-§11-1`, `6-§11-2`, `6-§11-9`, `6-§12-1` to `-5`, `6-§12-7`, `6-§12-8`, `6-§13-1` to `-11`, `6-§14-1` to `-10`, `S11-L443-1` to `-5`, `16-§4-1` to `-13`, `16-§10-1` to `-4`, `16-§16-1` to `-11`, `16-§17-1` to `-5`, `16-§17-7`, `16-§18-5`, `16-§18-9`, `16-§20-1` to `-6`, `16-§20-7a`, `16-§20-8` to `-10`, `22-§16-1`, `22-§16-2`, `22-§16-4`, `22-§16-7`, `22-§29-9`, `17-§4-15`, `17-§9-1` to `-7`, `17-§10-1` to `-7`, `24-§21-6`, `10-§13-5`, `10-§13-7`, `3-§9-3`, `3-§11-6`, `3-§15-7`, `3-§15-13`, `BP-§10.3-S2` |
 | `EIS18-SEC-02` | AF/TR | 456 | `1-§3-4`, `1-§3-8`, `1-§5-1` to `-30`, `1-§6-1` to `-7`, `1-§7-1`, `1-§7-2`, `1-§7-4`, `1-§7-5`, `1-§8-1`, `1-§8-6` to `-12`, `1-§9-1` to `-19`, `1-§10-1` to `-6`, `1-§10-8`, `1-§10-9`, `1-§11-1` to `-4`, `1-§12-1` to `-7`, `1-§13-1` to `-9`, `1-§14-2` to `-13`, `1-§15-1`, `1-§15-8` to `-10`, `1-§16-1` to `-6`, `1-§17-1` to `-9`, `1-§18-7`, `1-§19-1` to `-5`, `1-§20-1`, `1-§20-2`, `1-§21-1` to `-13`, `1-§22-1` to `-15`, `1-§23-1` to `-4`, `1-§23-5a`, `1-§23-6` to `-12`, `1-§24-1` to `-15`, `1-§25-8`, `6-§3-1` to `-9`, `6-§4-1` to `-7`, `6-§5-1`, `6-§5-3` to `-5`, `6-§6-1` to `-3`, `6-§7-1` to `-6`, `6-§8-2` to `-7`, `6-§9-1` to `-11`, `6-§10-1a`, `6-§10-2`, `6-§11-1` to `-9`, `6-§12-6` to `-8`, `6-§13-1` to `-11`, `S11-L443-1` to `-5`, `16-§3-6`, `16-§4-1` to `-14`, `16-§5-1` to `-4`, `16-§5-5a`, `16-§5-6`, `16-§5-7`, `16-§6-1` to `-7`, `16-§7-1` to `-8`, `16-§8-1` to `-11`, `16-§9-1`, `16-§9-2`, `16-§10-1` to `-4`, `16-§11-1` to `-5`, `16-§11-6a`, `16-§11-7`, `16-§12-1`, `16-§12-2`, `16-§13-4`, `16-§14-1` to `-6`, `16-§15-1` to `-11`, `16-§16-1` to `-11`, `16-§17-6`, `16-§17-7`, `16-§18-1` to `-10`, `22-§16-1` to `-11`, `17-§4-15`, `17-§9-1` to `-7`, `17-§10-1` to `-4`, `17-§10-6`, `17-§10-7`, `24-§21-6`, `9-§12-7`, `9-§12-9`, `9-§12-12`, `10-§13-5`, `10-§13-7`, `12-§4-4`, `12-§7-7`, `3-§9-3`, `3-§11-6`, `3-§15-7`, `3-§15-12`, `3-§15-13`, `5-§4-11` to `-13`, `5-§6-10`, `5-§6-12`, `BP-§10.3-S2`, `BP-§5.5-p1`, `BP-§5.5-p2`, `BP-§10.7-W`, `BP-§10.7-A8`, `BP-§10.7-A9`, `BP-§10.7-A11`, `BP-§10.7-B4`, `BP-§10.7-B7`, `BP-§10.7-B8`, `BP-§11-p1`, `BP-§11-b1`, `BP-§11-b2`, `BP-§11-b3`, `BP-§11-b4`, `BP-§11-b5`, `BP-§11-b6`, `BP-§11-b7`, `BP-§11-b9`, `BP-§11-p3`, `BP-§11-p4`, `BP-§11-p5`, `BP-§13-p1`, `BP-§13-T`, `BP-§13-b1`, `BP-§13-b2`, `BP-§13-b3`, `BP-§13-b4`, `BP-§13-b5`, `BP-§13-b6`, `BP-§13-b7`, `BP-§13-b8`, `BP-§13-b9`, `BP-§13-b10`, `BP-§15-p2`, `BP-§15-p3`, `BP-§16-p2`, `GPCV-§8-3` to `-5` |
 | `EIS18-SEC-03` | AF/PR | 8 | `1-§5-8`, `1-§5-14`, `1-§5-22`, `1-§25-6`, `6-§4-7`, `6-§9-10`, `3-§11-6`, `BP-§10.7-B3` |
@@ -1548,7 +1613,6 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `EIS18-VER-05` | PR | 14 | `1-§6-7`, `1-§12-6`, `1-§16-6`, `1-§24-7`, `1-§26-11`, `1-§26-14`, `6-§13-1`, `6-§13-9`, `S11-L443-1`, `S11-L443-3`, `16-§11-7`, `16-§16-4`, `16-§20-8`, `3-§15-12` |
 | `EIS18-VER-06` | PR | 31 | `1-§1-1` to `-3`, `1-§2-1` to `-8`, `1-§13-1`, `1-§20-1`, `1-§20-2`, `6-§1-1`, `6-§2-1`, `6-§14-9`, `16-§1-1`, `16-§1-2`, `16-§2-1` to `-6`, `16-§12-1`, `16-§12-2`, `9-§12-7`, `9-§12-9`, `9-§12-12`, `BP-§10.7-X` |
 | `EIS18-VER-07` | PR | 43 | `1-§26-1` to `-11`, `1-§26-12a`, `1-§26-13`, `1-§26-14`, `1-§31-1`, `1-§31-2`, `6-§14-1` to `-10`, `6-§17-1`, `16-§20-1` to `-6`, `16-§20-7a`, `16-§20-8` to `-10`, `16-§23-1`, `22-§29-9`, `24-§18-4`, `5-§7-5` to `-7` |
-| `EIS18-EXT-01` | UQ | 19 | `1-§5-15` to `-22`, `1-§13-2` to `-8`, `1-§17-4`, `1-§26-7`, `1-§26-8`, `BP-§10.7-A6` |
 | `EIS18-HLD-D12` | UQ | 280 | `1-§5-1` to `-30`, `1-§6-1` to `-7`, `1-§7-1`, `1-§7-2`, `1-§7-4`, `1-§7-5`, `1-§10-1`, `1-§10-8`, `1-§11-1` to `-3`, `1-§12-1` to `-7`, `1-§13-2` to `-8`, `1-§14-1` to `-4`, `1-§14-6` to `-12`, `1-§15-1` to `-10`, `1-§19-5`, `1-§22-1` to `-15`, `1-§23-1`, `1-§23-2`, `1-§23-11`, `1-§24-1` to `-15`, `1-§25-1` to `-8`, `1-§26-1` to `-11`, `1-§26-12a`, `1-§26-13`, `1-§26-14`, `6-§3-1` to `-9`, `6-§4-1` to `-7`, `6-§5-1`, `6-§5-2`, `6-§7-1` to `-6`, `6-§8-1` to `-7`, `6-§10-1a`, `6-§10-2`, `6-§11-1`, `6-§11-2`, `6-§11-9`, `6-§12-1` to `-5`, `6-§12-7`, `6-§12-8`, `6-§13-1` to `-11`, `6-§14-1` to `-10`, `S11-L443-1` to `-5`, `16-§4-1` to `-13`, `16-§10-1` to `-4`, `16-§16-1` to `-11`, `16-§17-1` to `-5`, `16-§17-7`, `16-§18-5`, `16-§18-9`, `16-§20-1` to `-6`, `16-§20-7a`, `16-§20-8` to `-10`, `22-§16-1`, `22-§16-2`, `22-§16-4`, `22-§16-7`, `22-§29-9`, `17-§4-15`, `17-§9-1` to `-7`, `17-§10-1` to `-7`, `24-§21-6`, `10-§13-5`, `10-§13-7`, `3-§9-3`, `3-§11-6`, `3-§15-7`, `3-§15-13`, `BP-§10.3-S2` |
 | `EIS18-HLD-D13` | UQ | 116 | `1-§6-3`, `1-§8-1`, `1-§8-6` to `-10`, `1-§9-1` to `-19`, `1-§12-7`, `1-§19-1` to `-5`, `1-§20-1`, `1-§20-2`, `1-§21-1` to `-13`, `1-§23-4`, `1-§23-5a`, `1-§26-1` to `-4`, `1-§26-7`, `1-§26-8`, `1-§26-10`, `1-§26-12a`, `1-§26-13`, `1-§26-14`, `6-§9-1` to `-11`, `6-§10-1a`, `6-§11-3`, `6-§11-4`, `6-§14-9`, `16-§5-5a`, `16-§6-1` to `-7`, `16-§9-2`, `16-§11-1` to `-5`, `16-§11-6a`, `16-§11-7`, `16-§12-1`, `16-§12-2`, `16-§15-1` to `-11`, `16-§18-7`, `16-§18-8`, `16-§20-2`, `16-§20-7a`, `24-§18-4`, `24-§21-6`, `9-§12-7`, `9-§12-9`, `9-§12-12`, `10-§13-5`, `10-§13-7`, `12-§4-4`, `12-§7-7` |
 | `EIS18-HLD-D14` | UQ | 119 | `1-§6-4`, `1-§6-5`, `1-§8-9` to `-12`, `1-§13-5`, `1-§15-1` to `-4`, `1-§15-7` to `-10`, `1-§16-1` to `-3`, `1-§16-5`, `1-§16-6`, `1-§19-3`, `1-§19-4`, `1-§22-1` to `-15`, `1-§23-3`, `1-§23-6`, `1-§26-3`, `6-§4-3`, `6-§6-1` to `-3`, `6-§11-5`, `6-§14-4`, `16-§4-1` to `-13`, `16-§5-1` to `-4`, `16-§5-5a`, `16-§5-6`, `16-§5-7`, `16-§6-1` to `-7`, `16-§8-1` to `-11`, `16-§9-1`, `16-§9-2`, `16-§11-1` to `-5`, `16-§11-6a`, `16-§11-7`, `16-§17-6`, `16-§18-1`, `16-§18-2`, `16-§18-6`, `16-§20-1`, `16-§20-2`, `16-§20-4`, `16-§20-6`, `16-§20-7a`, `16-§20-8`, `17-§10-6`, `24-§18-4`, `3-§9-3`, `3-§11-6`, `3-§15-7`, `3-§15-12`, `3-§15-13`, `5-§4-11` to `-13`, `5-§6-10`, `5-§6-12`, `5-§7-5` to `-7`, `BP-§10.3-S2` |
@@ -1569,8 +1633,8 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `EIS18-HLD-DLEG` | UQ | 6 | `6-§3-6`, `6-§8-2`, `S11-L443-1`, `S11-L443-3`, `S11-L443-4`, `22-§16-6` |
 | `EIS18-HLD-DC13` | FC | 5 | `1-§5-29`, `1-§7-1`, `1-§7-2`, `1-§7-4`, `1-§7-5` |
 | `EIS18-HLD-DC14` | FC | 1 | `6-§5-2` |
-| `EIS18-EXT-02` | UQ | 5 | `1-§12-3`, `1-§15-2`, `1-§24-5`, `1-§24-6`, `1-§25-3` |
 | `EIS18-NTF-01` | UQ | 1 | `1-§17-4` |
+| `EIS18-HLD-PQ14` | UQ | 8 | `16-§10-2`, `16-§10-3`, `16-§11-2`, `16-§11-3`, `16-§13-2`, `16-§17-3`, `16-§20-6`, `16-§20-7a` |
 
 ### 21.4 The 177 rows outside `IN SCOPE` (preserved)
 
@@ -1583,5 +1647,23 @@ Unchanged, as in Blueprint §11. This EIS specifies none of them.
 | `OUT OF BUILD SCOPE` | 48 | `1-§4-1` to `-6`, `1-§28-2` to `-4`, `6-§15-1` to `-6`, `16-§19-1` to `-5`, `16-§21-5`, `16-§21-6`, `BP-§16-1` to `-20`, `GPCV-§9-2` to `-4`, `GPCV-§9-7` to `-9` |
 | `NOT APPLICABLE` | 27 | `1-§4-7`, `1-§27-1` to `-10`, `1-§28-5` to `-7`, `1-§29`, `6-§16`, `16-§21-2` to `-4`, `16-§22`, `BP-§11-b8`, `BP-§13-p5`, `BP-§15-1`, `BP-§15-2`, `BP-§15-4`, `BP-§15-6`, `BP-§15-9` |
 | `UNRESOLVED FOUNDER DECISION` | 8 | `1-§30-1`, `1-§30-2`, `6-§3-10`, `BP-§15-3`, `BP-§15-5`, `BP-§15-7`, `BP-§15-8`, `GPCV-§9-11` |
+
+## 22. Amendment Record (MC-809)
+
+Amended in place, one file, under MC-809. No requirement text of a locked source, the Blueprint, the FCTM or any upstream EIS changed.
+
+| Change | Where |
+|---|---|
+| SB-P-1.12 source updated from v0.4 to locked v0.5 (`7a5f49182463ec79ecf221d7dd13dfebbc517e3e`), with Founder Decision Records 10 and 11, Records 73 and 74 and MC-802 | Sections 1, 3 |
+| v0.4 "upstream interface held" record replaced by a consumer specification of G1, G2, PC-01 to PC-12, F-OVL, P-3 and SR-09 | Sections 7.1, 8, 9, 10, 14.1, 14.2 |
+| New workstream P: `EIS18-EXT-01` to `-08`. `EXT-01` and `EXT-02` rewritten; `EXT-03` to `-08` added | Section 12 |
+| New hold `EIS18-HLD-PQ14`; the upstream selector unknown is recorded on `EIS18-CAP-01` | Sections 12, 14.4 |
+| `DLV-02`, `DLV-03`, `OFD-01` updated for the participant path | Section 12 |
+| Negative tests NT-EXT-01 to -06 replace the held NT-EXT-01 | Section 16.2 |
+| M18-3 participant slice designed and activation-gated; M18-7 participant registration | Section 17 |
+| `DI` rows reclassified `DOC` → `RUN` (activation-gated), except `1-§17-4` (`DOC`, `EQ18-05`). No FCTM or Blueprint status changed | Section 21 |
+| SB-P-1.14 and SB-P-1.17 noncanonical candidates on `main` recorded as not relied on | Section 3 |
+
+**PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`; canonical `main` is now `6a5b8b83`. This file is absent on both, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
 
 **STOP FOR MISSION CONTROL.** This partial draft is not reviewed, not canonical and not a Stage 9 completion claim. Stage 10, Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.4 stays locked, and G1/G2 is not canonical. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
