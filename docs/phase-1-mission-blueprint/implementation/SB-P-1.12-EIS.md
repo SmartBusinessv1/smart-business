@@ -4,7 +4,7 @@
 STATUS: VERSION 0.5 APPROVED — LOCKED — EFFECTIVE ONLY ON HUMAN MERGE OF THE STAGE 11 RE-LOCK RECORD (MISSION CONTROL RECORD 74) TO CANONICAL MAIN AND MISSION CONTROL VERIFICATION; NOT EFFECTIVE BEFORE THEN
 PRODUCT BLUEPRINT: APPROVED — LOCKED
 EIS: v0.5 SUBSTANTIVE TEXT PUBLISHED BY HUMAN MERGE OF PR #1117 (2026-11-07 IST, MERGE 8b5d450c), WHICH DID NOT LOCK IT; v0.4 APPROVED — LOCKED (BLOB 8b0aaa79) STAYS AUTHORITATIVE UNTIL THE RE-LOCK MERGE IS VERIFIED
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT CREATION AUTHORIZED — MISSION CONTROL REVIEW REQUIRED
+IMPLEMENTATION PACKAGE: EXISTING STAGE 12/13 PACKAGE INSUFFICIENT FOR EIS v0.5 G1/G2; C-4/PK-0 PACKAGE DELTA AND STAGE 13 RE-REVIEW REQUIRE SEPARATE MISSION CONTROL AUTHORIZATION
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -25,7 +25,7 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Authorizing Instruction | `communication/live/instruction1.23.md` (MC-148), work package `SB-P-1.12-WP-STAGE9-EIS-CREATION`; version 0.2 correction under `communication/live/instruction1.24.md` (MC-151), work package `SB-P-1.12-WP-STAGE10-T8-EIS1-CORRECTION`; version 0.3 Security refinement under `communication/live/instruction1.26.md` (MC-157), work package `SB-P-1.12-WP-STAGE10-SECURITY-EIS-REFINEMENT`; version 0.4 SEC-EIS10-04 refinement under `communication/live/instruction1.28.md` (MC-161), work package `SB-P-1.12-WP-STAGE10-SEC-EIS10-04-REFINEMENT`; version 0.5 G1/G2 participant-binding amendment under Mission Control edit grants on PR #1111: MC-782 (comment `6684101123`, initial draft), MC-784 (comment `6685366683`, three-text correction), MC-792 (comment `6691858931`, Section 23 evidence-timing amendment) and MC-795 (comment `6693239845`, Founder-approval metadata reconciliation). These are Mission Control edit grants; the Founder's substantive design approval of blob `525e677d883f258ac89da87c6f8ee67e7b2a4740` is separate (MC-794, transcribed in MC-795) |
 | Canonical baseline | `main@24730a684f7ab8d0550066db1ad1acdde0128192` (PR #686 merge; named baseline `e1ecbe39f66509d9606d48f09a86b3c3611d64ad`, differing only by the instruction) |
 | Structural precedent | `docs/phase-1-mission-blueprint/implementation/SB-P-1.11-EIS.md` (executor roles, committed rejections, preview binding, idempotency, provenance) |
-| Next gate | Stage 12 — Initial Implementation Package creation by Claude Code after this lock becomes canonical on `main` |
+| Next gate | After canonical v0.5 re-lock: separately authorized C-4/PK-0 three-file implementation-package delta, then Stage 13 re-review/re-lock; NO implementation authorization |
 
 ## 2. Purpose and Authority
 
