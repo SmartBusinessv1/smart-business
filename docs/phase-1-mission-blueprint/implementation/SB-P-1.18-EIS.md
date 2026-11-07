@@ -201,7 +201,7 @@ Every object has `business_id`, composite references `(business_id, id)`, `creat
 | `order_packing_events` | `order_line_id`, `quantity`, `idempotency_key`, `movement_id`, `override_grant_id`, `state` | Unique per line and packing intent. Decrease occurs once | `EIS18-STK-01`, `-STK-04` |
 | `order_return_confirmations` | `packing_event_id`, `quantity`, `confirmed_by`, `movement_id`, `idempotency_key` | Sum per event never exceeds the committed packed quantity | `EIS18-STK-02` |
 
-**Delivery, proof and COD (M18-3; external slice excluded).**
+**Delivery, proof and COD (M18-3; participant slice designed; activation gated).**
 
 | Object | Key fields | Rules | Realizes |
 |---|---|---|---|
@@ -565,7 +565,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-SEC-03` | AF/PR | No Owner financial intelligence, Ask CFO, Reference Cost or margin by role, view, export, AI context or error path (`EIS-KER-07`). | 8 |
 | `EIS18-IDM-01` | AF/TR | Source-scoped idempotency (`22-§15`). Unknown commit outcome means lookup before retry, never guessed success (SA-03 F4). | 14 |
 | `EIS18-AUD-01` | AF | Audit and provenance through `EIS-AUD-01/02/03` and `EIS13-AUD-01`. | 6 |
-| `EIS18-MIG-01` | TR | M18-1 to M18-8 design only, `DRAFT OR PROPOSAL — NON-EXECUTABLE`. Each class gets an object birth matrix, backfill statement and rollback boundary (M18-MIG-02/03/04). External slice of M18-3 excluded. | 290 |
+| `EIS18-MIG-01` | TR | M18-1 to M18-8 design only, `DRAFT OR PROPOSAL — NON-EXECUTABLE`. Each class gets an object birth matrix, backfill statement and rollback boundary (M18-MIG-02/03/04). M18-3 participant slice designed but activation-gated by EIS18-EXT-08, M18-7, PC-07/PC-10; no execution before verified dependencies. | 290 |
 | `EIS18-VER-01` | PR | Each row gets a planned test and evidence class from its FCTM seed, unchanged. Runtime evidence decides acceptance (B6-24; Blueprint §20.7.6). Nothing is PASS now. | 592 |
 | `EIS18-CAP-01` | TR | Capability catalogue (Section 7) as `EIS-KER-03` registry entries, with object scope as kernel input (`EIS-KER-08`). A tool definition never grants a capability (`EIS13-TOOL-01`). How an `authz.authorize` `action` value selects the evaluated capability is `UNKNOWN` upstream (SB-P-1.14 PQ-12); the names bind to it once SB-P-1.12 determines it. | 280 |
 | `EIS18-OBJ-01` | TR | Logical object model (Section 8). Every object is business-scoped with composite references. Names are engineering choices, not Product Truth. | 290 |
@@ -823,7 +823,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 |---|---|
 | SA-05 `SECURITY INVOKER` correction | `EIS18-SEC-02`; Section 17.2 |
 | SA-03 F2, F3, F4 | `EIS18-STK-01` to `-04`, `-COD-02`, `-IDM-01`; NT-STK, NT-COD |
-| SA-04 F01 to F03 | Section 14; `EIS18-ORD-01`, `-AVL-01`, `-OFD-01`; M18-3 exclusion |
+| SA-04 F01 to F03 | Section 14; `EIS18-ORD-01`, `-AVL-01`, `-OFD-01`; M18-3 participant activation gate |
 | M18-MIG-01 to 05 | Section 17; `EIS18-MIG-01` to `-04` |
 | SA02-18-F01 to F03 | `EIS18-LOC-*`, `-ATT-02`, `-OVT-01`, `-PRF-03`; Section 14.4 |
 | New provider screen | Not applicable at this baseline; not a PASS |
@@ -843,7 +843,15 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 | EQ18-13, EQ18-14 | Proposed (Section 7, `EIS18-STK-03`). SA-03 and owners at Stage 10 |
 | EQ18-15 | **Documentary contract supplied** by locked SB-P-1.12 v0.5 (MC-802). Implementation, verification and per-method P-1 evidence held (`EIS18-EXT-08`) |
 
-## 19. Converting This Draft to a Reviewable Full Stage 9 EIS
+## 19. Path to Formal Stage 10 Review, Stage 10 Acceptance and Stage 11 Lock
+
+Three sequential gates apply. Each needs its own Mission Control authorization, and this draft claims none of them.
+
+- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the five named documentary holds visible and fail-closed: `EQ18-05`; the `S11-L443-1` system-proposed trigger; the `DLEG` calculation; `SA02-18-F03` photo and signature; and `PQ-14` with the upstream selector unknown. Fail-closed behavior does not fulfil the positive obligation behind any of them.
+- **(b) Stage 10 acceptance.** The Stage 10 reviewer independently performs the full Source 18 §3.2 item 6 source-text completeness and disposition test, and obtains the precise source-owner and specialist findings that acceptance needs. Acceptance does not treat an unfulfilled positive obligation as satisfied.
+- **(c) Stage 11 EIS lock.** Only after every review blocker is resolved or given an explicit, valid Source 18 disposition. Where neither is possible, the genuine mandatory earlier-stop applies.
+
+Steps 1 to 6 are the substantive work that gates (b) and (c) depend on. None is waived, reclassified or preapproved by gate (a).
 
 1. **SB-P-1.12: done at documentary level (MC-809).** v0.5 is locked; Section 14 now specifies the consumer path. Remaining: field and code names fixed by the SB-P-1.12 package (C-4, PK-0, PC-10) and ENT-1.
 2. **SB-P-1.15:** `EQ18-05` is dispositioned by its source owner after a T3/T7 screen. Then update `EIS18-NTF-01` and `1-§17-4`.
@@ -852,9 +860,16 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
    - The `SA02-18-F03` assessment settles `EIS18-PRF-03`.
 4. **EIS-level values:** settle the `TBD`s in Sections 7, 8, 11 and 18, and the cross-mission signatures in `EIS18-STK-04` and `EIS18-CAB-02`.
 5. **Depth:** physical schema, exact command signatures and per-capability role defaults.
-6. **Completeness:** Mission Control runs its own §3.2 item 6 test. Stage 10 is requested only then, by separate authorization.
+6. **Completeness:** the full Source 18 §3.2 item 6 source-text test is performed in Stage 10, under gate (b). Formal Stage 10 review needs its own separate authorization under gate (a); Stage 10 acceptance and the Stage 11 lock follow only as gates (b) and (c) state.
 
 Steps 2 and 3 are not SB-P-1.18 acts. No step here authorizes editing an upstream contract.
+
+**`S11-L443-1` ORIGIN-COUNT INCONSISTENCY — Stage 10 Source18 determination pending.** This is a pre-existing, inherited source and evidence-target discrepancy.
+
+- **Source truth: three origins.** Founder-approved `18:FPDR-5` allows an overtime record to originate from a manual report, a system-proposed entry or a manager entry, including disputed entries (Blueprint §8.10 and §10.1). Blueprint §15.4 reads "each of the three origins". This EIS realizes them as `manual_report`, `system_proposed` and `manager_entry` (Section 8).
+- **Verification seed: "four origins".** The seed "RT: a record is created from each of the four origins; IDEM" appears in the frozen FCTM row `S11-L443-1` (blob `2bbe6e227d714996bcead10385952c78283e20e8`), in the Blueprint §19 FCTM Row-ID to Blueprint Section Traceability table and in the Blueprint §20.8 per-row register (blob `a7e0266e5e3bf2e2e2c6abce1ecd4f7b98b44d33`).
+- **Not resolved here.** A disputed status is not a fourth origin. This EIS does not change the origin enum, the Blueprint, the FCTM, the Founder choice, the five-facet count or the verification target. It records no completed evidence check.
+- **Owner.** The Stage 10 reviewer or Mission Control determines whether a documented interpretation suffices, or whether a Source 18 exceptional source correction, and any Founder decision it actually requires, is needed before an authoritative EIS lock.
 
 ## 20. Source 18 Trigger Screen
 
@@ -1664,6 +1679,15 @@ Amended in place, one file, under MC-809. No requirement text of a locked source
 | `DI` rows reclassified `DOC` → `RUN` (activation-gated), except `1-§17-4` (`DOC`, `EQ18-05`). No FCTM or Blueprint status changed | Section 21 |
 | SB-P-1.14 and SB-P-1.17 noncanonical candidates on `main` recorded as not relied on | Section 3 |
 
+**MC-811 corrections.** Amended in place, one file, under MC-811. No requirement ID, row mapping or count changed.
+
+| Change | Where |
+|---|---|
+| M18-3 participant slice described as designed but activation-gated, not excluded | Section 8 delivery heading; Section 12 `EIS18-MIG-01`; Section 18 SA-04 row |
+| Gates for formal Stage 10 review, Stage 10 acceptance and Stage 11 lock separated; step 6 corrected; steps 1 to 5 unchanged | Section 19 |
+| `S11-L443-1` ORIGIN-COUNT INCONSISTENCY recorded; Stage 10 Source18 determination pending | Section 19 |
+| Final STOP paragraph updated to the locked SB-P-1.12 EIS v0.5 | Section 22 |
+
 **PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`; canonical `main` is now `6a5b8b83`. This file is absent on both, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
 
-**STOP FOR MISSION CONTROL.** This partial draft is not reviewed, not canonical and not a Stage 9 completion claim. Stage 10, Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.4 stays locked, and G1/G2 is not canonical. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
+**STOP FOR MISSION CONTROL.** This partial draft is not reviewed, not canonical and not a Stage 9 completion claim. Stage 10, Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.5 is APPROVED — LOCKED as a documentary contract; the G1/G2 implementation and the PR #1120 v1.1-D package remain unactivated/unlocked respectively. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
