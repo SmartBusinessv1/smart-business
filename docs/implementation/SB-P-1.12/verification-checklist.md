@@ -318,7 +318,7 @@ Planned only; not executed, and no `PASS` or numerical result is claimed. Each r
 | `IN SCOPE` FCTM rows | 267 |
 | Rows with a checklist item and planned evidence class | 267 of 267 |
 | Rows missing a checklist item | 0 |
-| Permission, isolation and denial rows (rule in 13.1) | 201 in locked version 1.0-L; all 201 carry a named negative-path check. The version 1.1-D delta adds participant obligations only to rows that already carry a named negative-path check, so no row lacks one; Stage 13 review confirms whether the participant rule moves any of the 27 touched rows into this class |
+| Permission, isolation and denial rows (rule in 13.1) | 202; all 202 carry a named negative-path check. Version 1.1-D adds exactly one row to the locked 1.0-L classification (201): `20-§16-4` through participant obligation `EC-FRL-06`. The already-classified `22-§15` had confirmation obligations `EC-CNF-04` and `EC-CNF-05` before this delta. |
 | Rows carrying at least one named negative-path check | 226 (unchanged; all 27 rows touched by the version 1.1-D delta already carried one) |
 | Experience rows | 85; all 85 carry a named runtime scenario. Rows carrying a named runtime scenario: 85. `RS-16` to `RS-18` are assigned only to rows that were already experience rows |
 | Named negative-path checks | 63, each used by at least one row: 46 in locked version 1.0-L, plus `NP-47` to `NP-63` in the version 1.1-D draft delta |
@@ -635,6 +635,5 @@ ENT-1: HELD
 |---|---|---|---|
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `NP-35` test or migration context with synthetic fixtures; `VC-TEST-11` runtime-gated verification; identity-deletion rows shown as execution-gated, not deferred; evidence classes of the gated identity-deletion obligations updated to build evidence. No row, item or mapping changed |
-
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
 | 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved, locked or executed: `VC-AUTH-02` cites locked EIS v0.5 blob `7a5f4918`; `VC-AUTH-07`, `VC-AUTH-08`; `RS-16` to `RS-18` (Section 4.2); `NP-47` to `NP-63` (Section 6.2); `VC-TEST-16`; `VC-EVD-07` to `VC-EVD-09`; 27 row items gain delta obligations, checks and evidence classes; counts updated. No existing check, scenario, row or criterion changed |
