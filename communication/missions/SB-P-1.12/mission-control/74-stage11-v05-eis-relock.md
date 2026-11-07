@@ -10,7 +10,7 @@
 **Status:** APPROVED — LOCKED — EFFECTIVE ONLY WHEN THE PR CARRYING THIS RECORD IS HUMAN-MERGED TO CANONICAL `main` AND MISSION CONTROL VERIFIES IT. NOT EFFECTIVE BEFORE THEN
 **Stage 10 record:** `communication/missions/SB-P-1.12/mission-control/73-stage10-v05-amendment-review-acceptance.md`
 **Published pre-lock EIS v0.5 blob:** `2e01469424716c616cf01b8e6f7b8d305f620cb1`, at `main@8b5d450c0d8943c02b87e62d612d14131629d6ff` (human merge of PR #1117, 2026-11-07 IST)
-**Locked-status EIS blob in this PR:** `85df746dad2235ebb709f260612befba73bd57c6`
+**Locked-status EIS blob in this PR:** `7a5f49182463ec79ecf221d7dd13dfebbc517e3e`
 
 ## 1. Stage 11 re-lock disposition
 
@@ -34,6 +34,7 @@ The re-lock is a lock-only repository transition from the published version 0.5.
 - Section 1 `Document Version` and `Status` record the same distinction and cite this record and Record 73;
 - Section 23 status wording records the version 0.4 lock history, the version 0.5 conditional lock, and the met human-merge condition. It cites this record as the re-lock record;
 - the Section 24 version 0.5 row label records the human merge and conditional re-lock, and the date becomes 2026-11-07 (IST).
+- the header `IMPLEMENTATION PACKAGE` line and Section 1 `Next gate` row state that the existing Stage 12/13 package is insufficient for version 0.5 G1/G2, and that C-4/PK-0 package delta and Stage 13 re-review/re-lock each require separate Mission Control authorization; no implementation is authorized.
 
 No requirement, engineering mechanism, FCTM mapping, Product Truth, permission semantic, identity control, lifecycle semantic, test obligation, hold or evidence gate is changed by the re-lock. Every Section 23 prerequisite and the Section 24 engineering-change description remain word for word.
 
@@ -55,7 +56,7 @@ No requirement, engineering mechanism, FCTM mapping, Product Truth, permission s
 The locked pair is:
 
 - Product Blueprint: `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md`, blob `77d52096c020668311b039721a4de9248ddd460e`, unchanged;
-- EIS: `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`, blob `85df746dad2235ebb709f260612befba73bd57c6` in this PR.
+- EIS: `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md`, blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` in this PR.
 
 **Effective event:** the version 0.5 lock becomes authoritative only when an authorized human merges the PR carrying this record, the locked-status EIS blob is present on canonical `main`, and Mission Control verifies it.
 
