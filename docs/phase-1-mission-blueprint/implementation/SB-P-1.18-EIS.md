@@ -24,7 +24,7 @@ No test named here has been run. Every positive and negative test is **FUTURE**.
 | Founder decisions | `18:FPDR-1` to `-7` and `18:FPDR-4-A` (F-01 to F-08); consumed through SB-P-1.12 EIS v0.5: SB-P-1.12 Founder Decision Record 10 (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours; blob `c93ca933`) and Founder Decision Record 11 (P-1 evidence timing; blob `c77f8a5f`) |
 | Candidate requirements | 137 (`EIS18-*`). Planning identifiers, renumberable until lock |
 | Baseline | Drafted at `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`; reconciled under MC-809 against `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`. The PR #1111 base stays pinned to the older `main` (Section 22) |
-| Next gate | Mission Control inspection. Stage 10 only by separate authorization, once the conditions in Section 19 are met |
+| Next gate | Mission Control inspection; formal Stage 10 independent review only by separate authorization under Section 19 gate (a), with five documentary holds carried. Stage 10 acceptance and Stage 11 lock require their separate Section 19 gates (b) and (c). |
 
 ## 2. Purpose, Authority and How to Read
 
