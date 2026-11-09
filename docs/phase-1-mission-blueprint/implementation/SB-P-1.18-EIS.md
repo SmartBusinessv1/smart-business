@@ -66,7 +66,7 @@ Requirement text stays in the source contracts; this draft cites rows (Source 18
 | Source 18 v1.3 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md`, blob `f3b01b608c4b64df186d4278ba6468ed0419630f` |
 | Operating pattern | `mission-control/SB-P-Phase 1 operating pattern.md`, blob `39b1bc366d7a2e31c80dc22c63aab007a3f5afd6` |
 | Migration authority | `docs/migration/README.md`: default-deny; no active migration mission |
-| Locked upstream EIS (all `AF` [S]) | SB-P-1.12 **v0.5** `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (`APPROVED — LOCKED`, effective at `main@6a5b8b83` and verified by MC-802; v0.4 `8b0aaa79` is historical); SB-P-1.13 `58199842319abc78cc50d2b65e18a2eb948b01c4`; SB-P-1.14 `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe`; SB-P-1.15 `75dcf38593f79e17e101e0efa80bef20fe24b31f`; SB-P-1.16 `46fffd7b140940854c9b2b847517dde2f17584df`; SB-P-1.17 `5d681b0c169dd12edc54a110a9fc9d54b87e2982` |
+| Locked upstream EIS (all `AF` [S]) | SB-P-1.12 **v0.5** `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (`APPROVED — LOCKED`, effective at `main@6a5b8b83` and verified by MC-802; v0.4 `8b0aaa79` is historical); SB-P-1.13 `58199842319abc78cc50d2b65e18a2eb948b01c4`; SB-P-1.14 `7dfad7b53c370af9e7242b66d863f6eaffc3ebfe`; SB-P-1.15 `75dcf38593f79e17e101e0efa80bef20fe24b31f` (original lock; historical for the notification recipient), with its canonical `EQ18-05` post-lock amendment `ac41034da6c73468e66aa45a6765604fa7623a6c` at `main@8bd38d56` (MC-817; Section 14.3); SB-P-1.16 `46fffd7b140940854c9b2b847517dde2f17584df`; SB-P-1.17 `5d681b0c169dd12edc54a110a9fc9d54b87e2982` |
 | Source contracts (FCTM pins) | C1 `b392c8cb`; C3 `d8c26c07`; C5 `80ac648e`; C6 `ebacd183`; C9 `649c55f3`; C10 `5c145ed7`; C12 `6d48feff`; C16 `420269d8`; C17 `7943f74a`; C22 `61e1bb91`; C24 `0c1dcbb2`; Build Plan `9dfdd924`; GPCV `ee76d920`; Source 11 `16897d6c` |
 | Stage 7 specialist findings [SP] | SA-05 #6545596757; SA-03 #6545608601; SA-04 #6545771183; migration #6545872629; SA-02 #6545771818; dispositioned `HELD` by MC-688 (#6547358706) |
 | T6 determinations [MC] | DC-14: MC-699 (#6555696141). DC-13: MC-701 (#6555836784). Both conditional and documentary |
@@ -117,7 +117,7 @@ From Blueprint §20.3 and the Stage 6 review, rechecked where stated. Repository
 - **Model to tools:** model output is untrusted and validated (`EIS13-TOOL-02`). Document content is untrusted data (`EIS14-UDI-06`). A later OCR read never changes a confirmed date.
 - **Device to location validator:** a coordinate crosses once, in a request body, and only a result returns.
 - **Participant boundary:** a Delivery Staff participant enters only as an SB-P-1.12 participant principal on one named authority path (Section 7.1; `EIS18-EXT-07`), with authority from binding, registered capability and object assignment only.
-- **Out of bounds in this draft:** any out-of-app channel (`DNTF`) and any participant notification (`EQ18-05`).
+- **Out of bounds in this draft:** any out-of-app channel (`DNTF`). The participant assignment notification is native only, through the consumed SB-P-1.15 participant-binding recipient (Section 14.3); nothing is sent outside the app.
 
 ## 7. Capability Catalogue
 
@@ -250,7 +250,7 @@ Every object has `business_id`, composite references `(business_id, id)`, `creat
 
 **Location rules.** `EIS18-LOC-02`: no object, command, job or reader exists for continuous, background or periodic capture, a movement trace or a live-location view. `EIS18-LOC-03`: at each capture the UI states why, who may see the result, when it is captured and when access ends, using the Blueprint §8.15 disclosure table. Final wording and notices stay with qualified review (MC-699 condition 5).
 
-**Notification (consumed).** `notification_requests` [S]: `recipient_membership_id` is a live membership. No schema change here; see Section 14.3.
+**Notification (consumed).** `notification_requests` [S] carries a typed `recipient_path` (`membership` or `participant_binding`) with exactly one recipient column (`EIS15-NTF-01` as amended). A membership recipient is a live membership. A `participant_binding` recipient is the delivery's current bound participant, for purpose `delivery.assignment` only. SB-P-1.18 adds no notification schema; see Section 14.3.
 
 ## 9. Command Catalogue
 
@@ -337,7 +337,7 @@ No feature scheduler or notification store (DC-08). A request records that somet
 | Source event | Mechanism | Recipient | Customer or non-member leg | Realizes |
 |---|---|---|---|---|
 | Draft needs action; change request; delivery started or completed; COD or unable-to-deliver exception | `notification_requests` with a `EIS15-NTF-04` dedupe key | Eligible membership | Merchant-visible event. "Customer channel: not demonstrated" | `EIS18-OFD-01`, `-CUS-06` |
-| Delivery assigned | Same | **Employee assignee's membership** | Participant: `NTF_NO_VERIFIED_RECIPIENT`, no send (`EIS18-NTF-01`; SB-P-1.12 PC-09) | `EIS18-OFD-01`, `-NTF-01` |
+| Delivery assigned | Same, created inside the assignment command's transaction | **Employee assignee's membership**, or the **assigned participant's binding** (`recipient_path` `participant_binding`, purpose `delivery.assignment`) | Participant leg native only. An ineligible participant gets zero requests and the merchant sees `NTF_NO_VERIFIED_RECIPIENT`, a denial, not fulfilment (`EIS18-NTF-01`) | `EIS18-OFD-01`, `-NTF-01` |
 | Shift or staff reminder | `EIS15-REM-07` | Linked membership | Unlinked staff record: no recipient, no send | `EIS18-HR-03` |
 | Confirmed compliance date | `EIS15-REM-07`, typed `related_type` | Responsible membership | — | `EIS18-REM-01`, `-CNT-01` |
 
@@ -365,7 +365,7 @@ Kernel denials keep the `EIS-UX-01` contract. Feature codes below are `TR` names
 | `HR_AMBIGUOUS_EMPLOYEE`, `HR_STAFF_UNLINKED` | Clarify; self-service needs a linked membership | `6-§13-4`, `6-§3-7` |
 | `OVT_TRIGGER_HELD`, `PAY_CALC_HELD` | Held on qualified validation; no calculation | `S11-L443-1`, `6-§8-2` |
 | `CMP_DATE_UNCONFIRMED`, `CMP_DUPLICATE_DOCUMENT`, `REN_NOT_CONFIRMED` | Compliance outcomes; no legal claim | `16-§6-6`, `16-§16-4`, `16-§8-11` |
-| `NTF_NO_VERIFIED_RECIPIENT` | No eligible membership recipient: no send, stated to the merchant. Fail-closed; not a reduction (R4) | `1-§17-4` |
+| `NTF_NO_VERIFIED_RECIPIENT` | No eligible recipient (a membership, or a participant binding failing an `EIS15-NTF-03` creation check): zero requests, stated to the merchant. A denial or hold, never fulfilment; not a reduction (R4) | `1-§17-4` |
 
 ### 10.1 Named exception handling
 
@@ -466,7 +466,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-PRF-04` | PR | Customer silence never fails or rolls back a delivery. | 3 |
 | `EIS18-COD-01` | PR/TR | Expected, collected (amount, collector, time) and discrepancy are separate facts. Mismatch stays visible until a human resolves it. | 6 |
 | `EIS18-COD-02` | PR/AF | The order domain never writes Ledger income. The link goes only through `EIS16-ORD-01` on the single `DTX` path, with one key per delivery-and-collection event (EQ18-09, proposal). Replay creates one outcome (SA-03 F4). | 8 |
-| `EIS18-OFD-01` | AF/TR | Order notifications are `EIS15-NTF-01` requests to **membership** recipients with a `EIS15-NTF-04` dedupe key and `EIS15-NTF-03` revalidation. The customer native leg is a merchant-visible event. A Delivery Staff participant is not a recipient (`EIS18-NTF-01`; SB-P-1.12 PC-09). No channel states (`EIS15-NTF-02`). No order-only infrastructure. | 10 |
+| `EIS18-OFD-01` | AF/TR | Order notifications are `EIS15-NTF-01` requests to **membership** recipients with a `EIS15-NTF-04` dedupe key and `EIS15-NTF-03` revalidation. The customer native leg is a merchant-visible event. The one exception is the assignment notification to an assigned Delivery Staff participant, which uses the `participant_binding` recipient path under `EIS18-NTF-01`. No channel states (`EIS15-NTF-02`). No order-only infrastructure. | 10 |
 | `EIS18-OFD-02` | PR | AI assists through SB-P-1.13 typed tools only (`EIS13-TOOL-01`). | 7 |
 | `EIS18-OFD-03` | PR | AI must-nots are enforced server-side by capability checks and state guards, not prompt wording. | 4 |
 | `EIS18-OFD-04` | TR | Order data model carries the remaining `1-§22-*` entities, including confirmation and audit events, as business-scoped objects. | 2 |
@@ -607,7 +607,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-HLD-DLEG` | UQ | `DLEG`: no legal or calculation claim; recording only. | 6 |
 | `EIS18-HLD-DC13` | FC | DC-13: conditional documentary T6 only (MC-701). | 5 |
 | `EIS18-HLD-DC14` | FC | DC-14: conditional documentary T6 only (MC-699); PROVISIONAL — PROFESSIONAL VALIDATION PENDING. | 1 |
-| `EIS18-NTF-01` | UQ | **`EQ18-05` hold (MC-734 R4).** Locked `EIS15-NTF-01` has no non-member recipient. `no verified recipient = no send` is a fail-closed safety condition, **not** a reduction of `1-§17-4`. Employee membership recipient only. No membership, channel, OTP or provider workaround (Section 14.3). | 1 |
+| `EIS18-NTF-01` | UQ | **Participant assignment notification (`EQ18-05` source resolved, MC-817; Section 14.3).** Consumes the canonical SB-P-1.15 amendment (`ac41034d`): `EIS15-NTF-01`, `-03`, `-04`, `-08`, `-10` and `EIS15-AUTHZ-07`. **Positive obligation:** when a delivery is assigned to a participant, the assignment command (`EIS18-EXT-04`), inside its own transaction and after its own kernel decision, records one native request with `recipient_path` `participant_binding` and purpose `delivery.assignment`. The recipient is the assignment's current bound participant, derived server-side; a caller-supplied recipient, binding identifier, email or invitation reference is never accepted. **Creation checks:** an accepted, current binding; an `active` business and person; the current object assignment to that binding; `delivery.task.read` registered and current for that target (PC-05); entitlement (PC-06); readiness (PC-07); current authority epochs; the recipient defined by SB-P-1.15 (PC-09). If any check fails, zero requests are written and the merchant sees `NTF_NO_VERIFIED_RECIPIENT`: a denial or hold, never fulfilment (MC-734 R4). **Identity:** one logical request per eligible assignment event or version and recipient; retries converge, and a denied event stays at zero. Reassignment makes the prior request `SUPERSEDED` and creates one for the new participant only if it passes the same checks. Revocation ends eligibility at the next evaluation. **Display:** the participant sees a request only through the SB-P-1.15 governed participant read, on the one named path (F-OVL Option B), with a per-target decision under `delivery.task.read`. Counts, badges, cursors and empty states reflect shown items only, and denials are equivalent (PC-12). No path union, fallback, membership substitution or Owner intelligence. Content is the task reference only (`EIS18-EXT-04`). **Recorded is not delivered:** a recorded request is not display, acknowledgement or delivery. Merchant copy states only that a native notification request was recorded for the verified participant path, and that Smart Business sends nothing through an external channel (`EIS15-NTF-10`). No membership, role default, new capability, channel, provider or OTP. Activation-gated (`EIS18-EXT-08`, PC-10). | 1 |
 | `EIS18-HLD-PQ14` | UQ | `PQ-14`: object-scoped Cabinet set reads (search, listing, conversational retrieval) need a target-aware helper accepted under SB-P-1.12; until then a direct request for one document is the fail-closed interim path. Not a narrowing. | 8 |
 
 ## 13. Attendance Mechanism Under MC-699 (DC-14)
@@ -649,12 +649,12 @@ All 19 stay `IN SCOPE`, Blueprint §20.8 status `DI` and risk H, unchanged; none
 | `1-§13-6` | Record COD collected | Spec now; activation-gated | `cod.record_collected` on the assigned delivery: a fact, no Ledger write, no financial authority | `D16`; SA-03 confirmation at Stage 10 |
 | `1-§13-7` | Mark delivered | Spec now; activation-gated | `delivery.complete`, gated on configured proof | — |
 | `1-§13-8` | Report unable to deliver | Spec now; activation-gated | `delivery.report_unable` | — |
-| `1-§17-4` | Assignment notification | Spec now (employee); external leg held | Employee recipient only (`EIS18-OFD-01`) | **External leg HELD: `EQ18-05`** (Section 14.3); fail-closed, not a reduction |
+| `1-§17-4` | Assignment notification | Spec now; participant leg activation-gated | Employee membership recipient (`EIS18-OFD-01`); participant-binding recipient (`EIS18-NTF-01`), native only | `EQ18-05` source resolved (MC-817; Section 14.3). PC-10 and runtime evidence |
 | `1-§26-7` | Scoped assignment scenario | Spec now; activation-gated | NT-EXT-02 and NT-ASG-01 test design | `D13` |
 | `1-§26-8` | Required-information scenario | Spec now; activation-gated | NT-EXT-04 test design | `D13` |
 | `BP-§10.7-A6` | Purpose-limited task data | Spec now; activation-gated | Projection rule (`EIS18-EXT-04`) | — |
 
-**Result: 18 of 19 rows are normative consumer specification, activation-gated. `1-§17-4` is normative for its employee leg; its participant leg stays held on `EQ18-05`.** None is runtime-ready.
+**Result: all 19 rows are normative consumer specification, activation-gated. `1-§17-4`'s participant leg consumes the canonical SB-P-1.15 `EQ18-05` amendment (MC-817); its Section 21 drafting class is not recounted (Section 14.3).** None is runtime-ready.
 
 **Consumer obligations under the locked controls.**
 
@@ -665,7 +665,7 @@ All 19 stay `IN SCOPE`, Blueprint §20.8 status `DI` and risk H, unchanged; none
 | PC-05 | Capability registration (Section 7.1), object assignment (`delivery_assignments`) and the governed set read (`delivery.tasks_for_participant`) |
 | PC-06 | Entitlement-gated (`DENT`); fails closed. ENT-1 retain or end is SB-P-1.12 and SB-P-1.19 business, not decided here |
 | PC-07 | Readiness order: kernel implemented and verified → M18-7 registration → M18-3 route → G1 activation |
-| PC-09 | No participant notification (`EQ18-05`) |
+| PC-09 | Participant recipient defined by the canonical SB-P-1.15 `EQ18-05` amendment and consumed by `EIS18-NTF-01`; native only, no channel or send |
 | PC-10 | No consumption before the SB-P-1.12 package is re-locked (C-4, PK-0; PR #1120 is draft) and implemented under separate authorization |
 | PC-11 | Any merchant-visible lockout or cooldown from throttling needs a separate product screen |
 | Section 8.1 (F-OVL) | One named authority path per request; `authority_path_required` rendered without guessing (`EIS18-EXT-07`) |
@@ -691,14 +691,16 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 | `1-§24-6` | Revoked permission during workflow | `EIS-KER-09` on membership | Binding revocation mid-delivery: commit before, or committed rejection with no write (`EIS-ID-09`) |
 | `1-§25-3` | Delivery staff sees only task-required information | `EIS18-OFD-07`, `-DLV-03` | PC-05 governed set read and PC-12 equivalent denials (`EIS18-EXT-04`) |
 
-### 14.3 `EQ18-05` non-member notification interface hold
+### 14.3 `EQ18-05` participant notification: consumed SB-P-1.15 recipient contract
 
-- **Gap [S].** `EIS15-NTF-01` defines `notification_requests(... recipient_membership_id ...)`, and `EIS15-NTF-03` revalidates current membership. A business-scoped non-member participant is not a membership. Locked SB-P-1.12 v0.5 confirms the gap: PC-09 defines no notification, and a participant recipient exists only if separately verified under SB-P-1.15 and `EQ18-05`. G1/G2 alone does not create a recipient.
-- **Specified now.** Employee membership recipient only (`EIS18-OFD-01`).
-- **Fail-closed.** A non-member recipient produces `NTF_NO_VERIFIED_RECIPIENT`. `no verified recipient = no send` is a **safety condition, not an unapproved reduction** of `1-§17-4` or of any participant notification obligation (MC-734 R4).
-- **Not permitted as a workaround.** Adding a membership; a new channel, OTP or provider; or a reduced row.
-- **Owner.** The SB-P-1.15 source owner determines the smallest supported extension or alternative, through separate exceptional change control and a T3/T7 screen. Mission Control may issue that assessment; SB-P-1.18 edits no SB-P-1.15 file.
-- **Evidence class.** Contract [S] gap; resolution open; runtime [FUT]. `1-§17-4` stays `IN SCOPE`.
+- **Source status [S].** Resolved at the documentary level. The canonical SB-P-1.15 `EQ18-05` post-lock amendment (EIS blob `ac41034da6c73468e66aa45a6765604fa7623a6c`, `main@8bd38d56c8017863bce06bcbdf46649bafcfcdc0`; Engineering Contract `815781305954d9d589c7e08f8b3b69cb28ab44d1`; Verification Checklist `251489979413a3ec440882848165b1e77987d22f`) adds a typed `participant_binding` recipient for purpose `delivery.assignment` (`EIS15-NTF-01`, `-03`, `-04`, `-08`, `-10`, `EIS15-ARC-04`, `EIS15-AUTHZ-07`, `EIS15-SEC-05`; NN-01 to NN-16). MC-817 ([PR #1111 comment 6735122273](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6735122273)) records its Stage 10 acceptance, Stage 11 lock disposition, human merge (PR #1121) and canonical verification. The amendment's in-file labels still read `DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE`; they state the conditions that MC-817 records as met. The original lock `75dcf385` is historical for the recipient specification. This meets the SB-P-1.12 v0.5 PC-09 condition that a participant recipient is resolved only if separately verified under SB-P-1.15.
+- **Specified now.** Employee membership recipient (`EIS18-OFD-01`) and participant-binding recipient (`EIS18-NTF-01`), both native only, with the per-target display authorization of `EIS15-NTF-03`.
+- **Fail-closed.** An ineligible participant recipient yields zero requests and `NTF_NO_VERIFIED_RECIPIENT` to the merchant. That is a merchant-visible denial or hold, never fulfilment of `1-§17-4` (MC-734 R4).
+- **Recorded is not delivered.** A recorded request, a governed display, an acknowledgement and an outward delivery are distinct. No out-of-app delivery exists in this mission (`EIS15-NTF-05`, `DNTF`).
+- **Not permitted.** A membership, role default, new participant capability, channel, provider or OTP; a path union or fallback; a reduced row.
+- **Still held.** Implementation and the SB-P-1.12 PC-10 consumption gate (C-4, PK-0; PR #1120); entitlement (`DENT`, ENT-1); readiness (`EIS18-EXT-08`); grants and RLS evidence; all runtime evidence. SB-P-1.15 NN-01 to NN-16, NT-EXT-06 and NT-NTF-01 are FUTURE.
+- **Traceability.** `1-§17-4` stays `IN SCOPE` with its existing links. Its Section 21 drafting class stays `DOC` as recorded under MC-809 and is not recounted under MC-817.
+- **Evidence class.** Contract [S] consumed; runtime [FUT].
 
 ### 14.4 Other holds
 
@@ -781,14 +783,14 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 | NT-ATT-01 | Attendance | GPS denial leaves a usable path; no anomaly becomes an accusation, wage or discipline effect | `6-§13-3`, `6-§9-7`, `6-§8-3` to `-5` | FUTURE |
 | NT-PAY-01 | Payroll | No calculation, threshold or sanction; no export obligation asserted | `6-§8-*`, `17-§9-5` | FUTURE |
 | NT-CMP-01 | Compliance | No legal assurance; a due reminder never completes a renewal; later OCR never changes a confirmed date | `16-§15-*`, `16-§8-11`, `16-§20-5` | FUTURE |
-| NT-NTF-01 | Notification | Non-member recipient: no send, `NTF_NO_VERIFIED_RECIPIENT` | `1-§17-4`; `EQ18-05` | FUTURE |
+| NT-NTF-01 | Notification | Ineligible participant recipient (unbound record; pending, expired or consumed invitation; revoked binding; unassigned; entitlement or readiness failed; non-`active` business or person): zero requests, also on retry; the merchant sees `NTF_NO_VERIFIED_RECIPIENT` as a denial, not fulfilment | `1-§17-4`; SB-P-1.15 NN-06 to NN-08, NN-12, NN-16 | FUTURE |
 | NT-FRL-01 | First run (consumed) | Invited employee follows `EIS-FRL-02`: not silently made Owner of a new business | Consumed from SB-P-1.12 | FUTURE; upstream |
 | NT-EXT-01 | First run | Participant with a pending or bound state: no business or Owner membership created; `participant_path_not_ready` before readiness; several contexts shown without a silent switch; unbound person keeps ordinary first run (`EIS-FRL-06`) | 19 `DI` rows | FUTURE; activation-gated |
 | NT-EXT-02 | Assignment and capability | Participant without a current binding, registered capability or assignment denied; reassignment and revocation end access at the next evaluation, including mid-delivery; return confirmation and override refused | `1-§12-3`, `1-§24-5`, `1-§24-6`, `1-§26-7` | FUTURE |
 | NT-EXT-03 | Authority path (F-OVL) | Person with a membership and a binding in one business: no named path → `authority_path_required` and no write; membership path never reaches binding scope and the reverse; no retry or combining; audit records the path | Five legs; `1-§5-21` | FUTURE |
 | NT-EXT-04 | No enumeration, no Owner data | Zero assignments give the same empty shape; counts, cursors and ordering reflect own assignments only; unassigned and non-existent orders indistinguishable; no Owner intelligence, customer list or export | `1-§5-22`, `1-§25-3`, `1-§26-8`, `BP-§10.7-A6` | FUTURE |
 | NT-EXT-05 | Invitation surfaces | Reference shown once and absent from logs, analytics and stores; lost response leads to revoke and reissue; UI states 168 hours; issuer departure leaves an accepted binding active and pending invitations unacceptable (SR-09) | 19 `DI` rows | FUTURE; kernel behaviour itself is SB-P-1.12's suite |
-| NT-EXT-06 | Notification | Assignment to a participant creates no `notification_requests` row and states no-send (`EQ18-05`) | `1-§17-4` | FUTURE |
+| NT-EXT-06 | Notification | Eligible participant assignment: exactly one native `participant_binding` request for `delivery.assignment`, created in the assignment transaction from the assigned binding; a caller-supplied recipient is rejected or ignored; reassignment supersedes the prior request; revocation hides it; shown only through the governed participant read with a named path and a per-target decision, never through the membership path; counts and empty states unchanged by hidden items; task reference only; merchant copy states only that a request was recorded, with no visible, received, acknowledged, sent or delivered claim; no channel state | `1-§17-4`; SB-P-1.15 NN-01 to NN-05, NN-09 to NN-11, NN-13 to NN-15 | FUTURE; activation-gated |
 
 ## 17. Migration Design (Design Only; Not Executed)
 
@@ -833,7 +835,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 | EQ18-01, EQ18-04 | Decided (`18:FPDR-6`) |
 | EQ18-02 | Proposed: mission-owned `staff_records`. Stage 10 with the SB-P-1.12 owner |
 | EQ18-03 | Proposed: Section 7, no kernel change. Stage 10 |
-| EQ18-05 | **Held** (Section 14.3) |
+| EQ18-05 | Source resolved by the canonical SB-P-1.15 amendment (MC-817); consumed in Section 14.3; consumer correction awaiting Stage 10 exact-delta review |
 | EQ18-06, EQ18-07 | Open; [U]. NT-PRV tests |
 | EQ18-08 | Proposed (Section 13); T3 screen |
 | EQ18-09 | Proposed key (Section 9); final with SB-P-1.16 |
@@ -847,14 +849,14 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 
 Three sequential gates apply. Each needs its own Mission Control authorization, and this draft claims none of them.
 
-- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the five named documentary holds visible and fail-closed: `EQ18-05`; the `S11-L443-1` system-proposed trigger; the `DLEG` calculation; `SA02-18-F03` photo and signature; and `PQ-14` with the upstream selector unknown. Fail-closed behavior does not fulfil the positive obligation behind any of them.
+- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the five named documentary holds visible and fail-closed: `EQ18-05` (source resolved by the canonical SB-P-1.15 amendment; consumer correction awaiting Stage 10 exact-delta review); the `S11-L443-1` system-proposed trigger; the `DLEG` calculation; `SA02-18-F03` photo and signature; and `PQ-14` with the upstream selector unknown. Fail-closed behavior does not fulfil the positive obligation behind any of them.
 - **(b) Stage 10 acceptance.** The Stage 10 reviewer independently performs the full Source 18 §3.2 item 6 source-text completeness and disposition test, and obtains the precise source-owner and specialist findings that acceptance needs. Acceptance does not treat an unfulfilled positive obligation as satisfied.
 - **(c) Stage 11 EIS lock.** Only after every review blocker is resolved or given an explicit, valid Source 18 disposition. Where neither is possible, the genuine mandatory earlier-stop applies.
 
 Steps 1 to 6 are the substantive work that gates (b) and (c) depend on. None is waived, reclassified or preapproved by gate (a).
 
 1. **SB-P-1.12: done at documentary level (MC-809).** v0.5 is locked; Section 14 now specifies the consumer path. Remaining: field and code names fixed by the SB-P-1.12 package (C-4, PK-0, PC-10) and ENT-1.
-2. **SB-P-1.15:** `EQ18-05` is dispositioned by its source owner after a T3/T7 screen. Then update `EIS18-NTF-01` and `1-§17-4`.
+2. **SB-P-1.15: done at documentary level (MC-817).** The canonical `EQ18-05` amendment (`ac41034d`, `main@8bd38d56`) is consumed in Section 14.3, `EIS18-NTF-01` and `1-§17-4`. Remaining: Stage 10 exact-delta review of this consumer correction; implementation and runtime evidence under PC-10.
 3. **Qualified inputs:**
    - Payroll and overtime validation settles `EIS18-PAY-03` and `EIS18-OVT-02`, including the `S11-L443-1` trigger.
    - The `SA02-18-F03` assessment settles `EIS18-PRF-03`.
@@ -1687,6 +1689,16 @@ Amended in place, one file, under MC-809. No requirement text of a locked source
 | Gates for formal Stage 10 review, Stage 10 acceptance and Stage 11 lock separated; step 6 corrected; steps 1 to 5 unchanged | Section 19 |
 | `S11-L443-1` ORIGIN-COUNT INCONSISTENCY recorded; Stage 10 Source18 determination pending | Section 19 |
 | Final STOP paragraph updated to the locked SB-P-1.12 EIS v0.5 | Section 22 |
+
+**MC-817 correction.** Amended in place, one file, under MC-817 ([PR #1111 comment 6735122273](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6735122273)). Consumes the canonical SB-P-1.15 `EQ18-05` amendment at `main@8bd38d56c8017863bce06bcbdf46649bafcfcdc0`. No requirement ID, row, link, count or Section 21 entry changed.
+
+| Change | Where |
+|---|---|
+| SB-P-1.15 amended EIS identity added | Section 3 |
+| Participant-binding recipient consumed; membership-only and no-send wording replaced | Sections 6, 8, 9.3, 10; `EIS18-OFD-01`, `EIS18-NTF-01` |
+| `1-§17-4` register row, result line and PC-09 obligation updated; Section 14.3 rewritten | Sections 14.1, 14.3 |
+| NT-NTF-01 and NT-EXT-06 expectations aligned to SB-P-1.15 NN-01 to NN-16 | Section 16.2 |
+| `EQ18-05` status updated; Section 19 step 2 status and gate (a) annotation | Sections 18, 19 |
 
 **PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`; canonical `main` is now `6a5b8b83`. This file is absent on both, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
 
