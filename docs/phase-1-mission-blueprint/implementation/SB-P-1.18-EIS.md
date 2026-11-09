@@ -654,7 +654,7 @@ All 19 stay `IN SCOPE`, Blueprint §20.8 status `DI` and risk H, unchanged; none
 | `1-§26-8` | Required-information scenario | Spec now; activation-gated | NT-EXT-04 test design | `D13` |
 | `BP-§10.7-A6` | Purpose-limited task data | Spec now; activation-gated | Projection rule (`EIS18-EXT-04`) | — |
 
-**Result: all 19 rows are normative consumer specification, activation-gated. `1-§17-4`'s participant leg consumes the canonical SB-P-1.15 `EQ18-05` amendment (MC-817); its Section 21 drafting class is not recounted (Section 14.3).** None is runtime-ready.
+**Result: all 19 rows are normative consumer specification, activation-gated. `1-§17-4`'s participant leg consumes the canonical SB-P-1.15 `EQ18-05` amendment (MC-817); its Section 21 drafting class was reconciled to `RUN` in Section 21.2 under MC-817, with activation and runtime evidence FUTURE.** None is runtime-ready.
 
 **Consumer obligations under the locked controls.**
 
@@ -835,7 +835,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 | EQ18-01, EQ18-04 | Decided (`18:FPDR-6`) |
 | EQ18-02 | Proposed: mission-owned `staff_records`. Stage 10 with the SB-P-1.12 owner |
 | EQ18-03 | Proposed: Section 7, no kernel change. Stage 10 |
-| EQ18-05 | Source resolved by the canonical SB-P-1.15 amendment (MC-817); consumed in Section 14.3; consumer correction awaiting Stage 10 exact-delta review |
+| EQ18-05 | Source resolved by the canonical SB-P-1.15 amendment (MC-817); consumed in Section 14.3. Independent exact-delta review completed with substantive notification concurrence, followed by a documentary metadata correction on this PR (MC-817); overall SB-P-1.18 Stage 10 acceptance remains HELD |
 | EQ18-06, EQ18-07 | Open; [U]. NT-PRV tests |
 | EQ18-08 | Proposed (Section 13); T3 screen |
 | EQ18-09 | Proposed key (Section 9); final with SB-P-1.16 |
