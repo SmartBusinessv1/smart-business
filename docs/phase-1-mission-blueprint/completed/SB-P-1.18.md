@@ -19,7 +19,7 @@
 | Stage 3 | Founder Decision Gate TRIGGERED; **COMPLETE and CLOSED** (MC-654). Closure record `communication/missions/SB-P-1.18/mission-control/08-stage3-founder-gate-closure.md` (blob `90ea6ad6`; PR #1100) |
 | Governing Build Plan section | Build Plan §10.7 (`docs/phase-1-mission-blueprint/smart-business-features/00_Founder_Approved_MC_and_CC_Verified_Build_Plan.md`, blob `9dfdd924b81e0eefe8f3b25a0ec2f2b78621cb2a`) |
 | Primary contracts | Contract 1 Smart Order & Delivery Assistant (`b392c8cb`); Contract 6 Staff / HR Assistant (`ebacd183`); Contract 16 Compliance Shield (`420269d8`); inherited Contract 22 §16 Location Foundation (`61e1bb91`); Global Product Completion View (`ee76d920`); Source 11 line 443 for `S11-L443-*` (`16897d6c`) |
-| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `2bbe6e227d714996bcead10385952c78283e20e8` (`18:FPDR-7` reconciliation of row `17-§9-5`; earlier blob `3402735e`, PR #1104): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
+| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `ed2ff0f99e6982a15b650b5aee09e01e9355e0fd` (MC-817 Track A verification-seed correction of row `S11-L443-1`; earlier blobs `2bbe6e227d714996bcead10385952c78283e20e8` (`18:FPDR-7` reconciliation of row `17-§9-5`) and `3402735e`, PR #1104): 769 rows — 592 `IN SCOPE`, 17 `ASSIGNED TO LATER MISSION`, 77 `DELEGATED`, 27 `NOT APPLICABLE`, 48 `OUT OF BUILD SCOPE`, 8 `UNRESOLVED FOUNDER DECISION`, 0 `ESCALATED`, 0 `ALREADY DEMONSTRATED` |
 | Founder Product Decision Records | `claude-code/11-…-18-fpdr-2.md` (`226391e2`, PR #1082); `claude-code/12-…-18-fpdr-5.md` (`2714f896`, PR #1085); `claude-code/13-…-18-fpdr-3.md` (`5c8fa449`, PR #1087); `claude-code/14-…-18-fpdr-4.md` (`32a2026f`, PR #1094); `claude-code/15-…-18-fpdr-1.md` (`76061093`, PR #1099); `claude-code/16-…-18-fpdr-6.md` (`df0c8b72`, PR #1102); `claude-code/17-…-18-fpdr-4-a.md` (`1538c4d5`, PR #1106; clarifies `18:FPDR-4` for DC-14 timing); `claude-code/18-…-18-fpdr-7.md` (`f534e25e`, PR #1108). Upstream decisions are cited with their mission namespace (`12:FPDR-1`, `12:FPDR-2`, `12:FPDR-3`, `16:FPDR-1`) |
 | Decision log | `communication/missions/SB-P-1.18/decision-log.md`, blob `8a7aa4b7`: F-01 to F-08 APPROVED — canonical, as Founder-approved at blob `56cdd935`; F-09 (`18:S8-FAR`, Stage 8 approval) added in the lock PR |
 | Mission Truth Pack | `claude-code/03-` to `09-` (Stage 2, PR #1080): derived constraints and Delta `04-…`; uncertainty register and T1–T8 screen `05-…`; learning intake `06-…`; inventory `07-…`; topology `08-…`; index `09-…` |
@@ -1098,6 +1098,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 | 0.4 | 2026-11-01 | Claude Code (Definition Actor, MC-692) | DC-14 timing reconciled to `18:FPDR-4-A`: Metadata, §§10.1, 12.3, 20.7.9, 21.3, 21.5, 21.6, 21.7 and 19. No requirement text, row, status, risk or hold changed |
 | 0.5 | 2026-11-01 | Claude Code (Definition Actor, MC-702) | MC-544 reconciled to `18:FPDR-7` for `17-§9-5` only: Metadata, §§8.16, 10.1, 15.4, 19 (one map row), 20.4.9, 20.6 B6-14, 20.7.9, 20.8 (one register row, HG/H to DH/M; totals DH 434, HG 24, risk H 100, M 382), 21.3 and 21.4. No requirement text, disposition, commitment, commercial classification or other row changed |
 | 1.0 | 2026-11-01 | Claude Code (Definition Actor, MC-712-A) | Stage 8 Founder approval (MC-711) and Blueprint Lock: banner; Metadata Lifecycle Stage, Status, Decision log, Date, Engineering Review, Mission Control Review and Blueprint Lock; Mission Snapshot stage result; Section 19 governance rows and historical-text note; file relocated from `docs/phase-1-mission-blueprint/active/` to `docs/phase-1-mission-blueprint/completed/`. Sections 1–17, the Section 19 row map, Sections 20–21, the FCTM, Founder decisions, the engineering register and every hold are unchanged. Effective on human merge and Mission Control post-merge verification |
+| 1.0.1 | 2026-11-09 | Claude Code (Definition Actor, MC-817 Track A grant, PR #1111 comment 6744490125) | Post-lock verification-metadata correction only: the `S11-L443-1` verification seed in Section 19 and Section 20.8 now reads "three Founder-approved origins" (Founder clarification, PR #1111 comment 6741589012). Current FCTM identity in Metadata and the Section 19 accounting updated to `ed2ff0f9`. No product behaviour, permission, scope, risk, row ID, frozen field (disposition, build commitment, commercial classification, mission assignment) or census changed. Not Founder-approved or locked until a Stage 8-equivalent disposition and human merge |
 
 ## 19. Governance History
 
@@ -1139,7 +1140,7 @@ Take the order the way the customer gives it. Ask when it matters, and never gue
 
 ### FCTM Row-ID to Blueprint Section Traceability
 
-This is a complete accounting of all FCTM rows (blob `2bbe6e22`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
+This is a complete accounting of all FCTM rows (blob `ed2ff0f9`), in FCTM order. It carries row IDs, dispositions, owning missions, Blueprint locations, verification seeds and Founder-decision cells exactly as in the FCTM. It restates no requirement text: the row's source pointer is in the FCTM (Source 18 §3.2 item 7).
 
 Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a `18:FPDR` decision is cited, §10.2 for rule and principle rows, §10.3 for must-not rows, §12 where a dependency code is carried, and §15 for `SCN`, `FRV`, `EXP` and `GATE` rows. Every other row maps to its Section 11 subsection.
 
@@ -1528,7 +1529,7 @@ Each `IN SCOPE` row maps to one Section 8 subsection, and also to §10.1 where a
 | 6-§15-6 | OUT OF BUILD SCOPE | SB-P-1.18 | §11.3 | — | — |
 | 6-§16 | NOT APPLICABLE | SB-P-1.18 | §11.4 | — | — |
 | 6-§17-1 | IN SCOPE | SB-P-1.18 | §8.17, §15 | GATE | — |
-| S11-L443-1 | IN SCOPE | SB-P-1.18 | §8.10, §10.1, §12 | RT: a record is created from each of the four origins; IDEM | 18:FPDR-5 |
+| S11-L443-1 | IN SCOPE | SB-P-1.18 | §8.10, §10.1, §12 | RT: a record is created from each of the three Founder-approved origins; IDEM | 18:FPDR-5 |
 | S11-L443-2 | IN SCOPE | SB-P-1.18 | §8.10, §10.1, §12 | RT: authorized review; NEG: unauthorized or autonomous review | 18:FPDR-5 |
 | S11-L443-3 | IN SCOPE | SB-P-1.18 | §8.10, §10.1, §12 | RT: correction and dispute preserve the original; NEG: destructive rewrite; IDEM | 18:FPDR-5 |
 | S11-L443-4 | IN SCOPE | SB-P-1.18 | §8.10, §10.1, §12 | RT: role-scoped and own-record views; NEG: another employee's record | 18:FPDR-5 |
@@ -2656,7 +2657,7 @@ As Blueprint §12.5. In summary:
 | 6-§14-9 | C-ACC | DH | M | EXP | R,S | B6-03, B6-24 |
 | 6-§14-10 | C-ACC | DH | M | NEG | R,S | B6-03, B6-24 |
 | 6-§17-1 | C-ACC | DA | L | GATE | R | — |
-| S11-L443-1 | C-PAY | HG | H | RT: a record is created from each of the four origins; IDEM | R,S | B6-02, B6-03, B6-07, B6-15 |
+| S11-L443-1 | C-PAY | HG | H | RT: a record is created from each of the three Founder-approved origins; IDEM | R,S | B6-02, B6-03, B6-07, B6-15 |
 | S11-L443-2 | C-PAY | DH | M | RT: authorized review; NEG: unauthorized or autonomous review | R,S | B6-02, B6-03, B6-15 |
 | S11-L443-3 | C-PAY | HG | H | RT: correction and dispute preserve the original; NEG: destructive rewrite; IDEM | R,S | B6-02, B6-03, B6-15 |
 | S11-L443-4 | C-PAY | HG | H | RT: role-scoped and own-record views; NEG: another employee's record | R,S | B6-02, B6-03, B6-15 |
