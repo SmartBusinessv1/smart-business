@@ -12,6 +12,8 @@ SCHEDULER / AI PROVIDER / EXTERNAL CHANNEL ACTIVATION: NOT AUTHORIZED
 PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 ```
 
+**PRE-PUBLICATION REVISION-STATUS NOTICE (PR #1122):** this file revision is a **PROVENANCE-ONLY CORRECTION CANDIDATE — NOT YET APPROVED, RE-LOCKED, HUMAN-MERGED OR EFFECTIVE AS THIS REVISION.** Every EQ18-05 `APPROVED — LOCKED`, `CANONICALLY PUBLISHED` or `CANONICAL AT main@8bd38d56` statement in this file describes the previously reviewed, human-merged and canonically verified EQ18-05 amendment blobs EIS `ac41034da6c73468e66aa45a6765604fa7623a6c`, Engineering Contract `815781305954d9d589c7e08f8b3b69cb28ab44d1` and Verification Checklist `251489979413a3ec440882848165b1e77987d22f` at `main@8bd38d56c8017863bce06bcbdf46649bafcfcdc0` (MC-817), not this revision; the MC-86 and MC-87 original-lock lines remain historical. This revision becomes authoritative only through its own separately recorded Source 18 Stage 10 carry-forward, Stage 11 EIS lock of the revised EIS blob and Stage 13 package re-lock of the revised Engineering Contract and Verification Checklist blobs with the unchanged Build Prompt, Founder-controlled human merge and Mission Control post-merge canonical verification. Its status is never inferred from the earlier approvals alone. When those separate records and canonical publication actually exist, they supersede the pending state stated here, and this notice remains only as the pre-publication record. Implementation Authorization remains WITHHELD, and the SB-P-1.12 PC-10 consumption, entitlement, readiness, verified identity, grant and RLS, runtime and security-test holds remain in force.
+
 ## Document Metadata
 
 | Field | Value |
