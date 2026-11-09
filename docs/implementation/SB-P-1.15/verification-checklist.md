@@ -2,15 +2,17 @@
 
 ```text
 STATUS: APPROVED — LOCKED (historical Stage 13 lock, MC-87; canonical locked blob b258156ea96c18db6a1d8f40c05ee13f0fa8bb24; effective for the original scope)
-POST-LOCK AMENDMENT EQ18-05 (MC-816): DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE
+POST-LOCK AMENDMENT EQ18-05 (MC-816; MC-817): APPROVED — LOCKED DOCUMENTARY AMENDMENT — CANONICAL AT main@8bd38d56
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
+EIS: APPROVED — LOCKED (ORIGINAL MC-86; EQ18-05 AMENDMENT LOCKED UNDER MC-817, BLOB ac41034d)
 IMPLEMENTATION PACKAGE: APPROVED — LOCKED (MC-87; effective on Founder merge and post-merge verification)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 SCHEDULER / AI PROVIDER / EXTERNAL CHANNEL ACTIVATION: NOT AUTHORIZED
 PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 ```
+
+**PRE-PUBLICATION REVISION-STATUS NOTICE (PR #1122):** this file revision is a **PROVENANCE-ONLY CORRECTION CANDIDATE — NOT YET APPROVED, RE-LOCKED, HUMAN-MERGED OR EFFECTIVE AS THIS REVISION.** Every EQ18-05 `APPROVED — LOCKED`, `CANONICALLY PUBLISHED` or `CANONICAL AT main@8bd38d56` statement in this file describes the previously reviewed, human-merged and canonically verified EQ18-05 amendment blobs EIS `ac41034da6c73468e66aa45a6765604fa7623a6c`, Engineering Contract `815781305954d9d589c7e08f8b3b69cb28ab44d1` and Verification Checklist `251489979413a3ec440882848165b1e77987d22f` at `main@8bd38d56c8017863bce06bcbdf46649bafcfcdc0` (MC-817), not this revision; the MC-86 and MC-87 original-lock lines remain historical. This revision becomes authoritative only through its own separately recorded Source 18 Stage 10 carry-forward, Stage 11 EIS lock of the revised EIS blob and Stage 13 package re-lock of the revised Engineering Contract and Verification Checklist blobs with the unchanged Build Prompt, Founder-controlled human merge and Mission Control post-merge canonical verification. Its status is never inferred from the earlier approvals alone. When those separate records and canonical publication actually exist, they supersede the pending state stated here, and this notice remains only as the pre-publication record. Implementation Authorization remains WITHHELD, and the SB-P-1.12 PC-10 consumption, entitlement, readiness, verified identity, grant and RLS, runtime and security-test holds remain in force.
 
 ## Document Metadata
 
@@ -20,7 +22,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission Name | Reminder, Daily Intelligence & Ask CFO |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `APPROVED — LOCKED` (MC-87; effective on Founder merge and post-merge verification) |
 | Author | Claude Code — Source 18 Stage 12 initial implementation package owner |
 | Authorizing record | SB-P-1.15-MC-86 (`communication/missions/SB-P-1.15/mission-control/86-stage11-eis-lock-and-stage12-documentary-authority.md`, blob `2d625f32`, §4), canonical through PR #948; Stage 12 handoff by Mission Control against `main@5c485ebb2c037047bf9fbd7d5a6470b0c7dba57d` |
@@ -28,7 +30,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Date | 2026-10-12 |
 | Execution state | **Not executed.** Every item is `PROPOSED — NOT EXECUTED`. Nothing here is evidence |
 | Next gate | Separate Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED; Phase 1 documentary readiness and suspension controls follow after canonical package lock |
-| Post-lock amendment (draft) | EQ18-05 checks NN-01 to NN-16 and preservation checks VC-AMD-01 to -03 (Section 3.1). **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE (MC-816).** All row items in Section 14.4 are unchanged |
+| Post-lock amendment | EQ18-05 checks NN-01 to NN-16 and preservation checks VC-AMD-01 to -03 (Section 3.1). **APPROVED — LOCKED documentary package amendment (MC-817 Stage 13; human-merged through PR #1121 to main@8bd38d56; reviewed blob 25148997). Every check remains PROPOSED — NOT EXECUTED.** All row items in Section 14.4 are unchanged. Status labels corrected under MC-817 (PR #1111 comment 6735879630): provenance only |
 
 ## How to Use This Checklist
 
@@ -121,9 +123,9 @@ Every permission, isolation, privilege and denial row carries at least one named
 
 SR6-01 to SR6-18 are the Stage 10 security tests of `EIS15-VER-01`, `EIS15-VER-02` and `EIS15-SEC-04`; SR6-14 to SR6-18 expect SQLSTATE `42501`, `AUTHZ_DENIED` or `PRIVILEGED_BINDING_MISSING` as specified there. A test specification is not evidence of effective privileges.
 
-### 3.1 EQ18-05 participant notification checks (draft amendment; not executed)
+### 3.1 EQ18-05 participant notification checks (EQ18-05 amendment; not executed)
 
-**DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE (MC-816).** Future checks for the draft participant-binding recipient branch of `EIS15-NTF-01`/`-03` (EIS Section 24.3). They run only after the amendment has been approved, re-locked, human-merged and canonically verified, under the SB-P-1.12 PC-10 consumption gate and in an authorized test environment.
+**Locked documentary amendment (MC-817); not executed.** Future checks for the participant-binding recipient branch of `EIS15-NTF-01`/`-03` (EIS Section 24.3). The amendment was approved, re-locked, human-merged and canonically verified under MC-817 (main@8bd38d56); that is documentary publication only. The checks still run only under the SB-P-1.12 PC-10 consumption gate and in an authorized test environment.
 
 | Check | Name | Verifies | Planned evidence class | FCTM rows | Status |
 |---|---|---|---|---|---|
@@ -1034,3 +1036,4 @@ IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 |---|---|---|---|
 | 0.1 | 2026-10-12 | Claude Code (SB-P-1.15-MC-86 §4) | Initial Stage 12 draft |
 | 0.2-D | 2026-11-07 | Claude Code (SB-P-1.15 source owner, MC-816) | EQ18-05 draft amendment: Section 3.1 checks NN-01 to NN-16 and VC-AMD-01 to -03; row items unchanged. **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE** |
+| 0.2 | 2026-11-09 | Claude Code (SB-P-1.15 source owner, MC-817, PR #1111 comment 6735879630) | Provenance labels only. Records the MC-817 S-1/S-2 correction (PR #1121 head 8a0d93e6), the Stage 13 package re-lock at blob 25148997, the human merge to main@8bd38d56 and the canonical verification. No check, row item, evidence class or status change |

@@ -2,15 +2,17 @@
 
 ```text
 STATUS: APPROVED — LOCKED (historical Stage 13 lock, MC-87; canonical locked blob 6f9516b59df738014570506b6f5f18ce7e6f547b; effective for the original scope)
-POST-LOCK AMENDMENT EQ18-05 (MC-816): DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE
+POST-LOCK AMENDMENT EQ18-05 (MC-816; MC-817): APPROVED — LOCKED DOCUMENTARY AMENDMENT — CANONICAL AT main@8bd38d56
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
+EIS: APPROVED — LOCKED (ORIGINAL MC-86; EQ18-05 AMENDMENT LOCKED UNDER MC-817, BLOB ac41034d)
 IMPLEMENTATION PACKAGE: APPROVED — LOCKED (MC-87; effective on Founder merge and post-merge verification)
 IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 SCHEDULER / AI PROVIDER / EXTERNAL CHANNEL ACTIVATION: NOT AUTHORIZED
 PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 ```
+
+**PRE-PUBLICATION REVISION-STATUS NOTICE (PR #1122):** this file revision is a **PROVENANCE-ONLY CORRECTION CANDIDATE — NOT YET APPROVED, RE-LOCKED, HUMAN-MERGED OR EFFECTIVE AS THIS REVISION.** Every EQ18-05 `APPROVED — LOCKED`, `CANONICALLY PUBLISHED` or `CANONICAL AT main@8bd38d56` statement in this file describes the previously reviewed, human-merged and canonically verified EQ18-05 amendment blobs EIS `ac41034da6c73468e66aa45a6765604fa7623a6c`, Engineering Contract `815781305954d9d589c7e08f8b3b69cb28ab44d1` and Verification Checklist `251489979413a3ec440882848165b1e77987d22f` at `main@8bd38d56c8017863bce06bcbdf46649bafcfcdc0` (MC-817), not this revision; the MC-86 and MC-87 original-lock lines remain historical. This revision becomes authoritative only through its own separately recorded Source 18 Stage 10 carry-forward, Stage 11 EIS lock of the revised EIS blob and Stage 13 package re-lock of the revised Engineering Contract and Verification Checklist blobs with the unchanged Build Prompt, Founder-controlled human merge and Mission Control post-merge canonical verification. Its status is never inferred from the earlier approvals alone. When those separate records and canonical publication actually exist, they supersede the pending state stated here, and this notice remains only as the pre-publication record. Implementation Authorization remains WITHHELD, and the SB-P-1.12 PC-10 consumption, entitlement, readiness, verified identity, grant and RLS, runtime and security-test holds remain in force.
 
 ## 1. Document Metadata
 
@@ -20,14 +22,14 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Mission Name | Reminder, Daily Intelligence & Ask CFO |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.1 |
+| Version | 0.2 |
 | Status | `APPROVED — LOCKED` (MC-87; effective on Founder merge and post-merge verification) |
 | Author | Claude Code — Source 18 Stage 12 initial implementation package owner |
 | Authorizing record | SB-P-1.15-MC-86 (`communication/missions/SB-P-1.15/mission-control/86-stage11-eis-lock-and-stage12-documentary-authority.md`, blob `2d625f32`, §4), canonical through PR #948; Stage 12 handoff by Mission Control against `main@5c485ebb2c037047bf9fbd7d5a6470b0c7dba57d` |
 | Canonical baseline | `main@5c485ebb2c037047bf9fbd7d5a6470b0c7dba57d` |
 | Date | 2026-10-12 |
 | Next gate | Separate Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED; Phase 1 documentary readiness and suspension controls follow after canonical package lock |
-| Post-lock amendment (draft) | EQ18-05 native participant-binding notification recipient, matching the draft amendment of the EIS (MC-816). **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE.** Section 7.23 lists the obligation deltas. No obligation, row mapping or link is added or removed |
+| Post-lock amendment | EQ18-05 native participant-binding notification recipient, matching the EQ18-05 amendment of the EIS (MC-816; S-1/S-2 correction MC-817). **APPROVED — LOCKED documentary package amendment (MC-817 Stage 13; human-merged through PR #1121 to main@8bd38d56; reviewed blob 81578130).** Section 7.23 lists the obligation deltas. No obligation, row mapping or link is added or removed. Status labels corrected under MC-817 (PR #1111 comment 6735879630): provenance only |
 
 ## 2. Purpose and Authority
 
@@ -140,7 +142,7 @@ Verification references name the Verification Checklist's negative-path checks (
 | `EC15-SEC-02` | `EIS15-SEC-02` | Effective-access proof, not statements | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-07, SR6-15 | 265 rows (Section 12) |
 | `EC15-SEC-03` | `EIS15-SEC-03` | Business-scoped RLS and composite references | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-01 | 329 rows (Section 12) |
 | `EC15-SEC-04` | `EIS15-SEC-04` | Function security | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-08, SR6-14, SR6-15, SR6-16, SR6-17, SR6-18 | 269 rows (Section 12) |
-| `EC15-SEC-05` | `EIS15-SEC-05` | Cross-business effective-access matrix | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-01, SR6-09, SR6-18; EQ18-05 draft: NN-01 to NN-16 | 134 rows (Section 12) |
+| `EC15-SEC-05` | `EIS15-SEC-05` | Cross-business effective-access matrix | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-01, SR6-09, SR6-18; EQ18-05: NN-01 to NN-16 | 134 rows (Section 12) |
 | `EC15-SEC-06` | `EIS15-SEC-06` | No routine platform access | `BUILD — DEPENDENCY GATED` | WS-G | P1 | `INV`, `DB` | NP-22 | `2-§14-8`, `2-§23-2`, `2-§24-8`, `4-§6-12`, `4-§10-6`, `4-§14-1`, `11-§8-8`, `11-§15-1`, `22-§23-3`, `10-§11-4`, `12-§4-2`, `12-§4-3` (12) |
 
 ### 7.3 Authorization, Capabilities, Owner-Only Actions and DC-06 (EIS Section 8)
@@ -227,14 +229,14 @@ Verification references name the Verification Checklist's negative-path checks (
 
 | Obligation | Realizes | Title | Type | Workstream | Phase | Evidence | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
-| `EC15-NTF-01` | `EIS15-NTF-01` | Request is not delivery (+ EQ18-05 draft typed recipient) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | RS-17; EQ18-05 draft: NN-01, NN-02, NN-10 | 26 rows (Section 12) |
+| `EC15-NTF-01` | `EIS15-NTF-01` | Request is not delivery (+ EQ18-05 typed recipient) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | RS-17; EQ18-05: NN-01, NN-02, NN-10 | 26 rows (Section 12) |
 | `EC15-NTF-02` | `EIS15-NTF-02` | Native state machine | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | RS-17 | 54 rows (Section 12) |
-| `EC15-NTF-03` | `EIS15-NTF-03` | Recipient revalidation (+ EQ18-05 draft participant branch) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-04; EQ18-05 draft: NN-02 to NN-09, NN-11, NN-14, NN-16 | `2-§3-9`, `2-§22-12`, `4-§15-3`, `11-§13-4`, `11-§17-2`, `11-§17-7`, `11-§19-1`, `11-§19-3`, `22-§12-1`, `22-§12-7`, `22-§21-5`, `22-§23-3`, `22-§23-5` (13) |
-| `EC15-NTF-04` | `EIS15-NTF-04` | Durable identities and de-duplication (+ EQ18-05 draft typed recipient key) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-14; EQ18-05 draft: NN-12 | 28 rows (Section 12) |
+| `EC15-NTF-03` | `EIS15-NTF-03` | Recipient revalidation (+ EQ18-05 participant branch) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-04; EQ18-05: NN-02 to NN-09, NN-11, NN-14, NN-16 | `2-§3-9`, `2-§22-12`, `4-§15-3`, `11-§13-4`, `11-§17-2`, `11-§17-7`, `11-§19-1`, `11-§19-3`, `22-§12-1`, `22-§12-7`, `22-§21-5`, `22-§23-3`, `22-§23-5` (13) |
+| `EC15-NTF-04` | `EIS15-NTF-04` | Durable identities and de-duplication (+ EQ18-05 typed recipient key) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-14; EQ18-05: NN-12 | 28 rows (Section 12) |
 | `EC15-NTF-05` | `EIS15-NTF-05` | No outbound before SB-P-1.20 | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-15 | 45 rows (Section 12) |
 | `EC15-NTF-06` | `EIS15-NTF-06` | FPDR-02 prospective-only correction notifications | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-16 | `22-§12-5`, `22-§12-6`, `22-§12-8` (3) |
 | `EC15-NTF-07` | `EIS15-NTF-07` | H-CORR boundary | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | NP-16 | `22-§12-5`, `22-§12-6`, `22-§12-8` (3) |
-| `EC15-NTF-08` | `EIS15-NTF-08` | Minimized, isolated evidence (+ EQ18-05 draft participant content limit) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | Section 14.4 row items; EQ18-05 draft: NN-13, NN-15 | `2-§22-12`, `2-§25-27`, `4-§15-3`, `11-§17-7`, `11-§19-1`, `11-§19-3`, `22-§12-7`, `22-§21-5`, `22-§23-2` (9) |
+| `EC15-NTF-08` | `EIS15-NTF-08` | Minimized, isolated evidence (+ EQ18-05 participant content limit) | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | Section 14.4 row items; EQ18-05: NN-13, NN-15 | `2-§22-12`, `2-§25-27`, `4-§15-3`, `11-§17-7`, `11-§19-1`, `11-§19-3`, `22-§12-7`, `22-§21-5`, `22-§23-2` (9) |
 | `EC15-NTF-09` | `EIS15-NTF-09` | Unknown outcome and restore safety | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | Section 14.4 row items | `11-§18-5`, `11-§18-11`, `22-§12-5`, `22-§29-10`, `22-§29-13` (5) |
 | `EC15-NTF-10` | `EIS15-NTF-10` | Honest, dignified copy | `BUILD — DEPENDENCY GATED` | WS-D | P4 | `DB`, `INT` | RS-17 | `11-§22-10` (1) |
 
@@ -380,11 +382,11 @@ Verification references name the Verification Checklist's negative-path checks (
 | `EC15-HOLD-ENGQ` | `EIS15-HOLD-ENGQ` | Engineering questions | `GATE` | Gate | P0 | `DOC`, `PROV` | Section 14.4 row items | `2-§29-1`, `2-§29-2`, `2-§29-3`, `2-§29-4`, `2-§29-5`, `2-§29-6`, `2-§29-7`, `2-§29-8`, `2-§29-9`, `2-§29-10`, `2-§29-11` (11) |
 | `EC15-HOLD-ENV` | `EIS15-HOLD-ENV` | Test environment and CI access | `GATE` | Gate | P0 | `DOC`, `PROV` | Section 14.4 row items | none — non-product environment gate (EIS §29.1) |
 
-### 7.23 EQ18-05 draft amendment — obligation deltas (MC-816; NOT APPROVED, NOT LOCKED, NOT EFFECTIVE)
+### 7.23 EQ18-05 amendment — obligation deltas (MC-816; locked under MC-817)
 
-Each delta realizes the matching draft text of the EIS. Types, workstreams, phases and row lists are unchanged; the SB-P-1.18 consumer row `1-§17-4` is outside this package's FCTM (EIS Section 29.6).
+Each delta realizes the matching EQ18-05 amendment text of the EIS. Types, workstreams, phases and row lists are unchanged; the SB-P-1.18 consumer row `1-§17-4` is outside this package's FCTM (EIS Section 29.6).
 
-| Obligation | Draft delta | Verification (FUTURE) |
+| Obligation | Delta | Verification (FUTURE) |
 |---|---|---|
 | `EC15-NTF-01` | Typed `recipient_path` with exactly one recipient column; composite business-scoped participant-binding reference; purpose `delivery.assignment` only; created only in the SB-P-1.18 assignment transaction from the assignment's bound participant; no caller-supplied recipient | NN-01, NN-02, NN-10 |
 | `EC15-NTF-03` | Participant creation-time eligibility (binding, business, current assignment, `delivery.task.read`, entitlement, readiness, epochs); governed participant read on the named path with per-target decisions; omission and `SUPPRESSED_INELIGIBLE`; no counts or metadata leakage; no path fallback | NN-02 to NN-09, NN-11, NN-14, NN-16 |
@@ -1277,3 +1279,4 @@ The eventual documentary suspension path, to be created only under separate auth
 |---|---|---|---|
 | 0.1 | 2026-10-12 | Claude Code (SB-P-1.15-MC-86 §4) | Initial Stage 12 draft |
 | 0.2-D | 2026-11-07 | Claude Code (SB-P-1.15 source owner, MC-816) | EQ18-05 draft amendment: Section 7.23 and verification cross-references on `EC15-NTF-01`, `-03`, `-04`, `-08` and `EC15-SEC-05`. **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE** |
+| 0.2 | 2026-11-09 | Claude Code (SB-P-1.15 source owner, MC-817, PR #1111 comment 6735879630) | Provenance labels only. Records the MC-817 S-1/S-2 correction (PR #1121 head 8a0d93e6), the Stage 13 package re-lock at blob 81578130, the human merge to main@8bd38d56 and the canonical verification. No obligation, mapping, verification item or Build Prompt change |
