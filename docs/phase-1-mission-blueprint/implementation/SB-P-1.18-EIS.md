@@ -2,9 +2,9 @@
 
 **PARTIAL DRAFT — MISSION CONTROL REVIEW REQUIRED — NOT CANONICAL**
 
-**Stage 9 authoring in progress. Stage 10 NOT AUTHORIZED. Stage 11 LOCK NOT AUTHORIZED. Implementation Authorization WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
+**Stage 9 draft under formal Stage 10 independent review. Stage 10 ACCEPTANCE HELD — NOT GRANTED. Stage 11 LOCK NOT AUTHORIZED. Implementation Authorization WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**
 
-This is a Source 18 Stage 9 working artifact under MC-734-D, amended in place under MC-809 (Section 22). It is not a reviewed or locked EIS, and Stage 9 is not complete. It authorizes no code, SQL, migration, provider activation, test execution, deployment or production change. `PRODUCTION MUTATION: NOT AUTHORIZED`. `MIGRATION EXECUTION: NOT AUTHORIZED`. `DELIVERY SYNC AND PUBLICATION: NOT AUTHORIZED`.
+This is a Source 18 Stage 9 working artifact under MC-734-D, amended in place under MC-809 (Section 22). It has undergone independent Stage 10 review but has not received Stage 10 acceptance or a Stage 11 EIS lock; it is not canonical, and Stage 9 draft completion is not claimed. It authorizes no code, SQL, migration, provider activation, test execution, deployment or production change. `PRODUCTION MUTATION: NOT AUTHORIZED`. `MIGRATION EXECUTION: NOT AUTHORIZED`. `DELIVERY SYNC AND PUBLICATION: NOT AUTHORIZED`.
 
 No test named here has been run. Every positive and negative test is **FUTURE**. Nothing in this file is runtime, CI, provider or specialist PASS evidence.
 
@@ -847,7 +847,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 
 ## 19. Path to Formal Stage 10 Review, Stage 10 Acceptance and Stage 11 Lock
 
-Three sequential gates apply. Each needs its own Mission Control authorization, and this draft claims none of them.
+Three sequential gates apply, each under separate Mission Control authority. Formal Stage 10 independent review under gate (a) has occurred (MC-814-R; MC-817); Stage 10 acceptance under gate (b) remains HELD, and Stage 11 EIS lock under gate (c) is NOT AUTHORIZED.
 
 - **(a) Readiness for formal Stage 10 independent review.** It may be requested with the four named unresolved documentary matters visible and fail-closed: (i) the `S11-L443-1` system-proposed overtime trigger; (ii) the `DLEG` payroll and legal rules; (iii) the `SA02-18-F03` privacy disposition; and (iv) `PQ-14`, the target-aware Cabinet selector and helper. Fail-closed behavior does not fulfil the positive obligation behind any of them. The count of four does not mean there are no other blockers. `EQ18-05` is no longer an open documentary matter: its source and consumer contract were resolved under MC-817 at the documentary level, not implemented (step 2).
 - **(b) Stage 10 acceptance.** The Stage 10 reviewer independently performs the full Source 18 §3.2 item 6 source-text completeness and disposition test, and obtains the precise source-owner and specialist findings that acceptance needs. Acceptance does not treat an unfulfilled positive obligation as satisfied.
