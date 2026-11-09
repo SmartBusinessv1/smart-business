@@ -1,7 +1,8 @@
 # SB-P-1.15 — Verification Checklist
 
 ```text
-STATUS: APPROVED — LOCKED
+STATUS: APPROVED — LOCKED (historical Stage 13 lock, MC-87; canonical locked blob b258156ea96c18db6a1d8f40c05ee13f0fa8bb24; effective for the original scope)
+POST-LOCK AMENDMENT EQ18-05 (MC-816): DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: APPROVED — LOCKED (UNCHANGED)
 IMPLEMENTATION PACKAGE: APPROVED — LOCKED (MC-87; effective on Founder merge and post-merge verification)
@@ -27,6 +28,7 @@ PRODUCTION MUTATION / DELIVERY: NOT AUTHORIZED
 | Date | 2026-10-12 |
 | Execution state | **Not executed.** Every item is `PROPOSED — NOT EXECUTED`. Nothing here is evidence |
 | Next gate | Separate Implementation Authorization: WITHHELD — IMPLEMENTATION NOT AUTHORIZED; Phase 1 documentary readiness and suspension controls follow after canonical package lock |
+| Post-lock amendment (draft) | EQ18-05 checks NN-01 to NN-16 and preservation checks VC-AMD-01 to -03 (Section 3.1). **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE (MC-816).** All row items in Section 14.4 are unchanged |
 
 ## How to Use This Checklist
 
@@ -118,6 +120,35 @@ Every permission, isolation, privilege and denial row carries at least one named
 | SR6-18 | Cross-business and cross-scope calls through privileged functions are denied with `AUTHZ_DENIED` | `EC15-SEC-04`, `EC15-SEC-05` | `DB`, `INT` | 275 rows (Section 14.4) | PROPOSED — NOT EXECUTED |
 
 SR6-01 to SR6-18 are the Stage 10 security tests of `EIS15-VER-01`, `EIS15-VER-02` and `EIS15-SEC-04`; SR6-14 to SR6-18 expect SQLSTATE `42501`, `AUTHZ_DENIED` or `PRIVILEGED_BINDING_MISSING` as specified there. A test specification is not evidence of effective privileges.
+
+### 3.1 EQ18-05 participant notification checks (draft amendment; not executed)
+
+**DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE (MC-816).** Future checks for the draft participant-binding recipient branch of `EIS15-NTF-01`/`-03` (EIS Section 24.3). They run only after the amendment has been approved, re-locked, human-merged and canonically verified, under the SB-P-1.12 PC-10 consumption gate and in an authorized test environment.
+
+| Check | Name | Verifies | Planned evidence class | FCTM rows | Status |
+|---|---|---|---|---|---|
+| NN-01 | Member reads through the membership path while a participant request exists for the same person — expected: Not returned; no path union | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-02 | Person holding both paths in one business reads with no path named, or names the other path — expected: `authority_path_required` or not returned; no fallback | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-03 | Same person bound in business A reads under business B — expected: Nothing from A; equivalent outward denial (SB-P-1.12 PC-12) | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-04 | Delivery reassigned from binding X to binding Y — expected: X's prior request becomes `SUPERSEDED` and invisible. If Y passes the current `EIS15-NTF-03` creation checks, exactly one new logical request is created for Y; otherwise no Y request is written and the governed command returns the fail-closed recipient outcome | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-05 | Binding revoked, then read; read racing revocation — expected: Nothing after committed revocation; same outward shape as non-existent; precise reason in audit only | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-06 | Pending, expired (168 h) or consumed invitation; unbound participant record — expected: No request created; merchant-visible `NTF_NO_VERIFIED_RECIPIENT`; denial, not fulfilment | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-07 | Entitlement missing, expired or suspended (PC-06; ENT-1 held) — expected: No creation; display suppressed; pending-invitation retention not decided | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-08 | Readiness not met (PC-07) — expected: No participant request; route returns `participant_path_not_ready` | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-09 | Unread counts, badges, cursors and empty states while hidden requests exist — expected: Identical to when none exist (PC-05) | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-10 | Caller supplies recipient, binding identifier, email or invitation reference at creation — expected: Rejected or ignored; recipient taken only from the assignment | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-11 | Direct table read, unlisted RPC or target-less `authz.can` for a participant — expected: Denied; capability source (c) never allows without a named target | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-12 | Duplicate assignment event or retry — expected: For an eligibility-approved assignment event, duplicate delivery or retry yields one logical request; for an event denied by current recipient eligibility, retries remain at zero requests | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-13 | Payload and log inspection — expected: Task reference only; no intended email, invitation secret or reference, Owner or financial data, or other deliveries | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-14 | Different signed-in person with the same email but no binding — expected: Nothing visible | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-15 | Outbound and creation-response copy inspection for participant requests — expected: No channel state, provider client, callback or send; copy never claims delivery; a creation response containing "appears", "visible", "received", "acknowledged", "sent" or "delivered" without the corresponding governed state fails the test | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+| NN-16 | Business deleted or person deactivated — expected: Nothing created or displayed | `EC15-NTF-01`, `EC15-NTF-03`, `EC15-NTF-04`, `EC15-NTF-08`, `EC15-SEC-05` | `DB`, `INT`, `AUDIT` | SB-P-1.15 rows of `EC15-NTF-01`/`-03` (unchanged); consumer row SB-P-1.18 `1-§17-4` (not in this FCTM) | PROPOSED — NOT EXECUTED |
+
+| Item | Check | Planned evidence class | Supports | Status |
+|---|---|---|---|---|
+| VC-AMD-01 | All 694 Section 14.4 row items, their obligations, evidence classes, NP, SR6 and RS references are unchanged from locked blob `b258156e` | `REPO` | Preservation | PROPOSED — NOT EXECUTED |
+| VC-AMD-02 | The amended EIS keeps 147 requirements and 13,248 row links, and the Engineering Contract keeps 147 obligations, by set comparison with the locked blobs | `REPO` | Preservation | PROPOSED — NOT EXECUTED |
+| VC-AMD-03 | No provider, channel, OTP, membership, role default or participant capability is introduced; `NTF_NO_VERIFIED_RECIPIENT` remains a denial only | `REPO`, `DOC` | `EC15-NTF-01`, `EC15-NTF-03` | PROPOSED — NOT EXECUTED |
 
 ## 4. Named Runtime Scenarios
 
@@ -1002,3 +1033,4 @@ IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-10-12 | Claude Code (SB-P-1.15-MC-86 §4) | Initial Stage 12 draft |
+| 0.2-D | 2026-11-07 | Claude Code (SB-P-1.15 source owner, MC-816) | EQ18-05 draft amendment: Section 3.1 checks NN-01 to NN-16 and VC-AMD-01 to -03; row items unchanged. **DRAFT — NOT APPROVED — NOT LOCKED — NOT EFFECTIVE** |
