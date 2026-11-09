@@ -24,7 +24,7 @@ No test named here has been run. Every positive and negative test is **FUTURE**.
 | Founder decisions | `18:FPDR-1` to `-7` and `18:FPDR-4-A` (F-01 to F-08); consumed through SB-P-1.12 EIS v0.5: SB-P-1.12 Founder Decision Record 10 (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours; blob `c93ca933`) and Founder Decision Record 11 (P-1 evidence timing; blob `c77f8a5f`) |
 | Candidate requirements | 137 (`EIS18-*`). Planning identifiers, renumberable until lock |
 | Baseline | Drafted at `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`; reconciled under MC-809 against `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`. The PR #1111 base stays pinned to the older `main` (Section 22) |
-| Next gate | Mission Control inspection; formal Stage 10 independent review only by separate authorization under Section 19 gate (a), with five documentary holds carried. Stage 10 acceptance and Stage 11 lock require their separate Section 19 gates (b) and (c). |
+| Next gate | Mission Control inspection. Formal Stage 10 independent review has occurred under Section 19 gate (a) (MC-814-R; MC-817 exact-delta review), with four unresolved documentary matters carried. `EQ18-05` source and consumer contract are resolved under MC-817 at the documentary level, not implemented. Stage 10 acceptance (HELD) and Stage 11 lock require their separate Section 19 gates (b) and (c). |
 
 ## 2. Purpose, Authority and How to Read
 
@@ -607,7 +607,7 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-HLD-DLEG` | UQ | `DLEG`: no legal or calculation claim; recording only. | 6 |
 | `EIS18-HLD-DC13` | FC | DC-13: conditional documentary T6 only (MC-701). | 5 |
 | `EIS18-HLD-DC14` | FC | DC-14: conditional documentary T6 only (MC-699); PROVISIONAL — PROFESSIONAL VALIDATION PENDING. | 1 |
-| `EIS18-NTF-01` | UQ | **Participant assignment notification (`EQ18-05` source resolved, MC-817; Section 14.3).** Consumes the canonical SB-P-1.15 amendment (`ac41034d`): `EIS15-NTF-01`, `-03`, `-04`, `-08`, `-10` and `EIS15-AUTHZ-07`. **Positive obligation:** when a delivery is assigned to a participant, the assignment command (`EIS18-EXT-04`), inside its own transaction and after its own kernel decision, records one native request with `recipient_path` `participant_binding` and purpose `delivery.assignment`. The recipient is the assignment's current bound participant, derived server-side; a caller-supplied recipient, binding identifier, email or invitation reference is never accepted. **Creation checks:** an accepted, current binding; an `active` business and person; the current object assignment to that binding; `delivery.task.read` registered and current for that target (PC-05); entitlement (PC-06); readiness (PC-07); current authority epochs; the recipient defined by SB-P-1.15 (PC-09). If any check fails, zero requests are written and the merchant sees `NTF_NO_VERIFIED_RECIPIENT`: a denial or hold, never fulfilment (MC-734 R4). **Identity:** one logical request per eligible assignment event or version and recipient; retries converge, and a denied event stays at zero. Reassignment makes the prior request `SUPERSEDED` and creates one for the new participant only if it passes the same checks. Revocation ends eligibility at the next evaluation. **Display:** the participant sees a request only through the SB-P-1.15 governed participant read, on the one named path (F-OVL Option B), with a per-target decision under `delivery.task.read`. Counts, badges, cursors and empty states reflect shown items only, and denials are equivalent (PC-12). No path union, fallback, membership substitution or Owner intelligence. Content is the task reference only (`EIS18-EXT-04`). **Recorded is not delivered:** a recorded request is not display, acknowledgement or delivery. Merchant copy states only that a native notification request was recorded for the verified participant path, and that Smart Business sends nothing through an external channel (`EIS15-NTF-10`). No membership, role default, new capability, channel, provider or OTP. Activation-gated (`EIS18-EXT-08`, PC-10). | 1 |
+| `EIS18-NTF-01` | AF/TR | **Participant assignment notification (`EQ18-05` source resolved, MC-817; Section 14.3).** Consumes the canonical SB-P-1.15 amendment (`ac41034d`): `EIS15-NTF-01`, `-03`, `-04`, `-08`, `-10` and `EIS15-AUTHZ-07`. **Positive obligation:** when a delivery is assigned to a participant, the assignment command (`EIS18-EXT-04`), inside its own transaction and after its own kernel decision, records one native request with `recipient_path` `participant_binding` and purpose `delivery.assignment`. The recipient is the assignment's current bound participant, derived server-side; a caller-supplied recipient, binding identifier, email or invitation reference is never accepted. **Creation checks:** an accepted, current binding; an `active` business and person; the current object assignment to that binding; `delivery.task.read` registered and current for that target (PC-05); entitlement (PC-06); readiness (PC-07); current authority epochs; the recipient defined by SB-P-1.15 (PC-09). If any check fails, zero requests are written and the merchant sees `NTF_NO_VERIFIED_RECIPIENT`: a denial or hold, never fulfilment (MC-734 R4). **Identity:** one logical request per eligible assignment event or version and recipient; retries converge, and a denied event stays at zero. Reassignment makes the prior request `SUPERSEDED` and creates one for the new participant only if it passes the same checks. Revocation ends eligibility at the next evaluation. **Display:** the participant sees a request only through the SB-P-1.15 governed participant read, on the one named path (F-OVL Option B), with a per-target decision under `delivery.task.read`. Counts, badges, cursors and empty states reflect shown items only, and denials are equivalent (PC-12). No path union, fallback, membership substitution or Owner intelligence. Content is the task reference only (`EIS18-EXT-04`). **Recorded is not delivered:** a recorded request is not display, acknowledgement or delivery. Merchant copy states only that a native notification request was recorded for the verified participant path, and that Smart Business sends nothing through an external channel (`EIS15-NTF-10`). No membership, role default, new capability, channel, provider or OTP. Activation-gated (`EIS18-EXT-08`, PC-10). | 1 |
 | `EIS18-HLD-PQ14` | UQ | `PQ-14`: object-scoped Cabinet set reads (search, listing, conversational retrieval) need a target-aware helper accepted under SB-P-1.12; until then a direct request for one document is the fail-closed interim path. Not a narrowing. | 8 |
 
 ## 13. Attendance Mechanism Under MC-699 (DC-14)
@@ -699,7 +699,7 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 - **Recorded is not delivered.** A recorded request, a governed display, an acknowledgement and an outward delivery are distinct. No out-of-app delivery exists in this mission (`EIS15-NTF-05`, `DNTF`).
 - **Not permitted.** A membership, role default, new participant capability, channel, provider or OTP; a path union or fallback; a reduced row.
 - **Still held.** Implementation and the SB-P-1.12 PC-10 consumption gate (C-4, PK-0; PR #1120); entitlement (`DENT`, ENT-1); readiness (`EIS18-EXT-08`); grants and RLS evidence; all runtime evidence. SB-P-1.15 NN-01 to NN-16, NT-EXT-06 and NT-NTF-01 are FUTURE.
-- **Traceability.** `1-§17-4` stays `IN SCOPE` with its existing links. Its Section 21 drafting class stays `DOC` as recorded under MC-809 and is not recounted under MC-817.
+- **Traceability.** `1-§17-4` stays `IN SCOPE` with its existing links. Its Section 21 drafting class is `RUN`: activation-gated (`EIS18-EXT-08`, PC-10), with runtime evidence FUTURE. It is not `DOC`, and nothing is delivered.
 - **Evidence class.** Contract [S] consumed; runtime [FUT].
 
 ### 14.4 Other holds
@@ -849,14 +849,14 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 
 Three sequential gates apply. Each needs its own Mission Control authorization, and this draft claims none of them.
 
-- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the five named documentary holds visible and fail-closed: `EQ18-05` (source resolved by the canonical SB-P-1.15 amendment; consumer correction awaiting Stage 10 exact-delta review); the `S11-L443-1` system-proposed trigger; the `DLEG` calculation; `SA02-18-F03` photo and signature; and `PQ-14` with the upstream selector unknown. Fail-closed behavior does not fulfil the positive obligation behind any of them.
+- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the four named unresolved documentary matters visible and fail-closed: (i) the `S11-L443-1` system-proposed overtime trigger; (ii) the `DLEG` payroll and legal rules; (iii) the `SA02-18-F03` privacy disposition; and (iv) `PQ-14`, the target-aware Cabinet selector and helper. Fail-closed behavior does not fulfil the positive obligation behind any of them. The count of four does not mean there are no other blockers. `EQ18-05` is no longer an open documentary matter: its source and consumer contract were resolved under MC-817 at the documentary level, not implemented (step 2).
 - **(b) Stage 10 acceptance.** The Stage 10 reviewer independently performs the full Source 18 §3.2 item 6 source-text completeness and disposition test, and obtains the precise source-owner and specialist findings that acceptance needs. Acceptance does not treat an unfulfilled positive obligation as satisfied.
 - **(c) Stage 11 EIS lock.** Only after every review blocker is resolved or given an explicit, valid Source 18 disposition. Where neither is possible, the genuine mandatory earlier-stop applies.
 
 Steps 1 to 6 are the substantive work that gates (b) and (c) depend on. None is waived, reclassified or preapproved by gate (a).
 
 1. **SB-P-1.12: done at documentary level (MC-809).** v0.5 is locked; Section 14 now specifies the consumer path. Remaining: field and code names fixed by the SB-P-1.12 package (C-4, PK-0, PC-10) and ENT-1.
-2. **SB-P-1.15: done at documentary level (MC-817).** The canonical `EQ18-05` amendment (`ac41034d`, `main@8bd38d56`) is consumed in Section 14.3, `EIS18-NTF-01` and `1-§17-4`. Remaining: Stage 10 exact-delta review of this consumer correction; implementation and runtime evidence under PC-10.
+2. **SB-P-1.15: done at documentary level (MC-817).** The canonical `EQ18-05` amendment (`ac41034d`, `main@8bd38d56`) is consumed in Section 14.3, `EIS18-NTF-01` and `1-§17-4`. The Stage 10 exact-delta review gave substantive concurrence (MC-817); Stage 10 acceptance remains HELD. Remaining: implementation and runtime evidence under PC-10.
 3. **Qualified inputs:**
    - Payroll and overtime validation settles `EIS18-PAY-03` and `EIS18-OVT-02`, including the `S11-L443-1` trigger.
    - The `SA02-18-F03` assessment settles `EIS18-PRF-03`.
@@ -897,7 +897,7 @@ Generated from the requirement selectors and validated against FCTM blob `2bbe6e
 | Candidate requirements; requirements with no FCTM row (orphans) | 137; 0 |
 | Row-to-requirement links; per row minimum / maximum | 5591; 2 / 22 |
 | §20.8 census from the row data | DA 115, DH 434, HG 24, DI 19; H 100, M 382, L 110 |
-| Drafting class | `NOW` 441; `RUN` 146; `DOC` 5 (`1-§17-4` participant leg plus 4); `BLK` 0. Plus 5 activation-gated external legs (flag `X`) inside `NOW` and `RUN` |
+| Drafting class | `NOW` 441; `RUN` 147; `DOC` 4; `BLK` 0. Plus 5 activation-gated external legs (flag `X`) inside `NOW` and `RUN` |
 | Source pointers checked against pinned blobs (mechanical text match) | 587 of 592 match; the 5 `S11-L443-*` facets use descriptive pointers and were checked at Source 11 line 443 (`- overtime records`) |
 | FCTM, Blueprint, Founder-record or upstream changes | 0 |
 | Workstream requirements with no dedicated object, command, reader or tool (principle or acceptance-record requirements, enforced by rule and test) | 18: `PRN-01`, `PRF-04`, `OFD-04`, `OFD-06`, `PRN-02`, `HFD-01`, `HPR-01`, `PRN-03`, `CPR-01`, `CFD-01`, `ACC-01`, `ACC-02`, `ACC-03`, `ACC-04`, `ACC-05`, `EXT-01`, `EXT-02`, `EXT-08` |
@@ -1068,7 +1068,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `1-§17-1` | RULE | C-OFD | DH | M | INSP | NOW |  | OFD-01, SEC-02, VER-04, HLD-D15 |
 | `1-§17-2` | OBL | C-OFD | DH | M | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15 |
 | `1-§17-3` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
-| `1-§17-4` | OBL | C-OFD | DI | H | RT | DOC |  | OFD-01, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, NTF-01 |
+| `1-§17-4` | OBL | C-OFD | DI | H | RT | RUN |  | OFD-01, EXT-01, EXT-03, EXT-04, EXT-05, EXT-06, EXT-07, EXT-08, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, NTF-01 |
 | `1-§17-5` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
 | `1-§17-6` | OBL | C-OFD | HG | H | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15, HLD-D20, HLD-DNTF |
 | `1-§17-7` | OBL | C-OFD | DH | M | RT | NOW |  | OFD-01, SEC-02, MIG-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, HLD-D15 |
@@ -1650,7 +1650,7 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `EIS18-HLD-DLEG` | UQ | 6 | `6-§3-6`, `6-§8-2`, `S11-L443-1`, `S11-L443-3`, `S11-L443-4`, `22-§16-6` |
 | `EIS18-HLD-DC13` | FC | 5 | `1-§5-29`, `1-§7-1`, `1-§7-2`, `1-§7-4`, `1-§7-5` |
 | `EIS18-HLD-DC14` | FC | 1 | `6-§5-2` |
-| `EIS18-NTF-01` | UQ | 1 | `1-§17-4` |
+| `EIS18-NTF-01` | AF/TR | 1 | `1-§17-4` |
 | `EIS18-HLD-PQ14` | UQ | 8 | `16-§10-2`, `16-§10-3`, `16-§11-2`, `16-§11-3`, `16-§13-2`, `16-§17-3`, `16-§20-6`, `16-§20-7a` |
 
 ### 21.4 The 177 rows outside `IN SCOPE` (preserved)
@@ -1700,6 +1700,19 @@ Amended in place, one file, under MC-809. No requirement text of a locked source
 | NT-NTF-01 and NT-EXT-06 expectations aligned to SB-P-1.15 NN-01 to NN-16 | Section 16.2 |
 | `EQ18-05` status updated; Section 19 step 2 status and gate (a) annotation | Sections 18, 19 |
 
-**PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`; canonical `main` is now `6a5b8b83`. This file is absent on both, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
+**MC-817 classification and hold-count correction (2026-11-09).** Amended in place, one file, under the MC-817 exact metadata correction grant ([PR #1111 comment 6735515653](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6735515653)), which disposes the MC-817 Stage 10 exact-delta review ([comment 6735475510](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6735475510)). EIS drafting-class and basis metadata only; the FCTM is frozen and unchanged. No row ID, requirement ID, link or notification behavior changed.
 
-**STOP FOR MISSION CONTROL.** This partial draft is not reviewed, not canonical and not a Stage 9 completion claim. Stage 10, Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.5 is APPROVED — LOCKED as a documentary contract; the G1/G2 implementation and the PR #1120 v1.1-D package remain unactivated/unlocked respectively. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
+| Change | Where |
+|---|---|
+| `EIS18-NTF-01` basis `UQ` → `AF/TR` | Sections 12, 21.3 |
+| `1-§17-4` drafting class `DOC` → `RUN` | Section 21.2 |
+| Drafting-class census `NOW` 441, `RUN` 146, `DOC` 5 → `NOW` 441, `RUN` 147, `DOC` 4; `BLK` 0 unchanged | Section 21.1 |
+| Five → four unresolved documentary matters; `EQ18-05` recorded as resolved at the documentary level, not implemented | Sections 1, 19 |
+| `1-§17-4` traceability wording aligned to `RUN` | Section 14.3 |
+| Current canonical identity and STOP text corrected | Section 22 |
+
+**Review status.** Formal Stage 10 independent review has occurred: MC-814-R ([comment 6708809233](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6708809233)) and the MC-817 exact-delta review above. Stage 10 **acceptance remains HELD**. Stage 11 and implementation are NOT AUTHORIZED. The records above for MC-809, MC-811 and the first MC-817 correction are history and are not rewritten.
+
+**PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`. Canonical `main` was `6a5b8b83` at MC-809 and is `8bd38d56c8017863bce06bcbdf46649bafcfcdc0` at this correction. This file is absent on all three, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
+
+**STOP FOR MISSION CONTROL.** This partial draft is not canonical and not a Stage 9 completion claim. Formal Stage 10 independent review has occurred; Stage 10 acceptance remains HELD. Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.5 is APPROVED — LOCKED as a documentary contract; the G1/G2 implementation and the PR #1120 v1.1-D package remain unactivated/unlocked respectively. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
