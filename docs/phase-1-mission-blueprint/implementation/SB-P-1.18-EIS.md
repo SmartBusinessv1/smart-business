@@ -18,13 +18,13 @@ No test named here has been run. Every positive and negative test is **FUTURE**.
 | Status | `PARTIAL DRAFT — MISSION CONTROL REVIEW REQUIRED — NOT CANONICAL` |
 | Author | Claude Code (Stage 9 EIS author; also author of Stages 2–7 and the Stage 8 lock PR; not independent review) |
 | Authorization | MC-734-D ([PR #1110 comment 6602278637](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602278637)), single-use, one draft file; MC-733 authoring basis ([comment 6602204422](https://github.com/SmartBusinessv1/smart-business/pull/1110#issuecomment-6602204422)); amended under MC-809 ([PR #1111 comment 6706451975](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6706451975)), single-use, this file only |
-| Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.18.md`, blob `a7e0266e5e3bf2e2e2c6abce1ecd4f7b98b44d33` (Stage 8 `APPROVED — LOCKED`) |
+| Related Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.18.md`, blob `f9bfd0a2f6995f9956c76425fef3bff673cc7266` (Stage 8 `APPROVED — LOCKED`; Track A post-lock verification-seed correction, PR #1123, MC-817). Earlier blob `a7e0266e5e3bf2e2e2c6abce1ecd4f7b98b44d33` is the Stage 8 lock identity and is historical |
 | Stage 8 record | `communication/missions/SB-P-1.18/mission-control/09-stage8-founder-approval-and-blueprint-lock-record.md` (`18:S8-FAR`) |
-| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `2bbe6e227d714996bcead10385952c78283e20e8`: 769 rows, 592 `IN SCOPE` (frozen) |
-| Founder decisions | `18:FPDR-1` to `-7` and `18:FPDR-4-A` (F-01 to F-08); consumed through SB-P-1.12 EIS v0.5: SB-P-1.12 Founder Decision Record 10 (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours; blob `c93ca933`) and Founder Decision Record 11 (P-1 evidence timing; blob `c77f8a5f`) |
-| Candidate requirements | 137 (`EIS18-*`). Planning identifiers, renumberable until lock |
+| Canonical FCTM | `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`, blob `ed2ff0f99e6982a15b650b5aee09e01e9355e0fd`: 769 rows, 592 `IN SCOPE` (frozen fields unchanged; Track A verification-seed correction of row `S11-L443-1`, PR #1123). Earlier blob `2bbe6e227d714996bcead10385952c78283e20e8` is historical |
+| Founder decisions | `18:FPDR-1` to `-7`, `18:FPDR-4-A` and the supplementary `18:FPDR-8` (F-01 to F-08, F-10; `18:FPDR-8` canonical through PR #1124 and status-reconciled through PR #1125); consumed through SB-P-1.12 EIS v0.5: SB-P-1.12 Founder Decision Record 10 (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours; blob `c93ca933`) and Founder Decision Record 11 (P-1 evidence timing; blob `c77f8a5f`) |
+| Candidate requirements | 140 (`EIS18-*`). Planning identifiers, renumberable until lock |
 | Baseline | Drafted at `main@1c4ecf3494b2ff866018ac957ff486c150f4cd69`; reconciled under MC-809 against `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`. The PR #1111 base stays pinned to the older `main` (Section 22) |
-| Next gate | Mission Control inspection. Formal Stage 10 independent review has occurred under Section 19 gate (a) (MC-814-R; MC-817 exact-delta review), with four unresolved documentary matters carried. `EQ18-05` source and consumer contract are resolved under MC-817 at the documentary level, not implemented. Stage 10 acceptance (HELD) and Stage 11 lock require their separate Section 19 gates (b) and (c). |
+| Next gate | Mission Control inspection. Formal Stage 10 independent review has occurred under Section 19 gate (a) (MC-814-R; MC-817 exact-delta review), with four unresolved documentary matters carried; the first, the `S11-L443-1` system-proposed trigger, is now specified under `18:FPDR-8` (MC-819) and awaits Stage 10 exact-delta review. `EQ18-05` source and consumer contract are resolved under MC-817 at the documentary level, not implemented. Stage 10 acceptance (HELD) and Stage 11 lock require their separate Section 19 gates (b) and (c). |
 
 ## 2. Purpose, Authority and How to Read
 
@@ -73,6 +73,9 @@ Requirement text stays in the source contracts; this draft cites rows (Source 18
 | SB-P-1.12 v0.5 provenance [F] [MC] | Founder Decision Record 10 `communication/missions/SB-P-1.12/founder/10-g1g2-participant-binding-founder-product-decision-record.md` (`c93ca933ea014447516505c9427e278e0c24ce26`); Founder Decision Record 11 `…/11-p1-verified-identity-evidence-timing-founder-clarification.md` (`c77f8a5f906d242248bfdb81f19cec025802ef9b`); Stage 10 Record 73 (`41a71bca`) and Stage 11 Record 74 (`34aea800`); MC-802 ([PR #1111 comment 6704673906](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6704673906)) |
 | Upstream candidates **not relied on** [NC] | SB-P-1.14 post-lock candidate on `main` (blob `8fb3e8d3`, MC-739-C) and SB-P-1.17 candidate (blob `6f85e404`, MC-739-S, `EIS17-STK-10`). Each header keeps its locked predecessor authoritative: `7dfad7b5` and `5d681b0c`, cited above |
 | SB-P-1.12 package | v1.1-D draft at PR #1120: not a source for this EIS and not evidence of package readiness (C-4, PK-0) |
+| SB-P-1.18 Founder decisions [F] | `18:FPDR-5`, `communication/missions/SB-P-1.18/claude-code/12-stage3-founder-product-decision-record-18-fpdr-5.md` (`2714f896dc4669b2cd4d20e2de90a8c584b9b4b4`); supplementary `18:FPDR-8`, `…/claude-code/19-stage10-supplementary-founder-product-decision-record-18-fpdr-8.md` (`03fe9ac8548d983d30e447ac9bee8aaa4534fbd6`), canonical through PR #1124 (`4f6700c3`) and status-reconciled through PR #1125 at `main@cda6df55796aa1ba200b248f2bdd1a96178ecbd2` (MC-817, MC-818). `18:FPDR-8` supplements and does not supersede `18:FPDR-5` |
+| Contracts for the overtime flow | C6 `ebacd1838ec709241c07d3ab911377b6284b90d2` §4–§10; C21 `f4a05d5c3aa76f70f0bdea0a83acdb7d7e61b36d` §4–§8, §12, §17–§20 |
+| Q-6 specialist finding [SP] | Security & Permissions Architecture ([PR #1111 comment 6746975626](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6746975626)), accepted as documentary design input ([comment 6748169515](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6748169515)) |
 | Rulings | MC-734 R1–R5 (Section 15); MC-809 (Section 22) |
 
 ## 4. Implementation Principles
@@ -149,6 +152,9 @@ Registry entries under `EIS-KER-03`, with object scope as a kernel input (`EIS-K
 | `attendance.correction.review`, `leave.review` | Staff record | Grant | No | AI |
 | `overtime.record.create_own`, `overtime.read_own` | Own record | — | Own, if linked | — |
 | `overtime.record.create`, `overtime.review`, `overtime.correct`, `overtime.read` | Staff record | Grant | No | AI as reviewer |
+| `overtime.flag.read` | Staff record; neutral flag projection only | Grant | **No** | AI as authority; inference from `attendance.read` or `staff.record.read` |
+| `overtime.system_proposal.initiate` | Staff record, with a current flag | Grant | **No** | AI, automation rule, background job; a holder of only `overtime.record.create` |
+| `overtime.feature.opt_in` | Business | **Never** (Owner only) | **Never** | Any delegate, automation or support path |
 | `payroll_support.read`, `payroll_support.draft` | Business | Grant | No | Employee; Owner-intelligence inference |
 | `compliance.record.manage`, `compliance.record.read`, `compliance.date.confirm`, `compliance.renewal.record` | Record | Grant | No | Support without `EIS-SUP-01` |
 | `compliance.task.read` | **Specific task** | Grant | Grant, for that task | Broad document browsing |
@@ -162,6 +168,10 @@ Registry entries under `EIS-KER-03`, with object scope as a kernel input (`EIS-K
 - `EIS-KER-04` grants attach to a **membership** and are not extended. The membership catalogue above gives a participant nothing.
 - A grant validator refuses `order.stock.override_negative` for an Employee role. **EQ18-13** (`order.return.confirm`) and **EQ18-14** (override composition) are proposals for SA-03 and the SB-P-1.12 owner at Stage 10.
 - The mapping from these names to an `authz.authorize` `action` value is `UNKNOWN` upstream (`EIS18-CAP-01`).
+- **Overtime flag read (`EIS18-OVT-02`; Q-6 finding §Q-6.1).** This draft selects a **distinct narrow capability**, `overtime.flag.read`, rather than an all-of composite of shift-read and attendance-read. It is separately delegable and auditable under `EIS-KER-04`; it returns only the minimal neutral projection, so it never implies raw shift or attendance read, payroll data or Owner intelligence; and it avoids composite predicates that must each pass for the same target. A flag's evidence references open only through the reader's own `staff.record.read` and `attendance.read` for that target.
+- **Initiation is not creation (`EIS18-OVT-02`; §Q-6.2).** `overtime.system_proposal.initiate` is separate from `overtime.record.create`. `overtime.propose_system` also requires a current `overtime.flag.read` decision for the same target and fixes the origin to `system_proposed`.
+- **Opt-in is Owner-only (`EIS18-OVT-04`; `18:FPDR-8` F).** `overtime.feature.opt_in` is Owner-reserved and recorded as non-delegable in the registry (`TR`). Every overtime-flow capability above also requires the Staff/HR entitlement (`EIS-KER-05`) **and** a current opt-in.
+- **Reviewer rule (`EIS18-OVT-03`; `18:FPDR-8` A).** An Owner may review a draft they initiated. A Manager may never review a draft they initiated; a Manager-initiated draft is reviewed by the Owner or by another holder of `overtime.review` scoped to that staff record. No Manager reviews another Manager's draft without that scoped grant.
 
 ### 7.1 Delivery Staff participant capabilities (SB-P-1.12 v0.5 PC-05)
 
@@ -219,15 +229,18 @@ Every object has `business_id`, composite references `(business_id, id)`, `creat
 | Object | Key fields | Rules | Realizes |
 |---|---|---|---|
 | `staff_records` | `display_name`, `work_role_label`, `status`, `linked_membership_id` (nullable) | Minimum necessary. **No KYC or national-ID field** | `EIS18-HR-01` |
-| `staff_shifts` | `staff_record_id`, `local_start`, `local_end`, `tz_version`, `source_doc_ref`, `state` | `EIS15-TZ-01` | `EIS18-HR-04` |
+| `staff_shifts` | `staff_record_id`, `version`, `local_start`, `local_end`, `tz_version`, `source_doc_ref`, `state`, `approval_state`, `approved_by`, `approved_at` | `EIS15-TZ-01`. A version is immutable once approved; a change creates a new version. `approval_state` is `approved` only through `staff.shift.save_and_approve` for a manual version or `roster.confirm_import` for an imported row. An unapproved or superseded version never supports an overtime flag (`18:FPDR-8` B, R-c) | `EIS18-HR-04`, `-OVT-02` |
 | `attendance_events` | `staff_record_id`, `event_type`, `mechanism`, `actor`, `occurred_at`, `result`, `site_id`, `idempotency_key` | Append-only. Holds result, timestamp, site and audit fact; **no coordinate** (A2). `mechanism` in `qr`, `qr_geofence`, `manager_recorded` | `EIS18-ATT-01`, `-ATT-02` |
 | `attendance_sites`, `attendance_qr_tokens` | Site policy; token `scope`, `expires_at`, `consumed_at` | Business opt-in. Radius, rotation and replay window `TBD` (EQ18-10) | `EIS18-ATT-02`, `-ATT-03` |
 | `attendance_context_records` | `event_id`, `kind`, `reason`, `actor`, `state` | `kind` in `absence`, `leave`, `correction`, `shift_change`. Original event untouched | `EIS18-CTX-01` |
 | `attendance_correction_requests` | `event_id`, `requested_by`, `reason`, `state`, `reviewed_by` | Own record only | `EIS18-CTX-01` |
 | `leave_records` | `staff_record_id`, `span`, `state`, `decided_by` | Linked context | `EIS18-CTX-01` |
-| `overtime_records` | `staff_record_id`, `origin`, `disputed`, `evidence_refs`, `state`, `created_by` | `origin` in `manual_report`, `manager_entry`, `system_proposed`. **No hours-derived or pay field**. `evidence_refs` cite shift and attendance only as evidence. `system_proposed` has no effect until reviewed | `EIS18-OVT-01`, `-OVT-02` |
+| `overtime_records` | `staff_record_id`, `origin`, `disputed`, `evidence_refs`, `state`, `created_by`; for `system_proposed` also `flag_id`, `evidence_version`, `initiated_by`, `initiation_binding_id` | `origin` in `manual_report`, `manager_entry`, `system_proposed`: three origins; disputed is a condition. **No hours-derived or pay field**. `evidence_refs` cite shift and attendance only as evidence. A `system_proposed` record has no effect until reviewed; its `state` adds `revalidation_required` and `frozen`. At most one `system_proposed` record in `pending_review` or `revalidation_required` per `evidence_version` (unique partial constraint). Manual and manager records are never merged into it | `EIS18-OVT-01`, `-OVT-02`, `-OVT-04` |
 | `overtime_review_events` | `record_id`, `decision`, `actor`, `at` | Human only | `EIS18-OVT-01` |
 | `overtime_corrections` | `record_id`, `prior_version`, `reason`, `actor` | Keeps original and provenance | `EIS18-OVT-01` |
+| `attendance_shift_associations` | `attendance_event_id`, `staff_shift_id`, `shift_version`, `source`, `recorded_by`, `state` | One current association per attendance event; same business and same staff record. `source` in `recorded_at_capture` (the event persists the exact approved shift version it was recorded against) and `human_associated`. Never inferred from time overlap. Multiple or uncertain candidates create no association and return `OVT_ASSOCIATION_UNCERTAIN` (`18:FPDR-8` C, R-d) | `EIS18-OVT-02` |
+| `overtime_neutral_flags` | `staff_record_id`, `staff_shift_id`, `shift_version`, `association_id`, `evidence_version`, `state`, `derived_at`, `superseded_at`, `supersede_reason` | Internal derived state, not a merchant action (Q-6 finding §Q-6.5, option 2). Written only by the fixed derivation in Section 11, inside the committing transaction of the authorized command that changed the evidence. No observer, job or `service_role` principal and no initiation authority. `state` in `active`, `superseded`, `frozen`. No duration, hours or pay field. Retention `TBD` with `DLEG` | `EIS18-OVT-02`, `-OVT-04` |
+| `overtime_feature_optins` | `state`, `recorded_by`, `recorded_at`, `version` | One current row per business; Owner only; history kept. `state` in `enabled`, `withdrawn` | `EIS18-OVT-04` |
 | `payroll_support_drafts` | `period_ref`, `line_items`, `state`, `binding_id` | Human-entered figures only. **No calculated field** | `EIS18-PAY-01`, `-PAY-03` |
 
 **Compliance (M18-5).**
@@ -285,9 +298,12 @@ Each command is a kernel-checked feature command (`EIS13-CMD-01`, `EIS-ISO-02`).
 | `attendance.review_correction` | `attendance.correction.review` | Yes | Request | Human only | `EIS18-CTX-01` |
 | `leave.request`, `leave.decide` | `leave.request_own`, `leave.review` | Decide only | Span, intent | Linked context | `EIS18-CTX-01` |
 | `roster.confirm_import` | `staff.shift.manage` | Yes | `EIS-CNF-05` row fingerprint | Per-row outcomes under revocation | `EIS18-ROS-01` |
+| `staff.shift.save_and_approve` | `staff.shift.manage` | Yes | Shift, version | One explicit action saves and approves a manual shift version; a change creates a new version (`18:FPDR-8` B, R-c) | `EIS18-HR-04`, `-OVT-02` |
+| `attendance.associate_shift` | `staff.shift.manage` and `attendance.read`, same target | Yes | Event, shift version | Records a `human_associated` link; `OVT_ASSOCIATION_UNCERTAIN` when the target is not unique | `EIS18-OVT-02` |
+| `overtime.set_feature_opt_in` | `overtime.feature.opt_in` | Yes | Business, version | Owner only; withdrawal freezes the flow | `EIS18-OVT-04` |
 | `overtime.create_manual`, `overtime.create_for_staff` | `overtime.record.create_own`, `overtime.record.create` | No | Staff, intent | Includes disputed flag | `EIS18-OVT-01` |
-| `overtime.propose_system` | **Not specified** | — | — | **Held.** Returns `OVT_TRIGGER_HELD` if reached. `S11-L443-1` incomplete | `EIS18-OVT-02` |
-| `overtime.review`, `overtime.correct` | `overtime.review`, `overtime.correct` | Yes | Record, version | Human only; keeps original | `EIS18-OVT-01` |
+| `overtime.propose_system` | `overtime.system_proposal.initiate`, plus a current `overtime.flag.read` decision for the same target | Yes | Flag, `evidence_version` | One non-effective `system_proposed` draft; `OVT_FLAG_REQUIRED`, `OVT_FLAG_STALE`, `OVT_DUPLICATE_PROPOSAL` (returns the existing draft), `OVT_FEATURE_NOT_ENABLED`. Replaces the retired `OVT_TRIGGER_HELD` | `EIS18-OVT-02`, `-OVT-04`, `-OVT-05` |
+| `overtime.review`, `overtime.correct` | `overtime.review`, `overtime.correct` | Yes | Record, version | Human only; keeps original. For a `system_proposed` draft: `OVT_SELF_REVIEW_DENIED` for the initiating Manager; `OVT_FLAG_STALE` and `revalidation_required` when the evidence version changed; `OVT_FEATURE_NOT_ENABLED` while frozen | `EIS18-OVT-01`, `-OVT-03`, `-OVT-04` |
 | `payroll_support.confirm_draft` | `payroll_support.draft` | Yes | Draft, version | `PAY_CALC_HELD` for any calculation request | `EIS18-PAY-01`, `-PAY-03` |
 | `compliance.create_from_preview` | `compliance.record.manage` | Yes | Document version, record type | `CMP_DUPLICATE_DOCUMENT` | `EIS18-CMP-01`, `-CMP-02` |
 | `compliance.confirm_date` | `compliance.date.confirm` | Yes | Record, date kind, version | `CMP_DATE_UNCONFIRMED` blocks a reminder | `EIS18-CMP-03`, `-REM-01` |
@@ -309,7 +325,8 @@ Kernel-scoped, batched and minimized. Each returns source and freshness, and no 
 | `delivery.task_for_assignee` | `delivery.task.read` | The `1-§5-15` to `-21` fields for the caller's assigned delivery only; a text address for device hand-off | Owner-wide data; unrelated orders; a stored coordinate outside its purpose | `EIS18-DLV-03`, `-DLV-04`, `-OFD-07` |
 | `order.board` | `order.read` | Orders by state, pending confirmation, preparation and assignment, exceptions, COD issues, history and proof | Owner intelligence | `EIS18-VW-02` |
 | `staff.roster_view`, `attendance.review_view`, `leave.review_view` | `staff.record.read`, `attendance.read` | Roster, attendance results, leave and context within scope | Coordinates (A2); accusation or score | `EIS18-VW-01` |
-| `attendance.own_view`, `overtime.own_view` | `attendance.read_own`, `overtime.read_own` | The caller's linked record only | Another employee's record | `EIS18-HR-03`, `-OVT-01` |
+| `attendance.own_view`, `overtime.own_view` | `attendance.read_own`, `overtime.read_own` | The caller's linked record only. Overtime: the caller's own reviewed records and their correction status, and only a neutral receipt acknowledgement for the caller's own pending manual report (`18:FPDR-8` E, R-a) | Another employee's record; any neutral flag, non-effective draft, unreviewed report detail or pending manager entry | `EIS18-HR-03`, `-OVT-01`, `-OVT-05` |
+| `overtime.flags_view` | `overtime.flag.read` | Flags in scope with staff, approved shift version reference, association reference and state, and any active `system_proposed` draft for the same evidence version (`18:FPDR-8` G). During a freeze, frozen history only (R-b) | Hours, duration, pay, eligibility, coordinates, accusation or score; Owner intelligence | `EIS18-OVT-02`, `-OVT-04` |
 | `payroll_support.view` | `payroll_support.read` | Human-entered payroll-support records and context. **View baseline** (`18:FPDR-7`) | Export file or format; calculated pay; overtime-derived export field | `EIS18-PAY-02` |
 | `compliance.due_soon`, `compliance.record_view` | `compliance.record.read`, `compliance.task.read` | Stored facts, dates with confirmation state, linked document | A legal conclusion; broad documents to an Employee | `EIS18-CCO-01`, `-CAU-01` |
 
@@ -327,6 +344,7 @@ Registered under `EIS13-TOOL-01`. Input schemas hold only domain fields; output 
 | `delivery_assign_propose` | Write, proposal | Natural-language assignment through `delivery.assign` checks | Expanding staff permission; external assignee | `EIS18-DLV-02`, `-OFD-03` |
 | `staff_instruction_propose`, `roster_draft_propose`, `leave_draft_propose` | Write, proposal | Prepares a draft for human confirmation | Creating permission by inference; editing history | `EIS18-HAI-01`, `-HAI-02` |
 | `attendance_pattern_summarize` | Read | Neutral review items (DC-12) | Accusation, misconduct verdict or surveillance | `EIS18-HAI-01`, `-HAI-02` |
+| `overtime_system_proposal_request` | Write, proposal | Resolves a verified human's explicit request, on any approved channel, to `overtime.propose_system` bound to the exact flag and evidence version (C6 §10; Q-6 finding §Q-6.4) | Initiating without that explicit request; a generic yes; an inferred target; automated follow-up | `EIS18-OVT-05` |
 | `compliance_upload_handoff` | Write | Hands a document to UDI (`EIS14-UDI-01`) | A second parser | `EIS18-CMP-02`, `-CCH-01` |
 | `compliance_due_soon`, `compliance_document_retrieve` | Read | Stored facts and permitted documents | Certifying compliance; fabricating law or penalties | `EIS18-CCH-01`, `-CCO-01`, `-CLG-01` |
 
@@ -363,7 +381,11 @@ Kernel denials keep the `EIS-UX-01` contract. Feature codes below are `TR` names
 | `COD_MISMATCH_OPEN` | Discrepancy recorded and visible | `1-§24-12` |
 | `ATT_DUPLICATE`, `ATT_QR_EXPIRED`, `ATT_MECHANISM_NOT_ENABLED`, `ATT_LOCATION_UNAVAILABLE` | Attendance outcome with a non-location path offered | `6-§13-1`, `6-§13-3` |
 | `HR_AMBIGUOUS_EMPLOYEE`, `HR_STAFF_UNLINKED` | Clarify; self-service needs a linked membership | `6-§13-4`, `6-§3-7` |
-| `OVT_TRIGGER_HELD`, `PAY_CALC_HELD` | Held on qualified validation; no calculation | `S11-L443-1`, `6-§8-2` |
+| `PAY_CALC_HELD` | Held on qualified validation; no calculation | `6-§8-2` |
+| `OVT_FLAG_REQUIRED`, `OVT_FLAG_STALE`, `OVT_ASSOCIATION_UNCERTAIN` | No current neutral flag, the evidence changed, or matching is uncertain: a clarification case, never proof of overtime. Replaces the retired `OVT_TRIGGER_HELD` | `S11-L443-1` |
+| `OVT_DUPLICATE_PROPOSAL` | An active draft exists for the same evidence version; it is shown | `S11-L443-1` |
+| `OVT_FEATURE_NOT_ENABLED` | Staff/HR entitlement or Owner opt-in is missing: new actions and consequential pending-draft review are frozen | `S11-L443-1`, `S11-L443-3` |
+| `OVT_SELF_REVIEW_DENIED` | A Manager cannot review a draft they initiated | `S11-L443-2` |
 | `CMP_DATE_UNCONFIRMED`, `CMP_DUPLICATE_DOCUMENT`, `REN_NOT_CONFIRMED` | Compliance outcomes; no legal claim | `16-§6-6`, `16-§16-4`, `16-§8-11` |
 | `NTF_NO_VERIFIED_RECIPIENT` | No eligible recipient (a membership, or a participant binding failing an `EIS15-NTF-03` creation check): zero requests, stated to the merchant. A denial or hold, never fulfilment; not a reduction (R4) | `1-§17-4` |
 
@@ -431,6 +453,23 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 
 **Attendance with geofence (only if enabled).** Staff action → server issues a validation context → client sends one coordinate in the body → `location.validate_attendance` returns a result → event commits with the result only → the coordinate is discarded and not logged. Denied GPS, weak signal, no device or accessibility need routes to the non-location method; none of them is a discipline signal.
 
+**Overtime `system_proposed` flow (`EIS18-OVT-02` to `-05`; `18:FPDR-8`; names `TR`).**
+
+| Step | Guard | Effect |
+|---|---|---|
+| P0 Enablement | Staff/HR entitlement (`EIS-KER-05`) **and** a current Owner opt-in, checked at every step | If either is missing: no derivation, initiation, draft or consequential review; existing flags and pending drafts become `frozen`; authorized history reads remain. Restoration requires current grants and a revalidated evidence version |
+| S1 Derivation | Inside the committing transaction of `staff.shift.save_and_approve`, `roster.confirm_import`, `attendance.check_out`, `attendance.record_for_staff`, `attendance.associate_shift` or `attendance.review_correction` | For an approved shift version with exactly one current association to a reliable attendance fact that extends beyond the approved shift end (business-local time per `EIS15-TZ-01`, `-04`, `-07`): one `active` neutral flag per `evidence_version`. An earlier flag for the same shift whose evidence version changed becomes `superseded`. No minimum, duration or pay value |
+| S2 Initiation | Verified human; `overtime.system_proposal.initiate`; current `overtime.flag.read` for the target; flag `active`; binding to actor, business, staff target, flag, `evidence_version`, authority epochs and channel (`EIS-CNF-01`); key per `EIS-CNF-04` | — |
+| S3 Draft | Revalidated at commit (`EIS-CNF-02`) | One non-effective `system_proposed` record in `pending_review`, or the existing one (`OVT_DUPLICATE_PROPOSAL`) |
+| S4 Review | `overtime.review` for the target; reviewer rule (`EIS18-OVT-03`); current flag and evidence version; binding | Reviewed or rejected. A changed evidence version sets `revalidation_required`; nothing auto-approves |
+| Evidence change after review | Authorized correction | The flag becomes `superseded` with history kept; the reviewed record changes only through `overtime.correct` |
+
+**Reliable attendance fact.** Authorized and current; a successful result; no pending correction request or dispute on the event or the shift; exactly one current association. A missing check-out, an open event, a pending correction, a dispute or several candidate events is a clarification case (`OVT_ASSOCIATION_UNCERTAIN`), never a flag.
+
+**`evidence_version`.** A fingerprint of the staff record, the approved shift id and version, the association id and state, and the attendance event ids with their current authorized fact versions.
+
+**Derivation authority.** S1 is a fixed internal effect of the committing command, not a capability of its actor: the actor gains no flag read and no initiation right, and no background or observer principal exists.
+
 ## 12. Requirements
 
 ### A. Order & Delivery, native and employee path
@@ -492,8 +531,11 @@ Each exception is a named state or review item. A narrow failure leaves unrelate
 | `EIS18-PAY-01` | PR | Payroll is assistance: human-controlled consequence, no autonomous fine, deduction, verdict or fabricated authority. | 8 |
 | `EIS18-PAY-02` | PR | Payroll-support **view** is the baseline. Export is verified only if separately adopted and authorized; no format or file (`18:FPDR-7`). | 1 |
 | `EIS18-PAY-03` | UQ | **Held (MC-734 R1).** Calculation, eligibility and legal rule are **not specified and never stubbed**: unresolved qualified legal and payroll validation (`18:FPDR-5` §5). Drafts carry only human-entered figures under a confirmation binding. | 2 |
-| `EIS18-OVT-01` | PR/TR | Overtime record: origin, dispute flag, review with actor, correction chain, role-scoped view and provenance. No computed hours, threshold or pay effect. Creation from a manual report and a manager entry, review, correction, role scope and audit are specified here (`S11-L443-2` to `-5`; part of `-1`). | 5 |
-| `EIS18-OVT-02` | UQ | **Held (MC-734 R1). `S11-L443-1` stays incomplete.** The row still requires the system-proposed origin. The origin value and its no-effect-until-reviewed rule are specified; a system trigger that classifies overtime **cannot be normative** until law and product validation. Manual and manager origins do not replace it. | 1 |
+| `EIS18-OVT-01` | PR/TR | Overtime record: origin, dispute flag, review with actor, correction chain, role-scoped view and provenance. No computed hours, threshold or pay effect. Creation from a manual report and a manager entry, review, correction, role scope and audit are specified here (`S11-L443-2` to `-5`; part of `-1`). The `system_proposed` origin is specified in `EIS18-OVT-02` to `-05` under `18:FPDR-8`. | 5 |
+| `EIS18-OVT-02` | PR/TR | **System-proposed origin: neutral flag, human initiation, non-effective draft (`18:FPDR-8` B, C, D, H; R-1; R-c, R-d; Section 11).** A neutral flag arises only for an approved shift version (manual: explicit save-and-approve of every version; imported: a human-confirmed row) with exactly one explicit, current, same-business and same-staff association to reliable attendance that extends beyond the approved shift end, compared in business-local time under SB-P-1.15 `EIS15-TZ-01`, `-04` and `-07`. Uncertain, ambiguous, disputed, unpaired or pending-correction facts are clarification cases. Every `system_proposed` draft requires a prior `active` flag and an explicit verified-human initiation (`overtime.system_proposal.initiate` plus a current `overtime.flag.read` decision for the same target), bound and idempotent; no flag creates a draft, and no request without a flag does. The draft holds only neutral evidence references, origin, status and human attribution: **no calculated overtime hours or pay**, minimum, threshold, eligibility, score or sanction. The flag is internal derived state written inside the authorized committing command; no observer, job or automation gains initiation authority. **SPECIFIED DOCUMENTARY / ACTIVATION-HELD:** processing basis, notice, retention and register questions stay `DLEG` (`EIS18-HLD-DLEG`); this is a neutral recording design, not legally ready and not a legal overtime engine. | 1 |
+| `EIS18-OVT-03` | PR/TR | **Reviewer rule (`18:FPDR-8` A).** An Owner may review a draft they initiated. A Manager-initiated draft is reviewed by the Owner or another holder of `overtime.review` scoped to that staff record; the initiating Manager is refused (`OVT_SELF_REVIEW_DENIED`). Review is human only, confirmation-bound to the exact record, flag and evidence version, and revalidated against current authority (`EIS-CNF-01`, `-02`). | 1 |
+| `EIS18-OVT-04` | PR/TR | **Enablement, duplicates and evidence change (`18:FPDR-8` F, G, I; R-b).** The flow needs the Staff/HR entitlement and a recorded, Owner-only, per-business opt-in. If either is missing, new flags, initiations, drafts and consequential pending-draft review freeze until both are restored and grants, evidence and versions are revalidated; authorized history reads remain, subject to `DLEG`. At most one active `system_proposed` draft per `evidence_version`; an existing active flag or draft is shown; manual and manager records stay distinct and are never merged or overwritten. An evidence change marks the flag `superseded` with history kept and sets affected pending drafts to `revalidation_required`; nothing auto-approves, and a reviewed record changes only through the human correction path. No stale or frozen action can execute. Retention, erasure and holds stay `DLEG`. | 3 |
+| `EIS18-OVT-05` | PR/TR | **Visibility and channel parity (`18:FPDR-8` E; R-a; C6 §10; C21 §8).** The employee receives only a neutral receipt for their own pending manual report; the unreviewed report, pending manager entries, flags and drafts are reviewer-only. After review the employee sees their own reviewed record and its correction status, never another employee's data or Owner intelligence. A verified human may initiate through WhatsApp, Conversation Workspace or visual surfaces under the same kernel, only by an explicit action bound to the exact flag and evidence version; AI inference, a generic yes, automated follow-up or autonomous approval is refused. Legally required notice and access stay `DLEG` and prevail where they require more. | 2 |
 | `EIS18-HAI-01` | PR | Staff AI assists through typed tools with neutral language. | 6 |
 | `EIS18-HAI-02` | PR | Staff AI must-nots are enforced server-side. | 5 |
 | `EIS18-HFD-01` | AF | Same role boundary on every channel. Consumes shared foundations, with no parallel version. | 13 |
@@ -706,8 +748,8 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 
 | Hold | Rows | Evidence class | Owner | Earliest gate | Effect here |
 |---|---|---|---|---|---|
-| `DLEG` calculation and eligibility (R1) | `6-§3-6`, `6-§8-2`, `S11-L443-1` | [Q] open | Qualified India employment counsel, routed by Mission Control | Before any normative rule | Not specified; never stubbed |
-| `DLEG` overtime register, retention, consent and caps (`18:FPDR-5` §5 items 4–7) | `S11-L443-1` to `-5` | [Q] open | Same | Before reliance | Recording only; retention `TBD` |
+| `DLEG` calculation and eligibility (R1) | `6-§3-6`, `6-§8-2`, `S11-L443-1` | [Q] open | Qualified India employment counsel, routed by Mission Control | Before any normative rule | Not specified; never stubbed. The `S11-L443-1` neutral flag (`EIS18-OVT-02`) is a recording design under `18:FPDR-8`, not eligibility, hours or pay |
+| `DLEG` overtime register, retention, consent, caps, processing basis and notice (`18:FPDR-5` §5 items 1 and 4–8; `18:FPDR-8` §6) | `S11-L443-1` to `-5` | [Q] open | Same | Before activation or reliance | Recording only. Flags, drafts and opt-in history have retention `TBD`. `EIS18-OVT-02` to `-05` are SPECIFIED DOCUMENTARY / ACTIVATION-HELD |
 | `SA02-18-F03` photo and signature (R2) | `1-§15-4`; photo variant of `1-§13-5` | [SP] open | Privacy reviewer commissioned by Mission Control | Before normative inclusion or adoption; before Stage 10 can claim the choice dispositioned | Mechanism not adopted; no media object |
 | `SA02-18-F01` logging design (R5) | `DLOC` rows | [SP] design only; live sinks [U] | Specialist; test environment | Negative tests at package and implementation | Design requirement `EIS18-LOC-05`. No blanket privacy PASS |
 | DC-14 (MC-699) | `6-§5-2` | [MC] conditional; legal [Q] | Mission Control; counsel | Before real employee-location use or policy reliance | Section 13 |
@@ -734,7 +776,7 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 
 | Ruling | Decision | Representation here |
 |---|---|---|
-| R1 | Bounded held representation; `S11-L443-1` not complete | `EIS18-PAY-03`, `-OVT-02`; `overtime.propose_system` not specified. All five facets stay mapped |
+| R1 | Bounded held representation; `S11-L443-1` not complete | `EIS18-PAY-03` held. The `S11-L443-1` system-proposed origin is now specified as a neutral recording design under `18:FPDR-8` (`EIS18-OVT-02` to `-05`; MC-819), activation-held on `DLEG`; calculation stays held. All five facets stay mapped |
 | R2 | Conditional partial accept; no waiver | `EIS18-PRF-03`; no photo, signature or OTP value or media object. Named minimum proceeds. Privacy assessment precedes Stage 10 claiming this dispositioned |
 | R3 | Auth runtime proof is not a Stage 9 gate; Founder condition preserved | Section 14.1; `EIS18-EXT-08`. No claim of identity proof. SB-P-1.12 v0.5 was re-locked separately (MC-802), not by this EIS |
 | R4 | `EQ18-05` needs source-owner reconciliation | Section 14.3; `EIS18-NTF-01`; `NTF_NO_VERIFIED_RECIPIENT` |
@@ -755,7 +797,9 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 | PT-COD-01 | Expected, collected and discrepancy recorded as separate facts | Integration | `1-§16-1` to `-3` | FUTURE; `D16` |
 | PT-HR-01 | Staff record without a login; link to a membership enables self-view | Integration | `6-§3-1`, `6-§3-7` | FUTURE; `D12` |
 | PT-ATT-01 | Non-location attendance event; correction keeps the original | Integration; Founder B | `6-§5-1`, `6-§7-6`, `BP-§10.7-BS1` | FUTURE |
-| PT-OVT-01 | Manual and manager records, with dispute → review → correction → audit | Integration | `S11-L443-2` to `-5`, part of `-1` | FUTURE. System-proposed origin held |
+| PT-OVT-01 | Manual and manager records, with dispute → review → correction → audit | Integration | `S11-L443-2` to `-5`, part of `-1` | FUTURE. NOT RUN |
+| PT-OVT-02 | Approved shift version and an associated reliable check-out after the approved end → one neutral flag → Owner or scoped Manager initiates, including through a verified conversation channel → one non-effective `system_proposed` draft with references, origin, status and attribution only → authorized review (cases T-01, T-07, T-17 of comment 6748632956) | Integration | `S11-L443-1`, `-2`, `-5` | FUTURE. NOT RUN; activation `DLEG`-held |
+| PT-OVT-03 | Employee view: neutral receipt for their own pending manual report; own reviewed record and correction status after review (T-09) | Integration | `S11-L443-4` | FUTURE. NOT RUN |
 | PT-CMP-01 | Licence photo → preview → confirmed date → reminder → renewal version | Integration; Founder C | `16-§20-1`, `16-§8-*`, `BP-§10.7-CS1` | FUTURE; `D14`, `D15` |
 | PT-LOC-01 | Validation returns a result; destination pin erased at close | Integration | `22-§16-*`, `1-§14-10` | FUTURE; `DLOC` |
 | PT-VW-01 | Views render for the permitted role with the add-on enabled | Integration | `17-§9-*`, `17-§10-*` | FUTURE; `DENT`. Payroll view only |
@@ -782,6 +826,15 @@ These rows stay `DH`; the census stays at 19 `DI`. Both legs are now specified (
 | NT-PRV-03 | Surveillance | No live or periodic location view, no movement trace, no background capture | `1-§14-5` to `-7`, `22-§16-2` | FUTURE |
 | NT-ATT-01 | Attendance | GPS denial leaves a usable path; no anomaly becomes an accusation, wage or discipline effect | `6-§13-3`, `6-§9-7`, `6-§8-3` to `-5` | FUTURE |
 | NT-PAY-01 | Payroll | No calculation, threshold or sanction; no export obligation asserted | `6-§8-*`, `17-§9-5` | FUTURE |
+| NT-OVT-01 | Reviewer | Manager reviews a draft they initiated → `OVT_SELF_REVIEW_DENIED`; another Manager without a scoped review grant is denied; a sole Owner may review their own draft (T-01 to T-03) | `S11-L443-2` | FUTURE. NOT RUN |
+| NT-OVT-02 | Approval and association | Unapproved manual version, unconfirmed import, missing, multiple or uncertain association, missing check-out, pending correction or dispute → no flag, clarification (T-04, T-05, T-08) | `S11-L443-1` | FUTURE. NOT RUN |
+| NT-OVT-03 | Direction and content | Late arrival, early leave or other mismatch → no overtime flag and no wrongdoing wording; no flag or draft holds hours, duration, pay, eligibility, score or Owner intelligence (T-06, T-20) | `S11-L443-1` | FUTURE. NOT RUN |
+| NT-OVT-04 | Employee visibility | The employee sees no flag, draft, unreviewed report detail, pending manager entry or other employee's data (T-09) | `S11-L443-4` | FUTURE. NOT RUN |
+| NT-OVT-05 | Enablement | Opt-in off or entitlement off → no flag, initiation, draft or consequential review; a Manager cannot record the opt-in; after restoration a stale binding or evidence version is refused (T-10, T-11) | `S11-L443-1`, `S11-L443-3` | FUTURE. NOT RUN |
+| NT-OVT-06 | Duplicates | Second initiation on the same evidence version → existing draft shown; concurrent initiations → one draft; same key replay → one outcome, conflicting fingerprint rejected; a manual or manager entry on the same evidence is kept and linked (T-12, T-21) | `S11-L443-1`, `S11-L443-5` | FUTURE. NOT RUN |
+| NT-OVT-07 | Evidence change | Correction while a draft is pending → flag superseded with history, draft `revalidation_required`, no auto-approval; after review, no silent change; initiation on a superseded flag refused (T-13 to T-15) | `S11-L443-1`, `S11-L443-3`, `S11-L443-5` | FUTURE. NOT RUN |
+| NT-OVT-08 | Initiation authority | AI tool, automation rule, background job, observer or `service_role` → no initiation; holder of only `overtime.record.create` → no `system_proposed` draft and no origin substitution; a verified human on WhatsApp or conversation with an exact binding is allowed, a generic yes or inferred target refused (T-16 to T-18) | `S11-L443-1` | FUTURE. NOT RUN |
+| NT-OVT-09 | Flag read scope | Holder of only `attendance.read` or only shift read, wrong staff target, foreign business or revoked grant → denied, with no leakage of flag existence (T-19) | `S11-L443-1`, `S11-L443-4` | FUTURE. NOT RUN |
 | NT-CMP-01 | Compliance | No legal assurance; a due reminder never completes a renewal; later OCR never changes a confirmed date | `16-§15-*`, `16-§8-11`, `16-§20-5` | FUTURE |
 | NT-NTF-01 | Notification | Ineligible participant recipient (unbound record; pending, expired or consumed invitation; revoked binding; unassigned; entitlement or readiness failed; non-`active` business or person): zero requests, also on retry; the merchant sees `NTF_NO_VERIFIED_RECIPIENT` as a denial, not fulfilment | `1-§17-4`; SB-P-1.15 NN-06 to NN-08, NN-12, NN-16 | FUTURE |
 | NT-FRL-01 | First run (consumed) | Invited employee follows `EIS-FRL-02`: not silently made Owner of a new business | Consumed from SB-P-1.12 | FUTURE; upstream |
@@ -828,6 +881,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 | SA-04 F01 to F03 | Section 14; `EIS18-ORD-01`, `-AVL-01`, `-OFD-01`; M18-3 participant activation gate |
 | M18-MIG-01 to 05 | Section 17; `EIS18-MIG-01` to `-04` |
 | SA02-18-F01 to F03 | `EIS18-LOC-*`, `-ATT-02`, `-OVT-01`, `-PRF-03`; Section 14.4 |
+| Q-6 Security & Permissions finding (#6746975626; accepted #6748169515) | Section 7 rules (distinct flag read, initiation separate from creation, Owner-only opt-in, reviewer rule); `overtime_neutral_flags` as internal derived state (Section 8); bindings (Section 9); Section 11; NT-OVT-05 to -09 |
 | New provider screen | Not applicable at this baseline; not a PASS |
 
 | Question | Status in this draft |
@@ -849,7 +903,7 @@ All findings are **proposals and `HELD` assessments** [SP], not approved control
 
 Three sequential gates apply, each under separate Mission Control authority. Formal Stage 10 independent review under gate (a) has occurred (MC-814-R; MC-817); Stage 10 acceptance under gate (b) remains HELD, and Stage 11 EIS lock under gate (c) is NOT AUTHORIZED.
 
-- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the four named unresolved documentary matters visible and fail-closed: (i) the `S11-L443-1` system-proposed overtime trigger; (ii) the `DLEG` payroll and legal rules; (iii) the `SA02-18-F03` privacy disposition; and (iv) `PQ-14`, the target-aware Cabinet selector and helper. Fail-closed behavior does not fulfil the positive obligation behind any of them. The count of four does not mean there are no other blockers. `EQ18-05` is no longer an open documentary matter: its source and consumer contract were resolved under MC-817 at the documentary level, not implemented (step 2).
+- **(a) Readiness for formal Stage 10 independent review.** It may be requested with the four named unresolved documentary matters visible and fail-closed: (i) the `S11-L443-1` system-proposed overtime trigger, now specified at the documentary level under `18:FPDR-8` (MC-819; `EIS18-OVT-02` to `-05`) and awaiting Stage 10 exact-delta review; not implemented, and activation-held on `DLEG`; (ii) the `DLEG` payroll and legal rules; (iii) the `SA02-18-F03` privacy disposition; and (iv) `PQ-14`, the target-aware Cabinet selector and helper. Fail-closed behavior does not fulfil the positive obligation behind any of them. The count of four does not mean there are no other blockers. `EQ18-05` is no longer an open documentary matter: its source and consumer contract were resolved under MC-817 at the documentary level, not implemented (step 2).
 - **(b) Stage 10 acceptance.** The Stage 10 reviewer independently performs the full Source 18 §3.2 item 6 source-text completeness and disposition test, and obtains the precise source-owner and specialist findings that acceptance needs. Acceptance does not treat an unfulfilled positive obligation as satisfied.
 - **(c) Stage 11 EIS lock.** Only after every review blocker is resolved or given an explicit, valid Source 18 disposition. Where neither is possible, the genuine mandatory earlier-stop applies.
 
@@ -858,7 +912,7 @@ Steps 1 to 6 are the substantive work that gates (b) and (c) depend on. None is 
 1. **SB-P-1.12: done at documentary level (MC-809).** v0.5 is locked; Section 14 now specifies the consumer path. Remaining: field and code names fixed by the SB-P-1.12 package (C-4, PK-0, PC-10) and ENT-1.
 2. **SB-P-1.15: done at documentary level (MC-817).** The canonical `EQ18-05` amendment (current `7b78c42d` at `main@301dae01`; reviewed at `ac41034d`, `main@8bd38d56`) is consumed in Section 14.3, `EIS18-NTF-01` and `1-§17-4`. The Stage 10 exact-delta review gave substantive concurrence (MC-817); Stage 10 acceptance remains HELD. Remaining: implementation and runtime evidence under PC-10.
 3. **Qualified inputs:**
-   - Payroll and overtime validation settles `EIS18-PAY-03` and `EIS18-OVT-02`, including the `S11-L443-1` trigger.
+   - Payroll and overtime validation settles `EIS18-PAY-03` and the `DLEG` activation conditions of `EIS18-OVT-02` to `-05`. The neutral trigger itself is a product decision, now specified under `18:FPDR-8`; it needs no legal validation to be specified, and it is not legally ready.
    - The `SA02-18-F03` assessment settles `EIS18-PRF-03`.
 4. **EIS-level values:** settle the `TBD`s in Sections 7, 8, 11 and 18, and the cross-mission signatures in `EIS18-STK-04` and `EIS18-CAB-02`.
 5. **Depth:** physical schema, exact command signatures and per-capability role defaults.
@@ -866,18 +920,13 @@ Steps 1 to 6 are the substantive work that gates (b) and (c) depend on. None is 
 
 Steps 2 and 3 are not SB-P-1.18 acts. No step here authorizes editing an upstream contract.
 
-**`S11-L443-1` ORIGIN-COUNT INCONSISTENCY — Stage 10 Source18 determination pending.** This is a pre-existing, inherited source and evidence-target discrepancy.
-
-- **Source truth: three origins.** Founder-approved `18:FPDR-5` allows an overtime record to originate from a manual report, a system-proposed entry or a manager entry, including disputed entries (Blueprint §8.10 and §10.1). Blueprint §15.4 reads "each of the three origins". This EIS realizes them as `manual_report`, `system_proposed` and `manager_entry` (Section 8).
-- **Verification seed: "four origins".** The seed "RT: a record is created from each of the four origins; IDEM" appears in the frozen FCTM row `S11-L443-1` (blob `2bbe6e227d714996bcead10385952c78283e20e8`), in the Blueprint §19 FCTM Row-ID to Blueprint Section Traceability table and in the Blueprint §20.8 per-row register (blob `a7e0266e5e3bf2e2e2c6abce1ecd4f7b98b44d33`).
-- **Not resolved here.** A disputed status is not a fourth origin. This EIS does not change the origin enum, the Blueprint, the FCTM, the Founder choice, the five-facet count or the verification target. It records no completed evidence check.
-- **Owner.** The Stage 10 reviewer or Mission Control determines whether a documented interpretation suffices, or whether a Source 18 exceptional source correction, and any Founder decision it actually requires, is needed before an authoritative EIS lock.
+**`S11-L443-1` origin count: resolved upstream, not by this file.** The Founder confirmed exactly three creation origins, with dispute as a condition ([PR #1111 comment 6741589012](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6741589012)). The stale "four origins" verification seeds were corrected canonically in the FCTM (now blob `ed2ff0f99e6982a15b650b5aee09e01e9355e0fd`) and the Blueprint (now blob `f9bfd0a2f6995f9956c76425fef3bff673cc7266`) through PR #1123 (Track A, MC-817). This EIS realizes the three origins as `manual_report`, `system_proposed` and `manager_entry` (Section 8) and changes no source file.
 
 ## 20. Source 18 Trigger Screen
 
 | Trigger | Result in this draft |
 |---|---|
-| T1, T3 | No new product choice. SB-P-1.12 Founder decisions P-1, SR-09, F-OVL and P-3 are consumed as recorded. Screens flagged: EQ18-08 mechanisms; EQ18-05 resolution (T3/T7); any throttling lockout (PC-11) |
+| T1, T3 | No new product choice is made here. SB-P-1.12 Founder decisions P-1, SR-09, F-OVL and P-3 are consumed as recorded, and the SB-P-1.18 overtime choices are consumed from canonical `18:FPDR-8`, where T1 and T3 were decided. Screens flagged: EQ18-08 mechanisms; EQ18-05 resolution (T3/T7); any throttling lockout (PC-11) |
 | T2 | No new Product Truth conflict |
 | T4, T5 | None |
 | T6 | DC-13 and DC-14 unchanged and conditional |
@@ -886,7 +935,7 @@ Steps 2 and 3 are not SB-P-1.18 acts. No step here authorizes editing an upstrea
 
 ## 21. Traceability
 
-Generated from the requirement selectors and validated against FCTM blob `2bbe6e22`. Mapping shows a planned link, not depth and not PASS.
+Generated from the requirement selectors and validated against FCTM blob `ed2ff0f9` (Track A; frozen fields identical to `2bbe6e22`). Mapping shows a planned link, not depth and not PASS.
 
 ### 21.1 Integrity checks
 
@@ -894,10 +943,10 @@ Generated from the requirement selectors and validated against FCTM blob `2bbe6e
 |---|---|
 | `IN SCOPE` FCTM rows; rows mapped to at least one requirement | 592; 592 |
 | IDs absent from the FCTM; rows duplicated in the matrix | 0; 0 |
-| Candidate requirements; requirements with no FCTM row (orphans) | 137; 0 |
-| Row-to-requirement links; per row minimum / maximum | 5591; 2 / 22 |
+| Candidate requirements; requirements with no FCTM row (orphans) | 140; 0 |
+| Row-to-requirement links; per row minimum / maximum | 5597; 2 / 22 |
 | §20.8 census from the row data | DA 115, DH 434, HG 24, DI 19; H 100, M 382, L 110 |
-| Drafting class | `NOW` 441; `RUN` 147; `DOC` 4; `BLK` 0. Plus 5 activation-gated external legs (flag `X`) inside `NOW` and `RUN` |
+| Drafting class | `NOW` 441; `RUN` 148; `DOC` 3; `BLK` 0. Plus 5 activation-gated external legs (flag `X`) inside `NOW` and `RUN` |
 | Source pointers checked against pinned blobs (mechanical text match) | 587 of 592 match; the 5 `S11-L443-*` facets use descriptive pointers and were checked at Source 11 line 443 (`- overtime records`) |
 | FCTM, Blueprint, Founder-record or upstream changes | 0 |
 | Workstream requirements with no dedicated object, command, reader or tool (principle or acceptance-record requirements, enforced by rule and test) | 18: `PRN-01`, `PRF-04`, `OFD-04`, `OFD-06`, `PRN-02`, `HFD-01`, `HPR-01`, `PRN-03`, `CPR-01`, `CFD-01`, `ACC-01`, `ACC-02`, `ACC-03`, `ACC-04`, `ACC-05`, `EXT-01`, `EXT-02`, `EXT-08` |
@@ -1253,11 +1302,11 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `6-§14-9` | SCN | C-ACC | DH | M | EXP | NOW |  | ACC-02, SEC-01, CAP-01, VER-06, VER-07, HLD-D12, HLD-D13 |
 | `6-§14-10` | SCN | C-ACC | DH | M | NEG | NOW |  | ACC-02, SEC-01, CAP-01, VER-03, VER-07, HLD-D12 |
 | `6-§17-1` | GATE | C-ACC | DA | L | GATE | NOW |  | ACC-02, MIG-04, VER-07 |
-| `S11-L443-1` | OBL | C-PAY | HG | H | RT: a record is created from each of… | DOC |  | OVT-01, OVT-02, LOC-05, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-05, HLD-D12, HLD-DSCH, HLD-DLOC, HLD-DLEG |
-| `S11-L443-2` | OBL | C-PAY | DH | M | RT: authorized review; NEG: unauthori… | NOW |  | OVT-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, HLD-D12 |
-| `S11-L443-3` | OBL | C-PAY | HG | H | RT: correction and dispute preserve t… | NOW |  | OVT-01, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, VER-05, HLD-D12, HLD-DLEG |
-| `S11-L443-4` | OBL | C-PAY | HG | H | RT: role-scoped and own-record views;… | NOW |  | OVT-01, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, HLD-D12, HLD-DLEG |
-| `S11-L443-5` | OBL | C-PAY | DH | M | RT: each step attributed to actor, ro… | NOW |  | OVT-01, SEC-01, SEC-02, AUD-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-04, HLD-D12 |
+| `S11-L443-1` | OBL | C-PAY | HG | H | RT: a record is created from each of… | RUN |  | OVT-01, OVT-02, OVT-04, OVT-05, LOC-05, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-05, HLD-D12, HLD-DSCH, HLD-DLOC, HLD-DLEG |
+| `S11-L443-2` | OBL | C-PAY | DH | M | RT: authorized review; NEG: unauthori… | NOW |  | OVT-01, OVT-03, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, HLD-D12 |
+| `S11-L443-3` | OBL | C-PAY | HG | H | RT: correction and dispute preserve t… | NOW |  | OVT-01, OVT-04, SEC-01, SEC-02, IDM-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, VER-05, HLD-D12, HLD-DLEG |
+| `S11-L443-4` | OBL | C-PAY | HG | H | RT: role-scoped and own-record views;… | NOW |  | OVT-01, OVT-05, SEC-01, SEC-02, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-03, HLD-D12, HLD-DLEG |
+| `S11-L443-5` | OBL | C-PAY | DH | M | RT: each step attributed to actor, ro… | NOW |  | OVT-01, OVT-04, SEC-01, SEC-02, AUD-01, MIG-01, CAP-01, OBJ-01, CMD-01, MIG-02, MIG-04, VER-02, VER-04, HLD-D12 |
 | `16-§1-1` | EXP | C-CMP | DA | L | EXP | NOW |  | PRN-03, VER-06 |
 | `16-§1-2` | EXP | C-CMP | DA | L | EXP | NOW |  | PRN-03, VER-06 |
 | `16-§2-1` | NARR | C-CMP | DA | L | EXP | NOW |  | PRN-03, VER-06 |
@@ -1566,7 +1615,10 @@ Prefix `EIS18-` omitted. `VER-01` applies to all 592 and is not repeated. Flag `
 | `EIS18-PAY-02` | PR | 1 | `17-§9-5` |
 | `EIS18-PAY-03` | UQ | 2 | `6-§3-6`, `6-§8-2` |
 | `EIS18-OVT-01` | PR/TR | 5 | `S11-L443-1` to `-5` |
-| `EIS18-OVT-02` | UQ | 1 | `S11-L443-1` |
+| `EIS18-OVT-02` | PR/TR | 1 | `S11-L443-1` |
+| `EIS18-OVT-03` | PR/TR | 1 | `S11-L443-2` |
+| `EIS18-OVT-04` | PR/TR | 3 | `S11-L443-1`, `S11-L443-3`, `S11-L443-5` |
+| `EIS18-OVT-05` | PR/TR | 2 | `S11-L443-1`, `S11-L443-4` |
 | `EIS18-HAI-01` | PR | 6 | `6-§9-1` to `-6` |
 | `EIS18-HAI-02` | PR | 5 | `6-§9-7` to `-11` |
 | `EIS18-HFD-01` | AF | 13 | `6-§10-1a`, `6-§10-2`, `6-§11-1` to `-9`, `9-§12-7`, `BP-§10.7-B6` |
@@ -1714,5 +1766,21 @@ Amended in place, one file, under MC-809. No requirement text of a locked source
 **Review status.** Formal Stage 10 independent review has occurred: MC-814-R ([comment 6708809233](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6708809233)) and the MC-817 exact-delta review above. Stage 10 **acceptance remains HELD**. Stage 11 and implementation are NOT AUTHORIZED. The records above for MC-809, MC-811 and the first MC-817 correction are history and are not rewritten.
 
 **PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`. Canonical `main` was `6a5b8b83` at MC-809 and is `8bd38d56c8017863bce06bcbdf46649bafcfcdc0` at this correction. This file is absent on all three, so the PR diff is not distorted. Reconciling the base belongs to any later publication step.
+
+**MC-819 positive overtime design and Track A pin refinement (2026-11-10).** Amended in place, one file, under the MC-819 exact-scope grant ([PR #1111 comment 6750418846](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6750418846)), against canonical `main@cda6df55796aa1ba200b248f2bdd1a96178ecbd2`. Consumes canonical `18:FPDR-8` (blob `03fe9ac8`; PR #1124, status PR #1125) and the accepted Q-6 specialist finding. No FCTM, Blueprint, Founder-record or upstream file changed; the Track A pins record corrections made by PR #1123, not by this PR.
+
+| Change | Where |
+|---|---|
+| FCTM pin `2bbe6e22` → `ed2ff0f9` and Blueprint pin `a7e0266e` → `f9bfd0a2` (earlier blobs historical); `18:FPDR-8` added; requirement count 137 → 140 | Sections 1, 3, 21 |
+| Overtime-flow capabilities, objects, commands, readers, tool, codes and sequence | Sections 7, 8, 9, 9.1, 9.2, 10, 11 |
+| `EIS18-OVT-02` rewritten from held to positive (`UQ` → `PR/TR`); `EIS18-OVT-03`, `-04` and `-05` added; `EIS18-OVT-01` cross-reference | Section 12 |
+| `DLEG` rows restated as activation holds; R1 representation updated | Sections 14.4, 15 |
+| PT-OVT-02, PT-OVT-03 and NT-OVT-01 to -09 added (FUTURE, NOT RUN) | Section 16 |
+| Q-6 finding row | Section 18 |
+| Matter (i) annotated as specified and awaiting review; step 3 reconciled; origin-count block replaced by the resolved upstream record | Sections 1, 19 |
+| T1/T3 screen | Section 20 |
+| `S11-L443-1` class `DOC` → `RUN`; the five facet rows gain the new links; census, counts and links recomputed | Section 21 |
+
+**PR base.** PR #1111 still targets `main` at merge base `1c4ecf3494b2ff866018ac957ff486c150f4cd69`; canonical `main` is `cda6df55796aa1ba200b248f2bdd1a96178ecbd2` at this refinement. This file is absent on `main`. The records above are history and are not rewritten.
 
 **STOP FOR MISSION CONTROL.** This partial draft is not canonical and not a Stage 9 completion claim. Formal Stage 10 independent review has occurred; Stage 10 acceptance remains HELD. Stage 11, Stage 12 and Stage 13 are NOT AUTHORIZED. SB-P-1.12 EIS v0.5 is APPROVED — LOCKED as a documentary contract; the G1/G2 implementation and the PR #1120 v1.1-D package remain unactivated/unlocked respectively. **Implementation Authorization WITHHELD — NOT AUTHORIZED.**
