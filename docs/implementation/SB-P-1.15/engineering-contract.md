@@ -388,10 +388,10 @@ Each delta realizes the matching draft text of the EIS. Types, workstreams, phas
 |---|---|---|
 | `EC15-NTF-01` | Typed `recipient_path` with exactly one recipient column; composite business-scoped participant-binding reference; purpose `delivery.assignment` only; created only in the SB-P-1.18 assignment transaction from the assignment's bound participant; no caller-supplied recipient | NN-01, NN-02, NN-10 |
 | `EC15-NTF-03` | Participant creation-time eligibility (binding, business, current assignment, `delivery.task.read`, entitlement, readiness, epochs); governed participant read on the named path with per-target decisions; omission and `SUPPRESSED_INELIGIBLE`; no counts or metadata leakage; no path fallback | NN-02 to NN-09, NN-11, NN-14, NN-16 |
-| `EC15-NTF-04` | Dedupe key includes (`recipient_path`, recipient identifier) and the assignment event version | NN-12 |
+| `EC15-NTF-04` | For an eligible assignment event only, the logical request identity is (`business_id`, assignment event/version, purpose, `recipient_path`, recipient identifier) and duplicates or retries converge to one logical request; failed creation-time eligibility yields zero requests, also on retry (MC-817 S-1) | NN-04, NN-12 |
 | `EC15-NTF-08` | Participant content limited to the assigned task reference; audit records the authority path | NN-13, NN-15 |
 | `EC15-SEC-05` | Effective-access matrix adds the Delivery Staff participant principal and its states | NN-01 to NN-16 |
-| `EC15-ARC-04`, `EC15-AUTHZ-07`, `EC15-NTF-10`, `EC15-VER-01`, `EC15-VER-02` | Cross-reference only: participant path as a consumer-rendered native surface; participant revocation and reassignment; delivery-free copy; NN references | NN-01 to NN-16 |
+| `EC15-ARC-04`, `EC15-AUTHZ-07`, `EC15-NTF-10`, `EC15-VER-01`, `EC15-VER-02` | Cross-reference only: participant path as a consumer-rendered native surface; participant revocation and reassignment; copy that states only that a request was recorded, never that it is visible, received, acknowledged, sent or delivered (MC-817 S-2); NN references | NN-01 to NN-16 |
 
 No new provider, channel, OTP, membership, role default or participant capability. SB-P-1.12 v0.5 is consumed under its PC-10 consumption gate. Implementation remains NOT AUTHORIZED.
 
