@@ -6,7 +6,7 @@
 **Authority:** Mission Control, [PR #1111 comment 6748856795](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6748856795)
 **Prepared by:** Claude Code, SB-P-1.18 Definition Actor, as documentary preparer only. Claude Code does not approve, assess or ratify this record; Mission Control inspects it at the exact PR head before any Founder merge handoff
 **Baseline:** `main@90b84eebbf66c047c9b6bd87f12bc1dc21e1ec8f`
-**Record status:** `DRAFT — NOT EFFECTIVE UNTIL FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION`
+**Record status:** APPROVED — CANONICAL / historically DRAFT until human merge; effective through PR #1124 merge 4f6700c3525a6d73435f9e0d8ea028bdc0bdc8c1 at 2026-11-09T19:43:25Z, independently verified by MC-817 comment 6749713505.
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
 ## 0. How to read this record

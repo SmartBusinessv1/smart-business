@@ -2,11 +2,11 @@
 
 **Mission:** SB-P-1.18 — Controlled Business Add-ons
 **Stage:** Source 18 v1.3, during Stage 10 (EIS review HELD); after the Stage 8 Blueprint Lock and the Track A post-lock correction (PR #1123)
-**Status:** `DRAFT — NOT EFFECTIVE UNTIL FOUNDER HUMAN MERGE AND MISSION CONTROL POST-MERGE VERIFICATION`
+**Status:** APPROVED — CANONICAL; Founder-human-merged PR #1124, commit 4f6700c3525a6d73435f9e0d8ea028bdc0bdc8c1, 2026-11-09T19:43:25Z; Mission Control postmerge verified in PR #1124 comment 6749713505. Previous state: DRAFT — NOT EFFECTIVE until human merge and verification.
 **Decides:** the product behaviour of the `system_proposed` overtime origin already allowed by `18:FPDR-5` Option B, and the related reviewer, visibility, enablement, duplicate, content and evidence-change choices (Founder selections A–I, R-a and R-b). No other row, record or source is decided or edited.
 **Prepared by:** Claude Code, SB-P-1.18 Definition Actor. Drafted read-only as a candidate ([PR #1111 comment 6748632956](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6748632956)) and published as a draft under the Mission Control one-use grant below
 **Publication authority:** Mission Control's separate one-use draft-PR grant ([PR #1111 comment 6748856795](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6748856795) §IV). The Founder did not authorize Git edits, and this draft is not Founder approval of its bytes
-**Decision identifier:** `18:FPDR-8` is proposed. A full-tree preflight at the baseline found no `18:FPDR-8` occurrence (the `16:FPDR-8` identifiers belong to SB-P-1.16). Mission Control assigns the final identifier
+**Decision identifier:** `18:FPDR-8` is FINAL and CANONICAL, effective through the PR #1124 merge and Mission Control post-merge verification. *History:* proposed at drafting; a full-tree preflight at the baseline found no `18:FPDR-8` occurrence (the `16:FPDR-8` identifiers belong to SB-P-1.16)
 **Baseline:** `main@90b84eebbf66c047c9b6bd87f12bc1dc21e1ec8f`
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
 
