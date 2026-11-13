@@ -2,13 +2,13 @@
 
 ## Document identity and authority boundary
 
-- **Purpose:** Continue the non-governing Mission Control institutional-memory series after \`mission-control-25-26.md\`, preserving the decision reasoning, technical lessons, blockers, evidence and successor handoffs represented in the Founder-supplied MC27–30 extraction compilation.
+- **Purpose:** Continue the non-governing Mission Control institutional-memory series after `mission-control-25-26.md`, preserving the decision reasoning, technical lessons, blockers, evidence and successor handoffs represented in the Founder-supplied MC27–30 extraction compilation.
 - **Source collection:** [MC 27-30 Extraction Reports — Founder-provided Google Doc](https://docs.google.com/document/d/1Zcd-ZkeISbpldNBVFqKQBgeOZvxd5fqiUcEj79tYvqE/edit).
 - **Prepared:** 2026-11-13 (historical synthesis candidate).
 - **Status:** **DRAFT — HISTORICAL / ADVISORY ONLY — awaiting provenance reconciliation and human review/merge**.
 - **Authority:** **NONE** for Product Truth changes, Source 18 changes, Product Mission activation, EIS lock, implementation, environments, migrations, pilot release, OLE promotion, security exceptions or human merge.
-- **Companions:** \`mission-control/mission-control-1-12.md\`, \`mission-control/mission-control-13-21.md\`, \`mission-control/mission-control-22-24.md\`, \`mission-control/mission-control-25-26.md\`, \`mission-control/mission_memory.md\`, \`mission-control/Smart_Business_Journey_Recap.md\`.
-- **Current truth:** Read active \`merge/active/\`, the relevant mission's current files and live GitHub/provider evidence before acting. This guide records historical states at their respective moments, not present-day implementation readiness.
+- **Companions:** `mission-control/mission-control-1-12.md`, `mission-control/mission-control-13-21.md`, `mission-control/mission-control-22-24.md`, `mission-control/mission-control-25-26.md`, `mission-control/mission_memory.md`, `mission-control/Smart_Business_Journey_Recap.md`.
+- **Current truth:** Read active `merge/active/`, the relevant mission's current files and live GitHub/provider evidence before acting. This guide records historical states at their respective moments, not present-day implementation readiness.
 
 > **Critical extraction identity caveat:** The supplied Google Doc contains **four substantial extraction blocks**, in source order: **A labelled MC-27, B labelled MC 28, C labelled MC-28 again, D labelled MC-30**. All four explicitly qualify their room-number identities as **UNVERIFIED**. No block independently establishes a distinct MC-29 identity. Thus this file preserves the Founder's *MC27–MC30 collection label*, but **does not assert an evidenced one-to-one MC27/28/29/30 transcript mapping**. Sections A–D are evidence-provenance labels, *not authenticated room numbers*. The extracted historical operations can contain internal Mission Control decision IDs (such as MC-19, MC-125, MC-181) which must not be confused with chat-room sequence numbers.
 >
@@ -93,7 +93,7 @@ The critical distinction was between the person's membership/authentication iden
 
 - [PR #672](https://github.com/SmartBusinessv1/smart-business/pull/672): authorized contract/source handling and observed merge in this historical period.
 - [PR #673](https://github.com/SmartBusinessv1/smart-business/pull/673): proposed **Contract 22 §33** FCTM/Blueprint reconciliation; **39 new obligations** in the cited historical assessment. Source B records it **draft/unmerged at its own last check**.
-- [PR #674](https://github.com/SmartBusinessv1/smart-business/pull/674): canonicalized an independent Security report to \`communication/live/report1.11.md\`.
+- [PR #674](https://github.com/SmartBusinessv1/smart-business/pull/674): canonicalized an independent Security report to `communication/live/report1.11.md`.
 - [PR #675](https://github.com/SmartBusinessv1/smart-business/pull/675): focused correction to completed-transfer eligibility. Source B reports a Founder statement that it merged but expressly lacked its own post-merge check at the time.
 - [Source B security-hold assessment](https://github.com/SmartBusinessv1/smart-business/pull/673#issuecomment-5888507856).
 
@@ -134,7 +134,7 @@ It separated:
 - provider account evidence from unsupported causal theories;
 - an authorized **test** Supabase environment from production;
 - staging/local command effects from a claim of no cloud mutation;
-- a guarded Supabase CLI wrapper (\`scripts/supabase-cli.mjs\`) from unsafe default production targeting;
+- a guarded Supabase CLI wrapper (`scripts/supabase-cli.mjs`) from unsafe default production targeting;
 - optional continuity mirrors and recovery plans from replacement of canonical GitHub authority.
 
 Some cited evidence: [PR #716](https://github.com/SmartBusinessv1/smart-business/pull/716) (runtime/security report context); [PR #719](https://github.com/SmartBusinessv1/smart-business/pull/719) (provider assessment); [PR #721](https://github.com/SmartBusinessv1/smart-business/pull/721) (infrastructure report); [PR #722](https://github.com/SmartBusinessv1/smart-business/pull/722) (post-merge continuation). The source collection includes additional SHAs and support records; fetch the exact PR if a detail becomes material.
@@ -176,7 +176,7 @@ The fourth extraction reports the following progression:
 - [PR #791](https://github.com/SmartBusinessv1/smart-business/pull/791): Stage 8 Founder approval/Blueprint lock.
 - [PR #792](https://github.com/SmartBusinessv1/smart-business/pull/792): separate Stage 9 EIS Creation authorization.
 
-According to extraction D, the historical handoff was approximately canonical \`main@0b83960113fb12a8258a2c4fdfc783f942b64ac3\`, with **651 IN SCOPE** SB-P-1.13 rows requiring bidirectional mapping, and **implementation/provider/production authority still withheld**. This is a historical snapshot, not current \`main\`.
+According to extraction D, the historical handoff was approximately canonical `main@0b83960113fb12a8258a2c4fdfc783f942b64ac3`, with **651 IN SCOPE** SB-P-1.13 rows requiring bidirectional mapping, and **implementation/provider/production authority still withheld**. This is a historical snapshot, not current `main`.
 
 ### Decisions and lessons worth inheriting
 
@@ -211,10 +211,10 @@ According to extraction D, the historical handoff was approximately canonical \`
 - B and C are chronologically adjacent/overlapping in the SB-P-1.12 lifecycle. They may represent distinct conversations but their original room identities remain unproved.
 - The original reports include dates, SHAs and GitHub links; this digest contains a high-value subset, not a verbatim reconstruction or complete 256,000-character source export.
 - If the Founder later supplies original MC-29 chat identity or more extracts, correct only the provenance/coverage boundary and materially affected digest passages. Do not rewrite unaffected history or invent a missing room.
-- **No active present-day mission state is asserted by this history.** Recheck \`mission-control/mission_memory.md\`, active sources, live GitHub PRs and actual execution state before proceeding.
+- **No active present-day mission state is asserted by this history.** Recheck `mission-control/mission_memory.md`, active sources, live GitHub PRs and actual execution state before proceeding.
 
 ## Next publication and hydration boundary
 
-This is a **candidate documentation-only successor volume** intended for human review and eventual merge. Its proposed location continues the prior series; it does **not** replace current \`mission_memory.md\` or change \`Smart_Business_Journey_Recap.md\` automatically.
+This is a **candidate documentation-only successor volume** intended for human review and eventual merge. Its proposed location continues the prior series; it does **not** replace current `mission_memory.md` or change `Smart_Business_Journey_Recap.md` automatically.
 
 A future MC31–MC40 continuation can be synthesized after the corresponding Founder-supplied, provenance-qualified extracts arrive. In the meantime, no MC31–MC40 history or approvals are implied by this file. Current SB-P-1.18 Stage 10 work is independent and must not wait on this historical-memory project.
