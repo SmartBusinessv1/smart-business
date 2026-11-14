@@ -1,10 +1,10 @@
 # SB-P-1.12 — Engineering Contract
 
 ```text
-STATUS: APPROVED — LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) WITH KERNEL v0.6 REBASELINE (MC40) DRAFT — NOT APPROVED, NOT LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: APPROVED — LOCKED (UNCHANGED)
-IMPLEMENTATION PACKAGE: STAGE 12 DRAFT — NOT APPROVED, NOT LOCKED
+EIS: v0.6 APPROVED — LOCKED (BLOB 25c0fabc; RECORDS 75 AND 76, VERIFIED IN MC40 COMMENT 6877878519); VERSION 1.1-D WAS FIRST PREPARED AGAINST v0.5 BLOB 7a5f4918 (RECORDS 73 AND 74, HISTORICAL); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
+IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -18,13 +18,13 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 0.2 |
-| Status | `APPROVED — LOCKED` |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (G1/G2 delta, MC-803, first prepared against EIS v0.5; rebaselined to locked EIS v0.6 under MC40, PR #1120 comment `6881056447`) |
+| Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
 | Author | Claude Code — Source 18 Section 4.4 initial implementation package owner |
-| Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE` |
-| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5` |
-| Date | 2026-10-01 |
-| Next gate | Stage 13 — Implementation Package Review by Mission Control |
+| Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE`; version 1.1-D draft delta: MC-803 (PR #1111 comment `6704792314`), after the canonical EIS v0.5 re-lock verified in MC-802 (comment `6704673906`); version 1.1-D Kernel v0.6 rebaseline: MC40, PR #1120 comment `6881056447`, after the canonical EIS v0.6 re-lock verified in MC40 PR #1111 comment `6877878519` |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`; Kernel v0.6 rebaseline prepared against canonical `main@ed4c2b4e69d0a773eb50e2034289dcd1217fb9b3`, branch base unchanged |
+| Date | 2026-10-01; version 1.1-D: 2026-11-07; Kernel v0.6 rebaseline: 2026-11-14 |
+| Next gate | Stage 13 — separate Mission Control review and conditional re-lock of the version 1.1-D delta; Implementation Authorization stays withheld |
 
 ## 2. Purpose and Authority
 
@@ -39,7 +39,7 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Reference | Path | Identity |
 |---|---|---|
 | Locked Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md` | blob `77d52096c020668311b039721a4de9248ddd460e` (`APPROVED — LOCKED`) |
-| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `c444f7509477d0e8b997af538440d93bf2ca4d72` (`APPROVED — LOCKED`, version 0.4 with MC-166 lock-metadata reconciliation 0.4-L1 and MC-167 formatting reconciliation 0.4-L2) |
+| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `25c0fabcff6601877c49d698afb5249ad28bffc4` (version 0.6 `APPROVED — LOCKED`; Stage 10 record `mission-control/75-stage10-v06-pq14-amendment-review-acceptance.md`, Stage 11 record `mission-control/76-stage11-v06-eis-relock.md`, effective on the PR #1129 merge verified in MC40 PR #1111 comment `6877878519`). Version 1.1-D was first prepared against version 0.5 blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (Records 73 and 74, now historical). Version 1.0-L of this package was locked against blob `c444f7509477d0e8b997af538440d93bf2ca4d72` (version 0.4 with 0.4-L1 and 0.4-L2) |
 | Canonical FCTM | `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md` | blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259` (412 rows; 267 `IN SCOPE`) |
 | Founder Decision Record 09 | `communication/missions/SB-P-1.12/founder/09-reference-cost-margin-permission-semantics.md` | blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9` |
 | Stage 10 acceptance (MC-164) | `communication/missions/SB-P-1.12/mission-control/36-stage10-eis-review-acceptance.md` | canonical on `main@7d95143e` |
@@ -49,6 +49,14 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Stage 12 and 13 instructions | `communication/live/instruction1.30.md` (MC-165); `communication/live/instruction1.31.md` (MC-166 publication); `communication/live/instruction1.32.md` (MC-167 refinement) | canonical on `main@7d95143e` |
 | Source 18 | `merge/active/18_SB-P_Mission_Lifecycle_and_Delivery_Framework.md` | Stage 12 and Section 3.2 |
 | Package template | `docs/implementation/templates/SB-P-Implementation-and-Evidence-Workflow-Template.md` | Phases A to C |
+| Founder Decision Record 10 | `communication/missions/SB-P-1.12/founder/10-g1g2-participant-binding-founder-product-decision-record.md` | blob `c93ca933ea014447516505c9427e278e0c24ce26` (P-1 Option A, SR-09 Option X, F-OVL Option B, P-3 168 hours) |
+| Founder Decision Record 11 | `communication/missions/SB-P-1.12/founder/11-p1-verified-identity-evidence-timing-founder-clarification.md` | blob `c77f8a5f906d242248bfdb81f19cec025802ef9b` (P-1 evidence timing) |
+| EIS v0.5 Stage 10 acceptance (MC-798) | `communication/missions/SB-P-1.12/mission-control/73-stage10-v05-amendment-review-acceptance.md` | blob `41a71bca9a918cd629550614f48ead1330981d92`, canonical on `main@6a5b8b83` |
+| EIS v0.5 Stage 11 re-lock (MC-798, MC-800) | `communication/missions/SB-P-1.12/mission-control/74-stage11-v05-eis-relock.md` | blob `34aea8001aaf56c714e241f75c3767ab2ac5f6cb`, canonical on `main@6a5b8b83` (PR #1119; verified effective in MC-802) |
+| EIS v0.6 Stage 10 acceptance (MC40) | `communication/missions/SB-P-1.12/mission-control/75-stage10-v06-pq14-amendment-review-acceptance.md` | blob `48ed79e83910046ecf17caf22b6160721ef4cb1a`, canonical on `main@5f5d251a` (PR #1129) |
+| EIS v0.6 Stage 11 re-lock (MC40) | `communication/missions/SB-P-1.12/mission-control/76-stage11-v06-eis-relock.md` | blob `0476fdcdd166b1f8382e31d87895e678b9efde0c`, canonical on `main@5f5d251a` (PR #1129; verified effective in MC40 PR #1111 comment `6877878519`). The v0.5 records above are historical |
+| Version 1.1-D delta authority | MC-803, PR #1111 comment `6704792314` | Documentary package-delta preparation only; not a lock or implementation grant |
+| Version 1.1-D Kernel v0.6 rebaseline authority | MC40, PR #1120 comment `6881056447` | Documentary package-reconciliation preparation only; not a lock or implementation grant |
 
 ## 4. Preserved Holds and Gates
 
@@ -65,6 +73,10 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Security design findings SEC-EIS10-01 to SEC-EIS10-11 | Closed at design level (MC-164) | Realized through the obligations that implement the EIS sections named in EIS Section 20 |
 | Security implementation and evidence gates SEC-EIS10-12 to SEC-EIS10-14 | Open as implementation and evidence gates | Carried as verification items: projection on every read path (12); live effective-access evidence (13); provider, backup, PITR and legal-hold evidence (14) |
 | Implementation and runtime Security proof | Not yet established | Nothing in this package is runtime, implementation or production evidence |
+| P-1 runtime identity evidence (version 1.1-D delta) | **HELD for activation** | For each sign-in method relied on (email and password; Google): verified-email evidence for this configured project, exact intended-person match, negative security tests and independent implementation verification before that method or any participant route is enabled. Unverified methods stay disabled or fail closed with `participant_path_not_ready`. SA-05 documentary capability (Founder Decision Record 11) does not establish method readiness. No substitute method |
+| ENT-1 (version 1.1-D delta) | **HELD** (SB-P-1.19) | Whether a pending invitation is retained or ended during entitlement suspension is not decided. No acceptance or protected action while entitlement fails; the database-time 168-hour expiry continues without pause. No obligation, check or scenario selects either outcome |
+| G1/G2 consumption and readiness (PC-07, PC-10) | Gate | No consumer uses the participant interface before this package is re-locked at Stage 13, the workstreams are implemented and verified under separate authorization, and Mission Control accepts the dependency evidence. Before readiness, commands return committed audited denials |
+| SB-P-1.18 and other consumer dependencies | Open | SB-P-1.18 Stage 9 PARTIAL/HELD and Stages 10 to 13 not authorized; Cabinet PQ-14 and the unknown action-to-capability selector; SB-P-1.15 non-member notification recipient (`EQ18-05`); `DENT`; `DLEG`; `EQ18-15`; all 19 `DI` rows and five `DH` legs. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof |
 
 ## 5. Authorized Scope and Exclusions
 
@@ -82,7 +94,8 @@ All 267 `IN SCOPE` FCTM rows. Each maps to at least one obligation in Section 11
 - unblocking `22-§20-2` or closing ESC-1;
 - claiming G-6/T4 evidence or any production-security conclusion;
 - SB-P-1.13 consumption of any surface before the EIS Section 19.5 conditions hold and Mission Control accepts the evidence;
-- modifying the locked Blueprint, the locked EIS or the canonical FCTM.
+- modifying the locked Blueprint, the locked EIS or the canonical FCTM;
+- for the version 1.1-D delta: enabling any sign-in method or participant route, a new authentication method, any merchant channel, SMS, WhatsApp or notification, additional roles or union privileges, editable identity claims as authority, cross-business access, or any POS custom core work. The merchant shares an invitation through a channel it already controls; the kernel sends nothing.
 
 ### 5.3 Still committed, not in this mission
 
@@ -118,6 +131,7 @@ Each obligation `EC-<suffix>` realizes exactly one EIS requirement `EIS-<suffix>
 | `EVIDENCE` | An evidence obligation. It adds no product behaviour. It is satisfied only by the named evidence, collected under separate authorization where required. |
 | `GOVERNANCE` | Applies to every builder workstream. It constrains how behaviour is built and adds no product behaviour of its own. |
 | `CONSUMER GATE` | Cross-cutting Governance / Consumer Gate. **Not an implementation builder workstream obligation**: no builder builds anything for it. Mission Control enforces it through dependency evidence before a later mission consumes an authority surface. |
+| `BUILD-HARNESS — ACTIVATION GATED` | Version 1.1-D delta. Implement the SB-P-1.12 command, binding state, kernel representation or route decision exactly as the locked EIS (version 0.6; unchanged from version 0.5 for these requirements) specifies, under a future Implementation Authorization, proving consumer boundaries with a labelled harness. **Implementing is not activating:** no sign-in method or participant route is enabled until its P-1 evidence, PC-07 readiness and PC-10 consumption conditions hold; before readiness, G1 invitation issue and acceptance commands return the EIS-prescribed committed, audited denial (`participant_path_not_ready` where applicable); revocation retains its separate EIS-prescribed authorization and denial semantics. The read-only G2 first-run decision returns the applicable `first_run_decision` and non-enumerating denial code without a committed command effect or replayed write. |
 
 ## 7. Engineering Obligations
 
@@ -288,6 +302,19 @@ Every item is separately authorized, read-only evidence. G-6/T4 stays `UNVERIFIE
 | `EC-ENV-01` | `EIS-ENV-01` | Separately authorized read-only environment evidence | `EVIDENCE` | WS-0 | None | 17 | NP-04, NP-28 | `21-§6-4`, `BP-§10.1-7`, `BP-§10.1-8` |
 | `EC-ENV-02` | `EIS-ENV-02` | Access-token lifetime evidence item (EQ-6, informational) | `EVIDENCE` | WS-0 | None | 17 | per-row `VC-R` items | None — engineering-only evidence item (EIS Section 17, EQ-6); adds no product behaviour |
 
+### 7.13 Delivery Staff Participant Binding (G1/G2) — Version 1.1-D Delta (DRAFT)
+
+Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`; not effective for G1/G2 until a separate Stage 13 review and re-lock. Each obligation realizes one requirement of the locked EIS (version 0.6; these four requirements are unchanged from version 0.5, against which the delta was first prepared) exactly as the locked EIS states it, with the Section 13 controls PC-01 to PC-12 it cites. SB-P-1.12 owns the commands, binding state, kernel representation and server-side route decision. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof. SB-P-1.19 owns the ENT-1 policy. Workstream placement follows EIS Section 19.1 (WS-G); kernel, isolation, binding and audit rules these obligations rely on stay with their existing WS-A1, WS-A2, WS-A3, WS-D and WS-E obligations.
+
+| Obligation | Realizes | Title | Type | Workstream | Migration class | EIS section | Verification | FCTM rows |
+|---|---|---|---|---|---|---|---|---|
+| `EC-ID-07` | `EIS-ID-07` | Participant invitation issue (G1) | `BUILD-HARNESS — ACTIVATION GATED` | WS-G | M1, M3 | 7.4, 8.1, 13 | NP-47, NP-48, NP-50, NP-52, NP-53, NP-56, NP-60, NP-61, NP-63, RS-16 | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15` |
+| `EC-ID-08` | `EIS-ID-08` | Verified participant invitation acceptance (G1) and P-1 per-method gate | `BUILD-HARNESS — ACTIVATION GATED` | WS-G | M1, M3 | 7.4, 8.1, 13 | NP-48, NP-49, NP-50, NP-51, NP-52, NP-53, NP-54, NP-56, NP-57, NP-58, NP-59, NP-60, NP-61, NP-63, RS-16 | `21-§4-6`, `21-§13-3`, `22-§5-7`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-1`, `21-§15-2`, `21-§16-1`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `21-§20-1`, `22-§15` |
+| `EC-ID-09` | `EIS-ID-09` | Participant invitation and binding revocation (G1; SR-09 Option X) | `BUILD-HARNESS — ACTIVATION GATED` | WS-G | M1, M3 | 7.4, 8.1, 10.2, 13 | NP-52, NP-54, NP-55, NP-56, NP-57, NP-58, NP-60, NP-61, RS-17 | `21-§17`, `21-§24-7`, `21-§5-5`, `21-§19-1`, `21-§19-2`, `21-§19-6`, `22-§15` |
+| `EC-FRL-06` | `EIS-FRL-06` | Participant-aware first run (G2) | `BUILD-HARNESS — ACTIVATION GATED` | WS-G | M3 | 8.1, 13 | NP-49, NP-53, NP-56, NP-59, NP-62, RS-18 | `20-§16-4`, `21-§15-1`, `21-§6-7`, `21-§16-1`, `21-§20-1`, `21-§24-7` |
+
+**Gates on every obligation in this section:** P-1 evidence per sign-in method before activation; ENT-1 HELD; PC-06 entitlement (`DENT`); PC-07 readiness; PC-09 notification boundary (`EQ18-05`); PC-10 consumption gate. The fixed 168-hour expiry is computed by the database from the server-recorded issuance instant. Changes in EIS v0.5 to `EIS-ID-06` and Section 8.1 (authority path, participant capability source (c), target-less rule) are realized by the existing obligations that cite those sections, as amended; this delta verifies them through `NP-56` and `NP-58`.
+
 ## 8. Cross-Cutting Engineering Rules
 
 These rules restate engineering constraints already fixed by the EIS for the builder. Each realizes the obligations it names and adds no behaviour.
@@ -324,7 +351,7 @@ Process obligations govern how the package and later work are conducted. They ma
 
 ## 11. Row-to-Obligation Map
 
-One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint Section 20.5 feasibility label (a documentary assessment, not evidence) with any runtime gate. Holds name the gates that constrain the row.
+One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint Section 20.5 feasibility label (a documentary assessment, not evidence) with any runtime gate. Holds name the gates that constrain the row. Version 1.1-D delta obligations (`EC-ID-07` to `EC-ID-09`, `EC-FRL-06`) appended to rows are `DRAFT` and carry the Section 7.13 gates; appending them changes no row, Status or Holds value.
 
 | # | FCTM row | Blueprint | Obligations | Workstreams | Status | Holds |
 |---|---|---|---|---|---|---|
@@ -333,24 +360,24 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 3 | `21-§4-3` | §8.1 | `EC-ID-02`, `EC-KER-03` | WS-A1, WS-A2 | FEASIBLE | — |
 | 4 | `21-§4-4` | §8.1 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
 | 5 | `21-§4-5` | §8.1 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
-| 6 | `21-§4-6` | §8.1 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
+| 6 | `21-§4-6` | §8.1 | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` | WS-A1, WS-G | FEASIBLE | — |
 | 7 | `21-§5-1` | §8.2 | `EC-ID-01`, `EC-KER-01` | WS-A1, WS-A2 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 8 | `21-§5-2` | §8.2 | `EC-ID-02`, `EC-KER-01`, `EC-FRL-03` | WS-A1, WS-A2, WS-G | CONDITIONAL | — |
 | 9 | `21-§5-3` | §8.2 | `EC-ID-02`, `EC-KER-01` | WS-A1, WS-A2 | FEASIBLE | — |
 | 10 | `21-§5-4` | §8.2 | `EC-KER-01`, `EC-KER-04`, `EC-PPM-03`, `EC-PPM-04` | WS-A2, WS-C | CONDITIONAL | FDR-09, SEC-EIS10-12 |
-| 11 | `21-§5-5` | §8.2 | `EC-KER-01`, `EC-KER-08` | WS-A2 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| 11 | `21-§5-5` | §8.2 | `EC-KER-01`, `EC-KER-08`, `EC-ID-08`, `EC-ID-09` | WS-A2, WS-G | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 12 | `21-§5-6` | §8.2 | `EC-KER-01`, `EC-KER-08` | WS-A2 | FEASIBLE | — |
 | 13 | `21-§5-7` | §8.2 | `EC-KER-01`, `EC-KER-05` | WS-A2 | FEASIBLE | — |
 | 14 | `21-§5-8` | §8.2 | `EC-KER-01`, `EC-KER-06` | WS-A2 | FEASIBLE | — |
 | 15 | `21-§5-9` | §8.2 | `EC-KER-01` | WS-A2 | FEASIBLE | — |
 | 16 | `21-§5-10` | §8.2 | `EC-KER-01`, `EC-KER-05`, `EC-FRL-05` | WS-A2, WS-G | CONDITIONAL | — |
-| 17 | `21-§6-1` | §8.3 | `EC-ISO-01` | WS-A3 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
+| 17 | `21-§6-1` | §8.3 | `EC-ISO-01`, `EC-ID-08` | WS-A3, WS-G | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | 18 | `21-§6-2` | §8.3 | `EC-ISO-01` | WS-A3 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | 19 | `21-§6-3` | §8.3 | `EC-ISO-06` | WS-A3 | FEASIBLE | — |
 | 20 | `21-§6-4` | §8.3 | `EC-ISO-05`, `EC-ENV-01` | WS-A3, WS-0 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4, G-7, SEC-EIS10-13 |
 | 21 | `21-§6-5` | §8.3 | `EC-ISO-05` | WS-A3 | FEASIBLE | G-7 |
 | 22 | `21-§6-6` | §8.3 | `EC-ID-05`, `EC-ISO-04`, `EC-ISO-07` | WS-A1, WS-A3 | FEASIBLE | — |
-| 23 | `21-§6-7` | §8.3 | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02` | WS-A1, WS-A3, WS-G | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| 23 | `21-§6-7` | §8.3 | `EC-ID-06`, `EC-ISO-07`, `EC-FRL-02`, `EC-ID-07`, `EC-FRL-06` | WS-A1, WS-A3, WS-G | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 24 | `21-§7` | §8.4 | `EC-KER-01`, `EC-ISO-02`, `EC-ISO-10` | WS-A2, WS-A3 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | 25 | `21-§8` | §8.5 | `EC-KER-02`, `EC-KER-06`, `EC-DEP-01` | WS-A2, Consumer gate | FEASIBLE | — |
 | 26 | `21-§9` | §8.5 | `EC-KER-06`, `EC-KER-07` | WS-A2 | FEASIBLE | — |
@@ -369,7 +396,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 39 | `21-§12-5` | §8.8 | `EC-KER-09`, `EC-AUT-01` | WS-A2 | FEASIBLE | — |
 | 40 | `21-§13-1` | §8.9 | `EC-EXT-02` | WS-A2 | FEASIBLE | — |
 | 41 | `21-§13-2` | §8.9 | `EC-EXT-02` | WS-A2 | FEASIBLE | — |
-| 42 | `21-§13-3` | §8.9 | `EC-EXT-02` | WS-A2 | FEASIBLE | — |
+| 42 | `21-§13-3` | §8.9 | `EC-EXT-02`, `EC-ID-07`, `EC-ID-08` | WS-A2, WS-G | FEASIBLE | — |
 | 43 | `21-§14-1` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
 | 44 | `21-§14-2` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
 | 45 | `21-§14-3` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
@@ -377,29 +404,29 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 47 | `21-§14-5` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
 | 48 | `21-§14-6` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 49 | `21-§14-7` | §8.10 | `EC-SUP-01` | WS-A2 | FEASIBLE | — |
-| 50 | `21-§15-1` | §8.11 | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02` | WS-A1, WS-A2, WS-G | FEASIBLE | — |
-| 51 | `21-§15-2` | §8.11 | `EC-KER-02` | WS-A2 | FEASIBLE | — |
+| 50 | `21-§15-1` | §8.11 | `EC-ID-06`, `EC-KER-02`, `EC-FRL-02`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` | WS-A1, WS-A2, WS-G | FEASIBLE | — |
+| 51 | `21-§15-2` | §8.11 | `EC-KER-02`, `EC-ID-08` | WS-A2, WS-G | FEASIBLE | — |
 | 52 | `21-§15-3` | §8.11 | `EC-ID-06`, `EC-KER-02` | WS-A1, WS-A2 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
 | 53 | `21-§15-4` | §8.11 | `EC-KER-02` | WS-A2 | FEASIBLE | — |
 | 54 | `21-§15-5` | §8.11 | `EC-KER-02`, `EC-SUP-01`, `EC-ISO-04` | WS-A2, WS-A3 | FEASIBLE | — |
-| 55 | `21-§16-1` | §8.12 | `EC-KER-05` | WS-A2 | FEASIBLE | — |
+| 55 | `21-§16-1` | §8.12 | `EC-KER-05`, `EC-ID-07`, `EC-ID-08`, `EC-FRL-06` | WS-A2, WS-G | FEASIBLE | — |
 | 56 | `21-§16-2` | §8.12 | `EC-KER-05`, `EC-GOV-03` | WS-A2, Cross-cutting | FEASIBLE | — |
-| 57 | `21-§17` | §8.13 | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03` | WS-A2, WS-D, WS-G | CONDITIONAL | — |
-| 58 | `21-§18-1` | §8.14 | `EC-CNF-01`, `EC-FRL-04` | WS-D, WS-G | FEASIBLE | — |
-| 59 | `21-§18-2` | §8.14 | `EC-CNF-01`, `EC-FRL-04` | WS-D, WS-G | FEASIBLE | — |
-| 60 | `21-§18-3` | §8.14 | `EC-CNF-01` | WS-D | FEASIBLE | — |
-| 61 | `21-§18-4` | §8.14 | `EC-CNF-01` | WS-D | FEASIBLE | — |
-| 62 | `21-§18-5` | §8.14 | `EC-CNF-01` | WS-D | FEASIBLE | — |
-| 63 | `21-§18-6` | §8.14 | `EC-CNF-01` | WS-D | FEASIBLE | — |
-| 64 | `21-§19-1` | §8.15 | `EC-AUD-01` | WS-E | CONDITIONAL | ESC-1 |
-| 65 | `21-§19-2` | §8.15 | `EC-AUD-01` | WS-E | CONDITIONAL | ESC-1 |
-| 66 | `21-§19-3` | §8.15 | `EC-AUD-01` | WS-E | CONDITIONAL | ESC-1 |
-| 67 | `21-§19-4` | §8.15 | `EC-AUD-01` | WS-E | CONDITIONAL | ESC-1 |
-| 68 | `21-§19-5` | §8.15 | `EC-AUD-01` | WS-E | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | ESC-1 |
-| 69 | `21-§19-6` | §8.15 | `EC-AUD-01`, `EC-AUD-02` | WS-E | CONDITIONAL | ESC-1 |
+| 57 | `21-§17` | §8.13 | `EC-KER-09`, `EC-CNF-02`, `EC-CNF-05`, `EC-FRL-03`, `EC-ID-09` | WS-A2, WS-D, WS-G | CONDITIONAL | — |
+| 58 | `21-§18-1` | §8.14 | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 59 | `21-§18-2` | §8.14 | `EC-CNF-01`, `EC-FRL-04`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 60 | `21-§18-3` | §8.14 | `EC-CNF-01`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 61 | `21-§18-4` | §8.14 | `EC-CNF-01`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 62 | `21-§18-5` | §8.14 | `EC-CNF-01`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 63 | `21-§18-6` | §8.14 | `EC-CNF-01`, `EC-ID-08` | WS-D, WS-G | FEASIBLE | — |
+| 64 | `21-§19-1` | §8.15 | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | WS-E, WS-G | CONDITIONAL | ESC-1 |
+| 65 | `21-§19-2` | §8.15 | `EC-AUD-01`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | WS-E, WS-G | CONDITIONAL | ESC-1 |
+| 66 | `21-§19-3` | §8.15 | `EC-AUD-01`, `EC-ID-07` | WS-E, WS-G | CONDITIONAL | ESC-1 |
+| 67 | `21-§19-4` | §8.15 | `EC-AUD-01`, `EC-ID-07` | WS-E, WS-G | CONDITIONAL | ESC-1 |
+| 68 | `21-§19-5` | §8.15 | `EC-AUD-01`, `EC-ID-07` | WS-E, WS-G | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | ESC-1 |
+| 69 | `21-§19-6` | §8.15 | `EC-AUD-01`, `EC-AUD-02`, `EC-ID-08`, `EC-ID-09` | WS-E, WS-G | CONDITIONAL | ESC-1 |
 | 70 | `21-§19-7` | §8.15 | `EC-SUP-01`, `EC-AUD-01` | WS-A2, WS-E | CONDITIONAL | ESC-1 |
 | 71 | `21-§19-8` | §8.15 | `EC-AUT-01`, `EC-AUD-01`, `EC-AUD-03` | WS-A2, WS-E | CONDITIONAL | ESC-1 |
-| 72 | `21-§20-1` | §8.16 | `EC-UX-01` | WS-E | FEASIBLE | — |
+| 72 | `21-§20-1` | §8.16 | `EC-UX-01`, `EC-ID-08`, `EC-FRL-06` | WS-E, WS-G | FEASIBLE | — |
 | 73 | `21-§20-2` | §8.16 | `EC-UX-01` | WS-E | FEASIBLE | — |
 | 74 | `21-§20-3` | §8.16 | `EC-UX-01`, `EC-UX-02` | WS-E | FEASIBLE | — |
 | 75 | `21-§20-4` | §8.16 | `EC-UX-01` | WS-E | FEASIBLE | — |
@@ -423,7 +450,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 93 | `21-§24-4` | §8.19 | `EC-KER-08`, `EC-ISO-02`, `EC-TST-02` | WS-A2, WS-A3, WS-H | CONDITIONAL | — |
 | 94 | `21-§24-5` | §8.19 | `EC-EXT-01`, `EC-TST-02` | WS-A2, WS-H | FEASIBLE | — |
 | 95 | `21-§24-6` | §8.19 | `EC-KER-06`, `EC-KER-07`, `EC-TST-02` | WS-A2, WS-H | FEASIBLE | — |
-| 96 | `21-§24-7` | §8.19 | `EC-EXT-02`, `EC-TST-02` | WS-A2, WS-H | FEASIBLE | — |
+| 96 | `21-§24-7` | §8.19 | `EC-EXT-02`, `EC-TST-02`, `EC-ID-09`, `EC-FRL-06` | WS-A2, WS-H, WS-G | FEASIBLE | — |
 | 97 | `21-§24-8` | §8.19 | `EC-KER-09`, `EC-CNF-02`, `EC-TST-02` | WS-A2, WS-D, WS-H | CONDITIONAL | — |
 | 98 | `21-§24-9` | §8.19 | `EC-KER-05`, `EC-TST-02` | WS-A2, WS-H | FEASIBLE | — |
 | 99 | `21-§24-10` | §8.19 | `EC-SUP-01`, `EC-TST-02` | WS-A2, WS-H | FEASIBLE | — |
@@ -435,7 +462,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 105 | `22-§5-4` | §8.20 | `EC-ID-01`, `EC-ID-02` | WS-A1 | FEASIBLE | — |
 | 106 | `22-§5-5` | §8.20 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
 | 107 | `22-§5-6` | §8.20 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
-| 108 | `22-§5-7` | §8.20 | `EC-ID-03` | WS-A1 | FEASIBLE | — |
+| 108 | `22-§5-7` | §8.20 | `EC-ID-03`, `EC-ID-07`, `EC-ID-08` | WS-A1, WS-G | FEASIBLE | — |
 | 109 | `22-§5-8` | §8.20 | `EC-ID-05`, `EC-PPM-01` | WS-A1, WS-C | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 110 | `22-§5-9` | §8.20 | `EC-ID-05`, `EC-ISO-07` | WS-A1, WS-A3 | FEASIBLE | — |
 | 111 | `22-§6-1` | §8.21 | `EC-UX-02` | WS-E | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
@@ -462,7 +489,7 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 132 | `22-§14-7` | §8.23 | `EC-CNF-01` | WS-D | FEASIBLE | — |
 | 133 | `22-§14-8` | §8.23 | `EC-AUD-04` | WS-E | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 134 | `22-§14-9` | §8.23 | `EC-AUD-03` | WS-E | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
-| 135 | `22-§15` | §8.24 | `EC-CNF-04`, `EC-CNF-05` | WS-D | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
+| 135 | `22-§15` | §8.24 | `EC-CNF-04`, `EC-CNF-05`, `EC-ID-07`, `EC-ID-08`, `EC-ID-09` | WS-D, WS-G | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 136 | `22-§16-2` | §8.17 | `EC-AUD-05` | WS-E | FEASIBLE | — |
 | 137 | `22-§17` | §8.25 | `EC-CNF-06` | WS-D | FEASIBLE | — |
 | 138 | `22-§19` | §8.25 | `EC-CNF-06` | WS-D | FEASIBLE | — |
@@ -546,12 +573,12 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | 216 | `20-§16-1` | §8.32 | `EC-ID-02`, `EC-ID-04`, `EC-FRL-01` | WS-A1, WS-G | CONDITIONAL | — |
 | 217 | `20-§16-2` | §8.32 | `EC-KER-04`, `EC-FRL-01` | WS-A2, WS-G | FEASIBLE | — |
 | 218 | `20-§16-3` | §8.32 | `EC-KER-03`, `EC-FRL-01` | WS-A2, WS-G | FEASIBLE | — |
-| 219 | `20-§16-4` | §8.32 | `EC-FRL-01`, `EC-FRL-02` | WS-G | FEASIBLE | — |
+| 219 | `20-§16-4` | §8.32 | `EC-FRL-01`, `EC-FRL-02`, `EC-FRL-06` | WS-G | FEASIBLE | — |
 | 220 | `20-§23-11` | §8.32 | `EC-KER-03`, `EC-FRL-01` | WS-A2, WS-G | FEASIBLE | — |
 | 221 | `17-§13-1` | §8.33 | `EC-ID-02` | WS-A1 | FEASIBLE | — |
 | 222 | `17-§13-2` | §8.33 | `EC-ID-02`, `EC-KER-03`, `EC-PPM-03` | WS-A1, WS-A2, WS-C | CONDITIONAL | FDR-09, SEC-EIS10-12 |
 | 223 | `17-§13-3` | §8.33 | `EC-ID-02`, `EC-KER-03` | WS-A1, WS-A2 | FEASIBLE | — |
-| 224 | `17-§13-4` | §8.33 | `EC-ID-03`, `EC-EXT-02` | WS-A1, WS-A2 | FEASIBLE | — |
+| 224 | `17-§13-4` | §8.33 | `EC-ID-03`, `EC-EXT-02`, `EC-ID-08` | WS-A1, WS-A2, WS-G | FEASIBLE | — |
 | 225 | `17-§14-1` | §8.33 | `EC-ISO-02`, `EC-UX-02` | WS-A3, WS-E | FEASIBLE | — |
 | 226 | `17-§14-2` | §8.33 | `EC-KER-01` | WS-A2 | FEASIBLE; FCTM partial; regression `VC-TEST-15` | — |
 | 227 | `17-§14-3` | §8.33 | `EC-KER-01` | WS-A2 | CONDITIONAL; FCTM partial; regression `VC-TEST-15` | G-6/T4 |
@@ -603,17 +630,17 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | `IN SCOPE` FCTM rows | 267 |
 | Rows mapped to at least one obligation | 267 of 267 |
 | Rows missing an obligation | 0 |
-| Obligations (one per EIS requirement) | 81 |
-| Row-to-obligation links | 463 |
+| Obligations (one per EIS requirement) | 85: 81 in locked version 1.0-L, plus 4 in the version 1.1-D draft delta (`EC-ID-07`, `EC-ID-08`, `EC-ID-09`, `EC-FRL-06`) |
+| Row-to-obligation links | 508: 463 in locked version 1.0-L, plus 45 added by the version 1.1-D delta (`EC-ID-07` 12, `EC-ID-08` 20, `EC-ID-09` 7, `EC-FRL-06` 6) on 27 existing rows |
 | Obligations with no FCTM row | 1: `EC-ENV-02`, an evidence item that adds no behaviour |
 | Behaviour-adding orphan obligations | 0 |
 | Cross-cutting rules (Section 8) and process obligations (Section 9) | 9 and 7; non-behavioural; each rule names the obligations it serves |
 | Rows `BLOCKED` | 1 (`22-§20-2`) |
 | Rows `CONDITIONAL` (Blueprint Section 20.5) | 87 |
 | Rows execution-gated (`RUNTIME NOT AUTHORIZED`; `IN SCOPE`, not a scope deferral) | 22 |
-| FCTM, Blueprint and EIS | Unchanged |
+| FCTM, Blueprint and EIS | Unchanged. The package now cites locked EIS v0.6 (blob `25c0fabc`; version 1.1-D was first prepared against version 0.5 blob `7a5f4918`); no FCTM row, disposition, build commitment, commercial classification or mission assignment changed |
 
-Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 22.2. All three are identical. Each obligation's row list equals the EIS requirement-to-row mapping.
+Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 22.2. All three are identical. Each obligation's row list equals the EIS requirement-to-row mapping. For version 1.1-D the comparison is against locked EIS v0.6 Section 22.2 (85 requirements, 508 links; identical to version 0.5 Section 22.2).
 
 ## 13. Package Observations and Dispositions
 
@@ -628,10 +655,14 @@ Observations raised at Stage 12 and their Mission Control dispositions (MC-166, 
 | PQ-5 | Stale status paragraph in the locked EIS — resolved | Reported at package creation: EIS Section 23 read as a Stage 10 draft. Resolved by MC-166 (PR #699). No package change beyond identity references was needed. |
 | PQ-6 | Carried formatting defect | EQ-S9-5 (a Metadata row before the H1 on line 1 of the locked Blueprint) remains open for Mission Control. It has no Product Truth effect. |
 | PQ-7 | Literal line-break sequence in the EIS change log — resolved | Reported at publication. Resolved by MC-167 (PR #701): the EIS change-log formatting was corrected (0.4-L2), giving locked EIS blob `c444f7509477d0e8b997af538440d93bf2ca4d72`, which this package cites. |
+| PQ-8 | C-4/PK-0 package delta — version 1.1-D DRAFT (MC-803) | The package cited the superseded EIS v0.4 blob `c444f750` and did not cover `EIS-ID-07`, `EIS-ID-08`, `EIS-ID-09` and `EIS-FRL-06`. Version 1.1-D cites locked EIS v0.5 blob `7a5f4918`, adds `EC-ID-07` to `EC-ID-09` and `EC-FRL-06` (Section 7.13), and appends them to 27 existing rows. No row, disposition or assignment changed. Requires a separate Stage 13 review and re-lock |
+| PQ-9 | Amended EIS text realized by existing obligations | EIS v0.5 also amends `EIS-ID-06` (authority-path wording) and Section 8.1 (authority-path result, participant capability source (c) and the target-less rule) without changing their row mappings. The existing obligations that realize those sections now realize the amended text; their rows, titles and types are unchanged. Verification is added through `NP-56` and `NP-58` |
+| PQ-9-v06 | Locked EIS v0.6 PQ-14 text realized by existing obligations (Kernel v0.6 rebaseline) | EIS v0.6 adds three Section 8.1 clauses, with cross-references in existing requirements, and changes no requirement ID or row mapping. A-1 (a target-less policy helper allows a membership, support or automation path only on business-wide authority; a grant narrower than the business is satisfied only by exact-target `authz.authorize`), cited in `EIS-KER-04`, is realized by `EC-KER-04`. A-3 (each `authz.authorize` call evaluates exactly one registered capability selected by `p_action`; a consumer needing several capabilities calls once per capability and allows only if every call allows), cited in `EIS-KER-01`, is realized by `EC-KER-01`. A-2 (object-scoped membership set read through the internal Kernel seed helper `authz.scoped_targets`, query intersection and fresh exact-target `authz.authorize` for every required capability, with no disclosure), cited in `EIS-KER-08`, is realized by `EC-KER-08`. The helper's protected `NOLOGIN NOINHERIT` executor boundary and `EXECUTE` privileges are realized by `EC-ISO-10` and `EC-ISO-03`, and its timing by `EC-ISO-08`. Rows, titles and types of these obligations are unchanged, and no obligation, requirement, authority path, grant type or capability is added. Verification is planned through `NP-64` to `NP-67` and `VC-PERF-03` in the Verification Checklist. This label is local to this package and is distinct from the external PQ-11 hold |
+| PQ-10 | Consumer and policy boundaries | SB-P-1.18 capability registration, object assignment, surfaces and end-to-end proof; SB-P-1.19 ENT-1 policy; SB-P-1.15 notification (`EQ18-05`). The `HARNESS` class proves only the SB-P-1.12 boundary |
 
 ## 14. Status
 
-`APPROVED — LOCKED`. This package lock is not an implementation authorization. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; implementation, runtime and production Security proof is not established.
+Version 1.0-L content: `APPROVED — LOCKED` (MC-168; historical, EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`; the combined package is `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main`. P-1 runtime identity evidence stays HELD for activation and ENT-1 stays HELD. This package lock is not an implementation authorization. ESC-1 stays OPEN T8; `22-§20-2` stays `BLOCKED` / `IN SCOPE`; G-6/T4 stays `UNVERIFIED`; professional legal, privacy and retention validation stays deferred; implementation, runtime and production Security proof is not established.
 
 ## 15. Change Log
 
@@ -640,3 +671,5 @@ Observations raised at Stage 12 and their Mission Control dispositions (MC-166, 
 | 0.1 | 2026-10-01 | Claude Code (MC-165, MC-166) | Initial Stage 12 draft. Before first publication, locked-EIS identity and baseline references updated to MC-166 and PQ-5 marked resolved; no row, obligation, check or count changed |
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; PQ-1 (`EC-ISO-10` to WS-A3, `EC-DEP-01` consumer gate), PQ-2 (`EC-LEG-02` to WS-F, authorization gated), PQ-3 (gated build classifications replace design-only), PQ-4 recorded as downstream prerequisites, PQ-7 resolved. No row, mapping, link or count changed |
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
+| 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved or locked: locked EIS v0.5 blob `7a5f4918` cited; Founder Decision Records 10 and 11 and Records 73 and 74 referenced; new type `BUILD-HARNESS — ACTIVATION GATED`; `EC-ID-07`, `EC-ID-08`, `EC-ID-09` and `EC-FRL-06` (Section 7.13); four delta holds; 27 rows gain delta obligations; coverage 81/463 to 85/508; PQ-8 to PQ-10. No existing obligation, row, disposition or assignment changed |
+| 1.1-D (DRAFT; Kernel v0.6 rebaseline) | 2026-11-14 | Claude Code (MC40, PR #1120 comment `6881056447`) | Version 1.1-D stays a draft, not approved or locked. Current citations moved to locked EIS v0.6 blob `25c0fabc` and Records 75 and 76; the version 0.5 and 1.0-L history kept. Observation PQ-9-v06 added for A-1, A-3 and A-2. No obligation, row, mapping, type, Status, Holds or count changed (85/508/267) |
