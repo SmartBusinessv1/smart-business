@@ -1,9 +1,9 @@
 # SB-P-1.12 — Engineering Contract
 
 ```text
-STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) DRAFT — NOT APPROVED, NOT LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) WITH KERNEL v0.6 REBASELINE (MC40) DRAFT — NOT APPROVED, NOT LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: v0.5 APPROVED — LOCKED (BLOB 7a5f4918; RECORDS 73 AND 74, VERIFIED IN MC-802); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
+EIS: v0.6 APPROVED — LOCKED (BLOB 25c0fabc; RECORDS 75 AND 76, VERIFIED IN MC40 COMMENT 6877878519); VERSION 1.1-D WAS FIRST PREPARED AGAINST v0.5 BLOB 7a5f4918 (RECORDS 73 AND 74, HISTORICAL); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
 IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
@@ -18,12 +18,12 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Engineering Contract (Source 18 Stage 12; package template Phase A) |
 | Package set | `engineering-contract.md`, `lovable-build-prompt.md`, `verification-checklist.md`, authored and reviewed as one set |
-| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (EIS v0.5 G1/G2 delta, MC-803) |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (G1/G2 delta, MC-803, first prepared against EIS v0.5; rebaselined to locked EIS v0.6 under MC40, PR #1120 comment `6881056447`) |
 | Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
 | Author | Claude Code — Source 18 Section 4.4 initial implementation package owner |
-| Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE`; version 1.1-D draft delta: MC-803 (PR #1111 comment `6704792314`), after the canonical EIS v0.5 re-lock verified in MC-802 (comment `6704673906`) |
-| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a` |
-| Date | 2026-10-01; version 1.1-D: 2026-11-07 |
+| Authorizing record | MC-165 (`mission-control/37-stage11-eis-lock-and-stage12-package-authorization.md`); instruction `communication/live/instruction1.30.md`; work package `SB-P-1.12-WP-STAGE12-INITIAL-IMPLEMENTATION-PACKAGE`; version 1.1-D draft delta: MC-803 (PR #1111 comment `6704792314`), after the canonical EIS v0.5 re-lock verified in MC-802 (comment `6704673906`); version 1.1-D Kernel v0.6 rebaseline: MC40, PR #1120 comment `6881056447`, after the canonical EIS v0.6 re-lock verified in MC40 PR #1111 comment `6877878519` |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5` (PR #701 merge, MC-167); created at `main@0b69f50f`, published at `main@e6c6aac5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`; Kernel v0.6 rebaseline prepared against canonical `main@ed4c2b4e69d0a773eb50e2034289dcd1217fb9b3`, branch base unchanged |
+| Date | 2026-10-01; version 1.1-D: 2026-11-07; Kernel v0.6 rebaseline: 2026-11-14 |
 | Next gate | Stage 13 — separate Mission Control review and conditional re-lock of the version 1.1-D delta; Implementation Authorization stays withheld |
 
 ## 2. Purpose and Authority
@@ -39,7 +39,7 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Reference | Path | Identity |
 |---|---|---|
 | Locked Product Blueprint | `docs/phase-1-mission-blueprint/completed/SB-P-1.12.md` | blob `77d52096c020668311b039721a4de9248ddd460e` (`APPROVED — LOCKED`) |
-| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (version 0.5 `APPROVED — LOCKED`; Stage 10 record `mission-control/73-stage10-v05-amendment-review-acceptance.md`, Stage 11 record `mission-control/74-stage11-v05-eis-relock.md`, effective on the PR #1119 merge verified in MC-802). Version 1.0-L of this package was locked against blob `c444f7509477d0e8b997af538440d93bf2ca4d72` (version 0.4 with 0.4-L1 and 0.4-L2) |
+| Locked EIS | `docs/phase-1-mission-blueprint/implementation/SB-P-1.12-EIS.md` | blob `25c0fabcff6601877c49d698afb5249ad28bffc4` (version 0.6 `APPROVED — LOCKED`; Stage 10 record `mission-control/75-stage10-v06-pq14-amendment-review-acceptance.md`, Stage 11 record `mission-control/76-stage11-v06-eis-relock.md`, effective on the PR #1129 merge verified in MC40 PR #1111 comment `6877878519`). Version 1.1-D was first prepared against version 0.5 blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (Records 73 and 74, now historical). Version 1.0-L of this package was locked against blob `c444f7509477d0e8b997af538440d93bf2ca4d72` (version 0.4 with 0.4-L1 and 0.4-L2) |
 | Canonical FCTM | `communication/missions/SB-P-1.12/claude-code/03-stage2-populated-fctm.md` | blob `1650ff95b2fbdd63e1b0f60d8135da14a7a9d259` (412 rows; 267 `IN SCOPE`) |
 | Founder Decision Record 09 | `communication/missions/SB-P-1.12/founder/09-reference-cost-margin-permission-semantics.md` | blob `84d61d4d62cc33ae81ec372ac725059665ebc9d9` |
 | Stage 10 acceptance (MC-164) | `communication/missions/SB-P-1.12/mission-control/36-stage10-eis-review-acceptance.md` | canonical on `main@7d95143e` |
@@ -53,7 +53,10 @@ Order of authority (package template Section 4): Lighthouse Constitution; Master
 | Founder Decision Record 11 | `communication/missions/SB-P-1.12/founder/11-p1-verified-identity-evidence-timing-founder-clarification.md` | blob `c77f8a5f906d242248bfdb81f19cec025802ef9b` (P-1 evidence timing) |
 | EIS v0.5 Stage 10 acceptance (MC-798) | `communication/missions/SB-P-1.12/mission-control/73-stage10-v05-amendment-review-acceptance.md` | blob `41a71bca9a918cd629550614f48ead1330981d92`, canonical on `main@6a5b8b83` |
 | EIS v0.5 Stage 11 re-lock (MC-798, MC-800) | `communication/missions/SB-P-1.12/mission-control/74-stage11-v05-eis-relock.md` | blob `34aea8001aaf56c714e241f75c3767ab2ac5f6cb`, canonical on `main@6a5b8b83` (PR #1119; verified effective in MC-802) |
+| EIS v0.6 Stage 10 acceptance (MC40) | `communication/missions/SB-P-1.12/mission-control/75-stage10-v06-pq14-amendment-review-acceptance.md` | blob `48ed79e83910046ecf17caf22b6160721ef4cb1a`, canonical on `main@5f5d251a` (PR #1129) |
+| EIS v0.6 Stage 11 re-lock (MC40) | `communication/missions/SB-P-1.12/mission-control/76-stage11-v06-eis-relock.md` | blob `0476fdcdd166b1f8382e31d87895e678b9efde0c`, canonical on `main@5f5d251a` (PR #1129; verified effective in MC40 PR #1111 comment `6877878519`). The v0.5 records above are historical |
 | Version 1.1-D delta authority | MC-803, PR #1111 comment `6704792314` | Documentary package-delta preparation only; not a lock or implementation grant |
+| Version 1.1-D Kernel v0.6 rebaseline authority | MC40, PR #1120 comment `6881056447` | Documentary package-reconciliation preparation only; not a lock or implementation grant |
 
 ## 4. Preserved Holds and Gates
 
@@ -128,7 +131,7 @@ Each obligation `EC-<suffix>` realizes exactly one EIS requirement `EIS-<suffix>
 | `EVIDENCE` | An evidence obligation. It adds no product behaviour. It is satisfied only by the named evidence, collected under separate authorization where required. |
 | `GOVERNANCE` | Applies to every builder workstream. It constrains how behaviour is built and adds no product behaviour of its own. |
 | `CONSUMER GATE` | Cross-cutting Governance / Consumer Gate. **Not an implementation builder workstream obligation**: no builder builds anything for it. Mission Control enforces it through dependency evidence before a later mission consumes an authority surface. |
-| `BUILD-HARNESS — ACTIVATION GATED` | Version 1.1-D delta. Implement the SB-P-1.12 command, binding state, kernel representation or route decision exactly as the locked EIS v0.5 specifies, under a future Implementation Authorization, proving consumer boundaries with a labelled harness. **Implementing is not activating:** no sign-in method or participant route is enabled until its P-1 evidence, PC-07 readiness and PC-10 consumption conditions hold; before readiness, G1 invitation issue and acceptance commands return the EIS-prescribed committed, audited denial (`participant_path_not_ready` where applicable); revocation retains its separate EIS-prescribed authorization and denial semantics. The read-only G2 first-run decision returns the applicable `first_run_decision` and non-enumerating denial code without a committed command effect or replayed write. |
+| `BUILD-HARNESS — ACTIVATION GATED` | Version 1.1-D delta. Implement the SB-P-1.12 command, binding state, kernel representation or route decision exactly as the locked EIS (version 0.6; unchanged from version 0.5 for these requirements) specifies, under a future Implementation Authorization, proving consumer boundaries with a labelled harness. **Implementing is not activating:** no sign-in method or participant route is enabled until its P-1 evidence, PC-07 readiness and PC-10 consumption conditions hold; before readiness, G1 invitation issue and acceptance commands return the EIS-prescribed committed, audited denial (`participant_path_not_ready` where applicable); revocation retains its separate EIS-prescribed authorization and denial semantics. The read-only G2 first-run decision returns the applicable `first_run_decision` and non-enumerating denial code without a committed command effect or replayed write. |
 
 ## 7. Engineering Obligations
 
@@ -301,7 +304,7 @@ Every item is separately authorized, read-only evidence. G-6/T4 stays `UNVERIFIE
 
 ### 7.13 Delivery Staff Participant Binding (G1/G2) — Version 1.1-D Delta (DRAFT)
 
-Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`; not effective for G1/G2 until a separate Stage 13 review and re-lock. Each obligation realizes one EIS v0.5 requirement exactly as the locked EIS states it, with the Section 13 controls PC-01 to PC-12 it cites. SB-P-1.12 owns the commands, binding state, kernel representation and server-side route decision. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof. SB-P-1.19 owns the ENT-1 policy. Workstream placement follows EIS Section 19.1 (WS-G); kernel, isolation, binding and audit rules these obligations rely on stay with their existing WS-A1, WS-A2, WS-A3, WS-D and WS-E obligations.
+Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`; not effective for G1/G2 until a separate Stage 13 review and re-lock. Each obligation realizes one requirement of the locked EIS (version 0.6; these four requirements are unchanged from version 0.5, against which the delta was first prepared) exactly as the locked EIS states it, with the Section 13 controls PC-01 to PC-12 it cites. SB-P-1.12 owns the commands, binding state, kernel representation and server-side route decision. SB-P-1.18 owns capability registration, object assignment, every participant and merchant surface, negative tests and end-to-end proof. SB-P-1.19 owns the ENT-1 policy. Workstream placement follows EIS Section 19.1 (WS-G); kernel, isolation, binding and audit rules these obligations rely on stay with their existing WS-A1, WS-A2, WS-A3, WS-D and WS-E obligations.
 
 | Obligation | Realizes | Title | Type | Workstream | Migration class | EIS section | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
@@ -635,9 +638,9 @@ One line per `IN SCOPE` FCTM row, in FCTM order. Status combines the Blueprint S
 | Rows `BLOCKED` | 1 (`22-§20-2`) |
 | Rows `CONDITIONAL` (Blueprint Section 20.5) | 87 |
 | Rows execution-gated (`RUNTIME NOT AUTHORIZED`; `IN SCOPE`, not a scope deferral) | 22 |
-| FCTM, Blueprint and EIS | Unchanged. The package now cites locked EIS v0.5 (blob `7a5f4918`); no FCTM row, disposition, build commitment, commercial classification or mission assignment changed |
+| FCTM, Blueprint and EIS | Unchanged. The package now cites locked EIS v0.6 (blob `25c0fabc`; version 1.1-D was first prepared against version 0.5 blob `7a5f4918`); no FCTM row, disposition, build commitment, commercial classification or mission assignment changed |
 
-Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 22.2. All three are identical. Each obligation's row list equals the EIS requirement-to-row mapping. For version 1.1-D the comparison is against locked EIS v0.5 Section 22.2 (85 requirements, 508 links).
+Method: the row set of Section 11 was compared by set difference with the FCTM `IN SCOPE` row set and with EIS Section 22.2. All three are identical. Each obligation's row list equals the EIS requirement-to-row mapping. For version 1.1-D the comparison is against locked EIS v0.6 Section 22.2 (85 requirements, 508 links; identical to version 0.5 Section 22.2).
 
 ## 13. Package Observations and Dispositions
 
@@ -654,6 +657,7 @@ Observations raised at Stage 12 and their Mission Control dispositions (MC-166, 
 | PQ-7 | Literal line-break sequence in the EIS change log — resolved | Reported at publication. Resolved by MC-167 (PR #701): the EIS change-log formatting was corrected (0.4-L2), giving locked EIS blob `c444f7509477d0e8b997af538440d93bf2ca4d72`, which this package cites. |
 | PQ-8 | C-4/PK-0 package delta — version 1.1-D DRAFT (MC-803) | The package cited the superseded EIS v0.4 blob `c444f750` and did not cover `EIS-ID-07`, `EIS-ID-08`, `EIS-ID-09` and `EIS-FRL-06`. Version 1.1-D cites locked EIS v0.5 blob `7a5f4918`, adds `EC-ID-07` to `EC-ID-09` and `EC-FRL-06` (Section 7.13), and appends them to 27 existing rows. No row, disposition or assignment changed. Requires a separate Stage 13 review and re-lock |
 | PQ-9 | Amended EIS text realized by existing obligations | EIS v0.5 also amends `EIS-ID-06` (authority-path wording) and Section 8.1 (authority-path result, participant capability source (c) and the target-less rule) without changing their row mappings. The existing obligations that realize those sections now realize the amended text; their rows, titles and types are unchanged. Verification is added through `NP-56` and `NP-58` |
+| PQ-9-v06 | Locked EIS v0.6 PQ-14 text realized by existing obligations (Kernel v0.6 rebaseline) | EIS v0.6 adds three Section 8.1 clauses, with cross-references in existing requirements, and changes no requirement ID or row mapping. A-1 (a target-less policy helper allows a membership, support or automation path only on business-wide authority; a grant narrower than the business is satisfied only by exact-target `authz.authorize`), cited in `EIS-KER-04`, is realized by `EC-KER-04`. A-3 (each `authz.authorize` call evaluates exactly one registered capability selected by `p_action`; a consumer needing several capabilities calls once per capability and allows only if every call allows), cited in `EIS-KER-01`, is realized by `EC-KER-01`. A-2 (object-scoped membership set read through the internal Kernel seed helper `authz.scoped_targets`, query intersection and fresh exact-target `authz.authorize` for every required capability, with no disclosure), cited in `EIS-KER-08`, is realized by `EC-KER-08`. The helper's protected `NOLOGIN NOINHERIT` executor boundary and `EXECUTE` privileges are realized by `EC-ISO-10` and `EC-ISO-03`, and its timing by `EC-ISO-08`. Rows, titles and types of these obligations are unchanged, and no obligation, requirement, authority path, grant type or capability is added. Verification is planned through `NP-64` to `NP-67` and `VC-PERF-03` in the Verification Checklist. This label is local to this package and is distinct from the external PQ-11 hold |
 | PQ-10 | Consumer and policy boundaries | SB-P-1.18 capability registration, object assignment, surfaces and end-to-end proof; SB-P-1.19 ENT-1 policy; SB-P-1.15 notification (`EQ18-05`). The `HARNESS` class proves only the SB-P-1.12 boundary |
 
 ## 14. Status
@@ -668,3 +672,4 @@ Version 1.0-L content: `APPROVED — LOCKED` (MC-168; historical, EIS v0.4 scope
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; PQ-1 (`EC-ISO-10` to WS-A3, `EC-DEP-01` consumer gate), PQ-2 (`EC-LEG-02` to WS-F, authorization gated), PQ-3 (gated build classifications replace design-only), PQ-4 recorded as downstream prerequisites, PQ-7 resolved. No row, mapping, link or count changed |
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
 | 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved or locked: locked EIS v0.5 blob `7a5f4918` cited; Founder Decision Records 10 and 11 and Records 73 and 74 referenced; new type `BUILD-HARNESS — ACTIVATION GATED`; `EC-ID-07`, `EC-ID-08`, `EC-ID-09` and `EC-FRL-06` (Section 7.13); four delta holds; 27 rows gain delta obligations; coverage 81/463 to 85/508; PQ-8 to PQ-10. No existing obligation, row, disposition or assignment changed |
+| 1.1-D (DRAFT; Kernel v0.6 rebaseline) | 2026-11-14 | Claude Code (MC40, PR #1120 comment `6881056447`) | Version 1.1-D stays a draft, not approved or locked. Current citations moved to locked EIS v0.6 blob `25c0fabc` and Records 75 and 76; the version 0.5 and 1.0-L history kept. Observation PQ-9-v06 added for A-1, A-3 and A-2. No obligation, row, mapping, type, Status, Holds or count changed (85/508/267) |

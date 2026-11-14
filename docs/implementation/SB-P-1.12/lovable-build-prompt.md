@@ -1,9 +1,9 @@
 # SB-P-1.12 — Lovable Build Prompt
 
 ```text
-STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) DRAFT — NOT APPROVED, NOT LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) WITH KERNEL v0.6 REBASELINE (MC40) DRAFT — NOT APPROVED, NOT LOCKED
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
-EIS: v0.5 APPROVED — LOCKED (BLOB 7a5f4918; RECORDS 73 AND 74, VERIFIED IN MC-802); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
+EIS: v0.6 APPROVED — LOCKED (BLOB 25c0fabc; RECORDS 75 AND 76, VERIFIED IN MC40 COMMENT 6877878519); VERSION 1.1-D WAS FIRST PREPARED AGAINST v0.5 BLOB 7a5f4918 (RECORDS 73 AND 74, HISTORICAL); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
 IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
@@ -17,14 +17,14 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Builder Prompt (Source 18 Stage 12; package template Phase B) |
-| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (EIS v0.5 G1/G2 delta, MC-803) |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (G1/G2 delta, MC-803, first prepared against EIS v0.5; rebaselined to locked EIS v0.6 under MC40, PR #1120 comment `6881056447`) |
 | Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
 | Author | Claude Code — initial implementation package owner |
 | Builder identity | **Not yet named.** The Implementation Authorization names the builder for each workstream |
 | Repository | `SmartBusinessv1/smart-business` |
-| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a` |
-| Date | 2026-10-01; version 1.1-D: 2026-11-07 |
-| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`) |
+| Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`; Kernel v0.6 rebaseline prepared against canonical `main@ed4c2b4e69d0a773eb50e2034289dcd1217fb9b3`, branch base unchanged |
+| Date | 2026-10-01; version 1.1-D: 2026-11-07; Kernel v0.6 rebaseline: 2026-11-14 |
+| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`); Kernel v0.6 rebaseline: MC40, PR #1120 comment `6881056447`, after the EIS v0.6 re-lock verified in MC40 PR #1111 comment `6877878519` |
 
 ## 2. Builder Identity and Artifact Name
 
@@ -36,8 +36,8 @@ Read, in this order, and treat each as binding:
 
 1. `AGENTS.md` and `CLAUDE.md`;
 2. the locked Product Blueprint, blob `77d52096c020668311b039721a4de9248ddd460e`;
-3. the locked EIS, blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e` (version 0.5; version 1.0-L of this prompt was locked against version 0.4 blob `c444f7509477d0e8b997af538440d93bf2ca4d72`);
-4. Founder Decision Records 09, 10 and 11, and the EIS v0.5 Stage 10 and Stage 11 records 73 and 74;
+3. the locked EIS, blob `25c0fabcff6601877c49d698afb5249ad28bffc4` (version 0.6; version 1.1-D of this prompt was first prepared against version 0.5 blob `7a5f49182463ec79ecf221d7dd13dfebbc517e3e`, and version 1.0-L was locked against version 0.4 blob `c444f7509477d0e8b997af538440d93bf2ca4d72`);
+4. Founder Decision Records 09, 10 and 11, the EIS v0.6 Stage 10 and Stage 11 records 75 and 76, and, as history only, the EIS v0.5 records 73 and 74;
 5. the Engineering Contract (`engineering-contract.md`) once locked;
 6. this Build Prompt once locked;
 7. the Verification Checklist (`verification-checklist.md`) once locked;
@@ -134,6 +134,15 @@ Forbidden in this workstream, in addition to Section 8:
 - accepting a principal from a request body, client store, token claims beyond the subject, or `service_role` possession;
 - a standing platform role that reads merchant data;
 - building Employee attendance, leave or task features, participant portals, or the scheduler and channel runtime that later missions own (prove the boundary with labelled harnesses only).
+
+**Kernel v0.6 PQ-14 boundaries (version 1.1-D rebaseline, DRAFT; EIS Section 8.1 A-1 to A-3).** These apply to this workstream and to the existing `EC-ISO-10` (WS-A3) and `EC-ISO-03` (WS-B) obligations they rely on. They add no workstream, obligation or capability and authorize no build. Forbidden:
+
+- a target-less policy helper (`authz.can`) allowing on a membership, support or automation grant whose scope constraint is narrower than the requested business; such a grant is satisfied only by exact-target `authz.authorize` (`EC-KER-04`);
+- an `authz.authorize` call that evaluates more than one capability, or any all-of form; a consumer that needs several capabilities for one target calls once per capability and allows only if every call allows (`EC-KER-01`);
+- an object-scoped membership set read served by a direct table read, a target-less helper or a consumer read of grant data; candidates come only from `authz.scoped_targets`, are intersected with the query, and each object leaves only after fresh exact-target `authz.authorize` for every required capability, with nothing disclosed about omitted objects (`EC-KER-08`);
+- exposing `authz.scoped_targets` as a client, API, RPC, server or tool authority surface, or holding `EXECUTE` on it by `PUBLIC`, `anon`, `authenticated`, `service_role` or any role other than the dedicated `NOLOGIN NOINHERIT` executor role(s) of governed membership set-read functions; its candidate identifiers are never returned outward (`EC-KER-08`, `EC-ISO-10`).
+
+Verification, planned only and fail-closed: `NP-64` to `NP-66` in the Kernel unit and DB suite; `NP-67` there and in the effective-access inventory test (`VC-TEST-12`), which lists `authz.scoped_targets` and every role holding `EXECUTE` on it, including through ownership, role membership, default privileges, overloads or grant chains; `VC-PERF-03` for timing under `EIS-ISO-08`. A failed, missing or unexpected result stops the workstream and is escalated under Section 10; it is never waived.
 
 ### 7.4 SB-P-1.12/WS-A3 — Enforcement
 
@@ -718,3 +727,4 @@ Version 1.0-L content: `APPROVED — LOCKED` (MC-168; historical, EIS v0.4 scope
 | 0.2 | 2026-10-01 | Claude Code (MC-167) | Stage 13 refinement: locked EIS blob `c444f750`; `EC-ISO-10` in WS-A3; `EC-DEP-01` shown as a consumer gate, not a builder workstream; `EC-LEG-02` in WS-F; identity-deletion obligations reclassified as gated builds. No row or mapping changed |
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
 | 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved or locked: locked EIS v0.5 blob `7a5f4918` and Founder Decision Records 10 and 11 added to Section 3; Section 4 non-executable note; gated slice 7.10.1 (`EC-ID-07` to `EC-ID-09`, `EC-FRL-06`); four delta holds; 27 rows gain WS-G and delta obligations; WS-G 5/20 to 9/41; shared rows 104 to 123. No existing workstream obligation, row or assignment changed |
+| 1.1-D (DRAFT; Kernel v0.6 rebaseline) | 2026-11-14 | Claude Code (MC40, PR #1120 comment `6881056447`) | Version 1.1-D stays a draft, not approved or locked, and not executable. Current citations moved to locked EIS v0.6 blob `25c0fabc` and Records 75 and 76; the version 0.5 and 1.0-L history kept. WS-A2 gains the Kernel v0.6 PQ-14 forbidden boundaries and planned verification (`NP-64` to `NP-67`, `VC-PERF-03`). No workstream, obligation, row, mapping or count changed |
