@@ -1,10 +1,10 @@
 # SB-P-1.12 — Verification Checklist
 
 ```text
-STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) WITH KERNEL v0.6 REBASELINE (MC40) DRAFT — NOT APPROVED, NOT LOCKED
+STATUS: VERSION 1.0-L APPROVED — LOCKED (MC-168; HISTORICAL, EIS v0.4 SCOPE); VERSION 1.1-D G1/G2 DELTA (MC-803) WITH KERNEL v0.6 REBASELINE (MC40) APPROVED — LOCKED ONLY ON THE EFFECTIVE EVENT OF STAGE 13 RECORD 77 (MC40 ADOPTION, AUTHORIZED HUMAN MERGE, MC40 VERIFICATION); NOT EFFECTIVE BEFORE THEN, AND 1.0-L STAYS THE EFFECTIVE LOCK UNTIL THEN
 PRODUCT BLUEPRINT: APPROVED — LOCKED (UNCHANGED)
 EIS: v0.6 APPROVED — LOCKED (BLOB 25c0fabc; RECORDS 75 AND 76, VERIFIED IN MC40 COMMENT 6877878519); VERSION 1.1-D WAS FIRST PREPARED AGAINST v0.5 BLOB 7a5f4918 (RECORDS 73 AND 74, HISTORICAL); VERSION 1.0-L WAS LOCKED AGAINST v0.4 BLOB c444f750
-IMPLEMENTATION PACKAGE: COMBINED PACKAGE DRAFT / NOT EFFECTIVE FOR G1/G2 UNTIL A SEPARATE STAGE 13 REVIEW AND RE-LOCK ON CANONICAL MAIN
+IMPLEMENTATION PACKAGE: COMBINED PACKAGE NOT EFFECTIVE FOR G1/G2 UNTIL THE STAGE 13 RE-LOCK (RECORD 77) TAKES EFFECT ON CANONICAL MAIN; G1/G2 ACTIVATION STAYS GATED AFTER THAT
 IMPLEMENTATION: NOT AUTHORIZED
 SCHEMA / SQL / MIGRATIONS: NOT AUTHORIZED
 PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
@@ -17,12 +17,12 @@ PRODUCTION / PROVIDER MUTATION: NOT AUTHORIZED
 | Mission ID | SB-P-1.12 |
 | Mission Name | Authority, Identity & Product Surface Foundation |
 | Document | Verification Checklist (Source 18 Stage 12; package template Phase C) |
-| Version | 1.0-L (Stage 13 locked content, MC-168) with draft amendment 1.1-D (G1/G2 delta, MC-803, first prepared against EIS v0.5; rebaselined to locked EIS v0.6 under MC40, PR #1120 comment `6881056447`) |
-| Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope). Version 1.1-D delta: `DRAFT — NOT APPROVED, NOT LOCKED`. Combined package: `DRAFT / NOT EFFECTIVE FOR G1/G2` until a separate Stage 13 review and re-lock on canonical `main` |
+| Version | 1.0-L (Stage 13 locked content, MC-168) with amendment 1.1-D (G1/G2 delta, MC-803, first prepared against EIS v0.5; rebaselined to locked EIS v0.6 under MC40, PR #1120 comment `6881056447`; Stage 13 lock conditional on Record 77) |
+| Status | Version 1.0-L content: `APPROVED — LOCKED` (historical; EIS v0.4 scope), the effective Stage 13 lock until Record 77 takes effect. Version 1.1-D combined package: `APPROVED — LOCKED`, **effective only when** Mission Control Stage 13 record `communication/missions/SB-P-1.12/mission-control/77-stage13-c4-pk0-v11-package-relock.md` is adopted by Mission Control, human-merged to canonical `main` with this package, and verified by Mission Control; not effective before then. Package approval is not implementation authorization |
 | Author | Claude Code — initial implementation package owner |
 | Canonical baseline | `main@7d95143ef52f1ca1f72bbc4a76442f02a990d0c5`; version 1.1-D prepared at `main@6a5b8b83f93bea55c18d6ee221229b80edd9599a`; Kernel v0.6 rebaseline prepared against canonical `main@ed4c2b4e69d0a773eb50e2034289dcd1217fb9b3`, branch base unchanged |
 | Date | 2026-10-01; version 1.1-D: 2026-11-07; Kernel v0.6 rebaseline: 2026-11-14 |
-| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`); Kernel v0.6 rebaseline: MC40, PR #1120 comment `6881056447`, after the EIS v0.6 re-lock verified in MC40 PR #1111 comment `6877878519` |
+| Version 1.1-D authority | MC-803 (PR #1111 comment `6704792314`), after the EIS v0.5 re-lock verified in MC-802 (comment `6704673906`); Kernel v0.6 rebaseline: MC40, PR #1120 comment `6881056447`, after the EIS v0.6 re-lock verified in MC40 PR #1111 comment `6877878519`; Stage 13 re-lock preparation: MC40, PR #1120 comment `6889895889` (Record 77, conditional) |
 | Execution state | **Not executed.** Every item is a planned check. Nothing here is evidence |
 | `EC-DEP-01` | Cross-cutting Governance / Consumer Gate; verified by Mission Control dependency evidence, not by builder checks |
 
@@ -119,7 +119,7 @@ Each experience row has at least one named runtime scenario. Every scenario is a
 | RS-14 | External participant boundary (labelled harness; no participant surface built) | Blueprint section 15 External Participants; Contract 21 scenario 7 | `HARNESS` | `21-§13-1`, `21-§13-2`, `21-§13-3`, `21-§24-7`, `17-§13-4` |
 | RS-15 | Support access consent, scope, expiry and revocation (labelled harness for the operator side) | Blueprint section 15 Auditability; Contract 21 scenario 10 | `HARNESS`, `AUDIT` | `21-§14-2`, `21-§24-10` |
 
-### 4.2 Named Runtime Scenarios — Version 1.1-D G1/G2 Delta (DRAFT)
+### 4.2 Named Runtime Scenarios — Version 1.1-D G1/G2 Delta (Stage 13 lock conditional on Record 77)
 
 Planned only; not executed and no result is claimed. Each runs on a labelled harness, claims nothing for SB-P-1.18 end-to-end delivery, and runs only for a sign-in method with a Mission Control P-1 evidence record and after PC-07 readiness. Rows are the scenario's requirement rows that are already experience rows.
 
@@ -206,7 +206,7 @@ Each permission, isolation and denial row has at least one named negative-path c
 | NP-45 | `authority_events` rejects update and delete for every role; an authority change without its event is a failure | EIS-AUD-01 | Denial audit | `DB`, `AUDIT` | `21-§14-6`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `21-§19-6`, `21-§19-7`, `21-§19-8`, `22-§14-5`, `22-§29-12` |
 | NP-46 | Invited person never silently made Owner of a new empty business; `returnTo` outside the allowlist rejected | EIS-FRL-02 | Active business | `DB`, `UNIT` | `20-§16-1`, `20-§16-4` |
 
-### 6.2 Named Negative-Path Checks — Version 1.1-D G1/G2 Delta (DRAFT)
+### 6.2 Named Negative-Path Checks — Version 1.1-D G1/G2 Delta (Stage 13 lock conditional on Record 77)
 
 Planned only; not executed, and no `PASS` or numerical result is claimed. Each realizes locked EIS requirements (version 0.6; unchanged from version 0.5, against which these checks were first prepared) and the Section 13 controls PC-01 to PC-12 they cite. `HARNESS` proves only the SB-P-1.12 boundary; SB-P-1.18 end-to-end proof is separate. `PROV` marks the separately authorized P-1 project-specific evidence, never inferred from repository files.
 
@@ -230,7 +230,7 @@ Planned only; not executed, and no `PASS` or numerical result is claimed. Each r
 | NP-62 | Participant-aware first run (G2): an associated or presented participant state creates no business or Owner membership and business creation is not the default; an unresolved reference discloses nothing; an expired, revoked or consumed invitation gives no participant route; an unbound person keeps ordinary first run; a person with both contexts receives every context without a silent switch; `participant_path_not_ready` has the same shape with or without a presented reference | EIS-FRL-06 | Participant binding; Active business | `DB`, `UNIT`, `HARNESS` | `20-§16-4`, `21-§15-1`, `21-§6-7`, `21-§16-1`, `21-§20-1`, `21-§24-7` |
 | NP-63 | Scope exclusions: the kernel sends no invitation, notification or message and adds no channel (PC-09; SMS, WhatsApp and other channels excluded); no new authentication method; no merchant-visible lockout or cooldown from abuse throttling (PC-11); no merchant recovery screen | EIS-ID-07, EIS-ID-08 | Participant binding; Effective access inventory | `REPO`, `INV`, `DOC` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1` |
 
-### 6.3 Named Negative-Path Checks — Version 1.1-D Kernel v0.6 PQ-14 Rebaseline (DRAFT)
+### 6.3 Named Negative-Path Checks — Version 1.1-D Kernel v0.6 PQ-14 Rebaseline (Stage 13 lock conditional on Record 77)
 
 Planned only; not executed, and no `PASS` or numerical result is claimed. Each realizes the locked EIS v0.6 Section 8.1 clause it names, through the existing obligations `EC-KER-04`, `EC-KER-01`, `EC-KER-08`, `EC-ISO-03` and `EC-ISO-10` (Engineering Contract PQ-9-v06). The KS seeds are the planned PQ-14 Kernel seeds; KS-1 to KS-14 are PLANNED, NOT RUN. No runtime, SQL, RLS, PostgREST, role-membership or performance evidence exists.
 
@@ -289,8 +289,8 @@ Planned only; not executed, and no `PASS` or numerical result is claimed. Each r
 | VC-TEST-13 | Executable acceptance scenarios (Contract 21 scenarios 1 to 12, Contract 22, 17 and 7 scenarios, Founder Scenarios A and B, F-04(c)). | `DB`, `HARNESS` | 27 rows via EC-TST-02; each listed against its row in Section 13 |
 | VC-TEST-14 | Existing suites (catalog import 9, inventory 17, parser lease 2) green at every checkpoint, re-run with non-Owner fixtures where they touch authority. | `REG` | `BP-§10.1-9`, `BP-§10.1-13` |
 | VC-TEST-15 | Rows `IN SCOPE — PARTIALLY DEMONSTRATED` in the FCTM: the existing partial behaviour is re-verified by regression, never assumed, and the remainder is built and verified. | `REG`, `DB` | 32 rows via PARTIAL; each listed against its row in Section 13 |
-| VC-TEST-16 | Participant binding suite (EIS Section 18.1; version 1.1-D delta, DRAFT), including the amended Section 8.1 authority-path and target-less rules: `NP-47` to `NP-63`. Planned only; runs after the Stage 13 re-lock and an Implementation Authorization, with method-specific checks only after the P-1 evidence for that method. | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
-| VC-TEST-17 | Kernel v0.6 PQ-14 checks (EIS Section 18.1 Kernel unit and DB suite, and the effective-access inventory test `VC-TEST-12`; version 1.1-D rebaseline, DRAFT): `NP-64` to `NP-67`, with timing under `VC-PERF-03`. Planned only; runs after the Stage 13 re-lock and an Implementation Authorization. | `DB`, `CONC`, `HARNESS`, `UNIT`, `INV` | 28 rows via NP-64, NP-65, NP-66, NP-67; each listed against its row in Section 13 |
+| VC-TEST-16 | Participant binding suite (EIS Section 18.1; version 1.1-D delta, Stage 13 lock conditional on Record 77), including the amended Section 8.1 authority-path and target-less rules: `NP-47` to `NP-63`. Planned only; runs after the Stage 13 re-lock and an Implementation Authorization, with method-specific checks only after the P-1 evidence for that method. | `DB`, `CONC`, `HARNESS`, `INV`, `AUDIT`, `UNIT` | `21-§4-6`, `21-§13-3`, `22-§5-7`, `21-§6-7`, `21-§15-1`, `21-§16-1`, `21-§19-1`, `21-§19-2`, `21-§19-3`, `21-§19-4`, `21-§19-5`, `22-§15`, `17-§13-4`, `21-§5-5`, `21-§6-1`, `21-§15-2`, `21-§18-1`, `21-§18-2`, `21-§18-3`, `21-§18-4`, `21-§18-5`, `21-§18-6`, `21-§19-6`, `21-§20-1`, `21-§17`, `21-§24-7`, `20-§16-4` |
+| VC-TEST-17 | Kernel v0.6 PQ-14 checks (EIS Section 18.1 Kernel unit and DB suite, and the effective-access inventory test `VC-TEST-12`; version 1.1-D rebaseline, Stage 13 lock conditional on Record 77): `NP-64` to `NP-67`, with timing under `VC-PERF-03`. Planned only; runs after the Stage 13 re-lock and an Implementation Authorization. | `DB`, `CONC`, `HARNESS`, `UNIT`, `INV` | 28 rows via NP-64, NP-65, NP-66, NP-67; each listed against its row in Section 13 |
 
 ## 11. Evidence Verification
 
@@ -334,8 +334,8 @@ Planned only; not executed, and no `PASS` or numerical result is claimed. Each r
 | Permission, isolation and denial rows (rule in 13.1) | 202; all 202 carry a named negative-path check. Version 1.1-D adds exactly one row to the locked 1.0-L classification (201): `20-§16-4` through participant obligation `EC-FRL-06`. The already-classified `22-§15` had confirmation obligations `EC-CNF-04` and `EC-CNF-05` before this delta. The Kernel v0.6 rebaseline adds no row: every row it touches was already classified through a kernel or isolation obligation. |
 | Rows carrying at least one named negative-path check | 226 (unchanged; all 27 rows touched by the version 1.1-D G1/G2 delta, and all 28 rows touched by its Kernel v0.6 rebaseline, already carried one) |
 | Experience rows | 85; all 85 carry a named runtime scenario. Rows carrying a named runtime scenario: 85. `RS-16` to `RS-18` are assigned only to rows that were already experience rows |
-| Named negative-path checks | 67, each used by at least one row: 46 in locked version 1.0-L, plus `NP-47` to `NP-63` in the version 1.1-D draft delta and `NP-64` to `NP-67` in its Kernel v0.6 rebaseline |
-| Named runtime scenarios | 18: 15 in locked version 1.0-L, plus `RS-16` to `RS-18` in the version 1.1-D draft delta |
+| Named negative-path checks | 67, each used by at least one row: 46 in locked version 1.0-L, plus `NP-47` to `NP-63` in the version 1.1-D delta and `NP-64` to `NP-67` in its Kernel v0.6 rebaseline |
+| Named runtime scenarios | 18: 15 in locked version 1.0-L, plus `RS-16` to `RS-18` in the version 1.1-D delta |
 | `ALREADY DEMONSTRATED` rows | 0 in the FCTM; no regression-only item is needed. Rows `IN SCOPE — PARTIALLY DEMONSTRATED` carry `VC-TEST-15` |
 | Rows `BLOCKED` | 1 (`22-§20-2`), `IN SCOPE` |
 | Rows `CONDITIONAL` | 87, `IN SCOPE` |
@@ -354,7 +354,7 @@ Planned only; not executed, and no `PASS` or numerical result is claimed. Each r
 
 ### 13.4 Row-keyed checklist items
 
-Version 1.1-D delta obligations, checks and scenarios appended to 27 rows, and the Kernel v0.6 rebaseline checks `NP-64` to `NP-67` appended to 28 rows (with any new planned evidence class appended to the row's class cell), are `DRAFT` and planned only; appending them changes no row, obligation, Status or Holds value.
+Version 1.1-D delta obligations, checks and scenarios appended to 27 rows, and the Kernel v0.6 rebaseline checks `NP-64` to `NP-67` appended to 28 rows (with any new planned evidence class appended to the row's class cell), are planned only and locked only on the Record 77 effective event; appending them changes no row, obligation, Status or Holds value.
 
 | Item | FCTM row | Obligations | Planned evidence class | Negative-path checks | Runtime scenarios | Status | Holds |
 |---|---|---|---|---|---|---|---|
@@ -637,7 +637,7 @@ ESC-1: OPEN T8
 22-§20-2: BLOCKED / IN SCOPE
 G-6/T4: UNVERIFIED
 LEGAL, PRIVACY AND RETENTION VALIDATION: DEFERRED
-VERSION 1.1-D G1/G2 DELTA: DRAFT — NOT APPROVED, NOT LOCKED, NOT EFFECTIVE
+VERSION 1.1-D G1/G2 DELTA: APPROVED — LOCKED ONLY ON THE RECORD 77 EFFECTIVE EVENT; NOT EFFECTIVE BEFORE THEN
 P-1 RUNTIME IDENTITY EVIDENCE: HELD FOR ACTIVATION
 ENT-1: HELD
 ```
@@ -651,3 +651,4 @@ ENT-1: HELD
 | 1.0-L | 2026-10-01 | Mission Control (MC-168) | Stage 13 lock-only transition: package content accepted and status changed to `APPROVED — LOCKED`. No obligation, row, mapping, check, scenario, workstream, hold or implementation authority changed |
 | 1.1-D (DRAFT) | 2026-11-07 | Claude Code (MC-803) | Version 0.5 G1/G2 C-4/PK-0 package delta, not approved, locked or executed: `VC-AUTH-02` cites locked EIS v0.5 blob `7a5f4918`; `VC-AUTH-07`, `VC-AUTH-08`; `RS-16` to `RS-18` (Section 4.2); `NP-47` to `NP-63` (Section 6.2); `VC-TEST-16`; `VC-EVD-07` to `VC-EVD-09`; 27 row items gain delta obligations, checks and evidence classes; counts updated. No existing check, scenario, row or criterion changed |
 | 1.1-D (DRAFT; Kernel v0.6 rebaseline) | 2026-11-14 | Claude Code (MC40, PR #1120 comment `6881056447`) | Version 1.1-D stays a draft, not approved, locked or executed. `VC-AUTH-02` cites locked EIS v0.6 blob `25c0fabc` and `VC-AUTH-08` Records 75 and 76; the version 0.5 and 1.0-L history kept. `NP-64` to `NP-67` (Section 6.3), `VC-PERF-03` and `VC-TEST-17` added; 28 existing rows gain those checks. Named negative-path checks 63 to 67; 267 rows, 202 permission-class rows, 226 NP-covered rows and `VC-PT-04` 218 unchanged |
+| 1.1-D (Stage 13 lock-only transition; conditional on Record 77) | 2026-11-15 | Claude Code, preparer (MC40, PR #1120 comment `6889895889`); decision Mission Control | Lock-status metadata only: status, lifecycle and authority labels set to `APPROVED — LOCKED` effective only on the Record 77 effective event, with version 1.0-L the effective lock until then. No obligation, row, mapping, check, scenario, workstream, hold, count or implementation authority changed |
