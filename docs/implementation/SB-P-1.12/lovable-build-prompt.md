@@ -48,7 +48,7 @@ This prompt references the Engineering Contract and does not restate or alter it
 
 ## 4. What This Prompt Does Not Authorize
 
-This draft authorizes no build. It does not authorize code, schema, SQL, migrations, Lovable execution or publication, provider or production mutation, identity-deletion runtime, unblocking `22-§20-2`, closing ESC-1, claiming G-6/T4 evidence, or SB-P-1.13 consumption. The version 1.1-D G1/G2 slice (Section 7.10.1) is `DRAFT` and **not executable**: no builder starts it, no schema is changed and no live action is taken without a Stage 13 re-lock of the amended package **and** a distinct Implementation Authorization. The artifact name `lovable-build-prompt.md` does not designate the eventual builder.
+This draft authorizes no build. It does not authorize code, schema, SQL, migrations, Lovable execution or publication, provider or production mutation, identity-deletion runtime, unblocking `22-§20-2`, closing ESC-1, claiming G-6/T4 evidence, or SB-P-1.13 consumption. The version 1.1-D G1/G2 slice (Section 7.10.1) is **locked only on the Stage 13 Record 77 effective event** and **not executable without a separate Implementation Authorization**: no builder starts it, no schema is changed and no live action is taken without a Stage 13 re-lock of the amended package **and** a distinct Implementation Authorization. The artifact name `lovable-build-prompt.md` does not designate the eventual builder.
 
 ## 5. Repository Scope and Paths
 

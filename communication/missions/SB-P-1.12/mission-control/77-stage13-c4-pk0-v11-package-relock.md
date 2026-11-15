@@ -99,7 +99,7 @@ The only changes for this Stage 13 re-lock, from the reviewed head `053e7206`, a
 |---|---|
 | All three | Header `STATUS` and `IMPLEMENTATION PACKAGE` lines; §1 `Version`, `Status` and authority rows; a new change-log row "1.1-D (Stage 13 lock-only transition; conditional on Record 77)" |
 | Engineering Contract | §1 `Next gate`; a new §3 row citing this record and historical Record 40; the §7.13 heading tag and intro status sentence; the §11 intro tag; the §12 obligations count label; §14 Status |
-| Build Prompt | The WS-A2 Kernel v0.6 block tag; the §7.10.1 heading tag; the §12 intro tag; the §13 WS-G count label; §14 Status |
+| Build Prompt | The §4 status clause for the version 1.1-D G1/G2 slice (locked only on this record's effective event, and not executable without a separate Implementation Authorization); the WS-A2 Kernel v0.6 block tag; the §7.10.1 heading tag; the §12 intro tag; the §13 WS-G count label; §14 Status |
 | Verification Checklist | The §4.2, §6.2 and §6.3 heading tags; the `VC-TEST-16` and `VC-TEST-17` status tags; two §13.2 count labels; the §13.4 intro tag; the §14 `VERSION 1.1-D` status line |
 
 Every tag change replaces a draft label ("DRAFT", "draft delta", "draft slice") with one stating the lock is conditional on this record.
@@ -120,7 +120,7 @@ The 1.0-L sentences "This draft authorizes nothing" (Engineering Contract §2) a
 | File | Prospective blob |
 |---|---|
 | `docs/implementation/SB-P-1.12/engineering-contract.md` | `8463a2242d6f20bcb0213749e677f58ed92cea4d` |
-| `docs/implementation/SB-P-1.12/lovable-build-prompt.md` | `e401e9dd3ae73f9205c370e2c6b1fa692a443f01` |
+| `docs/implementation/SB-P-1.12/lovable-build-prompt.md` | `4ecd4033d8b5c26ef6511f732660c0f6ddd39915` |
 | `docs/implementation/SB-P-1.12/verification-checklist.md` | `c4aae7fcb751483a268e60d40e9574be5d98ff20` |
 
 If any later correction changes a package file in this PR, these citations must be corrected to the actual final blobs before merge.
