@@ -156,14 +156,14 @@ One kernel decides. No feature, channel, job or later mission adds a parallel ch
 
 | Obligation | Realizes | Title | Type | Workstream | Migration class | EIS section | Verification | FCTM rows |
 |---|---|---|---|---|---|---|---|---|
-| `EC-KER-01` | `EIS-KER-01` | Single kernel decision function `authz.authorize` | `BUILD` | WS-A2 | M1, M3 | 8.1, 8.3 | NP-43, RS-01, RS-03, RS-04 | `21-§5-1`, `21-§5-2`, `21-§5-3`, `21-§5-4`, `21-§5-5`, `21-§5-6`, `21-§5-7`, `21-§5-8`, `21-§5-9`, `21-§5-10`, `21-§7`, `21-§22`, `22-§6-10`, `22-§28-2`, `17-§14-2`, `17-§14-3`, `17-§14-4`, `17-§14-5`, `17-§14-6`, `7-§12`, `BP-§10.1-3` |
+| `EC-KER-01` | `EIS-KER-01` | Single kernel decision function `authz.authorize` | `BUILD` | WS-A2 | M1, M3 | 8.1, 8.3 | NP-43, NP-65, RS-01, RS-03, RS-04 | `21-§5-1`, `21-§5-2`, `21-§5-3`, `21-§5-4`, `21-§5-5`, `21-§5-6`, `21-§5-7`, `21-§5-8`, `21-§5-9`, `21-§5-10`, `21-§7`, `21-§22`, `22-§6-10`, `22-§28-2`, `17-§14-2`, `17-§14-3`, `17-§14-4`, `17-§14-5`, `17-§14-6`, `7-§12`, `BP-§10.1-3` |
 | `EC-KER-02` | `EIS-KER-02` | Verified-principal model (four principal types) | `BUILD` | WS-A2 | M1, M3 | 8.1, 8.3 | NP-07, NP-08, RS-03 | `21-§8`, `21-§15-1`, `21-§15-2`, `21-§15-3`, `21-§15-4`, `21-§15-5`, `21-§23-5`, `22-§28-9` |
 | `EC-KER-03` | `EIS-KER-03` | Versioned capability registry and role-default matrix | `BUILD` | WS-A2 | M1 | 8.3 | NP-09, RS-01, RS-04, RS-07, RS-09, RS-10, RS-11 | `21-§4-2`, `21-§4-3`, `21-§23-2`, `21-§23-3`, `20-§16-3`, `20-§23-11`, `17-§13-2`, `17-§13-3`, `17-§18-2`, `17-§21-4`, `BP-§10.1-3` |
-| `EC-KER-04` | `EIS-KER-04` | Explicit delegated capability grants | `BUILD` | WS-A2 | M1 | 8.3 | NP-09, RS-01, RS-04, RS-09 | `21-§4-2`, `21-§5-4`, `20-§16-2`, `BP-§10.1-4` |
+| `EC-KER-04` | `EIS-KER-04` | Explicit delegated capability grants | `BUILD` | WS-A2 | M1 | 8.3 | NP-09, NP-64, RS-01, RS-04, RS-09 | `21-§4-2`, `21-§5-4`, `20-§16-2`, `BP-§10.1-4` |
 | `EC-KER-05` | `EIS-KER-05` | Entitlement primitive as a kernel input | `BUILD` | WS-A2 | M1 | 8.3 | NP-11, NP-41 | `21-§5-7`, `21-§5-10`, `21-§16-1`, `21-§16-2`, `21-§23-6`, `21-§24-9`, `22-§20-3`, `22-§28-8`, `BP-§10.1-10` |
 | `EC-KER-06` | `EIS-KER-06` | Channel and context as an enumerated kernel input | `BUILD-HARNESS` | WS-A2 | M1 | 8.3 | NP-12, RS-11 | `21-§5-8`, `21-§8`, `21-§9`, `21-§24-6`, `22-§6-2`, `22-§6-3`, `22-§6-9`, `22-§29-3` |
 | `EC-KER-07` | `EIS-KER-07` | Owner-intelligence capabilities, never inferred | `BUILD-HARNESS` | WS-A2 | M1 | 8.3 | NP-13, RS-04, RS-10, RS-11 | `21-§9`, `21-§10-6`, `21-§24-6`, `17-§18-2`, `17-§18-4`, `17-§21-4` |
-| `EC-KER-08` | `EIS-KER-08` | Action type and object scope as kernel inputs | `BUILD` | WS-A2 | M1 | 8.3 | NP-10, RS-10 | `21-§5-5`, `21-§5-6`, `21-§11-2`, `21-§24-4` |
+| `EC-KER-08` | `EIS-KER-08` | Action type and object scope as kernel inputs | `BUILD` | WS-A2 | M1 | 8.3 | NP-10, NP-66, NP-67, RS-10 | `21-§5-5`, `21-§5-6`, `21-§11-2`, `21-§24-4` |
 | `EC-KER-09` | `EIS-KER-09` | Revocation semantics under the serialization protocol | `BUILD` | WS-A2 | M1 | 8.3, 10.2 | NP-16, NP-38, RS-02, RS-05 | `21-§12-5`, `21-§17`, `21-§24-8`, `BP-§10.1-5` |
 | `EC-AUT-01` | `EIS-AUT-01` | Delegated automation rules re-evaluated on every run | `BUILD-HARNESS` | WS-A2 | M1 | 7.3, 7.4 | NP-21, RS-01 | `21-§12-1`, `21-§12-2`, `21-§12-3`, `21-§12-4`, `21-§12-5`, `21-§19-8`, `21-§24-11`, `22-§6-6`, `22-§28-4`, `BP-§10.1-4` |
 | `EC-SUP-01` | `EIS-SUP-01` | Temporary, consented, audited support access grants | `BUILD-HARNESS` | WS-A2 | M1 | 7.3, 7.4 | NP-22, RS-15 | `21-§14-1`, `21-§14-2`, `21-§14-3`, `21-§14-4`, `21-§14-5`, `21-§14-6`, `21-§14-7`, `21-§15-5`, `21-§19-7`, `21-§21-3`, `21-§23-4`, `21-§24-10`, `22-§23-3`, `22-§23-4` |
@@ -178,14 +178,14 @@ The source-complete authority-surface inventory (EIS Section 9.1) is produced be
 |---|---|---|---|---|---|---|---|---|
 | `EC-ISO-01` | `EIS-ISO-01` | Kernel-based RLS per table family, deny by default | `BUILD` | WS-A3 | M4 | 9.2, 9.4 | NP-01, NP-02, RS-03, RS-12 | `21-§6-1`, `21-§6-2`, `21-§21-4`, `21-§24-2`, `22-§6-5`, `22-§23-2`, `22-§29-3`, `17-§18-1`, `17-§22-9`, `7-§15-12`, `BP-§10.1-6`, `BP-§10.1-7` |
 | `EC-ISO-02` | `EIS-ISO-02` | Commands as the only write boundary for protected tables | `BUILD` | WS-A3 | M3, M4 | 9.2, 9.4 | NP-02, NP-10, NP-15, RS-07, RS-10 | `21-§7`, `21-§11-1`, `21-§11-2`, `21-§23-1`, `21-§24-4`, `22-§6-4`, `17-§14-1`, `17-§14-7` |
-| `EC-ISO-03` | `EIS-ISO-03` | Effective-access reconciliation (WS-B) | `BUILD-EVIDENCE-GATED` | WS-B | M5 | 9.3, 9.4 | NP-28 | `BP-§10.1-7`, `BP-§10.1-8` |
+| `EC-ISO-03` | `EIS-ISO-03` | Effective-access reconciliation (WS-B) | `BUILD-EVIDENCE-GATED` | WS-B | M5 | 9.3, 9.4 | NP-28, NP-67 | `BP-§10.1-7`, `BP-§10.1-8` |
 | `EC-ISO-04` | `EIS-ISO-04` | Privileged-operation contract for service-role paths | `BUILD` | WS-A3 | M3 | 9.1, 9.4 | NP-25 | `21-§6-6`, `21-§15-5`, `22-§6-4`, `22-§6-7` |
 | `EC-ISO-05` | `EIS-ISO-05` | Business-scoped files, exports and object storage | `BUILD-EVIDENCE-GATED` | WS-A3 | M3, M4 | 9.4 | NP-04 | `21-§6-4`, `21-§6-5`, `22-§6-8` |
 | `EC-ISO-06` | `EIS-ISO-06` | Conversation and AI context isolation contract | `BUILD-HARNESS` | WS-A3 | None | 9.4 | NP-05 | `21-§6-3`, `22-§6-3` |
 | `EC-ISO-07` | `EIS-ISO-07` | Reference-level isolation with composite keys | `BUILD` | WS-A3 | M6 | 9.4 | NP-03, RS-03 | `21-§6-6`, `21-§6-7`, `22-§5-9` |
 | `EC-ISO-08` | `EIS-ISO-08` | Kernel performance on list and search paths | `BUILD` | WS-A3 | M1 | 9.4 | per-row `VC-R` items | `22-§21` |
 | `EC-ISO-09` | `EIS-ISO-09` | Data ownership and privacy boundary | `BUILD` | WS-A3 | None | 9.4 | NP-42 | `21-§21-4`, `22-§23-1`, `22-§23-5`, `22-§23-6`, `22-§23-7` |
-| `EC-ISO-10` | `EIS-ISO-10` | `SECURITY DEFINER` hardening invariant | `BUILD` | WS-A3 | Every M3 | 9.3, 9.4 | NP-28 | `21-§7`, `BP-§10.1-7`, `BP-§10.1-8` |
+| `EC-ISO-10` | `EIS-ISO-10` | `SECURITY DEFINER` hardening invariant | `BUILD` | WS-A3 | Every M3 | 9.3, 9.4 | NP-28, NP-67 | `21-§7`, `BP-§10.1-7`, `BP-§10.1-8` |
 
 ### 7.4 Confirmation, Concurrency and Idempotency
 
