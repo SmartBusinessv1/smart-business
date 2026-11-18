@@ -2,10 +2,10 @@
 
 **Mission:** SB-P-1.18 — Controlled Business Add-ons
 **Stage:** Source 18 v1.3, during Stage 10 (EIS acceptance HELD); after the Stage 8 Blueprint Lock (`18:S8-FAR`) and the Track A post-lock correction (PR #1123)
-**Status:** DRAFT — NOT EFFECTIVE. Effective only on Founder human merge of the pull request that carries this record and Mission Control post-merge verification (Source 18 §3.3 items 4 and 6)
-**Decides:** the frozen **Build commitment** field of exactly 22 FCTM rows, from `ADD-ON + BUILD NOW` (with the C1 pilot suffix where present) to `REJECT`. No other field, row, record or source is decided
+**Status:** DRAFT — NOT EFFECTIVE. Effective on Founder human merge of the pull request that carries this record (Source 18 §3.3 items 4 and 6). Mission Control post-merge verification then confirms the canonical bytes; it is not an additional condition of effect
+**Decides:** the frozen **Build commitment** field of exactly 22 FCTM rows, from `ADD-ON + BUILD NOW` (with the C1 pilot suffix where present) to `REJECT`. The same 22 rows cite this decision by Decision ID in their Founder decision cell (`—` → `18:FPDR-9`; Source 18 §3.2 item 5). That cell records provenance and is not a second classification. No other field, row, record or source is decided
 **Prepared by:** Claude Code, SB-P-1.18 Definition Actor (non-independent preparer), under the Mission Control one-use preparation grant below
-**Preparation authority:** MC41 decision-evidence record and scoped preparation authority ([PR #1111 comment 6911608223](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6911608223) §C). The Founder did not author Git edits, and this draft is not Founder approval of its bytes
+**Preparation authority:** MC41 decision-evidence record and scoped preparation authority ([PR #1111 comment 6911608223](https://github.com/SmartBusinessv1/smart-business/pull/1111#issuecomment-6911608223) §C), and the MC41 one-use citation correction authority ([PR #1131 comment 6973943208](https://github.com/SmartBusinessv1/smart-business/pull/1131#issuecomment-6973943208)). The Founder did not author Git edits, and this draft is not Founder approval of its bytes
 **Decision identifier:** `18:FPDR-9`, proposed. A full-tree preflight at the baseline and a scan of every open pull request found no `18:FPDR-9` occurrence. The last SB-P-1.18 Founder Product Decision Record is `18:FPDR-8` (decision log F-10); `18:FPDR-4-A` is a clarification suffix, and `18:S8-FAR` is a Stage 8 approval record, not an FPDR
 **Baseline:** `main@9ce09247c752b26c6a39eeeb4fda1613a43bd55f`
 **Implementation Authorization:** WITHHELD — IMPLEMENTATION NOT AUTHORIZED.
@@ -67,7 +67,7 @@ Source: [PR #1111 comment 6911608223](https://github.com/SmartBusinessv1/smart-b
 
 ## 4. The 22 rows: field changed, old and new values
 
-FCTM: `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`. Before: blob `ed2ff0f99e6982a15b650b5aee09e01e9355e0fd` (canonical at the baseline; Founder-approved Stage 8 matrix `2bbe6e227d714996bcead10385952c78283e20e8` plus the Track A seed correction, PR #1123). After (in the pull request carrying this record): blob `842a89566929a96b507167a8714d7946bd8a72bd`.
+FCTM: `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`. Before: blob `ed2ff0f99e6982a15b650b5aee09e01e9355e0fd` (canonical at the baseline; Founder-approved Stage 8 matrix `2bbe6e227d714996bcead10385952c78283e20e8` plus the Track A seed correction, PR #1123). After (in the pull request carrying this record): blob `36774b720d744dcc4bcae50784ccaf58449c275e`. The pull request's first commit (`db3eb306`, FCTM blob `842a89566929a96b507167a8714d7946bd8a72bd`) changed the Build commitment cells only; its second commit adds the Decision ID citation below.
 
 | # | Row | FCTM line | Build commitment before | After |
 |---:|---|---:|---|---|
@@ -94,7 +94,9 @@ FCTM: `communication/missions/SB-P-1.18/claude-code/03-stage2-populated-fctm.md`
 | 21 | `16-§21-5` | 802 | `ADD-ON + BUILD NOW` | `REJECT` |
 | 22 | `16-§21-6` | 803 | `ADD-ON + BUILD NOW` | `REJECT` |
 
-**Unchanged in every one of the 22 rows:** row ID, source and blob, exact source pointer, kind `REJ`, commercial `REJECT`, owning mission `SB-P-1.18`, disposition `OUT OF BUILD SCOPE`, dependency or hold, evidence and citation (the `L-NEG` or `L-HIST` must-not-appear obligation), Founder decision cell, workstream and verification target.
+**Founder decision cell (provenance citation, not a classification):** in each of the same 22 rows, `—` → `18:FPDR-9`, so the row cites this decision by Decision ID (Source 18 §3.2 item 5), under [PR #1131 comment 6973943208](https://github.com/SmartBusinessv1/smart-business/pull/1131#issuecomment-6973943208).
+
+**Unchanged in every one of the 22 rows:** row ID, source and blob, exact source pointer, kind `REJ`, commercial `REJECT`, owning mission `SB-P-1.18`, disposition `OUT OF BUILD SCOPE`, dependency or hold, evidence and citation (the `L-NEG` or `L-HIST` must-not-appear obligation), workstream and verification target. Against the baseline, exactly 44 cells differ: 22 Build commitment cells and 22 Founder decision cells.
 
 **Unchanged elsewhere:** the other 747 data rows; every legend, header, note and totals line of the FCTM. The disposition census stays `IN SCOPE` 592, `DELEGATED` 77, `OUT OF BUILD SCOPE` 48, `NOT APPLICABLE` 27, `ASSIGNED TO LATER MISSION` 17, `UNRESOLVED FOUNDER DECISION` 8 (769 rows). Build commitment `REJECT` goes from 26 to 48 rows, so all 48 `OUT OF BUILD SCOPE` rows carry `REJECT`; `ADD-ON + BUILD NOW — before first 10 pilot merchants` goes from 281 to 272 and `ADD-ON + BUILD NOW` from 257 to 244.
 
@@ -122,12 +124,12 @@ The original Stage 8 approval (`mission-control/09-stage8-founder-approval-and-b
 
 | Item | Position |
 |---|---|
-| Row citation of `18:FPDR-9` (Source 18 §3.2 item 5, "cited by Decision ID in the row") | Not made. The grant authorizes only the Build commitment cell and treats any other cell edit as a STOP. The Founder decision cell of the 22 rows stays `—`. Mission Control decides whether a one-cell-per-row citation is required before merge |
-| FCTM §0.8 legend (Founder decision IDs) and header status note | Unchanged, under the same limit. The header note's sentence "No other row changed" predates this correction |
-| Locked Blueprint §11.3 (`docs/phase-1-mission-blueprint/completed/SB-P-1.18.md`, blob `f9bfd0a2f6995f9956c76425fef3bff673cc7266`, lines 764 to 785) | Still shows the old build commitment for the 22 rows. The grant forbids editing locked Blueprint text |
+| Row citation of `18:FPDR-9` (Source 18 §3.2 item 5, "cited by Decision ID in the row") | Made in the second commit under [PR #1131 comment 6973943208](https://github.com/SmartBusinessv1/smart-business/pull/1131#issuecomment-6973943208): each of the 22 rows cites `18:FPDR-9` in its Founder decision cell. The first commit had left the cell `—` because the original grant authorized only the Build commitment cell |
+| FCTM §0.8 legend (Founder decision IDs) and header status note | Unchanged; not authorized in this correction. The header note's sentence "No other row changed" and the legend predate this correction. After canonical merge they are prior-status, historical statements, superseded for the 22 rows' corrected classification only; Mission Control decides any reconciliation |
+| Locked Blueprint §11.3 (`docs/phase-1-mission-blueprint/completed/SB-P-1.18.md`, blob `f9bfd0a2f6995f9956c76425fef3bff673cc7266`, lines 764 to 785) | Still shows the old build commitment for the 22 rows. The grant forbids editing locked Blueprint text. After canonical merge it is a prior-status, historical reference, superseded for the 22 rows' corrected classification only; Mission Control decides any reconciliation |
 
 ## 9. Publication boundary
 
-This record is a draft. It becomes the canonical Founder decision only on Founder human merge and Mission Control post-merge verification, after independent verification. It authorizes no implementation, SQL, migration, provider action or runtime test, and no change to PR #1111.
+This record is a draft. After independent review and Mission Control disposition, it becomes the canonical Founder decision on Founder human merge of the pull request that carries it (Source 18 §3.3). Mission Control post-merge verification then confirms the canonical bytes; it is not an additional condition of effect. It authorizes no implementation, SQL, migration, provider action or runtime test, and no change to PR #1111.
 
 **STOP FOR INDEPENDENT REVIEW, MISSION CONTROL DISPOSITION AND FOUNDER MERGE.** Implementation: WITHHELD.
