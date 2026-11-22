@@ -6,7 +6,7 @@
 **Owner:** Mission Control 41  
 **Status of this record before human merge:** **DRAFT — NOT CANONICALLY EFFECTIVE UNTIL AUTHORIZED HUMAN MERGE TO `main`**.  
 **Disposition proposed for that crossing:** **IMPLEMENTATION AUTHORIZATION: WITHHELD — IMPLEMENTATION NOT AUTHORIZED.**  
-**Operating basis:** [Founder-approved Phase 1 operating pattern](../../../mission-control/SB-P-Phase%201%20operating%20pattern.md) §§2, 8–10, 12–14; Source 18 v1.3 §§3.3, 8.  
+**Operating basis:** [Founder-approved Phase 1 operating pattern](https://github.com/SmartBusinessv1/smart-business/blob/main/mission-control/SB-P-Phase%201%20operating%20pattern.md) §§2, 8–10, 12–14; Source 18 v1.3 §§3.3, 8.  
 **Canonical baseline verified:** `main@ea92e4416b0943ec9ab423d066b50acc240aebb0` (human merge PR #1137).
 
 ## 1. Exact locked inputs and boundary
